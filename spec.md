@@ -43,69 +43,39 @@ ingredients.js - a file with many ingredients and their associated prices
 Users will be associated with recipes, which will in turn be associated with ingredients, via IDs
 ```
 
-## Project Iterations
+## User Stories
+
+### Users 
+A `User` holds on to all of a user's data. As a user, I should be able to:
+  - Favorite recipes (add to / remove from the user's `favoriteRecipes`)
+  - Decide to cook a recipe that week (add to my recipesToCook)
+  - Remove a recipes from my `recipesToCook`
+  - Filter my `favoriteRecipes` or `recipesToCook` by type
+  - Search any of my saved recipes by name or ingredient
+
+### Recipes
+
+Users should be able to view a list of recipes. Specifically:
+- As a user, I should be able to filter recipes by type / tag
+- As a user, I should be able to search recipes by ingredients
+
+A recipe should hold on to all its information (provided in the data file). It should be able to:
+- Get the cost of its ingredients
+- Get its directions / instructions
+
+
+### Pantries
+Every User should have a pantry. A `Pantry` holds on to all the ingredients its owner has stocked, and the amount of each ingredient they have.
+As a user, I should be able to:
+- Determine whether my pantry has enough ingredients to cook a given meal
+- Determine the amount of ingredients still needed to cook a given meal, based on what's in my pantry
+- Remove the ingredients used for a given meal from my pantry, once that meal has been cooked
+
 
 ### Iteration 1
 
 At the most basic level, the app should allow users to view recipes. This iteration should be focused on this behavior.
 
-#### Classes
-
-In this phase, your app should _at least_ have the following classes:
-
-__recipeRepository__ class
-
-- A `recipeRepository` holds on to all the recipes that are viewable
-- It should be able to take in a collection of recipes
-- It should have methods to:
-  - Get a recipe given a recipe's ID
-  - Filter recipes by type / tag
-  - Search recipes by ingredients / name
-
-__recipe__ class
-
-
-- A `recipe` holds on to one recipe's information
-- It should be able to take in its information
-- It should have methods to:
-  - Get the cost of its ingredients
-  - Get its directions / instructions
-
-### Iteration 2
-
-Let's get some users in the application. We'll be using the data in `users.js` for this.
-
-For now, when we load the page, __a random user should be loaded__. We should see their name, and have a way to view their favorite meals and the ones they've chosen to cook.
-
-#### Classes
-
-__User__ class
-
-- A `User` holds on to all of a user's data
-- It should have parameters to take in user data and a user's ID
-- It should have methods to:
-  - Determine a user's data given their ID
-  - Favorite recipes (add to / remove from the user's favoriterecipes)
-  - Decide to cook a recipe that week (add to their recipesToCook)
-  - Remove a recipes from their recipesToCook
-  - Filter their favorite or toCook recpipies by type
-  - Search their recipes by name or ingredient
-
-### Iteration 3
-
-So far we can view and filter recipes, and our users can favorite / choose to cook recipes. Lets build out the meal planning side of the app.
-
-Here we'll make a `Pantry`, where users can hold on to the ingredients they've got in the kitchen
-
-#### Classes
-
-__Pantry__
-
-- A `Pantry` holds on to all the ingredients its owner has stocked, and the amount of each ingredient
-- It should be associated with its owner
-- It should have methods to:
-  - Determine whether it has enough ingredients to cook a given meal
-  - Return the amount of ingredients still needed to cook a given meal
-  - Remove the correct amount of its ingredients for a meal, once that meal has been cooked
-
-<section class="note">The classes outlined above are minimal suggestions. You may find it helpful to use others -- feel free if so!</section>
+<section class="note">
+The details outlined above are basic user stories. You may find it useful to create classes that relate to ehe stories, but are not speicifically outlined above. 
+</section>
