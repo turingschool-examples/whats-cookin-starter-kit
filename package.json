@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "Starter kit for Turing FE2 paired project",
   "main": "index.js",
-  "dependencies": {
-    "faker": "^4.1.0"
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^6.7.2",
+    "mocha": "^6.2.2"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "./node_modules/.bin/mocha"
   },
