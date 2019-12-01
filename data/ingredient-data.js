@@ -2258,4 +2258,3 @@ let ingredientData = [
         "name": "yellow sweet pepper"
     }
 ]
-module.exports = ingredientData;
