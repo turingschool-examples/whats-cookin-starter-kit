@@ -9,7 +9,8 @@
     "mocha": "^6.2.2"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha",
+    "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'"
   },
   "author": "Turing School of Software and Design",
   "license": "MIT"
