@@ -1,5 +1,5 @@
 ## DTR - Define The Relationship
-#### Jim Weist & Virginia Ladd || What's Cookin
+### Jim Weist & Virginia Ladd || What's Cookin
 
 1. What are each of our learning goals for this project? What drives us in this project?
 Understand how all the data works together. More, more, more practice and building out projects. Getting to the MVP.
