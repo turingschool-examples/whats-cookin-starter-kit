@@ -1,24 +1,23 @@
 class Recipe {
-  constructor(id) {
+  constructor(id, name, image, tags) {
     this.id = id;
-    this.name = id.name;
+    this.name = name;
     this.image = image;
-    this.ingredients = [];
+    // this.ingredients = instructions;
+    this.tags = tags;
+    // console.log(this.ingredients);
   }
 
-  filterByTag() {
 
-  }
 
   filterByIngredients() {
-
   }
 
   findCostPerRecipe() {
-
   }
 
   retrieveINstructions() {
-    
   }
 }
+
+module.exports = Recipe;
