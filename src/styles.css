@@ -20,7 +20,7 @@ main {
 }
 
 .navigation-header {
-  background-color: #D34332;
+  background-color: orange;
   height: 100px;
   width: 100%;
   list-style: none;
@@ -54,7 +54,7 @@ img {
 
 h1 {
   margin: 20px;
-  color: #D34332;
+  color: orange;
   position: absolute;
   top: 400px;
   background-color: ghostwhite;
@@ -82,5 +82,5 @@ h3 {
 
 footer {
   margin-top: 150px;
-  background-color: #D34332;
+  background-color: orange;
 }
