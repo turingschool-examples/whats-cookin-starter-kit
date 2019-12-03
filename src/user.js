@@ -1,4 +1,4 @@
-class User = {
+class User {
   constructor(id, name, pantry) {
     this.id = id;
     this.name = name;
@@ -12,5 +12,5 @@ class User = {
   recipesToCook() {
 
   }
-  
+
 }
