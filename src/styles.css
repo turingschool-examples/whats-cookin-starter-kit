@@ -7,7 +7,8 @@
 }
 
 body {
-  background: no-repeat center/100% url(../images/blueberries.jpeg);
+  background: repeat center/100% url(../images/veggie_background.jpeg);
+  background-attachment: fixed;
   background-color: black;
   height: 100vh;
 }
@@ -15,24 +16,23 @@ body {
 nav {
   display: flex;
   flex-direction: row-reverse;
-  background-color: #4188d4;
-  position: absolute;
+  background-color: #E42020;
   width: 100%;
   height: 100px;
-  border-bottom: 5px solid #237AD7;
+  border-bottom: 5px solid #35A620;
   opacity: .9;
 }
 
 .nav-buttons {
   font-size: 130%;
   padding: 2%;
-  background-color: #4188d4;
+  background-color: #E42020;
   color: white;
   border: none;
 }
 
 .nav-buttons:hover {
-  background-color: #237AD7;
+  background-color: #35A620;
   cursor: pointer;
 }
 
@@ -41,11 +41,67 @@ h1 {
   font-size: 250%;
   font-weight: lighter;
   position: absolute;
-  top: 25%;
+  top: 3.5%;
   left: 2%;
 }
 
 .user-icon {
   background: no-repeat center/100% url(../images/user_icon.png);
   margin-right: 3%;
+}
+
+.recipe-card-area {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.recipe-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #35A620;
+  opacity: .9;
+  height: 400px;
+  width: 500px;
+  border-radius: 20px;
+  margin: 2%;
+}
+
+.recipe-container:hover {
+  background-color: #48DE2C;
+  cursor: pointer;
+}
+
+.image-container1,
+.image-container2,
+.image-container3 {
+  content: url(../images/food_1.jpg);
+  align-items: center;
+  height: 310px;
+  width: 80%;
+  padding: 3%;
+  border-radius: 30px;
+}
+
+.image-container2 {
+    content: url(../images/food_2.jpg);
+}
+
+.image-container3 {
+    content: url(../images/food_3.jpg);
+}
+
+.recipe-text {
+  padding: 2%;
+}
+
+h2 {
+  margin-top: -2%;
+  font-family: Quicksand;
+}
+
+h3 {
+  font-family: Quicksand;
+
 }
