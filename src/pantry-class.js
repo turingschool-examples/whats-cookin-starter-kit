@@ -1,5 +1,6 @@
 class Pantry {
   constructor() {
+    this.id = user.id
     this.currentStock = [];
     this.itemsNeeded = [];
     this.EnoughItems = true;

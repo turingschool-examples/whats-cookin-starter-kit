@@ -1,5 +1,13 @@
 class Users {
-  constructor() {
+  constructor(id, name, pantry) {
+    this.id = id;
+    this.name = name;
+    this.pantry = pantry;
+    this.favorite = [];
+    this.toCook = [];
+  }
+
+  toFilterRecipes() {
 
   }
 }

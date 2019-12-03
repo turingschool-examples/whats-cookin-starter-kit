@@ -1,10 +1,11 @@
 class Recipes {
   constructor() {
     this.allRecipes = [];
+    this.favorite = false;
   }
 
   showSteps() {
-    
+
   }
 }
 
