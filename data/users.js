@@ -1,4 +1,4 @@
-let users = [
+let usersData = [
   {
     "id": 1,
     "name": "Saige O'Kon",
@@ -53256,5 +53256,5 @@ let users = [
 ]
 
 if (typeof module !== 'undefined') {
-  module.exports = users;
+  module.exports = usersData;
 }
