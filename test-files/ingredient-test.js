@@ -1,3 +1,3 @@
 const chai = require("chai");
 const expect = chai.expect;
-const Ingredient = ("../")
+const Ingredients = ("../src/scripts/Ingredients.js");
