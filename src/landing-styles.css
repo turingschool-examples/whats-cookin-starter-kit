@@ -1,0 +1,47 @@
+/* :root {
+  --primary-background: #4e5256;
+} */
+/* var(--primary-background, #4e5256);
+
+body {
+  background: --primary-background;
+}
+
+h1 {
+
+} */
+
+
+:root {
+  --main-bg-color: #4e5256;
+
+}
+
+body {
+  /* background: url('http://www.fillmurray.com/g/700/500') no-repeat center center fixed; */
+  background-color: var(--main-bg-color);
+}
+
+h1 {
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  font-size: 3rem;
+  padding: 2rem;
+}
+
+main {
+  /* display: flex;
+  justify-content: center; */
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+.login {
+  font-size: 16px;
+  border: none;
+  line-height: 51px;
+  color: #fff;
+  background: #feaa26;
+  text-align: center;
+  width: 3rem;
+}
