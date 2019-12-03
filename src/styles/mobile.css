@@ -1,0 +1,42 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: skyblue;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.recipe-group {
+  margin: 1em;
+}
+
+.recipe-group h3 {
+  margin: .5em 0;
+}
+
+.recipe-card {
+  border: 3px red solid;
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: 1.25em;
+  align-items: center;
+  margin: auto;
+  padding: 1em;
+}
+
+.recipe-card img {
+  margin: auto;
+  width: 50%;
+}
+
+.recipe-card p {
+  padding: 1em;
+}
