@@ -1,9 +1,2 @@
-class Recipe {
-  constructor() {
-
-  }
-}
-
-if (typeof module !== 'undefined') {
-  module.exports = recipe;
-}
+const chai = require("chai");
+const expect = chai.expect;

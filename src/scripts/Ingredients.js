@@ -1,2 +1,9 @@
-const chai = require("chai");
-const expect = chai.expect;
+class Ingredients {
+  constructor() {
+
+  }
+}
+
+if (typeof module !== 'undefined') {
+  module.exports = ingredient;
+}
