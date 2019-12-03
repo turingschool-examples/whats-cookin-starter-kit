@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  font-family: 'McLaren';
+  margin: 0px;
+  padding: 0px;
+  font-family: Arvo;
+}
+
+body {
+  background: no-repeat center/100% url(../images/blueberries.jpeg);
+  background-color: black;
+  height: 100vh;
+}
+
+nav {
+  display: flex;
+  flex-direction: row-reverse;
+  background-color: #4188d4;
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  border-bottom: 5px solid #237AD7;
+  opacity: .9;
+}
+
+.nav-buttons {
+  font-size: 130%;
+  padding: 2%;
+  background-color: #4188d4;
+  color: white;
+  border: none;
+}
+
+.nav-buttons:hover {
+  background-color: #237AD7;
+  cursor: pointer;
+}
+
+h1 {
+  color: white;
+  font-size: 250%;
+  font-weight: lighter;
+  position: absolute;
+  top: 25%;
+  left: 2%;
+}
+
+.user-icon {
+  background: no-repeat center/100% url(../images/user_icon.png);
+  margin-right: 3%;
+}
