@@ -1,0 +1,52 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  border: 1px solid red;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  font-size: 270%;
+  text-align: center;
+}
+
+.user-header {
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.my-cart,
+.my-pantry,
+.my-favorites,
+.to-cook {
+  font-size: 100%;
+}
+
+.search-header {
+  display: flex;
+  width: 20%;
+  align-items: center;
+}
+
+.search-input {
+  border: 1px solid;
+  border-radius: 5px 0px 0px 5px;
+  font-size: 90%;
+  padding:2%;
+  width: 100%;
+  height: 30px;
+}
+
+.search-button {
+  background-color: pink;
+  border: 1 solid;
+  border-radius: 0px 5px 5px 0px;
+  height: 42px;
+  width: 55px;
+}
