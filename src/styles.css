@@ -1,0 +1,22 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.main_body-nav {
+	height: 125px;
+	width: 100%;
+	background: purple;
+}
+
+.main_body {
+	height: 100vh;
+	width: 100%;
+	background: red;
+}
+
+.user_info-box {
+	height: 165px;
+	width: 165px;
+	background: white;
+}
