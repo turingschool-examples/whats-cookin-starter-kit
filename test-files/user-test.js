@@ -1,9 +1,2 @@
-class User {
-  constructor() {
-
-  }
-}
-
-if (typeof module !== 'undefined') {
-  module.exports = user;
-}
+const chai = require("chai");
+const expect = chai.expect;
