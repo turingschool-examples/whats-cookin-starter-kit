@@ -1,7 +1,7 @@
 class Ingredient {
-  constructor(id, name) {
+  constructor(id) {
     this.id = id;
-    this.name = name;
+    this.name = id.name;
     this.estimatedCostInCents = 0;
   }
 

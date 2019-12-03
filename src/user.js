@@ -1,7 +1,7 @@
 class User {
-  constructor(id, name, pantry) {
+  constructor(id, pantry) {
     this.id = id;
-    this.name = name;
+    this.name = id.name;
     this.pantry = pantry;
   }
 

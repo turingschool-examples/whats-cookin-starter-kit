@@ -1,18 +1,24 @@
-class Pantry {
-  constructor(user) {
-    this.user = user;
-    this.stockedIngredients = [];
+class Recipe {
+  constructor(id) {
+    this.id = id;
+    this.name = id.name;
+    this.image = image;
+    this.ingredients = [];
   }
 
-  canCookMeals() {
+  filterByTag() {
 
   }
 
-  findIngredients() {
+  filterByIngredients() {
 
   }
 
-  removeAfterCooking() {
+  findCostPerRecipe() {
+
+  }
+
+  retrieveINstructions() {
     
   }
 }
