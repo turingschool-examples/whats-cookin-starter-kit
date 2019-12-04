@@ -43,14 +43,36 @@ describe('User', () => {
   });
 
   it.skip('Should have a property of favoriteRecipes with a default value', () => {
-    expect(user1.favoriteRecipes).to.eql(0);
+    expect(user1.favoriteRecipes).to.eql([]);
   });
+
   it.skip('Should be able to add recipes from favoriteRecipes', () =>{
-    expect(user1.changeFavorites()).to.eql(["Loaded Chocolate Chip Pudding Cookie Cups"]);
+    expect(user1.changeFavorites(recipe)).to.eql(["Loaded Chocolate Chip Pudding Cookie Cups"]);
   });
+
   it.skip('Should be able to remove recipes from favoriteRecipes', () =>{
-    user1.changeFavorites(P);
-    expect(user1.changeFavorites(P)).to.eql([]);
+    user1.changeFavorites(recipe);
+    expect(user1.changeFavorites(recipe)).to.eql([]);
   });
-  it.skip('Should ')
+
+  it.skip('Should be able to filter through favoriteRecipes by tag', () => {
+    user1.changeFavorites(recipe);
+    user1.changeFavorites(recipe);
+    user1.changeFavorites(recipe);
+    user1.changeFavorites(recipe);
+    expect(user1.filterFavorites(tag)).to.eql([recipesIncludingTags]);
+  });
+
+  it.skip('Should be able to search favoriteRecipes by name or ingredient', () => {
+    expect(user1.findFavorites(name/ingredient)).to.eql(recipeWithName/recipeWithIngredient);
+  });
+
+  it.skip('Should be able to check ingredients in User/s pantry for a given recipe', () => {
+    user1.;
+    expect(user1.checkPantry(recipeIngredients)).to.eql('You have the ingredients!');
+  });
+
+  it.skip('Should inform User if they lack required ingredients for a given recipe', () => {
+    expect(user1.checkPantry(recipeIngredients)).to.eql(missingIngredientsWithPrice);
+  });
 });
