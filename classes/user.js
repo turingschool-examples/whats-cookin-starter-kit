@@ -1,10 +1,10 @@
 class User {
-  constructor() {
+  constructor(users) {
     this.favoriteRecipes = [];
     this.recipesToCook = [];
-    this.id;
-    this.name;
-    this.pantry;
+    this.id = users.id;
+    this.name = users.name;
+    this.pantry = users.pantry;
   }
   decideRecipe(){
 

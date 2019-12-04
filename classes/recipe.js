@@ -1,5 +1,5 @@
 class Recipe {
-  constructor() {
+  constructor(recipesArray) {
     this.ingredients;
     this.instructions;
     this.name;
