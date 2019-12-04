@@ -1285,12 +1285,12 @@ let ingredientData = [
     "estimatedCostInCents": 253
   },
   {
-    "id": 1082047,
+    "id": ,
     "name": "kosher salt",
     "estimatedCostInCents": 972
   },
   {
-    "id": 1082047,
+    "id": ,
     "name": "kosher salt",
     "estimatedCostInCents": 245
   },
@@ -1340,7 +1340,7 @@ let ingredientData = [
     "estimatedCostInCents": 1010
   },
   {
-    "id": 1082047,
+    "id": ,
     "name": "kosher salt",
     "estimatedCostInCents": 680
   },
