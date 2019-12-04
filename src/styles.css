@@ -15,48 +15,49 @@ body {
 h1 {
   border-right: 2px solid #000;
   font-size: 255%;
+  height: 8vh;
   margin-top: auto;
   margin-bottom: auto;
   padding: 10px;
 }
 
 .user-info {
+  font-size: 180%;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .search-bar {
   display: flex;
-
-  height: 100%;
-  width: 60%;
+  height: 10vh;
+  margin: 3px 0px 0px 0px;
+  width: 50%;
 }
 
 .search-image {
   border: 1px solid #000;
+  margin: 5px 0px 7px 0px;
   padding: 5px;
-  width: 9%;
+  width: 10%;
+}
+
+.search-image:hover,
+.card-button:hover {
+  background-color: #cff2da;
 }
 
 .search-input {
-  font-size: 200%;
-  height: 75px;
-  margin: auto;
-  width: 89%;
+  border: 1px solid #000;
+  font-size: 180%;
+  height: 8vh;
+  margin: 5px 23px 0px 0px;
+  padding-left: 10px;
+  width: 90%;
 }
 
-.search-button {
-  background-color: #EBF5EE;
-  border: 2px solid #000;
-  height: 100%;
-  margin: auto;
-  width: 11%;
-}
-
-.add-button {
-  padding: 5px;
-  width: 7%;
-}
-
-.favorite-button {
+.card-button {
+  border: 1px solid #000;
+  margin: 3px;
   padding: 5px;
   width: 7%;
 }
@@ -65,41 +66,46 @@ h1 {
   background-color: #7CA5B8;
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   height: 88vh;
   /* padding: 30px; */
   width: 97.5vw;
   padding: 20px;
 }
 
+img {
+  cursor: pointer;
+}
+
 .card {
-  border: 1px solid #000;
-  height: 285px;
-  /* margin: 5px; */
+  background-color: #c8edfe;
+  border: 3px solid #000;
+  /* height: 325px; */
   width: 100%;
 }
 
 .card-header {
   background-color: #EBF5EE;
+  border-bottom: 1px solid #000;
+  display: flex;
+  justify-content: space-between;
 }
 
 .recipe-name {
   display: block;
+  font-size: 150%;
   text-align: center;
 }
 
-.food-picture {
+.card-picture {
+  border: 1px solid #000;
   height: 200px;
-  margin-left: 5%;
-  width: 90%;
+  margin: 10px 3%;
+  width: 94%;
 }
 
 main {
   background-color: #7CA5B8;
-  /* display: grid;
-  grid-gap: 30px;
-  grid-template-columns: repeat(5, 1fr); */
-  height: 88vh;
-  /* padding: 30px; */
+  height: 95vh;
   width: 100vw;
 }
