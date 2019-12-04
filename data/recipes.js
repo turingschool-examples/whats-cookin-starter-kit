@@ -5916,3 +5916,5 @@ let recipeData = [
     ]
   }
 ]
+
+window.recipeData = recipeData;
