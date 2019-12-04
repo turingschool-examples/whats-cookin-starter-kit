@@ -1,16 +1,25 @@
+const Recipe = require('../src/recipe.js');
+
 class User {
-  constructor(id, pantry) {
+  constructor(id, name, pantry) {
     this.id = id;
-    this.name = id.name;
+    this.name = name;
     this.pantry = pantry;
+    // this.recipe = recipe;
+    this.favorites = [];
   }
 
-  saveToFavorites() {
-
+  saveToFavorites(recipe) {
+    this.favorites.push(recipe.id);
   }
 
   recipesToCook() {
 
   }
 
+  searchByTags() {
+
+  }
 }
+
+module.exports = User;
