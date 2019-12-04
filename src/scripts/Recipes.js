@@ -1,9 +1,12 @@
 class Recipes {
-  constructor() {
-
+  constructor(name, id, image, ingredients) {
+    this.name = name;
+    this.id = id;
+    this.image = image;
+    this.ingredients = ingredients;
   }
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = recipes;
+  module.exports = Recipes;
 }
