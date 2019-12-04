@@ -2,7 +2,7 @@ const chai = require("chai");
 const expect = chai.expect;
 let ingredient;
 
-const Ingredients = ("../src/scripts/Ingredients.js");
+const Ingredients = require("../src/scripts/Ingredients");
 
 beforeEach(() => {
   // Will need to input arguments to match the data file
@@ -12,11 +12,11 @@ beforeEach(() => {
 describe ('Ingredients', () => {
 
   it('should be a function', () => {
-    expect(Ingredient).to.be.a('function');
+    expect(Ingredients).to.be.a('function');
   })
 
   it('should be an instance of Ingredient', () => {
-    expect(ingredient).to.be.an.instanceof(Ingredient);
+    expect(ingredient).to.be.an.instanceof(Ingredients);
   })
 
   it('should have a unique id', () => {
