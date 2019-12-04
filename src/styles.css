@@ -14,7 +14,7 @@ body {
 
 .nav-bar {
   display: grid;
-  grid-template-columns: 4.5fr 6.5fr;
+  grid-template-columns: 4.8fr 6.2fr;
   width: 100%;
   height: 15%;
   border: solid black 2px;
@@ -50,7 +50,9 @@ body {
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
     ". label ."
-    "name category ingredients"
+    "name category ingredients";
+  justify-items: center;
+
 }
 
 .search-form {
@@ -76,7 +78,53 @@ body {
   grid-area: ingredients;
 }
 
+.recipes-section {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  justify-items: center;
+  grid-row-gap: 20px;
+}
 
+.recipe-card {
+  display: flex;
+  flex-direction: column-reverse;
+  border: solid black 2px;
+  width: 400px;
+  height: 400px;
+  margin: 20px;
+}
 
+.recipe-card-bar {
+  display: flex;
+  flex-direction: column;
+  /* border: solid black 1px; */
+  background-color: #f1e8b7;
+}
 
+.recipe-card-name {
+  align-self: flex-start;
+}
 
+.btns-container {
+  align-self: flex-end;
+  margin: 0px 5px 5px 0px;
+}
+
+.heart-btn {
+  background-image: url("../images/favorite.svg");
+  height: 30px;
+  width: 30px;
+  background-color: #f1e8b7;
+  border: none;
+}
+
+.cook-btn {
+  background-image: url("../images/cutlery.svg");
+  height: 30px;
+  width: 30px;
+  background-size: contain;
+  background-color: #f1e8b7;
+  border: none;
+}
