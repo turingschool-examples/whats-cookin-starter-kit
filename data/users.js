@@ -53255,10 +53255,6 @@ let users = [
   }
 ]
 
-window.Users = users;
+// window.Users = users;
 
-// if (typeof module !== 'undefined') {
-//   module.exports = Users;
-// } else {
-//   window.Users = Users;
-// }
+window.Users = users;

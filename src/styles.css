@@ -21,7 +21,7 @@
 	float: left;
 }
 
-.user_info-box {
+.recipe_info-box {
 	height: 350px;
 	width: 45%;
 	background: white;
@@ -37,6 +37,12 @@
 button {
 	width: 125px;
 	height: 30px;
+}
+
+.main_recipe-area {
+	width: 60%;
+	height: 100%;
+	float: left;
 }
 
 .user_info-section {

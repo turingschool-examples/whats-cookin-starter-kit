@@ -7,11 +7,26 @@
 // const recipes = require('../data/recipes');
 
 let user = new User(users)
+let cookbook = new Cookbook()
+let pantry = new Pantry()
 
+var recipeName = document.querySelector('.recipe_title');
+var cooksName = document.querySelector('.user_title');
 
 function kickOff() {
-  var cooksName = document.querySelector('.user_title');
 	cooksName.innerHTML = user.addToFavorites(users)
 }
 
+function displayName() {
+	recipeName.innerHTML = user.displayName(user)
+	user.addToFavorites(users, recipeData)
+}
+
+function addToFavorites() {
+
+}
+
+cooksName.innerHTML = user.addToFavorites(users)
+
+displayName()
 kickOff()

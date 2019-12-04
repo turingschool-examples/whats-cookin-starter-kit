@@ -28,4 +28,6 @@ class Cookbook {
 
   if (typeof module !== 'undefined') {
   module.exports = Cookbook;
+} else {
+  window.Cookbook = Cookbook;
 }

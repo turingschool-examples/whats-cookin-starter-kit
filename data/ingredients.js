@@ -2638,3 +2638,5 @@ let ingredientData = [
     "estimatedCostInCents": 728
   }
 ]
+
+window.IngredientData = ingredientData;

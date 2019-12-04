@@ -4,14 +4,20 @@ class User {
     this.id = obj.id;
     this.name = obj.name;
     this.pantry = [];
+    this.favoriteRecipes = [];
+    this.recipesToCook = [];
 
   }
 
-  addToFavorites(users) {
+  displayName(user) {
+    console.log(user)
+    return "Kevin"
+  }
+
+  addToFavorites(user, recipeData) {
+    console.log(recipeData)
     // return "Add to yo favorites"
-    console.log("Add to yo favorites")
-    console.log(users[0].name)
-    return users[0].name
+    console.log('Hello') 
 
   }
 
@@ -25,11 +31,4 @@ class User {
 
 };
 
-
-if (typeof module !== 'undefined') {
-  module.exports = User;
-} else {
-  window.User = User;
-}
-
-// module.export = User;
+window.User = User;
