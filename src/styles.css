@@ -72,11 +72,9 @@ h1 {
   cursor: pointer;
 }
 
-.image-container1 {
-  content: url(../images/food_1.jpg);
+.image-container {
   align-items: center;
   height: 310px;
-  width: 80%;
   padding: 3%;
   border-radius: 30px;
 }

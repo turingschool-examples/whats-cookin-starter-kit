@@ -6,6 +6,9 @@ class Users {
     this.favoriteRecipes = [];
     this.weeklyMenu = [];
   }
+  addToFavorites() {
+    
+  }
 }
 
 module.exports = Users
