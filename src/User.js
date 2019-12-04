@@ -8,10 +8,10 @@ class User {
   }
 
   addToFavorites() {
-
+    return "Add to yo favorites"
   }
 
-  addToCook(){
+  addToCook() {
 
   }
 
@@ -19,8 +19,12 @@ class User {
 
   }
 
-}
+};
 
-  if (typeof module !== 'undefined') {
+
+if (typeof module !== 'undefined') {
   module.exports = User;
 }
+
+// module.exports = User;
+// module.exports = User;
