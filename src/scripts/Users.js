@@ -5,5 +5,5 @@ class Users {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = user;
+  module.exports = users;
 }

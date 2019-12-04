@@ -5,5 +5,5 @@ class Ingredients {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = ingredient;
+  module.exports = ingredients;
 }

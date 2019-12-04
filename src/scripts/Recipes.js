@@ -5,5 +5,5 @@ class Recipes {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = recipe;
+  module.exports = recipes;
 }
