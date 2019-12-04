@@ -46,6 +46,10 @@ header h1 {
   padding: .5em;
 }
 
+.active {
+  display: block;
+}
+
 .recipe-group {
   margin: 1em;
 }
