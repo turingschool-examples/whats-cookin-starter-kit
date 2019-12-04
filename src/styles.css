@@ -47,8 +47,6 @@ h1 {
   border: 1px solid #000;
   height: 6vh;
   margin: 3px 0px 7px 0px;
-  padding: 5px;
-  width: 10%;
 }
 
 .search-image:hover,
@@ -84,6 +82,10 @@ h1 {
   grid-template-columns: repeat(4, 1fr);
   padding: 30px 0 30px 30px;
   width: 95.5vw;
+}
+
+img {
+  cursor: pointer;
 }
 
 img {
