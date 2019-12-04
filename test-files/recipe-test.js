@@ -1,27 +1,28 @@
-const chai = require("chai");
+const chai = require('chai');
 const expect = chai.expect;
 let recipe;
 
-
-const Recipes = require("../src/scripts/Recipes");
+const Recipes = require('../src/scripts/Recipes');
+const recipeData = require('../data/recipes');
 
 beforeEach(() => {
   // Will need to input arguments to match the data file
-  recipe = new Recipes('Loaded Chocolate Chip Pudding Cookie Cups', 595736,
-'https://spoonacular.com/recipeImages/595736-556x370.jpg', [
-  {
-    "number": 1,
-    "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy."
-  },
-  {
-    "number": 2,
-    "instruction": "Add egg and vanilla and mix until combined."
-  }], [34, 28, 21], [
-    "lunch",
-    "main course",
-    "main dish",
-    "dinner"
-  ]);
+//   recipe = new Recipes('Loaded Chocolate Chip Pudding Cookie Cups', 595736,
+// 'https://spoonacular.com/recipeImages/595736-556x370.jpg', [
+//   {
+//     'number': 1,
+//     'instruction': 'In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.'
+//   },
+//   {
+//     'number': 2,
+//     'instruction': 'Add egg and vanilla and mix until combined.'
+//   }], [34, 28, 21], [
+//     'lunch',
+//     'main course',
+//     'main dish',
+//     'dinner'
+//   ]);
+    recipe = new Recipes(recipeData[0]);
   })
 
 describe ('Recipes', () => {
@@ -35,39 +36,26 @@ describe ('Recipes', () => {
   })
 
   it('should have the name of the Recipe', () => {
-    expect(recipe.name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups');
+    expect(recipe.name).to.equal(recipeData[0].name);
   })
 
   it('should have a unique id', () => {
-    expect(recipe.id).to.equal(595736);
+    expect(recipe.id).to.equal(recipeData[0].id);
   })
 
   it('should have a unique image path', () => {
-    expect(recipe.image).to.equal('https://spoonacular.com/recipeImages/595736-556x370.jpg');
+    expect(recipe.image).to.equal(recipeData[0].image);
   })
 
   it('should have instructions', () => {
-    expect(recipe.instructions).to.deep.equal([
-      {
-        "number": 1,
-        "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy."
-      },
-      {
-        "number": 2,
-        "instruction": "Add egg and vanilla and mix until combined."
-      }]);
+    expect(recipe.instructions).to.deep.equal(recipeData[0].instructions)
   })
 
   it('should have a list of Ingrediets', () => {
-    expect(recipe.ingredients).to.deep.equal([34, 28, 21]);
+    expect(recipe.ingredients).to.deep.equal(recipeData[0].ingredients);
   })
 
   it('should have a list of tags', () => {
-    expect(recipe.tags).to.deep.equal([
-      "lunch",
-      "main course",
-      "main dish",
-      "dinner"
-    ]);
+    expect(recipe.tags).to.deep.equal(recipeData[0].tags);
   })
 });
