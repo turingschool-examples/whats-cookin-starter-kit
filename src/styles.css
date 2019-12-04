@@ -43,6 +43,8 @@ body {
 
 .main-top {
   display: grid;
+  background: url('../images/main-background.jpg')no-repeat center center;
+  background-size: cover;
   height: 300px;
   border-bottom: solid #000000 1px;
   justify-content: center;
