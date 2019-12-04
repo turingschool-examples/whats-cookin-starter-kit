@@ -7,8 +7,12 @@ body {
 .welcome {
   width: 27%;
   height: 200px;
-  background-color: teal;
-  margin: 7% 5% 7% 5%;
+  background-color: #268AFF;
+  margin: 5% 4% 5% 4%;
+  border-radius: 2%;
+  background-image: url("https://spoonacular.com/recipeImages/595736-556x370.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
   .welcome:hover {
@@ -28,11 +32,35 @@ nav {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
-  align-items: space-around;
-  width: 70%;
-  border-left: 4px solid teal;
-  border-right: 4px solid teal;
+  width: 75%;
+  border-left: 4px solid #268AFF;
+  border-right: 4px solid #268AFF;
   }
+
+
+.main-titles {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: white;
+  background-color: #FD9A28;
+}
+
+.my-recipes-box {
+
+}
+
+.all-recipes-box {
+
+}
+
+.pantry-box {
+
+}
+
+.recipes-to-cook-box {
+
+}
 
 .faded {
   animation-duration: 0.3875s;

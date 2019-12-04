@@ -11,3 +11,4 @@ function animateNavBar (){
   navBar.style.animationName = 'slidein';
   navBar.style.animationFillMode = 'forwards';
 }
+
