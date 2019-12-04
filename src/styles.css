@@ -73,7 +73,7 @@ nav {
     }
 
     100% {
-      background-color: rgba(0,0,0,0.0);
+      opacity: 0;
     }
   }
 
@@ -113,6 +113,6 @@ nav {
       justify-content: flex-start;
       align-items: center;
       width: 10%;
-      background-color: teal;
+      background-color: #268AFF;
     }
   }
