@@ -4,7 +4,7 @@ body {
   align-items: center;
 }
 
-.menu-box {
+.welcome {
   width: 27%;
   height: 200px;
   background-color: #268AFF;
@@ -15,11 +15,11 @@ body {
   background-repeat: no-repeat;
 }
 
-  div:hover {
+  .welcome:hover {
     cursor:pointer;
   }
 
-  div:active {
+  .welcome:active {
     cursor:none;
   }
 
@@ -27,7 +27,7 @@ h1{
   margin-bottom: 0px;
 }
 
-.welcome {
+nav {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -36,6 +36,7 @@ h1{
   border-left: 4px solid #268AFF;
   border-right: 4px solid #268AFF;
   }
+
 
 .main-titles {
   width: 100%;
@@ -60,3 +61,58 @@ h1{
 .recipes-to-cook-box {
 
 }
+
+.faded {
+  animation-duration: 0.3875s;
+  animation-name: fade-out;
+  animation-fill-mode: forwards;
+}
+  @keyframes fade-out {
+    0% {
+
+    }
+
+    100% {
+      background-color: rgba(0,0,0,0.0);
+    }
+  }
+
+  @keyframes slidein {
+    0% {
+
+    }
+
+    25% {
+      border-right: rgba(0,0,0,0.0);
+      border-left: rgba(0,0,0,0.0);
+      width: 70%;
+    }
+
+    80% {
+      position: fixed;
+      left: 0;
+      top: 0;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: space-around;
+      width: 0%;
+      border-left: rgba(0,0,0,0.0);
+      border-right: rgba(0,0,0,0.0);
+      background-color: white;
+    }
+
+    100% {
+      position: fixed;
+      left: 0;
+      top: 0;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      width: 10%;
+      background-color: teal;
+    }
+  }
