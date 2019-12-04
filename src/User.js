@@ -7,8 +7,12 @@ class User {
 
   }
 
-  addToFavorites() {
-    return "Add to yo favorites"
+  addToFavorites(users) {
+    // return "Add to yo favorites"
+    console.log("Add to yo favorites")
+    console.log(users[0].name)
+    return users[0].name
+
   }
 
   addToCook() {
@@ -24,7 +28,8 @@ class User {
 
 if (typeof module !== 'undefined') {
   module.exports = User;
+} else {
+  window.User = User;
 }
 
-// module.exports = User;
-// module.exports = User;
+// module.export = User;

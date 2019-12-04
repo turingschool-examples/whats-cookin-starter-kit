@@ -6,17 +6,55 @@
 .main_body-nav {
 	height: 125px;
 	width: 100%;
-	background: purple;
+	font-family: 'Open Sans', sans-serif;
+	background: #5daa68;
+	color: #faf1cf;
+	font-size: 22pt;
+	text-align: center;
 }
 
 .main_body {
 	height: 100vh;
 	width: 100%;
-	background: red;
+	background: #faf1cf;
+	/*padding: 2%;*/
+	float: left;
 }
 
 .user_info-box {
-	height: 165px;
-	width: 165px;
+	height: 350px;
+	width: 45%;
 	background: white;
+	display: inline-block;
+	margin: 2%;
 }
+
+.nav_sub-header {
+	color: #3f6844;
+	font-size: 12pt;
+}
+
+button {
+	width: 125px;
+	height: 30px;
+}
+
+.user_info-section {
+	width: 33%;
+	height: 100%;
+	float: right;
+	background: #3f6844;
+}
+
+.recipe_title {
+	font-size: 18px;
+}
+
+.user_title {
+	font-size: 24px;
+	font-family: 'Open Sans', sans-serif;
+	color: white;
+	text-align: center;
+}
+
+
