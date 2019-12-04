@@ -1,0 +1,35 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div {
+  width: 27%;
+  height: 200px;
+  background-color: teal;
+  margin: 7% 5% 7% 5%;
+}
+
+  div:hover {
+    cursor:pointer;
+  }
+
+  div:active {
+    cursor:none;
+  }
+
+h1{
+  margin-bottom: 0px;
+}
+
+.welcome {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: space-around;
+  width: 70%;
+  border-left: 4px solid teal;
+  border-right: 4px solid teal;
+  }
