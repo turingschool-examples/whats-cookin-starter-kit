@@ -23,6 +23,7 @@ body {
 .nav-bar-btn {
   display: inline-block;
   background-color: #fff;
+  cursor: pointer;
   padding-left: 5px;
   border: none;
   height: 40px;
@@ -43,7 +44,7 @@ body {
 
 .main-top {
   display: grid;
-  height: 300px;
+  height: 400px;
   border-bottom: solid #000000 1px;
   justify-content: center;
   grid-template-columns: 1fr 1fr 1fr;
@@ -66,6 +67,10 @@ body {
   grid-area: label;
 }
 
+select {
+  cursor: pointer;
+}
+
 .search-name {
   grid-area: name;
 }
@@ -85,22 +90,25 @@ body {
   grid-template-rows: auto;
   justify-items: center;
   grid-row-gap: 20px;
+  padding: 0px 100px 0px 100px;
 }
 
 .recipe-card {
   display: flex;
   flex-direction: column-reverse;
   border: solid black 2px;
+  border-radius: 10px;
   width: 400px;
   height: 400px;
   margin: 20px;
+  cursor: pointer;
 }
 
 .recipe-card-bar {
   display: flex;
   flex-direction: column;
-  /* border: solid black 1px; */
   background-color: #f1e8b7;
+  border-radius: 0px 0px 10px 10px;
 }
 
 .recipe-card-name {
