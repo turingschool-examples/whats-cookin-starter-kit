@@ -1,7 +1,8 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const User = require('./src/User.js');
+const User = require('../src/User');
+
 
 let user1
 let user5
@@ -20,7 +21,7 @@ describe('User', () => {
       {
         "ingredient": 1009054,
         "amount": 3
-      }];
+      }]
     );
     user5 = new User(5, 'Krennick', [
       {
@@ -38,11 +39,11 @@ describe('User', () => {
       {
         "ingredient": 11547,
         "amount": 5
-      }];
+      }]
     );
   });
 
-  it.skip('Should have a property of favoriteRecipes with a default value', () => {
+  it('Should have a property of favoriteRecipes with a default value', () => {
     expect(user1.favoriteRecipes).to.eql([]);
   });
 
@@ -68,7 +69,7 @@ describe('User', () => {
   });
 
   it.skip('Should be able to check ingredients in User/s pantry for a given recipe', () => {
-    user1.;
+    user1.
     expect(user1.checkPantry(recipeIngredients)).to.eql('You have the ingredients!');
   });
 
