@@ -3,9 +3,66 @@
   <head>
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <header class="nav-bar">
+      <button class="nav-bar-btn">
+        <div class="lines"></div>
+        <div class="lines"></div>
+        <div class="lines"></div>
+      </button>
+      <h1 class="nav-bar-heading">Saucy Spoon</h1>
+    </header>
+    <section class="main">
+      <form class="main-top">
+        <h2 class="search-form-label">Find A Recipe!</h2>
+        <!-- <form class="search-form"> -->
+          <div class="search-wrapper search-name">
+            <label class="search-labels">Recipe name</label>
+            <select class="search-name">
+              <option class="test" value="test">Test1</option>
+              <option class="test" value="test">Test2</option>
+              <option class="test" value="test">Test3</option>
+            </select>
+          </div>
+          <div class="search-wrapper search-tag">
+            <label class="search-labels">Category</label>
+            <select class="search-name">
+              <option class="test" value="test">Test1</option>
+              <option class="test" value="test">Test2</option>
+              <option class="test" value="test">Test3</option>
+            </select>
+          </div>
+          <div class="search-wrapper search-ingredient">
+            <label class="search-labels">Ingredients</label>
+            <select class="search-name">
+              <option class="test" value="test">Test1</option>
+              <option class="test" value="test">Test2</option>
+              <option class="test" value="test">Test3</option>
+            </select>
+          </div>
+        <!-- </form> -->
+        </form>
+      <section class="recipes-section">
+        <div class="recipe-card">
+          <div class="recipe-img"></div>
+          <div class="recipe-card-bar">
+            <p class="recipe-card-name">Lasagna</p>
+            <button>heart</button>
+            <button>cook</button>
+          </div>
+        </div>
+          <div class="recipe-card">
+            <div class="recipe-img"></div>
+            <div class="recipe-card-bar">
+              <p class="recipe-card-name">Lasagna</p>
+              <button>heart</button>
+              <button>cook</button>
+            </div>
+          </div>
+      </section>
+    </section>
 
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
