@@ -2,9 +2,8 @@
 //when clicked, reassign pantry.selectedRecipe to recipe that was clicked.
 
 
-
 //appending in the iterator
-function instantiateRecipeCards() {
+const instantiateRecipeCards = () => {
   recipeData.forEach(recipe => {
     document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin',
       `<div class="recipe-container">
@@ -14,14 +13,13 @@ function instantiateRecipeCards() {
 <div class="recipe-text">
   <h2>${recipe.name}</h2>
   <div class="card-button-containter">
-    <button type="button" class="card-buttons">View Recipe</button>
-    <button type="button" class="card-buttons">Add to Menu</button>
-    <button type="button" class="card-buttons">Add to Favorites</button>
+    <button type="button" class="card-buttons view-recipe">View Recipe</button>
+    <button type="button" class="card-buttons add-to-menu">Add to Menu</button>
+    <button type="button" class="card-buttons add-to-favorites">Add to Favorites</button>
   </div>
 </div>
 </div>`)
   })
-  
 }
 
 instantiateRecipeCards();
