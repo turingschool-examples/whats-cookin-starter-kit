@@ -5,6 +5,14 @@
 // const users = require('../data/users');
 // const ingredients = require('../data/ingredients');
 // const recipes = require('../data/recipes');
+const generateRandomIndex = (source) => {
+	return Math.floor(source.length * Math.random())
+}
+
+// window.onload()
+
+let user = new User(users[generateRandomIndex(users)])
+let cookbook = new Cookbook()
 
 // const chai = require('chai');
 // const expect = chai.expect;
@@ -18,6 +26,16 @@ let cooksName = document.querySelector('.user_title');
 let mainRecipeArea = document.querySelector('.main_recipe-area');
 let addFavoriteButton;
 let favoriteButton;
+
+function kickOff() {
+	cooksName.innerHTML = user.name;
+	user.displayName('pants');
+}
+
+function displayName() {
+	recipeName.innerHTML = user.displayName(recipeData)
+	user.displayName(users);
+}
 
 function insertRecipeTitle(recipeData) {
 	recipeName.innerHTML = user.displayRecipeName(recipeData)
@@ -40,6 +58,10 @@ function displayRecipes() {
   });
 }
 
+
+displayName()
+kickOff()
 cooksName.innerHTML = user.makeUserName()
 
 displayRecipes()
+

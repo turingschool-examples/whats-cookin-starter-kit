@@ -67,8 +67,15 @@ button {
 	text-align: center;
 }
 
+.recipes_to-cook {
+  float: right;
+  margin-right: 3%;
+}
+
 img {
   height: 240px;
 }
 
-
+.favorite_recipes {
+  margin-left: 3%;
+}
