@@ -11,8 +11,22 @@ class Recipe {
     this.tags = tags;
   }
 
-  calculateTotalCost() {
-    let name = recipeData.find
+  calculateTotalCost(name) {
+    let recipeName = recipeData.find(recipe => {
+      if (recipe.name === name) {
+        recipe.ingredients.map(ingredient => {
+          return ingredient.name;
+        })
+      }
+    })
+    return recipeName;
+    // let recipeCost = ingredientData.reduce((acc, ingredient) => {
+    //   if (ingredient.name === recipeName) {
+    //     acc += ingredient.estimatedCostInCents;
+    //   }
+    //   return acc;
+    // }, 0)
+    // return recipeCost;
   }
 }
 
