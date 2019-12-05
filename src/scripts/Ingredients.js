@@ -1,12 +1,13 @@
 class Ingredients {
-  constructor(id, name, estimatedCost) {
-    this.id = id,
-    this.name = name,
-    this.estimatedCostInCents = estimatedCost;
+  constructor(ingredient) {
+    this.id = ingredient.id,
+    this.name = ingredient.name,
+    this.estimatedCostInCents = ingredient.estimatedCostInCents;
   }
 
   priceInDollars() {
-    return this.estimatedCostInCents / 100;
+    let dollars = this.estimatedCostInCents / 100;
+    return dollars.toLocaleString("en-US", {style:"currency", currency:"USD"});
   }
 
 }
