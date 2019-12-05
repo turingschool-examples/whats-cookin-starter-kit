@@ -63,4 +63,11 @@ button {
 	text-align: center;
 }
 
+.recipes_to-cook {
+  float: right;
+  margin-right: 3%;
+}
 
+.favorite_recipes {
+  margin-left: 3%;
+}

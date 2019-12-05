@@ -5,28 +5,37 @@
 // const users = require('../data/users');
 // const ingredients = require('../data/ingredients');
 // const recipes = require('../data/recipes');
+const generateRandomIndex = (source) => {
+	return Math.floor(source.length * Math.random())
+}
+console.log(generateRandomIndex(users));
+// window.onload()
 
-let user = new User(users)
+let user = new User(users[generateRandomIndex(users)])
 let cookbook = new Cookbook()
 let pantry = new Pantry()
 
 var recipeName = document.querySelector('.recipe_title');
 var cooksName = document.querySelector('.user_title');
 
+
+
 function kickOff() {
-	cooksName.innerHTML = user.addToFavorites(users)
+	cooksName.innerHTML = user.name;
+	user.displayName('pants');
 }
 
 function displayName() {
-	recipeName.innerHTML = user.displayName(user)
-	user.addToFavorites(users, recipeData)
+	recipeName.innerHTML = user.displayName(recipeData)
+	user.displayName(users);
 }
 
 function addToFavorites() {
 
 }
 
-cooksName.innerHTML = user.addToFavorites(users)
+
+
 
 displayName()
 kickOff()
