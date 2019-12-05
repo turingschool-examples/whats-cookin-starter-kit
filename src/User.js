@@ -1,23 +1,17 @@
 class User {
 
-  constructor(obj) {
-    this.id = obj.id;
-    this.name = obj.name;
+  constructor() {
     this.pantry = [];
     this.favoriteRecipes = [];
     this.recipesToCook = [];
 
   }
 
-  displayName(user) {
-    console.log(user)
-    return "Kevin"
+  displayRecipeName(recipeData) {
   }
 
-  addToFavorites(user, recipeData) {
-    console.log(recipeData)
-    // return "Add to yo favorites"
-    console.log('Hello') 
+  makeUserName() {
+    return "Gordon Ramsey"
 
   }
 
