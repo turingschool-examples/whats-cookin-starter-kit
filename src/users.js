@@ -7,13 +7,12 @@ class User {
     this.recipesToCook = [];
   }
   addTofavoriteRecipes() {
-
   }
   addRecipeToCook() {
 
   }
+}
 
-  if (typeof module !== 'undefined') {
-    module.exports = Users;
-  }
+if (typeof module !== 'undefined') {
+  module.exports = Users;
 }
