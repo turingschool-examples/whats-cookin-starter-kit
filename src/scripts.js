@@ -1,5 +1,6 @@
 let allRecipes = [];
-let allUsers = [];
+
+
 
 const instantiateRecipeCards = () => {
   recipeData.forEach(recipe => {
@@ -34,22 +35,22 @@ function genRanNum() {
   return Math.floor(Math.random() * 50)
 }
 
-const instantiateUsers = () => {
-  users.forEach(person => {
-    let user = new User (
-      users.id,
-      users.name,
-      users.pantry)
-    allUsers.push(person)
-  })
-  // console.log(allUsers)
-}
-const selectUser = () => {
-  allUsers.filter(person => {
-    if (person.id === genRanNum()) {
+let randomNum = genRanNum();
 
-    }
+const instantiateUsers = () => {
+  var selectedUser = users.find(person => {
+    return person.id === randomNum;
   })
+  let user = new User (
+    selectedUser.id,
+    selectedUser.name,
+    selectedUser.pantry)  
+}
+
+
+
+const selectUser = () => {
+
 }
 
 // const selectUser = () => {
@@ -82,6 +83,8 @@ instantiateUsers();
 selectUser();
 
 document.querySelector('.enter-button').addEventListener('click', loadDashboard);
+
+
 
 function loadDashboard() {
   document.querySelector('.splash-container').classList.add('hidden');
