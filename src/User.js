@@ -4,10 +4,11 @@ class User {
     this.pantry = [];
     this.favoriteRecipes = [];
     this.recipesToCook = [];
-
   }
+  
 
   displayRecipeName(recipeData) {
+    
   }
 
   makeUserName() {
