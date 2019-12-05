@@ -7,7 +7,6 @@ class User {
     this.recipesToCook = [];
   }
   addTofavoriteRecipes() {
-
   }
   addRecipeToCook() {
 
