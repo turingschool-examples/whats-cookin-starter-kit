@@ -3,21 +3,10 @@ const expect = chai.expect;
 let user;
 
 const Users = require("../src/scripts/Users");
+const userData = require("../data/users");
 
 beforeEach(() => {
-  // Will need to input arguments to match the data file
-  user = new Users(1, 'Saige Kon', [{
-    "ingredient": 11477,
-    "amount": 1
-  },
-  {
-    "ingredient": 93820,
-    "amount": 1
-  },
-  {
-    "ingredient": 11297,
-    "amount": 3
-  }]);
+  user = new Users(userData[0]);
 })
 
 describe ('Users', () => {
@@ -31,26 +20,15 @@ describe ('Users', () => {
   })
 
   it('should have a unique id', () => {
-    expect(user.id).to.equal(1);
+    expect(user.id).to.equal(userData[0].id);
   })
 
   it('should have the name', () => {
-    expect(user.name).to.equal('Saige Kon');
+    expect(user.name).to.equal(userData[0].name);
   })
 
   it('should have a pantry of available ingredients', () => {
-    expect(user.pantry).to.deep.equal([{
-      "ingredient": 11477,
-      "amount": 1
-    },
-    {
-      "ingredient": 93820,
-      "amount": 1
-    },
-    {
-      "ingredient": 11297,
-      "amount": 3
-    }]);
+    expect(user.pantry).to.deep.equal(userData[0].pantry);
   })
 
   it('should have a list of favorite recipes', () => {
