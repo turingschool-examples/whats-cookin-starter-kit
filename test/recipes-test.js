@@ -97,6 +97,6 @@ describe('Recipe', () => {
   });
 
   it('should calculate total cost', () => {
-    expect(recipe.calculateTotalCost()).to.eql(5.04)
+    expect(recipe.calculateTotalCost('Loaded Chocolate Chip Pudding Cookie Cups')).to.equal(5.04)
   });
 })
