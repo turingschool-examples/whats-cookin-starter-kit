@@ -1,9 +1,11 @@
 class Recipe {
-  constructor(recipesArray) {
-    this.ingredients;
-    this.instructions;
-    this.name;
-    this.tags;
+  constructor(recipeData) {
+    this.name = recipeData.name;
+    this.id = recipeData.id;
+    this.image = recipeData.image;
+    this.ingredients = recipeData.ingredients;
+    this.instructions = recipeData.instructions;
+    this.tags = recipeData.tags;
   }
   searchByIngredient(){
 
