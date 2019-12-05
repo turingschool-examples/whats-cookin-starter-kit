@@ -1,7 +1,6 @@
 class Pantry {
-  constructor() {
-    this.ingredients;
-    this.amount;
+  constructor(users) {
+    this.ingredientsInPantry = users.ingredients;
   }
   checkIngredientSupply(){
 

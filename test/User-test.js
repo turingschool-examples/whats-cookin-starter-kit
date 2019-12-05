@@ -23,15 +23,15 @@ describe('User', () => {
     expect(user.recipesToCook).to.deep.equal([]);
   });
 
-  it('should have a default id of 1 for id', function() {
+  it('should have a default id of 1', function() {
     expect(user.id).to.equal(1);
   });
 
-  it('should have a default name of Saige O\'Kon for id', function() {
+  it('should have a default name of Saige O\'Kon', function() {
     expect(user.name).to.equal('Saige O\'Kon');
   });
 
-  it('should have a default pantry of users[0].pantry for id', function() {
+  it('should have a default pantry of users[0].pantry', function() {
     expect(user.pantry).to.equal(users[0].pantry);
   });
 })
