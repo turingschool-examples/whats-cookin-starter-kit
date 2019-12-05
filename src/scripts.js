@@ -7,7 +7,7 @@ function populateCards() {
     let recipe = new Recipe(element.name, element.id, element.image, element.ingredients, element.instructions, element.tags)
     recipeSection.innerHTML += `
       <div class="recipe-card">
-        <div class="recipe-img"></div>
+        <img class="recipe-img" src=${recipe.image}>
         <div class="recipe-card-bar">
           <p class="recipe-card-name">${recipe.name}</p>
           <div class='btns-container'>
