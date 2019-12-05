@@ -1,25 +1,36 @@
-// const recipeData = require('../data/Recipes');
+console.log(recipeData);
+// const recipeData = require('../data/recipes');
 
 
 let navBarToggle = document.querySelector('.navbar-toggle');
 let mainNav = document.querySelector('.main-nav');
 let suggestedRecipes = document.querySelector('.injected-suggested-recipes');
-let allRecipes = null;
+let allRecipes = [];
 
 window.onload = loadSuggestedRecipesFunction();
-console.log();
 navBarToggle.addEventListener('click', function () {
   mainNav.classList.toggle('active');
 });
 
-function loadSuggestedRecipesFunction() {
+function loadSuggestedRecipesFunction(event) {
 
-allRecipes = suggestedRecipes.querySelectorAll('.recipe-card');
-allRecipes.forEach(recipe => recipe.addEventListener('click', recipeHandler));
+for(let i = 0; i <  allRecipes.length; i++) {
+suggestedRecipes.insertAdjacentHTML('beforeend',
+
+`<div class="recipe-card">
+  <img src="${allRecipes[i].image}" alt="fork and knife logo">
+  <p>${allRecipes[i].name}</p>
+</div>`
+)}
+recipeSelector = suggestedRecipes.querySelectorAll('.recipe-card');
+recipeSelector.forEach(recipe => recipe.addEventListener('click', recipeHandler));
 };
 
 function instantiateRecipes() {
   let recipes = [];
 
-
+  for (let i = 0; i < recipeData.length; i++) {
+    recipes.push(new Recipe(recipeData[i]))
+  }
+  return recipes;
 };

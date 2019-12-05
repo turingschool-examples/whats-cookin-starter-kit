@@ -27,7 +27,7 @@ header h1 {
   position: absolute;
   top: 0.5em;
   right: 0.5em;
-  cursor: pointer; 
+  cursor: pointer;
   color: #171717;
   font-size: 2em;
 }
@@ -76,4 +76,8 @@ header h1 {
 
 .recipe-card p {
   padding: 1em;
+}
+
+.hidden {
+  display: none;
 }
