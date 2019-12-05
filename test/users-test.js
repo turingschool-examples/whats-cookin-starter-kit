@@ -31,4 +31,12 @@ describe('User', () => {
         { "ingredient": 93820, "amount": 1}
       ])
     });
+
+    it('should have no favorite recipes by default', () => {
+      expect(user.favoriteRecipes).to.eql([])
+    });
+
+    it('should have no recipes to cook by default', () => {
+      expect(user.favoriteRecipes).to.eql([])
+    });
 })
