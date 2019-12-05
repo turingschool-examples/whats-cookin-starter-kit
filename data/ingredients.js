@@ -1285,12 +1285,12 @@ let ingredientData = [
     "estimatedCostInCents": 253
   },
   {
-    "id": ,
+    "id": 1082047,
     "name": "kosher salt",
     "estimatedCostInCents": 972
   },
   {
-    "id": ,
+    "id": 1082047,
     "name": "kosher salt",
     "estimatedCostInCents": 245
   },
@@ -1340,7 +1340,7 @@ let ingredientData = [
     "estimatedCostInCents": 1010
   },
   {
-    "id": ,
+    "id": 1082047,
     "name": "kosher salt",
     "estimatedCostInCents": 680
   },
@@ -2638,3 +2638,7 @@ let ingredientData = [
     "estimatedCostInCents": 728
   }
 ]
+
+if (typeof module !== 'undefined') {
+  module.exports = ingredientData;
+}
