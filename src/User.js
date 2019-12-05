@@ -5,12 +5,13 @@ class User {
     this.recipesToCook = [];
   }
   
-  displayName(recipeData) {
-    console.log(recipeData);
-    return recipeData[0].name;
-  }
+  // displayName(recipeData) {
+  //   console.log(recipeData);
+  //   return recipeData[0].name;
+  // }
 
   displayRecipeName(recipeData) {
+    
   }
 
   makeUserName() {
