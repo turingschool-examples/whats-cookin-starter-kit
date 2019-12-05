@@ -3,10 +3,10 @@ const expect = chai.expect;
 let ingredient;
 
 const Ingredients = require("../src/scripts/Ingredients");
+const ingredientData = require('../data/ingredients');
 
 beforeEach(() => {
-  // Will need to input arguments to match the data file
-  ingredient = new Ingredients(2080, 'kimchi', 710);
+  ingredient = new Ingredients(ingredientData[0]);
 })
 
 describe ('Ingredients', () => {
@@ -20,19 +20,19 @@ describe ('Ingredients', () => {
   })
 
   it('should have a unique id', () => {
-    expect(ingredient.id).to.equal(2080);
+    expect(ingredient.id).to.equal(ingredientData[0].id);
   })
 
   it('should have the name of the ingredient', () => {
-    expect(ingredient.name).to.equal('kimchi');
+    expect(ingredient.name).to.equal(ingredientData[0].name);
   })
 
   it('should have a price in cents', () => {
-    expect(ingredient.estimatedCostInCents).to.equal(710);
+    expect(ingredient.estimatedCostInCents).to.equal(ingredientData[0].estimatedCostInCents);
   })
 
   it('should be able to show the price in dollars', () => {
-    expect(ingredient.priceInDollars()).to.equal(7.10);
+    expect(ingredient.priceInDollars()).to.equal((ingredientData[0].estimatedCostInCents / 100).toLocaleString("en-US", {style:"currency", currency:"USD"}));
   })
 
 })
