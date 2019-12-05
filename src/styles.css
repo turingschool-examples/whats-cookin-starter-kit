@@ -71,4 +71,11 @@ img {
   height: 240px;
 }
 
-
+.add_to-favorites {
+  background-image: url(assets/favorite.svg);
+  background-repeat: no-repeat;
+  height: 45px;
+  width: 45px;
+  background-color: transparent;
+  border-color: transparent;
+}
