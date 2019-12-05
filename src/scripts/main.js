@@ -24,6 +24,7 @@ suggestedRecipes.insertAdjacentHTML('beforeend',
       ${recipeIngredients(allRecipes[i].ingredients)}
     </ul>
     <ol class="recipe-directions">
+      ${recipeDirections(allRecipes[i].instructions)}
     </ol>
   </div>
 </div>`
@@ -47,4 +48,10 @@ function recipeIngredients(ingredientList) {
   const ingredientMap = ingredientList.map(x => `<li>${x.name}: ${(Math.floor(x.quanitity.amount * 100) / 100) + ' ' + x.quanitity.unit}</li>`);
   // console.log(ingredientMap.join('\n'));
   return ingredientMap.join('\n');
+}
+
+function recipeDirections(directionsList) {
+  const directionsMap = directionsList.map(x => `<li>${x.instruction}</li>`);
+  // console.log(ingredientMap.join('\n'));
+  return directionsMap.join('\n');
 }
