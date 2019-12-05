@@ -10,7 +10,7 @@ class User {
   }
 
   saveToFavorites() {
-    this.favorites.push(recipe.id);
+    this.favorites.push(recipe);
     return this.favorites;
   }
 
