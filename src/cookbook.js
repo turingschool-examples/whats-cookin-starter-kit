@@ -1,11 +1,7 @@
 class Cookbook {
 
-  constructor() {
-    this.recipes = [];
-    this.currentUser = 0;
-
-  constructor() {
-    this.recipes = [];
+  constructor(recipeData) {
+    this.recipes = recipeData;
     this.costOfRecipe = 0;
     this.currentInstruction = 0;
   }
