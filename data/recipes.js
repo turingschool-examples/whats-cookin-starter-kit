@@ -2,7 +2,7 @@ let recipeData = [
   {
     "name": "Loaded Chocolate Chip Pudding Cookie Cups",
     "id": 595736,
-    "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
+    "image": "https://savorysweetlife.com/wp-content/uploads/2009/10/CHOCOLATE-CHIP-COOKIES-3-1024x1024.jpg",
     "ingredients": [
       {
         "name": "all purpose flour",
@@ -131,7 +131,7 @@ let recipeData = [
   {
     "name": "Maple Dijon Apple Cider Grilled Pork Chops",
     "id": 678353,
-    "image": "https://spoonacular.com/recipeImages/678353-556x370.jpg",
+    "image": "https://4.bp.blogspot.com/-aeGyG3GkXVg/V3S27y9m6RI/AAAAAAAA5Ic/Gpc7NybwV8QGgMiZ23tZ4jxVdAxOAPnMgCLcB/s1600/%25D0%25A1%25D0%25BD%25D0%25B8%25D0%25BC%25D0%25BE%25D0%25BA%2B%25D1%2581%25D0%25B2%25D0%25B8%25D0%25BD%25D0%25B8%25D0%25BD%25D0%25B0%2B%25D0%25B2%2B%25D1%258F%25D0%25B1%25D0%25BB%25D0%25BE%25D0%25BA%25D0%25B0%25D1%2585.PNG",
     "ingredients": [
       {
         "name": "apple cider",
@@ -3231,7 +3231,7 @@ let recipeData = [
   {
     "name": "Double Raspberry Soufflés",
     "id": 698701,
-    "image": "https://spoonacular.com/recipeImages/698701-556x370.jpg",
+    "image": "https://keyassets-p2.timeincuk.net/wp/prod/wp-content/uploads/sites/50/2007/03/WHOM-05-148-04-RT-920x920.jpg",
     "ingredients": [
       {
         "name": "blackberry juice",
