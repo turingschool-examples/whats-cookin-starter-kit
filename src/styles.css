@@ -5,6 +5,16 @@ body {
   font-family: 'Prata', serif;
 }
 
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 75%;
+  border-left: 4px solid #268AFF;
+  border-right: 4px solid #268AFF;
+}
+
 .welcome {
   width: 27%;
   height: 200px;
@@ -25,28 +35,27 @@ body {
     cursor:none;
   }
 
+.nav-buttons {
+
+}
+
 .nav-popup {
   width:95%;
   height:75px;
-  background-color: red;
-  opacity: 0;
+  background-color: #FD9A28;
+  margin: 7px 0px 7px 0px;
+  /* z-index: 1000; */
+}
+.popup-animate {
   animation-name: button-slide;
-  animation-duration: 0.3s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
 
 h1{
   margin-bottom: 0px;
 }
 
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 75%;
-  border-left: 4px solid #268AFF;
-  border-right: 4px solid #268AFF;
-  }
 
 
 .main-titles {
@@ -58,7 +67,7 @@ nav {
 }
 
 .menu-box {
-
+/* used to select all boxes */
 }
 
 .my-recipes-box {
@@ -93,6 +102,9 @@ nav {
   position: fixed;
   left: 0;
   top: 0;
+  bottom: 0;
+  /* z-index: -1; */
+  /* padding-top: 110%; */
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -102,6 +114,21 @@ nav {
   background-color: #268AFF;
 }
 
+  @keyframes button-slide {
+    from {
+      margin-right: 100%;
+      width: 300%;
+    }
+
+    to {
+      position: relative;
+      top: 40px;
+      margin-right: 0%;
+      width: 100%;
+    }
+  }
+
+
   @keyframes fade-out {
     0% {
 
@@ -109,26 +136,14 @@ nav {
 
     25%{
       opacity: 0;
-
-    }
-
-    79% {
-      opacity: 0;
-    }
-
-    80% {
-      opacity:1;
-      margin-right: 100%;
-      width: 300%;
     }
 
     100% {
-      margin-right: 0%;
-      width: 100%;
+      opacity: 0;
     }
   }
 
-  @keyframes slidein {
+  @keyframes nav-animation {
     0% {
 
     }
