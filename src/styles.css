@@ -77,7 +77,7 @@ img {
   flex-direction: row;
 }
 
-h2 {
+h1 {
   font-size: 80px;
 }
 
@@ -95,9 +95,12 @@ h2 {
   padding: 100px;
 }
 
-h1 {
+h2 {
   color: #F1AB01;
   margin-left: 0px;
+  font-size: 35px;
+  padding: 8px;
+  margin: 50px 0px 50px 30px;
 }
 
 .favorite-recipes,

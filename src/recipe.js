@@ -14,6 +14,7 @@ class Recipe {
   }
 
   findCostPerRecipe() {
+    console.log(this.image);
   }
 
   retrieveInstructions() {

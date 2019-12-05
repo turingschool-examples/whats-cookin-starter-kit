@@ -40,4 +40,8 @@ describe('Recipe', function() {
 
     });
 
+    it('should know the cost of the recipe per ingredient', function() {
+      
+    });
+
 });
