@@ -6,11 +6,11 @@ class User {
     this.favoriteRecipes = [];
     this.recipesToCook = [];
   }
-  addTofavoriteRecipes() {
-  }
-  addRecipeToCook() {
-
-  }
+  // addTofavoriteRecipes() {
+  // }
+  // addRecipeToCook() {
+  //
+  // }
 }
 
 if (typeof module !== 'undefined') {

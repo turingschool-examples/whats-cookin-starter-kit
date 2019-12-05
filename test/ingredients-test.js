@@ -13,7 +13,7 @@ describe ('Ingredients', function() {
   });
 
   it('should be an instance of a Ingredient', function() {
-    expect(user).to.be.an.instanceOf(Ingredient);
+    expect(ingredient).to.be.an.instanceOf(Ingredient);
   });
 
   it('should have an id', function() {
@@ -29,7 +29,7 @@ describe ('Ingredients', function() {
   });
 
   it('should show the price in dollars', function() {
-    
+
   });
 
 });

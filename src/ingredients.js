@@ -4,9 +4,9 @@ class Ingredients {
     this.name = ingredient.name;
     // cost in cents
   }
-  priceInDollars() {
-
-  }
+  // priceInDollars() {
+  //
+  // }
 }
 
 if (typeof module !== 'undefined') {
