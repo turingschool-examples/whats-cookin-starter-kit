@@ -1,20 +1,17 @@
 let allRecipes = [];
 let allUsers = [];
 
-
-
 const instantiateRecipeCards = () => {
   recipeData.forEach(recipe => {
     let singleRecipe = new Recipe (
-      recipeData.name, 
-      recipeData.id, 
-      recipeData.image, 
-      recipeData.ingredients, 
-      recipeData.instructions, 
+      recipeData.name,
+      recipeData.id,
+      recipeData.image,
+      recipeData.ingredients,
+      recipeData.instructions,
       recipeData.tags)
     allRecipes.push(recipe)
   })
-  console.log(allRecipes)
   allRecipes.forEach(recipe => {
     document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
     <div class="recipe-container">
@@ -40,8 +37,8 @@ function genRanNum() {
 const instantiateUsers = () => {
   users.forEach(person => {
     let user = new User (
-      users.id, 
-      users.name, 
+      users.id,
+      users.name,
       users.pantry)
     allUsers.push(person)
   })
@@ -74,17 +71,21 @@ const getEvent = (event) => {
   }
 }
 
-
-
 let addToMenuBtns = document.querySelectorAll('.add-to-menu');
-
 
 addToMenuBtns.forEach(menuBtn => {
   addEventListener('click', getEvent)
 });
 
 instantiateRecipeCards();
-instantiateUsers(); 
+instantiateUsers();
 selectUser();
-// genRanNum();
-// selectUser();
+
+document.querySelector('.enter-button').addEventListener('click', loadDashboard);
+
+function loadDashboard() {
+  document.querySelector('.splash-container').classList.add('hidden');
+  document.querySelector('.nav-bar').classList.remove('hidden');
+  document.querySelector('.recipe-card-area').classList.remove('hidden');
+  instantiateRecipeCards();
+}
