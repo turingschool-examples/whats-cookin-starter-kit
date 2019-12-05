@@ -19,11 +19,6 @@ class Recipe {
   }
 
   findCostPerRecipe() {
-    return this.ingredients.reduce((acc, ingredient) => {
-      return ingredient.forEach(ingredient => {
-        console.log('something')
-      })
-    }, 0);
   }
 
   retrieveInstructions() {
