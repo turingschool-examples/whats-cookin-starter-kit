@@ -123,7 +123,7 @@ select {
 
 .recipe-card {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   border: solid black 2px;
   border-radius: 10px;
   background-color: #fff;
@@ -138,10 +138,20 @@ select {
   flex-direction: column;
   background-color: #f1e8b7;
   border-radius: 0px 0px 10px 10px;
+  border-top: solid black 1px;
+  height: 15%;
+  /* position: absolute; */
 }
 
 .recipe-card-name {
   align-self: flex-start;
+}
+
+.recipe-img {
+  height: 85%;
+  border-radius: 8px 8px 0px 0px;
+  /* border: solid black 5px; */
+  /* width: auto; */
 }
 
 .btns-container {
