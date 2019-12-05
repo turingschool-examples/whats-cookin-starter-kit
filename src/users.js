@@ -12,8 +12,8 @@ class User {
   addRecipeToCook() {
 
   }
+}
 
-  if (typeof module !== 'undefined') {
-    module.exports = Users;
-  }
+if (typeof module !== 'undefined') {
+  module.exports = Users;
 }
