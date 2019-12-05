@@ -1,4 +1,4 @@
-console.log(recipeData);
+// console.log(recipeData);
 // const recipeData = require('../data/recipes');
 
 
@@ -19,8 +19,18 @@ suggestedRecipes.insertAdjacentHTML('beforeend',
 `<div class="recipe-card">
   <img src="${allRecipes[i].image}" alt="fork and knife logo">
   <p>${allRecipes[i].name}</p>
+  <div class="recipe-container">
+    <ul class="recipe-ingredients">
+      ${recipeIngredients(allRecipes[i].ingredients)}
+    </ul>
+    <ol class="recipe-directions">
+      ${recipeDirections(allRecipes[i].instructions)}
+    </ol>
+  </div>
 </div>`
 )}
+// console.log('Obj Array', allRecipes[0].ingredients);
+// console.log('Function Ary', recipeIngredients(allRecipes[0].ingredients));
 recipeSelector = suggestedRecipes.querySelectorAll('.recipe-card');
 recipeSelector.forEach(recipe => recipe.addEventListener('click', recipeHandler));
 };
@@ -33,3 +43,15 @@ function instantiateRecipes() {
   }
   return recipes;
 };
+
+function recipeIngredients(ingredientList) {
+  const ingredientMap = ingredientList.map(x => `<li>${x.name}: ${(Math.floor(x.quanitity.amount * 100) / 100) + ' ' + x.quanitity.unit}</li>`);
+  // console.log(ingredientMap.join('\n'));
+  return ingredientMap.join('\n');
+}
+
+function recipeDirections(directionsList) {
+  const directionsMap = directionsList.map(x => `<li>${x.instruction}</li>`);
+  // console.log(ingredientMap.join('\n'));
+  return directionsMap.join('\n');
+}
