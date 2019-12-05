@@ -5,6 +5,7 @@
 // const users = require('../data/users');
 // const ingredients = require('../data/ingredients');
 // const recipes = require('../data/recipes');
+
 const generateRandomIndex = (source) => {
 	return Math.floor(source.length * Math.random())
 }
@@ -14,6 +15,8 @@ const generateRandomIndex = (source) => {
 // let user = new User(users[generateRandomIndex(users)])
 // let cookbook = new Cookbook()
 // console.log(user)
+
+
 // const chai = require('chai');
 // const expect = chai.expect;
 
@@ -26,6 +29,7 @@ let cooksName = document.querySelector('.user_title');
 let mainRecipeArea = document.querySelector('.main_recipe-area');
 let addFavoriteButton;
 let favoriteButton;
+
 
 function kickOff() {
 	cooksName.innerHTML = user.name;
@@ -61,4 +65,3 @@ function displayRecipes() {
 cooksName.innerHTML = user.makeUserName()
 
 displayRecipes()
-
