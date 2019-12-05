@@ -2592,7 +2592,7 @@ let recipeData = [
     ]
   },
   {
-    "name": "quinoa tabbouleh",
+    "name": "Quinoa Tabbouleh",
     "id": 880108,
     "image": "https://spoonacular.com/recipeImages/880108-556x370.jpg",
     "ingredients": [

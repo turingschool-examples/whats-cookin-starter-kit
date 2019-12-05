@@ -1,6 +1,11 @@
 const recipeSection = document.querySelector('.recipes-section');
+const nameDropdown = document.querySelector('.name-options');
+const tagDropdown = document.querySelector('.tag-options');
+const ingredientDropdown = document.querySelector('.ingredient-options');
 
 populateCards();
+namesDropdown();
+ingredientsDropdown();
 
 function populateCards() {
   return recipeData.forEach(element => {
@@ -16,6 +21,26 @@ function populateCards() {
           </div>
         </div>
       </div>`
-  }
-  )
+  })
+}
+
+function namesDropdown() {
+  let recipeNames = recipeData.map(recipe => recipe.name)
+  let sortedRecipes = recipeNames.sort()
+  return sortedRecipes.map(element => {
+    let recipe = new Recipe(element)
+    nameDropdown.innerHTML += `
+      <option class="test" value="test">${recipe.name}</option>
+      `
+  })
+}
+
+function ingredientsDropdown() {
+  let ingredientNames = ingredientData.map(element => element.name)
+  let sortedIngredients = ingredientNames.sort()
+  return sortedIngredients.map(element => {
+    ingredientDropdown.innerHTML += `
+      <option class="test" value="test">${element}</option>
+      `
+  })
 }
