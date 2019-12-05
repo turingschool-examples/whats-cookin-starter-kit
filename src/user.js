@@ -9,8 +9,9 @@ class User {
     this.favorites = [];
   }
 
-  saveToFavorites(recipe) {
+  saveToFavorites() {
     this.favorites.push(recipe.id);
+    return this.favorites;
   }
 
   recipesToCook() {

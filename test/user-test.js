@@ -44,6 +44,8 @@ describe('Users', function() {
 
     });
 
-    it('should store ')
+    it('should store favorite recipe id numbers', function() {
+      expect(user.saveToFavorites()).to.deep.equal([595736]);
+    });
 
 });
