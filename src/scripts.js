@@ -1,12 +1,22 @@
-//add event listener on recipe button
-//when clicked, reassign pantry.selectedRecipe to recipe that was clicked.
+let allRecipes = [];
+let allUsers = [];
 
 
-//appending in the iterator
-// ** make recipe cards generate in random order on each load **
+
 const instantiateRecipeCards = () => {
   recipeData.forEach(recipe => {
-    document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin',`
+    let singleRecipe = new Recipe (
+      recipeData.name, 
+      recipeData.id, 
+      recipeData.image, 
+      recipeData.ingredients, 
+      recipeData.instructions, 
+      recipeData.tags)
+    allRecipes.push(recipe)
+  })
+  console.log(allRecipes)
+  allRecipes.forEach(recipe => {
+    document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
     <div class="recipe-container">
       <div class="image-container">
          <img src="https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg" class="image-container">
@@ -23,4 +33,58 @@ const instantiateRecipeCards = () => {
   })
 }
 
+function genRanNum() {
+  return Math.floor(Math.random() * 50)
+}
+
+const instantiateUsers = () => {
+  users.forEach(person => {
+    let user = new User (
+      users.id, 
+      users.name, 
+      users.pantry)
+    allUsers.push(person)
+  })
+  // console.log(allUsers)
+}
+const selectUser = () => {
+  allUsers.filter(person => {
+    if (person.id === genRanNum()) {
+
+    }
+  })
+}
+
+// const selectUser = () => {
+//   allUsers.forEach(person => {
+//     if (allUsers[id].includes(genRanNum))
+//     console.log('hi')
+//   })
+// }
+
+// const instantiateNewPantry = () => {
+
+//   })
+// }
+
+const getEvent = (event) => {
+  if (event.target.classList.contains('add-to-menu')) {
+    console.log(event)
+    pantry.moveToSelectedRecipe();
+  }
+}
+
+
+
+let addToMenuBtns = document.querySelectorAll('.add-to-menu');
+
+
+addToMenuBtns.forEach(menuBtn => {
+  addEventListener('click', getEvent)
+});
+
 instantiateRecipeCards();
+instantiateUsers(); 
+selectUser();
+// genRanNum();
+// selectUser();

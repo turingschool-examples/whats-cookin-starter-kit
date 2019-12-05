@@ -1,4 +1,4 @@
-class Users {
+class User {
   constructor(id, name, pantry) {
     this.id = id;
     this.name = name;
@@ -11,4 +11,4 @@ class Users {
   }
 }
 
-module.exports = Users
+module.exports = User
