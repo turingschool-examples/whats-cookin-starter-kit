@@ -1,3 +1,5 @@
+
+
 class Recipe {
   constructor(id, name, image, tags, instructions, ingredients ) {
     this.id = id;
@@ -8,7 +10,6 @@ class Recipe {
     this.ingredients = ingredients;
     this.costPerRecipe = 0;
     this.ingredientPerRecipe = [];
-    // console.log(this.ingredients);
   }
 
 
@@ -39,6 +40,7 @@ class Recipe {
     return this.costPerRecipe = total;
 
 
+  findCostPerRecipe() {
   }
 
   retrieveInstructions() {

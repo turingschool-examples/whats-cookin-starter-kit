@@ -2,11 +2,12 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const Recipe = require('../src/recipe.js');
+
 const Ingredient = require('../src/ingredients.js');
 
-describe('Recipe', function() {
-  let recipe, ingredient;
 
+describe('Recipe', function() {
+  let ingredients, recipe;
   beforeEach(() => {
     recipe = new Recipe(595736,
       'Loaded Chocolate Chip Pudding Cookie Cups',
@@ -31,14 +32,7 @@ describe('Recipe', function() {
         }
       ]);
 
-      //
-      // "id": 20081,
-      // "name": "wheat flour",
-      // "estimatedCostInCents": 142
-
       ingredient = new Ingredient(20081, "wheat flour", 142);
-      // ingredient2 = new Ingredient(18372, "bicarbonate of soda", 513);
-      // ingredient3 = new Ingredient(1123, "eggs", 1001);
   });
 
 
