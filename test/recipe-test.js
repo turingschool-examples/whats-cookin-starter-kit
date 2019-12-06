@@ -2,11 +2,29 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const Recipe = require('../src/recipe.js');
+const Ingredients = require('../src/ingredients.js');
+
 
 describe('Recipe', function() {
-
+  let ingredients, recipe;
   beforeEach(() => {
-      recipe = new Recipe(595736, 'Loaded Chocolate Chip Pudding Cookie Cups', 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ['antipasti', 'starter', 'snack'], ['Add egg and vanilla and mix until combined.']);
+      ingredients = new Ingredients(20081, 'wheat flour', 142);
+      recipe = new Recipe(595736, 'Loaded Chocolate Chip Pudding Cookie Cups', 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ['antipasti', 'starter', 'snack'], ['Add egg and vanilla and mix until combined.'],
+      [{
+        "name": "all purpose flour",
+        "id": 20081,
+        "quanitity": {
+          "amount": 1,
+          "unit": "cup"
+        }
+      }, {
+        "name": "baking soda",
+        "id": 18372,
+        "quanitity": {
+          "amount": 0.5,
+          "unit": "tsp"
+        }
+      }]);
     });
 
     it('should be a function', function() {
