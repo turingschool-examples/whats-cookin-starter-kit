@@ -1,8 +1,3 @@
-
-const Ingredient = require('../src/ingredients.js');
-// ingredients = new Ingredient(20081, 'wheat flour', 142);
-
-
 class Recipe {
   constructor(id, name, image, tags, instructions, ingredients ) {
     this.id = id;
@@ -20,6 +15,12 @@ class Recipe {
 
   filterByIngredients() {
   }
+  findIngredientPerRecipe(ingredient) {
+    return this.ingredients.forEach((ingredient) => {
+        this.ingredientPerRecipe.push(ingredient)
+        console.log(this.ingredientPerRecipe)
+    });
+  }
 
   findCostPerRecipe(ingredient) {
     // console.log(this.ingredients, ingredient.estimatedCostInCents)
@@ -27,17 +28,16 @@ class Recipe {
     // for each recipe get all the ingredients
     // store all the ingredients
     // fore each ingredient get the costPerRecipe
-    this.ingredients.forEach((ingredient) => {
-        this.ingredientPerRecipe.push(ingredient)
-        console.log(this.ingredientPerRecipe)
-    })
-    return this.ingredientPerRecipe.reduce((acc, val) => {
-      console.log(val)
-     acc += (val.estimatedCostInCents / 100);
-    return acc;
-    }, 0)
 
-    //
+    return this.ingredientPerRecipe.map((ingredient) => {
+      // console.log(ingredient.quanitity)
+      let ingredientQuanitity = ingredient.quanitity;
+      console.log(ingredientQuanitity);
+      return ingredientQuanitity.map(item => item.amount);
+    })
+    console.log(total)
+    return this.costPerRecipe = total;
+
 
   }
 
