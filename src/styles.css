@@ -1,0 +1,107 @@
+header {
+  background-color: #4C0038;
+  color: #B76333;
+}
+
+body {
+  background-color: #D3B7AF;
+
+}
+
+#title {
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.dots {
+  color: #25473E;
+}
+
+#title-labels {
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: 1.5rem;
+}
+
+.search-div {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: .5%;
+}
+
+.search-button {
+  font-size: 1rem;
+  color: #FFFFFF;
+  background-color: #A4AF95;
+}
+
+.search {
+  padding-left: 3%;
+}
+
+.filter-div {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2.25%;
+  margin-top: .5%;
+}
+
+.filter-button {
+  background-color: #A4AF95;
+  color: #FFFFFF;
+  font-size: 1rem;
+}
+
+#arrow {
+  width: 5%;
+  padding-left: 5%;
+}
+
+#home-recipes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "one . two . three";
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 2%;
+}
+
+.card {
+  background-color: #25473E;
+  padding: 5% 5% 0% 5%;
+
+}
+
+#card1 {
+  grid-area: one;
+}
+
+#card2 {
+  grid-area: two;
+}
+
+#card3 {
+  grid-area: three;
+}
+
+.food-pic {
+  width: 100%;
+  height: 10%;
+}
+
+.meal-name {
+  color: #A4AF95;
+  font-size: 1.5rem;
+  margin-left: 9%;
+  margin-bottom: 1%;
+}
+
+.fav-star {
+  width: 15%;
+}
