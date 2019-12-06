@@ -6,6 +6,8 @@ const ingredientDropdown = document.querySelector('.ingredient-options');
 populateCards();
 namesDropdown();
 ingredientsDropdown();
+tagsDropdown();
+
 
 function populateCards() {
   return recipeData.forEach(element => {
@@ -35,9 +37,19 @@ function namesDropdown() {
   })
 }
 
-function tagDropdown() {
-  // input recipe array
-  // output each element in 
+function tagsDropdown() {
+  let tagNames = recipeData.reduce((acc, recipe) => {
+    let getTag = recipe.tags.forEach(tag => {
+      if (!acc.includes(tag)) {
+      acc.push(tag)
+    }
+    })
+    return acc
+  }, [])
+  return tagNames.forEach(tag => {
+    tagDropdown.innerHTML += `
+    <option class="test" value="test">${tag}</option>`
+  })
 }
 
 function ingredientsDropdown() {
