@@ -66,6 +66,26 @@ img {
   margin: 2%;
 }
 
+.menu-select-btn {
+  width: 10%;
+  margin-bottom: 40px;
+}
+
+#heart-btn,
+#book-btn {
+  width: 7%;
+  margin-left: 3%;
+}
+
+.image-footer {
+  border-bottom: #F1AB01 solid 1px;
+  border-top: #F1AB01 solid 1px;
+  width: 90%;
+  margin-right: auto;
+  margin-left: 5%;
+
+}
+
 #recipe-image {
   height: 60%;
   width: 60%;

@@ -30,6 +30,7 @@ class User {
 
       // console.log(recipe.ingredients);
       recipe.ingredients.forEach((ingredient) => {
+        console.log();
         if(!this.recipeIngId.includes(ingredient.id)) {
           this.recipeIngId.push(ingredient.id);
           // console.log(this.recipeIngId);
