@@ -6,9 +6,15 @@ class User {
     this.favoriteRecipes = [];
     this.weeklyMenu = [];
   }
-  addToFavorites() {
-    
+  addToFavorites(fave) {
+    console.log('tedst')
+    this.favoriteRecipes.push(fave)
   }
 }
 
-module.exports = User
+if (typeof module !== 'undefined') {
+  module.exports = User;
+}
+
+//add event listener to button that fires off addtofaves methid
+// the method is going to take the id 
