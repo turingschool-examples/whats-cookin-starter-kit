@@ -2,10 +2,49 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Whats Cookin</title>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+    <title>Spiced</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <header>
+      <h1 id="title"><span class="dots">.:</span>Spiced<span class="dots">:.</span></h1>
+      <div id="title-labels">
+        <label class="head-label">Home</label>
+        <label class="head-label">Favorite</label>
+        <label class="head-label">On the Menu</label>
+        <label class="head-label">My Pantry</label>
+      </div>
+    </header>
+    <section id="home-body">
+      <section id="search-filter">
+        <div class="search-div">
+          <button id="search-btn" class="search-button">Search</button>
+          <input id="search-input" class="search" type="text" placeholder="Whats Cookin'?">
+        </div>
+        <div class="filter-div">
+          <button id="filter-btn" class="filter-button">Filter<img id="arrow" src="../assets/downvote.svg"></button>
+        </div>
+      </section>
+      <section id="home-recipes">
+        <div class="card" id="card1">
+          <img class="food-pic" src="../assets/food.jpg">
+          <p class="meal-name">Coconut Yogurt Bowl</p>
+          <img class="fav-star" src="../assets/star copy.svg">
+        </div>
+        <div class="card" id="card2">
+          <img class="food-pic" src="../assets/food.jpg">
+          <p class="meal-name">Coconut Yogurt Bowl</p>
+          <img class="fav-star" src="../assets/star copy.svg">
+        </div>
+        <div class="card" id="card3">
+          <img class="food-pic" src="../assets/food.jpg">
+          <p class="meal-name">Coconut Yogurt Bowl</p>
+          <img class="fav-star" src="../assets/star copy.svg">
+        </div>
+      </section>
+
+
+
 
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
