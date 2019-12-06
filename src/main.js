@@ -6,16 +6,24 @@
 // const ingredients = require('../data/ingredients');
 // const recipes = require('../data/recipes');
 
-const generateRandomIndex = (source) => {
-	return Math.floor(source.length * Math.random())
-}
+// const generateRandomIndex = (source) => {
+// 	return Math.floor(source.length * Math.random())
+// }
 
+// console.log(generateRandomIndex(users))
 // window.onload()
+
 
 let user = new User(users[generateRandomIndex(users)])
 // let cookbook = new Cookbook()
 // console.log(user)
 
+// let user = new User(users[generateRandomIndex(users)])
+
+
+let currentUser = users.filter(card => card.id === Math.floor(users.length * Math.random()))
+
+// let cookbook = new Cookbook()
 
 // const chai = require('chai');
 // const expect = chai.expect;
@@ -62,7 +70,7 @@ function displayRecipes() {
   });
 }
 
-cooksName.innerHTML = user.makeUserName()
+cooksName.innerHTML = currentUser[0].name
 
 displayRecipes()
 kickOff()
