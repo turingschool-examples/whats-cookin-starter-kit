@@ -24,6 +24,7 @@ body {
   justify-content: space-between;
   margin-left: 10%;
   margin-right: 10%;
+  padding-bottom: 1%;
   font-size: 1.5rem;
 }
 
@@ -61,7 +62,11 @@ body {
   padding-left: 5%;
 }
 
-#home-recipes {
+.hidden {
+  visibility: hidden;
+}
+
+.home-recipes {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
