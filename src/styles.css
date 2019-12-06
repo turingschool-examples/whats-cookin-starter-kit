@@ -92,10 +92,13 @@ h1{
   animation-fill-mode: forwards;
 }
 
-.recipes{
+.recipes {
   width: 50px;
   background-color: blue;
   height: 50px;
+  display: flex;
+  grid-template-columns: 1fr 7fr;
+  grid-template-rows: auto;
 }
 
 .main-nav {
