@@ -52,11 +52,16 @@ const instantiateUser = () => {
     console.log(user);
 }
 
-const addToFavorites = (event) => {
-  if (event.target.classList.contains('add-to-favorites')) {
+const addToFavorites = e => {
+  if (e.target.classList.contains('add-to-favorites')) {
     var parsedId = parseInt(event.target.id);
     var selectedFaveRecipe = allRecipes[parsedId];
-    user.addToFavorites(selectedFaveRecipe);
+    let doubleCheck = user.favoriteRecipes.includes(selectedFaveRecipe)
+    if (doubleCheck === false) {
+        user.addToFavorites(selectedFaveRecipe);
+    } else {
+      return;
+    }
   }
 }
 
