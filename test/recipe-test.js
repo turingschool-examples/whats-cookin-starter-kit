@@ -2,30 +2,39 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const Recipe = require('../src/recipe.js');
-const Ingredients = require('../src/ingredients.js');
+
+const Ingredient = require('../src/ingredients.js');
 
 
 describe('Recipe', function() {
   let ingredients, recipe;
   beforeEach(() => {
-      ingredients = new Ingredients(20081, 'wheat flour', 142);
-      recipe = new Recipe(595736, 'Loaded Chocolate Chip Pudding Cookie Cups', 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ['antipasti', 'starter', 'snack'], ['Add egg and vanilla and mix until combined.'],
+    recipe = new Recipe(595736,
+      'Loaded Chocolate Chip Pudding Cookie Cups',
+      'https://spoonacular.com/recipeImages/595736-556x370.jpg',
+      ['antipasti', 'starter', 'snack'],
+      ["In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy."],
       [{
-        "name": "all purpose flour",
-        "id": 20081,
-        "quanitity": {
-          "amount": 1,
-          "unit": "cup"
+          "name": "all purpose flour",
+          "id": 20081,
+          "quanitity": {
+            "amount": 1.5,
+            "unit": "c"
+          }
+        },
+        {
+          "name": "baking soda",
+          "id": 18372,
+          "quanitity": {
+            "amount": 0.5,
+            "unit": "tsp"
+          }
         }
-      }, {
-        "name": "baking soda",
-        "id": 18372,
-        "quanitity": {
-          "amount": 0.5,
-          "unit": "tsp"
-        }
-      }]);
-    });
+      ]);
+
+      ingredient = new Ingredient(20081, "wheat flour", 142);
+  });
+
 
     it('should be a function', function() {
       expect(Recipe).to.be.a('function');
@@ -34,6 +43,7 @@ describe('Recipe', function() {
     it('should instantiate a new recipe', function() {
       expect(recipe).to.be.an.instanceof(Recipe);
     });
+
 
     describe('stored data', function() {
       it('should know the correct ID number', function() {
@@ -49,7 +59,8 @@ describe('Recipe', function() {
       });
 
       it('should know the stored instructions', function() {
-        expect(recipe.instructions).to.deep.equal(['Add egg and vanilla and mix until combined.'])
+        expect(recipe.instructions).to.deep.equal(["In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy."],
+)
       });
 
       it('should know the stored tags', function() {
@@ -59,7 +70,13 @@ describe('Recipe', function() {
     });
 
     it.skip('should know the cost of the recipe per ingredient', function() {
-      expect(recipe.findCostPerRecipe()).to.equal(570.85)
+      recipe.findCostPerRecipe(ingredient)
+
+      expect(recipe.findCostPerRecipe()).to.equal(142)
+    });
+    it('should hold the ingredientPerRecipe', function() {
+      recipe.findIngredientPerRecipe(ingredient);
+      expect(recipe.ingredientPerRecipe).to.equal(ingredient)
     });
 
 });

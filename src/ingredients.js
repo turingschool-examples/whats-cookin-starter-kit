@@ -1,3 +1,5 @@
+
+
 class Ingredient {
   constructor(id, name, estimatedCostInCents) {
     this.id = id;
