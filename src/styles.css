@@ -21,7 +21,7 @@
 
 .splash-logo {
   background-image: url(../images/natural_selection_logo.png);
-  background-size:contain;
+  background-size: contain;
   opacity: .5;
   margin-top: 5%;
   height: 400px;
@@ -49,6 +49,11 @@
   font-size: 200%;
   font-family: Quicksand;
   font-weight: bold;
+}
+
+.enter-button:hover {
+  background-color: yellow;
+  cursor: pointer;
 }
 
 .enter-button:focus {
@@ -79,6 +84,10 @@ nav {
   background-color: #2196f3;
   color: white;
   border: none;
+}
+
+.nav-buttons:focus {
+  outline: none;
 }
 
 .nav-buttons:hover {
