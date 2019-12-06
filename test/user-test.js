@@ -83,10 +83,26 @@ describe('Users', function() {
           "unit": "tsp"
         }
       }];
+      let ing2 = [{
+        "name": "apple cider",
+        "id": 1009016,
+        "quanitity": {
+          "amount": 1.5,
+          "unit": "cups"
+        }
+      }, {
+        "name": "apples",
+        "id": 9003,
+        "quanitity": {
+          "amount": 2,
+          "unit": ""
+        }
+      }];
       let recipe1 = new Recipe(541288, 'Sesame Cookies', 'https://spoonacular.com/recipeImages/541288-556x370.jpg', ['antipasti', 'starter', 'snack',], ['Place them on two baking sheets lined with parchment paper.'], ing);
       let recipe2 = new Recipe(595736, 'Loaded Chocolate Chip Pudding Cookie Cups', 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ['antipasti', 'starter', 'snack',], ['Add egg and vanilla and mix until combined.'], ing);
       let recipe3 = new Recipe(741603, 'Elvis Pancakes', 'https://spoonacular.com/recipeImages/741603-556x370.jpeg', ['side dish',], ['Watch how to make this recipe.'], ing);
-      let cookBook = [recipe1, recipe2, recipe3];
+      let recipe4 = new Recipe(678353, 'Maple Dijon Apple Cider Grilled Pork Chops', 'https://spoonacular.com/recipeImages/678353-556x370.jpg', ['lunch', 'main dish', 'dinner'], ['Season well and grill over medium heat'], ing2)
+      let cookBook = [recipe1, recipe2, recipe3, recipe4];
 
       it('should store pantry ingredients by id', function() {
         expect(user.condenseUserIngredientId(recipe)).to.deep.equal([20081, 18372]);
