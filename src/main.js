@@ -13,7 +13,13 @@
 // console.log(generateRandomIndex(users))
 // window.onload()
 
+
+let user = new User(users[generateRandomIndex(users)])
+// let cookbook = new Cookbook()
+// console.log(user)
+
 // let user = new User(users[generateRandomIndex(users)])
+
 
 let currentUser = users.filter(card => card.id === Math.floor(users.length * Math.random()))
 
@@ -22,7 +28,7 @@ let currentUser = users.filter(card => card.id === Math.floor(users.length * Mat
 // const chai = require('chai');
 // const expect = chai.expect;
 
-let user = new User(users)
+// let user = new User(users)
 let cookbook = new Cookbook(recipeData)
 let pantry = new Pantry()
 
@@ -34,8 +40,8 @@ let favoriteButton;
 
 
 function kickOff() {
+	console.log(users.name);
 	cooksName.innerHTML = user.name;
-	user.displayName('pants');
 }
 
 // function displayName() {
@@ -58,7 +64,7 @@ function displayRecipes() {
             <img src="${recipe.image}">
             <h1 class="recipe_title">${recipe.name}</h1>
             <h4 id="ingredients_list">Ingredients:</h4>
-            <button class="add_to-favorites">Favorite</button>
+            <button class="add_to-favorites"></button>
             <button class="add_to-cook">Save for later</button>
        </section>`);
   });
@@ -67,3 +73,4 @@ function displayRecipes() {
 cooksName.innerHTML = currentUser[0].name
 
 displayRecipes()
+kickOff()
