@@ -9,35 +9,22 @@ describe('Recipe', () => {
   let recipe;
 
   beforeEach(() => {
-    recipe = new Recipe('Loaded Chocolate Chip Pudding Cookie Cups', 595736, "https://spoonacular.com/recipeImages/595736-556x370.jpg", [
+    recipe = new Recipe('Loaded Chocolate Chip Pudding Cookie Cups', 595736, "https://spoonacular.com/recipeImages/595736-556x370.jpg", 
+    [
       {
         "name": "all purpose flour",
         "id": 20081,
-        "quanitity": {
-          "amount": 1.5,
-          "unit": "c"
-        }
+        "quanitity": {"amount": 1.5, "unit": "c"}
       },
       {
         "name": "baking soda",
         "id": 18372,
-        "quanitity": {
-          "amount": 0.5,
-          "unit": "tsp"
-        }
+        "quanitity": {"amount": 0.5, "unit": "tsp"}
       }
     ], [
-      {
-        "number": 1,
-        "instruction": "Stick in oven"
-      },
-      {
-        "number": 2,
-        "instruction": "Eat"
-      }], [
-            "antipasti",
-            "starter",
-          ]);
+      {"number": 1, "instruction": "Stick in oven"},
+      {"number": 2,"instruction": "Eat"}],
+      [ "antipasti", "starter"]);
   });
 
   it('should be an instance of a new Recipe', () => {
@@ -61,39 +48,25 @@ describe('Recipe', () => {
       {
         "name": "all purpose flour",
         "id": 20081,
-        "quanitity": {
-          "amount": 1.5,
-          "unit": "c"
-        }
+        "quanitity": {"amount": 1.5, "unit": "c"}
       },
       {
         "name": "baking soda",
         "id": 18372,
-        "quanitity": {
-          "amount": 0.5,
-          "unit": "tsp"
-        }
+        "quanitity": {"amount": 0.5, "unit": "tsp"}
       }
     ])
   });
 
   it('should have instructions', () => {
     expect(recipe.instructions).to.eql([
-      {
-        "number": 1,
-        "instruction": "Stick in oven"
-      },
-      {
-        "number": 2,
-        "instruction": "Eat"
-      }])
+      {"number": 1, "instruction": "Stick in oven"},
+      {"number": 2, "instruction": "Eat"}
+    ])
   });
 
   it('should have tags', () => {
-    expect(recipe.tags).to.eql([
-          "antipasti",
-          "starter",
-        ])
+    expect(recipe.tags).to.eql(["antipasti","starter"])
   });
 
   it.skip('should calculate total cost', () => {

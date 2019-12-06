@@ -246,7 +246,7 @@ let recipeData = [
   {
     "name": "Dirty Steve's Original Wing Sauce",
     "id": 412309,
-    "image": "https://spoonacular.com/recipeImages/412309-556x370.jpeg",
+    "image": "https://www.thespruceeats.com/thmb/1keXsxItwYOn5YOeAXkIJLCF8Mk=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/buffalo-chicken-wing-sauce-recipe-101929-hero-02-7a55548d78f3477e8e2c831a0d6a371d.jpg",
     "ingredients": [
       {
         "name": "black pepper",
@@ -366,7 +366,7 @@ let recipeData = [
   {
     "name": "Elvis Pancakes",
     "id": 741603,
-    "image": "https://spoonacular.com/recipeImages/741603-556x370.jpeg",
+    "image": "http://yestoyolks.com/wp-content/uploads/2014/06/IMG_2324.jpg",
     "ingredients": [
       {
         "name": "all purpose flour",
@@ -502,7 +502,7 @@ let recipeData = [
   {
     "name": "Mock Udi’s Gluten Free Whole Grain Bread",
     "id": 562334,
-    "image": "https://spoonacular.com/recipeImages/562334-556x370.jpg",
+    "image": "https://d2gk7xgygi98cy.cloudfront.net/5997-3-large.jpg",
     "ingredients": [
       {
         "name": "apple cider vinegar",
@@ -680,7 +680,7 @@ let recipeData = [
   {
     "name": "Ambrosia Cupcakes",
     "id": 507921,
-    "image": "https://spoonacular.com/recipeImages/507921-556x370.jpg",
+    "image": "https://www.dessertfortwo.com/wp-content/uploads/2018/07/birthday-cupcakes-with-sprinkles-small-batch-cupcake-recipe-720x720.jpg",
     "ingredients": [
       {
         "name": "baking powder",
@@ -784,7 +784,7 @@ let recipeData = [
   {
     "name": "Creamy Coconut Yogurt Bowl with Chocolate Granola (Video)",
     "id": 721146,
-    "image": "https://spoonacular.com/recipeImages/721146-556x370.jpg",
+    "image": "https://www.simplysogood.com/wp-content/uploads/2015/02/DSC_0071-1.jpg",
     "ingredients": [
       {
         "name": "almonds",
@@ -916,7 +916,7 @@ let recipeData = [
   {
     "name": "Sesame Cookies",
     "id": 541288,
-    "image": "https://spoonacular.com/recipeImages/541288-556x370.jpg",
+    "image": "https://d1doqjmisr497k.cloudfront.net/-/media/mccormick-us/recipes/gourmet/t/800/toasted-sesame-seed-sugar-cookies.jpg",
     "ingredients": [
       {
         "name": "all purpose flour",
@@ -1307,7 +1307,7 @@ let recipeData = [
   {
     "name": "Pulled Pork",
     "id": 583502,
-    "image": "https://spoonacular.com/recipeImages/583502-556x370.jpg",
+    "image": "https://chowhound1.cbsistatic.com/assets/2014/09/30356_slow_cooker_pork_3000x2000.jpg",
     "ingredients": [
       {
         "name": "bbq sauce",
@@ -1422,7 +1422,7 @@ let recipeData = [
   {
     "name": "Pumpkin Cheesecake Breakfast Smoothie",
     "id": 543687,
-    "image": "https://spoonacular.com/recipeImages/543687-556x370.jpg",
+    "image": "https://www.modernhoney.com/wp-content/uploads/2018/11/Pumpkin-Cheesecake-Mousse-7.jpg",
     "ingredients": [
       {
         "name": "almond milk",
@@ -1512,7 +1512,7 @@ let recipeData = [
   {
     "name": "Cinnamon Raisin Overnight French Toast w/ Apple Filling",
     "id": 516904,
-    "image": "https://spoonacular.com/recipeImages/516904-556x370.jpg",
+    "image": "https://images-gmi-pmc.edge-generalmills.com/037f918a-a334-4085-8cd7-b32d3bc7029a.jpg",
     "ingredients": [
       {
         "name": "apple juice",
@@ -1735,7 +1735,7 @@ let recipeData = [
   {
     "name": "Baked Stuffed Artichokes",
     "id": 724018,
-    "image": "https://spoonacular.com/recipeImages/724018-556x370.jpg",
+    "image": "https://photos.bigoven.com/recipe/hero/baked-stuffed-artichokes-10.jpg",
     "ingredients": [
       {
         "name": "artichokes",
@@ -2165,7 +2165,7 @@ let recipeData = [
   {
     "name": "Slow-Cooker Italian-Stuffed Peppers",
     "id": 607805,
-    "image": "https://spoonacular.com/recipeImages/607805-556x370.jpg",
+    "image": "https://girlcarnivore.com/wp-content/uploads/2014/07/Slow-Cooker-Italian-Stuffed-Peppers-Kita-Roberts-GirlCarnivore-1-684x457.jpg",
     "ingredients": [
       {
         "name": "bell peppers",
@@ -2410,7 +2410,7 @@ let recipeData = [
   {
     "name": "The Ultimate Healthy Soft & Chewy Pumpkin Chocolate Chip Cookies",
     "id": 618332,
-    "image": "https://spoonacular.com/recipeImages/618332-556x370.jpg",
+    "image": "https://lh6.googleusercontent.com/-cZu2TEWE62I/TpUwC4LdGeI/AAAAAAAAYhg/BjSTc2dr0Lc/s800/IMG_5476-2.jpg",
     "ingredients": [
       {
         "name": "agave",
@@ -2514,7 +2514,7 @@ let recipeData = [
   {
     "name": "Butterscotch Pudding",
     "id": 231951,
-    "image": "https://spoonacular.com/recipeImages/231951-556x370.jpg",
+    "image": "https://cdn-image.foodandwine.com/sites/default/files/styles/medium_2x/public/200211-r-xl-creamy-butterscotch-pudding-with-toffee.jpg?itok=YWTVcD_j",
     "ingredients": [
       {
         "name": "cornstarch",
@@ -2594,7 +2594,7 @@ let recipeData = [
   {
     "name": "Quinoa Tabbouleh",
     "id": 880108,
-    "image": "https://spoonacular.com/recipeImages/880108-556x370.jpg",
+    "image": "https://www.inspiredtaste.net/wp-content/uploads/2019/01/Easy-Quinoa-Salad-Recipe-1-1200.jpg",
     "ingredients": [
       {
         "name": "cucumber",
@@ -2779,7 +2779,7 @@ let recipeData = [
   {
     "name": "Artichoke Spinach Dip Stuffed Mushrooms",
     "id": 670408,
-    "image": "https://spoonacular.com/recipeImages/670408-556x370.jpg",
+    "image": "https://www.mushroomcouncil.com/wp-content/uploads/2018/01/spinach-artichoke-dip-stuffed-mushrooms.jpg",
     "ingredients": [
       {
         "name": "artichoke hearts",
@@ -3311,7 +3311,7 @@ let recipeData = [
   {
     "name": "A Cake To Warm Any Heart – Banana Split Cake",
     "id": 515021,
-    "image": "https://spoonacular.com/recipeImages/515021-556x370.jpg",
+    "image": "https://sugargeekshow.com/wp-content/uploads/2019/04/banana-split-cake-featured.jpg",
     "ingredients": [
       {
         "name": "bananas",
@@ -3644,7 +3644,7 @@ let recipeData = [
   {
     "name": "4 Cheese White Pizza",
     "id": 574317,
-    "image": "https://spoonacular.com/recipeImages/574317-556x370.jpg",
+    "image": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2017/3/1/0/KC1212H_Four-Cheese-Pizza_s4x3.jpg.rend.hgtvcom.826.620.suffix/1488391778861.jpeg",
     "ingredients": [
       {
         "name": "AP flour",
@@ -4093,7 +4093,7 @@ let recipeData = [
   {
     "name": "Smothered Green Beans",
     "id": 446577,
-    "image": "https://spoonacular.com/recipeImages/446577-556x370.jpg",
+    "image": "https://img1.southernliving.timeinc.net/sites/default/files/styles/medium_2x/public/1572620871/0981_192910_DuPree_SL_Smothered%20green%20beans_18999.jpg?itok=l7bYDsua",
     "ingredients": [
       {
         "name": "bacon",
@@ -4169,7 +4169,7 @@ let recipeData = [
   {
     "name": "Pear & Walnut Salad with a Pear Vinaigrette",
     "id": 576906,
-    "image": "https://spoonacular.com/recipeImages/576906-556x370.jpg",
+    "image": "https://s23991.pcdn.co/wp-content/uploads/2017/05/endive-blue-cheese-pear-salad-recipe.jpg",
     "ingredients": [
       {
         "name": "baby arugula leaves",
@@ -4285,7 +4285,7 @@ let recipeData = [
   {
     "name": "Mexican Vegetables on Cornbread",
     "id": 504218,
-    "image": "https://spoonacular.com/recipeImages/504218-556x370.jpg",
+    "image": "https://d104wv11b7o3gc.cloudfront.net/wp-content/uploads/2018/02/taco-bake-mexican-cornbread-casserole-2.jpg",
     "ingredients": [
       {
         "name": "canned tomatoes",
@@ -4388,7 +4388,7 @@ let recipeData = [
       {
         "number": 5,
         "instruction": "Serve hot over cornbread with shredded cheese and sour cream."
-      }
+      } 
     ],
     "tags": [
       "side dish"
@@ -4397,7 +4397,7 @@ let recipeData = [
   {
     "name": "Barbecue Shrimp Stir-Fry",
     "id": 445196,
-    "image": "https://spoonacular.com/recipeImages/445196-556x370.jpg",
+    "image": "https://media3.s-nbcnews.com/j/newscms/2019_21/2863871/190520-grilled-shrimp-summer-harvest-salad-cs-115p_1353a4f367bccd24748faf7eac15a1d1.fit-760w.jpg",
     "ingredients": [
       {
         "name": "barbecue sauce",
