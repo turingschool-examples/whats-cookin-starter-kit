@@ -1,5 +1,5 @@
 const recipeData = require('../sub-data/recipes-sub-data.js')
-const ingredientData = require('../data/ingredients.js')
+const ingredientData = require('../sub-data/ingredients-sub-data.js')
 
 class Recipe {
   constructor(name, id, image, ingredients, instructions, tags) {
@@ -23,8 +23,19 @@ class Recipe {
 
   calculateTotalCost(name) {
     let recipeObj = this.retrieveRecipe(name)
-    let recipeIngredients = recipeObj.ingredients
-    console.log(this.retrieveRecipe(name))
+    let recipeI = recipeObj.ingredients
+    let recipeIdAndAmount = recipeI.map(i => {
+      return { id:i.id, amount:i.quanitity.amount}
+    })
+    let sum = ingredientData.reduce((acc, r) => {
+      recipeIdAndAmount.map((i) => {
+        if(r.id === i.id) {
+          acc += r.estimatedCostInCents * i.amount
+        }
+      })
+      return acc;
+    }, 0)
+    return sum * .01;
   
   }
 }
