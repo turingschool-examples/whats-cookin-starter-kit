@@ -1,11 +1,11 @@
-// const Recipes = require('../data/recipes')
-
 const body = document.querySelector('body');
 const navBar = document.querySelector('nav');
 const next = document.querySelector('button');
 const welcomeBoxes = document.querySelectorAll('.menu-box');
+const cardHolder = document.querySelector('.recipe-holder');
+const allRecipes = document.querySelector('.all-recipes-box');
 
-next.addEventListener("click", animateNavBar);
+allRecipes.addEventListener("click", animateNavBar);
 
 function animateNavBar (){
   for(i = 0; i < welcomeBoxes.length; i++){
@@ -46,9 +46,13 @@ function instantiateRecipes() {
 
 // Instantiating new cards???
 
-// for(var i = 0; i < recipeData; i++){
-//   let recipe = new Recipes(recipeData[i]);
-//   cardHolder.innerHTML += `
-//   <div class ="recipes">${recipe}</div>
-//   `
-// }
+function instantiateRecipes() {
+  console.log(newRecipe);
+  for(var i = 0; i < 50; i++){
+  cardHolder.innerHTML += `
+  <div class="recipes">
+  <img src="${recipeData[i].image}" alt="">
+  </div>
+  `
+  }
+}
