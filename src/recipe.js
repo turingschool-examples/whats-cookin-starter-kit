@@ -25,7 +25,7 @@ class Recipe {
     let recipeObj = this.retrieveRecipe(name)
     let recipeI = recipeObj.ingredients
     let recipeIdAndAmount = recipeI.map(i => {
-      return { id:i.id, amount:i.quanitity.amount}
+      return { id:i.id, amount:i.quantity.amount}
     })
     let sum = ingredientData.reduce((acc, r) => {
       recipeIdAndAmount.map((i) => {
