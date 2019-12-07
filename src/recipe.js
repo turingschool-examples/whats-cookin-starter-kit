@@ -36,8 +36,8 @@ class Recipe {
       return acc;
     }, 0)
     return sum * .01;
-  
   }
+  
 }
 
 if (typeof module !== 'undefined') {
