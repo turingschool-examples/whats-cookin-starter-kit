@@ -2,8 +2,6 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const Recipe = require('../src/recipe.js')
-const recipeData = require('../sub-data/recipes-sub-data.js')
-const ingredientData = require('../sub-data/ingredients-sub-data.js')
 
 describe('Recipe', () => {
   let recipe;
@@ -11,19 +9,11 @@ describe('Recipe', () => {
   beforeEach(() => {
     recipe = new Recipe('Loaded Chocolate Chip Pudding Cookie Cups', 595736, "https://spoonacular.com/recipeImages/595736-556x370.jpg", 
     [
-      {
-        "name": "all purpose flour",
-        "id": 20081,
-        "quanitity": {"amount": 1.5, "unit": "c"}
-      },
-      {
-        "name": "baking soda",
-        "id": 18372,
-        "quanitity": {"amount": 0.5, "unit": "tsp"}
-      }
-    ], [
-      {"number": 1, "instruction": "Stick in oven"},
-      {"number": 2,"instruction": "Eat"}],
+      {"name": "all purpose flour", "id": 20081, "quantity": {"amount": 1.5, "unit": "c"}},
+      {"name": "baking soda", "id": 18372, "quantity": {"amount": 0.5, "unit": "tsp"}}],
+      [
+        {"number": 1, "instruction": "Stick in oven"},
+        {"number": 2,"instruction": "Eat"}],
       [ "antipasti", "starter"]);
   });
 
@@ -48,12 +38,12 @@ describe('Recipe', () => {
       {
         "name": "all purpose flour",
         "id": 20081,
-        "quanitity": {"amount": 1.5, "unit": "c"}
+        "quantity": {"amount": 1.5, "unit": "c"}
       },
       {
         "name": "baking soda",
         "id": 18372,
-        "quanitity": {"amount": 0.5, "unit": "tsp"}
+        "quantity": {"amount": 0.5, "unit": "tsp"}
       }
     ])
   });
@@ -76,4 +66,4 @@ describe('Recipe', () => {
   it('should calculate total cost', () => {
     expect(recipe.calculateTotalCost('Loaded Chocolate Chip Pudding Cookie Cups')).to.equal(5.04)
   });
-})
+});
