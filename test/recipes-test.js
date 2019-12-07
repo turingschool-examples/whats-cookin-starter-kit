@@ -69,7 +69,11 @@ describe('Recipe', () => {
     expect(recipe.tags).to.eql(["antipasti","starter"])
   });
 
-  it.skip('should calculate total cost', () => {
+  it('should return the recipe by name', () => {
+    expect(recipe.retrieveRecipe('Loaded Chocolate Chip Pudding Cookie Cups')).to.eql(recipe)
+  });
+
+  it('should calculate total cost', () => {
     expect(recipe.calculateTotalCost('Loaded Chocolate Chip Pudding Cookie Cups')).to.equal(5.04)
   });
 })
