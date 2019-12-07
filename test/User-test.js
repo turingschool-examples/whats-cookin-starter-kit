@@ -9,6 +9,7 @@ describe('User', () => {
 
   beforeEach(() => {
     user = new User(users[0]);
+    // add values to past tests?
   });
 
   it('should be a function', function() {
