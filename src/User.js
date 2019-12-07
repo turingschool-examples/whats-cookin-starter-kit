@@ -6,14 +6,12 @@ class User {
     this.recipesToCook = [];
   }
   
-
-  displayRecipeName(recipeData) {
-    
+  displayFavorites() {
+   return this.favoriteRecipes
   }
 
-  makeUserName() {
-    return "Gordon Ramsey"
-
+  addToFavorites(target) {
+    this.favoriteRecipes.includes(target) ? this.favoriteRecipes.splice(this.favoriteRecipes.indexOf(target), 1) : this.favoriteRecipes.push(target);
   }
 
   addToCook() {
