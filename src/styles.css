@@ -3,9 +3,9 @@
 	padding: 0;
 }
 
-* {
+/** {
 	border: 1px solid red;
-}
+}*/
 
 .main_body-nav {
 	height: 125px;
@@ -76,6 +76,13 @@ button {
 
 img {
   height: 240px;
+}
+
+.js_favorite-area {
+	font-size: 18px;
+	font-family: 'Open Sans', sans-serif;
+	color: white;
+	padding: 2%;
 }
 
 /*.add_to-favorites {
