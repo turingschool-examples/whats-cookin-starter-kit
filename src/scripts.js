@@ -4,7 +4,6 @@ const body = document.querySelector('body');
 const navBar = document.querySelector('nav');
 const next = document.querySelector('button');
 const welcomeBoxes = document.querySelectorAll('.menu-box');
-const cardHolder = document.querySelector('.recipe-holder');
 
 next.addEventListener("click", animateNavBar);
 
@@ -25,12 +24,26 @@ function animateNavBar (){
       welcomeBoxes[i].classList.add("nav-popup");
       welcomeBoxes[i].classList.add("popup-animate");
     }
+    next.remove();
+    body.innerHTML += `
+    <main>
+    <section class="ten-spacer"></section>
+    <section class="card-display"></section>
+    </main>
+    `
+    instantiateRecipes();
   }, 1500);
 }
 
-function animateButton(){
-
+function instantiateRecipes() {
+  let cardDisplay = document.querySelector(".card-display")
+  for(i = 0; i < 50; i++)
+    cardDisplay.innerHTML += `
+    <div class="recipe-card"></div>
+    `
 }
+
+
 // Instantiating new cards???
 
 // for(var i = 0; i < recipeData; i++){
