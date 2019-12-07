@@ -63,7 +63,7 @@ body {
 }
 
 .hidden {
-  visibility: hidden;
+  display: none !important;
 }
 
 .home-recipes {
@@ -109,4 +109,37 @@ body {
 
 .fav-star {
   width: 15%;
+}
+
+#add-button {
+  width: 3%;
+  margin-bottom: -1%;
+
+}
+
+#add-label {
+  display: inline;
+}
+
+#favorite-recipes-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "one . two . three";
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 2%;
+}
+
+#card1a {
+  grid-area: one;
+}
+
+#card2a {
+  grid-area: two;
+}
+
+#card3a {
+  grid-area: three;
 }
