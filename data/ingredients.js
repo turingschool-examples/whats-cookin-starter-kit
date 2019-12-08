@@ -1,4 +1,4 @@
-let ingredientsData = [{
+let ingredientData = [{
     "id": 20081,
     "name": "wheat flour",
     "estimatedCostInCents": 142
