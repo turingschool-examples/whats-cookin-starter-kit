@@ -3231,7 +3231,7 @@ let recipeData = [
   {
     "name": "Double Raspberry Soufflés",
     "id": 698701,
-    "image": "https://spoonacular.com/recipeImages/698701-556x370.jpg",
+    "image": "https://user-images.githubusercontent.com/53405028/70369721-f5f87900-187a-11ea-9302-f2d395d091d7.jpg",
     "ingredients": [
       {
         "name": "blackberry juice",
@@ -5266,7 +5266,7 @@ let recipeData = [
   {
     "name": "Rolo Cookie Bars",
     "id": 611858,
-    "image": "https://spoonacular.com/recipeImages/611858-556x370.jpg",
+    "image": "https://user-images.githubusercontent.com/53405028/70369661-4cb18300-187a-11ea-8695-c01f31ec5800.jpg",
     "ingredients": [
       {
         "name": "baking powder",
@@ -5642,7 +5642,7 @@ let recipeData = [
   {
     "name": "Vegan Lentil Loaf",
     "id": 226562,
-    "image": "https://spoonacular.com/recipeImages/226562-556x370.jpg",
+    "image": "https://user-images.githubusercontent.com/53405028/70369598-5ab2d400-1879-11ea-9ba7-a813c838e2eb.jpg",
     "ingredients": [
       {
         "name": "apple sauce",
@@ -5696,7 +5696,7 @@ let recipeData = [
         "name": "dried cranberries",
         "id": 9079,
         "quanitity": {
-          "amount": 0.3333333333333333,
+          "amount": 0.33,
           "unit": "cup"
         }
       },
@@ -5832,9 +5832,9 @@ let recipeData = [
     ]
   },
   {
-    "name": "Pastry Cream",
+    "name": "Strawberry Pastry Cream",
     "id": 605132,
-    "image": "https://spoonacular.com/recipeImages/605132-556x370.jpg",
+    "image": "https://user-images.githubusercontent.com/53405028/70369481-1aeaed00-1877-11ea-9876-fdfdbb46cb07.jpg",
     "ingredients": [
       {
         "name": "butter",
