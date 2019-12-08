@@ -21,38 +21,42 @@
 
 .splash-logo {
   background-image: url(../images/natural_selection_logo.png);
-  background-size: contain;
-  opacity: .5;
+  background-size: cover;
   margin-top: 5%;
-  height: 400px;
-  width: 400px;
+  height: 200px;
+  width: 200px;
 }
 
 .slogan,
 .welcome {
-  font-size: 200%;
+  font-size: 150%;
   font-family: Quicksand;
   font-weight: bold;
   margin: 3%;
 }
 
 .welcome {
-  font-size: 300%;
+  font-size: 210%;
+}
+
+.user-name {
+  font-family: Quicksand;
+  font-size: 100%;
 }
 
 .enter-button {
   margin-top: 10%;
   margin-bottom: 20%;
-  height: 80px;
-  width: 300px;
+  height: 50px;
+  width: 200px;
   border-radius: 20px;
-  font-size: 200%;
+  font-size: 120%;
   font-family: Quicksand;
   font-weight: bold;
 }
 
 .enter-button:hover {
-  background-color: yellow;
+  background-color: #FFFB49;
   cursor: pointer;
 }
 
@@ -73,17 +77,18 @@ nav {
   flex-direction: row-reverse;
   background-color: #2196f3;
   width: 100%;
-  height: 100px;
+  height: auto;
   border-bottom: 5px solid #03a9f4;
   margin-top: -100px;
 }
 
 .nav-buttons {
-  font-size: 130%;
+  font-size: 100%;
   padding: 2%;
   background-color: #2196f3;
   color: white;
   border: none;
+
 }
 
 .nav-buttons:focus {
@@ -91,32 +96,58 @@ nav {
 }
 
 .nav-buttons:hover {
-  background-color: white;
-  color: black;
+  /* background-color: #FFFB49; */
+  color: #FFFB49;
   cursor: pointer;
 }
 
-h1 {
-  color: white;
-  font-size: 250%;
-  font-weight: lighter;
-  position: absolute;
-  top: 3.5%;
-  left: 2%;
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 320px;
+}
+
+.search-input {
+  height: 40px;
+  width: 100%;
+  font-size: 110%;
+  font-family: Quicksand;
+  padding-left: 20px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border: none;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-button {
+  background: no-repeat center/90% url(../images/search_icon.png);
+  background-color: white;
+  height: 40px;
+  width: 30px;
+  padding: 20px;
+  border: none;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.search-button:hover {
+  background-color: #FFFB49;
+  cursor: pointer;
 }
 
 .logo-container {
   background: no-repeat center/100% url(../images/natural_selection_logo.png);
   position: absolute;
-  margin-top: -1.2%;
   left: 2%;
-  height: 150px;
-  width: 150px;
+  height: 100%;
+  width: 160px;
 }
 
 .user-icon {
   background: no-repeat center/100% url(../images/user_icon.png);
-  margin-right: 3%;
   top: 0px;
 }
 
@@ -132,14 +163,14 @@ h1 {
   align-items: center;
   background-color: rgba(3, 169, 244, 0.7);
   height: auto;
-  width: 500px;
+  width: 370px;
   border-radius: 20px;
   margin: 2%;
 }
 
 .image-container {
   align-items: center;
-  height: 280px;
+  height: 230px;
   padding: 3%;
   margin-bottom: 2%;
   border-radius: 30px;
@@ -147,6 +178,7 @@ h1 {
 
 h2 {
   font-family: Quicksand;
+  font-size: 120%;
 }
 
 .card-button-container {
@@ -156,11 +188,11 @@ h2 {
 }
 
 .card-buttons {
-  height: 50px;
-  width: 30%;
+  height: 40px;
+  width: 29%;
   border-radius: 10px;
   background-color: white;
-  font-size: 100%;
+  font-size: 75%;
   margin-top: 2%;
   margin-bottom: 2%;
   margin-left: 1%;
@@ -173,15 +205,8 @@ h2 {
 }
 
 .card-buttons:hover {
-  background-color: yellow;
+  background-color: #FFFB49;
   cursor: pointer;
-}
-
-.space-holder-container {
-  position: absolute;
-  height: 100px;
-  width: 100%;
-  background-color: red;
 }
 
 .hidden {
