@@ -1,19 +1,28 @@
-var favorites = document.querySelector("#favorites");
-var homeRecipes = document.querySelector(".home-recipes");
-var favoriteRecipes = document.querySelector("#favorite-recipes-main");
-var addButton = document.querySelector("#add-button");
-var recipeForm = document.querySelector("#recipe-form");
+const favoritesButton = document.querySelector("#favorites");
+const homeRecipes = document.querySelector(".home-recipes");
+const favoriteRecipes = document.querySelector("#favorite-recipes-main");
+const addButton = document.querySelector("#add-button");
+const recipeForm = document.querySelector("#recipe-form");
+const homeButton = document.querySelector("#home-button");
 
-favorites.addEventListener("click", displayFavorites);
+
+favoritesButton.addEventListener("click", displayFavorites);
 addButton.addEventListener("click", displayRecipeForm);
+homeButton.addEventListener("click", displayHomePage);
 
 function displayFavorites() {
-  event.preventDefault();
   homeRecipes.classList.add("hidden");
   favoriteRecipes.classList.remove("hidden");
+  recipeForm.classList.add("hidden");
 }
 
 function displayRecipeForm() {
   favoriteRecipes.classList.add("hidden");
   recipeForm.classList.remove("hidden");
+}
+
+function displayHomePage() {
+  recipeForm.classList.add("hidden");
+  favoriteRecipes.classList.add("hidden");
+  homeRecipes.classList.remove("hidden");
 }
