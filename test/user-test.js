@@ -109,7 +109,7 @@ describe('Users', function() {
       });
 
       it('should store recipe ingredients by id', function() {
-        expect(user.condenseRecipeIngredientId(cookBook)).to.deep.equal([20081, 18372]);
+        expect(user.condenseRecipeIngredientId(cookBook)).to.deep.equal([20081, 18372, 1009016, 9003]);
       });
 
       it('should instantiate a new recipe', function() {

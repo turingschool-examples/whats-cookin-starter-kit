@@ -33,6 +33,8 @@ describe('Recipe', function() {
       ]);
 
       ingredient = new Ingredient(20081, "wheat flour", 142);
+      ingredient2 = new Ingredient(18372, "baking soda", 582);
+
   });
 
 
@@ -70,13 +72,29 @@ describe('Recipe', function() {
     });
 
     it.skip('should know the cost of the recipe per ingredient', function() {
-      recipe.findCostPerRecipe(ingredient)
-
+      recipe.findCostPerRecipe(ingredient);
       expect(recipe.findCostPerRecipe()).to.equal(142)
     });
+
     it('should hold the ingredientPerRecipe', function() {
-      recipe.findIngredientPerRecipe(ingredient);
-      expect(recipe.ingredientPerRecipe).to.equal(ingredient)
+      recipe.findIngredientPerRecipe(recipe);
+      expect(recipe.ingredientPerRecipe).to.deep.equal([{
+          "name": "all purpose flour",
+          "id": 20081,
+          "quanitity": {
+            "amount": 1.5,
+            "unit": "c"
+          }
+        },
+        {
+          "name": "baking soda",
+          "id": 18372,
+          "quanitity": {
+            "amount": 0.5,
+            "unit": "tsp"
+          }
+        }
+      ])
     });
 
 });

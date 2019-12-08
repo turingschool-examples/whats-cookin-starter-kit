@@ -16,14 +16,15 @@ class Recipe {
 
   filterByIngredients() {
   }
-  findIngredientPerRecipe(ingredient) {
+  findIngredientPerRecipe(recipe) {
     return this.ingredients.forEach((ingredient) => {
         this.ingredientPerRecipe.push(ingredient)
-        console.log(this.ingredientPerRecipe)
+        // console.log(ingredient);
+        // console.log(this.ingredientPerRecipe);
     });
   }
 
-  findCostPerRecipe(ingredient) {
+  findCostPerRecipe(recipe) {
     // console.log(this.ingredients, ingredient.estimatedCostInCents)
     // console.log(ingredient.estimatedCostInCents)
     // for each recipe get all the ingredients
