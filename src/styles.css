@@ -47,8 +47,11 @@ body {
   margin-top: 80px;
   height: auto;
   width: 350px;
-  /* border: solid black 2px 0 0 5px; */
-  overflow: hidden;
+  visibility: hidden;
+}
+
+.dropdown-open {
+  visibility: visible;
 }
 
 .preference-dropdown {
@@ -154,16 +157,24 @@ select {
   color: rgb(211, 211, 211);
 }
 
-.recipes-section {
-  display: grid;
+.content-section {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/kitchen-background-3.jpg')no-repeat center center;
   background-size: cover;
+  background-attachment: fixed;
+}
+
+.recipe-container {
+  display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   justify-items: center;
   grid-row-gap: 20px;
   padding: 0px 100px 0px 100px;
-  background-attachment: fixed;
+}
+
+.hide-section {
+  visibility: hidden;
+
 }
 
 .recipe-card {

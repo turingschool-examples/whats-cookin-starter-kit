@@ -1,24 +1,29 @@
-const recipeSection = document.querySelector('.recipes-section');
+const contentSection = document.querySelector('.content-section');
+const recipeContainer = document.querySelector('.recipe-container');
 const nameDropdown = document.querySelector('.name-options');
 const tagDropdown = document.querySelector('.tag-options');
 const ingredientDropdown = document.querySelector('.ingredient-options');
-const hamburgerBtn = document.querySelector('.nav-bar-btn')
+const hamburgerBtn = document.querySelector('.nav-bar-btn');
+const navDropDown = document.querySelector('.nav-bar-dropdown');
+const pantryBtn = document.querySelector('.pantry-btn')
 
 populateCards();
 namesDropdown();
 ingredientsDropdown();
 tagsDropdown();
 
-hamburgerBtn.addEventListener('click', addClassToLines)
+hamburgerBtn.addEventListener('click', openMenu)
+pantryBtn.addEventListener('click', loadPantry)
 
-function addClassToLines() {
+function openMenu() {
   hamburgerBtn.classList.toggle("change")
+  navDropDown.classList.toggle("dropdown-open")
 }
 
 function populateCards() {
   return recipeData.forEach(element => {
     let recipe = new Recipe(element.name, element.id, element.image, element.ingredients, element.instructions, element.tags)
-    recipeSection.innerHTML += `
+    recipeContainer.innerHTML += `
       <div class="recipe-card">
         <img class="recipe-img" src=${recipe.image}>
         <div class="recipe-card-bar">
@@ -66,4 +71,9 @@ function ingredientsDropdown() {
       <option class="test" value="test">${element}</option>
       `
   })
+}
+
+function loadPantry() {
+  recipeContainer.classList.toggle("hide-section")
+  openMenu();
 }
