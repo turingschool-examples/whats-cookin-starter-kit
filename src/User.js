@@ -7,11 +7,19 @@ class User {
   }
   
   displayFavorites() {
-   return this.favoriteRecipes
+    return this.favoriteRecipes;
+  }
+
+  displaySavedRecipes() {
+    return this.recipesToCook;
   }
 
   addToFavorites(target) {
     this.favoriteRecipes.includes(target) ? this.favoriteRecipes.splice(this.favoriteRecipes.indexOf(target), 1) : this.favoriteRecipes.push(target);
+  }
+
+  addToSaved(target) {
+    this.recipesToCook.includes(target) ? this.recipesToCook.splice(this.recipesToCook.indexOf(target), 1) : this.recipesToCook.push(target);
   }
 
   addToCook() {

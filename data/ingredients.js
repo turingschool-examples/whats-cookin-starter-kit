@@ -1234,4 +1234,4 @@ let ingredientsData = [
   }
 ]
 
-window.IngredientData = ingredientData;
+// window.IngredientData = ingredientsData;
