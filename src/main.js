@@ -9,7 +9,12 @@ let recipeName = document.querySelector('.recipe_title');
 let cooksName = document.querySelector('.user_title');
 let mainRecipeArea = document.querySelector('.main_recipe-area');
 let jsFavoriteArea = document.querySelector('.js_favorite-area');
+
 let searchValue = document.querySelector('.main_recipe-search')
+
+let jsSavedArea = document.querySelector('.js_saved-area');
+let addToSaved = document.querySelector('.add_to-saved');
+
 let addFavoriteButton;
 let favoriteButton;
 
@@ -20,7 +25,11 @@ function recipeCardEvent(e) {
   if (e.target.classList.contains("add_to-favorites")){
     user.addToFavorites(e.target.parentElement.children[1].innerHTML)
     displayFavoriteRecipes()
+  } else if (e.target.classList.contains("add_to-saved")){
+    user.addToSaved(e.target.parentElement.children[1].innerHTML)
+    displaySavedRecipes()
   }
+
 }
 
 function displayRecipes() {
@@ -31,7 +40,7 @@ function displayRecipes() {
             <h1 class="recipe_title">${recipe.name}</h1>
             <section id="ingredients_display-area"></section>
             <button class="add_to-favorites">Favorites</button>
-            <button class="add_to-cook">Save for later</button>
+            <button class="add_to-saved">Save for later</button>
             <button class="display_ingredients">Ingredients</button>
        </section>`);
   });
@@ -92,5 +101,19 @@ costOfRecipe() {
   // })
 
 // cooksName.innerHTML = currentUser[0].name
+
+function displaySavedRecipes() {
+  jsSavedArea.innerHTML = ''
+  let sum = user.displaySavedRecipes()
+  sum.forEach(recipe => {
+    jsSavedArea.insertAdjacentHTML('beforeend',
+      `<section class="user_saved-container">
+            <h1 class="user_saved-title">${recipe}</h1>
+       </section>`);
+  });
+}
+
+cooksName.innerHTML = currentUser[0].name
+
 
 displayRecipes()

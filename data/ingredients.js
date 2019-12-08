@@ -1235,3 +1235,4 @@ let ingredientsData = [
 ]
 
 window.IngredientData = ingredientsData;
+

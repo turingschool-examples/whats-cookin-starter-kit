@@ -3,9 +3,9 @@
 	padding: 0;
 }
 
-/** {
+* {
 	border: 1px solid red;
-}*/
+}
 
 .main_body-nav {
 	height: 125px;
@@ -64,14 +64,13 @@ button {
 .recipe_title {
 	font-size: 24px;
 	color: #3f6844;
-	/*width: 200px;*/
+	font-family: 'Dancing Script', cursive;
 }
 
 .user_title {
-	font-size: 24px;
+	font-size: 26px;
 	font-family: 'Open Sans', sans-serif;
 	color: white;
-	text-align: center;
 }
 
 img {
@@ -79,17 +78,36 @@ img {
 }
 
 .js_favorite-area {
-	font-size: 18px;
-	font-family: 'Open Sans', sans-serif;
-	color: white;
+	font-size: 24px;
+	color: #ffffff;
+	font-family: 'Open Sans Condensed', sans-serif;
 	padding: 2%;
 }
 
-/*.add_to-favorites {
-  background-image: url(assets/favorite.svg);
-  background-repeat: no-repeat;
-  height: 40px;
-  width: 40px;
-  background-color: transparent;
-  border-color: transparent;
-}*/
+.user_favorite-section {
+	min-height: 325px;
+	font-weight: 600;
+	color: #ffffff;
+	padding: 2%;
+}
+
+.user_saved-section {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+	color: #ffffff;
+	padding: 2%;
+}
+
+.js_saved-area {
+	font-size: 24px;
+	color: #ffffff;
+	font-family: 'Open Sans Condensed', sans-serif;
+	padding: 2%;
+}
+
+.title {
+	font-size: 20px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+}
+
