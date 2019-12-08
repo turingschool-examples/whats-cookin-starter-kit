@@ -2,12 +2,18 @@ const recipeSection = document.querySelector('.recipes-section');
 const nameDropdown = document.querySelector('.name-options');
 const tagDropdown = document.querySelector('.tag-options');
 const ingredientDropdown = document.querySelector('.ingredient-options');
+const hamburgerBtn = document.querySelector('.nav-bar-btn')
 
 populateCards();
 namesDropdown();
 ingredientsDropdown();
 tagsDropdown();
 
+hamburgerBtn.addEventListener('click', addClassToLines)
+
+function addClassToLines() {
+  hamburgerBtn.classList.toggle("change")
+}
 
 function populateCards() {
   return recipeData.forEach(element => {
