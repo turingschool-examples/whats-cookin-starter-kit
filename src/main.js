@@ -9,10 +9,12 @@ let recipeName = document.querySelector('.recipe_title');
 let cooksName = document.querySelector('.user_title');
 let mainRecipeArea = document.querySelector('.main_recipe-area');
 let jsFavoriteArea = document.querySelector('.js_favorite-area');
+let searchValue = document.querySelector('.main_recipe-search')
 let addFavoriteButton;
 let favoriteButton;
 
 mainRecipeArea.addEventListener("click", recipeCardEvent);
+searchValue.addEventListener("keyup", searchByTags);
 
 function recipeCardEvent(e) {
   if (e.target.classList.contains("add_to-favorites")){
@@ -46,6 +48,48 @@ function displayFavoriteRecipes() {
   });
 }
 
-cooksName.innerHTML = currentUser[0].name
+function makeCard() {
+	mainRecipeArea.insertAdjacentHTML('afterbegin',
+		`<section class="recipe_info-box">
+					<img src="${recipe.image}">
+					<h1 class="recipe_title">${recipe.name}</h1>
+					<h4 id="ingredients_list">Ingredients:</h4>
+					<button class="add_to-favorites"></button>
+					<button class="add_to-cook">Save for later</button>
+		 </section>`);
+};
+
+
+function searchByTags(searched) {
+  var search = searchValue.value.toLowerCase();
+	searched.forEach(tag => {
+  var filterData = recipeData.filter(function(recipe){
+	console.log(recipeSearch)
+	return recipe.tags.includes(search)
+	});
+	mainRecipeArea.innerHTML = "";
+    makeCard(filterData);
+  })
+}
+
+costOfRecipe() {
+	return this.ingredients.reduce((acc, ingredient) => {
+			ingredientsData.forEach((singleIngredient) => {
+				if (singleIngredient.id === ingredient.id) {
+					acc += ingredient.costOfRecipe;
+				}
+			})
+		return acc;
+	}, 0) / 100;
+}
+
+
+	// var strings = (recipeSearch.map(function(x){
+  //   return x.toUpperCase().join(',');
+	// 	console.log(strings)
+	// 	console.log(filter);
+  // })
+
+// cooksName.innerHTML = currentUser[0].name
 
 displayRecipes()

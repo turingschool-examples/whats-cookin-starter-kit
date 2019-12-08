@@ -13,9 +13,6 @@ class Cookbook {
 
   }
 
-  costOfRecipe() {
-
-  }
 
   displayDirections() {
 
@@ -26,4 +23,3 @@ class Cookbook {
 }
 
 window.Cookbook = Cookbook;
-
