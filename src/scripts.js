@@ -21,7 +21,7 @@ const instantiateUsersPantry = () => {
   user.pantry.forEach(item => {
   document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
   <div class="ingredient-card">
-    <p>Name: <span class="ingredient-name">Fresh Vanilla Pudding</span></p>
+    <p>Name: <span class="ingredient-name">---------</span></p>
     <p>ID: <span class="ingredient-id">${item.ingredient}</span></p>
     <p>Quantity: <span class="ingredient-quantity">${item.amount}</span></p>
   </div>`);
@@ -79,75 +79,93 @@ const instantiateUser = () => {
     document.querySelector('.user-name').innerText = selectedUser.name;
 }
 
-const addToFavorites = e => {
+const addToFavoritesOrMenu = e => {
   if (e.target.classList.contains('add-to-favorites')) {
     let parsedId = parseInt(event.target.id);
     console.log(parsedId)
-    let selectedFaveRecipe = allRecipes[parsedId];
-    let doubleCheck = user.favoriteRecipes.includes(selectedFaveRecipe)
+    let selectedRecipe = allRecipes[parsedId];
+    let doubleCheck = user.favoriteRecipes.includes(selectedRecipe)
     if (!doubleCheck) {
-        user.addToFavorites(selectedFaveRecipe);
+        user.addToFavorites(selectedRecipe);
     } else {
       return;
     }
   }
   if (e.target.classList.contains('add-to-menu')) {
     let parsedId = parseInt(event.target.id);
-    let selectedFaveRecipe = allRecipes[parsedId];
-    let doubleCheck = user.myMenu.includes(selectedFaveRecipe)
+    let selectedRecipe = allRecipes[parsedId];
+    let doubleCheck = user.myMenu.includes(selectedRecipe)
     if (!doubleCheck) {
-        user.addToMyMenu(selectedFaveRecipe);
+        user.addToMyMenu(selectedRecipe);
     } else {
       return;
     }
   }
 }
 
-const turnOffNavHeighlights = () => {
-  document.querySelector('.display-fav-button').style.color = '#FFFFFF';
-  document.querySelector('.all-recipes').style.color = '#FFFFFF';
-  document.querySelector('.my-menu').style.color = '#FFFFFF';
-  document.querySelector('.my-pantry').style.color = '#FFFFFF';
+const turnNavBtnsWhite = () => {
+  let navHeadings = ['.display-fav-button', '.all-recipes','.my-menu','.my-pantry']
+  navHeadings.forEach(heading => {
+    document.querySelector(`${heading}`).style.color = '#FFFFFF';
+  })
 }
 
-const heighlightNavBtn = (navItem) => {
-  document.querySelector(`${navItem}`).style.color = '#FFFB49';
+const highlightNavBtn = (navItem) => {
+  document.querySelector(`${navItem}`).style.color = '#00feff';
 }
+
+const clearRecipeCardArea = () => {
+  document.querySelector('.recipe-card-area').innerText = '';
+}
+
+// getting weird behavior because of the '||' operator below
+const emptyAreaErrorMessage = (message) => {
+  if (user.favoriteRecipes.length === 0 || user.myMenu.length === 0) {
+    document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
+    <div class="fav-recipe-error-message-container">
+      <p class="error-message">You don't have any ${message} at this time</p>
+    </div>`);
+  } else {
+    return;
+  }
+};
 
 const navBtnClickHandler = e => {
   if (e.target.classList.contains('display-fav-button')) {
-    turnOffNavHeighlights();
-    heighlightNavBtn(`.display-fav-button`)
-    document.querySelector('.recipe-card-area').innerText = '';
+    turnNavBtnsWhite();
+    highlightNavBtn(`.display-fav-button`)
+    clearRecipeCardArea();
+    emptyAreaErrorMessage('favorite recipes');
     recipeCounter = -1;
     buildRecipeCards(user.favoriteRecipes);
-  }
+  };
   if (e.target.classList.contains('all-recipes')) {
-    turnOffNavHeighlights();
-    heighlightNavBtn(`.all-recipes`)
-    document.querySelector('.recipe-card-area').innerText = '';
+    turnNavBtnsWhite();
+    highlightNavBtn(`.all-recipes`)
+    clearRecipeCardArea();
     recipeCounter = -1;
     buildRecipeCards(allRecipes);
   };
   if (e.target.classList.contains('my-menu')) {
-    turnOffNavHeighlights();
-    heighlightNavBtn(`.my-menu`)
-    document.querySelector('.recipe-card-area').innerText = '';
+    turnNavBtnsWhite();
+    highlightNavBtn(`.my-menu`)
+    clearRecipeCardArea();
+    emptyAreaErrorMessage('saved menu items');
     recipeCounter = -1;
     buildRecipeCards(user.myMenu);
   };
   if (e.target.classList.contains('my-pantry')) {
-    turnOffNavHeighlights();
-    heighlightNavBtn(`.my-pantry`)
-    document.querySelector('.recipe-card-area').innerText = '';
+    turnNavBtnsWhite();
+    highlightNavBtn(`.my-pantry`)
+    clearRecipeCardArea();
     instantiateUsersPantry();
   };
-}
+};
 
 let addToMenuBtns = document.querySelectorAll('.add-to-menu');
 let addToFavoriteBtns = document.querySelectorAll('.add-to-favorite');
 
-function loadDashboard() {
+const loadDashboard = () => {
   document.querySelector('.splash-container').classList.add('hidden');
   document.querySelector('.nav-bar').classList.remove('hidden');
   document.querySelector('.recipe-card-area').classList.remove('hidden');
@@ -157,7 +175,7 @@ function loadDashboard() {
 instantiateUser();
 
 document.querySelector('.enter-button').addEventListener('click', loadDashboard);
-document.querySelector('.recipe-card-area').addEventListener('click', addToFavorites);
+document.querySelector('.recipe-card-area').addEventListener('click', addToFavoritesOrMenu);
 document.querySelector('nav').addEventListener('click', navBtnClickHandler);
 
 var recipeCounter = -1;
