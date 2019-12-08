@@ -2,6 +2,7 @@ var favorites = document.querySelector("#favorites");
 var homeRecipes = document.querySelector(".home-recipes");
 var favoriteRecipes = document.querySelector("#favorite-recipes-main");
 var addButton = document.querySelector("#add-button");
+var recipeForm = document.querySelector("#recipe-form");
 
 favorites.addEventListener("click", displayFavorites);
 addButton.addEventListener("click", displayRecipeForm);
@@ -14,5 +15,5 @@ function displayFavorites() {
 
 function displayRecipeForm() {
   favoriteRecipes.classList.add("hidden");
-
+  recipeForm.classList.remove("hidden");
 }
