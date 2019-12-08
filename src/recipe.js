@@ -1,5 +1,5 @@
-const recipeData = require('../sub-data/recipes-sub-data.js')
-const ingredientData = require('../sub-data/ingredients-sub-data.js')
+// const recipeData = require('../sub-data/recipes-sub-data.js')
+// const ingredientData = require('../sub-data/ingredients-sub-data.js')
 
 class Recipe {
   constructor(name, id, image, ingredients, instructions, tags) {
@@ -37,7 +37,7 @@ class Recipe {
     }, 0)
     return sum * .01;
   }
-  
+
 }
 
 if (typeof module !== 'undefined') {
