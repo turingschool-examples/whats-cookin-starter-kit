@@ -8,12 +8,10 @@ class User {
   }
 
   addToFavorites(recipe) {
-    console.log('favs work')
     this.favoriteRecipes.push(recipe);
   }
 
   addToMyMenu(recipe) {
-    console.log('step 1');
     this.myMenu.push(recipe);
   }
 }
