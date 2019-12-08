@@ -75,6 +75,7 @@ function searchByTags(searched) {
 costOfRecipe() {
 	return this.ingredients.reduce((acc, ingredient) => {
 			ingredientsData.forEach((singleIngredient) => {
+				console.log(ingredientsData);
 				if (singleIngredient.id === ingredient.id) {
 					acc += ingredient.costOfRecipe;
 				}
