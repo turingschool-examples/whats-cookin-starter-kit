@@ -23,14 +23,16 @@
   background-image: url(../images/natural_selection_logo.png);
   background-repeat: no-repeat;
   background-size: contain;
+  background-position: center;
   height: 400px;
   width: 400px;
   margin-top: 60px;
+  text-align: center;
 }
 
 .slogan,
 .welcome {
-  font-size: 150%;
+  font-size: 120%;
   font-family: Quicksand;
   font-weight: bold;
   margin: 2%;
@@ -54,10 +56,11 @@
   font-size: 120%;
   font-family: Quicksand;
   font-weight: bold;
+  border: none;
 }
 
 .enter-button:hover {
-  background-color: #FFFB49;
+  background-color: #00feff;
   cursor: pointer;
 }
 
@@ -97,7 +100,7 @@ nav {
 }
 
 .nav-buttons:hover {
-  color: #FFFB49;
+  color: #00feff;
   cursor: pointer;
 }
 
@@ -133,9 +136,8 @@ nav {
   border-bottom-right-radius: 15px;
 }
 
-.search-button:hover {
-  background-color: #FFFB49;
-  cursor: pointer;
+.search-button:focus {
+  outline: none;
 }
 
 .logo-container {
@@ -151,10 +153,26 @@ nav {
   top: 0px;
 }
 
+.fav-recipe-error-message-container {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  background-color: rgba(3, 169, 244, 0.7);
+  height: 100px;
+  width: 600px;
+  text-align: center;
+  border-radius: 40px;
+  margin-top: 10%;
+}
+
+.error-message {
+  font-size: 130%;
+}
+
 .ingredient-card {
   background-color: rgba(3, 169, 244, 0.7);
   font-size: 100%;
-  color: white;
+  color: #ffffff;
   padding: 10px;
   margin: 10px;
   height: 90px;
@@ -225,12 +243,12 @@ h2 {
 }
 
 .card-buttons:hover {
-  background-color: #FFFB49;
+  background-color: #00feff;
   cursor: pointer;
 }
 
 .all-recipes {
-  color: #FFFB49;
+  color: #00feff;
 }
 
 .hidden {
