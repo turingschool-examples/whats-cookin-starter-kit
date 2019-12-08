@@ -72,7 +72,7 @@ main {
 #user-login {
   height: 3rem;
   width: 72%;
-  /* padding: 3rem; */
+  border: none;
   font-size: 22px;
   padding: 10px;
 }

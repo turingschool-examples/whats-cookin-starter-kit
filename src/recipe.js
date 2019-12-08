@@ -38,7 +38,7 @@ class Recipe {
     })
     console.log(total)
     return this.costPerRecipe = total;
-
+  }
 
   findCostPerRecipe() {
   }
