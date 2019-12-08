@@ -40,9 +40,9 @@ const buildRecipeCards = (recipesToBuild) => {
       <h2>${recipe.name}</h2>
     </div>
     <div class="card-button-containter">
-      <button type="button" class="card-buttons view-recipe" id=${recipeCounter}>View Recipe</button>
-      <button type="button" class="card-buttons add-to-menu" id=${recipeCounter}>Add to Menu</button>
-      <button type="button" class="card-buttons add-to-favorites" id=${recipeCounter}>Add to Favorites</button>
+      <button type="button" class="card-buttons view-recipe" id=${recipe.id}>View Recipe</button>
+      <button type="button" class="card-buttons add-to-menu" id=${recipe.id}>Add to Menu</button>
+      <button type="button" class="card-buttons add-to-favorites" id=${recipe.id}>Add to Favorites</button>
     </div>
   </div>`);
    });
@@ -81,9 +81,11 @@ const instantiateUser = () => {
 
 const addToFavoritesOrMenu = e => {
   if (e.target.classList.contains('add-to-favorites')) {
-    let parsedId = parseInt(event.target.id);
-    console.log(parsedId)
-    let selectedRecipe = allRecipes[parsedId];
+  let selectedRecipe = allRecipes.find(recipe => {
+      if (recipe.id === Number(event.target.id)) {
+        return recipe;
+      }
+  })
     let doubleCheck = user.favoriteRecipes.includes(selectedRecipe)
     if (!doubleCheck) {
         user.addToFavorites(selectedRecipe);
@@ -92,8 +94,11 @@ const addToFavoritesOrMenu = e => {
     }
   }
   if (e.target.classList.contains('add-to-menu')) {
-    let parsedId = parseInt(event.target.id);
-    let selectedRecipe = allRecipes[parsedId];
+    let selectedRecipe = allRecipes.find(recipe => {
+        if (recipe.id === Number(event.target.id)) {
+          return recipe;
+        }
+    })
     let doubleCheck = user.myMenu.includes(selectedRecipe)
     if (!doubleCheck) {
         user.addToMyMenu(selectedRecipe);
@@ -118,9 +123,19 @@ const clearRecipeCardArea = () => {
   document.querySelector('.recipe-card-area').innerText = '';
 }
 
-// getting weird behavior because of the '||' operator below
-const emptyAreaErrorMessage = (message) => {
-  if (user.favoriteRecipes.length === 0 || user.myMenu.length === 0) {
+const emptyFavAreaErrorMessage = (message) => {
+  if (user.favoriteRecipes.length === 0) {
+    document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
+    <div class="fav-recipe-error-message-container">
+      <p class="error-message">You don't have any ${message} at this time</p>
+    </div>`);
+  } else {
+    return;
+  }
+};
+
+const emptyMenuAreaErrorMessage = (message) => {
+  if (user.myMenu.length === 0) {
     document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
     <div class="fav-recipe-error-message-container">
       <p class="error-message">You don't have any ${message} at this time</p>
@@ -135,7 +150,7 @@ const navBtnClickHandler = e => {
     turnNavBtnsWhite();
     highlightNavBtn(`.display-fav-button`)
     clearRecipeCardArea();
-    emptyAreaErrorMessage('favorite recipes');
+    emptyFavAreaErrorMessage('favorite recipes');
     recipeCounter = -1;
     buildRecipeCards(user.favoriteRecipes);
   };
@@ -150,7 +165,7 @@ const navBtnClickHandler = e => {
     turnNavBtnsWhite();
     highlightNavBtn(`.my-menu`)
     clearRecipeCardArea();
-    emptyAreaErrorMessage('saved menu items');
+    emptyMenuAreaErrorMessage('saved menu items');
     recipeCounter = -1;
     buildRecipeCards(user.myMenu);
   };
@@ -161,9 +176,6 @@ const navBtnClickHandler = e => {
     instantiateUsersPantry();
   };
 };
-
-let addToMenuBtns = document.querySelectorAll('.add-to-menu');
-let addToFavoriteBtns = document.querySelectorAll('.add-to-favorite');
 
 const loadDashboard = () => {
   document.querySelector('.splash-container').classList.add('hidden');
