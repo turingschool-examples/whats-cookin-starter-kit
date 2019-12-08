@@ -11,7 +11,7 @@ const instantiateRecipeCards = () => {
       recipeData.ingredients,
       recipeData.instructions,
       recipeData.tags)
-    allRecipes.push(recipe)
+    allRecipes.push(recipe);
   })
   recipeCounter = -1;
   buildRecipeCards(allRecipes);
@@ -23,7 +23,7 @@ const buildRecipeCards = (recipesToBuild) => {
    document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
    <div class="recipe-container">
      <div class="image-container">
-        <img src="https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg" class="image-container">
+        <img src="${recipe.image}" class="image-container">
       </div>
       <div class="recipe-text">
         <h2>${recipe.name}</h2>
@@ -49,29 +49,52 @@ const instantiateUser = () => {
     selectedUser.id,
     selectedUser.name,
     selectedUser.pantry)
-    console.log(user);
+    document.querySelector('.user-name').innerText = selectedUser.name;
 }
 
 const addToFavorites = e => {
+
   if (e.target.classList.contains('add-to-favorites')) {
-    var parsedId = parseInt(event.target.id);
-    var selectedFaveRecipe = allRecipes[parsedId];
+    let parsedId = parseInt(event.target.id);
+    let selectedFaveRecipe = allRecipes[parsedId];
     let doubleCheck = user.favoriteRecipes.includes(selectedFaveRecipe)
-    if (doubleCheck === false) {
+    if (!doubleCheck) {
         user.addToFavorites(selectedFaveRecipe);
     } else {
       return;
     }
   }
+
+  if (e.target.classList.contains('add-to-menu')) {
+    let parsedId = parseInt(event.target.id);
+    let selectedFaveRecipe = allRecipes[parsedId];
+    let doubleCheck = user.myMenu.includes(selectedFaveRecipe)
+    if (!doubleCheck) {
+        user.addToMyMenu(selectedFaveRecipe);
+    } else {
+      return;
+    }
+  }
+
 }
 
-const displayFavorites = e => {
+const navBtnClickHandler = e => {
   if (e.target.classList.contains('display-fav-button')) {
-   document.querySelector('.recipe-card-area').innerText = '';
-   recipeCounter = -1;
-   buildRecipeCards(user.favoriteRecipes);
-  };
-}
+    document.querySelector('.recipe-card-area').innerText = '';
+    recipeCounter = -1;
+    buildRecipeCards(user.favoriteRecipes);
+  }
+  if (e.target.classList.contains('all-recipes')) {
+    document.querySelector('.recipe-card-area').innerText = '';
+    recipeCounter = -1;
+    buildRecipeCards(allRecipes);
+   };
+   if (e.target.classList.contains('my-menu')) {
+     document.querySelector('.recipe-card-area').innerText = '';
+     recipeCounter = -1;
+     buildRecipeCards(user.myMenu);
+    };
+ }
 
 let addToMenuBtns = document.querySelectorAll('.add-to-menu');
 let addToFavoriteBtns = document.querySelectorAll('.add-to-favorite');
@@ -88,6 +111,6 @@ instantiateUser();
 
 document.querySelector('.enter-button').addEventListener('click', loadDashboard)
 document.querySelector('.recipe-card-area').addEventListener('click', addToFavorites)
-document.querySelector('nav').addEventListener('click', displayFavorites)
+document.querySelector('nav').addEventListener('click', navBtnClickHandler)
 
 var recipeCounter = -1;
