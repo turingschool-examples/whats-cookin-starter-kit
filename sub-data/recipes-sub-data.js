@@ -7,7 +7,7 @@ let recipeData = [
       {
         "name": "all purpose flour",
         "id": 20081,
-        "quanitity": {
+        "quantity": {
           "amount": 1.5,
           "unit": "c"
         }
@@ -15,7 +15,7 @@ let recipeData = [
       {
         "name": "baking soda",
         "id": 18372,
-        "quanitity": {
+        "quantity": {
           "amount": 0.5,
           "unit": "tsp"
         }
@@ -44,7 +44,7 @@ let recipeData = [
       {
         "name": "apple cider",
         "id": 1009016,
-        "quanitity": {
+        "quantity": {
           "amount": 1.5,
           "unit": "cups"
         }
@@ -52,7 +52,7 @@ let recipeData = [
       {
         "name": "apples",
         "id": 9003,
-        "quanitity": {
+        "quantity": {
           "amount": 2,
           "unit": ""
         }
@@ -77,7 +77,7 @@ let recipeData = [
       {
         "name": "black pepper",
         "id": 1002030,
-        "quanitity": {
+        "quantity": {
           "amount": 4,
           "unit": "teaspoons"
         }
@@ -85,7 +85,7 @@ let recipeData = [
       {
         "name": "brown sugar",
         "id": 19334,
-        "quanitity": {
+        "quantity": {
           "amount": 8,
           "unit": "tablespoons"
         }
