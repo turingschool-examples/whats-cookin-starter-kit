@@ -5,6 +5,7 @@ const tagDropdown = document.querySelector('.tag-options');
 const ingredientDropdown = document.querySelector('.ingredient-options');
 const hamburgerBtn = document.querySelector('.nav-bar-btn');
 const navDropDown = document.querySelector('.nav-bar-dropdown');
+const pantryContainer = document.querySelector('.pantry-container')
 const pantryBtn = document.querySelector('.pantry-btn')
 
 populateCards();
@@ -74,6 +75,22 @@ function ingredientsDropdown() {
 }
 
 function loadPantry() {
+  if (!recipeContainer.classList.contains("hide-section")) {
   recipeContainer.classList.toggle("hide-section")
+  }
   openMenu();
+  populatePantry();
+}
+
+function populatePantry() {
+  console.log(users[0].pantry)
+  return users[0].pantry.forEach(element => {
+    pantryContainer.innerHTML += `
+    <div class="pantry-item">
+      <p class="pantry-item-name">${element.ingredient}</p>
+      <button class="subtract-quantity">-</button>
+      <p class="pantry-item-quantity">${element.amount}</p>
+      <button class="add-quantity">+</button>
+    </div>`
+  })
 }

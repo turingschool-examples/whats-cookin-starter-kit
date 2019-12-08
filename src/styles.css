@@ -173,7 +173,7 @@ select {
 }
 
 .hide-section {
-  visibility: hidden;
+  display: none;
 
 }
 
@@ -230,4 +230,25 @@ select {
   background-size: contain;
   background-color: #f1e8b7;
   border: none;
+}
+
+.pantry-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.pantry-item {
+  border: solid black 1px;
+  padding: 30px 300px 30px 300px;
+  margin: 3%;
+  background-color: #fff;
+}
+
+.pantry-item-name {
+  display: inline-block;
+}
+
+.pantry-item-quantity {
+  display: inline-block;
 }
