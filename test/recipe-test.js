@@ -72,7 +72,7 @@ describe('Recipe', function() {
     });
 
     it.skip('should know the cost of the recipe per ingredient', function() {
-      recipe.findCostPerRecipe(ingredient);
+      recipe.findCostPerRecipe(recipe);
       expect(recipe.findCostPerRecipe()).to.equal(142)
     });
 
@@ -95,6 +95,10 @@ describe('Recipe', function() {
           }
         }
       ])
+    });
+
+    it('should retrieve instructions for recipe', function() {
+      expect(recipe.retrieveInstructions(recipe)).to.deep.equal(["In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy."])
     });
 
 });
