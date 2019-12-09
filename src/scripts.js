@@ -33,19 +33,31 @@ function displayHomePage() {
   homeRecipes.classList.remove("hidden");
 }
 
+// function displayRecipePage() {
+//   recipeForm.classList.add("hidden");
+//   favoriteRecipes.classList.add("hidden");
+//   homeRecipes.classList.add("hidden");
+// }
+
 function addRecipeCards() {
-  for (var i=0; i < recipeData.length; i ++) {
-  let recipe = new Recipe(recipeData[i]);
-  recipe.addCards();
+  for (var i = 0; i < recipeData.length; i++) {
+    let recipe = new Recipe(recipeData[i]);
+    recipe.addCards();
   }
 }
 
 function displayRecipe() {
-  console.log(event);
-  if(event.target.classList.contains("recipe-title")){
-    console.log(event.target.parentElement.id);
-  }else{
-    console.log("False");
+  if (event.target.classList.contains("recipe-title")) {
+    let clickedID = event.target.parentElement.id;
+    runExpandedMethod(clickedID);
   }
-  // console.log("Hello");
+}
+
+function runExpandedMethod(id) {
+  for (var i = 0; i < recipeData.length; i++) {
+    if (recipeData[i].id === parseInt(id)) {
+      let recipe = new Recipe(recipeData[i])
+      recipe.showExpandedRecipe();
+    }
+  }
 }

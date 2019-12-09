@@ -21,6 +21,17 @@ class Recipe {
     `;
   }
 
+  showExpandedRecipe() {
+    homeRecipes.innerHTML = `
+    <section id="expanded-recipe-page" class="">
+      <h1 class="title" id="${this.id}">${this.name}</h1>
+      <img src="${this.image}">
+      <ul class="">${this.ingredients}</ul>
+      <li class="">${this.instructions}</li>
+      <p class="">${this.tags}</p>
+   </section>
+   `;
+  }
 }
 
 if (typeof module !== 'undefined') {
