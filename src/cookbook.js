@@ -22,4 +22,6 @@ class Cookbook {
 
 }
 
-window.Cookbook = Cookbook;
+if (typeof module !== 'undefined') {
+  module.exports = Cookbook;
+}
