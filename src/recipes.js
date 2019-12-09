@@ -7,6 +7,8 @@ class Recipes {
     this.ingredients = recipe.ingredients;
     this.tags = recipe.tags;
   }
+  calculateDollars() {
+  }
 }
 
 if (typeof module !== 'undefined') {
