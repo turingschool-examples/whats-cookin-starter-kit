@@ -5,6 +5,9 @@ class Pantry {
 
   canCookMeals(user) {
     if (user.pantry !== []) {
+      user.pantry.forEach(ingredient => {
+        ingredient.amount -= 1;
+      });
       return true;
     }
     return false;
@@ -14,8 +17,8 @@ class Pantry {
     return user.pantry;
   }
 
-  removeAfterCooking() {
-    
+  removeAfterCooking(user) {
+    return user.pantry;
   }
 }
 module.exports = Pantry;

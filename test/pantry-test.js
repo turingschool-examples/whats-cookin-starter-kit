@@ -59,8 +59,9 @@ describe('Pantry', function() {
     expect(pantry.findIngredients(user)).to.deep.equal([{ ingredient: 20081, amount: 2 }, { ingredient: 18372, amount: 2 }]);
   });
 
-  it.only('should have a method removeAfterCooking ingredients removed from pantry', function() {
-    expect(pantry.removeAfterCooking(user)).to.equal();
+  it('should have a method removeAfterCooking ingredients removed from pantry', function() {
+    pantry.canCookMeals(user);
+    expect(pantry.removeAfterCooking(user)).to.deep.equal([{'ingredient': 20081, 'amount': 1}, {'ingredient': 18372, 'amount': 1}]);
   });
 
 });
