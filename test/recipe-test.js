@@ -2,7 +2,6 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const Recipe = require('../src/recipe.js');
-
 const Ingredient = require('../src/ingredients.js');
 
 
