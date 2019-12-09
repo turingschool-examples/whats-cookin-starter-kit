@@ -92,7 +92,6 @@ nav {
   background-color: #2196f3;
   color: white;
   border: none;
-
 }
 
 .nav-buttons:focus {
@@ -112,7 +111,7 @@ nav {
 
 .search-input {
   height: 40px;
-  width: 100%;
+  width: 80%;
   font-size: 110%;
   font-family: Quicksand;
   padding-left: 20px;
@@ -151,6 +150,16 @@ nav {
 .user-icon {
   background: no-repeat center/100% url(../images/user_icon.png);
   top: 0px;
+}
+
+.user-icon:hover,
+.nav-user-name:hover {
+  cursor: default;
+  color: #FFFFFF;
+}
+
+.nav-user-name {
+  font-size: 70%;
 }
 
 .fav-recipe-error-message-container {
@@ -251,29 +260,44 @@ h2 {
   color: #00feff;
 }
 
+.full-recipe-space {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.full-recipe-container {
+  display: grid;
+  grid-template-areas:
+    "one one"
+    "two three"
+    "two three"
+    "two three"
+    "two three";
+  background-color: rgba(3, 169, 244, 0.7);
+  height: 80vh;
+  width: 70%;
+  border-radius: 40px;
+}
+
+.full-recipe-title-container {
+  grid-area: one;
+  border: 2px solid red;
+
+}
+
+.full-recipe-left-section {
+  grid-area: two;
+  border: 2px solid green;
+
+}
+
+.full-recipe-right-section {
+  grid-area: three;
+  border: 2px solid yellow;
+
+}
+
 .hidden {
   display: none;
 }
-
-/* .pantry-containter {
-  animation: fade-in 1.5s 1;
-  background-color: #2196f3;
-  height: 100vh;
-  opacity: .8;
-}
-
-@keyframes fade-in {
-  0%{
-    opacity: 0;
-    filter: blur(10px);
-  }
-  100%{
-    opacity: .8;
-    filter: blur(0px);
-  }
-} */
-
-/* p {
-  display: none;
-  font-size: 300%;
-} */
