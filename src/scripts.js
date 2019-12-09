@@ -30,8 +30,10 @@ function displayHomePage() {
 }
 
 function addRecipeCards() {
-  let recipe = new Recipe(recipeData[0]);
+  for (var i=0; i < recipeData.length; i ++) {
+  let recipe = new Recipe(recipeData[i]);
   recipe.addCards();
+  }
 }
 
 addRecipeCards();
