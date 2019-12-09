@@ -1,6 +1,7 @@
 let navBarToggle = document.querySelector('.navbar-toggle');
 let mainNav = document.querySelector('.main-nav');
 let suggestedRecipes = document.querySelector('.injected-suggested-recipes');
+let favoriteRecipes = document.querySelector('.injected-favorite-recipes');
 let allRecipes = [];
 
 window.onload = loadSuggestedRecipesFunction();
@@ -50,3 +51,19 @@ function recipeDirections(directionsList) {
   // console.log(ingredientMap.join('\n'));
   return directionsMap.join('\n');
 }
+
+function markedRecipes () {
+  favoriteRecipes.insertAdjacentHTML('beforeend',
+  `<div class="recipe-card">
+    <img src="${allRecipes[i].image}" alt="fork and knife logo">
+    <p>${allRecipes[i].name}</p>
+    <div class="recipe-container">
+      <ul class="recipe-ingredients">
+        ${recipeIngredients(allRecipes[i].ingredients)}
+      </ul>
+      <ol class="recipe-directions">
+        ${recipeDirections(allRecipes[i].instructions)}
+      </ol>
+    </div>
+  </div>`
+)};
