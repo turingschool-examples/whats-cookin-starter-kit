@@ -32,4 +32,7 @@ class User {
 
 };
 
-window.User = User;
+if (typeof module !== 'undefined') {
+  module.exports = User;
+}
+

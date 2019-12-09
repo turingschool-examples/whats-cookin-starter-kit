@@ -24,4 +24,6 @@ class Pantry {
 
 }
 
-window.Pantry = Pantry;
+if (typeof module !== 'undefined') {
+  module.exports = Pantry;
+}

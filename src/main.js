@@ -114,7 +114,12 @@ function displaySavedRecipes() {
   });
 }
 
-cooksName.innerHTML = currentUser[0].name
+function displayUserName() {
+  if (currentUser.length !== 0) {
+    cooksName.innerHTML = currentUser[0].name
+  }
+}
 
 
+displayUserName()
 displayRecipes()
