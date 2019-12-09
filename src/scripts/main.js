@@ -1,7 +1,3 @@
-// console.log(recipeData);
-// const recipeData = require('../data/recipes');
-
-
 let navBarToggle = document.querySelector('.navbar-toggle');
 let mainNav = document.querySelector('.main-nav');
 let suggestedRecipes = document.querySelector('.injected-suggested-recipes');
@@ -29,8 +25,7 @@ suggestedRecipes.insertAdjacentHTML('beforeend',
   </div>
 </div>`
 )}
-// console.log('Obj Array', allRecipes[0].ingredients);
-// console.log('Function Ary', recipeIngredients(allRecipes[0].ingredients));
+
 recipeSelector = suggestedRecipes.querySelectorAll('.recipe-card');
 recipeSelector.forEach(recipe => recipe.addEventListener('click', recipeHandler));
 };
