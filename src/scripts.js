@@ -13,7 +13,6 @@ const instantiateRecipeCards = () => {
       recipeData.tags)
     allRecipes.push(recipe);
   })
-  recipeCounter = -1;
   buildRecipeCards(allRecipes);
 }
 
@@ -30,7 +29,6 @@ const instantiateUsersPantry = () => {
 
 const buildRecipeCards = (recipesToBuild) => {
   recipesToBuild.forEach(recipe => {
-  recipeCounter++;
   document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
   <div class="recipe-container">
     <div class="image-container">
@@ -65,7 +63,7 @@ const buildRecipeCards = (recipesToBuild) => {
 // }
 
 function genRanNum() {
-  return Math.floor(Math.random() * 50)
+  return Math.floor(Math.random() * 50);
 }
 
 const instantiateUser = () => {
@@ -77,6 +75,7 @@ const instantiateUser = () => {
     selectedUser.name,
     selectedUser.pantry)
     document.querySelector('.user-name').innerText = selectedUser.name;
+    document.querySelector('.nav-user-name').innerText = selectedUser.name;
 }
 
 const addToFavoritesOrMenu = e => {
@@ -151,14 +150,12 @@ const navBtnClickHandler = e => {
     highlightNavBtn(`.display-fav-button`)
     clearRecipeCardArea();
     emptyFavAreaErrorMessage('favorite recipes');
-    recipeCounter = -1;
     buildRecipeCards(user.favoriteRecipes);
   };
   if (e.target.classList.contains('all-recipes')) {
     turnNavBtnsWhite();
     highlightNavBtn(`.all-recipes`)
     clearRecipeCardArea();
-    recipeCounter = -1;
     buildRecipeCards(allRecipes);
   };
   if (e.target.classList.contains('my-menu')) {
@@ -166,7 +163,6 @@ const navBtnClickHandler = e => {
     highlightNavBtn(`.my-menu`)
     clearRecipeCardArea();
     emptyMenuAreaErrorMessage('saved menu items');
-    recipeCounter = -1;
     buildRecipeCards(user.myMenu);
   };
   if (e.target.classList.contains('my-pantry')) {
@@ -184,10 +180,10 @@ const loadDashboard = () => {
   instantiateRecipeCards();
 }
 
+// On Page Load
 instantiateUser();
 
+// Event Listeners
 document.querySelector('.enter-button').addEventListener('click', loadDashboard);
 document.querySelector('.recipe-card-area').addEventListener('click', addToFavoritesOrMenu);
 document.querySelector('nav').addEventListener('click', navBtnClickHandler);
-
-var recipeCounter = -1;
