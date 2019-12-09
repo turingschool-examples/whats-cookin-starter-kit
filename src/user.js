@@ -3,10 +3,19 @@ class User {
     this.id = id;
     this.name = name;
     this.pantry = pantry;
-    // this.recipe = recipe;
     this.favorites = [];
     this.pantryItemsId = [];
     this.recipeIngId = [];
+  }
+
+  searchByTags(userInput, cookBook) {
+    let availableRecipes = [];
+    cookBook.forEach(recipe => {
+      if(recipe.tags.includes(userInput)) {
+        availableRecipes.push(recipe);
+      }
+    });
+    return availableRecipes;
   }
 
   saveToFavorites(recipe) {
@@ -19,7 +28,6 @@ class User {
       this.pantryItemsId.push(item.ingredient);
       // console.log('recipe >>>', recipe);
       // console.log('pantry >>>', this.pantry);
-
     });
     return this.pantryItemsId;
   }
@@ -30,7 +38,6 @@ class User {
 
       // console.log(recipe.ingredients);
       recipe.ingredients.forEach((ingredient) => {
-        console.log();
         if(!this.recipeIngId.includes(ingredient.id)) {
           this.recipeIngId.push(ingredient.id);
           // console.log(this.recipeIngId);
@@ -41,8 +48,9 @@ class User {
     });
     //forEach ingredient in the array, push in the id of that ingredient
     return this.recipeIngId;
-
   }
+
+
 
   recipesToCook(cookBook) {
     this.condenseUserIngredientId();
@@ -72,7 +80,7 @@ class User {
       //[12, 5, 8, 130, 44].every(x => x >= 10); // false
       //[12, 54, 18, 130, 44].every(x => x >= 10); // true​
 
-      console.log(ingredient);
+      // console.log(ingredient);
       this.pantryItemsId.every((ingredient) => {
         availableRecipes.push(cookBook);
         // return availableRecipes;
@@ -81,10 +89,6 @@ class User {
 
     });
     return availableRecipes[0];
-  }
-
-  searchByTags() {
-
   }
 
 }

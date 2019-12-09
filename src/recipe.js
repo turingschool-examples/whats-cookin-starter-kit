@@ -16,6 +16,7 @@ class Recipe {
 
   filterByIngredients() {
   }
+
   findIngredientPerRecipe(recipe) {
     return this.ingredients.forEach((ingredient) => {
         this.ingredientPerRecipe.push(ingredient)
