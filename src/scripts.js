@@ -1,4 +1,6 @@
+/* eslint-disable max-len */
 let allRecipes = [];
+let personalPantry = [];
 let randomNum = genRanNum();
 let user;
 
@@ -16,26 +18,49 @@ const instantiateRecipeCards = () => {
   buildRecipeCards(allRecipes);
 }
 
-const instantiateUsersPantry = () => {
+//create new array of objects upon new user instantiation.
+//build it off of []users.pantry and []ingredientsData.
+//each object in array has two keys: name & quantity.
+
+//get into user.pantry.ingredient
+//store that ingredientId in a var?
+//get into ingredientsData if the ingredientId matches, display ingredientsData.name
+//use the id number from ^^ to filter through array of recipes
+//when we find a match, push into new personalPantry array.
+
+
+
+const pullIngredientNames = () => {
   user.pantry.forEach(item => {
-  document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
+    ingredientsData.filter(ingredient => {
+      if (item.ingredient === ingredient.id) {
+        personalPantry.push({name: ingredient.name, amount: item.amount, id: item.ingredient})
+      }
+    })
+  })
+}
+
+
+const instantiateUsersPantry = () => {
+  personalPantry.forEach(item => {
+    document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
   <div class="ingredient-card">
-    <p>Name: <span class="ingredient-name">---------</span></p>
-    <p>ID: <span class="ingredient-id">${item.ingredient}</span></p>
+    <p>Name: <span class="ingredient-name">${item.name}</span></p>
+
     <p>Quantity: <span class="ingredient-quantity">${item.amount}</span></p>
   </div>`);
-   });
- }
+  });
+}
 
 const buildRecipeCards = (recipesToBuild) => {
   recipesToBuild.forEach(recipe => {
-  document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
+    document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
   <div class="recipe-container">
     <div class="image-container">
       <img src="${recipe.image}" class="image-container">
     </div>
     <div class="recipe-text">
-      <h2>${recipe.name}</h2>
+      <h2 aria-label="${recipe.name}">${recipe.name}</h2>
     </div>
     <div class="card-button-containter">
       <button type="button" class="card-buttons view-recipe" id=${recipe.id}>View Recipe</button>
@@ -43,7 +68,7 @@ const buildRecipeCards = (recipesToBuild) => {
       <button type="button" class="card-buttons add-to-favorites" id=${recipe.id}>Add to Favorites</button>
     </div>
   </div>`);
-   });
+  });
 }
 
 // var thingy = document.querySelector('.search-input')
@@ -70,37 +95,37 @@ const instantiateUser = () => {
   var selectedUser = users.find(person => {
     return person.id === randomNum;
   })
-    user = new User (
+  user = new User (
     selectedUser.id,
     selectedUser.name,
     selectedUser.pantry)
-    document.querySelector('.user-name').innerText = selectedUser.name;
-    document.querySelector('.nav-user-name').innerText = selectedUser.name;
+  document.querySelector('.user-name').innerText = selectedUser.name;
+  document.querySelector('.nav-user-name').innerText = selectedUser.name;
 }
 
 const addToFavoritesOrMenu = e => {
   if (e.target.classList.contains('add-to-favorites')) {
-  let selectedRecipe = allRecipes.find(recipe => {
+    let selectedRecipe = allRecipes.find(recipe => {
       if (recipe.id === Number(event.target.id)) {
         return recipe;
       }
-  })
+    })
     let doubleCheck = user.favoriteRecipes.includes(selectedRecipe)
     if (!doubleCheck) {
-        user.addToFavorites(selectedRecipe);
+      user.addToFavorites(selectedRecipe);
     } else {
       return;
     }
   }
   if (e.target.classList.contains('add-to-menu')) {
     let selectedRecipe = allRecipes.find(recipe => {
-        if (recipe.id === Number(event.target.id)) {
-          return recipe;
-        }
+      if (recipe.id === Number(event.target.id)) {
+        return recipe;
+      }
     })
     let doubleCheck = user.myMenu.includes(selectedRecipe)
     if (!doubleCheck) {
-        user.addToMyMenu(selectedRecipe);
+      user.addToMyMenu(selectedRecipe);
     } else {
       return;
     }
@@ -182,6 +207,8 @@ const loadDashboard = () => {
 
 // On Page Load
 instantiateUser();
+pullIngredientNames()
+
 
 // Event Listeners
 document.querySelector('.enter-button').addEventListener('click', loadDashboard);
