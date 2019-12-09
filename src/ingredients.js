@@ -9,4 +9,8 @@ class Ingredient {
 
 }
 
-module.exports = Ingredient;
+// module.exports = Ingredient;
+
+if (typeof module !== 'undefined'){
+  module.exports = Ingredient;
+}

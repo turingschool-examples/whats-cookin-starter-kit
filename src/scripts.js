@@ -1,7 +1,16 @@
+
+window.require User from './user';
+
 $( document ).ready(function() {
+  // var User = import('./user.js');
+
+
+// Instantiate User:
+// let user = new User()
 
   $('.login').on( "click", function() {
     let userName = $('#user-login').val() || users[0].name;
+    let user1 = new User(1, users[0], pantry);
     window.location = 'index.html';
   });
 
