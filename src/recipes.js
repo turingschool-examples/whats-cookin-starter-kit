@@ -12,11 +12,10 @@ class Recipe {
   }
 
   addCards() {
-    console.log("Hello")
     homeRecipes.innerHTML += `
     <div class="card" id="${this.id}">
       <img class="food-pic" src="${this.image}">
-      <p class="meal-name">${this.name}</p>
+      <button class="recipe-title meal-name">${this.name}</button>
       <img class="fav-star" src="../assets/star copy.svg">
     </div>
     `;

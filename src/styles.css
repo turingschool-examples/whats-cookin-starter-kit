@@ -89,7 +89,7 @@ body {
 .card {
   background-color: #25473E;
   padding: 5% 5% 0% 5%;
-
+  border: 2px solid red;
 }
 
 #card1 {

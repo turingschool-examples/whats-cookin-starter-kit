@@ -6,8 +6,12 @@ const favoriteRecipes = document.querySelector("#favorite-recipes-main");
 const addButton = document.querySelector("#add-button");
 const recipeForm = document.querySelector("#recipe-form");
 const homeButton = document.querySelector("#home-button");
+// const recipeTitle = document.querySelector(".recipe-title");
 
 
+addRecipeCards();
+
+homeRecipes.addEventListener("click", displayRecipe);
 favoritesButton.addEventListener("click", displayFavorites);
 addButton.addEventListener("click", displayRecipeForm);
 homeButton.addEventListener("click", displayHomePage);
@@ -36,4 +40,12 @@ function addRecipeCards() {
   }
 }
 
-addRecipeCards();
+function displayRecipe() {
+  console.log(event);
+  if(event.target.classList.contains("recipe-title")){
+    console.log(event.target.parentElement.id);
+  }else{
+    console.log("False");
+  }
+  // console.log("Hello");
+}
