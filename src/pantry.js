@@ -1,6 +1,5 @@
 class Pantry {
-  constructor(user) {
-    this.user = user;
+  constructor(ingredients) {
     this.stockedIngredients = [];
   }
 

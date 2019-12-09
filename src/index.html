@@ -14,7 +14,7 @@
   <body>
     <main id="user-page">
       <nav class="top-nav-bar">
-        <title id="user-name">User Name</title>
+        <title id="user-name"></title>
         <ul class="navigation-header">
           <li><img class="pantry-icon heart" src="../assets/heart.svg" alt=""></li>
           <li><img class="pantry-icon chef" src="../assets/chef.svg" alt=""></li>
@@ -31,7 +31,7 @@
       </header>
       <h2>Looking For Your Favorite Recipe?   |   How About Something New?</h2>
       <ul id="favorite-recipes">
-        <li><img class="favorites-one" src="https://www.fillmurray.com/400/300" alt=""></li>
+        <li><img class="favorites-one" src="https://www.fillmurray.com/400/300" alt="recipeData[3].name"></li>
         <li><img class="favorites-two" src="https://www.fillmurray.com/401/300" alt=""></li>
         <li><img class="favorites-three" src="https://www.fillmurray.com/402/300" alt=""></li>
         <li><img class="menu-select-btn" id="heart-btn" src="../assets/heart-btn2.jpg" alt=""></li>
@@ -64,16 +64,14 @@
 
 
 
-
-
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
 
-    <script type="module" src="./user.js"></script>
-    <script type="module" src="./pantry.js"></script>
-    <script type="module" src="./recipe.js"></script>
-    <script type="module" src="./ingredients.js"></script>
+    <script type="text/javascript" src="./user.js"></script>
+    <script type="text/javascript" src="./pantry.js"></script>
+    <script type="text/javascript" src="./recipe.js"></script>
+    <script type="text/javascript" src="./ingredients.js"></script>
 
     <script type="text/javascript" src="./scripts.js"></script>
   </body>
