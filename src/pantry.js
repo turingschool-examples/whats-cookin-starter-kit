@@ -1,6 +1,6 @@
 class Pantry {
   constructor() {
-    this.stockedIngredients = [];
+    // this.stockedIngredients = user.pantry;
   }
 
   canCookMeals(user) {

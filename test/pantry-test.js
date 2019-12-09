@@ -39,9 +39,10 @@ describe('Pantry', function() {
     expect(pantry).to.be.an.instanceof(Pantry);
   });
 
-  it.skip('should store the user and their pantry/ingredients', function() {
-    expect(pantry.stockedIngredients).to.equal('array');
+  it.skip('should store the pantry/ingredients', function() {
+    expect(pantry.stockedIngredients).to.deep.equal([{'ingredient': 20081, 'amount': 2}, {'ingredient': 18372, 'amount': 2}]);
   });
+
   describe('canCookMeals', function() {
 
     it('should have method canCookMeals return true if user CAN make meal', function() {
