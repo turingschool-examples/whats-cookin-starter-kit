@@ -5,7 +5,7 @@ class Cookbook {
     this.cookbook = [];
   }
 
-  loadBook() {
+  loadBook(recipeData) {
     this.cookbook.push(recipeData);
   }
 }

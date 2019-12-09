@@ -14,7 +14,7 @@ user = new User(1, users[randomInt].name, users[randomInt].pantry);
 // cookBook.loadBook(recipeData);
 recipe = new Recipe(595736,
   'Loaded Chocolate Chip Pudding Cookie Cups',
-  'https://spoonacular.com/recipeImages/595736-556x370.jpg',
+  '../recipe-images/choco-cookies.jpg',
   ['antipasti', 'starter', 'snack'],
   ["In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy."],
   [{
