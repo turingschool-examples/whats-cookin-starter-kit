@@ -16,34 +16,33 @@ class Recipe {
 
   filterByIngredients() {
   }
-  findIngredientPerRecipe(ingredient) {
+  findIngredientPerRecipe(recipe) {
     return this.ingredients.forEach((ingredient) => {
         this.ingredientPerRecipe.push(ingredient)
-        console.log(this.ingredientPerRecipe)
+        // console.log(ingredient);
+        // console.log(this.ingredientPerRecipe);
     });
   }
 
-  findCostPerRecipe(ingredient) {
+  findCostPerRecipe(recipe) {
     // console.log(this.ingredients, ingredient.estimatedCostInCents)
     // console.log(ingredient.estimatedCostInCents)
     // for each recipe get all the ingredients
     // store all the ingredients
     // fore each ingredient get the costPerRecipe
-
+    // console.log(recipe.ingredients[0].id); // for each recipe ingredients id
+    // console.log(ingredient);
     return this.ingredientPerRecipe.map((ingredient) => {
-      // console.log(ingredient.quanitity)
+      console.log(ingredient.quanitity)
       let ingredientQuanitity = ingredient.quanitity;
-      console.log(ingredientQuanitity);
       return ingredientQuanitity.map(item => item.amount);
     })
-    console.log(total)
+    // console.log(total);
     return this.costPerRecipe = total;
   }
 
-  findCostPerRecipe() {
-  }
-
-  retrieveInstructions() {
+  retrieveInstructions(recipe) {
+    return recipe.instructions;
   }
 }
 
