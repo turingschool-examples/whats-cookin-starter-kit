@@ -58,15 +58,18 @@ header h1 {
 }
 
 .recipe-card {
-  border: 3px #dfdfdf solid;
+  align-items: center;
   background-color: #282828;
+  border: 3px #dfdfdf solid;
   display: flex;
   flex-flow: column nowrap;
   font-size: 1.25em;
-  align-items: center;
+  height: 6.5em;
   justify-content: flex-start;
   margin: .5em auto;
+  transition: all .3s linear;
 }
+
 
 .recipe-card-active {
   height: 82vh;
