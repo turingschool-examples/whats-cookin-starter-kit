@@ -12,16 +12,26 @@ class Recipe {
   }
 
   addCards() {
-    console.log("Hello")
     homeRecipes.innerHTML += `
     <div class="card" id="${this.id}">
       <img class="food-pic" src="${this.image}">
-      <p class="meal-name">${this.name}</p>
+      <button class="recipe-title meal-name">${this.name}</button>
       <img class="fav-star" src="../assets/star copy.svg">
     </div>
     `;
   }
 
+  showExpandedRecipe() {
+    homeRecipes.innerHTML = `
+    <section id="expanded-recipe-page" class="">
+      <h1 class="title" id="${this.id}">${this.name}</h1>
+      <img src="${this.image}">
+      <ul class="">${this.ingredients}</ul>
+      <li class="">${this.instructions}</li>
+      <p class="">${this.tags}</p>
+   </section>
+   `;
+  }
 }
 
 if (typeof module !== 'undefined') {

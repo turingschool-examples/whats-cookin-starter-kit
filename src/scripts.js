@@ -6,8 +6,12 @@ const favoriteRecipes = document.querySelector("#favorite-recipes-main");
 const addButton = document.querySelector("#add-button");
 const recipeForm = document.querySelector("#recipe-form");
 const homeButton = document.querySelector("#home-button");
+// const recipeTitle = document.querySelector(".recipe-title");
 
 
+addRecipeCards();
+
+homeRecipes.addEventListener("click", displayRecipe);
 favoritesButton.addEventListener("click", displayFavorites);
 addButton.addEventListener("click", displayRecipeForm);
 homeButton.addEventListener("click", displayHomePage);
@@ -29,11 +33,31 @@ function displayHomePage() {
   homeRecipes.classList.remove("hidden");
 }
 
+// function displayRecipePage() {
+//   recipeForm.classList.add("hidden");
+//   favoriteRecipes.classList.add("hidden");
+//   homeRecipes.classList.add("hidden");
+// }
+
 function addRecipeCards() {
-  for (var i=0; i < recipeData.length; i ++) {
-  let recipe = new Recipe(recipeData[i]);
-  recipe.addCards();
+  for (var i = 0; i < recipeData.length; i++) {
+    let recipe = new Recipe(recipeData[i]);
+    recipe.addCards();
   }
 }
 
-addRecipeCards();
+function displayRecipe() {
+  if (event.target.classList.contains("recipe-title")) {
+    let clickedID = event.target.parentElement.id;
+    runExpandedMethod(clickedID);
+  }
+}
+
+function runExpandedMethod(id) {
+  for (var i = 0; i < recipeData.length; i++) {
+    if (recipeData[i].id === parseInt(id)) {
+      let recipe = new Recipe(recipeData[i])
+      recipe.showExpandedRecipe();
+    }
+  }
+}
