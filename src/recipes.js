@@ -7,6 +7,10 @@ class Recipes {
     this.ingredients = recipe.ingredients;
     this.tags = recipe.tags;
   }
+  calculateDollars() {
+    // take each ingredient price through ingredients data and divide by 100
+  }
+  
 }
 
 if (typeof module !== 'undefined') {

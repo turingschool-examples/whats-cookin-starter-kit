@@ -6,11 +6,26 @@ class User {
     this.favoriteRecipes = [];
     this.recipesToCook = [];
   }
-  // addTofavoriteRecipes() {
-  // }
-  // addRecipeToCook() {
-  //
-  // }
+  addFavoriteRecipe() {
+    // maybe pass in targeted card that triggers the star icon style change and this method
+    this.favoriteRecipes.push(recipe);
+  }
+  displayFavorites() {
+    return this.favoriteRecipes;
+  }
+  addRecipeToCook() {
+    this.recipesToCook.push(recipe);
+  }
+  displayToCook() {
+    return this.recipesToCook;
+  }
+  searchFavorites() {
+    // search the recipes contained with favoriteRecipes
+  }
+  filterRecipes() {
+    
+  }
+
 }
 
 if (typeof module !== 'undefined') {
