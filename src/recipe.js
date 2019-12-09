@@ -10,12 +10,14 @@ class Recipe {
     this.ingredients = ingredients;
     this.costPerRecipe = 0;
     this.ingredientPerRecipe = [];
+    this.favorite = false;
   }
 
 
 
   filterByIngredients() {
   }
+
   findIngredientPerRecipe(recipe) {
     return this.ingredients.forEach((ingredient) => {
         this.ingredientPerRecipe.push(ingredient)
