@@ -93,4 +93,8 @@ class User {
 
 }
 
-module.exports = User;
+// module.exports = User;
+// export default User;
+if (typeof module !== 'undefined'){
+  module.exports = User;
+}

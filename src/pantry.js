@@ -21,4 +21,7 @@ class Pantry {
     return user.pantry;
   }
 }
-module.exports = Pantry;
+// module.exports = Pantry;
+if (typeof module !== 'undefined'){
+  module.exports = Pantry;
+}
