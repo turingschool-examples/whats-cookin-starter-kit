@@ -21,38 +21,46 @@
 
 .splash-logo {
   background-image: url(../images/natural_selection_logo.png);
+  background-repeat: no-repeat;
   background-size: contain;
-  opacity: .5;
-  margin-top: 5%;
+  background-position: center;
   height: 400px;
   width: 400px;
+  margin-top: 60px;
+  text-align: center;
 }
 
 .slogan,
 .welcome {
-  font-size: 200%;
+  font-size: 120%;
   font-family: Quicksand;
   font-weight: bold;
-  margin: 3%;
+  margin: 2%;
 }
 
 .welcome {
-  font-size: 300%;
+  font-size: 210%;
+}
+
+.user-name {
+  font-family: Quicksand;
+  font-size: 100%;
 }
 
 .enter-button {
   margin-top: 10%;
   margin-bottom: 20%;
-  height: 80px;
-  width: 300px;
+  height: 50px;
+  width: 200px;
   border-radius: 20px;
-  font-size: 200%;
+  font-size: 120%;
   font-family: Quicksand;
   font-weight: bold;
+  border: none;
 }
 
 .enter-button:hover {
-  background-color: yellow;
+  background-color: #00feff;
   cursor: pointer;
 }
 
@@ -73,13 +81,13 @@ nav {
   flex-direction: row-reverse;
   background-color: #2196f3;
   width: 100%;
-  height: 100px;
+  height: auto;
   border-bottom: 5px solid #03a9f4;
   margin-top: -100px;
 }
 
 .nav-buttons {
-  font-size: 130%;
+  font-size: 100%;
   padding: 2%;
   background-color: #2196f3;
   color: white;
@@ -91,33 +99,103 @@ nav {
 }
 
 .nav-buttons:hover {
-  background-color: white;
-  color: black;
+  color: #00feff;
   cursor: pointer;
 }
 
-h1 {
-  color: white;
-  font-size: 250%;
-  font-weight: lighter;
-  position: absolute;
-  top: 3.5%;
-  left: 2%;
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 320px;
+}
+
+.search-input {
+  height: 40px;
+  width: 80%;
+  font-size: 110%;
+  font-family: Quicksand;
+  padding-left: 20px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border: none;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-button {
+  background: no-repeat center/90% url(../images/search_icon.png);
+  background-color: white;
+  height: 40px;
+  width: 30px;
+  padding: 20px;
+  border: none;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.search-button:focus {
+  outline: none;
 }
 
 .logo-container {
   background: no-repeat center/100% url(../images/natural_selection_logo.png);
   position: absolute;
-  margin-top: -1.2%;
   left: 2%;
-  height: 150px;
-  width: 150px;
+  height: 100%;
+  width: 160px;
 }
 
 .user-icon {
   background: no-repeat center/100% url(../images/user_icon.png);
-  margin-right: 3%;
   top: 0px;
+}
+
+.user-icon:hover,
+.nav-user-name:hover {
+  cursor: default;
+  color: #FFFFFF;
+}
+
+.nav-user-name {
+  font-size: 70%;
+}
+
+.fav-recipe-error-message-container {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  background-color: rgba(3, 169, 244, 0.7);
+  height: 100px;
+  width: 600px;
+  text-align: center;
+  border-radius: 40px;
+  margin-top: 10%;
+}
+
+.error-message {
+  font-size: 130%;
+}
+
+.ingredient-card {
+  background-color: rgba(3, 169, 244, 0.7);
+  font-size: 100%;
+  color: #ffffff;
+  padding: 10px;
+  margin: 10px;
+  height: 90px;
+  width: 320px;
+  border-radius: 10px;
+}
+
+.ingredient-name,
+.ingredient-id,
+.ingredient-quantity {
+  font-family: Quicksand;
+  font-weight: bolder;
+  color: black;
+  font-size: 120%;
 }
 
 .recipe-card-area {
@@ -132,14 +210,14 @@ h1 {
   align-items: center;
   background-color: rgba(3, 169, 244, 0.7);
   height: auto;
-  width: 500px;
+  width: 370px;
   border-radius: 20px;
   margin: 2%;
 }
 
 .image-container {
   align-items: center;
-  height: 280px;
+  height: 230px;
   padding: 3%;
   margin-bottom: 2%;
   border-radius: 30px;
@@ -147,6 +225,7 @@ h1 {
 
 h2 {
   font-family: Quicksand;
+  font-size: 120%;
 }
 
 .card-button-container {
@@ -156,11 +235,11 @@ h2 {
 }
 
 .card-buttons {
-  height: 50px;
-  width: 30%;
+  height: 40px;
+  width: 29%;
   border-radius: 10px;
   background-color: white;
-  font-size: 100%;
+  font-size: 75%;
   margin-top: 2%;
   margin-bottom: 2%;
   margin-left: 1%;
@@ -173,40 +252,52 @@ h2 {
 }
 
 .card-buttons:hover {
-  background-color: yellow;
+  background-color: #00feff;
   cursor: pointer;
 }
 
-.space-holder-container {
-  position: absolute;
-  height: 100px;
+.all-recipes {
+  color: #00feff;
+}
+
+.full-recipe-space {
   width: 100%;
-  background-color: red;
+  display: flex;
+  justify-content: center;
+}
+
+.full-recipe-container {
+  display: grid;
+  grid-template-areas:
+    "one one"
+    "two three"
+    "two three"
+    "two three"
+    "two three";
+  background-color: rgba(3, 169, 244, 0.7);
+  height: 80vh;
+  width: 70%;
+  border-radius: 40px;
+}
+
+.full-recipe-title-container {
+  grid-area: one;
+  border: 2px solid red;
+
+}
+
+.full-recipe-left-section {
+  grid-area: two;
+  border: 2px solid green;
+
+}
+
+.full-recipe-right-section {
+  grid-area: three;
+  border: 2px solid yellow;
+
 }
 
 .hidden {
   display: none;
 }
-
-/* .pantry-containter {
-  animation: fade-in 1.5s 1;
-  background-color: #2196f3;
-  height: 100vh;
-  opacity: .8;
-}
-
-@keyframes fade-in {
-  0%{
-    opacity: 0;
-    filter: blur(10px);
-  }
-  100%{
-    opacity: .8;
-    filter: blur(0px);
-  }
-} */
-
-/* p {
-  display: none;
-  font-size: 300%;
-} */

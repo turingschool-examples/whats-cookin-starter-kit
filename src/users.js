@@ -4,10 +4,15 @@ class User {
     this.name = name;
     this.pantry = pantry;
     this.favoriteRecipes = [];
-    this.weeklyMenu = [];
+    this.myMenu = [];
   }
-  addToFavorites(fave) {
-    this.favoriteRecipes.push(fave)
+
+  addToFavorites(recipe) {
+    this.favoriteRecipes.push(recipe);
+  }
+
+  addToMyMenu(recipe) {
+    this.myMenu.push(recipe);
   }
 }
 
