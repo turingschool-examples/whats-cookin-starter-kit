@@ -5888,7 +5888,7 @@ let recipeData = [
         "name": "white sugar",
         "id": 19335,
         "quantity": {
-          "amount": 0.3333333333333333,
+          "amount": 0.33,
           "unit": "cup"
         }
       }
