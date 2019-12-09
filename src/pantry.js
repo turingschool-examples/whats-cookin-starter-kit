@@ -1,18 +1,24 @@
 class Pantry {
-  constructor(ingredients) {
-    this.stockedIngredients = [];
+  constructor() {
+    // this.stockedIngredients = user.pantry;
   }
 
-  canCookMeals() {
-
+  canCookMeals(user) {
+    if (user.pantry !== []) {
+      user.pantry.forEach(ingredient => {
+        ingredient.amount -= 1;
+      });
+      return true;
+    }
+    return false;
   }
 
-  findIngredients() {
-
+  findIngredients(user) {
+    return user.pantry;
   }
 
-  removeAfterCooking() {
-
+  removeAfterCooking(user) {
+    return user.pantry;
   }
 }
 // module.exports = Pantry;
