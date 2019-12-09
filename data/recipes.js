@@ -2,7 +2,7 @@ let recipeData = [
   {
     "name": "Loaded Chocolate Chip Pudding Cookie Cups",
     "id": 595736,
-    "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
+    "image": "../recipe-images/choco-cookies.jpg",
     "ingredients": [
       {
         "name": "all purpose flour",
@@ -131,7 +131,7 @@ let recipeData = [
   {
     "name": "Maple Dijon Apple Cider Grilled Pork Chops",
     "id": 678353,
-    "image": "https://spoonacular.com/recipeImages/678353-556x370.jpg",
+    "image": "../recipe-images/pork-chop.jpg",
     "ingredients": [
       {
         "name": "apple cider",
@@ -246,7 +246,7 @@ let recipeData = [
   {
     "name": "Dirty Steve's Original Wing Sauce",
     "id": 412309,
-    "image": "https://spoonacular.com/recipeImages/412309-556x370.jpeg",
+    "image": "../recipe-images/wing-sauce.jpg",
     "ingredients": [
       {
         "name": "black pepper",
@@ -366,7 +366,7 @@ let recipeData = [
   {
     "name": "Elvis Pancakes",
     "id": 741603,
-    "image": "https://spoonacular.com/recipeImages/741603-556x370.jpeg",
+    "image": "../recipe-images/elvis-pancakes.jpg",
     "ingredients": [
       {
         "name": "all purpose flour",
@@ -502,7 +502,7 @@ let recipeData = [
   {
     "name": "Mock Udi’s Gluten Free Whole Grain Bread",
     "id": 562334,
-    "image": "https://spoonacular.com/recipeImages/562334-556x370.jpg",
+    "image": "../recipe-images/udis-bread.jpg",
     "ingredients": [
       {
         "name": "apple cider vinegar",
@@ -680,7 +680,7 @@ let recipeData = [
   {
     "name": "Ambrosia Cupcakes",
     "id": 507921,
-    "image": "https://spoonacular.com/recipeImages/507921-556x370.jpg",
+    "image": "../recipe-images/ambrosia-cupcakes.jpg",
     "ingredients": [
       {
         "name": "baking powder",
@@ -916,7 +916,7 @@ let recipeData = [
   {
     "name": "Sesame Cookies",
     "id": 541288,
-    "image": "https://spoonacular.com/recipeImages/541288-556x370.jpg",
+    "image": "../recipe-images/sesame-cookie.jpg",
     "ingredients": [
       {
         "name": "all purpose flour",
@@ -1013,7 +1013,7 @@ let recipeData = [
   {
     "name": "Thai Chicken Tenders with Broiled Pineapple Slaw",
     "id": 779583,
-    "image": "https://spoonacular.com/recipeImages/779583-556x370.jpg",
+    "image": "../recipe-images/chicken-tenders.jpg",
     "ingredients": [
       {
         "name": "brown sugar",
@@ -1172,7 +1172,7 @@ let recipeData = [
   {
     "name": "Egg and Rapini Casserole",
     "id": 550940,
-    "image": "https://spoonacular.com/recipeImages/550940-556x370.jpg",
+    "image": "../recipe-images/rapini-caserole.jpg",
     "ingredients": [
       {
         "name": "cauliflower",
@@ -1307,7 +1307,7 @@ let recipeData = [
   {
     "name": "Pulled Pork",
     "id": 583502,
-    "image": "https://spoonacular.com/recipeImages/583502-556x370.jpg",
+    "image": "../recipe-images/pulled-pork.jpg",
     "ingredients": [
       {
         "name": "bbq sauce",
@@ -1422,7 +1422,7 @@ let recipeData = [
   {
     "name": "Pumpkin Cheesecake Breakfast Smoothie",
     "id": 543687,
-    "image": "https://spoonacular.com/recipeImages/543687-556x370.jpg",
+    "image": "../recipe-images/pumpkin-smoothie.jpg",
     "ingredients": [
       {
         "name": "almond milk",
@@ -1512,7 +1512,7 @@ let recipeData = [
   {
     "name": "Cinnamon Raisin Overnight French Toast w/ Apple Filling",
     "id": 516904,
-    "image": "https://spoonacular.com/recipeImages/516904-556x370.jpg",
+    "image": "../recipe-images/french-toast-apple.jpg",
     "ingredients": [
       {
         "name": "apple juice",
@@ -1644,7 +1644,7 @@ let recipeData = [
   {
     "name": "Brown Butter Garlic Shrimp",
     "id": 988243,
-    "image": "https://spoonacular.com/recipeImages/988243-556x370.jpg",
+    "image": "../recipe-images/garlic-shrimp.jpg",
     "ingredients": [
       {
         "name": "black pepper",
@@ -1735,7 +1735,7 @@ let recipeData = [
   {
     "name": "Baked Stuffed Artichokes",
     "id": 724018,
-    "image": "https://spoonacular.com/recipeImages/724018-556x370.jpg",
+    "image": "../recipe-images/baked-artichoke.jpg",
     "ingredients": [
       {
         "name": "artichokes",
@@ -2165,7 +2165,7 @@ let recipeData = [
   {
     "name": "Slow-Cooker Italian-Stuffed Peppers",
     "id": 607805,
-    "image": "https://spoonacular.com/recipeImages/607805-556x370.jpg",
+    "image": "../recipe-images/stuffed-pepper.jpg",
     "ingredients": [
       {
         "name": "bell peppers",
@@ -2269,7 +2269,7 @@ let recipeData = [
   {
     "name": "Whole Wheat Milk and Honey Sandwich Bread",
     "id": 763858,
-    "image": "https://spoonacular.com/recipeImages/763858-556x370.jpg",
+    "image": "../recipe-images/sandwich-bread.jpg",
     "ingredients": [
       {
         "name": "bread flour",
@@ -2410,7 +2410,7 @@ let recipeData = [
   {
     "name": "The Ultimate Healthy Soft & Chewy Pumpkin Chocolate Chip Cookies",
     "id": 618332,
-    "image": "https://spoonacular.com/recipeImages/618332-556x370.jpg",
+    "image": "../recipe-images/pumpkin-choco-cookie.jpg",
     "ingredients": [
       {
         "name": "agave",
@@ -2686,7 +2686,7 @@ let recipeData = [
   {
     "name": "Birthday Cake Jello Shots",
     "id": 602311,
-    "image": "https://spoonacular.com/recipeImages/602311-556x370.jpg",
+    "image": "../recipe-images/bday-cake-shot.jpg",
     "ingredients": [
       {
         "name": "cranberry juice cocktail",
@@ -2779,7 +2779,7 @@ let recipeData = [
   {
     "name": "Artichoke Spinach Dip Stuffed Mushrooms",
     "id": 670408,
-    "image": "https://spoonacular.com/recipeImages/670408-556x370.jpg",
+    "image": "../recipe-images/mushroom-dip.jpg",
     "ingredients": [
       {
         "name": "artichoke hearts",
@@ -2901,7 +2901,7 @@ let recipeData = [
   {
     "name": "Baked Manicotti with Sausage and Peas",
     "id": 325208,
-    "image": "https://spoonacular.com/recipeImages/325208-556x370.jpeg",
+    "image": "../recipe-images/manicotti.jpg",
     "ingredients": [
       {
         "name": "black pepper",
@@ -3108,7 +3108,7 @@ let recipeData = [
   {
     "name": "Spinach Artichoke Quinoa Casserole",
     "id": 542778,
-    "image": "https://spoonacular.com/recipeImages/542778-556x370.jpg",
+    "image": "../recipe-images/artichoke-casserole.jpg",
     "ingredients": [
       {
         "name": "eggs",
@@ -3231,7 +3231,7 @@ let recipeData = [
   {
     "name": "Double Raspberry Soufflés",
     "id": 698701,
-    "image": "https://spoonacular.com/recipeImages/698701-556x370.jpg",
+    "image": "../recipe-images/raspberry-souffle.jpg",
     "ingredients": [
       {
         "name": "blackberry juice",
@@ -3311,7 +3311,7 @@ let recipeData = [
   {
     "name": "A Cake To Warm Any Heart – Banana Split Cake",
     "id": 515021,
-    "image": "https://spoonacular.com/recipeImages/515021-556x370.jpg",
+    "image": "../recipe-images/banana-split-cake.jpg",
     "ingredients": [
       {
         "name": "bananas",
@@ -3444,7 +3444,7 @@ let recipeData = [
   {
     "name": "Avocado Chickpea Salad",
     "id": 999044,
-    "image": "https://spoonacular.com/recipeImages/999044-556x370.jpg",
+    "image": "../recipe-images/avocado-salad.jpg",
     "ingredients": [
       {
         "name": "avocados",
@@ -3552,7 +3552,7 @@ let recipeData = [
   {
     "name": "Slow Cooker Peach Cobbler",
     "id": 798070,
-    "image": "https://spoonacular.com/recipeImages/798070-556x370.jpg",
+    "image": "../recipe-images/peach-cobbler.jpg",
     "ingredients": [
       {
         "name": "baking powder",
@@ -3644,7 +3644,7 @@ let recipeData = [
   {
     "name": "4 Cheese White Pizza",
     "id": 574317,
-    "image": "https://spoonacular.com/recipeImages/574317-556x370.jpg",
+    "image": "../recipe-images/white-pizza.jpg",
     "ingredients": [
       {
         "name": "AP flour",
@@ -3841,7 +3841,7 @@ let recipeData = [
   {
     "name": "Cereal Marshmallow Bars",
     "id": 673337,
-    "image": "https://spoonacular.com/recipeImages/673337-556x370.jpg",
+    "image": "../recipe-images/cereal-bar.jpg",
     "ingredients": [
       {
         "name": "balsamic glaze",
@@ -4093,7 +4093,7 @@ let recipeData = [
   {
     "name": "Smothered Green Beans",
     "id": 446577,
-    "image": "https://spoonacular.com/recipeImages/446577-556x370.jpg",
+    "image": "../recipe-images/loaded-greenbeans.jpg",
     "ingredients": [
       {
         "name": "bacon",
@@ -4169,7 +4169,7 @@ let recipeData = [
   {
     "name": "Pear & Walnut Salad with a Pear Vinaigrette",
     "id": 576906,
-    "image": "https://spoonacular.com/recipeImages/576906-556x370.jpg",
+    "image": "../recipe-images/pear-salad.jpg",
     "ingredients": [
       {
         "name": "baby arugula leaves",
@@ -4285,7 +4285,7 @@ let recipeData = [
   {
     "name": "Mexican Vegetables on Cornbread",
     "id": 504218,
-    "image": "https://spoonacular.com/recipeImages/504218-556x370.jpg",
+    "image": "../recipe-images/cornbread.jpg",
     "ingredients": [
       {
         "name": "canned tomatoes",
@@ -4397,7 +4397,7 @@ let recipeData = [
   {
     "name": "Barbecue Shrimp Stir-Fry",
     "id": 445196,
-    "image": "https://spoonacular.com/recipeImages/445196-556x370.jpg",
+    "image": "../recipe-images/shrimp-stirfry.jpg",
     "ingredients": [
       {
         "name": "barbecue sauce",
@@ -4500,7 +4500,7 @@ let recipeData = [
   {
     "name": "Clayudas",
     "id": 759534,
-    "image": "https://spoonacular.com/recipeImages/759534-556x370.jpg",
+    "image": "../recipe-images/clayudes.jpg",
     "ingredients": [
       {
         "name": "brown sugar",
@@ -4747,7 +4747,7 @@ let recipeData = [
   {
     "name": "Bang Bang Shrimp with Napa Cabbage Slaw",
     "id": 615581,
-    "image": "https://spoonacular.com/recipeImages/615581-556x370.jpg",
+    "image": "../recipe-images/bangbang-shrimp.jpg",
     "ingredients": [
       {
         "name": "balsamic vinegar",
@@ -4890,7 +4890,7 @@ let recipeData = [
   {
     "name": "Homemade Italian Meatballs",
     "id": 764810,
-    "image": "https://spoonacular.com/recipeImages/764810-556x370.jpg",
+    "image": "../recipe-images/meatballs.jpg",
     "ingredients": [
       {
         "name": "black pepper",
@@ -5003,7 +5003,7 @@ let recipeData = [
   {
     "name": "Curried Strawberry Chicken Salad",
     "id": 799732,
-    "image": "https://spoonacular.com/recipeImages/799732-556x370.jpg",
+    "image": "../recipe-images/strawberry-chicken-salad.jpg",
     "ingredients": [
       {
         "name": "boston lettuce leaves",
@@ -5115,7 +5115,7 @@ let recipeData = [
   {
     "name": "Bacon Wrapped Stuffed Pork Tenderloin",
     "id": 621213,
-    "image": "https://spoonacular.com/recipeImages/621213-556x370.jpg",
+    "image": "../recipe-images/bacon-pork-tenderloin.jpg",
     "ingredients": [
       {
         "name": "bacon",
@@ -5266,7 +5266,7 @@ let recipeData = [
   {
     "name": "Rolo Cookie Bars",
     "id": 611858,
-    "image": "https://spoonacular.com/recipeImages/611858-556x370.jpg",
+    "image": "../recipe-images/cookie-bar.jpg",
     "ingredients": [
       {
         "name": "baking powder",
@@ -5382,7 +5382,7 @@ let recipeData = [
   {
     "name": "Buffalo Chicken Sliders",
     "id": 991136,
-    "image": "https://spoonacular.com/recipeImages/991136-556x370.jpg",
+    "image": "../recipe-images/buffalo-slider.jpg",
     "ingredients": [
       {
         "name": "butter",
@@ -5574,7 +5574,7 @@ let recipeData = [
   {
     "name": "Farmer’s Market Flatbread Pizza",
     "id": 601216,
-    "image": "https://spoonacular.com/recipeImages/601216-556x370.jpg",
+    "image": "../recipe-images/farmers-pizza.jpg",
     "ingredients": [
       {
         "name": "cheese",
@@ -5642,7 +5642,7 @@ let recipeData = [
   {
     "name": "Vegan Lentil Loaf",
     "id": 226562,
-    "image": "https://spoonacular.com/recipeImages/226562-556x370.jpg",
+    "image": "../recipe-images/lentil-loaf.jpg",
     "ingredients": [
       {
         "name": "apple sauce",
@@ -5834,7 +5834,7 @@ let recipeData = [
   {
     "name": "Pastry Cream",
     "id": 605132,
-    "image": "https://spoonacular.com/recipeImages/605132-556x370.jpg",
+    "image": "../recipe-images/pastry-creme.jpg",
     "ingredients": [
       {
         "name": "butter",

@@ -1,11 +1,13 @@
-const recipeData = require('../data/recipes.js');
-
 class Cookbook {
-  constructor() {
-    this.cookbook = [];
+  constructor(recipeData) {
+    this.cookbook = recipeData;
   }
 
   loadBook() {
-    this.cookbook.push(recipeData);
+    this.cookbook.push();
   }
+}
+
+if (typeof module !== 'undefined'){
+  module.exports = Cookbook;
 }
