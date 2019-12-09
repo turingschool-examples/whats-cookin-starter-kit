@@ -72,6 +72,7 @@ class User {
       //[12, 5, 8, 130, 44].every(x => x >= 10); // false
       //[12, 54, 18, 130, 44].every(x => x >= 10); // true​
 
+      console.log(ingredient);
       this.pantryItemsId.every((ingredient) => {
         availableRecipes.push(cookBook);
         // return availableRecipes;
