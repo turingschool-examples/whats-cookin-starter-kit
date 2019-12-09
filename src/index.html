@@ -8,27 +8,28 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div class="splash-container">
+    <section class="splash-container">
       <div class="splash-logo"></div>
       <p class="slogan">an evolution of the culinary experience<p>
         <p class="welcome">Welcome, <span class='user-name'></span>!<p>
-      <button type="button" class="enter-button">start cookin'</button>
-    </div>
+      <button type="button" class="enter-button" >start cookin'</button>
+        </section>
     <nav class="nav-bar hidden">
       <div class="logo-container"></div>
-      <button type="button" class="nav-buttons nav-user-name"><span class="nav-user-name"></span></button>
-      <button type="button" class="nav-buttons user-icon"></button>
+      <p class="nav-buttons nav-user-name"><span class="nav-user-name"></span></p>
+      <img class="nav-buttons user-icon" alt="">
       <button type="button" class="nav-buttons my-menu">My Menu</button>
       <button type="button" class="nav-buttons display-fav-button">My Favorites</button>
       <button type="button" class="nav-buttons my-pantry">My Pantry</button>
       <button type="button" class="nav-buttons all-recipes">All Recipes</button>
-      <div class ="search-container">
-        <input type="text" class="search-input" placeholder="search for recipes here...">
-        <button type="button" class="search-button"></button>
-      </div>
+      <form class="search-container" role="search">
+        <input type="text" class="search-input" aria-label="search for recipes" placeholder="search for recipes here...">
+        <img class="search-button" alt="">
+      </form>
     </nav>
-    <section class="recipe-card-area hidden">
-    </section>
+ 
+    <main class="recipe-card-area hidden">
+    </main>
 
     <!-- <div class="full-recipe-space">
       <section class="full-recipe-container">
