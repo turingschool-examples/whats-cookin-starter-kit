@@ -1,17 +1,17 @@
 let randomInt = 0;
 function getRandomInt(max) {
   return randomInt = Math.floor(Math.random() * Math.floor(max));
-
 }
 getRandomInt(49) // for random user
 
-let userName, user, pantry, recipe, ingredients, cookBook;
+let userName, user, pantry, recipe, ingredients, cookbook;
 
 userName = $('#user-login').val() || users[0].name;
 pantry = new Pantry(users[randomInt].pantry);
 user = new User(1, users[randomInt].name, users[randomInt].pantry);
-// cookBook = new CookBook();
-// cookBook.loadBook(recipeData);
+cookbook = new Cookbook(recipeData);
+cookbook.loadBook();
+
 recipe = new Recipe(595736,
   'Loaded Chocolate Chip Pudding Cookie Cups',
   'https://spoonacular.com/recipeImages/595736-556x370.jpg',
@@ -105,9 +105,15 @@ $( document ).ready(function() {
   $('.available-two').attr("src", recipeData[5].image);
   $('.available-three').attr("src", recipeData[6].image);
 
-  $('.all-recipes-one').attr("src", recipeData[7].image);
-  $('.all-recipes-two').attr("src", recipeData[8].image);
-  $('.all-recipes-three').attr("src", recipeData[9].image);
+  $('.all-recipes-one').attr("src", cookbook["cookbook"][0].image);
+  $('.all-recipes-one').attr("alt", cookbook["cookbook"][0].name);
+
+  $('.all-recipes-two').attr("src", cookbook["cookbook"][2].image);
+  $('.all-recipes-two').attr("alt", cookbook["cookbook"][2].name);
+
+  $('.all-recipes-three').attr("src", cookbook["cookbook"][3].image);
+  $('.all-recipes-three').attr("alt", cookbook["cookbook"][3].name);
+
 
 
 
