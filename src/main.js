@@ -9,9 +9,7 @@ let recipeName = document.querySelector('.recipe_title');
 let cooksName = document.querySelector('.user_title');
 let mainRecipeArea = document.querySelector('.main_recipe-area');
 let jsFavoriteArea = document.querySelector('.js_favorite-area');
-
 let searchValue = document.querySelector('.main_recipe-search')
-
 let jsSavedArea = document.querySelector('.js_saved-area');
 let addToSaved = document.querySelector('.add_to-saved');
 
@@ -19,7 +17,7 @@ let addFavoriteButton;
 let favoriteButton;
 
 mainRecipeArea.addEventListener("click", recipeCardEvent);
-searchValue.addEventListener("keyup", searchByTags);
+searchValue.addEventListener("keyup", (e) => filterSearch(e, cookbook));
 
 function recipeCardEvent(e) {
   if (e.target.classList.contains("add_to-favorites")){
@@ -57,31 +55,43 @@ function displayFavoriteRecipes() {
   });
 }
 
-function makeCard() {
-	mainRecipeArea.insertAdjacentHTML('afterbegin',
-		`<section class="recipe_info-box">
-					<img src="${recipe.image}">
-					<h1 class="recipe_title">${recipe.name}</h1>
-					<h4 id="ingredients_list">Ingredients:</h4>
-					<button class="add_to-favorites"></button>
-					<button class="add_to-cook">Save for later</button>
-		 </section>`);
-};
+const filterSearch = (e, src) => {
+  const type = e.target.value;
+  let allSearchResults = [];
+  // may run into issues with
+  allSearchResults = allSearchResults.concat(filterTags(type, src));
+  console.log(allSearchResults);
+  mainRecipeArea.innerHTML = '';
+  allSearchResults.forEach(recipe => {
+    mainRecipeArea.insertAdjacentHTML('afterbegin',
+  		`<section class="recipe_info-box">
+  					<img src="${recipe.image}">
+  					<h1 class="recipe_title">${recipe.name}</h1>
+  					<h4 id="ingredients_list">Ingredients:</h4>
+  					<button class="add_to-favorites">Favorites</button>
+  					<button class="add_to-cook">Save for later</button>
+            <button class="display_ingredients">Ingredients</button>
+  		 </section>`);
 
-
-function searchByTags(searched) {
-  var search = searchValue.value.toLowerCase();
-	searched.forEach(tag => {
-  var filterData = recipeData.filter(function(recipe){
-	console.log(recipeSearch)
-	return recipe.tags.includes(search)
-	});
-	mainRecipeArea.innerHTML = "";
-    makeCard(filterData);
   })
+  // for
+// if type = '', src = original cookbook
+// else if render based on those filter
+// else display no results found, clear the search show all of it.
 }
 
-costOfRecipe() {
+const filterTags = (type, src) => {
+  return src.recipes.filter(recipe => {
+  const foundTag = recipe.tags.find(tag => {
+    return tag.includes(type)
+  })
+  if(foundTag) {
+    return recipe
+  }
+})
+}
+
+function costOfRecipe() {
 	return this.ingredients.reduce((acc, ingredient) => {
 			ingredientsData.forEach((singleIngredient) => {
 				console.log(ingredientsData);
@@ -92,15 +102,6 @@ costOfRecipe() {
 		return acc;
 	}, 0) / 100;
 }
-
-
-	// var strings = (recipeSearch.map(function(x){
-  //   return x.toUpperCase().join(',');
-	// 	console.log(strings)
-	// 	console.log(filter);
-  // })
-
-// cooksName.innerHTML = currentUser[0].name
 
 function displaySavedRecipes() {
   jsSavedArea.innerHTML = ''
