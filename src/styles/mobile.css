@@ -9,6 +9,7 @@
 main {
   background-color: #171717;
   color: #dfdfdf;
+  font-family: 'Solway';
 }
 
 header {
@@ -16,6 +17,7 @@ header {
 }
 
 header h1 {
+  font-size: 2em;
   padding: .5em;
 }
 
@@ -46,28 +48,36 @@ header h1 {
   padding: .5em;
 }
 
-.active {
-  display: block;
-}
-
 .recipe-group {
-  margin: 1em;
+  margin: 0 1em;
 }
 
-.recipe-group h3 {
-  margin: .5em 0;
+.recipe-group h2 {
+  font-weight: 300;
+  padding: .5em;
 }
 
 .recipe-card {
-  border: 3px #dfdfdf solid;
-  background-color: #282828;
-  display: flex;
-  flex-flow: row nowrap;
-  font-size: 1.25em;
   align-items: center;
+  background-color: #282828;
+  border: 3px #dfdfdf solid;
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: 1.25em;
+  height: 6.5em;
   justify-content: flex-start;
   margin: .5em auto;
-  padding: 1em;
+  transition: all .3s linear;
+}
+
+
+.recipe-card-active {
+  height: 82vh;
+  overflow: scroll;
+}
+
+.recipe-card-active .recipe-header {
+  background-color: #5e5e5e;
 }
 
 .recipe-card img {
@@ -78,6 +88,37 @@ header h1 {
   padding: 1em;
 }
 
+.recipe-header {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.recipe-header h3 {
+  padding: .25em;
+}
+
+.recipe-content {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.recipe-ingredients,
+.recipe-directions {
+  margin: auto;
+  padding: .5em;
+  width: 80%;
+}
+
+.recipe-ingredients li,
+.recipe-directions li {
+  padding: .25em;
+}
+
 .hidden {
   display: none;
+}
+
+.active {
+  display: block;
 }
