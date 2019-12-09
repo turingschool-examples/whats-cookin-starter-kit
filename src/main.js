@@ -117,6 +117,8 @@ function displaySavedRecipes() {
 function displayUserName() {
   if (currentUser.length !== 0) {
     cooksName.innerHTML = currentUser[0].name
+  } else {
+    cooksName.innerHTML = users[0].name
   }
 }
 
