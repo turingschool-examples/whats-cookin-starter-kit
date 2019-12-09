@@ -1,3 +1,5 @@
+// const recipes = require("../recipes");
+
 const favoritesButton = document.querySelector("#favorites");
 const homeRecipes = document.querySelector(".home-recipes");
 const favoriteRecipes = document.querySelector("#favorite-recipes-main");
@@ -26,3 +28,10 @@ function displayHomePage() {
   favoriteRecipes.classList.add("hidden");
   homeRecipes.classList.remove("hidden");
 }
+
+function addRecipeCards() {
+  let recipe = new Recipe(recipeData[0]);
+  recipe.addCards();
+}
+
+addRecipeCards();

@@ -1,4 +1,4 @@
-class Recipes {
+class Recipe {
   constructor(recipe) {
     this.name = recipe.name;
     this.image = recipe.image;
@@ -10,9 +10,16 @@ class Recipes {
   calculateDollars() {
     // take each ingredient price through ingredients data and divide by 100
   }
-  
+
+  addCards() {
+    console.log("Hello")
+    homeRecipes.innerHTML += `
+
+    `;
+  }
+
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = Recipes;
+  module.exports = Recipe;
 }
