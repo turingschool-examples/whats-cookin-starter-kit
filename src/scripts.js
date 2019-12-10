@@ -3,9 +3,9 @@ let allRecipes = [];
 let personalPantry = [];
 let searchResults = [];
 let randomNum = genRanNum();
+let currentPage = 'All Recipes'
 let user;
 let searchInput = document.querySelector('.search-input')
-
 
 const instantiateRecipeCards = () => {
   recipeData.forEach(recipe => {
@@ -36,7 +36,6 @@ const instantiateUsersPantry = () => {
     document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
   <div class="ingredient-card">
     <p>Name: <span class="ingredient-name">${item.name}</span></p>
-
     <p>Quantity: <span class="ingredient-quantity">${item.amount}</span></p>
   </div>`);
   });
@@ -61,17 +60,6 @@ const buildRecipeCards = (recipesToBuild) => {
   });
 }
 
-
-const searchTags = () => {
-  allRecipes.filter(item => {
-    return item.tags
-  })
-}
-
-//on key up, take the search var
-//compare (filter) search === allRecipes.name
-//return the whole recipe object(ingredientData)
-//push into searchResults
 const searchCards = () => {
   searchResults = [];
   var search = searchInput.value.toUpperCase();
@@ -83,20 +71,6 @@ const searchCards = () => {
     }
   })
 }
-
-
-
-// function searchCards() {
-  
-//   var filter = allRecipes.filter(function(idea){
-//   var titleSearch = idea.name;
-//     return titleSearch.toUpperCase().includes(search)
-//   });
-//   document.querySelector('.recipe-card-area').innerText = '';
-//   filter.forEach(function(filterInstance){
-//     buildRecipeCards(filterInstance);
-//   });
-// }
 
 function genRanNum() {
   return Math.floor(Math.random() * 50);
@@ -112,6 +86,54 @@ const instantiateUser = () => {
     selectedUser.pantry)
   document.querySelector('.user-name').innerText = selectedUser.name;
   document.querySelector('.nav-user-name').innerText = selectedUser.name;
+}
+
+const buildFullRecipeCard = (recipeToBuild) => {
+  let selectedRecipeIngredients = user.recipeToBuild.ingredients.map(item => {
+    return item;
+  })
+  user.recipeToBuild.forEach(recipe => {
+  document.querySelector('.full-recipe-space').insertAdjacentHTML('afterbegin',`
+  <section class="full-recipe-container">
+
+    <div class="full-recipe-title-container">
+      <button type="button" class="back-button">BACK</button>
+      <div class="full-recipe-title-and-tags">
+        <h1 class="full-recipe-title">${recipe.name}</h1>
+        <p class="full-recipe-tags">${recipe.tags}</p>
+      </div>
+      <button type="button" class="cook-this-recipe-button">COOK THIS RECIPE</button>
+    </div>
+
+    <div class="full-recipe-left-section">
+
+      <img class="full-recipe-image" src="${recipe.image}" alt="">
+      <div class="full-recipe-ingredinets-list">
+
+        <div class="full-recipe-ingredient-name-container">
+          ${[selectedRecipeIngredients].name}
+        </div>
+
+        <div class="full-recipe-ingredient-amount-container">
+         ${[selectedRecipeIngredients].quantity.amount}
+        </div>
+
+        <div class="full-recipe-ingredient-units-container">
+          ${[selectedRecipeIngredients].quantity.unit}
+        </div>
+
+      </div>
+    </div>
+
+    <div class="full-recipe-right-section">
+    <p class="full-recipe-step">Step 1: In a heavy saucepan, stir together the milk and 1/4 cup of sugar. Bring to a boil over medium heat.</p>
+    <p class="full-recipe-step">Step 2: In a medium bowl, whisk together the egg yolks and egg. Stir together the remaining sugar and cornstarch; then stir them into the egg until smooth. When the milk comes to a boil, drizzle it into the bowl in a thin stream while mixing so that you do not cook the eggs. Return the mixture to the saucepan, and slowly bring to a boil, stirring constantly so the eggs don' t curdle or scorch on the bottom.</p>
+    <p class="full-recipe-step">Step 3: When the mixture comes to a boil and thickens, remove from the heat. Stir in the butter and vanilla, mixing until the butter is completely blended in.</p>
+    <p class="full-recipe-step">Step 4: Pour into a heat-proof container and place a piece of plastic wrap directly on the surface to prevent a skin from forming. Refrigerate until chilled before using.</p>
+    </div>
+
+  </section>`);
+  })
 }
 
 const addToFavoritesOrMenu = e => {
@@ -141,7 +163,24 @@ const addToFavoritesOrMenu = e => {
       return;
     }
   }
+  if (e.target.classList.contains('view-recipe')) {
+    clearRecipeCardArea();
+    let selectedRecipe = allRecipes.find(recipe => {
+      if (recipe.id === Number(event.target.id)) {
+        return recipe;
+      }
+    })
+    let doubleCheck = user.recipeToBuild.includes(selectedRecipe)
+    if (!doubleCheck) {
+      user.addToRecipeToBuild(selectedRecipe);
+      buildFullRecipeCard(selectedRecipe);
+    } else {
+      return;
+    }
+  }
 }
+
+
 
 const turnNavBtnsWhite = () => {
   let navHeadings = ['.display-fav-button', '.all-recipes','.my-menu','.my-pantry']
@@ -182,6 +221,7 @@ const emptyMenuAreaErrorMessage = (message) => {
 
 const navBtnClickHandler = e => {
   if (e.target.classList.contains('display-fav-button')) {
+    currentPage = 'My Favorites';
     turnNavBtnsWhite();
     highlightNavBtn(`.display-fav-button`)
     clearRecipeCardArea();
@@ -189,12 +229,14 @@ const navBtnClickHandler = e => {
     buildRecipeCards(user.favoriteRecipes);
   };
   if (e.target.classList.contains('all-recipes')) {
+    currentPage = 'All Recipes';
     turnNavBtnsWhite();
     highlightNavBtn(`.all-recipes`)
     clearRecipeCardArea();
     buildRecipeCards(allRecipes);
   };
   if (e.target.classList.contains('my-menu')) {
+    currentPage = 'My Menu';
     turnNavBtnsWhite();
     highlightNavBtn(`.my-menu`)
     clearRecipeCardArea();
@@ -202,6 +244,7 @@ const navBtnClickHandler = e => {
     buildRecipeCards(user.myMenu);
   };
   if (e.target.classList.contains('my-pantry')) {
+    currentPage = 'My Pantry';
     turnNavBtnsWhite();
     highlightNavBtn(`.my-pantry`)
     clearRecipeCardArea();
@@ -227,4 +270,3 @@ document.querySelector('.enter-button').addEventListener('click', loadDashboard)
 document.querySelector('.recipe-card-area').addEventListener('click', addToFavoritesOrMenu);
 document.querySelector('nav').addEventListener('click', navBtnClickHandler);
 searchInput.addEventListener('keyup', searchCards);
-
