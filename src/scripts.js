@@ -162,6 +162,29 @@ $( document ).ready(function() {
   $('.all-recipes-three').attr("src", cookbook["cookbook"][randomCook3].image);
   $('.all-recipes-three').attr("alt", cookbook["cookbook"][randomCook3].name);
 
+  const loadAll = document.querySelector("#heart-btn");
+  loadAll.addEventListener('click', loadAll(event));
+
+  function loadAll(event) {
+    createCard(event);
+  }
+
+  function createCard(event) {
+    //forEach recipe over the whole array populate the page with recipe cards
+    event.preventDefault();
+    cardSection.innerHTML += `
+      <div class="single-card" "delete">
+        <header class="header-icons">
+          <h4>${recipe[0].name}<h4>
+        </header>
+        <section class="card-body">
+          <img src="${recipe[0].image}">
+          <p class="card-text">${recipe[0].name}</p>
+        </section>
+      </div>`;
+      var newRecipe = new Recipe(idCode, cardTitleText.value, cardBodyText.value);
+      saveBtn.classList.add("disabled");
+  };
 
 
 

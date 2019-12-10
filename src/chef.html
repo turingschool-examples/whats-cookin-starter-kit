@@ -5,6 +5,11 @@
     <title>Whats Cookin</title>
     <link href="./styles.css" type="text/css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>
   </head>
   <body>
     <main id="user-page" class="chef">
@@ -17,52 +22,40 @@
         </ul>
       </nav>
       <header class="recipe-header">
-        <img id="recipe-image" src="https://spoonacular.com/recipeImages/721146-556x370.jpg">
+        <img id="recipe-image">
         <div class="recipe">
-          <h1>Iron Chef:</h1>
-          <p>Elvis Pancakes are a go</p>
+          <h1></h1>
+          <p></p>
         </div>
       </header>
-      <h2>Looking For Your Favorite Recipe?</h2>
-      <h2>How About Something New?</h2>
+      <h2>Chef Recommended Recipes | Based on Pantry Items</h2>
       <ul id="favorite-recipes">
-        <li><img src="recipeData[0].image" alt=""></li>
-        <li><img src="https://www.fillmurray.com/401/300" alt=""></li>
-        <li><img src="https://www.fillmurray.com/402/300" alt=""></li>
-        <li><img src="https://www.fillmurray.com/402/300" alt=""></li>
-        <li><h3>Favorite Recipes</h3></li>
+        <li><img class="favorites-one crop" alt="favorite recipe 1"></li>
+        <li><img class="favorites-two crop" alt="favorite recipe 1"></li>
+        <li><img class="favorites-three crop" alt="favorite recipe 1"></li>
       </ul>
       <ul id="available-recipes">
-        <img src="https://www.fillmurray.com/400/301" alt="">
-        <img src="https://www.fillmurray.com/406/302" alt="">
-        <img src="https://www.fillmurray.com/400/305" alt="">
-        <h3>Available Recipes</h3>
-      </ul>
-      <ul id="all-recipes">
-        <img src="https://www.fillmurray.com/402/301" alt="">
-        <img src="https://www.fillmurray.com/408/302" alt="">
-        <img src="https://www.fillmurray.com/403/300" alt="">
-        <h3>All Recipes</h3>
+        <li><img class="available-one crop" alt="available recipe 1"></li>
+        <li><img class="available-two crop" alt="available recipe 2"></li>
+        <li><img class="available-three crop" alt="available recipe 3"></li>
       </ul>
     </main>
     <footer>
       <ul id="footer">
-        <!-- <img>
-        <img>
-        <img>
-        <img> -->
+        <li></li>
       </ul>
     </footer>
-
-
-
-
-
-
 
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
+
+    <script type="text/javascript" src="./user.js"></script>
+    <script type="text/javascript" src="./cookbook.js"></script>
+    <script type="text/javascript" src="./pantry.js"></script>
+    <script type="text/javascript" src="./recipe.js"></script>
+    <script type="text/javascript" src="./ingredients.js"></script>
+
     <script type="text/javascript" src="./scripts.js"></script>
   </body>
 
