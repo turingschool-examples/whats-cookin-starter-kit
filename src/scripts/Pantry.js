@@ -1,5 +1,5 @@
 class UserPantry {
-  constructor(obj) {
+  constructor() {
 
   }
 }
