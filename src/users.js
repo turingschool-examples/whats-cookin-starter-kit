@@ -5,6 +5,7 @@ class User {
     this.pantry = pantry;
     this.favoriteRecipes = [];
     this.myMenu = [];
+    this.recipeToBuild = [];
   }
 
   addToFavorites(recipe) {
@@ -13,6 +14,10 @@ class User {
 
   addToMyMenu(recipe) {
     this.myMenu.push(recipe);
+  }
+
+  addToRecipeToBuild(recipe) {
+    this.recipeToBuild.push(recipe);
   }
 }
 
