@@ -22,11 +22,22 @@
     padding: .5em;
   }
 
-  .navbar div {
-    background-color: #282828;
+  /* .navbar-toggle, li {
+    display: none;
   }
 
   .desktop-nav {
+    text-align: right;
+    float: right;
+    display: block;
+  } */
+
+  .navbar {
+    display: inline;
+  }
+
+  .navbar div {
+    background-color: #282828;
 
   }
 
@@ -43,9 +54,5 @@
 
   .recipe-card-active {
     width: 80%;
-  }
-
-  .navbar-toggle {
-    display: none;
   }
 }
