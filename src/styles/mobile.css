@@ -44,7 +44,8 @@ header h1 {
 .main-nav li {
   font-size: 1.25em;
   text-align: right;
-  margin: .5em;
+  margin: 0 
+  .5em;
   padding: .5em;
 }
 
@@ -70,9 +71,8 @@ header h1 {
   transition: all .3s linear;
 }
 
-
 .recipe-card-active {
-  height: 82vh;
+  height: calc(82vh - 1px);
   overflow: scroll;
 }
 
@@ -84,8 +84,34 @@ header h1 {
   width: 40%;
 }
 
-.recipe-card p {
+.recipe-card h3 {
   padding: 1em;
+  width: 100%;
+}
+
+.button-wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-self: flex-end;
+}
+
+.buttons { 
+  background-color: #171717;
+  border-left: 4px #dfdfdf solid;
+  color: #dfdfdf;
+  font-size: 1.5em;
+  height: calc(2.05em + 1px);
+  width: 1em;
+}
+
+.favorite-recipe-active {
+  background-color: #eec200;
+  color: #171717;
+}
+
+.current-recipe-active {
+  background-color: #00aeee;
+  color: #171717;
 }
 
 .recipe-header {
