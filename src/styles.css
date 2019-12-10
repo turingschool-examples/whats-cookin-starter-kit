@@ -69,6 +69,17 @@ title {
   margin-top: 20px;
 }
 
+.image-labels {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 65%;
+
+  font-size: 24px;
+  margin: 2%;
+  margin-top: 0px;
+}
+
 .crop {
   width: 22%;
   height: 240px;

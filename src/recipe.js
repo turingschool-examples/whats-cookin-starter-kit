@@ -9,7 +9,7 @@ class Recipe {
     this.instructions = instructions;
     this.ingredients = ingredients;
     this.costPerRecipe = 0;
-    this.ingredientPerRecipe = [];
+    // this.ingredientPerRecipe = [];
   }
 
 
