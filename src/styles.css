@@ -117,12 +117,6 @@ title {
   object-fit: cover;
 }
 
-#crop-main {
-  width: 75%;
-  height: 800px;
-  /* margin: 2%; */
-  object-fit: cover;
-}
 
 .recipe-header {
   display: flex;
