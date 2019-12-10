@@ -1,14 +1,13 @@
-class Cookbook {	class Cookbook {
-  constructor(recipeData) {	  constructor() {
-    this.cookbook = recipeData;	    this.cookbook = [];
-  }	  }
+class Cookbook {
+  constructor(recipeData) {
+    this.cookbook = recipeData;
+  }
 
+  loadBook() {
+    this.cookbook.push();
+  }
+}
 
-  loadBook() {	  loadBook(recipeData) {
-    this.cookbook.push();	    this.cookbook.push(recipeData);
-  }	  }
-}	}
-
-if (typeof module !== 'undefined'){	
-  module.exports = Cookbook;	
+if (typeof module !== 'undefined'){
+  module.exports = Cookbook;
 }
