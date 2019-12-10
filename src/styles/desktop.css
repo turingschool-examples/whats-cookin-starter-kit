@@ -1,26 +1,85 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@media only screen and (min-width: 600px) {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-main {
-  background-color: #171717;
-  color: #dfdfdf;
-  font-family: 'Solway';
-}
+  main {
+    background-color: #171717;
+    color: #dfdfdf;
+    font-family: 'Solway';
+  }
 
-header {
-  background-color: #00aeee;
-}
+  header {
+    background-color: #00aeee;
+  }
 
-header h1 {
-  font-size: 2em;
-  padding: .5em;
-}
+  header h1 {
+    font-size: 2em;
+    padding: .5em;
+  }
 
-.navbar div {
-  background-color: #282828;
+  .navbar div {
+    background-color: #282828;
+  }
+
+  .box-1 {
+    grid-area: box1;
+    }
+
+  .box-2 {
+    grid-area: box2;
+    }
+
+  .box-3 {
+    grid-area: box3;
+    }
+
+  .box-4 {
+    grid-area: box4;
+  }
+
+  .box-5 {
+    grid-area: box5;
+  }
+
+  .box-6 {
+    grid-area: box6;
+  }
+
+  .box-7 {
+    grid-area: box7;
+    }
+
+  .box-8 {
+    grid-area: box8;
+    }
+
+  .box-9 {
+    grid-area: box9;
+    }
+
+  .box-10 {
+    grid-area: box10;
+    }
+
+  .box-11 {
+    grid-area: box11;
+    }
+  .box-12 {
+    grid-area: box12;
+    }
+
+  .suggested-recipes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "box1 box2 box3 box4"
+    "box5 box6 box7 box8"
+    "box9 box10 box11 box12"
+  };
 }
