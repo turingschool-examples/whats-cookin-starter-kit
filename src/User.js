@@ -1,11 +1,12 @@
 class User {
 
-  constructor() {
-    this.pantry = [];
+  constructor(obj) {
+    this.name = obj.name;
+    this.pantry = obj.pantry;
     this.favoriteRecipes = [];
     this.recipesToCook = [];
   }
-  
+
   displayFavorites() {
     return this.favoriteRecipes;
   }
@@ -35,4 +36,3 @@ class User {
 if (typeof module !== 'undefined') {
   module.exports = User;
 }
-
