@@ -6,9 +6,7 @@ const favoriteRecipes = document.querySelector("#favorite-recipes-main");
 const addButton = document.querySelector("#add-button");
 const recipeForm = document.querySelector("#recipe-form");
 const homeButton = document.querySelector("#home-button");
-
-// const recipeTitle = document.querySelector(".recipe-title");
-
+const user = new User(users[4]);
 
 addRecipeCards();
 
@@ -51,6 +49,9 @@ function displayRecipe() {
   if (event.target.classList.contains("recipe-title")) {
     let clickedID = event.target.parentElement.id;
     runExpandedMethod(clickedID);
+  } else if (event.target.classList.contains('fav-star')) {
+    let starredID = event.target.parentElement.id;
+    user.addToFavorites(parseInt(starredID));
   }
 }
 

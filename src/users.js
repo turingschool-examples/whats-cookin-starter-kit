@@ -6,9 +6,9 @@ class User {
     this.favoriteRecipes = [];
     this.recipesToCook = [];
   }
-  addFavoriteRecipe() {
-    // maybe pass in targeted card that triggers the star icon style change and this method
-    this.favoriteRecipes.push(recipe);
+  addToFavorites(id) {
+    this.favoriteRecipes.push(id);
+    console.log(this.favoriteRecipes);
   }
   displayFavorites() {
     return this.favoriteRecipes;
@@ -23,7 +23,7 @@ class User {
     // search the recipes contained with favoriteRecipes
   }
   filterRecipes() {
-    
+
   }
 
 }
