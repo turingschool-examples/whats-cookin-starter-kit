@@ -50,7 +50,7 @@ describe('Users', function() {
       });
     });
 
-    it.only('should be able to search by tags', function() {
+    it('should be able to search by tags', function() {
       let ing = [{
         "name": "all purpose flour",
         "id": 20081,
