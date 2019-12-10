@@ -36,8 +36,6 @@ class Recipe {
         unit: ingredientUnit,
         name: ingredientName
       });
-
-
     }
 
 
