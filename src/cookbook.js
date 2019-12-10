@@ -1,5 +1,3 @@
-// const recipeClassData = require('../data/recipes.js');
-
 class Cookbook {
   constructor(recipeData) {
     this.cookbook = recipeData;
