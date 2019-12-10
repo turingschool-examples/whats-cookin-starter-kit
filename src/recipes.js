@@ -27,11 +27,11 @@ class Recipe {
     <section id="expanded-recipe-page" class="">
       <h1 class="title" id="${this.id}">${this.name}</h1>
       <img src="${this.image}">
-      <section class="ingredients-section">
-      </section>
+      <ul class="ingredients-section">
+      </ul>
       <ol class="instructions-section">
       </ol>
-      <p class="">${this.tags}</p>
+      <ul class="recipe-tags"></ul>
    </section>`;
 
    this.showListedIngredients();
@@ -48,8 +48,15 @@ class Recipe {
     const instructionsSection = document.querySelector('.instructions-section');
 
     for (var i = 0; i < this.instructions.length; i++) {
-      console.log(this.instructions);
       instructionsSection.innerHTML += `<li> ${this.instructions[i].instruction}  </li>`;
+    }
+    this.showTags();
+  }
+  showTags() {
+    const tagSection = document.querySelector('.recipe-tags');
+
+    for (var i = 0; i < this.tags.length; i++) {
+      tagSection.innerHTML += `<li> #${this.tags[i]}</li>`
     }
   }
 }
