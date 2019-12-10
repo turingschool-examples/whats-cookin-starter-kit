@@ -1,9 +1,9 @@
-class UserPantries {
+class UserPantry {
   constructor(obj) {
 
   }
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = UserPantries;
+  module.exports = UserPantry;
 }
