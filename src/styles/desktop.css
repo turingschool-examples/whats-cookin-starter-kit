@@ -1,0 +1,58 @@
+@media only screen and (min-width: 600px) {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  main {
+    background-color: #171717;
+    color: #dfdfdf;
+    font-family: 'Solway';
+  }
+
+  header {
+    background-color: #00aeee;
+  }
+
+  header h1 {
+    font-size: 2em;
+    padding: .5em;
+  }
+
+  /* .navbar-toggle, li {
+    display: none;
+  }
+
+  .desktop-nav {
+    text-align: right;
+    float: right;
+    display: block;
+  } */
+
+  .navbar {
+    display: inline;
+  }
+
+  .navbar div {
+    background-color: #282828;
+
+  }
+
+  .injected-suggested-recipes {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+  }
+
+  .recipe-card {
+    width: 400px;
+    font-size: 1.2em;
+  }
+
+  .recipe-card-active {
+    width: 80%;
+  }
+}
