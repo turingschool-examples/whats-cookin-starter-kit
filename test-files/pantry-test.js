@@ -1,29 +1,39 @@
 const chai = require('chai');
 const expect = chai.expect;
+let pantry;
 
-const user = require("../data/users");
-const pantry = require('../src/scripts/Pantry');
-
+const userData = require("../data/users");
+const recipeData = require("../data/recipes");
+const Users = require("../src/scripts/Users");
+const Recipe = require("../src/scripts/Recipes");
+const Pantry = require('../src/scripts/Pantry');
 
 beforeEach(() => {
-    pantry = new UserPantry(userData[0]);
+    pantry = new Pantry(userData[0].pantry);
   })
 
 describe ('Users Pantry', () => {
 
   it('should be a function', () => {
-    expect(pantry).to.be.a('function');
+    expect(Pantry).to.be.a('function');
   })
 
-  it.skip('should be an instance of a Pantry', () => {
-    expect(pantry).to.be.an.instanceof(UserPantry);
+  it('should be an instance of a Pantry', () => {
+    expect(pantry).to.be.an.instanceof(Pantry);
   })
 
-  it.skip('should have the ingredients of the Pantry', () => {
-    expect(pantry.ingredient).to.equal(11477);
+  it('should have the ingredients of the Pantry', () => {
+    expect(pantry.pantryList).to.equal(userData[0].pantry);
   })
 
-  it.skip('should have a amount', () => {
-    expect(pantry.amount).to.equal(5);
+  it('should be a property of a new User', () => {
+    user = new Users(userData[0]);
+    expect(user.pantry).to.deep.equal(pantry);
+  })
+
+  it('should be able to tell if ingredients are missing from a recipe', () => {
+    recipe = new Recipe(recipeData[0]);
+    user = new Users(userData[0]);
+    expect(user.pantry.missingIngredients(recipeData[0].ingredients))
   })
 });
