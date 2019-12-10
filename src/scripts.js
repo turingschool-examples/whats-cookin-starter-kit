@@ -1,8 +1,11 @@
 /* eslint-disable max-len */
 let allRecipes = [];
 let personalPantry = [];
+let searchResults = [];
 let randomNum = genRanNum();
 let user;
+let searchInput = document.querySelector('.search-input')
+
 
 const instantiateRecipeCards = () => {
   recipeData.forEach(recipe => {
@@ -18,28 +21,15 @@ const instantiateRecipeCards = () => {
   buildRecipeCards(allRecipes);
 }
 
-//create new array of objects upon new user instantiation.
-//build it off of []users.pantry and []ingredientsData.
-//each object in array has two keys: name & quantity.
-
-//get into user.pantry.ingredient
-//store that ingredientId in a var?
-//get into ingredientsData if the ingredientId matches, display ingredientsData.name
-//use the id number from ^^ to filter through array of recipes
-//when we find a match, push into new personalPantry array.
-
-
-
 const pullIngredientNames = () => {
   user.pantry.forEach(item => {
     ingredientsData.filter(ingredient => {
       if (item.ingredient === ingredient.id) {
-        personalPantry.push({name: ingredient.name, amount: item.amount, id: item.ingredient})
+        personalPantry.push({name: ingredient.name, amount: item.amount});
       }
-    })
-  })
+    });
+  });
 }
-
 
 const instantiateUsersPantry = () => {
   personalPantry.forEach(item => {
@@ -71,12 +61,33 @@ const buildRecipeCards = (recipesToBuild) => {
   });
 }
 
-// var thingy = document.querySelector('.search-input')
-//
-// document.querySelector('.search-input').addEventListener('keyup', searchCards);
-//
+
+const searchTags = () => {
+  allRecipes.filter(item => {
+    return item.tags
+  })
+}
+
+//on key up, take the search var
+//compare (filter) search === allRecipes.name
+//return the whole recipe object(ingredientData)
+//push into searchResults
+const searchCards = () => {
+  searchResults = [];
+  var search = searchInput.value.toUpperCase();
+  allRecipes.filter(meal => {
+    if (meal.name.toUpperCase().includes(search) || meal.tags.includes(search.toLowerCase())) {
+      clearRecipeCardArea();
+      searchResults.push(meal)
+      buildRecipeCards(searchResults)
+    }
+  })
+}
+
+
+
 // function searchCards() {
-//   var search = thingy.value.toUpperCase();
+  
 //   var filter = allRecipes.filter(function(idea){
 //   var titleSearch = idea.name;
 //     return titleSearch.toUpperCase().includes(search)
@@ -207,10 +218,13 @@ const loadDashboard = () => {
 
 // On Page Load
 instantiateUser();
-pullIngredientNames()
+pullIngredientNames();
+
 
 
 // Event Listeners
 document.querySelector('.enter-button').addEventListener('click', loadDashboard);
 document.querySelector('.recipe-card-area').addEventListener('click', addToFavoritesOrMenu);
 document.querySelector('nav').addEventListener('click', navBtnClickHandler);
+searchInput.addEventListener('keyup', searchCards);
+
