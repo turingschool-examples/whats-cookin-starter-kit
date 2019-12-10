@@ -1,6 +1,7 @@
 let navBarToggle = document.querySelector('.navbar-toggle');
 let mainNav = document.querySelector('.main-nav');
 let suggestedRecipes = document.querySelector('.injected-suggested-recipes');
+let favoriteRecipes = document.querySelector('.injected-favorite-recipes');
 let allRecipes = [];
 let currentUser;
 
