@@ -5,7 +5,6 @@ let allRecipes = [];
 
 window.onload = loadSuggestedRecipesFunction;
 navBarToggle.addEventListener('click', function () {
-  console.log('blah');
   mainNav.classList.toggle('active');
 });
 
@@ -17,6 +16,10 @@ function loadSuggestedRecipesFunction() {
       <div class="recipe-header">
         <img src="${allRecipes[i].image}" alt="Picture of ${allRecipes[i].name}">
         <h3>${allRecipes[i].name}</h3>
+        <div class="button-wrapper">
+          <button class="buttons favorite-recipe">&#11090;</button>
+          <button class="buttons current-recipe">+</button>
+        </div>
       </div>
       <div class="recipe-content hidden">
         <ul class="recipe-ingredients">
