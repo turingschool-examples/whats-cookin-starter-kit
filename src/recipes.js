@@ -22,11 +22,32 @@ class Recipe {
   }
 
   showExpandedRecipe() {
+    // need each ingredient (name + quanitity:amount) and each instruction (number and step)
+    // console.log(this.ingredients);
+
+    let ingredients = [];
+    for (var i = 0; i < this.ingredients.length; i++) {
+      let ingredientName = this.ingredients[i].name;
+      let ingredientAmount = this.ingredients[i].quanitity.amount
+      let ingredientUnit = this.ingredients[i].quanitity.unit;
+
+      ingredients.unshift({
+        amount: ingredientAmount,
+        unit: ingredientUnit,
+        name: ingredientName
+      });
+    }
+
+
+
+    // need to manipulate ingredients array so that it displays amount, unit, name in that order as plain ish text.
+
     homeRecipes.innerHTML = `
     <section id="expanded-recipe-page" class="">
       <h1 class="title" id="${this.id}">${this.name}</h1>
       <img src="${this.image}">
-      <ul class="">${this.ingredients}</ul>
+
+      <ul class="">${ingredients[0].amount} ${ingredients[0].unit} ${ingredients[0].name}</ul>
       <li class="">${this.instructions}</li>
       <p class="">${this.tags}</p>
    </section>
