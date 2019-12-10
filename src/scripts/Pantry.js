@@ -4,9 +4,9 @@ class Pantry {
   }
 
   missingIngredients(recipeIngredients) {
-    let missingIngredients = [];
-    let query = this.pantryList.filter(pantryItem => recipeIngredients.map(x => x.id).includes(pantryItem.ingredient))
-    console.log(query);
+    let recipeIds = recipeIngredients.map(x => x.id);
+    let pantryIds = this.pantryList.map(x => x.ingredient);
+    return recipeIds.filter(x => !pantryIds.includes(x));
   }
 }
 
