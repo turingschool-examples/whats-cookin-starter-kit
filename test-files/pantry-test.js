@@ -34,6 +34,6 @@ describe ('Users Pantry', () => {
   it('should be able to tell if ingredients are missing from a recipe', () => {
     recipe = new Recipe(recipeData[0]);
     user = new Users(userData[0]);
-    expect(user.pantry.missingIngredients(recipeData[0].ingredients))
+    expect(user.pantry.missingIngredients(recipeData[0].ingredients)).to.deep.equal([1012047, 10019903]);
   })
 });
