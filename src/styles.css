@@ -49,6 +49,9 @@ title {
 .recipe-book {
 
 }
+.recipe-ingredients {
+  padding-bottom: 1rem 0;
+}
 #user-name {
   display: flex;
   justify-content: flex-start;
@@ -131,6 +134,7 @@ h1 {
 .recipe p {
   font-size: 1.2rem;
   font-family: 'IBM Plex Mono', monospace;
+  padding: .5rem 0;
 
 }
 

@@ -1,4 +1,4 @@
-let number = 0;
+let number1 = 0;
 let randomCook1 = 0;
 let randomCook2 = 0;
 let randomCook3 = 0;
@@ -13,17 +13,18 @@ getRandomInt(49) // for random user
 function getRandomCookInt1(max) {
   return randomCook1 = Math.floor(Math.random() * Math.floor(max));
 }
-getRandomCookInt1(49) // for random user
+getRandomCookInt1(47) // for random user
 
 function getRandomCookInt2(max) {
   return randomCook2 = Math.floor(Math.random() * Math.floor(max));
 }
-getRandomCookInt2(49) // for random user
+getRandomCookInt2(47) // for random user
 
 function getRandomCookInt3(max) {
   return randomCook3 = Math.floor(Math.random() * Math.floor(max));
 }
-getRandomCookInt3(49) // for random user
+getRandomCookInt3(47) // for random user
+
 
 let userName, user, pantry, recipe, cookbook;
 
@@ -104,9 +105,12 @@ $( document ).ready(function() {
     console.log("recipe book");
   });
 // var featureRecipe ='<img id="recipe-image" src="recipe.image"><div class="recipe"><h1 class="recipe-header"></h1><li class="recipe-number"></li><p class="recipe-instructions"><p></div>'
-  $('.recipe h1').html(cookbook["cookbook"][0].name);
-  // $('.recipe li').html(cookbook["cookbook"][0].image);
-  $('.recipe p').html(cookbook["cookbook"][0].instructions[0].instruction);
+  // $('.recipe h1').html(cookbook["cookbook"][number1].name);
+  // // $('.recipe li').html(cookbook["cookbook"][0].image);
+  // $('.recipe-ingredients').html(cookbook["cookbook"][number1].ingredients[0].name)
+  // $('.recipe p').html(cookbook["cookbook"][number1].instructions[0].instruction);
+
+  $('.recipe').html(`<div class="recipe"><h1 class="recipe-header">${cookbook["cookbook"][number1].name}</h1><p class="recipe-ingredients">Ingredients: <br />${cookbook["cookbook"][number1].ingredients[0].name}, ${cookbook["cookbook"][number1].ingredients[1].name}, ${cookbook["cookbook"][number1].ingredients[2].name}, ${cookbook["cookbook"][number1].ingredients[3].name} cont...<hr></p><p class="recipe-instructions">1: ${cookbook["cookbook"][number1].instructions[0].instruction} <br/> 2: ${cookbook["cookbook"][number1].instructions[1].instruction} <br/> 3: ${cookbook["cookbook"][number1].instructions[2].instruction} <br/> 4: ${cookbook["cookbook"][number1].instructions[3].instruction} <br/> cont...<p></div>`)
 
   // $('.recipe-header').html(featureRecipe)
   // var large = '<div class="accordian_container"><a href="#" class="accordian_trigger"><h4>Co-Borrower Information</h4></a><hr/><div class="accordian_item" id="accord_item_2"><label> First Name</label><br/><input type="text"/><br/><label>Middle Name</label><br/><input type="text"/><br/><label>Last Name</label><br/><input type="text" /><br/><label>Home Number</label><br/><input type="text"/><br><label>Work Number</label><br/><input type="text"/><br><label>Cell Number</label><br/><input type="text"/><br></div></div>';
@@ -114,8 +118,8 @@ $( document ).ready(function() {
   // $('#accordion_container').append(large);​
   $('#user-login').attr("value", user.name)
 
-  $('#recipe-image').attr("src", cookbook["cookbook"][0].image);
-  $('#recipe-image').attr("alt", cookbook["cookbook"][0].name);
+  $('#recipe-image').attr("src", cookbook["cookbook"][number1].image);
+  $('#recipe-image').attr("alt", cookbook["cookbook"][number1].name);
 
 
   $('.favorites-one').attr("src", cookbook["cookbook"][1].image);
