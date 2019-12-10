@@ -275,27 +275,91 @@ h2 {
     "two three"
     "two three";
   background-color: rgba(3, 169, 244, 0.7);
-  height: 80vh;
-  width: 70%;
+  height: auto;
+  width: 80%;
   border-radius: 40px;
+  padding: 1%;
 }
 
 .full-recipe-title-container {
   grid-area: one;
-  border: 2px solid red;
+  display: flex;
+  justify-content: space-between;
+}
 
+.full-recipe-title {
+  font-family: Quicksand;
+  font-size: 190%;
+  padding: 1%;
+}
+
+.back-button,
+.cook-this-recipe-button {
+  width: 10%;
+  border-radius: 20px;
+  margin: 2%;
+  border: none;
+}
+
+.back-button:hover,
+.cook-this-recipe-button:hover {
+  background-color: #00feff;
+  cursor: pointer;
+}
+
+
+.full-recipe-title-and-tags {
+  text-align: center;
+}
+
+.full-recipe-tags {
+  margin-bottom: 2%;
 }
 
 .full-recipe-left-section {
   grid-area: two;
-  border: 2px solid green;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.full-recipe-ingredinets-list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.full-recipe-ingredient-name-container,
+.full-recipe-ingredient-amount-container,
+.full-recipe-ingredient-units-container {
+
+  margin: 4%;
+  font-size: 80%;
+  width: 100%;
+}
+
+.full-recipe-ingredient-units-container {
 
 }
 
-.full-recipe-right-section {
-  grid-area: three;
-  border: 2px solid yellow;
+.full-recipe-ingredient {
+  width: 150px;
+}
 
+.full-recipe-image {
+  height: 200px;
+  width: 300px;
+  border-radius: 20px;
+  margin: 2%;
+}
+
+.full-recipe-right-section {
+  display: flex;
+  flex-direction: column;
+  grid-area: three;
+}
+
+.full-recipe-step {
+  margin: 2%;
 }
 
 .hidden {
