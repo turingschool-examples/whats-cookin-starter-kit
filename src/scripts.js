@@ -6,6 +6,7 @@ const favoriteRecipes = document.querySelector("#favorite-recipes-main");
 const addButton = document.querySelector("#add-button");
 const recipeForm = document.querySelector("#recipe-form");
 const homeButton = document.querySelector("#home-button");
+
 // const recipeTitle = document.querySelector(".recipe-title");
 
 
