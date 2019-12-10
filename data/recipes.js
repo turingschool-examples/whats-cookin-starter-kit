@@ -2686,7 +2686,7 @@ let recipeData = [
   {
     "name": "Birthday Cake Jello Shots",
     "id": 602311,
-    "image": "../recipe-images/bday-cake-shot.jpg",
+    "image": "../recipe-images/bdaycake-shot.jpg",
     "ingredients": [
       {
         "name": "cranberry juice cocktail",

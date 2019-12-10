@@ -69,9 +69,22 @@ title {
   margin-top: 20px;
 }
 
-img {
-  width: 22%;
+.image-labels {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 65%;
+
+  font-size: 24px;
   margin: 2%;
+  margin-top: 0px;
+}
+
+.crop {
+  width: 22%;
+  height: 240px;
+  margin: 2%;
+  object-fit: cover;
 }
 
 .menu-select-btn {
