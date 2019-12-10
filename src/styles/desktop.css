@@ -26,7 +26,22 @@
     background-color: #282828;
   }
 
-  .box-1 {
+  .injected-suggested-recipes {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+  }
+
+  .recipe-card {
+    width: 400px;
+    font-size: 1.2em;
+  }
+
+  .recipe-card-active {
+    width: 80%;
+  }
+
+  /* .box-1 {
     grid-area: box1;
     }
 
@@ -81,5 +96,5 @@
     "box1 box2 box3 box4"
     "box5 box6 box7 box8"
     "box9 box10 box11 box12"
-  };
+  }; */
 }
