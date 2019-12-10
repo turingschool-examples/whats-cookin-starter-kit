@@ -108,12 +108,13 @@ title {
 }
 
 #recipe-image {
-  height: 60%;
-  width: 60%;
+  height: 1000px;
+  width: 55%;
   margin: 0px;
+  object-fit: cover;
 }
 
-.crop-main {
+#crop-main {
   width: 75%;
   height: 800px;
   /* margin: 2%; */
