@@ -8,10 +8,6 @@ class Recipe {
     this.tags = tags;
     this.isFavorite = false;
   }
-  checkPantry = () => {
-
-    //return the difference of user.pantry vs required ingredients via id & run getMissingIngredientCost();
-  }
 }
 
 module.exports = Recipe
