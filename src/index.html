@@ -13,7 +13,12 @@
     <nav class='main_body-nav'>
       <h1>Whats Cookin</h1>
       <h3 class="nav_sub-header">Cookbook recipes</h3>
-      <input type="text" class="main_recipe-search" placeholder="search">
+      <div class= 'nav-search'>
+        <button class ="favorite-filter" name='favorite'>Show Favorites</button>
+        <button class ="tocook-filter" name ='tocook'>Show Saved Recipes</button>
+        <input type="text" class="main_recipe-search" placeholder="search">
+        <button class ='clear-filter' name ='clear'>Clear Search</button>
+      </div>
     </nav>
     <main class='main_body'>
       <section class="main_recipe-area">
@@ -36,7 +41,7 @@
     </section>
 
     </main>
-    <script type="text/javascript" src="../tests/user-test.js"></script>
+    <!-- <script type="text/javascript" src="../tests/user-test.js"></script> -->
     <script type="text/javascript" src="../tests/pantry-test.js"></script>
     <script type="text/javascript" src="../tests/cookbook-test.js"></script>
     <script type="text/javascript" src="../data/users.js"></script>
