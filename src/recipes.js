@@ -18,6 +18,7 @@ class Recipe {
       <img class="food-pic" src="${this.image}">
       <button class="recipe-title meal-name">${this.name}</button>
       <img class="fav-star" src="../assets/star copy.svg">
+      <img class="cook-star" src="../assets/star copy.svg">
     </div>
     `;
   }
