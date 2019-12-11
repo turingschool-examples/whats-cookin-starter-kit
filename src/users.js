@@ -1,8 +1,8 @@
 class User {
   constructor(user) {
     this.id = user.id;
-    this.name = user.namel
-    this.pantry = [];
+    this.name = user.name;
+    this.pantry = user.pantry;
     this.favoriteRecipes = [];
     this.recipesToCook = [];
     this.searchedRecipes = [];
@@ -62,7 +62,8 @@ class User {
       let name = recipeData[i].name.toLowerCase();
       if (name.includes(input.toLowerCase())) {
         this.searchedRecipes.unshift(recipeData[i]);
-        console.log(this.searchedRecipes);
+      } else {
+        // display "No Match Found" message
       }
     }
     this.displaySearched();
@@ -83,5 +84,5 @@ class User {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = Users;
+  module.exports = User;
 }

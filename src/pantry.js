@@ -1,4 +1,4 @@
-class Pantry{
+class Pantry {
   constructor(pantry) {
     // this.id = id;
     this.pantry = pantry;
@@ -19,12 +19,7 @@ class Pantry{
   makeGroceryList() {
     // all of the ingredients not contained in the pantry are added to another list, where a list of each ingredient and its cost is added, as well as the total cost.
   }
-  removeUsedIngredients() {
-    //update pantry inrgedients after some get used for a recipe
-  }
 };
-
-
 
 if (typeof module !== 'undefined') {
   module.exports = Pantry;

@@ -1,26 +1,26 @@
-const favoritesButton = document.querySelector("#favorites");
-const homeRecipes = document.querySelector(".home-recipes");
-const favoriteRecipes = document.querySelector("#favorite-recipes-main");
 const addButton = document.querySelector("#add-button");
-const recipeForm = document.querySelector("#recipe-form");
-const homeButton = document.querySelector("#home-button");
-const onTheMenu = document.querySelector('#on-menu');
-const groceryList = document.querySelector("#grocery-list");
-const searchButton = document.querySelector("#search-btn");
+const favoriteRecipes = document.querySelector("#favorite-recipes-main");
+const favoritesButton = document.querySelector("#favorites");
 const filterBtn = document.querySelector('#filter-btn');
+const groceryList = document.querySelector("#grocery-list");
+const homeButton = document.querySelector("#home-button");
+const homeRecipes = document.querySelector(".home-recipes");
+const onTheMenu = document.querySelector('#on-menu');
+const recipeForm = document.querySelector("#recipe-form");
 const searchBox = document.querySelector("#search-input");
+const searchButton = document.querySelector("#search-btn");
 const user = new User(users[0]);
 
-addRecipeCards();
+instantiateRecipes();
 
-homeRecipes.addEventListener("click", displayRecipe);
-favoritesButton.addEventListener("click", runDisplayFavorites);
-onTheMenu.addEventListener("click", runDisplayToCook);
 addButton.addEventListener("click", displayRecipeForm);
-homeButton.addEventListener("click", displayHomePage);
-groceryList.addEventListener("click", runCheckPantry);
-searchButton.addEventListener("click", runSearch);
+favoritesButton.addEventListener("click", runDisplayFavorites);
 filterBtn.addEventListener('click', getUniqueTags);
+groceryList.addEventListener("click", runCheckPantry);
+homeButton.addEventListener("click", displayHomePage);
+homeRecipes.addEventListener("click", displayRecipe);
+onTheMenu.addEventListener("click", runDisplayToCook);
+searchButton.addEventListener("click", runSearch);
 
 function getUniqueTags() {
   let uniqueTags = [];
@@ -39,7 +39,6 @@ function runSearch() {
   let searchInput = searchBox.value;
   user.searchRecipes(searchInput);
 }
-
 
 function runCheckPantry() {
   const pantry = new Pantry(users[0].pantry)
@@ -66,7 +65,7 @@ function displayHomePage() {
   addRecipeCards();
 }
 
-function addRecipeCards() {
+function instantiateRecipes() {
   recipeData.forEach(recipe1 => {
     let recipe = new Recipe(recipe1);
     recipe.addCards();
