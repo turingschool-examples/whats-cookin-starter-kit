@@ -26,8 +26,7 @@ class User {
       homeRecipes.innerHTML += `<div class="card" id="${this.recipesToCook[i].id}">
     <img class="food-pic" src="${this.recipesToCook[i].image}">
       <button class="recipe-title meal-name">${this.recipesToCook[i].name}</button>
-      <img class="un-fav-star" src="../assets/star copy.svg">
-      <img class="un-cook-star" src="../assets/star copy.svg">
+      <button class="un-cook-star">Remove from Menu</button>
     </div>`;
     }
   }
@@ -52,8 +51,8 @@ class User {
       homeRecipes.innerHTML += `<div class="card" id="${this.favoriteRecipes[i].id}">
       <img class="food-pic" src="${this.favoriteRecipes[i].image}">
         <button class="recipe-title meal-name">${this.favoriteRecipes[i].name}</button>
-        <img class="un-fav-star" src="../assets/star copy.svg">
-        <img class="cook-star" src="../assets/star copy.svg">
+        <button class="un-fav-star">Remove Favorite</button>
+        <button class="cook-star">Add to Menu</button>
       </div>`;
     }
   }
