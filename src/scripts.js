@@ -11,11 +11,11 @@ const user = new User(users[4]);
 addRecipeCards();
 
 homeRecipes.addEventListener("click", displayRecipe);
-favoritesButton.addEventListener("click", displayFavorites);
+favoritesButton.addEventListener("click", runDisplayFavorites);
 addButton.addEventListener("click", displayRecipeForm);
 homeButton.addEventListener("click", displayHomePage);
 
-function displayFavorites() {
+function runDisplayFavorites() {
   homeRecipes.innerHTML = '';
   user.displayFavorites();
 }

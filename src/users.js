@@ -19,6 +19,7 @@ removeFromFavorites(recipe) {
   for(var i = this.favoriteRecipes.length - 1; i >= 0; i--) {
     if(this.favoriteRecipes[i] === recipe) {
        this.favoriteRecipes.splice(i, 1);
+       runDisplayFavorites();
     }
 }
 }
