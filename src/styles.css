@@ -63,15 +63,12 @@
   cursor: pointer;
 }
 
-.enter-button:focus {
-  outline: none;
-}
-
 body {
   background: repeat center/100% url(../images/cutting_board_background.jpeg);
   background-attachment: fixed;
   background-color: black;
   height: 100vh;
+  background-size: cover;
 }
 
 nav {
@@ -91,10 +88,6 @@ nav {
   color: white;
   font-size: 100%;
   padding: 2%;
-}
-
-.nav-buttons:focus {
-  outline: none;
 }
 
 .nav-buttons:hover {
@@ -119,10 +112,6 @@ nav {
   width: 80%;
 }
 
-.search-input:focus {
-  outline: none;
-}
-
 .search-button {
   background: no-repeat center/90% url(../images/search_icon.png);
   background-color: white;
@@ -132,10 +121,6 @@ nav {
   height: 40px;
   padding: 20px;
   width: 30px;
-}
-
-.search-button:focus {
-  outline: none;
 }
 
 .logo-container {
@@ -243,10 +228,6 @@ h2 {
   width: 29%;
 }
 
-.card-buttons:focus {
-  outline: none;
-}
-
 .card-buttons:hover {
   background-color: #00feff;
   cursor: pointer;
@@ -328,6 +309,7 @@ li {
   margin: 1%;
 }
 
+
 .full-recipe-ingredient {
   width: 150px;
 }
@@ -351,4 +333,10 @@ li {
 
 .hidden {
   display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .logo-container {
+    display: none;
+  }
 }
