@@ -11,6 +11,14 @@ navBarToggle.addEventListener('click', function () {
   mainNav.classList.toggle('active');
 });
 
+mainNav.addEventListener('click', cardHandler);
+
+function cardHandler() {
+  showFavortite();
+  showCurrent();
+}
+
+
 function pageLoadHandler() {
   loadUser();
   allRecipes = instantiateRecipes();
@@ -26,7 +34,7 @@ function loadUser() {
 function loadRecipes(recipeArray) {
   allRecipes = instantiateRecipes();
   for(let i = 0; i <  allRecipes.length; i++) {
-    suggestedRecipes.insertAdjacentHTML('beforeend',
+    recipeList.insertAdjacentHTML('beforeend',
     `<div class="recipe-card" data-id="${allRecipes[i].id}">
       <div class="recipe-header">
         <img src="${recipeArray[i].image}" alt="Picture of ${recipeArray[i].name}">
@@ -98,11 +106,10 @@ function showFavortite() {
   });
 }
 
-  function showToCook() {
-    let sort = allRecipes.filter(recipe => {
-      if(users.currentRecipes) {
-        return users.currentRecipes;
-      }
-      console.log(sort);
-    });
+function showCurrent() {
+  let sort = allRecipes.filter(recipe => {
+    if(users.currentRecipes) {
+      return users.currentRecipes;
+    }
+  });
 }
