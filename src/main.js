@@ -93,10 +93,10 @@ const buildCookBook = (name) => {
 const filterSearch = (e) => {
   const {value} = e.target;
   let allSearchResults = [];
-  // todo: searchByIngredients, searchByTitle
+  // todo: searchByIngredients, searchByName
     // super similar to concat(filterTags(value))
   allSearchResults = allSearchResults.concat(filterTags(value));
-  //allSearchResults
+  allSearchResults = allSearchResults.concat(filterByIngredient(value));
   renderSearchRecipes(allSearchResults);
 }
   // for
@@ -121,7 +121,6 @@ const filterSearch = (e) => {
 }
 
 const filterTags = (type) => {
-  console.log(src);
   return src.filter(recipe => {
   const foundTag = recipe.tags.find(tag => {
     return tag.includes(type)
@@ -132,9 +131,25 @@ const filterTags = (type) => {
 })
 }
 
+const filterByIngredient = (type) => {
+  console.log(src);
+  return src.filter(recipe => {
+    console.log(recipe.ingredients);
+  const foundIngredient = recipe.ingredients.name.find(ingredient => {
+    return ingredient.includes(type)
+  })
+  if(foundingredient) {
+    return recipe
+  }
+})
+}
+
 function costOfRecipe() {
-	return this.ingredients.reduce((acc, ingredient) => {
+  console.log('a');
+	return pantry.ingredients.reduce((acc, ingredient) => {
+    console.log('b');
 			ingredientsData.forEach((singleIngredient) => {
+        console.log('c');
 				console.log(ingredientsData);
 				if (singleIngredient.id === ingredient.id) {
 					acc += ingredient.costOfRecipe;
@@ -163,6 +178,6 @@ function displayUserName() {
   }
 }
 
-
+costOfRecipe()
 displayUserName()
 displayRecipes()
