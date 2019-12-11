@@ -5,6 +5,7 @@ let favoriteRecipes = document.querySelector('.injected-favorite-recipes');
 let allRecipes = [];
 let currentUser;
 
+
 window.onload = pageLoadHandler;
 navBarToggle.addEventListener('click', function () {
   mainNav.classList.toggle('active');
@@ -21,7 +22,7 @@ function loadUser() {
   console.log(currentUser.pantry);
 }
 
-function loadSuggestedRecipesFunction() {
+function loadRecipes(recipeArray) {
   allRecipes = instantiateRecipes();
   for(let i = 0; i <  allRecipes.length; i++) {
     suggestedRecipes.insertAdjacentHTML('beforeend',
@@ -74,7 +75,7 @@ function recipeHandler(event) {
       currentUser.favoriteRecipes.push(currentUser.addFavoriteRecipe(event.target.parentNode.parentNode.parentNode.dataset.id));
     } else {
       currentUser.favoriteRecipes.splice(currentUser.favoriteRecipes.indexOf(event.target.parentNode.parentNode.parentNode.dataset.id), 1);
-    } 
+    }
     event.target.classList.toggle('favorite-recipe-active');
   }
   if (event.target.classList.contains('current-recipe')) {
@@ -82,7 +83,24 @@ function recipeHandler(event) {
       currentUser.currentRecipes.push(currentUser.addCurrentRecipe(event.target.parentNode.parentNode.parentNode.dataset.id));
     } else {
       currentUser.currentRecipes.splice(currentUser.currentRecipes.indexOf(event.target.parentNode.parentNode.parentNode.dataset.id), 1);
-    } 
+    }
     event.target.classList.toggle('current-recipe-active');
   }
 };
+
+function showFavortite() {
+  let sort = allRecipes.filter(recipe => {
+    if(users.favoriteRecipes) {
+      return users.favoriteRecipes;
+    }
+    console.log(sort);
+  });
+
+  function showToCook() {
+    let sort = allRecipes.filter(recipe => {
+      if(users.currentRecipes) {
+        return users.currentRecipes;
+      }
+      console.log(sort);
+    });
+}
