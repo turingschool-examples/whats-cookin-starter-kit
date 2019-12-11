@@ -19,7 +19,6 @@ function pageLoadHandler() {
 function loadUser() {
   currentUser = new Users(users[0]);
   currentUser.createPantry(users[0].pantry);
-  console.log(currentUser.pantry);
 }
 
 function loadRecipes(recipeArray) {
@@ -27,11 +26,14 @@ function loadRecipes(recipeArray) {
     recipeList.insertAdjacentHTML('beforeend',
     `<div class="recipe-card" data-id="${recipeArray[i].id}">
       <div class="recipe-header">
-        <img src="${recipeArray[i].image}" alt="Picture of ${recipeArray[i].name}">
+        <div class="image-wrapper">
+          <img src="${recipeArray[i].image}" alt="Picture of ${recipeArray[i].name}">
+        </div>
         <h3>${recipeArray[i].name}</h3>
         <div class="button-wrapper">
           <button class="buttons favorite-recipe">&#11089;</button>
           <button class="buttons current-recipe">+</button>
+          <button class="buttons close-recipe hidden">Close</button>
         </div>
       </div>
       <div class="recipe-content hidden">
@@ -68,6 +70,12 @@ function recipeHandler(event) {
   if (event.target.parentNode.classList.contains('recipe-header')) {
     event.target.parentNode.parentNode.classList.toggle('recipe-card-active');
     event.target.parentNode.parentNode.children[1].classList.toggle('hidden');
+    event.target.nextElementSibling.children[2].classList.toggle('hidden');
+  }
+  if (event.target.classList.contains('close-recipe')) {
+    event.target.parentNode.parentNode.parentNode.classList.toggle('recipe-card-active');
+    event.target.parentNode.parentNode.parentNode.children[1].classList.toggle('hidden');
+    event.target.classList.toggle('hidden');
   }
   if (event.target.classList.contains('favorite-recipe')) {
     if (!currentUser.favoriteRecipes.includes(event.target.parentNode.parentNode.parentNode.dataset.id)) {
