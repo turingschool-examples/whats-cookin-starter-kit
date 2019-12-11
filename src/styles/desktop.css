@@ -22,16 +22,6 @@
     padding: .5em;
   }
 
-  /* .navbar-toggle, li {
-    display: none;
-  }
-
-  .desktop-nav {
-    text-align: right;
-    float: right;
-    display: block;
-  } */
-
   .navbar {
     display: inline;
   }
@@ -41,7 +31,7 @@
 
   }
 
-  .injected-suggested-recipes {
+  .injected-recipes {
     display: flex;
     flex-flow: row wrap;
     width: 100%;

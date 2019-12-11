@@ -1,6 +1,6 @@
 let navBarToggle = document.querySelector('.navbar-toggle');
 let mainNav = document.querySelector('.main-nav');
-let suggestedRecipes = document.querySelector('.injected-suggested-recipes');
+let recipeList = document.querySelector('.injected-recipes');
 let favoriteRecipes = document.querySelector('.injected-favorite-recipes');
 let allRecipes = [];
 let currentUser;
@@ -13,7 +13,8 @@ navBarToggle.addEventListener('click', function () {
 
 function pageLoadHandler() {
   loadUser();
-  loadSuggestedRecipesFunction();
+  allRecipes = instantiateRecipes();
+  loadRecipes(allRecipes);
 }
 
 function loadUser() {
@@ -28,8 +29,8 @@ function loadRecipes(recipeArray) {
     suggestedRecipes.insertAdjacentHTML('beforeend',
     `<div class="recipe-card" data-id="${allRecipes[i].id}">
       <div class="recipe-header">
-        <img src="${allRecipes[i].image}" alt="Picture of ${allRecipes[i].name}">
-        <h3>${allRecipes[i].name}</h3>
+        <img src="${recipeArray[i].image}" alt="Picture of ${recipeArray[i].name}">
+        <h3>${recipeArray[i].name}</h3>
         <div class="button-wrapper">
           <button class="buttons favorite-recipe">&#11089;</button>
           <button class="buttons current-recipe">+</button>
@@ -37,15 +38,15 @@ function loadRecipes(recipeArray) {
       </div>
       <div class="recipe-content hidden">
         <ul class="recipe-ingredients">
-          ${recipeIngredients(allRecipes[i].ingredients)}
+          ${recipeIngredients(recipeArray[i].ingredients)}
         </ul>
         <ol class="recipe-directions">
-          ${recipeDirections(allRecipes[i].instructions)}
+          ${recipeDirections(recipeArray[i].instructions)}
         </ol>
       </div>
     </div>`
     )}
-  recipeSelector = suggestedRecipes.querySelectorAll('.recipe-card');
+  recipeSelector = recipeList.querySelectorAll('.recipe-card');
   recipeSelector.forEach(recipe => recipe.addEventListener('click', recipeHandler));
 };
 
@@ -95,6 +96,7 @@ function showFavortite() {
     }
     console.log(sort);
   });
+}
 
   function showToCook() {
     let sort = allRecipes.filter(recipe => {
