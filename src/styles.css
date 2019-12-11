@@ -111,3 +111,18 @@ img {
 	font-weight: 600;
 }
 
+.nav-search {
+	display: block;
+	margin: -1%;
+	margin-right: 35%;
+	width: 1150px;
+}
+
+.search {
+ width: 200px;
+}
+
+.main_recipe-search {
+	width: 350px;
+	height: 30px;
+}
