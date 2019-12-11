@@ -1,9 +1,9 @@
 class User {
-
   constructor() {
     this.pantry = [];
     this.favoriteRecipes = [];
     this.recipesToCook = [];
+    this.stock = 0;
   }
   
   displayFavorites() {
@@ -14,8 +14,28 @@ class User {
     return this.recipesToCook;
   }
 
-  addToFavorites(target) {
-    this.favoriteRecipes.includes(target) ? this.favoriteRecipes.splice(this.favoriteRecipes.indexOf(target), 1) : this.favoriteRecipes.push(target);
+  addToFavorites(target, recipes) {
+    if (this.favoriteRecipes.length !== 0) {
+      this.favoriteRecipes.filter(recipe => {
+        if (recipe.name === target) {
+        let indexFound = this.favoriteRecipes.map(function(x) {return x.name; }).indexOf(target)
+        this.favoriteRecipes.splice(indexFound, 1)
+        } else {
+          recipes.recipes.filter(recipe => {
+        if (recipe.name === target) {
+        this.favoriteRecipes.push(recipe)
+       }
+     })
+        }
+      }) 
+    } else {
+      recipes.recipes.filter(recipe => {
+        if (recipe.name === target) {
+        this.favoriteRecipes.push(recipe)
+       }
+     })
+   }
+
   }
 
   addToSaved(target) {

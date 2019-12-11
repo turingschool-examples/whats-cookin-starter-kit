@@ -21,7 +21,7 @@ searchValue.addEventListener("keyup", (e) => filterSearch(e, cookbook));
 
 function recipeCardEvent(e) {
   if (e.target.classList.contains("add_to-favorites")){
-    user.addToFavorites(e.target.parentElement.children[1].innerHTML)
+    user.addToFavorites(e.target.parentElement.children[1].innerHTML, cookbook)
     displayFavoriteRecipes()
   } else if (e.target.classList.contains("add_to-saved")){
     user.addToSaved(e.target.parentElement.children[1].innerHTML)
@@ -50,7 +50,7 @@ function displayFavoriteRecipes() {
   sum.forEach(recipe => {
     jsFavoriteArea.insertAdjacentHTML('beforeend',
       `<section class="user_favorite-container">
-            <h1 class="user_recipe-title">${recipe}</h1>
+            <h1 class="user_recipe-title">${recipe.name}</h1>
        </section>`);
   });
 }
