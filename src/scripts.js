@@ -9,7 +9,7 @@ let searchInput = document.querySelector('.search-input');
 
 const instantiateRecipeCards = () => {
   recipeData.forEach(recipe => {
-    let singleRecipe = new Recipe (
+    let singleRecipe = new Recipe(
       recipeData.name,
       recipeData.id,
       recipeData.image,
@@ -25,7 +25,10 @@ const pullIngredientNames = () => {
   user.pantry.forEach(item => {
     ingredientsData.filter(ingredient => {
       if (item.ingredient === ingredient.id) {
-        personalPantry.push({name: ingredient.name, amount: item.amount});
+        personalPantry.push({
+          name: ingredient.name,
+          amount: item.amount
+        });
       }
     });
   });
@@ -67,8 +70,8 @@ const searchCards = () => {
     if (meal.name.toUpperCase().includes(search) ||
       meal.tags.includes(search.toLowerCase()) ||
       meal.ingredients.some(ingredient => {
-      return ingredient.name.includes(search.toLowerCase())
-    })) {
+        return ingredient.name.includes(search.toLowerCase())
+      })) {
       clearRecipeCardArea();
       searchResults.push(meal);
       buildRecipeCards(searchResults);
@@ -84,7 +87,7 @@ const instantiateUser = () => {
   var selectedUser = users.find(person => {
     return person.id === randomNum;
   })
-  user = new User (
+  user = new User(
     selectedUser.id,
     selectedUser.name,
     selectedUser.pantry);
@@ -96,8 +99,9 @@ const buildIngredientsList = () => {
   for (var i = 0; i < user.recipeToBuild[0].ingredients.length; i++) {
     user.recipeToBuild.forEach(recipe => {
       document.querySelector('.full-recipe-ingredient-name-container').innerHTML += `
-    <li>${recipe.ingredients[i].quantity.amount} ${recipe.ingredients[i].quantity.unit} ${recipe.ingredients[i].name} </li> `
-    })
+    <li>${recipe.ingredients[i].quantity.amount}
+    ${recipe.ingredients[i].quantity.unit} ${recipe.ingredients[i].name} </li> `
+  });
   }
   buildRecipeSteps();
 }
@@ -107,13 +111,13 @@ const buildRecipeSteps = () => {
     user.recipeToBuild.forEach(recipe => {
       document.querySelector('.full-recipe-right-section').innerHTML += `
     <ol>${i + 1}. ${recipe.instructions[i].instruction}</ol>`
-  });
+    });
   }
 }
 
 const buildFullRecipeCard = (recipeToBuild) => {
   user.recipeToBuild.forEach(recipe => {
-    document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin',`
+    document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
     <section class="full-recipe-container">
       <div class="full-recipe-title-container">
         <div class="full-recipe-title-and-tags">
@@ -138,7 +142,7 @@ const addToFavoritesOrMenu = e => {
       if (recipe.id === Number(event.target.id)) {
         return recipe;
       }
-    })
+    });
     let doubleCheck = user.favoriteRecipes.includes(selectedRecipe);
     if (!doubleCheck) {
       user.addToFavorites(selectedRecipe);
@@ -177,14 +181,15 @@ const addToFavoritesOrMenu = e => {
       if (recipe.id === Number(event.target.id)) {
         return recipe;
       }
-    })
-      user.addToRecipeToBuild(selectedRecipe);
-      buildFullRecipeCard(selectedRecipe);
+    });
+    user.addToRecipeToBuild(selectedRecipe);
+    buildFullRecipeCard(selectedRecipe);
   }
 }
 
 const turnNavBtnsWhite = () => {
-  let navHeadings = ['.display-fav-button', '.all-recipes', '.my-menu', '.my-pantry'];
+  let navHeadings = ['.display-fav-button', '.all-recipes',
+  '.my-menu', '.my-pantry'];
   navHeadings.forEach(heading => {
     document.querySelector(`${heading}`).style.color = '#FFFFFF';
   })
@@ -200,8 +205,8 @@ const clearRecipeCardArea = () => {
 
 const emptyAreaErrorMessage = (emptyArea, message) => {
   if (user[emptyArea].length === 0) {
-    document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
-    <div class="fav-recipe-error-message-container">
+    document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin',
+     `<div class="fav-recipe-error-message-container">
       <p class="error-message">You don't have any ${message} at this time</p>
     </div>`);
   } else {
@@ -228,7 +233,7 @@ const onMyMenuTabClick = () => {
   searchPool = user.myMenu;
   clearCardAreaAndResetTabs();
   highlightNavBtn(`.my-menu`);
-  emptyAreaErrorMessage('myMenu','saved menu items');
+  emptyAreaErrorMessage('myMenu', 'saved menu items');
   buildRecipeCards(user.myMenu);
 }
 
