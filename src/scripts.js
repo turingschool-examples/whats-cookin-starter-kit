@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 let allRecipes = [];
+let searchPool = [];
 let personalPantry = [];
 let searchResults = [];
 let randomNum = genRanNum();
@@ -42,6 +43,7 @@ const instantiateUsersPantry = () => {
 }
 
 const buildRecipeCards = (recipesToBuild) => {
+
   recipesToBuild.forEach(recipe => {
     document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
   <div class="recipe-container">
@@ -62,8 +64,10 @@ const buildRecipeCards = (recipesToBuild) => {
 
 const searchCards = () => {
   searchResults = [];
+
+
   var search = searchInput.value.toUpperCase();
-  allRecipes.filter(meal => {
+  searchPool.filter(meal => {
     if (meal.name.toUpperCase().includes(search) || meal.tags.includes(search.toLowerCase())) {
       clearRecipeCardArea();
       searchResults.push(meal)
@@ -88,62 +92,68 @@ const instantiateUser = () => {
   document.querySelector('.nav-user-name').innerText = selectedUser.name;
 }
 
+const buildIngredientsList = () => {
+  for (var i = 0; i < user.recipeToBuild[0].ingredients.length; i++) {
+    user.recipeToBuild.forEach(recipe => {
+      document.querySelector('.full-recipe-ingredient-name-container').innerHTML += `
+    <li>${recipe.ingredients[i].quantity.amount} ${recipe.ingredients[i].quantity.unit} ${recipe.ingredients[i].name} </li> `
+    })
+  }
+  buildRecipeSteps()
+}
+
+const buildRecipeSteps = () => {
+  for (var i = 0; i < user.recipeToBuild[0].instructions.length; i++) {
+    user.recipeToBuild.forEach(recipe => {
+      document.querySelector('.full-recipe-right-section').innerHTML += `
+    <ol> ${i + 1}. ${recipe.instructions[i].instruction} </li> </ol>`
+    })
+  }
+}
+
 const buildFullRecipeCard = (recipeToBuild) => {
-  let selectedRecipeIngredients = user.recipeToBuild.ingredients.map(item => {
-    return item;
-  })
   user.recipeToBuild.forEach(recipe => {
-  document.querySelector('.full-recipe-space').insertAdjacentHTML('afterbegin',`
-  <section class="full-recipe-container">
-
-    <div class="full-recipe-title-container">
-      <button type="button" class="back-button">BACK</button>
-      <div class="full-recipe-title-and-tags">
-        <h1 class="full-recipe-title">${recipe.name}</h1>
-        <p class="full-recipe-tags">${recipe.tags}</p>
+    document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin',`
+    <section class="full-recipe-container">
+      <div class="full-recipe-title-container">
+        <div class="full-recipe-title-and-tags">
+          <h1 class="full-recipe-title">${recipe.name}</h1>
+          <p class="full-recipe-tags">${recipe.tags}</p>
+        </div>
+        <button type="button" class="cook-this-recipe-button">COOK THIS RECIPE</button>
       </div>
-      <button type="button" class="cook-this-recipe-button">COOK THIS RECIPE</button>
-    </div>
-
-    <div class="full-recipe-left-section">
-
-      <img class="full-recipe-image" src="${recipe.image}" alt="">
-      <div class="full-recipe-ingredinets-list">
-
-        <div class="full-recipe-ingredient-name-container">
-          ${[selectedRecipeIngredients].name}
+  
+      <div class="full-recipe-left-section">
+  
+        <img class="full-recipe-image" src="${recipe.image}" alt="">
+        <div class="full-recipe-ingredinets-list">
+          <div class="full-recipe-ingredient-name-container">
+          </div>
         </div>
-
-        <div class="full-recipe-ingredient-amount-container">
-         ${[selectedRecipeIngredients].quantity.amount}
-        </div>
-
-        <div class="full-recipe-ingredient-units-container">
-          ${[selectedRecipeIngredients].quantity.unit}
-        </div>
+      </div>
+  
+      <div class="full-recipe-right-section">
+      <p class="instructions"></
+      
 
       </div>
-    </div>
-
-    <div class="full-recipe-right-section">
-    <p class="full-recipe-step">Step 1: In a heavy saucepan, stir together the milk and 1/4 cup of sugar. Bring to a boil over medium heat.</p>
-    <p class="full-recipe-step">Step 2: In a medium bowl, whisk together the egg yolks and egg. Stir together the remaining sugar and cornstarch; then stir them into the egg until smooth. When the milk comes to a boil, drizzle it into the bowl in a thin stream while mixing so that you do not cook the eggs. Return the mixture to the saucepan, and slowly bring to a boil, stirring constantly so the eggs don' t curdle or scorch on the bottom.</p>
-    <p class="full-recipe-step">Step 3: When the mixture comes to a boil and thickens, remove from the heat. Stir in the butter and vanilla, mixing until the butter is completely blended in.</p>
-    <p class="full-recipe-step">Step 4: Pour into a heat-proof container and place a piece of plastic wrap directly on the surface to prevent a skin from forming. Refrigerate until chilled before using.</p>
-    </div>
-
-  </section>`);
+  
+    </section>`);
   })
+  buildIngredientsList()
 }
 
 const addToFavoritesOrMenu = e => {
+  if (e.target.classList.contains('cook-this-recipe-button')) {
+    cookRecipe()
+  }
   if (e.target.classList.contains('add-to-favorites')) {
     let selectedRecipe = allRecipes.find(recipe => {
       if (recipe.id === Number(event.target.id)) {
         return recipe;
       }
     })
-    let doubleCheck = user.favoriteRecipes.includes(selectedRecipe)
+    let doubleCheck = user.favoriteRecipes.includes()
     if (!doubleCheck) {
       user.addToFavorites(selectedRecipe);
     } else {
@@ -221,7 +231,7 @@ const emptyMenuAreaErrorMessage = (message) => {
 
 const navBtnClickHandler = e => {
   if (e.target.classList.contains('display-fav-button')) {
-    currentPage = 'My Favorites';
+    searchPool = user.favoriteRecipes;
     turnNavBtnsWhite();
     highlightNavBtn(`.display-fav-button`)
     clearRecipeCardArea();
@@ -229,14 +239,14 @@ const navBtnClickHandler = e => {
     buildRecipeCards(user.favoriteRecipes);
   };
   if (e.target.classList.contains('all-recipes')) {
-    currentPage = 'All Recipes';
+    searchPool = allRecipes;
     turnNavBtnsWhite();
     highlightNavBtn(`.all-recipes`)
     clearRecipeCardArea();
     buildRecipeCards(allRecipes);
   };
   if (e.target.classList.contains('my-menu')) {
-    currentPage = 'My Menu';
+    searchPool = user.myMenu;
     turnNavBtnsWhite();
     highlightNavBtn(`.my-menu`)
     clearRecipeCardArea();
@@ -244,13 +254,18 @@ const navBtnClickHandler = e => {
     buildRecipeCards(user.myMenu);
   };
   if (e.target.classList.contains('my-pantry')) {
-    currentPage = 'My Pantry';
     turnNavBtnsWhite();
     highlightNavBtn(`.my-pantry`)
     clearRecipeCardArea();
     instantiateUsersPantry();
-  };
+  }
 };
+
+const cookRecipe = e => {
+  if (e.target.classList.contains('.cook-this-recipe-button')) {
+    console.log('hiii')
+  }
+}
 
 const loadDashboard = () => {
   document.querySelector('.splash-container').classList.add('hidden');
