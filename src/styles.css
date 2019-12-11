@@ -64,10 +64,6 @@
   cursor: pointer;
 }
 
-.enter-button:focus {
-  outline: none;
-}
-
 body {
   background: repeat center/100% url(../images/cutting_board_background.jpeg);
   background-attachment: fixed;
@@ -94,10 +90,6 @@ nav {
   border: none;
 }
 
-.nav-buttons:focus {
-  outline: none;
-}
-
 .nav-buttons:hover {
   color: #00feff;
   cursor: pointer;
@@ -120,10 +112,6 @@ nav {
   border: none;
 }
 
-.search-input:focus {
-  outline: none;
-}
-
 .search-button {
   background: no-repeat center/90% url(../images/search_icon.png);
   background-color: white;
@@ -133,10 +121,6 @@ nav {
   border: none;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-}
-
-.search-button:focus {
-  outline: none;
 }
 
 .logo-container {
@@ -245,10 +229,6 @@ h2 {
   margin-left: 1%;
   margin-right: 1%;
   border: none;
-}
-
-.card-buttons:focus {
-  outline: none;
 }
 
 .card-buttons:hover {
