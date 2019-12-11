@@ -1,5 +1,5 @@
-let navBarToggle = document.querySelector('.navbar-toggle');
 let mainNav = document.querySelector('.main-nav');
+let navBar = document.querySelector('.navbar');
 let recipeList = document.querySelector('.injected-recipes');
 let favoriteRecipes = document.querySelector('.injected-favorite-recipes');
 let allRecipes = [];
@@ -13,17 +13,24 @@ let input = document.querySelector('.search-bar');
 
 
 window.onload = pageLoadHandler;
-navBarToggle.addEventListener('click', function () {
-  mainNav.classList.toggle('active');
-});
+// navBarToggle.addEventListener('click', function () {
+//   mainNav.classList.toggle('active');
+// });
 // mainNav.addEventListener('keypress', mainHandler);
 mainNav.addEventListener('keyup', mainHandler);
+navBar.addEventListener('click', navHandler);
 
 function mainHandler() {
   searchedRecipes = [];
   clearDom()
   searchRecipes(input.value)
   loadRecipes(searchedRecipes);
+}
+
+function navHandler(event) {
+  if(event.target.classList.contains('navbar-toggle')) {
+     mainNav.classList.toggle('active');
+  }
 }
 
 
