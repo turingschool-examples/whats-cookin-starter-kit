@@ -20,7 +20,10 @@ navBarToggle.addEventListener('click', function () {
 mainNav.addEventListener('keyup', mainHandler);
 
 function mainHandler() {
+  searchedRecipes = [];
+  clearDom()
   searchRecipes(input.value)
+  loadRecipes(searchedRecipes);
 }
 
 
@@ -33,14 +36,12 @@ function pageLoadHandler() {
 function loadUser() {
   currentUser = new Users(users[0]);
   currentUser.createPantry(users[0].pantry);
-  console.log(currentUser.pantry);
 }
 
 function loadRecipes(recipeArray) {
-  allRecipes = instantiateRecipes();
-  for(let i = 0; i <  allRecipes.length; i++) {
+  for(let i = 0; i <  recipeArray.length; i++) {
     recipeList.insertAdjacentHTML('beforeend',
-    `<div class="recipe-card" data-id="${allRecipes[i].id}">
+    `<div class="recipe-card" data-id="${recipeArray[i].id}">
       <div class="recipe-header">
         <img src="${recipeArray[i].image}" alt="Picture of ${recipeArray[i].name}">
         <h3>${recipeArray[i].name}</h3>
@@ -103,16 +104,13 @@ function recipeHandler(event) {
 };
 
 function searchRecipes(keyword) {
-    return allRecipes.filter(recipe => {
-      if (recipe.name.toLowerCase().includes(keyword.toLowerCase())) {
-        console.log(recipe.name);
-      }
-    //   return (recipe.name.toLowerCase().includes(keyword.toLowerCase()) ||
-    // recipe.tag.some(ingredient =>
-    // ingredient.name.toLowerCase().includes(keyword.toLowerCase())))
+  return allRecipes.filter(recipe => {
+    if (recipe.name.toLowerCase().includes(keyword.toLowerCase())) {
+      searchedRecipes.push(recipe);
+    }
   })
 };
 
-// function clearOnSearch() {
-//
-// };
+function clearDom() {
+  recipeList.innerHTML = "";
+};
