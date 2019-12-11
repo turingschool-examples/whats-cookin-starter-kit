@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 let allRecipes = [];
-let searchPool = [];
+let searchPool = allRecipes;
 let personalPantry = [];
 let searchResults = [];
 let randomNum = genRanNum();
@@ -43,11 +43,7 @@ const instantiateUsersPantry = () => {
   });
 }
 
-const checkForFaveState = () => {
-  //check for matches in the favorites array
-  //if user.myFavorites includes 
-  
-}
+
 
 const buildRecipeCards = (recipesToBuild) => {
   recipesToBuild.forEach(recipe => {
@@ -74,13 +70,17 @@ const searchCards = () => {
 
   var search = searchInput.value.toUpperCase();
   searchPool.filter(meal => {
-    if (meal.name.toUpperCase().includes(search) || meal.tags.includes(search.toLowerCase())) {
+    if (meal.name.toUpperCase().includes(search) || meal.tags.includes(search.toLowerCase()) || meal.ingredients.some(ingredient => {return ingredient.name.includes(search.toLowerCase())
+    })) {
       clearRecipeCardArea();
       searchResults.push(meal)
       buildRecipeCards(searchResults)
     }
   })
 }
+
+
+
 
 function genRanNum() {
   return Math.floor(Math.random() * 50);
@@ -156,11 +156,12 @@ const addToFavoritesOrMenu = e => {
     if (!doubleCheck) {
       user.addToFavorites(selectedRecipe);
     } else {
-      // remove from favorites
-      // const id = selectedRecipe.id
-      // user.myfavorites = user.myfavorites.filter(fav => id !== fav.id)
       let id = selectedRecipe.id;
       user.favoriteRecipes = user.favoriteRecipes.filter(fav => id !== fav.id)
+      if (currentPage === 'My Favorites') {
+        clearRecipeCardArea();
+        buildRecipeCards(user.favoriteRecipes);
+      }
       return;
     }
   }
@@ -174,6 +175,12 @@ const addToFavoritesOrMenu = e => {
     if (!doubleCheck) {
       user.addToMyMenu(selectedRecipe);
     } else {
+      let id = selectedRecipe.id;
+      user.myMenu = user.myMenu.filter(sel => id !== sel.id)
+      if (currentPage === 'My Menu') {
+        clearRecipeCardArea();
+        buildRecipeCards(user.myMenu);
+      }
       return;
     }
   }
@@ -235,6 +242,7 @@ const emptyMenuAreaErrorMessage = (message) => {
 
 const navBtnClickHandler = e => {
   if (e.target.classList.contains('display-fav-button')) {
+    currentPage = 'My Favorites'
     searchPool = user.favoriteRecipes;
     turnNavBtnsWhite();
     highlightNavBtn(`.display-fav-button`)
@@ -243,6 +251,7 @@ const navBtnClickHandler = e => {
     buildRecipeCards(user.favoriteRecipes);
   };
   if (e.target.classList.contains('all-recipes')) {
+    currentPage = 'All Recipes'
     searchPool = allRecipes;
     turnNavBtnsWhite();
     highlightNavBtn(`.all-recipes`)
@@ -250,6 +259,7 @@ const navBtnClickHandler = e => {
     buildRecipeCards(allRecipes);
   };
   if (e.target.classList.contains('my-menu')) {
+    currentPage = 'My Menu'
     searchPool = user.myMenu;
     turnNavBtnsWhite();
     highlightNavBtn(`.my-menu`)
