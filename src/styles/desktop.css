@@ -15,6 +15,9 @@
 
   header {
     background-color: #00aeee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   header h1 {
@@ -22,13 +25,20 @@
     padding: .5em;
   }
 
-  .navbar {
-    display: inline;
+  .navbar-toggle {
+    display: none;
   }
 
-  .navbar div {
-    background-color: #282828;
+  .navbar,
+  .main-nav,
+  .main-nav li{
+    display: inline;
+    color: #171717;
+    background-color: #00aeee;
+  }
 
+  .search-bar {
+    width: 20em;
   }
 
   .injected-recipes {
@@ -38,7 +48,7 @@
   }
 
   .recipe-card {
-    width: 400px;
+    width: 450px;
     font-size: 1.2em;
   }
 
