@@ -516,7 +516,7 @@ let recipeData = [
         "name": "baking powder",
         "id": 18371,
         "quantity": {
-          "amount": 0.3333333333333333,
+          "amount": 0.33,
           "unit": "teaspoon"
         }
       },
@@ -1895,7 +1895,7 @@ let recipeData = [
         "name": "creamy peanut butter",
         "id": 10116098,
         "quantity": {
-          "amount": 0.3333333333333333,
+          "amount": 0.33,
           "unit": "cup"
         }
       },
@@ -2307,7 +2307,7 @@ let recipeData = [
         "name": "honey",
         "id": 19296,
         "quantity": {
-          "amount": 0.3333333333333333,
+          "amount": 0.33,
           "unit": "cup"
         }
       },
@@ -3277,7 +3277,7 @@ let recipeData = [
         "name": "sugar",
         "id": 19335,
         "quantity": {
-          "amount": 0.3333333333333333,
+          "amount": 0.33,
           "unit": "cup"
         }
       },
@@ -5057,7 +5057,7 @@ let recipeData = [
         "name": "low fat mayonnaise",
         "id": 4641,
         "quantity": {
-          "amount": 0.3333333333333333,
+          "amount": 0.33,
           "unit": "cup"
         }
       },
@@ -5336,7 +5336,7 @@ let recipeData = [
         "name": "unsalted butter",
         "id": 1145,
         "quantity": {
-          "amount": 0.3333333333333333,
+          "amount": 0.33,
           "unit": "cup"
         }
       },
@@ -5696,7 +5696,7 @@ let recipeData = [
         "name": "dried cranberries",
         "id": 9079,
         "quantity": {
-          "amount": 0.3333333333333333,
+          "amount": 0.33,
           "unit": "cup"
         }
       },
