@@ -7,6 +7,7 @@ let randomNum = genRanNum();
 let currentPage = 'All Recipes'
 let user;
 let searchInput = document.querySelector('.search-input')
+let faveButtonState = "Add to"
 
 const instantiateRecipeCards = () => {
   recipeData.forEach(recipe => {
@@ -42,8 +43,13 @@ const instantiateUsersPantry = () => {
   });
 }
 
-const buildRecipeCards = (recipesToBuild) => {
+const checkForFaveState = () => {
+  //check for matches in the favorites array
+  //if user.myFavorites includes 
+  
+}
 
+const buildRecipeCards = (recipesToBuild) => {
   recipesToBuild.forEach(recipe => {
     document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
   <div class="recipe-container">
@@ -55,8 +61,8 @@ const buildRecipeCards = (recipesToBuild) => {
     </div>
     <div class="card-button-containter">
       <button type="button" class="card-buttons view-recipe" id=${recipe.id}>View Recipe</button>
-      <button type="button" class="card-buttons add-to-menu" id=${recipe.id}>Add to Menu</button>
-      <button type="button" class="card-buttons add-to-favorites" id=${recipe.id}>Add to Favorites</button>
+      <button type="button" class="card-buttons add-to-menu" id=${recipe.id}>+/- My Menu</button>
+      <button type="button" class="card-buttons add-to-favorites" id=${recipe.id}>+/- My Favorites</button>
     </div>
   </div>`);
   });
@@ -106,7 +112,7 @@ const buildRecipeSteps = () => {
   for (var i = 0; i < user.recipeToBuild[0].instructions.length; i++) {
     user.recipeToBuild.forEach(recipe => {
       document.querySelector('.full-recipe-right-section').innerHTML += `
-    <ol> ${i + 1}. ${recipe.instructions[i].instruction} </li> </ol>`
+    <ol>${i + 1}. ${recipe.instructions[i].instruction}</ol>`
     })
   }
 }
@@ -122,41 +128,39 @@ const buildFullRecipeCard = (recipeToBuild) => {
         </div>
         <button type="button" class="cook-this-recipe-button">COOK THIS RECIPE</button>
       </div>
-  
       <div class="full-recipe-left-section">
-  
         <img class="full-recipe-image" src="${recipe.image}" alt="">
         <div class="full-recipe-ingredinets-list">
           <div class="full-recipe-ingredient-name-container">
           </div>
         </div>
       </div>
-  
       <div class="full-recipe-right-section">
-      <p class="instructions"></
-      
-
       </div>
-  
     </section>`);
   })
   buildIngredientsList()
 }
 
 const addToFavoritesOrMenu = e => {
-  if (e.target.classList.contains('cook-this-recipe-button')) {
-    cookRecipe()
-  }
+  // if (e.target.classList.contains('cook-this-recipe-button')) {
+  //   cookRecipe()
+  // }
   if (e.target.classList.contains('add-to-favorites')) {
     let selectedRecipe = allRecipes.find(recipe => {
       if (recipe.id === Number(event.target.id)) {
         return recipe;
       }
     })
-    let doubleCheck = user.favoriteRecipes.includes()
+    let doubleCheck = user.favoriteRecipes.includes(selectedRecipe)
     if (!doubleCheck) {
       user.addToFavorites(selectedRecipe);
     } else {
+      // remove from favorites
+      // const id = selectedRecipe.id
+      // user.myfavorites = user.myfavorites.filter(fav => id !== fav.id)
+      let id = selectedRecipe.id;
+      user.favoriteRecipes = user.favoriteRecipes.filter(fav => id !== fav.id)
       return;
     }
   }
@@ -261,11 +265,11 @@ const navBtnClickHandler = e => {
   }
 };
 
-const cookRecipe = e => {
-  if (e.target.classList.contains('.cook-this-recipe-button')) {
-    console.log('hiii')
-  }
-}
+// const cookRecipe = e => {
+//   if (e.target.classList.contains('.cook-this-recipe-button')) {
+//     console.log('hiii')
+//   }
+// }
 
 const loadDashboard = () => {
   document.querySelector('.splash-container').classList.add('hidden');
