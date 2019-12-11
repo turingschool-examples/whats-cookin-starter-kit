@@ -41,7 +41,7 @@
 }
 
 button {
-	width: 100px;
+	width: 80px;
 	height: 30px;
 	color: #ffffff;
 	background: #3f6844;
@@ -74,7 +74,8 @@ button {
 }
 
 img {
-  height: 240px;
+  height: 65%;
+  width: 70%;
 }
 
 .js_favorite-area {
