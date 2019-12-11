@@ -5,13 +5,44 @@ class User {
     this.pantry = [];
     this.favoriteRecipes = [];
     this.recipesToCook = [];
+
   }
-  addFavoriteRecipe() {
-    // maybe pass in targeted card that triggers the star icon style change and this method
+  addToFavorites(recipe) {
+    if (this.favoriteRecipes.includes(recipe)) {
+      return;
+    } else {
     this.favoriteRecipes.push(recipe);
+
   }
+}
+removeFromFavorites(recipe) {
+  for(var i = this.favoriteRecipes.length - 1; i >= 0; i--) {
+    if(this.favoriteRecipes[i] === recipe) {
+       this.favoriteRecipes.splice(i, 1);
+       runDisplayFavorites();
+    }
+}
+}
   displayFavorites() {
-    return this.favoriteRecipes;
+
+    // see un-fav-star class. use this for unstarring (remove element from this.recipesToCook when clicked again)
+    for (var i = 0; i < this.favoriteRecipes.length; i++) {
+      homeRecipes.innerHTML += `<div class="card" id="${this.favoriteRecipes[i].id}">
+      <img class="food-pic" src="${this.favoriteRecipes[i].image}">
+        <button class="recipe-title meal-name">${this.favoriteRecipes[i].name}</button>
+        <img class="un-fav-star" src="../assets/star copy.svg">
+      </div>`;
+    }
+
+
+
+
+    // let matchedId = recipeData.find(recipe => {
+    //   return recipe.id === this.favoriteRecipes[0];
+    // });
+    //
+    // console.log(matchedId);
+
   }
   addRecipeToCook() {
     this.recipesToCook.push(recipe);
@@ -23,7 +54,7 @@ class User {
     // search the recipes contained with favoriteRecipes
   }
   filterRecipes() {
-    
+
   }
 
 }

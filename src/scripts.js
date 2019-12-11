@@ -6,21 +6,18 @@ const favoriteRecipes = document.querySelector("#favorite-recipes-main");
 const addButton = document.querySelector("#add-button");
 const recipeForm = document.querySelector("#recipe-form");
 const homeButton = document.querySelector("#home-button");
-
-// const recipeTitle = document.querySelector(".recipe-title");
-
+const user = new User(users[4]);
 
 addRecipeCards();
 
 homeRecipes.addEventListener("click", displayRecipe);
-favoritesButton.addEventListener("click", displayFavorites);
+favoritesButton.addEventListener("click", runDisplayFavorites);
 addButton.addEventListener("click", displayRecipeForm);
 homeButton.addEventListener("click", displayHomePage);
 
-function displayFavorites() {
-  homeRecipes.classList.add("hidden");
-  favoriteRecipes.classList.remove("hidden");
-  recipeForm.classList.add("hidden");
+function runDisplayFavorites() {
+  homeRecipes.innerHTML = '';
+  user.displayFavorites();
 }
 
 function displayRecipeForm() {
@@ -51,6 +48,25 @@ function displayRecipe() {
   if (event.target.classList.contains("recipe-title")) {
     let clickedID = event.target.parentElement.id;
     runExpandedMethod(clickedID);
+
+    // beginning of Favoriting Logic
+  } else if (event.target.classList.contains('fav-star')) {
+    let selectedRecipe = recipeData.find(recipe => {
+      if (recipe.id === parseInt(event.target.parentElement.id)) {
+        return recipe;
+      }
+
+    })
+    user.addToFavorites(selectedRecipe);
+
+  } else if (event.target.classList.contains('un-fav-star')) {
+    let selectedRecipe = recipeData.find(recipe => {
+      if (recipe.id === parseInt(event.target.parentElement.id)) {
+        return recipe;
+      }
+
+    })
+    user.removeFromFavorites(selectedRecipe);
   }
 }
 

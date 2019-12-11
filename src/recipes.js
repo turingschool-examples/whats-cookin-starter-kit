@@ -34,7 +34,9 @@ class Recipe {
       <ul class="recipe-tags"></ul>
    </section>`;
 
-   this.showListedIngredients();
+    this.showListedIngredients();
+    this.showListedInstructions();
+    this.showTags();
   }
   showListedIngredients() {
     const ingredientSection = document.querySelector(".ingredients-section");
@@ -42,7 +44,6 @@ class Recipe {
     for (var i = 0; i < this.ingredients.length; i++) {
       ingredientSection.innerHTML += `<li> ${this.ingredients[i].quanitity.amount} ${this.ingredients[i].quanitity.unit} ${this.ingredients[i].name} </li>`;
     }
-    this.showListedInstructions();
   }
   showListedInstructions() {
     const instructionsSection = document.querySelector('.instructions-section');
@@ -50,7 +51,6 @@ class Recipe {
     for (var i = 0; i < this.instructions.length; i++) {
       instructionsSection.innerHTML += `<li> ${this.instructions[i].instruction}  </li>`;
     }
-    this.showTags();
   }
   showTags() {
     const tagSection = document.querySelector('.recipe-tags');
