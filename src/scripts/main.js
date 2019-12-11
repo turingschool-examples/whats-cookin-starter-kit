@@ -105,7 +105,9 @@ function recipeHandler(event) {
 
 function searchRecipes(keyword) {
   return allRecipes.filter(recipe => {
-    if (recipe.name.toLowerCase().includes(keyword.toLowerCase())) {
+    if (recipe.name.toLowerCase().includes(keyword.toLowerCase()) ||
+    recipe.tags.includes(keyword.toLowerCase())
+  ) {
       searchedRecipes.push(recipe);
     }
   })
