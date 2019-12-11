@@ -112,7 +112,13 @@ body {
 }
 
 .fav-star,
-.un-fav-star {
+.un-fav-star{
+  width: 15%;
+  cursor: pointer;
+}
+
+.cook-star {
+  border: 2px solid red;
   width: 15%;
   cursor: pointer;
 }
