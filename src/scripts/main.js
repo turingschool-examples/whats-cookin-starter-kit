@@ -4,6 +4,7 @@ let recipeList = document.querySelector('.injected-recipes');
 let favoriteRecipes = document.querySelector('.injected-favorite-recipes');
 let allRecipes = [];
 let searchedRecipes = [];
+let favoriteRecipesAll = [];
 let currentUser;
 let input = document.querySelector('.search-bar');
 
@@ -20,6 +21,12 @@ window.onload = pageLoadHandler;
 mainNav.addEventListener('keyup', mainHandler);
 navBar.addEventListener('click', navHandler);
 
+function pageLoadHandler() {
+  loadUser();
+  allRecipes = instantiateRecipes();
+  loadRecipes(allRecipes);
+}
+
 function mainHandler() {
   searchedRecipes = [];
   clearDom()
@@ -31,13 +38,10 @@ function navHandler(event) {
   if(event.target.classList.contains('navbar-toggle')) {
      mainNav.classList.toggle('active');
   }
-}
-
-
-function pageLoadHandler() {
-  loadUser();
-  allRecipes = instantiateRecipes();
-  loadRecipes(allRecipes);
+  if(event.target.innerHTML === "Favorites") {
+    clearDom();
+    loadRecipes(currentUser.favoriteRecipes);
+  }
 }
 
 function loadUser() {
@@ -93,18 +97,29 @@ function recipeHandler(event) {
     event.target.parentNode.parentNode.children[1].classList.toggle('hidden');
   }
   if (event.target.classList.contains('favorite-recipe')) {
-    if (!currentUser.favoriteRecipes.includes(event.target.parentNode.parentNode.parentNode.dataset.id)) {
-      currentUser.favoriteRecipes.push(currentUser.addFavoriteRecipe(event.target.parentNode.parentNode.parentNode.dataset.id));
+    let recipeId = event.target.parentNode.parentNode.parentNode.dataset.id;
+    if (!currentUser.favoriteRecipes.includes(recipeId)) {
+      currentUser.favoriteRecipes.push(currentUser.addFavoriteRecipe(recipeId));
+      currentUser.favoriteRecipes = currentUser.favoriteRecipes.filter((el) => {return el != undefined});
     } else {
-      currentUser.favoriteRecipes.splice(currentUser.favoriteRecipes.indexOf(event.target.parentNode.parentNode.parentNode.dataset.id), 1);
+      currentUser.favoriteRecipes.splice(currentUser.favoriteRecipes.indexOf(recipeId), 1);
     }
+    allRecipes.filter(recipe => {
+      currentUser.favoriteRecipes.forEach(id => {
+        if(parseInt(id) === recipe.id) {
+          favoriteRecipesAll.push(recipe);
+        }
+      })
+    })
     event.target.classList.toggle('favorite-recipe-active');
   }
   if (event.target.classList.contains('current-recipe')) {
-    if (!currentUser.currentRecipes.includes(event.target.parentNode.parentNode.parentNode.dataset.id)) {
-      currentUser.currentRecipes.push(currentUser.addCurrentRecipe(event.target.parentNode.parentNode.parentNode.dataset.id));
+    let recipeId = event.target.parentNode.parentNode.parentNode.dataset.id
+    if (!currentUser.currentRecipes.includes(recipeId)) {
+      currentUser.currentRecipes.push(currentUser.addCurrentRecipe(recipeId));
+      currentUser.currentRecipes = currentUser.currentRecipes.filter((el) => {return el != undefined});
     } else {
-      currentUser.currentRecipes.splice(currentUser.currentRecipes.indexOf(event.target.parentNode.parentNode.parentNode.dataset.id), 1);
+      currentUser.currentRecipes.splice(currentUser.currentRecipes.indexOf(recipeId), 1);
     }
     event.target.classList.toggle('current-recipe-active');
   }
