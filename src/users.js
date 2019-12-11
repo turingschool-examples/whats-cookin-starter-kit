@@ -10,10 +10,8 @@ class User {
 
   addToFavorites(recipe) {
     this.favoriteRecipes.push(recipe);
-
   }
   
-
   addToMyMenu(recipe) {
     this.myMenu.push(recipe);
   }
