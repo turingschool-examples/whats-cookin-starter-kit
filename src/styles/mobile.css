@@ -51,6 +51,7 @@ header h1 {
 
 .search-bar {
   font-size: 1em;
+  width: 50%;
 }
 
 .recipe-group {
@@ -66,17 +67,17 @@ header h1 {
   align-items: center;
   background-color: #282828;
   border: 3px #dfdfdf solid;
+  border-radius: .5em;
   display: flex;
   flex-flow: column nowrap;
   font-size: 1.25em;
-  height: 6.5em;
   justify-content: flex-start;
   margin: .5em auto;
   transition: all .3s linear;
 }
 
 .recipe-card-active {
-  height: calc(82vh - 1px);
+  height: 82vh;
   overflow: scroll;
 }
 
@@ -84,28 +85,39 @@ header h1 {
   background-color: #5e5e5e;
 }
 
-.recipe-card img {
-  width: 40%;
+.image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
 }
 
-.recipe-card h3 {
-  padding: 1em;
+.recipe-card img {
+  border-radius: 1em;
+  object-fit: cover;
+  padding: .5em;
   width: 100%;
 }
 
 .button-wrapper {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
+  height: 100%;
   justify-self: flex-end;
+  width: 10%;
 }
 
 .buttons {
   background-color: #171717;
   border-left: 4px #dfdfdf solid;
   color: #dfdfdf;
-  font-size: 1.5em;
-  height: calc(2.05em + 1px);
-  width: 1em;
+  font-size: 1.55em;
+  padding: 17%;
+  width: 100%;
+}
+
+.favorite-recipe {
+  border-radius: 0 .2em 0 0;
 }
 
 .favorite-recipe-active {
@@ -113,19 +125,25 @@ header h1 {
   color: #171717;
 }
 
+.current-recipe {
+  border-radius: 0 0 .2em 0;
+}
+
 .current-recipe-active {
-  background-color: #00aeee;
+  background-color: #ee1000;
   color: #171717;
 }
 
 .recipe-header {
+  align-items: center;
   display: flex;
   flex-flow: row nowrap;
-  align-items: center;
 }
 
 .recipe-header h3 {
+  font-size: 1em;
   padding: .25em;
+  width: 100%;
 }
 
 .recipe-content {
