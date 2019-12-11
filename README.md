@@ -1,51 +1,36 @@
-# What's Cookin'? Starter Kit 
+# Natural Selection Recipes
 
-The details of this project are outlined in the <a href="https://frontend.turing.io/projects/whats-cookin.html" target="\__blank">project spec</a>.
+A place to organize your pantry and some delicious recipes
+## How to Use 
 
-## Set Up 
-
-1. Within your group, decide on one person to have the project repository on their Github account. This person will *fork* this repository - on the top right corner of the page, click the fork button. 
-2. Both group members should then clone down the forked repository (make sure that everyone is added as a collaborator as well). Since you don't want your project to be named "whats-cookin-starter-kit", add an optional argument after the repo url when cloning. The command should look like this: `git clone [remote-address] [what you want to name the repo]`.
-3. Once you have cloned the repo, change into the directory and install the project dependencies. Run npm install to install project dependencies.
-4. Run open src/index.html in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page)
-5. Make sure both members of your team are collaborators on the forked repo.
-
-## Testing 
-
-There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran npm install, then the tooling you need to start testing is already installed (mocha and chai).
-
-## Linting Your Code 
-
-Run the command in your terminal npm run lint to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit, but that's ok - the linter is still running successfully.
-
-Your linter will look only at the JavaScript files you have within the src and the test directories.
+The site currently logs you in as a user. From there, you can browse an assortment of recipes, and search through them based on their name, ingredients, or type (breakfast, lunch, appetizers, etc.)
+From there, you can add a recipe to a favorites list or a weekly menu list to keep your meals for the week organized. 
+When you choose to cook a recipe, you can compare the contents of your pantry to the ingredients of the recipe to make sure you have everything you need to make your meal. 
 
 
-## Data Model
-### Users
-```js
-{
-  "id": [number],
-  "name": [string],
-  "pantry": [array of objects with amount and ingredient id properties]
-},
-```
+<img width="400" display="inline" alt="Home Page" src="https://user-images.githubusercontent.com/32964891/70648551-8979d300-1c08-11ea-8c79-d2c96648a07a.png"> <img width="400" display="inline" alt="All Recipes" src="https://user-images.githubusercontent.com/32964891/70648552-8979d300-1c08-11ea-97b8-7f4e61ccea87.png"> <img width="400" display="inline" alt="Specific Recipe" src="https://user-images.githubusercontent.com/32964891/70648553-8979d300-1c08-11ea-9cb5-fddc5fdfa859.png"> <img width="400" display="inline" alt="Favorite Recipe View" src="https://user-images.githubusercontent.com/32964891/70648554-8979d300-1c08-11ea-875f-d3b92c39f74b.png">
 
-### Recipes
-```js
-{
-  "ingredients" [array of objects with ingredients ids(connection to ingredients), ingredient names, and quantity data],
-  "instructions": [array of objects with instructions properties and numbered steps],
-  "name": [string],
-  "tags": [array of strings representing info about the recipes]
-}
-```
 
-### Ingredients
-```js
-{
-  "estimatedCostInCents": [number],
-  "id": [number -- connection to users and recipes],
-  "name": [string]
-}
-```
+
+## Tags
+
+You can search recipes under the following categories:
+
+- Breakfast
+- Lunch
+- Dinner
+- Antipasti
+- Antipasto
+- Starters
+- Appetizers
+- Snack
+- Hor d'oeuvre
+- Main course
+- Main dish
+- Sauce
+
+## Tech Used
+
+This project was built using Vanilla JS by @ZaneMeroff and @monstaro
+
+
