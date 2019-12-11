@@ -117,7 +117,8 @@ body {
   cursor: pointer;
 }
 
-.cook-star {
+.cook-star,
+.un-cook-star {
   border: 2px solid red;
   width: 15%;
   cursor: pointer;
