@@ -111,7 +111,8 @@ body {
   cursor: default;
 }
 
-.fav-star {
+.fav-star,
+.un-fav-star {
   width: 15%;
   cursor: pointer;
 }
