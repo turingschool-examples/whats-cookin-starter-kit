@@ -1,39 +1,38 @@
 * {
   box-sizing: border-box;
-  font-family: 'McLaren';
+  font-family: Arvo;
   margin: 0px;
   padding: 0px;
-  font-family: Arvo;
 }
 
 .splash-container {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  position: absolute;
-  top: 20%;
-  left: 25%;
-  height: 60vh;
-  width: 50%;
   background-color: rgba(3, 169, 244, 0.8);
   border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  left: 25%;
+  position: absolute;
+  top: 20%;
+  width: 50%;
 }
 
 .splash-logo {
   background-image: url(../images/natural_selection_logo.png);
+  background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center;
   height: 400px;
-  width: 400px;
   margin-top: 60px;
   text-align: center;
+  width: 400px;
 }
 
 .slogan,
 .welcome {
-  font-size: 120%;
   font-family: Quicksand;
+  font-size: 120%;
   font-weight: bold;
   margin: 2%;
 }
@@ -48,15 +47,15 @@
 }
 
 .enter-button {
-  margin-top: 10%;
-  margin-bottom: 20%;
-  height: 50px;
-  width: 200px;
-  border-radius: 20px;
-  font-size: 120%;
-  font-family: Quicksand;
-  font-weight: bold;
   border: none;
+  border-radius: 20px;
+  font-family: Quicksand;
+  font-size: 120%;
+  font-weight: bold;
+  height: 50px;
+  margin-bottom: 20%;
+  margin-top: 10%;
+  width: 200px;
 }
 
 .enter-button:hover {
@@ -73,22 +72,22 @@ body {
 }
 
 nav {
-  position: fixed;
+  background-color: #2196f3;
+  border-bottom: 5px solid #03a9f4;
   display: flex;
   flex-direction: row-reverse;
-  background-color: #2196f3;
-  width: 100%;
   height: auto;
-  border-bottom: 5px solid #03a9f4;
   margin-top: -100px;
+  position: fixed;
+  width: 100%;
 }
 
 .nav-buttons {
+  background-color: #2196f3;
+  border: none;
+  color: white;
   font-size: 100%;
   padding: 2%;
-  background-color: #2196f3;
-  color: white;
-  border: none;
 }
 
 .nav-buttons:hover {
@@ -97,38 +96,38 @@ nav {
 }
 
 .search-container {
-  display: flex;
   align-items: center;
+  display: flex;
   width: 320px;
 }
 
 .search-input {
-  height: 40px;
-  width: 80%;
-  font-size: 110%;
-  font-family: Quicksand;
-  padding-left: 20px;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
   border: none;
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+  font-family: Quicksand;
+  font-size: 110%;
+  height: 40px;
+  padding-left: 20px;
+  width: 80%;
 }
 
 .search-button {
   background: no-repeat center/90% url(../images/search_icon.png);
   background-color: white;
-  height: 40px;
-  width: 30px;
-  padding: 20px;
   border: none;
-  border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+  height: 40px;
+  padding: 20px;
+  width: 30px;
 }
 
 .logo-container {
   background: no-repeat center/100% url(../images/natural_selection_logo.png);
-  position: absolute;
-  left: 2%;
   height: 100%;
+  left: 2%;
+  position: absolute;
   width: 160px;
 }
 
@@ -139,8 +138,8 @@ nav {
 
 .user-icon:hover,
 .nav-user-name:hover {
-  cursor: default;
   color: #FFFFFF;
+  cursor: default;
 }
 
 .nav-user-name {
@@ -165,47 +164,47 @@ nav {
 
 .ingredient-card {
   background-color: rgba(3, 169, 244, 0.7);
-  font-size: 100%;
-  color: #ffffff;
-  padding: 10px;
-  margin: 10px;
-  height: 90px;
-  width: 320px;
   border-radius: 10px;
+  color: #ffffff;
+  font-size: 100%;
+  height: 90px;
+  margin: 10px;
+  padding: 10px;
+  width: 320px;
 }
 
 .ingredient-name,
 .ingredient-id,
 .ingredient-quantity {
-  font-family: Quicksand;
-  font-weight: bolder;
   color: black;
+  font-family: Quicksand;
   font-size: 120%;
+  font-weight: bolder;
 }
 
 .recipe-card-area {
-  margin-top: 100px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-top: 100px;
 }
 
 .recipe-container {
-  text-align: center;
   align-items: center;
   background-color: rgba(3, 169, 244, 0.7);
-  height: auto;
-  width: 370px;
   border-radius: 20px;
+  height: auto;
   margin: 2%;
+  text-align: center;
+  width: 370px;
 }
 
 .image-container {
   align-items: center;
-  height: 230px;
-  padding: 3%;
-  margin-bottom: 2%;
   border-radius: 30px;
+  height: 230px;
+  margin-bottom: 2%;
+  padding: 3%;
 }
 
 h2 {
@@ -214,22 +213,19 @@ h2 {
 }
 
 .card-button-container {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: space-around;
 }
 
 .card-buttons {
-  height: 40px;
-  width: 29%;
-  border-radius: 10px;
   background-color: white;
-  font-size: 75%;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  margin-left: 1%;
-  margin-right: 1%;
   border: none;
+  border-radius: 10px;
+  font-size: 75%;
+  height: 40px;
+  margin: 2% 1% 2% 1%;
+  width: 29%;
 }
 
 .card-buttons:hover {
@@ -237,17 +233,9 @@ h2 {
   cursor: pointer;
 }
 
-.all-recipes {
-  color: #00feff;
-}
-
-.full-recipe-space {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
 .full-recipe-container {
+  background-color: rgba(3, 169, 244, 0.7);
+  border-radius: 40px;
   display: grid;
   grid-template-areas:
     "one one"
@@ -255,11 +243,10 @@ h2 {
     "two three"
     "two three"
     "two three";
-  background-color: rgba(3, 169, 244, 0.7);
   height: auto;
-  width: 80%;
-  border-radius: 40px;
+  margin-top: 2%;
   padding: 1%;
+  width: 80%;
 }
 
 .full-recipe-title-container {
@@ -272,22 +259,21 @@ h2 {
   font-family: Quicksand;
   font-size: 190%;
   padding: 1%;
+  width: auto;
 }
 
-.back-button,
 .cook-this-recipe-button {
-  width: 10%;
-  border-radius: 20px;
-  margin: 2%;
   border: none;
+  border-radius: 20px;
+  font-size: 75%;
+  margin: 2%;
+  width: 15%;
 }
 
-.back-button:hover,
 .cook-this-recipe-button:hover {
   background-color: #00feff;
   cursor: pointer;
 }
-
 
 .full-recipe-title-and-tags {
   text-align: center;
@@ -298,10 +284,10 @@ h2 {
 }
 
 .full-recipe-left-section {
-  grid-area: two;
-  display: flex;
   align-items: center;
+  display: flex;
   flex-direction: column;
+  grid-area: two;
 }
 
 .full-recipe-ingredinets-list {
@@ -309,24 +295,30 @@ h2 {
   justify-content: space-around;
 }
 
-.full-recipe-ingredient-name-container,
-.full-recipe-ingredient-amount-container,
-.full-recipe-ingredient-units-container {
-
-  margin: 4%;
-  font-size: 80%;
-  width: 100%;
+.full-recipe-ingredient-name-container {
+  font-size: 100%;
+  margin: 2%;
+  width: 300px;
 }
+
+ol {
+  margin: 2%;
+}
+
+li {
+  margin: 1%;
+}
+
 
 .full-recipe-ingredient {
   width: 150px;
 }
 
 .full-recipe-image {
-  height: 200px;
-  width: 300px;
   border-radius: 20px;
+  height: 250px;
   margin: 2%;
+  width: 350px;
 }
 
 .full-recipe-right-section {

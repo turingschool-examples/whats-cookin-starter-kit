@@ -3,11 +3,9 @@ let allRecipes = [];
 let searchPool = allRecipes;
 let personalPantry = [];
 let searchResults = [];
-let randomNum = genRanNum();
 let currentPage = 'All Recipes'
 let user;
-let searchInput = document.querySelector('.search-input')
-let faveButtonState = "Add to"
+let searchInput = document.querySelector('.search-input');
 
 const instantiateRecipeCards = () => {
   recipeData.forEach(recipe => {
@@ -17,7 +15,7 @@ const instantiateRecipeCards = () => {
       recipeData.image,
       recipeData.ingredients,
       recipeData.instructions,
-      recipeData.tags)
+      recipeData.tags);
     allRecipes.push(recipe);
   })
   buildRecipeCards(allRecipes);
@@ -43,8 +41,6 @@ const instantiateUsersPantry = () => {
   });
 }
 
-
-
 const buildRecipeCards = (recipesToBuild) => {
   recipesToBuild.forEach(recipe => {
     document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
@@ -66,23 +62,21 @@ const buildRecipeCards = (recipesToBuild) => {
 
 const searchCards = () => {
   searchResults = [];
-
-
   var search = searchInput.value.toUpperCase();
   searchPool.filter(meal => {
-    if (meal.name.toUpperCase().includes(search) || meal.tags.includes(search.toLowerCase()) || meal.ingredients.some(ingredient => {return ingredient.name.includes(search.toLowerCase())
+    if (meal.name.toUpperCase().includes(search) ||
+      meal.tags.includes(search.toLowerCase()) ||
+      meal.ingredients.some(ingredient => {
+      return ingredient.name.includes(search.toLowerCase())
     })) {
       clearRecipeCardArea();
-      searchResults.push(meal)
-      buildRecipeCards(searchResults)
+      searchResults.push(meal);
+      buildRecipeCards(searchResults);
     }
-  })
+  });
 }
 
-
-
-
-function genRanNum() {
+const genRanNum = () => {
   return Math.floor(Math.random() * 50);
 }
 
@@ -93,7 +87,7 @@ const instantiateUser = () => {
   user = new User (
     selectedUser.id,
     selectedUser.name,
-    selectedUser.pantry)
+    selectedUser.pantry);
   document.querySelector('.user-name').innerText = selectedUser.name;
   document.querySelector('.nav-user-name').innerText = selectedUser.name;
 }
@@ -105,7 +99,7 @@ const buildIngredientsList = () => {
     <li>${recipe.ingredients[i].quantity.amount} ${recipe.ingredients[i].quantity.unit} ${recipe.ingredients[i].name} </li> `
     })
   }
-  buildRecipeSteps()
+  buildRecipeSteps();
 }
 
 const buildRecipeSteps = () => {
@@ -113,7 +107,7 @@ const buildRecipeSteps = () => {
     user.recipeToBuild.forEach(recipe => {
       document.querySelector('.full-recipe-right-section').innerHTML += `
     <ol>${i + 1}. ${recipe.instructions[i].instruction}</ol>`
-    })
+  });
   }
 }
 
@@ -126,38 +120,31 @@ const buildFullRecipeCard = (recipeToBuild) => {
           <h1 class="full-recipe-title">${recipe.name}</h1>
           <p class="full-recipe-tags">${recipe.tags}</p>
         </div>
-        <button type="button" class="cook-this-recipe-button">COOK THIS RECIPE</button>
+        <button type="button" class="cook-this-recipe-button">Cook This Recipe</button>
       </div>
       <div class="full-recipe-left-section">
         <img class="full-recipe-image" src="${recipe.image}" alt="">
-        <div class="full-recipe-ingredinets-list">
-          <div class="full-recipe-ingredient-name-container">
-          </div>
-        </div>
+        <div class="full-recipe-ingredient-name-container"></div>
       </div>
-      <div class="full-recipe-right-section">
-      </div>
+      <div class="full-recipe-right-section"></div>
     </section>`);
   })
-  buildIngredientsList()
+  buildIngredientsList();
 }
 
 const addToFavoritesOrMenu = e => {
-  // if (e.target.classList.contains('cook-this-recipe-button')) {
-  //   cookRecipe()
-  // }
   if (e.target.classList.contains('add-to-favorites')) {
     let selectedRecipe = allRecipes.find(recipe => {
       if (recipe.id === Number(event.target.id)) {
         return recipe;
       }
     })
-    let doubleCheck = user.favoriteRecipes.includes(selectedRecipe)
+    let doubleCheck = user.favoriteRecipes.includes(selectedRecipe);
     if (!doubleCheck) {
       user.addToFavorites(selectedRecipe);
     } else {
       let id = selectedRecipe.id;
-      user.favoriteRecipes = user.favoriteRecipes.filter(fav => id !== fav.id)
+      user.favoriteRecipes = user.favoriteRecipes.filter(fav => id !== fav.id);
       if (currentPage === 'My Favorites') {
         clearRecipeCardArea();
         buildRecipeCards(user.favoriteRecipes);
@@ -171,12 +158,12 @@ const addToFavoritesOrMenu = e => {
         return recipe;
       }
     })
-    let doubleCheck = user.myMenu.includes(selectedRecipe)
+    let doubleCheck = user.myMenu.includes(selectedRecipe);
     if (!doubleCheck) {
       user.addToMyMenu(selectedRecipe);
     } else {
       let id = selectedRecipe.id;
-      user.myMenu = user.myMenu.filter(sel => id !== sel.id)
+      user.myMenu = user.myMenu.filter(sel => id !== sel.id);
       if (currentPage === 'My Menu') {
         clearRecipeCardArea();
         buildRecipeCards(user.myMenu);
@@ -191,20 +178,13 @@ const addToFavoritesOrMenu = e => {
         return recipe;
       }
     })
-    let doubleCheck = user.recipeToBuild.includes(selectedRecipe)
-    if (!doubleCheck) {
       user.addToRecipeToBuild(selectedRecipe);
       buildFullRecipeCard(selectedRecipe);
-    } else {
-      return;
-    }
   }
 }
 
-
-
 const turnNavBtnsWhite = () => {
-  let navHeadings = ['.display-fav-button', '.all-recipes','.my-menu','.my-pantry']
+  let navHeadings = ['.display-fav-button', '.all-recipes', '.my-menu', '.my-pantry'];
   navHeadings.forEach(heading => {
     document.querySelector(`${heading}`).style.color = '#FFFFFF';
   })
@@ -218,8 +198,8 @@ const clearRecipeCardArea = () => {
   document.querySelector('.recipe-card-area').innerText = '';
 }
 
-const emptyFavAreaErrorMessage = (message) => {
-  if (user.favoriteRecipes.length === 0) {
+const emptyAreaErrorMessage = (emptyArea, message) => {
+  if (user[emptyArea].length === 0) {
     document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
     <div class="fav-recipe-error-message-container">
       <p class="error-message">You don't have any ${message} at this time</p>
@@ -229,57 +209,58 @@ const emptyFavAreaErrorMessage = (message) => {
   }
 };
 
-const emptyMenuAreaErrorMessage = (message) => {
-  if (user.myMenu.length === 0) {
-    document.querySelector('.recipe-card-area').insertAdjacentHTML('afterbegin', `
-    <div class="fav-recipe-error-message-container">
-      <p class="error-message">You don't have any ${message} at this time</p>
-    </div>`);
-  } else {
-    return;
-  }
-};
+const clearCardAreaAndResetTabs = () => {
+  turnNavBtnsWhite();
+  clearRecipeCardArea();
+}
+
+const onFavTabClick = () => {
+  currentPage = 'My Favorites';
+  searchPool = user.favoriteRecipes;
+  clearCardAreaAndResetTabs();
+  highlightNavBtn(`.display-fav-button`);
+  emptyAreaErrorMessage('favoriteRecipes', 'favorite recipes');
+  buildRecipeCards(user.favoriteRecipes);
+}
+
+const onMyMenuTabClick = () => {
+  currentPage = 'My Menu';
+  searchPool = user.myMenu;
+  clearCardAreaAndResetTabs();
+  highlightNavBtn(`.my-menu`);
+  emptyAreaErrorMessage('myMenu','saved menu items');
+  buildRecipeCards(user.myMenu);
+}
+
+const onAllRecipesTabClick = () => {
+  currentPage = 'All Recipes';
+  searchPool = allRecipes;
+  clearCardAreaAndResetTabs();
+  highlightNavBtn(`.all-recipes`);
+  buildRecipeCards(allRecipes);
+}
+
+const onMyPantryTabClick = () => {
+  turnNavBtnsWhite();
+  highlightNavBtn(`.my-pantry`);
+  clearRecipeCardArea();
+  instantiateUsersPantry();
+}
 
 const navBtnClickHandler = e => {
   if (e.target.classList.contains('display-fav-button')) {
-    currentPage = 'My Favorites'
-    searchPool = user.favoriteRecipes;
-    turnNavBtnsWhite();
-    highlightNavBtn(`.display-fav-button`)
-    clearRecipeCardArea();
-    emptyFavAreaErrorMessage('favorite recipes');
-    buildRecipeCards(user.favoriteRecipes);
+    onFavTabClick();
   };
   if (e.target.classList.contains('all-recipes')) {
-    currentPage = 'All Recipes'
-    searchPool = allRecipes;
-    turnNavBtnsWhite();
-    highlightNavBtn(`.all-recipes`)
-    clearRecipeCardArea();
-    buildRecipeCards(allRecipes);
+    onAllRecipesTabClick();
   };
   if (e.target.classList.contains('my-menu')) {
-    currentPage = 'My Menu'
-    searchPool = user.myMenu;
-    turnNavBtnsWhite();
-    highlightNavBtn(`.my-menu`)
-    clearRecipeCardArea();
-    emptyMenuAreaErrorMessage('saved menu items');
-    buildRecipeCards(user.myMenu);
+    onMyMenuTabClick();
   };
   if (e.target.classList.contains('my-pantry')) {
-    turnNavBtnsWhite();
-    highlightNavBtn(`.my-pantry`)
-    clearRecipeCardArea();
-    instantiateUsersPantry();
+    onMyPantryTabClick();
   }
 };
-
-// const cookRecipe = e => {
-//   if (e.target.classList.contains('.cook-this-recipe-button')) {
-//     console.log('hiii')
-//   }
-// }
 
 const loadDashboard = () => {
   document.querySelector('.splash-container').classList.add('hidden');
@@ -289,10 +270,9 @@ const loadDashboard = () => {
 }
 
 // On Page Load
+let randomNum = genRanNum();
 instantiateUser();
 pullIngredientNames();
-
-
 
 // Event Listeners
 document.querySelector('.enter-button').addEventListener('click', loadDashboard);
