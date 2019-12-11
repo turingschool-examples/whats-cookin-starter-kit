@@ -1,12 +1,14 @@
-const Pantry = require('../scripts/Pantry');
-
 class Users {
   constructor(user) {
     this.id = user.id,
     this.name = user.name,
-    this.pantry = new Pantry(user.pantry),
+    this.pantry = null,
     this.favoriteRecipes = [],
     this.currentRecipes = []
+  }
+
+  createPantry(pantry) {
+    this.pantry = pantry;
   }
 
   addFavoriteRecipe(recipeId) {
