@@ -158,6 +158,10 @@ const addToFavoritesOrMenu = e => {
     } else {
       let id = selectedRecipe.id;
       user.favoriteRecipes = user.favoriteRecipes.filter(fav => id !== fav.id)
+      if (currentPage === 'My Favorites') {
+        clearRecipeCardArea();
+        buildRecipeCards(user.favoriteRecipes);
+      }
       return;
     }
   }
@@ -173,6 +177,10 @@ const addToFavoritesOrMenu = e => {
     } else {
       let id = selectedRecipe.id;
       user.myMenu = user.myMenu.filter(sel => id !== sel.id)
+      if (currentPage === 'My Menu') {
+        clearRecipeCardArea();
+        buildRecipeCards(user.myMenu);
+      }
       return;
     }
   }
@@ -234,6 +242,7 @@ const emptyMenuAreaErrorMessage = (message) => {
 
 const navBtnClickHandler = e => {
   if (e.target.classList.contains('display-fav-button')) {
+    currentPage = 'My Favorites'
     searchPool = user.favoriteRecipes;
     turnNavBtnsWhite();
     highlightNavBtn(`.display-fav-button`)
@@ -242,6 +251,7 @@ const navBtnClickHandler = e => {
     buildRecipeCards(user.favoriteRecipes);
   };
   if (e.target.classList.contains('all-recipes')) {
+    currentPage = 'All Recipes'
     searchPool = allRecipes;
     turnNavBtnsWhite();
     highlightNavBtn(`.all-recipes`)
@@ -249,6 +259,7 @@ const navBtnClickHandler = e => {
     buildRecipeCards(allRecipes);
   };
   if (e.target.classList.contains('my-menu')) {
+    currentPage = 'My Menu'
     searchPool = user.myMenu;
     turnNavBtnsWhite();
     highlightNavBtn(`.my-menu`)
