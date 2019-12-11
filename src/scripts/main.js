@@ -5,6 +5,7 @@ let favoriteRecipes = document.querySelector('.injected-favorite-recipes');
 let allRecipes = [];
 let searchedRecipes = [];
 let favoriteRecipesAll = [];
+let currentRecipesAll = [];
 let currentUser;
 let input = document.querySelector('.search-bar');
 
@@ -40,7 +41,11 @@ function navHandler(event) {
   }
   if(event.target.innerHTML === "Favorites") {
     clearDom();
-    loadRecipes(currentUser.favoriteRecipes);
+    loadRecipes(favoriteRecipesAll);
+  }
+  if(event.target.innerHTML === "To Cook") {
+    clearDom();
+    loadRecipes(currentRecipesAll);
   }
 }
 
@@ -84,6 +89,7 @@ function instantiateRecipes() {
 };
 
 function recipeIngredients(ingredientList) {
+  console.log(ingredientList);
   return ingredientList.map(x => `<li data-id='${x.id}'><i>${x.name}</i>: ${(Math.floor(x.quantity.amount * 100) / 100) + ' ' + x.quantity.unit}</li>`).join('\n');
 };
 
@@ -104,6 +110,7 @@ function recipeHandler(event) {
     } else {
       currentUser.favoriteRecipes.splice(currentUser.favoriteRecipes.indexOf(recipeId), 1);
     }
+    favoriteRecipesAll = [];
     allRecipes.filter(recipe => {
       currentUser.favoriteRecipes.forEach(id => {
         if(parseInt(id) === recipe.id) {
@@ -121,6 +128,14 @@ function recipeHandler(event) {
     } else {
       currentUser.currentRecipes.splice(currentUser.currentRecipes.indexOf(recipeId), 1);
     }
+    currentRecipesAll = [];
+    allRecipes.filter(recipe => {
+      currentUser.currentRecipes.forEach(id => {
+        if(parseInt(id) === recipe.id) {
+          currentRecipesAll.push(recipe);
+        }
+      })
+    })
     event.target.classList.toggle('current-recipe-active');
   }
 };
