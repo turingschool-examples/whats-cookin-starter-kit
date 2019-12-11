@@ -12,7 +12,6 @@ class User {
       return;
     } else {
     this.favoriteRecipes.push(recipe);
-
   }
 }
 removeFromFavorites(recipe) {
@@ -21,11 +20,9 @@ removeFromFavorites(recipe) {
        this.favoriteRecipes.splice(i, 1);
        runDisplayFavorites();
     }
-}
+  }
 }
   displayFavorites() {
-
-    // see un-fav-star class. use this for unstarring (remove element from this.recipesToCook when clicked again)
     for (var i = 0; i < this.favoriteRecipes.length; i++) {
       homeRecipes.innerHTML += `<div class="card" id="${this.favoriteRecipes[i].id}">
       <img class="food-pic" src="${this.favoriteRecipes[i].image}">
@@ -33,16 +30,6 @@ removeFromFavorites(recipe) {
         <img class="un-fav-star" src="../assets/star copy.svg">
       </div>`;
     }
-
-
-
-
-    // let matchedId = recipeData.find(recipe => {
-    //   return recipe.id === this.favoriteRecipes[0];
-    // });
-    //
-    // console.log(matchedId);
-
   }
   addRecipeToCook() {
     this.recipesToCook.push(recipe);
