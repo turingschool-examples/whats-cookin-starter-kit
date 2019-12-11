@@ -1,7 +1,6 @@
 const addButton = document.querySelector("#add-button");
 const favoriteRecipes = document.querySelector("#favorite-recipes-main");
 const favoritesButton = document.querySelector("#favorites");
-const filterBtn = document.querySelector('#filter-btn');
 const groceryList = document.querySelector("#grocery-list");
 const homeButton = document.querySelector("#home-button");
 const homeRecipes = document.querySelector(".home-recipes");
@@ -16,7 +15,6 @@ instantiateRecipes();
 
 addButton.addEventListener("click", displayRecipeForm);
 favoritesButton.addEventListener("click", runDisplayFavorites);
-filterBtn.addEventListener('click', getUniqueTags);
 groceryList.addEventListener("click", runCheckPantry);
 homeButton.addEventListener("click", displayHomePage);
 homeRecipes.addEventListener("click", displayRecipe);

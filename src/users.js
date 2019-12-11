@@ -79,8 +79,6 @@ class User {
       </div>`;
     }
   }
-  filterRecipes() {
-  }
 }
 
 if (typeof module !== 'undefined') {
