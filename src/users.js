@@ -16,13 +16,12 @@ class User {
   }
 }
 removeFromFavorites(recipe) {
-   for (var i = 0; i < this.favoriteRecipes.length; i++) {
-     if (this.favoriteRecipes.includes(recipe))
-    this.favoriteRecipes.splice(i,1)
-  }
-
-  }
-
+  for(var i = this.favoriteRecipes.length - 1; i >= 0; i--) {
+    if(this.favoriteRecipes[i] === recipe) {
+       this.favoriteRecipes.splice(i, 1);
+    }
+}
+}
   displayFavorites() {
 
     // see un-fav-star class. use this for unstarring (remove element from this.recipesToCook when clicked again)
