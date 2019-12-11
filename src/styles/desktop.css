@@ -13,34 +13,6 @@
     font-family: 'Solway';
   }
 
-  header {
-    background-color: #00aeee;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  header h1 {
-    font-size: 2em;
-    padding: .5em;
-  }
-
-  .navbar-toggle {
-    display: none;
-  }
-
-  .navbar,
-  .main-nav,
-  .main-nav li{
-    display: inline;
-    color: #171717;
-    background-color: #00aeee;
-  }
-
-  .search-bar {
-    width: 20em;
-  }
-
   .injected-recipes {
     display: flex;
     flex-flow: row wrap;
@@ -55,4 +27,78 @@
   .recipe-card-active {
     width: 80%;
   }
+}
+
+@media only screen and (min-width: 932px) {
+
+  header {
+    background-color: #00aeee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header h1 {
+    font-size: 2em;
+    padding: .5em;
+  }
+
+  .navbar {
+    width: 60%;
+  }
+
+  .navbar-toggle {
+    display: none;
+  }
+
+  .main-nav {
+    background-color: #00aeee;
+  }
+
+  .main-nav li {
+    display: inline;
+    color: #171717;
+    padding: 1em;
+  }
+  
+  .main-nav {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .main-nav li:hover {
+    background-color: #171717;
+    color: #dfdfdf;
+  }
+
+  .search-container {
+    width: 30%;
+    padding: 0;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .recipe-card-active {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .recipe-card-active .recipe-header {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 30%;
+  }
+
+  .recipe-card-active .recipe-content {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 70%;
+  }
+
 }
