@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 let allRecipes = [];
-let searchPool = [];
+let searchPool = allRecipes;
 let personalPantry = [];
 let searchResults = [];
 let randomNum = genRanNum();
@@ -43,11 +43,7 @@ const instantiateUsersPantry = () => {
   });
 }
 
-const checkForFaveState = () => {
-  //check for matches in the favorites array
-  //if user.myFavorites includes 
-  
-}
+
 
 const buildRecipeCards = (recipesToBuild) => {
   recipesToBuild.forEach(recipe => {
@@ -74,13 +70,18 @@ const searchCards = () => {
 
   var search = searchInput.value.toUpperCase();
   searchPool.filter(meal => {
-    if (meal.name.toUpperCase().includes(search) || meal.tags.includes(search.toLowerCase())) {
+    if (meal.ingredients.some(ingredient => {return ingredient.name.includes(search.toLowerCase())
+    })) {
       clearRecipeCardArea();
       searchResults.push(meal)
       buildRecipeCards(searchResults)
     }
   })
 }
+
+
+
+// if (meal.name.toUpperCase().includes(search) || meal.tags.includes(search.toLowerCase())) {
 
 function genRanNum() {
   return Math.floor(Math.random() * 50);
