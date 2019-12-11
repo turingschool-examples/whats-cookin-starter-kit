@@ -71,6 +71,7 @@
   .main-nav li:hover {
     background-color: #171717;
     color: #dfdfdf;
+    cursor: pointer;
   }
 
   .search-container {
@@ -90,15 +91,63 @@
   }
 
   .recipe-card-active .recipe-header {
+    align-items: space-around;
     display: flex;
     flex-flow: column nowrap;
+    height: 100%;
+    width: 40%;
+  }
+
+  .recipe-card-active .recipe-header h3 {
+    cursor: pointer;
+    font-size: 2em;
+    margin: .5em 0;
+    text-align: center;
+  }
+
+  .recipe-card-active .image-wrapper {
+    width: 100%;
+  }
+
+  .recipe-card-active .button-wrapper {
+    flex-flow: row nowrap;
+    height: 10%;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  
+  .recipe-card-active .buttons {
+    align-items: center;
+    border-radius: .25em;
+    border: 3px solid #dfdfdf;
+    cursor: pointer;
+    font-size: 2em;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
     width: 30%;
+  }
+
+  .recipe-card-active .close-recipe {
+    display: inherit;
   }
 
   .recipe-card-active .recipe-content {
     display: flex;
     flex-flow: row nowrap;
-    width: 70%;
+    justify-content: center;
+    align-items: flex-start;
+    width: 60%;
   }
 
+  .recipe-card-active .recipe-ingredients{
+    align-self: flex-start;
+    margin: 0;
+    margin-left: 2em;
+    width: 50%;
+  }
+
+  .recipe-card-active .recipe-directions {
+    width: 50%;
+  }
 }
