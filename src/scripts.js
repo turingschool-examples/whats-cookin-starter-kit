@@ -156,9 +156,6 @@ const addToFavoritesOrMenu = e => {
     if (!doubleCheck) {
       user.addToFavorites(selectedRecipe);
     } else {
-      // remove from favorites
-      // const id = selectedRecipe.id
-      // user.myfavorites = user.myfavorites.filter(fav => id !== fav.id)
       let id = selectedRecipe.id;
       user.favoriteRecipes = user.favoriteRecipes.filter(fav => id !== fav.id)
       return;
@@ -174,6 +171,8 @@ const addToFavoritesOrMenu = e => {
     if (!doubleCheck) {
       user.addToMyMenu(selectedRecipe);
     } else {
+      let id = selectedRecipe.id;
+      user.myMenu = user.myMenu.filter(sel => id !== sel.id)
       return;
     }
   }
