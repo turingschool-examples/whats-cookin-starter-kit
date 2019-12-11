@@ -33,7 +33,7 @@ describe('User', () => {
   })
 
   it('should be able to add to favorite recipes', () => {
-    expect(user.favoriteRecipes).to.eql([]);
+    expect(user.favoriteRecipes).to.equal([]);
     let recipe = new Recipe();
     user.favoriteRecipes(recipe);
     expect(user.favoriteRecipes.length).to.equal(1)
@@ -41,6 +41,7 @@ describe('User', () => {
 
   describe ('addToRecipeToBuild', () => {
     it('should only have a length of 1', () => {
+      let recipe = new Recipe();
       expect(this.recipeToBuild.length).to.equal(0);
       this.addToRecipeToBuild(recipe);
       expect(this.recipeToBuild.length).to.equal(1);
