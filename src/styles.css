@@ -159,6 +159,33 @@ h2 {
   width: 23%;
 }
 
+.display {
+  width: 98%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+#display-all {
+  /* width: 100%; */
+  width: calc(100% / 4);
+  /* padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap; */
+}
+
+h4 {
+  padding: 10px;
+}
+
+.full {
+  width: 100%;
+  padding: 5px;
+}
+
 li {
   list-style: none;
   display: inline;
@@ -184,4 +211,8 @@ button {
   padding: 0px;
   display: flex;
   width: auto;
+}
+
+div {
+  display: inline;
 }

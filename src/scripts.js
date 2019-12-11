@@ -28,11 +28,9 @@ function createCard(event) {
 
     event.preventDefault();
     cardSection.innerHTML += `
-    <div class="favorites-one">
-    <div id="favorite-recipes">
-      <img class="favorites-one crop" alt="favorite recipe 1">
-      <h4> TITLE </h4>
-    </dive>
+    <div id="display-all">
+      <img class="crop full" src=${recipe.image} alt="${recipe.name}">
+      <h4>${recipe.name}</h4>
     </div>`;
   })
     // var newRecipe = new Recipe(id, name, image, tags, instructions, ingredients );
