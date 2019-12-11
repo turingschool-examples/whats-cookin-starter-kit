@@ -7,7 +7,8 @@ const addButton = document.querySelector("#add-button");
 const recipeForm = document.querySelector("#recipe-form");
 const homeButton = document.querySelector("#home-button");
 const onTheMenu = document.querySelector('#on-menu');
-const user = new User(users[4]);
+const groceryList = document.querySelector("#grocery-list");
+const user = new User(users[0]);
 
 addRecipeCards();
 
@@ -16,6 +17,12 @@ favoritesButton.addEventListener("click", runDisplayFavorites);
 onTheMenu.addEventListener("click", runDisplayToCook);
 addButton.addEventListener("click", displayRecipeForm);
 homeButton.addEventListener("click", displayHomePage);
+groceryList.addEventListener("click", runCheckPantry);
+
+function runCheckPantry() {
+  const pantry = new Pantry(users[0].pantry)
+  // pantry.checkPantry();
+}
 
 function runDisplayFavorites() {
   homeRecipes.innerHTML = '';
