@@ -69,6 +69,7 @@ body {
   background-attachment: fixed;
   background-color: black;
   height: 100vh;
+  background-size: cover;
 }
 
 nav {
@@ -317,10 +318,6 @@ h2 {
   width: 100%;
 }
 
-.full-recipe-ingredient-units-container {
-
-}
-
 .full-recipe-ingredient {
   width: 150px;
 }
@@ -344,4 +341,10 @@ h2 {
 
 .hidden {
   display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .logo-container {
+    display: none;
+  }
 }
