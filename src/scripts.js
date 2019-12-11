@@ -9,8 +9,10 @@ const homeButton = document.querySelector("#home-button");
 const onTheMenu = document.querySelector('#on-menu');
 const groceryList = document.querySelector("#grocery-list");
 const searchButton = document.querySelector("#search-btn");
+const filterBtn = document.querySelector('#filter-btn');
 const searchBox = document.querySelector("#search-input");
 const user = new User(users[0]);
+
 
 addRecipeCards();
 
@@ -21,8 +23,19 @@ addButton.addEventListener("click", displayRecipeForm);
 homeButton.addEventListener("click", displayHomePage);
 groceryList.addEventListener("click", runCheckPantry);
 searchButton.addEventListener("click", runSearch);
+filterBtn.addEventListener('click', runFilter);
 
-
+function runFilter() {
+  let allTags = [];
+  recipeData.forEach(recipe => {
+    recipe.tags.forEach(tag => {
+      if (!allTags.includes(tag)) {
+          allTags.unshift(tag);
+      };
+    });
+  });
+  console.log(allTags.sort());
+}
 
 function runSearch() {
   let searchInput = searchBox.value;
