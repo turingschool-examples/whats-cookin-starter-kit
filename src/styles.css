@@ -301,6 +301,13 @@ h2 {
   width: 300px;
 }
 
+ol {
+  margin: 2%;
+}
+
+li {
+  margin: 1%;
+}
 
 .full-recipe-ingredient {
   width: 150px;
