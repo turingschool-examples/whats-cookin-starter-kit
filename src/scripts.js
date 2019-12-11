@@ -11,6 +11,7 @@ const searchBox = document.querySelector("#search-input");
 const searchButton = document.querySelector("#search-btn");
 const user = new User(users[0]);
 
+
 instantiateRecipes();
 
 addButton.addEventListener("click", displayRecipeForm);
@@ -21,19 +22,6 @@ homeButton.addEventListener("click", displayHomePage);
 homeRecipes.addEventListener("click", displayRecipe);
 onTheMenu.addEventListener("click", runDisplayToCook);
 searchButton.addEventListener("click", runSearch);
-
-function getUniqueTags() {
-  let uniqueTags = [];
-  recipeData.forEach(recipe => {
-    recipe.tags.forEach(tag => {
-      if (!uniqueTags.includes(tag)) {
-        uniqueTags.unshift(tag);
-      };
-    });
-  });
-  let sortedTags = uniqueTags.sort();
-  console.log(sortedTags);
-}
 
 function runSearch() {
   let searchInput = searchBox.value;
