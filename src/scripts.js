@@ -8,6 +8,8 @@ const recipeForm = document.querySelector("#recipe-form");
 const homeButton = document.querySelector("#home-button");
 const onTheMenu = document.querySelector('#on-menu');
 const groceryList = document.querySelector("#grocery-list");
+const searchButton = document.querySelector("#search-btn");
+const searchBox = document.querySelector("#search-input");
 const user = new User(users[0]);
 
 addRecipeCards();
@@ -18,6 +20,15 @@ onTheMenu.addEventListener("click", runDisplayToCook);
 addButton.addEventListener("click", displayRecipeForm);
 homeButton.addEventListener("click", displayHomePage);
 groceryList.addEventListener("click", runCheckPantry);
+searchButton.addEventListener("click", runSearch);
+
+
+
+function runSearch() {
+  let searchInput = searchBox.value;
+  user.searchRecipes(searchInput);
+}
+
 
 function runCheckPantry() {
   const pantry = new Pantry(users[0].pantry)
