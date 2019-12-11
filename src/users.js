@@ -17,7 +17,10 @@ class User {
   }
 
   addToRecipeToBuild(recipe) {
-    this.recipeToBuild.push(recipe);
+    this.recipeToBuild.unshift(recipe);
+    if (this.recipeToBuild.length > 1) {
+      this.recipeToBuild.pop()
+    }
   }
 }
 
