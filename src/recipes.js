@@ -17,8 +17,8 @@ class Recipe {
     <div class="card" id="${this.id}">
       <img class="food-pic" src="${this.image}">
       <button class="recipe-title meal-name">${this.name}</button>
-      <img class="fav-star" src="../assets/star copy.svg">
-      <img class="cook-star" src="../assets/star copy.svg">
+      <button class="fav-star">Add to favorites</button>
+      <button class="cook-star">Add to Menu</button>
     </div>
     `;
   }
