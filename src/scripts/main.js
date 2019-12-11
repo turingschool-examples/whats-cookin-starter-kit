@@ -17,6 +17,8 @@ function pageLoadHandler() {
 
 function loadUser() {
   currentUser = new Users(users[0]);
+  currentUser.createPantry(users[0].pantry);
+  console.log(currentUser.pantry);
 }
 
 function loadSuggestedRecipesFunction() {
@@ -55,7 +57,7 @@ function instantiateRecipes() {
 };
 
 function recipeIngredients(ingredientList) {
-  return ingredientList.map(x => `<li data-id='${x.id}'><i>${x.name}</i>: ${(Math.floor(x.quanitity.amount * 100) / 100) + ' ' + x.quanitity.unit}</li>`).join('\n');
+  return ingredientList.map(x => `<li data-id='${x.id}'><i>${x.name}</i>: ${(Math.floor(x.quantity.amount * 100) / 100) + ' ' + x.quantity.unit}</li>`).join('\n');
 };
 
 function recipeDirections(directionsList) {
