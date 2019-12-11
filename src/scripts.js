@@ -50,22 +50,10 @@ function displayRecipeForm() {
   recipeForm.classList.remove("hidden");
 }
 
-// function displayHomePage() {
-//   recipeForm.classList.add("hidden");
-//   favoriteRecipes.classList.add("hidden");
-//   homeRecipes.classList.remove("hidden");
-// }
-
 function displayHomePage() {
   homeRecipes.innerHTML = '';
   addRecipeCards();
 }
-
-// function displayRecipePage() {
-//   recipeForm.classList.add("hidden");
-//   favoriteRecipes.classList.add("hidden");
-//   homeRecipes.classList.add("hidden");
-// }
 
 function addRecipeCards() {
   for (var i = 0; i < recipeData.length; i++) {
@@ -100,6 +88,7 @@ function runAddToCook() {
   })
   user.addToCook(selectedRecipe);
 }
+
 function runRemoveToCook() {
   let selectedRecipe = recipeData.find(recipe => {
     if (recipe.id === parseInt(event.target.parentElement.id)) {
