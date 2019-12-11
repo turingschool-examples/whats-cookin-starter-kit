@@ -3,19 +3,24 @@ let mainNav = document.querySelector('.main-nav');
 let recipeList = document.querySelector('.injected-recipes');
 let favoriteRecipes = document.querySelector('.injected-favorite-recipes');
 let allRecipes = [];
+let searchedRecipes = [];
 let currentUser;
+let input = document.querySelector('.search-bar');
+
+
+
+
 
 
 window.onload = pageLoadHandler;
 navBarToggle.addEventListener('click', function () {
   mainNav.classList.toggle('active');
 });
+// mainNav.addEventListener('keypress', mainHandler);
+mainNav.addEventListener('keyup', mainHandler);
 
-mainNav.addEventListener('click', cardHandler);
-
-function cardHandler() {
-  showFavortite();
-  showCurrent();
+function mainHandler() {
+  searchRecipes(input.value)
 }
 
 
@@ -97,19 +102,17 @@ function recipeHandler(event) {
   }
 };
 
-function showFavortite() {
-  let sort = allRecipes.filter(recipe => {
-    if(users.favoriteRecipes) {
-      return users.favoriteRecipes;
-    }
-    console.log(sort);
-  });
-}
+function searchRecipes(keyword) {
+    return allRecipes.filter(recipe => {
+      if (recipe.name.toLowerCase().includes(keyword.toLowerCase())) {
+        console.log(recipe.name);
+      }
+    //   return (recipe.name.toLowerCase().includes(keyword.toLowerCase()) ||
+    // recipe.tag.some(ingredient =>
+    // ingredient.name.toLowerCase().includes(keyword.toLowerCase())))
+  })
+};
 
-function showCurrent() {
-  let sort = allRecipes.filter(recipe => {
-    if(users.currentRecipes) {
-      return users.currentRecipes;
-    }
-  });
-}
+// function clearOnSearch() {
+//
+// };
