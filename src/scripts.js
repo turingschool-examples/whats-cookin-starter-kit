@@ -70,7 +70,7 @@ const searchCards = () => {
 
   var search = searchInput.value.toUpperCase();
   searchPool.filter(meal => {
-    if (meal.ingredients.some(ingredient => {return ingredient.name.includes(search.toLowerCase())
+    if (meal.name.toUpperCase().includes(search) || meal.tags.includes(search.toLowerCase()) || meal.ingredients.some(ingredient => {return ingredient.name.includes(search.toLowerCase())
     })) {
       clearRecipeCardArea();
       searchResults.push(meal)
@@ -81,7 +81,6 @@ const searchCards = () => {
 
 
 
-// if (meal.name.toUpperCase().includes(search) || meal.tags.includes(search.toLowerCase())) {
 
 function genRanNum() {
   return Math.floor(Math.random() * 50);
