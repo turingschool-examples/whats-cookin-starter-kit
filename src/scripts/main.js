@@ -1,19 +1,63 @@
-let navBarToggle = document.querySelector('.navbar-toggle');
 let mainNav = document.querySelector('.main-nav');
+let navBar = document.querySelector('.navbar');
 let recipeList = document.querySelector('.injected-recipes');
+let pantry = document.querySelector('.pantry');
+let pantryList = document.querySelector('.injected-pantry');
 let favoriteRecipes = document.querySelector('.injected-favorite-recipes');
 let allRecipes = [];
+let searchedRecipes = [];
+let favoriteRecipesAll = [];
+let currentRecipesAll = [];
 let currentUser;
+let allIngredients;
+let input = document.querySelector('.search-bar');
+
+
+
+
+
 
 window.onload = pageLoadHandler;
-navBarToggle.addEventListener('click', function () {
-  mainNav.classList.toggle('active');
-});
+// navBarToggle.addEventListener('click', function () {
+//   mainNav.classList.toggle('active');
+// });
+// mainNav.addEventListener('keypress', mainHandler);
+mainNav.addEventListener('keyup', mainHandler);
+navBar.addEventListener('click', navHandler);
 
 function pageLoadHandler() {
   loadUser();
   allRecipes = instantiateRecipes();
+  allIngredients = instantiateIngredients();
   loadRecipes(allRecipes);
+}
+
+function mainHandler() {
+  searchedRecipes = [];
+  clearDom()
+  searchRecipes(input.value)
+  loadRecipes(searchedRecipes);
+}
+
+function navHandler(event) {
+  if(event.target.classList.contains('navbar-toggle')) {
+     mainNav.classList.toggle('active');
+  }
+  if(event.target.innerHTML === "Favorites") {
+    clearDom();
+    loadRecipes(favoriteRecipesAll);
+    mainNav.classList.toggle('active');
+  }
+  if(event.target.innerHTML === "To Cook") {
+    clearDom();
+    loadRecipes(currentRecipesAll);
+    mainNav.classList.toggle('active');
+  }
+  if(event.target.innerHTML === "Pantry") {
+    clearDom();
+    loadPantry();
+    mainNav.classList.toggle('active');
+  }
 }
 
 function loadUser() {
@@ -78,19 +122,82 @@ function recipeHandler(event) {
     event.target.classList.toggle('hidden');
   }
   if (event.target.classList.contains('favorite-recipe')) {
-    if (!currentUser.favoriteRecipes.includes(event.target.parentNode.parentNode.parentNode.dataset.id)) {
-      currentUser.favoriteRecipes.push(currentUser.addFavoriteRecipe(event.target.parentNode.parentNode.parentNode.dataset.id));
+    let recipeId = event.target.parentNode.parentNode.parentNode.dataset.id;
+    if (!currentUser.favoriteRecipes.includes(recipeId)) {
+      currentUser.favoriteRecipes.push(currentUser.addFavoriteRecipe(recipeId));
+      currentUser.favoriteRecipes = currentUser.favoriteRecipes.filter((el) => {return el != undefined});
     } else {
-      currentUser.favoriteRecipes.splice(currentUser.favoriteRecipes.indexOf(event.target.parentNode.parentNode.parentNode.dataset.id), 1);
-    } 
+      currentUser.favoriteRecipes.splice(currentUser.favoriteRecipes.indexOf(recipeId), 1);
+    }
+    favoriteRecipesAll = [];
+    allRecipes.filter(recipe => {
+      currentUser.favoriteRecipes.forEach(id => {
+        if(parseInt(id) === recipe.id) {
+          favoriteRecipesAll.push(recipe);
+        }
+      })
+    })
     event.target.classList.toggle('favorite-recipe-active');
   }
   if (event.target.classList.contains('current-recipe')) {
-    if (!currentUser.currentRecipes.includes(event.target.parentNode.parentNode.parentNode.dataset.id)) {
-      currentUser.currentRecipes.push(currentUser.addCurrentRecipe(event.target.parentNode.parentNode.parentNode.dataset.id));
+    let recipeId = event.target.parentNode.parentNode.parentNode.dataset.id
+    if (!currentUser.currentRecipes.includes(recipeId)) {
+      currentUser.currentRecipes.push(currentUser.addCurrentRecipe(recipeId));
+      currentUser.currentRecipes = currentUser.currentRecipes.filter((el) => {return el != undefined});
     } else {
-      currentUser.currentRecipes.splice(currentUser.currentRecipes.indexOf(event.target.parentNode.parentNode.parentNode.dataset.id), 1);
-    } 
+      currentUser.currentRecipes.splice(currentUser.currentRecipes.indexOf(recipeId), 1);
+    }
+    currentRecipesAll = [];
+    allRecipes.filter(recipe => {
+      currentUser.currentRecipes.forEach(id => {
+        if(parseInt(id) === recipe.id) {
+          currentRecipesAll.push(recipe);
+        }
+      })
+    })
     event.target.classList.toggle('current-recipe-active');
   }
+};
+
+function searchRecipes(keyword) {
+  return allRecipes.filter(recipe => {
+    if (recipe.name.toLowerCase().includes(keyword.toLowerCase()) ||
+    recipe.tags.includes(keyword.toLowerCase())
+  ) {
+      searchedRecipes.push(recipe);
+    }
+  })
+};
+
+function clearDom() {
+  recipeList.innerHTML = "";
+};
+
+function loadPantry() {
+  pantry.insertAdjacentHTML('afterbegin',
+  `<h2>Hello ${currentUser.name}! Here's what's in your pantry!</h2>`
+)
+  for(let i = 0; i <  currentUser.pantry.length; i++) {
+    pantryList.insertAdjacentHTML('beforeend',
+    `<div class="recipe-card"
+      <div class="recipe-header">
+        ${currentUser.pantry[i].ingredient}: ${currentUser.pantry[i].amount}
+      </div>
+    </div>`
+    )}
+}
+
+//Not functioning because dataset has erroneous data
+function ingredientName(id) {
+  let fullIngredient = allIngredients.find(ingredient => ingredient.id === id);
+  return fullIngredient.name;
+}
+
+function instantiateIngredients() {
+  let ingredients = [];
+  for (let i = 0; i < ingredientsData.length; i++) {
+    ingredients.push(new Ingredients(ingredientsData[i]))
+  }
+  console.log(ingredients)
+  return ingredients;
 };
