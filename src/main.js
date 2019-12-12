@@ -1,9 +1,6 @@
-// let user = new User(users) // currently passing arr through constructor X
 let currentUser = [];
 currentUser = users.filter(card => card.id === Math.floor(users.length * Math.random()))
-  // fix any instances of currentUser => user
 let user = new User(users[Math.floor(users.length * Math.random())])
-
 let cookbook = new Cookbook(recipeData)
 let pantry = new Pantry()
 
@@ -18,10 +15,11 @@ let showFavoritesBtn = document.querySelector('.favorite-filter');
 let showSavedRecipesBtn = document.querySelector('.tocook-filter');
 let clearSearchBtn = document.querySelector('.clear-filter');
 let mainFavoriteSearch = document.querySelector('.main_favorite-search');
+let favoriteButtons = document.querySelectorAll('.add_to-favorites');
+let saveButtons = document.querySelectorAll('.add_to-save');
+var acc = document.getElementsByClassName("accordion");
+var i;
 
-// fix the buttons after new render
-  // document.querySelectorAll(.add_to-favorites)
-  // document.querySelectorAll(.add_to-save)
 let addFavoriteButton;
 let favoriteButton;
 let src = cookbook.recipes;
@@ -31,7 +29,9 @@ showFavoritesBtn.addEventListener("click", (e) => toggleFilters(e));
 showSavedRecipesBtn.addEventListener("click", (e) => toggleFilters(e));
 clearSearchBtn.addEventListener("click", (e) => toggleFilters(e));
 searchValue.addEventListener("keyup", (e) => filterSearch(e));
-mainFavoriteSearch.addEventListener("keyup", filterFavoritedByTag);
+// mainFavoriteSearch.addEventListener("keyup", filterFavoritedByTag);
+window.onload = displayUserName();
+window.onload = displayRecipes();
 
 function recipeCardEvent(e) {
   if (e.target.classList.contains("add_to-favorites")){
@@ -61,7 +61,6 @@ function displayFavoriteRecipes() {
   jsFavoriteArea.innerHTML = ''
   let sum = user.displayFavorites()
   sum.forEach(recipe => {
-    console.log(recipe)
     jsFavoriteArea.insertAdjacentHTML('beforeend',
       `<section class="user_favorite-container">
             <h1 class="user_recipe-title">${recipe.name}</h1>
@@ -83,10 +82,9 @@ const buildCookBook = (name) => {
   } else {
       userRecipes = user.recipesToCook;
   }
-
   return userRecipes.reduce((acc, recipe) => {
   const tempRecipe = cookbook.recipes.find((r) => {
-      return r.name === recipe;
+      return r.name === recipe.name;
     })
     acc.push(tempRecipe);
     return acc
@@ -97,23 +95,14 @@ const filterSearch = (e) => {
   const {value} = e.target;
   let allSearchResults = [];
   // todo: searchByIngredients, searchByName
-    // super similar to concat(filterTags(value))
   allSearchResults = allSearchResults.concat(filterTags(value));
-  allSearchResults = allSearchResults.concat(filterByIngredient(value));
+  // allSearchResults = allSearchResults.concat(filterByIngredient(value));
   renderSearchRecipes(allSearchResults);
 }
-  // for
-// if type = '', src = original cookbook
-// else if render based on those filter
-// else display no results found, clear the search show all of it.
-
 
   const renderSearchRecipes = (allSearchResults) => {
     mainRecipeArea.innerHTML = '';
-    console.log(allSearchResults)
     allSearchResults.forEach(recipe => {
-
-      // console.log(recipe)
       mainRecipeArea.insertAdjacentHTML('afterbegin',
        `<section class="recipe_info-box">
              <img src="${recipe.image}">
@@ -127,7 +116,7 @@ const filterSearch = (e) => {
 }
 
 const filterTags = (type) => {
-  return user.favoriteRecipes.filter(recipe => {
+  return src.filter(recipe => {
   const foundTag = recipe.tags.find(tag => {
     return tag.includes(type)
   })
@@ -148,17 +137,6 @@ const filterByIngredient = (type) => {
 })
 }
 
-function costOfRecipe() {
-	return pantry.ingredients.reduce((acc, ingredient) => {
-			ingredientsData.forEach((singleIngredient) => {
-				if (singleIngredient.id === ingredient.id) {
-					acc += ingredient.costOfRecipe;
-				}
-			})
-		return acc;
-	}, 0) / 100;
-}
-
 function displaySavedRecipes() {
   jsSavedArea.innerHTML = ''
   let sum = user.displaySavedRecipes()
@@ -172,9 +150,7 @@ function displaySavedRecipes() {
 
 function filterFavoritedByTag(e) {
   mainRecipeArea.innerHTML = '';
-  // console.log(user.filterFavoriteTag())
     user.filterFavoriteTag(e).forEach(recipe => {
-      console.log(recipe)
       mainRecipeArea.insertAdjacentHTML('afterbegin',
        `<section class="recipe_info-box">
              <img src="${recipe.image}">
@@ -184,7 +160,7 @@ function filterFavoritedByTag(e) {
              <button class="add_to-cook">Save for later</button>
               <button class="display_ingredients">Ingredients</button>
         </section>`);
-  }) 
+  })
 }
 
 function displayUserName() {
@@ -195,6 +171,18 @@ function displayUserName() {
   }
 }
 
-costOfRecipe()
-displayUserName()
-displayRecipes()
+  // function to toggle accordion to show list of tags for user to search
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    /* Toggle between adding and removing the "active" class,
+    to highlight the button that controls the panel */
+    this.classList.toggle("active");
+    /* Toggle between hiding and showing the active panel */
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
