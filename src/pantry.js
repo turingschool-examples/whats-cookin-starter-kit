@@ -14,14 +14,6 @@ class Pantry {
 
   }
 
-  removeIngredientsOnceMade() {
-
-  }
-
-
-
-
-
 }
 
 if (typeof module !== 'undefined') {
