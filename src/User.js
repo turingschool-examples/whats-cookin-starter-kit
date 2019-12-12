@@ -5,7 +5,6 @@ class User {
     this.favoriteRecipes = [];
     this.recipesToCook = [];
     this.testArr = [];
-    this.stock = 0;
   }
 
   displayFavorites() {
