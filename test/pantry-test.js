@@ -13,3 +13,5 @@ describe ('Pantry', function() {
   beforeEach(() => {
 
   });
+
+});

@@ -2,41 +2,50 @@ const chai = require("chai");
 const expect = chai.expect;
 
 const User = require("../src/users");
-const userData = require("../data/users");
 
 let user;
 
-describe ('Users', function() {
+describe('Users', function() {
 
   beforeEach(() => {
-    user = new Users(userData[0]);
+    user = new User({
+      "id": 1,
+      "name": "Saige O'Kon",
+      "pantry": [{
+          "ingredient": 11477,
+          "amount": 1
+        },
+        {
+          "ingredient": 93820,
+          "amount": 1
+        }
+      ]
+    });
   });
 
-  it.skip('should be an instance of a User', function() {
+  it('should be an instance of a User', function() {
     expect(user).to.be.an.instanceOf(User);
   });
 
-  it.skip('should have an id', function() {
-
+  it('should have an id', function() {
+    expect(user.id).to.equal(1);
   });
 
-  it.skip('should have a name', function() {
-
+  it('should have a name', function() {
+    expect(user.name).to.equal("Saige O'Kon");
   });
 
-  it.skip('should have a pantry of ingredients', function() {
-
+  it('should have a pantry of ingredients', function() {
+    expect(user.pantry).to.be.a('array')
   });
 
-  it.skip('should have favorite recipes', function() {
-
+  it('should be able to add recipes to favorites', function() {
+    user.addToFavorites('recipe');
+    expect(user.favoriteRecipes.length).to.equal(1);
   });
 
-  it.skip('should be able to add recipes to favorites', function() {
-
-  });
-
-  it.skip('should be able to ', function() {
-
+  it('should be able to add recipes to recipesToCook', function() {
+    user.addToCook('recipe');
+    expect(user.recipesToCook.length).to.equal(1)
   });
 });
