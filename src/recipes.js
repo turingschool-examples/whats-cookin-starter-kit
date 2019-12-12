@@ -8,10 +8,6 @@ class Recipe {
     this.tags = recipe.tags;
 
   }
-  calculateDollars() {
-    // take each ingredient price through ingredients data and divide by 100
-  }
-
   addCards() {
     homeRecipes.innerHTML += `
     <div class="card" id="${this.id}">

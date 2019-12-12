@@ -1,5 +1,3 @@
-// const recipes = require("../recipes");
-
 const favoritesButton = document.querySelector("#favorites");
 const homeRecipes = document.querySelector(".home-recipes");
 const favoriteRecipes = document.querySelector("#favorite-recipes-main");
@@ -9,6 +7,7 @@ const homeButton = document.querySelector("#home-button");
 const onTheMenu = document.querySelector('#on-menu');
 const groceryList = document.querySelector("#grocery-list");
 const searchButton = document.querySelector("#search-btn");
+const filterBtn = document.querySelector('#filter-btn');
 const searchBox = document.querySelector("#search-input");
 const user = new User(users[0]);
 
@@ -21,8 +20,20 @@ addButton.addEventListener("click", displayRecipeForm);
 homeButton.addEventListener("click", displayHomePage);
 groceryList.addEventListener("click", runCheckPantry);
 searchButton.addEventListener("click", runSearch);
+filterBtn.addEventListener('click', getUniqueTags);
 
-
+function getUniqueTags() {
+  let uniqueTags = [];
+  recipeData.forEach(recipe => {
+    recipe.tags.forEach(tag => {
+      if (!uniqueTags.includes(tag)) {
+        uniqueTags.unshift(tag);
+      };
+    });
+  });
+  let sortedTags = uniqueTags.sort();
+  console.log(sortedTags);
+}
 
 function runSearch() {
   let searchInput = searchBox.value;
@@ -50,28 +61,16 @@ function displayRecipeForm() {
   recipeForm.classList.remove("hidden");
 }
 
-// function displayHomePage() {
-//   recipeForm.classList.add("hidden");
-//   favoriteRecipes.classList.add("hidden");
-//   homeRecipes.classList.remove("hidden");
-// }
-
 function displayHomePage() {
   homeRecipes.innerHTML = '';
   addRecipeCards();
 }
 
-// function displayRecipePage() {
-//   recipeForm.classList.add("hidden");
-//   favoriteRecipes.classList.add("hidden");
-//   homeRecipes.classList.add("hidden");
-// }
-
 function addRecipeCards() {
-  for (var i = 0; i < recipeData.length; i++) {
-    let recipe = new Recipe(recipeData[i]);
+  recipeData.forEach(recipe1 => {
+    let recipe = new Recipe(recipe1);
     recipe.addCards();
-  }
+  })
 }
 
 function runAddToFavs() {
@@ -100,6 +99,7 @@ function runAddToCook() {
   })
   user.addToCook(selectedRecipe);
 }
+
 function runRemoveToCook() {
   let selectedRecipe = recipeData.find(recipe => {
     if (recipe.id === parseInt(event.target.parentElement.id)) {
@@ -113,6 +113,7 @@ function displayRecipe() {
   if (event.target.classList.contains("recipe-title")) {
     let clickedID = event.target.parentElement.id;
     runExpandedMethod(clickedID);
+
     // beginning of Favoriting Logic
   } else if (event.target.classList.contains('fav-star')) {
     runAddToFavs();

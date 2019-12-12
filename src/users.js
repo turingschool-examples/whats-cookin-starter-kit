@@ -6,7 +6,6 @@ class User {
     this.favoriteRecipes = [];
     this.recipesToCook = [];
     this.searchedRecipes = [];
-
   }
   addToFavorites(recipe) {
     if (this.favoriteRecipes.includes(recipe)) {
@@ -61,15 +60,13 @@ class User {
     this.searchedRecipes = [];
     for (var i = 0; i < recipeData.length; i++) {
       let name = recipeData[i].name.toLowerCase();
-      if(name.includes(input.toLowerCase())) {
+      if (name.includes(input.toLowerCase())) {
         this.searchedRecipes.unshift(recipeData[i]);
         console.log(this.searchedRecipes);
       }
     }
     this.displaySearched();
-    // search the recipes contained with favoriteRecipes
   }
-
   displaySearched() {
     homeRecipes.innerHTML = "";
     for (var i = 0; i < this.searchedRecipes.length; i++) {
@@ -79,12 +76,10 @@ class User {
         <button class="fav-star">Add Favorite</button>
         <button class="cook-star">Add to Menu</button>
       </div>`;
+    }
   }
-}
   filterRecipes() {
-
   }
-
 }
 
 if (typeof module !== 'undefined') {
