@@ -13,13 +13,15 @@
     font-family: 'Solway';
   }
 
-  .injected-recipes {
+  .injected-recipes,
+  .injected-pantry {
     display: flex;
     flex-flow: row wrap;
     width: 100%;
   }
 
-  .recipe-card {
+  .recipe-card,
+  .pantry-card {
     width: 450px;
     font-size: 1.2em;
   }
@@ -58,6 +60,7 @@
   .main-nav li {
     display: inline;
     color: #171717;
+    font-weight: bold;
     padding: 1em;
   }
   
