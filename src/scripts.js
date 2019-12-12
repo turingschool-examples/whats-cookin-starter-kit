@@ -1,7 +1,6 @@
 const addButton = document.querySelector("#add-button");
 const favoriteRecipes = document.querySelector("#favorite-recipes-main");
 const favoritesButton = document.querySelector("#favorites");
-const filterBtn = document.querySelector('#filter-btn');
 const groceryList = document.querySelector("#grocery-list");
 const homeButton = document.querySelector("#home-button");
 const homeRecipes = document.querySelector(".home-recipes");
@@ -11,29 +10,16 @@ const searchBox = document.querySelector("#search-input");
 const searchButton = document.querySelector("#search-btn");
 const user = new User(users[0]);
 
+
 instantiateRecipes();
 
 addButton.addEventListener("click", displayRecipeForm);
 favoritesButton.addEventListener("click", runDisplayFavorites);
-filterBtn.addEventListener('click', getUniqueTags);
 groceryList.addEventListener("click", runCheckPantry);
 homeButton.addEventListener("click", displayHomePage);
 homeRecipes.addEventListener("click", displayRecipe);
 onTheMenu.addEventListener("click", runDisplayToCook);
 searchButton.addEventListener("click", runSearch);
-
-function getUniqueTags() {
-  let uniqueTags = [];
-  recipeData.forEach(recipe => {
-    recipe.tags.forEach(tag => {
-      if (!uniqueTags.includes(tag)) {
-        uniqueTags.unshift(tag);
-      };
-    });
-  });
-  let sortedTags = uniqueTags.sort();
-  console.log(sortedTags);
-}
 
 function runSearch() {
   let searchInput = searchBox.value;
