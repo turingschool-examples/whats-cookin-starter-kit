@@ -44,8 +44,7 @@ header h1 {
 .main-nav li {
   font-size: 1.25em;
   text-align: right;
-  margin: 0
-  .5em;
+  margin: 0.5em;
   padding: .5em;
 }
 
@@ -109,7 +108,7 @@ header h1 {
 
 .buttons {
   background-color: #171717;
-  border-left: 4px #dfdfdf solid;
+  border: 3px #dfdfdf solid;
   color: #dfdfdf;
   font-size: 1.55em;
   padding: 10%;
@@ -118,7 +117,7 @@ header h1 {
 
 .favorite-recipe {
   border-radius: 0 .2em 0 0;
-  margin-bottom: .5em;
+  /* margin-bottom: .25em; */
 }
 
 .favorite-recipe-active {
@@ -128,7 +127,7 @@ header h1 {
 
 .current-recipe {
   border-radius: 0 0 .2em 0;
-  margin-top: .5em;
+  /* margin-top: .5em; */
 }
 
 .current-recipe-active {
