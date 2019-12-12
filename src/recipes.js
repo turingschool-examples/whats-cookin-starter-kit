@@ -38,23 +38,23 @@ class Recipe {
   showListedIngredients() {
     const ingredientSection = document.querySelector(".ingredients-section");
 
-    for (var i = 0; i < this.ingredients.length; i++) {
-      ingredientSection.innerHTML += `<li> ${this.ingredients[i].quanitity.amount} ${this.ingredients[i].quanitity.unit} ${this.ingredients[i].name} </li>`;
-    }
+    this.ingredients.forEach(ingredient => {
+      ingredientSection.innerHTML += `<li> ${ingredient.quanitity.amount} ${ingredient.quanitity.unit} ${ingredient.name} </li>`;
+    })
   }
   showListedInstructions() {
     const instructionsSection = document.querySelector('.instructions-section');
 
-    for (var i = 0; i < this.instructions.length; i++) {
-      instructionsSection.innerHTML += `<li> ${this.instructions[i].instruction}  </li>`;
-    }
+    this.instructions.forEach(instruction => {
+      instructionsSection.innerHTML += `<li> ${instruction.instruction}  </li>`
+    })
   }
   showTags() {
     const tagSection = document.querySelector('.recipe-tags');
 
-    for (var i = 0; i < this.tags.length; i++) {
-      tagSection.innerHTML += `<li> #${this.tags[i]}</li>`
-    }
+    this.tags.forEach(tag => {
+      tagSection.innerHTML += `<li> #${tag}</li>`
+    });
   }
 }
 

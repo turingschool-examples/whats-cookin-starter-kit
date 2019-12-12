@@ -78,7 +78,6 @@ class User {
        <button class="fav-star">Add Favorite</button>
        <button class="cook-star">Add to Menu</button>
       </div>`;
-
     })
   }
 }
