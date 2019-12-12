@@ -56,16 +56,17 @@ class User {
        </div>`
     })
   }
-  searchRecipes(input, tags) {
+  searchRecipes(input) {
     this.searchedRecipes = [];
-    for (var i = 0; i < recipeData.length; i++) {
-      let name = recipeData[i].name.toLowerCase();
-      if (name.includes(input.toLowerCase()) || recipeData[i].tags.includes(input.toLowerCase())) {
-        this.searchedRecipes.unshift(recipeData[i]);
+
+    recipeData.forEach(recipe => {
+      let name = recipe.name.toLowerCase();
+      if (name.includes(input.toLowerCase()) || recipe.tags.includes(input.toLowerCase())) {
+        this.searchedRecipes.unshift(recipe);
       } else {
         // display "No Match Found" message
       }
-    }
+    })
     this.displaySearched();
   }
   displaySearched() {
