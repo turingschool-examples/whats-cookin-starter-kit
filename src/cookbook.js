@@ -17,9 +17,6 @@ class Cookbook {
   displayDirections() {
 
   }
-
-
-
 }
 
 if (typeof module !== 'undefined') {
