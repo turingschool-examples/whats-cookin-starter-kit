@@ -16,51 +16,53 @@ class User {
     return this.recipesToCook;
   }
 
-  addToFavorites(target, recipes) {
+  addToFavorites(target, cookbook) {
+    // checks if length is more than 0, run logic
     if (this.favoriteRecipes.length !== 0) {
-      this.favoriteRecipes.filter(recipe => {
-        if (recipe.name === target) {
-        let indexFound = this.favoriteRecipes.map(function(x) {return x.name; }).indexOf(target)
-        this.favoriteRecipes.splice(indexFound, 1)
+      // if favoriteRecipes doesn't contain target, run logic
+        if(!this.favoriteRecipes.find(r => r.name === target)) {
+          let tempRecipe = cookbook.recipes.find(recipe => {
+              return recipe.name === target;
+          })
+          this.favoriteRecipes.push(tempRecipe);
+          // if favoriteRecipes does contain target, remove target from favoriteRecipes
         } else {
-          recipes.recipes.filter(recipe => {
-        if (recipe.name === target) {
-        this.favoriteRecipes.push(recipe)
-       }
-     })
+          this.favoriteRecipes = this.favoriteRecipes.filter((r) => {
+            return r.name !== target;
+          })
         }
-      }) 
+        // if favoriteRecipes is empty, push recipe into array
     } else {
-      recipes.recipes.filter(recipe => {
-        if (recipe.name === target) {
-        this.favoriteRecipes.push(recipe)
-       }
-     })
-   }
-
-  }
+        cookbook.recipes.filter(recipe => {
+          if (recipe.name === target) {
+            this.favoriteRecipes.push(recipe)
+          }
+        })
+    }
+}
 
   addToSaved(target, recipes) {
     if (this.recipesToCook.length !== 0) {
-      this.recipesToCook.filter(recipe => {
-        if (recipe.name === target) {
-        let indexFound = this.recipesToCook.map(function(x) {return x.name; }).indexOf(target)
-        this.recipesToCook.splice(indexFound, 1)
+      // if recipesToCook doesn't contain target, run logic
+        if(!this.recipesToCook.find(r => r.name === target)) {
+          let tempRecipe = cookbook.recipes.find(recipe => {
+              return recipe.name === target;
+          })
+          this.recipesToCook.push(tempRecipe);
+          // if recipesToCook does contain target, remove target from recipesToCook
         } else {
-          recipes.recipes.filter(recipe => {
-        if (recipe.name === target) {
-        this.recipesToCook.push(recipe)
-       }
-     })
+          this.recipesToCook = this.recipesToCook.filter((r) => {
+            return r.name !== target;
+          })
         }
-      }) 
+        // if recipesToCook is empty, push recipe into arr
     } else {
-      recipes.recipes.filter(cookRecipe => {
-        if (cookRecipe.name === target) {
-        this.recipesToCook.push(cookRecipe)
-       }
-     })
-   }
+        cookbook.recipes.filter(recipe => {
+          if (recipe.name === target) {
+            this.recipesToCook.push(recipe)
+          }
+        })
+    }
   }
 
   filterFavoriteTag(type) {
