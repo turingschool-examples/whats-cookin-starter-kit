@@ -13,8 +13,29 @@
     font-family: 'Solway';
   }
 
+  .injected-recipes {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+  }
+
+  .recipe-card {
+    width: 450px;
+    font-size: 1.2em;
+  }
+
+  .recipe-card-active {
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 932px) {
+
   header {
     background-color: #00aeee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   header h1 {
@@ -23,26 +44,110 @@
   }
 
   .navbar {
+    width: 60%;
+  }
+
+  .navbar-toggle {
+    display: none;
+  }
+
+  .main-nav {
+    background-color: #00aeee;
+  }
+
+  .main-nav li {
     display: inline;
+    color: #171717;
+    padding: 1em;
   }
-
-  .navbar div {
-    background-color: #282828;
-
-  }
-
-  .injected-recipes {
+  
+  .main-nav {
+    width: 100%;
+    padding: 0;
     display: flex;
-    flex-flow: row wrap;
+    justify-content: flex-end;
+  }
+
+  .main-nav li:hover {
+    background-color: #171717;
+    color: #dfdfdf;
+    cursor: pointer;
+  }
+
+  .search-container {
+    width: 30%;
+    padding: 0;
+  }
+
+  .search-bar {
     width: 100%;
   }
 
-  .recipe-card {
-    width: 400px;
-    font-size: 1.2em;
+  .recipe-card-active {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    width: 100%;
   }
 
-  .recipe-card-active {
-    width: 80%;
+  .recipe-card-active .recipe-header {
+    align-items: space-around;
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+    width: 40%;
+  }
+
+  .recipe-card-active .recipe-header h3 {
+    cursor: pointer;
+    font-size: 2em;
+    margin: .5em 0;
+    text-align: center;
+  }
+
+  .recipe-card-active .image-wrapper {
+    width: 100%;
+  }
+
+  .recipe-card-active .button-wrapper {
+    flex-flow: row nowrap;
+    height: 10%;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  
+  .recipe-card-active .buttons {
+    align-items: center;
+    border-radius: .25em;
+    border: 3px solid #dfdfdf;
+    cursor: pointer;
+    font-size: 2em;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    width: 30%;
+  }
+
+  .recipe-card-active .close-recipe {
+    display: inherit;
+  }
+
+  .recipe-card-active .recipe-content {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    width: 60%;
+  }
+
+  .recipe-card-active .recipe-ingredients{
+    align-self: flex-start;
+    margin: 0;
+    margin-left: 2em;
+    width: 50%;
+  }
+
+  .recipe-card-active .recipe-directions {
+    width: 50%;
   }
 }
