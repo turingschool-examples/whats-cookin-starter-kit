@@ -23,7 +23,7 @@ class Recipe {
     homeRecipes.innerHTML = `
     <section id="expanded-recipe-page" class="">
       <h1 class="title" id="${this.id}">${this.name}</h1>
-      <img src="${this.image}">
+      <img class="recipe-pic" src="${this.image}">
       <ul class="ingredients-section">
       </ul>
       <ol class="instructions-section">
