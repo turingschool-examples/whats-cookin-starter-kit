@@ -4,6 +4,7 @@ class User {
     this.pantry = obj.pantry;
     this.favoriteRecipes = [];
     this.recipesToCook = [];
+    this.testArr = [];
     this.stock = 0;
   }
 
@@ -40,7 +41,6 @@ class User {
   }
 
   addToSaved(target, recipes) {
-    
     if (this.recipesToCook.length !== 0) {
       this.recipesToCook.filter(recipe => {
         if (recipe.name === target) {
@@ -50,7 +50,6 @@ class User {
           recipes.recipes.filter(recipe => {
         if (recipe.name === target) {
         this.recipesToCook.push(recipe)
-        console.log(this.recipesToCook)
        }
      })
         }
@@ -58,19 +57,23 @@ class User {
     } else {
       recipes.recipes.filter(cookRecipe => {
         if (cookRecipe.name === target) {
-        console.log(cookRecipe)
         this.recipesToCook.push(cookRecipe)
        }
      })
    }
   }
 
-  addToCook() {
+  filterFavoriteTag(type) {
+    return this.favoriteRecipes.filter(recipe => {
+      const foundTag = recipe.tags.find(tag => {
+    return tag.includes(type.target.value)
+  })
+    if(foundTag) {
+    this.testArr.push(recipe)
+    return this.testArr
+    }
 
-  }
-
-  filterRecipesBy() {
-
+    })
   }
 
 };
