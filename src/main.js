@@ -36,7 +36,7 @@ function recipeCardEvent(e) {
     user.addToFavorites(e.target.parentElement.children[1].innerHTML, cookbook)
     displayFavoriteRecipes()
   } else if (e.target.classList.contains("add_to-saved")){
-    user.addToSaved(e.target.parentElement.children[1].innerHTML)
+    user.addToSaved(e.target.parentElement.children[1].innerHTML, cookbook)
     displaySavedRecipes()
   }
 }
@@ -58,7 +58,9 @@ function displayRecipes() {
 function displayFavoriteRecipes() {
   jsFavoriteArea.innerHTML = ''
   let sum = user.displayFavorites()
+  console.log(sum.name)
   sum.forEach(recipe => {
+    console.log(recipe)
     jsFavoriteArea.insertAdjacentHTML('beforeend',
       `<section class="user_favorite-container">
             <h1 class="user_recipe-title">${recipe.name}</h1>
@@ -132,10 +134,8 @@ const filterTags = (type) => {
 }
 
 const filterByIngredient = (type) => {
-  console.log(src);
   return src.filter(recipe => {
-    console.log(recipe.ingredients);
-  const foundIngredient = recipe.ingredients.name.find(ingredient => {
+    const foundIngredient = recipe.ingredients.name.find(ingredient => {
     return ingredient.includes(type)
   })
   if(foundingredient) {
@@ -145,12 +145,8 @@ const filterByIngredient = (type) => {
 }
 
 function costOfRecipe() {
-  console.log('a');
 	return pantry.ingredients.reduce((acc, ingredient) => {
-    console.log('b');
 			ingredientsData.forEach((singleIngredient) => {
-        console.log('c');
-				console.log(ingredientsData);
 				if (singleIngredient.id === ingredient.id) {
 					acc += ingredient.costOfRecipe;
 				}
@@ -165,7 +161,7 @@ function displaySavedRecipes() {
   sum.forEach(recipe => {
     jsSavedArea.insertAdjacentHTML('beforeend',
       `<section class="user_saved-container">
-            <h1 class="user_saved-title">${recipe}</h1>
+            <h1 class="user_saved-title">${[recipe.name]}</h1>
        </section>`);
   });
 }

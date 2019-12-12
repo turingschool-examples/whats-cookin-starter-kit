@@ -3,9 +3,9 @@
 	padding: 0;
 }
 
-* {
+/** {
 	border: 1px solid red;
-}
+}*/
 
 .main_body-nav {
 	height: 125px;

@@ -39,8 +39,30 @@ class User {
 
   }
 
-  addToSaved(target) {
-    this.recipesToCook.includes(target) ? this.recipesToCook.splice(this.recipesToCook.indexOf(target), 1) : this.recipesToCook.push(target);
+  addToSaved(target, recipes) {
+    
+    if (this.recipesToCook.length !== 0) {
+      this.recipesToCook.filter(recipe => {
+        if (recipe.name === target) {
+        let indexFound = this.recipesToCook.map(function(x) {return x.name; }).indexOf(target)
+        this.recipesToCook.splice(indexFound, 1)
+        } else {
+          recipes.recipes.filter(recipe => {
+        if (recipe.name === target) {
+        this.recipesToCook.push(recipe)
+        console.log(this.recipesToCook)
+       }
+     })
+        }
+      }) 
+    } else {
+      recipes.recipes.filter(cookRecipe => {
+        if (cookRecipe.name === target) {
+        console.log(cookRecipe)
+        this.recipesToCook.push(cookRecipe)
+       }
+     })
+   }
   }
 
   addToCook() {
