@@ -26,7 +26,7 @@ mainNav.addEventListener('keyup', mainHandler);
 navBar.addEventListener('click', navHandler);
 
 function pageLoadHandler() {
-  loadUser();
+  loadUser(currentUser);
   allRecipes = instantiateRecipes();
   allIngredients = instantiateIngredients();
   loadRecipes(allRecipes);
@@ -61,12 +61,13 @@ function navHandler(event) {
 }
 
 function loadUser() {
+  shuffleUser(users);
   currentUser = new Users(users[0]);
   currentUser.createPantry(users[0].pantry);
 }
 
 function loadRecipes(recipeArray) {
-  for(let i = 0; i <  recipeArray.length; i++) {
+  for(let i = 0; i < recipeArray.length; i++) {
     recipeList.insertAdjacentHTML('beforeend',
     `<div class="recipe-card" data-id="${recipeArray[i].id}">
       <div class="recipe-header">
@@ -201,3 +202,7 @@ function instantiateIngredients() {
   console.log(ingredients)
   return ingredients;
 };
+
+function shuffleUser(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
