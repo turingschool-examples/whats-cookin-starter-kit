@@ -1,51 +1,41 @@
-# What's Cookin'? Starter Kit 
+# What's that Smell'? 
 
-The details of this project are outlined in the <a href="https://frontend.turing.io/projects/whats-cookin.html" target="\__blank">project spec</a>.
+## Project Goals and Objectives
 
-## Set Up 
+- Follow the specification below to make a working application
+- Implement ES6 classes that communicate to each other as needed
+- Write modular, reusable code that follows SRP (Single Responsibility Principle)
+- Implement a robust testing suite using TDD
+- Use object and array prototype methods to perform data manipulation
+- Display information on the page while maintaining ability to test class properties and     mehtods
+- Create a user interface that is easy to use and displays information in a clear way
 
-1. Within your group, decide on one person to have the project repository on their Github account. This person will *fork* this repository - on the top right corner of the page, click the fork button. 
-2. Both group members should then clone down the forked repository (make sure that everyone is added as a collaborator as well). Since you don't want your project to be named "whats-cookin-starter-kit", add an optional argument after the repo url when cloning. The command should look like this: `git clone [remote-address] [what you want to name the repo]`.
-3. Once you have cloned the repo, change into the directory and install the project dependencies. Run npm install to install project dependencies.
-4. Run open src/index.html in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page)
-5. Make sure both members of your team are collaborators on the forked repo.
+## Project OverView
 
-## Testing 
+In this project we wanted to create a recipe tracking/ meal planning application that allows users to view their favorite recipes. A user should be able to view a list of recipes, favorite their own recipes, and choose recipes to cook, and make a shooping list based on those recipes. 
 
-There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran npm install, then the tooling you need to start testing is already installed (mocha and chai).
+## How to open our app. 
 
-## Linting Your Code 
+1. open your terminal- command + space => terminal
 
-Run the command in your terminal npm run lint to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit, but that's ok - the linter is still running successfully.
+2. cd into the file- cd => fileName/src
 
-Your linter will look only at the JavaScript files you have within the src and the test directories.
+3. in your terminal- open the html doc => open index.html 
 
+## Technologies Used!
 
-## Data Model
-### Users
-```js
-{
-  "id": [number],
-  "name": [string],
-  "pantry": [array of objects with amount and ingredient id properties]
-},
-```
+- Mocha
+- Chai
+- Terminal
+- Atom/VS-code
+- Developer tools
 
-### Recipes
-```js
-{
-  "ingredients" [array of objects with ingredients ids(connection to ingredients), ingredient names, and quantity data],
-  "instructions": [array of objects with instructions properties and numbered steps],
-  "name": [string],
-  "tags": [array of strings representing info about the recipes]
-}
-```
+## Issues to be corrected in the future!
 
-### Ingredients
-```js
-{
-  "estimatedCostInCents": [number],
-  "id": [number -- connection to users and recipes],
-  "name": [string]
-}
-```
+- User pantry should be able to show the diffrence between the ingredients vs the pantry.
+ 
+
+## Authors
+
+- Grayson Palmer
+- Trond Makonese
