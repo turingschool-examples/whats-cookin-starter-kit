@@ -17,6 +17,7 @@ let addToSaved = document.querySelector('.add_to-saved');
 let showFavoritesBtn = document.querySelector('.favorite-filter');
 let showSavedRecipesBtn = document.querySelector('.tocook-filter');
 let clearSearchBtn = document.querySelector('.clear-filter');
+let mainFavoriteSearch = document.querySelector('.main_favorite-search');
 
 // fix the buttons after new render
   // document.querySelectorAll(.add_to-favorites)
@@ -30,6 +31,7 @@ showFavoritesBtn.addEventListener("click", (e) => toggleFilters(e));
 showSavedRecipesBtn.addEventListener("click", (e) => toggleFilters(e));
 clearSearchBtn.addEventListener("click", (e) => toggleFilters(e));
 searchValue.addEventListener("keyup", (e) => filterSearch(e));
+mainFavoriteSearch.addEventListener("keyup", filterFavoritedByTag);
 
 function recipeCardEvent(e) {
   if (e.target.classList.contains("add_to-favorites")){
@@ -58,7 +60,6 @@ function displayRecipes() {
 function displayFavoriteRecipes() {
   jsFavoriteArea.innerHTML = ''
   let sum = user.displayFavorites()
-  console.log(sum.name)
   sum.forEach(recipe => {
     console.log(recipe)
     jsFavoriteArea.insertAdjacentHTML('beforeend',
@@ -109,7 +110,10 @@ const filterSearch = (e) => {
 
   const renderSearchRecipes = (allSearchResults) => {
     mainRecipeArea.innerHTML = '';
+    console.log(allSearchResults)
     allSearchResults.forEach(recipe => {
+
+      // console.log(recipe)
       mainRecipeArea.insertAdjacentHTML('afterbegin',
        `<section class="recipe_info-box">
              <img src="${recipe.image}">
@@ -123,7 +127,7 @@ const filterSearch = (e) => {
 }
 
 const filterTags = (type) => {
-  return src.filter(recipe => {
+  return user.favoriteRecipes.filter(recipe => {
   const foundTag = recipe.tags.find(tag => {
     return tag.includes(type)
   })
@@ -164,6 +168,23 @@ function displaySavedRecipes() {
             <h1 class="user_saved-title">${[recipe.name]}</h1>
        </section>`);
   });
+}
+
+function filterFavoritedByTag(e) {
+  mainRecipeArea.innerHTML = '';
+  // console.log(user.filterFavoriteTag())
+    user.filterFavoriteTag(e).forEach(recipe => {
+      console.log(recipe)
+      mainRecipeArea.insertAdjacentHTML('afterbegin',
+       `<section class="recipe_info-box">
+             <img src="${recipe.image}">
+             <h1 class="recipe_title">${recipe.name}</h1>
+             <h4 id="ingredients_list">Ingredients:</h4>
+             <button class="add_to-favorites">Favorites</button>
+             <button class="add_to-cook">Save for later</button>
+              <button class="display_ingredients">Ingredients</button>
+        </section>`);
+  }) 
 }
 
 function displayUserName() {
