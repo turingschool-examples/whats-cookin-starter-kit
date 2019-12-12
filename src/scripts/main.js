@@ -1,5 +1,6 @@
 let mainNav = document.querySelector('.main-nav');
 let navBar = document.querySelector('.navbar');
+let recipeGroup = document.querySelector('.recipe-group');
 let recipeList = document.querySelector('.injected-recipes');
 let pantry = document.querySelector('.pantry');
 let pantryList = document.querySelector('.injected-pantry');
@@ -12,16 +13,7 @@ let currentUser;
 let allIngredients;
 let input = document.querySelector('.search-bar');
 
-
-
-
-
-
 window.onload = pageLoadHandler;
-// navBarToggle.addEventListener('click', function () {
-//   mainNav.classList.toggle('active');
-// });
-// mainNav.addEventListener('keypress', mainHandler);
 mainNav.addEventListener('keyup', mainHandler);
 navBar.addEventListener('click', navHandler);
 
@@ -30,6 +22,7 @@ function pageLoadHandler() {
   allRecipes = instantiateRecipes();
   allIngredients = instantiateIngredients();
   loadRecipes(allRecipes);
+  loadPantryHeader();
 }
 
 function mainHandler() {
@@ -41,21 +34,34 @@ function mainHandler() {
 
 function navHandler(event) {
   if(event.target.classList.contains('navbar-toggle')) {
-     mainNav.classList.toggle('active');
+    mainNav.classList.toggle('active');
+  }
+  if(event.target.innerHTML === "Suggested") {
+    clearDom();
+    loadRecipes(allRecipes);
+    recipeGroup.classList.remove('hidden');
+    pantry.classList.add('hidden');
+    mainNav.classList.toggle('active');
   }
   if(event.target.innerHTML === "Favorites") {
     clearDom();
     loadRecipes(favoriteRecipesAll);
+    recipeGroup.classList.remove('hidden');
+    pantry.classList.add('hidden');
     mainNav.classList.toggle('active');
   }
   if(event.target.innerHTML === "To Cook") {
     clearDom();
     loadRecipes(currentRecipesAll);
+    recipeGroup.classList.remove('hidden');
+    pantry.classList.add('hidden');
     mainNav.classList.toggle('active');
   }
   if(event.target.innerHTML === "Pantry") {
     clearDom();
     loadPantry();
+    recipeGroup.classList.add('hidden');
+    pantry.classList.remove('hidden');
     mainNav.classList.toggle('active');
   }
 }
@@ -89,7 +95,8 @@ function loadRecipes(recipeArray) {
         </ol>
       </div>
     </div>`
-    )}
+    )
+  }
   recipeSelector = recipeList.querySelectorAll('.recipe-card');
   recipeSelector.forEach(recipe => recipe.addEventListener('click', recipeHandler));
 };
@@ -170,18 +177,22 @@ function searchRecipes(keyword) {
 };
 
 function clearDom() {
-  recipeList.innerHTML = "";
+  recipeList.innerHTML = '';
+  pantryList.innerHTML = '';
 };
 
-function loadPantry() {
+function loadPantryHeader() {
   pantry.insertAdjacentHTML('afterbegin',
-  `<h2>Hello ${currentUser.name}! Here's what's in your pantry!</h2>`
+  `<h2 class="pantry-greeting">Hello ${currentUser.name}! Here's what's in your pantry!</h2>`
 )
+}
+
+function loadPantry() {
   for(let i = 0; i <  currentUser.pantry.length; i++) {
     pantryList.insertAdjacentHTML('beforeend',
-    `<div class="recipe-card"
-      <div class="recipe-header">
-        ${currentUser.pantry[i].ingredient}: ${currentUser.pantry[i].amount}
+    `<div class="pantry-card"
+      <div class="pantry-header">
+        <h3>${currentUser.pantry[i].ingredient}: ${currentUser.pantry[i].amount}</h3>
       </div>
     </div>`
     )}
@@ -198,6 +209,5 @@ function instantiateIngredients() {
   for (let i = 0; i < ingredientsData.length; i++) {
     ingredients.push(new Ingredients(ingredientsData[i]))
   }
-  console.log(ingredients)
   return ingredients;
 };
