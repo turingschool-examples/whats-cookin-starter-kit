@@ -22,13 +22,13 @@ class User {
     }
   }
   displayToCook() {
-    for (var i = 0; i < this.recipesToCook.length; i++) {
-      homeRecipes.innerHTML += `<div class="card" id="${this.recipesToCook[i].id}">
-    <img class="food-pic" src="${this.recipesToCook[i].image}">
-      <button class="recipe-title meal-name">${this.recipesToCook[i].name}</button>
-      <button class="un-cook-star">Remove from Menu</button>
-    </div>`;
-    }
+    this.recipesToCook.forEach(recipe => {
+      homeRecipes.innerHTML += `<div class="card" id="${recipe.id}">
+       <img class="food-pic" src="${recipe.image}">
+         <button class="recipe-title meal-name">${recipe.name}</button>
+         <button class="un-cook-star">Remove from Menu</button>
+       </div>`
+    })
   }
   removeFromFavorites(recipe) {
     for (var i = this.favoriteRecipes.length - 1; i >= 0; i--) {
@@ -47,37 +47,39 @@ class User {
     }
   }
   displayFavorites() {
-    for (var i = 0; i < this.favoriteRecipes.length; i++) {
-      homeRecipes.innerHTML += `<div class="card" id="${this.favoriteRecipes[i].id}">
-      <img class="food-pic" src="${this.favoriteRecipes[i].image}">
-        <button class="recipe-title meal-name">${this.favoriteRecipes[i].name}</button>
-        <button class="un-fav-star">Remove Favorite</button>
-        <button class="cook-star">Add to Menu</button>
-      </div>`;
-    }
+    this.favoriteRecipes.forEach(recipe => {
+      homeRecipes.innerHTML += `<div class="card" id="${recipe.id}">
+       <img class="food-pic" src="${recipe.image}">
+         <button class="recipe-title meal-name">${recipe.name}</button>
+         <button class="un-fav-star">Remove Favorite</button>
+         <button class="cook-star">Add to Menu</button>
+       </div>`
+    })
   }
-  searchRecipes(input, tags) {
+  searchRecipes(input) {
     this.searchedRecipes = [];
-    for (var i = 0; i < recipeData.length; i++) {
-      let name = recipeData[i].name.toLowerCase();
-      if (name.includes(input.toLowerCase()) || recipeData[i].tags.includes(input.toLowerCase())) {
-        this.searchedRecipes.unshift(recipeData[i]);
+
+    recipeData.forEach(recipe => {
+      let name = recipe.name.toLowerCase();
+      if (name.includes(input.toLowerCase()) || recipe.tags.includes(input.toLowerCase())) {
+        this.searchedRecipes.unshift(recipe);
       } else {
         // display "No Match Found" message
       }
-    }
+    })
     this.displaySearched();
   }
   displaySearched() {
     homeRecipes.innerHTML = "";
-    for (var i = 0; i < this.searchedRecipes.length; i++) {
-      homeRecipes.innerHTML += `<div class="card" id="${this.searchedRecipes[i].id}">
-      <img class="food-pic" src="${this.searchedRecipes[i].image}">
-        <button class="recipe-title meal-name">${this.searchedRecipes[i].name}</button>
-        <button class="fav-star">Add Favorite</button>
-        <button class="cook-star">Add to Menu</button>
+
+    this.searchedRecipes.forEach(recipe => {
+      homeRecipes.innerHTML += `<div class="card" id="${recipe.id}">
+      <img class="food-pic" src="${recipe.image}">
+      <button class="recipe-title meal-name">${recipe.name}</button>
+       <button class="fav-star">Add Favorite</button>
+       <button class="cook-star">Add to Menu</button>
       </div>`;
-    }
+    })
   }
 }
 

@@ -48,7 +48,7 @@ function displayRecipeForm() {
 
 function displayHomePage() {
   homeRecipes.innerHTML = '';
-  addRecipeCards();
+  instantiateRecipes();
 }
 
 function instantiateRecipes() {
