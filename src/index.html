@@ -1,69 +1,39 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <link href="styles.css" rel="stylesheet" type="text/css">
-    <title>Spiced</title>
-  </head>
-  <body>
-    <header>
-      <h1 id="title"><span class="dots">.:</span>Spiced<span class="dots">:.</span></h1>
-      <div id="title-labels">
-        <label id="home-button" class="head-label">.Home.</label>
-        <label id="favorites" class="head-label">.Favorite.</label>
-        <label id="on-menu" class="head-label">.On the Menu.</label>
-        <label id="grocery-list" class="head-label">.Grocery List.</label>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link href="styles.css" rel="stylesheet" type="text/css">
+  <title>Spiced</title>
+</head>
+
+<body>
+  <header>
+    <h1 id="title"><span class="dots">.:</span>Spiced<span class="dots">:.</span></h1>
+    <div id="title-labels">
+      <label id="home-button" class="head-label" aria-role="button">.Home.</label>
+      <label id="favorites" class="head-label" aria-role="button">.Favorite.</label>
+      <label id="on-menu" class="head-label" aria-role="button">.On the Menu.</label>
+      <label id="grocery-list" class="head-label" aria-role="button">.Grocery List.</label>
+    </div>
+  </header>
+  <section id="home-body">
+    <section id="search-filter">
+      <div class="search-div">
+        <button id="search-btn" class="search-button">Search</button>
+        <input id="search-input" class="search" type="text" placeholder="Whats Cookin'?">
       </div>
-    </header>
-    <section id="home-body">
-      <section id="search-filter">
-        <div class="search-div">
-          <button id="search-btn" class="search-button">Search</button>
-          <input id="search-input" class="search" type="text" placeholder="Whats Cookin'?">
-        </div>
-        <div class="filter-div">
-          <button id="filter-btn" class="filter-button">Filter<img id="arrow" src="../assets/downvote.svg"></button>
-        </div>
+    </section>
+    <section class="home-recipes">
+    </section>
+    <section id="favorite-recipes-main" class="hidden">
+      <img id="add-button" src="../assets/comment.svg">
+      <h2 id="add-label">Add your own Recipe</h2>
+      <section id="favorite-recipes-section">
       </section>
-      <section class="home-recipes">
-        <!-- <div class="card" id="card1">
-          <img class="food-pic" src="../assets/food.jpg">
-          <p class="meal-name">Coconut Yogurt Bowl</p>
-          <img class="fav-star" src="../assets/star copy.svg">
-        </div>
-        <div class="card" id="card2">
-          <img class="food-pic" src="../assets/food.jpg">
-          <p class="meal-name">Coconut Yogurt Bowl</p>
-          <img class="fav-star" src="../assets/star copy.svg">
-        </div>
-        <div class="card" id="card3">
-          <img class="food-pic" src="../assets/food.jpg">
-          <p class="meal-name">Coconut Yogurt Bowl</p>
-          <img class="fav-star" src="../assets/star copy.svg">
-        </div> -->
-      </section>
-      <section id="favorite-recipes-main" class="hidden">
-        <img id="add-button" src="../assets/comment.svg">
-        <h2 id="add-label">Add your own Recipe</h2>
-        <section id="favorite-recipes-section">
-          <div class="card" id="card1a">
-            <img class="food-pic" src="../assets/food.jpg">
-            <p class="meal-name">Blueberry Muffin</p>
-            <img class="fav-star" src="../assets/star copy.svg">
-          </div>
-          <div class="card" id="card2a">
-            <img class="food-pic" src="../assets/food.jpg">
-            <p class="meal-name">Blueberry Muffin</p>
-            <img class="fav-star" src="../assets/star copy.svg">
-          </div>
-          <div class="card" id="card3a">
-            <img class="food-pic" src="../assets/food.jpg">
-            <p class="meal-name">Blueberry Muffin</p>
-            <img class="fav-star" src="../assets/star copy.svg">
-          </div>
-        </section>
-      </section>
-      <section id="recipe-form" class="hidden">
+    </section>
+    <section id="recipe-form" class="hidden">
+      <form>
         <div id="add-title" class="form">
           <label class="form-label">Recipe Title:</label>
           <input type="text">
@@ -76,39 +46,30 @@
           <label class="form-label">Add Ingredients:</label>
           <br>
           <textarea type="text" rows="7" cols="80" maxlength="75">
-          </textarea>
+            </textarea>
         </div>
         <div id="add-directions" class="form">
           <label class="form-label">Add Directions:</label>
           <br>
           <textarea type="text" rows="7" cols="80" maxlength="75">
-          </textarea>
+            </textarea>
         </div>
         <div id="add-tags" class="form">
           <label class="form-label">Add Tags To Easily Find Recipe:</label>
           <br>
           <textarea type="text" rows="7" cols="80" maxlength="75">
-          </textarea>
+            </textarea>
         </div>
         <button id="submit-button" type="submit">Add New Recipe</button>
-      </section>
-     <!-- <section id="expanded-recipe-page" class="">
-       <h1 class="title" id="">Title</h1>
-       <img src="">
-       <ul class="ingredients"></ul>
-       <li class="instructions"></li>
-       <p class="tags"></p>
-    </section> -->
-
-
-
-
+      </form>
+    </section>
     <script type="text/javascript" src="../src/recipes.js"></script>
-      <script type="text/javascript" src="../src/users.js"></script>
+    <script type="text/javascript" src="../src/users.js"></script>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
     <script type="text/javascript" src="./scripts.js"></script>
     <script type="text/javascript" src="../src/pantry.js"></script>
-  </body>
+</body>
+
 </html>

@@ -23,7 +23,7 @@ class Recipe {
     homeRecipes.innerHTML = `
     <section id="expanded-recipe-page" class="">
       <h1 class="title" id="${this.id}">${this.name}</h1>
-      <img src="${this.image}">
+      <img class="recipe-pic" src="${this.image}">
       <ul class="ingredients-section">
       </ul>
       <ol class="instructions-section">
@@ -43,14 +43,14 @@ class Recipe {
     })
   }
   showListedInstructions() {
-    const instructionsSection = document.querySelector('.instructions-section');
+    const instructionsSection = document.querySelector(".instructions-section");
 
     this.instructions.forEach(instruction => {
       instructionsSection.innerHTML += `<li> ${instruction.instruction}  </li>`
     })
   }
   showTags() {
-    const tagSection = document.querySelector('.recipe-tags');
+    const tagSection = document.querySelector(".recipe-tags");
 
     this.tags.forEach(tag => {
       tagSection.innerHTML += `<li> #${tag}</li>`

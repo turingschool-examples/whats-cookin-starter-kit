@@ -51,21 +51,6 @@ body {
   padding-left: 3%;
 }
 
-.filter-div {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 2.25%;
-  margin-top: .5%;
-}
-
-.filter-button {
-  background-color: #B76333;
-  color: #FFFFFF;
-  font-size: 1rem;
-  cursor: pointer;
-
-}
-
 #arrow {
   width: 5%;
   padding-left: 5%;
@@ -113,15 +98,35 @@ body {
 
 .fav-star,
 .un-fav-star{
-  width: 15%;
   cursor: pointer;
+  border: none;
+  color: #A4AF95;
+  background-color: #25473E;
 }
 
 .cook-star,
 .un-cook-star {
-  border: 2px solid red;
-  width: 15%;
   cursor: pointer;
+  border: none;
+  color: #A4AF95;
+  background-color: #25473E;
+}
+#expanded-recipe-page {
+  border-radius: 3%;
+  margin-left: 34%;
+  color: #A4AF95;
+  background-color: #25473E;
+  width: 142%;
+}
+
+.title {
+  margin-left: 28%;
+  font-size: 1.5rem;
+}
+
+.recipe-pic {
+  margin-left: 15%;
+  border-radius: 3%;
 }
 
 #add-button {
@@ -138,23 +143,9 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
-  grid-template-areas:
-    "one . two . three";
   margin-left: 3%;
   margin-right: 3%;
   margin-top: 2%;
-}
-
-#card1a {
-  grid-area: one;
-}
-
-#card2a {
-  grid-area: two;
-}
-
-#card3a {
-  grid-area: three;
 }
 
 #recipe-form {
