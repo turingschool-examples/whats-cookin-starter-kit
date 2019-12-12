@@ -1,12 +1,15 @@
 let mainNav = document.querySelector('.main-nav');
 let navBar = document.querySelector('.navbar');
 let recipeList = document.querySelector('.injected-recipes');
+let pantry = document.querySelector('.pantry');
+let pantryList = document.querySelector('.injected-pantry');
 let favoriteRecipes = document.querySelector('.injected-favorite-recipes');
 let allRecipes = [];
 let searchedRecipes = [];
 let favoriteRecipesAll = [];
 let currentRecipesAll = [];
 let currentUser;
+let allIngredients;
 let input = document.querySelector('.search-bar');
 
 
@@ -25,6 +28,7 @@ navBar.addEventListener('click', navHandler);
 function pageLoadHandler() {
   loadUser();
   allRecipes = instantiateRecipes();
+  allIngredients = instantiateIngredients();
   loadRecipes(allRecipes);
 }
 
@@ -42,10 +46,17 @@ function navHandler(event) {
   if(event.target.innerHTML === "Favorites") {
     clearDom();
     loadRecipes(favoriteRecipesAll);
+    mainNav.classList.toggle('active');
   }
   if(event.target.innerHTML === "To Cook") {
     clearDom();
     loadRecipes(currentRecipesAll);
+    mainNav.classList.toggle('active');
+  }
+  if(event.target.innerHTML === "Pantry") {
+    clearDom();
+    loadPantry();
+    mainNav.classList.toggle('active');
   }
 }
 
@@ -89,7 +100,6 @@ function instantiateRecipes() {
 };
 
 function recipeIngredients(ingredientList) {
-  console.log(ingredientList);
   return ingredientList.map(x => `<li data-id='${x.id}'><i>${x.name}</i>: ${(Math.floor(x.quantity.amount * 100) / 100) + ' ' + x.quantity.unit}</li>`).join('\n');
 };
 
@@ -152,4 +162,33 @@ function searchRecipes(keyword) {
 
 function clearDom() {
   recipeList.innerHTML = "";
+};
+
+function loadPantry() {
+  pantry.insertAdjacentHTML('afterbegin',
+  `<h2>Hello ${currentUser.name}! Here's what's in your pantry!</h2>`
+)
+  for(let i = 0; i <  currentUser.pantry.length; i++) {
+    pantryList.insertAdjacentHTML('beforeend',
+    `<div class="recipe-card"
+      <div class="recipe-header">
+        ${currentUser.pantry[i].ingredient}: ${currentUser.pantry[i].amount}
+      </div>
+    </div>`
+    )}
+}
+
+//Not functioning because dataset has erroneous data
+function ingredientName(id) {
+  let fullIngredient = allIngredients.find(ingredient => ingredient.id === id);
+  return fullIngredient.name;
+}
+
+function instantiateIngredients() {
+  let ingredients = [];
+  for (let i = 0; i < ingredientsData.length; i++) {
+    ingredients.push(new Ingredients(ingredientsData[i]))
+  }
+  console.log(ingredients)
+  return ingredients;
 };
