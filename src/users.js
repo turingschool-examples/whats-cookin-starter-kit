@@ -22,13 +22,13 @@ class User {
     }
   }
   displayToCook() {
-    for (var i = 0; i < this.recipesToCook.length; i++) {
-      homeRecipes.innerHTML += `<div class="card" id="${this.recipesToCook[i].id}">
-    <img class="food-pic" src="${this.recipesToCook[i].image}">
-      <button class="recipe-title meal-name">${this.recipesToCook[i].name}</button>
-      <button class="un-cook-star">Remove from Menu</button>
-    </div>`;
-    }
+    this.recipesToCook.forEach(recipe => {
+      homeRecipes.innerHTML += `<div class="card" id="${recipe.id}">
+       <img class="food-pic" src="${recipe.image}">
+         <button class="recipe-title meal-name">${recipe.name}</button>
+         <button class="un-cook-star">Remove from Menu</button>
+       </div>`
+    })
   }
   removeFromFavorites(recipe) {
     for (var i = this.favoriteRecipes.length - 1; i >= 0; i--) {
