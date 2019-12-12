@@ -43,14 +43,14 @@ class Recipe {
     })
   }
   showListedInstructions() {
-    const instructionsSection = document.querySelector('.instructions-section');
+    const instructionsSection = document.querySelector(".instructions-section");
 
     this.instructions.forEach(instruction => {
       instructionsSection.innerHTML += `<li> ${instruction.instruction}  </li>`
     })
   }
   showTags() {
-    const tagSection = document.querySelector('.recipe-tags');
+    const tagSection = document.querySelector(".recipe-tags");
 
     this.tags.forEach(tag => {
       tagSection.innerHTML += `<li> #${tag}</li>`

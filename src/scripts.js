@@ -32,12 +32,12 @@ function runCheckPantry() {
 }
 
 function runDisplayFavorites() {
-  homeRecipes.innerHTML = '';
+  homeRecipes.innerHTML = "";
   user.displayFavorites();
 }
 
 function runDisplayToCook() {
-  homeRecipes.innerHTML = '';
+  homeRecipes.innerHTML = "";
   user.displayToCook();
 }
 
@@ -47,7 +47,7 @@ function displayRecipeForm() {
 }
 
 function displayHomePage() {
-  homeRecipes.innerHTML = '';
+  homeRecipes.innerHTML = "";
   instantiateRecipes();
 }
 
@@ -100,13 +100,13 @@ function displayRecipe() {
     runExpandedMethod(clickedID);
 
     // beginning of Favoriting Logic
-  } else if (event.target.classList.contains('fav-star')) {
+  } else if (event.target.classList.contains("fav-star")) {
     runAddToFavs();
-  } else if (event.target.classList.contains('un-fav-star')) {
+  } else if (event.target.classList.contains("un-fav-star")) {
     runRemoveFromFavs();
-  } else if (event.target.classList.contains('cook-star')) {
+  } else if (event.target.classList.contains("cook-star")) {
     runAddToCook();
-  } else if (event.target.classList.contains('un-cook-star')) {
+  } else if (event.target.classList.contains("un-cook-star")) {
     runRemoveToCook();
   }
 }
