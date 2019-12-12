@@ -3,9 +3,6 @@
 	padding: 0;
 }
 
-/** {
-	border: 1px solid red;
-}*/
 
 .main_body-nav {
 	height: 125px;
@@ -56,7 +53,7 @@ button {
 
 .user_info-section {
 	width: 33%;
-	height: 100vh;
+	height: 10000px;
 	float: right;
 	background: #3f6844;
 }
@@ -71,6 +68,7 @@ button {
 	font-size: 26px;
 	font-family: 'Open Sans', sans-serif;
 	color: white;
+	margin-left: 10px;
 }
 
 img {
@@ -126,4 +124,48 @@ img {
 .main_recipe-search {
 	width: 350px;
 	height: 30px;
+}
+
+.accordion {
+  background-color: #fff;
+  color: #444;
+  cursor: pointer;
+  padding: 10px;
+  width: 40%;
+  text-align: middle;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+	margin-left: 10px;
+	margin-bottom: 25px;
+}
+
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
+
+.active, .favorite-filter:hover {
+	background-color: #ccc;
+}
+
+.active, .tocook-filter:hover {
+	background-color: #ccc;
+}
+
+.active, .clear-filter:hover {
+	background-color: #ccc;
+}
+
+.user-txt {
+	color: white;
+	font-size: 30px;
+	margin-left: 10px;
+	font-weight: bolder;
 }
