@@ -47,14 +47,14 @@ class User {
     }
   }
   displayFavorites() {
-    for (var i = 0; i < this.favoriteRecipes.length; i++) {
-      homeRecipes.innerHTML += `<div class="card" id="${this.favoriteRecipes[i].id}">
-      <img class="food-pic" src="${this.favoriteRecipes[i].image}">
-        <button class="recipe-title meal-name">${this.favoriteRecipes[i].name}</button>
-        <button class="un-fav-star">Remove Favorite</button>
-        <button class="cook-star">Add to Menu</button>
-      </div>`;
-    }
+    this.favoriteRecipes.forEach(recipe => {
+      homeRecipes.innerHTML += `<div class="card" id="${recipe.id}">
+       <img class="food-pic" src="${recipe.image}">
+         <button class="recipe-title meal-name">${recipe.name}</button>
+         <button class="un-fav-star">Remove Favorite</button>
+         <button class="cook-star">Add to Menu</button>
+       </div>`
+    })
   }
   searchRecipes(input, tags) {
     this.searchedRecipes = [];
@@ -70,14 +70,16 @@ class User {
   }
   displaySearched() {
     homeRecipes.innerHTML = "";
-    for (var i = 0; i < this.searchedRecipes.length; i++) {
-      homeRecipes.innerHTML += `<div class="card" id="${this.searchedRecipes[i].id}">
-      <img class="food-pic" src="${this.searchedRecipes[i].image}">
-        <button class="recipe-title meal-name">${this.searchedRecipes[i].name}</button>
-        <button class="fav-star">Add Favorite</button>
-        <button class="cook-star">Add to Menu</button>
+
+    this.searchedRecipes.forEach(recipe => {
+      homeRecipes.innerHTML += `<div class="card" id="${recipe.id}">
+      <img class="food-pic" src="${recipe.image}">
+      <button class="recipe-title meal-name">${recipe.name}</button>
+       <button class="fav-star">Add Favorite</button>
+       <button class="cook-star">Add to Menu</button>
       </div>`;
-    }
+
+    })
   }
 }
 
