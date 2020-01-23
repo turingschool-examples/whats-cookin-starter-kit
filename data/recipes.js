@@ -3774,14 +3774,6 @@ let recipeData = [
           "unit": "cup"
         }
       },
-      {
-        "name": "toppings",
-        "id": null,
-        "quantity": {
-          "amount": 15,
-          "unit": "servings"
-        }
-      }
     ],
     "instructions": [
       {
@@ -5916,4 +5908,4 @@ let recipeData = [
     ]
   }
 ]
-module.exports = recipeData; 
+module.exports = recipeData;
