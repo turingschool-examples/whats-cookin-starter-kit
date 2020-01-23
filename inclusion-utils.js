@@ -31,3 +31,17 @@ let usersWithMissingIngredients = users.map(user => {
 
 console.log("Users with missing Ingredients: ", usersWithMissingIngredients);
 
+
+let recipesWithMissingIngredients = recipes.map(recipe => {
+  let analyzedRecipe = {
+    id: recipe.id,
+    missing: []
+  };
+  analyzedRecipe.missing = recipe.ingredients.filter(recipeIngredient => {
+    return !ingredients.find(ingredient => ingredient.id === recipeIngredient.id)
+  }).map(ingredient => ingredient.id);
+  return analyzedRecipe;
+}).filter(recipe => recipe.missing.length)
+
+
+console.log("Recipes with missing ingredients: ", recipesWithMissingIngredients);
