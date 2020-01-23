@@ -5916,3 +5916,4 @@ let recipeData = [
     ]
   }
 ]
+module.exports = recipeData; 
