@@ -83,3 +83,4 @@ let modifiedUsersWithRepeatedIngredients = checkForRepeatedPantry(modifiedUsers)
 console.log("Modified users with repeated Ingredients: ", modifiedUsersWithRepeatedIngredients );
 console.log("Modified users with repeated Ingredients: ", modifiedUsersWithRepeatedIngredients.map(user => user.id));
 
+module.exports = modifiedUsers;
