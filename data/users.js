@@ -1,4 +1,4 @@
-[
+let usersData = [
   {
     "name": "Saige O'Kon",
     "id": 1,
