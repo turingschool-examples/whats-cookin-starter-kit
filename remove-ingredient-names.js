@@ -24,3 +24,12 @@ let recipesSansIngredientNames = removeIngredientNames(oldRecipes);
 //console.log(JSON.stringify(recipesSansIngredientNames));
 console.log(recipesSansIngredientNames);
 
+// write new recipes to file
+
+fs.writeFile('./data/recipes.js', JSON.stringify(recipesSansIngredientNames), (error) => {
+  if (error) {
+    throw error;
+  } else {
+    console.log('file written');
+  };
+});
