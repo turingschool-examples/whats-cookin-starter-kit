@@ -1,11 +1,11 @@
 ## Type of change made:
  - [ ] Bugfix (non-breaking change which fixes an issue)
- - [X] New feature (non-breaking change which adds functionality)
+ - [ ] New feature (non-breaking change which adds functionality)
  - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
  - [ ] Styling- no new features
 ## Detailed Description
 Why is this change required?<br/>
-Setup for classes
+
 
 
 What problem does it solve?<br/>
