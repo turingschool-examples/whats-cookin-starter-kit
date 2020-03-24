@@ -174,3 +174,5 @@ let recipeDataTest = [
       }
     ]
   }];
+
+  module.exports = recipeDataTest;
