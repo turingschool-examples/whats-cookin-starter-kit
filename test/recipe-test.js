@@ -5,7 +5,8 @@ const recipeData = require('../data/recipes.js');
 const ingredientsData = require('../data/ingredients.js');
 
 // let recipe;
-console.log(recipeData[0]);
+// console.log(recipeData[0]);
+
 
 describe('Recipe', () => {
   beforeEach(() => {
@@ -15,7 +16,7 @@ describe('Recipe', () => {
     expect(recipe).to.be.an.instanceof(Recipe);
   });
 
-  it('Should be able to calculate the cost of its ingredients', () => {
+  it.skip('Should be able to calculate the cost of its ingredients', () => {
     expect(recipe.calculateCost()).to.equal(177.76);
-  })
+  });
 });
