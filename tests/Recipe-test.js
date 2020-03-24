@@ -7,8 +7,6 @@ const Pantry = require('../src/Pantry');
 let recipeDataTest = require('../tests/Recipe-test-data');
 let ingredientsData = require('../tests/Ingredients-test-data');
 
-// const User = require('../src/User');
-
 describe('Recipe', function() {
   let recipe1, pantry;
   beforeEach(function() {
