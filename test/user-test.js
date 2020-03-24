@@ -41,6 +41,10 @@ describe('User', () => {
 
   });
 
+  it.skip('should tell the user what ingredients they need', function() {
+
+  });
+
   it.skip('should be able to add ingredients to the pantry', function() {
 
   });
