@@ -207,4 +207,16 @@ describe('User', function() {
     expect(user.favoriteRecipes).to.deep.equal([recipe1, recipe3]);
   });
 
+  it('should be able to add recipe to recipes to cook', function() {
+    user.addToRecipesToCook(recipe1);
+    expect(user.recipesToCook).to.deep.equal([recipe1]);
+  });
+
+  it('should be able to remove recipe from recipes to cook', function() {
+    user.addToRecipesToCook(recipe1);
+    user.addToRecipesToCook(recipe2);
+    user.addToRecipesToCook(recipe3);
+    user.removeFromRecipesToCook(recipe2);
+    expect(user.recipesToCook).to.deep.equal([recipe1, recipe3]);
+  });
 });
