@@ -11,25 +11,30 @@ class User {
 
   createPantry() {
     const pantry = new Pantry(this);
-    
+
     return pantry;
-    // instantiates a pantry class and the this.pantry will be the argument of the new pantry object instance.
   }
 
-  addFavRecipe() {
-    // add the newly clicked on favRecipe to this.favRecipe array
+  addFavRecipe(recipe) {
+    if(!this.favRecipes.includes(recipe)) {
+      this.favRecipes.push(recipe);
+    }
   }
 
-  removeFavRecipe() {
-    // remove the clicked on favRecipe from this.favRecipe array
+  removeFavRecipe(recipe) {
+    let deleteRecipe = this.favRecipes.indexOf(recipe);
+    this.favRecipes.splice(deleteRecipe, 1);
   }
 
-  addToCookBook() {
-    // add the newly clicked on recipe to this.cookBook array
+  addToCookBook(recipe) {
+    if(!this.cookBook.includes(recipe)) {
+      this.cookBook.push(recipe);
+    }
   }
 
-  removeFromCookBook() {
-    // remove the clicked on recipe from this.cookBook array
+  removeFromCookBook(recipe) {
+    let deleteRecipe = this.cookBook.indexOf(recipe);
+    this.cookBook.splice(deleteRecipe, 1);
   }
 }
 
