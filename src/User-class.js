@@ -1,10 +1,10 @@
 class User {
-  constructor() {
-    // name -> string
-    // id -> number
-    // pantry -> [{}]
-    // savedFav -> []
-    // savedToCook -> []
+  constructor(name, id) {
+    this.name = name;
+    this.id = id;
+    this.pantry = [];
+    this.savedFavorites = [];
+    this.savedToCook = [];
   }
   // moveToFavArray
     // if the recipe.isFav is true,
