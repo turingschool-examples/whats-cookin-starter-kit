@@ -114,3 +114,5 @@ let ingredientsDataTest = [
     "name": "sriracha sauce",
     "estimatedCostInCents": 576
   }];
+
+  module.exports = ingredientsDataTest;
