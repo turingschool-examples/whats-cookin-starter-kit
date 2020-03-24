@@ -1,24 +1,31 @@
 const Ingredient = require('./Ingredient');
 
 class Recipe {
-  constructor(name, id, image) {
-    this.name = name;
-    this.id = id;
-    this.ingredients = []; // think on this...may be too long to pass in constructor
-    this.image = image;
-    this.instructions = []; // ''
-    this.tags = []; // ''
+  constructor(recipeData) {
+    this.name = recipeData.name;
+    this.id = recipeData.id;
+    this.ingredients = recipeData.ingredients;
+    this.image = recipeData.image;
+    this.instructions = recipeData.instructions;
+    this.tags = recipeData.tags;
     this.hasBeenCooked = false;
   }
+
   calculateCostOfIngredients() {
     // use ingredients array (amt & quantity) and use reduce to
     // add all prices together
+    //this.ingredients.find(ingredient => ingredient ===  ? then execute code
+    //this.ingredients.
+    //maybe go through all ingredients (entire array) to see which ingredients are in the recipe
+
   }
+
   returnInstructions() {
     //use return value of this function to display instructions
     //on DOM in script.js
     //return instructions
   }
+
   cookRecipe() {
     // this.hasBeenCooked = true;
     // return true;

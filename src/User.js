@@ -1,27 +1,29 @@
 const Ingredient = require('./Ingredient');
 const Recipe = require('./Recipe');
 
-
 class User {
-  constructor(name, id) {
-    this.name = name;
-    this.id = id;
-    this.pantry = [];
+  constructor(userData) {
+    this.name = userData.name;
+    this.id = userData.id;
+    this.pantry = userData.pantry; //
     this.recipesToCook = [];
     this.favoriteRecipes = [];
   }
-checkIngredientAmts() {
+
+  checkIngredientAmts() {
   // Determine whether my pantry has enough ingredients to cook a given meal
   // returns boolean
   }
-determineMissingIngredients(recipe, pantry) {
+
+  determineMissingIngredients(recipe, pantry) {
   // Determine the amount of ingredients still needed to cook a given meal, based
   //on what’s in my pantry
   // check amounts against each other and return difference;
   // if difference is greater than zero, checkIngredientAmts will return false
 
   }
-removeIngredients() {
+
+  removeIngredients() {
   // Remove the ingredients used for a given meal from my pantry, once that meal
   //has been cooked (only applicable if users have a list of mealsToCook; can be
   //considered a stretch goal)
@@ -30,12 +32,19 @@ removeIngredients() {
   // check recipe for meal that has been cooked ( if === true) and subtract
   // ingredient amount from ingredient in pantry
   }
-checkIfHasBeenCooked() {
+
+  checkIfHasBeenCooked() {
   // update recipesToCook array; invoke at end of removeIngredients()
   }
-unfavoriteMeal() {
+
+  unfavoriteMeal() {
  // remove meal from favorites array
   }
+
+  favoriteMeal() {
+
+  }
+
 }
 
 if (typeof module !== 'undefined') {
