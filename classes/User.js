@@ -1,3 +1,5 @@
+const Pantry = require('../classes/Pantry');
+
 class User {
   constructor(person) {
     this.id = person.id;
@@ -8,6 +10,9 @@ class User {
   }
 
   createPantry() {
+    const pantry = new Pantry(this);
+    
+    return pantry;
     // instantiates a pantry class and the this.pantry will be the argument of the new pantry object instance.
   }
 
@@ -27,3 +32,5 @@ class User {
     // remove the clicked on recipe from this.cookBook array
   }
 }
+
+module.exports = User;

@@ -9,7 +9,8 @@ class Pantry {
     // return missing this.pantry.ingredients
   }
 
-  calculatesCost(this.verifyIngredients()) {
-    // calculate the cost of the missing in this.verifyIngredients() 
+  calculatesCost() {
+    // calculate the cost of the missing in this.verifyIngredients()
   }
 }
+module.exports = Pantry;
