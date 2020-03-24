@@ -1,16 +1,24 @@
 class User {
-  constructor(userId, pantry, favoriteRecipes, recipesToCook, recipesCooked) {
-    this.userId = userId;
-    this.pantry = pantry || [];
-    this.favoriteRecipes = favoriteRecipes || [];
-    this.recipesToCook = recipesToCook || [];
-    this.recipesCooked = recipesCooked || [];
+  constructor(user, userData, recipeData, ingredientsData) {
+    this.userId = user.id;
+    this.name = user.name;
+    this.pantry = user.pantry;
+    this.favoriteRecipes = user.favoriteRecipes || [];
+    this.recipesToCook = user.recipesToCook;
+    this.recipesCooked = user.recipesCooked;
+    this.userData = userData;
+    this.recipeData = recipeData;
+    this.ingredientsData = ingredientsData;
   }
-  addToFavorites() {
-
+  addToFavorites(recipe) {
+    this.favoriteRecipes.push(recipe);
   }
-  removeFromFavorites() {
-
+  removeFromFavorites(recipeToRemove) {
+    this.favoriteRecipes.forEach(recipe => {
+      if (recipeToRemove === recipe) {
+        this.favoriteRecipes.splice(recipeToRemove, 1);
+      }
+    })
   }
   checkPantry() {
 
