@@ -1,20 +1,19 @@
 class User {
-  constructor(name, id) {
+  constructor({name, id, pantry}) {
     this.name = name;
     this.id = id;
-    this.pantry = [];
-    this.savedFavorites = [];
-    this.savedToCook = [];
+    this.pantry = pantry;
+    this.favoriteRecipes = [];
+    this.recipesToCook = [];
   }
-  // moveToFavArray
-    // if the recipe.isFav is true,
-    // then we want to push it into the
-    // savedFav array
-
-  // moveToCookArray
-    //if the recipe.savedToCook is true,
-    // then we want to push it into
-    // savedToCook array
+  addToFavorites(recipe) {
+    this.favoriteRecipes.push(recipe);
+  }
+  removeFromFavorites(recipe) {
+    let recipeToRemove = this.favoriteRecipes.indexOf(recipe);
+    this.favoriteRecipes.splice(recipeToRemove, 1);
+    return this.favoriteRecipes;
+  }
 }
 
 module.exports = User;
