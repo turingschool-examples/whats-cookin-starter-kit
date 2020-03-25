@@ -2,21 +2,28 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const User = require('../classes/User');
-const Pantry = require('../classes/Pantry');
 const Recipe = require('../classes/Recipe');
+const Pantry = require('../classes/Pantry')
 
-describe('Recipe', function () {
+describe('Pantry', function () {
 
   let user;
   let pantry;
   let recipe;
 
+
   this.beforeEach(function () {
-    // pantry = new Pantry();
     recipe = new Recipe({
       "id": 595736,
       "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
-      "ingredients": [{
+      "ingredients": [  {
+          "id": 1123,
+          "quantity": {
+            "amount": 1,
+            "unit": "large"
+          }
+        },
+        {
           "id": 20081,
           "quantity": {
             "amount": 1.5,
@@ -30,69 +37,6 @@ describe('Recipe', function () {
             "unit": "tsp"
           }
         },
-        {
-          "id": 1123,
-          "quantity": {
-            "amount": 1,
-            "unit": "large"
-          }
-        },
-        {
-          "id": 19335,
-          "quantity": {
-            "amount": 0.5,
-            "unit": "c"
-          }
-        },
-        {
-          "id": 19206,
-          "quantity": {
-            "amount": 3,
-            "unit": "Tbsp"
-          }
-        },
-        {
-          "id": 19334,
-          "quantity": {
-            "amount": 0.5,
-            "unit": "c"
-          }
-        },
-        {
-          "id": 2047,
-          "quantity": {
-            "amount": 0.5,
-            "unit": "tsp"
-          }
-        },
-        {
-          "id": 1012047,
-          "quantity": {
-            "amount": 24,
-            "unit": "servings"
-          }
-        },
-        {
-          "id": 10019903,
-          "quantity": {
-            "amount": 2,
-            "unit": "c"
-          }
-        },
-        {
-          "id": 1145,
-          "quantity": {
-            "amount": 0.5,
-            "unit": "c"
-          }
-        },
-        {
-          "id": 2050,
-          "quantity": {
-            "amount": 0.5,
-            "unit": "tsp"
-          }
-        }
       ],
       "instructions": [{
           "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
@@ -162,10 +106,20 @@ describe('Recipe', function () {
         }
       ]
     })
-  })
+    pantry = new Pantry(user);
 
-  it("Text", function () {
-    // 
   });
 
-})
+  it("should be an instance of Recipe", function () {
+    expect(recipe).to.be.an.instanceof(Recipe)
+  });
+
+  it.only('should calculate the cost of its ingredients', function() {
+    // recipe.calculateCost(recipe.ingredients);
+    // console.log(recipe.ingredients);
+    recipe.totalCost()
+
+    // expect(recipe.calculateCost()).to.equal(976);
+  })
+
+});
