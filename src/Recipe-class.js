@@ -25,17 +25,6 @@ class Recipe {
       });
     }).flat();
   }
-  // matchIngredientsIds() {
-  //   let rightIngredients = [];
-  //   this.ingredients.map(ingredient => {
-  //     ingredientsData.filter(ingData => {
-  //       if (ingData.id === ingredient.id && !rightIngredients.includes(ingData.id)) {
-  //         rightIngredients.push(ingData)
-  //       }
-  //     });
-  //   });
-  //   return rightIngredients;
-  // }
 
   getInstructions() {
     return this.instructions;

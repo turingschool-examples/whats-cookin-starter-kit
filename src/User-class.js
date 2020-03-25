@@ -26,6 +26,8 @@ class User {
     this.recipesToCook.splice(recipeToRemove, 1);
     return this.recipesToCook;
   }
+
+// compare what ingredients are called for in recipe to ingredients user has in their pantry
 }
 
 module.exports = User;
