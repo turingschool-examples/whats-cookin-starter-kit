@@ -8,27 +8,27 @@ class Recipe {
     this.image = recipeData.image;
     this.instructions = recipeData.instructions;
     this.tags = recipeData.tags;
+    this.printedInstructions = undefined;
     this.hasBeenCooked = false;
+    this.hasBeenFavorited = false;
   }
 
-  calculateCostOfIngredients() {
-    // use ingredients array (amt & quantity) and use reduce to
-    // add all prices together
-    //this.ingredients.find(ingredient => ingredient ===  ? then execute code
-    //this.ingredients.
-    //maybe go through all ingredients (entire array) to see which ingredients are in the recipe
-
+  calculateCostOfIngredients(ingredients) {
+    let allIngredientIds = ingredients.map(ingredient => ingredient.id);
+    let ingredientIds = this.ingredients.map(ingredient => ingredient.id)
+    let necessaryIngIds = allIngredientIds.filter(item => {
+      return ingredientIds.includes(item);
+    })
   }
 
   returnInstructions() {
-    //use return value of this function to display instructions
-    //on DOM in script.js
-    //return instructions
+    return this.printedInstructions = this.instructions.map(instruction =>
+      instruction.instruction)
   }
 
   cookRecipe() {
-    // this.hasBeenCooked = true;
-    // return true;
+    this.hasBeenCooked = true;
+    return true;
   }
 }
 
