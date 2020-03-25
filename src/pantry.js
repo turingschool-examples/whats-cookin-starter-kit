@@ -1,3 +1,7 @@
+const userPantry = require('./data/users.js');
+
+
+
 const pantryIngredients = [
   {
     "ingredient": 1017,
@@ -43,14 +47,37 @@ class Pantry {
     pantryIngredients.map((ingred) => {
       if (ingred.ingredient === ingredient.id) {
       amount = ingred.amount;
+      console.log(userPantry);
       }
     });
     return amount
   }
 
   measureIngredients(recipe) {
-    
+    let ingredientsNeeded = recipe.ingredients;
+    ingredientsNeeded.forEach((ingred) => {
+      if (this.ingredients.includes(ingred)) {
+        console.log(ingredient)
+      }
+      //
+      //
+      //
+      // this.ingredients.map((ingred) => {
+      //   if (ingredient === ingred) {
+      //   thingsWeHave.push(ingredient)
+      //   console.log(thingsWeHave);
+      //   }
+      // })
+    })
+    //   ingredientsNeeded.forEach((ingredient) => {
+    //     this.ingredients.forEach((ing) => {
+    //       if (ingredient === ing) {
+    //         return 'hry'
+    //       }
+    //   });
+    // });
   }
+
 
   removeIngredients() {
 

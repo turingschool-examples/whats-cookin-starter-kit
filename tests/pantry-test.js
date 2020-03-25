@@ -7,6 +7,7 @@ const Recipe = require('../src/Recipe');
 const User = require('../src/User');
 
 describe ('Pantry', function() {
+  const userPantry = require('./data/users.js');
   let recipe;
   let ingredient1;
   let ingredient2;
@@ -49,7 +50,7 @@ describe ('Pantry', function() {
       ['dinner', 'lunch']
     );
 
-    expect(pantry.measureIngredients(recipe)).to.equal('Nope, need to shop!');
+    expect(pantry.measureIngredients(recipe)).to.equal('So glad I got it!');
   })
 
 })
