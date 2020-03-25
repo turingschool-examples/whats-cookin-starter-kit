@@ -25,11 +25,10 @@ class Recipe {
     let totalCost = ingredients.reduce((acc, ingredient) => {
       allIngredients.forEach(item => {
         if (ingredient.id === item.id) {
-          ingredient['id'] = item.id;
           ingredient['name'] = item.name;
           ingredient['totalCostOfIngredient'] = item.estimatedCostInCents * ingredient.quantity.amount;
           acc.push(ingredient);
-          return;
+          return
         };
       });
       return acc;
@@ -38,8 +37,12 @@ class Recipe {
     return this.ingredients
   }
 
-  returnCookingDirections() {
-    return this.instructions:
+  returnDirections() {
+    return this.instructions
+  }
+
+  returnNeededIngredients(userIngredients) {
+
   }
 }
 module.exports = Recipe;
