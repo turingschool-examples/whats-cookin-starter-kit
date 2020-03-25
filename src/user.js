@@ -23,9 +23,9 @@ class User {
     // shows list of favorites may need to live on scripts.js
   }
 
-  mealToCook() {
+
+
     //add meal user want to cook to meal que.
   }
 
-}
 module.exports = User;
