@@ -5,13 +5,13 @@ const Recipe = require('../src/Recipe');
 const Pantry = require('../src/Pantry');
 
 let recipeDataTest = require('../tests/Recipe-test-data');
-let ingredientsData = require('../tests/Ingredients-test-data');
+let ingredientsTestData = require('../tests/Ingredients-test-data');
 
 describe('Recipe', function() {
   let recipe1, pantry;
   beforeEach(function() {
     recipe1 = new Recipe(recipeDataTest[0]);
-    pantry = new Pantry(ingredientsData);
+    pantry = new Pantry(ingredientsTestData);
   })
 
   it('should be a function', function () {
@@ -88,6 +88,11 @@ describe('Recipe', function() {
       'antipasto',
       "hor d'oeuvre"
     ])
+  })
+
+  it.only('should be able to calculate total estimated cost of meal', function() {
+    var testRecipeCost = recipe1.getTotalCost(ingredientsTestData);
+    expect(testRecipeCost).to.equal(17776)
   })
 
 })

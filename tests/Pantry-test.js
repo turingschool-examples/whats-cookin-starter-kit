@@ -10,6 +10,7 @@ let ingredientsData = require('../tests/Ingredients-test-data');
 
 describe('Pantry', function() {
   let recipe1, pantry, user;
+
   beforeEach(function() {
     recipe1 = new Recipe(recipeDataTest[0]);
     pantry = new Pantry(ingredientsData);
@@ -27,6 +28,5 @@ describe('Pantry', function() {
   it('should have all users ingredients', function() {
     expect(pantry).to.deep.equal(user.pantry)
   })
-
 
 })
