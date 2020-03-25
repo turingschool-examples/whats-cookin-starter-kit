@@ -6,10 +6,14 @@ class Pantry {
     this.ingredientsData = ingredientsData;
   }
   checkIngredients(recipe) {
-    const pantry = this.ingredients;
-    return recipe.map(recipeIngredient => {
-      const itemInPantry = pantry.find(item => item.ingredient === recipeIngredient.id)
-    })
+    // iterate over the recipe ingredients
+    // iterate over the users pantry
+    // if the user has the ingredient,
+    // check if they have the right amount
+    // if they don't have the right amount, add that.
+    // addIngredient()
+    // if they don't have the ingredient, add the entire object
+    
   }
   addIngredient() {
 
