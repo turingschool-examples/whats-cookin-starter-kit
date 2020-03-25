@@ -4,14 +4,11 @@ const Recipe = require('../src/recipe');
 const recipeData = require('../data/recipes.js');
 const ingredientsData = require('../data/ingredients.js');
 
-// let recipe;
-// console.log(recipeData[0]);
-
-
 describe('Recipe', () => {
   beforeEach(() => {
     recipe = new Recipe(recipeData[0], ingredientsData, recipeData);
   });
+  
   it('should be an instance of Recipe', function() {
     expect(recipe).to.be.an.instanceof(Recipe);
   });
