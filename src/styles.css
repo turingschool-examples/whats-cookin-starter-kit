@@ -1,0 +1,98 @@
+body {
+  margin: 0
+}
+
+/* HEADER */
+header {
+  align-items: center;
+  background-color: cornflowerblue;
+  box-sizing: border-box;
+  color: blanchedalmond;
+  display: flex;
+  flex-direction: row;
+  height: 15vh;
+  justify-content: space-between;
+  padding: 0 10% 1%;
+  width: 100vw;
+}
+
+h1 {
+  margin: 0;
+
+}
+
+.welcome {
+  align-self: flex-end;
+  margin: 0;
+}
+
+/* MAIN */
+main {
+  background-color: blanchedalmond;
+  box-sizing: border-box;
+  display: flex;
+  height: 85vh;
+  padding: 3% 10% 0 10%;
+  width: 100vw;
+}
+
+.recipe-section {
+  background-color: cornsilk;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-self: center;
+  width: 100%;
+}
+
+.my-recipes {
+  background-color: darkcyan;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2% 2% 0 2%;
+}
+
+.my-recipes-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 1% 0;
+  padding: 1% 0;
+  border-bottom: 1px solid black;
+}
+
+.my-recipes-header h4 {
+  margin: 0;
+}
+
+.my-radio-btns {
+align-self: flex-end;
+display: flex;
+justify-content: space-between;
+width: 33%;
+}
+
+.radio-field {
+  display: inline;
+}
+
+.all-recipes {
+  background-color: darkslategrey;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2% 2% 0 2%;
+}
+
+.all-recipes-header {
+  margin: 1% 0;
+  padding: 1% 0;
+  border-bottom: 1px solid black;
+}
+
+.recipes {
+  background-color: darksalmon;
+  height: 100%
+}
