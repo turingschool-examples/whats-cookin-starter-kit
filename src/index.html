@@ -1,15 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-  </head>
-  <body>
-    <h1>Whats Cookin</h1>
 
-    <script type="text/javascript" src="../data/users.js"></script>
-    <script type="text/javascript" src="../data/recipes.js"></script>
-    <script type="text/javascript" src="../data/ingredients.js"></script>
-    <script type="text/javascript" src="./scripts.js"></script>
-  </body>
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Whats Cookin</title>
+</head>
+
+<body>
+  <header>
+    <h1>Whats Cookin</h1>
+    <p class="welcome">Welcome User</p>
+  </header>
+  <main>
+    <section class="recipe-section">
+      <section class="my-recipes">
+        <section class="my-recipes-header">
+          <h4>My Recipes</h4>
+          <section class="my-radio-btns">
+            <div class="radio-field">
+              <input type="radio" id="all-saved" name="drone" value="all-saved"
+                     checked>
+              <label for="all-saved">All Saved</label>
+            </div>
+            <div class="radio-field">
+              <input type="radio" id="favorites" name="drone" value="favorites">
+              <label for="favorites">Favorites</label>
+            </div>
+            <div class="radio-field">
+              <input type="radio" id="cook-next" name="drone" value="cook-next">
+              <label for="cook-next">Cook Next</label>
+            </div>
+          </section>
+        </section>
+        <section class="recipes">
+
+        </section>
+      </section>
+      <section class="all-recipes">
+        <h4 class="all-recipes-header">All Recipes</h4>
+        <section class="recipes">
+
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script type="text/javascript" src="../data/users.js"></script>
+  <script type="text/javascript" src="../data/recipes.js"></script>
+  <script type="text/javascript" src="../data/ingredients.js"></script>
+  <script type="text/javascript" src="./scripts.js"></script>
+</body>
+
 </html>
