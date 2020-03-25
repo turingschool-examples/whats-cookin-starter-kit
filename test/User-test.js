@@ -184,7 +184,7 @@ describe('User', function() {
 
   });
 
-  it.only('should add a recipe to the cookBook array', function() {
+  it('should add a recipe to the cookBook array', function() {
 
     expect(user.cookBook, []);
     user.addToCookBook(recipe1);
@@ -193,7 +193,7 @@ describe('User', function() {
     expect(user.cookBook).to.deep.equal([recipe1, recipe2, recipe3]);
   });
 
-  it.only('should remove a recipe from the cookBook array', function() {
+  it('should remove a recipe from the cookBook array', function() {
 
     user.addToCookBook(recipe1);
     user.addToCookBook(recipe2);
