@@ -2,6 +2,7 @@ class Recipe {
   constructor(recipe, ingredientsData, recipeData) {
     this.name = recipe.name;
     this.id = recipe.id;
+    this.image = recipe.image;
     this.ingredients = recipe.ingredients;
     this.instructions = recipe.instructions;
     this.tags = recipe.tags;
@@ -23,6 +24,17 @@ class Recipe {
   getInstructions() {
     return this.instructions;
   }
+
+  filterByTag(currentTag) {
+    return this.recipeData.filter(recipe => recipe.tags.includes(currentTag))
+  }
+
+  filterByIngredient(selectedIngredient) {
+    return this.recipeData.filter(recipe =>
+      recipe.ingredients.find(ingredient =>
+        ingredient.name === selectedIngredient))
+  }
+
 }
 
 if (typeof module !== 'undefined') {
