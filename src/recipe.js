@@ -1,4 +1,5 @@
-const Pantry = require('../src/Pantry');
+// const Pantry = require('../src/Pantry');
+// const ingredientsData = require('../data/ingredients.js')
 
 class Recipe {
   constructor(recipeDetails) {
@@ -10,13 +11,23 @@ class Recipe {
     this.tags = recipeDetails.tags;
   }
 
-  getTotalCost() {
-    this.ingredients.reduce((acc, ingredient) => {
-      acc += ingredients.estimatedCostInCents;
+  getTotalCost(allIngredients) {
+    const formattedIngredients = this.ingredients.reduce((acc, ingredient) => {
+        const ingredientObj = {}
+        ingredientObj['id'] = ingredient.id
+        ingredientObj['amount'] = ingredient.quantity.amount
+        acc.push(ingredientObj)
+      return acc
+    }, [])
+
+    const totalCost = formattedIngredients.reduce((acc, ingredient) => {
+      const targetIngredient = allIngredients.find(ingredientDatum => ingredientDatum.id === ingredient.id)
+      acc += (targetIngredient.estimatedCostInCents * ingredient.amount)
       return acc;
     }, 0)
-    Pantry.estimatedCostInCents = acc;
-  }
-}
+    return totalCost;
+  };
+
+};
 
 module.exports = Recipe;
