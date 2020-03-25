@@ -4,21 +4,31 @@ class Recipe {
   constructor(recipeData) {
     this.name = recipeData.name;
     this.id = recipeData.id;
-    this.ingredients = recipeData.ingredients;
+    this.recipeIngredients = recipeData.ingredients;
     this.image = recipeData.image;
     this.instructions = recipeData.instructions;
     this.tags = recipeData.tags;
     this.printedInstructions = undefined;
     this.hasBeenCooked = false;
     this.hasBeenFavorited = false;
+    this.ingredientPrices = [];
   }
 
-  calculateCostOfIngredients(ingredients) {
-    let allIngredientIds = ingredients.map(ingredient => ingredient.id);
-    let ingredientIds = this.ingredients.map(ingredient => ingredient.id)
-    let necessaryIngIds = allIngredientIds.filter(item => {
-      return ingredientIds.includes(item);
-    })
+  calculateCostOfIngredients(allIngredients) {
+    let recipeIngredientIds = this.recipeIngredients.map(ingredient => ingredient.id)
+    let ingredientAmts = [];
+    allIngredients.filter(item => {
+      if (recipeIngredientIds.includes(item.id)) {
+        return this.ingredientPrices.push(item.estimatedCostInCents);
+      }
+    });
+    this.recipeIngredients.filter(item => {
+      if (recipeIngredientIds.includes(item.id)) {
+        return ingredientAmts.push(item.quantity.amount);
+      }
+    });
+    let priceOfEach = this.ingredientPrices.map((el, i) => el * ingredientAmts[i]);
+    return parseFloat((priceOfEach.reduce((sum, num) => sum += num).toFixed(2)))
   }
 
   returnInstructions() {
