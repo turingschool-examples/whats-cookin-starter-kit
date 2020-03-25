@@ -146,7 +146,7 @@ describe('Recipe', () => {
 
   it('should filter recipes by ingredient', () => {
     let filteredRecipes = recipe.filterByIngredient('wheat flour');
-    console.log(filteredRecipes)
+    console.log(filteredRecipes.length)
     expect(filteredRecipes.length).to.equal(3);
   })
 
