@@ -121,8 +121,10 @@ describe('User', function() {
   });
 
   it('it should return false if the user doesn\'t have enough ingredients in their pantry', function() {
+    user3.checkIngredientAmts(recipe2);
     user2.checkIngredientAmts(recipe2);
     user4.checkIngredientAmts(recipe2);
+    expect(user3.canBeCooked).to.equal(false);
     expect(user2.canBeCooked).to.equal(false);
     expect(user4.canBeCooked).to.equal(false);
   });

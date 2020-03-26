@@ -15,31 +15,32 @@ class User {
 
   checkIngredientAmts(recipe) {
     let amtNeeded = [];
+    let pantryIds = this.pantry.map(element => element.ingredient)
+    let matchedIngredients = recipe.ingredients.filter(item => pantryIds.includes(item.id))
+
     recipe.ingredients.forEach((recIng)=>this.pantry.forEach((panIng) => {
       if(recIng.id === panIng.ingredient){
         amtNeeded.push(recIng.quantity.amount - panIng.amount)
-        }}))
+      }}))
+      matchedIngredients.forEach((el, i) => el.difference = amtNeeded[i]) // recIng.quantity.amount - panIng.amount
     if (amtNeeded.length === 0) {
+      this.determineMissingIngredients(recipe, matchedIngredients);
       return false;
     } else {
-      this.determineMissingIngredients(recipe, amtNeeded);
+      this.determineMissingIngredients(recipe, matchedIngredients);
       return amtNeeded.every(amt => amt < 0);
     }
   }
 
-  determineMissingIngredients(recipe, amtNeeded) {
-  // console.log(amtNeeded);
-  // console.log(recipe);
-  console.log(amtNeeded.map((amount, index) => {amount.property = amount}));
-  // Determine the amount of ingredients still needed to cook a given meal, based
-  //on what’s in my pantry
-  // check amounts against each other and return difference;
-  // if difference is greater than zero, checkIngredientAmts will return false
-
+  determineMissingIngredients(recipe, matchedIngredients) {
+    if (matchedIngredients.length === 0) {
+      this.canBeCooked = false
+    } else {
+      matchedIngredients.every(ingredient => ingredient.difference > 0 ? this.canBeCooked = false : this.canBeCooked = true)
+    }
   }
 
   removeIngredients() {
-
   // Remove the ingredients used for a given meal from my pantry, once that meal
   //has been cooked (only applicable if users have a list of mealsToCook; can be
   //considered a stretch goal)
