@@ -1,41 +1,5 @@
-const userPantry = require('./data/users.js');
+let users = require('../data/users');
 
-
-
-const pantryIngredients = [
-  {
-    "ingredient": 1017,
-    "amount": 2
-  },
-  {
-    "ingredient": 18371,
-    "amount": 7
-  },
-  {
-    "ingredient": 1001,
-    "amount": 6
-  },
-  {
-    "ingredient": 99223,
-    "amount": 2
-  },
-  {
-    "ingredient": 1230,
-    "amount": 2
-  },
-  {
-    "ingredient": 9152,
-    "amount": 4
-  },
-  {
-    "ingredient": 20081,
-    "amount": 10
-  },
-  {
-    "ingredient": 18372,
-    "amount": 3
-  },
-];
 
 class Pantry {
   constructor(ingredients) {
@@ -43,15 +7,21 @@ class Pantry {
   }
 
   getQuantity(ingredient) {
-    let amount;
-    pantryIngredients.map((ingred) => {
-      if (ingred.ingredient === ingredient.id) {
-      amount = ingred.amount;
-      console.log(userPantry);
-      }
-    });
-    return amount
-  }
+    let userInfo = users.map((user) => {
+      // if (this.ingredients.ingredient === ingredient.id) {
+      //   // this.ingredients.splice(indexOf(ingredient), 1)
+        console.log(user.name);
+      });
+    }
+
+    // pantryIngredients.map((ingred) => {
+    //   if (ingred.ingredient === ingredient.id) {
+    //   amount = ingred.amount;
+    //   console.log(usersPantry);
+    //   }
+    // });
+    // return amount
+
 
   measureIngredients(recipe) {
     let ingredientsNeeded = recipe.ingredients;

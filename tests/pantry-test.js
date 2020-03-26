@@ -7,7 +7,6 @@ const Recipe = require('../src/Recipe');
 const User = require('../src/User');
 
 describe ('Pantry', function() {
-  const userPantry = require('./data/users.js');
   let recipe;
   let ingredient1;
   let ingredient2;
