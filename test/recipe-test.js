@@ -1,14 +1,16 @@
 const chai = require('chai');
 const expect = chai.expect;
 
+const User = require('../src/User');
 const Ingredient = require('../src/Ingredient');
 const Recipe = require('../src/Recipe');
 
 describe('Recipe', function() {
 
-  let ingredient1, ingredient2, allIngredients, recipe1;
+  let user1, ingredient1, ingredient2, allIngredients, recipe1;
 
   beforeEach(function() {
+    user1 = new User({name: "Saige O'Kon", id: 1, pantry: [{ingredient: 20081, amount: 4}, {ingredient: 18372, amount: 4}]})
     ingredient1 = new Ingredient({id: 20081,
       name: "wheat flour",
       estimatedCostInCents: 142});
@@ -109,7 +111,7 @@ describe('Recipe', function() {
   })
 
   it('should return true if the meal has been cooked', function() {
-    recipe1.cookRecipe();
+    recipe1.cookRecipe(user1, recipe1);
     expect(recipe1.hasBeenCooked).to.equal(true);
   })
 
