@@ -1,25 +1,23 @@
 const Recipe = require('../src/Recipe');
 const User = require('../src/User');
 
+let recipeTestData = require('../tests/Recipe-test-data');
+
 class Pantry {
-  constructor(pantryDetails) {
-    // this.id = pantryDetails.id;
-    // this.name = pantryDetails.name;
-    // this.estimatedCostInCents = pantryDetails.estimatedCostInCents;
-    this.pantry = pantryDetails
+  constructor(userPantry) {
+    this.pantry = userPantry;
   };
 
   validateMealToCook() {
+    var mealToCook = recipeTestData[0];
+    var mealIngridients = mealToCook.ingredients;
+
     //checks user mealtocoook property checkes ingridients and quantity required
-    user.mealToCook
-    //checks pantry
-    //return boolean if user has ingridients to cook
+    //if above equals true, return true
+    //if aboce equals false return false.
   };
 
-
   requiredForMeal() {
-    //checks meal to cook
-    //gets items and quantity still required for meal
   };
 
   removeUsedIngredient() {

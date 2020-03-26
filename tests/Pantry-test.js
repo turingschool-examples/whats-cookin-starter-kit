@@ -3,18 +3,18 @@ const expect = chai.expect;
 
 const Recipe = require('../src/Recipe');
 const Pantry = require('../src/Pantry');
-const User = require('../src/User');
 
 let recipeDataTest = require('../tests/Recipe-test-data');
-let ingredientsData = require('../tests/Ingredients-test-data');
+let ingredientsTestData = require('../tests/Ingredients-test-data');
+let userTestData = require('../tests/user-test-data');
 
 describe('Pantry', function() {
   let recipe1, pantry, user;
 
   beforeEach(function() {
     recipe1 = new Recipe(recipeDataTest[0]);
-    pantry = new Pantry(ingredientsData);
-    user = new User(pantry)
+    user = userTestData;
+    pantry = new Pantry(user.pantry);
   })
 
   it('should be a function', function () {
@@ -26,7 +26,13 @@ describe('Pantry', function() {
   })
 
   it('should have all users ingredients', function() {
-    expect(pantry).to.deep.equal(user.pantry)
+    expect(pantry.pantry).to.deep.equal(user.pantry)
   })
+
+  it.only('should be able to check if it contains all ingridients needed for a meal', function() {
+    pantry.validateMealToCook();
+    // expect(pantry.pantry).to.include(recipe1.ingredients)
+  })
+
 
 })
