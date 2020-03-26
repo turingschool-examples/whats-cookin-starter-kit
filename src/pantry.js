@@ -5,21 +5,19 @@ class Pantry {
     this.recipeData = recipeData;
     this.ingredientsData = ingredientsData;
   }
-  checkIngredients(recipe) {
-    // iterate over the recipe ingredients
-    // iterate over the users pantry
-    // if the user has the ingredient,
-    // check if they have the right amount
-    // if they don't have the right amount, add that.
-    // addIngredient()
-    // if they don't have the ingredient, add the entire object
-    
+  determineIfHasIngredients(recipe) {
+    // call getNeededIngredients()
+    // return true or false based on availability
   }
-  addIngredient() {
-
+  getNeededIngredients(recipe) {
+    // iterate over recipe
+    // iterate over pantry
+    // check each item
+    // return array of needed items
   }
-  removeIngredient() {
-
+  removeUsedIngredients(recipe) {
+    // called by user.cookRecipe
+    // subtracts the amount of each ingredient from pantry
   }
 }
 

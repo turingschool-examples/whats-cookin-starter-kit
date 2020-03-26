@@ -13,9 +13,16 @@ describe('Pantry', () => {
     expect(pantry).to.be.an.instanceof(Pantry);
   });
 
-  it('should check to see if the user has enough ingredients for a recipe', function() {
+  it('determine if user has enough ingredients', function() {
     pantry.checkIngredients(recipeData[0].ingredients)
 
+  });
 
-  })
+  it('should give a list of needed ingredients', function() {
+
+  });
+
+  it('should remove used ingredients from pantry after recipe is made', function() {
+
+  });
 });
