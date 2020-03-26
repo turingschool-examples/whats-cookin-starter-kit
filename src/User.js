@@ -22,7 +22,7 @@ class User {
       if(recIng.id === panIng.ingredient){
         amtNeeded.push(recIng.quantity.amount - panIng.amount)
       }}))
-      matchedIngredients.forEach((el, i) => el.difference = amtNeeded[i]) // recIng.quantity.amount - panIng.amount
+      matchedIngredients.forEach((el, i) => el.difference = amtNeeded[i])
     if (amtNeeded.length === 0) {
       this.determineMissingIngredients(recipe, matchedIngredients);
       return false;
@@ -40,20 +40,24 @@ class User {
     }
   }
 
-  removeIngredients() {
-  // Remove the ingredients used for a given meal from my pantry, once that meal
-  //has been cooked (only applicable if users have a list of mealsToCook; can be
-  //considered a stretch goal)
-  //we may need prop in recipe class - hasBeenCoooked (boolean) - that we will
-  // reference in this method
-  // check recipe for meal that has been cooked ( if === true) and subtract
-  // ingredient amount from ingredient in pantry
+  removeIngredients(recipe) {
+    let amtNeeded = [];
+    let pantryIds = this.pantry.map(element => element.ingredient)
+    let matchedIngredients = recipe.ingredients.filter(item => pantryIds.includes(item.id))
+    recipe.ingredients.forEach((recIng)=>this.pantry.forEach((panIng) => {
+    if(recIng.id === panIng.ingredient){
+        amtNeeded.push(recIng.quantity.amount - panIng.amount)
+      }}))
+    if (this.canBeCooked === false) {
+        return false
+      }
+    matchedIngredients.forEach((el, i) => el.difference = amtNeeded[i])
+    if (recipe.hasBeenCooked) {
+      this.pantry.forEach((ing, i) => {
+        ing.amount = matchedIngredients[i].difference * -1
+      })
+    }
   }
-
-  // checkIfHasBeenCooked() {
-  // // update recipesToCook array; invoke at end of removeIngredients()
-  // //if has beenCooked,
-  // }
 
   unfavoriteMeal(recipe) {
     let recipeIndex = this.favoriteRecipes.findIndex(element => element === recipe);

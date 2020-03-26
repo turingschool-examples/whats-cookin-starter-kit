@@ -1,4 +1,3 @@
-const Ingredient = require('./Ingredient');
 
 class Recipe {
   constructor(recipeData) {
@@ -36,9 +35,11 @@ class Recipe {
       instruction.instruction)
   }
 
-  cookRecipe() {
-    this.hasBeenCooked = true;
-    return true;
+  cookRecipe(user, recipe) {
+    if (user.checkIngredientAmts(recipe)) {
+      this.hasBeenCooked = true;
+      return true;
+    }
   }
 }
 

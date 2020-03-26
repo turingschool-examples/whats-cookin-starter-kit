@@ -134,4 +134,15 @@ describe('User', function() {
     expect(user1.canBeCooked).to.equal(true);
   });
 
+  it('it should remove used ingredients from the pantry after it has been cooked', function() {
+    recipe1.hasBeenCooked = true;
+    recipe2.hasBeenCooked = true;
+    user1.checkIngredientAmts(recipe1);
+    user2.checkIngredientAmts(recipe2);
+    user1.removeIngredients(recipe1);
+    user2.removeIngredients(recipe2);
+    expect(user1.pantry).to.deep.equal([{ingredient: 20081, amount: 2.5}, {ingredient: 18372, amount: 3.5}]);
+    expect(user2.pantry).to.deep.equal([{ingredient: 2048, amount: 1}, {ingredient: 18371, amount: 7}]);
+  });
+
 });
