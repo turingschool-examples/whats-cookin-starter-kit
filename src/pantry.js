@@ -2,16 +2,16 @@ const Recipe = require('../src/Recipe');
 const User = require('../src/User');
 
 class Pantry {
-  constructor(pantryDetails) {
+  constructor(userPantry) {
     // this.id = pantryDetails.id;
     // this.name = pantryDetails.name;
     // this.estimatedCostInCents = pantryDetails.estimatedCostInCents;
-    this.pantry = pantryDetails
+    this.pantry = userPantry;
   };
 
   validateMealToCook() {
     //checks user mealtocoook property checkes ingridients and quantity required
-    user.mealToCook
+    // user.mealToCook
     //checks pantry
     //return boolean if user has ingridients to cook
   };

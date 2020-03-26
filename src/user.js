@@ -21,7 +21,7 @@ class User {
 
   displayFavorites() {
     // shows list of favorites may need to live on scripts.js
-  }
+  } 
 
 
 
