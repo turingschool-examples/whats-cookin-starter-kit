@@ -4,7 +4,7 @@ class Recipe {
   constructor(recipeData) {
     this.name = recipeData.name;
     this.id = recipeData.id;
-    this.recipeIngredients = recipeData.ingredients;
+    this.ingredients = recipeData.ingredients;
     this.image = recipeData.image;
     this.instructions = recipeData.instructions;
     this.tags = recipeData.tags;
@@ -15,14 +15,14 @@ class Recipe {
   }
 
   calculateCostOfIngredients(allIngredients) {
-    let recipeIngredientIds = this.recipeIngredients.map(ingredient => ingredient.id)
+    let recipeIngredientIds = this.ingredients.map(ingredient => ingredient.id)
     let ingredientAmts = [];
     allIngredients.filter(item => {
       if (recipeIngredientIds.includes(item.id)) {
         return this.ingredientPrices.push(item.estimatedCostInCents);
       }
     });
-    this.recipeIngredients.filter(item => {
+    this.ingredients.filter(item => {
       if (recipeIngredientIds.includes(item.id)) {
         return ingredientAmts.push(item.quantity.amount);
       }

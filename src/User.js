@@ -6,7 +6,7 @@ class User {
     this.name = userData.name;
     this.id = userData.id;
     this.pantry = userData.pantry;
-     //
+    this.canBeCooked = null;
     this.recipesToCook = [];
     this.favoriteRecipes = [];
   }
@@ -14,26 +14,23 @@ class User {
   //might need a method in other class that tells if a recipe has been favorited
 
   checkIngredientAmts(recipe) {
-    console.log(recipe.recipeIngredients)
-    // console.log(this.pantry[1].ingredient)
-    let pantryIds = this.pantry.map(element => element.ingredient)
-    console.log(pantryIds)
-
-    recipe.recipeIngredients.filter(item => {
-      if (pantryIds.includes(item.id)) {
-        console.log(true);
-      } else {
-        return false;
-      }
-    });
+    let amtNeeded = [];
+    recipe.ingredients.forEach((recIng)=>this.pantry.forEach((panIng) => {
+      if(recIng.id === panIng.ingredient){
+        amtNeeded.push(recIng.quantity.amount - panIng.amount)
+        }}))
+    if (amtNeeded.length === 0) {
+      return false;
+    } else {
+      this.determineMissingIngredients(recipe, amtNeeded);
+      return amtNeeded.every(amt => amt < 0);
+    }
   }
-  //check to see if ingredients in pantry are the same as ingredients in the recipe (can use findIndex?)
-  //if there are any in common, compare ingredient amounts in pantry with ingredient amounts required for recipe (using filter and includes) index by index
-  //if there are none in common, return false
-  // Determine whether my pantry has enough ingredients to cook a given meal
-  // returns boolean
 
-  determineMissingIngredients(recipe, pantry) {
+  determineMissingIngredients(recipe, amtNeeded) {
+  // console.log(amtNeeded);
+  // console.log(recipe);
+  console.log(amtNeeded.map((amount, index) => {amount.property = amount}));
   // Determine the amount of ingredients still needed to cook a given meal, based
   //on what’s in my pantry
   // check amounts against each other and return difference;

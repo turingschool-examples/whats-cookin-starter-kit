@@ -8,12 +8,13 @@ const Recipe = require('../src/Recipe');
 
 describe('User', function() {
 
-  let user1, user2, user3, recipe1, recipe2;
+  let user1, user2, user3, user4, recipe1, recipe2;
 
   beforeEach(function() {
     user1 = new User({name: "Saige O'Kon", id: 1, pantry: [{ingredient: 20081, amount: 4}, {ingredient: 18372, amount: 4}]})
     user2 = new User({name: "Ephraim Goyette", id: 2, pantry: [{ingredient: 2048, amount: 1}, {ingredient: 18371, amount: 7}]});
     user3 = new User({name: "Jeremy Beramy", id: 3, pantry: []});
+    user4 = new User({name: "Rachael Green", id: 4, pantry: [{ingredient: 222, amount: 1}, {ingredient: 626, amount: 5}]});
       //some ingredientAmts
       //no ingredient
       //all ingredients (happy)
@@ -116,7 +117,19 @@ describe('User', function() {
 
     expect(user2.checkIngredientAmts(recipe2)).to.equal(false);
     expect(user3.checkIngredientAmts(recipe2)).to.equal(false);
+    expect(user4.checkIngredientAmts(recipe2)).to.equal(false);
+  });
 
+  it('it should return false if the user doesn\'t have enough ingredients in their pantry', function() {
+    user2.checkIngredientAmts(recipe2);
+    user4.checkIngredientAmts(recipe2);
+    expect(user2.canBeCooked).to.equal(false);
+    expect(user4.canBeCooked).to.equal(false);
+  });
+
+  it('it should return true if the user has enough ingredients in their pantry', function() {
+    user1.checkIngredientAmts(recipe1);
+    expect(user1.canBeCooked).to.equal(true);
   });
 
 });
