@@ -1,5 +1,7 @@
+const pantry = require()
+
 class User {
-  constructor(user, userData, recipeData, ingredientsData) {
+  constructor(user, recipeData, ingredientsData) {
     this.userId = user.id;
     this.name = user.name;
     this.pantry = user.pantry;
@@ -7,7 +9,6 @@ class User {
     this.recipesToCook = [];
     this.recipesCooked = [];
     this.shoppingList = [];
-    this.userData = userData;
     this.recipeData = recipeData;
     this.ingredientsData = ingredientsData;
   }
@@ -21,17 +22,18 @@ class User {
       }
     })
   }
-  filterRecipeByType() {
-
+  cookRecipe(recipeToCook) {
+    this.removeFromRecipesToCook(recipeToCook);
+    this.addToRecipesCooked(recipeToCook);
+    pantry.removeUsedIngredients(recipeToCook);
   }
-  filterRecipeByIngredient() {
-
+  removeFromRecipesToCook(recipeToCook) {
+    return this.recipesToCook.find(recipe => {
+      return recipeToCook.id === recipe.id;
+    })
   }
-  cookRecipe() {
-    // helper function:
-      // remove from recipesToCook
-      // add to recipesCooked
-      // call pantry.removeUsedIngredients() 
+  addToRecipesCooked(recipeCooked) {
+    this.recipesCooked.push(recipeCooked);
   }
 }
 

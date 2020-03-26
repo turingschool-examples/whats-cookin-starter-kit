@@ -6,11 +6,16 @@ class Pantry {
     this.ingredientsData = ingredientsData;
   }
   determineIfHasIngredients(recipe) {
-    // call getNeededIngredients()
-    // return true or false based on availability
+    if (getNeededIngredients(recipe)) {
+      return true;
+    }
+  }
+  convertIngredientIdToName() {
+
   }
   getNeededIngredients(recipe) {
     // iterate over recipe
+
     // iterate over pantry
     // check each item
     // return array of needed items
@@ -18,6 +23,8 @@ class Pantry {
   removeUsedIngredients(recipe) {
     // called by user.cookRecipe
     // subtracts the amount of each ingredient from pantry
+    return this.pantry.filter(ingredient => {
+    })
   }
 }
 
