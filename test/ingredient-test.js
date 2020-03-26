@@ -1,11 +1,11 @@
 const chai = require('chai');
 const expect = chai.expect;
 const Ingredient = require('../src/ingredient');
-const ingredientsData = require('../data/ingredients.js');
+const testIngredients = require('../data/test-ingredients.js');
 
 describe('Ingredient', () => {
   beforeEach(() => {
-    ingredient = new Ingredient(ingredientsData[0]);
+    ingredient = new Ingredient(testIngredients[0]);
   });
 
   it('should be an instance of Ingredient', function() {
