@@ -1,12 +1,12 @@
 const chai = require('chai');
 const expect = chai.expect;
 const Recipe = require('../src/recipe');
-const recipeData = require('../data/recipes.js');
-const ingredientsData = require('../data/ingredients.js');
+const testRecipes = require('../data/test-recipes.js');
+const testIngredients = require('../data/test-ingredients.js');
 
 describe('Recipe', () => {
   beforeEach(() => {
-    recipe = new Recipe(recipeData[0], ingredientsData, recipeData);
+    recipe = new Recipe(testRecipes[0], testIngredients, testRecipes);
   });
 
   it('should be an instance of Recipe', function() {
@@ -142,7 +142,7 @@ describe('Recipe', () => {
 
   it('should filter recipes by tag', function() {
     let filteredRecipes = recipe.filterByTag('starter');
-    expect(filteredRecipes.length).to.equal(9);
+    expect(filteredRecipes.length).to.equal(1);
   });
 
   it('should filter recipes by ingredient', function() {
