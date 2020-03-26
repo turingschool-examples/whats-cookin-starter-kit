@@ -1,5 +1,4 @@
-let usersTestData = [
-  {
+let usersTestData = {
     "name": "Saige O'Kon",
     "id": 1,
     "pantry": [
@@ -148,6 +147,6 @@ let usersTestData = [
         "amount": 2
       }
     ]
-  }];
+  };
 
     module.exports = usersTestData;

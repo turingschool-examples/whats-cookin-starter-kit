@@ -13,8 +13,8 @@ describe('Pantry', function() {
 
   beforeEach(function() {
     recipe1 = new Recipe(recipeDataTest[0]);
-    pantry = new Pantry(ingredientsTestData);
     user = userTestData;
+    pantry = new Pantry(user.pantry);
   })
 
   it('should be a function', function () {
@@ -25,8 +25,14 @@ describe('Pantry', function() {
     expect(pantry).to.be.an.instanceOf(Pantry);
   })
 
-  it.only('should have all users ingredients', function() {
-    expect(pantry).to.deep.equal(user.pantry)
+  it('should have all users ingredients', function() {
+    expect(pantry.pantry).to.deep.equal(user.pantry)
   })
+
+  it.only('should be able to check if it contains all ingridients needed for a meal', function() {
+    pantry.validateMealToCook();
+    // expect(pantry.pantry).to.include(recipe1.ingredients)
+  })
+
 
 })

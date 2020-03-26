@@ -19,13 +19,20 @@ class User {
     // removes recipe from favorites array
   }
 
-  displayFavorites() {
-    // shows list of favorites may need to live on scripts.js
-  } 
 
-
-
-    //add meal user want to cook to meal que.
+  stageMealToCook() {
+    //take current meal selection
+    //pass it into pantry.validateMeal
+    //^ if above equates to true, move meal to meal to cook on user
+    //^ if aboce equates to false. run pantry required for meal and return required items.
+    //add meal user wants to cook to meal que.
   }
+
+  cookMeal() {
+    //run remove item(s) from pantry
+    //set meal to cook to an empty []
+  }
+
+}
 
 module.exports = User;
