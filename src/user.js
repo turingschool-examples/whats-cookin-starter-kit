@@ -1,3 +1,5 @@
+const pantry = require()
+
 class User {
   constructor(user, recipeData, ingredientsData) {
     this.userId = user.id;

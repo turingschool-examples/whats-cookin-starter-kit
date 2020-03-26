@@ -23,7 +23,8 @@ class Pantry {
   removeUsedIngredients(recipe) {
     // called by user.cookRecipe
     // subtracts the amount of each ingredient from pantry
-    
+    return this.pantry.filter(ingredient => {
+    })
   }
 }
 

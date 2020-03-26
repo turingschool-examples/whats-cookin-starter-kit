@@ -38,15 +38,15 @@ describe('User', () => {
     expect(user.favoriteRecipes).to.deep.equal([]);
   });
 
-  it.skip('should be able to filter recipes by type', function() {
-
-  });
-
-  it.skip('should should be able to filter recipes by ingredient', function() {
-
-  });
-
   it.skip('should be able to cook a recipe', function() {
+    
+  });
+
+  it.skip('should remove from recipes to cook', function() {
+
+  });
+
+  it.skip('should add to recipes cooked', function() {
 
   });
 });
