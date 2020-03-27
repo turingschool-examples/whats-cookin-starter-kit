@@ -3,13 +3,114 @@
   <head>
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Amiri:400,700&display=swap" rel="stylesheet"> 
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <nav>
+      <h1 class="home-btn">What's Cookin</h1>
+      <div class="nav-icons">
+      <h2 class="favorites">My Favorites</h2>
+      <h2 class="search"><input type=search results=5 autosave=some_unique_value name=s placeholder="Search Recipes"></h2>
+      <div class="filter-meals">
+        <select>
+          <option value="0">Meal Type:</option>
+          <option value="1">Antipasti</option>
+          <option value="2">Starter</option>
+          <option value="3">Breakfast</option>
+          <option value="4">Appetizer</option>
+          <option value="5">Lunch</option>
+          <option value="6">Main Course</option>
+          <option value="7">Dinner</option>
+          <option value="8">Sauce</option>
+          <option value="9">Side Dish</option>
+          <option value="10">Hor D'Oeuvre</option>
+          <option value="11">Main Dish</option>
+          <option value="12">Snack</option>
+          <option value="13">Brunch</option>
+          <option value="14">Morning Meal</option>
+          <option value="15">Antipasto</option>
+          <option value="16">Salad</option>
+        </select>
+      </div>
+      </div>
+    </nav>
+    <main>
+    <div id="meal-container" class="home-page">
+      <div class='meal-card'>
+        <div class='card-title-container'>
+          <p class='card-title'>Meal Title</p>
+        </div>
+        <div class="food-img-container">
+          <img class="food-img" rel="food-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
+        </div>
+        <div class="card-icon-container">
+          <img class="icon active hidden"src="https://img.icons8.com/color/96/000000/hearts.png"/>
+          <img class="icon inactive" src="https://img.icons8.com/windows/96/000000/hearts.png"/>
+          <img class="icon cook-ready"src="https://img.icons8.com/doodle/96/000000/pot---v1.png"/>
+      </div>
+      </div>
+      <div class='meal-card'>
+        <div class='card-title-container'>
+          <p class='card-title'>Meal Title</p>
+        </div>
+        <div class="food-img-container">
+          <img class="food-img" rel="food-img" src="https://spoonacular.com/recipeImages/678353-556x370.jpg">
+        </div>
+        <div class="card-icon-container">
+          <img class="icon active hidden"src="https://img.icons8.com/color/96/000000/hearts.png"/>
+          <img class="icon inactive" src="https://img.icons8.com/windows/96/000000/hearts.png"/>
+          <img class="icon cook-ready" src="https://img.icons8.com/doodle/96/000000/pot---v1.png"/>
+        </div>
+      </div>
+      <div class='meal-card'>
+        <div class='card-title-container'>
+          <p class='card-title'>Meal Title</p>
+        </div>
+        <div class="food-img-container">
+          <img class="food-img" rel="food-img" src="https://spoonacular.com/recipeImages/412309-556x370.jpeg">
+        </div>
+        <div class="card-icon-container">
+          <img class="icon active"src="https://img.icons8.com/color/96/000000/hearts.png"/>
+          <img class="icon inactive hidden" src="https://img.icons8.com/windows/96/000000/hearts.png"/>
+          <img class="icon cook-ready" src="https://img.icons8.com/doodle/96/000000/pot---v1.png"/>
+        </div>
+      </div>
+      <div class='meal-card'>
+        <p>Meal Name</p>
+        <img // image of meal>
+        <img // icon for cook -- disables>
+        <img // icon for faves -- toggles>
+      </div>
+      <div class='meal-card'>
+        <p>Meal Name</p>
+        <img // image of meal>
+        <img // icon for cook -- disables>
+        <img // icon for faves -- toggles>
+      </div>
+      <div class='meal-card'>
+        <p>Meal Name</p>
+        <img // image of meal>
+        <img // icon for cook -- disables>
+        <img // icon for faves -- toggles>
+      </div>
+      <div class='meal-card'>
 
+      </div>
+      <div class='meal-card'>
+        
+      </div>
+    </div>
+    <div id="favorites-page" class="favorites-page">
+      <!-- push data of selected recipe into main
+      faves-page - needs specific styling to have 3 boxes
+      left contains half cotainer with larger card details on left - if it can be cooked or not
+      missing ingredients and price -->
+    </div>
+    </main>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
-    <script type="text/javascript" src="./scripts.js"></script>
+    <script type="text/js" src="./scripts.js"></script>
   </body>
 </html>
