@@ -1,0 +1,145 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Amiri', serif;
+}
+
+body {
+  width: 100%;
+  height: 100vh; 
+  background-image: url("https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2855&q=80");
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  pointer-events: none;
+}
+
+nav {
+  width: 100%;
+  height: 13%;
+  padding: 0px 10px 0px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #d97c2b;
+  opacity: .9;
+}
+
+h1 {
+  font-size: 37px;
+}
+
+h1:hover, .favorites:hover {
+  color: #6f5107;
+  transition: background-color .5s;
+}
+
+.home-btn {
+  pointer-events: auto;
+}
+
+.nav-icons {
+  width: 30%;
+  margin: 0px 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.search input {
+  font-size: 20px;
+}
+
+.filter-meals {
+  width: 90px;
+  
+}
+
+main {
+  width: 100%;
+  height: 87%;
+}
+
+.home-page {
+  margin: auto;
+  margin-top: 3%;
+  width: 70%;
+  height: 87%;
+  background-color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  flex-wrap: wrap;
+  overflow: scroll;
+  justify-content: space-around;
+  border-radius: 5px;
+}
+
+.favorites-page {
+  margin: auto;
+  margin-top: 3%;
+  width: 70%;
+  height: 87%;
+  background-color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  flex-wrap: wrap;
+  overflow: scroll;
+  justify-content: space-around;
+  border-radius: 5px;
+}
+
+.meal-card {
+  background-color: #a76c4340;
+  border: 3px solid #dc845a5c;
+  border-radius: 10px;
+  height: 40%;
+  width: 26%;
+  margin: 20px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title-container {
+  padding: 0px 3px;
+}
+
+.card-title {
+  width: 100%;
+  height: 15%;
+  padding: 2px 2px;
+}
+
+.food-img-container {
+  width: 100%;
+  height: 70%;
+}
+
+.food-img-container:hover .food-img {
+  opacity: 0.3;
+}
+
+.food-img {
+  width: 100%;
+  height: 100%;
+}
+
+.card-icon-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 15%;
+  padding: 0px 9px;
+}
+
+.icon {
+  width: 17%;
+}
+
+/* if disabled keep this property... take opacity off if able!  */
+.cook-ready {
+  opacity: .3;
+}
+
+.hidden {
+  display: none;
+}
+
