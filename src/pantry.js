@@ -1,4 +1,5 @@
 const Recipe = require('../src/recipe');
+const recipeData = require('../data/recipes');
 
 class Pantry {
   constructor(userPantry) {
@@ -6,7 +7,8 @@ class Pantry {
     this.mealToCook = []
   };
 
-  validateMeal() {
+  validateMeal(currentRecipe) {
+    
     //checkes ingridients and quantity required
     //if above equals true, return true (enable cook button)
     //if above equals false return false. (run requiredForMeal)
