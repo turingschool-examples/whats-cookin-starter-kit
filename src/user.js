@@ -9,6 +9,7 @@ class User {
     this.recipesToCook = [];
     this.recipesCooked = [];
     this.shoppingList = [];
+    // check for usage 
     this.recipeData = recipeData;
     this.ingredientsData = ingredientsData;
   }
