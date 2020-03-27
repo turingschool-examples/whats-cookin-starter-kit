@@ -1,6 +1,3 @@
-// const Pantry = require('../src/Pantry');
-// const ingredientsData = require('../data/ingredients.js')
-
 class Recipe {
   constructor(recipeDetails) {
     this.id = recipeDetails.id;
