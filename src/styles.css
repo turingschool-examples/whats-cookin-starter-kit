@@ -45,16 +45,7 @@ main {
   width: 100%;
 }
 
-.my-recipes {
-  background-color: darkcyan;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 2% 2% 0 2%;
-}
-
-.my-recipes-header {
+.recipes-header {
   display: flex;
   justify-content: space-between;
   margin: 1% 0;
@@ -62,8 +53,23 @@ main {
   border-bottom: 1px solid black;
 }
 
-.my-recipes-header h4 {
+.recipes-header h4 {
   margin: 0;
+}
+
+.recipes {
+  background-color: darksalmon;
+  height: 100%
+}
+
+/* MY RECIPES */
+.my-recipes {
+  background-color: darkcyan;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2% 2% 0 2%;
 }
 
 .my-radio-btns {
@@ -77,6 +83,7 @@ width: 33%;
   display: inline;
 }
 
+/* ALL RECIPES */
 .all-recipes {
   background-color: darkslategrey;
   box-sizing: border-box;
@@ -86,13 +93,41 @@ width: 33%;
   padding: 2% 2% 0 2%;
 }
 
-.all-recipes-header {
-  margin: 1% 0;
-  padding: 1% 0;
-  border-bottom: 1px solid black;
+/* .tags-menu {
+  align-self: flex-end;
+} */
+
+/* DROPDOWN MENU */
+.multiselect {
+  width: 200px;
 }
 
-.recipes {
-  background-color: darksalmon;
-  height: 100%
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
 }

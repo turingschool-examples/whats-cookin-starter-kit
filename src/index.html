@@ -15,20 +15,19 @@
   <main>
     <section class="recipe-section">
       <section class="my-recipes">
-        <section class="my-recipes-header">
+        <section class="recipes-header">
           <h4>My Recipes</h4>
           <section class="my-radio-btns">
             <div class="radio-field">
-              <input type="radio" id="all-saved" name="drone" value="all-saved"
-                     checked>
+              <input type="radio" id="all-saved" value="all-saved" checked>
               <label for="all-saved">All Saved</label>
             </div>
             <div class="radio-field">
-              <input type="radio" id="favorites" name="drone" value="favorites">
+              <input type="radio" id="favorites" value="favorites">
               <label for="favorites">Favorites</label>
             </div>
             <div class="radio-field">
-              <input type="radio" id="cook-next" name="drone" value="cook-next">
+              <input type="radio" id="cook-next" value="cook-next">
               <label for="cook-next">Cook Next</label>
             </div>
           </section>
@@ -38,7 +37,119 @@
         </section>
       </section>
       <section class="all-recipes">
-        <h4 class="all-recipes-header">All Recipes</h4>
+        <section class="recipes-header">
+          <h4>All Recipes</h4>
+          <form class="tags-menu">
+            <div class="multiselect">
+              <div class="selectBox" onclick="showCheckboxes()">
+                <select>
+                  <option>Select an option</option>
+                </select>
+                <div class="overSelect"></div>
+              </div>
+              <div id="checkboxes">
+                <label for="one">
+                  <input type="checkbox" id="antipasti" />Antipasti</label>
+                <label for="two">
+                  <input type="checkbox" id="two" />Antipasto</label>
+                <label for="three">
+                  <input type="checkbox" id="three" />Appetizer</label>
+                <label for="one">
+                  <input type="checkbox" id="antipasti" />Breakfast</label>
+                <label for="two">
+                  <input type="checkbox" id="two" />Brunch</label>
+                <label for="three">
+                  <input type="checkbox" id="three" />Condiment</label>
+                <label for="one">
+                  <input type="checkbox" id="antipasti" />Dinner</label>
+                <label for="two">
+                  <input type="checkbox" id="two" />Dip</label>
+                <label for="three">
+                  <input type="checkbox" id="three" />Hor d'oeurve</label>
+                <label for="one">
+                  <input type="checkbox" id="antipasti" />Lunch</label>
+                <label for="two">
+                  <input type="checkbox" id="two" />Main Course</label>
+                <label for="three">
+                  <input type="checkbox" id="three" />Main Dish</label>
+                <label for="one">
+                  <input type="checkbox" id="antipasti" />Morning Meal</label>
+                <label for="two">
+                  <input type="checkbox" id="two" />Salad</label>
+                <label for="three">
+                  <input type="checkbox" id="three" />Sauce</label>
+                <label for="one">
+                  <input type="checkbox" id="antipasti" />Side Dish</label>
+                <label for="two">
+                  <input type="checkbox" id="two" />Snack</label>
+                <label for="three">
+                  <input type="checkbox" id="three" />Spread</label>
+                <label for="one">
+                  <input type="checkbox" id="antipasti" />Starter</label>
+              </div>
+            </div>
+          </form>
+
+          <select class="tags-menu">
+            <option>
+              Antipasti
+            </option>
+            <option>
+              Antipasto
+            </option>
+            <option>
+              Appetizer
+            </option>
+            <option>
+              Breakfast
+            </option>
+            <option>
+              Brunch
+            </option>
+            <option>
+              Condiment
+            </option>
+            <option>
+              Dinner
+            </option>
+            <option>
+              Dip
+            </option>
+            <option>
+              Hor D'oeurve
+            </option>
+            <option>
+              Lunch
+            </option>
+            <option>
+              Main Course
+            </option>
+            <option>
+              Main Dish
+            </option>
+            <option>
+              Morning Meal
+            </option>
+            <option>
+              Salad
+            </option>
+            <option>
+              Sauce
+            </option>
+            <option>
+              Side Dish
+            </option>
+            <option>
+              Snack
+            </option>
+            <option>
+              Spread
+            </option>
+            <option>
+              Starter
+            </option>
+          </select>
+        </section>
         <section class="recipes">
 
         </section>
