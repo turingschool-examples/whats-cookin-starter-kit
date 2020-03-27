@@ -1,0 +1,23 @@
+body, html {
+  margin: 0;
+}
+
+nav {
+  background-color: black;
+  color: white;
+}
+
+ul {
+  display: flex;
+  flex: 1;
+}
+
+header {
+  margin-left: 2%;
+  flex: 1;
+}
+
+li {
+  text-decoration: none;
+  list-style-type: none;
+}
