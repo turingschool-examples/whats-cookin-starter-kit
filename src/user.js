@@ -23,35 +23,42 @@ class User {
     //if igrendient isnt in pantry return id and how much is needed(probably in a string)
     //if ingredient is in pantry
     let currentRecipe = recipes.find((recipe) => whatToCook.id === recipe.id);
-    currentRecipe.ingredients.map((ingredient) => {
-      for (let i = 0; i < this.pantry.length; i++) {
-        if (ingredient.id === this.pantry[i].ingredient) {
-          ingredientsWeHave.push(ingredient);
-        }
-
-        // if (ingredient.id != this.pantry[i].ingredient) {
-        //   ingredientsNeeded.push(ingredient);
-        // }
-      }
-      // console.log(ingredient.id)
-      // console.log(this.pantry);
+    this.pantry.forEach((item) => {
+      currentRecipe.ingredients.map((ingredient) => {
+        if (ingredient.id === item.ingredient) {
+            ingredientsWeHave.push(ingredient);
+          }
+        });
       });
+
+      // this.pantry.forEach((item) => {
+      //   currentRecipe.ingredients.map((ingredient) => {
+      //     if (ingredient.id != item.ingredient) {
+      //         ingredientsNeeded.push(ingredient);
+      //     }
+      //   });
+      // });
+      // currentRecipe.ingredients.map((ingredient) => {
+      // this.pantry.forEach((item) => ingredient.id != item.ingredient);
+      //     ingredientsNeeded.push(ingredient);
+      // });
+
+      // for (let i = 0; i < this.pantry.length; i++) {
+        // if (ingredient.id === this.pantry[i].ingredient) {
+        //   ingredientsWeHave.push(ingredient);
+        // }
+      // }
+      // console.log(this.pantry);
       console.log(ingredientsWeHave);
-      console.log(ingredientsNeeded);
-      // console.log(this.pantry);
-      // console.log(currentRecipe.ingredients);
-      // console.log(whatToCook.id);
-      // console.log(this.pantry);
-      // console.log(ingredientsWeHave);
-      // console.log(currentRecipe.ingredients);
-    // });
+      console.log(currentRecipe.ingredients);
     //When a user decides to cook a recipe, they should be able
     //to determine whether they have sufficient ingredients in their
     //pantry (see Pantry user stories).
     //If they do not, they should be
     //able to see a list of what ingredients they need to buy, and how
     //much it will cost
-  }
+
+}
 
   addFavoriteRecipe(/*recipe.name*/) {
     //Favorites are meant to be recipes
