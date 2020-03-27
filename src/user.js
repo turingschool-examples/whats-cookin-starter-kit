@@ -11,7 +11,7 @@ class User {
 
   addToFavorites() {
     //adds recipe to the favorites array
-
+    this.favorites.push(recipe)
   }
 
   removeFromFavorites() {
