@@ -30,8 +30,11 @@ describe('Pantry', function() {
     expect(user.pantry).to.equal(pantry)
   })
 
-  it('should be able to check if it contains all ingridients needed for a meal', function() {
-    pantry.validateMealToCook();
+  it.only('should be able to check if it contains all ingridients needed for a meal', function() {
+
+    // console.log('user test data',user.pantry.pantry);
+    // console.log('recipe test data', recipeDataTest[0]);
+    pantry.validateMeal(recipeDataTest[0]);
 
 
   })
