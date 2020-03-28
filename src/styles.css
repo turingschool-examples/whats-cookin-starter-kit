@@ -1,23 +1,134 @@
 body, html {
+  font-family: 'Source Sans Pro', sans-serif;
   margin: 0;
+}
+
+.logo {
+  height: 76px;
+  width: 50px;
 }
 
 nav {
   background-color: black;
   color: white;
+  height: 75px;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 }
 
 ul {
   display: flex;
   flex: 1;
+  float: right;
+  margin-top: 25px;
 }
 
 header {
-  margin-left: 2%;
-  flex: 1;
+  display: inline-block;
+  font-size: 50px;
+  font-weight: 600;
+  position: absolute;
+  top: 5px;
+  font-family: 'Dancing Script', cursive;
 }
 
 li {
-  text-decoration: none;
+  font-size: 20px;
   list-style-type: none;
+  padding: 0px 20px;
+  text-decoration: none;
+}
+
+.featured-recipe-title,
+.recipe-card-title,
+.welcome-pantry-title,
+.pantry-title {
+  font-weight: 600;
+  text-align: center;
+}
+
+.header-image {
+  width: 80%;
+  margin: 0px auto;
+  display: block;
+}
+
+.featured-recipes-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+
+.recipe-card-image {
+  object-fit: cover;
+  width: 100%;
+}
+
+.recipe-card {
+  background-color: #dae4e6;
+  display: inline-block;
+  height: 300px;
+  margin: 20px;
+  position: relative;
+  width: 25%;
+}
+
+/* icons */
+
+/* .profile-icon {
+  height: 30px;
+  width: 30px;
+} */
+
+.unselected-heart,
+.selected-heart,
+.selected-chef-hat,
+.unselected-chef-hat {
+  height: 25px;
+  position: absolute;
+  width: 25px;
+}
+
+.selected-chef-hat,
+.unselected-chef-hat {
+  bottom: 15px;
+  right: 15px;
+}
+
+.unselected-heart,
+.selected-heart {
+  bottom: 15px;
+  left: 15px;
+}
+
+/* pantry------------- */
+
+.pantry-sub-header {
+  text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+    width: 60%;
+    margin: 0px auto;
+}
+
+table tr {
+    background: white;
+    border-bottom: 1px solid
+}
+
+table th,
+table td {
+    padding: 10px 20px;
+}
+
+table td span {
+    display: none;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 5px;
 }

@@ -1,12 +1,8 @@
-const Ingredient = require('./Ingredient');
-const Recipe = require('./Recipe');
-
 class User {
   constructor(userData) {
     this.name = userData.name;
     this.id = userData.id;
     this.pantry = userData.pantry;
-    this.canBeCooked = null;
     this.recipesToCook = [];
     this.favoriteRecipes = [];
   }
@@ -34,9 +30,9 @@ class User {
 
   determineMissingIngredients(recipe, matchedIngredients) {
     if (matchedIngredients.length === 0) {
-      this.canBeCooked = false
+      recipe.canBeCooked = false
     } else {
-      matchedIngredients.every(ingredient => ingredient.difference > 0 ? this.canBeCooked = false : this.canBeCooked = true)
+      matchedIngredients.every(ingredient => ingredient.difference > 0 ? recipe.canBeCooked = false : recipe.canBeCooked = true)
     }
   }
 
@@ -48,7 +44,7 @@ class User {
     if(recIng.id === panIng.ingredient){
         amtNeeded.push(recIng.quantity.amount - panIng.amount)
       }}))
-    if (this.canBeCooked === false) {
+    if (recipe.canBeCooked === false) {
         return false
       }
     matchedIngredients.forEach((el, i) => el.difference = amtNeeded[i])
