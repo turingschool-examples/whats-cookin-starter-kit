@@ -1,18 +1,17 @@
 body, html {
   font-family: 'Source Sans Pro', sans-serif;
   margin: 0;
+  width: 100%;
 }
 
-.logo {
-  height: 76px;
-  width: 50px;
-}
 
 nav {
   background-color: black;
   color: white;
   height: 75px;
-  position: fixed;
+  /* position: fixed; */
+  position: absolute;
+  top: 0;
   width: 100%;
   z-index: 1;
 }
@@ -35,9 +34,31 @@ header {
 
 li {
   font-size: 20px;
+  font-weight: 900;
   list-style-type: none;
   padding: 0px 20px;
   text-decoration: none;
+}
+
+input {
+  font-size: 20px;
+}
+
+footer {
+  width: 100%;
+  color: white;
+  background-color: black;
+  height: 150px;
+  text-align: center;
+  padding-top: 50px;
+  /* position: absolute; */
+  margin-bottom: 0;
+  /* flex-shrink: 0; */
+}
+
+.logo {
+  height: 76px;
+  width: 50px;
 }
 
 .featured-recipe-title,
@@ -75,6 +96,10 @@ li {
   width: 25%;
 }
 
+.recipe-card:hover {
+  box-shadow: -4px 7px 20px 0px #b4b0b0;
+}
+
 /* icons */
 
 /* .profile-icon {
@@ -103,6 +128,13 @@ li {
   left: 15px;
 }
 
+.hidden {
+  display: none;
+}
+
+.shown {
+  display: block;
+}
 /* pantry------------- */
 
 .pantry-sub-header {
@@ -131,4 +163,26 @@ table td span {
     font-size: 10px;
     font-weight: bold;
     padding: 5px;
+}
+
+/* favorites */
+
+.favorites {
+  width: 100%;
+  /* display: flex; */
+  /* justify-content: center; */
+}
+
+.favorited-recipe-group,
+.meal-plan-group {
+  position: absolute;
+  top: 20%;
+  width: 80%;
+  margin: 0 15%;
+}
+
+.favorites-header,
+.meal-plan-header {
+  margin-left: 16%;
+  position: absolute;
 }
