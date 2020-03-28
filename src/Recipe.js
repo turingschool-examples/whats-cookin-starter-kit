@@ -11,6 +11,7 @@ class Recipe {
     this.hasBeenCooked = false;
     this.hasBeenFavorited = false;
     this.ingredientPrices = [];
+    this.canBeCooked = null;
   }
 
   calculateCostOfIngredients(allIngredients) {

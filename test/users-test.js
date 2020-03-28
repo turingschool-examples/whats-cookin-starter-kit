@@ -124,14 +124,14 @@ describe('User', function() {
     user3.checkIngredientAmts(recipe2);
     user2.checkIngredientAmts(recipe2);
     user4.checkIngredientAmts(recipe2);
-    expect(user3.canBeCooked).to.equal(false);
-    expect(user2.canBeCooked).to.equal(false);
-    expect(user4.canBeCooked).to.equal(false);
+    expect(recipe2.canBeCooked).to.equal(false);
+    expect(recipe2.canBeCooked).to.equal(false);
+    expect(recipe2.canBeCooked).to.equal(false);
   });
 
   it('it should return true if the user has enough ingredients in their pantry', function() {
     user1.checkIngredientAmts(recipe1);
-    expect(user1.canBeCooked).to.equal(true);
+    expect(recipe1.canBeCooked).to.equal(true);
   });
 
   it('it should remove used ingredients from the pantry after it has been cooked', function() {
