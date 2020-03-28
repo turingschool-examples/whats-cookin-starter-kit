@@ -1,16 +1,3 @@
-// let users = require('../data/users');
-// let ingredients = require('../data/ingredients');
-// let recipes = require('../data/recipes');
-// const Recipe = require('../src/Recipe');
-// let recipe = new Recipe(
-//   recipes[0].id, 
-//   recipes[0].image, 
-//   recipes[0].ingredients, 
-//   recipes[0].instructions, 
-//   recipes[0].name, 
-//   recipes[0].tags,
-// )
-
 class User {
   constructor(name, id, pantry) {
     this.name = name;

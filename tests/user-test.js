@@ -13,7 +13,7 @@ const User = require('../src/User');
 describe ('User', function() {
 
   let user;
-  let recipe;
+  let recipe1;
 
   beforeEach(function() {
     user = new User(users[0].name, users[0].id, users[0].pantry);
