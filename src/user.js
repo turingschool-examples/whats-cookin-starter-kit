@@ -1,14 +1,10 @@
-let users = require('../data/users');
-let ingredients = require('../data/ingredients');
-let recipes = require('../data/recipes');
-
 class User {
   constructor(name, id, pantry) {
     this.name = name;
     this.id = id;
     this.pantry = pantry;/*[array of objects, from user pantry];*/
-    //this.recipesToCook = [array of recipes that will be cooked];
-    //this.favoriteRecipes = [array of recipes, after a recipe is cooked];
+    this.favoriteRecipes = []
+    this.recipesToCook = [];
   }
 
   checkPantry(whatToCook) {
@@ -86,42 +82,28 @@ class User {
     //able to see a list of what ingredients they need to buy, and how
     //much it will cost
 
-
-
-  addFavoriteRecipe(/*recipe.name*/) {
-    //Favorites are meant to be recipes
-    //that one can easily find again.
   }
 
-  removeFavoriteRecipe(/*recipe.name*/) {
-    //should be able to remove a recipe from
-    //favorites
+  addFavoriteRecipe(recipe) {
+    recipe.toggleFavorite();
+    this.favoriteRecipes.push(recipe)
   }
 
-/*
-  addRecipeToCook() {
-    //Decide to cook a recipe that week
-    //(add to my recipesToCook)
-    //Making a list of recipesToCook can be implemented at
-    //a later time.
-  }
-*/
-
-  cookRecipe(/*pass the recipe in*/) {
-    //should subtract amount of each ingredient used for recipes
-    //from the pantry
+  removeFavoriteRecipe(recipe) {
+    recipe.toggleFavorite();
+    let index = this.favoriteRecipes.indexOf(recipe)
+    this.favoriteRecipes.splice(index, 1)
   }
 
-  filterRecipes(/*type or input.value*/) {
-    //should be able to filter recipes by type
-    //we should have buttons that correspond to
-    //the types of recipes
+  addRecipeToCook(recipe) {
+    recipe.toggleCookNext();
+    this.recipesToCook.push(recipe)
   }
 
-  searchAllSavedRecipes(/*input.value*/) {
-    //wherever we put the search input the input
-    //value will become an argument, that will make this
-    //method, search for the name in the saved recipe array
+  removeRecipeToCook(recipe) {
+    recipe.toggleCookNext();
+    let index = this.recipesToCook.indexOf(recipe)
+    this.recipesToCook.splice(index, 1)
   }
 }
 
