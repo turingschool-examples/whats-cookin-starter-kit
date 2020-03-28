@@ -6,13 +6,17 @@ const Ingredient = require('../src/Ingredient');
 const Recipe = require('../src/Recipe');
 const User = require('../src/User');
 
+let users = require('../data/users');
+let ingredients = require('../data/ingredients');
+let recipes = require('../data/recipes');
+
 describe ('Pantry', function() {
   let recipe;
   let ingredient1;
   let ingredient2;
 
   beforeEach(function() {
-    ingredient1 = new Ingredient(20081, 'wheat flour', 142);
+    ingredient1 = new Ingredient(ingredients[0].id, ingredients[0].name, ingredients[0].amount);
     ingredient2 = new Ingredient(18372, "bicarbonate of soda", 582);
     pantry = new Pantry([ingredient1, ingredient2])
 
@@ -38,54 +42,4 @@ describe ('Pantry', function() {
   it('should be able to check pantry for ingredients', function() {
     expect(pantry.measureIngredients).to.be.a('function');
   });
-
-  it('should return whether there are enough ingredients in pantry', function() {
-    let recipe = new Recipe(
-      1001,
-      'https://images.com',
-      [{ingredient1}, {ingredient2}],
-      [{'instruction': 'open', 'number': 1}, {'instruction': 'heat'}, {'number': 2}],
-      'Basic Food',
-      ['dinner', 'lunch']
-    );
-
-    expect(pantry.measureIngredients(recipe)).to.equal('So glad I got it!');
-  })
-
 })
-
-/*{
-  "id": 1017,
-  "name": "cream cheese",
-  "estimatedCostInCents": 955
-},
-
-{
-  "id": 18371,
-  "name": "baking powder",
-  "estimatedCostInCents": 346
-},
-
-{
-  "id": 1001,
-  "name": "butter",
-  "estimatedCostInCents": 618
-},
-
-{
-  "id": 99223,
-  "name": "canned chipotle chilies in adobo",
-  "estimatedCostInCents": 299
-},
-
-{
-  "id": 1230,
-  "name": "buttermilk",
-  "estimatedCostInCents": 773
-},
-
-{
-  "id": 9152,
-  "name": "lemon juice",
-  "estimatedCostInCents": 274
-}, */
