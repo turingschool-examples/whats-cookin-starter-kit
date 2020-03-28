@@ -19,22 +19,30 @@ describe('Pantry', function() {
     pantry = user.pantry
   })
 
-  it.skip('should be a function', function () {
+  it('should be a function', function () {
     expect(Pantry).to.be.a('function');
   })
 
-  it.skip('should instantiate pantry', function() {
+  it('should instantiate pantry', function() {
     expect(user.pantry).to.be.an.instanceOf(Pantry);
   })
 
-  it.skip('should have all users ingredients', function() {
+  it('should have all users ingredients', function() {
     expect(user.pantry).to.equal(pantry)
   })
 
-  it.skip('it should be able to gain the properties of ingredients', function() {
+  it('it should be able to gain the properties of ingredients', function() {
     pantry.getIngredientDetails(ingredientsData);
     expect(pantry.pantry[0]).to.have.property('name')
   })
+
+  it('should return the items of the recipie not in the pantry', function() {
+    pantry.getIngredientDetails(ingredientsData);
+    neededItems = pantry.requiredForMeal(recipe1)
+    expect(neededItems).to.deep.equal([ { id: 19206, quantity: { amount: 3, unit: 'Tbsp' } } ])
+  })
+
+  it
 
 
 })
