@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Out of the Kitchen</title>
+    <link rel="shortcut-icon" type="image/frying-pan-icon" href="../assets/favicon.ico" />
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script:600|Oswald:700&display=swap" rel="stylesheet">
@@ -12,11 +13,11 @@
       <img class="logo" src="../assets/OOTK_logo.png" alt="frying pan logo">
       <header>Out of the Kitchen</header>
       <ul>
-        <li>Favorites</li>
-        <li>Meal Plan</li>
+        <li class="favorites-navbar">Favorites</li>
+        <li class="meal-plan-navbar">Meal Plan</li>
         <!-- <img class="profile-icon" src="../assets/profile-icon.png"
         alt="profile-icon"> -->
-        <li>Pantry</li>
+        <li class="pantry-navbar">Pantry</li>
         <li><input placeholder = "Search"></li>
       </ul>
     </nav>
@@ -50,39 +51,110 @@
         </div>
         <div class="recipe-card">
           <img class="recipe-card-image" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="chocolate chip cookiies">
-          <p class="recipe-card-title">Chocolate Chip Cookies</p>
-          <!-- <img class="unselected-heart" src="../assets/heart-regular.svg" alt="unselected heart icon"> -->
+          <p class="recipe-card-title">Elvis Pancakes</p>
           <img class="selected-heart" src="../assets/heart-solid.svg" alt="selected heart icon">
-          <!-- <img class="unselected-chef-hat" src="../assets/unselected-chef-hat.svg" alt="unselected recipe to cook"> -->
-          <img class="selected-chef-hat" src="../assets/selected-chef-hat.svg" alt="selected recipe to cook">
+          <img class="unselected-chef-hat" src="../assets/unselected-chef-hat.svg" alt="unselected recipe to cook">
         </div>
         <div class="recipe-card">
           <img class="recipe-card-image" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="chocolate chip cookiies">
-          <p class="recipe-card-title">Chocolate Chip Cookies</p>
-          <!-- <img class="unselected-heart" src="../assets/heart-regular.svg" alt="unselected heart icon"> -->
+          <p class="recipe-card-title">Elvis Pancakes</p>
           <img class="selected-heart" src="../assets/heart-solid.svg" alt="selected heart icon">
-          <!-- <img class="unselected-chef-hat" src="../assets/unselected-chef-hat.svg" alt="unselected recipe to cook"> -->
-          <img class="selected-chef-hat" src="../assets/selected-chef-hat.svg" alt="selected recipe to cook">
+          <img class="unselected-chef-hat" src="../assets/unselected-chef-hat.svg" alt="unselected recipe to cook">
         </div>
         <div class="recipe-card">
           <img class="recipe-card-image" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="chocolate chip cookiies">
-          <p class="recipe-card-title">Chocolate Chip Cookies</p>
-          <!-- <img class="unselected-heart" src="../assets/heart-regular.svg" alt="unselected heart icon"> -->
+          <p class="recipe-card-title">Elvis Pancakes</p>
           <img class="selected-heart" src="../assets/heart-solid.svg" alt="selected heart icon">
-          <!-- <img class="unselected-chef-hat" src="../assets/unselected-chef-hat.svg" alt="unselected recipe to cook"> -->
-          <img class="selected-chef-hat" src="../assets/selected-chef-hat.svg" alt="selected recipe to cook">
+          <img class="unselected-chef-hat" src="../assets/unselected-chef-hat.svg" alt="unselected recipe to cook">
         </div>
       </section>
     </section>
-    <section class="recipe-page">
+    <section class="recipe-page hidden">
     </section>
-    <section class="favorites">
+    <section class="favorites hidden">
+      <h1 class="favorites-header">Favorites</h1>
+      <div class="favorited-recipe-group">
+      <div class="recipe-card">
+        <img class="recipe-card-image" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" alt="pancakes">
+        <p class="recipe-card-title">Elvis Pancakes</p>
+        <img class="selected-heart" src="../assets/heart-solid.svg" alt="selected heart icon">
+        <img class="unselected-chef-hat" src="../assets/unselected-chef-hat.svg" alt="unselected recipe to cook">
+      </div>
+      <div class="recipe-card">
+        <img class="recipe-card-image" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" alt="pancakes">
+        <p class="recipe-card-title">Elvis Pancakes</p>
+        <img class="selected-heart" src="../assets/heart-solid.svg" alt="selected heart icon">
+        <img class="unselected-chef-hat" src="../assets/unselected-chef-hat.svg" alt="unselected recipe to cook">
+      </div>
+      <div class="recipe-card">
+        <img class="recipe-card-image" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" alt="pancakes">
+        <p class="recipe-card-title">Elvis Pancakes</p>
+        <img class="selected-heart" src="../assets/heart-solid.svg" alt="selected heart icon">
+        <img class="unselected-chef-hat" src="../assets/unselected-chef-hat.svg" alt="unselected recipe to cook">
+      </div>
+      <div class="recipe-card">
+        <img class="recipe-card-image" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" alt="pancakes">
+        <p class="recipe-card-title">Elvis Pancakes</p>
+        <img class="selected-heart" src="../assets/heart-solid.svg" alt="selected heart icon">
+        <img class="unselected-chef-hat" src="../assets/unselected-chef-hat.svg" alt="unselected recipe to cook">
+      </div>
+      <div class="recipe-card">
+        <img class="recipe-card-image" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" alt="pancakes">
+        <p class="recipe-card-title">Elvis Pancakes</p>
+        <img class="selected-heart" src="../assets/heart-solid.svg" alt="selected heart icon">
+        <img class="unselected-chef-hat" src="../assets/unselected-chef-hat.svg" alt="unselected recipe to cook">
+      </div>
+      <div class="recipe-card">
+        <img class="recipe-card-image" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" alt="pancakes">
+        <p class="recipe-card-title">Elvis Pancakes</p>
+        <img class="selected-heart" src="../assets/heart-solid.svg" alt="selected heart icon">
+        <img class="unselected-chef-hat" src="../assets/unselected-chef-hat.svg" alt="unselected recipe to cook">
+      </div>
+    </div>
     </section>
-    <section class="meal-plan">
+    <section class="meal-plan hidden">
+      <h1 class="meal-plan-header">Meal Plan</h1>
+      <div class="meal-plan-group">
+      <div class="recipe-card">
+        <img class="recipe-card-image" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" alt="pancakes">
+        <p class="recipe-card-title">Elvis Pancakes</p>
+        <img class="unselected-heart" src="../assets/heart-regular.svg" alt="unselected heart icon">
+        <img class="selected-chef-hat" src="../assets/selected-chef-hat.svg" alt="selected recipe to cook">
+      </div>
+      <div class="recipe-card">
+        <img class="recipe-card-image" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" alt="pancakes">
+        <p class="recipe-card-title">Elvis Pancakes</p>
+        <img class="unselected-heart" src="../assets/heart-regular.svg" alt="unselected heart icon">
+        <img class="selected-chef-hat" src="../assets/selected-chef-hat.svg" alt="selected recipe to cook">
+      </div>
+      <div class="recipe-card">
+        <img class="recipe-card-image" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" alt="pancakes">
+        <p class="recipe-card-title">Elvis Pancakes</p>
+        <img class="unselected-heart" src="../assets/heart-regular.svg" alt="unselected heart icon">
+        <img class="selected-chef-hat" src="../assets/selected-chef-hat.svg" alt="selected recipe to cook">
+      </div>
+      <div class="recipe-card">
+        <img class="recipe-card-image" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" alt="pancakes">
+        <p class="recipe-card-title">Elvis Pancakes</p>
+        <img class="unselected-heart" src="../assets/heart-regular.svg" alt="unselected heart icon">
+        <img class="selected-chef-hat" src="../assets/selected-chef-hat.svg" alt="selected recipe to cook">
+      </div>
+      <div class="recipe-card">
+        <img class="recipe-card-image" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" alt="pancakes">
+        <p class="recipe-card-title">Elvis Pancakes</p>
+        <img class="unselected-heart" src="../assets/heart-regular.svg" alt="unselected heart icon">
+        <img class="selected-chef-hat" src="../assets/selected-chef-hat.svg" alt="selected recipe to cook">
+      </div>
+      <div class="recipe-card">
+        <img class="recipe-card-image" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" alt="pancakes">
+        <p class="recipe-card-title">Elvis Pancakes</p>
+        <img class="unselected-heart" src="../assets/heart-regular.svg" alt="unselected heart icon">
+        <img class="selected-chef-hat" src="../assets/selected-chef-hat.svg" alt="selected recipe to cook">
+      </div>
     </section>
-    <section class="search-results">
+    <section class="search-results hidden">
     </section>
-    <section class="pantry">
+    <section class="pantry hidden">
       <h2 class="welcome-pantry-title">Welcome to your pantry, Saige O'Kon!</h2>
       <h3 class="pantry-sub-header">You currently have the following ingredients
         to use in recipes</h3>
@@ -109,6 +181,9 @@
         </tbody>
       </table>
     </section>
+    <!-- <footer>
+      Please contact us via phone or chat if you have any questions or suggestions for future recipes.
+    </footer> -->
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
