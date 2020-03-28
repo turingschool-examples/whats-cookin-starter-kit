@@ -7,15 +7,16 @@ class User {
     this.id = obj.id;
     this.pantry = new Pantry(obj.pantry)
     this.favorites = [];
+    this.mealsToCook = []
+
   }
 
-  addToFavorites() {
-    //adds recipe to the favorites array
+  addToFavorites(recipe) {
     this.favorites.push(recipe)
   }
 
-  removeFromFavorites() {
-    // removes recipe from favorites array
+  addMealsToCook(recipe) {
+    this.mealsToCook.push(recipe)
   }
 
 }
