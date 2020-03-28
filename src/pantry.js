@@ -15,7 +15,15 @@ class Pantry {
   };
 
   requiredForMeal(recipe) {
+    const missingItems = [];
 
+    recipe.ingredients.forEach((ingredientI) => this.pantry.forEach((ingredientP) =>
+      {if (ingredientI.id === ingredientP.id && ingredientI.quantity.amount > ingredientP.amount) {
+        missingItems.push(ingredientI)
+      }
+    }
+  ));
+  return missingItems;
   };
 
   cookMeal() {
