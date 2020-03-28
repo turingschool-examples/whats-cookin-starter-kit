@@ -8,7 +8,6 @@ class User {
     this.pantry = new Pantry(obj.pantry)
     this.favorites = [];
     this.mealsToCook = []
-
   }
 
   addToFavorites(recipe) {
