@@ -41,7 +41,7 @@ describe ('User', function() {
   });
 
   it('should be able to check pantry', function() {
-    user.checkPantry(recipes[0])
+    expect(user.checkPantry(recipes[0])).to.be.an('array')
   })
 
 })

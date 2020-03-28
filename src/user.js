@@ -12,24 +12,52 @@ class User {
   }
 
   checkPantry(whatToCook) {
-    let ingredientsWeHave = [];
     let ingredientsNeeded = [];
-    //create an array.
-    //use includes to get a true or false value
-    //if true do a things
-    //if false do a different thing
-    //here i want to forEach over ingredients
-    //then run a  filter over my pantry
-    //if igrendient isnt in pantry return id and how much is needed(probably in a string)
-    //if ingredient is in pantry
-    let currentRecipe = recipes.find((recipe) => whatToCook.id === recipe.id);
-    this.pantry.forEach((item) => {
-      currentRecipe.ingredients.map((ingredient) => {
-        if (ingredient.id === item.ingredient) {
-            ingredientsWeHave.push(ingredient);
-          }
-        });
-      });
+    let ingredientsWeHave = [];
+
+    const pantryIngredients = this.pantry.map((item) => item.ingredient);
+
+    const recipeIngredients = whatToCook.ingredients.map((ingredient) => ingredient.id);
+
+    // const pantryChecker = ((acc, currentIngredient) => currentIngredient === pantryIngredients ? acc.push(currentIngredient) :
+    //   ingredientsNeeded.push(currentIngredient);
+
+    recipeIngredients.forEach((ingredient) => {
+      pantryIngredients.fil((item) => item === ingredient ? console.log(ingredient);
+      // ingredientsNeeded.push(ingredient))
+    })
+
+      // console.log(recipeIngredients.reduce(pantryChecker));
+
+      // console.log(ingredientsNeeded);
+      // console.log(ingredientsWeHave);
+
+
+    };
+//     function humansAndDogs() {
+//   return humans.reduce((acc, human) => {
+//     if (dogs.includes(human)) {
+//       acc.push(human)
+//     }
+//     return acc
+//   }, [])
+// }
+// humansAndDogs()
+//
+//
+//     return arr.reduce(reducer);
+    // let ingredientsNeeded = [];
+    //
+    // whatToCook.ingredients.find((ingredient) => {
+    //   this.pantry.forEach((item) => {
+    //     if (ingredient.id != item.ingredient) {
+    //       ingredientsNeeded.push(ingredient)
+    //     }
+    //   });
+    // });
+    // console.log(ingredientsNeeded);
+    // return ingredientsNeeded
+
 
       // this.pantry.forEach((item) => {
       //   currentRecipe.ingredients.map((ingredient) => {
@@ -49,8 +77,8 @@ class User {
         // }
       // }
       // console.log(this.pantry);
-      console.log(ingredientsWeHave);
-      console.log(currentRecipe.ingredients);
+      // console.log(ingredientsWeHave);
+      // console.log(currentRecipe.ingredients);
     //When a user decides to cook a recipe, they should be able
     //to determine whether they have sufficient ingredients in their
     //pantry (see Pantry user stories).
@@ -58,7 +86,7 @@ class User {
     //able to see a list of what ingredients they need to buy, and how
     //much it will cost
 
-}
+
 
   addFavoriteRecipe(/*recipe.name*/) {
     //Favorites are meant to be recipes
