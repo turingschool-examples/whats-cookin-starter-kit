@@ -57,6 +57,7 @@ function loadUser() {
 let domSelectedMeal = {
   loadSelectedRecipe(recipe) {
     console.log('whole recipie', recipe);
+    console.log(recipe.getTotalCost(ingredientsData));
 
     return `
     <div class='meal-details-picked'>
@@ -77,7 +78,7 @@ let domSelectedMeal = {
           <li>15 Hushpuppies</li>
           <li>2 Pieces of Milk</li>
           <li>77 Shards of Sand</li>
-          <p class="missing-cost">Approximate Cost of: $10.50</p>
+          <p class="missing-cost">Approximate total cost: ${Math.floor(recipe.getTotalCost(ingredientsData))} ¢</p>
         </ul>
       </div>
     </div>
@@ -91,8 +92,6 @@ function showMeals() {
     mealContainer.insertAdjacentHTML('afterbegin', domMeals.displayMeals(recipe))
     return new Recipe(recipe)
   })
-  console.log('original Data', recipeData);
-  console.log('new dats', recipes);
 }
 
 function displayHomePage() {
@@ -108,7 +107,6 @@ function displayFavoritesPage() {
 }
 
 function displayMealPage(target) {
-  console.log(target);
   let recipe = recipes.find(recipe => recipe.id == target.id)
   mealPage.classList.remove('hidden')
   mealPage.insertAdjacentHTML('afterbegin', domSelectedMeal.loadSelectedRecipe(recipe))
