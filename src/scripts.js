@@ -29,7 +29,6 @@ page.addEventListener('click', clickHandler)
 window.onload = load();
 
 function load() {
-  // mind the order of the functions on load
   showMeals();
   loadUser()
 }
@@ -48,13 +47,9 @@ function clickHandler(event) {
  }
 
 function loadUser() {
-  // randomize user selection
-  console.log(usersData);
   let userSelected = usersData[Math.floor(Math.random() * usersData.length)]
-  console.log(userSelected.name);
   user = new User(userSelected);
   console.log('three', user);
-  // return the user
   return user
 }
 
@@ -85,3 +80,4 @@ function displayMealPage() {
 function filterByType() {
    // add a switch function to handle the possibilities of the filter to have multiple values responde the same (ex. main course, dinner is the same shit. same as antipasto and antipasti for fucks sake)
 }
+
