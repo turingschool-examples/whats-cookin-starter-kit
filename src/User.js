@@ -19,21 +19,33 @@ class User {
         amtNeeded.push(recIng.quantity.amount - panIng.amount)
       }}))
       matchedIngredients.forEach((el, i) => el.difference = amtNeeded[i])
-    if (amtNeeded.length === 0) {
-      this.determineMissingIngredients(recipe, matchedIngredients);
+    if (matchedIngredients.length === 0) {
+      this.checkIfRecipeCanBeCooked(recipe, matchedIngredients);
       return false;
     } else {
-      this.determineMissingIngredients(recipe, matchedIngredients);
+      this.checkIfRecipeCanBeCooked(recipe, matchedIngredients);
       return amtNeeded.every(amt => amt < 0);
+      // returns true if there is enough of each ingredient
     }
   }
 
-  determineMissingIngredients(recipe, matchedIngredients) {
+  checkIfRecipeCanBeCooked(recipe, matchedIngredients) {
     if (matchedIngredients.length === 0) {
+      this.logMissingIngredientAmounts(recipe, matchedIngredients);
       recipe.canBeCooked = false
     } else {
+      this.logMissingIngredientAmounts(recipe, matchedIngredients);
       matchedIngredients.every(ingredient => ingredient.difference > 0 ? recipe.canBeCooked = false : recipe.canBeCooked = true)
     }
+  }
+
+  logMissingIngredientAmounts(recipe, matchedIngredients) {
+    matchedIngredients.forEach(ing => {
+      if (ing.difference >= 0)
+      recipe.ingredientsNeeded.push({'difference': ing.difference.toFixed(2) + " " + ing.quantity.unit})
+      recipe.ingredientsNeeded.forEach((ingNeeded, i) => ingNeeded.id = ing.id)
+    })
+    console.log(recipe.ingredientsNeeded);
   }
 
   removeIngredients(recipe) {
