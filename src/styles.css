@@ -4,7 +4,6 @@ body, html {
   width: 100%;
 }
 
-
 nav {
   background-color: black;
   color: white;
@@ -13,31 +12,18 @@ nav {
   position: absolute;
   top: 0;
   width: 100%;
-  z-index: 1;
+  /* z-index: 1; */
 }
 
-ul {
-  display: flex;
-  flex: 1;
-  float: right;
-  margin-top: 25px;
-}
 
 header {
+  cursor: pointer;
   display: inline-block;
   font-size: 50px;
   font-weight: 600;
   position: absolute;
   top: 5px;
   font-family: 'Dancing Script', cursive;
-}
-
-li {
-  font-size: 20px;
-  font-weight: 900;
-  list-style-type: none;
-  padding: 0px 20px;
-  text-decoration: none;
 }
 
 input {
@@ -56,6 +42,57 @@ footer {
   /* flex-shrink: 0; */
 }
 
+table {
+    border-collapse: collapse;
+    text-align: left;
+    width: 60%;
+    margin: 0px auto;
+}
+
+table tr {
+    background: white;
+    border-bottom: 1px solid
+}
+
+table th,
+table td {
+    padding: 10px 20px;
+}
+
+table td span {
+    display: none;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+
+.recipe-ingredients {
+  margin: 50px 50px 50px 20px;
+  width: 40%;
+}
+
+.instructions {
+  margin: 0px 50px 50px 20px;
+  width: 40%;
+}
+
+.nav-bar-buttons {
+  display: flex;
+  flex: 1;
+  float: right;
+  margin-top: 25px;
+}
+
+.nav-bar-buttons li {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 900;
+  list-style-type: none;
+  padding: 0px 20px;
+  text-decoration: none;
+}
+
 .logo {
   height: 76px;
   width: 50px;
@@ -65,13 +102,14 @@ footer {
 .recipe-card-title,
 .welcome-pantry-title,
 .pantry-title {
+  pointer-events: none;
   font-weight: 600;
   text-align: center;
 }
 
 .header-image {
   width: 80%;
-  margin: 0px auto;
+  margin: 70px auto 0px auto;
   display: block;
 }
 
@@ -81,9 +119,9 @@ footer {
   justify-content: space-evenly;
 }
 
-
 .recipe-card-image {
   object-fit: cover;
+  pointer-events: none;
   width: 100%;
 }
 
@@ -94,10 +132,22 @@ footer {
   margin: 20px;
   position: relative;
   width: 25%;
+  cursor: pointer;
 }
 
 .recipe-card:hover {
   box-shadow: -4px 7px 20px 0px #b4b0b0;
+}
+
+/* recipe page ----- */
+
+.recipe-page {
+  margin: 100px;
+}
+
+.recipe-page-image {
+  float: right;
+  width: 50%;
 }
 
 /* icons */
@@ -135,34 +185,13 @@ footer {
 .shown {
   display: block;
 }
-/* pantry------------- */
+
+.pantry {
+  margin-top: 150px;
+}
 
 .pantry-sub-header {
   text-align: center;
-}
-
-table {
-    border-collapse: collapse;
-    text-align: left;
-    width: 60%;
-    margin: 0px auto;
-}
-
-table tr {
-    background: white;
-    border-bottom: 1px solid
-}
-
-table th,
-table td {
-    padding: 10px 20px;
-}
-
-table td span {
-    display: none;
-    font-size: 10px;
-    font-weight: bold;
-    padding: 5px;
 }
 
 /* favorites */

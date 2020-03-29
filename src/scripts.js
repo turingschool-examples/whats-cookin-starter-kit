@@ -16,7 +16,7 @@ function changePageView(event) {
   const mealPlanNavItem = document.querySelector('.meal-plan-navbar');
   const variousPages = [mainPage, recipePage, favorites, mealPlan, searchResults,
   pantry]
-  
+
   if (event.target === header && mainPage.classList.contains('hidden')) {
     variousPages.forEach(page => page.classList.add('hidden'));
     variousPages.forEach(page => page.classList.remove('shown'));
@@ -33,5 +33,9 @@ function changePageView(event) {
     variousPages.forEach(page => page.classList.add('hidden'));
     variousPages.forEach(page => page.classList.remove('shown'));
     mealPlan.classList.toggle('shown')
+  } else if (event.target.classList.contains('recipe-card') && recipePage.classList.contains('hidden')) {
+    variousPages.forEach(page => page.classList.add('hidden'));
+    variousPages.forEach(page => page.classList.remove('shown'));
+    recipePage.classList.toggle('shown')
   }
 }
