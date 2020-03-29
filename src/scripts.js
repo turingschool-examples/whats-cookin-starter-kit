@@ -27,17 +27,26 @@ function addRecipesToDOM() {
     recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
     recipeSection.insertAdjacentHTML('afterbegin',
     `<div class='recipe-card'><h1>${recipe.name}</h1>
+    <div>${recipe.image}</div>
     <footer></footer></div>`)
-    // recipeNames.push(recipe);
+
+    })
+
+
+
     // let sortedRecipeNames = recipeNames.sort((a, b) => a.name - b.name);
     // console.log(sortedRecipeNames)
 
-    })
+    }
+
+    function alphabeticalOrder(arr) {
+      return arr.sort();
+        return a.name - b.name;
+  };
 
     // sortedRecipeNames.sort(function(a, b) {
     //   return a.name - b.name
     // });
-    };
 
 
 
