@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Amiri:400,700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Amiri:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script:600&display=swap" rel="stylesheet"> 
   </head>
   <body>
     <nav>
       <h1 class="home-btn">What's Cookin</h1>
       <div class="nav-icons">
-      <h2 class="favorites">My Favorites</h2>
+      <h2 class="favorites-btn">My Favorites</h2>
       <h2 class="search"><input type=search results=5 autosave=some_unique_value name=s placeholder="Search Recipes"></h2>
       <div class="filter-meals">
         <select>
@@ -37,29 +38,18 @@
     </nav>
     <main>
     <div id="meal-container" class="home-page">
+    </div>
+    <div id="favorites-page" class="favorites-page hidden">
       <div class='meal-card'>
         <div class='card-title-container'>
           <p class='card-title'>Meal Title</p>
         </div>
         <div class="food-img-container">
-          <img class="food-img" rel="food-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
+          <img class="food-img" rel="food-img" src="https://spoonacular.com/recipeImages/412309-556x370.jpeg">
         </div>
         <div class="card-icon-container">
-          <img class="icon active hidden"src="https://img.icons8.com/color/96/000000/hearts.png"/>
-          <img class="icon inactive" src="https://img.icons8.com/windows/96/000000/hearts.png"/>
-          <img class="icon cook-ready"src="https://img.icons8.com/doodle/96/000000/pot---v1.png"/>
-      </div>
-      </div>
-      <div class='meal-card'>
-        <div class='card-title-container'>
-          <p class='card-title'>Meal Title</p>
-        </div>
-        <div class="food-img-container">
-          <img class="food-img" rel="food-img" src="https://spoonacular.com/recipeImages/678353-556x370.jpg">
-        </div>
-        <div class="card-icon-container">
-          <img class="icon active hidden"src="https://img.icons8.com/color/96/000000/hearts.png"/>
-          <img class="icon inactive" src="https://img.icons8.com/windows/96/000000/hearts.png"/>
+          <img class="icon active"src="https://img.icons8.com/color/96/000000/hearts.png"/>
+          <img class="icon inactive hidden" src="https://img.icons8.com/windows/96/000000/hearts.png"/>
           <img class="icon cook-ready" src="https://img.icons8.com/doodle/96/000000/pot---v1.png"/>
         </div>
       </div>
@@ -76,41 +66,40 @@
           <img class="icon cook-ready" src="https://img.icons8.com/doodle/96/000000/pot---v1.png"/>
         </div>
       </div>
-      <div class='meal-card'>
-        <p>Meal Name</p>
-        <img // image of meal>
-        <img // icon for cook -- disables>
-        <img // icon for faves -- toggles>
-      </div>
-      <div class='meal-card'>
-        <p>Meal Name</p>
-        <img // image of meal>
-        <img // icon for cook -- disables>
-        <img // icon for faves -- toggles>
-      </div>
-      <div class='meal-card'>
-        <p>Meal Name</p>
-        <img // image of meal>
-        <img // icon for cook -- disables>
-        <img // icon for faves -- toggles>
-      </div>
-      <div class='meal-card'>
-
-      </div>
-      <div class='meal-card'>
-        
-      </div>
     </div>
-    <div id="favorites-page" class="favorites-page">
-      <!-- push data of selected recipe into main
-      faves-page - needs specific styling to have 3 boxes
-      left contains half cotainer with larger card details on left - if it can be cooked or not
-      missing ingredients and price -->
+    <div id="meal-page" class="meal-page hidden">
+      <div class='meal-details-picked'>
+        <div class='card-title-container-picked'>
+          Loaded Chocolate Chip Pudding Cookie Cups
+        </div> 
+        <div class="food-img-container-picked">
+          <img class="food-img-picked" rel="food-img" src="https://spoonacular.com/recipeImages/412309-556x370.jpeg">
+        </div>
+      </div>
+      <div class="required-to-cook">
+        <div class="required-title">
+          <p>Your pantry is missing the following ingredients to cook this meal:</p>
+        </div>
+        <div class="missing-ingredients">
+          <ul class="missing-list">
+            <li>4 Mangoes</li>
+            <li>15 Hushpuppies</li>
+            <li>2 Pieces of Milk</li>
+            <li>77 Shards of Sand</li>
+            <p class="missing-cost">Approximate Cost of: $10.50</p>
+          </ul>
+        </div>
+      </div>
+      <div class="cooking-instructions hidden">
+      </div>
     </div>
     </main>
     <script type="text/javascript" src="../data/users.js"></script>
-    <script type="text/javascript" src="../data/recipes.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
-    <script type="text/js" src="./scripts.js"></script>
+    <script type="text/javascript" src="../data/recipes.js"></script>
+    <script type="text/javascript" src="./recipe.js"></script>
+    <script type="text/javascript" src="./pantry.js"></script>
+    <script type="text/javascript" src="./user.js"></script>
+    <script src="scripts.js"></script>
   </body>
 </html>

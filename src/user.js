@@ -1,5 +1,5 @@
-const Pantry = require('../src/pantry');
-const Recipe = require('../src/recipe');
+// const Pantry = require('../src/pantry');
+// const Recipe = require('../src/recipe');
 
 class User {
   constructor(obj) {
@@ -20,4 +20,6 @@ class User {
 
 }
 
-module.exports = User;
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+  module.exports = User;
+}

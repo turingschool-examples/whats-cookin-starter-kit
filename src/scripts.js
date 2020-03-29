@@ -1,70 +1,83 @@
-const allUsers = require('/data/users.js')
-const allIngredients = require('/data/ingredients.js')
-const allMeals = require('/src/dom-meals.js')
-const mealData = require('/src/recipes.js')
-
-
 const page = document.querySelector('body');
 const homePage = document.querySelector('.home-page');
 const favoritesPage = document.querySelector('.favorites-page');
-const mealContainer = document.getElementById('meal-container')
+const mealPage = document.querySelector('.meal-page');
+const mealContainer = document.getElementById('meal-container');
+
+
+let domMeals = {
+  displayMeals(recipe) {
+    return `
+    <div id="${recipe.id}" class='meal-card'>
+      <div id="${recipe.id}" class='card-title-container'>
+        <p class='card-title'>${recipe.name}</p>
+      </div>
+      <div id="${recipe.id}"class="food-img-container">
+        <img id="${recipe.id}" class="food-img" rel="food-img" src="${recipe.image}">
+      </div>
+      <div class="card-icon-container">
+        <img id="${recipe.name}" class="icon active hidden"src="https://img.icons8.com/color/96/000000/hearts.png"/>
+        <img id="${recipe.name}" class="icon inactive" src="https://img.icons8.com/windows/96/000000/hearts.png"/>
+        <img id="${recipe.name}" class="icon cook-ready" src="https://img.icons8.com/doodle/96/000000/pot---v1.png"/>
+      </div>
+    </div>`
+  }
+}
+
+page.addEventListener('click', clickHandler)
 
 window.onload = load();
 
-pagde.addEventListener('click', clickHandler)
-
-function clickHandler() {
-  let selection = event.target.classList;
-  switch(selection) {
-    case 'home-btn':
-      displayHomePage();
-      break;
-    case 'favorites':
-      displayFavoritesPage();
-      break;
-    case 'add-to-favorites':
-      addToFavorites();
-      break;
-  }
-
-  // add a switch function to handle the possibilities of the filter to have multiple values responde the same (ex. main course, dinner is the same shit. same as antipasto and antipasti for fucks sake)
-
-  // could also try to build a dynamic fucntion that can display depending on dom-meal id# have that insert adjacentHtml for the whole page. have the main hide completely
-  // this shows a new main 
-}
-
 function load() {
   showMeals();
-  // add a loadUser() function that randomizes a user into the DOM data
+  loadUser()
 }
+
+function clickHandler(event) {
+  event.target.classList.contains('home-btn') ? displayHomePage() : null;
+  event.target.classList.contains('favorites-btn') ? displayFavoritesPage() : null;
+  event.target.classList.contains('food-img') ? displayMealPage() : null;
+  // event.target.classList.contains()
+
+  // if event target is favorites heart - call user method addtofaves
+  // if card is already in add to faves - then PUSH OUT of faves and change heart
+  // if event target is add BTN - call user method addMealToCook
+  // meal card click handler can have event.target.closest('.meal-card')
+  // depending on the meal card "closest" selected, it should populate on meal page
+ }
 
 function loadUser() {
-  // randomize user selection
-  // instantiate user 
-  // return the user
+  let userSelected = usersData[Math.floor(Math.random() * usersData.length)]
+  user = new User(userSelected);
+  console.log('three', user);
+  return user
 }
 
-function showMeals(recipes) {
-  // iterate over all meals and instert html on main page
-  // mealData.forEach(recipe => {
-  //   mealContainer.insertAdjacentHTML('afterbegin', allMeals.displayMeals(recipe))
-  // })
+function showMeals() {
+  recipeData.forEach(recipe => {
+   mealContainer.insertAdjacentHTML('afterbegin', domMeals.displayMeals(recipe))
+  })
 }
 
-function displayFavoritesPage(homePage, favoritesPage) {
-  // set attribute or addclasslits? 
-  // remove hidden from faves
-  // favoritesPage.removeAttribute('hidden');
-  // hide the home page
-  // homePage.setAttribute('hidden', '');
-  // perhaps this has a class it can remove and add to toggle pages hide
+function displayHomePage() {
+  homePage.classList.remove('hidden');
+  favoritesPage.classList.add('hidden');
+  mealPage.classList.add('hidden')
 }
 
-
-function displayHomePage(homePage, favoritesPage) {
-  // remove hidden from homepage
-  // homePage.removeAttribute('hidden');
-  // add hidden to favorites page
-  // favoritesPage.setAttribute('hidden', '');
-  // perhaps this has a specific class it can remove and add to toggle pages hide
+function displayFavoritesPage() {
+  favoritesPage.classList.remove('hidden');
+  homePage.classList.add('hidden');
+  mealPage.classList.add('hidden')
 }
+
+function displayMealPage() {
+  mealPage.classList.remove('hidden')
+  homePage.classList.add('hidden');
+  favoritesPage.classList.add('hidden');
+}
+
+function filterByType() {
+   // add a switch function to handle the possibilities of the filter to have multiple values responde the same (ex. main course, dinner is the same shit. same as antipasto and antipasti for fucks sake)
+}
+
