@@ -2,99 +2,84 @@ class User {
   constructor(name, id, pantry) {
     this.name = name;
     this.id = id;
-    this.pantry = pantry;/*[array of objects, from user pantry];*/
-    this.favoriteRecipes = []
+    this.pantry = pantry; /*[array of objects, from user pantry];*/
+    this.favoriteRecipes = [];
     this.recipesToCook = [];
   }
 
-  checkPantry(whatToCook) {
-    let ingredientsNeeded = [];
-    let ingredientsWeHave = [];
-
-console.log(whatToCook.ingredients);
-
-    for (let i = 0; i < whatToCook.ingredients.length; i++) {
-      for (let i = 0; i < this.pantry.length; i++) {
-        if (whatToCook.ingredients[i] === this.pantry[i].ingredient) {
-          ingredientsWeHave.push(whatToCook.ingredients[i]);
-        }
+  getRecipeIngredients(recipe) {
+    return recipe.ingredients.map(({
+      id,
+      quantity
+    }) => {
+      let amount = quantity.amount
+      return {
+        id,
+        amount
       }
-    }
+    })
+  }
 
+  getRecipeIds(recipe) {
+    return recipe.ingredients.map(ingredient => ingredient.id)
+  }
 
-    // const pantryIngredients = this.pantry.map((item) => item.ingredient);
-    //
-    // const recipeIngredients = whatToCook.ingredients.map((ingredient) => ingredient);
+  getPantryIds() {
+    return this.pantry.map(pantryItem => pantryItem.ingredient)
+  }
 
-// console.log(pantryIngredients);
-// console.log(recipeIngredients);
-    // const pantryChecker = ((acc, currentIngredient) => currentIngredient === pantryIngredients ? acc.push(currentIngredient) :
-    //   ingredientsNeeded.push(currentIngredient);
+  compareIngredients(recipe) {
+    let recipeIds = this.getRecipeIds(recipe);
+    let pantryIds = this.getPantryIds();
 
-    // ingredientsNeeded.push(ingredient))
-  // whatToCook.ingredients.forEach((ingredient) => {
-  //   this.pantry.find((item) => ingredient.id === item.ingredient ?
-  //   ingredientsWeHave.push(ingredient) : ingredientsNeeded.push(ingredient));
-  //
-  // })
+    return pantryIds.reduce((acc, pantryItem) => {
+      recipeIds.includes(pantryItem) ? acc.push(pantryItem) : null;
+      return acc
+    }, [])
+  }
 
+  getNeededIngredients(recipe) {
+    let recipeIds = this.getRecipeIds(recipe)
+    let ingredientsOnHand = this.compareIngredients(recipe);
 
-      // console.log(recipeIngredients.reduce(pantryChecker));
+    return recipeIds.reduce((acc, recId) => {
+      !ingredientsOnHand.includes(recId) ? acc.push(recId) : null;
+      return acc
+    }, [])
+  }
 
-      // console.log(ingredientsNeeded);
-      // console.log(ingredientsWeHav
-//     function humansAndDogs() {
-//   return humans.reduce((acc, human) => {
-//     if (dogs.includes(human)) {
-//       acc.push(human)
-//     }
-//     return acc
-//   }, [])
-// }
-// humansAndDogs()
-//
-//
-//     return arr.reduce(reducer);
-    // let ingredientsNeeded = [];
-    //
-    // whatToCook.ingredients.find((ingredient) => {
-    //   this.pantry.forEach((item) => {
-    //     if (ingredient.id != item.ingredient) {
-    //       ingredientsNeeded.push(ingredient)
-    //     }
-    //   });
-    // });
-    // console.log(ingredientsNeeded);
-    // return ingredientsNeeded
+  compareIngredientsAmounts(recipe) {
+    let recipeIngs = this.getRecipeIngredients(recipe);
+    let pantryIngs = this.pantry;
+    let neededIng = this.getNeededIngredients(recipe)
+    recipeIngs.forEach(rIng => {
+      return pantryIngs.find(pIng => {
+        if (rIng.id === pIng.ingredient) {
+          if (pIng.amount <= rIng.amount) {
+            return neededIng.push(rIng.id)
+          }
+        }
+      })
+    })
+    return neededIng
+  }
 
-
-      // this.pantry.forEach((item) => {
-      //   currentRecipe.ingredients.map((ingredient) => {
-      //     if (ingredient.id != item.ingredient) {
-      //         ingredientsNeeded.push(ingredient);
-      //     }
-      //   });
-      // });
-      // currentRecipe.ingredients.map((ingredient) => {
-      // this.pantry.forEach((item) => ingredient.id != item.ingredient);
-      //     ingredientsNeeded.push(ingredient);
-      // });
-
-      // for (let i = 0; i < this.pantry.length; i++) {
-        // if (ingredient.id === this.pantry[i].ingredient) {
-        //   ingredientsWeHave.push(ingredient);
-        // }
-      // }
-      // console.log(this.pantry);
-      // console.log(ingredientsWeHave);
-      // console.log(currentRecipe.ingredients);
-    //When a user decides to cook a recipe, they should be able
-    //to determine whether they have sufficient ingredients in their
-    //pantry (see Pantry user stories).
-    //If they do not, they should be
-    //able to see a list of what ingredients they need to buy, and how
-    //much it will cost
-
+  getShoppingList(recipe) {
+    let neededIds = this.compareIngredientsAmounts(recipe);
+    let shoppingList = [];
+    neededIds.map(neededId => {
+      return recipe.ingredients.forEach(ing => {
+        if (neededId === ing.id) {
+          let id = neededId
+          let amount = ing.quantity.amount;
+          let unit = ing.quantity.unit
+          let quantity = {amount, unit}
+          let ingredient = {id, quantity}
+          shoppingList.push(ingredient)
+        }
+      })
+    })
+    return shoppingList
   }
 
   addFavoriteRecipe(recipe) {

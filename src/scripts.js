@@ -25,7 +25,9 @@ function showCheckboxes() {
 function addRecipesToDOM() {
   recipeData.forEach((recipe) => {
     recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
-    recipeSection.insertAdjacentHTML('afterbegin', `<div class='recipe-card'><h1>${recipe.name}</h1></div>`)
+    recipeSection.insertAdjacentHTML('afterbegin',
+    `<div class='recipe-card'><h1>${recipe.name}</h1>
+    <footer></footer></div>`)
     // recipeNames.push(recipe);
     // let sortedRecipeNames = recipeNames.sort((a, b) => a.name - b.name);
     // console.log(sortedRecipeNames)

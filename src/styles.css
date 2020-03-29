@@ -67,7 +67,7 @@ main {
   background-color: darkcyan;
   box-sizing: border-box;
   display: flex;
-  position: relative;
+  /* position: absolute; */
   flex-direction: column;
   height: 100%;
   padding: 2% 2% 0 2%;
@@ -101,6 +101,14 @@ width: 33%;
   width: 30%;
   height: 25%;
   border: 2px solid red;
+  margin-bottom: 3%
+}
+
+.recipe-card footer {
+  width: 100%;
+  border-top: 2px solid blue;
+  height: 10%;
+  bottom: 0;
 }
 
 /* .tags-menu {
