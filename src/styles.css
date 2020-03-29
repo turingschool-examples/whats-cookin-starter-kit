@@ -67,6 +67,7 @@ main {
   background-color: darkcyan;
   box-sizing: border-box;
   display: flex;
+  position: relative;
   flex-direction: column;
   height: 100%;
   padding: 2% 2% 0 2%;
@@ -87,10 +88,19 @@ width: 33%;
 .all-recipes {
   background-color: darkslategrey;
   box-sizing: border-box;
+  /* position: relative; */
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
   height: 100%;
   padding: 2% 2% 0 2%;
+}
+
+.recipe-card {
+  width: 30%;
+  height: 25%;
+  border: 2px solid red;
 }
 
 /* .tags-menu {

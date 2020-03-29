@@ -4,6 +4,8 @@ console.log('Hello world');
 
 
 let recipeSection = document.querySelector('.all-recipes');
+let recipeNames = [];
+
 
 recipeSection.addEventListener('click', addRecipesToDOM);
 
@@ -21,19 +23,31 @@ function showCheckboxes() {
 }
 
 function addRecipesToDOM() {
-  console.log(recipeData);
   recipeData.forEach((recipe) => {
     recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
-    console.log(recipe);
-    recipeSection.insertAdjacentHTML('afterbegin', `<div><h1>${recipe.name}</h1></div>`)
-  });
+    recipeSection.insertAdjacentHTML('afterbegin', `<div class='recipe-card'><h1>${recipe.name}</h1></div>`)
+    // recipeNames.push(recipe);
+    // let sortedRecipeNames = recipeNames.sort((a, b) => a.name - b.name);
+    // console.log(sortedRecipeNames)
+
+    })
+
+    // sortedRecipeNames.sort(function(a, b) {
+    //   return a.name - b.name
+    // });
+    };
+
+
+
+
+
   // recipeData.forEach(recipe => {
   //   console.log(recipe);
   // })
   //loop through recipes, instantiate each recipe; create a card
   //forEach recipe.
   //
-}
+// }
 
 function generateUser() {
   //on Load
