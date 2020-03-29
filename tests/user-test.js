@@ -18,11 +18,11 @@ describe ('User', function() {
   beforeEach(function() {
     user = new User(users[0].name, users[0].id, users[0].pantry);
     recipe1 = new Recipe(
-      recipes[0].id, 
-      recipes[0].image, 
-      recipes[0].ingredients, 
-      recipes[0].instructions, 
-      recipes[0].name, 
+      recipes[0].id,
+      recipes[0].image,
+      recipes[0].ingredients,
+      recipes[0].instructions,
+      recipes[0].name,
       recipes[0].tags,
     )
   });
@@ -48,6 +48,16 @@ describe ('User', function() {
     expect(user.pantry[0].ingredient).to.equal(11477);
     expect(user.pantry[2].ingredient).to.equal(1082047);
   });
+<<<<<<< HEAD
+
+  it('should be able to check pantry', function() {
+
+    expect(user.checkPantry(recipes[0])).to.be.an('array')
+
+    //check pantry array vs recipe array
+    //return array of items not in pantry
+    user.checkPantry(recipe1)
+=======
   
   it('should be able to find recipe ingredient ids', function() {
     expect(user.getRecipeIds(recipe1)).to.deep.equal([20081, 18372, 1123, 19335, 19206, 19334, 2047, 1012047, 10019903, 1145, 2050])
@@ -59,6 +69,7 @@ describe ('User', function() {
   
   it('should find what recipe ingredients are in the pantry', function() {
     expect(user.compareIngredients(recipe1)).to.deep.equal([20081, 2047, 1123, 2050, 19206, 1145,19335, 18372])
+>>>>>>> 49068a8ec05ced1e6f2d722b50cfc6e569be560a
   })
   
   it('should find what ingredients are needed', function() {
