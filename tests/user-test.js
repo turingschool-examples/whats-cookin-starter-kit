@@ -49,10 +49,20 @@ describe ('User', function() {
     expect(user.pantry[2].ingredient).to.equal(1082047);
   });
   
-  it('should be able to check pantry', function() {
-    //check pantry array vs recipe array
-    //return array of items not in pantry
-    user.checkPantry(recipe1)
+  it('should be able to find recipe ingredient ids', function() {
+    expect(user.getRecipeIds(recipe1)).to.deep.equal([20081, 18372, 1123, 19335, 19206, 19334, 2047, 1012047, 10019903, 1145, 2050])
+  });
+
+  it('should be able to find pantry ingredient ids', function() {
+    expect(user.getPantryIds()).to.deep.equal([11477, 11297, 1082047, 20081, 11215, 2047, 1123, 11282, 6172, 2044, 2050, 1032009, 5114, 1017, 18371, 1001, 99223, 1230, 9152, 10611282, 93607, 14106, 1077, 6150, 1124, 10011693, 1102047, 19206, 1145, 1002030, 12061, 19335, 15152, 9003, 18372, 2027])
+  });
+
+  it('should find what recipe ingredients are in the pantry', function() {
+    expect(user.compareIngredients(recipe1)).to.deep.equal([20081, 2047, 1123, 2050, 19206, 1145,19335, 18372])
+  })
+
+  it('should find what ingredients are needed', function() {
+    expect(user.getNeededIngredients(recipe1)).to.deep.equal([19334, 1012047, 10019903])
   })
 
   it('should be able to be added from favorites list', function() {

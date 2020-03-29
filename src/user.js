@@ -3,53 +3,54 @@ class User {
     this.name = name;
     this.id = id;
     this.pantry = pantry;/*[array of objects, from user pantry];*/
-    this.favoriteRecipes = []
+    this.favoriteRecipes = [];
     this.recipesToCook = [];
   }
 
-  checkPantry(whatToCook) {
-    // let ingredientsWeHave = [];
-    let ingredientsNeeded = [];
-    let currentRecipe = recipes.find((recipe) => whatToCook.id !== recipe.id);
-    this.pantry.forEach((item) => {
-      currentRecipe.ingredients.map((ingredient) => {
-        if (ingredient.id === item.ingredient) {
-            ingredientsNeeded.push(ingredient);
-          }
-        });
-      });
-      // console.log(ingredientsNeeded);
-      // console.log(this.pantry)
-      // console.log(currentRecipe.ingredients)
+  checkPantry(recipe) {
+    // let x = this.functionName()
+    //return array of recipe ids
+    //return array of pantry ids
+    //return array of matching ids
+    //return array of missing ids
 
-      // this.pantry.forEach((item) => {
-      //   currentRecipe.ingredients.map((ingredient) => {
-      //     if (ingredient.id != item.ingredient) {
-      //         ingredientsNeeded.push(ingredient);
-      //     }
-      //   });
-      // });
-      // currentRecipe.ingredients.map((ingredient) => {
-      // this.pantry.forEach((item) => ingredient.id != item.ingredient);
-      //     ingredientsNeeded.push(ingredient);
-      // });
-
-      // for (let i = 0; i < this.pantry.length; i++) {
-        // if (ingredient.id === this.pantry[i].ingredient) {
-        //   ingredientsWeHave.push(ingredient);
-        // }
-      // }
-      // console.log(this.pantry);
-      // console.log(currentRecipe.ingredients);
+    //match recipe.ingredients.ingredient.id to user.pantry.ingredient
     //When a user decides to cook a recipe, they should be able
     //to determine whether they have sufficient ingredients in their
     //pantry (see Pantry user stories).
     //If they do not, they should be
     //able to see a list of what ingredients they need to buy, and how
     //much it will cost
-
   }
   
+  getRecipeIds(recipe) {
+    return recipe.ingredients.map(ingredient => ingredient.id)
+  }
+
+  getPantryIds() {
+    return this.pantry.map(pantryItem => pantryItem.ingredient)
+  }
+  
+  compareIngredients(recipe) {
+    let recipeIds = this.getRecipeIds(recipe);
+    let pantryIds = this.getPantryIds();
+    
+    return pantryIds.reduce((acc, pantryItem) => {
+      recipeIds.includes(pantryItem) ? acc.push(pantryItem) : null;
+      return acc
+    }, [])
+  }
+
+  getNeededIngredients(recipe) {
+    let recipeIds = this.getRecipeIds(recipe)
+    let ingredientsOnHand = this.compareIngredients(recipe);
+    
+    return recipeIds.reduce((acc, recId) => {
+      !ingredientsOnHand.includes(recId) ? acc.push(recId) : null;
+      return acc
+    }, [])
+  }
+
   addFavoriteRecipe(recipe) {
     recipe.toggleFavorite();
     this.favoriteRecipes.push(recipe)
