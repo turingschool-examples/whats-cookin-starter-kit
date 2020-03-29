@@ -3,16 +3,6 @@ const homePage = document.querySelector('.home-page');
 const favoritesPage = document.querySelector('.favorites-page');
 const mealPage = document.querySelector('.meal-page');
 const mealContainer = document.getElementById('meal-container');
-// const meals = domMeals;
-
-page.addEventListener('click', clickHandler)
-
-window.onload = load();
-
-function load() {
-  showMeals();
-  // add a loadUser() function that randomizes a user into the DOM data
-}
 
 let domMeals = {
   displayMeals(recipe) {
@@ -29,9 +19,17 @@ let domMeals = {
         <img id="${recipe.name}" class="icon inactive" src="https://img.icons8.com/windows/96/000000/hearts.png"/>
         <img id="${recipe.name}" class="icon cook-ready" src="https://img.icons8.com/doodle/96/000000/pot---v1.png"/>
       </div>
-    </div>
-    `
+    </div>`
   }
+}
+
+page.addEventListener('click', clickHandler)
+
+window.onload = load();
+
+function load() {
+  showMeals();
+  loadUser()
 }
 
 function clickHandler(event) {
@@ -43,20 +41,22 @@ function clickHandler(event) {
   // if event target is favorites heart - call user method addtofaves
   // if card is already in add to faves - then PUSH OUT of faves and change heart
   // if event target is add BTN - call user method addMealToCook
-  //meal card click handler can have event.target.closest('.meal-card')
-}
+  // meal card click handler can have event.target.closest('.meal-card')
+  // depending on the meal card "closest" selected, it should populate on meal page
+ }
 
 function loadUser() {
   // randomize user selection
-  // instantiate user 
+  const user = usersData[Math.floor(Math.random() * usersData.length)]
+  user = new User(user.name, user.id, user.pantry);
+  console.log('three', user);
   // return the user
+  return User
 }
 
-function showMeals(meals) {
-  // iterate over all meals and instert html on main page
-  let domMeals = meals;
-  domMeals.forEach(recipe => {
-    mealContainer.insertAdjacentHTML('afterbegin', domMeals.displayMeals(recipe))
+function showMeals() {
+  recipeData.forEach(recipe => {
+   mealContainer.insertAdjacentHTML('afterbegin', domMeals.displayMeals(recipe))
   })
 }
 
@@ -76,8 +76,6 @@ function displayMealPage() {
   mealPage.classList.remove('hidden')
   homePage.classList.add('hidden');
   favoritesPage.classList.add('hidden');
-  // could also try to build a dynamic fucntion that can display depending on dom-meal id# have that insert adjacentHtml for the whole page. have the main hide completely
-  // this shows a new main separate from faves or home page
 }
 
 function filterByType() {
