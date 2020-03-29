@@ -27,7 +27,7 @@ header {
 }
 
 input {
-  font-size: 20px;
+  margin: 0;
 }
 
 footer {
@@ -203,8 +203,14 @@ table td span {
 }
 
 .favorited-recipe-group,
-.meal-plan-group {
+.meal-plan-group{
   position: absolute;
+  top: 20%;
+  width: 80%;
+  margin: 0 15%;
+}
+
+.all-recipes-group {
   top: 20%;
   width: 80%;
   margin: 0 15%;
@@ -213,5 +219,50 @@ table td span {
 .favorites-header,
 .meal-plan-header {
   margin-left: 16%;
+  margin-top: 100px;
   position: absolute;
+}
+
+
+/* all recipes page*/
+
+.all-recipes-header {
+  margin-top: 100px;
+  margin-left: 10%;
+}
+
+.recipes-header {
+  margin-left: 10%;
+}
+
+.filters {
+  display: block;
+  width: 80%;
+  height: 225px;
+  background-color: lightgrey;
+  margin: 10px auto 0 auto;
+  position: relative;
+  border: 1px solid black;
+}
+
+.tags {
+  padding-top: 1%;
+  padding-left: 5%;
+}
+
+.ingredients {
+  padding-left: 5%;
+  padding-bottom: 1%;
+}
+
+.filter-button {
+  background-color: #43A2FE;
+  color: white;
+  border-radius: 8px;
+  position: absolute;
+  right: 10%;
+  bottom: 5%;
+  width: 15%;
+  height: 50px;
+  font-size: 25px;
 }
