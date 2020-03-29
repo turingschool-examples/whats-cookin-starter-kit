@@ -13,6 +13,12 @@ function showCheckboxes() {
   }
 }
 
+function addRecipesToDOM() {
+  //loop through recipes, instantiate each recipe; create a card
+  //forEach recipe.
+  //
+}
+
   //  DOM
   //  filterRecipes(/*type or input.value*/) {
   //   //should be able to filter recipes by type

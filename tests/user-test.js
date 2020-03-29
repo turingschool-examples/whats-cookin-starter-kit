@@ -18,11 +18,11 @@ describe ('User', function() {
   beforeEach(function() {
     user = new User(users[0].name, users[0].id, users[0].pantry);
     recipe1 = new Recipe(
-      recipes[0].id, 
-      recipes[0].image, 
-      recipes[0].ingredients, 
-      recipes[0].instructions, 
-      recipes[0].name, 
+      recipes[0].id,
+      recipes[0].image,
+      recipes[0].ingredients,
+      recipes[0].instructions,
+      recipes[0].name,
       recipes[0].tags,
     )
   });
@@ -48,15 +48,14 @@ describe ('User', function() {
     expect(user.pantry[0].ingredient).to.equal(11477);
     expect(user.pantry[2].ingredient).to.equal(1082047);
   });
-  
+
   it('should be able to check pantry', function() {
-<<<<<<< HEAD
+
     expect(user.checkPantry(recipes[0])).to.be.an('array')
-=======
+
     //check pantry array vs recipe array
     //return array of items not in pantry
     user.checkPantry(recipe1)
->>>>>>> 7abc96f41784b93ac295d0bde5a04bc4284792a5
   })
 
   it('should be able to be added from favorites list', function() {

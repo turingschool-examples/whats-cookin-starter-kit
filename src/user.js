@@ -11,25 +11,38 @@ class User {
     let ingredientsNeeded = [];
     let ingredientsWeHave = [];
 
-    const pantryIngredients = this.pantry.map((item) => item.ingredient);
+console.log(whatToCook.ingredients);
 
-    const recipeIngredients = whatToCook.ingredients.map((ingredient) => ingredient.id);
+    for (let i = 0; i < whatToCook.ingredients.length; i++) {
+      for (let i = 0; i < this.pantry.length; i++) {
+        if (whatToCook.ingredients[i] === this.pantry[i].ingredient) {
+          ingredientsWeHave.push(whatToCook.ingredients[i]);
+        }
+      }
+    }
 
+
+    // const pantryIngredients = this.pantry.map((item) => item.ingredient);
+    //
+    // const recipeIngredients = whatToCook.ingredients.map((ingredient) => ingredient);
+
+// console.log(pantryIngredients);
+// console.log(recipeIngredients);
     // const pantryChecker = ((acc, currentIngredient) => currentIngredient === pantryIngredients ? acc.push(currentIngredient) :
     //   ingredientsNeeded.push(currentIngredient);
 
-    recipeIngredients.forEach((ingredient) => {
-      pantryIngredients.fil((item) => item === ingredient ? console.log(ingredient);
-      // ingredientsNeeded.push(ingredient))
-    })
+    // ingredientsNeeded.push(ingredient))
+  // whatToCook.ingredients.forEach((ingredient) => {
+  //   this.pantry.find((item) => ingredient.id === item.ingredient ?
+  //   ingredientsWeHave.push(ingredient) : ingredientsNeeded.push(ingredient));
+  //
+  // })
+
 
       // console.log(recipeIngredients.reduce(pantryChecker));
 
       // console.log(ingredientsNeeded);
-      // console.log(ingredientsWeHave);
-
-
-    };
+      // console.log(ingredientsWeHav
 //     function humansAndDogs() {
 //   return humans.reduce((acc, human) => {
 //     if (dogs.includes(human)) {
