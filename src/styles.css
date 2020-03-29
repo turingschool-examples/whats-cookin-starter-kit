@@ -111,7 +111,7 @@ main {
 
 .meal-card {
   background-color: #a76c4340;
-  border: 3px solid #dc845a5c;
+  border: 1px groove #dc845a5c;
   border-radius: 10px;
   height: 41%;
   width: 26%;
@@ -123,7 +123,7 @@ main {
 
 .meal-card-picked {
   background-color: #a76c4340;
-  border: 1px solid #dc845a5c;
+  border: 1px groove #dc845a5c;
   border-radius: 10px;
   height: 90%;
   width: 40%;
@@ -191,12 +191,20 @@ main {
   pointer-events: auto;
 }
 
+.active {
+  opacity: 0.9;
+}
+
+.inactive {
+  opacity: 0.7;
+}
+
 .picked {
   justify-content: flex-start;
 }
 
 .meal-details-picked {
-  border: 3px solid rgba(217, 124, 43, 0.3);
+  border: 1px groove rgba(217, 124, 43, 0.3);
   width: 45%;
   display: flex;
   flex-direction: column;
@@ -204,7 +212,7 @@ main {
 }
 
 .required-to-cook {
-  border: 3px solid rgba(217, 124, 43, 0.3);
+  border: 1px groove rgba(217, 124, 43, 0.3);
   width: 55%;
   display: grid;
   grid-auto-rows: 102px;
@@ -231,7 +239,7 @@ main {
 }
 
 .cooking-instructions {
-  border: 3px solid rgba(217, 124, 43, 0.3);
+  border: 1px groove rgba(217, 124, 43, 0.3);
   width: 55%;
 }
 
