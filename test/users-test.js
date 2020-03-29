@@ -112,7 +112,7 @@ describe('User', function() {
     expect(user1.checkIngredientAmts(recipe1)).to.equal(true);
   });
 
-  it('should be determine if we do not have enough ingredients to cook a given meal', function() {
+  it('should determine if we do not have enough ingredients to cook a given meal', function() {
 
 
     expect(user2.checkIngredientAmts(recipe2)).to.equal(false);
@@ -132,6 +132,12 @@ describe('User', function() {
   it('it should return true if the user has enough ingredients in their pantry', function() {
     user1.checkIngredientAmts(recipe1);
     expect(recipe1.canBeCooked).to.equal(true);
+  });
+
+  it('it should print out all of the ingredients and amounts needed for the given recipe', function() {
+    user1.checkIngredientAmts(recipe1);
+    // console.log(recipe1.ingredientsNeeded);
+    expect(recipe1.ingredientsNeeded).to.deep.equal([ { difference: '1.00 teaspoons', id: 2048 } ]);
   });
 
   it('it should remove used ingredients from the pantry after it has been cooked', function() {
