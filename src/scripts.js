@@ -9,6 +9,7 @@ let recipeNames = [];
 
 window.onload = function() {
   addRecipesToDOM();
+  generateRandomUser();
 }
 
 
@@ -34,20 +35,15 @@ function addRecipesToDOM() {
     `<div class='recipe-card'><h1>${recipe.name}</h1>
     <div><img class="card-image"src="${recipe.image}" alt=""></div>
     <footer></footer></div>`)
-
     })
-
-
-
-    // let sortedRecipeNames = recipeNames.sort((a, b) => a.name - b.name);
-    // console.log(sortedRecipeNames)
-
-    }
-
-    function alphabeticalOrder(arr) {
-      return arr.sort();
-        return a.name - b.name;
   };
+
+  function generateRandomUser() {
+    let randomIndex = Math.floor(Math.random() * 50)
+    let newUser = usersData[randomIndex]
+    let user = new User(newUser.name, newUser.id, newUser.pantry);
+    console.log(user);
+  }
 
     // sortedRecipeNames.sort(function(a, b) {
     //   return a.name - b.name
