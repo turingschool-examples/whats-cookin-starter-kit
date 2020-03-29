@@ -14,7 +14,7 @@ describe('Pantry', function() {
 
   beforeEach(function() {
     recipe1 = new Recipe(recipeDataTest[0]);
-    user = new User(userTestData)
+    user = new User(userTestData, Pantry)
     pantry = user.pantry
     pantry.getIngredientDetails(ingredientsData);
   });
