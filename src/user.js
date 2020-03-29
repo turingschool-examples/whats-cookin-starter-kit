@@ -1,11 +1,8 @@
-// const Pantry = require('../src/pantry');
-// const Recipe = require('../src/recipe');
-
 class User {
-  constructor(obj) {
+  constructor(obj, Pantry) {
     this.name = obj.name;
     this.id = obj.id;
-    this.pantry = new Pantry(obj.pantry)
+    this.pantry = new Pantry(obj.pantry);
     this.favorites = [];
     this.mealsToCook = []
   }
