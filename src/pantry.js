@@ -1,6 +1,3 @@
-// const Recipe = require('../src/recipe');
-// const recipeData = require('../data/recipes');
-
 class Pantry {
   constructor(userPantry) {
     this.pantry = userPantry;
@@ -12,12 +9,12 @@ class Pantry {
       return {...ingredient, ...ingredientData}
     })
   };
-
   requiredForMeal(recipe) {
     const missingItems = []
     recipe.ingredients.forEach((ingredientRecipe) => this.pantry.forEach((ingredientPantry) =>
-      {if (ingredientRecipe.id === ingredientPantry.id && ingredientRecipe.quantity.amount > ingredientPantry.amount) {
-        missingItems.push(ingredientRecipe)
+      {
+        if (ingredientRecipe.id === ingredientPantry.ingredient && ingredientRecipe.quantity.amount > ingredientPantry.amount) {
+        missingItems.push(ingredientPantry.name)
         }
       }
     ))
@@ -37,7 +34,7 @@ class Pantry {
       return acc;
     }, [])
   };
-  
+
 }
 
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
