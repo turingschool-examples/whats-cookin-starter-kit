@@ -1,7 +1,6 @@
 const Recipe = require('../src/recipe');
 const recipeData = require('../data/recipes');
 
-
 class Pantry {
   constructor(userPantry) {
     this.pantry = userPantry;
@@ -15,27 +14,30 @@ class Pantry {
   };
 
   requiredForMeal(recipe) {
-    const missingItems = [];
-
-    recipe.ingredients.forEach((ingredientI) => this.pantry.forEach((ingredientP) =>
-      {if (ingredientI.id === ingredientP.id && ingredientI.quantity.amount > ingredientP.amount) {
-        missingItems.push(ingredientI)
+    const missingItems = []
+    recipe.ingredients.forEach((ingredientRecipe) => this.pantry.forEach((ingredientPantry) =>
+      {if (ingredientRecipe.id === ingredientPantry.id && ingredientRecipe.quantity.amount > ingredientPantry.amount) {
+        missingItems.push(ingredientRecipe)
+        }
       }
-    }
-  ));
-  return missingItems;
+    ))
+    return missingItems;
   };
 
-  cookMeal() {
-    /// set mealToCook to empty []
-    //run remove item(s) from pantry
+  cookMeal(recipe) {
+    const reducedRecipeItems = recipe.ingredients.map(ingredient => {
+      return ingredient = {id: ingredient.id, amount: ingredient.quantity.amount}
+    })
+
+    let updatedPantry = this.pantry.reduce((acc, ingredient) => {
+      const reducedRecipeItem = reducedRecipeItems.find(item => item.id === ingredient.id)
+      if (reducedRecipeItem) {
+        ingredient.amount = ingredient.amount - reducedRecipeItem.amount;
+      }
+      return acc;
+    }, [])
   };
-
-  removeUsedIngredient() {
-    //after user clicks cook mean removes items and quantities from pantry.
-  };
-
-
+  
 }
 
 module.exports = Pantry;
