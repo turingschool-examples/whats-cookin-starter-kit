@@ -27,7 +27,7 @@ function addRecipesToDOM() {
     recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
     recipeSection.insertAdjacentHTML('afterbegin',
     `<div class='recipe-card'><h1>${recipe.name}</h1>
-    <div>${recipe.image}</div>
+    <div><img class="card-image"src="${recipe.image}" alt=""></div>
     <footer></footer></div>`)
 
     })
