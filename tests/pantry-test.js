@@ -16,8 +16,8 @@ describe ('Pantry', function() {
   let ingredient2;
 
   beforeEach(function() {
-    ingredient1 = new Ingredient(ingredients[0].id, ingredients[0].name, ingredients[0].amount);
-    ingredient2 = new Ingredient(18372, "bicarbonate of soda", 582);
+    ingredient1 = new Ingredient(ingredients[0].id, ingredients[0].name, ingredients[0].estimatedCostInCents);
+    ingredient2 = new Ingredient(ingredients[1].id, ingredients[1].name, ingredients[1].estimatedCostInCents);
     pantry = new Pantry([ingredient1, ingredient2])
 
   })
