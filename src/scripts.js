@@ -4,6 +4,7 @@ const favoritesPage = document.querySelector('.favorites-page');
 const mealPage = document.querySelector('.meal-page');
 const mealContainer = document.getElementById('meal-container');
 
+
 let domMeals = {
   displayMeals(recipe) {
     return `
@@ -28,6 +29,7 @@ page.addEventListener('click', clickHandler)
 window.onload = load();
 
 function load() {
+  // mind the order of the functions on load
   showMeals();
   loadUser()
 }
@@ -47,11 +49,13 @@ function clickHandler(event) {
 
 function loadUser() {
   // randomize user selection
-  const user = usersData[Math.floor(Math.random() * usersData.length)]
-  user = new User(user.name, user.id, user.pantry);
+  console.log(usersData);
+  let userSelected = usersData[Math.floor(Math.random() * usersData.length)]
+  console.log(userSelected.name);
+  user = new User(userSelected);
   console.log('three', user);
   // return the user
-  return User
+  return user
 }
 
 function showMeals() {
