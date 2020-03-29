@@ -34,7 +34,7 @@ describe('Recipe', function() {
     expect(recipe1.image).to.equal('https://spoonacular.com/recipeImages/595736-556x370.jpg');
   })
 
-  it('should have an array of required ingredients', function() {
+  it.only('should have an array of required ingredients', function() {
     expect(recipe1.ingredients).to.deep.equal([
       { id: 20081, quantity: { amount: 1.5, unit: 'c' } },
       { id: 18372, quantity: { amount: 0.5, unit: 'tsp' } },
