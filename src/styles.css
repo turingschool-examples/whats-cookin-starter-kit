@@ -94,6 +94,7 @@ width: 33%;
   justify-content: space-around;
   flex-wrap: wrap;
   height: 100%;
+  margin-bottom: 0;
   padding: 2% 2% 0 2%;
 }
 

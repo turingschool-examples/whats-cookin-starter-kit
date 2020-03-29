@@ -7,6 +7,11 @@ let recipeSection = document.querySelector('.all-recipes');
 let recipeNames = [];
 
 
+window.onload = function() {
+  addRecipesToDOM();
+}
+
+
 recipeSection.addEventListener('click', addRecipesToDOM);
 
 var expanded = false;
