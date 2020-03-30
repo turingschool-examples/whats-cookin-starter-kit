@@ -10,8 +10,8 @@ class Recipe {
     this.cookNext = false;
   }
 
-  getIngredientsCost() {
-    let ingredientsCost = this.ingredients
+  getIngredientsCost(recipe) {
+    let ingredientsCost = recipe.ingredients
       .map(ingredient => ingredient.estimatedCostInCents)
       .reduce((sum, cost) => {
         sum += cost;

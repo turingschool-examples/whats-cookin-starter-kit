@@ -90,7 +90,8 @@ function addRecipesToDOM() {
   function displayRecipe(recipe) {
     recipeSection.insertAdjacentHTML('afterbegin',
     `<div class="display-recipe"><button class="close-button" type="button" name="button">Close
-    </button><h2>${recipe.name}</h2><h1>COST:${recipe.getIngredientsCost()}</h1><h1>(${recipe.tags})</h1><img class="card-image"src="${recipe.image}" alt="">
+    </button><h2>${recipe.name}</h2><h1>COST:${recipe.getIngredientsCost(recipe)}</h1>
+    <h1>(${recipe.tags})</h1><img class="card-image"src="${recipe.image}" alt="">
     <p>${getRecipeInstructions(recipe)}</p></div>`)
   }
 
@@ -102,6 +103,34 @@ function addRecipesToDOM() {
     })
     return instructions
   }
+
+  /*
+
+  function addToFavorites() {
+    on click
+    takes recipe adds it to user davorite recipes array.
+    then displays the title in the favorite recipe section.
+    the title is a link to the whole recipe.
+    if it is already favorited; it will not show up again.
+    leaves a visual indication on the card that it is favorited.
+    if clicked a second time visual indication goes away
+}
+
+*/
+
+  //  filterRecipes(/*type or input.value*/) {
+  //   //should be able to filter recipes by type
+  //   //we should have buttons that correspond to
+  //   //the types of recipes
+  // }
+
+  // searchAllSavedRecipes(/*input.value*/) {
+  //   //wherever we put the search input the input
+  //   //value will become an argument, that will make this
+  //   //method, search for the name in the saved recipe array
+  // }
+
+
 
 
 
@@ -117,14 +146,3 @@ function addRecipesToDOM() {
 
 
   //  DOM
-  //  filterRecipes(/*type or input.value*/) {
-  //   //should be able to filter recipes by type
-  //   //we should have buttons that correspond to
-  //   //the types of recipes
-  // }
-
-  // searchAllSavedRecipes(/*input.value*/) {
-  //   //wherever we put the search input the input
-  //   //value will become an argument, that will make this
-  //   //method, search for the name in the saved recipe array
-  // }
