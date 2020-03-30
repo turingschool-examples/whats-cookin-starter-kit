@@ -64,10 +64,10 @@ main {
   padding: 2% 2% 0 2%;
 }
 .my-radio-btns {
-align-self: flex-end;
-display: flex;
-justify-content: space-between;
-width: 33%;
+  align-self: flex-end;
+  display: flex;
+  justify-content: space-between;
+  width: 33%;
 }
 .radio-field {
   display: inline;
@@ -133,6 +133,17 @@ width: 33%;
 .card-btns button {
   width: 5%
 }
+.display-recipe {
+  width: 25em;
+  height: 32em;
+  border: 3px solid green;
+  background-color: white;
+  position: absolute;
+}
+
+/* .tags-menu {
+  align-self: flex-end;
+} */
 
 .favorite {
 }

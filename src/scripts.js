@@ -4,16 +4,21 @@ console.log('Hello world');
 
 
 let allRecipesDisplay = document.querySelector('.all-recipes-display');
+let recipeSection = document.querySelector('.all-recipes');
+let welcomeUser = document.querySelector('.welcome');
+var closeButton;
 let recipeNames = [];
 
 
 window.onload = function() {
   addRecipesToDOM();
-  generateRandomUser();
+  generateAndGreetRandomUser();
 }
 
+recipeSection.addEventListener('click', selectRecipe);
+//   removeRecipeDisplay();
+// );
 
-recipeSection.addEventListener('click', addRecipesToDOM);
 
 var expanded = false;
 
@@ -50,16 +55,42 @@ function addRecipesToDOM() {
     })
   };
 
-  function generateRandomUser() {
+  function generateAndGreetRandomUser() {
     let randomIndex = Math.floor(Math.random() * 50)
     let newUser = usersData[randomIndex]
     let user = new User(newUser.name, newUser.id, newUser.pantry);
-    console.log(user);
+    welcomeUser.innerText = `Welcome ${newUser.name}`
   }
 
-    // sortedRecipeNames.sort(function(a, b) {
-    //   return a.name - b.name
-    // });
+  function selectRecipe() {
+    let cardID;
+    let retrievedRecipe;
+      if (event.target.classList.contains('recipe-card')) {
+          cardID = event.target.id
+          recipeData.forEach((recipe) => {
+            if (recipe.id == cardID) {
+              retrievedRecipe = recipe;
+        }
+      });
+    }
+    displayRecipe(retrievedRecipe)
+  }
+
+  function displayRecipe(recipe) {
+    recipeSection.insertAdjacentHTML('afterbegin',
+    `<div class="display-recipe"><button class="close-button" type="button" name="button">Close
+    </button><h1>${recipe.name}</h1><img class="card-image"src="${recipe.image}" alt="">
+    </div>`)
+    closeButton = document.querySelector('.close-button');
+    closeButton.addEventListener('click', removeRecipeDisplay);
+  }
+
+  function removeRecipeDisplay() {
+    if (event.target.classList.contains('close-button')) {
+      event.target.parentNode.remove()
+    }
+  }
+
 
 
 
@@ -73,18 +104,6 @@ function addRecipesToDOM() {
   //
 // }
 
-function generateUser() {
-  //on Load
-  //from user usersData
-  //random index
-  //use let user hold the value
-}
-
-function greetUser() {
-  //takes current user
-  //uses current user name at top of page
-  //let user
-}
 
   //  DOM
   //  filterRecipes(/*type or input.value*/) {
