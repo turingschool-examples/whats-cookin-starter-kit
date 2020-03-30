@@ -56,26 +56,20 @@ function clickHandler() {
     event.target.parentNode.remove()
     recipeScreenCount--
   }
-
-  if (event.target.classList.contains('menu-tags')) {
-    console.log('hey');
-  }
 }
-
-// }
 
 function addRecipesToDOM() {
   recipeData.forEach((recipe) => {
     recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
     displayedRecipes.push(recipe);
     allRecipesDisplay.innerHTML+=
-    `<div class='recipe-card'>
+    `<div class='recipe-card' id=${recipe.id}>
       <div class='recipe-card-header'>
         <p>${recipe.name}</p>
         <div class="card-btns">
-          <button id='favorite'>
+          <button id='favorite'>F
           </button>
-          <button id='cook-next'>
+          <button id='cook-next'>CN
           </button>
         </div>
       </div>
@@ -120,10 +114,6 @@ function addRecipesToDOM() {
       if (recipe.tags.includes(tagName)) {
         filteredRecipes.push(recipe);
       }
-
-      // else if (!recipe.tags.includes(tagName)) {
-      //   allRecipesDisplay.innerHTML = 'hello friend' ;
-      // }
     });
 
     filteredRecipes.forEach((recipe) => {
@@ -144,9 +134,6 @@ function addRecipesToDOM() {
         <footer></footer>
       </div>`
     });
-    // if (event.target.classList.contains('menu-tags')) {
-    //     console.log('hey')
-    // }
   }
 
   /*
