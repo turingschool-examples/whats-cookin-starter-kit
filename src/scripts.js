@@ -1,8 +1,3 @@
-console.log('Hello world');
-
-// const Recipe = require('./Recipe');
-
-
 let recipeSection = document.querySelector('.all-recipes');
 let welcomeUser = document.querySelector('.welcome');
 let recipeNames = [];
@@ -10,11 +5,11 @@ let recipeNames = [];
 
 window.onload = function() {
   addRecipesToDOM();
-  generateRandomUser();
+  generateAndGreetRandomUser();
 }
 
+recipeSection.addEventListener('click', selectRecipe);
 
-recipeSection.addEventListener('click', addRecipesToDOM);
 
 var expanded = false;
 
@@ -33,22 +28,33 @@ function addRecipesToDOM() {
   recipeData.forEach((recipe) => {
     recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
     recipeSection.insertAdjacentHTML('afterbegin',
-    `<div class='recipe-card'><h1>${recipe.name}</h1>
+    `<div class='recipe-card' id=${recipe.id}><h1>${recipe.name}</h1>
     <div><img class="card-image"src="${recipe.image}" alt=""></div>
     <footer></footer></div>`)
     })
   };
 
-  function generateRandomUser() {
+  function generateAndGreetRandomUser() {
     let randomIndex = Math.floor(Math.random() * 50)
     let newUser = usersData[randomIndex]
     let user = new User(newUser.name, newUser.id, newUser.pantry);
     welcomeUser.innerText = `Welcome ${newUser.name}`
   }
 
-    // sortedRecipeNames.sort(function(a, b) {
-    //   return a.name - b.name
-    // });
+  function selectRecipe() {
+    let cardID;
+    let retrievedRecipe;
+      if (event.target.classList.contains('recipe-card')) {
+          cardID = event.target.id
+          recipeData.forEach((recipe) => {
+            if (recipe.id == cardID) {
+              retrievedRecipe = recipe;
+              console.log(retrievedRecipe);
+        }
+      });
+    }
+  }
+
 
 
 
@@ -62,18 +68,6 @@ function addRecipesToDOM() {
   //
 // }
 
-function generateUser() {
-  //on Load
-  //from user usersData
-  //random index
-  //use let user hold the value
-}
-
-function greetUser() {
-  //takes current user
-  //uses current user name at top of page
-  //let user
-}
 
   //  DOM
   //  filterRecipes(/*type or input.value*/) {
