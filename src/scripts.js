@@ -49,15 +49,15 @@ function clickHandler(event) {
 
 function loadUser() {
   let userSelected = usersData[Math.floor(Math.random() * usersData.length)]
-  user = new User(userSelected);
-  console.log('three', user);
+  user = new User(userSelected, Pantry);
+  user.pantry.getIngredientDetails(ingredientsData)
   return user
 }
 
 let domSelectedMeal = {
   loadSelectedRecipe(recipe) {
-    console.log('whole recipie', recipe);
-    console.log(recipe.getTotalCost(ingredientsData));
+    let missingItems = user.pantry.requiredForMeal(recipe);
+    console.log(missingItems);
 
     return `
     <div class='meal-details-picked'>
@@ -69,22 +69,25 @@ let domSelectedMeal = {
       </div>
     </div>
     <div class="required-to-cook">
-      <div class="required-title">
-        <p>Your pantry is missing the following ingredients to cook this meal:</p>
+      <div class="required-title-box">
+        <p>Your pantry is missing the following ingredient(s) to cook this meal:</p>
+        <p></p>
       </div>
       <div class="missing-ingredients">
         <ul class="missing-list">
-          <li>4 Mangoes</li>
-          <li>15 Hushpuppies</li>
-          <li>2 Pieces of Milk</li>
-          <li>77 Shards of Sand</li>
-          <p class="missing-cost">Approximate total cost: ${Math.floor(recipe.getTotalCost(ingredientsData))} ¢</p>
+          <li>${missingItems}</li>
+          <p class="total-cost">Approximate total cost to cook meal: ${Math.floor(recipe.getTotalCost(ingredientsData))} ¢</p>
         </ul>
       </div>
     </div>
-    <div class="cooking-instructions hidden">
+    <div class="cooking-instructions">
+    <p>${recipe.instructions.map(step => {return step.instruction})}</p>
     </div>`
   }
+}
+
+function insertCookingSteps(recipe) {
+
 }
 
 function showMeals() {
