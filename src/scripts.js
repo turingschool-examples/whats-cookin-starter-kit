@@ -9,6 +9,7 @@ const pantry = document.querySelector('.pantry');
 
 document.addEventListener('click', changePageView);
 
+
 function changePageView(event) {
   const header = document.getElementsByTagName('header')[0]
   const favoritesNavItem = document.querySelector('.favorites-navbar');
@@ -49,3 +50,10 @@ function changePageView(event) {
     searchResults.classList.toggle('shown')
   }
 }
+
+function addUserToPage() {
+  const user0 = new User(usersData[0]);
+  console.log(user0);
+}
+
+window.onload = addUserToPage();

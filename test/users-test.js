@@ -134,10 +134,16 @@ describe('User', function() {
     expect(recipe1.canBeCooked).to.equal(true);
   });
 
-  it('it should print out all of the ingredients and amounts needed for the given recipe', function() {
-    user1.checkIngredientAmts(recipe1);
-    // console.log(recipe1.ingredientsNeeded);
-    expect(recipe1.ingredientsNeeded).to.deep.equal([ { difference: '1.00 teaspoons', id: 2048 } ]);
+  it('it should print out all of the ingredients and amounts needed for the given recipe if the user is missing all of the ingredients', function() {
+    user3.checkIngredientAmts(recipe1);
+    user4.checkIngredientAmts(recipe2);
+    expect(recipe1.ingredientsNeeded).to.deep.equal([ { difference: '1.50 c', id: 20081 }, { difference: '0.50 tsp', id: 18372 } ]);
+    expect(recipe2.ingredientsNeeded).to.deep.equal([ { difference: '2.00 teaspoons', id: 2048 }, { difference: '0.33 teaspoon', id: 18371 }, {difference: '1.13 cup', id: 20090 } ]);
+  });
+
+  it('it should print out all of the ingredients and amounts needed for the given recipe if some ingredients are missing', function() {
+    user2.checkIngredientAmts(recipe2);
+    expect(recipe2.ingredientsNeeded).to.deep.equal([ { difference: '1.13 cup', id: 20090}, {difference: '1.00 teaspoons', id: 2048 } ]);
   });
 
   it('it should remove used ingredients from the pantry after it has been cooked', function() {
