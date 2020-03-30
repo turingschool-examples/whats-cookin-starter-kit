@@ -11,6 +11,7 @@ let tagsMenu = document.querySelector('.tags-menu');
 var recipeScreenCount = 0;
 var closeButton;
 let displayedRecipes = [];
+let user;
 
 
 window.onload = function() {
@@ -62,9 +63,11 @@ function clickHandler() {
   if (event.target.classList.contains('menu-tags')) {
     console.log('hey');
   }
-}
 
-// }
+  if (event.target.classList.contains('favorite')) {
+   console.log('hey');
+ }
+}
 
 function addRecipesToDOM() {
   allRecipesDisplay.innerHTML = '';
@@ -93,7 +96,7 @@ function addRecipesToDOM() {
   function generateAndGreetRandomUser() {
     let randomIndex = Math.floor(Math.random() * 50)
     let newUser = usersData[randomIndex]
-    let user = new User(newUser.name, newUser.id, newUser.pantry);
+    user = new User(newUser.name, newUser.id, newUser.pantry);
     welcomeUser.innerText = `Welcome ${newUser.name}`
   }
 
@@ -113,7 +116,7 @@ function addRecipesToDOM() {
       instructions.push(parsedInstruction);
     })
     return instructions
-  }
+}
 
   function filterRecipesByTag() {
     allRecipesDisplay.innerHTML = '';
@@ -123,10 +126,6 @@ function addRecipesToDOM() {
       if (recipe.tags.includes(tagName)) {
         filteredRecipes.push(recipe);
       }
-
-      // else if (!recipe.tags.includes(tagName)) {
-      //   allRecipesDisplay.innerHTML = 'hello friend' ;
-      // }
     });
 
     filteredRecipes.forEach((recipe) => {
@@ -147,10 +146,47 @@ function addRecipesToDOM() {
         <footer></footer>
       </div>`
     });
-    // if (event.target.classList.contains('menu-tags')) {
-    //     console.log('hey')
-    // }
   }
+
+  let favIcon = document.querySelector('favorite');
+  // let cookNextIcon = document.getElementsByClassName('.cook-next');
+  let myRecipesDisplay = document.getElementById('my-recipes-display');
+  // console.log('fav', favIcon)
+  // favIcon.addEventListener('click', addRemoveFavorite);
+
+  function addRemoveFavorite(recipe, user) {
+    console.log(user)
+    if (recipe.isFavorite) {
+      user.removeFavoriteRecipe()
+    } else {
+      user.addFavoriteRecipe()
+    }
+    displayMyRecipes()
+  }
+
+  function displayMyRecipes(user) {
+    user.favoriteRecipes.forEach(recipe => {
+      recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
+      myRecipesDisplay.innerHTML +=
+      `<div class='recipe-card'>
+      <div class='recipe-card-header'>
+      <p>${recipe.name}</p>
+      <div class="card-btns">
+      <button class="favorite">
+      F
+      </button>
+      <button class="cook-next">
+      C
+      </button>
+      </div>
+      </div>
+      <div class="recipe-img">
+      <img id=${recipe.id} class="card-image" src="${recipe.image}" alt="">
+      </div>
+      <footer></footer>
+      </div>`
+    })
+}
 
   /*
 
