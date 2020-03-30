@@ -7,6 +7,7 @@ let allRecipesDisplay = document.querySelector('.all-recipes-display');
 let recipeSection = document.querySelector('.all-recipes');
 let welcomeUser = document.querySelector('.welcome');
 let tagsMenu = document.querySelector('.tags-menu');
+// let pageTitleButton = document.getElementById('page-title');
 var recipeScreenCount = 0;
 var closeButton;
 let displayedRecipes = [];
@@ -19,6 +20,7 @@ window.onload = function() {
 
 recipeSection.addEventListener('click', clickHandler);
 tagsMenu.addEventListener('change', filterRecipesByTag);
+// pageTitleButton.addEventListener('click', addRecipesToDOM);
 // console.log(tagsMenu);
 //   removeRecipeDisplay();
 // );
@@ -65,6 +67,7 @@ function clickHandler() {
 // }
 
 function addRecipesToDOM() {
+  allRecipesDisplay.innerHTML = '';
   recipeData.forEach((recipe) => {
     recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
     displayedRecipes.push(recipe);
