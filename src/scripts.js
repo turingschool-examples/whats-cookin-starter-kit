@@ -9,7 +9,7 @@ window.onload = function() {
   generateAndGreetRandomUser();
 }
 
-recipeSection.addEventListener('click', selectRecipe);
+recipeSection.addEventListener('click', clickHandler);
 //   removeRecipeDisplay();
 // );
 
@@ -26,6 +26,24 @@ function showCheckboxes() {
     expanded = false;
   }
 }
+
+function clickHandler() {
+  let retrievedRecipe;
+  if (event.target.classList.contains('recipe-card')) {
+      recipeData.forEach((recipe) => {
+        if (recipe.id == event.target.id) {
+          retrievedRecipe = recipe;
+      }
+    });
+    displayRecipe(retrievedRecipe)
+  }
+
+  if (event.target.classList.contains('close-button')) {
+    event.target.parentNode.remove()
+  }
+}
+
+// }
 
 function addRecipesToDOM() {
   recipeData.forEach((recipe) => {
@@ -44,34 +62,14 @@ function addRecipesToDOM() {
     welcomeUser.innerText = `Welcome ${newUser.name}`
   }
 
-  function selectRecipe() {
-    let cardID;
-    let retrievedRecipe;
-      if (event.target.classList.contains('recipe-card')) {
-          cardID = event.target.id
-          recipeData.forEach((recipe) => {
-            if (recipe.id == cardID) {
-              retrievedRecipe = recipe;
-        }
-      });
-    }
-    displayRecipe(retrievedRecipe)
-  }
 
   function displayRecipe(recipe) {
     recipeSection.insertAdjacentHTML('afterbegin',
     `<div class="display-recipe"><button class="close-button" type="button" name="button">Close
     </button><h1>${recipe.name}</h1><img class="card-image"src="${recipe.image}" alt="">
     </div>`)
-    closeButton = document.querySelector('.close-button');
-    closeButton.addEventListener('click', removeRecipeDisplay);
   }
 
-  function removeRecipeDisplay() {
-    if (event.target.classList.contains('close-button')) {
-      event.target.parentNode.remove()
-    }
-  }
 
 
 
