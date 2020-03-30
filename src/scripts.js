@@ -35,7 +35,7 @@ function showCheckboxes() {
 
 function clickHandler() {
   let retrievedRecipe;
-  if (event.target.classList.contains('recipe-card')) {
+  if (event.target.classList.contains('card-image')) {
       recipeData.forEach((recipe) => {
         if (recipe.id == event.target.id) {
           retrievedRecipe = recipe;
@@ -54,7 +54,7 @@ function clickHandler() {
 function addRecipesToDOM() {
   recipeData.forEach((recipe) => {
     recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
-    allRecipesDisplay.innerHTML+= 
+    allRecipesDisplay.innerHTML+=
     `<div class='recipe-card'>
       <div class='recipe-card-header'>
         <p>${recipe.name}</p>
@@ -64,9 +64,9 @@ function addRecipesToDOM() {
           <button id='cook-next'>
           </button>
         </div>
-      </div>  
+      </div>
       <div class="recipe-img">
-        <img class="card-image"src="${recipe.image}" alt="">
+        <img id=${recipe.id} class="card-image"src="${recipe.image}" alt="">
       </div>
       <footer></footer>
     </div>`
