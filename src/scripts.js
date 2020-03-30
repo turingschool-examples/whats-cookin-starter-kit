@@ -1,3 +1,9 @@
+console.log('Hello world');
+
+// const Recipe = require('./Recipe');
+
+
+let allRecipesDisplay = document.querySelector('.all-recipes-display');
 let recipeSection = document.querySelector('.all-recipes');
 let welcomeUser = document.querySelector('.welcome');
 var closeButton;
@@ -48,10 +54,22 @@ function clickHandler() {
 function addRecipesToDOM() {
   recipeData.forEach((recipe) => {
     recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
-    recipeSection.insertAdjacentHTML('afterbegin',
-    `<div class='recipe-card' id=${recipe.id}><h1>${recipe.name}</h1>
-    <div><img class="card-image"src="${recipe.image}" alt=""></div>
-    <footer></footer></div>`)
+    allRecipesDisplay.innerHTML+= 
+    `<div class='recipe-card'>
+      <div class='recipe-card-header'>
+        <p>${recipe.name}</p>
+        <div class="card-btns">
+          <button id='favorite'>
+          </button>
+          <button id='cook-next'>
+          </button>
+        </div>
+      </div>  
+      <div class="recipe-img">
+        <img class="card-image"src="${recipe.image}" alt="">
+      </div>
+      <footer></footer>
+    </div>`
     })
   };
 
