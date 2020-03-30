@@ -92,6 +92,17 @@ class User {
     this.favoriteRecipes.push(recipe);
   }
 
+  addRecipeToMealsToCook(recipe) {
+    this.recipesToCook.push(recipe)
+  }
+
+  removeRecipeFromMealsToCook(recipe) {
+    let recipeIndex = this.recipesToCook.findIndex(element => element === recipe);
+    if (recipeIndex > -1) {
+      this.recipesToCook.splice(recipeIndex, 1);
+    }
+  }
+
 }
 
 if (typeof module !== 'undefined') {

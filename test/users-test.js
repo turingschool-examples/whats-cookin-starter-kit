@@ -107,6 +107,22 @@ describe('User', function() {
     expect(user1.favoriteRecipes).to.deep.equal([recipe2]);
   });
 
+  it('should be able to add a meal to the meals to cook array', function() {
+
+    user1.addRecipeToMealsToCook(recipe1);
+
+    expect(user1.recipesToCook).to.deep.equal([recipe1]);
+  });
+
+  it('should be able to remove a meal to the meals to cook array', function() {
+
+    user1.addRecipeToMealsToCook(recipe1);
+    user1.addRecipeToMealsToCook(recipe2);
+    user1.removeRecipeFromMealsToCook(recipe1);
+
+    expect(user1.recipesToCook).to.deep.equal([recipe2]);
+  });
+
   it('should be determine if we have enough ingredients to cook a given meal', function() {
 
     expect(user1.checkIngredientAmts(recipe1)).to.equal(true);
