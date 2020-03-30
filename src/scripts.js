@@ -3,7 +3,7 @@ console.log('Hello world');
 // const Recipe = require('./Recipe');
 
 
-let recipeSection = document.querySelector('.all-recipes');
+let allRecipesDisplay = document.querySelector('.all-recipes-display');
 let recipeNames = [];
 
 
@@ -31,10 +31,22 @@ function showCheckboxes() {
 function addRecipesToDOM() {
   recipeData.forEach((recipe) => {
     recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
-    recipeSection.insertAdjacentHTML('afterbegin',
-    `<div class='recipe-card'><h1>${recipe.name}</h1>
-    <div><img class="card-image"src="${recipe.image}" alt=""></div>
-    <footer></footer></div>`)
+    allRecipesDisplay.innerHTML+= 
+    `<div class='recipe-card'>
+      <div class='recipe-card-header'>
+        <p>${recipe.name}</p>
+        <div class="card-btns">
+          <button id='favorite'>
+          </button>
+          <button id='cook-next'>
+          </button>
+        </div>
+      </div>  
+      <div class="recipe-img">
+        <img class="card-image"src="${recipe.image}" alt="">
+      </div>
+      <footer></footer>
+    </div>`
     })
   };
 
