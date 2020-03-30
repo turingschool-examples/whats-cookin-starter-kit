@@ -9,7 +9,7 @@ let welcomeUser = document.querySelector('.welcome');
 let tagsMenu = document.querySelector('.tags-menu');
 var recipeScreenCount = 0;
 var closeButton;
-let recipeNames = [];
+let displayedRecipes = [];
 
 
 window.onload = function() {
@@ -67,6 +67,7 @@ function clickHandler() {
 function addRecipesToDOM() {
   recipeData.forEach((recipe) => {
     recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
+    displayedRecipes.push(recipe);
     allRecipesDisplay.innerHTML+=
     `<div class='recipe-card'>
       <div class='recipe-card-header'>
@@ -112,8 +113,37 @@ function addRecipesToDOM() {
   }
 
   function filterRecipesByTag() {
+    allRecipesDisplay.innerHTML = '';
+    let filteredRecipes = [];
+    let tagName = event.target.value;
+    displayedRecipes.filter((recipe) => {
+      if (recipe.tags.includes(tagName)) {
+        filteredRecipes.push(recipe);
+      }
 
-    console.log(event.target.value);
+      // else if (!recipe.tags.includes(tagName)) {
+      //   allRecipesDisplay.innerHTML = 'hello friend' ;
+      // }
+    });
+
+    filteredRecipes.forEach((recipe) => {
+      allRecipesDisplay.innerHTML+=
+      `<div class='recipe-card'>
+        <div class='recipe-card-header'>
+          <p>${recipe.name}</p>
+          <div class="card-btns">
+            <button id='favorite'>
+            </button>
+            <button id='cook-next'>
+            </button>
+          </div>
+        </div>
+        <div class="recipe-img">
+          <img id=${recipe.id} class="card-image"src="${recipe.image}" alt="">
+        </div>
+        <footer></footer>
+      </div>`
+    });
     // if (event.target.classList.contains('menu-tags')) {
     //     console.log('hey')
     // }
