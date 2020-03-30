@@ -6,9 +6,10 @@ console.log('Hello world');
 let allRecipesDisplay = document.querySelector('.all-recipes-display');
 let recipeSection = document.querySelector('.all-recipes');
 let welcomeUser = document.querySelector('.welcome');
+let tagsMenu = document.querySelector('.tags-menu');
 var recipeScreenCount = 0;
 var closeButton;
-let recipeNames = [];
+let displayedRecipes = [];
 
 
 window.onload = function() {
@@ -17,6 +18,8 @@ window.onload = function() {
 }
 
 recipeSection.addEventListener('click', clickHandler);
+tagsMenu.addEventListener('change', filterRecipesByTag);
+// console.log(tagsMenu);
 //   removeRecipeDisplay();
 // );
 
@@ -53,6 +56,10 @@ function clickHandler() {
     event.target.parentNode.remove()
     recipeScreenCount--
   }
+
+  if (event.target.classList.contains('menu-tags')) {
+    console.log('hey');
+  }
 }
 
 // }
@@ -60,6 +67,7 @@ function clickHandler() {
 function addRecipesToDOM() {
   recipeData.forEach((recipe) => {
     recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
+    displayedRecipes.push(recipe);
     allRecipesDisplay.innerHTML+=
     `<div class='recipe-card'>
       <div class='recipe-card-header'>
@@ -104,7 +112,53 @@ function addRecipesToDOM() {
     return instructions
   }
 
+  function filterRecipesByTag() {
+    allRecipesDisplay.innerHTML = '';
+    let filteredRecipes = [];
+    let tagName = event.target.value;
+    displayedRecipes.filter((recipe) => {
+      if (recipe.tags.includes(tagName)) {
+        filteredRecipes.push(recipe);
+      }
+
+      // else if (!recipe.tags.includes(tagName)) {
+      //   allRecipesDisplay.innerHTML = 'hello friend' ;
+      // }
+    });
+
+    filteredRecipes.forEach((recipe) => {
+      allRecipesDisplay.innerHTML+=
+      `<div class='recipe-card'>
+        <div class='recipe-card-header'>
+          <p>${recipe.name}</p>
+          <div class="card-btns">
+            <button id='favorite'>
+            </button>
+            <button id='cook-next'>
+            </button>
+          </div>
+        </div>
+        <div class="recipe-img">
+          <img id=${recipe.id} class="card-image"src="${recipe.image}" alt="">
+        </div>
+        <footer></footer>
+      </div>`
+    });
+    // if (event.target.classList.contains('menu-tags')) {
+    //     console.log('hey')
+    // }
+  }
+
   /*
+
+  function filterRecipesByType() {
+    takes an argument of type;
+    loops through all recipes, returns an array of only the recipes
+    that match.
+    clears current recipe section;
+    pulls the recipe info out.
+    recreates the cards.
+}
 
   function addToFavorites() {
     on click
