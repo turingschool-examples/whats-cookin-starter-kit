@@ -1,4 +1,3 @@
-console.log('Hello world');
 const mainPage = document.querySelector('.main-page');
 const recipePage = document.querySelector('.recipe-page');
 const favorites = document.querySelector('.favorites');
@@ -6,8 +5,7 @@ const mealPlan = document.querySelector('.meal-plan');
 const searchResults = document.querySelector('.search-results');
 const pantry = document.querySelector('.pantry');
 const allRecipesSection = document.querySelector('.all-recipes-group');
-
-//want to create navbar functionality
+const user0 = new User(usersData[0]);
 
 document.addEventListener('click', changePageView);
 allRecipesSection.addEventListener('click', selectCards);
@@ -50,30 +48,44 @@ function changePageView(event) {
     variousPages.forEach(page => page.classList.remove('shown'));
     searchResults.classList.remove('hidden')
     searchResults.classList.toggle('shown')
+    instantiateAllRecipes();
   }
 }
 
 function selectCards(event) {
-  console.log(event.target)
   if (event.target.classList.contains('unselected-heart')) {
-    favoriteRecipe(event.target.id);
+    favoriteRecipe(event);
+    event.target.src = "../assets/heart-solid.svg"
+    event.target.alt ="selected heart icon"
+    event.target.classList.add('selected-heart');
+    event.target.classList.remove('unselected-heart');
   } else if (event.target.classList.contains('unselected-chef-hat')) {
-    addRecipeToMealPlan();
+    addRecipeToMealPlan(event);
+    event.target.src= "../assets/selected-chef-hat.svg"
+    event.target.alt="selected recipe to cook"
+    event.target.classList.add('selected-chef-hat')
+    event.target.classList.remove('unselected-chef-hat')
+  } else if (event.target.classList.contains('selected-heart')) {
+    console.log(event.target)
+removeRecipeFromFavorites(event)
+    event.target.src = "../assets/heart-regular.svg"
+    event.target.alt = "unselected heart icon"
+    event.target.classList.add('unselected-heart')
+    event.target.classList.remove('selected-heart')
+  } else if (event.target.classList.contains('selected-chef-hat')) {
+    console.log(event.target)
+    removeRecipeFromMealPlan(event);
+    event.target.src= "../assets/unselected-chef-hat.svg";
+    event.target.alt="unselected recipe to cook"
+    event.target.classList.add('unselected-chef-hat')
+    event.target.classList.remove('selected-chef-hat')
+
   }
 }
 
-function addUserToPage() {
-  const user0 = new User(usersData[0]);
-  instantiateAllRecipes();
-}
-
-//need to create function that instantiates all recipes
-//display all recipes in the search page in a function -- all should be unchecked for now
-//create function that is invoked when "favorite" icon is clicked
-// after favorite icon is clicked, should now become selected icons
-//the function should also make sure that the favorite meal function from the class is invoked with recipe as the argument
-//favorite meal should then be added to the DOM using interpolation
-//create click function that executes if you've clicked one of the unselected or selected buttons;
+// function addUserToPage() {
+//   instantiateAllRecipes();
+// }
 
 function instantiateAllRecipes() {
   let instantiatedRecipes = recipeData.map((recipe, index) => {
@@ -84,32 +96,69 @@ function instantiateAllRecipes() {
 }
 
 function addRecipesToSearchPage(instantiatedRecipes) {
-  //add functionality to add each recipe to the javascript
-  //create constant for the div that holds all of the searches in it
   instantiatedRecipes.forEach(recipe => {
-  allRecipesSection.innerHTML += `<div class="recipe-card">
+  allRecipesSection.innerHTML += `<div class="recipe-card" id =${recipe.id}>
     <img class="recipe-card-image" src=${recipe.image} alt=${recipe.name}>
     <p class="recipe-card-title">${recipe.name}</p>
-    <img class="unselected-heart" src="../assets/heart-regular.svg" alt="unselected heart icon">
-    <img class="unselected-chef-hat" src="../assets/unselected-chef-hat.svg" alt="unselected recipe to cook">
+    <img class="unselected-heart" src="../assets/heart-regular.svg" alt="unselected heart icon" id=${recipe.id}>
+    <img class="unselected-chef-hat" src="../assets/unselected-chef-hat.svg" alt="unselected recipe to cook" id=${recipe.id}>
   </div>`
 });
-
 }
 
-function favoriteRecipe() {
-//should add recipe to favorited recipe array
-//should also display recipe in favorites section
-  // user.favoriteMeal()
-  console.log('in favorite recipe function!')
+function favoriteRecipe(event) {
+  const favoriteMealSection = document.querySelector('.favorited-recipe-group')
+  let currentRecipe = recipeData.find(recipe => recipe.id === parseInt(event.target.id))
+  if (!user0.favoriteRecipes.includes(currentRecipe)) {
+    user0.favoriteMeal(currentRecipe);
+    favoriteMealSection.innerHTML += `<div class="recipe-card" id=${currentRecipe.id}>
+      <img class="recipe-card-image" src=${currentRecipe.image} alt="${currentRecipe.name}">
+      <p class="recipe-card-title">${currentRecipe.name}</p>
+      <img class="selected-heart" src="../assets/heart-solid.svg" alt="selected heart icon" id =${currentRecipe.id}>
+      <img class="unselected-chef-hat" src="../assets/unselected-chef-hat.svg" alt="unselected recipe to cook" id=${currentRecipe.id}>
+    </div>`;
+  }
 }
 
 function addRecipeToMealPlan() {
-  console.log('in add recipe to meal plan  function!')
+  const mealPlanSection = document.querySelector('.meal-plan-group')
+  let currentRecipe = recipeData.find(recipe => recipe.id === parseInt(event.target.id))
+  if (!user0.recipesToCook.includes(currentRecipe)) {
+  user0.addRecipeToMealsToCook(currentRecipe);
+    mealPlanSection.innerHTML += `<div class="recipe-card" id=${currentRecipe.id}>
+      <img class="recipe-card-image" src=${currentRecipe.image} alt="${currentRecipe.name}">
+      <p class="recipe-card-title">${currentRecipe.name}</p>
+      <img class="selected-heart" src="../assets/heart-regular.svg" alt="selected heart icon" id =${currentRecipe.id}>
+      <img class="unselected-chef-hat" src="../assets/selected-chef-hat.svg" alt="unselected recipe to cook" id=${currentRecipe.id}>
+    </div>`;
+  }
+}
 
+function removeRecipeFromMealPlan() {
+  const mealPlanSection = document.querySelector('.favorited-recipe-group')
+  let currentRecipe = recipeData.find(recipe => recipe.id === parseInt(event.target.id))
+  const currentRecipeDiv = document.getElementById(`${currentRecipe.id}`)
+  if (user0.recipesToCook.includes(currentRecipe)) {
+    user0.removeRecipeFromMealsToCook(currentRecipe);
+    console.log(user0.recipesToCook)
+    currentRecipeDiv.remove();
+  }
+}
+
+function removeRecipeFromFavorites() {
+  const mealPlanSection = document.querySelector('.favorited-recipe-group')
+  let currentRecipe = recipeData.find(recipe => recipe.id === parseInt(event.target.id))
+  const currentRecipeDiv = document.getElementById(`${currentRecipe.id}`)
+  if (user0.favoriteRecipes.includes(currentRecipe)) {
+    user0.unfavoriteMeal(currentRecipe);
+    console.log(user0.favoriteRecipes)
+    currentRecipeDiv.remove();
+  }
 }
 
 
 
 
-window.onload = addUserToPage();
+
+
+// window.onload = addUserToPage();
