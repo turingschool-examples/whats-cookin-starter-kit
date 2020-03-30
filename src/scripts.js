@@ -6,6 +6,7 @@ console.log('Hello world');
 let allRecipesDisplay = document.querySelector('.all-recipes-display');
 let recipeSection = document.querySelector('.all-recipes');
 let welcomeUser = document.querySelector('.welcome');
+var recipeScreenCount = 0;
 var closeButton;
 let recipeNames = [];
 
@@ -35,17 +36,21 @@ function showCheckboxes() {
 
 function clickHandler() {
   let retrievedRecipe;
+  if (recipeScreenCount < 1) {
   if (event.target.classList.contains('card-image')) {
       recipeData.forEach((recipe) => {
         if (recipe.id == event.target.id) {
           retrievedRecipe = recipe;
       }
     });
-    displayRecipe(retrievedRecipe)
+    displayRecipe(retrievedRecipe);
+    recipeScreenCount++;
   }
+}
 
   if (event.target.classList.contains('close-button')) {
     event.target.parentNode.remove()
+    recipeScreenCount--
   }
 }
 
@@ -84,7 +89,7 @@ function addRecipesToDOM() {
   function displayRecipe(recipe) {
     recipeSection.insertAdjacentHTML('afterbegin',
     `<div class="display-recipe"><button class="close-button" type="button" name="button">Close
-    </button><h1>${recipe.name}</h1><img class="card-image"src="${recipe.image}" alt="">
+    </button><h1>${recipe.name}</h1><h2>(${recipe.tags})</h2><img class="card-image"src="${recipe.image}" alt="">
     <p>${getRecipeInstructions(recipe)}</p></div>`)
   }
 
