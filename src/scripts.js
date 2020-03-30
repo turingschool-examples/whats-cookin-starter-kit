@@ -6,6 +6,7 @@ console.log('Hello world');
 let allRecipesDisplay = document.querySelector('.all-recipes-display');
 let recipeSection = document.querySelector('.all-recipes');
 let welcomeUser = document.querySelector('.welcome');
+let tagsMenu = document.querySelector('.tags-menu');
 var recipeScreenCount = 0;
 var closeButton;
 let recipeNames = [];
@@ -17,6 +18,8 @@ window.onload = function() {
 }
 
 recipeSection.addEventListener('click', clickHandler);
+tagsMenu.addEventListener('change', filterRecipesByTag);
+// console.log(tagsMenu);
 //   removeRecipeDisplay();
 // );
 
@@ -52,6 +55,10 @@ function clickHandler() {
   if (event.target.classList.contains('close-button')) {
     event.target.parentNode.remove()
     recipeScreenCount--
+  }
+
+  if (event.target.classList.contains('menu-tags')) {
+    console.log('hey');
   }
 }
 
@@ -104,7 +111,24 @@ function addRecipesToDOM() {
     return instructions
   }
 
+  function filterRecipesByTag() {
+
+    console.log(event.target.value);
+    // if (event.target.classList.contains('menu-tags')) {
+    //     console.log('hey')
+    // }
+  }
+
   /*
+
+  function filterRecipesByType() {
+    takes an argument of type;
+    loops through all recipes, returns an array of only the recipes
+    that match.
+    clears current recipe section;
+    pulls the recipe info out.
+    recreates the cards.
+}
 
   function addToFavorites() {
     on click
