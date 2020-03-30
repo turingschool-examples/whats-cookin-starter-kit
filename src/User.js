@@ -13,39 +13,53 @@ class User {
     let amtNeeded = [];
     let pantryIds = this.pantry.map(element => element.ingredient)
     let matchedIngredients = recipe.ingredients.filter(item => pantryIds.includes(item.id))
-
+    let missingIngredients = recipe.ingredients.filter(item => !pantryIds.includes(item.id))
     recipe.ingredients.forEach((recIng)=>this.pantry.forEach((panIng) => {
       if(recIng.id === panIng.ingredient){
         amtNeeded.push(recIng.quantity.amount - panIng.amount)
       }}))
       matchedIngredients.forEach((el, i) => el.difference = amtNeeded[i])
     if (matchedIngredients.length === 0) {
-      this.checkIfRecipeCanBeCooked(recipe, matchedIngredients);
+      this.checkIfRecipeCanBeCooked(recipe, matchedIngredients, missingIngredients);
       return false;
     } else {
-      this.checkIfRecipeCanBeCooked(recipe, matchedIngredients);
+      this.checkIfRecipeCanBeCooked(recipe, matchedIngredients, missingIngredients);
       return amtNeeded.every(amt => amt < 0);
       // returns true if there is enough of each ingredient
     }
   }
 
-  checkIfRecipeCanBeCooked(recipe, matchedIngredients) {
+  checkIfRecipeCanBeCooked(recipe, matchedIngredients, missingIngredients) {
     if (matchedIngredients.length === 0) {
-      this.logMissingIngredientAmounts(recipe, matchedIngredients);
+      this.logMissingIngredientAmounts(recipe, matchedIngredients, missingIngredients);
       recipe.canBeCooked = false
     } else {
-      this.logMissingIngredientAmounts(recipe, matchedIngredients);
+      this.logMissingIngredientAmounts(recipe, matchedIngredients, missingIngredients);
       matchedIngredients.every(ingredient => ingredient.difference > 0 ? recipe.canBeCooked = false : recipe.canBeCooked = true)
     }
   }
 
-  logMissingIngredientAmounts(recipe, matchedIngredients) {
-    matchedIngredients.forEach(ing => {
-      if (ing.difference >= 0)
-      recipe.ingredientsNeeded.push({'difference': ing.difference.toFixed(2) + " " + ing.quantity.unit})
-      recipe.ingredientsNeeded.forEach((ingNeeded, i) => ingNeeded.id = ing.id)
-    })
-    console.log(recipe.ingredientsNeeded);
+  logMissingIngredientAmounts(recipe, matchedIngredients, missingIngredients) {
+    if (matchedIngredients.length === 0) {
+      missingIngredients.forEach(ing => {
+      recipe.ingredientsNeeded.push({'id': ing.id, 'difference': ing.quantity.amount.toFixed(2) + " " + ing.quantity.unit})
+      })
+    } else if (matchedIngredients.length && missingIngredients.length) {
+      // some of both
+      missingIngredients.forEach(ing => {
+      recipe.ingredientsNeeded.push({'id': ing.id, 'difference': ing.quantity.amount.toFixed(2) + " " + ing.quantity.unit})
+      })
+      let insufficientIngs = matchedIngredients.filter(ing => ing.difference >= 0)
+      insufficientIngs.forEach(ing => {
+      recipe.ingredientsNeeded.push({'id': ing.id, 'difference': ing.difference.toFixed(2) + " " + ing.quantity.unit})
+      })
+      return recipe.ingredientsNeeded
+    }
+    // else {
+    //   matchedIngredients.forEach(ing => {
+    //   recipe.ingredientsNeeded.push({'id': ing.id, 'difference': 0 + " " + ing.quantity.unit})
+    //   })
+    // }
   }
 
   removeIngredients(recipe) {

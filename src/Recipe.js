@@ -12,7 +12,7 @@ class Recipe {
     this.hasBeenFavorited = false;
     this.ingredientPrices = [];
     this.canBeCooked = null;
-    // this.ingredientsNeeded = [];
+    this.ingredientsNeeded = [];
   }
 
   calculateCostOfIngredients(allIngredients) {
