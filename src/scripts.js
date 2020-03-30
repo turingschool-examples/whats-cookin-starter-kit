@@ -85,10 +85,17 @@ function addRecipesToDOM() {
     recipeSection.insertAdjacentHTML('afterbegin',
     `<div class="display-recipe"><button class="close-button" type="button" name="button">Close
     </button><h1>${recipe.name}</h1><img class="card-image"src="${recipe.image}" alt="">
-    </div>`)
+    <p>${getRecipeInstructions(recipe)}</p></div>`)
   }
 
-
+  function getRecipeInstructions(recipe) {
+    let instructions = [];
+    recipe.instructions.forEach((instruction) => {
+      let parsedInstruction = Object.values(instruction)
+      instructions.push(parsedInstruction);
+    })
+    return instructions
+  }
 
 
 
