@@ -41,6 +41,7 @@ function clickHandler() {
       recipeData.forEach((recipe) => {
         if (recipe.id == event.target.id) {
           retrievedRecipe = recipe;
+          retrievedRecipe = new Recipe(retrievedRecipe.id, retrievedRecipe.image, retrievedRecipe.ingredients, retrievedRecipe.instructions, retrievedRecipe.name, retrievedRecipe.tags)
       }
     });
     displayRecipe(retrievedRecipe);
@@ -89,7 +90,7 @@ function addRecipesToDOM() {
   function displayRecipe(recipe) {
     recipeSection.insertAdjacentHTML('afterbegin',
     `<div class="display-recipe"><button class="close-button" type="button" name="button">Close
-    </button><h1>${recipe.name}</h1><h2>(${recipe.tags})</h2><img class="card-image"src="${recipe.image}" alt="">
+    </button><h2>${recipe.name}</h2><h1>COST:${recipe.getIngredientsCost()}</h1><h1>(${recipe.tags})</h1><img class="card-image"src="${recipe.image}" alt="">
     <p>${getRecipeInstructions(recipe)}</p></div>`)
   }
 
