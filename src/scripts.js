@@ -81,7 +81,7 @@ let domSelectedMeal = {
       </div>
     </div>
     <div class="cooking-instructions">
-    <p>${recipe.instructions.map(step => {return step.instruction})}</p>
+    <p class="cooking-details">${recipe.instructions.map(step => {return step.instruction})}</p>
     </div>`
   }
 }

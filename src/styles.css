@@ -237,7 +237,7 @@ main {
 .missing-ingredients {
   justify-content: center;
   display: flex;
-  font-size: 25px;
+  font-size: 21px;
 }
 
 .missing-list {
@@ -248,6 +248,10 @@ main {
 .cooking-instructions {
   border: 1px groove rgba(217, 124, 43, 0.3);
   width: 100%;
+}
+
+.cooking-details {
+  font-size: 20px;
 }
 
 /* hide effects + opacity remove effects */
