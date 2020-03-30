@@ -74,10 +74,10 @@ main {
 }
 
 .my-radio-btns {
-align-self: flex-end;
-display: flex;
-justify-content: space-between;
-width: 33%;
+  align-self: flex-end;
+  display: flex;
+  justify-content: space-between;
+  width: 33%;
 }
 
 .radio-field {
@@ -116,6 +116,14 @@ width: 33%;
   border-top: 2px solid blue;
   height: 10%;
   bottom: 0;
+}
+
+.display-recipe {
+  width: 25em;
+  height: 32em;
+  border: 3px solid green;
+  background-color: white;
+  position: absolute;
 }
 
 /* .tags-menu {

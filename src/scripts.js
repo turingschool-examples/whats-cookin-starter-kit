@@ -1,5 +1,6 @@
 let recipeSection = document.querySelector('.all-recipes');
 let welcomeUser = document.querySelector('.welcome');
+var closeButton;
 let recipeNames = [];
 
 
@@ -9,6 +10,8 @@ window.onload = function() {
 }
 
 recipeSection.addEventListener('click', selectRecipe);
+//   removeRecipeDisplay();
+// );
 
 
 var expanded = false;
@@ -49,9 +52,24 @@ function addRecipesToDOM() {
           recipeData.forEach((recipe) => {
             if (recipe.id == cardID) {
               retrievedRecipe = recipe;
-              console.log(retrievedRecipe);
         }
       });
+    }
+    displayRecipe(retrievedRecipe)
+  }
+
+  function displayRecipe(recipe) {
+    recipeSection.insertAdjacentHTML('afterbegin',
+    `<div class="display-recipe"><button class="close-button" type="button" name="button">Close
+    </button><h1>${recipe.name}</h1><img class="card-image"src="${recipe.image}" alt="">
+    </div>`)
+    closeButton = document.querySelector('.close-button');
+    closeButton.addEventListener('click', removeRecipeDisplay);
+  }
+
+  function removeRecipeDisplay() {
+    if (event.target.classList.contains('close-button')) {
+      event.target.parentNode.remove()
     }
   }
 
