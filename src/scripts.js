@@ -4,6 +4,7 @@ console.log('Hello world');
 
 
 let recipeSection = document.querySelector('.all-recipes');
+let welcomeUser = document.querySelector('.welcome');
 let recipeNames = [];
 
 
@@ -42,7 +43,7 @@ function addRecipesToDOM() {
     let randomIndex = Math.floor(Math.random() * 50)
     let newUser = usersData[randomIndex]
     let user = new User(newUser.name, newUser.id, newUser.pantry);
-    console.log(user);
+    welcomeUser.innerText = `Welcome ${newUser.name}`
   }
 
     // sortedRecipeNames.sort(function(a, b) {
