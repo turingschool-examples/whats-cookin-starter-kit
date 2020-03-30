@@ -60,10 +60,6 @@ function clickHandler() {
     recipeScreenCount--
   }
 
-  if (event.target.classList.contains('menu-tags')) {
-    console.log('hey');
-  }
-
   if (event.target.classList.contains('favorite')) {
    console.log('hey');
  }
@@ -75,13 +71,13 @@ function addRecipesToDOM() {
     recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
     displayedRecipes.push(recipe);
     allRecipesDisplay.innerHTML+=
-    `<div class='recipe-card'>
+    `<div id=${recipe.id} class='recipe-card'>
       <div class='recipe-card-header'>
         <p>${recipe.name}</p>
         <div class="card-btns">
-          <button id='favorite'>
+          <button class='favorite'>F
           </button>
-          <button id='cook-next'>
+          <button class='cook-next'>C
           </button>
         </div>
       </div>
@@ -130,13 +126,13 @@ function addRecipesToDOM() {
 
     filteredRecipes.forEach((recipe) => {
       allRecipesDisplay.innerHTML+=
-      `<div class='recipe-card'>
+      `<div id=${recipe.id} class='recipe-card'>
         <div class='recipe-card-header'>
           <p>${recipe.name}</p>
           <div class="card-btns">
-            <button id='favorite'>
+            <button class='favorite'>F
             </button>
-            <button id='cook-next'>
+            <button class='cook-next'>C
             </button>
           </div>
         </div>
@@ -168,7 +164,7 @@ function addRecipesToDOM() {
     user.favoriteRecipes.forEach(recipe => {
       recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
       myRecipesDisplay.innerHTML +=
-      `<div class='recipe-card'>
+      `<div id=${recipe.id}class='recipe-card'>
       <div class='recipe-card-header'>
       <p>${recipe.name}</p>
       <div class="card-btns">
