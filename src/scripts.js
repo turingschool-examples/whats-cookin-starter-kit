@@ -52,6 +52,7 @@ function changePageView(event) {
 }
 
 function addUserToPage() {
+  console.log(usersData);
   const user0 = new User(usersData[0]);
   console.log(user0);
 }
