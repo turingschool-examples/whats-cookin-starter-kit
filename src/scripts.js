@@ -86,10 +86,6 @@ let domSelectedMeal = {
   }
 }
 
-function insertCookingSteps(recipe) {
-
-}
-
 function showMeals() {
   recipes = recipeData.map(recipe => {
     mealContainer.insertAdjacentHTML('afterbegin', domMeals.displayMeals(recipe))
@@ -100,7 +96,8 @@ function showMeals() {
 function displayHomePage() {
   homePage.classList.remove('hidden');
   favoritesPage.classList.add('hidden');
-  mealPage.classList.add('hidden')
+  mealPage.classList.add('hidden');
+  mealPage.innerHTML = " "
 }
 
 function displayFavoritesPage() {
