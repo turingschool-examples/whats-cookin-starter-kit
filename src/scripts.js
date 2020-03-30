@@ -15,7 +15,7 @@ window.onload = function() {
   generateAndGreetRandomUser();
 }
 
-recipeSection.addEventListener('click', selectRecipe);
+recipeSection.addEventListener('click', clickHandler);
 //   removeRecipeDisplay();
 // );
 
@@ -33,10 +33,28 @@ function showCheckboxes() {
   }
 }
 
+function clickHandler() {
+  let retrievedRecipe;
+  if (event.target.classList.contains('card-image')) {
+      recipeData.forEach((recipe) => {
+        if (recipe.id == event.target.id) {
+          retrievedRecipe = recipe;
+      }
+    });
+    displayRecipe(retrievedRecipe)
+  }
+
+  if (event.target.classList.contains('close-button')) {
+    event.target.parentNode.remove()
+  }
+}
+
+// }
+
 function addRecipesToDOM() {
   recipeData.forEach((recipe) => {
     recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
-    allRecipesDisplay.innerHTML+= 
+    allRecipesDisplay.innerHTML+=
     `<div class='recipe-card'>
       <div class='recipe-card-header'>
         <p>${recipe.name}</p>
@@ -46,9 +64,9 @@ function addRecipesToDOM() {
           <button id='cook-next'>
           </button>
         </div>
-      </div>  
+      </div>
       <div class="recipe-img">
-        <img class="card-image"src="${recipe.image}" alt="">
+        <img id=${recipe.id} class="card-image"src="${recipe.image}" alt="">
       </div>
       <footer></footer>
     </div>`
@@ -62,34 +80,14 @@ function addRecipesToDOM() {
     welcomeUser.innerText = `Welcome ${newUser.name}`
   }
 
-  function selectRecipe() {
-    let cardID;
-    let retrievedRecipe;
-      if (event.target.classList.contains('recipe-card')) {
-          cardID = event.target.id
-          recipeData.forEach((recipe) => {
-            if (recipe.id == cardID) {
-              retrievedRecipe = recipe;
-        }
-      });
-    }
-    displayRecipe(retrievedRecipe)
-  }
 
   function displayRecipe(recipe) {
     recipeSection.insertAdjacentHTML('afterbegin',
     `<div class="display-recipe"><button class="close-button" type="button" name="button">Close
     </button><h1>${recipe.name}</h1><img class="card-image"src="${recipe.image}" alt="">
     </div>`)
-    closeButton = document.querySelector('.close-button');
-    closeButton.addEventListener('click', removeRecipeDisplay);
   }
 
-  function removeRecipeDisplay() {
-    if (event.target.classList.contains('close-button')) {
-      event.target.parentNode.remove()
-    }
-  }
 
 
 
