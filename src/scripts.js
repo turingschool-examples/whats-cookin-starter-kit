@@ -12,6 +12,7 @@ var recipeScreenCount = 0;
 var closeButton;
 let displayedRecipes = [];
 let user;
+let recipeToAdd;
 
 
 window.onload = function() {
@@ -61,9 +62,23 @@ function clickHandler() {
   }
 
   if (event.target.classList.contains('favorite')) {
-   console.log('hey');
+    let favoriteRecipeID = event.target.closest('.recipe-card').id;
+    console.log(favoriteRecipeID);
+    // console.log(user);
+    recipeData.forEach((recipe) => {
+      console.log(recipe.id)
+      if (recipe.id == favoriteRecipeID) {
+        recipeToAdd = recipe;
+      }
+    });
+    console.log(recipeToAdd);
+    // console.log(favoriteRecipeID);
+    }
+    // console.log(recipeToAdd);
+    // addRemoveFavorite(recipeToAdd, user)
+    // console.log(user.favoriteRecipes);
  }
-}
+
 
 function addRecipesToDOM() {
   allRecipesDisplay.innerHTML = '';
@@ -151,13 +166,13 @@ function addRecipesToDOM() {
   // favIcon.addEventListener('click', addRemoveFavorite);
 
   function addRemoveFavorite(recipe, user) {
-    console.log(user)
+    // console.log(user)
     if (recipe.isFavorite) {
       user.removeFavoriteRecipe()
     } else {
       user.addFavoriteRecipe()
     }
-    displayMyRecipes()
+    // displayMyRecipes()
   }
 
   function displayMyRecipes(user) {
