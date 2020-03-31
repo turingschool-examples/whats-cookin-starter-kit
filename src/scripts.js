@@ -63,7 +63,6 @@ function clickHandler() {
 
   if (event.target.classList.contains('favorite')) {
     let favoriteRecipeID = event.target.closest('.recipe-card').id;
-    console.log(favoriteRecipeID);
     // console.log(user);
     recipeData.forEach((recipe) => {
       console.log(recipe.id)
@@ -71,7 +70,11 @@ function clickHandler() {
         recipeToAdd = recipe;
       }
     });
+
+    recipeToAdd = new Recipe(recipeToAdd.id, recipeToAdd.image, recipeToAdd.ingredients, recipeToAdd.instructions, recipeToAdd.name, recipeToAdd.tags);
+    addRemoveFavorite(recipeToAdd, user);
     console.log(recipeToAdd);
+    console.log(user);
     // console.log(favoriteRecipeID);
     }
     // console.log(recipeToAdd);
@@ -166,11 +169,10 @@ function addRecipesToDOM() {
   // favIcon.addEventListener('click', addRemoveFavorite);
 
   function addRemoveFavorite(recipe, user) {
-    // console.log(user)
     if (recipe.isFavorite) {
-      user.removeFavoriteRecipe()
+      user.removeFavoriteRecipe(recipe)
     } else {
-      user.addFavoriteRecipe()
+      user.addFavoriteRecipe(recipe)
     }
     // displayMyRecipes()
   }

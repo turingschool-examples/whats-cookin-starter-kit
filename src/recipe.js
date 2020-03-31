@@ -21,7 +21,11 @@ class Recipe {
   }
 
   toggleFavorite() {
-    this.isFavorite = !this.isFavorite
+    if (!this.isFavorite) {
+      this.isFavorite = true;
+    } else {
+      this.isFavorite = false;
+    }
   }
 
   toggleCookNext() {
