@@ -63,14 +63,15 @@ function clickHandler() {
 
   if (event.target.classList.contains('favorite')) {
     let favoriteRecipeID = event.target.closest('.recipe-card').id;
-    // console.log(user);
     recipeData.forEach((recipe) => {
-      console.log(recipe.id)
       if (recipe.id == favoriteRecipeID) {
         recipeToAdd = recipe;
       }
     });
 
+    //this is that functionality to get those favorites into array
+    //the recipe isFavorite property becomes true
+    //stopping before i can toggle isFavorite to false; and remove from array
     recipeToAdd = new Recipe(recipeToAdd.id, recipeToAdd.image, recipeToAdd.ingredients, recipeToAdd.instructions, recipeToAdd.name, recipeToAdd.tags);
     addRemoveFavorite(recipeToAdd, user);
     console.log(recipeToAdd);
