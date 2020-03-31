@@ -7,9 +7,12 @@ let allRecipesDisplay = document.querySelector('.all-recipes-display');
 let recipeSection = document.querySelector('.recipe-section');
 let welcomeUser = document.querySelector('.welcome');
 let tagsMenu = document.querySelector('.tags-menu');
+// let pageTitleButton = document.getElementById('page-title');
 var recipeScreenCount = 0;
 var closeButton;
 let displayedRecipes = [];
+let user;
+let recipeToAdd;
 
 
 window.onload = function() {
@@ -19,6 +22,7 @@ window.onload = function() {
 
 recipeSection.addEventListener('click', clickHandler);
 tagsMenu.addEventListener('change', filterRecipesByTag);
+// pageTitleButton.addEventListener('click', addRecipesToDOM);
 // console.log(tagsMenu);
 //   removeRecipeDisplay();
 // );
@@ -59,25 +63,44 @@ function clickHandler() {
     console.log(retrievedRecipe)
     addRemoveFavorite(retrievedRecipe, user)
 
-  if (event.target.classList.contains('menu-tags')) {
-    console.log('hey');
-  }
-}
+  if (event.target.classList.contains('favorite')) {
+    let favoriteRecipeID = event.target.closest('.recipe-card').id;
+    recipeData.forEach((recipe) => {
+      if (recipe.id == favoriteRecipeID) {
+        recipeToAdd = recipe;
+      }
+    });
+
+    //this is that functionality to get those favorites into array
+    //the recipe isFavorite property becomes true
+    //stopping before i can toggle isFavorite to false; and remove from array
+    recipeToAdd = new Recipe(recipeToAdd.id, recipeToAdd.image, recipeToAdd.ingredients, recipeToAdd.instructions, recipeToAdd.name, recipeToAdd.tags);
+    addRemoveFavorite(recipeToAdd, user);
+    console.log(recipeToAdd);
+    console.log(user);
+    // console.log(favoriteRecipeID);
+    }
+    // console.log(recipeToAdd);
+    // addRemoveFavorite(recipeToAdd, user)
+    // console.log(user.favoriteRecipes);
+ }
+
 
 function addRecipesToDOM() {
+  allRecipesDisplay.innerHTML = '';
   recipeData.forEach((recipe) => {
     recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
     displayedRecipes.push(recipe);
     allRecipesDisplay.innerHTML+=
-    `<div class='recipe-card'>
+    `<div id=${recipe.id} class='recipe-card'>
       <div class='recipe-card-header'>
         <p>${recipe.name}</p>
         <div class="card-btns">
-          <button class="favorite">
-            F
+ feature/dom-manipulation
+          <button class='favorite'>F
           </button>
-          <button class="cook-next">
-            C
+          <button class='cook-next'>C
+
           </button>
         </div>
       </div>
@@ -95,7 +118,7 @@ function addRecipesToDOM() {
     let randomIndex = Math.floor(Math.random() * 50)
     let newUser = usersData[randomIndex]
     user = new User(newUser.name, newUser.id, newUser.pantry);
-    console.log(user)
+
     welcomeUser.innerText = `Welcome ${newUser.name}`
   }
 
@@ -128,7 +151,7 @@ function addRecipesToDOM() {
       instructions.push(parsedInstruction);
     })
     return instructions
-  }
+}
 
   let favIcon = document.querySelector('favorite');
   let cookNextIcon = document.getElementsByClassName('.cook-next');
@@ -178,21 +201,17 @@ function addRecipesToDOM() {
       if (recipe.tags.includes(tagName)) {
         filteredRecipes.push(recipe);
       }
-
-      // else if (!recipe.tags.includes(tagName)) {
-      //   allRecipesDisplay.innerHTML = 'hello friend' ;
-      // }
     });
 
     filteredRecipes.forEach((recipe) => {
       allRecipesDisplay.innerHTML+=
-      `<div class='recipe-card'>
+      `<div id=${recipe.id} class='recipe-card'>
         <div class='recipe-card-header'>
           <p>${recipe.name}</p>
           <div class="card-btns">
-            <button id='favorite'>
+            <button class='favorite'>F
             </button>
-            <button id='cook-next'>
+            <button class='cook-next'>C
             </button>
           </div>
         </div>
@@ -202,10 +221,46 @@ function addRecipesToDOM() {
         <footer></footer>
       </div>`
     });
-    // if (event.target.classList.contains('menu-tags')) {
-    //     console.log('hey')
-    // }
   }
+
+  let favIcon = document.querySelector('favorite');
+  // let cookNextIcon = document.getElementsByClassName('.cook-next');
+  let myRecipesDisplay = document.getElementById('my-recipes-display');
+  // console.log('fav', favIcon)
+  // favIcon.addEventListener('click', addRemoveFavorite);
+
+  function addRemoveFavorite(recipe, user) {
+    if (recipe.isFavorite) {
+      user.removeFavoriteRecipe(recipe)
+    } else {
+      user.addFavoriteRecipe(recipe)
+    }
+    // displayMyRecipes()
+  }
+
+  function displayMyRecipes(user) {
+    user.favoriteRecipes.forEach(recipe => {
+      recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
+      myRecipesDisplay.innerHTML +=
+      `<div id=${recipe.id}class='recipe-card'>
+      <div class='recipe-card-header'>
+      <p>${recipe.name}</p>
+      <div class="card-btns">
+      <button class="favorite">
+      F
+      </button>
+      <button class="cook-next">
+      C
+      </button>
+      </div>
+      </div>
+      <div class="recipe-img">
+      <img id=${recipe.id} class="card-image" src="${recipe.image}" alt="">
+      </div>
+      <footer></footer>
+      </div>`
+    })
+}
 
   /*
 
