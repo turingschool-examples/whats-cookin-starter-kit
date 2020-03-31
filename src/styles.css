@@ -14,7 +14,7 @@ header {
   height: 15vh;
   justify-content: space-between;
   padding: 0 10% 1%;
-  width: 100vw;
+  width: 100%;
 }
 h1 {
   margin: 0;
@@ -138,12 +138,53 @@ main {
 .card-btns button {
   width: 5%
 }
+
+/* DISPLAY RECIPES */
 .display-recipe {
-  width: 32em;
-  /* height: 32em; */
-  border: 3px solid green;
   background-color: white;
-  position: absolute;
+  border: 3px solid green;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#displayed-recipe-header {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 10vh;
+  justify-content: space-between;
+  padding: 0
+}
+
+#recipe-header-title-section {
+  align-self: flex-start;
+  display: flex;
+  justify-content: space-between;
+}
+
+#recipe-header-info-section {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+}
+
+#recipe-body {
+  box-sizing: border-box;
+  padding: 3%;
+}
+
+#recipe-title {
+  margin: 0 
+}
+
+#recipe-cost {
+  margin: 0
+}
+
+#recipe-tags {
+  margin: 0
 }
 
 /* .tags-menu {
@@ -169,6 +210,7 @@ main {
 .tags-menu {
   align-self: flex-end;
 }
+
 /* DROPDOWN MENU */
 .multiselect {
   width: 200px;
