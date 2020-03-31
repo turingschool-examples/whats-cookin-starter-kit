@@ -59,9 +59,9 @@ function clickHandler() {
     event.target.parentNode.parentNode.remove()
     recipeScreenCount--
   }
-  if (event.target.classList.contains('favorite')) {
-    console.log(retrievedRecipe)
-    addRemoveFavorite(retrievedRecipe, user)
+  // if (event.target.classList.contains('favorite')) {
+  //   console.log(retrievedRecipe)
+  //   addRemoveFavorite(retrievedRecipe, user)
 
   if (event.target.classList.contains('favorite')) {
     let favoriteRecipeID = event.target.closest('.recipe-card').id;
@@ -83,7 +83,7 @@ function clickHandler() {
     // console.log(recipeToAdd);
     // addRemoveFavorite(recipeToAdd, user)
     // console.log(user.favoriteRecipes);
- }
+}
 
 
 function addRecipesToDOM() {
@@ -112,7 +112,6 @@ function addRecipesToDOM() {
     })
   };
 
-  let user;
 
   function generateAndGreetRandomUser() {
     let randomIndex = Math.floor(Math.random() * 50)
@@ -153,11 +152,11 @@ function addRecipesToDOM() {
     return instructions
 }
 
-  let favIcon = document.querySelector('favorite');
-  let cookNextIcon = document.getElementsByClassName('.cook-next');
+  // let favIcon = document.querySelector('favorite');
+  // let cookNextIcon = document.getElementsByClassName('.cook-next');
   let myRecipesDisplay = document.getElementById('my-recipes-display');
-  console.log('fav', favIcon)
-  favIcon.addEventListener('click', addRemoveFavorite); 
+  // console.log('fav', favIcon)
+  // favIcon.addEventListener('click', addRemoveFavorite);
 
   function addRemoveFavorite(recipe, user) {
     console.log(user)
@@ -172,7 +171,7 @@ function addRecipesToDOM() {
   function displayMyRecipes() {
     user.favoriteRecipes.forEach(recipe => {
       recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
-      myRecipesDisplay.innerHTML += 
+      myRecipesDisplay.innerHTML +=
       `<div class='recipe-card'>
       <div class='recipe-card-header'>
       <p>${recipe.name}</p>
@@ -192,7 +191,7 @@ function addRecipesToDOM() {
       </div>`
     })
   }
-  /*
+
   function filterRecipesByTag() {
     allRecipesDisplay.innerHTML = '';
     let filteredRecipes = [];
@@ -223,9 +222,9 @@ function addRecipesToDOM() {
     });
   }
 
-  let favIcon = document.querySelector('favorite');
+  // let favIcon = document.querySelector('favorite');
   // let cookNextIcon = document.getElementsByClassName('.cook-next');
-  let myRecipesDisplay = document.getElementById('my-recipes-display');
+  // let myRecipesDisplay = document.getElementById('my-recipes-display');
   // console.log('fav', favIcon)
   // favIcon.addEventListener('click', addRemoveFavorite);
 
