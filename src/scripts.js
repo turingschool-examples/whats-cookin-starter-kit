@@ -48,8 +48,8 @@ function clickHandler() {
     });
     displayRecipe(retrievedRecipe);
     recipeScreenCount++;
+    }
   }
-}
 
   if (event.target.classList.contains('close-button')) {
     event.target.parentNode.remove()
@@ -63,14 +63,26 @@ function clickHandler() {
         recipeToAdd = recipe;
       }
     });
-
-    //this is that functionality to get those favorites into array
-    //the recipe isFavorite property becomes true
-    //stopping before i can toggle isFavorite to false; and remove from array
     recipeToAdd = new Recipe(recipeToAdd.id, recipeToAdd.image, recipeToAdd.ingredients, recipeToAdd.instructions, recipeToAdd.name, recipeToAdd.tags);
     addRemoveFavorite(recipeToAdd, user);
   }
- }
+
+  if (event.target.classList.contains('favorite') && user.favoriteRecipes.length > 1) {
+    console.log(recipeToAdd);
+    // let favoriteRecipeID = event.target.closest('.recipe-card').id;
+    // user.favoriteRecipes.find((recipe) => {
+    //   if (recipe.id == favoriteRecipeID) {
+    //   addRemoveFavorite
+      }
+    // });
+  }
+
+
+
+      //this is that functionality to get those favorites into array
+      //the recipe isFavorite property becomes true
+      //stopping before i can toggle isFavorite to false; and remove from array
+
 
 
 function addRecipesToDOM() {
