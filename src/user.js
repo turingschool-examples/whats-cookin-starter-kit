@@ -86,7 +86,7 @@ class User {
     recipe.toggleFavorite();
     if (!this.favoriteRecipes.includes(recipe)) {
       this.favoriteRecipes.push(recipe)
-    } 
+    }
   }
 
   removeFavoriteRecipe(recipe) {
