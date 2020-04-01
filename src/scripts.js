@@ -12,7 +12,7 @@ let user;
 let recipeToAdd;
 
 
-window.onload = function() {
+window.onload = function () {
   addRecipesToDOM();
   generateAndGreetRandomUser();
 }
@@ -35,19 +35,20 @@ function showCheckboxes() {
     expanded = false;
   }
 }
+let retrievedRecipe;
+let favoriteRecipeID;
 
 function clickHandler() {
-  let retrievedRecipe;
   if (recipeScreenCount < 1) {
-  if (event.target.classList.contains('card-image')) {
+    if (event.target.classList.contains('card-image')) {
       recipeData.forEach((recipe) => {
         if (recipe.id == event.target.id) {
           retrievedRecipe = recipe;
           retrievedRecipe = new Recipe(retrievedRecipe.id, retrievedRecipe.image, retrievedRecipe.ingredients, retrievedRecipe.instructions, retrievedRecipe.name, retrievedRecipe.tags)
-      }
-    });
-    displayRecipe(retrievedRecipe);
-    recipeScreenCount++;
+        }
+      });
+      displayRecipe(retrievedRecipe);
+      recipeScreenCount++;
     }
   }
 
@@ -57,31 +58,45 @@ function clickHandler() {
   }
 
   if (event.target.classList.contains('favorite')) {
-    let favoriteRecipeID = event.target.closest('.recipe-card').id;
+    favoriteRecipeID = event.target.closest('.recipe-card').id;
     recipeData.forEach((recipe) => {
+      // console.log(recipe)
       if (recipe.id == favoriteRecipeID) {
         recipeToAdd = recipe;
+        // addRemoveFavorite(recipe, user)
       }
     });
     recipeToAdd = new Recipe(recipeToAdd.id, recipeToAdd.image, recipeToAdd.ingredients, recipeToAdd.instructions, recipeToAdd.name, recipeToAdd.tags);
     addRemoveFavorite(recipeToAdd, user);
   }
 
-  if (event.target.classList.contains('favorite') && user.favoriteRecipes.length > 1) {
-    console.log(recipeToAdd);
-    // let favoriteRecipeID = event.target.closest('.recipe-card').id;
+  if (event.target.classList.contains('favorite') && user.favoriteRecipes.length > 1 && user.favoriteRecipes.includes(recipeToAdd)) {
+    // console.log('recipe to add', recipeToAdd);
+    // favoriteRecipeID = event.target.closest('.recipe-card').id;
+    // user.favoriteRecipes.forEach(recipe => {
+    //   if (recipe.id == favoriteRecipeID) {
+    //     user.removeFavoriteRecipe(recipe)
+    //   } 
+    // })
+    // user.removeFavoriteRecipe(recipeToAdd)
+    console.log('hey')
+    recipeToAdd.toggleFavorite();
+    let index = user.favoriteRecipes.indexOf(recipeToAdd)
+    user.favoriteRecipes.splice(index, 1)
+    
     // user.favoriteRecipes.find((recipe) => {
     //   if (recipe.id == favoriteRecipeID) {
-    //   addRemoveFavorite
-      }
-    // });
-  }
+    //   addRemoveFavorite()
+    // }
+  };
+}
 
 
 
-      //this is that functionality to get those favorites into array
-      //the recipe isFavorite property becomes true
-      //stopping before i can toggle isFavorite to false; and remove from array
+
+//this is that functionality to get those favorites into array
+//the recipe isFavorite property becomes true
+//stopping before i can toggle isFavorite to false; and remove from array
 
 
 
@@ -90,8 +105,8 @@ function addRecipesToDOM() {
   recipeData.forEach((recipe) => {
     recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
     displayedRecipes.push(recipe);
-    allRecipesDisplay.innerHTML+=
-    `<div id=${recipe.id} class='recipe-card'>
+    allRecipesDisplay.innerHTML +=
+      `<div id=${recipe.id} class='recipe-card'>
       <div class='recipe-card-header'>
         <p>${recipe.name}</p>
         <div class="card-btns">
@@ -106,46 +121,46 @@ function addRecipesToDOM() {
       </div>
       <footer></footer>
     </div>`
-    })
-  };
+  })
+};
 
-  function generateAndGreetRandomUser() {
-    let randomIndex = Math.floor(Math.random() * 50)
-    let newUser = usersData[randomIndex]
-    user = new User(newUser.name, newUser.id, newUser.pantry);
-    welcomeUser.innerText = `Welcome ${newUser.name}`
-  }
+function generateAndGreetRandomUser() {
+  let randomIndex = Math.floor(Math.random() * 50)
+  let newUser = usersData[randomIndex]
+  user = new User(newUser.name, newUser.id, newUser.pantry);
+  welcomeUser.innerText = `Welcome ${newUser.name}`
+}
 
 
-  function displayRecipe(recipe) {
-    recipeSection.insertAdjacentHTML('afterbegin',
+function displayRecipe(recipe) {
+  recipeSection.insertAdjacentHTML('afterbegin',
     `<div class="display-recipe"><button class="close-button" type="button" name="button">Close
     </button><h2>${recipe.name}</h2><h1>COST:${recipe.getIngredientsCost(recipe)}</h1>
     <h1>(${recipe.tags})</h1><img class="card-image"src="${recipe.image}" alt="">
     <p>${getRecipeInstructions(recipe)}</p></div>`)
-  }
-
-  function getRecipeInstructions(recipe) {
-    let instructions = [];
-    recipe.instructions.forEach((instruction) => {
-      let parsedInstruction = Object.values(instruction)
-      instructions.push(parsedInstruction);
-    })
-    return instructions
 }
 
-  function filterRecipesByTag() {
-    allRecipesDisplay.innerHTML = '';
-    let filteredRecipes = [];
-    let tagName = event.target.value;
-    displayedRecipes.filter((recipe) => {
-      if (recipe.tags.includes(tagName)) {
-        filteredRecipes.push(recipe);
-      }
-    });
+function getRecipeInstructions(recipe) {
+  let instructions = [];
+  recipe.instructions.forEach((instruction) => {
+    let parsedInstruction = Object.values(instruction)
+    instructions.push(parsedInstruction);
+  })
+  return instructions
+}
 
-    filteredRecipes.forEach((recipe) => {
-      allRecipesDisplay.innerHTML+=
+function filterRecipesByTag() {
+  allRecipesDisplay.innerHTML = '';
+  let filteredRecipes = [];
+  let tagName = event.target.value;
+  displayedRecipes.filter((recipe) => {
+    if (recipe.tags.includes(tagName)) {
+      filteredRecipes.push(recipe);
+    }
+  });
+
+  filteredRecipes.forEach((recipe) => {
+    allRecipesDisplay.innerHTML +=
       `<div id=${recipe.id} class='recipe-card'>
         <div class='recipe-card-header'>
           <p>${recipe.name}</p>
@@ -161,26 +176,31 @@ function addRecipesToDOM() {
         </div>
         <footer></footer>
       </div>`
-    });
+  });
+}
+
+
+let myRecipesDisplay = document.getElementById('my-recipes-display');
+
+function addRemoveFavorite(recipe, user) {
+  if (recipe.isFavorite === true) {
+    user.removeFavoriteRecipe(recipe)
+    console.log(recipe.isFavorite)
+    console.log(user.favoriteRecipes)
+  } else {
+    user.addFavoriteRecipe(recipe)
+    console.log(recipe.isFavorite)
+    console.log(user.favoriteRecipes)
   }
+  displayMyRecipes(user)
+}
 
-
-  let myRecipesDisplay = document.getElementById('my-recipes-display');
-
-  function addRemoveFavorite(recipe, user) {
-    if (recipe.isFavorite) {
-      user.removeFavoriteRecipe(recipe)
-    } else {
-      user.addFavoriteRecipe(recipe)
-    }
-    // displayMyRecipes()
-  }
-
-  function displayMyRecipes(user) {
-    user.favoriteRecipes.forEach(recipe => {
-      recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
-      myRecipesDisplay.innerHTML +=
-      `<div id=${recipe.id}class='recipe-card'>
+//forEach or something else?
+function displayMyRecipes(user) {
+  return user.favoriteRecipes.forEach(recipe => {
+    // recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
+    myRecipesDisplay.innerHTML +=  
+      `<div id=${recipe.id} class='recipe-card'>
       <div class='recipe-card-header'>
       <p>${recipe.name}</p>
       <div class="card-btns">
@@ -197,30 +217,30 @@ function addRecipesToDOM() {
       </div>
       <footer></footer>
       </div>`
-    })
+  })
 }
 
 
 
-  // searchAllSavedRecipes(/*input.value*/) {
-  //   //wherever we put the search input the input
-  //   //value will become an argument, that will make this
-  //   //method, search for the name in the saved recipe array
-  // }
-
-
-
-
-
-
-
-  // recipeData.forEach(recipe => {
-  //   console.log(recipe);
-  // })
-  //loop through recipes, instantiate each recipe; create a card
-  //forEach recipe.
-  //
+// searchAllSavedRecipes(/*input.value*/) {
+//   //wherever we put the search input the input
+//   //value will become an argument, that will make this
+//   //method, search for the name in the saved recipe array
 // }
 
 
-  //  DOM
+
+
+
+
+
+// recipeData.forEach(recipe => {
+//   console.log(recipe);
+// })
+//loop through recipes, instantiate each recipe; create a card
+//forEach recipe.
+//
+// }
+
+
+//  DOM
