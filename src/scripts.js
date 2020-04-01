@@ -4,12 +4,15 @@ let allRecipesDisplay = document.querySelector('.all-recipes-display');
 let recipeSection = document.querySelector('.all-recipes');
 let welcomeUser = document.querySelector('.welcome');
 let tagsMenu = document.querySelector('.tags-menu');
-// let pageTitleButton = document.getElementById('page-title');
+let myRecipeParent = document.getElementById('my-recipes-display');
+let myRecipesDisplay = document.getElementById('my-recipes-display');
 var recipeScreenCount = 0;
 var closeButton;
 let displayedRecipes = [];
 let user;
-let recipeToAdd;
+let addedRecipes = [];
+let retrievedRecipe;
+let favoriteRecipeID;
 
 
 window.onload = function () {
@@ -19,24 +22,8 @@ window.onload = function () {
 
 recipeSection.addEventListener('click', clickHandler);
 tagsMenu.addEventListener('change', filterRecipesByTag);
-// pageTitleButton.addEventListener('click', addRecipesToDOM);
+myRecipeParent.addEventListener('click', deSelectFavorite);
 
-
-
-var expanded = false;
-
-function showCheckboxes() {
-  var checkboxes = document.getElementById("checkboxes");
-  if (!expanded) {
-    checkboxes.style.display = "block";
-    expanded = true;
-  } else {
-    checkboxes.style.display = "none";
-    expanded = false;
-  }
-}
-let retrievedRecipe;
-let favoriteRecipeID;
 
 function clickHandler() {
   if (recipeScreenCount < 1) {
@@ -59,46 +46,36 @@ function clickHandler() {
 
   if (event.target.classList.contains('favorite')) {
     favoriteRecipeID = event.target.closest('.recipe-card').id;
-    recipeData.forEach((recipe) => {
-      // console.log(recipe)
-      if (recipe.id == favoriteRecipeID) {
-        recipeToAdd = recipe;
-        // addRemoveFavorite(recipe, user)
+    displayedRecipes.find((recipe) => {
+      if (recipe.id == favoriteRecipeID && recipe.isFavorite === false) {
+        let index = displayedRecipes.indexOf(recipe);
+        addedRecipes.push(recipe);
+        displayedRecipes.splice(index, 1);
+        recipeData.splice(index, 1);
+        user.addFavoriteRecipe(recipe);
+        displayMyRecipes(user);
+        addRecipesToDOM();
       }
     });
-    recipeToAdd = new Recipe(recipeToAdd.id, recipeToAdd.image, recipeToAdd.ingredients, recipeToAdd.instructions, recipeToAdd.name, recipeToAdd.tags);
-    addRemoveFavorite(recipeToAdd, user);
   }
-
-  if (event.target.classList.contains('favorite') && user.favoriteRecipes.length > 1 && user.favoriteRecipes.includes(recipeToAdd)) {
-    // console.log('recipe to add', recipeToAdd);
-    // favoriteRecipeID = event.target.closest('.recipe-card').id;
-    // user.favoriteRecipes.forEach(recipe => {
-    //   if (recipe.id == favoriteRecipeID) {
-    //     user.removeFavoriteRecipe(recipe)
-    //   } 
-    // })
-    // user.removeFavoriteRecipe(recipeToAdd)
-    console.log('hey')
-    recipeToAdd.toggleFavorite();
-    let index = user.favoriteRecipes.indexOf(recipeToAdd)
-    user.favoriteRecipes.splice(index, 1)
-    
-    // user.favoriteRecipes.find((recipe) => {
-    //   if (recipe.id == favoriteRecipeID) {
-    //   addRemoveFavorite()
-    // }
-  };
 }
 
-
-
-
-//this is that functionality to get those favorites into array
-//the recipe isFavorite property becomes true
-//stopping before i can toggle isFavorite to false; and remove from array
-
-
+function deSelectFavorite() {
+  if (event.target.classList.contains('favorite')) {
+    favoriteRecipeID = event.target.closest('.recipe-card').id;
+    addedRecipes.forEach((recipe) => {
+      if (recipe.id == favoriteRecipeID && recipe.isFavorite === true) {
+        let index = addedRecipes.indexOf(recipe);
+        addedRecipes.splice(index, 1);
+        recipeData.push(recipe);
+        displayedRecipes.push(recipe);
+        user.removeFavoriteRecipe(recipe);
+        addRecipesToDOM();
+      }
+    });
+  }
+    displayMyRecipes(user);
+}
 
 function addRecipesToDOM() {
   allRecipesDisplay.innerHTML = '';
@@ -179,27 +156,10 @@ function filterRecipesByTag() {
   });
 }
 
-
-let myRecipesDisplay = document.getElementById('my-recipes-display');
-
-function addRemoveFavorite(recipe, user) {
-  if (recipe.isFavorite === true) {
-    user.removeFavoriteRecipe(recipe)
-    console.log(recipe.isFavorite)
-    console.log(user.favoriteRecipes)
-  } else {
-    user.addFavoriteRecipe(recipe)
-    console.log(recipe.isFavorite)
-    console.log(user.favoriteRecipes)
-  }
-  displayMyRecipes(user)
-}
-
-//forEach or something else?
 function displayMyRecipes(user) {
+  myRecipesDisplay.innerHTML = '';
   return user.favoriteRecipes.forEach(recipe => {
-    // recipe = new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags);
-    myRecipesDisplay.innerHTML +=  
+    myRecipesDisplay.innerHTML +=
       `<div id=${recipe.id} class='recipe-card'>
       <div class='recipe-card-header'>
       <p>${recipe.name}</p>
@@ -219,28 +179,3 @@ function displayMyRecipes(user) {
       </div>`
   })
 }
-
-
-
-// searchAllSavedRecipes(/*input.value*/) {
-//   //wherever we put the search input the input
-//   //value will become an argument, that will make this
-//   //method, search for the name in the saved recipe array
-// }
-
-
-
-
-
-
-
-// recipeData.forEach(recipe => {
-//   console.log(recipe);
-// })
-//loop through recipes, instantiate each recipe; create a card
-//forEach recipe.
-//
-// }
-
-
-//  DOM
