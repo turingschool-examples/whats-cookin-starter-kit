@@ -63,27 +63,36 @@ main {
   background-color: darkcyan;
   box-sizing: border-box;
   display: flex;
-  /* position: absolute; */
   flex-direction: column;
   height: 100%;
   padding: 2% 2% 0 2%;
 }
+
 .my-radio-btns {
   align-self: flex-end;
   display: flex;
   justify-content: space-between;
   width: 33%;
 }
+
 .radio-field {
   display: inline;
 }
+
 #my-saved-recipes {
   box-sizing: border-box;
   padding: 3%
 }
+
 #my-saved-recipes p {
   text-align: center;
 }
+
+#my-recipes-display {
+  display: flex;
+  min-height: 265px;
+}
+
 /* ALL RECIPES */
 .all-recipes {
   background-color: darkslategrey;
@@ -96,8 +105,9 @@ main {
 }
 .all-recipes-display {
   display: grid;
-  grid-template-columns: 49% 49%;
+  grid-template-columns: 30% 30% 30%;
   grid-column-gap: 2%;
+  grid-row-gap: 2vh;
   justify-content: space-around;
   margin-top: 1%;
 }
@@ -106,7 +116,8 @@ main {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  margin-bottom: 3%;
+  max-width: 332px;
+  /* min-width: 332px; */
   padding: 0 3% 3%;
   width: 100%;
 }

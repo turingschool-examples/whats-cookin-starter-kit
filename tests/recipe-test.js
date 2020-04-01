@@ -68,7 +68,6 @@ describe ('Recipe', function() {
     expect(recipe.isFavorite).to.equal(false);
     recipe.toggleFavorite();
     expect(recipe.isFavorite).to.equal(true);
-    
     recipe.toggleFavorite();
     expect(recipe.isFavorite).to.equal(false);
   })
