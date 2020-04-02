@@ -1,5 +1,3 @@
-console.log('Hello world');
-
 let allRecipesDisplay = document.querySelector('.all-recipes-display');
 let recipeSection = document.querySelector('.all-recipes');
 let welcomeUser = document.querySelector('.welcome');
@@ -7,7 +5,6 @@ let tagsMenu = document.querySelector('.tags-menu');
 let myRecipeParent = document.getElementById('my-recipes-display');
 let myRecipesDisplay = document.getElementById('my-recipes-display');
 var recipeScreenCount = 0;
-var closeButton;
 let displayedRecipes = [];
 let user;
 let addedRecipes = [];
@@ -54,36 +51,23 @@ function selectFavorite() {
   displayedRecipes.forEach((recipe) => {
     if (recipe.id == favoriteRecipeID) {
       addedRecipes.push(recipe);
-      // let index = displayedRecipes.indexOf(recipe);
-      // addedRecipes.push(recipe);
-      // displayedRecipes.splice(index, 1);
-      // recipeData.splice(index, 1);
       user.addFavoriteRecipe(recipe);
-
-      // addRecipesToDOM();
     };
   })
   displayMyRecipes(user);
 }
 
-function deSelectFavorite() {//if id is in array,
+function deSelectFavorite() {
   if (event.target.classList.contains('favorite')) {
     favoriteRecipeID = event.target.closest('.recipe-card').id;
     addedRecipes.forEach((recipe) => {
       if (recipe.id == favoriteRecipeID) {
         let updatedRecipes = addedRecipes.filter((meal) => meal.id != favoriteRecipeID);
         addedRecipes = updatedRecipes;
-        console.log(addedRecipes);
-        // let index = addedRecipes.indexOf(recipe);
-        // addedRecipes.splice(index, 1);
-        // recipeData.push(recipe);
-        // displayedRecipes.push(recipe);
         user.removeFavoriteRecipe(recipe);
-        // addRecipesToDOM();
       }
     });
   }
-    console.log(user.favoriteRecipes);
     displayMyRecipes(user);
 }
 
@@ -94,20 +78,17 @@ function addRecipesToDOM() {
     displayedRecipes.push(recipe);
     allRecipesDisplay.innerHTML +=
       `<div id=${recipe.id} class='recipe-card'>
-      <div class='recipe-card-header'>
-        <p>${recipe.name}</p>
-        <div class="card-btns">
-          <button class='favorite'>F
-          </button>
-          <button class='cook-next'>C
-          </button>
+        <div class='recipe-card-header'>
+          <p>${recipe.name}</p>
+          <div class="card-btns">
+            <button class='favorite'>F</button>
+            <button class='cook-next'>C</button>
+          </div>
         </div>
-      </div>
-      <div class="recipe-img">
-        <img id=${recipe.id} class="card-image"src="${recipe.image}" alt="">
-      </div>
-      <footer></footer>
-    </div>`
+        <div class="recipe-img">
+          <img id=${recipe.id} class="card-image"src="${recipe.image}" alt="">
+        </div>
+      </div>`
   })
 };
 
@@ -121,10 +102,14 @@ function generateAndGreetRandomUser() {
 
 function displayRecipe(recipe) {
   recipeSection.insertAdjacentHTML('afterbegin',
-    `<div class="display-recipe"><button class="close-button" type="button" name="button">Close
-    </button><h2>${recipe.name}</h2><h1>COST:${recipe.getIngredientsCost(recipe)}</h1>
-    <h1>(${recipe.tags})</h1><img class="card-image"src="${recipe.image}" alt="">
-    <p>${getRecipeInstructions(recipe)}</p></div>`)
+    `<div class="display-recipe">
+      <button class="close-button" type="button" name="button">Close</button>
+      <h2>${recipe.name}</h2>
+      <h1>COST:${recipe.getIngredientsCost(recipe)}</h1>
+      <h1>(${recipe.tags})</h1>
+      <img class="card-image"src="${recipe.image}" alt="">
+      <p>${getRecipeInstructions(recipe)}</p>
+    </div>`)
 }
 
 function getRecipeInstructions(recipe) {
@@ -152,16 +137,13 @@ function filterRecipesByTag() {
         <div class='recipe-card-header'>
           <p>${recipe.name}</p>
           <div class="card-btns">
-            <button class='favorite'>F
-            </button>
-            <button class='cook-next'>C
-            </button>
-          </div>
+          <button class='favorite'>F</button>
+          <button class='cook-next'>C</button>
         </div>
-        <div class="recipe-img">
-          <img id=${recipe.id} class="card-image"src="${recipe.image}" alt="">
-        </div>
-        <footer></footer>
+      </div>
+      <div class="recipe-img">
+        <img id=${recipe.id} class="card-image"src="${recipe.image}" alt="">
+      </div>
       </div>`
   });
 }
@@ -171,21 +153,16 @@ function displayMyRecipes(user) {
   return user.favoriteRecipes.forEach(recipe => {
     myRecipesDisplay.innerHTML +=
       `<div id=${recipe.id} class='recipe-card'>
-      <div class='recipe-card-header'>
-      <p>${recipe.name}</p>
-      <div class="card-btns">
-      <button class="favorite">
-      F
-      </button>
-      <button class="cook-next">
-      C
-      </button>
-      </div>
-      </div>
-      <div class="recipe-img">
-      <img id=${recipe.id} class="card-image" src="${recipe.image}" alt="">
-      </div>
-      <footer></footer>
+        <div class='recipe-card-header'>
+          <p>${recipe.name}</p>
+          <div class="card-btns">
+            <button class="favorite">F</button>
+            <button class="cook-next">C</button>
+          </div>
+        </div>
+        <div class="recipe-img">
+          <img id=${recipe.id} class="card-image" src="${recipe.image}" alt="">
+        </div>
       </div>`
   })
 }
