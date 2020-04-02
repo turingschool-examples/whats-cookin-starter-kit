@@ -15,7 +15,9 @@ header {
   justify-content: space-between;
   padding: 0 10% 1%;
   width: 100%;
+  font-size: 1.7em
 }
+
 h1 {
   margin: 0;
 }
@@ -187,7 +189,7 @@ main {
 }
 
 #recipe-title {
-  margin: 0 
+  margin: 0
 }
 
 #recipe-cost {

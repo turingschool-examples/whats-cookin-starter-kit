@@ -2,7 +2,7 @@ class User {
   constructor(name, id, pantry) {
     this.name = name;
     this.id = id;
-    this.pantry = pantry; /*[array of objects, from user pantry];*/
+    this.pantry = pantry; 
     this.favoriteRecipes = [];
     this.recipesToCook = [];
   }
@@ -90,9 +90,11 @@ class User {
   }
 
   removeFavoriteRecipe(recipe) {
+    if (this.favoriteRecipes.includes(recipe)) {
+      let updatedFavorite = this.favoriteRecipes.filter((foods) => foods.id != recipe.id);
+      this.favoriteRecipes = updatedFavorite;
+    }
     recipe.toggleFavorite();
-    let index = this.favoriteRecipes.indexOf(recipe)
-    this.favoriteRecipes.splice(index, 1)
   }
 
   addRecipeToCook(recipe) {
@@ -110,11 +112,3 @@ class User {
 if (typeof module !== 'undefined') {
   module.exports = User;
 }
-
-/*
-Users
-A User holds on to all of a user’s data. As a user, I should be able to:
-
-. User should be able to do this for at least
-one recipe.
-*/
