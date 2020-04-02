@@ -90,9 +90,13 @@ class User {
   }
 
   removeFavoriteRecipe(recipe) {
+    if (this.favoriteRecipes.includes(recipe)) {
+      let updatedFavorite = this.favoriteRecipes.filter((foods) => foods.id != recipe.id);
+      this.favoriteRecipes = updatedFavorite;
+    }
     recipe.toggleFavorite();
-    let index = this.favoriteRecipes.indexOf(recipe)
-    this.favoriteRecipes.splice(index, 1)
+    // let index = this.favoriteRecipes.indexOf(recipe)
+    // this.favoriteRecipes.splice(index, 1)
   }
 
   addRecipeToCook(recipe) {

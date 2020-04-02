@@ -45,35 +45,45 @@ function clickHandler() {
   }
 
   if (event.target.classList.contains('favorite')) {
-    favoriteRecipeID = event.target.closest('.recipe-card').id;
-    displayedRecipes.find((recipe) => {
-      if (recipe.id == favoriteRecipeID && recipe.isFavorite === false) {
-        let index = displayedRecipes.indexOf(recipe);
-        addedRecipes.push(recipe);
-        displayedRecipes.splice(index, 1);
-        recipeData.splice(index, 1);
-        user.addFavoriteRecipe(recipe);
-        displayMyRecipes(user);
-        addRecipesToDOM();
-      }
-    });
+    selectFavorite();
   }
 }
 
-function deSelectFavorite() {
+function selectFavorite() {
+  favoriteRecipeID = event.target.closest('.recipe-card').id;
+  displayedRecipes.forEach((recipe) => {
+    if (recipe.id == favoriteRecipeID) {
+      addedRecipes.push(recipe);
+      // let index = displayedRecipes.indexOf(recipe);
+      // addedRecipes.push(recipe);
+      // displayedRecipes.splice(index, 1);
+      // recipeData.splice(index, 1);
+      user.addFavoriteRecipe(recipe);
+
+      // addRecipesToDOM();
+    };
+  })
+  displayMyRecipes(user);
+}
+
+function deSelectFavorite() {//if id is in array,
   if (event.target.classList.contains('favorite')) {
     favoriteRecipeID = event.target.closest('.recipe-card').id;
     addedRecipes.forEach((recipe) => {
-      if (recipe.id == favoriteRecipeID && recipe.isFavorite === true) {
-        let index = addedRecipes.indexOf(recipe);
-        addedRecipes.splice(index, 1);
-        recipeData.push(recipe);
-        displayedRecipes.push(recipe);
+      if (recipe.id == favoriteRecipeID) {
+        let updatedRecipes = addedRecipes.filter((meal) => meal.id != favoriteRecipeID);
+        addedRecipes = updatedRecipes;
+        console.log(addedRecipes);
+        // let index = addedRecipes.indexOf(recipe);
+        // addedRecipes.splice(index, 1);
+        // recipeData.push(recipe);
+        // displayedRecipes.push(recipe);
         user.removeFavoriteRecipe(recipe);
-        addRecipesToDOM();
+        // addRecipesToDOM();
       }
     });
   }
+    console.log(user.favoriteRecipes);
     displayMyRecipes(user);
 }
 
