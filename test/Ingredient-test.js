@@ -11,7 +11,16 @@ describe('Ingredient', function() {
 
   it('should be a function', function() {
     expect(Ingredient).to.be.a('function');
-
   });
+
+  it('should be an instance of Ingredient', function() {
+    expect(ingredient).to.be.an.instanceof(Ingredient);
+  });
+
+  // instance
+  // intialize
+  // has id / different id
+  // has name / different name
+  // has estimatedCost / different cost
 
 });
