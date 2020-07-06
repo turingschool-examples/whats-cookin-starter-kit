@@ -141,4 +141,19 @@ describe('recipe', () => {
     expect(recipe.name).to.be.a('string');
     expect(recipe.name).to.deep.equal(cookieCake.name);
   });
+
+  it('should have ingredients', () => {
+    expect(recipe.ingredients).to.be.an('array');
+    expect(recipe.ingredients).to.deep.equal(cookieCake.ingredients);
+  });
+
+  it('should have an ID', () => {
+    expect(recipe.id).to.be.a('number');
+    expect(recipe.id).to.deep.equal(cookieCake.id);
+  });
+
+  it('should have instructions', () => {
+    expect(recipe.instructions).to.be.an('array');
+    expect(recipe.instructions[1]).to.deep.equal(cookieCake.instructions[1]);
+  });
 });
