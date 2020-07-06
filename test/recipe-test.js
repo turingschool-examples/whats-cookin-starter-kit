@@ -156,4 +156,9 @@ describe('recipe', () => {
     expect(recipe.instructions).to.be.an('array');
     expect(recipe.instructions[1]).to.deep.equal(cookieCake.instructions[1]);
   });
+
+  it('should have an image', () => {
+    expect(recipe.image).to.be.a('string');
+    expect(recipe.image).to.deep.equal(cookieCake.image);
+  })
 });
