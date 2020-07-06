@@ -136,4 +136,9 @@ describe('recipe', () => {
     expect(recipe.tags).to.be.an('array');
     expect(recipe.tags).to.deep.equal(cookieCake.tags);
   });
+
+  it('should have a name', () => {
+    expect(recipe.name).to.be.a('string');
+    expect(recipe.name).to.deep.equal(cookieCake.name);
+  });
 });
