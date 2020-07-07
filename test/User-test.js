@@ -17,6 +17,10 @@ describe('User', function() {
     expect(user.favoriteRecipes).to.deep.equal([]);
   });
 
+  it('should have a collection of recipes to cook', function() {
+    expect(user.recipesToCook).to.deep.equal([]);
+  })
+
   // it('should ', function() {
   //
   // });
