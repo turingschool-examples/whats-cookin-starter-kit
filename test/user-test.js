@@ -20,6 +20,11 @@ describe('user', () => {
     expect(user.name).to.deep.equal(usersData[0].name);
   });
 
+  it('should only have a string as a name', () => {
+    const robotUser = new User({name: 12567, id: 1, pantry: []});
+    expect(robotUser.name).to.equal('12567');
+  });
+
   it('should have an ID', () => {
     expect(user.id).to.be.a('number');
     expect(user.id).to.deep.equal(usersData[0].id);
