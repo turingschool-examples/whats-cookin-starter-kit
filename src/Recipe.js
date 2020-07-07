@@ -24,16 +24,10 @@ class Recipe {
   //when filtering recipes by category, need to call 2 methods below together (return value from mapCategoryToTag (tags array) gets passed into checkRecipeCategory)
   mapCategoryToTag(category) {
     return this.categoryToTagMap[category];
-  };
+  }
 
   checkRecipeCategory(categoryTags) {
-    let result = false; 
-    this.tags.forEach(tag => {
-      if (categoryTags.includes(tag)) {
-        result = true;
-      };
-    });
-    return result;  
+    return this.tags.some(tag => categoryTags.includes(tag)); 
   }
 }
 
