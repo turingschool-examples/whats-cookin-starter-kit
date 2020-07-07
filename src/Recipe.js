@@ -5,6 +5,6 @@ class Recipe {
     this.ingredients = ingredients;
     this.tags = tags;
   }
-};
+}
 
 module.exports = Recipe;
