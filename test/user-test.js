@@ -1,6 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 const User = require('../src/user-class.js');
+const Pantry = require('../src/pantry.js');
 const usersData = require('../data/users.js');
 
 describe('user', () => {
@@ -21,8 +22,8 @@ describe('user', () => {
   });
 
   it('should only have a string as a name', () => {
-    const robotUser = new User({name: 12567, id: 1, pantry: []});
-    expect(robotUser.name).to.equal('12567');
+    const robotChef = new User({name: 12567, id: 1, pantry: []});
+    expect(robotChef.name).to.equal('12567');
   });
 
   it('should have an ID', () => {
@@ -30,17 +31,29 @@ describe('user', () => {
     expect(user.id).to.deep.equal(usersData[0].id);
   });
 
-  it('should have a pantry that contains ingredients', () => {
-    expect(user.pantry).to.be.an('array');
-    expect(user.pantry).to.deep.equal(usersData[0].pantry);
+  it('should assign a number for an ID if no number is given', () => {
+    const karen = new User({name: 'Karen', id: 'I don\'t believe in numbers', pantry: [{ingredient: 'essential oils'}]});
+    const anotherRobotChef = new User({ name: 12567, id: ['Error'], pantry: []});
+
+    expect(karen.id).to.equal(Date.now());
+    expect(anotherRobotChef.id).to.equal(Date.now());
   });
 
-  it('should have an array of favorite recipes', () => {
+  it('should have a pantry that contains ingredients', () => {
+    expect(user.pantry).to.be.an('object');
+    expect(user.pantry).to.deep.equal(new Pantry(usersData[0].pantry));
+  });
+
+  it('should have a pantry that is an instance of Pantry', () => {
+    expect(user.pantry).to.be.an.instanceOf(Pantry);
+  });
+
+  it('should start with an empty array of favorite recipes', () => {
     expect(user.favoriteRecipes).to.be.an('array');
     expect(user.favoriteRecipes).to.deep.equal([]);
   });
 
-  it('should have a way of tracking user\'s recipes to cook', () => {
+  it('should start with an empty array of recipes to cook', () => {
     expect(user.recipesToCook).to.be.an('array');
     expect(user.recipesToCook).to.deep.equal([]);
   });
