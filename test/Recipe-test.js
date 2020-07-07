@@ -1,6 +1,8 @@
 const expect = require('chai').expect;
 
 const Recipe = require('../src/Recipe');
+const recipe1Image = "https://spoonacular.com/recipeImages/595736-556x370.jpg";
+const recipe2Image = "https://spoonacular.com/recipeImages/678353-556x370.jpg";
 const recipe1Ingredients = [
   {
     "id": 20081,
@@ -53,8 +55,8 @@ describe('Recipe', function() {
 
   let recipe, recipe2;
   beforeEach(function() {
-    recipe1 = new Recipe(595736, "https://spoonacular.com/recipeImages/595736-556x370.jpg", recipe1Ingredients);
-    recipe2 = new Recipe(678353, "https://spoonacular.com/recipeImages/678353-556x370.jpg", recipe2Ingredients);
+    recipe1 = new Recipe(595736, recipe1Image, recipe1Ingredients);
+    recipe2 = new Recipe(678353, recipe2Image, recipe2Ingredients);
   });
 
   it('should be a function', function() {
@@ -73,5 +75,12 @@ describe('Recipe', function() {
     expect(recipe2.id).to.equal(678353);
   });
 
+  it('should have an image', function() {
+    expect(recipe1.image).to.equal(recipe1Image);
+  });
+
+  it('should be able to have a different image', function() {
+    expect(recipe2.image).to.equal(recipe2Image);
+  });
 
 });
