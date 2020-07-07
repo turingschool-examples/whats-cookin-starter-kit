@@ -13,4 +13,11 @@ describe('User', function() {
     expect(User).to.be.a('function');
   });
 
+  it('should have favorite recipes', function() {
+    expect(user.favoriteRecipes).to.deep.equal([]);
+  });
+
+  // it('should ', function() {
+  //
+  // });
 })
