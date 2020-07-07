@@ -1,5 +1,7 @@
 class Recipe {
-  constructor() {}
+  constructor() {
+    s;
+  }
 }
 
 module.exports = Recipe;
