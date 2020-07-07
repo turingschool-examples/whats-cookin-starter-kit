@@ -1,5 +1,6 @@
 const usersData = require('../data/users.js');
 const Pantry = require('../src/pantry.js');
+const Recipe = require('./recipe.js');
 class User {
   constructor(userData) {
     this.name = this.checkIfString(userData.name);
@@ -15,6 +16,12 @@ class User {
 
   checkIfNumber(data) {
     return typeof data === 'number' ? data : Date.now();
+  }
+
+  chooseFavoriteRecipe(recipe) {
+    if (recipe instanceof Recipe) {
+      this.favoriteRecipes.push(recipe);
+    }
   }
 }
 
