@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const Pantry = require('../src/Pantry')
+const Pantry = require('../src/Pantry');
 const Ingredient = require('../src/Ingredient');
 const pantryIngredients = [
   {
