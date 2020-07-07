@@ -34,4 +34,9 @@ describe('user', () => {
     expect(user.favoriteRecipes).to.be.an('array');
     expect(user.favoriteRecipes).to.deep.equal([]);
   });
+
+  it('should have a way of tracking user\'s recipes to cook', () => {
+    expect(user.recipesToCook).to.be.an('array');
+    expect(user.recipesToCook).to.deep.equal([]);
+  });
 });
