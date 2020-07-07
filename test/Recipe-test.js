@@ -113,4 +113,11 @@ describe('Recipe', function () {
         ];
         expect(recipe.tags).to.deep.equal(expectedTags);
     });
+
+    describe('getIngredientCost', function () {
+        it('should get cost of all ingredients', function () {
+            const expectedCost = (142 * 1.5) + (582 * 0.5);
+            expect(recipe.getIngredientCost()).to.equal(expectedCost);
+        });
+    });
     });
