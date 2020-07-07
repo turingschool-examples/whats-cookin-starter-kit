@@ -16,4 +16,8 @@ it('should be an instance of User', function() {
     expect(pantry).to.be.an.instanceof(Pantry);
 });
 
+it('should have a property of ingredients', function () {
+    expect(pantry.ingredients).to.deep.equal([]);
+  });
+
   });
