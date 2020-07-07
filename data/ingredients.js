@@ -1,3 +1,5 @@
+const ingredients = require("../test/ingredientsSampleData")
+
 let ingredientsData = [
   {
     "id": 20081,
@@ -1233,3 +1235,5 @@ let ingredientsData = [
     "estimatedCostInCents": 613
   }
 ]
+
+module.exports = ingredientsData;

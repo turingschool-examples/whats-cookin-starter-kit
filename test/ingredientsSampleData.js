@@ -31,4 +31,6 @@ const ingredients = [
   },
 ]
 
-module.export = ingredients;
+if (typeof module !== 'undefined') {
+module.exports = ingredients;
+}
