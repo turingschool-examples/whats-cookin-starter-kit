@@ -1,18 +1,40 @@
 const expect = require('chai').expect;
-
+const Pantry = require('../src/Pantry')
 const Ingredient = require('../src/Ingredient');
+const pantryIngredients = [
+  {
+    "id": 20081,
+    "name": "wheat flour",
+    "estimatedCostInCents": 142
+  },
+  {
+    "id": 18372,
+    "name": "bicarbonate of soda",
+    "estimatedCostInCents": 582
+  },
+  {
+    "id": 1123,
+    "name": "eggs",
+    "estimatedCostInCents": 472
+  }
+];
 
 describe('Pantry', function() {
 
-  let ingredient;
+
+  let pantry;
   beforeEach(function() {
-    pantry = new Pantry();
+    pantry = new Pantry(pantryIngredients);
   });
 
-  it.skip('should be a function', function() {
+  it('should be a function', function() {
     expect(Pantry).to.be.a('function');
-
   });
+
+  it('should have ingredients', function() {
+    expect(pantry.ingredients).to.equal(pantryIngredients);
+  });
+
 
   // instance
   // intialize
