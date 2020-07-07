@@ -10,17 +10,16 @@ class Recipe {
   }
 
   getCost() { 
-  //   console.log(this.ingredientsData)
-  //   let costCounter = 0;
-  //   this.ingredients.forEach(ingredient => {
-  //     this.ingredientsData.find(item => {
-  //       if (item.id === ingredient.id) {
-  //         costCounter += item.estimatedCostInCents * ingredient.quantity.amount;
-  //       }
-  //     })
-  //   })
-  //   return costCounter;
-  // }
+    let costCounter = 0;
+    this.ingredients.forEach(ingredient => {
+      this.ingredientsData.find(item => {
+        if (item.id === ingredient.id) {
+          costCounter += item.estimatedCostInCents * ingredient.quantity.amount;
+        }
+      })
+    })
+    return costCounter;
+  }
 
 }
 
