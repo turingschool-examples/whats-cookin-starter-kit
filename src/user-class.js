@@ -1,5 +1,6 @@
 class User {
-  constructor() {
+  constructor(userData) {
+    this.name = userData.name;
     this.favoriteRecipes = [];
   }
 }
