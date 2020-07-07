@@ -84,4 +84,17 @@ describe('Recipe', function () {
         ];
         expect(recipe.ingredients).to.deep.equal(expectedIngredients);
     });
+
+    it('should have instructions', function () {
+        var expectedInstructions = [{
+                'instruction': 'In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.',
+                'number': 1
+            },
+            {
+                'instruction': 'Add egg and vanilla and mix until combined.',
+                'number': 2
+            }
+        ];
+        expect(recipe.instructions).to.deep.equal(expectedInstructions);
+    });
     });
