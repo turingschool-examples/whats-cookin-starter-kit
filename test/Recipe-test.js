@@ -57,4 +57,13 @@ describe('Recipe', function () {
     it('should be an instance of Recipe', function () {
         expect(recipe).to.be.an.instanceof(Recipe);
     });
+
+    it('should have an id', function () {
+        expect(recipe.id).to.equal(595736);
+    });
+
+    it('should have an image src', function () {
+        expect(recipe.image).to.deep.equal('test-src');
+    });
+
     });
