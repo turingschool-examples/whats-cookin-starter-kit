@@ -1,3 +1,5 @@
+let ingredients = require('../data/ingredients');
+
 class User {
   constructor(id, name, pantry) {
     this.id = id;
@@ -55,16 +57,24 @@ class User {
   // }
 
   searchSaved(searchItem) {
-   return this.favRecipes.filter(recipe => {
-      return recipe.name.includes(searchItem)    
-
-      || recipe.ingredients.find(ingredient => {
-        return ingredient.name.includes(searchItem)
+  // this.favRecipes.filter(recipe => {
+  //     return recipe.name.includes(searchItem)    
+    let ingredientId = null;
+    ingredients.forEach((ingredient) => {
+      if (searchItem.includes(ingredient.name)) {
+        ingredientId = ingredient.id;
+      }
+    })
+    let searchList = [];
+    this.favRecipes.forEach(recipe => {
+      recipe.ingredients.forEach(item => {
+        if (ingredientId === item.id) {
+          searchList.push(recipe)
+        }
       })
-      // if (recipe.name === searchItem || recipe.tags === searchItem) {
-      //   return recipe
-      //   }
-    });
+    })
+    console.log(searchList)
+    return searchList;
   }
 }
 
