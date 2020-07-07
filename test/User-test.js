@@ -1,0 +1,62 @@
+const chai = require('chai');
+const expect = chai.expect;
+const User = require('../src/User');
+const recipeSample = require('../test/recipeSampleData');
+const userSample = require('../test/userSampleData');
+const ingredientSample = require('../test/ingredientsSampleData');
+
+describe('User', () => {
+  let user, recipe;
+
+  beforeEach(() => {
+    user = new User(userSample[0].id, userSample[0].name, userSample[0].pantry);
+    // recipe = 'Loaded Chocolate Chip Pudding Cookie Cups';
+    recipe = recipeSample;
+  })
+
+  it('Should be a function', () => {
+    expect(User).to.be.a('function');
+  })
+
+  it('Should be an instance of User', () => {
+    expect(user).to.be.an.instanceOf(User);
+  })
+
+//   it('Should throw an error if instance of user has no arguements', () => {
+//     expect(() => { new User() }).to.throw(Error);
+//   })
+
+  it('Should hold on to data from the user', () => {
+    expect(user.id).to.equal(1)
+    expect(user.name).to.equal('Saige O\'Kon')
+    expect(user.pantry).to.deep.equal(userSample[0].pantry)
+    expect(user.favRecipes).to.deep.equal([]);
+    expect(user.recipesToCook).to.deep.equal([]);
+  })
+
+  it('Should be able to update favorite list', () => {
+    expect(user.favRecipes).to.deep.equal([]);
+    user.updateFavorites(recipe[0]);
+    expect(user.favRecipes).to.deep.equal([recipe[0]]);
+    user.updateFavorites(recipe[0]);
+    expect(user.favRecipes).to.deep.equal([]);
+  })
+
+  it('Should be able to update recipes to cook', () => {
+    expect(user.recipesToCook).to.deep.equal([]);
+    user.updateRecipesToCook(recipe[0]);
+    expect(user.recipesToCook).to.deep.equal([recipe[0]]);
+    user.updateRecipesToCook(recipe[0]);
+    expect(user.recipesToCook).to.deep.equal([]);
+  })
+
+  it('Should be able to filter favorite recipes by tag', () => {
+    user.updateFavorites(recipe[0]);
+    expect(user.filterFavRecipes("snack")).to.deep.equal([recipe[0]]);
+  })
+
+  it('Should be able to filter recipes to cook by tag', () => {
+    user.updateRecipesToCook(recipe[0]);
+    expect(user.filterRecipesToCook("snack")).to.deep.equal([recipe[0]]);
+  })
+})
