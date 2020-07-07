@@ -88,8 +88,8 @@ describe('User', () => {
 
   it('Should be able to search saved recipes by name or ingredient', () => {
     user.updateSavedRecipes(user.favRecipes, recipe[0]);
-    expect(user.searchSaved('Chip')).to.deep.equal([recipe[0]]);
-    // expect(user.searchSaved('wheat flour')).to.deep.equal([recipe[0]]);
+    // expect(user.searchSaved('Chip')).to.deep.equal([recipe[0]]);
+    expect(user.searchSaved('wheat flour')).to.deep.equal([recipe[0]]);
   })
 
 })
