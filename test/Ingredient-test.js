@@ -35,11 +35,11 @@ describe('Ingredient', function() {
   });
 
   it('should have a price', function() {
-    expect(ingredient.price).to.equal('142');
+    expect(ingredient.estimatedCostInCents).to.equal(142);
   });
 
   it('should have another price', function() {
-    expect(ingredient2.price).to.equal('582');
+    expect(ingredient2.estimatedCostInCents).to.equal(582);
   });
 
   // instance
