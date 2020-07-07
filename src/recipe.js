@@ -14,6 +14,10 @@ class Recipe {
       return list += `${direction.number}: ${direction.instruction}<br>`
     }, '');
   }
+
+  toggleFavorite() {
+    this.isFavorite = this.isFavorite ? false : true;
+  }
 }
 
 module.exports = Recipe;

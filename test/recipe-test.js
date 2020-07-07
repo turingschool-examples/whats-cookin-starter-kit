@@ -180,8 +180,23 @@ describe('recipe', () => {
       name: 'humpty dumpty'
     };
     const humpty = new Recipe(egg);
-    const instruction = humpty.giveInstructions();
-    expect(instruction).to.equal('1: Get two chickens and set the mood' +
+    expect(humpty.giveInstructions()).to.equal('1: Get two chickens and set the mood' +
       '<br>2: Leave them alone<br>');
+  });
+
+  it.skip('should be able to return the total cost of its ingredients', () => {
+    expect(recipe.getTotalCost()).to.equal()
+  });
+
+  it('should be able to become a favorite', () => {
+    recipe.toggleFavorite();
+    expect(recipe.isFavorite).to.equal(true);
+  });
+
+  it('should be able to toggle isFavorite back to false', () => {
+    recipe.toggleFavorite();
+    expect(recipe.isFavorite).to.equal(true);
+    recipe.toggleFavorite();
+    expect(recipe.isFavorite).to.equal(false);
   });
 });
