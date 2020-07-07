@@ -1,8 +1,9 @@
 /* eslint-disable */
 
 class Recipe {
-    constructor() {
-
+        constructor(recipeData) {
+            this.id = recipeData.id;
+            this.image = recipeData.image;
     }
 }
 
