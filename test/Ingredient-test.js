@@ -26,6 +26,14 @@ describe('Ingredient', function() {
     expect(ingredient2g.id).to.equal(18372);
   });
 
+  it('should have a name', function() {
+    expect(ingredient.name).to.equal('wheat flour');
+  });
+
+  it('should have another name', function() {
+    expect(ingredient2.name).to.equal('bicarbonate of soda');
+  });
+  
   // instance
   // intialize
   // has id / different id
