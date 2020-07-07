@@ -97,4 +97,20 @@ describe('Recipe', function () {
         ];
         expect(recipe.instructions).to.deep.equal(expectedInstructions);
     });
+
+    it('should have a name', function () {
+        expect(recipe.name).to.deep.equal('Loaded Chocolate Chip Pudding Cookie Cups');
+    });
+
+    it('should have tags', function () {
+        var expectedTags = [
+            'antipasti',
+            'starter',
+            'snack',
+            'appetizer',
+            'antipasto',
+            'hor d\'oeuvre'
+        ];
+        expect(recipe.tags).to.deep.equal(expectedTags);
+    });
     });
