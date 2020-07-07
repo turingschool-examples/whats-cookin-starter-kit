@@ -184,8 +184,8 @@ describe('recipe', () => {
       '<br>2: Leave them alone<br>');
   });
 
-  it.skip('should be able to return the total cost of its ingredients', () => {
-    expect(recipe.getTotalCost()).to.equal()
+  it('should be able to return the total cost of its ingredients', () => {
+    expect(recipe.getTotalCost()).to.equal(59.21);
   });
 
   it('should be able to become a favorite', () => {

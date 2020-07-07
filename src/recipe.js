@@ -1,3 +1,4 @@
+const ingredientsData = require('../data/ingredients.js');
 class Recipe {
   constructor(recipe) {
     this.id = recipe.id;
@@ -17,6 +18,24 @@ class Recipe {
 
   toggleFavorite() {
     this.isFavorite = this.isFavorite ? false : true;
+  }
+
+  getTotalCost() {
+    const ingredientList = this.createIngredientList();
+
+    return ingredientList.reduce((totalPrice, ingredient) => {
+      return totalPrice += (ingredient.estimatedCostInCents / 100);
+    }, 0);
+  }
+
+  createIngredientList() {
+    return this.ingredients.reduce((ingredientList, ingredient) => {
+      return ingredientList.concat(this.checkIngredientMatch(ingredient));
+    }, []);
+  }
+
+  checkIngredientMatch(recipeIngredient) {
+    return ingredientsData.find(ingredient => ingredient.id === recipeIngredient.id);
   }
 }
 
