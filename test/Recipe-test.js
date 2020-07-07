@@ -27,11 +27,12 @@ describe('Recipe', () => {
     expect(recipe.name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups")
     expect(recipe.instructions).to.deep.equal(recipeSample[0].instructions)
     expect(recipe.tags).to.deep.equal(recipeSample[0].tags);
+    expect(recipe.ingredientsData).to.deep.equal(ingredientSample)
     expect(recipe.image).to.deep.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg");
   })
 
   it('Should return the costs of its ingredients', () => {
-    expect(recipe.getCost()).to.equal(10);
+    expect(recipe.getCost()).to.equal(976);
 
   })
 
