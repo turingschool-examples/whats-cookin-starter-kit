@@ -90,6 +90,28 @@ describe('Recipe', function() {
     const recipe2 = new Recipe(id, image, ingredients, instructions, name, tags2);
 
     expect(recipe2.tags).to.deep.equal(['other']);
-  })
+  });
 
-})
+  it('should be able to map tags to their corresponding category', function() {
+    const category = 'Entree';
+    const categoryToTags = recipe.mapCategoryToTag(category);
+
+    expect(categoryToTags).to.deep.equal(['lunch', 'main course', 'main dish', 'dinner']);
+  });  
+
+  it('should be able to check if it belongs to a given category', function () {
+    const category = 'Breakfast';
+    const categoryToTags = recipe.mapCategoryToTag(category);
+    const isRecipeInCategory = recipe.checkRecipeCategory(categoryToTags);
+
+    expect(isRecipeInCategory).to.equal(true);
+  });
+
+  it('should be able to check if it does not belong to a given category', function() {
+    const category = 'Entree';
+    const categoryToTags = recipe.mapCategoryToTag(category);
+    const isRecipeInCategory = recipe.checkRecipeCategory(categoryToTags);
+
+    expect(isRecipeInCategory).to.equal(false);
+  });
+});

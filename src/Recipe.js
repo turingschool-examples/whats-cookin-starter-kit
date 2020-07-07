@@ -20,19 +20,24 @@ class Recipe {
       Other: ['other']
     }
   }
+
+  //when filtering recipes by category, need to call 2 methods below together (return value from mapCategoryToTag (tags array) gets passed into checkRecipeCategory)
+  mapCategoryToTag(category) {
+    return this.categoryToTagMap[category];
+  };
+
+  checkRecipeCategory(categoryTags) {
+    let result = false; 
+    this.tags.forEach(tag => {
+      if (categoryTags.includes(tag)) {
+        result = true;
+      };
+    });
+    return result;  
+  }
 }
 
 
 if (typeof module !== 'undefined') {
   module.exports = Recipe;
 }
-
-//**If pass in a tag that isn't mapped to a category, default the category to Other
-
-//A user should be able to filter recipes by type / tag.
-
-//  Method: checkRecipe(category): given a category, call helper method below to get back the array of tags associated with that category; then return true or false based on whether the recipe contains those tags
-
-// Helper method: mapCategoryToTag(category): Takes in category, uses categoryToTagMap property to return the array of tags associated with that category
-
-// Write tests for properties & method above
