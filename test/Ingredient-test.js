@@ -18,7 +18,20 @@ describe('Ingredient', function () {
     it('should be a function', function () {
         expect(Ingredient).to.be.a('function');
     });
-    it('should be an instance of Recipe', function () {
-        expect(recipe).to.be.an.instanceof(Recipe);
+    
+    it('should be an instance of Ingredient', function () {
+        expect(ingredient).to.be.an.instanceof(Ingredient);
+    });
+
+    it('should have an id', function () {
+        expect(ingredient.id).to.deep.equal(20081);
+    });
+
+    it('should have a name', function () {
+        expect(ingredient.name).to.deep.equal('wheat flour');
+    });
+
+    it('should have an estimatedCostInCents property', function () {
+        expect(ingredient.estimatedCostInCents).to.deep.equal(142);
     });
     });
