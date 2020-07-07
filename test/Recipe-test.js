@@ -57,8 +57,8 @@ describe('Recipe', function() {
 
   let recipe, recipe2;
   beforeEach(function() {
-    recipe1 = new Recipe(595736, recipe1Image, recipe1Ingredients);
-    recipe2 = new Recipe(678353, recipe2Image, recipe2Ingredients);
+    recipe1 = new Recipe(595736, recipe1Image, recipe1Ingredients, recipe1Tags);
+    recipe2 = new Recipe(678353, recipe2Image, recipe2Ingredients, recipe2Tags);
   });
 
   it('should be a function', function() {
