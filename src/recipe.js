@@ -6,6 +6,13 @@ class Recipe {
     this.instructions = recipe.instructions;
     this.name = recipe.name;
     this.tags = recipe.tags;
+    this.isFavorite = false;
+  }
+
+  giveInstructions() {
+    return this.instructions.reduce((list, direction) => {
+      return list += `${direction.number}: ${direction.instruction}<br>`
+    }, '');
   }
 }
 

@@ -132,14 +132,14 @@ describe('recipe', () => {
     expect(Recipe).to.be.a('function');
   });
 
-  it('should have tags', () => {
-    expect(recipe.tags).to.be.an('array');
-    expect(recipe.tags).to.deep.equal(cookieCake.tags);
+  it('should have an ID', () => {
+    expect(recipe.id).to.be.a('number');
+    expect(recipe.id).to.deep.equal(cookieCake.id);
   });
 
-  it('should have a name', () => {
-    expect(recipe.name).to.be.a('string');
-    expect(recipe.name).to.deep.equal(cookieCake.name);
+  it('should have an image', () => {
+    expect(recipe.image).to.be.a('string');
+    expect(recipe.image).to.deep.equal(cookieCake.image);
   });
 
   it('should have ingredients', () => {
@@ -147,18 +147,41 @@ describe('recipe', () => {
     expect(recipe.ingredients).to.deep.equal(cookieCake.ingredients);
   });
 
-  it('should have an ID', () => {
-    expect(recipe.id).to.be.a('number');
-    expect(recipe.id).to.deep.equal(cookieCake.id);
-  });
-
   it('should have instructions', () => {
     expect(recipe.instructions).to.be.an('array');
     expect(recipe.instructions[1]).to.deep.equal(cookieCake.instructions[1]);
   });
 
-  it('should have an image', () => {
-    expect(recipe.image).to.be.a('string');
-    expect(recipe.image).to.deep.equal(cookieCake.image);
-  })
+  it('should have a name', () => {
+    expect(recipe.name).to.be.a('string');
+    expect(recipe.name).to.deep.equal(cookieCake.name);
+  });
+
+  it('should have tags', () => {
+    expect(recipe.tags).to.be.an('array');
+    expect(recipe.tags).to.deep.equal(cookieCake.tags);
+  });
+
+  it('should not be a favorite by default', () => {
+    expect(recipe.isFavorite).to.equal(false);
+  });
+
+  it('should be able to return its instructions', () => {
+    const egg = {
+      id: 0, 
+      image: 'egg', 
+      ingredients: ['shell', 'yolk'], 
+      instructions: [{
+        'instruction': 'Get two chickens and set the mood', 'number': 1
+      }, {
+        'instruction': 'Leave them alone', 'number': 2
+      }], 
+      tags: [], 
+      name: 'humpty dumpty'
+    };
+    const humpty = new Recipe(egg);
+    const instruction = humpty.giveInstructions();
+    expect(instruction).to.equal('1: Get two chickens and set the mood' +
+      '<br>2: Leave them alone<br>');
+  });
 });
