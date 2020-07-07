@@ -23,7 +23,7 @@ describe('Ingredient', function() {
   });
 
   it('should accept another id', function() {
-    expect(ingredient2g.id).to.equal(18372);
+    expect(ingredient2.id).to.equal(18372);
   });
 
   it('should have a name', function() {
@@ -33,7 +33,15 @@ describe('Ingredient', function() {
   it('should have another name', function() {
     expect(ingredient2.name).to.equal('bicarbonate of soda');
   });
-  
+
+  it('should have a price', function() {
+    expect(ingredient.price).to.equal('142');
+  });
+
+  it('should have another price', function() {
+    expect(ingredient2.price).to.equal('582');
+  });
+
   // instance
   // intialize
   // has id / different id
