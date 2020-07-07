@@ -22,5 +22,22 @@ describe('User', () => {
     user.removeFavoriteRecipe(595736);
 
     expect(user.favoriteRecipes).to.deep.equal([]);
-  })
+  });
+
+  it('Should be able to add a recipe to cook', () => {
+    const user = new User();
+
+    user.addRecipeToCook(595736);
+
+    expect(user.recipesToCook).to.deep.equal([595736]);
+  });
+
+  it('Should be able to remove a recipe to cook', () => {
+    const user = new User();
+
+    user.addRecipeToCook(595736);
+    user.removeRecipeToCook(595736);
+
+    expect(user.recipesToCook).to.deep.equal([]);
+  });
 });
