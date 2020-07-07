@@ -66,4 +66,22 @@ describe('Recipe', function () {
         expect(recipe.image).to.deep.equal('test-src');
     });
 
+    it('should have ingredients', function () {
+        var expectedIngredients = [{
+                'id': 20081,
+                'quantity': {
+                    'amount': 1.5,
+                    'unit': 'c'
+                }
+            },
+            {
+                'id': 18372,
+                'quantity': {
+                    'amount': 0.5,
+                    'unit': 'tsp'
+                }
+            }
+        ];
+        expect(recipe.ingredients).to.deep.equal(expectedIngredients);
+    });
     });
