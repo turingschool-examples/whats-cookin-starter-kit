@@ -24,6 +24,15 @@ describe('User', () => {
     expect(user.favoriteRecipes).to.deep.equal([]);
   });
 
+  it('Should not add a duplicate favorite recipe', () => {
+    const user = new User();
+
+    user.addFavoriteRecipe(595736);    
+    user.addFavoriteRecipe(595736);
+
+    expect(user.favoriteRecipes).to.deep.equal([595736]);  
+  });
+
   it('Should be able to add a recipe to cook', () => {
     const user = new User();
 
@@ -39,5 +48,14 @@ describe('User', () => {
     user.removeRecipeToCook(595736);
 
     expect(user.recipesToCook).to.deep.equal([]);
+  });
+
+  it('Should not add a duplicate recipe to cook', () => {
+    const user = new User();
+
+    user.addRecipeToCook(595736);    
+    user.addRecipeToCook(595736);
+
+    expect(user.recipesToCook).to.deep.equal([595736]);  
   });
 });

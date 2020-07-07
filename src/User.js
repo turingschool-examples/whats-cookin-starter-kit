@@ -8,7 +8,9 @@ class User {
   };
 
   addFavoriteRecipe(id) {
-    this.favoriteRecipes.push(id);
+    if (this.favoriteRecipes.includes(id) === false) {
+        this.favoriteRecipes.push(id);  
+    };
   };
 
   removeFavoriteRecipe(id) {
@@ -17,7 +19,9 @@ class User {
   };
 
   addRecipeToCook(id) {
-    this.recipesToCook.push(id);
+    if (this.recipesToCook.includes(id) === false) {
+        this.recipesToCook.push(id);       
+    }
   };
 
   removeRecipeToCook(id) {
