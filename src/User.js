@@ -7,12 +7,14 @@ class User {
     this.favoriteRecipes = [];
   }
 
-  addFavoriteRecipes() {
+  addFavoriteRecipes(recipe) {
     //add to / remove from the user's favoriteRecipes (an array)
+    // this.addFavoriteRecipes.push(recipe);
   }
 
   removeFavoriteRecipes() {
-
+    //possibly use filter to return an array that doesn't include recipe
+    //reassign favorite recipes to that array
   }
 
   addRecipeToCook() {
