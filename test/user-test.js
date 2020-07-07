@@ -20,6 +20,11 @@ describe('user', () => {
     expect(user.name).to.deep.equal(usersData[0].name);
   });
 
+  it('should have an ID', () => {
+    expect(user.id).to.be.a('number');
+    expect(user.id).to.deep.equal(usersData[0].id);
+  });
+
   it('should have an array of favorite recipes', () => {
     expect(user.favoriteRecipes).to.be.an('array');
     expect(user.favoriteRecipes).to.deep.equal([]);
