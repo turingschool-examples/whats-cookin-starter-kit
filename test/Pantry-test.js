@@ -16,5 +16,7 @@ describe('Pantry', () => {
   it('should be an instance of Card', () => {
     expect(pantry).to.be.an.instanceof(Pantry);
   });
+  
+  it('should be able to have a ')
 });
 
