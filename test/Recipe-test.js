@@ -60,7 +60,7 @@ describe('Recipe', function () {
   it('should be an instance of Recipe', function () {
     expect(recipe).to.be.an.instanceOf(Recipe);
   });
-  
+
   // sad path id for non number id's
   it('should have an id', function () {
     expect(recipe.id).to.equal(595736);
@@ -124,4 +124,5 @@ describe('Recipe', function () {
   it('should have a list of tags', function () {
     expect(recipe.tags).to.deep.equal(['antipasti', 'starter', 'snack', 'appetizer']);
   });
+  
 });
