@@ -1,3 +1,5 @@
+//
+
 class Recipe {
   constructor(id, image, ingredients, instructions, name, tags) {
     this.id = id;
@@ -6,6 +8,15 @@ class Recipe {
     this.instructions = instructions;
     this.name = name;
     this.tags = tags;
+  }
+
+  getIngredientName(ingredientId) {
+    ingredientsData.forEach(ingredient => {
+
+    })
+    // sort through ingredient data file
+    // if id of ingredient equals id in data filled
+    // return name of ingredient
   }
 
   calculateCost() {
@@ -19,6 +30,14 @@ class Recipe {
   returnInstructions() {
     //  return this.ingredients
     // maybe only return
+  }
+
+  checkIngredients() {
+    // return true or false if recipe includes ingredient input
+  }
+
+  checkTags() {
+    // return true or false if recipe inlcudes tag input
   }
 }
 
