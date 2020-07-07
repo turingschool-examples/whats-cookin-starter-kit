@@ -83,4 +83,12 @@ describe('Recipe', function() {
     expect(recipe2.image).to.equal(recipe2Image);
   });
 
+  it('should have ingredients', function() {
+    expect(recipe1.ingredients).to.equal(recipe1Ingredients);
+  })
+
+  it('should have ingredients', function() {
+    expect(recipe2.ingredients).to.equal(recipe2Ingredients);
+  })
+
 });
