@@ -5,7 +5,20 @@ class Recipe {
     this.ingredients = ingredients; 
     this.instructions = instructions;
     this.name = name;
-    this.tags = tags; 
+    if (tags === undefined || (Array.isArray(tags) && tags.length === 0)) {
+      this.tags = ['other'];
+    } else {
+      this.tags = tags;
+    };
+    this.categoryToTagMap = {
+      AppetizersSnacks: ['antipasti', 'starter', 'snack', 'appetizer', 'antipasto', 'hor d\'oeuvre'],
+      Entree: ['lunch', 'main course', 'main dish', 'dinner'],
+      SaucesDips: ['sauce', 'condiment', 'dip', 'spread'],
+      SideDish: ['side dish'], 
+      Breakfast: ['morning meal', 'brunch', 'breakfast'],
+      Salad: ['salad'],
+      Other: ['other']
+    }
   }
 }
 
@@ -13,12 +26,10 @@ class Recipe {
 if (typeof module !== 'undefined') {
   module.exports = Recipe;
 }
-// A user should be able to filter recipes by type / tag.
-// Create properties:
 
-// []id, image, ingredients, instructions, name, tags all passed into constructor
+//**If pass in a tag that isn't mapped to a category, default the category to Other
 
-// Possible need categoryToTagMap property: object that links categories to tags: key will be category, values will be an array of the tags included in that category(e.g.antipasti, starter, snack, appetizer, antipasto, hor d'oeuvre are always listed together; could correspond to just "Appetizer" category)
+//A user should be able to filter recipes by type / tag.
 
 //  Method: checkRecipe(category): given a category, call helper method below to get back the array of tags associated with that category; then return true or false based on whether the recipe contains those tags
 

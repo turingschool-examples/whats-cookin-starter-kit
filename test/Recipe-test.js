@@ -66,4 +66,30 @@ describe('Recipe', function() {
     expect(recipe.tags).to.deep.equal(tags); 
   }); 
 
+  it('should contain a key that maps categories to their corresponding tags', function() {
+    const categoryToTagMap = {
+      AppetizersSnacks: ['antipasti', 'starter', 'snack', 'appetizer', 'antipasto', 'hor d\'oeuvre'],
+      Entree: ['lunch', 'main course', 'main dish', 'dinner'],
+      SaucesDips: ['sauce', 'condiment', 'dip', 'spread'],
+      SideDish: ['side dish'],
+      Breakfast: ['morning meal', 'brunch', 'breakfast'],
+      Salad: ['salad'],
+      Other: ['other']
+    }
+    expect(recipe.categoryToTagMap.AppetizersSnacks).to.deep.equal(['antipasti', 'starter', 'snack', 'appetizer', 'antipasto', 'hor d\'oeuvre'])
+  });
+
+  it('should default to a tag of other if no tag is passed in', function() {
+    const recipe2 = new Recipe(id, image, ingredients, instructions, name);
+    
+    expect(recipe2.tags).to.deep.equal(['other']);
+  });
+
+  it('should default to a tag of other if an empty tag array is passed in', function () {
+    const tags2 = [];
+    const recipe2 = new Recipe(id, image, ingredients, instructions, name, tags2);
+
+    expect(recipe2.tags).to.deep.equal(['other']);
+  })
+
 })
