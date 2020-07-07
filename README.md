@@ -1,8 +1,10 @@
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
+
 
 <!-- <br />
 <p align="center">
@@ -39,12 +41,14 @@
 * [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
 
+
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 ![Whats Cooking screenshot](url)
 
 Mod 2 paired project Abstract statement
+
 
 
 <!-- GETTING STARTED -->
@@ -106,6 +110,16 @@ The details of this project are outlined in the <a href="https://frontend.turing
 }
 ```
 
+### MVP
+Fully functioning user class which create a user profile. The user profile includes: favorite recipes (add to / remove from the user’s favoriteRecipes), option to cook a recipe that week (add to user recipesToCook), method to filter user favoriteRecipes or recipesToCook by type, search any of their saved recipes by name or ingredient.
+
+Fully functioning recipe class which creates recipe cards and stores all relevant recipe information. Users should be able to view a list of recipes. A user should be able to filter recipes by type / tag, should be able to search recipes by ingredients and a recipe should hold on to all its information (provided in the data file). It should also be able to get the cost of its ingredients and get its directions / instructions.
+
+A fully functioning pantry class which holds all of the owner's ingredients and amount of ingredients. A user should be able to determine whether their pantry has enough ingredients to cook a given meal, determine the amount of ingredients still needed to cook a given meal (based on what’s in the pantry).
+
+A fully functioning ui which can switch between a home page filled with recipe cards. A pantry page which lists all user ingredients and recommend recipes based on those ingredients.
+ ..
+
 <!-- ROADMAP -->
 ## Roadmap
 
@@ -161,3 +175,4 @@ Project Link: [https://github.com/jordy1611/whats-cookin-JS-JS-KS](https://githu
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 <!-- [linkedin-url]: https://linkedin.com/in/linkHere -->
 <!-- [product-screenshot]: images/screenshot.png -->
+
