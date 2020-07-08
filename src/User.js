@@ -78,6 +78,17 @@ class User {
 				}})
 			return foundRecipes;
 		}, []);
+  };
+  
+  filterRecipesToCookByIngredient(item) {
+		const inputtedItemID = (ingredientInfo.find(ingredient => ingredient.name === item)).id
+		return this.recipesToCook.reduce((foundRecipes, recipe) => {
+			recipe.ingredients.find(ingredient => {
+				if (ingredient.id === inputtedItemID) {
+					foundRecipes.push(recipe)
+				}})
+			return foundRecipes;
+		}, []);
 	};
 };
 

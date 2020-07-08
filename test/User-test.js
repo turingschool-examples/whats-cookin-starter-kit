@@ -118,4 +118,14 @@ describe('User', () => {
 		expect(user.filterFavoriteRecipesByIngredient('eggs')).to.deep.equal([recipeInfo[0], recipeInfo[3]]);
   });
 
+  it('Should be able to filter recipes to cook by ingredient', () => {
+		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+
+		user.addRecipeToCook(recipeInfo[0]);
+		user.addRecipeToCook(recipeInfo[3]);
+    user.addRecipeToCook(recipeInfo[7]);
+
+		expect(user.filterRecipesToCookByIngredient('eggs')).to.deep.equal([recipeInfo[0], recipeInfo[3]]);
+  });
+
 });
