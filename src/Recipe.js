@@ -33,6 +33,14 @@ class Recipe {
   checkRecipeIngredients(ingredientSearchedId) {
     return this.ingredients.some(ingredient => ingredient.id === ingredientSearchedId); 
   }
+
+  calculateIngredientsCost(ingredientsData) {
+    return this.ingredients.reduce((totalIngredientsCost, ingredient) => {
+      let matchingIngredient = ingredientsData.find(ingredientCost => ingredientCost.id === ingredient.id) || {estimatedCostInCents: 100};
+      let ingredientCost = matchingIngredient.estimatedCostInCents
+      return totalIngredientsCost + ingredientCost; 
+    }, 0);
+  }
 }
 
 
