@@ -76,6 +76,10 @@ class Pantry {
   }
 
   useIngredients = (recipe) => {
+    if(this.findMissingIngredients(recipe) !== 'All the required ingredients are in the pantry') {
+      return 'You do not have the required ingredients'
+    }
+
     recipe.requiredIngredients.forEach(ingredient => {
       let pantryItem = this.findItem(this.supplies, ingredient);
       pantryItem.amount -= ingredient.amount;

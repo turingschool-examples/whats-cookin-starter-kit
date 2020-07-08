@@ -25,8 +25,8 @@ describe('Pantry', () => {
       'id': 12283,
       'img': 'img',
       'ingredients': [
-        { id: 11477, amount: 4 },
-        { id: 11297, amount: 4 },
+        { id: 20081, amount: 5 },
+        { id: 11215, amount: 5 },
       ],
       "name": "A perfect egg",
       "tags": ["beautiful", "satisfying"]
@@ -126,7 +126,13 @@ describe('Pantry', () => {
 
   it('should be able to use ingredients from the pantry', () => {
     pantry.useIngredients(aPerfectEgg);
-    expect(pantry.supplies[0].amount).to.equal(0);
-    expect(pantry.supplies[1].amount).to.equal(0);
+    expect(pantry.supplies[3].amount).to.equal(0);
+    expect(pantry.supplies[4].amount).to.equal(0);
+  });
+  
+  it('should only be able to use ingredients if there are enough in pantry', () => {
+    pantry.useIngredients(greenHam);
+    expect(pantry.supplies[0].amount).to.equal(4);
+    expect(pantry.supplies[1].amount).to.equal(4);
   });
 });
