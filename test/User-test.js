@@ -18,4 +18,8 @@ describe('User', function () {
             it('should be an instance of User', function () {
                 expect(user).to.be.an.instanceof(User);
             });
+
+            it('should have a unique id', () => {
+                expect(user.id).to.equal(user.id);
+            })
             });

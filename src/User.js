@@ -1,7 +1,9 @@
 /* eslint-disable */
 
 class User {
-  constructor() {
+  constructor(id) {
+      this.id = id;
+
   }
 
 }
