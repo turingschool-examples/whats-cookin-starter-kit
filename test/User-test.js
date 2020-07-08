@@ -206,4 +206,9 @@ describe('User', function() {
   it('should start with no recipes to cook', function() {
     expect(user.recipesToCook.length).to.equal(0);
   })
+
+  it('should add a recipe to favorite recipes', function() {
+    user.addFavoriteRecipes(recipe1);
+    expect(user.favoriteRecipes).to.deep.equal([recipe1]);
+  });
 });

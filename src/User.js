@@ -8,7 +8,6 @@ class User {
   }
 
   addFavoriteRecipes(recipe) {
-    //add to / remove from the user's favoriteRecipes (an array)
     this.favoriteRecipes.push(recipe);
   }
 
