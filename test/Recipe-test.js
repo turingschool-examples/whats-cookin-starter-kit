@@ -110,6 +110,7 @@ describe("Round", function () {
   });
 
   it('should return its own instructions', function() { //need to change if price display is changed
-    expect(recipe.returnInstructions()).to.equal(11.96);
+    expect(recipe.returnInstructions()).to.deep.equal([instruction1, instruction2, instruction3]);
+    expect(recipe.returnInstructions().length).to.equal(3);
   })
 });

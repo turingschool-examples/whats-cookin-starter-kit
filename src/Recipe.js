@@ -54,13 +54,17 @@ class Recipe {
   }
 
   returnInstructions() {
+    return this.instructions;
     //  return this.ingredients
     // maybe only return
   }
 
-  checkIngredients() {
+  // checkIngredients(ingredient) {
+  //   this.ingredients.find(ingredientData => {
+  //
+  //   })
+  //   }
     // return true or false if recipe includes ingredient input
-  }
 
   checkTags() {
     // return true or false if recipe inlcudes tag input
