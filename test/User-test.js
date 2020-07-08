@@ -45,11 +45,18 @@ describe('User', function () {
             expect(user.favoriteRecipes).to.deep.equal([595736]);
         });
     });
-    
+
     describe('removeFavoriteRecipe', function () {
         it('should be able to remove a favorite recipe', () => {
             user.removeFavoriteRecipe(595736);
             expect(user.favoriteRecipes).to.deep.equal([]);
+        });
+    });
+
+    describe('addRecipesToCook', function () {
+        it('should be able to add a recipe to recipesToCook', () => {
+            user.addRecipesToCook(595736);
+            expect(user.recipesToCook).to.deep.equal([595736]);
         });
     });
     });

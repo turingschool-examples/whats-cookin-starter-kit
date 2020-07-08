@@ -22,6 +22,13 @@ class User {
     // #19
   }
 
+  addRecipesToCook(id) {
+    if (!this.recipesToCook.includes(id)) {
+      this.recipesToCook.push(id)
+    }
+    //#20
+  }
+
 }
 
 if (typeof module !== 'undefined') {
