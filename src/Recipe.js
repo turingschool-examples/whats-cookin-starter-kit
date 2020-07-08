@@ -1,4 +1,5 @@
-//
+// might need ingredient class
+const ingredientsData = require('../data/ingredients.js');
 
 class Recipe {
   constructor(id, image, ingredients, instructions, name, tags) {
@@ -10,10 +11,12 @@ class Recipe {
     this.tags = tags;
   }
 
-  getIngredientName(ingredientId) {
-    ingredientsData.forEach(ingredient => {
-
-    })
+  getIngredientName() {
+    console.log(ingredientsData[2]);
+    
+    // ingredientsData.forEach(ingredient => {
+    //   console.log('butts');
+    // })
     // sort through ingredient data file
     // if id of ingredient equals id in data filled
     // return name of ingredient
