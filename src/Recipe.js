@@ -22,19 +22,13 @@ class Recipe {
   }
 
   //when filtering recipes by category, need to call 2 methods below together (return value from mapCategoryToTag (tags array) gets passed into checkRecipeCategory)
-  mapCategoryToTag(category) {
-    return this.categoryToTagMap[category];
-  }
+  mapCategoryToTag = category => this.categoryToTagMap[category];
 
-  checkRecipeCategory(categoryTags) {
-    return this.tags.some(tag => categoryTags.includes(tag)); 
-  }
+  checkRecipeCategory = categoryTags => this.tags.some(tag => categoryTags.includes(tag)); 
 
-  checkRecipeIngredients(ingredientSearchedId) {
-    return this.ingredients.some(ingredient => ingredient.id === ingredientSearchedId); 
-  }
+  checkRecipeIngredients = ingredientSearchedId => this.ingredients.some(ingredient => ingredient.id === ingredientSearchedId); 
 
-  calculateIngredientsCost(ingredientsData) {
+  calculateIngredientsCost = ingredientsData => {
     return this.ingredients.reduce((totalIngredientsCost, ingredient) => {
       let matchingIngredient = ingredientsData.find(ingredientCost => ingredientCost.id === ingredient.id) || {estimatedCostInCents: 100};
       let ingredientCost = matchingIngredient.estimatedCostInCents
@@ -42,9 +36,7 @@ class Recipe {
     }, 0);
   }
 
-  retrieveRecipeInstructions() {
-    return this.instructions;
-  }
+  retrieveRecipeInstructions = () => this.instructions;
 }
 
 
