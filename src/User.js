@@ -21,8 +21,6 @@ class User {
       this.favoriteRecipes.push(recipe)
     }
   }
-
-
 }
 
 if (typeof module !== 'undefined') {
