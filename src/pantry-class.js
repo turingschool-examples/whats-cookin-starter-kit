@@ -1,7 +1,7 @@
 const Recipe = require('./recipe-class.js');
 class Pantry {
   constructor(pantry) {
-    this.ingredients = [];
+    this.supplies = [];
     Array.isArray(pantry) ? this.checkIngredients(pantry) : () => {};
   }
 
@@ -9,7 +9,7 @@ class Pantry {
     return pantry.forEach(ingredient => {
       if (typeof ingredient.ingredient === 'number' &&
         typeof ingredient.amount === 'number') {
-        this.ingredients.push(ingredient);
+        this.supplies.push(ingredient);
       }
     });
   }
@@ -22,7 +22,7 @@ class Pantry {
     let supplyList = [];
     
     for (let i = 0; i < recipe.requiredIngredients.length; i++) {
-      this.ingredients.forEach(ingredient => {
+      this.supplies.forEach(ingredient => {
         if (this.compareIngredients(recipe.requiredIngredients[i], ingredient)) {
           supplyList.push(ingredient);
         }

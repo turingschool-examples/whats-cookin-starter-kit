@@ -47,7 +47,7 @@ describe('user', () => {
   
   it('should have a pantry that contains ingredients', () => {
     expect(user.pantry).to.be.an('object');
-    expect(user.pantry.ingredients).to.deep.equal(usersData[0].pantry);
+    expect(user.pantry.supplies).to.deep.equal(usersData[0].pantry);
   });
 
   it('should start with an empty array of favorite recipes', () => {
