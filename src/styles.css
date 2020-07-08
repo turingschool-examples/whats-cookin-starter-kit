@@ -30,6 +30,29 @@
 .recipe-cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 10%; 
-  border: 1px solid black; 
+  grid-gap: 8%; 
+  margin: 4em; 
+  padding-bottom: 6em;
+}
+
+.recipe-card {
+  border: 1px solid grey; 
+  height: 18em; 
+  border-radius: 5%;
+}
+
+.recipe-img {
+  height: 80%;
+  background-size: cover;
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
+}
+
+.heart-icon, .cook-icon {
+  text-align: right;
+  padding: 0.5em;
+}
+
+h5 {
+  text-align: center;
 }
