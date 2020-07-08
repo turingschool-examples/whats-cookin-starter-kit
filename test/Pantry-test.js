@@ -20,4 +20,14 @@ describe('Pantry', function() {
   it('should be an instance of Pantry', function() {
     expect(pantry).to.be.an.instanceof(Pantry);
   });
+
+  it('should be able to store ingredients', function() {
+    expect(pantry.ingredients).to.deep.equal(ingredients);
+  });
+
+  it('should be empty if no ingredients are passed in', function() {
+    pantry2 = new Pantry(); 
+
+    expect(pantry2.ingredients).to.deep.equal([]);
+  })
 })
