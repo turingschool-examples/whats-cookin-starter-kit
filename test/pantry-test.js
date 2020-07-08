@@ -21,6 +21,16 @@ describe('Pantry', () => {
       "name": "Grandma's Ham", 
       "tags": ["delicious", "terrifying"]
     });
+    aPerfectEgg = new Recipe ({
+      'id': 12283,
+      'img': 'img',
+      'ingredients': [
+        { id: 11477, amount: 4 },
+        { id: 11297, amount: 4 },
+      ],
+      "name": "A perfect egg",
+      "tags": ["beautiful", "satisfying"]
+    });
   });
 
   it('should be a function', () => {
@@ -57,14 +67,14 @@ describe('Pantry', () => {
   'in another array of ingredients', () => {
     let isTrue = pantry.compareIngredients(pantrySupply[0], greenHam.requiredIngredients[0]);
     expect(isTrue).to.equal(true); 
+    // undefined undefined
   });
   
   it('can compareIngredient IDs whether or not they\'re assigned to ' +
   '.id or .ingredient', () => {
     let isTrue = pantry.compareIngredients(greenHam.requiredIngredients[0], pantrySupply[0]);
     expect(isTrue).to.equal(true); 
-    console.log("I don't know why the last one passed, I don't think it should");
-  })
+    })
 
   it('should determine which ingredients a pantry has for a given recipe', () => {
     const requiredIngredientsInPantry = pantry.checkPantryForRecipeIngredients(greenHam);
@@ -109,4 +119,14 @@ describe('Pantry', () => {
     expect(missingIngredients).to.equal('This is not a recipe');
   })
 
+  it('should know when a pantry has all the required ingredients', () => {
+    let wellPreparedPantry = pantry.findMissingIngredients(aPerfectEgg);
+    expect(wellPreparedPantry).to.equal('All the required ingredients are in the pantry');
+  });
+
+  it('should be able to use ingredients from the pantry', () => {
+    pantry.useIngredients(aPerfectEgg);
+    expect(pantry.supplies[0].amount).to.equal(0);
+    expect(pantry.supplies[1].amount).to.equal(0);
+  });
 });
