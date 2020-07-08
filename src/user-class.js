@@ -2,6 +2,7 @@ const Pantry = require('./pantry-class.js');
 const Recipe = require('./recipe-class.js');
 const usersData = require('../data/users.js');
 const ingredientsData = require('../data/ingredients.js');
+const recipeData = require('../data/recipes.js');
 
 class User {
   constructor(userData) {
@@ -33,6 +34,31 @@ class User {
     });
 
     return searchResults;
+  }
+
+  searchFavoriteRecipesByIngredient(searchInput) {
+    const ingredientID = this.convertIngredientNameToID(searchInput);
+    const searchResults = this.favoriteRecipes.filter(recipe => {
+      return this.generateIngredientList(recipe).includes(ingredientID);
+    });
+
+    return searchResults; 
+  }
+
+  convertIngredientNameToID(ingredientName) {
+    let ingredient = ingredientsData.find(ingredient => {
+      return ingredient.name ? ingredient.name.includes(ingredientName) : undefined;
+    });
+    
+    return ingredient ? ingredient.id : [];
+  }
+
+  generateIngredientList = (recipe) => {
+    if (recipe instanceof Recipe) {
+      return recipe.requiredIngredients.map(ingredient => ingredient.id);
+    } else {
+      return [];
+    }
   }
 }
 
