@@ -95,12 +95,35 @@ describe('user', () => {
   })
 
   it('should be able to convert an ingredient name to its id', () => {
-    const wheatFlourID = user.convertIngredientNameToID('wheat flour');
+    const wheatFlourID = user.convertIngredientNameToID('wheat');
+    const wheatFlourID2 = user.convertIngredientNameToID('whe');
+    const wheatFlourID3 = user.convertIngredientNameToID('wheat flour');
+
     expect(wheatFlourID).to.equal(20081);
+    expect(wheatFlourID2).to.equal(20081);
+    expect(wheatFlourID3).to.equal(20081);
+  });
+
+  it('should return an empty string if no matching id is found', () => {
+    const randomSearch = user.convertIngredientNameToID('a car');
+
+    expect(randomSearch).to.deep.equal([]);
   });
 
   it('should return a list of ingredients for a given recipe', () => {
     const cookieRecipe = new Recipe(recipeData[0]);
+    expect(user.generateIngredientList(cookieRecipe)).to.deep.equal([20081, 18372, 1123, 19335, 19206, 19334, 2047, 1012047, 10019903, 1145, 2050]);
+  });
+
+  it('should only take a recipe as an argument for generating an ingredient list', () => {
+    const number = 123;
+    const array = ['something', 'something'];
+    const bool = false;
+    const cookieRecipe = new Recipe(recipeData[0]);
+
+    expect(user.generateIngredientList(number)).to.deep.equal([]);
+    expect(user.generateIngredientList(array)).to.deep.equal([]);
+    expect(user.generateIngredientList(bool)).to.deep.equal([]);
     expect(user.generateIngredientList(cookieRecipe)).to.deep.equal([20081, 18372, 1123, 19335, 19206, 19334, 2047, 1012047, 10019903, 1145, 2050]);
   });
 

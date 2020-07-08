@@ -46,12 +46,19 @@ class User {
   }
 
   convertIngredientNameToID(ingredientName) {
-    let ingredient = ingredientsData.find(ingredient => ingredient.name.includes(ingredientName));
-    return ingredient.id;
+    let ingredient = ingredientsData.find(ingredient => {
+      return ingredient.name ? ingredient.name.includes(ingredientName) : undefined;
+    });
+    
+    return ingredient ? ingredient.id : [];
   }
 
   generateIngredientList = (recipe) => {
-    return recipe.requiredIngredients.map(ingredient => ingredient.id);
+    if (recipe instanceof Recipe) {
+      return recipe.requiredIngredients.map(ingredient => ingredient.id);
+    } else {
+      return [];
+    }
   }
 }
 
