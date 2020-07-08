@@ -3,6 +3,7 @@ const expect = chai.expect;
 const User = require('../src/User');
 const userInfo = require('../data/users').usersData;
 const recipeInfo = require('../data/recipes').recipeData;
+const ingredientInfo = require('../data/ingredients').ingredientsData;
 
 describe('User', () => {
   it('Should be a function', () => {
@@ -97,13 +98,24 @@ describe('User', () => {
 		expect(user.filterFavoriteRecipesByName('Cookie')).to.deep.equal([recipeInfo[0], recipeInfo[7]]);
   });
   
-  it('Should be able to filter recipes to cook by name', () => {
+  it('Should be able to filter recipes to cook by name, not case sensitive', () => {
 		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
 
 		user.addRecipeToCook(recipeInfo[0]);
 		user.addRecipeToCook(recipeInfo[3]);
     user.addRecipeToCook(recipeInfo[7]);
 
-		expect(user.filterRecipesToCookByName('Cookie')).to.deep.equal([recipeInfo[0], recipeInfo[7]]);
-	});
+		expect(user.filterRecipesToCookByName('coOKie')).to.deep.equal([recipeInfo[0], recipeInfo[7]]);
+  });
+  
+  it('Should be able to filter favorite recipes by ingredient', () => {
+		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+
+		user.addFavoriteRecipe(recipeInfo[0]);
+		user.addFavoriteRecipe(recipeInfo[3]);
+    user.addFavoriteRecipe(recipeInfo[7]);
+
+		expect(user.filterFavoriteRecipesByIngredient('eggs')).to.deep.equal([recipeInfo[0], recipeInfo[3]]);
+  });
+
 });

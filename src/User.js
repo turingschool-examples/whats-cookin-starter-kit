@@ -1,3 +1,5 @@
+const ingredientInfo = require('../data/ingredients').ingredientsData;
+
 class User {
   constructor(name, id, pantry) {
     this.name = name;
@@ -56,7 +58,9 @@ class User {
 		}, []);
   };
   
+  // console.log(string.charAt(0).toUpperCase() + string.slice(1).toLowerCase())
   filterRecipesToCookByName(name) {
+    name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 		return this.recipesToCook.reduce((foundRecipes, recipe) => {
 			if (recipe.name.includes(name)) {
 				foundRecipes.push(recipe);
@@ -65,6 +69,16 @@ class User {
 		}, []);
 	};
 
+  filterFavoriteRecipesByIngredient(item) {
+		const inputtedItemID = (ingredientInfo.find(ingredient => ingredient.name === item)).id
+		return this.favoriteRecipes.reduce((foundRecipes, recipe) => {
+			recipe.ingredients.find(ingredient => {
+				if (ingredient.id === inputtedItemID) {
+					foundRecipes.push(recipe)
+				}})
+			return foundRecipes;
+		}, []);
+	};
 };
 
 module.exports = User;
