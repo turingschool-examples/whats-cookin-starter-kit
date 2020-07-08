@@ -1,3 +1,4 @@
+const Recipe = require('./recipe.js');
 class Pantry {
   constructor(pantry) {
     this.ingredients = [];
@@ -11,6 +12,23 @@ class Pantry {
         this.ingredients.push(ingredient);
       }
     });
+  }
+
+  compareIngredients(first, second) {
+    return first.ingredient === second.ingredient ? true : false;
+  }
+
+  checkPantryForRecipeIngredients = (recipe) => {
+    let supplyList = [];
+    
+    for (let i = 0; i < recipe.ingredients.length; i++) {
+      this.ingredients.forEach(ingredient => {
+        if (this.compareIngredients(recipe.ingredients[i], ingredient)) {
+          supplyList.push(ingredient);
+        }
+      }); 
+    }
+    return supplyList
   }
 }
 
