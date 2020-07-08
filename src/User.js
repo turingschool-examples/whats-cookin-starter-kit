@@ -1,11 +1,11 @@
 /* eslint-disable */
-
+const userData = require('../data/users.js')
 class User {
-  constructor(id, name) {
-    this.id = id;
+  constructor(name, id, pantry) {
     this.name = name;
+    this.id = id;
+    this.pantry = pantry;
     this.favoriteRecipes = [];
-    this.pantry = [];
     this.recipesToCook = [];
   }
 
@@ -35,7 +35,24 @@ class User {
   }
   // #21
 
+
+
+//search recipesToCook OR favoriteRecipes by type
+findRecipesByType(savedRecipes, tagName) {
+  return savedRecipes.filter( recipe => {
+    return recipe.tags.includes(tagName);
+  });
 }
+
+}
+
+// search recipesToCook by name OR ingredient
+
+// A User should be able to determine whether they have sufficient ingredients in their pantry to cook a recipe
+// if they DO NOT: see pantry stories
+// return a list of ingredients they need to buy and how much it will cost
+// (note - User should be able to do this for at least one recipe)
+// push into recipesToCook array
 
 if (typeof module !== 'undefined') {
   module.exports = User;
