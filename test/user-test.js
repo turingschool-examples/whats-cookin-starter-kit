@@ -2,7 +2,9 @@ const chai = require('chai');
 const expect = chai.expect;
 const User = require('../src/user-class.js');
 const Pantry = require('../src/pantry.js');
+const Recipe = require('../src/recipe.js');
 const usersData = require('../data/users.js');
+const recipeData = require('../data/recipes.js');
 
 describe('user', () => {
 
@@ -57,4 +59,38 @@ describe('user', () => {
     expect(user.recipesToCook).to.be.an('array');
     expect(user.recipesToCook).to.deep.equal([]);
   });
+
+  it('should be able to add a recipe to its list of favorites', () => {
+    const recipe = new Recipe(recipeData[0]);
+    
+    user.chooseFavoriteRecipe(recipe);
+
+    expect(user.favoriteRecipes[0]).to.deep.equal(recipe);
+  });
+
+  it('should only be able to add recipes to its list of favorites', () => {
+    const recipe = 'Delicious food';
+    const otherRecipe = 42;
+    const wrongRecipe = ['food'];
+
+    user.chooseFavoriteRecipe(recipe);
+    user.chooseFavoriteRecipe(otherRecipe);
+    user.chooseFavoriteRecipe(wrongRecipe);
+
+    expect(user.favoriteRecipes).to.deep.equal([]);
+  });
+
+  it('should let the user search for a recipe by name', () => {
+    const recipe1 = new Recipe(recipeData[0]);
+    const recipe2 = new Recipe(recipeData[1]);
+    const recipe3 = new Recipe(recipeData[2]);
+
+    user.chooseFavoriteRecipe(recipe1);
+    user.chooseFavoriteRecipe(recipe2);
+    user.chooseFavoriteRecipe(recipe3);
+
+    const searchResults = user.searchFavoriteRecipesByName('Map');
+
+    expect(searchResults[0].name).to.equal(recipe2.name);
+  })
 });
