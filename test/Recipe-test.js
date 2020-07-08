@@ -114,4 +114,59 @@ describe('Recipe', function() {
 
     expect(isRecipeInCategory).to.equal(false);
   });
+
+  it('should be able to check if it has a given ingredient', function() {
+    const ingredientSearchedId = 5;
+
+    const ingredientInRecipe = recipe.checkRecipeIngredients(ingredientSearchedId);
+
+    expect(ingredientInRecipe).to.equal(true); 
+  });
+
+  it('should be able to check if it does not have a given ingredient', function () {
+    const ingredientSearchedId = 4;
+
+    const ingredientInRecipe = recipe.checkRecipeIngredients(ingredientSearchedId);
+
+    expect(ingredientInRecipe).to.equal(false);
+  });
+
+  it('should be able to calculate the total cost of its ingredients', function() {
+    const ingredientsData = [
+      {
+        id: 5,
+        name: 'flour',
+        estimatedCostInCents: 100
+      }, 
+      {
+        id: 8,
+        name: 'sugar',
+        estimatedCostInCents: 50
+      }
+    ];
+    
+    const ingredientsCost = recipe.calculateIngredientsCost(ingredientsData);
+
+    expect(ingredientsCost).to.equal(150);
+  });
+
+  it('should be able to use a default ingredient cost to calculate the total cost of its ingredients if an ingredient can\'t be looked up', function() {
+    const ingredientsData = [
+      {
+        id: 5,
+        name: 'flour',
+        estimatedCostInCents: 100
+      },
+    ];
+
+    const ingredientsCost = recipe.calculateIngredientsCost(ingredientsData);
+
+    expect(ingredientsCost).to.equal(200);
+  });
+
+  it('should be able to retrieve its instructions', function() {
+    const recipeInstructions = recipe.retrieveRecipeInstructions();
+
+    expect(recipeInstructions).to.deep.equal(recipe.instructions)
+  });
 });

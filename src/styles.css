@@ -1,3 +1,21 @@
+.search-section {
+  text-align: right;
+}
+
+.title-menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+h1 {
+  margin: 0px;
+  padding: 0px; 
+}
+
+nav {
+  padding-top: 1em;
+}
+
 .dropdown-menu {
   position: relative;
   display: inline-block; 
@@ -25,6 +43,10 @@
 
 .dropdown-menu:hover .dropdown-content {
   display: block; 
+}
+
+h2 {
+  text-align: center; 
 }
 
 .recipe-cards {
