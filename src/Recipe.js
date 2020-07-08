@@ -11,15 +11,23 @@ class Recipe {
     this.tags = tags;
   }
 
-  getIngredientName() {
-    console.log(ingredientsData[2]);
-    
-    // ingredientsData.forEach(ingredient => {
-    //   console.log('butts');
-    // })
+  getIngredientName(ingredient) {
+    console.log(ingredient.id);
+    console.log(ingredientsData[0].id);
+    let name = '';
+    ingredientsData.forEach(ingredientData => {
+      if (ingredient.id === ingredientData.id) {
+        name = ingredientData.name;
+      }
+    })
+    return name;
     // sort through ingredient data file
     // if id of ingredient equals id in data filled
     // return name of ingredient
+  }
+
+  getIngredientCost() {
+    // basically same as above
   }
 
   calculateCost() {

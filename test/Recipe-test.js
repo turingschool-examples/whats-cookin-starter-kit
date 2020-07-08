@@ -4,35 +4,16 @@ const expect = chai.expect;
 const Recipe = require("../src/Recipe.js");
 
 describe("Round", function () {
-  let recipe;
+  let recipe, ingredient1, ingredient2, ingredient3;
 // need to creat sample ingredients data
   beforeEach(function () {
+    ingredient1 = {'id': 20081, 'quantity': {'amount': 1.5, 'unit': 'c'}};
+    ingredient2 = {'id': 18372, 'quantity': {'amount': 0.5, 'unit': 'tsp'}};
+    ingredient3 = {'id': 1123, 'quantity': {'amount': 1, 'unit': 'large'}};
     recipe = new Recipe(
     595736,
     'https://spoonacular.com/recipeImages/595736-556x370.jpg',
-    [
-      {
-        id: 20081,
-        quantity: {
-          amount: 1.5,
-          unit: 'c',
-        },
-      },
-      {
-        id: 18372,
-        quantity: {
-          amount: 0.5,
-          unit: 'tsp',
-        },
-      },
-      {
-        id: 1123,
-        quantity: {
-          amount: 1,
-          unit: 'large',
-        },
-      },
-    ],
+    [ingredient1, ingredient2, ingredient3],
     [
       {
         instruction:
@@ -127,7 +108,7 @@ describe("Round", function () {
   });
 
   it('should return an ingredient\'s name', function(){
-    const ingredientData = {"id": 20081, "name": "wheat flour", "estimatedCostInCents": 142};
-    recipe.getIngredientName();
+    //const ingredientData = {"id": 20081, "name": "wheat flour", "estimatedCostInCents": 142};
+    expect(recipe.getIngredientName(ingredient1)).to.equal('wheat flour');
   });
 });
