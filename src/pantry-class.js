@@ -16,11 +16,18 @@ class Pantry {
     });
   }
 
-  compareIngredients(id, ingredient) {
-    return id.id === ingredient.ingredient ? true : false;
+  compareIngredients(ingredient1, ingredient2) {
+    if (ingredient1.id && ingredient2.ingredient) { 
+     return ingredient1.id === ingredient2.ingredient ? true : false;
+    } else if (ingredient1.ingredient && ingredient2.id) {
+      return ingredient1.ingredient === ingredient2.id ? true : false;
+    } else {
+      return `something is wrong with compareIngredients()`
+    }
   }
 
   checkPantryForRecipeIngredients = (recipe) => {
+    // maybe split into two and checkout `.every()`
     if (recipe instanceof Recipe === false) {
       return 'This is not a recipe'
     }
@@ -56,15 +63,32 @@ class Pantry {
     let message = [];
     
     recipe.requiredIngredients.forEach(ingredient => {
-      let pantryItem = supplyList.find(item => item.ingredient === ingredient.id);
+      let pantryItem = this.findItem(supplyList, ingredient);
       let qtyDifference = pantryItem ? ingredient.amount - pantryItem.amount : ingredient.amount;
       
       qtyDifference > 0 ? message.push(`${qtyDifference} ${this.findIngredientName(ingredient.id)}`) : '';
     });
     if (message.length > 0) {
       return `You still need ${message.join(' and ')} to make ${recipe.name}`
-    } 
+    } else {
+      return 'All the required ingredients are in the pantry'
+    }
   }
-}
+
+  useIngredients = (recipe) => {
+    if(this.findMissingIngredients(recipe) !== 'All the required ingredients are in the pantry') {
+      return 'You do not have the required ingredients'
+    }
+
+    recipe.requiredIngredients.forEach(ingredient => {
+      let pantryItem = this.findItem(this.supplies, ingredient);
+      pantryItem.amount -= ingredient.amount;
+    })
+  }
+
+  findItem = (location, ingredient) => {
+    return location.find(item => item.ingredient === ingredient.id)
+  }
+ }
 
 module.exports = Pantry;
