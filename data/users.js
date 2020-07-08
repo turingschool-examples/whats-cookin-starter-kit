@@ -4,8 +4,8 @@ let usersData = [
     "id": 1,
     "pantry": [
       {
+        "amount": 4,
         "ingredient": 11477,
-        "amount": 4
       },
       {
         "ingredient": 11297,
@@ -7601,3 +7601,7 @@ let usersData = [
     ]
   }
 ]
+// if running JS in node, then we want to run a module.exports to this file
+if (typeof module !== 'undefined') {
+  module.exports = usersData;
+}
