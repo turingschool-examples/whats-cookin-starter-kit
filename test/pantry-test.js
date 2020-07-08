@@ -14,9 +14,9 @@ describe('Pantry', () => {
       'id': 12283, 
       'img':'img', 
       'ingredients':[
-        {ingredient: 11477, amount: 5}, 
-        {ingredient: 11297, amount: 4}, 
-        {ingredient: 0, amount: 1}
+        {id: 11477, amount: 5}, 
+        {id: 11297, amount: 4}, 
+        {id: 16069, amount: 1}
       ], 
       "name": "Grandma's Ham", 
       "tags": ["delicious", "terrifying"]
@@ -69,13 +69,21 @@ describe('Pantry', () => {
   });
 
   it('should only check ingredients if the given recipe is a RECIPE', () => {
-      const requiredIngredientsInPantry = pantry.checkPantryForRecipeIngredients(
-        'choppedLiver'
-      );
-      const expectedIngredients = 'This is not a recipe'
-      expect(requiredIngredientsInPantry).to.deep.equal(expectedIngredients);
+    const requiredIngredientsInPantry = pantry.checkPantryForRecipeIngredients(
+      'choppedLiver'
+    );
+    const expectedIngredients = 'This is not a recipe'
+    expect(requiredIngredientsInPantry).to.deep.equal(expectedIngredients);
   });
 
+  it('can find just ingredient ids for a given recipe', () => {
+    let recipeIngredientIds = pantry.findIngredientIds(greenHam);
+    expect(recipeIngredientIds).to.deep.equal([11477, 11297, 16069]);
+  });
   
-
+  it('should know how many ingredients are needed to make a recipe', () => {
+    let missingIngredients = pantry.findMissingIngredients(greenHam);
+    expect(missingIngredients).to.equal('You still need 1 zucchini squash ' +
+    'and 1 legumes to make Grandma\'s Ham')
+  })
 });
