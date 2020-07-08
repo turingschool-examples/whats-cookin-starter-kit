@@ -1,7 +1,7 @@
 const ingredientInfo = require('../data/ingredients').ingredientsData;
 
 class User {
-  constructor(name, id, pantry) {
+  constructor({ name, id, pantry }) {
     this.name = name;
     this.id = id;
     this.pantry = pantry;
