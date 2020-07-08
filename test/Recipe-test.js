@@ -163,4 +163,10 @@ describe('Recipe', function() {
 
     expect(ingredientsCost).to.equal(200);
   });
+
+  it('should be able to retrieve its instructions', function() {
+    const recipeInstructions = recipe.retrieveRecipeInstructions();
+
+    expect(recipeInstructions).to.deep.equal(recipe.instructions)
+  });
 });

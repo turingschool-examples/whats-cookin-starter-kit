@@ -41,6 +41,10 @@ class Recipe {
       return totalIngredientsCost + ingredientCost; 
     }, 0);
   }
+
+  retrieveRecipeInstructions() {
+    return this.instructions;
+  }
 }
 
 
