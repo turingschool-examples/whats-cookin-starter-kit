@@ -1,7 +1,7 @@
 class Pantry {
   constructor(userObject) {
     this.pantry = userObject.pantry;
-    //this.recipe = userObject.recipeToCook;
+    this.recipe = userObject.recipesToCook;
     
   }
   enoughIngredients() {
