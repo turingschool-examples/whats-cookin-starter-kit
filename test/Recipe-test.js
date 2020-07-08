@@ -121,3 +121,7 @@ describe('Recipe', function () {
         });
     });
     });
+
+    if (typeof module !== 'undefined') {
+        module.exports = usersData;
+    }
