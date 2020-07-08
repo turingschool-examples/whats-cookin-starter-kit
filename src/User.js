@@ -29,22 +29,40 @@ class User {
     this.recipesToCook.splice(index, 1); 
 	};
 
-	filterFavoriteRecipeByTag(tag) {
+	filterFavoriteRecipesByTag(tag) {
 		return this.favoriteRecipes.reduce((foundRecipes, recipe) => {
 			if (recipe.tags.includes(tag)) {
-				foundRecipes.push(recipe.id);
+				foundRecipes.push(recipe);
 			};
 			return foundRecipes;
 		}, []);
 	};
 
-	filterRecipeToCookByTag(tag) {
+	filterRecipesToCookByTag(tag) {
 		return this.recipesToCook.reduce((foundRecipes, recipe) => {
 			if (recipe.tags.includes(tag)) {
-				foundRecipes.push(recipe.id);
+				foundRecipes.push(recipe);
 			};
 			return foundRecipes;
 		}, []); 
+  };
+  
+  filterFavoriteRecipesByName(name) {
+		return this.favoriteRecipes.reduce((foundRecipes, recipe) => {
+			if (recipe.name.includes(name)) {
+				foundRecipes.push(recipe);
+			};
+			return foundRecipes;
+		}, []);
+  };
+  
+  filterRecipesToCookByName(name) {
+		return this.recipesToCook.reduce((foundRecipes, recipe) => {
+			if (recipe.name.includes(name)) {
+				foundRecipes.push(recipe);
+			};
+			return foundRecipes;
+		}, []);
 	};
 
 };
