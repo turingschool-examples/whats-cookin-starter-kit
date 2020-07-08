@@ -19,24 +19,21 @@ class Pantry {
   compareIngredients(id, ingredient) {
     return id.id === ingredient.ingredient ? true : false;
   }
-  //this has a very obvious sad path of getting used in the wrong order
-  //maybe pantry should change every ingredient key to be ID?
 
   checkPantryForRecipeIngredients = (recipe) => {
-    let supplyList = [];
-    
-    if (recipe instanceof Recipe) {
-      for (let i = 0; i < recipe.requiredIngredients.length; i++) {
-        this.supplies.forEach(ingredient => {
-          if (this.compareIngredients(recipe.requiredIngredients[i], ingredient)) {
-            supplyList.push(ingredient);
-          }
-        }); 
-      }
-      return supplyList
-    } else {
+    if (recipe instanceof Recipe === false) {
       return 'This is not a recipe'
     }
+    let supplyList = [];
+    
+    for (let i = 0; i < recipe.requiredIngredients.length; i++) {
+      this.supplies.forEach(ingredient => {
+        if (this.compareIngredients(recipe.requiredIngredients[i], ingredient)) {
+          supplyList.push(ingredient);
+        }
+      }); 
+    }
+    return supplyList
   }
 
   findIngredientIds = (recipe) => {
@@ -44,11 +41,17 @@ class Pantry {
   } 
 
   findIngredientName(id) {
-    let ingredient = ingredientData.find(item => item.id === id);
-    return ingredient.name;
+    if (typeof id === 'number') {
+      let ingredient = ingredientData.find(item => item.id === id);
+      return ingredient.name;
+    }
   }
-  //TEST 
+
   findMissingIngredients = (recipe) => {
+    if (recipe instanceof Recipe === false) {
+      return 'This is not a recipe'
+    }
+
     let supplyList = this.checkPantryForRecipeIngredients(recipe); 
     let message = [];
     
