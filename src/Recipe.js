@@ -59,14 +59,17 @@ class Recipe {
     // maybe only return
   }
 
-  // checkIngredients(ingredient) {
-  //   this.ingredients.find(ingredientData => {
-  //
-  //   })
-  //   }
+  returnIngredients() {
+    return this.ingredients
+  }
+  
+  checkForIngredient(ingredient) {
+    let test = this.ingredients.find(ingredientData => ingredientData.id === ingredient.id)
+    console.log(test);
+    }
     // return true or false if recipe includes ingredient input
 
-  checkTags() {
+  checkForTag() {
     // return true or false if recipe inlcudes tag input
   }
 }

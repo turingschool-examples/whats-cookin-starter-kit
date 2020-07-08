@@ -3,10 +3,10 @@ const expect = chai.expect;
 
 const Recipe = require("../src/Recipe.js");
 
-describe("Round", function () {
+describe("Recipe", function () {
   let recipe, ingredient1, ingredient2, ingredient3, instruction1, instruction2, instruction3;
 // need to creat sample ingredients data
-  beforeEach(function () {
+  before(function () {
     ingredient1 = {'id': 20081, 'quantity': {'amount': 1.5, 'unit': 'c'}};
     ingredient2 = {'id': 18372, 'quantity': {'amount': 0.5, 'unit': 'tsp'}};
     ingredient3 = {'id': 1123, 'quantity': {'amount': 1, 'unit': 'large'}};
@@ -100,6 +100,7 @@ describe("Round", function () {
     expect(recipe.getIngredientName(ingredient1)).to.equal('wheat flour');
   });
 
+  // SHOULD BE ABLE to take multip.e
   it('should return an ingredient\'s cost', function(){
     //const ingredientData = {"id": 20081, "name": "wheat flour", "estimatedCostInCents": 142};
     expect(recipe.getIngredientCost(ingredient1)).to.equal(142);
@@ -112,5 +113,16 @@ describe("Round", function () {
   it('should return its own instructions', function() { //need to change if price display is changed
     expect(recipe.returnInstructions()).to.deep.equal([instruction1, instruction2, instruction3]);
     expect(recipe.returnInstructions().length).to.equal(3);
-  })
+  });
+
+  it('should check if it includes a specific ingredient', function() { //need to change if price display is changed
+    //create ingredient4 not in the recipe
+    expect(recipe.checkForIngredient(ingredient1)).to.equal(true);
+
+  });
+
+  it('should check if it does not include a specific ingredient', function() { //need to change if price display is changed
+    //create ingredient4 not in the recipe
+    expect(recipe.checkForIngredient(ingredient4)).to.equal(false);
+  });
 });
