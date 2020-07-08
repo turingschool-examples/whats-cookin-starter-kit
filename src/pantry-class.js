@@ -1,4 +1,6 @@
 const Recipe = require('./recipe-class.js');
+const ingredientData = require('../data/ingredients');
+
 class Pantry {
   constructor(pantry) {
     this.supplies = [];
@@ -14,11 +16,14 @@ class Pantry {
     });
   }
 
-  compareIngredients(first, second) {
-    return first.ingredient === second.ingredient ? true : false;
+  compareIngredients(id, ingredient) {
+    return id.id === ingredient.ingredient ? true : false;
   }
 
   checkPantryForRecipeIngredients = (recipe) => {
+    if (recipe instanceof Recipe === false) {
+      return 'This is not a recipe'
+    }
     let supplyList = [];
     
     for (let i = 0; i < recipe.requiredIngredients.length; i++) {
@@ -29,6 +34,36 @@ class Pantry {
       }); 
     }
     return supplyList
+  }
+
+  findIngredientIds = (recipe) => {
+    return recipe.requiredIngredients.map(ingredient => ingredient.id)
+  } 
+
+  findIngredientName(id) {
+    if (typeof id === 'number') {
+      let ingredient = ingredientData.find(item => item.id === id);
+      return ingredient.name;
+    }
+  }
+
+  findMissingIngredients = (recipe) => {
+    if (recipe instanceof Recipe === false) {
+      return 'This is not a recipe'
+    }
+
+    let supplyList = this.checkPantryForRecipeIngredients(recipe); 
+    let message = [];
+    
+    recipe.requiredIngredients.forEach(ingredient => {
+      let pantryItem = supplyList.find(item => item.ingredient === ingredient.id);
+      let qtyDifference = pantryItem ? ingredient.amount - pantryItem.amount : ingredient.amount;
+      
+      qtyDifference > 0 ? message.push(`${qtyDifference} ${this.findIngredientName(ingredient.id)}`) : '';
+    });
+    if (message.length > 0) {
+      return `You still need ${message.join(' and ')} to make ${recipe.name}`
+    } 
   }
 }
 
