@@ -5,10 +5,26 @@ class Pantry {
     this.shoppingList = [];
   }
 
-  // checkPantry() {
-  //   this.recipe.ingredients.forEach(ingredient => {
-  //     if(ingredient.id === this.pantry.id && ingredient.amount < this.pantry.amount)
-  //   })
+  checkPantry() {
+     this.recipe.ingredients.forEach(ingredient => { 
+        const userIngredient = this.pantry.find(ingredient.id);
+        if(userIngredient === undefined) {
+          this.addToShoppingList(ingredient)
+        } else if (userIngredient.amount < this.recipe.amount) {
+          ingredient.amount -= userIngredient.amount;
+          this.addToShoppingList(ingredient);
+        } else {
+          console.log(ingredient);
+        }
+        // check if ingredients.id === pantry.ingredients.id
+        // on all ingredients of both pantry and recipe
+        // if all ingredients are in pantry and amounts also 
+        // are also greater in pantry 
+        // ingredients that are not in there addToShoppingList()
+        // method
+        // maybe .filter each and check if all true 
+        
+    })
 
 
     /*
@@ -31,7 +47,8 @@ class Pantry {
 
   //}
 
-  addToShoppingList() {
+  addToShoppingList(missingIngredient) {
+    this.shoppingList.push(missingIngredient);
     /*
     if enoughIngredients() === false;
      Determine the amount of ingredients still needed to cook a

@@ -10,7 +10,7 @@ const users = require('../data/users');
 const newUser = users.usersData;
 
 describe('Pantry', () => {
-  let pantry;
+  let userPantry;
   let user;
   let recipe;
   beforeEach(function () {
@@ -36,7 +36,7 @@ describe('Pantry', () => {
   it('should be an instance of Card', () => {
     expect(userPantry).to.be.an.instanceof(Pantry);
   });
-  
+  console.log(userPantry.checkPantry());
   it('should have a pantry property with an array of a users pantry', () => {
     expect(userPantry.pantry).to.be.an('array').with.a.lengthOf(54);
   });
@@ -58,8 +58,7 @@ describe('Pantry', () => {
   });
 
   it.skip('should list additional ingredients user needs to make recipe', () => {
-
+    
   });
-
 });
 
