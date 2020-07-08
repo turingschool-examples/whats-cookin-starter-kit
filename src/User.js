@@ -1,8 +1,9 @@
 /* eslint-disable */
 
 class User {
-  constructor(id) {
+  constructor(id, name) {
     this.id = id;
+    this.name = name;
     this.favoriteRecipes = [];
     this.pantry = [];
     this.recipesToCook = [];

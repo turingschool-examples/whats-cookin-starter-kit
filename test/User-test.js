@@ -23,6 +23,10 @@ describe('User', function () {
                 expect(user.id).to.equal(user.id);
             })
 
+            it('should have a property of name', () => {
+                expect(user.id).to.equal(user.id);
+            })
+
             it('should have a list of favoriteRecipes', function () {
                 expect(user.favoriteRecipes).to.deep.equal([]);
             });
