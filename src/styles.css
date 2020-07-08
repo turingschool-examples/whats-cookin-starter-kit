@@ -1,3 +1,12 @@
+* {
+  font-family: 'Cabin', sans-serif;
+}
+
+header {
+  background-color: #A0C4FF;
+  padding: 1em;
+}
+
 .search-section {
   text-align: right;
 }
@@ -10,10 +19,11 @@
 h1 {
   margin: 0px;
   padding: 0px; 
+  font-size: 38px;
 }
 
 nav {
-  padding-top: 1em;
+  padding-top: 3em;
 }
 
 .dropdown-menu {
@@ -22,31 +32,39 @@ nav {
 }
 
 .dropdown-btn {
-  background-color: black;
-  color: white;
+  background-color: #A0C4FF;
+  color: black;
   border: none;
+  font-size: 20px;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
-  /* width: 120%; */
+  background-color: #CAFFBF;
+  font-size: 16px;
+  width: 100%;
 }
 
 .dropdown-content a {
   display: block;
   padding: 5px;
-  /* width: 150%; */
   text-decoration: none;
+  color: black;
 }
 
 .dropdown-menu:hover .dropdown-content {
   display: block; 
 }
 
+.dropdown-content a:hover {
+  background-color: #b4e3aa;
+}
+
 h2 {
   text-align: center; 
+  padding-top: 1em;
+  font-size: 28px;
 }
 
 .recipe-cards {
@@ -61,10 +79,17 @@ h2 {
   border: 1px solid grey; 
   height: 18em; 
   border-radius: 5%;
+  background-color: #FFADAD;
+  box-shadow: 3px 3px 10px grey; 
+}
+
+.recipe-card:hover, .recipe-card:focus, .recipe-card:active {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .recipe-img {
-  height: 80%;
+  height: 75%;
   background-size: cover;
   border-top-left-radius: 5%;
   border-top-right-radius: 5%;
@@ -76,5 +101,6 @@ h2 {
 }
 
 h5 {
+  font-size: 16px;
   text-align: center;
 }
