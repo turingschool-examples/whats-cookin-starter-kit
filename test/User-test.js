@@ -3,6 +3,7 @@ const expect = chai.expect;
 const User = require('../src/User');
 const userInfo = require('../data/users').usersData;
 const recipeInfo = require('../data/recipes').recipeData;
+const ingredientInfo = require('../data/ingredients').ingredientsData;
 
 describe('User', () => {
   it('Should be a function', () => {
@@ -68,13 +69,13 @@ describe('User', () => {
 		user.addFavoriteRecipe(recipeInfo[3]);
 		user.addFavoriteRecipe(recipeInfo[7]);
 
-		expect(user.filterFavoriteRecipeByTag('antipasto')).to.deep.equal([595736, 541288]);
+		expect(user.filterFavoriteRecipesByTag('antipasto')).to.deep.equal([recipeInfo[0], recipeInfo[7]]);
 	});
 
 	it('Should return no results if tag not found in favorite recipes', () => {
 		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
 
-		expect(user.filterFavoriteRecipeByTag('antipasto')).to.deep.equal([]);
+		expect(user.filterFavoriteRecipesByTag('antipasto')).to.deep.equal([]);
 	});
 
 	it('Should be able to filter recipes to cook by tag', () => {
@@ -84,7 +85,47 @@ describe('User', () => {
 		user.addRecipeToCook(recipeInfo[3]);
 		user.addRecipeToCook(recipeInfo[7]);
 
-		expect(user.filterRecipeToCookByTag('antipasto')).to.deep.equal([595736, 541288]);
+		expect(user.filterRecipesToCookByTag('antipasto')).to.deep.equal([recipeInfo[0], recipeInfo[7]]);
 	});
+  
+  it('Should be able to filter favorite recipes by name, not case sensitive', () => {
+		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+
+		user.addFavoriteRecipe(recipeInfo[0]);
+		user.addFavoriteRecipe(recipeInfo[3]);
+    user.addFavoriteRecipe(recipeInfo[7]);
+
+		expect(user.filterFavoriteRecipesByName('coOKie')).to.deep.equal([recipeInfo[0], recipeInfo[7]]);
+  });
+  
+  it('Should be able to filter recipes to cook by name, not case sensitive', () => {
+		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+
+		user.addRecipeToCook(recipeInfo[0]);
+		user.addRecipeToCook(recipeInfo[3]);
+    user.addRecipeToCook(recipeInfo[7]);
+
+		expect(user.filterRecipesToCookByName('coOKie')).to.deep.equal([recipeInfo[0], recipeInfo[7]]);
+  });
+  
+  it('Should be able to filter favorite recipes by ingredient', () => {
+		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+
+		user.addFavoriteRecipe(recipeInfo[0]);
+		user.addFavoriteRecipe(recipeInfo[3]);
+    user.addFavoriteRecipe(recipeInfo[7]);
+
+		expect(user.filterFavoriteRecipesByIngredient('eggs')).to.deep.equal([recipeInfo[0], recipeInfo[3]]);
+  });
+
+  it('Should be able to filter recipes to cook by ingredient', () => {
+		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+
+		user.addRecipeToCook(recipeInfo[0]);
+		user.addRecipeToCook(recipeInfo[3]);
+    user.addRecipeToCook(recipeInfo[7]);
+
+		expect(user.filterRecipesToCookByIngredient('eggs')).to.deep.equal([recipeInfo[0], recipeInfo[3]]);
+  });
 
 });
