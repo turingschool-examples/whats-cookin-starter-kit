@@ -38,6 +38,15 @@ class User {
 		}, []);
 	};
 
+	filterRecipeToCookByTag(tag) {
+		return this.recipesToCook.reduce((foundRecipes, recipe) => {
+			if (recipe.tags.includes(tag)) {
+				foundRecipes.push(recipe.id);
+			};
+			return foundRecipes;
+		}, []); 
+	};
+
 };
 
 module.exports = User;

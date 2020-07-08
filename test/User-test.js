@@ -71,4 +71,20 @@ describe('User', () => {
 		expect(user.filterFavoriteRecipeByTag('antipasto')).to.deep.equal([595736, 541288]);
 	});
 
+	it('Should return no results if tag not found in favorite recipes', () => {
+		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+
+		expect(user.filterFavoriteRecipeByTag('antipasto')).to.deep.equal([]);
+	});
+
+	it('Should be able to filter recipes to cook by tag', () => {
+		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+
+		user.addRecipeToCook(recipeInfo[0]);
+		user.addRecipeToCook(recipeInfo[3]);
+		user.addRecipeToCook(recipeInfo[7]);
+
+		expect(user.filterRecipeToCookByTag('antipasto')).to.deep.equal([595736, 541288]);
+	});
+
 });
