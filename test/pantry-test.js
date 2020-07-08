@@ -55,7 +55,7 @@ describe('Pantry', () => {
 
   it('it should be able to compare check if one ingredients "id" is ' + 
   'in another array of ingredients', () => {
-    let isTrue = pantry.compareIngredients(pantrySupply[0], greenHam.ingredients[0]);
+    let isTrue = pantry.compareIngredients(pantrySupply[0], greenHam.requiredIngredients[0]);
     expect(isTrue).to.equal(true); 
   });
 

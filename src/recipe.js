@@ -3,7 +3,7 @@ class Recipe {
   constructor(recipe) {
     this.id = recipe.id;
     this.image = recipe.image;
-    this.ingredients = recipe.ingredients;
+    this.requiredIngredients = recipe.ingredients;
     this.instructions = recipe.instructions;
     this.name = recipe.name;
     this.tags = recipe.tags;
@@ -28,7 +28,7 @@ class Recipe {
   }
 
   createIngredientList() {
-    return this.ingredients.reduce((ingredientList, ingredient) => {
+    return this.requiredIngredients.reduce((ingredientList, ingredient) => {
       return ingredientList.concat(this.checkIngredientMatch(ingredient));
     }, []);
   }

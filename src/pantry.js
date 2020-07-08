@@ -21,9 +21,9 @@ class Pantry {
   checkPantryForRecipeIngredients = (recipe) => {
     let supplyList = [];
     
-    for (let i = 0; i < recipe.ingredients.length; i++) {
+    for (let i = 0; i < recipe.requiredIngredients.length; i++) {
       this.ingredients.forEach(ingredient => {
-        if (this.compareIngredients(recipe.ingredients[i], ingredient)) {
+        if (this.compareIngredients(recipe.requiredIngredients[i], ingredient)) {
           supplyList.push(ingredient);
         }
       }); 
