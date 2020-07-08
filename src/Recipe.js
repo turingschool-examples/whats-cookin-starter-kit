@@ -45,7 +45,7 @@ class Recipe {
     //console.log(costs);
     let totalCost = costs.reduce((sum, num) => sum += num, 0);
     //console.log(totalCost/100); // dollar amount
-    return (totalCost / 100);
+    return (totalCost / 100); //changes to dollar amount
     // access ingredients for total of each ingredient
     // access recipes.js for cost of ingredient using id. .find(id === id) return cost
     // multiply these two

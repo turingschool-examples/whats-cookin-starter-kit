@@ -4,32 +4,20 @@ const expect = chai.expect;
 const Recipe = require("../src/Recipe.js");
 
 describe("Round", function () {
-  let recipe, ingredient1, ingredient2, ingredient3;
+  let recipe, ingredient1, ingredient2, ingredient3, instruction1, instruction2, instruction3;
 // need to creat sample ingredients data
   beforeEach(function () {
     ingredient1 = {'id': 20081, 'quantity': {'amount': 1.5, 'unit': 'c'}};
     ingredient2 = {'id': 18372, 'quantity': {'amount': 0.5, 'unit': 'tsp'}};
     ingredient3 = {'id': 1123, 'quantity': {'amount': 1, 'unit': 'large'}};
+    instruction1 = {'instruction': 'In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.', 'number': 1};
+    instruction2 = {'instruction': 'Add egg and vanilla and mix until combined.', 'number': 2};
+    instruction3 = {'instruction': 'Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.', 'number': 3};
     recipe = new Recipe(
     595736,
     'https://spoonacular.com/recipeImages/595736-556x370.jpg',
     [ingredient1, ingredient2, ingredient3],
-    [
-      {
-        instruction:
-          'In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.',
-        number: 1,
-      },
-      {
-        instruction: 'Add egg and vanilla and mix until combined.',
-        number: 2,
-      },
-      {
-        instruction:
-          'Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.',
-        number: 3,
-      },
-    ],
+    [instruction1, instruction2, instruction3],
     'Loaded Chocolate Chip Pudding Cookie Cups',
     ['antipasti', 'starter', 'snack', 'appetizer']
     );
@@ -121,4 +109,7 @@ describe("Round", function () {
     expect(recipe.calculateTotalCost()).to.equal(11.96);
   });
 
+  it('should return its own instructions', function() { //need to change if price display is changed
+    expect(recipe.returnInstructions()).to.equal(11.96);
+  })
 });
