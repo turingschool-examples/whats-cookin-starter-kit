@@ -1,6 +1,6 @@
 const chai = require('chai');
 const expect = chai.expect;
-const Recipe = require('../src/Recipe');
+const Recipe = require('../src/recipe-class');
 
 describe('recipe', () => {
 
@@ -143,8 +143,8 @@ describe('recipe', () => {
   });
 
   it('should have ingredients', () => {
-    expect(recipe.ingredients).to.be.an('array');
-    expect(recipe.ingredients).to.deep.equal(cookieCake.ingredients);
+    expect(recipe.requiredIngredients).to.be.an('array');
+    expect(recipe.requiredIngredients).to.deep.equal(cookieCake.ingredients);
   });
 
   it('should have instructions', () => {
@@ -160,10 +160,6 @@ describe('recipe', () => {
   it('should have tags', () => {
     expect(recipe.tags).to.be.an('array');
     expect(recipe.tags).to.deep.equal(cookieCake.tags);
-  });
-
-  it('should not be a favorite by default', () => {
-    expect(recipe.isFavorite).to.equal(false);
   });
 
   it('should be able to return its instructions', () => {
