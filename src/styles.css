@@ -11,7 +11,7 @@ header {
   margin: 0;
   background-color: #bc6c25;
   display: grid;
-  grid-template-columns: 25% 50% 25%;
+  grid-template-columns: 30% 40% 30%;
   /* justify-content: space-between; */
   /* grid-template-columns: 1fr 2fr 1fr;
   grid-template-areas:
@@ -19,12 +19,25 @@ header {
     "navigation crit-logo"; */
 }
 
+.recipe-groupings-wrapper {
+  align-self: end;
+}
+
 .recipe-groupings {
   display: flex;
+  list-style-type: none;
+  justify-content: stretch;
+  padding-left: 1vw;
+  font-size: 0.85em;
+}
+.recipe-groupings li {
+  padding: 1vh 1vw 2vh 2vw;
+  border-right: 1px solid black;
+  text-align: right;
 }
 
 .page-title {
-  margin: 2vh 10vw;
+  margin: 2vh 5vw;
   padding: 2vh;
   font-size: 3em;
   border: 2px solid #283618;
