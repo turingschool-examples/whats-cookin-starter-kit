@@ -90,5 +90,6 @@ class Pantry {
     return location.find(item => item.ingredient === ingredient.id)
   }
  }
-
-module.exports = Pantry;
+if (typeof module !== 'undefined') {
+  module.exports = Pantry;
+}
