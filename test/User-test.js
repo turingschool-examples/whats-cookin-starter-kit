@@ -3,6 +3,7 @@ const Pantry = require('../src/Pantry');
 const User = require('../src/User');
 const Ingredient = require('../src/Ingredient');
 
+
 describe('User', function() {
   let user;
   beforeEach(function() {
@@ -19,9 +20,6 @@ describe('User', function() {
 
   it('should have a collection of recipes to cook', function() {
     expect(user.recipesToCook).to.deep.equal([]);
-  })
+  });
 
-  // it('should ', function() {
-  //
-  // });
 })
