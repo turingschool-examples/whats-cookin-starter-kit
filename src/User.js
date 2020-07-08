@@ -8,12 +8,18 @@ class User {
     this.pantry = [];
     this.recipesToCook = [];
   }
-  
+
   addFavoriteRecipe(id) {
     if (!this.favoriteRecipes.includes(id)) {
       this.favoriteRecipes.push(id)
     }
     // issue # 23
+  }
+
+  removeFavoriteRecipe(id) {
+    let item = this.favoriteRecipes.indexOf(id);
+    this.favoriteRecipes.splice(item, 1)
+    // #19
   }
 
 }
