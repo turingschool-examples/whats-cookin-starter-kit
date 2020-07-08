@@ -65,7 +65,8 @@ class Recipe {
 
   checkForIngredient(ingredient) {
     let test = this.ingredients.find(ingredientData => ingredientData.id === ingredient.id)
-    console.log(test);
+    console.log(test !== undefined);
+    return (test !== undefined);
     }
     // return true or false if recipe includes ingredient input
 
