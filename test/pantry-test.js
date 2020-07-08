@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
-const Pantry = require('../src/pantry');
-const Recipe = require('../src/recipe')
+const Pantry = require('../src/pantry-class');
+const Recipe = require('../src/recipe-class')
 const usersData = require('../data/users.js');
 
 describe('Pantry', () => {

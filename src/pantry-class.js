@@ -1,4 +1,4 @@
-const Recipe = require('./recipe.js');
+const Recipe = require('./recipe-class.js');
 class Pantry {
   constructor(pantry) {
     this.ingredients = [];

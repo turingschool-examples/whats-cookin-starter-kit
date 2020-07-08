@@ -1,5 +1,5 @@
-const Pantry = require('../src/pantry.js');
-const Recipe = require('./recipe.js');
+const Pantry = require('./pantry-class.js');
+const Recipe = require('./recipe-class.js');
 const usersData = require('../data/users.js');
 const ingredientsData = require('../data/ingredients.js');
 
