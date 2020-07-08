@@ -1,0 +1,28 @@
+.dropdown-menu {
+  position: relative;
+  display: inline-block; 
+}
+
+.dropdown-btn {
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  /* width: 120%; */
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 5px;
+  /* width: 150%; */
+  text-decoration: none;
+}
+
+.dropdown-menu:hover .dropdown-content {
+  display: block; 
+}
