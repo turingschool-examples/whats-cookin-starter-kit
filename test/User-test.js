@@ -68,8 +68,16 @@ describe('User', function() {
   it('if a recipe already exists within favorites array, recipe should be removed', function() {
     user1.toggleFavoriteRecipe(recipe1);
     user1.toggleFavoriteRecipe(recipe1);
-    user1.toggleFavoriteRecipe(recipe2)
+    user1.toggleFavoriteRecipe(recipe2);
 
     expect(user1.favoriteRecipes.length).to.deep.equal(1)
   });
+
+  it('if a recipe is removed, the recipe that remains should be the expected recipe', function() {
+    user1.toggleFavoriteRecipe(recipe1);
+    user1.toggleFavoriteRecipe(recipe1);
+    user1.toggleFavoriteRecipe(recipe2);
+
+    expect(user1.favoriteRecipes[0].id.id).to.equal(678353)
+  })
 });
