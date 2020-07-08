@@ -130,4 +130,43 @@ describe('Recipe', function() {
 
     expect(ingredientInRecipe).to.equal(false);
   });
+
+  it('should be able to calculate the total cost of its ingredients', function() {
+    const ingredientsData = [
+      {
+        id: 5,
+        name: 'flour',
+        estimatedCostInCents: 100
+      }, 
+      {
+        id: 8,
+        name: 'sugar',
+        estimatedCostInCents: 50
+      }
+    ];
+    
+    const ingredientsCost = recipe.calculateIngredientsCost(ingredientsData);
+
+    expect(ingredientsCost).to.equal(150);
+  });
+
+  it('should be able to use a default ingredient cost to calculate the total cost of its ingredients if an ingredient can\'t be looked up', function() {
+    const ingredientsData = [
+      {
+        id: 5,
+        name: 'flour',
+        estimatedCostInCents: 100
+      },
+    ];
+
+    const ingredientsCost = recipe.calculateIngredientsCost(ingredientsData);
+
+    expect(ingredientsCost).to.equal(200);
+  });
+
+  it('should be able to retrieve its instructions', function() {
+    const recipeInstructions = recipe.retrieveRecipeInstructions();
+
+    expect(recipeInstructions).to.deep.equal(recipe.instructions)
+  });
 });
