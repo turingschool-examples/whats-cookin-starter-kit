@@ -105,4 +105,18 @@ describe('User', function () {
 
         });
         });
+
+        describe('findRecipesByName', function () {
+             it('should be able to find a recipe by name', () => {
+              let mockRecipes = [{
+                  id: 1,
+                  name: 'bearbear'
+              }, {
+                  id: 2,
+                  name: 'pony'
+              }]
+              expect(user1.findRecipesByName(mockRecipes, 'anything')).to.deep.equal([]);
+              expect(user2.findRecipesByName(mockRecipes, 'bearbear')).to.deep.equal([mockRecipes[0]]);
+        })
+    });
     });

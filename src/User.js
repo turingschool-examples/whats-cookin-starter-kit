@@ -44,6 +44,15 @@ findRecipesByType(savedRecipes, tagName) {
   });
 }
 
+findRecipesByName(savedRecipes, name) {
+  console.log(savedRecipes)
+  return savedRecipes.filter(recipe => {
+    console.log(recipe.name)
+    return recipe.name.includes(name)
+  });
+}
+
+
 }
 
 // search recipesToCook by name OR ingredient
