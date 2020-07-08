@@ -31,4 +31,8 @@ describe('User', function () {
                 expect(user.pantry).to.deep.equal([]);
             });
 
+            it('should have a property of recipesToCook', function () {
+                expect(user.recipesToCook).to.deep.equal([]);
+            });
+
             });

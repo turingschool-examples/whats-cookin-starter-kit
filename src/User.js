@@ -5,6 +5,7 @@ class User {
     this.id = id;
     this.favoriteRecipes = [];
     this.pantry = [];
+    this.recipesToCook = [];
 
 
   }
