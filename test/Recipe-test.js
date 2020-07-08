@@ -111,4 +111,14 @@ describe("Round", function () {
     //const ingredientData = {"id": 20081, "name": "wheat flour", "estimatedCostInCents": 142};
     expect(recipe.getIngredientName(ingredient1)).to.equal('wheat flour');
   });
+
+  it('should return an ingredient\'s cost', function(){
+    //const ingredientData = {"id": 20081, "name": "wheat flour", "estimatedCostInCents": 142};
+    expect(recipe.getIngredientCost(ingredient1)).to.equal(142);
+  });
+
+  it('should calculate total cost of the recipe', function() { //need to change if price display is changed
+    expect(recipe.calculateTotalCost()).to.equal(11.96);
+  });
+
 });

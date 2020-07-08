@@ -11,9 +11,9 @@ class Recipe {
     this.tags = tags;
   }
 
-  getIngredientName(ingredient) {
-    console.log(ingredient.id);
-    console.log(ingredientsData[0].id);
+  getIngredientName(ingredient) { //look into .find or .map
+    // console.log(ingredient.id);
+    // console.log(ingredientsData[0].id);
     let name = '';
     ingredientsData.forEach(ingredientData => {
       if (ingredient.id === ingredientData.id) {
@@ -26,11 +26,26 @@ class Recipe {
     // return name of ingredient
   }
 
-  getIngredientCost() {
+  getIngredientCost(ingredient) { //look into .find or .map
+    let cost = 0;
+    ingredientsData.forEach(ingredientData => {
+      if (ingredient.id === ingredientData.id) {
+        cost = ingredientData.estimatedCostInCents;
+      }
+    })
+    return cost;
     // basically same as above
   }
 
-  calculateCost() {
+  calculateTotalCost() {
+    let costs = [];
+    this.ingredients.forEach(ingredient => {
+      costs.push(this.getIngredientCost(ingredient));
+    });
+    //console.log(costs);
+    let totalCost = costs.reduce((sum, num) => sum += num, 0);
+    //console.log(totalCost/100); // dollar amount
+    return (totalCost / 100);
     // access ingredients for total of each ingredient
     // access recipes.js for cost of ingredient using id. .find(id === id) return cost
     // multiply these two
