@@ -1,6 +1,5 @@
-// might need ingredient class
 const ingredientsData = require('../data/ingredients.js');
-const newRecipe = require('../data/recipes.js');
+
 class Recipe {
   constructor({id, image, ingredients, instructions, name, tags}) {
     this.id = id;
@@ -11,9 +10,7 @@ class Recipe {
     this.tags = tags;
   }
 
-  getIngredientName(ingredient) { //look into .find or .map
-    // console.log(ingredient.id);
-    // console.log(ingredientsData[0].id);
+  getIngredientName(ingredient) { //returns name of ingredient
     let name = '';
     ingredientsData.forEach(ingredientData => {
       if (ingredient.id === ingredientData.id) {
@@ -26,7 +23,7 @@ class Recipe {
     // return name of ingredient
   }
 
-  getIngredientCost(ingredient) { //look into .find or .map
+  getIngredientCost(ingredient) { //returns cost of ingredient in dollar amount
     let cost = 0;
     ingredientsData.forEach(ingredientData => {
       if (ingredient.id === ingredientData.id) {
@@ -34,17 +31,14 @@ class Recipe {
       }
     })
     return (cost / 100);
-    // basically same as above
   }
 
-  calculateTotalCost() {
+  calculateTotalCost() { //returns total cost of recipe's ingredients in dollar amount
     let costs = [];
     this.ingredients.forEach(ingredient => {
       costs.push(this.getIngredientCost(ingredient));
     });
-    //console.log(costs);
     let totalCost = costs.reduce((sum, num) => sum += num, 0);
-    //console.log(totalCost/100); // dollar amount
     return totalCost; //changes to dollar amount
     // access ingredients for total of each ingredient
     // access recipes.js for cost of ingredient using id. .find(id === id) return cost
@@ -53,27 +47,27 @@ class Recipe {
     // return cost of all combined ingredients
   }
 
-  returnInstructions() {
+  returnInstructions() { //returns recipe's instructions as an array of objects
+    console.log(this.instructions);
     return this.instructions;
     //  return this.ingredients
     // maybe only return
   }
 
-  returnIngredients() {
+  returnIngredients() { //returns recipe's ingredients as an array of objects 
+    console.log(this.ingredients);
     return this.ingredients
   }
 
-  checkForIngredient(ingredient) {
+  checkForIngredient(ingredient) { //returns true if recipe contains ingredient
+    let test = this.ingredients.find(ingredientData => ingredientData.id === ingredient.id);
+    return (test !== undefined); //allows for both types of ingredient objects to be compared
     // return this.ingredients.includes(ingredient); //simpler but may be limited to what's passed in
-    // let test = this.ingredients.find(ingredientData => ingredientData.id === ingredient.id);
-    // return (test !== undefined);
     }
-    // return true or false if recipe includes ingredient input
 
-  checkForTag(tag) {
+  checkForTag(tag) { //returns true if recipe contains tag, pass tag in as string
     return this.tags.includes(tag)
   }
 }
-
 
 module.exports = Recipe;
