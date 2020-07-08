@@ -26,3 +26,10 @@
 .dropdown-menu:hover .dropdown-content {
   display: block; 
 }
+
+.recipe-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10%; 
+  border: 1px solid black; 
+}
