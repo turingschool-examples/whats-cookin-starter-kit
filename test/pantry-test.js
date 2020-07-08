@@ -67,4 +67,15 @@ describe('Pantry', () => {
     ];
     expect(requiredIngredientsInPantry).to.deep.equal(expectedIngredients);
   });
+
+  it('should only check ingredients if the given recipe is a RECIPE', () => {
+      const requiredIngredientsInPantry = pantry.checkPantryForRecipeIngredients(
+        'choppedLiver'
+      );
+      const expectedIngredients = 'This is not a recipe'
+      expect(requiredIngredientsInPantry).to.deep.equal(expectedIngredients);
+  });
+
+  
+
 });
