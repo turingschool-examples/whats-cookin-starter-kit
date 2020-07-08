@@ -79,4 +79,18 @@ describe('user', () => {
 
     expect(user.favoriteRecipes).to.deep.equal([]);
   });
+
+  it('should let the user search for a recipe by name', () => {
+    const recipe1 = new Recipe(recipeData[0]);
+    const recipe2 = new Recipe(recipeData[1]);
+    const recipe3 = new Recipe(recipeData[2]);
+
+    user.chooseFavoriteRecipe(recipe1);
+    user.chooseFavoriteRecipe(recipe2);
+    user.chooseFavoriteRecipe(recipe3);
+
+    const searchResults = user.searchFavoriteRecipesByName('Map');
+
+    expect(searchResults[0].name).to.equal(recipe2.name);
+  })
 });

@@ -1,6 +1,8 @@
-const usersData = require('../data/users.js');
 const Pantry = require('../src/pantry.js');
 const Recipe = require('./recipe.js');
+const usersData = require('../data/users.js');
+const ingredientsData = require('../data/ingredients.js');
+
 class User {
   constructor(userData) {
     this.name = this.checkIfString(userData.name);
@@ -22,6 +24,15 @@ class User {
     if (recipe instanceof Recipe) {
       this.favoriteRecipes.push(recipe);
     }
+  }
+
+  searchFavoriteRecipesByName(searchInput) {
+    let searchResults = this.favoriteRecipes.filter(recipe => {
+      let recipeName = recipe.name.toLowerCase();
+      return recipeName.includes(searchInput.toLowerCase());
+    });
+
+    return searchResults;
   }
 }
 
