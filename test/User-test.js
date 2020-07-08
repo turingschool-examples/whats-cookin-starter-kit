@@ -247,17 +247,17 @@ describe('User', function () {
         expect(user1).to.be.an.instanceof(User);
     });
 
-    it.only('should have a unique id', function () {
+    it('should have a unique id', function () {
         expect(user1.id).to.equal(1);
         expect(user2.id).to.equal(2);
     });
 
-    it.only('should have a property of name', () => {
+    it('should have a property of name', () => {
         expect(user1.name).to.equal('Saige O\'Kon');
         expect(user2.name).to.equal('Ephraim Goyette');
     })
 
-    it.only('should have a property of pantry', function () {
+    it('should have a property of pantry', function () {
         expect(user1.pantry).to.deep.equal(usersData[0].pantry);
     });
 
@@ -300,12 +300,21 @@ describe('User', function () {
 
     describe('findRecipesByType', function () {
         it.only('should be able to find a recipe by type', () => {
-            let tagNames = "tags";
-            user.findRecipesByType(tagNames);
-        //     ]);
-            expect(user.findRecipesByType).to.deep.equal([tags]);
+            let mockRecipes = [{
+                id: 1,
+                tags: ['good', 'bad']
+            }, {
+                id: 2,
+                tags: ['good', 'food']
+            }] 
+            // how do I know the function has been implemented correctly
+            // first case returns multiples if they match
+            // returns 1 if only 1 matches
+            // returns 0 if none match
+            expect(user1.findRecipesByType(mockRecipes, 'anything')).to.deep.equal([]);
+            expect(user1.findRecipesByType(mockRecipes, 'bad')).to.deep.equal([mockRecipes[0]]);
+            expect(user1.findRecipesByType(mockRecipes, 'good')).to.deep.equal(mockRecipes);
+
         });
         });
-    
-    
     });

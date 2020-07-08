@@ -38,9 +38,9 @@ class User {
 
 
 //search recipesToCook OR favoriteRecipes by type
-findRecipesByType(savedRecipes, recipe) {
-  return userData.filter(item => {
-    return item.tags.includes(recipe);
+findRecipesByType(savedRecipes, tagName) {
+  return savedRecipes.filter( recipe => {
+    return recipe.tags.includes(tagName);
   });
 }
 
