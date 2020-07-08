@@ -41,13 +41,13 @@ describe('user', () => {
     expect(anotherRobotChef.id).to.equal(Date.now());
   });
 
-  it('should have a pantry that contains ingredients', () => {
-    expect(user.pantry).to.be.an('object');
-    expect(user.pantry).to.deep.equal(new Pantry(usersData[0].pantry));
-  });
-
   it('should have a pantry that is an instance of Pantry', () => {
     expect(user.pantry).to.be.an.instanceOf(Pantry);
+  });
+  
+  it('should have a pantry that contains ingredients', () => {
+    expect(user.pantry).to.be.an('object');
+    expect(user.pantry.ingredients).to.deep.equal(usersData[0].pantry);
   });
 
   it('should start with an empty array of favorite recipes', () => {
