@@ -50,6 +50,7 @@ class User {
   };
   
   filterFavoriteRecipesByName(name) {
+    name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 		return this.favoriteRecipes.reduce((foundRecipes, recipe) => {
 			if (recipe.name.includes(name)) {
 				foundRecipes.push(recipe);
@@ -58,7 +59,6 @@ class User {
 		}, []);
   };
   
-  // console.log(string.charAt(0).toUpperCase() + string.slice(1).toLowerCase())
   filterRecipesToCookByName(name) {
     name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 		return this.recipesToCook.reduce((foundRecipes, recipe) => {

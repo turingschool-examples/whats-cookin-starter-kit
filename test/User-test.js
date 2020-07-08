@@ -88,14 +88,14 @@ describe('User', () => {
 		expect(user.filterRecipesToCookByTag('antipasto')).to.deep.equal([recipeInfo[0], recipeInfo[7]]);
 	});
   
-  it('Should be able to filter favorite recipes by name', () => {
+  it('Should be able to filter favorite recipes by name, not case sensitive', () => {
 		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
 
 		user.addFavoriteRecipe(recipeInfo[0]);
 		user.addFavoriteRecipe(recipeInfo[3]);
     user.addFavoriteRecipe(recipeInfo[7]);
 
-		expect(user.filterFavoriteRecipesByName('Cookie')).to.deep.equal([recipeInfo[0], recipeInfo[7]]);
+		expect(user.filterFavoriteRecipesByName('coOKie')).to.deep.equal([recipeInfo[0], recipeInfo[7]]);
   });
   
   it('Should be able to filter recipes to cook by name, not case sensitive', () => {
