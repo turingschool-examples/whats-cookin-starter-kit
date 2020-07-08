@@ -28,14 +28,14 @@ class User {
     let index = this.recipesToCook.indexOf(id);
     this.recipesToCook.splice(index, 1); 
 	};
-	
+
 	filterFavoriteRecipeByTag(tag) {
-		const foundRecipes = this.favoriteRecipes.filter(recipe => {
-			return recipe.tags[0] === tag;
-		});
-		return foundRecipes.map(recipe => {
-			return recipe.id;
-		});
+		return this.favoriteRecipes.reduce((foundRecipes, recipe) => {
+			if (recipe.tags.includes(tag)) {
+				foundRecipes.push(recipe.id);
+			};
+			return foundRecipes;
+		}, []);
 	};
 
 };

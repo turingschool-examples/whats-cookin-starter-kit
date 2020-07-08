@@ -64,11 +64,11 @@ describe('User', () => {
 	it('Should be able to filter favorite recipes by tag', () => {
 		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
 
-		user.addFavoriteRecipe(recipeInfo[0])
-		user.addFavoriteRecipe(recipeInfo[3])
-		user.addFavoriteRecipe(recipeInfo[5])
+		user.addFavoriteRecipe(recipeInfo[0]);
+		user.addFavoriteRecipe(recipeInfo[3]);
+		user.addFavoriteRecipe(recipeInfo[7]);
 
-		expect(user.filterFavoriteRecipeByTag('side dish')).to.deep.equal([741603, 507921])
+		expect(user.filterFavoriteRecipeByTag('antipasto')).to.deep.equal([595736, 541288]);
 	});
-	
+
 });
