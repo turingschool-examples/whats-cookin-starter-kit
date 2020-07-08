@@ -11,7 +11,7 @@ describe('User', () => {
   });
 
   it('Should be able to favorite a recipe', () => {
-		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+		const user = new User(userInfo[0]);
 
 		user.addFavoriteRecipe(recipeInfo[0]);
 
@@ -19,7 +19,7 @@ describe('User', () => {
   });
 
   it('Should be able to remove a favorite recipe', () => {
-		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+		const user = new User(userInfo[0]);
 
     user.addFavoriteRecipe(recipeInfo[0]);
     user.removeFavoriteRecipe(recipeInfo[0]);
@@ -28,7 +28,7 @@ describe('User', () => {
   });
 
   it('Should not add a duplicate favorite recipe', () => {
-		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+		const user = new User(userInfo[0]);
 
     user.addFavoriteRecipe(recipeInfo[0]);    
     user.addFavoriteRecipe(recipeInfo[0]);
@@ -37,7 +37,7 @@ describe('User', () => {
   });
 
   it('Should be able to add a recipe to cook', () => {
-		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+		const user = new User(userInfo[0]);
 
     user.addRecipeToCook(recipeInfo[0]);
 
@@ -45,7 +45,7 @@ describe('User', () => {
   });
 
   it('Should be able to remove a recipe to cook', () => {
-		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+		const user = new User(userInfo[0]);
 
     user.addRecipeToCook(recipeInfo[0]);
     user.removeRecipeToCook(recipeInfo[0]);
@@ -54,7 +54,7 @@ describe('User', () => {
   });
 
   it('Should not add a duplicate recipe to cook', () => {
-		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+		const user = new User(userInfo[0]);
 
     user.addRecipeToCook(recipeInfo[0]);    
     user.addRecipeToCook(recipeInfo[0]);
@@ -63,7 +63,7 @@ describe('User', () => {
 	});
 	
 	it('Should be able to filter favorite recipes by tag', () => {
-		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+		const user = new User(userInfo[0]);
 
 		user.addFavoriteRecipe(recipeInfo[0]);
 		user.addFavoriteRecipe(recipeInfo[3]);
@@ -73,13 +73,13 @@ describe('User', () => {
 	});
 
 	it('Should return no results if tag not found in favorite recipes', () => {
-		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+		const user = new User(userInfo[0]);
 
 		expect(user.filterFavoriteRecipesByTag('antipasto')).to.deep.equal([]);
 	});
 
 	it('Should be able to filter recipes to cook by tag', () => {
-		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+		const user = new User(userInfo[0]);
 
 		user.addRecipeToCook(recipeInfo[0]);
 		user.addRecipeToCook(recipeInfo[3]);
@@ -89,7 +89,7 @@ describe('User', () => {
 	});
   
   it('Should be able to filter favorite recipes by name, not case sensitive', () => {
-		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+		const user = new User(userInfo[0]);
 
 		user.addFavoriteRecipe(recipeInfo[0]);
 		user.addFavoriteRecipe(recipeInfo[3]);
@@ -99,7 +99,7 @@ describe('User', () => {
   });
   
   it('Should be able to filter recipes to cook by name, not case sensitive', () => {
-		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+		const user = new User(userInfo[0]);
 
 		user.addRecipeToCook(recipeInfo[0]);
 		user.addRecipeToCook(recipeInfo[3]);
@@ -109,7 +109,7 @@ describe('User', () => {
   });
   
   it('Should be able to filter favorite recipes by ingredient', () => {
-		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+		const user = new User(userInfo[0]);
 
 		user.addFavoriteRecipe(recipeInfo[0]);
 		user.addFavoriteRecipe(recipeInfo[3]);
@@ -119,7 +119,7 @@ describe('User', () => {
   });
 
   it('Should be able to filter recipes to cook by ingredient', () => {
-		const user = new User(userInfo[0].name, userInfo[0].id, userInfo[0].pantry);
+		const user = new User(userInfo[0]);
 
 		user.addRecipeToCook(recipeInfo[0]);
 		user.addRecipeToCook(recipeInfo[3]);
