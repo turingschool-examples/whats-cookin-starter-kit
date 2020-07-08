@@ -1,8 +1,8 @@
 // might need ingredient class
 const ingredientsData = require('../data/ingredients.js');
-
+const newRecipe = require('../data/recipes.js');
 class Recipe {
-  constructor(id, image, ingredients, instructions, name, tags) {
+  constructor({id, image, ingredients, instructions, name, tags}) {
     this.id = id;
     this.image = image;
     this.ingredients = ingredients; //update with names from recipe data file

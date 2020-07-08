@@ -5,17 +5,16 @@ class Pantry {
     this.shoppingList = [];
   }
 
-  checkPantry() {
-    this.recipe.ingredients.forEach(ingredient => {
-      if(ingredient.id === this.pantry.id && ingredient.amount < this.pantry.amount)
-
-    })
+  // checkPantry() {
+  //   this.recipe.ingredients.forEach(ingredient => {
+  //     if(ingredient.id === this.pantry.id && ingredient.amount < this.pantry.amount)
+  //   })
 
 
     /*
     Determine whether my pantry has enough ingredients to cook a given meal
     need to check recipe ingredients against pantry ingredients
-    return boolean value? 
+    return boolean value?
     need recipes class and user class to test method
 
     if(this.recipe.ingredient[id].quantity.amount <= this.pantry[id].quantity.amount)
@@ -30,7 +29,7 @@ class Pantry {
     */
 
 
-  }
+  //}
 
   addToShoppingList() {
     /*
