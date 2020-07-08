@@ -36,10 +36,12 @@ describe("Recipe", function () {
     expect(recipe.id).to.equal(595736);
   });
 
+  it('should have an id that is a number', function () {
+
+  });
+
   it('should have an image', function () {
-    expect(recipe.image).to.equal(
-      'https://spoonacular.com/recipeImages/595736-556x370.jpg'
-    );
+    expect(recipe.image).to.equal('https://spoonacular.com/recipeImages/595736-556x370.jpg');
   });
 
   it('should have a list of ingredients', function () { //refactor
@@ -59,13 +61,11 @@ describe("Recipe", function () {
   });
 
   it('should return an ingredient\'s name', function(){
-    //const ingredientData = {"id": 20081, "name": "wheat flour", "estimatedCostInCents": 142};
     expect(recipe.getIngredientName(ingredient1)).to.equal('wheat flour');
   });
 
-  // SHOULD BE ABLE to take multip.e
+  // SHOULD BE ABLE to take multiple
   it('should return an ingredient\'s cost', function(){
-    //const ingredientData = {"id": 20081, "name": "wheat flour", "estimatedCostInCents": 142};
     expect(recipe.getIngredientCost(ingredient1)).to.equal(1.42);
   });
 
@@ -84,15 +84,21 @@ describe("Recipe", function () {
   });
 
   it('should check if it includes a specific ingredient', function() { //need to change if price display is changed
-    //create ingredient4 not in the recipe
     expect(recipe.checkForIngredient(ingredient1)).to.equal(true);
-
   });
 
   it('should check if it does not include a specific ingredient', function() { //need to change if price display is changed
-    //create ingredient4 not in the recipe
     const ingredient4 = {"id": 19335, "name": "sucrose", "estimatedCostInCents": 902};
     expect(recipe.checkForIngredient(ingredient4)).to.equal(false);
   });
 
+  it('should check if it includes a specific tag', function() { //need to change if price display is changed
+    let tag = 'antipasti';
+    expect(recipe.checkForTag(tag)).to.equal(true);
+  });
+
+  it('should check if it does not include a specific tag', function() {
+    let tag = 'salad';
+    expect(recipe.checkForTag(tag)).to.equal(false);
+  });
 });

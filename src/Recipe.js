@@ -64,17 +64,15 @@ class Recipe {
   }
 
   checkForIngredient(ingredient) {
-    let test = this.ingredients.find(ingredientData => ingredientData.id === ingredient.id);
-    return (test !== undefined);
+    // return this.ingredients.includes(ingredient); //simpler but may be limited to what's passed in
+    // let test = this.ingredients.find(ingredientData => ingredientData.id === ingredient.id);
+    // return (test !== undefined);
     }
     // return true or false if recipe includes ingredient input
 
-  // checkForTag(tag) {
-  //   console.log(this.tags.includes(tag));
-  //   // let test = this.tags.find(tagData => tag === ingredient.id);
-  //   // return (test !== undefined);
-  //   // return true or false if recipe inlcudes tag input
-  // }
+  checkForTag(tag) {
+    return this.tags.includes(tag)
+  }
 }
 
 
