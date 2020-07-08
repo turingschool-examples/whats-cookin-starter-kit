@@ -29,6 +29,12 @@ class User {
     //#20
   }
 
+  removeRecipesToCook(id) {
+    let item = this.recipesToCook.indexOf(id);
+    this.recipesToCook.splice(item, 1)
+  }
+  // #21
+
 }
 
 if (typeof module !== 'undefined') {

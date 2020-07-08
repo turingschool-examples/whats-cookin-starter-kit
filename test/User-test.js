@@ -59,4 +59,12 @@ describe('User', function () {
             expect(user.recipesToCook).to.deep.equal([595736]);
         });
     });
+
+    describe('removeRecipesToCook', function () {
+        it('should be able to remove a recipe from recipesToCook', () => {
+            user.removeRecipesToCook(595736);
+            expect(user.recipesToCook).to.deep.equal([]);
+        });
+    });
+    
     });
