@@ -103,7 +103,7 @@ describe("Recipe", function () {
   // SHOULD BE ABLE to take multip.e
   it('should return an ingredient\'s cost', function(){
     //const ingredientData = {"id": 20081, "name": "wheat flour", "estimatedCostInCents": 142};
-    expect(recipe.getIngredientCost(ingredient1)).to.equal(142);
+    expect(recipe.getIngredientCost(ingredient1)).to.equal(1.42);
   });
 
   it('should calculate total cost of the recipe', function() { //need to change if price display is changed
@@ -113,6 +113,11 @@ describe("Recipe", function () {
   it('should return its own instructions', function() { //need to change if price display is changed
     expect(recipe.returnInstructions()).to.deep.equal([instruction1, instruction2, instruction3]);
     expect(recipe.returnInstructions().length).to.equal(3);
+  });
+
+  it('should return its own ingredients', function() { //need to change if price display is changed
+    expect(recipe.returnIngredients()).to.deep.equal([ingredient1, ingredient2, ingredient3]);
+    expect(recipe.returnIngredients().length).to.equal(3);
   });
 
   it('should check if it includes a specific ingredient', function() { //need to change if price display is changed
