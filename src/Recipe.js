@@ -29,6 +29,10 @@ class Recipe {
   checkRecipeCategory(categoryTags) {
     return this.tags.some(tag => categoryTags.includes(tag)); 
   }
+
+  checkRecipeIngredients(ingredientSearchedId) {
+    return this.ingredients.some(ingredient => ingredient.id === ingredientSearchedId); 
+  }
 }
 
 

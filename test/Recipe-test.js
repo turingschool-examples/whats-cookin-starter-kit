@@ -114,4 +114,20 @@ describe('Recipe', function() {
 
     expect(isRecipeInCategory).to.equal(false);
   });
+
+  it('should be able to check if it has a given ingredient', function() {
+    const ingredientSearchedId = 5;
+
+    const ingredientInRecipe = recipe.checkRecipeIngredients(ingredientSearchedId);
+
+    expect(ingredientInRecipe).to.equal(true); 
+  });
+
+  it('should be able to check if it does not have a given ingredient', function () {
+    const ingredientSearchedId = 4;
+
+    const ingredientInRecipe = recipe.checkRecipeIngredients(ingredientSearchedId);
+
+    expect(ingredientInRecipe).to.equal(false);
+  });
 });
