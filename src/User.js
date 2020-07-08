@@ -9,13 +9,8 @@ class User {
   }
 
   toggleFavoriteRecipe(recipe) {
-    let existingRecipe = this.favoriteRecipes.find(faveRecipe => {
-      if(faveRecipe.id === recipe.id) {
-        return faveRecipe;
-      }
-    })
-    if(existingRecipe) {
-      let index = this.favoriteRecipes.indexOf(existingRecipe)
+    if(this.favoriteRecipes.includes(recipe)) {
+      let index = this.favoriteRecipes.indexOf(recipe)
       this.favoriteRecipes.splice(index, 1);
     } else {
       this.favoriteRecipes.push(recipe)
