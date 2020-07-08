@@ -10,12 +10,17 @@ class User {
   addFavoriteRecipes(recipe) {
     //add to / remove from the user's favoriteRecipes (an array)
     this.favoriteRecipes.push(recipe);
-    console.log(this.favoriteRecipes)
   }
 
-  removeFavoriteRecipes() {
-    //possibly use findIndex to return an array that doesn't include recipe
-    //reassign favorite recipes to that array
+  removeFavoriteRecipes(recipe) {
+    let removeRecipe = this.favoriteRecipes.indexOf(recipe);
+    this.favoriteRecipes.splice(removeRecipe, 1);
+    //possibly use indexOf to return an array that doesn't include recipe
+    //The indexOf() method returns the first index at which a given element can be found in the array
+    //This method returns -1 if the value to search for never occurs.
+    //Identifying using indexOf()
+    //Returns the removed items---the removedRecipe and how many as arguments
+
   }
 
   addRecipeToCook(recipe) {
@@ -35,7 +40,7 @@ class User {
   //   updatePageHtml(foundRecipes);
 
     //DOM manipulation for later down the road
-  }
 }
+
 
 module.exports = User;
