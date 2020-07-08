@@ -45,5 +45,18 @@ describe('Pantry', () => {
     expect(userPantry.recipe[0]).to.be.an.instanceof(Recipe);
   })
 
+  it('should be able to check if user has enough ingredients to make recipe', () => {
+
+  })
+
+  it('should have an array of needed ingredients that is empty by default', () => {
+    expect(pantry.shoppingList).to.be.an('array').with.a.lengthOf(0);
+
+  })
+
+  it('should list additional ingredients user needs to make recipe', () => {
+
+  })
+
 });
 

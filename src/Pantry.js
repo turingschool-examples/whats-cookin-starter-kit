@@ -2,7 +2,7 @@ class Pantry {
   constructor(userObject) {
     this.pantry = userObject.pantry;
     this.recipe = userObject.recipesToCook;
-    
+    this.shoppingList = [];
   }
   enoughIngredients() {
     /*
@@ -11,6 +11,8 @@ class Pantry {
     return boolean value? 
     need recipes class and user class to test method
     */
+
+
   }
 
   stillNeedIngredients() {
