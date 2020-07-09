@@ -65,6 +65,9 @@ h2 {
   width: 24em;
   height: 25em;
   margin-top: 1em;
+  display: grid;
+  grid-template-areas:
+  
 }
 
 .recipe-card > img {
@@ -72,8 +75,16 @@ h2 {
   margin: 1em 1em 0 1em;
 }
 
-.recipe-card > p{
+.recipe-card > p {
   text-align: center;
+}
+
+.hover-test {
+  opacity:0;
+}
+
+.recipe-card > .hover-test:hover {
+  opacity: 0.85;
 }
 
 .user-pantry,
