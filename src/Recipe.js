@@ -6,11 +6,12 @@ class Recipe {
     this.image = image;
     this.ingredients = ingredients; //update with names from recipe data file
     this.instructions = instructions;
-    this.name = name;
+    this.name = name; // set defualt to undefined
     this.tags = tags;
-  }
+  };
 
   getIngredientName(ingredient) { //returns name of ingredient
+// use .find like in checkForIngredient
     let name;
     ingredientsData.forEach(ingredientData => {
       if (ingredient.id === ingredientData.id) {
@@ -18,9 +19,10 @@ class Recipe {
       }
     })
     return name;
-  }
+  };
 
   getIngredientCost(ingredient) { //returns cost of ingredient in dollar amount
+    // use .find like in checkForIngredient
     let cost = 0;
     ingredientsData.forEach(ingredientData => {
       if (ingredient.id === ingredientData.id) {
@@ -28,7 +30,7 @@ class Recipe {
       }
     })
     return (cost / 100);
-  }
+  };
 
   calculateTotalCost() { //returns total cost of recipe's ingredients in dollar amount
     let costs = [];
@@ -37,7 +39,7 @@ class Recipe {
     });
     let totalCost = costs.reduce((sum, num) => sum += num, 0);
     return totalCost; //changes to dollar amount
-  }
+  };
 
   returnInstructions() { //returns recipe's instructions as an array of objects
     return this.instructions;

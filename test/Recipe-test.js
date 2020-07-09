@@ -23,6 +23,8 @@ describe("Recipe", function () {
     );
   });
 
+  //create broken recipes for sad path tests
+
   it("should be a function", function() {
     expect(Recipe).to.be.a("function");
   });
@@ -35,17 +37,21 @@ describe("Recipe", function () {
     expect(recipe.id).to.equal(595736);
   });
 
-  it('should have an id that is a number', function() {
-    expect(recipe.id).to.be.a('number');
-  });
+  // it('should have an id that is a number', function() {
+  //   expect(recipe.id).to.be.a('number');
+  // });
 
   it('should have an image link', function() {
     expect(recipe.image).to.equal('https://spoonacular.com/recipeImages/595736-556x370.jpg');
   });
 
-  it('should have an image link that is a string', function() {
-    expect(recipe.image).to.be.a('string');
+  it('should ', function() {
+    expect(recipe.image).to.equal('https://spoonacular.com/recipeImages/595736-556x370.jpg');
   });
+
+  // it('should have an image link that is a string', function() {
+  //   expect(recipe.image).to.be.a('string');
+  // });
 
   it('should have a list of ingredients', function() {
     expect(recipe.ingredients).to.deep.equal([ingredient1, ingredient2, ingredient3]);
@@ -59,7 +65,7 @@ describe("Recipe", function () {
 
   it('should have a list of instructions', function() {
     expect(recipe.instructions).to.deep.equal([instruction1, instruction2, instruction3]);
-    expect(recipe.instructions.length).to.equal(3);
+    //expect(recipe.instructions.length).to.equal(3);
   });
 
   it('should have a list of instructions that is an array of objects', function() {
@@ -104,7 +110,7 @@ describe("Recipe", function () {
     expect(recipe.getIngredientCost(ingredient1)).to.be.a('number');
   });
 
-  it('should calculate total cost of the recipe', function() { //need to change if price display is changed
+  it('should calculate total cost of the recipe', function() {
     expect(recipe.calculateTotalCost()).to.equal(11.96);
   });
 
