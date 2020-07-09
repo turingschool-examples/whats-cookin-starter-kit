@@ -1,8 +1,7 @@
-// might need ingredient class
 const ingredientsData = require('../data/ingredients.js');
 
 class Recipe {
-  constructor(id, image, ingredients, instructions, name, tags) {
+  constructor({id, image, ingredients, instructions, name, tags}) {
     this.id = id;
     this.image = image;
     this.ingredients = ingredients; //update with names from recipe data file
@@ -11,68 +10,52 @@ class Recipe {
     this.tags = tags;
   }
 
-  getIngredientName(ingredient) { //look into .find or .map
-    // console.log(ingredient.id);
-    // console.log(ingredientsData[0].id);
-    let name = '';
+  getIngredientName(ingredient) { //returns name of ingredient
+    let name;
     ingredientsData.forEach(ingredientData => {
       if (ingredient.id === ingredientData.id) {
         name = ingredientData.name;
       }
     })
     return name;
-    // sort through ingredient data file
-    // if id of ingredient equals id in data filled
-    // return name of ingredient
   }
 
-  getIngredientCost(ingredient) { //look into .find or .map
+  getIngredientCost(ingredient) { //returns cost of ingredient in dollar amount
     let cost = 0;
     ingredientsData.forEach(ingredientData => {
       if (ingredient.id === ingredientData.id) {
         cost = ingredientData.estimatedCostInCents;
       }
     })
-    return cost;
-    // basically same as above
+    return (cost / 100);
   }
 
-  calculateTotalCost() {
+  calculateTotalCost() { //returns total cost of recipe's ingredients in dollar amount
     let costs = [];
     this.ingredients.forEach(ingredient => {
       costs.push(this.getIngredientCost(ingredient));
     });
-    //console.log(costs);
     let totalCost = costs.reduce((sum, num) => sum += num, 0);
-    //console.log(totalCost/100); // dollar amount
-    return (totalCost / 100); //changes to dollar amount
-    // access ingredients for total of each ingredient
-    // access recipes.js for cost of ingredient using id. .find(id === id) return cost
-    // multiply these two
-    // combine all ingredients in array
-    // return cost of all combined ingredients
+    return totalCost; //changes to dollar amount
   }
 
-  returnInstructions() {
+  returnInstructions() { //returns recipe's instructions as an array of objects
     return this.instructions;
-    //  return this.ingredients
-    // maybe only return
-  }
+  };
 
-  returnIngredients() {
+  returnIngredients() { //returns recipe's ingredients as an array of objects only including id and amount
     return this.ingredients
-  }
-  
-  checkForIngredient(ingredient) {
-    let test = this.ingredients.find(ingredientData => ingredientData.id === ingredient.id)
-    console.log(test);
-    }
-    // return true or false if recipe includes ingredient input
+  };
 
-  checkForTag() {
-    // return true or false if recipe inlcudes tag input
-  }
+  checkForIngredient(ingredient) { //returns true if recipe contains ingredient
+    let test = this.ingredients.find(ingredientData => ingredientData.id === ingredient.id);
+    return (test !== undefined); //allows for both types of ingredient objects to be compared
+    // return this.ingredients.includes(ingredient); //simpler but may be limited to what's passed in
+  };
+
+  checkForTag(tag) { //returns true if recipe contains tag, pass tag in as string
+    return this.tags.includes(tag)
+  };
 }
-
 
 module.exports = Recipe;
