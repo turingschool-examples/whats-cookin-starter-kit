@@ -73,11 +73,25 @@ describe('User', function() {
     expect(user1.favoriteRecipes.length).to.deep.equal(1)
   });
 
-  it('if a recipe is removed, the recipe that remains should be the expected recipe', function() {
+  it('should be able to remove prexisting recipe from favorites list', function() {
     user1.toggleFavoriteRecipe(recipe1);
     user1.toggleFavoriteRecipe(recipe1);
     user1.toggleFavoriteRecipe(recipe2);
 
     expect(user1.favoriteRecipes[0].id.id).to.equal(678353)
-  })
+  });
+
+  it('should be able to decide to cook a recipe that week', function() {
+    user1.toggleRecipeToCook(recipe1)
+
+    expect(user1.recipesToCook.length).to.deep.equal(1)
+  });
+
+  it('should be able to remove prexisting recipe from recipe to cook list', function() {
+    user1.toggleRecipeToCook(recipe1)
+    user1.toggleRecipeToCook(recipe2)
+    user1.toggleRecipeToCook(recipe1)
+
+    expect(user1.recipesToCook[0].id.id).to.equal(678353)
+  });
 });
