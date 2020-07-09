@@ -16,12 +16,18 @@ class User {
   removeFavoriteRecipes(recipe) {
     let removeRecipe = this.favoriteRecipes.indexOf(recipe);
     this.favoriteRecipes.splice(removeRecipe, 1);
-    //possibly use indexOf to return an array that doesn't include recipe
-    //The indexOf() method returns the first index at which a given element can be found in the array
-    //This method returns -1 if the value to search for never occurs.
-    //Identifying using indexOf()
-    //Returns the removed items---the removedRecipe and how many as arguments
-    //add favorite recipes and check after you remove it if it is gone
+  }
+
+  // Filter my favoriteRecipes or recipesToCook by type
+
+  filterFavoriteRecipes(tag) {
+    return this.favoriteRecipes.filter(recipe => {
+      return recipe.tags.includes(tag)
+    })
+  }
+
+  filterRecipesToCook() {
+
   }
 
   addRecipeToCook(recipe) {
@@ -45,9 +51,7 @@ class User {
 //in USer class first find all ingredients from the ingredient data where the name matches the string
 //find all recipes where the id is in the ingredients list
 
-// var hege = ["Cecilie", "Lone"];
-// var stale = ["Emil", "Tobias", "Linus"];
-// var children = hege.concat(stale);
+
     // Search any of my saved recipes by name or ingredient
     // This function is used for the search functionality--being able to search through the recipes that exist
     //Loop(using something besides a for loop) through our favoriteRecipes array to see if the input (which will be the parameter) includes recipe info
