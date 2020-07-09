@@ -1,15 +1,16 @@
-const cardDisplay = document.querySelector('.card-display');
+const allRecipesDisplay = document.querySelector('.all-recipes-display');
 const nav = document.querySelector('nav');
+// const recipeCard = document.querySelector('.recipe-card')
 
 const currentUser = new User(generateRandomUser());
 //event listening
-cardDisplay.addEventListener('click', cardEventHandler);
+allRecipesDisplay.addEventListener('click', cardEventHandler);
 nav.addEventListener('click', navEventHandler);
 
 function cardEventHandler(event) {
   if (event.target.classList.contains('star-icon')) {
     console.log(`Oh you think recipe ${event.path[2].id} looks good?`)
-  } else {
+  } else if (event.target.id) {
     console.log(`I see recipe ${event.target.id}`)
   }
 }
@@ -26,10 +27,10 @@ function navEventHandler(event) {
 // page manipulation
 const propagateCards = (recipeCards) => {
   recipeCards.forEach((recipe) => {
-    cardDisplay.innerHTML += 
+    allRecipesDisplay.innerHTML += 
     `<div class="recipe-card" id="${recipe.id}" style="background-image: url(${recipe.image})">
     <div class="card-info">
-    <img class="star-icon id="${recipe.id}"" src="https://www.clipartmax.com/png/middle/175-1753277_free-image-on-pixabay-star-icon-png.png" />
+    <img class="star-icon"" src="https://www.clipartmax.com/png/middle/175-1753277_free-image-on-pixabay-star-icon-png.png" />
     <div class="recipe-title" id="${recipe.id}">${recipe.name}</div>
     </div>
     </div>`
@@ -37,11 +38,11 @@ const propagateCards = (recipeCards) => {
 }
 
 const goToUser = () => {
-  cardDisplay.classList.add('hidden');
+  allRecipesDisplay.classList.add('hidden');
 }
 
 const goToAllRecipes = () => {
-  cardDisplay.classList.remove('hidden');
+  allRecipesDisplay.classList.remove('hidden');
 }
 // user functions
 function generateRandomUser() {
