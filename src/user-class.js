@@ -1,8 +1,6 @@
 const Pantry = require('./pantry-class.js');
 const Recipe = require('./recipe-class.js');
-const usersData = require('../data/users.js');
 const ingredientsData = require('../data/ingredients.js');
-const recipeData = require('../data/recipes.js');
 
 class User {
   constructor(userData) {
