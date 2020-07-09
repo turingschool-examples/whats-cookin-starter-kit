@@ -220,6 +220,11 @@ describe('User', function() {
      expect(user.favoriteRecipes).to.deep.equal([recipe1, recipe3]);
   });
 
+  it('should add a recipe to cook', function() {
+    user.addRecipeToCook(recipe1);
+    expect(user.recipesToCook).to.deep.equal([recipe1]);
+  })
+
   it('should be able to filter favorite recipes by type', function() {
      user.addFavoriteRecipes(recipe1);
      user.addFavoriteRecipes(recipe2);
@@ -234,11 +239,6 @@ describe('User', function() {
     expect(user.filterRecipesToCook('snack')).to.deep.equal([recipe1]);
   });
 
-  it('should add a recipe to cook', function() {
-    user.addRecipeToCook(recipe1);
-    expect(user.recipesToCook).to.deep.equal([recipe1]);
-  })
-
   it('should return favorite recipes by name', function() {
     user.addFavoriteRecipes(recipe1);
     user.addFavoriteRecipes(recipe2);
@@ -247,21 +247,7 @@ describe('User', function() {
     expect(user.searchRecipes('Chocolate')).to.deep.equal([recipe1])
   })
 
-  // it('should return favorite recipes by ingredient', function() {
-  //   user.addFavoriteRecipes(recipe1);
-  //   user.addFavoriteRecipes(recipe2);
-  //   user.addFavoriteRecipes(recipe3);
-  //   expect(user.searchRecipes('Loaded Chocolate Chip Pudding Cookie Cups')).to.deep.equal([recipe1])
-  //   expect(user.searchRecipes('Chocolate')).to.deep.equal([recipe1])
-  // })
 
-  // it('should return favorite recipes by name', function() {
-  //   user.addFavoriteRecipes(recipe1);
-  //   user.addFavoriteRecipes(recipe2);
-  //   user.addFavoriteRecipes(recipe3);
-  //   let searchedRecipes = user.searchFavRecipesByName('Loaded Choclate Chip Pudding Cookie Cups')
-  //   expect(searchedRecipes).to.equal([recipe1])
-  // })
 
   //if it is an empty array what happens
   //pass in a name that's not in the array should be empty
