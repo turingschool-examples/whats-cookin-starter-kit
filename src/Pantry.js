@@ -15,15 +15,24 @@ class Pantry {
     
   checkIngredientStockInPantry(recipeIngredient) {
     let matchingIngredient = this.ingredients.find(pantryIngredient => pantryIngredient.ingredient === recipeIngredient.id);
-    //returns how much of ingredient is still needed
-    //If > 0, pantry is not stocked for recipe
-    //If <= 0, pantry is stocked for recipe
     if (matchingIngredient === undefined) {
-      return recipeIngredient.quantity.amount
+      return recipeIngredient.quantity.amount;
     } else {
-    return recipeIngredient.quantity.amount - matchingIngredient.amount;
-    } 
+      let missingAmount = recipeIngredient.quantity.amount - matchingIngredient.amount;
+      if (missingAmount < 0) {
+        missingAmount = 0;
+      };
+      return missingAmount; 
+    }; 
   } 
+
+  listMissingIngredients(recipe) {
+    return recipe.ingredients.reduce((missingIngredients, ingredient) => {
+      let missingIngredientAmount = this.checkIngredientStockInPantry(ingredient); 
+      missingIngredients.push({ingredientId: ingredient.id, missingAmount: missingIngredientAmount});
+      return missingIngredients; 
+    }, [])
+  }
 }
 
 if (typeof module !== 'undefined') {

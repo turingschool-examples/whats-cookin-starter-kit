@@ -60,7 +60,7 @@ describe('Pantry', function() {
     expect(missingIngredientStock).to.equal(2);
   });
   
-  it('should be able to calculate how much extra of a recipe ingredient is in the the pantry', function () {
+  it('should be able to calculate there is enough of a recipe ingredient in the the pantry', function () {
     const ingredient = {
       id: 1,
       quantity: {
@@ -71,7 +71,7 @@ describe('Pantry', function() {
 
     const missingIngredientStock = pantry.checkIngredientStockInPantry(ingredient);
 
-    expect(missingIngredientStock).to.equal(-5);
+    expect(missingIngredientStock).to.equal(0);
   });
 
 
@@ -96,5 +96,42 @@ describe('Pantry', function() {
     const pantryStocked = pantry.checkForRecipeIngredients(recipe);
 
     expect(pantryStocked).to.equal(true);
+  });
+
+  it('should be able to determine how much of each recipe ingredient is missing from the pantry', function() {
+    const recipeIngredient1 = {
+      id: 1,
+      quantity: {
+        amount: 2,
+        unit: "cans"
+      }
+    };
+    const recipeIngredient2 = {
+      id: 2,
+      quantity: {
+        amount: 7,
+        unit: "cans"
+      }
+    };
+    const recipeIngredient3 = {
+      id: 3,
+      quantity: {
+        amount: 6,
+        unit: "cans"
+      }
+    };
+    const instruction1 = { instruction: 'Buy store-bought cookies.', number: 1 };
+    const instruction2 = { instruction: 'Say you made them from scratch.', number: 2 };
+    const recipe = new Recipe(1, 'https://pxhere.com/en/photo/1575227', [recipeIngredient1, recipeIngredient2, recipeIngredient3], [instruction1, instruction2], 'cookies', ['dessert']); 
+
+    const missingIngredients = pantry.listMissingIngredients(recipe);
+    
+    const result = [
+      {ingredientId: 1, missingAmount: 0},
+      {ingredientId: 2, missingAmount: 1},
+      {ingredientId: 3, missingAmount: 3}
+    ];
+
+    expect(missingIngredients).to.deep.equal(result);
   });
 })
