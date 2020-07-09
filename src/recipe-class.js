@@ -1,4 +1,9 @@
-const ingredientsData = require('../data/ingredients.js');
+try {
+  ingredientsData = require('../data/ingredients.js');
+} catch (e) {
+  let ingredientsData;
+}
+
 class Recipe {
   constructor(recipe) {
     this.id = recipe.id;
@@ -37,5 +42,6 @@ class Recipe {
     return ingredientsData.find(ingredient => ingredient.id === recipeIngredient.id);
   }
 }
-
-module.exports = Recipe;
+if (typeof module !== 'undefined') {
+  module.exports = Recipe;
+}

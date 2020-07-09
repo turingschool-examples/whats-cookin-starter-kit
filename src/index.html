@@ -1,15 +1,26 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-  </head>
-  <body>
-    <h1>Whats Cookin</h1>
 
-    <script type="text/javascript" src="../data/users.js"></script>
-    <script type="text/javascript" src="../data/recipes.js"></script>
-    <script type="text/javascript" src="../data/ingredients.js"></script>
-    <script type="text/javascript" src="./scripts.js"></script>
+  <head>
+    <link rel="stylesheet" href="./style.css" />
+    <title> WHAT'S COOKIN GOOD LOOKIN?</title>
+  </head>
+
+  <body>
+    <nav>
+      <button id="recipe-page-button">RECIPES</button>
+      <div class="title">What's Cookin?</div>
+      <button id="user-page-button"></button>
+    </nav>
+
+    <section class="card-display"></section>
+
+    <script src="../data/ingredients.js"></script>
+    <script src="../data/recipes.js"></script>
+    <script src="../data/users.js"></script>
+    <script src="./pantry-class.js"></script>
+    <script src="./recipe-class.js"></script>
+    <script src="./user-class.js"></script>
+    <script src="./main.js"></script>
   </body>
+
 </html>

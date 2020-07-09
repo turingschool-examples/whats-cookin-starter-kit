@@ -1,0 +1,51 @@
+body {
+  margin: 0px;
+  box-sizing: border-box;
+}
+nav {
+  align-items: center; 
+  display: flex;
+  height: 10%;
+  justify-content: space-between;
+  margin: 0px auto;
+  width: 80%;
+}
+
+button {
+  background-color: white;
+  border: none;
+  height: 2em;
+}
+
+.card-display {
+  display: flex;
+  border-top: 2px solid #000;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 2em auto;
+/*   width: 90% */
+}
+
+.recipe-card {
+  background-size: cover;
+  border-radius: 5%;
+  height: 15em;
+  width: 20em;
+  padding: .5em;
+  margin: 2em;
+}
+
+.card-info {
+  display: flex; 
+  color: #fff;
+  font-size: 2em;
+  justify-content: left;
+  margin: .5em;
+  width: 80%;
+}
+
+.fav-icon {
+  height: 1em;
+  width: 1em;
+}
+

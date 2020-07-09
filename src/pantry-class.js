@@ -1,5 +1,10 @@
-const Recipe = require('./recipe-class.js');
-const ingredientData = require('../data/ingredients');
+try {
+  Recipe = require('./recipe-class.js');
+  ingredientData = require('../data/ingredients');
+} catch (e) {
+  let Recipe;
+  let ingredientData;
+}
 
 class Pantry {
   constructor(pantry) {
@@ -90,5 +95,6 @@ class Pantry {
     return location.find(item => item.ingredient === ingredient.id)
   }
  }
-
-module.exports = Pantry;
+if (typeof module !== 'undefined') {
+  module.exports = Pantry;
+}

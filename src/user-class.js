@@ -1,8 +1,12 @@
-const Pantry = require('./pantry-class.js');
-const Recipe = require('./recipe-class.js');
-const usersData = require('../data/users.js');
-const ingredientsData = require('../data/ingredients.js');
-const recipeData = require('../data/recipes.js');
+try {
+  Pantry = require('./pantry-class.js');
+  Recipe = require('./recipe-class.js');
+  ingredientsData = require('../data/ingredients.js');
+} catch(e) {
+  let Pantry;
+  let Recipe;
+  let ingredientsData;
+}
 
 class User {
   constructor(userData) {
@@ -61,5 +65,6 @@ class User {
     }
   }
 }
-
-module.exports = User;
+if (typeof module !== 'undefined') {
+  module.exports = User;
+}
