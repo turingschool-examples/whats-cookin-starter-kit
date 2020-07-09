@@ -21,14 +21,14 @@ class User {
     return typeof data === 'number' ? data : Date.now();
   }
 
-  chooseFavoriteRecipe(recipe) {
+  chooseRecipe(recipe, recipeList) {
     if (recipe instanceof Recipe) {
-      this.favoriteRecipes.push(recipe);
+      recipeList.push(recipe);
     }
   }
 
-  searchFavoriteRecipesByName(searchInput) {
-    let searchResults = this.favoriteRecipes.filter(recipe => {
+  searchRecipesByName(searchInput, recipeList) {
+    let searchResults = recipeList.filter(recipe => {
       let recipeName = recipe.name.toLowerCase();
       return recipeName.includes(searchInput.toLowerCase());
     });
@@ -36,23 +36,23 @@ class User {
     return searchResults;
   }
 
-  searchFavoriteRecipesByIngredient(searchInput) {
+  searchRecipesByIngredient(searchInput, recipeList) {
     const ingredientID = this.convertIngredientNameToID(searchInput);
-    const searchResults = this.favoriteRecipes.filter(recipe => {
+    const searchResults = recipeList.filter(recipe => {
       return this.generateIngredientList(recipe).includes(ingredientID);
     });
 
     return searchResults; 
   }
 
-  searchFavoriteRecipesByTag(searchInput) {
+  searchRecipesByTag(searchInput, recipeList) {
     const searchInputList = searchInput.split(',');  
-    const searchResults = this.favoriteRecipes.filter(recipe => {
+    const searchResults = recipeList.filter(recipe => {
       if (this.matchAllTags(searchInputList, recipe.tags)) {
         return recipe;
       }
     });
-
+    
     return searchResults;
   }
 
