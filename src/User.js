@@ -25,6 +25,20 @@ class User {
       this.recipesToCook.push(recipe)
     }
   }
+
+  getSavedRecipes() {
+    return this.favoriteRecipes.concat(this.recipesToCook)
+  }
+
+  searchRecipeByNameOrIng(userQuery) {
+    userQuery = userQuery.toLowerCase()
+    let savedRecipes = this.getSavedRecipes()
+    return savedRecipes.filter(recipe => {
+      let recipeName = recipe.id.name.toLowerCase()
+      return recipeName.includes(userQuery)
+      /* METHOD ONLY HALF COMPLETE, RETURN TO THIS PORTION */
+    })
+  }
 }
 
 if (typeof module !== 'undefined') {
