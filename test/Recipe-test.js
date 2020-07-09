@@ -12,4 +12,20 @@ describe('Recipe', () => {
 		expect(recipe).to.be.an.instanceOf(Recipe);
 	});
 
+	it('Should be able to calculate the cost of ingredients', () => {
+		const recipe = new Recipe(recipeInfo[0]);
+
+		const total = recipe.getTotalCost();
+		
+		expect(total).to.equal(17776);
+	});
+
+	it('Should be able to get its instructions', () => {
+		const recipe = new Recipe(recipeInfo[0]);
+
+		const instructions = recipe.getInstructions();
+
+		expect(instructions).to.equal(recipeInfo[0].instructions);
+	})
+
 });
