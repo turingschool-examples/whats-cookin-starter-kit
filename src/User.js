@@ -1,3 +1,5 @@
+let ingredientsData = require('../data/ingredients')
+
 class User {
   constructor(usersData) {
     this.name = usersData.name
@@ -34,11 +36,28 @@ class User {
     userQuery = userQuery.toLowerCase()
     let savedRecipes = this.getSavedRecipes()
     return savedRecipes.filter(recipe => {
-      let recipeName = recipe.id.name.toLowerCase()
-      return recipeName.includes(userQuery)
-      /* METHOD ONLY HALF COMPLETE, RETURN TO THIS PORTION */
+      if(recipe.name.toLowerCase().includes(userQuery)) {
+        return recipe
+      } else if (this.getRecipeIngredient(userQuery, recipe)) {
+        return recipe
+      }
     })
   }
+
+  getRecipeIngredient(userQuery, recipe) {
+    let checkedIngredient = recipe.ingredients.filter(ingredient => {
+      let item = ingredientsData.filter(ingredientName => {
+        if(ingredientName.id === ingredient.id && ingredientName.name.toLowerCase().includes(userQuery.toLowerCase())) {
+          return ingredientName
+        }
+      })
+      if(item.length > 0) {
+        return ingredient
+      }
+    })
+    return checkedIngredient.length > 0
+  }
+
 }
 
 if (typeof module !== 'undefined') {
