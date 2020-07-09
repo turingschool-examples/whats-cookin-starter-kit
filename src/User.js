@@ -18,6 +18,10 @@ class User {
     this.favoriteRecipes.splice(removeRecipe, 1);
   }
 
+  addRecipeToCook(recipe) {
+    this.recipesToCook.push(recipe)
+  }
+
   // Filter my favoriteRecipes or recipesToCook by type
 
   filterFavoriteRecipes(tag) {
@@ -32,9 +36,6 @@ class User {
     })
   }
 
-  addRecipeToCook(recipe) {
-    this.recipesToCook.push(recipe)
-  }
 
   searchRecipes(input) {
     let allRecipes = this.favoriteRecipes.concat(this.recipesToCook);
@@ -48,7 +49,23 @@ class User {
     });
     return searchedRecipes;
   }
+
+  // searchByIngredient(str, ingredient) {
+  //   let ingredientName = ingredient.find(ingredient => {
+  //     if(ingredient.name) {
+  //       return ingredient.name.includes(str);
+  //     }
+  //   })
+  //   let matchedIngredient = this.recipeData
+  // }
+
+
 }
+
+
+
+
+
 
 //in USer class first find all ingredients from the ingredient data where the name matches the string
 //find all recipes where the id is in the ingredients list
