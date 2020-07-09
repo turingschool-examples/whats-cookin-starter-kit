@@ -6,9 +6,8 @@ body, html, header {
 
 header {
   background-color: #f79a48;
-  height: 8%;
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 2em;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -23,14 +22,18 @@ h1 {
   grid-row: 1 / 2;
   grid-column-end: 4;
   width: 7em;
-
-  /* align-self: end; */
+  height: 2em;
+  text-align: center;
+  justify-self: end;
   background-color: #c98e1e;
 }
 
 .search-input{
   grid-row: 3 / 4;
   grid-column: 2 / 3;
+  height: 1.75em;
+  margin: 0;
+  padding: 0;
 }
 
 .my-pantry-button,
@@ -38,6 +41,10 @@ h1 {
   grid-row: 3 / 4;
   grid-column-end: 4;
   width: 8em;
+  height: 2em;
+  margin: 0;
+  padding: 0;
+  justify-self: end;
 }
 
 .cards-body,
@@ -45,7 +52,6 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-
 }
 
 h2 {
@@ -56,15 +62,38 @@ h2 {
 
 .recipe-card{
   background-color: #c9511e;
-  width: 25em;
+  width: 24em;
   height: 25em;
   margin-top: 1em;
 }
 
 .recipe-card > img {
   width: 22em;
+  margin: 1em 1em 0 1em;
 }
 
+.recipe-card > p{
+  text-align: center;
+}
+
+.user-pantry,
+.missing-ingredients{
+  background-color: #d95623;
+  width: 16em;
+  margin-top: 1em;
+}
+
+.user-pantry > h3 {
+  text-align: center;
+}
+
+.missing-ingredients > h3 {
+  text-align: center;
+}
+
+.ingredient {
+  text-align: center;
+}
 .hidden {
   display: none;
 }
