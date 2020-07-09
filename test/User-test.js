@@ -2,22 +2,22 @@
 
 const expect = require('chai').expect;
 const usersData = require('../data/users.js');
-// const recipeData = require('../data/recipes.js');
+const recipeData = require('../data/recipes.js');
 
 const User = require('../src/User');
-// const Recipe = require('../src/Recipe');
+const Recipe = require('../src/Recipe');
 
 describe('User', function () {
     let user1;
     let user2;
-    let recipe;
-    // let recipe1;
+    // let recipe;
+    let recipe1;
     // let recipe2;
 
     beforeEach(function () {
         user1 = new User(usersData[0].name, usersData[0].id, usersData[0].pantry);
         user2 = new User(usersData[1].name, usersData[1].id, usersData[1].pantry);
-        // recipe1 = new Recipe(recipeData[0].id, recipeData[0].image, recipeData[0].ingredients, recipeData[0].instructions, recipeData[0].name, recipeData[0].tags);
+        recipe1 = new Recipe({id: recipeData[0].id, image: recipeData[0].image, ingredients: recipeData[0].ingredients, instructions: recipeData[0].instructions, name: recipeData[0].name, tags: recipeData[0].tags});
         // // recipe1 = new Recipe(usersRecipes.recipeData[0].id, recipeData[0].image, recipeData[0].ingredients, recipeData[0].instructions, recipeData[0].name, recipeData[0].tags);
         // recipe2 = new Recipe(recipeData[1].id, recipeData[1].image, recipeData[1].ingredients, recipeData[1].instructions, recipeData[1].name, recipeData[1].tags);
 
@@ -118,5 +118,14 @@ describe('User', function () {
               expect(user1.findRecipesByName(mockRecipes, 'anything')).to.deep.equal([]);
               expect(user2.findRecipesByName(mockRecipes, 'bearbear')).to.deep.equal([mockRecipes[0]]);
         })
+    });
+
+    describe('findRecipesByIngredient', function () {
+        it.only('should be able to find a recipe by ingredient', () => {
+            let recipes = [recipe1]
+        
+         expect(user1.findRecipesByIngredient(recipes, 'eggs')).to.deep.equal([recipe1]);
+
+    });
     });
     });
