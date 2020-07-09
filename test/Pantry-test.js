@@ -4,29 +4,40 @@ const expect = chai.expect;
 const Pantry = require('../src/Pantry');
 const User = require('../src/User');
 const Recipe = require('../src/Recipe');
-const recipes = require('../data/recipes');
+const recipes = require('../data/recipes.js');
 const newRecipe = recipes.recipeData;
 const users = require('../data/users');
 const newUser = users.usersData;
 
 describe('Pantry', () => {
-  let userPantry;
+  let pantry;
   let user;
   let recipe;
+
   beforeEach(function () {
-    user = new User(
-      newUser[3].name, 
-      newUser[3].id, 
-      newUser[3].pantry);
-    recipe = new Recipe(
-      newRecipe[2].id, 
-      newRecipe[2].image, 
-      newRecipe[2].ingredients, 
-      newRecipe[2].instructions, 
-      newRecipe[2].name, 
-      newRecipe[2].tags);
+    user = new User({
+        'name': newUser[3].name,
+        'id': newUser[3].id,
+        'pantry': newUser[3].pantry
+      });
+    recipe1 = new Recipe({
+        "id": newRecipe[2].id,
+        "image": newRecipe[2].image,
+        "ingredients": newRecipe[2].ingredients,
+        "instructions": newRecipe[2].instructions,
+        "name": newRecipe[2].name,
+        "tags": newRecipe[2].tags
+      });
+    recipe2 = new Recipe({
+      "id": newRecipe[5].id,
+      "image": newRecipe[5].image,
+      "ingredients": newRecipe[5].ingredients,
+      "instructions": newRecipe[5].instructions,
+      "name": newRecipe[5].name,
+      "tags": newRecipe[5].tags
+      });
     userPantry = new Pantry(user);
-    user.recipesToCook.push(recipe);
+    userPantry.recipe = recipe1;
   });
 
   it('should be a function', () => {
@@ -36,16 +47,16 @@ describe('Pantry', () => {
   it('should be an instance of Card', () => {
     expect(userPantry).to.be.an.instanceof(Pantry);
   });
-  console.log(userPantry.checkPantry());
+  
   it('should have a pantry property with an array of a users pantry', () => {
     expect(userPantry.pantry).to.be.an('array').with.a.lengthOf(54);
   });
 
   it('should store an instance of recipe we want to make', () => {
-    expect(userPantry.recipe[0]).to.be.an.instanceof(Recipe);
+    expect(userPantry.recipe).to.be.an.instanceof(Recipe);
   });
 
-  it.skip('should be able to check if user has enough ingredients to make recipe', () => {
+  it('should be able to check if user has enough ingredients to make recipe', () => {
     expect(userPantry.checkPantry()).to.deep.equal(true);
   });
 

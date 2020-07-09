@@ -45,7 +45,7 @@ class Pantry {
     */
 
 
-  //}
+  }
 
   addToShoppingList(missingIngredient) {
     this.shoppingList.push(missingIngredient);
