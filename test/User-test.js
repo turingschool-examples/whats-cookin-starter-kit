@@ -205,11 +205,11 @@ describe('User', function() {
     expect(user1.searchRecipeByNameOrIng("loaded")).to.deep.equal([recipe1])
     expect(user1.searchRecipeByNameOrIng("LoAdEd")).to.deep.equal([recipe1])
 
-    expect(user1.searchRecipeByNameOrIng("wheat")).to.equal([recipe1])
-    expect(user1.searchRecipeByNameOrIng("WhEaT")).to.equal([recipe1])
+    expect(user1.searchRecipeByNameOrIng("wheat")).to.deep.equal([recipe1])
+    expect(user1.searchRecipeByNameOrIng("WhEaT")).to.deep.equal([recipe1])
 
-    expect(user1.searchRecipeByNameOrIng("maple")).to.equal([recipe2])
-    expect(user1.searchRecipeByNameOrIng("MaPlE")).to.equal([recipe2])
+    expect(user1.searchRecipeByNameOrIng("maple")).to.deep.equal([recipe2])
+    expect(user1.searchRecipeByNameOrIng("MaPlE")).to.deep.equal([recipe2])
 
   });
 });
