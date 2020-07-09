@@ -9,15 +9,17 @@ function cardEventHandler(event) {
   if (event.target.classList.contains('star-icon')) {
     console.log(`Oh you think recipe ${event.path[2].id} looks good?`)
   } else {
-  console.log(`I see recipe ${event.target.id}`)
+    console.log(`I see recipe ${event.target.id}`)
   }
 }
 
 function navEventHandler(event) {
   if(event.target.id === "recipe-page-button" ) {
     console.log('You\'re already looking at the recipe page dangus');
+    goToAllRecipes();
   } else if (event.target.id === "user-page-button") {
     console.log(`Oh, typical ${currentUser.name}, always clicking on their self.`)
+    goToUser();
   }
 }
 // page manipulation
@@ -32,6 +34,14 @@ const propagateCards = (recipeCards) => {
     </div>`
   })
 }
+
+const goToUser = () => {
+  cardDisplay.classList.add('hidden');
+}
+
+const goToAllRecipes = () => {
+  cardDisplay.classList.remove('hidden');
+}
 // user functions
 function generateRandomUser() {
   return usersData[Math.round(Math.random() * usersData.length)];
@@ -40,7 +50,7 @@ function generateRandomUser() {
 const showUser = () => {
   userButton = document.getElementById('user-page-button');
 
-  userButton.innerText = currentUser.name;
+  userButton.innerText = currentUser.name.toUpperCase();
 }
 
 window.onload = propagateCards(recipeData);

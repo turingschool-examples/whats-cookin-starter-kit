@@ -49,3 +49,7 @@ button {
   width: 1em;
 }
 
+.hidden {
+  display: none;
+}
+
