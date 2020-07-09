@@ -49,7 +49,7 @@ class Recipe {
     return this.ingredients
   };
 
-  checkForIngredient(ingredient) { //returns true if recipe contains ingredient
+  checkForIngredient(ingredient) {//by name //returns true if recipe contains ingredient
     let test = this.ingredients.find(ingredientData => ingredientData.id === ingredient.id);
     return (test !== undefined); //allows for both types of ingredient objects to be compared
     // return this.ingredients.includes(ingredient); //simpler but may be limited to what's passed in
