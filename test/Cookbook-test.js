@@ -20,8 +20,18 @@ describe('Cookbook', () => {
     });
     const cookbook = new Cookbook(allRecipes);
 
-    expect(cookbook.filterAllRecipesByTag('sauce')[0]).to.equal(allRecipes[2]);
+    expect(cookbook.filterAllRecipesByTag('sauce')).to.deep.equal([allRecipes[2]]);
     
   });
     
+  it('Should be able to filter all recipes by ingredient', () => {
+    const allRecipes = recipeInfo.map(item => {
+      return new Recipe(item);
+    });
+    const cookbook = new Cookbook(allRecipes);
+
+    expect(cookbook.filterAllRecipesByIngredient("pudding")).to.deep.equal([allRecipes[0], allRecipes[33]]);
+    
+  });
+
 });
