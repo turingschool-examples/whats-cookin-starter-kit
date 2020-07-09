@@ -1,4 +1,9 @@
-// const ingredientsData = require('../data/ingredients.js');
+try {
+  ingredientsData = require('../data/ingredients.js');
+} catch (e) {
+  let ingredientsData;
+}
+
 class Recipe {
   constructor(recipe) {
     this.id = recipe.id;

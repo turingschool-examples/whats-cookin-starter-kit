@@ -1,5 +1,11 @@
-// const Recipe = require('./recipe-class.js');
-// const ingredientData = require('../data/ingredients');
+// let Recipe, ingredientData
+try {
+  Recipe = require('./recipe-class.js');
+  ingredientData = require('../data/ingredients');
+} catch (e) {
+  let Recipe;
+  let ingredientData;
+}
 
 class Pantry {
   constructor(pantry) {
