@@ -220,6 +220,13 @@ describe('User', function() {
      expect(user.favoriteRecipes).to.deep.equal([recipe1, recipe3]);
  });
 
+  it('should be able to filter through favorite recipes', function() {
+     user.addFavoriteRecipes(recipe1);
+     user.addFavoriteRecipes(recipe2);
+     user.addFavoriteRecipes(recipe3);
+     expect(user.filterFavoriteRecipes('snack')).to.deep.equal([recipe1]);
+  });
+
   it('should add a recipe to cook', function() {
     user.addRecipeToCook(recipe1);
     expect(user.recipesToCook).to.deep.equal([recipe1]);
