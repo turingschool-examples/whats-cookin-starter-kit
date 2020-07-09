@@ -1,10 +1,3 @@
-//NEW TEST
-// if (typeof module !== 'undefined') {
-//   data = require('../data/ingredients');
-//   ingredientsData = data.ingredientsData;
-// }
-
-
 class Recipe {
   constructor(id, image, ingredients, instructions, name, tags) {
     this.id = id;
