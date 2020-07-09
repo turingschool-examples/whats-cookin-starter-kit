@@ -70,9 +70,9 @@ h2 {
 .recipe-cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 8%; 
+  grid-gap: 4em; 
   margin: 4em; 
-  padding-bottom: 6em;
+  padding-bottom: 4em;
 }
 
 .recipe-card {
