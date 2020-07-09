@@ -26,8 +26,10 @@ class User {
     })
   }
 
-  filterRecipesToCook() {
-
+  filterRecipesToCook(tag) {
+    return this.recipesToCook.filter(recipe => {
+      return recipe.tags.includes(tag)
+    })
   }
 
   addRecipeToCook(recipe) {
