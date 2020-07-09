@@ -1,5 +1,5 @@
 const cardDisplay = document.querySelector('.card-display');
-const currentUser = generateRandomUser();
+const currentUser = new User(generateRandomUser());
 const propagateCards = (recipeCards) => {
   recipeCards.forEach((recipe) => {
     cardDisplay.innerHTML += 
