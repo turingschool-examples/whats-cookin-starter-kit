@@ -1,4 +1,3 @@
-// let Recipe, ingredientData
 try {
   Recipe = require('./recipe-class.js');
   ingredientData = require('../data/ingredients');
