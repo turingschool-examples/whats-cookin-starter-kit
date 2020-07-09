@@ -20,4 +20,12 @@ describe('Recipe', () => {
 		expect(total).to.equal(17776);
 	});
 
+	it('Should be able to get its instructions', () => {
+		const recipe = new Recipe(recipeInfo[0]);
+
+		const instructions = recipe.getInstructions();
+
+		expect(instructions).to.equal(recipeInfo[0].instructions);
+	})
+
 });

@@ -16,6 +16,10 @@ class Recipe {
 			return sum + foundIngredients.estimatedCostInCents * ingredient.quantity.amount;
 		}, 0);
 	};
+
+	getInstructions() {
+		return this.instructions;
+	};
 };
 
 module.exports = Recipe;
