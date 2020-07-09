@@ -169,7 +169,7 @@ describe('User', function() {
     user1.toggleFavoriteRecipe(recipe1);
     user1.toggleFavoriteRecipe(recipe1);
     user1.toggleFavoriteRecipe(recipe2);
-    console.log(user1.favoriteRecipes[0])
+
     expect(user1.favoriteRecipes[0].id).to.equal(678353)
   });
 
