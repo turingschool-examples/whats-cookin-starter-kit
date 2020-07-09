@@ -45,6 +45,17 @@ class User {
     return searchResults; 
   }
 
+  searchFavoriteRecipesByTag(searchInput) {
+    const searchInputList = searchInput.split(',');  
+    const searchResults = this.favoriteRecipes.filter(recipe => {
+      if (this.matchAllTags(searchInputList, recipe.tags)) {
+        return recipe;
+      }
+    });
+
+    return searchResults;
+  }
+
   convertIngredientNameToID(ingredientName) {
     let ingredient = ingredientsData.find(ingredient => {
       return ingredient.name ? ingredient.name.includes(ingredientName) : undefined;
@@ -59,6 +70,18 @@ class User {
     } else {
       return [];
     }
+  }
+
+  matchAllTags = (searchTags, recipeTags) => {
+    let indicator;
+    searchTags.forEach(tag => {
+      if (recipeTags.includes(tag) && indicator !== false) {
+        indicator = true;
+      } else {
+        indicator = false;
+      }
+    });
+    return indicator;
   }
 }
 

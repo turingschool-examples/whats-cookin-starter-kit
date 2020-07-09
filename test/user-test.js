@@ -140,4 +140,57 @@ describe('user', () => {
 
     expect(searchResults).to.deep.equal([recipe1, recipe3]);
   });
+
+  it('should tell you if a recipe contains all the tags that you\'ve searched', () => {
+    const recipe1 = new Recipe(recipeData[0]);
+    const recipe2 = new Recipe(recipeData[1]);
+    const tags = ['starter', 'snack'];
+    const result = user.matchAllTags(tags, recipe1.tags);
+    const falseResult = user.matchAllTags(tags, recipe2.tags);
+
+    expect(result).to.be.true;
+    expect(falseResult).to.be.false;
+  });
+
+  it('should be able to return a list of recipes with tags that match a provided list', () => {
+    const recipe1 = new Recipe(recipeData[0]);
+    const recipe2 = new Recipe(recipeData[1]);
+    const recipe3 = new Recipe(recipeData[2]);
+
+    user.chooseFavoriteRecipe(recipe1);
+    user.chooseFavoriteRecipe(recipe2);
+    user.chooseFavoriteRecipe(recipe3);
+
+    const searchResults = user.searchFavoriteRecipesByTag('sauce');
+
+    expect(searchResults).to.deep.equal([recipe3]);
+  });
+
+  it('should return false if any incorrect tags are present', () => {
+    const recipe = new Recipe(recipeData[2]);
+    
+    user.chooseFavoriteRecipe(recipe);
+
+    const searchResults = user.matchAllTags(['sauce', 'breakfast'], recipe.tags);
+    const searchResults2 = user.matchAllTags(['breakfast', 'sauce'], recipe.tags);
+    const searchResults3 = user.matchAllTags(['sauce'], recipe.tags);
+
+    expect(searchResults).to.be.false;
+    expect(searchResults2).to.be.false;
+    expect(searchResults3).to.be.true;
+  });
+
+  it('should return false if any incorrect tags are present with a different recipe', () => {
+    const recipe = new Recipe(recipeData[0]);
+    
+    user.chooseFavoriteRecipe(recipe);
+
+    const searchResults = user.matchAllTags(['snack', 'sauce', 'antipasto'], recipe.tags);
+    const searchResults2 = user.matchAllTags(['snack', 'antipasto', 'sauce'], recipe.tags);
+    const searchResults3 = user.matchAllTags(['snack', 'antipasto'], recipe.tags);
+
+    expect(searchResults).to.be.false;
+    expect(searchResults2).to.be.false;
+    expect(searchResults3).to.be.true;
+  });
 });
