@@ -71,7 +71,7 @@ describe('Pantry', function() {
 
     const missingIngredientStock = pantry.checkIngredientStockInPantry(ingredient);
 
-    expect(missingIngredientStock).to.equal(-5);
+    expect(missingIngredientStock).to.equal(0);
   });
 
 
