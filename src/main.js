@@ -12,6 +12,7 @@ function cardEventHandler(event) {
     console.log(`Oh you think recipe ${event.path[2].id} looks good?`)
   } else if (event.target.id) {
     console.log(`I see recipe ${event.target.id}`)
+    showRecipeCard();
   }
 }
 
@@ -44,6 +45,15 @@ const goToUser = () => {
 const goToAllRecipes = () => {
   allRecipesDisplay.classList.remove('hidden');
 }
+
+const showRecipeCard = () => {
+  const recipePopUp = document.querySelector('.recipe-pop-up');
+  const blackout = document.querySelector('.body-blackout');
+
+  recipePopUp.classList.remove('hidden');
+  blackout.classList.remove('hidden');
+}
+
 // user functions
 function generateRandomUser() {
   return usersData[Math.round(Math.random() * usersData.length)];
