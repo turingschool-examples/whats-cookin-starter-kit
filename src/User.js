@@ -1,3 +1,5 @@
+const ingredientsData = require('../data/ingredients');
+
 class User {
   constructor({name, id, pantry}) {
     this.name = name;
@@ -20,24 +22,32 @@ class User {
     //Identifying using indexOf()
     //Returns the removed items---the removedRecipe and how many as arguments
     //add favorite recipes and check after you remove it if it is gone
-
   }
 
   addRecipeToCook(recipe) {
     this.recipesToCook.push(recipe)
   }
 
-  searchFavoriteRecipes(input) {
-    console.log('FAV', this.favoriteRecipes)
-    let searchedRecipes = this.favoriteRecipes.filter(recipe => {
-      if (recipe.name === input) {
+  searchRecipes(input) {
+    let allRecipes = this.favoriteRecipes.concat(this.recipesToCook);
+    let searchedRecipes = allRecipes.filter(recipe => {
+      if (recipe.name.includes(input)) {
         return true;
-      }
-      if (recipe.ingredients.includes(input)) {
-        return true;
-      }
-    })
+      };
+      // if (recipe.ingredients.includes(input)) {
+      //   return true;
+      // }
+    });
     return searchedRecipes;
+  }
+}
+
+//in USer class first find all ingredients from the ingredient data where the name matches the string
+//find all recipes where the id is in the ingredients list
+
+// var hege = ["Cecilie", "Lone"];
+// var stale = ["Emil", "Tobias", "Linus"];
+// var children = hege.concat(stale);
     // Search any of my saved recipes by name or ingredient
     // This function is used for the search functionality--being able to search through the recipes that exist
     //Loop(using something besides a for loop) through our favoriteRecipes array to see if the input (which will be the parameter) includes recipe info
@@ -45,7 +55,7 @@ class User {
     //Uses showInputFinder function to accomplish this
     //make sure that what you are passing through a string
 
-  }
+
 
   // showInputFinder() {
   //   var input = searchbar.value;
@@ -53,7 +63,9 @@ class User {
   //   updatePageHtml(foundRecipes);
 
     //DOM manipulation for later down the road
+
+
+
+if (typeof module !== 'undefined') {
+  module.exports = User;
 }
-
-
-module.exports = User;
