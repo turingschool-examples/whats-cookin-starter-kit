@@ -1,17 +1,18 @@
 const allRecipesDisplay = document.querySelector('.all-recipes-display');
 const nav = document.querySelector('nav');
-// const recipeCard = document.querySelector('.recipe-card')
+const mainRecipeCard = document.querySelector('.recipe-pop-up');
 
 const currentUser = new User(generateRandomUser());
 //event listening
 allRecipesDisplay.addEventListener('click', cardEventHandler);
 nav.addEventListener('click', navEventHandler);
+mainRecipeCard.addEventListener('click', recipeEventHandler);
 
 function cardEventHandler(event) {
   if (event.target.classList.contains('star-icon')) {
     console.log(`Oh you think recipe ${event.path[2].id} looks good?`)
   } else if (event.target.id) {
-    console.log(`I see recipe ${event.target.id}`)
+    console.log(`I see recipe ${event.target.id}`);
     showRecipeCard();
   }
 }
@@ -25,6 +26,13 @@ function navEventHandler(event) {
     goToUser();
   }
 }
+
+function recipeEventHandler(event) {
+  if (event.target.classList.contains('exit-button')) {
+    hideRecipeCard();
+  }
+}
+
 // page manipulation
 const propagateCards = (recipeCards) => {
   recipeCards.forEach((recipe) => {
@@ -47,11 +55,17 @@ const goToAllRecipes = () => {
 }
 
 const showRecipeCard = () => {
-  const recipePopUp = document.querySelector('.recipe-pop-up');
   const blackout = document.querySelector('.body-blackout');
 
-  recipePopUp.classList.remove('hidden');
+  mainRecipeCard.classList.remove('hidden');
   blackout.classList.remove('hidden');
+}
+
+const hideRecipeCard = () => {
+  const blackout = document.querySelector('.body-blackout');
+
+  mainRecipeCard.classList.add('hidden');
+  blackout.classList.add('hidden');
 }
 
 // user functions
