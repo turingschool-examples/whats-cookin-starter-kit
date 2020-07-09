@@ -8,14 +8,14 @@ var Pantry = require('../src/Pantry')
 describe('Pantry', function () {
   let pantry;
   beforeEach(function() {
-    // user = new Pantry();
+    pantry = new Pantry();
   });
 
   it('should be a function', function () {
     expect(Pantry).to.be.a('function');
 });
 
-it('should be an instance of User', function() {
+it('should be an instance of Pantry', function() {
     expect(pantry).to.be.an.instanceof(Pantry);
 });
 

@@ -2,6 +2,7 @@
 
 const expect = require('chai').expect;
 const usersData = require('../data/users.js');
+const recipeData = require('../data/recipes.js');
 
 const User = require('../src/User');
 const Recipe = require('../src/Recipe');
@@ -9,233 +10,18 @@ const Recipe = require('../src/Recipe');
 describe('User', function () {
     let user1;
     let user2;
+    // let recipe;
     let recipe1;
-    let recipe2;
+    // let recipe2;
 
     beforeEach(function () {
         user1 = new User(usersData[0].name, usersData[0].id, usersData[0].pantry);
         user2 = new User(usersData[1].name, usersData[1].id, usersData[1].pantry);
-        // recipe1 = new Recipe(recipeData[0].id, recipeData[0].image, recipeData[0].ingredients, recipeData[0].instructions, recipeData[0].name, recipeData[0].tags);
+        recipe1 = new Recipe({id: recipeData[0].id, image: recipeData[0].image, ingredients: recipeData[0].ingredients, instructions: recipeData[0].instructions, name: recipeData[0].name, tags: recipeData[0].tags});
+        // // recipe1 = new Recipe(usersRecipes.recipeData[0].id, recipeData[0].image, recipeData[0].ingredients, recipeData[0].instructions, recipeData[0].name, recipeData[0].tags);
         // recipe2 = new Recipe(recipeData[1].id, recipeData[1].image, recipeData[1].ingredients, recipeData[1].instructions, recipeData[1].name, recipeData[1].tags);
 
-        recipe1 = new Recipe(
-            {
-            "id": 595736,
-            "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
-            "ingredients": [{
-                    "id": 20081,
-                    "quantity": {
-                        "amount": 1.5,
-                        "unit": "c"
-                    }
-                },
-                {
-                    "id": 18372,
-                    "quantity": {
-                        "amount": 0.5,
-                        "unit": "tsp"
-                    }
-                },
-                {
-                    "id": 1123,
-                    "quantity": {
-                        "amount": 1,
-                        "unit": "large"
-                    }
-                },
-                {
-                    "id": 19335,
-                    "quantity": {
-                        "amount": 0.5,
-                        "unit": "c"
-                    }
-                },
-                {
-                    "id": 19206,
-                    "quantity": {
-                        "amount": 3,
-                        "unit": "Tbsp"
-                    }
-                },
-                {
-                    "id": 19334,
-                    "quantity": {
-                        "amount": 0.5,
-                        "unit": "c"
-                    }
-                },
-                {
-                    "id": 2047,
-                    "quantity": {
-                        "amount": 0.5,
-                        "unit": "tsp"
-                    }
-                },
-                {
-                    "id": 1012047,
-                    "quantity": {
-                        "amount": 24,
-                        "unit": "servings"
-                    }
-                },
-                {
-                    "id": 10019903,
-                    "quantity": {
-                        "amount": 2,
-                        "unit": "c"
-                    }
-                },
-                {
-                    "id": 1145,
-                    "quantity": {
-                        "amount": 0.5,
-                        "unit": "c"
-                    }
-                },
-                {
-                    "id": 2050,
-                    "quantity": {
-                        "amount": 0.5,
-                        "unit": "tsp"
-                    }
-                }
-            ],
-            "instructions": [{
-                    "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
-                    "number": 1
-                },
-                {
-                    "instruction": "Add egg and vanilla and mix until combined.",
-                    "number": 2
-                },
-                {
-                    "instruction": "Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.",
-                    "number": 3
-                },
-                {
-                    "instruction": "Place the cookie dough balls into ungreased muffin pan. Sprinkle with sea salt.",
-                    "number": 4
-                },
-                {
-                    "instruction": "Bake for 9 to 10 minutes, or until you see the edges start to brown.",
-                    "number": 5
-                },
-                {
-                    "instruction": "Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice cream and a drizzle of chocolate sauce.",
-                    "number": 6
-                }
-            ],
-            "name": "Loaded Chocolate Chip Pudding Cookie Cups",
-            "tags": [
-                "antipasti",
-                "starter",
-                "snack",
-                "appetizer",
-                "antipasto",
-                "hor d'oeuvre"
-            ]
-        });
-        recipe2 = new Recipe(
-            {
-            "id": 678353,
-            "image": "https://spoonacular.com/recipeImages/678353-556x370.jpg",
-            "ingredients": [{
-                    "id": 1009016,
-                    "quantity": {
-                        "amount": 1.5,
-                        "unit": "cups"
-                    }
-                },
-                {
-                    "id": 9003,
-                    "quantity": {
-                        "amount": 2,
-                        "unit": ""
-                    }
-                },
-                {
-                    "id": 20027,
-                    "quantity": {
-                        "amount": 1,
-                        "unit": "tablespoon"
-                    }
-                },
-                {
-                    "id": 1002046,
-                    "quantity": {
-                        "amount": 1,
-                        "unit": "tablespoon"
-                    }
-                },
-                {
-                    "id": 11215,
-                    "quantity": {
-                        "amount": 1,
-                        "unit": "clove"
-                    }
-                },
-                {
-                    "id": 1012046,
-                    "quantity": {
-                        "amount": 1,
-                        "unit": "tablespoon"
-                    }
-                },
-                {
-                    "id": 19911,
-                    "quantity": {
-                        "amount": 0.25,
-                        "unit": "cup"
-                    }
-                },
-                {
-                    "id": 16112,
-                    "quantity": {
-                        "amount": 1,
-                        "unit": "tablespoon"
-                    }
-                },
-                {
-                    "id": 10010062,
-                    "quantity": {
-                        "amount": 24,
-                        "unit": "ounce"
-                    }
-                },
-                {
-                    "id": 1102047,
-                    "quantity": {
-                        "amount": 4,
-                        "unit": "servings"
-                    }
-                },
-                {
-                    "id": 16124,
-                    "quantity": {
-                        "amount": 1,
-                        "unit": "tablespoon"
-                    }
-                },
-                {
-                    "id": 1016168,
-                    "quantity": {
-                        "amount": 1,
-                        "unit": "tablespoon"
-                    }
-                }
-            ],
-            "instructions": [{
-                "instruction": "Season the pork chops with salt and pepper and grill or pan fry over medium high heat until cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook until the sauce thickens, about 2-5 minutes.Grill or saute the apple slices until just tender but still crisp.Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!",
-                "number": 1
-            }],
-            "name": "Maple Dijon Apple Cider Grilled Pork Chops",
-            "tags": [
-                "lunch",
-                "main course",
-                "main dish",
-                "dinner"
-            ]
-        });
+        // recipe1 = new Recipe(recipeData);
     });
 
     it('should be a function', function () {
@@ -259,6 +45,7 @@ describe('User', function () {
 
     it('should have a property of pantry', function () {
         expect(user1.pantry).to.deep.equal(usersData[0].pantry);
+        expect(user2.pantry).to.deep.equal(usersData[1].pantry);
     });
 
     it('should have a list of favoriteRecipes', function () {
@@ -267,39 +54,40 @@ describe('User', function () {
     });
 
     it('should have a property of recipesToCook', function () {
-        expect(user.recipesToCook).to.deep.equal([]);
+        expect(user1.recipesToCook).to.deep.equal([]);
+        expect(user2.recipesToCook).to.deep.equal([]);
     });
 
     describe('addFavoriteRecipe', function () {
         it('should be able to add favorite a recipe', () => {
-            user.addFavoriteRecipe(595736);
-            expect(user.favoriteRecipes).to.deep.equal([595736]);
+            user1.addFavoriteRecipe(595736);
+            expect(user1.favoriteRecipes).to.deep.equal([595736]);
         });
     });
 
     describe('removeFavoriteRecipe', function () {
         it('should be able to remove a favorite recipe', () => {
-            user.removeFavoriteRecipe(595736);
-            expect(user.favoriteRecipes).to.deep.equal([]);
+            user1.removeFavoriteRecipe(595736);
+            expect(user1.favoriteRecipes).to.deep.equal([]);
         });
     });
 
     describe('addRecipesToCook', function () {
         it('should be able to add a recipe to recipesToCook', () => {
-            user.addRecipesToCook(595736);
-            expect(user.recipesToCook).to.deep.equal([595736]);
+            user1.addRecipesToCook(595736);
+            expect(user1.recipesToCook).to.deep.equal([595736]);
         });
     });
 
     describe('removeRecipesToCook', function () {
         it('should be able to remove a recipe from recipesToCook', () => {
-            user.removeRecipesToCook(595736);
-            expect(user.recipesToCook).to.deep.equal([]);
+            user1.removeRecipesToCook(595736);
+            expect(user1.recipesToCook).to.deep.equal([]);
         });
     });
 
     describe('findRecipesByType', function () {
-        it.only('should be able to find a recipe by type', () => {
+        it('should be able to find a recipe by type', () => {
             let mockRecipes = [{
                 id: 1,
                 tags: ['good', 'bad']
@@ -317,4 +105,27 @@ describe('User', function () {
 
         });
         });
+
+        describe('findRecipesByName', function () {
+             it('should be able to find a recipe by name', () => {
+              let mockRecipes = [{
+                  id: 1,
+                  name: 'bearbear'
+              }, {
+                  id: 2,
+                  name: 'pony'
+              }]
+              expect(user1.findRecipesByName(mockRecipes, 'anything')).to.deep.equal([]);
+              expect(user2.findRecipesByName(mockRecipes, 'bearbear')).to.deep.equal([mockRecipes[0]]);
+        })
+    });
+
+    describe('findRecipesByIngredient', function () {
+        it.only('should be able to find a recipe by ingredient', () => {
+            let recipes = [recipe1]
+        
+         expect(user1.findRecipesByIngredient(recipes, 'eggs')).to.deep.equal([recipe1]);
+
+    });
+    });
     });

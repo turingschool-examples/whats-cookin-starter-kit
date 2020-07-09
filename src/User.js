@@ -1,4 +1,7 @@
 /* eslint-disable */
+
+const ingredientsData = require('../data/ingredients');
+
 const userData = require('../data/users.js')
 class User {
   constructor(name, id, pantry) {
@@ -35,8 +38,6 @@ class User {
   }
   // #21
 
-
-
 //search recipesToCook OR favoriteRecipes by type
 findRecipesByType(savedRecipes, tagName) {
   return savedRecipes.filter( recipe => {
@@ -44,9 +45,61 @@ findRecipesByType(savedRecipes, tagName) {
   });
 }
 
+findRecipesByName(savedRecipes, name) {
+  return savedRecipes.filter(recipe => {
+    return recipe.name.includes(name)
+  });
+}
+
+// findRecipesByIngredient(savedRecipes, ingredientName) {
+//   let ingredientId;
+//   ingredientsData.forEach(ingredient => {
+//     if (ingredientName.includes(ingredient.name)) {
+//       ingredientId = ingredient.id;
+//     }
+//   })
+//     console.log(ingredientId);
+//     let matchedRecipes = [];
+//     savedRecipes.forEach(recipe => {
+//       recipe.ingredients.forEach(ingred => {
+//         if (ingred.id === ingredientId) {
+//           matchedRecipes.push(recipe);
+//         }
+//       })
+//     })
+//     // console.log(matchedRecipes)
+//     return matchedRecipes;
+//     // search savedRecipes for ingredients id
+//     }
+//     }
+findRecipesByIngredient(savedRecipes, ingredientName) {
+  let ingredientId;
+  ingredientsData.forEach(ingredient => {
+    if (ingredientName.includes(ingredient.name)) {
+      ingredientId = ingredient.id;
+    }
+  })
+      const matchedRecipes = savedRecipes.reduce((acc, recipe) => {
+        recipe.ingredients.forEach(currentIngredient => {
+            if (currentIngredient.id === ingredientId) {
+              acc.push(recipe)
+            }
+         })
+      return acc;
+    }, []);
+        return matchedRecipes;
+  }
+
 }
 
 // search recipesToCook by name OR ingredient
+// ingredients in data only have id
+// recipesToCook and favorites contain 
+// ingredients in pantry
+// ingredients in recipe
+// ingredients class
+
+// user.pantry.ingredients
 
 // A User should be able to determine whether they have sufficient ingredients in their pantry to cook a recipe
 // if they DO NOT: see pantry stories
