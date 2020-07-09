@@ -1,3 +1,5 @@
+This is for Testing
+
 # Project Name (Think: Website/Game Name)
 
 An image of the product logo.  
@@ -19,14 +21,14 @@ Here I put the answers to How
 
 ## SetUp
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Installing
+
 1. Fork this project to your own Github account
 2. clone the repository to your local machine
 3. cd into the project
 4. run npm install to install the necessary dependencies
-
 
 ### How to see the product
 
@@ -37,21 +39,21 @@ Here should be the info on running index.html or other last step opeining locall
 
 [Live Link](https://google.com)
 
-
 ## Authors
 
 👤 **Name**
+
 - Github: [gitHubHandle](link)
 - other link info if needed
 
 👤 **Name**
+
 - Github: [gitHubHandle](link)
 - other link info if needed
 
 ## ScreenShots of Functionality
 
 ![screenshot](images/image.png)
-
 
 ## Resources
 
@@ -61,31 +63,32 @@ Here should be the info on running index.html or other last step opeining locall
 
 Mentor mentions and why or other help outside the group
 
-# What's Cookin'? Starter Kit 
+# What's Cookin'? Starter Kit
 
 The details of this project are outlined in the <a href="https://frontend.turing.io/projects/whats-cookin.html" target="\__blank">project spec</a>.
 
-## Set Up 
+## Set Up
 
-1. Within your group, decide on one person to have the project repository on their Github account. This person will *fork* this repository - on the top right corner of the page, click the fork button. 
+1. Within your group, decide on one person to have the project repository on their Github account. This person will _fork_ this repository - on the top right corner of the page, click the fork button.
 2. Both group members should then clone down the forked repository (make sure that everyone is added as a collaborator as well). Since you don't want your project to be named "whats-cookin-starter-kit", add an optional argument after the repo url when cloning. The command should look like this: `git clone [remote-address] [what you want to name the repo]`.
 3. Once you have cloned the repo, change into the directory and install the project dependencies. Run npm install to install project dependencies.
 4. Run open src/index.html in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page)
 5. Make sure both members of your team are collaborators on the forked repo.
 
-## Testing 
+## Testing
 
 There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran npm install, then the tooling you need to start testing is already installed (mocha and chai).
 
-## Linting Your Code 
+## Linting Your Code
 
 Run the command in your terminal npm run lint to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit, but that's ok - the linter is still running successfully.
 
 Your linter will look only at the JavaScript files you have within the src and the test directories.
 
-
 ## Data Model
+
 ### Users
+
 ```js
 {
   "id": [number],
@@ -95,6 +98,7 @@ Your linter will look only at the JavaScript files you have within the src and t
 ```
 
 ### Recipes
+
 ```js
 {
   "ingredients" [array of objects with ingredients ids(connection to ingredients), ingredient names, and quantity data],
@@ -105,6 +109,7 @@ Your linter will look only at the JavaScript files you have within the src and t
 ```
 
 ### Ingredients
+
 ```js
 {
   "estimatedCostInCents": [number],
