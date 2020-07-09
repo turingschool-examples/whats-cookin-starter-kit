@@ -211,4 +211,20 @@ describe('User', function() {
     user.addFavoriteRecipes(recipe1);
     expect(user.favoriteRecipes).to.deep.equal([recipe1]);
   });
+
+  it('should search words correctly', function() {
+    let expectedArr = [recipe1];
+    user.addFavoriteRecipes(recipe1);
+    user.addFavoriteRecipes(recipe2);
+    user.addFavoriteRecipes(recipe3);
+    let searchedRecipes = user.searchFavoriteRecipes('Loaded Chocolate Chip Pudding Cookie Cups');
+    console.log('SEARCH', searchedRecipes)
+    expect(searchedRecipes).to.equal(expectedArr)
+  })
+  //if it is an empty array what happens
+  //pass in a name that's not in the array should be empty
+
+  //it ingredients
+
+  //down the road not the whole string
 });
