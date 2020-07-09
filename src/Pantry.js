@@ -18,7 +18,11 @@ class Pantry {
     //returns how much of ingredient is still needed
     //If > 0, pantry is not stocked for recipe
     //If <= 0, pantry is stocked for recipe
-    return recipeIngredient.quantity.amount - matchingIngredient.amount; 
+    if (matchingIngredient === undefined) {
+      return recipeIngredient.quantity.amount
+    } else {
+    return recipeIngredient.quantity.amount - matchingIngredient.amount;
+    } 
   } 
 }
 

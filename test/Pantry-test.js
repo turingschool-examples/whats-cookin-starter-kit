@@ -32,6 +32,20 @@ describe('Pantry', function() {
     expect(pantry2.ingredients).to.deep.equal([]);
   });
 
+  it('should be able to calculate how much of a recipe ingredient is still needed if it is not in pantry', function () {
+    const ingredient = {
+      id: 4,
+      quantity: {
+        amount: 8,
+        unit: "cans"
+      }
+    };
+
+    const missingIngredientStock = pantry.checkIngredientStockInPantry(ingredient);
+
+    expect(missingIngredientStock).to.equal(8);
+  });
+
   it('should be able to calculate how much of a recipe ingredient is missing from the pantry', function() {
     const ingredient = {
       id: 1,
