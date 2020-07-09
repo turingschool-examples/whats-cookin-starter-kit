@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="./styles.css">
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
   </head>
-  <body>
+  <header>
     <h1>Whats Cookin</h1>
-
+    <div class="user-profile-pic"></div>
+    <input class="search-input"></input>
+    <button>Recipes</button>
+    <button>My Pantry</button>
+  </header>
+  <body>
+    <article class="recipe-card">
+      <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg"/>
+      <p class="recipe-name">Recipe Name</p>
+    </article>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
+    <script type="text/javascript" src="./Pantry.js"></script>
+    <script type="text/javascript" src="./User.js"></script>
+    <script type="text/javascript" src="./Recipe.js"></script>
     <script type="text/javascript" src="./scripts.js"></script>
   </body>
 </html>
