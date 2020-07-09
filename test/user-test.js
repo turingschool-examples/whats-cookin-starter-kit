@@ -63,21 +63,28 @@ describe('user', () => {
   it('should be able to add a recipe to its list of favorites', () => {
     const recipe = new Recipe(recipeData[0]);
     
-    user.chooseFavoriteRecipe(recipe);
+    user.chooseRecipe(recipe, user.favoriteRecipes);
 
     expect(user.favoriteRecipes[0]).to.deep.equal(recipe);
   });
 
-  it('should only be able to add recipes to its list of favorites', () => {
+  it('should be able to add a recipe to its list of recipes to cook', () => {
+    const recipe = new Recipe(recipeData[0]);
+    
+    user.chooseRecipe(recipe, user.recipesToCook);
+
+    expect(user.recipesToCook[0]).to.deep.equal(recipe);
+  });
+
+  it('should only be able to add recipes to its recipe lists', () => {
     const recipe = 'Delicious food';
     const otherRecipe = 42;
-    const wrongRecipe = ['food'];
 
-    user.chooseFavoriteRecipe(recipe);
-    user.chooseFavoriteRecipe(otherRecipe);
-    user.chooseFavoriteRecipe(wrongRecipe);
+    user.chooseRecipe(recipe, user.favoriteRecipes);
+    user.chooseRecipe(otherRecipe, user.recipesToCook);
 
     expect(user.favoriteRecipes).to.deep.equal([]);
+    expect(user.recipesToCook).to.deep.equal([]);
   });
 
   it('should let the user search for a recipe by name', () => {
@@ -85,13 +92,18 @@ describe('user', () => {
     const recipe2 = new Recipe(recipeData[1]);
     const recipe3 = new Recipe(recipeData[2]);
 
-    user.chooseFavoriteRecipe(recipe1);
-    user.chooseFavoriteRecipe(recipe2);
-    user.chooseFavoriteRecipe(recipe3);
+    user.chooseRecipe(recipe1, user.recipesToCook);
+    user.chooseRecipe(recipe2, user.recipesToCook);
+    user.chooseRecipe(recipe3, user.recipesToCook);
+    user.chooseRecipe(recipe1, user.favoriteRecipes);
+    user.chooseRecipe(recipe2, user.favoriteRecipes);
+    user.chooseRecipe(recipe3, user.favoriteRecipes);
 
-    const searchResults = user.searchFavoriteRecipesByName('Map');
+    const searchResults1 = user.searchRecipesByName('Map', user.recipesToCook);
+    const searchResults2 = user.searchRecipesByName('Map', user.favoriteRecipes);
 
-    expect(searchResults[0].name).to.equal(recipe2.name);
+    expect(searchResults1[0]).to.equal(recipe2);
+    expect(searchResults2[0]).to.equal(recipe2);
   })
 
   it('should be able to convert an ingredient name to its id', () => {
@@ -132,12 +144,69 @@ describe('user', () => {
     const recipe2 = new Recipe(recipeData[1]);
     const recipe3 = new Recipe(recipeData[2]);
 
-    user.chooseFavoriteRecipe(recipe1);
-    user.chooseFavoriteRecipe(recipe2);
-    user.chooseFavoriteRecipe(recipe3);
+    user.chooseRecipe(recipe1, user.favoriteRecipes);
+    user.chooseRecipe(recipe2, user.favoriteRecipes);
+    user.chooseRecipe(recipe3, user.favoriteRecipes);
+    user.chooseRecipe(recipe1, user.recipesToCook);
+    user.chooseRecipe(recipe2, user.recipesToCook);
+    user.chooseRecipe(recipe3, user.recipesToCook);
 
-    const searchResults = user.searchFavoriteRecipesByIngredient('brown sugar');
+    const searchResults1 = user.searchRecipesByIngredient('brown sugar', user.favoriteRecipes);
+    const searchResults2 = user.searchRecipesByIngredient('brown sugar', user.recipesToCook);
 
-    expect(searchResults).to.deep.equal([recipe1, recipe3]);
+    expect(searchResults1).to.deep.equal([recipe1, recipe3]);
+    expect(searchResults2).to.deep.equal([recipe1, recipe3]);
+  });
+
+  it('should tell you if a recipe contains all the tags that you\'ve searched', () => {
+    const recipe1 = new Recipe(recipeData[0]);
+    const recipe2 = new Recipe(recipeData[1]);
+    const tags = ['starter', 'snack'];
+    const result = user.matchAllTags(tags, recipe1.tags);
+    const falseResult = user.matchAllTags(tags, recipe2.tags);
+
+    expect(result).to.be.true;
+    expect(falseResult).to.be.false;
+  });
+
+  it('should be able to return a list of recipes with tags that match a provided list', () => {
+    const recipe1 = new Recipe(recipeData[0]);
+    const recipe2 = new Recipe(recipeData[1]);
+    const recipe3 = new Recipe(recipeData[2]);
+
+    user.chooseRecipe(recipe1, user.favoriteRecipes);
+    user.chooseRecipe(recipe2, user.favoriteRecipes);
+    user.chooseRecipe(recipe3, user.favoriteRecipes);
+    user.chooseRecipe(recipe1, user.recipesToCook);
+    user.chooseRecipe(recipe2, user.recipesToCook);
+    user.chooseRecipe(recipe3, user.recipesToCook);
+
+    const searchResults1 = user.searchRecipesByTag('sauce', user.recipesToCook);
+    const searchResults2 = user.searchRecipesByTag('sauce', user.favoriteRecipes);
+
+    expect(searchResults1).to.deep.equal([recipe3]);
+    expect(searchResults2).to.deep.equal([recipe3]);
+  });
+
+  it('should return false if any incorrect tags are present', () => {
+    const recipe = new Recipe(recipeData[2]);
+    const searchResults = user.matchAllTags(['sauce', 'breakfast'], recipe.tags);
+    const searchResults2 = user.matchAllTags(['breakfast', 'sauce'], recipe.tags);
+    const searchResults3 = user.matchAllTags(['sauce'], recipe.tags);
+
+    expect(searchResults).to.be.false;
+    expect(searchResults2).to.be.false;
+    expect(searchResults3).to.be.true;
+  });
+
+  it('should return false if any incorrect tags are present with a different recipe', () => {
+    const recipe = new Recipe(recipeData[0]);
+    const searchResults = user.matchAllTags(['snack', 'sauce', 'antipasto'], recipe.tags);
+    const searchResults2 = user.matchAllTags(['snack', 'antipasto', 'sauce'], recipe.tags);
+    const searchResults3 = user.matchAllTags(['snack', 'antipasto'], recipe.tags);
+
+    expect(searchResults).to.be.false;
+    expect(searchResults2).to.be.false;
+    expect(searchResults3).to.be.true;
   });
 });
