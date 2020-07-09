@@ -1,5 +1,6 @@
 const cardDisplay = document.querySelector('.card-display');
 const nav = document.querySelector('nav');
+
 const currentUser = new User(generateRandomUser());
 //event listening
 cardDisplay.addEventListener('click', cardEventHandler);
