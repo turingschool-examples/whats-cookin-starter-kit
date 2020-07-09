@@ -7,12 +7,17 @@
 
   <body>
     <nav>
-      <button id="recipe-page-button">RECIPES</button>
+      <div class="nav-buttons">
+        <button id="recipe-page-button">RECIPES</button>
+        <button id="user-page-button"></button>
+      </div>
+      <div class="search-field">
+        <input /><button id="search-button">search</button>
+      </div>
       <div class="title">What's Cookin?</div>
-      <button id="user-page-button"></button>
     </nav>
 
-    <section class="card-display"></section>
+    <section class="all-recipes-display"></section>
 
     <script src="../data/ingredients.js"></script>
     <script src="../data/recipes.js"></script>
