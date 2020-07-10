@@ -1,3 +1,5 @@
+const usersData = require("../data/users");
+
 const recipeCardsSection = document.querySelector('.recipe-cards')
 const pageBody = document.querySelector('body');
 const homeSection = document.querySelector('.home-view');
@@ -11,19 +13,23 @@ pageBody.addEventListener('click', clickAnalyzer);
 
 function clickAnalyzer(event) {
   if (event.target.classList.contains('heart')) {
-    console.log('favorited!')
-    //add the recipe to the user's favorite recipes (target.parentElement.parentElement.parentElement.id to get index of recipe in recipes?)
+    addRecipeToUserFavorites(event); 
   } else if (event.target.classList.contains('cookbook')) {
     console.log('Add me to meal plan!')
     //add the recipe to the user's meals to cook/meal plan recipes (target.parentElement.parentElement.parentElement.id to get index of recipe in recipes?)
   } else if (event.target.closest('.recipe-card')) {
     displaySingleRecipe(event);
-    //display that recipe (hide home view, un-hide recipe view, interpolating info from recipe clicked; can possibly use unique html id associated with each recipe card to identify it (target.parentElement.id grabs unique html id, which is the same as the index of that recipe in recipes))
   } else if (event.target.closest('header')) {
     event.preventDefault();
     console.log('clicking header!')
     //call other function & pass in event to analyze what was clicked in menu (search bar button, one of the filters, or one of the dropdowns under My Recipe Box)
   };
+}
+
+function addRecipeToUserFavorites(event) {
+  let recipe = determineRecipeToDisplay(event); 
+  //Need to create user variable with random User instantiation on page load; set this to user
+  user.toggleFavoriteRecipe(recipe); 
 }
 
 function setUpHomePage() {
