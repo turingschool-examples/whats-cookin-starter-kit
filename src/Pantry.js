@@ -24,15 +24,6 @@ class Pantry {
 
   addToShoppingList(missingIngredient) {
     this.shoppingList.push(missingIngredient);
-    /*
-    if enoughIngredients() === false;
-     Determine the amount of ingredients still needed to cook a
-     given meal, based on what’s in my pantry
-    return ingredients missing form the user pantry
-    need recipes class and user class to test method
-
-    might be able to just be a helper method and be used when an ingredient is missing from a users pantry when checkPantry is run.
-    */
   }
 
   pantryIngredientAdjust(ing1, ing2) {

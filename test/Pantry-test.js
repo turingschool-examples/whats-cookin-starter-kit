@@ -18,7 +18,6 @@ describe('Pantry', () => {
     recipe2 = new Recipe(recipes[3]);
     user.addRecipeToCook(recipe2);
     userPantry = new Pantry(user);
-    
   });
 
   it('should be a function', () => {
@@ -45,6 +44,10 @@ describe('Pantry', () => {
     expect(userPantry.checkPantry(recipe2)).to.deep.equal(true);
   });
 
+  it('should return undefined if invalid information passed in', () => {
+    expect(() => userPantry.checkPantry(test)).to.throw(ReferenceError, /test is not defined/);
+  });
+
   it('should have an array of needed ingredients that is empty by default', () => {
     expect(userPantry.shoppingList).to.be.an('array').with.a.lengthOf(0);
   });
@@ -53,5 +56,7 @@ describe('Pantry', () => {
     userPantry.checkPantry(recipe1);
     expect(userPantry.shoppingList).to.be.an('array').with.a.lengthOf(8);
   });
+
+  
 });
 
