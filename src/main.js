@@ -13,7 +13,7 @@ function cardEventHandler(event) {
     console.log(`Oh you think recipe ${event.path[2].id} looks good?`)
   } else if (event.target.id) {
     console.log(`I see recipe ${event.target.id}`);
-    showRecipeCard();
+    showRecipeCard(event);
   }
 }
 
@@ -54,11 +54,26 @@ const goToAllRecipes = () => {
   allRecipesDisplay.classList.remove('hidden');
 }
 
-const showRecipeCard = () => {
+const showRecipeCard = (event) => {
   const blackout = document.querySelector('.body-blackout');
-
+  const currentRecipe = new Recipe(retrieveCard(event.target.id));
+  
   mainRecipeCard.classList.remove('hidden');
   blackout.classList.remove('hidden');
+
+  mainRecipeCard.innerHTML = 
+  `<button class="exit-button">Back to all recipes</button>
+  <img class="star-icon"" src="https://www.clipartmax.com/png/middle/175-1753277_free-image-on-pixabay-star-icon-png.png" />
+  <img class="recipe-img" src="${currentRecipe.image}"></img>
+  <section class="ingredients"></section>
+  `
+  // need another function
+  // dive into mainRecipe.ingredients
+  // for each ingredient
+  // retrieve ingredient name
+  // dive one step further into quantity
+  // print ingredient name:
+  // print quantity.amount quantity.unit
 }
 
 const hideRecipeCard = () => {
@@ -82,3 +97,8 @@ const showUser = () => {
 window.onload = propagateCards(recipeData);
 window.onload = showUser();
 
+// other (could possibly put this in one of the class files, I'll start with it here)
+
+const retrieveCard = (cardID) => {
+  return recipeData.find(recipe => recipe.id == cardID);
+}
