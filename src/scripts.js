@@ -1,10 +1,8 @@
-const usersData = require("../data/users");
-
 const recipeCardsSection = document.querySelector('.recipe-cards')
 const pageBody = document.querySelector('body');
 const homeSection = document.querySelector('.home-view');
 const singleRecipeSection = document.querySelector('.single-recipe-view');
-let recipes; 
+let recipes, user; 
 
 window.onload = setUpHomePage; 
 //instantiate random User on page load as well, and display their name in H2
@@ -35,6 +33,7 @@ function addRecipeToUserFavorites(event) {
 function setUpHomePage() {
   recipes = instantiateRecipes(recipeData);
   displayRecipes(recipes);
+  createRandomUser(); 
 }
 
 function instantiateRecipes(recipeData) {
@@ -59,6 +58,11 @@ function displayRecipes(recipes) {
       </article>
     `)
   })
+}
+
+function createRandomUser() {
+  let randomIndex = Math.floor(Math.random() * usersData.length);
+  user = new User(usersData[randomIndex]);
 }
 
 function displaySingleRecipe(event) {
