@@ -1,3 +1,5 @@
+const Pantry = require('./pantry-class.js');
+
 try {
   Pantry = require('./pantry-class.js');
   Recipe = require('./recipe-class.js');
@@ -16,7 +18,7 @@ class User {
   constructor(userData) {
     this.name = this.createName(userData.name);
     this.id = createId(userData.id);
-    this.pantry = userData.pantry || [];
+    this.pantry = new Pantry(userData.pantry);
     this.favoriteRecipes = [];
     this.recipesToCook = [];
   }
