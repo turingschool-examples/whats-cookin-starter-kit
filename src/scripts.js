@@ -11,7 +11,7 @@ pageBody.addEventListener('click', clickAnalyzer);
 
 function clickAnalyzer(event) {
   if (event.target.classList.contains('heart')) {
-    addRecipeToUserFavorites(event);
+    toggleRecipeToUserFavorites(event);
     indicateRecipeInFavorites(event);  
   } else if (event.target.classList.contains('cookbook')) {
     console.log('Add me to meal plan!')
@@ -25,14 +25,23 @@ function clickAnalyzer(event) {
   };
 }
 
-function addRecipeToUserFavorites(event) {
+function toggleRecipeToUserFavorites(event) {
   let recipe = determineRecipeToDisplay(event); 
   user.toggleFavoriteRecipe(recipe); 
 }
 
 function indicateRecipeInFavorites(event) {
-    //create new icon to swap icon to indicate a like 
-    console.log(event.target.src)
+  if (event.target.classList.contains('inactive')) {
+    console.log('Change!', user.favoriteRecipes)
+    event.target.src = "assets/heart-active.png";
+    event.target.classList.remove('inactive');
+    event.target.classList.add('active');
+  } else {
+    console.log('Change!', user.favoriteRecipes)
+    event.target.src = "assets/heart-inactive.png"; 
+    event.target.classList.remove('active');
+    event.target.classList.add('inactive');
+  };
 }
 
 function setUpHomePage() {
@@ -52,10 +61,10 @@ function displayRecipes(recipes) {
       <article class="recipe-card" id="card${index}">
         <div class="recipe-img" style="background-image: url(${recipe.image})">
           <div class="heart-icon">
-            <img src="assets/heart-inactive.png" class="heart">
+            <img src="assets/heart-inactive.png" class="heart inactive">
           </div>
           <div class="cook-icon">
-            <img src="assets/recipe-book.png" class="cookbook">
+            <img src="assets/recipe-book.png" class="cookbook inactive">
           </div>
         </div>
         <div class="recipe-name">
