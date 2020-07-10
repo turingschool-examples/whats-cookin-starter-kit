@@ -1,17 +1,22 @@
 try {
   ingredientsData = require('../data/ingredients.js');
+  scripts = require('./scripts');
+  createId = scripts.createId;
 } catch (e) {
+  let scripts
+  let createId;
   let ingredientsData;
 }
 
 class Recipe {
   constructor(recipe) {
-    this.id = recipe.id;
-    this.image = recipe.image;
-    this.requiredIngredients = recipe.ingredients;
-    this.instructions = recipe.instructions;
-    this.name = recipe.name;
-    this.tags = recipe.tags;
+    this.id = createId(recipe.id);
+    this.image = recipe.image || 'https://spoonacular.com/recipeImages/698701-556x370.jpg';
+    this.requiredIngredients = recipe.ingredients || [`no ingredients are listed for this recipe`];
+    this.instructions = recipe.instructions || ['No instructions were provided, <br>I guess it\'s one of those make it up as you go cakes <br>🤷🏽‍♀️'];
+    this.name = recipe.name || 'untitled';
+    this.tags = recipe.tags || [];
+    this.isFavorite = false;  
   }
 
   giveInstructions() {
@@ -28,7 +33,7 @@ class Recipe {
     const ingredientList = this.createIngredientList();
 
     return ingredientList.reduce((totalPrice, ingredient) => {
-      return totalPrice += (ingredient.estimatedCostInCents / 100);
+      return totalPrice += ingredient.estimatedCostInCents / 100;
     }, 0);
   }
 
