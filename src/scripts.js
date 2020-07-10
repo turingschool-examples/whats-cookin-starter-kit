@@ -12,10 +12,10 @@ pageBody.addEventListener('click', clickAnalyzer);
 function clickAnalyzer(event) {
   if (event.target.classList.contains('heart')) {
     toggleRecipeToUserFavorites(event);
-    indicateRecipeInFavorites(event);  
+    indicateRecipeInFavorites(event, 'heart');  
   } else if (event.target.classList.contains('cookbook')) {
     toggleRecipeToRecipesToCook(event)
-
+    indicateRecipeInFavorites(event, 'recipe');
   } else if (event.target.closest('.recipe-card')) {
     displaySingleRecipe(event);
   } else if (event.target.closest('header')) {
@@ -33,17 +33,15 @@ function toggleRecipeToUserFavorites(event) {
 function toggleRecipeToRecipesToCook(event) {
   let recipe = determineRecipeToDisplay(event);
   user.toggleRecipeToCook(recipe);
-  console.log(user.recipesToCook);
 }
 
-//refactor to work with notebook icon too 
-function indicateRecipeInFavorites(event) {
+function indicateRecipeInFavorites(event, icon) {
   if (event.target.classList.contains('inactive')) {
-    event.target.src = "assets/heart-active.png";
+    event.target.src = `assets/${icon}-active.png`;
     event.target.classList.remove('inactive');
     event.target.classList.add('active');
   } else {
-    event.target.src = "assets/heart-inactive.png"; 
+    event.target.src = `assets/${icon}-inactive.png`; 
     event.target.classList.remove('active');
     event.target.classList.add('inactive');
   };
