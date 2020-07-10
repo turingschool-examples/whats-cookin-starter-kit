@@ -88,8 +88,8 @@ const populateRecipeCard = (event) => {
   populateInstructions(instructionList);
 }
 
-bigRecipeCard.innerHTML =
 const insertCardHTML = (recipe) => {
+bigRecipeCard.innerHTML =
   `<button class="exit-button">Back to all recipes</button>
   <img class="star-icon"" src="https://www.clipartmax.com/png/middle/175-1753277_free-image-on-pixabay-star-icon-png.png" />
   <img class="recipe-img" src="${recipe.image}"></img>
