@@ -5,28 +5,19 @@ const Pantry = require('../src/Pantry');
 const User = require('../src/User');
 const Recipe = require('../src/Recipe');
 const recipes = require('../data/recipes');
-const newRecipe = recipes.recipeData;
 const users = require('../data/users');
-const newUser = users.usersData;
 
 describe('Pantry', () => {
-  let pantry;
+  let userPantry;
   let user;
-  let recipe;
+  
+
   beforeEach(function () {
-    user = new User(
-      newUser[3].name, 
-      newUser[3].id, 
-      newUser[3].pantry);
-    recipe = new Recipe(
-      newRecipe[2].id, 
-      newRecipe[2].image, 
-      newRecipe[2].ingredients, 
-      newRecipe[2].instructions, 
-      newRecipe[2].name, 
-      newRecipe[2].tags);
+    user = new User(users[2]);
+    recipe1 = new Recipe(recipes[2]);
+    recipe2 = new Recipe(recipes[3]);
+    user.addRecipeToCook(recipe2);
     userPantry = new Pantry(user);
-    user.recipesToCook.push(recipe);
   });
 
   it('should be a function', () => {
@@ -38,28 +29,34 @@ describe('Pantry', () => {
   });
   
   it('should have a pantry property with an array of a users pantry', () => {
-    expect(userPantry.pantry).to.be.an('array').with.a.lengthOf(54);
+    expect(userPantry.pantry).to.be.an('array').with.a.lengthOf(50);
   });
 
   it('should store an instance of recipe we want to make', () => {
     expect(userPantry.recipe[0]).to.be.an.instanceof(Recipe);
   });
 
-  it.skip('should be able to check if user has enough ingredients to make recipe', () => {
-    expect(userPantry.checkPantry()).to.deep.equal(true);
+  it('should be able to check if user has enough ingredients to make recipe', () => {
+    expect(userPantry.checkPantry(recipe1)).to.deep.equal(false);
   });
 
-  it.skip('should return false if user does not have all ingredients to make recipe', () => {
-    expect(userPantry.checkPantry()).to.deep.equal(false);
+  it('should return false if user does not have all ingredients to make recipe', () => {
+    expect(userPantry.checkPantry(recipe2)).to.deep.equal(true);
+  });
+
+  it('should return undefined if invalid information passed in', () => {
+    expect(() => userPantry.checkPantry(test)).to.throw(ReferenceError, /test is not defined/);
   });
 
   it('should have an array of needed ingredients that is empty by default', () => {
     expect(userPantry.shoppingList).to.be.an('array').with.a.lengthOf(0);
   });
 
-  it.skip('should list additional ingredients user needs to make recipe', () => {
-
+  it('should list additional ingredients user needs to make recipe', () => {
+    userPantry.checkPantry(recipe1);
+    expect(userPantry.shoppingList).to.be.an('array').with.a.lengthOf(8);
   });
 
+  
 });
 
