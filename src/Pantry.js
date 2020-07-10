@@ -6,25 +6,18 @@ class Pantry {
   }
 
   checkPantry() {
-     this.recipe.ingredients.forEach(ingredient => { 
-        const userIngredient = this.pantry.find(ingredient.id);
-        if(userIngredient === undefined) {
-          this.addToShoppingList(ingredient)
-        } else if (userIngredient.amount < this.recipe.amount) {
-          ingredient.amount -= userIngredient.amount;
-          this.addToShoppingList(ingredient);
-        } else {
-          console.log(ingredient);
-        }
-        // check if ingredients.id === pantry.ingredients.id
-        // on all ingredients of both pantry and recipe
-        // if all ingredients are in pantry and amounts also 
-        // are also greater in pantry 
-        // ingredients that are not in there addToShoppingList()
-        // method
-        // maybe .filter each and check if all true 
-        
+    const ingArray = this.pantry.reduce((acc, element) => {
+      return {...acc, [element.ingredient] : element.amount};
+    }, {})
+    
+    this.recipe.ingredients.forEach(ingredient => {
+      if (ingArray.hasOwnProperty(ingredient.id)) {
+        this.addToShoppingList(ingredient);
+      }
+      return false;
     })
+    console.log(this.shoppingList);
+    }
 
 
     /*
@@ -44,8 +37,6 @@ class Pantry {
     return false; (might need for a display in project)
     */
 
-
-  }
 
   addToShoppingList(missingIngredient) {
     this.shoppingList.push(missingIngredient);
