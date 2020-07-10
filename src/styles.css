@@ -66,25 +66,46 @@ h2 {
   height: 25em;
   margin-top: 1em;
   display: grid;
-  grid-template-areas:
-  
+  grid-template-areas: 'a';
 }
 
-.recipe-card > img {
+.hidden-card {
+  opacity: 0;
+  grid-area: a;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+  /* position: absolute; */
+  z-index: 1;
+}
+
+.displayed-card {
+  grid-area: a;
+  position: absolute;
+  z-index: 0;
+}
+
+.recipe-img {
   width: 22em;
   margin: 1em 1em 0 1em;
 }
 
-.recipe-card > p {
+.recipe-name {
   text-align: center;
 }
 
-.hover-test {
-  opacity:0;
+.hidden-card {
+  background-color: #b51616;
+  margin: 0 7em 0 7em;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  transition: all .6s ease-in-out;
 }
 
-.recipe-card > .hover-test:hover {
-  opacity: 0.85;
+.recipe-card > .hidden-card:hover {
+  opacity: .85;
+   transform: scale(2.0)
 }
 
 .user-pantry,
