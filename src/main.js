@@ -56,13 +56,18 @@ const goToAllRecipes = () => {
 
 const showRecipeCard = (event) => {
   const blackout = document.querySelector('.body-blackout');
+
+  mainRecipeCard.classList.remove('hidden');
+  blackout.classList.remove('hidden');
+  populateRecipeCard(event);
+}
+
+const populateRecipeCard = (event) => {
   const currentRecipe = new Recipe(retrieveCard(event.target.id));
   const ingredientList = currentRecipe.createIngredientList();
   const instructionList = currentRecipe.giveInstructions();
-  
-  mainRecipeCard.classList.remove('hidden');
-  blackout.classList.remove('hidden');
-  mainRecipeCard.innerHTML = 
+
+  mainRecipeCard.innerHTML =
   `<button class="exit-button">Back to all recipes</button>
   <img class="star-icon"" src="https://www.clipartmax.com/png/middle/175-1753277_free-image-on-pixabay-star-icon-png.png" />
   <img class="recipe-img" src="${currentRecipe.image}"></img>
@@ -75,20 +80,17 @@ const showRecipeCard = (event) => {
   populateElements('instructions', instructionList, 'instruction');
 }
 
-const populateElements = (sectionName, elementList, elementName, argument) => {
+const populateElements = (sectionName, elementList, className, argument) => {
   const section = document.querySelector(`.${sectionName}`);
-
   if (argument) {
     elementList.forEach(element => {
       section.innerHTML += 
-      `<p class=${elementName}>${element[argument]}:</p>`
+      `<p class=${className}>${element[argument]}:</p>`
     });
   } else {
-    console.log(elementList);
-    
     elementList.forEach(element => {
       section.innerHTML += 
-      `<p class=${elementName}>${element}</p>`
+      `<p class=${className}>${element}</p>`
     });
   }
 };
