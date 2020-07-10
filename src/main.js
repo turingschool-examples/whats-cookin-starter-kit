@@ -70,6 +70,7 @@ const populateRecipeCard = (event) => {
 
   insertCardHTML(currentRecipe);
   populateIngredients(fullIngredientList);
+  populateInstructions(instructionList);
 }
 
 const insertCardHTML = (recipe) => {
@@ -92,6 +93,15 @@ const populateIngredients = (fullIngredientList) => {
     `<p class="ingredient">${ingredient}</p>`
   })
 };
+
+const populateInstructions = (instructionList) => {
+  const instructionsSection = document.querySelector('.instructions');
+
+  instructionList.forEach(instruction => {
+    instructionsSection.innerHTML +=
+    `<p class="instruction">${instruction}</p>`
+  })
+}
 
 const generateReadableIngredientList = (ingredientList, recipe) => {
   const measurements = createMeasurementList(recipe);
