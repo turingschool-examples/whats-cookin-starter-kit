@@ -10,18 +10,18 @@ try {
 
 class User {
   constructor(userData) {
-    this.name = this.checkIfString(userData.name);
-    this.id = this.checkIfNumber(userData.id);
-    this.pantry = new Pantry(userData.pantry);
+    this.name = this.createName(userData.name);
+    this.id = this.createId(userData.id);
+    this.pantry = userData.pantry || [];
     this.favoriteRecipes = [];
     this.recipesToCook = [];
   }
 
-  checkIfString(data) {
+  createName(data) {
     return typeof data === 'string' ? data : JSON.stringify(data);
   }
 
-  checkIfNumber(data) {
+  createId(data) {
     return typeof data === 'number' ? data : Date.now();
   }
 

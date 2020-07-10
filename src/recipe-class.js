@@ -29,7 +29,6 @@ class Recipe {
   }
 
   getTotalCost() {
-    console.log(this.ingredientList);
     const ingredientList = this.createIngredientList();
 
     return ingredientList.reduce((totalPrice, ingredient) => {
