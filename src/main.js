@@ -3,7 +3,9 @@ const nav = document.querySelector('nav');
 // const recipeCard = document.querySelector('.recipe-card')
 
 const currentUser = new User(generateRandomUser());
+const instantiatedRecipes = recipeData.map(recipe => new Recipe(recipe));
 //event listening
+
 allRecipesDisplay.addEventListener('click', cardEventHandler);
 nav.addEventListener('click', navEventHandler);
 
