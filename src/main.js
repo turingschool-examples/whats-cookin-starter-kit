@@ -58,8 +58,8 @@ const showRecipeCard = (event) => {
   const blackout = document.querySelector('.body-blackout');
   const currentRecipe = new Recipe(retrieveCard(event.target.id));
   const ingredientList = currentRecipe.createIngredientList();
+  const instructionList = currentRecipe.giveInstructions();
   
-
   mainRecipeCard.classList.remove('hidden');
   blackout.classList.remove('hidden');
   mainRecipeCard.innerHTML = 
@@ -68,17 +68,29 @@ const showRecipeCard = (event) => {
   <img class="recipe-img" src="${currentRecipe.image}"></img>
   <h2>Ingredients</h2>
   <section class="ingredients"></section>
+  <h2>Instructions</h2>
+  <section class="instructions"></section>
   `
-  populateIngredients(ingredientList);
+  populateElements('ingredients', ingredientList, 'ingredient', 'name');
+  populateElements('instructions', instructionList, 'instruction');
 }
 
-const populateIngredients = (ingredientList, recipeQuantity) => {
-  const ingredientSection = document.querySelector('.ingredients');
+const populateElements = (sectionName, elementList, elementName, argument) => {
+  const section = document.querySelector(`.${sectionName}`);
 
-  ingredientList.forEach(ingredient => {
-    ingredientSection.innerHTML += 
-    `<p class="ingredient">${ingredient.name}:</p>`
-  });
+  if (argument) {
+    elementList.forEach(element => {
+      section.innerHTML += 
+      `<p class=${elementName}>${element[argument]}:</p>`
+    });
+  } else {
+    console.log(elementList);
+    
+    elementList.forEach(element => {
+      section.innerHTML += 
+      `<p class=${elementName}>${element}</p>`
+    });
+  }
 };
 
 const hideRecipeCard = () => {

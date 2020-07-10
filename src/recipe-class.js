@@ -16,8 +16,8 @@ class Recipe {
 
   giveInstructions() {
     return this.instructions.reduce((list, direction) => {
-      return list += `${direction.number}: ${direction.instruction}<br>`
-    }, '');
+      return list.concat(`${direction.number}: ${direction.instruction}`)
+    }, []);
   }
 
   toggleFavorite() {
