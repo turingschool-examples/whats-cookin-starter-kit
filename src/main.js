@@ -3,7 +3,9 @@ const nav = document.querySelector('nav');
 const mainRecipeCard = document.querySelector('.recipe-pop-up');
 
 const currentUser = new User(generateRandomUser());
+const instantiatedRecipes = recipeData.map(recipe => new Recipe(recipe));
 //event listening
+
 allRecipesDisplay.addEventListener('click', cardEventHandler);
 nav.addEventListener('click', navEventHandler);
 mainRecipeCard.addEventListener('click', recipeEventHandler);

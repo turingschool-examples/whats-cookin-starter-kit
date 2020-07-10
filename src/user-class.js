@@ -1,5 +1,3 @@
-const Pantry = require('./pantry-class.js');
-
 try {
   Pantry = require('./pantry-class.js');
   Recipe = require('./recipe-class.js');
