@@ -34,6 +34,7 @@ function setUpHomePage() {
   recipes = instantiateRecipes(recipeData);
   displayRecipes(recipes);
   createRandomUser(); 
+  displayUserName(); 
 }
 
 function instantiateRecipes(recipeData) {
@@ -63,6 +64,11 @@ function displayRecipes(recipes) {
 function createRandomUser() {
   let randomIndex = Math.floor(Math.random() * usersData.length);
   user = new User(usersData[randomIndex]);
+}
+
+function displayUserName() {
+  let welcomeHeading = document.querySelector('.welcome-heading');
+  welcomeHeading.innerText = `Welcome, ${user.name}! Browse Our Recipes Below.`;
 }
 
 function displaySingleRecipe(event) {
