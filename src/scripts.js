@@ -14,8 +14,8 @@ function clickAnalyzer(event) {
     toggleRecipeToUserFavorites(event);
     indicateRecipeInFavorites(event);  
   } else if (event.target.classList.contains('cookbook')) {
-    console.log('Add me to meal plan!')
-    //add the recipe to the user's meals to cook/meal plan recipes (target.parentElement.parentElement.parentElement.id to get index of recipe in recipes?)
+    toggleRecipeToRecipesToCook(event)
+
   } else if (event.target.closest('.recipe-card')) {
     displaySingleRecipe(event);
   } else if (event.target.closest('header')) {
@@ -30,14 +30,19 @@ function toggleRecipeToUserFavorites(event) {
   user.toggleFavoriteRecipe(recipe); 
 }
 
+function toggleRecipeToRecipesToCook(event) {
+  let recipe = determineRecipeToDisplay(event);
+  user.toggleRecipeToCook(recipe);
+  console.log(user.recipesToCook);
+}
+
+//refactor to work with notebook icon too 
 function indicateRecipeInFavorites(event) {
   if (event.target.classList.contains('inactive')) {
-    console.log('Change!', user.favoriteRecipes)
     event.target.src = "assets/heart-active.png";
     event.target.classList.remove('inactive');
     event.target.classList.add('active');
   } else {
-    console.log('Change!', user.favoriteRecipes)
     event.target.src = "assets/heart-inactive.png"; 
     event.target.classList.remove('active');
     event.target.classList.add('inactive');
@@ -64,7 +69,7 @@ function displayRecipes(recipes) {
             <img src="assets/heart-inactive.png" class="heart inactive">
           </div>
           <div class="cook-icon">
-            <img src="assets/recipe-book.png" class="cookbook inactive">
+            <img src="assets/recipe-inactive.png" class="cookbook inactive">
           </div>
         </div>
         <div class="recipe-name">
