@@ -29,7 +29,7 @@ function clickAnalyzer(event) {
 //New//
 function displaySingleRecipe(event) {
   changeToSingleRecipeView();
-  let recipe = determineRecipeToDisplay(event);
+  const recipe = determineRecipeToDisplay(event);
   displayRecipeDetails(recipe); 
 }
 
@@ -41,12 +41,14 @@ function changeToSingleRecipeView() {
 function determineRecipeToDisplay(event) {
   const recipeCardId = event.target.closest('.recipe-card').id;
   const recipeCardIndex = recipeCardId[recipeCardId.length - 1];
-  let recipeToDisplay = recipes[recipeCardIndex];
-  return recipeToDisplay); 
+  const recipeToDisplay = recipes[recipeCardIndex];
+  return recipeToDisplay; 
 }
 
 function displayRecipeDetails(recipe) {
-  
+
+}
+
 
 //End new//
 function setUpHomePage() {
@@ -76,6 +78,11 @@ function displayRecipes(recipes) {
       </article>
     `)
   })
+}
+
+function getIngredientName(ingredientId) {
+  const ingredient = ingredientsData.find(ingredient => ingredient.id === ingredientId);
+  return ingredient.name; 
 }
 
 
