@@ -1,15 +1,116 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssnormalize/cssnormalize-min.css">
+    <link rel="stylesheet" href="./styles.css">
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
-
-    <script type="text/javascript" src="../data/users.js"></script>
-    <script type="text/javascript" src="../data/recipes.js"></script>
+    <header>
+      <h1>What's Cookin</h1>
+      <div class="user-profile-display">userName</div>
+      <input class="search-input"></input>
+      <button class="recipes-button hidden">Recipes</button>
+      <button class="my-pantry-button">My Pantry</button>
+    </header>
+    <h2>Recipes or My Pantry, change with innerHTML</h2>
+    <section class="cards-body">
+      <article class="recipe-card">
+        <div class="hidden-card">
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+        </div>
+        <section class="displayed-card">
+        <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg"/>
+        <p class="recipe-name">Recipe Name</p>
+        </section>
+      </article>
+      <article class="recipe-card">
+        <div class="hidden-card">
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+        </div>
+        <section class="displayed-card">
+        <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg"/>
+        <p class="recipe-name">Recipe Name</p>
+        </section>
+      </article>
+      <article class="recipe-card">
+        <div class="hidden-card">
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+          blah blah blah blah </br>
+          blah blah blah blah blah </br>
+        </div>
+        <section class="displayed-card">
+        <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg"/>
+        <p class="recipe-name">Recipe Name</p>
+        </section>
+      </article>
+    </section>
+    <section class="pantry-body hidden">
+      <article class="user-pantry">
+        <h3>Pantry</h3>
+        <div class="ingredient">flour...     ...3cups</div>
+        <div class="ingredient">flour...     ...3cups</div>
+        <div class="ingredient">flour...     ...3cups</div>
+        <div class="ingredient">flour...     ...3cups</div>
+      </article>
+      <article class="missing-ingredients">
+        <h3>Missing Ingredients</h3>
+        <div class="ingredient">not flour...     ...2cups</div>
+        <div class="ingredient">not flour...     ...2cups</div>
+        <div class="ingredient">not flour...     ...2cups</div>
+        <div class="ingredient">not flour...     ...2cups</div>
+      </article>
+      <article class="recipe-card">
+        <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg"/>
+        <p class="recipe-name">Recipe Name</p>
+      </article>
+      <article class="recipe-card">
+        <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg"/>
+        <p class="recipe-name">Recipe Name</p>
+      </article>
+      <article class="recipe-card">
+        <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg"/>
+        <p class="recipe-name">Recipe Name</p>
+      </article>
+    </section>
     <script type="text/javascript" src="../data/ingredients.js"></script>
+    <script type="text/javascript" src="../data/recipes.js"></script>
+    <script type="text/javascript" src="../data/users.js"></script>
+    <script type="text/javascript" src="./Recipe.js"></script>
+    <script type="text/javascript" src="./User.js"></script>
+    <script type="text/javascript" src="./Pantry.js"></script>
     <script type="text/javascript" src="./scripts.js"></script>
   </body>
 </html>
