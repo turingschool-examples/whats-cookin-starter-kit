@@ -2,7 +2,9 @@ try {
   Pantry = require('./pantry-class.js');
   Recipe = require('./recipe-class.js');
   ingredientsData = require('../data/ingredients.js');
+  createId = require('./scripts');
 } catch(e) {
+  let createId
   let Pantry;
   let Recipe;
   let ingredientsData;
@@ -11,7 +13,7 @@ try {
 class User {
   constructor(userData) {
     this.name = this.createName(userData.name);
-    this.id = this.createId(userData.id);
+    this.id = createId(userData.id);
     this.pantry = userData.pantry || [];
     this.favoriteRecipes = [];
     this.recipesToCook = [];
@@ -21,9 +23,7 @@ class User {
     return typeof data === 'string' ? data : JSON.stringify(data);
   }
 
-  createId(data) {
-    return typeof data === 'number' ? data : Date.now();
-  }
+
 
   chooseRecipe(recipe, recipeList) {
     if (recipe instanceof Recipe) {

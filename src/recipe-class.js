@@ -1,21 +1,19 @@
 try {
   ingredientsData = require('../data/ingredients.js');
+  createId = require('./scripts');
 } catch (e) {
+  let createId;
   let ingredientsData;
 }
 
 class Recipe {
   constructor(recipe) {
-    this.id = this.createId(recipe.id);
+    this.id = createId(recipe.id);
     this.image = recipe.image || 'https://spoonacular.com/recipeImages/698701-556x370.jpg';
     this.requiredIngredients = recipe.ingredients || [`no ingredients are listed for this recipe`];
     this.instructions = recipe.instructions || ['No instructions were provided, <br>I guess it\'s one of those make it up as you go cakes <br>🤷🏽‍♀️'];
     this.name = recipe.name || 'untitled';
     this.tags = recipe.tags || [];
-  }
-
-  createId(data) {
-    return typeof data === 'number' ? data : Date.now();
   }
 
   giveInstructions() {
