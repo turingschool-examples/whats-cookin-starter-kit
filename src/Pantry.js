@@ -27,7 +27,9 @@ class Pantry {
   }
 
   pantryIngredientAdjust(ing1, ing2) {
-    
+    //need to have a way to return or replace an item in the user pantry to adjust for recipes made
+    // does it need to update both pantry class as well as user, 
+    // if user is updated everytime the pantry class is instantiated the pantry would update itself
   }
 
   removeFromPantry() {
