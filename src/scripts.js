@@ -11,7 +11,8 @@ pageBody.addEventListener('click', clickAnalyzer);
 
 function clickAnalyzer(event) {
   if (event.target.classList.contains('heart')) {
-    addRecipeToUserFavorites(event); 
+    addRecipeToUserFavorites(event);
+    indicateRecipeInFavorites(event);  
   } else if (event.target.classList.contains('cookbook')) {
     console.log('Add me to meal plan!')
     //add the recipe to the user's meals to cook/meal plan recipes (target.parentElement.parentElement.parentElement.id to get index of recipe in recipes?)
@@ -26,8 +27,12 @@ function clickAnalyzer(event) {
 
 function addRecipeToUserFavorites(event) {
   let recipe = determineRecipeToDisplay(event); 
-  //Need to create user variable with random User instantiation on page load; set this to user
   user.toggleFavoriteRecipe(recipe); 
+}
+
+function indicateRecipeInFavorites(event) {
+    //create new icon to swap icon to indicate a like 
+    console.log(event.target.src)
 }
 
 function setUpHomePage() {
@@ -47,7 +52,7 @@ function displayRecipes(recipes) {
       <article class="recipe-card" id="card${index}">
         <div class="recipe-img" style="background-image: url(${recipe.image})">
           <div class="heart-icon">
-            <img src="assets/heart.png" class="heart">
+            <img src="assets/heart-inactive.png" class="heart">
           </div>
           <div class="cook-icon">
             <img src="assets/recipe-book.png" class="cookbook">
