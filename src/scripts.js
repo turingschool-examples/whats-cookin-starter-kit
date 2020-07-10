@@ -1,5 +1,7 @@
 const recipeCardsSection = document.querySelector('.recipe-cards')
 const pageBody = document.querySelector('body');
+const homeSection = document.querySelector('.home-view');
+const singleRecipeSection = document.querySelector('.single-recipe-view');
 let recipes; 
 
 window.onload = setUpHomePage; 
@@ -15,6 +17,7 @@ function clickAnalyzer(event) {
     console.log('Add me to meal plan!')
     //add the recipe to the user's meals to cook/meal plan recipes (target.parentElement.parentElement.parentElement.id to get index of recipe in recipes?)
   } else if (event.target.closest('.recipe-card')) {
+    displaySingleRecipe(event);
     //display that recipe (hide home view, un-hide recipe view, interpolating info from recipe clicked; can possibly use unique html id associated with each recipe card to identify it (target.parentElement.id grabs unique html id, which is the same as the index of that recipe in recipes))
   } else if (event.target.closest('header')) {
     event.preventDefault();
@@ -22,7 +25,6 @@ function clickAnalyzer(event) {
     //call other function & pass in event to analyze what was clicked in menu (search bar button, one of the filters, or one of the dropdowns under My Recipe Box)
   };
 }
-
 
 function setUpHomePage() {
   recipes = instantiateRecipes(recipeData);
@@ -51,6 +53,66 @@ function displayRecipes(recipes) {
       </article>
     `)
   })
+}
+
+function displaySingleRecipe(event) {
+  changeToSingleRecipeView();
+  const recipe = determineRecipeToDisplay(event);
+  displayRecipeDetails(recipe);
+}
+
+function changeToSingleRecipeView() {
+  homeSection.classList.add('hidden');
+  singleRecipeSection.classList.remove('hidden');
+}
+
+function determineRecipeToDisplay(event) {
+  let recipeCardId = event.target.closest('.recipe-card').id;
+  let recipeCardIndex = recipeCardId.slice(4);
+  let recipeToDisplay = recipes[recipeCardIndex];
+  return recipeToDisplay;
+}
+
+function displayRecipeDetails(recipe) {
+  let recipeIngredientsList = createIngredientsList(recipe);
+  let recipeInstructions = createInstructionsList(recipe); 
+  const recipeBox = document.querySelector('.recipe-details');
+  recipeBox.insertAdjacentHTML('afterBegin', `
+    <h2 class="recipe-name">${recipe.name}</h2>
+    <section class="recipe-name-ingredients">
+      <div class="ingredients-box">
+        <h3>Ingredients</h3>
+        <ul>${recipeIngredientsList}</ul>
+      </div>
+      <div class="image-box">
+        <img src=${recipe.image}>
+      </div>
+    </section>
+    <section class="recipe-instructions">
+      <h3>Instructions</h3>
+      <ol>${recipeInstructions}</ol>
+    </section>
+  `);
+}
+
+function createIngredientsList(recipe) {
+  return recipe.ingredients.reduce((ingredientsList, ingredient) => {
+    ingredientsList += `<li>${ingredient.quantity.amount} ${ingredient.quantity.unit} ${getIngredientName(ingredient.id)}</li>`;
+    return ingredientsList;
+  }, '');
+}
+
+function createInstructionsList(recipe) {
+  return recipe.instructions.reduce((instructionsList, instruction) => {
+    instructionsList += `<li>${instruction.instruction}</li>`;
+    return instructionsList;
+  }, '');
+}
+
+
+function getIngredientName(ingredientId) {
+  const ingredient = ingredientsData.find(ingredient => ingredient.id === ingredientId);
+  return ingredient.name; 
 }
 
 
