@@ -9,7 +9,7 @@ describe('Recipe', function() {
     id = 1
     image = 'https://en.wikipedia.org/wiki/Smiley#/media/File:SNice.svg';
     ingredient1 = {
-      id: 5, 
+      id: 5,
       quantity: {
         amount: 1,
         unit: 'cup'
@@ -27,7 +27,7 @@ describe('Recipe', function() {
     instruction2 = {instruction: 'Say you made them from scratch.', number: 2};
     instructions = [instruction1, instruction2];
     name = 'Funfetti Cookies';
-    tags = ['dessert', 'breakfast']; 
+    tags = ['dessert', 'breakfast'];
     recipe = new Recipe(id, image, ingredients, instructions, name, tags);
   });
   it('should be a function', function() {
@@ -44,10 +44,10 @@ describe('Recipe', function() {
 
 //Add sad path test for if non-number is passed in as id
 //should function return 'Please enter a valid id'?
-//same for all other properties 
+//same for all other properties
 
   it('should have an image', function() {
-    expect(recipe.image).to.equal(image); 
+    expect(recipe.image).to.equal(image);
   });
 
   it('should have ingredients', function() {
@@ -63,8 +63,8 @@ describe('Recipe', function() {
   });
 
   it('should have category tags', function() {
-    expect(recipe.tags).to.deep.equal(tags); 
-  }); 
+    expect(recipe.tags).to.deep.equal(tags);
+  });
 
   it('should contain a key that maps categories to their corresponding tags', function() {
     const categoryToTagMap = {
@@ -81,7 +81,7 @@ describe('Recipe', function() {
 
   it('should default to a tag of other if no tag is passed in', function() {
     const recipe2 = new Recipe(id, image, ingredients, instructions, name);
-    
+
     expect(recipe2.tags).to.deep.equal(['other']);
   });
 
@@ -97,7 +97,7 @@ describe('Recipe', function() {
     const categoryToTags = recipe.mapCategoryToTag(category);
 
     expect(categoryToTags).to.deep.equal(['lunch', 'main course', 'main dish', 'dinner']);
-  });  
+  });
 
   it('should be able to check if it belongs to a given category', function () {
     const category = 'Breakfast';
@@ -120,7 +120,7 @@ describe('Recipe', function() {
 
     const ingredientInRecipe = recipe.checkRecipeIngredients(ingredientSearchedId);
 
-    expect(ingredientInRecipe).to.equal(true); 
+    expect(ingredientInRecipe).to.equal(true);
   });
 
   it('should be able to check if it does not have a given ingredient', function () {
@@ -137,14 +137,14 @@ describe('Recipe', function() {
         id: 5,
         name: 'flour',
         estimatedCostInCents: 100
-      }, 
+      },
       {
         id: 8,
         name: 'sugar',
         estimatedCostInCents: 50
       }
     ];
-    
+
     const ingredientsCost = recipe.calculateIngredientsCost(ingredientsData);
 
     expect(ingredientsCost).to.equal(150);
