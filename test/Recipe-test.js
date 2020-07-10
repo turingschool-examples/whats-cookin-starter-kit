@@ -94,6 +94,16 @@ describe("Recipe", function () {
     expect(recipe.name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups');
   });
 
+  it('should have a default name when no name is entered', function() {
+    const recipeNoName = new Recipe(
+    {'id': 595736,
+    'image': 'https://spoonacular.com/recipeImages/595736-556x370.jpg',
+    'ingredients': [ingredient1, ingredient2, ingredient3],
+    'instructions': [instruction1, instruction2, instruction3],
+    'tags': ['antipasti', 'starter', 'snack', 'appetizer']}
+    );
+    expect(recipeNoName.name).to.equal('No Name');
+  });
   // it('should have a name that is a string', function() {
   //   expect(recipe.name).to.be.a('string');
   // });
@@ -122,6 +132,11 @@ describe("Recipe", function () {
   it('should return an ingredient\'s cost', function(){
     expect(recipe.getIngredientCost(ingredient1)).to.equal(1.42);
   });
+
+  it('should return no cost if ingredient has no id', function() {
+    const badIngredient = {"estimatedCostInCents": 205}
+    expect(recipe.getIngredientCost(badIngredient).to.equal(0);
+  })
 
   //what if no cost
 

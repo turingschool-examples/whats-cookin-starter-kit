@@ -6,7 +6,7 @@ class Recipe {
     this.image = image || '../assets/defaultRecipeImage.jpg';
     this.ingredients = ingredients; //update with names from recipe data file
     this.instructions = instructions;
-    this.name = name;
+    this.name = name || 'No Name'// ;
     this.tags = tags;
   }
 
@@ -21,6 +21,7 @@ class Recipe {
   }
 
   getIngredientCost(ingredient) { //returns cost of ingredient in dollar amount
+    // return 0 
     let cost = 0;
     ingredientsData.forEach(ingredientData => {
       if (ingredient.id === ingredientData.id) {
