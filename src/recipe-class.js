@@ -21,8 +21,8 @@ class Recipe {
 
   giveInstructions() {
     return this.instructions.reduce((list, direction) => {
-      return list += `${direction.number}: ${direction.instruction}<br>`
-    }, '');
+      return list.concat(`${direction.number}: ${direction.instruction}`)
+    }, []);
   }
 
   toggleFavorite() {
@@ -47,6 +47,7 @@ class Recipe {
     return ingredientsData.find(ingredient => ingredient.id === recipeIngredient.id);
   }
 }
+
 if (typeof module !== 'undefined') {
   module.exports = Recipe;
 }
