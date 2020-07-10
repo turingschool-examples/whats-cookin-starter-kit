@@ -1,8 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 const Pantry = require('../src/pantry-class');
-const Recipe = require('../src/recipe-class')
-const usersData = require('../data/users.js');
+const Recipe = require('../src/recipe-class');
 
 describe('Pantry', () => {
   let pantry, pantrySupply, badPantry, greenHam;
@@ -237,11 +236,6 @@ describe('Pantry', () => {
     expect(requiredIngredientsInPantry).to.deep.equal(expectedIngredients);
   });
 
-  it('can find ingredient ids for a given recipe', () => {
-    let recipeIngredientIds = pantry.findIngredientIds(greenHam);
-    expect(recipeIngredientIds).to.deep.equal([11477, 11297, 16069]);
-  });
-  
   it('can find an ingredient\'s name from its Id', () => {
     let name = pantry.findIngredientName(16069);
     expect(name).to.equal('legumes');
