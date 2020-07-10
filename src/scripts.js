@@ -26,31 +26,6 @@ function clickAnalyzer(event) {
   };
 }
 
-//New//
-function displaySingleRecipe(event) {
-  changeToSingleRecipeView();
-  const recipe = determineRecipeToDisplay(event);
-  displayRecipeDetails(recipe); 
-}
-
-function changeToSingleRecipeView() {
-  homeSection.classList.add('hidden');
-  singleRecipeSection.classList.remove('hidden');
-}
-
-function determineRecipeToDisplay(event) {
-  const recipeCardId = event.target.closest('.recipe-card').id;
-  const recipeCardIndex = recipeCardId[recipeCardId.length - 1];
-  const recipeToDisplay = recipes[recipeCardIndex];
-  return recipeToDisplay; 
-}
-
-function displayRecipeDetails(recipe) {
-
-}
-
-
-//End new//
 function setUpHomePage() {
   recipes = instantiateRecipes(recipeData);
   displayRecipes(recipes);
@@ -79,6 +54,61 @@ function displayRecipes(recipes) {
     `)
   })
 }
+
+function displaySingleRecipe(event) {
+  changeToSingleRecipeView();
+  const recipe = determineRecipeToDisplay(event);
+  displayRecipeDetails(recipe);
+}
+
+function changeToSingleRecipeView() {
+  homeSection.classList.add('hidden');
+  singleRecipeSection.classList.remove('hidden');
+}
+
+function determineRecipeToDisplay(event) {
+  const recipeCardId = event.target.closest('.recipe-card').id;
+  const recipeCardIndex = recipeCardId[recipeCardId.length - 1];
+  const recipeToDisplay = recipes[recipeCardIndex];
+  return recipeToDisplay;
+}
+
+function displayRecipeDetails(recipe) {
+  let recipeIngredientsList = createIngredientsList(recipe);
+  let recipeInstructions = createInstructionsList(recipe); 
+  const recipeBox = document.querySelector('.recipe-details');
+  recipeBox.insertAdjacentHTML('afterBegin', `
+    <h2 class="recipe-name">${recipe.name}</h2>
+    <section class="recipe-name-ingredients">
+      <div class="ingredients-box">
+        <h3>Ingredients</h3>
+        <ul>${recipeIngredientsList}</ul>
+      </div>
+      <div class="image-box">
+        <img src=${recipe.image}>
+      </div>
+    </section>
+    <section class="recipe-instructions">
+      <h3>Instructions</h3>
+      <ol>${recipeInstructions}</ol>
+    </section>
+  `);
+}
+
+function createIngredientsList(recipe) {
+  return recipe.ingredients.reduce((ingredientsList, ingredient) => {
+    ingredientsList += `<li>${ingredient.quantity.amount} ${ingredient.quantity.unit} ${getIngredientName(ingredient.id)}</li>`;
+    return ingredientsList;
+  }, '');
+}
+
+function createInstructionsList(recipe) {
+  return recipe.instructions.reduce((instructionsList, instruction) => {
+    instructionsList += `<li>${instruction.instruction}</li>`;
+    return instructionsList;
+  }, '');
+}
+
 
 function getIngredientName(ingredientId) {
   const ingredient = ingredientsData.find(ingredient => ingredient.id === ingredientId);
