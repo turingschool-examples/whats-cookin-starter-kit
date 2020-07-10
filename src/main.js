@@ -65,11 +65,11 @@ const showRecipeCard = (event) => {
 const populateRecipeCard = (event) => {
   const currentRecipe = new Recipe(retrieveCard(event.target.id));
   const ingredientList = currentRecipe.createIngredientList();
+  const fullIngredientList = generateReadableIngredientList(ingredientList, currentRecipe);
   const instructionList = currentRecipe.giveInstructions();
 
   insertCardHTML(currentRecipe);
-  populateElements('ingredients', ingredientList, 'ingredient', 'name');
-  populateElements('instructions', instructionList, 'instruction');
+  populateIngredients(fullIngredientList);
 }
 
 const insertCardHTML = (recipe) => {
@@ -84,20 +84,33 @@ const insertCardHTML = (recipe) => {
   `
 }
 
-const populateElements = (sectionName, elementList, className, argument) => {
-  const section = document.querySelector(`.${sectionName}`);
-  if (argument) {
-    elementList.forEach(element => {
-      section.innerHTML += 
-      `<p class=${className}>${element[argument]}:</p>`
-    });
-  } else {
-    elementList.forEach(element => {
-      section.innerHTML += 
-      `<p class=${className}>${element}</p>`
-    });
-  }
+const populateIngredients = (fullIngredientList) => {
+  const ingredientsSection = document.querySelector('.ingredients');
+
+  fullIngredientList.forEach(ingredient => {
+    ingredientsSection.innerHTML +=
+    `<p class="ingredient">${ingredient}</p>`
+  })
 };
+
+const generateReadableIngredientList = (ingredientList, recipe) => {
+  const measurements = createMeasurementList(recipe);
+  const fullDirectionList = measurements.reduce((directions, measurement) => {
+    const ingredientMatch = ingredientList.find(ingredient => {
+      return ingredientList.indexOf(ingredient) === measurements.indexOf(measurement);
+    });
+    const fullDirectionSentence = measurement + ingredientMatch.name;
+    return directions.concat(fullDirectionSentence);
+  }, []);
+    
+  return fullDirectionList;
+}
+
+const createMeasurementList = (recipe) => {
+  return recipe.requiredIngredients.map((ingredient) => {
+    return `${ingredient.quantity.amount} ${ingredient.quantity.unit} of `
+  });
+}
 
 const hideRecipeCard = () => {
   const blackout = document.querySelector('.body-blackout');
