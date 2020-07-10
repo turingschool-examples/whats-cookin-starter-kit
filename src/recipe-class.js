@@ -42,6 +42,7 @@ class Recipe {
     return ingredientsData.find(ingredient => ingredient.id === recipeIngredient.id);
   }
 }
+
 if (typeof module !== 'undefined') {
   module.exports = Recipe;
 }

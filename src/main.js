@@ -57,24 +57,29 @@ const goToAllRecipes = () => {
 const showRecipeCard = (event) => {
   const blackout = document.querySelector('.body-blackout');
   const currentRecipe = new Recipe(retrieveCard(event.target.id));
+  const ingredientList = currentRecipe.createIngredientList();
   
+
   mainRecipeCard.classList.remove('hidden');
   blackout.classList.remove('hidden');
-
   mainRecipeCard.innerHTML = 
   `<button class="exit-button">Back to all recipes</button>
   <img class="star-icon"" src="https://www.clipartmax.com/png/middle/175-1753277_free-image-on-pixabay-star-icon-png.png" />
   <img class="recipe-img" src="${currentRecipe.image}"></img>
+  <h2>Ingredients</h2>
   <section class="ingredients"></section>
   `
-  // need another function
-  // dive into mainRecipe.ingredients
-  // for each ingredient
-  // retrieve ingredient name
-  // dive one step further into quantity
-  // print ingredient name:
-  // print quantity.amount quantity.unit
+  populateIngredients(ingredientList);
 }
+
+const populateIngredients = (ingredientList, recipeQuantity) => {
+  const ingredientSection = document.querySelector('.ingredients');
+
+  ingredientList.forEach(ingredient => {
+    ingredientSection.innerHTML += 
+    `<p class="ingredient">${ingredient.name}:</p>`
+  });
+};
 
 const hideRecipeCard = () => {
   const blackout = document.querySelector('.body-blackout');
