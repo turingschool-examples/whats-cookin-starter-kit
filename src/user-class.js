@@ -2,8 +2,12 @@ try {
   Pantry = require('./pantry-class.js');
   Recipe = require('./recipe-class.js');
   ingredientsData = require('../data/ingredients.js');
-  createId = require('./scripts');
+  scripts = require('./scripts');
+  createId = scripts.createId;
+  checkModule = scripts.checkModule;
 } catch(e) {
+  let checkModule
+  let scripts
   let createId
   let Pantry;
   let Recipe;
@@ -22,8 +26,6 @@ class User {
   createName(data) {
     return typeof data === 'string' ? data : JSON.stringify(data);
   }
-
-
 
   chooseRecipe(recipe, recipeList) {
     if (recipe instanceof Recipe) {
@@ -88,6 +90,8 @@ class User {
     return indicator;
   }
 }
+
+
 if (typeof module !== 'undefined') {
   module.exports = User;
 }
