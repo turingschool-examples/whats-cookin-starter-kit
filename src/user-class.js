@@ -4,9 +4,7 @@ try {
   ingredientsData = require('../data/ingredients.js');
   scripts = require('./scripts');
   createId = scripts.createId;
-  checkModule = scripts.checkModule;
 } catch(e) {
-  let checkModule
   let scripts
   let createId
   let Pantry;
