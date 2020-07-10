@@ -16,8 +16,9 @@ describe('Pantry', () => {
     user = new User(users[2]);
     recipe1 = new Recipe(recipes[2]);
     recipe2 = new Recipe(recipes[3]);
+    user.addRecipeToCook(recipe2);
     userPantry = new Pantry(user);
-    userPantry.recipe = recipe1;
+    
   });
 
   it('should be a function', () => {
@@ -33,23 +34,24 @@ describe('Pantry', () => {
   });
 
   it('should store an instance of recipe we want to make', () => {
-    expect(userPantry.recipe).to.be.an.instanceof(Recipe);
+    expect(userPantry.recipe[0]).to.be.an.instanceof(Recipe);
   });
 
   it('should be able to check if user has enough ingredients to make recipe', () => {
-    expect(userPantry.checkPantry()).to.deep.equal(false);
+    expect(userPantry.checkPantry(recipe1)).to.deep.equal(false);
   });
 
-  it.skip('should return false if user does not have all ingredients to make recipe', () => {
-    expect(userPantry.checkPantry()).to.deep.equal(false);
+  it('should return false if user does not have all ingredients to make recipe', () => {
+    expect(userPantry.checkPantry(recipe2)).to.deep.equal(true);
   });
 
   it('should have an array of needed ingredients that is empty by default', () => {
     expect(userPantry.shoppingList).to.be.an('array').with.a.lengthOf(0);
   });
 
-  it.skip('should list additional ingredients user needs to make recipe', () => {
-    
+  it('should list additional ingredients user needs to make recipe', () => {
+    userPantry.checkPantry(recipe1);
+    expect(userPantry.shoppingList).to.be.an('array').with.a.lengthOf(8);
   });
 });
 

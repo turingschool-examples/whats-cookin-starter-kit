@@ -5,38 +5,22 @@ class Pantry {
     this.shoppingList = [];
   }
 
-  checkPantry() {
-    const ingArray = this.pantry.reduce((acc, element) => {
+  checkPantry(recipe) {
+    let hasIngredients;
+    const ingObj = this.pantry.reduce((acc, element) => {
       return {...acc, [element.ingredient] : element.amount};
     }, {})
     
-    this.recipe.ingredients.forEach(ingredient => {
-      if (ingArray.hasOwnProperty(ingredient.id)) {
+    recipe.ingredients.forEach(ingredient => {
+      if (!ingObj.hasOwnProperty(ingredient.id)) {
         this.addToShoppingList(ingredient);
+        hasIngredients = false;
+      } else {
+        hasIngredients = true;
       }
-      return false;
     })
-    console.log(this.shoppingList);
-    }
-
-
-    /*
-    Determine whether my pantry has enough ingredients to cook a given meal
-    need to check recipe ingredients against pantry ingredients
-    return boolean value?
-    need recipes class and user class to test method
-
-    if(this.recipe.ingredient[id].quantity.amount <= this.pantry[id].quantity.amount)
-
-    check each ingredient to user pantry maybe by id.
-
-    if user has all ingredients return true.
-
-    else push missing ingredients (write a method to do this to keep functions tight)
-
-    return false; (might need for a display in project)
-    */
-
+    return hasIngredients;
+  }
 
   addToShoppingList(missingIngredient) {
     this.shoppingList.push(missingIngredient);
@@ -49,6 +33,10 @@ class Pantry {
 
     might be able to just be a helper method and be used when an ingredient is missing from a users pantry when checkPantry is run.
     */
+  }
+
+  pantryIngredientAdjust(ing1, ing2) {
+    
   }
 
   removeFromPantry() {
