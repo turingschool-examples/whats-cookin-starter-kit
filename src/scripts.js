@@ -67,9 +67,9 @@ function changeToSingleRecipeView() {
 }
 
 function determineRecipeToDisplay(event) {
-  const recipeCardId = event.target.closest('.recipe-card').id;
-  const recipeCardIndex = recipeCardId[recipeCardId.length - 1];
-  const recipeToDisplay = recipes[recipeCardIndex];
+  let recipeCardId = event.target.closest('.recipe-card').id;
+  let recipeCardIndex = recipeCardId.slice(4);
+  let recipeToDisplay = recipes[recipeCardIndex];
   return recipeToDisplay;
 }
 
