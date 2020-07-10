@@ -48,10 +48,6 @@ class Pantry {
     return supplyList
   }
 
-  findIngredientIds = (recipe) => {
-    return recipe.requiredIngredients.map(ingredient => ingredient.id)
-  } 
-
   findIngredientName(id) {
     if (typeof id === 'number') {
       let ingredient = ingredientData.find(item => item.id === id);

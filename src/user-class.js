@@ -2,7 +2,11 @@ try {
   Pantry = require('./pantry-class.js');
   Recipe = require('./recipe-class.js');
   ingredientsData = require('../data/ingredients.js');
+  scripts = require('./scripts');
+  createId = scripts.createId;
 } catch(e) {
+  let scripts
+  let createId
   let Pantry;
   let Recipe;
   let ingredientsData;
@@ -10,19 +14,15 @@ try {
 
 class User {
   constructor(userData) {
-    this.name = this.checkIfString(userData.name);
-    this.id = this.checkIfNumber(userData.id);
-    this.pantry = new Pantry(userData.pantry);
+    this.name = this.createName(userData.name);
+    this.id = createId(userData.id);
+    this.pantry = userData.pantry || [];
     this.favoriteRecipes = [];
     this.recipesToCook = [];
   }
 
-  checkIfString(data) {
+  createName(data) {
     return typeof data === 'string' ? data : JSON.stringify(data);
-  }
-
-  checkIfNumber(data) {
-    return typeof data === 'number' ? data : Date.now();
   }
 
   chooseRecipe(recipe, recipeList) {
@@ -88,6 +88,8 @@ class User {
     return indicator;
   }
 }
+
+
 if (typeof module !== 'undefined') {
   module.exports = User;
 }
