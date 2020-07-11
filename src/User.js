@@ -1,5 +1,7 @@
 const ingredientsData = require('../data/ingredients');
 
+
+
 class User {
   constructor({name, id, pantry}) {
     this.name = name;
@@ -22,8 +24,6 @@ class User {
     this.recipesToCook.push(recipe)
   }
 
-  // Filter my favoriteRecipes or recipesToCook by type
-
   filterFavoriteRecipes(tag) {
     return this.favoriteRecipes.filter(recipe => {
       return recipe.tags.includes(tag)
@@ -36,47 +36,38 @@ class User {
     })
   }
 
-
-  searchRecipes(input) {
-    let allRecipes = this.favoriteRecipes.concat(this.recipesToCook);
-    let searchedRecipes = allRecipes.filter(recipe => {
-      if (recipe.name.includes(input)) {
+  filterIngredientData() {
+    return ingredientsData.filter(data => {
+      if(data.id && data.name && data.estimatedCostInCents) {
         return true;
-      };
-      // if (recipe.ingredients.includes(input)) {
-      //   return true;
-      // }
-    });
-    return searchedRecipes;
+      }
+    })
   }
 
-  // searchByIngredient(str, ingredient) {
-  //   let ingredientName = ingredient.find(ingredient => {
-  //     if(ingredient.name) {
-  //       return ingredient.name.includes(str);
-  //     }
-  //   })
-  //   let matchedIngredient = this.recipeData
-  // }
+  searchRecipeByName(input) {
+    let ingredients = this.filterIngredientData()
+    let searchedIngriedients = ingredients.reduce((acc, ingredient) => {
+      if (ingredient.name.includes(input)) {
+      acc.push(ingredient.id)
+      }
 
-
+      return acc
+    }, [])
+    let searchedRecipes = this.favoriteRecipes.filter(recipe => {
+      var recipeIng = recipe.ingredients.filter(ingredient => {
+        return searchedIngriedients.includes(ingredient.id)
+      })
+      console.log(recipe.name, recipeIng)
+      if(recipe.name.includes(input) || recipeIng.length > 0) {
+        return recipe
+      }
+    })
+    return searchedRecipes;
+  }
 }
 
 
 
-
-
-
-//in USer class first find all ingredients from the ingredient data where the name matches the string
-//find all recipes where the id is in the ingredients list
-
-
-    // Search any of my saved recipes by name or ingredient
-    // This function is used for the search functionality--being able to search through the recipes that exist
-    //Loop(using something besides a for loop) through our favoriteRecipes array to see if the input (which will be the parameter) includes recipe info
-    //If so push into the searchRecipes array and return it
-    //Uses showInputFinder function to accomplish this
-    //make sure that what you are passing through a string
 
 
 

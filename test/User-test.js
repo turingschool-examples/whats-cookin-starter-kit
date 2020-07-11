@@ -243,8 +243,15 @@ describe('User', function() {
     user.addFavoriteRecipes(recipe1);
     user.addFavoriteRecipes(recipe2);
     user.addFavoriteRecipes(recipe3);
-    expect(user.searchRecipes('Loaded Chocolate Chip Pudding Cookie Cups')).to.deep.equal([recipe1])
-    expect(user.searchRecipes('Chocolate')).to.deep.equal([recipe1])
+    expect(user.searchRecipeByName('Loaded Chocolate Chip Pudding Cookie Cups')).to.deep.equal([recipe1])
+    expect(user.searchRecipeByName('Chocolate')).to.deep.equal([recipe1])
+  })
+
+  it('should return favorite recipes by ingredient', function() {
+    user.addFavoriteRecipes(recipe1);
+    user.addFavoriteRecipes(recipe2);
+    user.addFavoriteRecipes(recipe3);
+    expect(user.searchRecipeByName('eggs')).to.deep.equal([recipe1])
   })
 
 
