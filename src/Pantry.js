@@ -11,10 +11,26 @@ class Pantry {
       return {...acc, [element.ingredient] : element.amount};
     }, {})
     
+    // recipe.ingredients.forEach(ingredient => {
+    //     if(item.ingredient !== ingredient.id) {
+    //       hasIngredients = false;
+    //       this.addToShoppingList(ingredient);
+    //     } else if (item.amount > ingredient.quantity.amount){
+    //       ingredient.quantity.amount = (ingredient.quantity.amount - item.amount);
+    //       this.addToShoppingList(ingredient);
+    //       hasIngredients = false;
+    //     } else {
+    //       hasIngredients = true;
+    //     }
+    //   })
+    //   return hasIngredients;
+    // console.log(this.shoppingList);
+
+
     recipe.ingredients.forEach(ingredient => {
-      if (!pantryIngredients.hasOwnProperty(ingredient.id) ||
-        pantryIngredients[ingredient.id] < ingredient.quantity.amount) {
-        this.addToShoppingList(ingredient);
+      if (!pantryIngredients.hasOwnProperty(ingredient.id)) {
+        hasIngredients = false;
+      } else if (pantryIngredients[ingredient.id] < ingredient.quantity.amount) {
         hasIngredients = false;
       } else {
         hasIngredients = true;
@@ -25,10 +41,17 @@ class Pantry {
   }
 
   addToShoppingList(missingIngredient) {
-    this.shoppingList.push();
+    this.shoppingList.push(missingIngredient);
   }
 
-  pantryIngredientAdjust() {
+  pantryIngredientAdjust(recipeIngredient) {
+    const recipeIngredients = recipe.ingredients.map(ingredient => ({ id: ingredient.id, amount: ingredient.quantity.amount }));
+
+    const pantryIngredients = this.pantry.map(userIngredient => ({ id: userIngredient.ingredient, amount: userIngredient.amount }));
+    console.log(pantryIngredients);
+  }
+
+  
      
      //if ingredient in pantry is - qty remove from pantry
      // update user after update
@@ -41,10 +64,9 @@ class Pantry {
     // if we pass in ing1 to be recipe can subtract pantry from recipe and return amount needed to cook 
     // might also be able to write a function that returns adjustments to pantry after meal is cooked
     // need to figure a clean way to write this in a reusable way to utilize through out pantry class
-  }
+  
 
   removeFromPantry(recipe) {
-    this.pantry[ingredient].amount = this.pantry[ingredient].amount - recipe.quantity.amount;
     //pantry ingredient matching recipe id reduce amount from pantry if pantry is equal to 0 remove item from pantry update pantry and maybe user as well. 
     /*
     Remove the ingredients used for a given meal from my pantry,once that meal has been cooked
