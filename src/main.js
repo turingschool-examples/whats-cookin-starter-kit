@@ -1,35 +1,39 @@
 const bigRecipeCard = document.querySelector('.recipe-pop-up');
 const allRecipesDisplay = document.querySelector('.all-recipes-display');
+const userPageDisplay = document.querySelector('.user-window');
+const favoriteRecipesDisplay = document.querySelector('.favorite-recipes');
 const nav = document.querySelector('nav');
 //data instantiation
 const currentUser = new User(generateRandomUser());
+// const currentUser = new User(usersData[0]);
 const instantiatedRecipes = recipeData.map(recipe => new Recipe(recipe));
 //onload 
 window.onload = handleLoad();
 //event listening
 allRecipesDisplay.addEventListener('click', smallRecipeHandler);
+favoriteRecipesDisplay.addEventListener('click', smallRecipeHandler);
 bigRecipeCard.addEventListener('click', bigRecipeHandler);
 nav.addEventListener('click', navHandler);
 //event handling
 function handleLoad() {
-  propagateCards(recipeData);
-  showUser();
+  propagateCards(recipeData, allRecipesDisplay);
+  showUserName();
+  labelPantry();
+  populatePantry();
+  displayFavorites();
 }
 function smallRecipeHandler(event) {
   if (event.target.classList.contains('star-icon')) {
-    console.log(`Oh you think recipe ${event.path[2].id} looks good?`)
+    makeFavoriteRecipe(event);
+    displayFavorites();
   } else if (event.target.id) {
     showRecipeCard(event);
   }
 }
 
 function navHandler(event) {
-  if (event.target.id === "recipe-page-button") {
-    console.log('You\'re already looking at the recipe page dangus');
-    goToAllRecipes();
-  } else if (event.target.id === "user-page-button") {
-    console.log(`Oh, typical ${currentUser.name}, always clicking on their self.`)
-    goToUser();
+  if (event.target.id.includes('page')){
+  goToPage(event.target.id) 
   }
 }
 
@@ -43,26 +47,28 @@ function generateRandomUser() {
   return usersData[Math.round(Math.random() * usersData.length)];
 }
 
-function showUser() {
+function showUserName() {
   userButton = document.getElementById('user-page-button');
 
   userButton.innerText = currentUser.name.toUpperCase();
 }
 // page views
-const goToUser = () => {
-  allRecipesDisplay.classList.add('hidden');
+const goToPage = (buttonID) => {
+  if (buttonID === "recipe-page-button") {
+    allRecipesDisplay.classList.remove('hidden');
+    userPageDisplay.classList.add('hidden');
+  } else if (buttonID === "user-page-button") {
+    allRecipesDisplay.classList.add('hidden');
+    userPageDisplay.classList.remove('hidden');
+  }
 }
 
-const goToAllRecipes = () => {
-  allRecipesDisplay.classList.remove('hidden');
-}
-
-function propagateCards(recipeCards) {
+function propagateCards(recipeCards, section) {
   recipeCards.forEach((recipe) => {
-    allRecipesDisplay.innerHTML +=
+    section.innerHTML +=
       `<div class="recipe-card" id="${recipe.id}" style="background-image: url(${recipe.image})">
     <div class="card-info">
-    <img class="star-icon"" src="https://www.clipartmax.com/png/middle/175-1753277_free-image-on-pixabay-star-icon-png.png" />
+    <img class="star-icon" id="${recipe.id}" src="https://www.clipartmax.com/png/middle/175-1753277_free-image-on-pixabay-star-icon-png.png" />
     <div class="recipe-title" id="${recipe.id}">${recipe.name}</div>
     </div>
     </div>`
@@ -143,7 +149,50 @@ const hideRecipeCard = () => {
 
   blackout.classList.add('hidden');
 }
+//user page
+
+const makeFavoriteRecipe = (event) => {
+  let chosenRecipe = findById(event.target.id, instantiatedRecipes);
+  currentUser.chooseRecipe(chosenRecipe, currentUser.favoriteRecipes);
+}
+
+function displayFavorites() {
+  const favoriteRecipesDisplay = document.querySelector('.favorite-recipes');
+  favoriteRecipesDisplay.innerHTML = '';
+  propagateCards(currentUser.favoriteRecipes, favoriteRecipesDisplay);
+
+}
+
+function labelPantry() {
+  const pantryName = document.querySelector('.users-pantry');
+  pantryName.innerHTML = `${getFirstName(currentUser)}'s Pantry: 
+    <div class="supply-list"></div>`;
+  }
+
+
+function populatePantry() {
+  const pantryList = document.querySelector('.supply-list');
+  if (currentUser.pantry.supplies === []) {
+    pantryList.innerText = `You need some ingredients!`
+    } else {
+      currentUser.pantry.supplies.forEach(supply => {
+      pantryList.innerHTML += `${supply.amount} - ${currentUser.pantry.findIngredientName(supply.ingredient)} <br>`
+    })
+  }  
+}
 // other (could possibly put this in one of the class files, I'll start with it here)
 const retrieveCard = (cardID) => {
   return recipeData.find(recipe => recipe.id == cardID);
+}
+
+function findById(id, location) {
+  id = typeof id !== 'number' ? parseInt(id) : id;
+  if (Array.isArray(location)) {
+    let ingredient = location.find(item => item.id === id);
+    return ingredient;
+  }
+}
+
+function getFirstName() {
+  return currentUser.name.split(" ")[0]
 }
