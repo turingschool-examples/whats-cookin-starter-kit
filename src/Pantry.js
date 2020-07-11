@@ -9,33 +9,35 @@ class Pantry {
 	};
 
 	checkIngredients(recipe) {
-		let checks = recipe.ingredients.reduce((acc, ingredient) => {
-			let recipeAmount = ingredient.quantity.amount;
-			let pantryItem = this.pantry.find(item => item.ingredient === ingredient.id);
-			let pantryAmount = null;
-			if (pantryItem) {
-				pantryAmount = pantryItem.amount
-			};
-			if (recipeAmount < pantryAmount) {
-				acc.push(true);
-			} else {
-				acc.push(false);
-			};
-			return acc;
-		}, []);
-		if (checks.includes(false)) {
+		let checks = recipe.ingredients.reduce((evaluatedIngredientList, recipeItem) => {
+			let recipeAmount = recipeItem.quantity.amount;
+
+			if ((this.pantry.find(item => item.ingredient === recipeItem.id)) === undefined) {
+				evaluatedIngredientList.userNeeds.push({ ingredient: recipeItem.id, amount: recipeAmount });
+			}
+
+			this.pantry.forEach(pantryItem => {
+				if (pantryItem.ingredient === recipeItem.id && recipeAmount > pantryItem.amount) {
+					evaluatedIngredientList.userNeeds.push(pantryItem);
+				} else if (pantryItem.ingredient === recipeItem.id && recipeAmount < pantryItem.amount) {
+					evaluatedIngredientList.userHas.push(pantryItem);
+				}
+			});
+			console.log(evaluatedIngredientList)
+			return evaluatedIngredientList;
+		}, { userHas: [], userNeeds: [] });
+
+		if (checks.userNeeds !== []) {
+			// this.calculateIngredientsNeeded(checks);
 			return "You do not have enough ingredients for this recipe"
 		} else {
 			return "You have enough ingredients for this recipe"
 		};
 	};
+
+	// calculateIngredientsNeeded(checks) {
+	// 	console.log(checks)
+	// };
 };
 
-//get the id of the ingredient that is in the recipe and in the pantry
-//declare variable for recipe ingredient amount
-//declare variable for pantry ingredient amount
-//compare the two values, if recipe ingredient > pantry ingredient then return false, else return true
-
 module.exports = Pantry;
-
-// compare 

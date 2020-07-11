@@ -20,8 +20,13 @@ describe('Pantry', () => {
 
 		expect(result).to.equal("You do not have enough ingredients for this recipe");
 	});
-});
 
-// Instantiate pantry and recipe and compare the two
-// return true / false on each item in recipe
-// If any are false, return GO TO STORE
+	it.skip('Should determine amount of ingredients needed for a recipe', () => {
+		const userPantry = new Pantry(userInfo[0]);
+		const userRecipe = new Recipe(recipeInfo[0]);
+
+		const result = userPantry.calculateIngredientsNeeded(checks);
+
+		expect(result).to.equal([neededIngredients]);
+	});
+});
