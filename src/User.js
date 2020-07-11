@@ -1,4 +1,5 @@
-let ingredientsData = require('../data/ingredients')
+// let ingredientsData = require('../data/ingredients')
+//^Having this line breaks scripts.js
 
 class User {
   constructor(usersData) {
@@ -11,7 +12,7 @@ class User {
   }
 
   toggleFavoriteRecipe(recipe) {
-    if(this.favoriteRecipes.includes(recipe)) {
+    if (this.favoriteRecipes.includes(recipe)) {
       let index = this.favoriteRecipes.indexOf(recipe)
       this.favoriteRecipes.splice(index, 1);
     } else {
@@ -20,7 +21,7 @@ class User {
   }
 
   toggleRecipeToCook(recipe) {
-    if(this.recipesToCook.includes(recipe)) {
+    if (this.recipesToCook.includes(recipe)) {
       let index = this.recipesToCook.indexOf(recipe)
       this.recipesToCook.splice(index, 1);
     } else {
@@ -36,7 +37,7 @@ class User {
     userQuery = userQuery.toLowerCase()
     let savedRecipes = this.getSavedRecipes()
     return savedRecipes.filter(recipe => {
-      if(recipe.name.toLowerCase().includes(userQuery)) {
+      if (recipe.name.toLowerCase().includes(userQuery)) {
         return recipe
       } else if (this.getRecipeIngredient(userQuery, recipe)) {
         return recipe
@@ -47,11 +48,11 @@ class User {
   getRecipeIngredient(userQuery, recipe) {
     let checkedIngredient = recipe.ingredients.filter(ingredient => {
       let item = ingredientsData.filter(ingredientName => {
-        if(ingredientName.id === ingredient.id && ingredientName.name.toLowerCase().includes(userQuery.toLowerCase())) {
+        if (ingredientName.id === ingredient.id && ingredientName.name.toLowerCase().includes(userQuery.toLowerCase())) {
           return ingredientName
         }
       })
-      if(item.length > 0) {
+      if (item.length > 0) {
         return ingredient
       }
     })
