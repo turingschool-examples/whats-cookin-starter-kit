@@ -1,15 +1,17 @@
 const bigRecipeCard = document.querySelector('.recipe-pop-up');
 const allRecipesDisplay = document.querySelector('.all-recipes-display');
 const userPageDisplay = document.querySelector('.user-window');
+const favoriteRecipesDisplay = document.querySelector('.favorite-recipes');
 const nav = document.querySelector('nav');
 //data instantiation
-// const currentUser = new User(generateRandomUser());
-const currentUser = new User(usersData[0]);
+const currentUser = new User(generateRandomUser());
+// const currentUser = new User(usersData[0]);
 const instantiatedRecipes = recipeData.map(recipe => new Recipe(recipe));
 //onload 
 window.onload = handleLoad();
 //event listening
 allRecipesDisplay.addEventListener('click', smallRecipeHandler);
+favoriteRecipesDisplay.addEventListener('click', smallRecipeHandler);
 bigRecipeCard.addEventListener('click', bigRecipeHandler);
 nav.addEventListener('click', navHandler);
 //event handling

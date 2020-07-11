@@ -53,9 +53,10 @@ button {
   display: flex;
   flex-wrap: wrap;
   height: 100%;
-  margin: 2em auto;
+  justify-self: center;
+  margin-top: 2em auto;
   overflow: scroll;
-  width: 100%
+  max-width: 100%;
 }
 
 .recipe-card {
