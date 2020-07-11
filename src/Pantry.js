@@ -7,12 +7,13 @@ class Pantry {
 
   checkPantry(recipe) {
     let hasIngredients;
-    const ingObj = this.pantry.reduce((acc, element) => {
+    const pantryIngredients = this.pantry.reduce((acc, element) => {
       return {...acc, [element.ingredient] : element.amount};
     }, {})
     
     recipe.ingredients.forEach(ingredient => {
-      if (!ingObj.hasOwnProperty(ingredient.id)) {
+      if (!pantryIngredients.hasOwnProperty(ingredient.id) ||
+        pantryIngredients[ingredient.id] < ingredient.quantity.amount) {
         this.addToShoppingList(ingredient);
         hasIngredients = false;
       } else {
@@ -20,19 +21,31 @@ class Pantry {
       }
     })
     return hasIngredients;
+    //need to add method to adjust for amounts in ingredients
   }
 
   addToShoppingList(missingIngredient) {
-    this.shoppingList.push(missingIngredient);
+    this.shoppingList.push();
   }
 
-  pantryIngredientAdjust(ing1, ing2) {
+  pantryIngredientAdjust() {
+     
+     //if ingredient in pantry is - qty remove from pantry
+     // update user after update
+     // 
+    
+
     //need to have a way to return or replace an item in the user pantry to adjust for recipes made
     // does it need to update both pantry class as well as user, 
     // if user is updated everytime the pantry class is instantiated the pantry would update itself
+    // if we pass in ing1 to be recipe can subtract pantry from recipe and return amount needed to cook 
+    // might also be able to write a function that returns adjustments to pantry after meal is cooked
+    // need to figure a clean way to write this in a reusable way to utilize through out pantry class
   }
 
-  removeFromPantry() {
+  removeFromPantry(recipe) {
+    this.pantry[ingredient].amount = this.pantry[ingredient].amount - recipe.quantity.amount;
+    //pantry ingredient matching recipe id reduce amount from pantry if pantry is equal to 0 remove item from pantry update pantry and maybe user as well. 
     /*
     Remove the ingredients used for a given meal from my pantry,once that meal has been cooked
     after cook adjust qty of ingredients from pantry to recipe
@@ -40,6 +53,8 @@ class Pantry {
     need recipes class and user class to test method
 
     if a user cooks a meal the quantity from the pantry is reduced.
+
+    should cook meal be a part of user or pantry?
     */
   }
   /*

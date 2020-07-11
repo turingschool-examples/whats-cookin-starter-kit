@@ -57,17 +57,17 @@ describe('Pantry', () => {
     expect(userPantry.shoppingList).to.be.an('array').with.a.lengthOf(8);
   });
 
-  it.skip('should check if pantry ingrendient amount is enough to make recipe for each ingredient'{
+  // it.skip('should check if pantry ingrendient amount is enough to make recipe for each ingredient'{
 
-  });
+  // });
 
-  it.skip('should adjust recipe ammount if pantry has some ingredient but not enough' {
+  // it.skip('should adjust recipe ammount if pantry has some ingredient but not enough' {
 
-  });
+  // });
 
-  it.skip('should adjust pantry if recipe is cooked and reduce pantry.ingredient.amount appropriatlly'{
-    
-  })
+  // it.skip('should adjust pantry if recipe is cooked and reduce pantry.ingredient.amount appropriatlly'{
+
+  // })
 
   
 });
