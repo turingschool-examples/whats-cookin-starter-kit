@@ -5,7 +5,6 @@ const singleRecipeSection = document.querySelector('.single-recipe-view');
 let recipes, user; 
 
 window.onload = setUpHomePage; 
-//instantiate random User on page load as well, and display their name in H2
 
 pageBody.addEventListener('click', clickAnalyzer);
 
@@ -20,10 +19,27 @@ function clickAnalyzer(event) {
     displaySingleRecipe(event);
   } else if (event.target.closest('header')) {
     event.preventDefault();
-    console.log('clicking header!')
-    //call other function & pass in event to analyze what was clicked in menu (search bar button, one of the filters, or one of the dropdowns under My Recipe Box)
+    determineHeaderClick(event); 
   };
 }
+///NEW
+
+function determineHeaderClick(event) {
+  if (event.target.classList.contains('category')) {
+    //**pass in event.target.innerText as category to displayH2**
+    //display the recipes that match that category:
+    //get category from element id
+    //for each recipe in recipes array, 
+    //pass category into mapCategoryToTag method, which returns array of associated tags 
+    //check if any of returned tags match the recipe's tags
+    //If so, add to new array 
+    //Call display function for new H2 that will display the category name
+    //Then, pass that new array into displayRecipes function 
+    //may need to add an innerHTML reset at beginning of that ^ function
+  }
+}
+
+///
 
 function toggleRecipeToUserFavorites(event) {
   let recipe = determineRecipeToDisplay(event); 
@@ -51,7 +67,7 @@ function setUpHomePage() {
   recipes = instantiateRecipes(recipeData);
   displayRecipes(recipes);
   createRandomUser(); 
-  displayUserName(); 
+  displayH2(); 
 }
 
 function instantiateRecipes(recipeData) {
@@ -59,6 +75,7 @@ function instantiateRecipes(recipeData) {
 }
 
 function displayRecipes(recipes) {
+  recipeCardsSection.innerHTML = '';
   recipes.forEach((recipe, index) => {
     recipeCardsSection.insertAdjacentHTML('beforeend', `
       <article class="recipe-card" id="card${index}">
@@ -75,7 +92,7 @@ function displayRecipes(recipes) {
         </div>
       </article>
     `)
-  })
+  });
 }
 
 function createRandomUser() {
@@ -83,9 +100,9 @@ function createRandomUser() {
   user = new User(usersData[randomIndex]);
 }
 
-function displayUserName() {
+function displayH2(category = 'Recipes') {
   let welcomeHeading = document.querySelector('.welcome-heading');
-  welcomeHeading.innerText = `Welcome, ${user.name}! Browse Our Recipes Below.`;
+  welcomeHeading.innerText = `Welcome, ${user.name}! Browse Our ${category} Below.`;
 }
 
 function displaySingleRecipe(event) {
