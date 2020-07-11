@@ -11,13 +11,13 @@ class Recipe {
       this.tags = tags;
     };
     this.categoryToTagMap = {
-      AppetizersSnacks: ['antipasti', 'starter', 'snack', 'appetizer', 'antipasto', 'hor d\'oeuvre'],
-      Entree: ['lunch', 'main course', 'main dish', 'dinner'],
-      SaucesDips: ['sauce', 'condiment', 'dip', 'spread'],
-      SideDish: ['side dish'],
-      Breakfast: ['morning meal', 'brunch', 'breakfast'],
-      Salad: ['salad'],
-      Other: ['other']
+      appetizers: ['antipasti', 'starter', 'snack', 'appetizer', 'antipasto', 'hor d\'oeuvre'],
+      entrees: ['lunch', 'main course', 'main dish', 'dinner'],
+      saucesDips: ['sauce', 'condiment', 'dip', 'spread'],
+      sideDishes: ['side dish'],
+      breakfast: ['morning meal', 'brunch', 'breakfast'],
+      salads: ['salad'],
+      other: ['other']
     }
   }
 
