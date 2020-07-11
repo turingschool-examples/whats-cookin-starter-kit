@@ -2,6 +2,7 @@ body {
   margin: 0px;
   box-sizing: border-box;
 }
+
 nav {
   align-items: center; 
   border-bottom: 2px solid #000;
@@ -48,10 +49,13 @@ button {
 
 .all-recipes-display,
 .favorite-recipes {
+  align-content: flex-start;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  height: 100%;
   margin: 2em auto;
+  overflow: scroll;
+  width: 100%
 }
 
 .recipe-card {
@@ -103,16 +107,25 @@ button {
 }
 
 .users-pantry {
-  padding: 5em;
+  height: 10em;
   font-size: 2em;
-  height: 20em;
+  padding: 1em 5em;
+  
+}
+
+.supply-list {
+  border: 1px solid;
+  border-radius: 5%;
+  height: 15em;
+  font-size: 1em;
+  margin-top: .5em;
   overflow: scroll;
-  width: 35%;
+  padding: 1em;
+  width: 10em;
 }
 
 .users-recipes-display {
   width: 65%;
-
 }
 
 .hidden {

@@ -3,7 +3,8 @@ const allRecipesDisplay = document.querySelector('.all-recipes-display');
 const userPageDisplay = document.querySelector('.user-window');
 const nav = document.querySelector('nav');
 //data instantiation
-const currentUser = new User(generateRandomUser());
+// const currentUser = new User(generateRandomUser());
+const currentUser = new User(usersData[0]);
 const instantiatedRecipes = recipeData.map(recipe => new Recipe(recipe));
 //onload 
 window.onload = handleLoad();
@@ -15,7 +16,9 @@ nav.addEventListener('click', navHandler);
 function handleLoad() {
   propagateCards(recipeData, allRecipesDisplay);
   showUserName();
+  labelPantry();
   populatePantry();
+  displayFavorites();
 }
 function smallRecipeHandler(event) {
   if (event.target.classList.contains('star-icon')) {
@@ -151,18 +154,29 @@ const makeFavoriteRecipe = (event) => {
   currentUser.chooseRecipe(chosenRecipe, currentUser.favoriteRecipes);
 }
 
-const displayFavorites = () => {
+function displayFavorites() {
   const favoriteRecipesDisplay = document.querySelector('.favorite-recipes');
   favoriteRecipesDisplay.innerHTML = '';
   propagateCards(currentUser.favoriteRecipes, favoriteRecipesDisplay);
 
 }
 
+function labelPantry() {
+  const pantryName = document.querySelector('.users-pantry');
+  pantryName.innerHTML = `${getFirstName(currentUser)}'s Pantry: 
+    <div class="supply-list"></div>`;
+  }
+
+
 function populatePantry() {
-  const pantrySection = document.querySelector('.users-pantry');
-  currentUser.pantry.supplies.forEach(supply => {
-    pantrySection.innerHTML += `${supply.amount} - ${currentUser.pantry.findIngredientName(supply.ingredient)} <br>`
-  })
+  const pantryList = document.querySelector('.supply-list');
+  if (currentUser.pantry.supplies === []) {
+    pantryList.innerText = `You need some ingredients!`
+    } else {
+      currentUser.pantry.supplies.forEach(supply => {
+      pantryList.innerHTML += `${supply.amount} - ${currentUser.pantry.findIngredientName(supply.ingredient)} <br>`
+    })
+  }  
 }
 // other (could possibly put this in one of the class files, I'll start with it here)
 const retrieveCard = (cardID) => {
@@ -175,4 +189,8 @@ function findById(id, location) {
     let ingredient = location.find(item => item.id === id);
     return ingredient;
   }
+}
+
+function getFirstName() {
+  return currentUser.name.split(" ")[0]
 }
