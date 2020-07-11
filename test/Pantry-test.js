@@ -4,14 +4,11 @@ const expect = chai.expect;
 const Pantry = require('../src/Pantry');
 const User = require('../src/User');
 const Recipe = require('../src/Recipe');
-const recipes = require('../data/recipes');
-const users = require('../data/users');
 
 describe('Pantry', () => {
   let userPantry;
   let user;
   
-
   beforeEach(function () {
     user = new User(
       {
@@ -163,8 +160,8 @@ describe('Pantry', () => {
   });
 
   it('should list additional ingredients user needs to make recipe', () => {
-    userPantry.checkPantry(recipe1);
-    expect(userPantry.shoppingList).to.be.an('array').with.a.lengthOf(8);
+    userPantry.checkPantry(recipe2);
+    expect(userPantry.shoppingList).to.be.an('array').with.a.lengthOf(3);
   });
 
   // it.skip('should check if pantry ingrendient amount is enough to make recipe for each ingredient'{
@@ -178,7 +175,14 @@ describe('Pantry', () => {
   // it.skip('should adjust pantry if recipe is cooked and reduce pantry.ingredient.amount appropriatlly'{
 
   // })
-
   
+  it('should return shoppingList', () => {
+    userPantry.checkPantry(recipe2);
+    expect(userPantry.returnShoppingList()).to.be.an('array').with.a.lengthOf(3);
+  })
+
+  it('should return the users pantry', () => {
+    expect(userPantry.returnPantry()).to.be.an('array').with.a.lengthOf(4);
+  })
 });
 

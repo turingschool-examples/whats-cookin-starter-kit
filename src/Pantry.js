@@ -33,6 +33,22 @@ class Pantry {
     const recipeIngredients = recipe.ingredients.map(ingredient => ({ id: ingredient.id, amount: ingredient.quantity.amount }));
 
     const pantryIngredients = this.pantry.map(userIngredient => ({ id: userIngredient.ingredient, amount: userIngredient.amount }));
+
+    /*[{id: '2435', amount: '3'}]; for both pantry and 
+    recipe.*/
+
+    /*These change the data sets to match, but I need a 
+    way to update total in pantry. I think we can 
+    continue to get items to display to dom while, this
+    is worked on. I want to run it as a seperate method 
+    so that it meets SRP. */
+
+    const updateRecipeIngredient = recipe.ingredients;
+
+    /*Index of might help, iterate over a recipe and 
+    check if match's pantry. if so get index access pantry
+    [index].amount = adjusted value*/
+
   }
 
     //if ingredient in pantry is - qty remove from pantry
@@ -60,6 +76,16 @@ class Pantry {
     should cook meal be a part of user or pantry?
     */
   }
+
+  returnShoppingList() {
+    return this.shoppingList;
+  }
+
+  returnPantry() {
+    return this.pantry;
+  }
+
+  
   /*
   mealsToCook() {
     stretch method
