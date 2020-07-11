@@ -2,11 +2,11 @@ const ingredientsData = require('../data/ingredients.js');
 
 class Recipe {
   constructor({id, image, ingredients, instructions, name, tags}) {
-    this.id = id;
-    this.image = image;
+    this.id = id || 0;
+    this.image = image || '../assets/defaultRecipeImage.jpg';
     this.ingredients = ingredients; //update with names from recipe data file
     this.instructions = instructions;
-    this.name = name; // set defualt to undefined
+    this.name = name || 'No Name'// ;
     this.tags = tags;
   };
 
@@ -22,6 +22,7 @@ class Recipe {
   };
 
   getIngredientCost(ingredient) { //returns cost of ingredient in dollar amount
+    // return 0 
     // use .find like in checkForIngredient
     let cost = 0;
     ingredientsData.forEach(ingredientData => {
