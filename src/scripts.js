@@ -2,6 +2,7 @@ const recipeCardsSection = document.querySelector('.recipe-cards')
 const pageBody = document.querySelector('body');
 const homeSection = document.querySelector('.home-view');
 const singleRecipeSection = document.querySelector('.single-recipe-view');
+const listSection = document.querySelector('.list-view');
 const welcomeHeading = document.querySelector('.welcome-heading');
 let recipes, user; 
 
@@ -29,17 +30,19 @@ function determineHeaderClick(event) {
     getRecipesInCategory(event);
   };
   if (event.target.classList.contains('app-title')) {
-    changeView(homeSection, singleRecipeSection);
+    changeView(homeSection, singleRecipeSection, listSection);
     displayRecipes(recipes);
   };
   if (event.target.id === 'favorite-recipes') {
     displayRecipeBoxH2('Favorite Recipes');
     displayRecipes(user.favoriteRecipes);
-  }
-
+  };
   if (event.target.id === 'recipes-to-cook') {
     displayRecipeBoxH2('Recipes to Cook');
     displayRecipes(user.recipesToCook);
+  };
+  if (event.target.id === 'grocery-list') {
+    changeView(listSection, homeSection, singleRecipeSection);
   }
 }
 
@@ -124,15 +127,15 @@ function displayRecipeBoxH2(pageTitle) {
 }
 
 function displaySingleRecipe(event) {
-  changeView(singleRecipeSection, homeSection);
+  changeView(singleRecipeSection, homeSection, listSection);
   const recipe = determineRecipeToDisplay(event);
   displayRecipeDetails(recipe);
 }
 
-//ultimately, there will be 3 views (still 2 arguments) to choose from
-function changeView(activeView, viewToHide) {
+function changeView(activeView, viewToHide1, viewToHide2) {
   activeView.classList.remove('hidden');
-  viewToHide.classList.add('hidden');
+  viewToHide1.classList.add('hidden');
+  viewToHide2.classList.add('hidden');
 }
 
 function determineRecipeToDisplay(event) {
