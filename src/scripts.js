@@ -12,10 +12,10 @@ pageBody.addEventListener('click', clickAnalyzer);
 function clickAnalyzer(event) {
   if (event.target.classList.contains('heart')) {
     toggleRecipeToUserFavorites(event);
-    indicateRecipeInFavorites(event, 'heart');  
+    toggleRecipeIconDisplay(event, 'heart');  
   } else if (event.target.classList.contains('cookbook')) {
     toggleRecipeToRecipesToCook(event)
-    indicateRecipeInFavorites(event, 'recipe');
+    toggleRecipeIconDisplay(event, 'cookbook');
   } else if (event.target.closest('.recipe-card')) {
     displaySingleRecipe(event);
   } else if (event.target.closest('header')) {
@@ -56,14 +56,16 @@ function getRecipesInCategory(event) {
 function toggleRecipeToUserFavorites(event) {
   let recipe = determineRecipeToDisplay(event); 
   user.toggleFavoriteRecipe(recipe); 
+  recipe.toggleFavoritesStatus();
 }
 
 function toggleRecipeToRecipesToCook(event) {
   let recipe = determineRecipeToDisplay(event);
   user.toggleRecipeToCook(recipe);
+  recipe.toggleRecipesToCookStatus(); 
 }
 
-function indicateRecipeInFavorites(event, icon) {
+function toggleRecipeIconDisplay(event, icon) {
   if (event.target.classList.contains('inactive')) {
     event.target.src = `assets/${icon}-active.png`;
     event.target.classList.remove('inactive');
@@ -86,21 +88,22 @@ function instantiateRecipes(recipeData) {
   return recipeData.map(recipe => new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags)); 
 }
 
-function displayRecipes(recipes) {
+function displayRecipes(recipesList) {
   recipeCardsSection.innerHTML = '';
-  recipes.forEach((recipe, index) => {
+  recipesList.forEach((recipeInList) => {
+    let index = recipes.findIndex(recipe => recipe.name === recipeInList.name);
     recipeCardsSection.insertAdjacentHTML('beforeend', `
       <article class="recipe-card" id="card${index}">
-        <div class="recipe-img" style="background-image: url(${recipe.image})">
+        <div class="recipe-img" style="background-image: url(${recipeInList.image})">
           <div class="heart-icon">
-            <img src="assets/heart-inactive.png" class="heart inactive">
+            <img src="assets/heart-${recipeInList.favoritesStatus}.png" class="heart ${recipeInList.favoritesStatus}">
           </div>
           <div class="cook-icon">
-            <img src="assets/recipe-inactive.png" class="cookbook inactive">
+            <img src="assets/cookbook-${recipeInList.recipesToCookStatus}.png" class="cookbook ${recipeInList.recipesToCookStatus}">
           </div>
         </div>
         <div class="recipe-name">
-          <h5>${recipe.name}</h5>
+          <h5 class="recipe-title">${recipeInList.name}</h5>
         </div>
       </article>
     `)
