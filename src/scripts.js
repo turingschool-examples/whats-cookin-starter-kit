@@ -36,6 +36,11 @@ function determineHeaderClick(event) {
     displayRecipeBoxH2('Favorite Recipes');
     displayRecipes(user.favoriteRecipes);
   }
+
+  if (event.target.id === 'recipes-to-cook') {
+    displayRecipeBoxH2('Recipes to Cook');
+    displayRecipes(user.recipesToCook);
+  }
 }
 
 function getRecipesInCategory(event) {
