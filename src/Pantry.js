@@ -13,31 +13,41 @@ class Pantry {
 			let recipeAmount = recipeItem.quantity.amount;
 
 			if ((this.pantry.find(item => item.ingredient === recipeItem.id)) === undefined) {
-				evaluatedIngredientList.userNeeds.push({ ingredient: recipeItem.id, amount: recipeAmount });
+				evaluatedIngredientList.userNeeds.push({ ingredient: recipeItem.id, recipeAmount: recipeAmount });
 			}
 
 			this.pantry.forEach(pantryItem => {
 				if (pantryItem.ingredient === recipeItem.id && recipeAmount > pantryItem.amount) {
-					evaluatedIngredientList.userNeeds.push(pantryItem);
+					evaluatedIngredientList.userNeeds.push({ ingredient: recipeItem.id, recipeAmount: recipeAmount });
 				} else if (pantryItem.ingredient === recipeItem.id && recipeAmount < pantryItem.amount) {
-					evaluatedIngredientList.userHas.push(pantryItem);
+					evaluatedIngredientList.userHas.push({ ingredient: recipeItem.id, recipeAmount: recipeAmount });
 				}
 			});
-			console.log(evaluatedIngredientList)
 			return evaluatedIngredientList;
 		}, { userHas: [], userNeeds: [] });
 
 		if (checks.userNeeds !== []) {
-			// this.calculateIngredientsNeeded(checks);
+			this.calculateIngredientsNeeded(checks);
 			return "You do not have enough ingredients for this recipe"
 		} else {
 			return "You have enough ingredients for this recipe"
 		};
 	};
 
-	// calculateIngredientsNeeded(checks) {
-	// 	console.log(checks)
-	// };
+	calculateIngredientsNeeded(checks) {
+		let groceryList = [];
+		checks.userNeeds.forEach(neededItem => {
+			this.pantry.forEach(pantryItem => {
+				if (neededItem.ingredient === pantryItem.ingredient) {
+					groceryList.push({ingredient: pantryItem.ingredient, neededAmount: neededItem.recipeAmount - pantryItem.amount});
+				};
+			});
+			if (groceryList.find(item => item.ingredient === neededItem.ingredient) === undefined) {
+			groceryList.push({ ingredient: neededItem.ingredient, neededAmount: neededItem.recipeAmount });
+			};
+		});
+		return groceryList;
+	};
 };
 
 module.exports = Pantry;
