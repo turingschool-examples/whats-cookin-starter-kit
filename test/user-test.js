@@ -104,10 +104,23 @@ describe('user', () => {
     expect(user.favoriteRecipes[0]).to.deep.equal(greenHam);
   });
 
+  it('should only be able to add a recipe to favorites if its not there already',() => {
+    user.chooseRecipe(greenHam, user.favoriteRecipes);
+    user.chooseRecipe(greenHam, user.favoriteRecipes);
+    expect(user.favoriteRecipes.length).to.equal(1);
+  })
+
   it('should be able to add a recipe to its list of recipes to cook', () => {
     user.chooseRecipe(greenHam, user.recipesToCook);
     expect(user.recipesToCook[0]).to.deep.equal(greenHam);
   });
+
+  it('should only be able to add a recipe to recipes to cook if its not there yet',() => {
+    user.chooseRecipe(greenHam, user.recipesToCook);
+    user.chooseRecipe(greenHam, user.recipesToCook);
+    expect(user.recipesToCook.length).to.equal(1);
+
+  })
 
   it('should only be able to add recipes to its recipe lists', () => {
     const recipe = 'Delicious food';
