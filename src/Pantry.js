@@ -77,6 +77,13 @@ class Pantry {
     */
   }
 
+  addToPantry(ingredient, quantity) {
+    const id = ingredient.id
+    const pantryItem = {ingredient: id, amount: quantity};
+    this.pantry.push(pantryItem);
+
+  }
+
   returnShoppingList() {
     return this.shoppingList;
   }
@@ -85,7 +92,7 @@ class Pantry {
     return this.pantry;
   }
 
-  
+
   /*
   mealsToCook() {
     stretch method
