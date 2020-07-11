@@ -22,24 +22,22 @@ function clickAnalyzer(event) {
     determineHeaderClick(event); 
   };
 }
-///NEW
 
 function determineHeaderClick(event) {
   if (event.target.classList.contains('category')) {
-    //**pass in event.target.innerText as category to displayH2**
-    //display the recipes that match that category:
-    //get category from element id
-    //for each recipe in recipes array, 
-    //pass category into mapCategoryToTag method, which returns array of associated tags 
-    //check if any of returned tags match the recipe's tags
-    //If so, add to new array 
-    //Call display function for new H2 that will display the category name
-    //Then, pass that new array into displayRecipes function 
-    //may need to add an innerHTML reset at beginning of that ^ function
+    getRecipesInCategory(event);
   }
 }
 
-///
+function getRecipesInCategory(event) {
+  let category = event.target.innerText;
+  let recipesInCategory = recipes.filter(recipe => {
+    let categoryTags = recipe.mapCategoryToTag(category);
+    return recipe.checkRecipeCategory(categoryTags);
+  });
+  displayH2(category);
+  displayRecipes(recipesInCategory);
+}
 
 function toggleRecipeToUserFavorites(event) {
   let recipe = determineRecipeToDisplay(event); 
