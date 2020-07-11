@@ -46,7 +46,8 @@ button {
   width: 20em;
 }
 
-.all-recipes-display {
+.all-recipes-display,
+.favorite-recipes {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
