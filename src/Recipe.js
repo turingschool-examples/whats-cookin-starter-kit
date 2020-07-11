@@ -19,6 +19,8 @@ class Recipe {
       Salads: ['salad'],
       Other: ['other']
     }
+    this.favoritesStatus = 'inactive';
+    this.recipesToCookStatus = 'inactive';
   }
 
   //when filtering recipes by category, need to call 2 methods below together (return value from mapCategoryToTag (tags array) gets passed into checkRecipeCategory)
@@ -44,6 +46,22 @@ class Recipe {
 
   retrieveRecipeInstructions() {
     return this.instructions;
+  }
+
+  toggleFavoritesStatus() {
+    if (this.favoritesStatus === 'inactive') {
+      this.favoritesStatus = 'active';
+    } else {
+      this.favoritesStatus = 'inactive';
+    };
+  }
+
+  toggleRecipesToCookStatus() {
+    if (this.recipesToCookStatus === 'inactive') {
+      this.recipesToCookStatus = 'active';
+    } else {
+      this.recipesToCookStatus = 'inactive';
+    };
   }
 }
 

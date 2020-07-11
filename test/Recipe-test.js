@@ -68,15 +68,15 @@ describe('Recipe', function() {
 
   it('should contain a key that maps categories to their corresponding tags', function() {
     const categoryToTagMap = {
-      AppetizersSnacks: ['antipasti', 'starter', 'snack', 'appetizer', 'antipasto', 'hor d\'oeuvre'],
-      Entree: ['lunch', 'main course', 'main dish', 'dinner'],
-      SaucesDips: ['sauce', 'condiment', 'dip', 'spread'],
-      SideDish: ['side dish'],
+      Appetizers: ['antipasti', 'starter', 'snack', 'appetizer', 'antipasto', 'hor d\'oeuvre'],
+      Entrees: ['lunch', 'main course', 'main dish', 'dinner'],
+      'Sauces & Dips': ['sauce', 'condiment', 'dip', 'spread'],
+      'Side Dishes': ['side dish'],
       Breakfast: ['morning meal', 'brunch', 'breakfast'],
-      Salad: ['salad'],
+      Salads: ['salad'],
       Other: ['other']
     }
-    expect(recipe.categoryToTagMap.AppetizersSnacks).to.deep.equal(['antipasti', 'starter', 'snack', 'appetizer', 'antipasto', 'hor d\'oeuvre'])
+    expect(recipe.categoryToTagMap.Appetizers).to.deep.equal(['antipasti', 'starter', 'snack', 'appetizer', 'antipasto', 'hor d\'oeuvre'])
   });
 
   it('should default to a tag of other if no tag is passed in', function() {
@@ -92,8 +92,18 @@ describe('Recipe', function() {
     expect(recipe2.tags).to.deep.equal(['other']);
   });
 
+  it('should start with a favorites status of inactive', function() {
+    
+    expect(recipe.favoritesStatus).to.equal('inactive');
+  });
+
+  it('should start with a recipes to cook status of inactive', function () {
+
+    expect(recipe.recipesToCookStatus).to.equal('inactive');
+  });
+
   it('should be able to map tags to their corresponding category', function() {
-    const category = 'Entree';
+    const category = 'Entrees';
     const categoryToTags = recipe.mapCategoryToTag(category);
 
     expect(categoryToTags).to.deep.equal(['lunch', 'main course', 'main dish', 'dinner']);
@@ -108,7 +118,7 @@ describe('Recipe', function() {
   });
 
   it('should be able to check if it does not belong to a given category', function() {
-    const category = 'Entree';
+    const category = 'Entrees';
     const categoryToTags = recipe.mapCategoryToTag(category);
     const isRecipeInCategory = recipe.checkRecipeCategory(categoryToTags);
 
@@ -168,5 +178,33 @@ describe('Recipe', function() {
     const recipeInstructions = recipe.retrieveRecipeInstructions();
 
     expect(recipeInstructions).to.deep.equal(recipe.instructions)
+  });
+
+  it('should be able to change its favorites status from inactive to active', function() {
+    recipe.toggleFavoritesStatus();
+
+    expect(recipe.favoritesStatus).to.equal('active');
+  });
+
+  it('should be able to change its favorites status from active to inactive', function() {
+    const recipe2 = new Recipe(id, image, ingredients, instructions, name, tags);
+    recipe2.toggleFavoritesStatus();
+    recipe2.toggleFavoritesStatus();
+
+    expect(recipe2.favoritesStatus).to.equal('inactive');
+  });
+
+  it('should be able to change its recipes to cook status from inactive to active', function () {
+    recipe.toggleRecipesToCookStatus();
+
+    expect(recipe.recipesToCookStatus).to.equal('active');
+  });
+
+  it('should be able to change its recipes to cook status from active to inactive', function () {
+    const recipe2 = new Recipe(id, image, ingredients, instructions, name, tags);
+    recipe2.toggleRecipesToCookStatus();
+    recipe2.toggleRecipesToCookStatus();
+
+    expect(recipe2.recipesToCookStatus).to.equal('inactive');
   });
 });
