@@ -1,4 +1,4 @@
-let ingredientsData = require('../data/ingredients')
+// let ingredientsData1 = require('../data/ingredients')
 
 class User {
   constructor(usersData) {
@@ -32,32 +32,18 @@ class User {
     return this.favoriteRecipes.concat(this.recipesToCook)
   }
 
-  searchRecipeByNameOrIng(userQuery) {
+  searchByRecipeOrIngr(userQuery) {
     userQuery = userQuery.toLowerCase()
     let savedRecipes = this.getSavedRecipes()
-    return savedRecipes.filter(recipe => {
-      if(recipe.name.toLowerCase().includes(userQuery)) {
-        return recipe
-      } else if (this.getRecipeIngredient(userQuery, recipe)) {
+    let filteredIngredients = savedRecipes.filter(recipe => {
+      if (recipe.name.toLowerCase().includes(userQuery) || recipe.ingredients.find(ingredient => {
+        return ingredient.name.includes(userQuery)
+      })) {
         return recipe
       }
     })
+    return filteredIngredients
   }
-
-  getRecipeIngredient(userQuery, recipe) {
-    let checkedIngredient = recipe.ingredients.filter(ingredient => {
-      let item = ingredientsData.filter(ingredientName => {
-        if(ingredientName.id === ingredient.id && ingredientName.name.toLowerCase().includes(userQuery.toLowerCase())) {
-          return ingredientName
-        }
-      })
-      if(item.length > 0) {
-        return ingredient
-      }
-    })
-    return checkedIngredient.length > 0
-  }
-
 }
 
 if (typeof module !== 'undefined') {
