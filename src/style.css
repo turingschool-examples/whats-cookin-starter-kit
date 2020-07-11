@@ -98,6 +98,23 @@ button {
   width: 1em;
 }
 
+.user-window {
+  display: flex;
+}
+
+.users-pantry {
+  padding: 5em;
+  font-size: 2em;
+  height: 20em;
+  overflow: scroll;
+  width: 35%;
+}
+
+.users-recipes-display {
+  width: 65%;
+
+}
+
 .hidden {
   display: none;
 }

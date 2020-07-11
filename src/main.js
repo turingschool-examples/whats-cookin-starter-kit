@@ -15,6 +15,7 @@ nav.addEventListener('click', navHandler);
 function handleLoad() {
   propagateCards(recipeData, allRecipesDisplay);
   showUserName();
+  populatePantry();
 }
 function smallRecipeHandler(event) {
   if (event.target.classList.contains('star-icon')) {
@@ -23,18 +24,6 @@ function smallRecipeHandler(event) {
   } else if (event.target.id) {
     showRecipeCard(event);
   }
-}
-
-const makeFavoriteRecipe = (event) => {
-  let chosenRecipe = findById(event.target.id, instantiatedRecipes);
-  currentUser.chooseRecipe(chosenRecipe, currentUser.favoriteRecipes);
-}
-
-const displayFavorites = () => {
-  const favoriteRecipesDisplay = document.querySelector('.favorite-recipes');
-  favoriteRecipesDisplay.innerHTML = '';
-  propagateCards(currentUser.favoriteRecipes, favoriteRecipesDisplay);
-
 }
 
 function navHandler(event) {
@@ -74,7 +63,7 @@ function propagateCards(recipeCards, section) {
     section.innerHTML +=
       `<div class="recipe-card" id="${recipe.id}" style="background-image: url(${recipe.image})">
     <div class="card-info">
-    <img class="star-icon" id="${recipe.id} src="https://www.clipartmax.com/png/middle/175-1753277_free-image-on-pixabay-star-icon-png.png" />
+    <img class="star-icon" id="${recipe.id}" src="https://www.clipartmax.com/png/middle/175-1753277_free-image-on-pixabay-star-icon-png.png" />
     <div class="recipe-title" id="${recipe.id}">${recipe.name}</div>
     </div>
     </div>`
@@ -154,6 +143,26 @@ const hideRecipeCard = () => {
   bigRecipeCard.classList.add('hidden');
 
   blackout.classList.add('hidden');
+}
+//user page
+
+const makeFavoriteRecipe = (event) => {
+  let chosenRecipe = findById(event.target.id, instantiatedRecipes);
+  currentUser.chooseRecipe(chosenRecipe, currentUser.favoriteRecipes);
+}
+
+const displayFavorites = () => {
+  const favoriteRecipesDisplay = document.querySelector('.favorite-recipes');
+  favoriteRecipesDisplay.innerHTML = '';
+  propagateCards(currentUser.favoriteRecipes, favoriteRecipesDisplay);
+
+}
+
+function populatePantry() {
+  const pantrySection = document.querySelector('.users-pantry');
+  currentUser.pantry.supplies.forEach(supply => {
+    pantrySection.innerHTML += `${supply.amount} - ${currentUser.pantry.findIngredientName(supply.ingredient)} <br>`
+  })
 }
 // other (could possibly put this in one of the class files, I'll start with it here)
 const retrieveCard = (cardID) => {
