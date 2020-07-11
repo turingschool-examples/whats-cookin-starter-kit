@@ -26,7 +26,11 @@ function clickAnalyzer(event) {
 function determineHeaderClick(event) {
   if (event.target.classList.contains('category')) {
     getRecipesInCategory(event);
-  }
+  };
+  if (event.target.classList.contains('app-title')) {
+    changeView(homeSection, singleRecipeSection);
+    displayRecipes(recipes);
+  };
 }
 
 function getRecipesInCategory(event) {
@@ -104,14 +108,15 @@ function displayH2(category = 'Recipes') {
 }
 
 function displaySingleRecipe(event) {
-  changeToSingleRecipeView();
+  changeView(singleRecipeSection, homeSection);
   const recipe = determineRecipeToDisplay(event);
   displayRecipeDetails(recipe);
 }
 
-function changeToSingleRecipeView() {
-  homeSection.classList.add('hidden');
-  singleRecipeSection.classList.remove('hidden');
+//ultimately, there will be 3 views (still 2 arguments) to choose from
+function changeView(activeView, viewToHide) {
+  activeView.classList.remove('hidden');
+  viewToHide.classList.add('hidden');
 }
 
 function determineRecipeToDisplay(event) {
