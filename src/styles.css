@@ -1,0 +1,131 @@
+body, html, header {
+  width: 100%;
+  margin: none;
+  padding: none;
+}
+
+header {
+  background-color: #f79a48;
+  display: grid;
+  grid-template-rows: 1fr 1fr 2em;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+h1 {
+  margin: 0;
+  font-size: 3em;
+  grid-row: 2 / 3;
+  grid-column-start: 1;
+}
+
+.user-profile-display{
+  grid-row: 1 / 2;
+  grid-column-end: 4;
+  width: 7em;
+  height: 2em;
+  text-align: center;
+  justify-self: end;
+  background-color: #c98e1e;
+}
+
+.search-input{
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+  height: 1.75em;
+  margin: 0;
+  padding: 0;
+}
+
+.my-pantry-button,
+.recipes-button{
+  grid-row: 3 / 4;
+  grid-column-end: 4;
+  width: 8em;
+  height: 2em;
+  margin: 0;
+  padding: 0;
+  justify-self: end;
+}
+
+.cards-body,
+.pantry-body{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+h2 {
+  margin: 0;
+  text-align: center;
+  background-color: #fcb02b;
+}
+
+.recipe-card{
+  background-color: #c9511e;
+  width: 24em;
+  height: 25em;
+  margin-top: 1em;
+  display: grid;
+  grid-template-areas: 'a';
+}
+
+.hidden-card {
+  opacity: 0;
+  grid-area: a;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+  /* position: absolute; */
+  z-index: 1;
+}
+
+.displayed-card {
+  grid-area: a;
+  position: absolute;
+  z-index: 0;
+}
+
+.recipe-img {
+  width: 22em;
+  margin: 1em 1em 0 1em;
+}
+
+.recipe-name {
+  text-align: center;
+}
+
+.hidden-card {
+  background-color: #b51616;
+  margin: 0 7em 0 7em;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  transition: all .6s ease-in-out;
+}
+
+.recipe-card > .hidden-card:hover {
+  opacity: .85;
+   transform: scale(2.0)
+}
+
+.user-pantry,
+.missing-ingredients{
+  background-color: #d95623;
+  width: 16em;
+  margin-top: 1em;
+}
+
+.user-pantry > h3 {
+  text-align: center;
+}
+
+.missing-ingredients > h3 {
+  text-align: center;
+}
+
+.ingredient {
+  text-align: center;
+}
+.hidden {
+  display: none;
+}

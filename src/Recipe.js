@@ -8,9 +8,10 @@ class Recipe {
     this.instructions = instructions;
     this.name = name || 'No Name'// ;
     this.tags = tags;
-  }
+  };
 
   getIngredientName(ingredient) { //returns name of ingredient
+// use .find like in checkForIngredient
     let name;
     ingredientsData.forEach(ingredientData => {
       if (ingredient.id === ingredientData.id) {
@@ -18,10 +19,11 @@ class Recipe {
       }
     })
     return name;
-  }
+  };
 
   getIngredientCost(ingredient) { //returns cost of ingredient in dollar amount
     // return 0 
+    // use .find like in checkForIngredient
     let cost = 0;
     ingredientsData.forEach(ingredientData => {
       if (ingredient.id === ingredientData.id) {
@@ -29,7 +31,7 @@ class Recipe {
       }
     })
     return (cost / 100);
-  }
+  };
 
   calculateTotalCost() { //returns total cost of recipe's ingredients in dollar amount
     let costs = [];
@@ -38,7 +40,7 @@ class Recipe {
     });
     let totalCost = costs.reduce((sum, num) => sum += num, 0);
     return totalCost; //changes to dollar amount
-  }
+  };
 
   returnInstructions() { //returns recipe's instructions as an array of objects
     return this.instructions;
@@ -48,7 +50,7 @@ class Recipe {
     return this.ingredients
   };
 
-  checkForIngredient(ingredient) { //returns true if recipe contains ingredient
+  checkForIngredient(ingredient) {//by name //returns true if recipe contains ingredient
     let test = this.ingredients.find(ingredientData => ingredientData.id === ingredient.id);
     return (test !== undefined); //allows for both types of ingredient objects to be compared
     // return this.ingredients.includes(ingredient); //simpler but may be limited to what's passed in

@@ -23,6 +23,8 @@ describe("Recipe", function () {
     );
   });
 
+  //create broken recipes for sad path tests
+
   it("should be a function", function() {
     expect(Recipe).to.be.a("function");
   });
@@ -35,6 +37,7 @@ describe("Recipe", function () {
     expect(recipe.id).to.equal(595736);
   });
 
+
   it('should have an id of 0 if no id is entered', function() {
     const recipeNoId = new Recipe(
     {
@@ -45,12 +48,8 @@ describe("Recipe", function () {
     'tags': ['antipasti', 'starter', 'snack', 'appetizer']}
     );
     expect(recipeNoId.id).to.equal(0)
-  })
-
-  // it('should have an id that is a number', function() {
-  //   expect(recipe.id).to.be.a('number');
-  // });
-
+  });
+  
   it('should have an image link', function() {
     expect(recipe.image).to.equal('https://spoonacular.com/recipeImages/595736-556x370.jpg');
   });
@@ -64,7 +63,6 @@ describe("Recipe", function () {
     'tags': ['antipasti', 'starter', 'snack', 'appetizer']}
     );
     expect(recipeNoImage.image).to.equal('../assets/defaultRecipeImage.jpg');
-  });
 
   // it('should have an image link that is a string', function() {
   //   expect(recipe.image).to.be.a('string');
@@ -144,7 +142,7 @@ describe("Recipe", function () {
   //   expect(recipe.getIngredientCost(ingredient1)).to.be.a('number');
   // });
 
-  it('should calculate total cost of the recipe', function() { //need to change if price display is changed
+  it('should calculate total cost of the recipe', function() {
     expect(recipe.calculateTotalCost()).to.equal(11.96);
   });
   //what if ingredient price and/or amount is missing
