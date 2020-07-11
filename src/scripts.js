@@ -2,6 +2,7 @@ const recipeCardsSection = document.querySelector('.recipe-cards')
 const pageBody = document.querySelector('body');
 const homeSection = document.querySelector('.home-view');
 const singleRecipeSection = document.querySelector('.single-recipe-view');
+const welcomeHeading = document.querySelector('.welcome-heading');
 let recipes, user; 
 
 window.onload = setUpHomePage; 
@@ -31,6 +32,10 @@ function determineHeaderClick(event) {
     changeView(homeSection, singleRecipeSection);
     displayRecipes(recipes);
   };
+  if (event.target.id === 'favorite-recipes') {
+    displayRecipeBoxH2('Favorite Recipes');
+    displayRecipes(user.favoriteRecipes);
+  }
 }
 
 function getRecipesInCategory(event) {
@@ -39,7 +44,7 @@ function getRecipesInCategory(event) {
     let categoryTags = recipe.mapCategoryToTag(category);
     return recipe.checkRecipeCategory(categoryTags);
   });
-  displayH2(category);
+  displayWelcomeH2(category);
   displayRecipes(recipesInCategory);
 }
 
@@ -69,7 +74,7 @@ function setUpHomePage() {
   recipes = instantiateRecipes(recipeData);
   displayRecipes(recipes);
   createRandomUser(); 
-  displayH2(); 
+  displayWelcomeH2(); 
 }
 
 function instantiateRecipes(recipeData) {
@@ -102,9 +107,12 @@ function createRandomUser() {
   user = new User(usersData[randomIndex]);
 }
 
-function displayH2(category = 'Recipes') {
-  let welcomeHeading = document.querySelector('.welcome-heading');
+function displayWelcomeH2(category = 'Recipes') {
   welcomeHeading.innerText = `Welcome, ${user.name}! Browse Our ${category} Below.`;
+}
+
+function displayRecipeBoxH2(pageTitle) {
+  welcomeHeading.innerText = `${user.name}'s ${pageTitle}`;
 }
 
 function displaySingleRecipe(event) {
