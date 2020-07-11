@@ -11,51 +11,32 @@ class Pantry {
       return {...acc, [element.ingredient] : element.amount};
     }, {})
     
-    // recipe.ingredients.forEach(ingredient => {
-    //     if(item.ingredient !== ingredient.id) {
-    //       hasIngredients = false;
-    //       this.addToShoppingList(ingredient);
-    //     } else if (item.amount > ingredient.quantity.amount){
-    //       ingredient.quantity.amount = (ingredient.quantity.amount - item.amount);
-    //       this.addToShoppingList(ingredient);
-    //       hasIngredients = false;
-    //     } else {
-    //       hasIngredients = true;
-    //     }
-    //   })
-    //   return hasIngredients;
-    // console.log(this.shoppingList);
-
-
     recipe.ingredients.forEach(ingredient => {
       if (!pantryIngredients.hasOwnProperty(ingredient.id)) {
         hasIngredients = false;
+        this.addToShoppingList(ingredient);
       } else if (pantryIngredients[ingredient.id] < ingredient.quantity.amount) {
         hasIngredients = false;
+        this.addToShoppingList(ingredient);
       } else {
         hasIngredients = true;
       }
     })
     return hasIngredients;
-    //need to add method to adjust for amounts in ingredients
   }
 
-  addToShoppingList(missingIngredient) {
-    this.shoppingList.push(missingIngredient);
+  addToShoppingList(ingredient) {
+    this.shoppingList.push(ingredient);
   }
 
-  pantryIngredientAdjust(recipeIngredient) {
+  pantryIngredientAdjust(recipe) {
     const recipeIngredients = recipe.ingredients.map(ingredient => ({ id: ingredient.id, amount: ingredient.quantity.amount }));
 
     const pantryIngredients = this.pantry.map(userIngredient => ({ id: userIngredient.ingredient, amount: userIngredient.amount }));
-    console.log(pantryIngredients);
   }
 
-  
-     
-     //if ingredient in pantry is - qty remove from pantry
-     // update user after update
-     // 
+    //if ingredient in pantry is - qty remove from pantry
+    // update user after update
     
 
     //need to have a way to return or replace an item in the user pantry to adjust for recipes made
