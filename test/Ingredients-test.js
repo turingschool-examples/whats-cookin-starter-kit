@@ -2,20 +2,20 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const ingredientsData = require('../data/ingredients')
-const Ingredients = require('../src/Ingredients');
+const Ingredient = require('../src/Ingredient');
 
-describe('Ingredients', function() {
+describe('Ingredient', function() {
   beforeEach(function() {
-    ingredient1 = new Ingredients(ingredientsData[0])
-    ingredient2 = new Ingredients(ingredientsData[1])
+    ingredient1 = new Ingredient(ingredientsData[0])
+    ingredient2 = new Ingredient(ingredientsData[1])
   });
 
   it('should be a function', function() {
-    expect(Ingredients).to.be.a('function')
+    expect(Ingredient).to.be.a('function')
   });
 
   it('should be an instance of Ingredients', function() {
-    expect(ingredient1).to.be.an.instanceof(Ingredients)
+    expect(ingredient1).to.be.an.instanceof(Ingredient)
   });
 
   it('should have an id', function() {
