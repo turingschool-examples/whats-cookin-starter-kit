@@ -12,7 +12,7 @@ let usersTestData = [
 				"amount": 4
 			},
 			{
-				"ingredient": 33,
+				"ingredient": 1123,
 				"amount": 10
 			},
 			{
@@ -71,6 +71,13 @@ const recipeTestData = [
 				"quantity": {
 					"amount": 0.5,
 					"unit": "tsp"
+				}
+			},
+			{
+				"id": 1123,
+				"quantity": {
+					"amount": 1,
+					"unit": "large"
 				}
 			},
 			{
@@ -204,7 +211,7 @@ let ingredientsTestData = [
 		"estimatedCostInCents": 582
 	},
 	{
-		"id": 33,
+		"id": 1123,
 		"name": "eggs",
 		"estimatedCostInCents": 472
 	},
