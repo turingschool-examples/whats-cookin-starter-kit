@@ -3,11 +3,12 @@ const expect = chai.expect;
 
 const User = require('../src/User');
 const Recipe = require('../src/Recipe')
-const Ingredients = require('../src/Ingredients')
+const Ingredient = require('../src/Ingredient')
+const Pantry = require('../src/Pantry')
 const sampleUsers = require('../data/sampleUsers')
 const sampleIngredientsData = require('../data/sampleIngredients')
 let ingredients = sampleIngredientsData.map(ingredient => {
-  return new Ingredients(ingredient)
+  return new Ingredient(ingredient)
 })
 const sampleRecipesData = require('../data/sampleRecipes')
 
@@ -18,11 +19,11 @@ describe('User', function() {
     user2 = new User(sampleUsers[1]);
     recipe1Data = sampleRecipesData[0];
     recipe2Data = sampleRecipesData[1];
-    ingredients1 = new Ingredients(ingredients[0])
-    ingredients2 = new Ingredients(ingredients[1])
+    ingredients1 = new Ingredient(ingredients[0])
+    ingredients2 = new Ingredient(ingredients[1])
     recipe1 = new Recipe(recipe1Data.id, recipe1Data.image, [ingredients1], recipe1Data.instructions, recipe1Data.name, recipe1Data.tags);
     recipe2 = new Recipe(recipe2Data.id, recipe2Data.image, [ingredients2], recipe2Data.instructions, recipe2Data.name, recipe2Data.tags);
-
+    pantry = new Pantry(ingredients)
   });
 
   it('should be a function', function() {
@@ -50,11 +51,11 @@ describe('User', function() {
   })
 
   it('should have items in its pantry', function() {
-    expect(user1.pantry.length).to.equal(36)
+    expect(user1.pantry.ingredients.length).to.equal(36)
   });
 
   it('should have different items in a different users pantry', function() {
-    expect(user2.pantry.length).to.equal(58)
+    expect(user2.pantry.ingredients.length).to.equal(58)
   });
 
   it('should start with no favorite recipes', function() {
@@ -118,15 +119,14 @@ describe('User', function() {
   it('should be able to search saved recipes by name or by ingredients', function() {
     user1.toggleFavoriteRecipe(recipe1)
     user1.toggleFavoriteRecipe(recipe2)
-    // console.log(user1.searchByRecipeOrIngr("loaded"))
+
     expect(user1.searchByRecipeOrIngr("loaded")).to.deep.equal([recipe1])
     expect(user1.searchByRecipeOrIngr("LoAdEd")).to.deep.equal([recipe1])
 
     expect(user1.searchByRecipeOrIngr("wheat")).to.deep.equal([recipe1])
     expect(user1.searchByRecipeOrIngr("WhEaT")).to.deep.equal([recipe1])
-    //
+
     expect(user1.searchByRecipeOrIngr("maple")).to.deep.equal([recipe2])
     expect(user1.searchByRecipeOrIngr("MaPlE")).to.deep.equal([recipe2])
-
   });
 });
