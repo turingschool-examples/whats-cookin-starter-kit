@@ -1,13 +1,8 @@
 const chai = require('chai');
 const expect = chai.expect;
 const Recipe = require('../src/Recipe');
-// const userInfo = require('../data/users').usersData;
-// const recipeInfo = require('../data/recipes').recipeData;
-// const ingredientInfo = require('../data/ingredients').ingredientsData;
-
 const testData = require('../data/test-data');
 const recipeTestData = testData.recipeTestData;
-const usersTestData = testData.usersTestData;
 
 describe('Recipe', () => {
 	let recipe1;
