@@ -43,7 +43,18 @@ function determineHeaderClick(event) {
   };
   if (event.target.id === 'grocery-list') {
     changeView(listSection, homeSection, singleRecipeSection);
+    createGroceryList();
   }
+}
+
+function createGroceryList() {
+  //need empty array (which will become array of objects as grocery list)
+  //Take user.recipesToCook array
+  //for each recipe in it, iterate through its ingredients list
+  //for each recipe ingredient, user.pantry.checkIngredientStockInPantry(recipeIngredient) to get back missing amount of that ingredient
+  //add amount + ingredient.unit + ingredient name into an object & add to the empty array
+  //after iteration is done return that array of objects as the grocery list
+  //then create function to display Grocery List
 }
 
 function getRecipesInCategory(event) {
