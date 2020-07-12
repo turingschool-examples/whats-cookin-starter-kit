@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="shortcut icon" type="image/png" href="assets/recipe.png">
+    <link rel="shortcut icon" type="image/png" href="assets/recipe-favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@500&display=swap" rel="stylesheet">
     <title>What's Cookin'</title>
   </head>
@@ -16,162 +16,64 @@
         </form>
       </div>
       <div class="title-menu">
-        <h1>What's Cookin'
-          <img src="assets/recipe.png">
+        <h1 class="app-title">What's Cookin'
+          <img src="assets/recipe-favicon.png">
         </h1>
         <nav>
           <div class="dropdown-menu">
             <button class="dropdown-btn">Filter Recipes</button>
             <div class="dropdown-content">
-              <a href="">Appetizers</a>
-              <a href="">Entrees</a>
-              <a href="">Sauces & Dips</a>
-              <a href="">Side Dishes</a>
-              <a href="">Breakfast</a>
-              <a href="">Salads</a>
-              <a href="">Other</a>
+              <a href="" class ="category" id="appetizers">Appetizers</a>
+              <a href="" class ="category" id="entrees">Entrees</a>
+              <a href="" class ="category" id="saucesDips">Sauces & Dips</a>
+              <a href="" class ="category" id="sideDishes">Side Dishes</a>
+              <a href="" class ="category" id="breakfast">Breakfast</a>
+              <a href="" class ="category" id="salads">Salads</a>
+              <a href="" class ="category" id="other">Other</a>
             </div>
           </div>
           <div class="dropdown-menu">
             <button class="dropdown-btn">My Recipe Box</button>
             <div class="dropdown-content">
-              <a href="">My Favorite Recipes</a>
-              <a href="">Meal Plan</a>
-              <a href="">Grocery List</a>
-              <a href="">My Pantry</a>
+              <a href="" id="favorite-recipes">My Favorite Recipes</a>
+              <a href="" id="recipes-to-cook">Recipes to Cook</a>
+              <a href="" id="grocery-list">Grocery List</a>
+              <a href="" id="pantry">My Pantry</a>
             </div>
           </div>
         </nav>
       </div>
     </header>
     <main>
-      <section class="welcome-message">
-        <h2>Welcome, User! Browse Our Top Recipes Below.</h2>
+      <section class="home-view">
+        <section class="welcome-message">
+          <h2 class="welcome-heading">Welcome, Guest! Browse Our Recipes Below.</h2>
+        </section>
+        <section class="recipe-cards">
+          <!-- Cards added here on page load -->
+        </section>
       </section>
-      <section class="recipe-cards">
-        <article class="recipe-card" id="card1">
-          <div class="recipe-img" style="background-image: url(https://spoonacular.com/recipeImages/595736-556x370.jpg)">
-            <div class="heart-icon">
-              <img src="assets/heart.png">
-            </div>
-            <div class="cook-icon">
-              <img src="assets/recipe-book.png">
-            </div>
-          </div>
-          <div class="recipe-name">
-            <h5>Loaded Chocolate Chip Pudding Cookie Cups</h5>
-          </div>
-        </article>
-        <article class="recipe-card" id="card2">
-          <div class="recipe-img" style="background-image: url(https://spoonacular.com/recipeImages/678353-556x370.jpg)">
-            <div class="heart-icon">
-              <img src="assets/heart.png">
-            </div>
-            <div class="cook-icon">
-              <img src="assets/recipe-book.png">
-            </div>
-          </div>
-          <div class="recipe-name">
-            <h5>Maple Dijon Apple Cider Grilled Pork Chops</h5>
-          </div>
-        </article>
-        <article class="recipe-card" id="card3">
-          <div class="recipe-img" style="background-image: url(https://spoonacular.com/recipeImages/412309-556x370.jpeg)">
-            <div class="heart-icon">
-              <img src="assets/heart.png">
-            </div>
-            <div class="cook-icon">
-              <img src="assets/recipe-book.png">
-            </div>
-          </div>
-          <div class="recipe-name">
-            <h5>Dirty Steve's Original Wing Sauce</h5>
-          </div>
-        </article>
-        <article class="recipe-card" id="card4">
-          <div class="recipe-img" style="background-image: url(https://spoonacular.com/recipeImages/741603-556x370.jpeg)">
-            <div class="heart-icon">
-              <img src="assets/heart.png">
-            </div>
-            <div class="cook-icon">
-              <img src="assets/recipe-book.png">
-            </div>
-          </div>
-          <div class="recipe-name">
-            <h5>Elvis Pancakes</h5>
-          </div>
-        </article>
-        <article class="recipe-card" id="card5">
-          <div class="recipe-img" style="background-image: url(https://spoonacular.com/recipeImages/562334-556x370.jpg)">
-            <div class="heart-icon">
-              <img src="assets/heart.png">
-            </div>
-            <div class="cook-icon">
-              <img src="assets/recipe-book.png">
-            </div>
-          </div>
-          <div class="recipe-name">
-            <h5>Mock Udi's Gluten Free Whole Grain Bread</h5>
-          </div>
-        </article>
-        <article class="recipe-card" id="card6">
-          <div class="recipe-img" style="background-image: url(https://spoonacular.com/recipeImages/507921-556x370.jpg)">
-            <div class="heart-icon">
-              <img src="assets/heart.png">
-            </div>
-            <div class="cook-icon">
-              <img src="assets/recipe-book.png">
-            </div>
-          </div>
-          <div class="recipe-name">
-            <h5>Ambrosia Cupcakes</h5>
-          </div>
-        </article>
-        <article class="recipe-card" id="card7">
-          <div class="recipe-img" style="background-image: url(https://spoonacular.com/recipeImages/721146-556x370.jpg)">
-            <div class="heart-icon">
-              <img src="assets/heart.png">
-            </div>
-            <div class="cook-icon">
-              <img src="assets/recipe-book.png">
-            </div>
-          </div>
-          <div class="recipe-name">
-            <h5>Creamy Coconut Yogurt Bowl with Chocolate Granola</h5>
-          </div>
-        </article>
-        <article class="recipe-card" id="card8">
-          <div class="recipe-img" style="background-image: url(https://spoonacular.com/recipeImages/541288-556x370.jpg)">
-            <div class="heart-icon">
-              <img src="assets/heart.png">
-            </div>
-            <div class="cook-icon">
-              <img src="assets/recipe-book.png">
-            </div>
-          </div>
-          <div class="recipe-name">
-            <h5>Sesame Cookies</h5>
-          </div>
-        </article>
-        <article class="recipe-card" id="card9">
-          <div class="recipe-img" style="background-image: url(https://spoonacular.com/recipeImages/779583-556x370.jpg)">
-            <div class="heart-icon">
-              <img src="assets/heart.png">
-            </div>
-            <div class="cook-icon">
-              <img src="assets/recipe-book.png">
-            </div>
-          </div>
-          <div class="recipe-name">
-            <h5>Thai Chicken Tenders with Broiled Pineapple Slaw</h5>
-          </div>
+      <section class="single-recipe-view hidden">
+        <article class="recipe-details">
+          <!-- Recipe page details loaded here on recipe card click -->
         </article>
       </section>
-      
+      <section class="list-view hidden">
+        <article class="grocery-list">
+          <h2>Grocery List</h2>
+          <ol class="grocery-items">
+            <li>Item 1</li>
+            <li>Item 2</li>
+          </ol>
+        </article>
+      </section>
     </main>
-      <script type="text/javascript" src="../data/users.js"></script>
-      <script type="text/javascript" src="../data/recipes.js"></script>
-      <script type="text/javascript" src="../data/ingredients.js"></script>
-      <script type="text/javascript" src="./scripts.js"></script>  
+    <script type="text/javascript" src="../data/users.js"></script>
+    <script type="text/javascript" src="../data/recipes.js"></script>
+    <script type="text/javascript" src="../data/ingredients.js"></script>  
+    <script type="text/javascript" src="./Recipe.js"></script>
+    <script type="text/javascript" src="./User.js"></script>
+    <script type="text/javascript" src="./Pantry.js"></script>
+    <script type="text/javascript" src="./scripts.js"></script>
   </body>
 </html>

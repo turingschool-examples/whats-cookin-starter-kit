@@ -3,16 +3,27 @@ const expect = chai.expect;
 
 const User = require('../src/User');
 const Recipe = require('../src/Recipe')
-const usersData = require('../data/users')
-const recipeData = require('../data/recipes')
+const Ingredient = require('../src/Ingredient')
+const Pantry = require('../src/Pantry')
+const sampleUsers = require('../data/sampleUsers')
+const sampleIngredientsData = require('../data/sampleIngredients')
+let ingredients = sampleIngredientsData.map(ingredient => {
+  return new Ingredient(ingredient)
+})
+const sampleRecipesData = require('../data/sampleRecipes')
 
 describe('User', function() {
-  let user1;
+  let user1, user2, recipe1Data, recipe2Data, ingredients1, ingredients2, recipe1, recipe2;
   beforeEach(function() {
-    user1 = new User(usersData[0])
-    user2 = new User(usersData[1])
-    recipe1 = new Recipe(recipeData[0])
-    recipe2 = new Recipe(recipeData[1])
+    user1 = new User(sampleUsers[0]);
+    user2 = new User(sampleUsers[1]);
+    recipe1Data = sampleRecipesData[0];
+    recipe2Data = sampleRecipesData[1];
+    ingredients1 = new Ingredient(ingredients[0])
+    ingredients2 = new Ingredient(ingredients[1])
+    recipe1 = new Recipe(recipe1Data.id, recipe1Data.image, [ingredients1], recipe1Data.instructions, recipe1Data.name, recipe1Data.tags);
+    recipe2 = new Recipe(recipe2Data.id, recipe2Data.image, [ingredients2], recipe2Data.instructions, recipe2Data.name, recipe2Data.tags);
+    pantry = new Pantry(ingredients)
   });
 
   it('should be a function', function() {
@@ -40,11 +51,11 @@ describe('User', function() {
   })
 
   it('should have items in its pantry', function() {
-    expect(user1.pantry.length).to.equal(36)
+    expect(user1.pantry.ingredients.length).to.equal(36)
   });
 
   it('should have different items in a different users pantry', function() {
-    expect(user2.pantry.length).to.equal(58)
+    expect(user2.pantry.ingredients.length).to.equal(58)
   });
 
   it('should start with no favorite recipes', function() {
@@ -73,11 +84,49 @@ describe('User', function() {
     expect(user1.favoriteRecipes.length).to.deep.equal(1)
   });
 
-  it('if a recipe is removed, the recipe that remains should be the expected recipe', function() {
+  it('should be able to remove prexisting recipe from favorites list', function() {
     user1.toggleFavoriteRecipe(recipe1);
     user1.toggleFavoriteRecipe(recipe1);
     user1.toggleFavoriteRecipe(recipe2);
 
-    expect(user1.favoriteRecipes[0].id.id).to.equal(678353)
-  })
+    expect(user1.favoriteRecipes[0].id).to.equal(678353)
+  });
+
+  it('should be able to decide to cook a recipe that week', function() {
+    user1.toggleRecipeToCook(recipe1)
+
+    expect(user1.recipesToCook.length).to.deep.equal(1)
+  });
+
+  it('should be able to remove prexisting recipe from recipe to cook list', function() {
+    user1.toggleRecipeToCook(recipe1)
+    user1.toggleRecipeToCook(recipe2)
+    user1.toggleRecipeToCook(recipe1)
+
+    expect(user1.recipesToCook[0].id).to.equal(678353)
+  });
+
+  it('should be able to save recipes', function() {
+    expect(user1.getSavedRecipes()).to.deep.equal([])
+
+    user1.toggleFavoriteRecipe(recipe1)
+    user1.toggleFavoriteRecipe(recipe2)
+    user1.getSavedRecipes(recipe1)
+
+    expect(user1.getSavedRecipes()).to.deep.equal([recipe1, recipe2])
+  });
+
+  it('should be able to search saved recipes by name or by ingredients', function() {
+    user1.toggleFavoriteRecipe(recipe1)
+    user1.toggleFavoriteRecipe(recipe2)
+
+    expect(user1.searchByRecipeOrIngr("loaded")).to.deep.equal([recipe1])
+    expect(user1.searchByRecipeOrIngr("LoAdEd")).to.deep.equal([recipe1])
+
+    expect(user1.searchByRecipeOrIngr("wheat")).to.deep.equal([recipe1])
+    expect(user1.searchByRecipeOrIngr("WhEaT")).to.deep.equal([recipe1])
+
+    expect(user1.searchByRecipeOrIngr("maple")).to.deep.equal([recipe2])
+    expect(user1.searchByRecipeOrIngr("MaPlE")).to.deep.equal([recipe2])
+  });
 });
