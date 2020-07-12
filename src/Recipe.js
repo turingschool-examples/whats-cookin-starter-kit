@@ -11,24 +11,32 @@ class Recipe {
       this.tags = tags;
     };
     this.categoryToTagMap = {
-      AppetizersSnacks: ['antipasti', 'starter', 'snack', 'appetizer', 'antipasto', 'hor d\'oeuvre'],
-      Entree: ['lunch', 'main course', 'main dish', 'dinner'],
-      SaucesDips: ['sauce', 'condiment', 'dip', 'spread'],
-      SideDish: ['side dish'],
+      Appetizers: ['antipasti', 'starter', 'snack', 'appetizer', 'antipasto', 'hor d\'oeuvre'],
+      Entrees: ['lunch', 'main course', 'main dish', 'dinner'],
+      'Sauces & Dips': ['sauce', 'condiment', 'dip', 'spread'],
+      'Side Dishes': ['side dish'],
       Breakfast: ['morning meal', 'brunch', 'breakfast'],
-      Salad: ['salad'],
+      Salads: ['salad'],
       Other: ['other']
     }
+    this.favoritesStatus = 'inactive';
+    this.recipesToCookStatus = 'inactive';
   }
 
   //when filtering recipes by category, need to call 2 methods below together (return value from mapCategoryToTag (tags array) gets passed into checkRecipeCategory)
-  mapCategoryToTag = category => this.categoryToTagMap[category];
+  mapCategoryToTag(category) {
+    return this.categoryToTagMap[category];
+  }
 
-  checkRecipeCategory = categoryTags => this.tags.some(tag => categoryTags.includes(tag));
+  checkRecipeCategory(categoryTags) {
+    return this.tags.some(tag => categoryTags.includes(tag));
+  }
 
-  checkRecipeIngredients = ingredientSearchedId => this.ingredients.some(ingredient => ingredient.id === ingredientSearchedId);
+  checkRecipeIngredients(ingredientSearchedId) {
+    return this.ingredients.some(ingredient => ingredient.id === ingredientSearchedId);
+  }
 
-  calculateIngredientsCost = ingredientsData => {
+  calculateIngredientsCost(ingredientsData) {
     return this.ingredients.reduce((totalIngredientsCost, ingredient) => {
       let matchingIngredient = ingredientsData.find(ingredientCost => ingredientCost.id === ingredient.id) || {estimatedCostInCents: 100};
       let ingredientCost = matchingIngredient.estimatedCostInCents
@@ -36,7 +44,25 @@ class Recipe {
     }, 0);
   }
 
-  retrieveRecipeInstructions = () => this.instructions;
+  retrieveRecipeInstructions() {
+    return this.instructions;
+  }
+
+  toggleFavoritesStatus() {
+    if (this.favoritesStatus === 'inactive') {
+      this.favoritesStatus = 'active';
+    } else {
+      this.favoritesStatus = 'inactive';
+    };
+  }
+
+  toggleRecipesToCookStatus() {
+    if (this.recipesToCookStatus === 'inactive') {
+      this.recipesToCookStatus = 'active';
+    } else {
+      this.recipesToCookStatus = 'inactive';
+    };
+  }
 }
 
 
