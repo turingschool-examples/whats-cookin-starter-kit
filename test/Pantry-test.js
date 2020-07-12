@@ -39,8 +39,10 @@ describe('Pantry', () => {
 		const result = userPantry.calculateIngredientsNeeded();
 
 		expect(result).to.deep.equal([
-			{ ingredient: 22, neededAmount: 0.5 },
-			{ ingredient: 66, neededAmount: 0.5 }
+			{ ingredient: 9079, neededAmount: 1.5 },
+			{ ingredient: 11935, neededAmount: 0.5 },
+			{ ingredient: 2042, neededAmount: 1 },
+			{ ingredient: 2069, neededAmount: 0.5 }
 		]);
 	});
 });
