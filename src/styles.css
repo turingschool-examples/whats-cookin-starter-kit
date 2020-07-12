@@ -19,13 +19,16 @@ header {
 nav {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   background-color: #4f6d7a;
   padding: 1em;
 }
 
 button {
-  margin: 1em;
+  margin: 1em 2.5em 1em 1em;
   background-color: #e8dab2;
+  border: none;
+  height: 2em;
 }
 
 h4 {
@@ -36,6 +39,20 @@ h4 {
   display: flex;
   justify-content: space-between;
   padding: 1em;
+}
+
+.banner-icons {
+  height: 2em;
+  width: 2em;
+  background-color: #dd6e42;
+  border-radius: 50%;
+  margin-right: -.5em;
+}
+
+.banner-heart, .banner-frying-pan {
+  width: 1.5em;
+  filter: invert(1);
+  margin: .25em;
 }
 
 /* MAIN PAGE */
