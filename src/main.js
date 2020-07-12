@@ -4,8 +4,8 @@ const userPageDisplay = document.querySelector('.user-window');
 const favoriteRecipesDisplay = document.querySelector('.favorite-recipes');
 const nav = document.querySelector('nav');
 //data instantiation
-const currentUser = new User(generateRandomUser());
-// const currentUser = new User(usersData[0]);
+// const currentUser = new User(generateRandomUser());
+const currentUser = new User(usersData[0]);
 const instantiatedRecipes = recipeData.map(recipe => new Recipe(recipe));
 //onload 
 window.onload = handleLoad();
@@ -28,6 +28,8 @@ function smallRecipeHandler(event) {
     displayFavorites();
   } else if (event.target.id) {
     showRecipeCard(event);
+    console.log(event.target.id);
+    debugger
   }
 }
 
@@ -40,6 +42,8 @@ function navHandler(event) {
 function bigRecipeHandler(event) {
   if (event.target.classList.contains('exit-button')) {
     hideRecipeCard();
+  } else if (event.target.classList.contains('ingredientCheck')) {
+
   }
 }
 // user functions
@@ -96,13 +100,21 @@ const populateRecipeCard = (event) => {
 
 const insertCardHTML = (recipe) => {
 bigRecipeCard.innerHTML =
-  `<button class="exit-button">Back to all recipes</button>
-  <img class="star-icon"" src="https://www.clipartmax.com/png/middle/175-1753277_free-image-on-pixabay-star-icon-png.png" />
+  `<nav>
+    <button class="exit-button">Back to all recipes</button>
+    <img class="star-icon"" src="https://www.clipartmax.com/png/middle/175-1753277_free-image-on-pixabay-star-icon-png.png" />
+  </nav>
   <img class="recipe-img" src="${recipe.image}"></img>
-  <h2>Ingredients</h2>
-  <section class="ingredients"></section>
-  <h2>Instructions</h2>
-  <section class="instructions"></section>
+  <h1>${recipe.name}</h1> <br>
+  <button class="ingredientCheck">Do I have enough ingredients?</button>
+  <article class="recipe-info">
+    <div class="ingredients">
+      <h2>Ingredients</h2>
+    </div>
+    <div class="instructions">
+      <h2>Instructions</h2>
+  </div>
+  </article>
   `
 }
 
