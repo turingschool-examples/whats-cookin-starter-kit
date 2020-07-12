@@ -1,10 +1,10 @@
-// let ingredientsData1 = require('../data/ingredients')
+const Pantry = require('../src/Pantry')
 
 class User {
   constructor(usersData) {
     this.name = usersData.name
     this.id = usersData.id
-    this.pantry = usersData.pantry
+    this.pantry = new Pantry(usersData.pantry)
     this.favoriteRecipes = []
     this.recipesToCook = []
     this.groceryList = []
