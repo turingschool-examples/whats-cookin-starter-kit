@@ -12,7 +12,7 @@ class Pantry {
       };
     });
   }
-    
+
   checkIngredientStockInPantry(recipeIngredient) {
     let matchingIngredient = this.ingredients.find(pantryIngredient => pantryIngredient.ingredient === recipeIngredient.id);
     if (matchingIngredient === undefined) {
@@ -22,15 +22,15 @@ class Pantry {
       if (missingAmount < 0) {
         missingAmount = 0;
       };
-      return missingAmount; 
-    }; 
-  } 
+      return missingAmount;
+    };
+  }
 
   listMissingIngredients(recipe) {
     return recipe.ingredients.reduce((missingIngredients, ingredient) => {
-      let missingIngredientAmount = this.checkIngredientStockInPantry(ingredient); 
+      let missingIngredientAmount = this.checkIngredientStockInPantry(ingredient);
       missingIngredients.push({ingredientId: ingredient.id, missingAmount: missingIngredientAmount});
-      return missingIngredients; 
+      return missingIngredients;
     }, [])
   }
 }
