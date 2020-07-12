@@ -1,7 +1,7 @@
 //Note: the below line breaks scripts.js
 //If you comment it out, scripts.js works, but test no longer works
 //Look into this more (other groups have same problem)
-const Pantry = require('../src/Pantry');
+// const Pantry = require('../src/Pantry');
 
 class User {
   constructor(name, id, pantry) {

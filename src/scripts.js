@@ -4,6 +4,7 @@ const homeSection = document.querySelector('.home-view');
 const singleRecipeSection = document.querySelector('.single-recipe-view');
 const listSection = document.querySelector('.list-view');
 const welcomeHeading = document.querySelector('.welcome-heading');
+const searchBar = document.querySelector('.search-bar')
 let recipes, user, ingredients; 
 
 window.onload = setUpHomePage; 
@@ -32,19 +33,29 @@ function determineHeaderClick(event) {
   if (event.target.classList.contains('app-title')) {
     changeView(homeSection, singleRecipeSection, listSection);
     displayRecipes(recipes);
+    changeSearchBarText('Search recipes');
   };
   if (event.target.id === 'favorite-recipes') {
     displayRecipeBoxH2('Favorite Recipes');
     displayRecipes(user.favoriteRecipes);
+    changeSearchBarText('Search saved recipes');
   };
   if (event.target.id === 'recipes-to-cook') {
     displayRecipeBoxH2('Recipes to Cook');
     displayRecipes(user.recipesToCook);
+    changeSearchBarText('Search saved recipes');
   };
   if (event.target.id === 'grocery-list') {
     changeView(listSection, homeSection, singleRecipeSection);
     createGroceryList();
-  }
+  };
+  if (event.target.classList.contains('search-button') && searchBar.placeholder === 'Search saved recipes') {
+    getSavedRecipesFromSearch();
+  };
+}
+
+function changeSearchBarText(text) {
+  searchBar.placeholder = text; 
 }
 
 function createGroceryList() {
@@ -97,7 +108,7 @@ function displayRecipes(recipesList) {
 
 function createRandomUser() {
   let randomIndex = Math.floor(Math.random() * usersData.length);
-  user = new User(usersData[randomIndex]);
+  user = new User(usersData[randomIndex].name, usersData[randomIndex].id, usersData[randomIndex].pantry);
 }
 
 function displayWelcomeH2(category = 'Recipes') {
@@ -197,17 +208,23 @@ function createInstructionsList(recipe) {
   }, '');
 }
 
-
+//this is now in user class too
 function getIngredientName(ingredientId) {
   const ingredient = ingredientsData.find(ingredient => ingredient.id === ingredientId);
   return ingredient.name; 
 }
 
+function getSavedRecipesFromSearch() {
+  let userQuery = document.querySelector('.search-bar').value;
+  recipesToDisplay = user.searchByRecipeOrIngr(userQuery, ingredients);
+  displayRecipeBoxH2('Saved Recipes Search Results');
+  displayRecipes(recipesToDisplay);
+}
 
 
 //function below needed to convert ingredient search term to an id so can then use recipe class to check if recipe ingredients have that id ;maybe move to recipe class 
-// const convertSearchTermToId = searchTerm => {
-//   ingredientsData.forEach(ingredient => {
+// function convertSearchTermToId(searchTerm) {
+//   return ingredientsData.forEach(ingredient => {
 //     if (ingredient.name === searchTerm) {
 //       return ingredient.id;
 //     } 
