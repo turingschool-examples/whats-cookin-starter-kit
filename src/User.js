@@ -1,5 +1,3 @@
-const Pantry = require('../src/Pantry')
-
 class User {
   constructor(usersData) {
     this.name = usersData.name

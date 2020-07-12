@@ -4,7 +4,7 @@ const homeSection = document.querySelector('.home-view');
 const singleRecipeSection = document.querySelector('.single-recipe-view');
 const listSection = document.querySelector('.list-view');
 const welcomeHeading = document.querySelector('.welcome-heading');
-let recipes, user; 
+let recipes, user, ingredients; 
 
 window.onload = setUpHomePage; 
 
@@ -57,42 +57,9 @@ function createGroceryList() {
   //then create function to display Grocery List
 }
 
-function getRecipesInCategory(event) {
-  let category = event.target.innerText;
-  let recipesInCategory = recipes.filter(recipe => {
-    let categoryTags = recipe.mapCategoryToTag(category);
-    return recipe.checkRecipeCategory(categoryTags);
-  });
-  displayWelcomeH2(category);
-  displayRecipes(recipesInCategory);
-}
-
-function toggleRecipeToUserFavorites(event) {
-  let recipe = determineRecipeToDisplay(event); 
-  user.toggleFavoriteRecipe(recipe); 
-  recipe.toggleFavoritesStatus();
-}
-
-function toggleRecipeToRecipesToCook(event) {
-  let recipe = determineRecipeToDisplay(event);
-  user.toggleRecipeToCook(recipe);
-  recipe.toggleRecipesToCookStatus(); 
-}
-
-function toggleRecipeIconDisplay(event, icon) {
-  if (event.target.classList.contains('inactive')) {
-    event.target.src = `assets/${icon}-active.png`;
-    event.target.classList.remove('inactive');
-    event.target.classList.add('active');
-  } else {
-    event.target.src = `assets/${icon}-inactive.png`; 
-    event.target.classList.remove('active');
-    event.target.classList.add('inactive');
-  };
-}
-
 function setUpHomePage() {
   recipes = instantiateRecipes(recipeData);
+  ingredients = instantiateIngredients(ingredientsData);
   displayRecipes(recipes);
   createRandomUser(); 
   displayWelcomeH2(); 
@@ -100,6 +67,10 @@ function setUpHomePage() {
 
 function instantiateRecipes(recipeData) {
   return recipeData.map(recipe => new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags)); 
+}
+
+function instantiateIngredients(ingredientsData) {
+  return ingredientsData.map(ingredient => new Ingredient(ingredient)); 
 }
 
 function displayRecipes(recipesList) {
@@ -131,6 +102,40 @@ function createRandomUser() {
 
 function displayWelcomeH2(category = 'Recipes') {
   welcomeHeading.innerText = `Welcome, ${user.name}! Browse Our ${category} Below.`;
+}
+
+function getRecipesInCategory(event) {
+  let category = event.target.innerText;
+  let recipesInCategory = recipes.filter(recipe => {
+    let categoryTags = recipe.mapCategoryToTag(category);
+    return recipe.checkRecipeCategory(categoryTags);
+  });
+  displayWelcomeH2(category);
+  displayRecipes(recipesInCategory);
+}
+
+function toggleRecipeToUserFavorites(event) {
+  let recipe = determineRecipeToDisplay(event);
+  user.toggleFavoriteRecipe(recipe);
+  recipe.toggleFavoritesStatus();
+}
+
+function toggleRecipeToRecipesToCook(event) {
+  let recipe = determineRecipeToDisplay(event);
+  user.toggleRecipeToCook(recipe);
+  recipe.toggleRecipesToCookStatus();
+}
+
+function toggleRecipeIconDisplay(event, icon) {
+  if (event.target.classList.contains('inactive')) {
+    event.target.src = `assets/${icon}-active.png`;
+    event.target.classList.remove('inactive');
+    event.target.classList.add('active');
+  } else {
+    event.target.src = `assets/${icon}-inactive.png`;
+    event.target.classList.remove('active');
+    event.target.classList.add('inactive');
+  };
 }
 
 function displayRecipeBoxH2(pageTitle) {

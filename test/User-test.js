@@ -1,10 +1,10 @@
 const chai = require('chai');
 const expect = chai.expect;
 
+const Pantry = require('../src/Pantry')
 const User = require('../src/User');
 const Recipe = require('../src/Recipe')
 const Ingredient = require('../src/Ingredient')
-const Pantry = require('../src/Pantry')
 const sampleUsers = require('../data/sampleUsers')
 const sampleIngredientsData = require('../data/sampleIngredients')
 let ingredients = sampleIngredientsData.map(ingredient => {
@@ -15,6 +15,7 @@ const sampleRecipesData = require('../data/sampleRecipes')
 describe('User', function() {
   let user1, user2, recipe1Data, recipe2Data, ingredients1, ingredients2, recipe1, recipe2;
   beforeEach(function() {
+    pantry = new Pantry(ingredients);
     user1 = new User(sampleUsers[0]);
     user2 = new User(sampleUsers[1]);
     recipe1Data = sampleRecipesData[0];
@@ -23,7 +24,7 @@ describe('User', function() {
     ingredients2 = new Ingredient(ingredients[1])
     recipe1 = new Recipe(recipe1Data.id, recipe1Data.image, [ingredients1], recipe1Data.instructions, recipe1Data.name, recipe1Data.tags);
     recipe2 = new Recipe(recipe2Data.id, recipe2Data.image, [ingredients2], recipe2Data.instructions, recipe2Data.name, recipe2Data.tags);
-    pantry = new Pantry(ingredients)
+
   });
 
   it('should be a function', function() {
