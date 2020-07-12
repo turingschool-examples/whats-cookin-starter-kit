@@ -10,20 +10,24 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  background-color: #8e9aaf;
+  background-color: #4f6d7a;
   padding: 1em;
 }
 
 nav {
   display: flex;
   justify-content: flex-start;
-  background-color: #8e9aaf;
+  background-color: #4f6d7a;
   padding: 1em;
 }
 
 button {
   margin: 1em;
-  background-color: #dee2ff;
+  background-color: #e8dab2;
+}
+
+h4 {
+  margin-left: 1em;
 }
 
 .page-title {
@@ -36,6 +40,28 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  background-color: #cbc0d3;
+  grid-gap: 1em;
+  background-color: #c0d6df;
   padding: 1em;
+}
+
+.recipe-card {
+  background-color: #eaeaea;
+}
+
+.icon {
+  width: 2.5em;
+  filter: invert(1);
+  margin: .5em;
+}
+
+.recipe-image {
+  background-image: url("https://spoonacular.com/recipeImages/595736-556x370.jpg");
+  background-size: cover;
+}
+.recipe-graphics {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 12em;
 }
