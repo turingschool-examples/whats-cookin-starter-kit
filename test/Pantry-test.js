@@ -1,32 +1,49 @@
 const chai = require('chai');
 const expect = chai.expect;
-const userInfo = require('../data/users').usersData;
-const recipeInfo = require('../data/recipes').recipeData;
 const Pantry = require('../src/Pantry');
 const Recipe = require('../src/Recipe');
+const testData = require('../data/test-data');
+const recipeTestData = testData.recipeTestData;
+const usersTestData = testData.usersTestData;
+
+
+const ingredientsTestData = testData.ingredientsTestData;
 
 describe('Pantry', () => {
 	it('Should hold users ingredients', () => {
-		const userPantry = new Pantry(userInfo[0]);
+		const userPantry = new Pantry(usersTestData[0]);
 
-		expect(userPantry.pantry).to.deep.equal(userInfo[0].pantry);
+		expect(userPantry.pantry).to.deep.equal(usersTestData[0].pantry);
 	});
 
 	it('Should determine if it has ingredients for a recipe', () => {
-		const userPantry = new Pantry(userInfo[0]);
-		const userRecipe = new Recipe(recipeInfo[0]);
+		const userPantry = new Pantry(usersTestData[0]);
+		const userRecipe = new Recipe(recipeTestData[0]);
 
 		const result = userPantry.checkIngredients(userRecipe);
 
-		expect(result).to.equal("You do not have enough ingredients for this recipe");
+		expect(result).to.deep.equal("You do not have enough ingredients for this recipe");
 	});
 
-	it.skip('Should determine amount of ingredients needed for a recipe', () => {
-		const userPantry = new Pantry(userInfo[0]);
-		const userRecipe = new Recipe(recipeInfo[0]);
+	it('Should determine if it has ingredients for a recipe', () => {
+		const userPantry = new Pantry(usersTestData[1]);
+		const userRecipe = new Recipe(recipeTestData[1]);
 
-		const result = userPantry.calculateIngredientsNeeded(checks);
+		const result = userPantry.checkIngredients(userRecipe);
 
-		expect(result).to.equal([neededIngredients]);
+		expect(result).to.equal("You have enough ingredients for this recipe");
+	});
+
+	it('Should determine amount of ingredients needed for a recipe', () => {
+		const userPantry = new Pantry(usersTestData[0]);
+		const userRecipe = new Recipe(recipeTestData[0]);
+
+		userPantry.checkIngredients(userRecipe);
+		const result = userPantry.calculateIngredientsNeeded();
+
+		expect(result).to.deep.equal([
+			{ ingredient: 22, neededAmount: 0.5 },
+			{ ingredient: 66, neededAmount: 0.5 }
+		]);
 	});
 });
