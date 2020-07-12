@@ -6,9 +6,6 @@ const testData = require('../data/test-data');
 const recipeTestData = testData.recipeTestData;
 const usersTestData = testData.usersTestData;
 
-
-const ingredientsTestData = testData.ingredientsTestData;
-
 describe('Pantry', () => {
 	it('Should hold users ingredients', () => {
 		const userPantry = new Pantry(usersTestData[0]);

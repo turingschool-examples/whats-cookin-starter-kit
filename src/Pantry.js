@@ -1,6 +1,3 @@
-const userInfo = require('../data/users').usersData;
-const recipeInfo = require('../data/recipes').recipeData;
-
 class Pantry {
 	constructor({ name, id, pantry }) {
 		this.name = name;
