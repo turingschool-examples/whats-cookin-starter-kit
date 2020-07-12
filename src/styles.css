@@ -1,0 +1,133 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+}
+
+body {
+  margin: 1em 5em 1em 5em;
+}
+
+/* BANNER */
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #4f6d7a;
+  padding: 1em;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #4f6d7a;
+  padding: 1em;
+}
+
+button {
+  margin: 1em 2.5em 1em 1em;
+  background-color: #e8dab2;
+  border: none;
+  height: 2em;
+}
+
+h4 {
+  padding: 1em;
+}
+
+.page-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+}
+
+.banner-icons {
+  height: 2em;
+  width: 2em;
+  background-color: #dd6e42;
+  border-radius: 50%;
+  margin-right: -.5em;
+}
+
+.banner-heart, .banner-frying-pan {
+  width: 1.5em;
+  filter: invert(1);
+  margin: .25em;
+}
+
+/* MAIN PAGE */
+.main-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 1em;
+  background-color: #c0d6df;
+  padding: 1em;
+}
+
+.recipe-card {
+  background-color: #eaeaea;
+}
+
+.icon {
+  width: 2em;
+  filter: invert(1);
+  margin: .5em;
+}
+
+.recipe-image {
+  background-image: url("https://spoonacular.com/recipeImages/595736-556x370.jpg");
+  background-size: cover;
+}
+.recipe-graphics {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 12em;
+}
+
+div {
+  background-color: #dd6e42;
+  border-radius: 50%;
+  margin: .5em;
+}
+
+/* RECIPE PAGE */
+
+.recipe-page {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  background-color: #c0d6df;
+  grid-gap: 1em;
+  padding: 1em;
+}
+
+.recipe-page-image {
+  grid-area: 1 / 1 / 2 / 2;
+  width: 100%;
+}
+
+.recipe-page-name {
+  grid-area: 2 / 1 / 3 / 2;
+  padding: 1em;
+  background-color: #eaeaea
+}
+
+.tags {
+  grid-area: 3 / 1 / 4 / 2;
+  padding: 1em;
+  background-color: #eaeaea
+}
+
+.ingredients {
+  grid-area: 1 / 2 / 2 / 3;
+  padding: 1em;
+  background-color: #eaeaea
+}
+
+.instructions {
+  grid-area: 2 / 2 / 4 / 3;
+  padding: 1em;
+  background-color: #eaeaea
+}
