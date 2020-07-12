@@ -2,40 +2,84 @@ const recipeCardsSection = document.querySelector('.recipe-cards')
 const pageBody = document.querySelector('body');
 const homeSection = document.querySelector('.home-view');
 const singleRecipeSection = document.querySelector('.single-recipe-view');
+const listSection = document.querySelector('.list-view');
+const welcomeHeading = document.querySelector('.welcome-heading');
 let recipes, user; 
 
 window.onload = setUpHomePage; 
-//instantiate random User on page load as well, and display their name in H2
 
 pageBody.addEventListener('click', clickAnalyzer);
 
 function clickAnalyzer(event) {
   if (event.target.classList.contains('heart')) {
     toggleRecipeToUserFavorites(event);
-    indicateRecipeInFavorites(event, 'heart');  
+    toggleRecipeIconDisplay(event, 'heart');  
   } else if (event.target.classList.contains('cookbook')) {
     toggleRecipeToRecipesToCook(event)
-    indicateRecipeInFavorites(event, 'recipe');
+    toggleRecipeIconDisplay(event, 'cookbook');
   } else if (event.target.closest('.recipe-card')) {
     displaySingleRecipe(event);
   } else if (event.target.closest('header')) {
     event.preventDefault();
-    console.log('clicking header!')
-    //call other function & pass in event to analyze what was clicked in menu (search bar button, one of the filters, or one of the dropdowns under My Recipe Box)
+    determineHeaderClick(event); 
   };
+}
+
+function determineHeaderClick(event) {
+  if (event.target.classList.contains('category')) {
+    getRecipesInCategory(event);
+  };
+  if (event.target.classList.contains('app-title')) {
+    changeView(homeSection, singleRecipeSection, listSection);
+    displayRecipes(recipes);
+  };
+  if (event.target.id === 'favorite-recipes') {
+    displayRecipeBoxH2('Favorite Recipes');
+    displayRecipes(user.favoriteRecipes);
+  };
+  if (event.target.id === 'recipes-to-cook') {
+    displayRecipeBoxH2('Recipes to Cook');
+    displayRecipes(user.recipesToCook);
+  };
+  if (event.target.id === 'grocery-list') {
+    changeView(listSection, homeSection, singleRecipeSection);
+    createGroceryList();
+  }
+}
+
+function createGroceryList() {
+  //need empty array (which will become array of objects as grocery list)
+  //Take user.recipesToCook array
+  //for each recipe in it, iterate through its ingredients list
+  //for each recipe ingredient, user.pantry.checkIngredientStockInPantry(recipeIngredient) to get back missing amount of that ingredient
+  //add amount + ingredient.unit + ingredient name into an object & add to the empty array
+  //after iteration is done return that array of objects as the grocery list
+  //then create function to display Grocery List
+}
+
+function getRecipesInCategory(event) {
+  let category = event.target.innerText;
+  let recipesInCategory = recipes.filter(recipe => {
+    let categoryTags = recipe.mapCategoryToTag(category);
+    return recipe.checkRecipeCategory(categoryTags);
+  });
+  displayWelcomeH2(category);
+  displayRecipes(recipesInCategory);
 }
 
 function toggleRecipeToUserFavorites(event) {
   let recipe = determineRecipeToDisplay(event); 
   user.toggleFavoriteRecipe(recipe); 
+  recipe.toggleFavoritesStatus();
 }
 
 function toggleRecipeToRecipesToCook(event) {
   let recipe = determineRecipeToDisplay(event);
   user.toggleRecipeToCook(recipe);
+  recipe.toggleRecipesToCookStatus(); 
 }
 
-function indicateRecipeInFavorites(event, icon) {
+function toggleRecipeIconDisplay(event, icon) {
   if (event.target.classList.contains('inactive')) {
     event.target.src = `assets/${icon}-active.png`;
     event.target.classList.remove('inactive');
@@ -51,31 +95,33 @@ function setUpHomePage() {
   recipes = instantiateRecipes(recipeData);
   displayRecipes(recipes);
   createRandomUser(); 
-  displayUserName(); 
+  displayWelcomeH2(); 
 }
 
 function instantiateRecipes(recipeData) {
   return recipeData.map(recipe => new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags)); 
 }
 
-function displayRecipes(recipes) {
-  recipes.forEach((recipe, index) => {
+function displayRecipes(recipesList) {
+  recipeCardsSection.innerHTML = '';
+  recipesList.forEach((recipeInList) => {
+    let index = recipes.findIndex(recipe => recipe.name === recipeInList.name);
     recipeCardsSection.insertAdjacentHTML('beforeend', `
       <article class="recipe-card" id="card${index}">
-        <div class="recipe-img" style="background-image: url(${recipe.image})">
+        <div class="recipe-img" style="background-image: url(${recipeInList.image})">
           <div class="heart-icon">
-            <img src="assets/heart-inactive.png" class="heart inactive">
+            <img src="assets/heart-${recipeInList.favoritesStatus}.png" class="heart ${recipeInList.favoritesStatus}">
           </div>
           <div class="cook-icon">
-            <img src="assets/recipe-inactive.png" class="cookbook inactive">
+            <img src="assets/cookbook-${recipeInList.recipesToCookStatus}.png" class="cookbook ${recipeInList.recipesToCookStatus}">
           </div>
         </div>
         <div class="recipe-name">
-          <h5>${recipe.name}</h5>
+          <h5 class="recipe-title">${recipeInList.name}</h5>
         </div>
       </article>
     `)
-  })
+  });
 }
 
 function createRandomUser() {
@@ -83,20 +129,24 @@ function createRandomUser() {
   user = new User(usersData[randomIndex]);
 }
 
-function displayUserName() {
-  let welcomeHeading = document.querySelector('.welcome-heading');
-  welcomeHeading.innerText = `Welcome, ${user.name}! Browse Our Recipes Below.`;
+function displayWelcomeH2(category = 'Recipes') {
+  welcomeHeading.innerText = `Welcome, ${user.name}! Browse Our ${category} Below.`;
+}
+
+function displayRecipeBoxH2(pageTitle) {
+  welcomeHeading.innerText = `${user.name}'s ${pageTitle}`;
 }
 
 function displaySingleRecipe(event) {
-  changeToSingleRecipeView();
+  changeView(singleRecipeSection, homeSection, listSection);
   const recipe = determineRecipeToDisplay(event);
   displayRecipeDetails(recipe);
 }
 
-function changeToSingleRecipeView() {
-  homeSection.classList.add('hidden');
-  singleRecipeSection.classList.remove('hidden');
+function changeView(activeView, viewToHide1, viewToHide2) {
+  activeView.classList.remove('hidden');
+  viewToHide1.classList.add('hidden');
+  viewToHide2.classList.add('hidden');
 }
 
 function determineRecipeToDisplay(event) {
