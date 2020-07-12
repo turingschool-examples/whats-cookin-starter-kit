@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  margin: 1em 5em 1em 5em;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #8e9aaf;
+  padding: 1em;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-start;
+  background-color: #8e9aaf;
+  padding: 1em;
+}
+
+button {
+  margin: 1em;
+  background-color: #dee2ff;
+}
+
+.page-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+}
+
+.main-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  background-color: #cbc0d3;
+  padding: 1em;
+}
