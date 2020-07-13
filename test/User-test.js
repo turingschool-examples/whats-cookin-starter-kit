@@ -164,33 +164,13 @@ describe('User', function() {
     expect(user1.getSavedRecipes()).to.deep.equal([recipe1, recipe2]);
   });
 
-  it('should be able to search saved recipes by name or by ingredients', function() {
-    const ingredientsList = [
-      {
-        id: 20,
-        name: 'wheat flour',
-        estimatedCostInCents: 142
-      },
-      {
-        id: 3,
-        name: 'maple syrup',
-        estimatedCostInCents: 582
-      },
-      {
-        id: 18,
-        name: 'eggs',
-        estimatedCostInCents: 472
-      }
-    ];
+  it('should be able to return a combined list of all saved recipes', function() {
+
     user1.toggleFavoriteRecipe(recipe1);
-    user1.toggleFavoriteRecipe(recipe2);
+    user1.toggleRecipeToCook(recipe2);
 
-    expect(user1.searchByRecipeOrIngr("cookies", ingredientsList)).to.deep.equal([recipe1]);
-    expect(user1.searchByRecipeOrIngr("cOokIEs", ingredientsList)).to.deep.equal([recipe1]);
+    let savedRecipes = user1.getSavedRecipes(); 
 
-    expect(user1.searchByRecipeOrIngr("maple", ingredientsList)).to.deep.equal([recipe2]);
-    expect(user1.searchByRecipeOrIngr("MaPlE", ingredientsList)).to.deep.equal([recipe2]);
-
-    expect(user1.searchByRecipeOrIngr("peanut butter", ingredientsList)).to.deep.equal([]);
+    expect(savedRecipes).to.deep.equal([recipe1, recipe2])
   });
 });

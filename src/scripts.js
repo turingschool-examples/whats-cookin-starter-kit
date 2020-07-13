@@ -4,7 +4,7 @@ const homeSection = document.querySelector('.home-view');
 const singleRecipeSection = document.querySelector('.single-recipe-view');
 const listSection = document.querySelector('.list-view');
 const welcomeHeading = document.querySelector('.welcome-heading');
-const searchBar = document.querySelector('.search-bar')
+const searchBar = document.querySelector('.search-bar');
 let recipes, user, ingredients; 
 
 window.onload = setUpHomePage; 
@@ -50,8 +50,18 @@ function determineHeaderClick(event) {
     createGroceryList();
   };
   if (event.target.classList.contains('search-button') && searchBar.placeholder === 'Search saved recipes') {
-    getSavedRecipesFromSearch();
+    // let recipesToDisplay = getSavedRecipesFromSearch();
+    let savedRecipes = user.getSavedRecipes();
+    let recipesToDisplay = getRecipesFromSearch(savedRecipes);
+    displayRecipeBoxH2('Saved Recipes Search Results');
+    displayRecipes(recipesToDisplay);
   };
+  if (event.target.classList.contains('search-button') && searchBar.placeholder === 'Search recipes') {
+    // let recipesToDisplay = getAllRecipesFromSearch(); 
+    let recipesToDisplay = getRecipesFromSearch(recipes);
+    displayRecipeBoxH2('Search Results');
+    displayRecipes(recipesToDisplay);
+  }
 }
 
 function changeSearchBarText(text) {
@@ -208,25 +218,16 @@ function createInstructionsList(recipe) {
   }, '');
 }
 
-//this is now in user class too
 function getIngredientName(ingredientId) {
   const ingredient = ingredientsData.find(ingredient => ingredient.id === ingredientId);
   return ingredient.name; 
 }
 
-function getSavedRecipesFromSearch() {
-  let userQuery = document.querySelector('.search-bar').value;
-  recipesToDisplay = user.searchByRecipeOrIngr(userQuery, ingredients);
-  displayRecipeBoxH2('Saved Recipes Search Results');
-  displayRecipes(recipesToDisplay);
+function getRecipesFromSearch(recipesToSearch) {
+  let userQuery = searchBar.value.toLowerCase();
+  return recipesToSearch.filter(recipe => {
+    if (recipe.name.toLowerCase().includes(userQuery) || recipe.ingredients.find(ingredient => getIngredientName(ingredient.id).includes(userQuery))) {
+      return recipe;
+    };
+  });
 }
-
-
-//function below needed to convert ingredient search term to an id so can then use recipe class to check if recipe ingredients have that id ;maybe move to recipe class 
-// function convertSearchTermToId(searchTerm) {
-//   return ingredientsData.forEach(ingredient => {
-//     if (ingredient.name === searchTerm) {
-//       return ingredient.id;
-//     } 
-//   });
-// }

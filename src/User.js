@@ -34,25 +34,6 @@ class User {
   getSavedRecipes() {
     return this.favoriteRecipes.concat(this.recipesToCook);
   }
-
-  searchByRecipeOrIngr(userQuery, ingredientsList) {
-    userQuery = userQuery.toLowerCase();
-    let savedRecipes = this.getSavedRecipes();
-    let filteredRecipes = savedRecipes.filter(recipe => {
-      if (recipe.name.toLowerCase().includes(userQuery) || recipe.ingredients.find(ingredient => this.getIngredientName(ingredientsList, ingredient.id).includes(userQuery))) {
-        return recipe;
-      };
-    });
-    return filteredRecipes;
-  }
-
-  getIngredientName(ingredientsList, ingredientId) {
-    const matchingIngredient = ingredientsList.find(ingredient => ingredient.id === ingredientId);
-    if (matchingIngredient === undefined) {
-      return '';
-    }
-    return matchingIngredient.name;
-  }
 }
 
 
