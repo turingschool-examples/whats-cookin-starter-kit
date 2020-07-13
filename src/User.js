@@ -1,12 +1,11 @@
-const ingredientInfo = require('../data/ingredients').ingredientsData;
-
 class User {
-  constructor({ name, id, pantry }) {
-    this.name = name;
-    this.id = id;
-    this.pantry = pantry;
+  constructor(userData, ingredientsData) {
+    this.name = userData.name;
+    this.id = userData.id;
+    this.pantry = userData.pantry;
     this.favoriteRecipes = [];
-    this.recipesToCook = [];
+		this.recipesToCook = [];
+		this.allIngredients = ingredientsData;
   };
 
   addFavoriteRecipe(recipe) {
@@ -70,7 +69,7 @@ class User {
 	};
 
   filterFavoriteRecipesByIngredient(item) {
-		const inputtedItemID = (ingredientInfo.find(ingredient => ingredient.name === item)).id
+		const inputtedItemID = (this.allIngredients.find(ingredient => ingredient.name === item)).id
 		return this.favoriteRecipes.reduce((foundRecipes, recipe) => {
 			recipe.ingredients.find(ingredient => {
 				if (ingredient.id === inputtedItemID) {
@@ -81,7 +80,7 @@ class User {
   };
   
   filterRecipesToCookByIngredient(item) {
-		const inputtedItemID = (ingredientInfo.find(ingredient => ingredient.name === item)).id
+		const inputtedItemID = (this.allIngredients.find(ingredient => ingredient.name === item)).id
 		return this.recipesToCook.reduce((foundRecipes, recipe) => {
 			recipe.ingredients.find(ingredient => {
 				if (ingredient.id === inputtedItemID) {
@@ -92,4 +91,6 @@ class User {
 	};
 };
 
-module.exports = User;
+if (typeof module !== 'undefined') {
+  module.exports = User;
+};
