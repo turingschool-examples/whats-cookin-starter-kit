@@ -2,20 +2,235 @@ const chai = require('chai');
 const expect = chai.expect;
 const Recipe = require('../src/Recipe');
 const User = require('../src/User');
-const testData = require('../data/test-data');
-const recipeTestData = testData.recipeTestData;
-const usersTestData = testData.usersTestData;
-
 
 describe('User', () => {
-	let user, recipe1, recipe2, recipe3;
-	beforeEach(() => {
-		user = new User(usersTestData[0]);
-		recipe1 = new Recipe(recipeTestData[0]);
-		recipe2 = new Recipe(recipeTestData[1]);
-		recipe3 = new Recipe(recipeTestData[2]);
+	let ingredients, user, recipe1, recipe2, recipe3;
+  beforeEach(() => {
+    ingredients = [
+      {
+        "id": 11,
+        "name": "wheat flour",
+        "estimatedCostInCents": 142
+      },
+      {
+        "id": 22,
+        "name": "bicarbonate of soda",
+        "estimatedCostInCents": 582
+      },
+      {
+        "id": 1123,
+        "name": "eggs",
+        "estimatedCostInCents": 472
+      },
+      {
+        "id": 44,
+        "name": "sucrose",
+        "estimatedCostInCents": 902
+      },
+      {
+        "id": 55,
+        "name": "instant vanilla pudding",
+        "estimatedCostInCents": 660
+      },
+      {
+        "id": 66,
+        "name": "brown sugar",
+        "estimatedCostInCents": 559
+      },
+      {
+        "id": 77,
+        "name": "salt",
+        "estimatedCostInCents": 280
+      },
+      {
+        "id": 88,
+        "name": "fine sea salt",
+        "estimatedCostInCents": 528
+      },
+      {
+        "id": 99,
+        "name": "semi sweet chips",
+        "estimatedCostInCents": 253
+      },
+      {
+        "id": 00,
+        "name": "unsalted butter",
+        "estimatedCostInCents": 617
+      },
+      {
+        "estimatedCostInCents": 926
+      }
+    ];
+    user = new User(
+      {
+        "name": "Nicole",
+        "id": 1,
+        "pantry": [
+          {
+            "ingredient": 11,
+            "amount": 4
+          },
+          {
+            "ingredient": 00,
+            "amount": 4
+          },
+          {
+            "ingredient": 1123,
+            "amount": 10
+          },
+          {
+            "ingredient": 44,
+            "amount": 2
+          },
+          {
+            "ingredient": 55,
+            "amount": 2
+          }
+        ]
+      }, ingredients);
+		recipe1 = new Recipe({
+      "id": 1111,
+      "image": "image",
+      "ingredients": [
+        {
+          "id": 11,
+          "quantity": {
+            "amount": 1.5,
+            "unit": "c"
+          }
+        },
+        {
+          "id": 22,
+          "quantity": {
+            "amount": 0.5,
+            "unit": "tsp"
+          }
+        },
+        {
+          "id": 1123,
+          "quantity": {
+            "amount": 1,
+            "unit": "large"
+          }
+        },
+        {
+          "id": 44,
+          "quantity": {
+            "amount": 1,
+            "unit": "large"
+          }
+        },
+        {
+          "id": 55,
+          "quantity": {
+            "amount": 0.5,
+            "unit": "c"
+          }
+        }
+      ],
+      "instructions": [
+        {
+          "instruction": "Do the thing",
+          "number": 1
+        },
+        {
+          "instruction": "Then another thing",
+          "number": 2
+        },
+        {
+          "instruction": "Lastly, the thing",
+          "number": 3
+        },
+      ],
+      "name": "Loaded Chocolate Chip Pudding Cookie Cups",
+      "tags": [
+        "lunch",
+        "sauce",
+        "main dish"
+      ]
+    }, ingredients);
+		recipe2 = new Recipe({
+      "id": 2222,
+      "image": "image",
+      "ingredients": [
+        {
+          "id": 66,
+          "quantity": {
+            "amount": 1.5,
+            "unit": "cups"
+          }
+        },
+        {
+          "id": 77,
+          "quantity": {
+            "amount": 1,
+            "unit": "tablespoon"
+          }
+        },
+        {
+          "id": 88,
+          "quantity": {
+            "amount": 0.25,
+            "unit": "cup"
+          }
+        },
+        {
+          "id": 99,
+          "quantity": {
+            "amount": 1,
+            "unit": "tablespoon"
+          }
+        }
+      ],
+      "instructions": [
+        {
+          "instruction": "COOK STUFF",
+          "number": 1
+        },
+        {
+          "instruction": "cook some more stuff",
+          "number": 2
+        }
+      ],
+      "name": "Maple Dijon Apple Cider Grilled Pork Chops",
+      "tags": [
+        "lunch",
+        "main course",
+        "main dish",
+        "dinner"
+      ]
+    }, ingredients);
+		recipe3 = new Recipe({
+      "id": 3333,
+      "image": "image",
+      "ingredients": [
+        {
+          "id": 00,
+          "quantity": {
+            "amount": 5,
+            "unit": "teaspoons"
+          }
+        },
+        {
+          "id": 66,
+          "quantity": {
+            "amount": 8,
+            "unit": "tablespoons"
+          }
+        }
+      ],
+      "instructions": [
+        {
+          "instruction": "Do the thing",
+          "number": 1
+        }
+      ],
+      "name": "Dirty Steve's Original Wing Sauce",
+      "tags": [
+        "sauce"
+      ]
+    }, ingredients);
 	});
-
   it('Should be a function', () => {
     expect(User).to.be.a('function');
   });
