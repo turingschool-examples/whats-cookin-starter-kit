@@ -4,7 +4,8 @@ const homeSection = document.querySelector('.home-view');
 const singleRecipeSection = document.querySelector('.single-recipe-view');
 const listSection = document.querySelector('.list-view');
 const welcomeHeading = document.querySelector('.welcome-heading');
-let recipes, user; 
+const searchBar = document.querySelector('.search-bar')
+let recipes, user, ingredients; 
 
 window.onload = setUpHomePage; 
 
@@ -32,19 +33,29 @@ function determineHeaderClick(event) {
   if (event.target.classList.contains('app-title')) {
     changeView(homeSection, singleRecipeSection, listSection);
     displayRecipes(recipes);
+    changeSearchBarText('Search recipes');
   };
   if (event.target.id === 'favorite-recipes') {
     displayRecipeBoxH2('Favorite Recipes');
     displayRecipes(user.favoriteRecipes);
+    changeSearchBarText('Search saved recipes');
   };
   if (event.target.id === 'recipes-to-cook') {
     displayRecipeBoxH2('Recipes to Cook');
     displayRecipes(user.recipesToCook);
+    changeSearchBarText('Search saved recipes');
   };
   if (event.target.id === 'grocery-list') {
     changeView(listSection, homeSection, singleRecipeSection);
     createGroceryList();
-  }
+  };
+  if (event.target.classList.contains('search-button') && searchBar.placeholder === 'Search saved recipes') {
+    getSavedRecipesFromSearch();
+  };
+}
+
+function changeSearchBarText(text) {
+  searchBar.placeholder = text; 
 }
 
 function createGroceryList() {
@@ -57,42 +68,9 @@ function createGroceryList() {
   //then create function to display Grocery List
 }
 
-function getRecipesInCategory(event) {
-  let category = event.target.innerText;
-  let recipesInCategory = recipes.filter(recipe => {
-    let categoryTags = recipe.mapCategoryToTag(category);
-    return recipe.checkRecipeCategory(categoryTags);
-  });
-  displayWelcomeH2(category);
-  displayRecipes(recipesInCategory);
-}
-
-function toggleRecipeToUserFavorites(event) {
-  let recipe = determineRecipeToDisplay(event); 
-  user.toggleFavoriteRecipe(recipe); 
-  recipe.toggleFavoritesStatus();
-}
-
-function toggleRecipeToRecipesToCook(event) {
-  let recipe = determineRecipeToDisplay(event);
-  user.toggleRecipeToCook(recipe);
-  recipe.toggleRecipesToCookStatus(); 
-}
-
-function toggleRecipeIconDisplay(event, icon) {
-  if (event.target.classList.contains('inactive')) {
-    event.target.src = `assets/${icon}-active.png`;
-    event.target.classList.remove('inactive');
-    event.target.classList.add('active');
-  } else {
-    event.target.src = `assets/${icon}-inactive.png`; 
-    event.target.classList.remove('active');
-    event.target.classList.add('inactive');
-  };
-}
-
 function setUpHomePage() {
   recipes = instantiateRecipes(recipeData);
+  ingredients = instantiateIngredients(ingredientsData);
   displayRecipes(recipes);
   createRandomUser(); 
   displayWelcomeH2(); 
@@ -100,6 +78,10 @@ function setUpHomePage() {
 
 function instantiateRecipes(recipeData) {
   return recipeData.map(recipe => new Recipe(recipe.id, recipe.image, recipe.ingredients, recipe.instructions, recipe.name, recipe.tags)); 
+}
+
+function instantiateIngredients(ingredientsData) {
+  return ingredientsData.map(ingredient => new Ingredient(ingredient)); 
 }
 
 function displayRecipes(recipesList) {
@@ -126,11 +108,45 @@ function displayRecipes(recipesList) {
 
 function createRandomUser() {
   let randomIndex = Math.floor(Math.random() * usersData.length);
-  user = new User(usersData[randomIndex]);
+  user = new User(usersData[randomIndex].name, usersData[randomIndex].id, usersData[randomIndex].pantry);
 }
 
 function displayWelcomeH2(category = 'Recipes') {
   welcomeHeading.innerText = `Welcome, ${user.name}! Browse Our ${category} Below.`;
+}
+
+function getRecipesInCategory(event) {
+  let category = event.target.innerText;
+  let recipesInCategory = recipes.filter(recipe => {
+    let categoryTags = recipe.mapCategoryToTag(category);
+    return recipe.checkRecipeCategory(categoryTags);
+  });
+  displayWelcomeH2(category);
+  displayRecipes(recipesInCategory);
+}
+
+function toggleRecipeToUserFavorites(event) {
+  let recipe = determineRecipeToDisplay(event);
+  user.toggleFavoriteRecipe(recipe);
+  recipe.toggleFavoritesStatus();
+}
+
+function toggleRecipeToRecipesToCook(event) {
+  let recipe = determineRecipeToDisplay(event);
+  user.toggleRecipeToCook(recipe);
+  recipe.toggleRecipesToCookStatus();
+}
+
+function toggleRecipeIconDisplay(event, icon) {
+  if (event.target.classList.contains('inactive')) {
+    event.target.src = `assets/${icon}-active.png`;
+    event.target.classList.remove('inactive');
+    event.target.classList.add('active');
+  } else {
+    event.target.src = `assets/${icon}-inactive.png`;
+    event.target.classList.remove('active');
+    event.target.classList.add('inactive');
+  };
 }
 
 function displayRecipeBoxH2(pageTitle) {
@@ -192,17 +208,23 @@ function createInstructionsList(recipe) {
   }, '');
 }
 
-
+//this is now in user class too
 function getIngredientName(ingredientId) {
   const ingredient = ingredientsData.find(ingredient => ingredient.id === ingredientId);
   return ingredient.name; 
 }
 
+function getSavedRecipesFromSearch() {
+  let userQuery = document.querySelector('.search-bar').value;
+  recipesToDisplay = user.searchByRecipeOrIngr(userQuery, ingredients);
+  displayRecipeBoxH2('Saved Recipes Search Results');
+  displayRecipes(recipesToDisplay);
+}
 
 
 //function below needed to convert ingredient search term to an id so can then use recipe class to check if recipe ingredients have that id ;maybe move to recipe class 
-// const convertSearchTermToId = searchTerm => {
-//   ingredientsData.forEach(ingredient => {
+// function convertSearchTermToId(searchTerm) {
+//   return ingredientsData.forEach(ingredient => {
 //     if (ingredient.name === searchTerm) {
 //       return ingredient.id;
 //     } 
