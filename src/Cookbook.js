@@ -1,8 +1,7 @@
-const ingredientInfo = require('../data/ingredients').ingredientsData;
-
 class Cookbook {
-  constructor(allRecipes) {
+  constructor(allRecipes, ingredientsData) {
     this.allRecipes = allRecipes;
+    this.allIngredients = ingredientsData;
   };
 
   filterAllRecipesByTag(tag) {
@@ -15,7 +14,7 @@ class Cookbook {
   };
 
   filterAllRecipesByIngredient(item) {
-    const inputtedItemID = (ingredientInfo.find(ingredient => ingredient.name.includes(item))).id;
+    const inputtedItemID = (this.allIngredients.find(ingredient => ingredient.name.includes(item))).id;
 		return this.allRecipes.reduce((foundRecipes, recipe) => {
 			recipe.ingredients.filter(ingredient => {
 				if (ingredient.id === inputtedItemID) {
@@ -26,4 +25,6 @@ class Cookbook {
   };
 };
 
-module.exports = Cookbook;
+if (typeof module !== 'undefined') {
+  module.exports = Cookbook;
+};
