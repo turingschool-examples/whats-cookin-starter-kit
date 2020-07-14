@@ -1,5 +1,6 @@
 //query selectors
 const recipeCard = document.querySelector(".main-page");
+const recipeImage = document.querySelector(".recipe-image");
 const username = document.querySelector(".username");
 let cookbook;
 let user;
@@ -38,7 +39,8 @@ function displayAllRecipes() {
   cookbook.allRecipes.forEach(recipe => {
     recipeCard.innerHTML += `
     <article class="recipe-card">
-      <section class="recipe-graphics recipe-image">
+      <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">
+      <section class="recipe-graphics">
         <div>
           <input type="image" src="../assets/heart.png" class="icon">
         </div>
