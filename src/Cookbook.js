@@ -1,6 +1,6 @@
 class Cookbook {
-  constructor(allRecipes, ingredientsData) {
-    this.allRecipes = allRecipes;
+  constructor(recipeData, ingredientsData) {
+    this.allRecipes = recipeData;
     this.allIngredients = ingredientsData;
   };
 

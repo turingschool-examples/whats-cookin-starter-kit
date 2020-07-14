@@ -1,5 +1,7 @@
 //query selectors
+const recipeCard = document.querySelector(".main-page");
 const username = document.querySelector(".username");
+let cookbook;
 let user;
 
 //event listeners
@@ -8,8 +10,8 @@ window.onload = loadPage();
 //event handlers
 function loadPage() {
   generateRandomUser();
-  // generateCookbook();
-  // displayRandomRecipes();
+  generateCookbook();
+  displayAllRecipes();
 };
 
 //other functions
@@ -24,14 +26,28 @@ function generateRandomUser() {
 };
 
 function generateCookbook() {
-
-};
-
-function displayRandomRecipes() {
-
+  cookbook = new Cookbook(recipeData, ingredientsData);
 };
 
 //DOM manipulation
 function displayUsername() {
   username.innerText = `Username: ${user.name}`;
+};
+
+function displayAllRecipes() {
+  cookbook.allRecipes.forEach(recipe => {
+    recipeCard.innerHTML += `
+    <article class="recipe-card">
+      <section class="recipe-graphics recipe-image">
+        <div>
+          <input type="image" src="../assets/heart.png" class="icon">
+        </div>
+        <div>
+          <input type="image" src="../assets/frying-pan.png" class="icon">
+        </div>
+      </section>
+      <h4>${recipe.name}</h4>
+    </article>
+    `
+  })
 };
