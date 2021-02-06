@@ -9,17 +9,15 @@ const data = require('../data/helper-data.js')
 describe('Ingredient', () => {
   
   it('should instantiate a new Ingredient object', () => {
-    let ingredient = new Ingredient()
+    let ingredient = new Ingredient(data.ingredientsData[0])
     expect(ingredient).to.be.an.instanceof(Ingredient)
   });
 
   it('should have an id, name and estimated cost', () => {
-    
-    let ingredient = new Ingredient(data.ingredientsData[0])
-    console.log(ingredient)
+    const ingredient = new Ingredient(data.ingredientsData[0])
     expect(ingredient.id).to.deep.equal(11);
     expect(ingredient.name).to.deep.equal('salt');
     expect(ingredient.estimatedCostInCents).to.deep.equal(343)
-  })
+  });
 
 })
