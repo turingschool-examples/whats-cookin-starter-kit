@@ -12,4 +12,9 @@ In this project, you will be creating a recipe tracking / meal planning applicat
 
 **Technologies used:**
 
+**DTR:**
+https://gist.github.com/cbmackintosh/a89e089c47e40c4c39ef81cf0f88f870
+
+**Design Inspirations:**
+https://gist.github.com/cbmackintosh/b5e3bc69b09c0c6a9dc5abc8d16556f4
 
