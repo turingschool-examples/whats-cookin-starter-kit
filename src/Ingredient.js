@@ -1,6 +1,9 @@
 
 class Ingredient {
-  contstructor() {
+  contstructor(ingredientInfo) {
+    this.id = 999;
+    this.name = ingredientInfo.name;
+    this.estimatedCostInCents = ingredientInfo.estimatedCostInCents;
 
   }
 }
