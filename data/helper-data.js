@@ -78,7 +78,7 @@ const recipeData = [
         }
       },
       {
-        "id": 1011,
+        "id": 1010,
         "quantity": {
           "amount": 8,
           "unit": ""
@@ -198,7 +198,7 @@ const usersData = [
         "amount": 4
       },
       {
-        "ingredient": 1011,
+        "ingredient": 1010,
         "amount": 4
       },
       {
