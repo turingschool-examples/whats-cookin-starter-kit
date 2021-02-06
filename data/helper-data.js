@@ -183,7 +183,7 @@ const recipeData = [
       "main course",
       "main dish",
       "dinner",
-      "Party platter"
+      "party platter"
     ]
   }
 ];
