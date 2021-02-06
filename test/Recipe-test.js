@@ -22,13 +22,12 @@ describe('Recipe', () => {
 
   it('should be able to determine the name of ingredients needed', () => {
     let recipe = new Recipe(data.recipeData[0]);
-    console.log(recipe);
-    expect(recipe.findIngredientNames()).to.deep.equal(['salt', 'olives', 'sugar', 'cumin']);
+    expect(recipe.findIngredientNames(data.ingredientsData)).to.deep.equal(['salt', 'olives', 'sugar', 'cumin']);
   })
 
   it('should be able to calculate the total cost of ingredients', () => {
     let recipe = new Recipe(data.recipeData[0]);
-    expect(recipe.calculateTotalCost()).to.deep.equal("$26.11");
+    expect(recipe.calculateTotalCost(data.ingredientsData)).to.deep.equal("$26.11");
   })
 
   it('should return its directions', () => {
