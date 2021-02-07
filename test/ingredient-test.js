@@ -22,4 +22,9 @@ describe('Ingredient', () => {
     expect(ingredient.name).to.equal('cheese');
     expect(ingredient.estimatedCostInCents).to.equal(350);
   })
+
+  it('should estimate its cost in dollars and cents', () => {
+    const calculatedCost = ingredient.calculateCost();
+    expect(calculatedCost).to.equal(3.50);
+  })
 })
