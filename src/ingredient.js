@@ -4,6 +4,11 @@ class Ingredient {
     this.name = name;
     this.estimatedCostInCents = estimatedCost
   }
+
+  calculateIngredientCost() {
+    let ingredientCost = this.estimatedCostInCents / 100;
+    return Number(ingredientCost.toFixed(2));
+  }
 }
 
 if (typeof module !== 'undefined') {
