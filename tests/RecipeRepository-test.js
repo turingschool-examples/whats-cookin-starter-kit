@@ -16,6 +16,17 @@ describe('RecipeRepository', function() {
 
   describe('Methods', function() {
 
-  })
+    it('should return a list of recipes filtered by tag', function() {
+      const recipeRepo = new RecipeRepository(testRecipes)
+      expect(recipeRepo.filterRecipesViaTags('testSingle')).to.deep.equal(
+        ["Loaded Chocolate Chip Pudding Cookie Cups","Dirty Steve's Original Wing Sauce","Elvis Pancakes"])
+    })
 
+    it('should be able to filter via multiple tags', function() {
+      const recipeRepo = new RecipeRepository(testRecipes)
+      expect(recipeRepo.filterRecipesViaTags('testMultiple1', 'testMultiple2')).to.deep.equal(
+        ["Loaded Chocolate Chip Pudding Cookie Cups", "Maple Dijon Apple Cider Grilled Pork Chops"]
+    })
+
+  })
 })
