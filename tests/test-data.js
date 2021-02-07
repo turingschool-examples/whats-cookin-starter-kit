@@ -48,9 +48,9 @@ const testRecipes = [
     ],
     "name": "Loaded Chocolate Chip Pudding Cookie Cups",
     "tags": [
-      "antipasti",
-      "starter",
-      "snack",
+      "testSingle",
+      "testMultiple1",
+      "testMultiple2",
       "appetizer",
       "antipasto",
       "hor d'oeuvre"
@@ -87,62 +87,6 @@ const testRecipes = [
           "amount": 1,
           "unit": "tablespoon"
         }
-      },
-      {
-        "id": 11215,
-        "quantity": {
-          "amount": 1,
-          "unit": "clove"
-        }
-      },
-      {
-        "id": 1012046,
-        "quantity": {
-          "amount": 1,
-          "unit": "tablespoon"
-        }
-      },
-      {
-        "id": 19911,
-        "quantity": {
-          "amount": 0.25,
-          "unit": "cup"
-        }
-      },
-      {
-        "id": 16112,
-        "quantity": {
-          "amount": 1,
-          "unit": "tablespoon"
-        }
-      },
-      {
-        "id": 10010062,
-        "quantity": {
-          "amount": 24,
-          "unit": "ounce"
-        }
-      },
-      {
-        "id": 1102047,
-        "quantity": {
-          "amount": 4,
-          "unit": "servings"
-        }
-      },
-      {
-        "id": 16124,
-        "quantity": {
-          "amount": 1,
-          "unit": "tablespoon"
-        }
-      },
-      {
-        "id": 1016168,
-        "quantity": {
-          "amount": 1,
-          "unit": "tablespoon"
-        }
       }
     ],
     "instructions": [
@@ -154,8 +98,8 @@ const testRecipes = [
     "name": "Maple Dijon Apple Cider Grilled Pork Chops",
     "tags": [
       "lunch",
-      "main course",
-      "main dish",
+      "testMultiple1",
+      "testMultiple2",
       "dinner"
     ]
   },
@@ -190,69 +134,6 @@ const testRecipes = [
           "amount": 4,
           "unit": "servings"
         }
-      },
-      {
-        "id": 2031,
-        "quantity": {
-          "amount": 4,
-          "unit": "teaspoons"
-        }
-      },
-      {
-        "id": 5100,
-        "quantity": {
-          "amount": 1,
-          "unit": "pound"
-        }
-      },
-      {
-        "id": 2009,
-        "quantity": {
-          "amount": 4,
-          "unit": "teaspoons"
-        }
-      },
-      {
-        "id": 1022020,
-        "quantity": {
-          "amount": 4,
-          "unit": "teaspoons"
-        }
-      },
-      {
-        "id": 6168,
-        "quantity": {
-          "amount": 8,
-          "unit": "cups"
-        }
-      },
-      {
-        "id": 9176,
-        "quantity": {
-          "amount": 0.5,
-          "unit": "cup"
-        }
-      },
-      {
-        "id": 2026,
-        "quantity": {
-          "amount": 4,
-          "unit": "teaspoons"
-        }
-      },
-      {
-        "id": 1042047,
-        "quantity": {
-          "amount": 1.5,
-          "unit": "tablespoons"
-        }
-      },
-      {
-        "id": 1042047,
-        "quantity": {
-          "amount": 4,
-          "unit": "teaspoons"
-        }
       }
     ],
     "instructions": [
@@ -263,7 +144,170 @@ const testRecipes = [
     ],
     "name": "Dirty Steve's Original Wing Sauce",
     "tags": [
-      "sauce"
+      "testSingle"
+    ]
+  },
+  {
+    "id": 741603,
+    "image": "https://spoonacular.com/recipeImages/741603-556x370.jpeg",
+    "ingredients": [
+      {
+        "id": 20081,
+        "quantity": {
+          "amount": 1,
+          "unit": "cup"
+        }
+      },
+      {
+        "id": 18371,
+        "quantity": {
+          "amount": 2,
+          "unit": "teaspoons"
+        }
+      },
+      {
+        "id": 9040,
+        "quantity": {
+          "amount": 12,
+          "unit": "servings"
+        }
+      },
+      {
+        "id": 20011,
+        "quantity": {
+          "amount": 1,
+          "unit": "cup"
+        }
+      }
+    ],
+    "instructions": [
+      {
+        "instruction": "Watch how to make this recipe.",
+        "number": 1
+      },
+      {
+        "instruction": "In a large bowl, whisk together buttermilk, eggs, baking powder, sugar, salt and butter.",
+        "number": 2
+      },
+      {
+        "instruction": "In another large bowl mix together all-purpose flour and buckwheat flour.",
+        "number": 3
+      }
+    ],
+    "name": "Elvis Pancakes",
+    "tags": [
+      "testSingle"
+    ]
+  },
+  {
+    "id": 562334,
+    "image": "https://spoonacular.com/recipeImages/562334-556x370.jpg",
+    "ingredients": [
+      {
+        "id": 2048,
+        "quantity": {
+          "amount": 2,
+          "unit": "teaspoons"
+        }
+      },
+      {
+        "id": 18371,
+        "quantity": {
+          "amount": 0.3333333333333333,
+          "unit": "teaspoon"
+        }
+      },
+      {
+        "id": 20090,
+        "quantity": {
+          "amount": 1.125,
+          "unit": "cup"
+        }
+      },
+      {
+        "id": 93784,
+        "quantity": {
+          "amount": 2,
+          "unit": "teaspoons"
+        }
+      }
+    ],
+    "instructions": [
+      {
+        "instruction": "Grease or spray oil a 9\u00d75 inch loaf pan.Preheat oven to 170 \u2013 200\u00b0F (lowest possible).",
+        "number": 1
+      },
+      {
+        "instruction": "Mix warm water with brown rice syrup, molasses, and yeast in a cup larger than 8 oz., as it may bubble over; set aside until foamy on the top, no more than 5 minutes.In the bowl of your mixer, beat the eggs at high speed in a large mixing bowl until large bubbles form, about 20 seconds.",
+        "number": 2
+      },
+      {
+        "instruction": "Whisk together the dry ingredients; set aside.",
+        "number": 3
+      }
+    ],
+    "name": "Name Search Test",
+    "tags": []
+  },
+  {
+    "id": 507921,
+    "image": "https://spoonacular.com/recipeImages/507921-556x370.jpg",
+    "ingredients": [
+      {
+        "id": 18371,
+        "quantity": {
+          "amount": 1,
+          "unit": "teaspoon"
+        }
+      },
+      {
+        "id": 19350,
+        "quantity": {
+          "amount": 0.25,
+          "unit": "cup"
+        }
+      },
+      {
+        "id": 1123,
+        "quantity": {
+          "amount": 1,
+          "unit": ""
+        }
+      },
+      {
+        "id": 1124,
+        "quantity": {
+          "amount": 2,
+          "unit": "large"
+        }
+      },
+      {
+        "id": 20081,
+        "quantity": {
+          "amount": 1,
+          "unit": "cup"
+        }
+      }
+    ],
+    "instructions": [
+      {
+        "instruction": "To make the Cupcakes: Preheat oven to 350 degrees. Line 12 cupcake tins with paper holders.",
+        "number": 1
+      },
+      {
+        "instruction": "Whisk together dry Fruit Cocktail Cupcakes ingredients.",
+        "number": 2
+      },
+      {
+        "instruction": "Add in wet Fruit Cocktail Cupcakes ingredients and stir with a rubber spatula until thoroughly combined. Fill cupcake tins evenly, and bake for 20 minutes or until thin knife inserted in center comes out clean.",
+        "number": 3
+      }
+    ],
+    "name": "3 Tag Search Test",
+    "tags": [
+      "testMultiple1",
+      "testMultiple2",
+      "testMultiple3"
     ]
   }
 ]
@@ -290,39 +334,9 @@ let testIngredients = [
     "estimatedCostInCents": 902
   },
   {
-    "id": 19206,
-    "name": "instant vanilla pudding",
-    "estimatedCostInCents": 660
-  },
-  {
     "id": 19334,
     "name": "brown sugar",
     "estimatedCostInCents": 559
-  },
-  {
-    "id": 2047,
-    "name": "salt",
-    "estimatedCostInCents": 280
-  },
-  {
-    "id": 1012047,
-    "name": "fine sea salt",
-    "estimatedCostInCents": 528
-  },
-  {
-    "id": 10019903,
-    "name": "semi sweet chips",
-    "estimatedCostInCents": 253
-  },
-  {
-    "id": 1145,
-    "name": "unsalted butter",
-    "estimatedCostInCents": 617
-  },
-  {
-    "id": 2050,
-    "name": "vanilla",
-    "estimatedCostInCents": 926
   },
   {
     "id": 1009016,
@@ -355,36 +369,6 @@ let testIngredients = [
     "estimatedCostInCents": 867
   },
   {
-    "id": 19911,
-    "name": "maple",
-    "estimatedCostInCents": 349
-  },
-  {
-    "id": 16112,
-    "name": "miso",
-    "estimatedCostInCents": 978
-  },
-  {
-    "id": 10010062,
-    "name": "pork chop",
-    "estimatedCostInCents": 834
-  },
-  {
-    "id": 1102047,
-    "name": "s&p",
-    "estimatedCostInCents": 524
-  },
-  {
-    "id": 16124,
-    "name": "soy sauce",
-    "estimatedCostInCents": 486
-  },
-  {
-    "id": 1016168,
-    "name": "sriracha sauce",
-    "estimatedCostInCents": 576
-  },
-  {
     "id": 1002030,
     "name": "black pepper",
     "estimatedCostInCents": 441
@@ -400,24 +384,9 @@ let testIngredients = [
     "estimatedCostInCents": 807
   },
   {
-    "id": 2031,
-    "name": "red pepper powder",
-    "estimatedCostInCents": 583
-  },
-  {
-    "id": 5100,
-    "name": "chicken wing",
-    "estimatedCostInCents": 593
-  },
-  {
     "id": 2009,
     "name": "red chili powder",
     "estimatedCostInCents": 499
-  },
-  {
-    "id": 1022020,
-    "name": "garlic powder",
-    "estimatedCostInCents": 344
   },
   {
     "id": 6168,
@@ -425,20 +394,47 @@ let testIngredients = [
     "estimatedCostInCents": 859
   },
   {
-    "id": 9176,
-    "name": "mangoes",
-    "estimatedCostInCents": 425
+    "id": 18371,
+    "name": "baking powder",
+    "estimatedCostInCents": 346
   },
   {
-    "id": 2026,
-    "name": "onion powder",
-    "estimatedCostInCents": 597
+    "id": 9040,
+    "name": "ripe banana",
+    "estimatedCostInCents": 331
   },
   {
-    "id": 1042047,
-    "name": "seasoned salt",
-    "estimatedCostInCents": 334
+    "id": 20011,
+    "name": "buck wheat flour",
+    "estimatedCostInCents": 865
+  },
+  {
+    "id": 1230,
+    "name": "buttermilk",
+    "estimatedCostInCents": 773
+  },
+
+  {
+    "id": 2048,
+    "name": "apple cider vinegar",
+    "estimatedCostInCents": 532
+  },
+  {
+    "id": 20090,
+    "name": "brown rice flour",
+    "estimatedCostInCents": 667
+  },
+  {
+    "id": 93784,
+    "name": "brown rice syrup",
+    "estimatedCostInCents": 126
+  },
+  {
+    "id": 1124,
+    "name": "egg albumen",
+    "estimatedCostInCents": 304
   }
+]
 
 module.exports = testRecipes;
 module.exports = testIngredients;
