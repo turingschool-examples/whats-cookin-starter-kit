@@ -1,0 +1,60 @@
+nav{
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    color: white;
+    font-family: fantasy;
+    background-color: lightcoral;
+}
+
+main {
+    display: grid;
+    grid-auto-flow: column;
+    justify-items: center;
+}
+
+.home-recipes {
+    justify-content: space-evenly;
+    display: flex;
+}
+
+.main-header {
+    justify-self: center;
+}
+
+.welcome-back {
+    justify-self: center;
+}
+
+.owned-ingredients {
+    text-align-last: center;
+    justify-self: center;
+    height: 40%;
+    width: 100%;
+}
+
+.ingredient-list {
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 75%;
+}
+
+.you-can-make {
+    justify-self: center;
+}
+
+
+
+
+::-webkit-scrollbar {
+    width: 1em;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
