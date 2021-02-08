@@ -6,7 +6,7 @@ class Ingredient {
   }
 
   calculateIngredientCost() {
-    let ingredientCost = this.estimatedCostInCents / 100;
+    const ingredientCost = this.estimatedCostInCents / 100;
     return Number(ingredientCost.toFixed(2));
   }
 }
