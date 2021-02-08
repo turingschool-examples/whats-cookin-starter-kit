@@ -1,14 +1,15 @@
 /* eslint-disable indent */
-class Recipe {
-  constructor(recipe) {
-        this.id = recipe.id;
-        this.image = recipe.image;
-        this.ingredients = recipe.ingredients
-        this.instructions = recipe.instructions;
-        this.name = recipe.name;
-        this.tags = recipe.tags;
+let ingredientsData = require('../data/ingredients.js')
 
-    }
+class Recipe {
+  constructor(id, image, ingredients, instructions, name, tags) {
+        this.id = id;
+        this.image = image;
+        this.ingredients = ingredients
+        this.instructions = instructions;
+        this.name = name;
+        this.tags = tags;
+  }
 
     generateIngredientNames(recipe) {
         recipe.ingredients.forEach(ingredient => {
@@ -17,16 +18,14 @@ class Recipe {
              if (ingredientData.id === id) {
                ingredient.name = ingredientData.name;
                ingredient.cost = ingredientData.estimatedCostInCents / 100;
+                 ((ingredient.cost / 100) * 100);
+                 Math.round(ingredient.cost)
              }
             })
         })
-
     }
 }
 
-
-module.exports = Recipe;
-
-// if (typeof module !== 'undefined') {
-//     module.exports = Recipe;
-// }
+if (typeof module !== 'undefined') {
+    module.exports = Recipe;
+}
