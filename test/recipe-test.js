@@ -68,7 +68,7 @@ describe("Recipe", () => {
       number: 3,
     };
 
-    receip1 = new Recipe(
+    recipe1 = new Recipe(
       1,
       "https://spoonacular.com/recipeImages/595736-556x370.jpg",
       [ingredient1, ingredient2, ingredient3],
@@ -96,6 +96,7 @@ describe("Recipe", () => {
       ingredient2,
       ingredient3,
     ]);
+
     expect(recipe1.instructions).to.deep.equal([
       instruction1,
       instruction2,
