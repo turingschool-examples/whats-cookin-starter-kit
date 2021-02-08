@@ -9,11 +9,19 @@
     <nav>
       <div class="home-recipes">
         <p>Home</p>
-        <p>Recipes</p>
+        <div class="dropdown">
+          <button class="dropbtn">Recipes</button>
+          <div class="dropdown-content">
+            <a href="#">By Dish Type</a>
+            <a href="#">By Ingredients</a>
+            <a href="#">All Recipes</a>
+          </div>
+        </div>
       </div>
       <h1 class="main-header">Whats Cookin</h1>
       <p class="welcome-back">Welcome Back, User!</p>
     </nav>
+  <section>
     <main>
       <article class="owned-ingredients">
         <h2>Ingredient List</h2>
@@ -41,10 +49,32 @@
           <ul>ingredient1: amount</ul>
         </div>
       </article>
-      <section class="you-can-make">
+      <aside class="you-can-make">
         <h2>Recipes you can make!</h2>
-        <img src="./images/wings.jpeg" alt="wings">
-      </section>
+        <div class="you-can-make-list">
+          <ol>Recipe 1</ol>
+          <ol>Recipe 1</ol>
+          <ol>Recipe 1</ol>
+          <ol>Recipe 1</ol>
+          <ol>Recipe 1</ol>
+          <ol>Recipe 1</ol>
+          <ol>Recipe 1</ol>
+          <ol>Recipe 1</ol>
+          <ol>Recipe 1</ol>
+        </div>
+      </aside>
+    </section>
+      <article class="you-should-try">
+        <h1>Recipes you should try!</h1>
+        <div class="random-recipe-bar">
+          <img src="./images/burger.jpeg" alt="wings">
+          <img src="./images/wings.jpeg" alt="wings">
+          <img src="./images/wings.jpeg" alt="wings">
+          <img src="./images/wings.jpeg" alt="wings">
+          <img src="./images/wings.jpeg" alt="wings">
+          <img src="./images/wings.jpeg" alt="wings">
+        </div>
+      </article>
     </main>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
