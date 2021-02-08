@@ -18,6 +18,7 @@ describe('Recipe', () => {
     expect(recipe.ingredients).to.deep.equal(ingredients);
     expect(recipe.instructions).to.deep.equal(instructions);
     expect(recipe.tags).to.deep.equal(tags);
+    console.log(recipe.ingredients)
   })
 
   it('should be able to determine the name of ingredients needed', () => {
