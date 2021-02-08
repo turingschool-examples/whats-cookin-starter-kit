@@ -57,7 +57,7 @@ const recipeData = [
     "image": "https://imageForRecipeOne",
     "ingredients": [
       {
-        "id": 11,
+        "id": 11,        
         "quantity": {
           "amount": 1,
           "unit": "cup"
@@ -183,7 +183,7 @@ const recipeData = [
       "main course",
       "main dish",
       "dinner",
-      "Party platter"
+      "party platter"
     ]
   }
 ];
@@ -247,6 +247,6 @@ const usersData = [
   }
 ];
 
-module.exports = usersData, 
+module.exports = {usersData, 
   recipeData, 
-  ingredientsData
+  ingredientsData}
