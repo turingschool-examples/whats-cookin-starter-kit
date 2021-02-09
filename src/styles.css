@@ -1,25 +1,52 @@
 /* ALL */
-html, body {
-  height: 100%;;
+* {
+  font-family: url("../bold_lining/Bold Lining.ttf");
 }
-main {
-height: 45%;
-display: flex;  
-justify-content: space-around;
-align-items: flex-end;
+
+html, body {
+  height: 100%;
+  font-family: inherit;
 }
 
 li {
   list-style-type: none;
 }
 /* MAIN */
+main {
+height: 45%;
+display: flex;  
+justify-content: space-between;
+align-items: flex-end;
+}
 
+/* USER BUTTONS */
 .buttonContainer {
   display: flex;
   flex-flow: column;
   align-items: flex-start;
-  height: 100%; 
-  align-self: center;
+  justify-content: space-around;
+  height: 65%; 
+  align-self: flex-start;
+  margin: 3%;
+}
+
+.buttonContainer > button {
+  border: 0;
+  border-radius: 10%;
+  color:rgb(140, 161, 160);
+  padding: 5%;
+}
+
+.buttonContainer > button:hover {
+  background-color: rgba(96, 184, 179, 0.9);
+}
+
+.buttonContainer > input {
+  background-color: transparent;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-color:rgb(140, 161, 160);
 }
 /* RADIO FORM */
 form {
@@ -29,10 +56,11 @@ form {
   align-items: space-between;
   align-content: space-between;
   justify-content: space-between;
-  width: 20%;
+  height: 15%;
+  width: 25%;
   padding: 3%;
-  border-radius: 20%;
-  align-self: center;
+  border-radius: 20px;
+  align-self: flex-end;
 }
 
 input[type="radio"] {
@@ -73,8 +101,35 @@ input[type="radio"] {
   flex-direction: row;
   flex: .5;
 } 
-
+/* UNFEATURED/HOVERED RECIPE */
 .recipe {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(97, 145, 160, 0.137);
+  background-size: cover;
+  height: 50%;
+  width: 80%;
+  border-radius: 10%;
+  padding-bottom: 40%;
+}
+
+.recipe-title {
+  margin: 10%;
+  font-size: 20px;
+  color: rgba(46, 97, 55, 0.5);
+}
+
+.recipe-img {
+  height: 125px;
+  width: 125px;
+  border-radius: 50%;
+  margin-left: -30%;
+  opacity: 0.85;
+  align-self: center;
+}
+
+/* Recipe When hovered */
+/* .recipe {
   display: flex;
   flex-direction: column;
   background-color: rgba(97, 145, 160, 0.411);
@@ -87,7 +142,6 @@ input[type="radio"] {
   align-self: flex-end;
   height: 30px;
   width: 30px;
-  /* margin: -5%; */
   background-image: url("https://image.flaticon.com/icons/png/512/109/109697.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -127,3 +181,7 @@ input[type="radio"] {
   align-self: center;
   opacity: 0.85;
 }
+/* HIDDEN */
+.hidden {
+  display: none;
+} 
