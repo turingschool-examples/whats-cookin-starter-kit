@@ -10,4 +10,4 @@ describe('RecipeRepo', () => {
     ingredient1 = new Ingredient(1, 'cheese', 350);
     ingredient2 = new Ingredient(2, 'wine', 1250);
   })
-})
+});
