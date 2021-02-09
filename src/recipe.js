@@ -1,5 +1,3 @@
-// const Ingredient = require("./ingredient.js");
-
 class Recipe {
   constructor(id, image, ingredients, instructions, name, tags) {
     this.id = id;
