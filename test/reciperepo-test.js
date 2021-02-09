@@ -1,6 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 const RecipeRepo = require('../src/reciperepo');
+const Recipe = require('../src/recipe');
 
 describe('RecipeRepo', () => {
   let recipe, buffaloChicken, beefNoodle;
@@ -63,7 +64,7 @@ describe('RecipeRepo', () => {
     };
   })
 
-  describe('RecipeRepo', () => {
+  describe('Properties', () => {
 
     it('should be a function', () => {
       expect(RecipeRepo).to.be.a('function');
@@ -73,7 +74,7 @@ describe('RecipeRepo', () => {
       expect(recipe).to.be.an.instanceof(RecipeRepo);
     });
 
-    it('should have no recipes by default', () => {
+    it('should have no recipe(s) by default', () => {
       expect(recipe.recipes).to.deep.equal([]);
     });
 
@@ -82,9 +83,20 @@ describe('RecipeRepo', () => {
       expect(recipe.recipes).to.deep.equal([buffaloChicken]);
     });
 
-    it('should be able to hold more than 1 recipe', () => {
+    it('should be able to hold mutiple recipes', () => {
       recipe = new RecipeRepo([buffaloChicken, beefNoodle]);
       expect(recipe.recipes).to.deep.equal([buffaloChicken, beefNoodle]);
+    });
+
+    it('should create a Recipe instance from a recipe passed in', () => {
+      recipe = new RecipeRepo([buffaloChicken]);
+      expect(recipe.recipes[0]).to.be.an.instanceof(Recipe);
+    });
+
+    it('should be able to create multiple Recipe instances', () => {
+      recipe = new RecipeRepo([buffaloChicken, beefNoodle]);
+      expect(recipe.recipes[0]).to.be.an.instanceof(Recipe);
+      expect(recipe.recipes[1]).to.be.an.instanceof(Recipe);
     });
 
 
