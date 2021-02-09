@@ -1,13 +1,15 @@
+const testIngredients = require('../tests/test-ingredients')
+
 class Recipe {
-    constructor(recipeObj) {
-        this.id = recipeObj.id,
-        this.name = recipeObj.name,
-        this.ingredients = recipeObj.ingredients,
-        this.instructions = recipeObj.instructions,
-        this.tags = recipeObj.tags
+    constructor(recipe) {
+        this.id = recipe.id,
+        this.name = recipe.name,
+        this.ingredients = recipe.ingredients,
+        this.instructions = recipe.instructions,
+        this.tags = recipe.tags,
+        this.image = recipe.image
     }
     returnIngredientNames()  {
-        console.log(this.ingredients)
         return this.ingredients
     }
 }
