@@ -104,7 +104,7 @@
 }
 
 .recipe-card-img {
-  display: block;
+  /* display: block; */
   /* margin:10px auto; */
   width: 100%;
   height: auto;
@@ -186,18 +186,38 @@
 }
 
 .meal-suggestion {
-  position: relative;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   height: 200px;
   width: 150px;
   /* overflow: hidden; */
 }
+.img-cropper {
+  display: flex;
+  justify-content: center;
+  height: 125px;
+  width: 125px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0px 13px 20px 0px rgba(78, 78, 78, 0.5);
+}
 
 .meal-suggestion-img {
-  width: 125px;
+  /* text-align: center; */
+  width: auto;
   height: 125px;
   /* meal image needs a container that has a border radius of 50%. center meal image inside that contaier to prevent distortion.*/
-  border-radius: 50%;
+  /* border-radius: 50%; */
   box-shadow: 0px 13px 20px 0px rgba(78, 78, 78, 0.5);
+}
+
+.meal-suggestion-name {
+  margin-top: 30px;
+  text-align: center;
+  width: 175px;
+  font-weight: bold;
 }
 
 .test{
