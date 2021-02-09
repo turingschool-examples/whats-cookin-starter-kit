@@ -1,13 +1,96 @@
 const chai = require('chai');
 const expect = chai.expect;
-const Ingredient = require('../src/reciperepo');
+const RecipeRepo = require('../src/reciperepo');
 
 describe('RecipeRepo', () => {
-  let ingredient1;
-  let ingredient2;
+  let recipe, buffaloChicken, beefNoodle;
 
   beforeEach(() => {
-    ingredient1 = new Ingredient(1, 'cheese', 350);
-    ingredient2 = new Ingredient(2, 'wine', 1250);
+    recipe = new RecipeRepo();
+    buffaloChicken = {
+      id: 991136,
+      image: "https://spoonacular.com/recipeImages/991136-556x370.jpg",
+      ingredients: [
+        {
+          id: 1001,
+          quantity: {
+            amount: 0.25,
+            unit: 'cup'
+          }
+        },
+        {
+          id: 98871,
+          quantity: {
+            amount: 12,
+            unit: 'unit'
+          }
+        },
+      ],
+      instructions: [
+        { instruction: 'step 1', number: 1 },
+        { instruction: 'step 1', number: 1 },
+        { instruction: 'step 1', number: 1 }
+      ],
+      name: 'Buffalo Chicken Example',
+      tags: ['lunch', 'main course', 'main dish', 'dinner']
+    };
+    beefNoodle = {
+      id: 2,
+      image: 'https://spoonacular.com/recipeImages/595736-556x370.jpg',
+      ingredients: [
+        {
+          id: 302,
+          quantity: {
+            amount: 10,
+            unit: 'cup'
+          }
+        },
+        {
+          id: 410,
+          quantity: {
+            amount: 3,
+            unit: 'tbs'
+          }
+        }
+      ],
+      instructions: [
+        { instruction: 'step 1', number: 1 },
+        { instruction: 'step 2', number: 2 },
+        { instruction: 'step 3', number: 3 }
+      ],
+      name: 'Beef Noodle',
+      tags: ['flour made', 'main dish', 'hot dish'],
+    };
   })
+
+  describe('RecipeRepo', () => {
+
+    it('should be a function', () => {
+      expect(RecipeRepo).to.be.a('function');
+    });
+
+    it('should be an instance of RecipeRepo', () => {
+      expect(recipe).to.be.an.instanceof(RecipeRepo);
+    });
+
+    it('should have no recipes by default', () => {
+      expect(recipe.recipes).to.deep.equal([]);
+    });
+
+    it('should be able to hold a recipe if passed in', () => {
+      recipe = new RecipeRepo([buffaloChicken]);
+      expect(recipe.recipes).to.deep.equal([buffaloChicken]);
+    });
+
+    it('should be able to hold more than 1 recipe', () => {
+      recipe = new RecipeRepo([buffaloChicken, beefNoodle]);
+      expect(recipe.recipes).to.deep.equal([buffaloChicken, beefNoodle]);
+    });
+
+
+
+
+  })
+
+
 });
