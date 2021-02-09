@@ -35,35 +35,40 @@
   right: 20px;
 }
 
-button {
+.button {
   height: 100%;
   margin: 0 20px;
   font-size: 1em;
   font-weight: bold;
   background: transparent;
   border: none;
+  outline:none;
 }
 
-button:hover {
+.button:hover {
   border-bottom: 3px solid black;
   color: grey;
   transition: border 0.2s, color 0.2s ease-in-out;
 }
+
 .search::before {
   content: url(https://static01.nyt.com/applications/cooking/d766d05/assets/nav-inline-search-glass.svg);
-
 }
+
 .search,
 .search-box {
   margin-left: 10px;
 }
+
 .search-box {
   border:none;
   width: 500px;
   font-size: 1em;
   outline: none;
 }
+
 .main-section {
+  position: relative;
   background-image: url(https://griffinpartnerssc.com/wp-content/uploads/2019/06/food-vegetables-meal-breakfast-hd-wallpaper-high-resolution-background-images-desktop-images-of-windows-amazing-cool-images-free-stock-photos-pictures-1600x1024.jpg);
   background-size:cover;
   background-repeat: no-repeat;
@@ -72,20 +77,67 @@ button:hover {
   width: 100%;
 }
 
+/*Recipe cards */
+
 .recipe-carousel {
   position: absolute;
-  border: 3px solid Red;
-  height: 40%;
+  /* border: 3px solid Red; */
+  height: 43%;
   /* could probably use a min/ max height*/
   width: 100%;
-  bottom: 0;
+  bottom: 20px;
 }
 
 .recipe-card {
-  height: 90%;
+  position: relative;
+  height: 100%;
   width: 225px;
-  border: 3px solid Red;
-  background-color: rgba(204, 204, 204, 0.822);
+  /* border: 3px solid Red; */
+  background-color: rgba(255, 255, 255, 0.822);
+  border-radius: 10px;
+  box-shadow: -5px 5px 5px rgba(78, 78, 78, 0.5);
 }
 
+.recipe-card-img {
+  display: block;
+  margin:10px auto;
+  width: 90%;
+  height: auto;
+  border-radius: 5px;
+}
 
+.recipe-card-name {
+  padding-bottom: 10px;
+  margin:10px auto;
+  width:90%;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid rgb(43, 43, 43)
+}
+
+.recipe-card-cost,
+.recipe-card-button {
+  display: inline;
+  position:absolute;
+  padding: 5px 0;
+  margin: 25px 5%;
+  height:fit-content;
+}
+
+.recipe-card-button {
+  position:absolute;
+  right: 0;
+  padding: 5px 8px;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 5px;
+  font-size: .9em;
+  font-weight: 400;
+  background-color: rgb(204, 204, 204);
+}
+
+.recipe-card-button:hover {
+  color: white;
+  border-color: rgb(92, 92, 92);
+  background-color: rgb(156, 156, 156);
+  transition: border 0.2s, color 0.2s ease-in-out;
+}
