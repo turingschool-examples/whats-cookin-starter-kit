@@ -21,13 +21,13 @@ body {
     display: grid;
     height: 100vh;
     grid-template-columns: .5fr .5fr;
-    grid-template-rows: 0.4fr 0.4fr .4fr 1.2fr 0.4fr;
+    grid-template-rows: 0.4fr 0.2fr .4fr 1.2fr 0.4fr;
     grid-template-areas:
-      "nav nav"
-      "header header"
-      "main main"
-      "content1 content2"
-      "footer footer";
+        "header header"
+        "nav nav"
+        "main main"
+        "content1 content2"
+        "footer footer";
     grid-gap: 0.2rem;
     text-align: center;
 }
@@ -68,24 +68,51 @@ main {
 }
 
 /* *** Header *** */
-.header__left {
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+img {
+    width: 50px;
+    padding: 5px;
+}
 
+.header__left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.header__left--text {
+    font-family: 'Alice', serif;
+    font-size: 1.5rem;
+    padding: 5px;
 }
 
 .header__right--text {
     font-family: 'Alice', serif;
+    font-size: 1.5rem;
+    padding: 5px;
 }
 
 /* *** Navigation *** */
-img {
-    width: 70px;
-}
-.nav__left--text {
-    font-family: 'Alice', serif;
+.nav__right {
+    padding-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .nav-links {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     list-style-type: none;
+}
+
+.nav-links__item {
+    margin: 0 10px;
 }
 
 /* *** Main *** */
@@ -97,11 +124,12 @@ main {
 /* *** Ingredients *** */
 
 /* *** Footer *** */
+
 footer {
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
     background: #CBBDBE;
-    padding: 10px;
+    grid-area: footer;
+    border-radius: 10px;
+    padding-top: 5px;
 }
 
 .ingredients__message {
@@ -115,18 +143,22 @@ footer {
 
 /* *** breakpoint 800px *** */
 @media screen and (max-width: 800px) {
+    .nav__left--logo {
+        display: none;
+    }
+
     .grid-container {
-        grid-template-columns: .5fr 1fr 1fr;
-        grid-template-rows: .4fr .5fr 3.5fr .4fr;
+        grid-template-columns: .5fr 1fr;
+        grid-template-rows: .4fr .5fr 2.5fr 2.5fr .4fr;
         grid-template-areas:
-            "nav nav nav"
-            "header main main"
-            "header content1 content2"
-            "header footer footer";
+            "header header"
+            "nav main"
+            "nav content1"
+            "nav content2"
+            "footer footer";
     }
 
     .nav-links {
-        width: 100px;
 
     }
 }
