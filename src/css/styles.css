@@ -1,0 +1,27 @@
+/* *** General *** */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Mulish', sans-serif;
+    background: #f4f4f4;
+}
+
+/* *** Navigation *** */
+
+/* *** Header *** */
+
+/* *** Main *** */
+
+/* *** breakpoint 800px *** */
+@media screen and (max-width: 800px) {
+
+}
+
+/* *** breakpoint 600px *** */
+@media screen and (max-width: 600px) {
+
+}
