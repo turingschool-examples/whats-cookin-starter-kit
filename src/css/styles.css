@@ -1,0 +1,77 @@
+/* *** style guide *** */
+/* font-family: 'Alice', serif; */
+/* font-family: 'Raleway', sans-serif; */
+/*colors:  navy blue (#026B81), turquoise (#03B0AA), pink (#D49C96), dusty rose (#CBBDBE)*/
+
+
+/* *** General *** */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+/* *** Grid *** */
+
+/* *** Header *** */
+.header__left {
+
+}
+
+.header__right--text {
+    font-family: 'Alice', serif;
+}
+
+/* *** Navigation *** */
+img {
+    width: 70px;
+}
+.nav__left--text {
+    font-family: 'Alice', serif;
+}
+
+.nav-links {
+    list-style-type: none;
+}
+
+/* *** Main *** */
+main {
+    border: 1px solid lightblue;
+    padding: 50px;
+}
+
+/* *** Ingredients *** */
+
+/* *** Footer *** */
+footer {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    background: #CBBDBE;
+    padding: 10px;
+}
+
+.ingredients__message {
+    font-size: 0.6em;
+    color: red;
+}
+
+.hidden {
+    display: none;
+}
+
+/* *** breakpoint 800px *** */
+@media screen and (max-width: 800px) {
+    .nav-links {
+        width: 100px;
+
+    }
+}
+
+/* *** breakpoint 600px *** */
+@media screen and (max-width: 600px) {
+
+}
