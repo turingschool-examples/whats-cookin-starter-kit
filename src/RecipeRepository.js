@@ -1,4 +1,4 @@
-const Recipe = require("./Recipe")
+// const Recipe = require("./Recipe")
 
 class RecipeRepository {
   constructor(recipeArray, ingredientsArray) {
@@ -36,4 +36,6 @@ class RecipeRepository {
   }
 }
 
-module.exports = RecipeRepository
+if (typeof module !== 'undefined') {
+  module.exports = RecipeRepository;
+}

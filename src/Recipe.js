@@ -1,5 +1,5 @@
 
-const Ingredient = require('../src/Ingredient.js');
+// const Ingredient = require('../src/Ingredient.js');
 
 class Recipe {
   constructor(recipe, ingredientsArray) {
@@ -27,4 +27,6 @@ class Recipe {
   }
 }
 
-module.exports = Recipe;
+if (typeof module !== 'undefined') {
+  module.exports = Recipe;
+}
