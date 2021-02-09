@@ -107,7 +107,7 @@ describe("Recipe", () => {
   });
 
   it("should return names of the ingredients", () => {
-    const ingredientNames = recipe1.returnIngredientName();
+    const ingredientNames = recipe1.returnIngredientNames(ingredientData);
     expect(ingredientNames).to.deep.equal([
       "wheat flour",
       "bicarbonate of soda",
@@ -116,12 +116,12 @@ describe("Recipe", () => {
   });
 
   it("should return the total cost of all ingredients in recipe", () => {
-    const totalCost = recipe1.calculateRecipeCost();
+    const totalCost = recipe1.calculateRecipeCost(ingredientData);
     expect(totalCost).to.equal(11.96);
   });
 
-  it("should return the instructions for the recipe", () => {
-    const instructions = recipe.returnRecipeInstructions();
+  it.only("should return the instructions for the recipe", () => {
+    const instructions = recipe1.returnRecipeInstructions();
     expect(instructions).to.deep.equal([
       instruction1,
       instruction2,
