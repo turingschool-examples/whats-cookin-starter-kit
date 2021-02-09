@@ -39,9 +39,20 @@ img {
 }
 
 /* *** Main *** */
-
+main {
+    border: 1px solid lightblue;
+    padding: 50px;
+}
 
 /* *** Ingredients *** */
+
+/* *** Footer *** */
+footer {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    background: #CBBDBE;
+    padding: 10px;
+}
 
 .ingredients__message {
     font-size: 0.6em;
