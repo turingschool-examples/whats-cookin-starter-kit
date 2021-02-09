@@ -1,17 +1,19 @@
 const chai = require('chai');
-const expect = chai.export;
-
-const testRecipes = require('./test-data');
+const expect = chai.expect;
+const recipeData = require('../data/recipes');
+// const testRecipes = require('./test-data');
+//TESTED LINKING THE DATAFILE THEY GAVE US AND IT SEEMED TO WORK
 const Recipe = require('../src/recipe');
 
 describe('Recipe', function() {
 
   it('should be an instance of Recipe', function() {
-    const recipe = new Recipe();
-    expect(Recipe).to.be.an.instanceof(Recipe);
+    const recipe = new Recipe(recipeData[0]);
+    console.log(recipe)
+    expect(recipe).to.be.an.instanceof(Recipe);
   })
 
-  describe('Properties')
+  describe('Properties', function() {
 
     it('should have an id', function() {
       const recipe = new Recipe(testRecipe[0])
@@ -42,11 +44,13 @@ describe('Recipe', function() {
       const recipe = new Recipe(testRecipe[0])
       expect(recipe.tags).to.deep.equal(testRecipe[0].tags)
     })
+  })
 
   describe('Methods', function() {
 
     it('should return names of ingredients', function() {
       const recipe = new Recipe(testRecipe[0]);
+      console.log(recipe)
       expect(recipe.returnIngredientNames()).to.deep.equal(["wheat flour", "bicarbonate of soda", "eggs", "sucrose"])
     })
 
