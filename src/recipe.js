@@ -9,7 +9,7 @@ class Recipe {
   }
   findIngredients(ingredientData) {
     const recipeIngredients = [];
-    this.ingredients.forEach((recipeIngredient) => {
+    this.ingredients.forEach(recipeIngredient => {
       return recipeIngredients.push(
         ingredientData.find(ingredient => recipeIngredient.id === ingredient.id));
     });
