@@ -1,3 +1,9 @@
+/* *** style guide *** */
+/* font-family: 'Alice', serif; */
+/* font-family: 'Raleway', sans-serif; */
+/*colors:  navy blue (#026B81), turquoise (#03B0AA), pink (#D49C96), dusty rose (#CBBDBE)*/
+
+
 /* *** General *** */
 * {
     box-sizing: border-box;
@@ -6,19 +12,45 @@
 }
 
 body {
-    font-family: 'Mulish', sans-serif;
-    background: #f4f4f4;
+    font-family: 'Raleway', sans-serif;
+}
+
+/* *** Grid *** */
+
+/* *** Header *** */
+.header__left {
+
+}
+
+.header__right--text {
+    font-family: 'Alice', serif;
 }
 
 /* *** Navigation *** */
+img {
+    width: 70px;
+}
+.nav__left--text {
+    font-family: 'Alice', serif;
+}
 
-/* *** Header *** */
+.nav-links {
+    list-style-type: none;
+}
 
 /* *** Main *** */
 
+
+.hidden {
+    display: none;
+}
+
 /* *** breakpoint 800px *** */
 @media screen and (max-width: 800px) {
+    .nav-links {
+        width: 100px;
 
+    }
 }
 
 /* *** breakpoint 600px *** */

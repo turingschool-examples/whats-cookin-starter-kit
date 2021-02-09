@@ -1,20 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <!--    responsiveness -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8">
 
-  <!--    google fonts  -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Alice&family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
-  <!--    font awesome link  -->
-  <script src="https://kit.fontawesome.com/48ff017e8b.js" crossorigin="anonymous"></script>
+    <!--    responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>What the FORK is for Dinner?!</title>
-</head>
-<body>
-<h1>What the FORK is for Dinner?!</h1>
+    <!--    google fonts  -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!--    font awesome link  -->
+    <script src="https://kit.fontawesome.com/48ff017e8b.js" crossorigin="anonymous"></script>
+
+    <!--    Styles  -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <title>What the FORK is for Dinner?!</title>
+  </head>
+  <body>
+    <div class="grid-container">
+      <header class="header">
+        <span class="header__left"><i class="fas fa-home"></i></span>
+        <span class="header__right">
+          <span class="header__right--text">Hello, User! </span>
+          <i class="fas fa-user header__right--icon"></i>
+        </span>
+      </header>
+
+      <nav class="nav sidebar">
+        <div class="nav__left">
+          <img  class="nav__left--logo"src="./images/wtffd.png" alt="Fork and spoon logo">
+          <h1 class="nav__left--text">What the FORK is for Dinner?!</h1>
+        </div>
+
+        <div class="nav__right">
+          <ul class="nav-links">
+            <li class="nav-links__item">Featured</li>
+            <li class="nav-links__item">All recipes</li>
+            <li class="nav-links__item">This week</li>
+          </ul>
+        </div>
+      </nav>
+
+      <main class="landing-view">
+        <section class="search-section">
+          <h3>Search by ingredient, meal type, recipe, or whatever you feel like.</h3>
+          <div class="search">Search bar goes here</div>
+        </section>
+        <section class="hero-section">
+          <figure class="hero-section__image"><img src="https://spoonacular.com/recipeImages/623855-556x370.jpg"></figure>
+          <section class="hero-section__box">
+            <section class="hero-section__box--recipe-name">
+              Some awesome recipe
+            </section>
+            <section class="hero-section__box--icons">
+              <i class="far fa-heart"></i>
+              <i class="far fa-calendar"></i>
+            </section>
+          </section>
+        </section>
+        <section class="featured-section">
+          <h2 class="featured-section__title">Featured Recipes</h2>
+
+            <article class="featured-section__recipe-profile">
+              <figure>
+                <img class="featured-section__recipe-profile--img"
+                    src="https://spoonacular.com/recipeImages/623855-556x370.jpg"
+                    alt="Chocolate chip cookies">
+                <figcaption>Chocolate chip cookies</figcaption>
+              </figure>
+            </article>
+
+          <article class="featured-section__recipe-profile">
+            <figure>
+              <img class="featured-section__recipe-profile--img"
+                   src="https://spoonacular.com/recipeImages/623855-556x370.jpg"
+                   alt="Chocolate chip cookies">
+              <figcaption>Chocolate chip cookies</figcaption>
+            </figure>
+          </article>
+
+          <article class="featured-section__recipe-profile">
+            <figure>
+              <img class="featured-section__recipe-profile--img"
+                   src="https://spoonacular.com/recipeImages/623855-556x370.jpg"
+                   alt="Chocolate chip cookies">
+              <figcaption>Chocolate chip cookies</figcaption>
+            </figure>
+          </article>
+
+          <article class="featured-section__recipe-profile">
+            <figure>
+              <img class="featured-section__recipe-profile--img"
+                   src="https://spoonacular.com/recipeImages/623855-556x370.jpg"
+                   alt="Chocolate chip cookies">
+              <figcaption>Chocolate chip cookies</figcaption>
+            </figure>
+          </article>
+        </section>
+      </main>
+
+      <main class="recipe-detail-view hidden">
+
+      </main>
+
+      <main class="pantry-view hidden">
+
+      </main>
+
+      <main class="list-view hidden">
+
+      </main>
+
+      <footer>
+        Created by Jessica, Katie, and Nikki, with ❤️.
+      </footer>
+    </div>
 
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
