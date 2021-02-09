@@ -1,48 +1,47 @@
 const chai = require('chai');
 const expect = chai.expect;
-const recipeData = require('../data/recipes');
+//const recipeData = require('../data/recipes');
 const testRecipes = require('./test-recipes');
-const testIngredients = require('./test-ingredients')
-//TESTED LINKING THE DATAFILE THEY GAVE US AND IT SEEMED TO WORK
+//const testIngredients = require('./test-ingredients')
 const Recipe = require('../src/recipe');
 
 describe('Recipe', function() {
 
   it('should be an instance of Recipe', function() {
-    const recipe = new Recipe(recipeData[0]);
+    const recipe = new Recipe(testRecipes[0]);
     expect(recipe).to.be.an.instanceof(Recipe);
   })
 
   describe('Properties', function() {
 
     it('should have an id', function() {
-      const recipe = new Recipe(testRecipes[0])
-      expect(recipe.id).to.deep.equal(testRecipes[0].id)
+      const recipe = new Recipe(testRecipes[0]);
+      expect(recipe.id).to.deep.equal(testRecipes[0].id);
     })
 
     it('should have a name', function() {
-      const recipe = new Recipe(testRecipes[0])
-      expect(recipe.name).to.deep.equal(testRecipes[0].name)
+      const recipe = new Recipe(testRecipes[0]);
+      expect(recipe.name).to.deep.equal(testRecipes[0].name);
     })
 
     it('should have an image reference', function() {
-      const recipe = new Recipe(testRecipes[0])
-      expect(recipe.image).to.deep.equal(testRecipes[0].image)
+      const recipe = new Recipe(testRecipes[0]);
+      expect(recipe.image).to.deep.equal(testRecipes[0].image);
     })
 
     it('should have have an ingredients list', function() {
-      const recipe = new Recipe(testRecipes[0])
-      expect(recipe.ingredients).to.deep.equal(testRecipes[0].ingredients)
+      const recipe = new Recipe(testRecipes[0]);
+      expect(recipe.ingredients).to.deep.equal(testRecipes[0].ingredients);
     })
 
     it('should have instructions', function() {
-      const recipe = new Recipe(testRecipes[0])
-      expect(recipe.instructions).to.deep.equal(testRecipes[0].instructions)
+      const recipe = new Recipe(testRecipes[0]);
+      expect(recipe.instructions).to.deep.equal(testRecipes[0].instructions);
     })
 
     it('should have tags', function() {
-      const recipe = new Recipe(testRecipes[0])
-      expect(recipe.tags).to.deep.equal(testRecipes[0].tags)
+      const recipe = new Recipe(testRecipes[0]);
+      expect(recipe.tags).to.deep.equal(testRecipes[0].tags);
     })
   })
 
@@ -50,7 +49,7 @@ describe('Recipe', function() {
 
     it('should return names of ingredients', function() {
       const recipe = new Recipe(testRecipes[0]);
-      expect(recipe.returnIngredientNames()).to.deep.equal(["wheat flour", "bicarbonate of soda", "eggs", "sucrose"])
+      expect(recipe.returnIngredientNames()).to.deep.equal(["wheat flour", "bicarbonate of soda", "eggs", "sucrose"]);
     })
 
     xit('should return the total cost of ingredients', function() {
@@ -60,7 +59,7 @@ describe('Recipe', function() {
 
     xit('should return recipe instructions in order', function() {
       const recipe = new Recipe(testRecipes[0]);
-      expect(recipe.returnInstructions()).to.deep.equal(testRecipe[0].instructions)
+      expect(recipe.returnInstructions()).to.deep.equal(testRecipes[0].instructions);
     })
 
   })
