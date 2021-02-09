@@ -41,6 +41,16 @@ img {
 /* *** Main *** */
 
 
+/* *** Pantry *** */
+.pantry {
+
+}
+
+.pantry__message {
+    font-size: 0.6em;
+    color: red;
+}
+
 .hidden {
     display: none;
 }
