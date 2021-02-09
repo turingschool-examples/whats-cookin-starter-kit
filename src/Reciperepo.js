@@ -4,21 +4,28 @@ class Reciperepo() {
     }
 
     returnTagList(tags) {
-      // const tagList = this.recipeList.filter(
-      // recipe.ingredients.includes
-      // this.recipeList.reduce
-    )
-      //do any recipes have any of the search terms in recipe.tags
-    }
+      let returnList = [];
+      tags.forEach(tag => {
+        this.recipeList.forEach(recipe => {
+          if (recipe.tags.includes(tag)) {
+            returnList.push(recipe);
+          }
+        });
+      });
+      return returnList;
+    };
 
     returnNameList(searchTerms) {
-      //let returnArray
-      //do any recipes have any of the search terms in recipe.name
-        // if so put the recipe into the return array
-      //do any recipes return any search terms when recipe.generateIngredientNames() is invoked
-        // if so put the recipe into the return array
-      //return the return array
-    }
+      let returnList = [];
+      searchTerms.foreach(term => {
+        this.recipeList.forEach(recipe => {
+          if (recipe.tags.includes(term)) {
+            returnList.push(recipe);
+          }
+        });
+      });
+      return returnList;
+    });
 }
 
 module.exports = Reciperepo;
