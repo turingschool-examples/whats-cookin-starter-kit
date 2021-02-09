@@ -7,35 +7,30 @@ class Recipe {
     this.name = name;
     this.tags = tags;
   }
-  returnIngredientNames(ingredientData) {
+  findIngredients(ingredientData) {
     const recipeIngredients = [];
-    this.ingredients.forEach((recipeIngredient) => {
+    this.ingredients.forEach(recipeIngredient => {
       return recipeIngredients.push(
-        ingredientData.find((ingredient) => {
-          return recipeIngredient.id === ingredient.id;
-        })
-      );
+        ingredientData.find(ingredient => recipeIngredient.id === ingredient.id));
     });
-    const ingredientNames = recipeIngredients.map((ingredient) => {
-      return ingredient.name;
-    });
+    return recipeIngredients;
+  }
 
+  returnIngredientNames(ingredientData) {
+    const recipeIngredients = this.findIngredients(ingredientData);
+    const ingredientNames = recipeIngredients.map(ingredient => ingredient.name);
     return ingredientNames;
   }
+
   calculateRecipeCost(ingredientData) {
-    const recipeIngredients = [];
-    this.ingredients.forEach((recipeIngredient) => {
-      return recipeIngredients.push(
-        ingredientData.find((ingredient) => {
-          return recipeIngredient.id === ingredient.id;
-        })
-      );
-    });
-    const cost = recipeIngredients.reduce((acc, curr) => {
-      return acc + curr.estimatedCostInCents;
+    const recipeIngredients = this.findIngredients(ingredientData);
+    const ingredientCost = recipeIngredients.map(ingredientCost => ingredientCost.estimatedCostInCents);
+    const cost = ingredientCost.reduce((totalCost, ingredientCost) => {
+      return totalCost + ingredientCost;
     }, 0);
     return Number((cost / 100).toFixed(2));
   }
+
   returnRecipeInstructions() {
     return this.instructions;
   }
