@@ -1,12 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
-    <h1>Whats Cookin</h1>
-
+    <header>
+      <nav class="navigation-bar">
+        <h1 class="page-title">Whats cooking</h1>
+        <form class="search">
+          <input class="search-box" type="search" placeholder="What do you want to cook?"/>
+        </form>
+        <div class="container navigation-buttons">
+          <button class="button" type="button">Grocery List</button>
+          <button class="button" type="button">My Recipes</button>
+          <button class="button" type="button">All Recipes</button>
+        </div>
+      </nav>
+    </header>
+    <main class ="home-page">
+      <section class="main-section">
+        <div class="container recipe-carousel">
+          <article class="recipe-card">
+            <img class="recipe-card-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
+            <p class="recipe-card-name">Recipe Name</p>
+            <p class="recipe-card-cost">Cost</p>
+            <button class="recipe-card-button">Save Recipe</button>
+          </article>
+          <article class="recipe-card">
+            <img class="recipe-card-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
+            <p class="recipe-card-name">Recipe Name</p>
+            <p class="recipe-card-cost">Cost</p>
+            <button class="recipe-card-button">Save Recipe</button>
+          </article>
+          <article class="recipe-card">
+            <img class="recipe-card-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
+            <p class="recipe-card-name">Recipe Name</p>
+            <p class="recipe-card-cost">Cost</p>
+            <button class="recipe-card-button">Save Recipe</button>
+          </article>
+          <article class="recipe-card">
+            <img class="recipe-card-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
+            <p class="recipe-card-name">Recipe Name</p>
+            <p class="recipe-card-cost">Cost</p>
+            <button class="recipe-card-button">Save Recipe</button>
+          </article>
+          <article class="recipe-card">
+            <img class="recipe-card-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
+            <p class="recipe-card-name">Recipe Name</p>
+            <p class="recipe-card-cost">Cost</p>
+            <button class="recipe-card-button">Save Recipe</button>
+          </article>
+        </div>
+      </section>
+      <div class="container instruction">
+        <section class="instruction-card">
+          <article class="instruction-card-directions">
+          </article>
+          <img class="instruction-card-img" src="https://spoonacular.com/recipeImages/516904-556x370.jpg">
+          <div class="container test">
+            <article class="meal-suggestion">
+              <div class="img-cropper">
+                <img class="meal-suggestion-img" src="https://spoonacular.com/recipeImages/618332-556x370.jpg">
+              </div>
+              <p class="meal-suggestion-name">Steak</p>
+            </article>
+            <article class="meal-suggestion">
+              <div class="img-cropper">
+                <img class="meal-suggestion-img" src="https://spoonacular.com/recipeImages/618332-556x370.jpg">
+              </div>
+              <p class="meal-suggestion-name">Chocolate chip cookies</p>
+            </article>
+            <article class="meal-suggestion">
+              <div class="img-cropper">
+                <img class="meal-suggestion-img" src="https://spoonacular.com/recipeImages/618332-556x370.jpg">
+              </div>
+              <p class="meal-suggestion-name">Lasagne</p>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
