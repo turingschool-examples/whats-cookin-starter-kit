@@ -1,9 +1,11 @@
 let recipeRepository; 
 
-let recipeCarousel = document.querySelector('.recipe-carousel')
+const recipeCarousel = document.querySelector('.recipe-carousel')
+const searchBox = document.querySelector('.search-box');
 
 window.addEventListener('load', compileRecipeRepository)
 window.addEventListener('load', populateFeaturedRecipesCarousel);
+document.addEventListener('keydown', searchAllRecipes);
 
 function compileRecipeRepository() {
   recipeRepository = new RecipeRepository(recipeData, ingredientsData)
@@ -20,5 +22,12 @@ function populateFeaturedRecipesCarousel() {
             <button class="recipe-card-button">Save Recipe</button>
       </article>
     `
+  }
+}
+
+function searchAllRecipes(event) {
+  if (event.key === "Enter") {
+    event.preventDefault()
+    console.log(recipeRepository.masterSearch(searchBox.value))
   }
 }
