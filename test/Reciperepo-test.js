@@ -1,7 +1,9 @@
 const chai = require('chai');
 const expect = chai.expect;
 const Recipe = require('../src/Recipe')
-// const testRecipeData = require('../data/recipes-test-data');
+
+const testRecipeData = require('../data/recipes-test-data');
+
 
 describe('Recipe Repo', function() {
   describe('Initilize Recipe Repo', function() {
@@ -18,19 +20,25 @@ describe('Recipe Repo', function() {
       recipe4 = new Recipe(testRecipeData[3]);
       recipeList = [recipe1, recipe2, recipe3, recipe4];
 
+
     it.skip('should be a function', function() {
+
       const recipeRepo = new Reciperepo();
 
       expect(recipeRepo).to.be.a('function');
     });
 
+
     it.skip('should be an instance of Recipe Repo', function() {
+
       const recipeRepo = new Reciperepo();
 
       expect(recipeRepo).to.be.an.instanceof(Reciperepo);
     });
 
+
     it.skip('should accept an array of recipes', function() {
+
       const recipeRepo = new Reciperepo(recipeList);
 
       expect(recipeRepo[0]).to.be.an.instanceof(Recipe);
@@ -59,7 +67,9 @@ describe('Recipe Repo', function() {
       tag3 = 'appetizer'; //recipe1
     });
 
+
     it.skip('should return a filtered list based on tags', function() {
+
       const tagArray = [tag1, tag2, tag3];
 
       const tagList = recipeRepo.returnTagList(tagArray); //array of recipes
@@ -69,7 +79,9 @@ describe('Recipe Repo', function() {
 
     });
 
+
     it.skip('should return a filtered list based on name', function() {
+
       const nameArray = ['loaded', 'grilled'];
       const nameList = recipeRepo.returnNameList(nameArray);
 
@@ -77,7 +89,9 @@ describe('Recipe Repo', function() {
       expect(nameList[1]).to.deep.equal(recipe2);
     });
 
+
     it.skip('should return a filtered list based on ingredients', function() {
+
       const nameArray = ['vanilla(1)', 'salt(1,4)', 'eggs(1,4)'];
 
       const nameList = recipeRepo[0].returnNameList(nameArray);
@@ -88,6 +102,8 @@ describe('Recipe Repo', function() {
     });
   });
 
+
   });
+
 
 });
