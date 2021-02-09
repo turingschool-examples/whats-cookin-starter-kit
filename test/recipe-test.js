@@ -1,6 +1,5 @@
 const chai = require('chai');
 const expect = chai.expect;
-
 const Recipe = require('../src/recipe.js');
 
 
@@ -128,11 +127,12 @@ describe('Recipe', function() {
         "instruction": "butter the bread",
         "number": 2
       }];
+    // eslint-disable-next-line max-len
     const recipe = new Recipe(336688, 'https://whatscookin.jpg', ingredients, instructions, 'sandwich', ['dinner', 'lunch']);
     expect(recipe.tags).to.deep.equal(['dinner', 'lunch']);
   });
 
-    it('should be able to add name to ingredients ID', function () {
+  it('should be able to add name to ingredients ID', function () {
     const ingredients = [
       {
         "id": 20081,
@@ -148,7 +148,7 @@ describe('Recipe', function() {
           "unit": "tsp"
         }
       }];
-    const ingredientsData = [
+    let ingredientsData = [
       {
         "id": 20081,
         "name": "wheat flour",
@@ -169,10 +169,60 @@ describe('Recipe', function() {
         "number": 2
       }];
 
-    const recipe = new Recipe(336688, 'https://whatscookin.jpg', ingredients, instructions, 'sandwich', ['dinner', 'lunch'])
+      // eslint-disable-next-line max-len
+    const recipe = new Recipe(336688, 'https://whatscookin.jpg', ingredients, 'sandwich', ['dinner', 'lunch'])
 
-    recipe.generateIngredientNames(recipe);
-    expect(recipe.ingredients[0].name).to.equal('wheat flour');
-    expect(recipe.ingredients[1].name).to.equal('bicarbonate of soda');
-    });
+    expect(recipe.generateIngredientNames(recipe)).to.deep.equal(['wheat flour', 'bicarbonate of soda']);
+    // expect(recipe.ingredients[1].name).to.deep.equal('bicarbonate of soda');
+  });
+
+  it('it should calculate the recipe cost', function() {
+    const ingredients = [
+      {
+        "id": 20081,
+        "quantity": {
+          "amount": 1.5,
+          "unit": "c"
+        }
+      }];
+    const ingredientsData = [
+      {
+        "id": 20081,
+        "name": "wheat flour",
+        "estimatedCostInCents": 142
+      }];
+    // eslint-disable-next-line max-len
+    const recipe = new Recipe(595736, 'https://whatscookin.jpg', ingredients, 'sandwich', ['dinner', 'lunch'])
+    expect(recipe.calculateRecipeCost()).to.equal(2.13)
+  });
+
+  it('it should return the recipe instructions', function() {
+    const ingredients = [
+      {
+        "id": 20081,
+        "quantity": {
+          "amount": 1.5,
+          "unit": "c"
+        }
+      }];
+    const ingredientsData = [
+      {
+        "id": 20081,
+        "name": "wheat flour",
+        "estimatedCostInCents": 142
+      }];
+    const instructions = [
+      {
+        "instruction": "slice the bread",
+        "number": 1
+      },
+      {
+        "instruction": "butter the bread",
+        "number": 2
+      }];
+    const recipe = new Recipe(595736, 'https://whatscookin.jpg', ingredients, instructions, 'sandwich', ['dinner', 'lunch'])
+    expect(recipe.getInstructions()).to.deep.equal([
+      "slice the bread", "butter the bread"
+    ])
+  });
 });
