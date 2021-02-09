@@ -1,12 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
-    <h1>Whats Cookin</h1>
-
+    <header>
+      <nav class="navigation-bar">
+        <h1 class="page-title">Whats cooking</h1>
+        <form class="search">
+          <input class="search-box" type="search" placeholder="What do you want to cook?"/>
+        </form>
+        <div class="container navigation-buttons">
+          <button class="button" type="button">Grocery List</button>
+          <button class="button" type="button">My Recipes</button>
+          <button class="button" type="button">All Recipes</button>
+        </div>
+      </nav>
+    </header>
+    <main class ="home-page">
+      <section class="main-section">
+        <div class="container recipe-carousel">
+          <article class="recipe-card">
+          </article>
+          <article class="recipe-card">
+          </article>
+          <article class="recipe-card">
+          </article>
+          <article class="recipe-card">
+          </article>
+          <article class="recipe-card">
+          </article>
+        </div>
+      </section>
+    </main>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>

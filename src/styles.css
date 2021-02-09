@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat";
+    /* border: .5px solid red; */
+}
+
+.navigation-bar{
+  position: relative;
+  height: 75px;
+  width: 100%;
+}
+
+.page-title, 
+.navigation-buttons, 
+.search {
+  display: inline-block;
+}
+
+.page-title {
+ height: 100%;
+ padding: 20px 30px;
+ border-right: 1px solid rgb(179, 178, 178);
+}
+
+.navigation-buttons {
+  position: absolute;
+  height: 100%;
+  right: 20px;
+}
+
+button {
+  height: 100%;
+  margin: 0 20px;
+  font-size: 1em;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+}
+
+button:hover {
+  border-bottom: 3px solid black;
+  color: grey;
+  transition: border 0.2s, color 0.2s ease-in-out;
+}
+.search::before {
+  content: url(https://static01.nyt.com/applications/cooking/d766d05/assets/nav-inline-search-glass.svg);
+
+}
+.search,
+.search-box {
+  margin-left: 10px;
+}
+.search-box {
+  border:none;
+  width: 500px;
+  font-size: 1em;
+  outline: none;
+}
+.main-section {
+  background-image: url(https://griffinpartnerssc.com/wp-content/uploads/2019/06/food-vegetables-meal-breakfast-hd-wallpaper-high-resolution-background-images-desktop-images-of-windows-amazing-cool-images-free-stock-photos-pictures-1600x1024.jpg);
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 90vh;
+  width: 100%;
+}
+
