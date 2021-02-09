@@ -41,12 +41,9 @@ img {
 /* *** Main *** */
 
 
-/* *** Pantry *** */
-.pantry {
+/* *** Ingredients *** */
 
-}
-
-.pantry__message {
+.ingredients__message {
     font-size: 0.6em;
     color: red;
 }
