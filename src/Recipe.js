@@ -1,32 +1,30 @@
 
+const Ingredient = require('../src/Ingredient.js');
+
 class Recipe {
-  constructor(recipeInfo) {
-    this.name = recipeInfo.name
-    this.id = recipeInfo.id
-    this.image = recipeInfo.image
-    this.ingredients = recipeInfo.ingredients
-    this.instructions = recipeInfo.instructions
-    this.tags = recipeInfo.tags
+  constructor(recipe, ingredientsArray) {
+    this.id = recipe.id;
+    this.image = recipe.image;
+    this.ingredients = recipe.ingredients.map(ingredient => new Ingredient(ingredient.id, ingredient.quantity, ingredientsArray))
+    this.name = recipe.name;
+    this.instructions = recipe.instructions;
+    this.tags = recipe.tags;
   }
 
-  findIngredientNames(ingredientsArray) {
-    let result = []
-    this.ingredients.forEach(ingredient => result.push((ingredientsArray.filter(item => item.id === ingredient.id)[0].name)))
-    return result
+  getIngredients() {
+    return this.ingredients.map(ingredient => ingredient.name);
   }
 
-  calculateTotalCost(ingredientsArray) {
-    let result = 0
-    this.ingredients.forEach(ingredient => result += ((ingredientsArray.filter(item => item.id === ingredient.id)[0].estimatedCostInCents)))
-    return `$${result / 100}`
+  getIngredientsCost() {
+    let centsCost = this.ingredients.reduce((totalCost, ingredient) => totalCost += ingredient.estimatedCost, 0);
+    return `$${centsCost / 100}`
   }
 
-  printInstructions() {
+  returnInstructions() {
     let result =[]
     this.instructions.forEach(instruction => result.push(`${instruction.number}.) ${instruction.instruction}`))
     return result;
   }
-
 }
 
 module.exports = Recipe;

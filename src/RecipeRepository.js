@@ -1,51 +1,39 @@
 const Recipe = require("./Recipe")
 
 class RecipeRepository {
-  constructor(recipeData) {
-    this.recipes = recipeData.map(recipe => new Recipe(recipe))
+  constructor(recipeArray, ingredientsArray) {
+    this.recipes = recipeArray.map(recipe => new Recipe(recipe, ingredientsArray));
+  }
+
+  masterSearch(search) {
+      let results = [];
+      results.push(this.filterByName(search));
+      results.push(this.filterByTag(search));
+      results.push(this.filterByIngredients(search));
+      return Array.from(new Set(results.flat()));
+  }
+
+  filterByName(search) {
+    search = this.validateSearch(search);
+    return Array.from(new Set(search.map(word => this.recipes.filter(recipe => recipe.name.toLowerCase().includes(word))).flat()));
   }
 
   filterByTag(search) {
-    return this.findByWord(search, "tags");
-  };
-
-  filterByName(search) {
-    return this.findByWord(search, 'name');
+    search = this.validateSearch(search);
+    return Array.from(new Set(search.map(word => this.recipes.filter(recipe => recipe.tags.map(tag => tag.split(' ')).flat().includes(word))).flat()));
   }
 
-  findByWord(search, key) {
-    const keyWords = search.split(' ');
-    //split the search into an array so we can iterate over each individual name.
-    const matchingRecipes = [];
-    // matching recipes go here
-    keyWords.forEach(word => {
-      //iterate over search words
-      this.recipes.filter(recipe => {
-        //check each recipe for specific word. using to string allows for just one 
-        //word to trigger true, eg. searching cheese will trigger a recipe that 
-        //contains cheddar cheese. 
-        if(recipe[key].toString().includes(word)) {
-           matchingRecipes.push(recipe);
-        };
-      });
-    });
-    return Array.from(new Set(matchingRecipes))
-    //new array that removes duplicates.
-  };
-
-  filterByIngredient(search, ingredientsArray) {
-    const keyWords = search.split(' ');
-    const matchingRecipes = [];
-    keyWords.forEach(word => {
-      this.recipes.filter(recipe => {
-        const keys = recipe.findIngredientNames(ingredientsArray).join(' ')
-        if(keys.includes(word)) {
-           matchingRecipes.push(recipe);
-        };
-      });
-    });
-    return Array.from(new Set(matchingRecipes))
+  filterByIngredients(search) {
+    search = this.validateSearch(search);
+    return Array.from(new Set(search.map(word => this.recipes.filter(recipe => recipe.getIngredients().map(ingredient => ingredient.split(' ')).flat().includes(word))).flat()));
   }
-};
+
+  validateSearch(search) {
+    return search.toLowerCase()
+    .split(' ')
+    .map(word => word.replace(/[^a-zA-Z ]/g, ""))
+    .filter(element => element);
+  }
+}
 
 module.exports = RecipeRepository
