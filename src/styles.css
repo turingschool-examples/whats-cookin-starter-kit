@@ -3,7 +3,7 @@ html, body {
   height: 100%;;
 }
 main {
-height: 100%;
+height: 45%;
 display: flex;  
 justify-content: space-around;
 align-items: flex-end;
@@ -38,19 +38,16 @@ form {
 input[type="radio"] {
   visibility: hidden;
 }
-label {
+
+.key-word-container > label {
   cursor: pointer;
   border: 1px solid rgba(96, 184, 179, 0.9);
   border-radius: 10px;
   padding: 2px 5px 2px 5px;
   margin-bottom: 10px;
 }
-label:hover, 
-input:checked + label, 
-.my-list:hover, 
-.make-this:hover, 
-.my-list:after, 
-.make-this:after {
+.key-word-container > label:hover, 
+.key-word-container > input:checked + label {
   background-color:rgba(96, 184, 179, 0.404);  
   font-size: 105%;
 }
@@ -64,6 +61,69 @@ input:checked + label,
 }
 
 /* Recipe */
+
 .recipe-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.recipe-card {
+  display: flex;
+  height: 10%;
+  flex-direction: row;
+  flex: .5;
+} 
+
+.recipe {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(97, 145, 160, 0.411);
+  height: 50%;
+  width: 100%;
+  border-radius: 10%;
+}
+
+.favorite-btn {
   align-self: flex-end;
+  height: 30px;
+  width: 30px;
+  /* margin: -5%; */
+  background-image: url("https://image.flaticon.com/icons/png/512/109/109697.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.make-this {
+  background-image: none;
+  align-self: flex-end;
+  margin: 5%;
+}
+
+.favorite-btn:hover, #favorite-input:checked + label {
+  background-color:rgba(99, 230, 117, 0.486);
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+}
+
+.favorite-input {
+  border: 0px;
+}
+
+.recipe-title {
+  font-size: 20px;
+  margin: 15px 0px 0px 10px;
+}
+
+.recipe-ingredients {
+  margin: 5% 5px 10% 5px;
+}
+
+.recipe-img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  margin-left: -35%;
+  align-self: center;
+  opacity: 0.85;
 }
