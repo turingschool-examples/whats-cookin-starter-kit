@@ -4,12 +4,14 @@ class Reciperepo() {
     }
 
     returnTagList(tags) {
-      //take in tags
+      // const tagList = this.recipeList.filter(
+      // recipe.ingredients.includes
+      // this.recipeList.reduce
+    )
       //do any recipes have any of the search terms in recipe.tags
     }
 
     returnNameList(searchTerms) {
-      //take in search terms
       //let returnArray
       //do any recipes have any of the search terms in recipe.name
         // if so put the recipe into the return array
