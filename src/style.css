@@ -17,7 +17,7 @@ body {
   font-family: Verdana, sans-serif;
 }
 
-h1 {
+.navigation-title {
   font-size: 2em;
 }
 
@@ -29,13 +29,9 @@ h1 {
   padding: 20px 20px;
 }
 
-/* .navigation-buttons {
-  width: 100%;
-} */
-
 .button {
   margin: 0px 20px 0px 0px;
-  font-size: 1.3em;
+  font-size: 1.2em;
   border-radius: 10px;
   border: none;
   padding: 10px;
@@ -53,4 +49,30 @@ h1 {
     width: 95%;
     margin: 10px;
   }
+}
+
+/* --------------Search Recipes Area --------------*/
+
+.search {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0px;
+}
+
+.search-container {
+  flex-basis: 50%;
+}
+
+.search-options-label {
+  font-size: 1.2em;
+}
+
+.search-options {
+  height: 40px;
+}
+
+.search-bar {
+  width: 40%;
+  height: 40px;
+  font-size: 1.2em;
 }
