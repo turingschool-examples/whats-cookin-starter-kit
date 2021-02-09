@@ -81,9 +81,7 @@
 
 .recipe-carousel {
   position: absolute;
-  /* border: 3px solid Red; */
   height: 43%;
-  /* could probably use a min/ max height*/
   width: 100%;
   bottom: 20px;
 }
@@ -92,10 +90,7 @@
   position: relative;
   height: 100%;
   width: 225px;
-  /* border: 3px solid Red; */
   background-color: rgb(255, 255, 255);
-  /* border-radius: 10px; */
-  /* box-shadow: 0px 0px 12px 9px rgba(78, 78, 78, 0.5) */
 }
 
 .recipe-card:hover{
@@ -104,11 +99,9 @@
 }
 
 .recipe-card-img {
-  /* display: block; */
-  /* margin:10px auto; */
   width: 100%;
   height: auto;
-  /* border-radius: 5px; */
+  transition: transform 0.5s ease-in-out;
 }
 
 .recipe-card-name {
@@ -138,13 +131,14 @@
   font-size: .9em;
   font-weight: 400;
   background-color: rgb(204, 204, 204);
+  transition: border 0.3s, background-color 0.3s, color 0.3s ease-in-out;
 }
 
 .recipe-card-button:hover {
   color: white;
   border-color: rgb(92, 92, 92);
   background-color: rgb(156, 156, 156);
-  transition: border 0.2s, color 0.2s ease-in-out;
+  transition: border 0.3s, background-color 0.3s, color 0.3s ease-in-out;
 }
 
 /*Instructions card*/
@@ -175,14 +169,57 @@
 .instruction-card-directions {
   height: 100%;
   width: 40%;
+  padding: 50px;
   background-color:#cbf1df;
   border-radius: 10px;
+}
+
+.instruction-card-recipe-name {
+  font-size: 3em;
+}
+.instruction-card-header {
+  font-size: 1em;
+  margin: 20px 0 10px;
+}
+
+.instruction-card-steps {
+  font-size: .9em;
+  line-height: 1.25;
+}
+
+table {
+  width: 60%;
+  font-size: .8em;
+  border-spacing: 2px 0 1px 1px
+}
+
+td {
+  margin-bottom: 50px;
+}
+
+.instruction-card-unit {
+  text-align: right;
 }
 
 .instruction-card-img {
   height: 370px;
   width: auto;
   border-radius: 10px;
+}
+
+.add-to-grocery-button{
+  margin: 15px 0;
+  padding: 15px;
+  background-color: rgb(255, 250, 103);
+  border: none;
+  border-radius: 5px;
+  outline:none;
+  box-shadow: 0px 13px 20px 0px rgba(78, 78, 78, 0.5);
+}
+
+.add-to-grocery-button:hover {
+  background-color: rgb(227 222 96);
+  transition: background-color 300ms ease-in-out;
 }
 
 .meal-suggestion {
@@ -192,8 +229,8 @@
   flex-direction: column;
   height: 200px;
   width: 150px;
-  /* overflow: hidden; */
 }
+
 .img-cropper {
   display: flex;
   justify-content: center;
@@ -205,12 +242,15 @@
 }
 
 .meal-suggestion-img {
-  /* text-align: center; */
   width: auto;
   height: 125px;
-  /* meal image needs a container that has a border radius of 50%. center meal image inside that contaier to prevent distortion.*/
-  /* border-radius: 50%; */
   box-shadow: 0px 13px 20px 0px rgba(78, 78, 78, 0.5);
+  transition: transform 0.5s ease-in-out;
+}
+
+.zoom:hover {
+  transform: scale(1.2);
+  transition: transform 0.5s ease-in-out;
 }
 
 .meal-suggestion-name {
@@ -220,7 +260,7 @@
   font-weight: bold;
 }
 
-.test{
+.meal-suggestion-container{
   width: 550px;
   justify-content: space-between;
 }
