@@ -17,12 +17,11 @@
     </section>
     <form class='search'> 
       <div class='search-container'>
-        <label class='search-options-label' for='search-option'>Select</label>
-        <input class='search-options' list='search-recipe-options' id='searchOption' name='search-choice'/>
-        <datalist id='search-recipe-options'>
-          <option value='Recipe name'></option>
-          <option value='Ingredient'></option>
-        </datalist> 
+        <label class='search-options-label' for='search-recipe-select'>Select</label>
+        <select class='search-options'name='search-recipe-options'id='search-recipe-select'>
+          <option value='recipe'>Recipe Name</option>
+          <option value='ingredient'>Ingredient</option>
+        </select> 
         <input class='search-bar' type='text' placeholder='Search Recipes Here'>
         <button class='button' id='searchRecipes'>Search Recipes</button> 
       </div>  
