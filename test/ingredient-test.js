@@ -25,10 +25,10 @@ describe('Ingredient', () => {
     expect(ingredient1.estimatedCostInCents).to.equal(350);
   })
 
-  it.only('should be able to have a different id, name, estimated cost in cents', () => {
-    expect(ingredient1.id).to.equal(2);
-    expect(ingredient1.name).to.equal('wine');
-    expect(ingredient1.estimatedCostInCents).to.equal(1250);
+  it('should be able to have a different id, name, estimated cost in cents', () => {
+    expect(ingredient2.id).to.equal(2);
+    expect(ingredient2.name).to.equal('wine');
+    expect(ingredient2.estimatedCostInCents).to.equal(1250);
   })
 
 })

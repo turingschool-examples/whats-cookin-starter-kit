@@ -1,6 +1,6 @@
 const chai = require('chai');
 const expect = chai.expect;
-const Recipe = require('./src/recipe.js');
+const Recipe = require('../src/recipe.js');
 
 describe('Recipe', () => {
   let ingredientData;
@@ -28,6 +28,16 @@ describe('Recipe', () => {
         id: 1123,
         name: 'eggs',
         estimatedCostInCents: 472,
+      },
+      {
+        id: 1,
+        name: 'ketchup',
+        estimatedCostInCents: 1,
+      },
+      {
+        id: 2,
+        name: 'chocolate',
+        estimatedCostInCents: 200,
       },
     ];
 
@@ -106,6 +116,27 @@ describe('Recipe', () => {
     expect(recipe1.tags).to.deep.equal(['dessert', 'starter', 'snack']);
   });
 
+  it('should find a list of ingredients', () => {
+    const listOfIngredients = recipe1.findIngredients(ingredientData);
+    expect(listOfIngredients).to.deep.equal([
+      {
+        id: 20081,
+        name: 'wheat flour',
+        estimatedCostInCents: 142,
+      },
+      {
+        id: 18372,
+        name: 'bicarbonate of soda',
+        estimatedCostInCents: 582,
+      },
+      {
+        id: 1123,
+        name: 'eggs',
+        estimatedCostInCents: 472,
+      },
+    ]);
+  });
+
   it('should return names of the ingredients', () => {
     const ingredientNames = recipe1.returnIngredientNames(ingredientData);
     expect(ingredientNames).to.deep.equal([
@@ -120,7 +151,7 @@ describe('Recipe', () => {
     expect(totalCost).to.equal(11.96);
   });
 
-  it.only('should return the instructions for the recipe', () => {
+  it('should return the instructions for the recipe', () => {
     const instructions = recipe1.returnRecipeInstructions();
     expect(instructions).to.deep.equal([
       instruction1,
