@@ -141,3 +141,50 @@
   background-color: rgb(156, 156, 156);
   transition: border 0.2s, color 0.2s ease-in-out;
 }
+
+/*Instructions card*/
+
+.instruction {
+  position: relative;
+  margin: 40px auto;
+  height: 1000px;
+  width: 1350px;
+  background-color: #e3ffda;
+;
+  border-radius: 10px;
+}
+
+.instruction-card {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 80%;
+  width: 90%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 13px 20px 0px rgba(78, 78, 78, 0.5);
+}
+
+.instruction-card-directions {
+  margin: 0 0 0 70px;
+  height: 80%;
+  width: 40%;
+  background-color:#cbf1df;
+  border-radius: 10px;
+}
+
+.instruction-card-img {
+  align-self: baseline;
+  margin: 81px 50px;
+  height: 370px;
+  width: auto;
+  border-radius: 10px;
+}
+
+.ingredient-card-suggestion {
+  height: 200px;
+  width: 150px;
+}
+
+
