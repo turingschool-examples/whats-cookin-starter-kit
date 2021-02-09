@@ -10,7 +10,34 @@ class Recipe {
         this.image = recipe.image
     }
     returnIngredientNames()  {
-        return this.ingredients
+        const ingredientArr = []
+        for (let i = 0; i < testIngredients.length; i++) {
+            const single = testIngredients[i];
+            this.ingredients.forEach(function(ingredient) {
+                if(ingredient.id === single.id) {
+                    ingredientArr.push(single.name);
+                    }
+                }) 
+        }
+        return ingredientArr;
+    }
+    returnTotalCost() {
+        let totalCost = 0
+        for (let i = 0; i < testIngredients.length; i++) {
+            const single = testIngredients[i];
+            this.ingredients.forEach(function(ingredient) {
+                if(ingredient.id === single.id) {
+                    totalCost += single.estimatedCostInCents;
+                    }
+                }) 
+        }
+        totalCost /= 100;
+        return totalCost;
+    }
+    
+    returnInstructions() {
+        console.log(this.instructions)
+        return this.instructions;
     }
 }
 

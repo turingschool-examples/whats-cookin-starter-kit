@@ -52,12 +52,12 @@ describe('Recipe', function() {
       expect(recipe.returnIngredientNames()).to.deep.equal(["wheat flour", "bicarbonate of soda", "eggs", "sucrose"]);
     })
 
-    xit('should return the total cost of ingredients', function() {
+    it('should return the total cost of ingredients', function() {
       const recipe = new Recipe(testRecipes[0]);
       expect(recipe.returnTotalCost()).to.deep.equal(20.98);
     })
 
-    xit('should return recipe instructions in order', function() {
+    it('should return recipe instructions in order', function() {
       const recipe = new Recipe(testRecipes[0]);
       expect(recipe.returnInstructions()).to.deep.equal(testRecipes[0].instructions);
     })
