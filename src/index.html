@@ -3,10 +3,63 @@
   <head>
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <h1>Whats Cookin</h1>
-
+    <nav>
+      <div class="home-recipes">
+        <p>Home</p>
+        <div class="search-dropdown">
+          <button class="dropbtn">Recipes</button>
+          <div class="dropdown-content">
+            <a href="#">By Dish Type</a>
+            <a href="#">By Ingredients</a>
+            <a href="#">All Recipes</a>
+          </div>
+        </div>
+      </div>
+      <h1 type="button" class="main-header">What's Cookin'?</h1>
+      <p class="welcome-back">Welcome Back, User!</p>
+    </nav>
+    <main>
+      <section class ="user-dropdown">
+        <article class="owned-ingredients">
+          <h2>Your Pantry</h2>
+          <div class="ingredient-list">
+            <ul>ingredient1: amount</ul>
+            <ul>ingredient1: amount</ul>
+            <ul>ingredient1: amount</ul>
+          </div>
+        </article>
+        <aside class="you-can-make">
+          <h2>Recipes You Can Make!</h2>
+          <div class="you-can-make-list">
+            <ol>Recipe 1</ol>
+            <ol>Recipe 1</ol>
+            <ol>Recipe 1</ol>
+          </div>
+        </aside>
+      </section>
+      <article class="you-should-try">
+        <h1>Recipes You Should Try!</h1>
+        <div class="random-recipe-bar">
+          <img src="./images/burg.jpg" alt="testimg">
+          <img src="./images/burg.jpg" alt="testimg">
+          <img src="./images/burg.jpg" alt="testimg">
+          <img src="./images/burg.jpg" alt="testimg">
+          <img src="./images/burg.jpg" alt="testimg">
+          <img src="./images/burg.jpg" alt="testimg">
+          <img src="./images/burg.jpg" alt="testimg">
+          <img src="./images/burg.jpg" alt="testimg">
+          <img src="./images/burg.jpg" alt="testimg">
+          <img src="./images/burg.jpg" alt="testimg">
+          <img src="./images/burg.jpg" alt="testimg">
+          <img src="./images/burg.jpg" alt="testimg">
+        </div>
+      </article>
+    </main>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
