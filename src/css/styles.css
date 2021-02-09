@@ -112,7 +112,8 @@ img {
 }
 
 .nav-links__item {
-    margin: 0 10px;
+    flex-wrap: nowrap;
+    margin: 0 20px;
 }
 
 /* *** Main *** */
@@ -148,7 +149,7 @@ footer {
     }
 
     .grid-container {
-        grid-template-columns: .5fr 1fr;
+        grid-template-columns: .1fr 1.9fr;
         grid-template-rows: .4fr .5fr 2.5fr 2.5fr .4fr;
         grid-template-areas:
             "header header"
@@ -158,8 +159,23 @@ footer {
             "footer footer";
     }
 
-    .nav-links {
+    nav {
+        width: 100px;
+    }
 
+    .nav__right {
+        height: 100%;
+        justify-content: center;
+    }
+
+    .nav-links {
+        justify-content: flex-end;
+        align-items: center;
+        transform: rotate(270deg);
+    }
+
+    .nav-links__item {
+        width: 100px;
     }
 }
 
