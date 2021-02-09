@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
-const recipes = require('../data/recipes');
-const allRecipes = recipes.recipeData;
+const recipes = require('./Data');
+const allRecipes = recipes.dummyRecipeData;
 
 
 const Recipe = require('../src/Recipe')

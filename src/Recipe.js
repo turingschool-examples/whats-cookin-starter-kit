@@ -1,6 +1,6 @@
 const recipes = require('../data/recipes');
-const ingredients = require('../data/ingredients');
-const allIngredients = ingredients.ingredientsData;
+const ingredients = require('../test/Data');
+const allIngredients = ingredients.dummyIngredientData;
 
 class Recipe {
   constructor(recipeObject) {
