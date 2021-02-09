@@ -8,14 +8,25 @@
   </head>
   <body>
     <section class='navigation'>
-      <h1 class='title'>Whats Cookin</h1>
+      <h1 class='navigation-title'>Whats Cookin</h1>
       <div class='navigation-buttons'>
         <button class='button' id='returnToRecipes'>Return to Recipes</button>
         <button class='button' id='myFavorites'>My Favorites</button>
         <button class='button' id='myPantry'>My Pantry</button>
       </div>
     </section>
-
+    <form class='search'> 
+      <div class='search-container'>
+        <label class='search-options-label' for='search-option'>Select</label>
+        <input class='search-options' list='search-recipe-options' id='searchOption' name='search-choice'/>
+        <datalist id='search-recipe-options'>
+          <option value='Recipe name'></option>
+          <option value='Ingredient'></option>
+        </datalist> 
+        <input class='search-bar' type='text' placeholder='Search Recipes Here'>
+        <button class='button' id='searchRecipes'>Search Recipes</button> 
+      </div>  
+    </form>
     <script type='text/javascript src='../data/users.js"></script>
     <script type='text/javascript' src='../data/recipes.js'></script>
     <script type='text/javascript' src='../data/ingredients.js'></script>
