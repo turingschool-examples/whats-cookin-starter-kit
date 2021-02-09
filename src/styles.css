@@ -1,0 +1,69 @@
+/* ALL */
+html, body {
+  height: 100%;;
+}
+main {
+height: 100%;
+display: flex;  
+justify-content: space-around;
+align-items: flex-end;
+}
+
+li {
+  list-style-type: none;
+}
+/* MAIN */
+
+.buttonContainer {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  height: 100%; 
+  align-self: center;
+}
+/* RADIO FORM */
+form {
+  background-color: rgba(96, 184, 180, 0.212);
+  display: flex;
+  flex-flow: row wrap;
+  align-items: space-between;
+  align-content: space-between;
+  justify-content: space-between;
+  width: 20%;
+  padding: 3%;
+  border-radius: 20%;
+  align-self: center;
+}
+
+input[type="radio"] {
+  visibility: hidden;
+}
+label {
+  cursor: pointer;
+  border: 1px solid rgba(96, 184, 179, 0.9);
+  border-radius: 10px;
+  padding: 2px 5px 2px 5px;
+  margin-bottom: 10px;
+}
+label:hover, 
+input:checked + label, 
+.my-list:hover, 
+.make-this:hover, 
+.my-list:after, 
+.make-this:after {
+  background-color:rgba(96, 184, 179, 0.404);  
+  font-size: 105%;
+}
+/* Recipe Buttons */
+
+.my-list, .make-this {
+  background-color: rgba(96, 184, 180, 0.212);
+  border: 1px solid rgba(96, 184, 179, 0.9);
+  border-radius: 3px;
+  text-align: end;
+}
+
+/* Recipe */
+.recipe-list {
+  align-self: flex-end;
+}
