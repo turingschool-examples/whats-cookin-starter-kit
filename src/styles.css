@@ -5,6 +5,12 @@
     /* border: .5px solid red; */
 }
 
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .navigation-bar{
   position: relative;
   height: 75px;
@@ -65,4 +71,21 @@ button:hover {
   height: 90vh;
   width: 100%;
 }
+
+.recipe-carousel {
+  position: absolute;
+  border: 3px solid Red;
+  height: 40%;
+  /* could probably use a min/ max height*/
+  width: 100%;
+  bottom: 0;
+}
+
+.recipe-card {
+  height: 90%;
+  width: 225px;
+  border: 3px solid Red;
+  background-color: rgba(204, 204, 204, 0.822);
+}
+
 
