@@ -1,18 +1,18 @@
 *{
-    font-family: fantasy;
-    color: white;
+    font-family: 'Bebas Neue', cursive;
 }
 
 nav{
     display: grid;
     grid-auto-flow: column;
     align-items: center;
-    color: white;
-    background-color: lightcoral;
+    color: #184A45FF;
+    background-color: #FC766AFF;
 }
 
 body{
-    background-color: #b3afb0;
+    background-color: #184A45FF;
+    color: #B0B8B4FF;
     position: absolute;
     margin: 0px;
     overflow: hidden;
@@ -34,6 +34,10 @@ img {
     transition: .5s ease;
 }
 
+ul {
+  padding-left: 20px;
+}
+
 img:hover {
     filter: brightness(100%);
 }
@@ -47,18 +51,33 @@ img:hover {
     justify-self: center;
 }
 
+.main-header {
+  cursor: pointer;
+}
+
+.active, .main-header:hover {
+  color: #B0B8B4FF;
+
+
+}
+
 .user-dropdown {
   display: flex;
+  justify-content: center;
   width: 100%;
-  height: 100%;
+  box-sizing: border-box;
+  padding: 0 50px 0 50px;
+  height: 275px;
 }
 
 .owned-ingredients, .you-can-make {
     text-align-last: center;
     justify-self: center;
     height: 100%;
-    width: 45%;
+    width: 50%;
     margin: 0;
+    background-color: #B0B8B4FF;
+    color: #184A45FF;
 }
 
 .ingredient-list, .you-can-make-list {
@@ -68,23 +87,27 @@ img:hover {
 }
 
 .you-should-try {
+    position: fixed;
+    bottom: 0px;
     text-align: center;
-    margin-top: 50px;
+    height: 60%;
+    margin-bottom: 25px;
 }
 
 .random-recipe-bar {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
     overflow: hidden;
     overflow-y: scroll;
-    height: 280px;
+    height:90%;
     margin: 0px 25px;
 }
 
 .dropbtn {
     background-color: rgba(0,0,0,0.0);
-    color: white;
+    color: #184A45FF;
     padding: 16px;
     font-size: 16px;
     border: none;
@@ -115,7 +138,7 @@ img:hover {
 }
 
 .dropdown-content a:hover {
-    background-color: white;
+    background-color: #006747FF;
 }
 
 .dropdown:hover .dropdown-content {
