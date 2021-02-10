@@ -53,7 +53,7 @@ function loadSearchPage(array) {
       <img class="recipe-card-img" src="${recipe.image}">
       <p class="recipe-card-name">${recipe.name}</p>
       <p class="recipe-card-cost">${recipe.getIngredientsCost()}</p>
-      <button class="recipe-card-button">Save Recipe</button>
+      <button class="recipe-card-button"></button>
     </article>
   `)
 }
@@ -70,7 +70,7 @@ function populateRecipeCarousel() {
         <img class="recipe-card-img" src="${randomRecipe.image}">
         <p class="recipe-card-name">${randomRecipe.name}</p>
         <p class="recipe-card-cost">${randomRecipe.getIngredientsCost()}</p>
-        <button class="recipe-card-button">Save Recipe</button>
+        <button class="recipe-card-button"></button>
       </article>
     `
   }
