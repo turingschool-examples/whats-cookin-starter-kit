@@ -64,7 +64,7 @@
         </section>
       </main>
 
-      <section class="featured-section content1">
+      <section class="featured-section content1 hidden">
         <h2 class="featured-section__title">Featured Recipes</h2>
 
         <article class="featured-section__recipe-profile">
@@ -86,7 +86,7 @@
         </article>
       </section>
 
-      <section class="featured-section content2">
+      <section class="featured-section content2 hidden">
         <article class="featured-section__recipe-profile">
           <figure>
             <img class="featured-section__recipe-profile--img"
@@ -108,7 +108,7 @@
 
 
 <!--      recipe detail view  -->
-      <main id="recipe-detail-view" class="recipe-detail-view">
+      <main id="recipe-detail-view" class="recipe-detail-view hidden">
         <section class="recipe-detail__top">
           <section class="recipe-detail__top--title">
             <h1>Hamburgers</h1>
@@ -120,8 +120,7 @@
         </section>
       </main>
 
-<!--        <section class="recipe-detail__bottom ">-->
-      <section class="recipe-detail__bottom--left content1">
+      <section class="recipe-detail__bottom--left content1 hidden">
         <h1>Instructions</h1>
         <ul>
           <li>1. Blah blah blah</li>
@@ -130,7 +129,7 @@
         </ul>
       </section>
 
-      <section class="recipe-detail__bottom--right content2">
+      <section class="recipe-detail__bottom--right content2 hidden">
         <figure>
           <img class="featured-section__recipe-profile--img"
                src="https://spoonacular.com/recipeImages/623855-556x370.jpg"
@@ -163,73 +162,110 @@
 
 
 <!--      pantry view  -->
-      <main class="pantry-view hidden">
+      <main class="pantry-view  hidden">
         <section class="pantry__top">
           <section class="pantry__top--title">
             <h1>User's Pantry</h1>
           </section>
         </section>
-        <section class="pantry__bottom">
-          <section class="pantry__bottom--left">
-            <ul>
-              <li>Choc chips -- amount</li>
-              <li>Butter -- amount</li>
-              <li>Flour -- amount</li>
-            </ul>
-          </section>
-          <section class="pantry__bottom--right">
-            <h4>Some random food image??</h4>
-            <figure>
-              <img class="pantry__recipe-profile--img"
-                   src="https://spoonacular.com/recipeImages/623855-556x370.jpg"
-                   alt="Chocolate chip cookies">
-            </figure>
-          </section>
-        </section>
       </main>
+
+      <section class="pantry__bottom--left content1 hidden">
+        <ul>
+          <li>Choc chips -- amount</li>
+          <li>Butter -- amount</li>
+          <li>Flour -- amount</li>
+        </ul>
+      </section>
+
+      <section class="pantry__bottom--right content2 hidden">
+        <h4>Some random food image??</h4>
+        <figure>
+          <img class="pantry__recipe-profile--img"
+               src="https://spoonacular.com/recipeImages/623855-556x370.jpg"
+               alt="Chocolate chip cookies">
+        </figure>
+      </section>
+
 
 
 <!--      list view  -->
 
-      <main class="list-view hidden">
+      <main class="list-view ">
         <h1>Blah Blah Recipes</h1>
         <section class="search-section">
           <h3>Search by ingredient, meal type, recipe, or whatever you feel like.</h3>
           <div class="search">Search bar goes here</div>
         </section>
-
-        <section class="recipe-list">
-          <article class="recipe-list__item">
-            <div class="recipe-list__item--col1">
-              <button>Cooked It!</button>
-              <span>message</span>
-            </div>
-            <div class="recipe-list__item--col2">
-              <figure>
-                <img class="pantry__recipe-profile--img"
-                     src="https://spoonacular.com/recipeImages/623855-556x370.jpg"
-                     alt="Chocolate chip cookies">
-              </figure>
-            </div>
-            <div class="recipe-list__item--col3">
-              <ul>
-                <li><i class="fal fa-ellipsis-h"></i> recipe name</li>
-                <li>
-                  <i class="far fa-check-circle"></i>
-                  <i class="far fa-times-circle"></i>
-                  ingredients in pantry or not
-                </li>
-                <li><i class="far fa-badge-dollar"></i> cost</li>
-              </ul>
-            </div>
-            <div class="recipe-list__item--col4">
-              <span><i class="far fa-heart"></i> / <i class="fas fa-heart"></i></span> ...
-              <span><i class="far fa-calendar"></i> / <i class="far fa-calendar-check"></i></span>
-            </div>
-
-          </article>
-        </section>
       </main>
+
+      <article class="recipe-list__item content1 cooked">
+        <div class="recipe-list__item--col1">
+          <button>Cooked It!</button>
+          <span>message</span>
+        </div>
+        <div class="recipe-list__item--col2 img">
+          <figure>
+            <img class="pantry__recipe-profile--img"
+                 src="https://spoonacular.com/recipeImages/623855-556x370.jpg"
+                 alt="Chocolate chip cookies">
+          </figure>
+        </div>
+        <div class="recipe-list__item--col3 recipe">
+          <ul>
+            <li>
+              <i class="fal fa-ellipsis-h"></i> Recipe name
+            </li>
+            <li>
+              <i class="far fa-check-circle"></i> This ingredient
+            </li>
+            <li>
+              <i class="far fa-times-circle"></i> That ingredient
+            </li>
+            <li>
+              <i class="far fa-badge-dollar"></i> Cost
+            </li>
+          </ul>
+        </div>
+        <div class="recipe-list__item--col4 action-items">
+          <span><i class="far fa-heart"></i></span>
+          <span><i class="far fa-calendar-check"></i></span>
+        </div>
+      </article>
+
+      <article class="recipe-list__item content2 cooked">
+        <div class="recipe-list__item--col1">
+          <button>Cooked It!</button>
+          <span>message</span>
+        </div>
+        <div class="recipe-list__item--col2 img">
+          <figure>
+            <img class="pantry__recipe-profile--img"
+                 src="https://spoonacular.com/recipeImages/623855-556x370.jpg"
+                 alt="Chocolate chip cookies">
+          </figure>
+        </div>
+        <div class="recipe-list__item--col3 recipe">
+          <ul>
+            <li>
+              <i class="fal fa-ellipsis-h"></i> Recipe name
+            </li>
+            <li>
+              <i class="far fa-check-circle"></i> This ingredient
+            </li>
+            <li>
+              <i class="far fa-times-circle"></i> That ingredient
+            </li>
+            <li>
+              <i class="far fa-badge-dollar"></i> Cost
+            </li>
+          </ul>
+        </div>
+        <div class="recipe-list__item--col4 action-items">
+          <span><i class="far fa-heart"></i></span>
+          <span><i class="far fa-calendar-check"></i></span>
+        </div>
+      </article>
 
       <footer>
         Created by Jessica, Katie, and Nikki, with ❤️.
