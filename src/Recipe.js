@@ -1,6 +1,6 @@
 const recipes = require('../data/recipes');
-const ingredients = require('../test/Data');
-const allIngredients = ingredients.dummyIngredientData;
+const ingredients = require('../data/ingredients');
+const allIngredients = ingredients.ingredientsData;
 
 class Recipe {
   constructor(recipeObject) {
@@ -14,7 +14,7 @@ class Recipe {
   }
 
   returnTotalCost() {
-    let costs = this.ingredients.map(ingredient => allIngredients.find(i => i.id === ingredient.id).estimatedCostInCents);
+    let costs = this.ingredients.map(ingredient => allIngredients.find(i => i.id === ingredient.id).estimatedCostInCents * ingredient.quantity.amount);
     let totalCost = costs.reduce((total, currentValue) => total + currentValue);
     return totalCost / 100;
   }

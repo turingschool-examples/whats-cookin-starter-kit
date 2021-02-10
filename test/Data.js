@@ -216,6 +216,7 @@ const dummyRecipeData = [
     "tags": [
       "lunch",
       "main course",
+      "side dish",
       "main dish",
       "dinner"
     ]

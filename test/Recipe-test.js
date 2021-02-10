@@ -36,7 +36,7 @@ describe('Recipe', function() {
 
 it('should return total cost converted to dollars', function() {
   const recipe = new Recipe(allRecipes[0]);
-  expect(recipe.returnTotalCost()).to.equal(59.21)
+  expect(recipe.returnTotalCost()).to.equal( 177.76)
 });
 
 it('should return list of instructions', function() {
