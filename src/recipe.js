@@ -9,33 +9,33 @@ class Recipe {
         this.tags = recipe.tags,
         this.image = recipe.image
     }
-    returnIngredientNames()  {
-        const ingredientArr = []
-        for (let i = 0; i < testIngredients.length; i++) {
-            const single = testIngredients[i];
-            this.ingredients.forEach(function(ingredient) {
-                if(ingredient.id === single.id) {
-                    ingredientArr.push(single.name);
-                    }
-                }) 
-        }
-        return ingredientArr;
+    
+    returnIngredientNames(ourIngredients)  {
+      const names = ourIngredients.reduce((ingredientNames, item) => {
+          this.ingredients.forEach(function(ingredient) {
+            if(ingredient.id === item.id) {
+                ingredientNames.push(item.name);
+              }
+            })
+            console.log(ingredientNames)
+          return ingredientNames;
+        }, [])
+      return names
     }
+
     returnTotalCost() {
-        let totalCost = 0
-        for (let i = 0; i < testIngredients.length; i++) {
-            const single = testIngredients[i];
-            this.ingredients.forEach(function(ingredient) {
-                if(ingredient.id === single.id) {
-                    console.log(ingredient.quantity.amount)
-                    totalCost += (single.estimatedCostInCents * ingredient.quantity.amount);
-                    }
-                }) 
-        }
+        let totalCost = testIngredients.reduce((ingredientNames, item) => {
+          this.ingredients.forEach(function(ingredient) {
+              if(ingredient.id === item.id) {
+                  ingredientNames += (item.estimatedCostInCents * ingredient.quantity.amount);
+                  }
+              })
+            return ingredientNames;
+        }, 0)
         totalCost /= 100;
         return totalCost;
     }
-    
+
     returnInstructions() {
         return this.instructions;
     }

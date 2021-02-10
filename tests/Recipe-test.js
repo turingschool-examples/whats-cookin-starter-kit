@@ -2,7 +2,7 @@ const chai = require('chai');
 const expect = chai.expect;
 //const recipeData = require('../data/recipes');
 const testRecipes = require('./test-recipes');
-//const testIngredients = require('./test-ingredients')
+const testIngredients = require('./test-ingredients')
 const Recipe = require('../src/recipe');
 
 describe('Recipe', function() {
@@ -49,7 +49,7 @@ describe('Recipe', function() {
 
     it('should return names of ingredients', function() {
       const recipe = new Recipe(testRecipes[0]);
-      expect(recipe.returnIngredientNames()).to.deep.equal(["wheat flour", "bicarbonate of soda", "eggs", "sucrose"]);
+      expect(recipe.returnIngredientNames(testIngredients)).to.deep.equal(["wheat flour", "bicarbonate of soda", "eggs", "sucrose"]);
     })
 
     it('should return the total cost of ingredients', function() {
