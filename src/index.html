@@ -42,11 +42,12 @@
       </nav>
 
 <!--      landing view  -->
-      <main id="landing-view" class="landing-view">
+      <main id="landing-view" class="landing-view hidden">
         <section class="search-section">
           <h3>Search by ingredient, meal type, recipe, or whatever you feel like.</h3>
           <div class="search">Search bar goes here</div>
         </section>
+
         <section class="hero-section">
           <figure class="hero-section__image">
             <img src="https://spoonacular.com/recipeImages/623855-556x370.jpg">
@@ -63,7 +64,7 @@
         </section>
       </main>
 
-      <section id="content1" class="featured-section">
+      <section class="featured-section content1">
         <h2 class="featured-section__title">Featured Recipes</h2>
 
         <article class="featured-section__recipe-profile">
@@ -85,7 +86,7 @@
         </article>
       </section>
 
-      <section id="content2" class="featured-section">
+      <section class="featured-section content2">
         <article class="featured-section__recipe-profile">
           <figure>
             <img class="featured-section__recipe-profile--img"
@@ -117,45 +118,47 @@
             <i class="far fa-calendar"></i>
           </section>
         </section>
-        <section class="recipe-detail__bottom">
-          <section class="recipe-detail__bottom--left">
-            <h1>Instructions</h1>
-            <ul>
-              <li>1. Blah blah blah</li>
-              <li>2. Blah blah blah</li>
-              <li>3. Blah blah blah</li>
-            </ul>
-          </section>
-          <section class="recipe-detail__bottom--right">
-            <figure>
-              <img class="featured-section__recipe-profile--img"
-                   src="https://spoonacular.com/recipeImages/623855-556x370.jpg"
-                   alt="Chocolate chip cookies">
-              <figcaption>Meal cost: $10</figcaption>
-            </figure>
-
-            <h3 class="ingredients">Ingredients</h3>
-              <span class="ingredients__item"><i class="far fa-check-circle"></i> Butter</span>
-                <span class="ingredients__message"></span>
-
-              <span class="ingredients__item"><i class="far fa-check-circle"></i> Flour</span>
-                <span class="ingredients__message"></span>
-
-              <span class="ingredients__item"><i class="far fa-times-circle"></i> Sugar</span>
-                <span class="ingredients__message">You'll need xyz more of this.</span>
-
-              <span class="ingredients__item"><i class="far fa-times-circle"></i> Vanilla</span>
-                <span class="ingredients__message">You'll need xyz more of this.</span>
-
-              <span class="ingredients__item"><i class="far fa-check-circle"></i> Chocolate Chips</span>
-                <span class="ingredients__message"></span>
-
-              <span class="ingredients__item"><i class="far fa-times-circle"></i> Eggs</span>
-                <span class="ingredients__message">You'll need xyz more of this.</span>
-
-          </section>
-        </section>
       </main>
+
+<!--        <section class="recipe-detail__bottom ">-->
+      <section class="recipe-detail__bottom--left content1">
+        <h1>Instructions</h1>
+        <ul>
+          <li>1. Blah blah blah</li>
+          <li>2. Blah blah blah</li>
+          <li>3. Blah blah blah</li>
+        </ul>
+      </section>
+
+      <section class="recipe-detail__bottom--right content2">
+        <figure>
+          <img class="featured-section__recipe-profile--img"
+               src="https://spoonacular.com/recipeImages/623855-556x370.jpg"
+               alt="Chocolate chip cookies">
+          <figcaption>Meal cost: $10</figcaption>
+        </figure>
+
+        <h3 class="ingredients">Ingredients</h3>
+          <span class="ingredients__item"><i class="far fa-check-circle"></i> Butter</span>
+            <span class="ingredients__message"></span>
+
+          <span class="ingredients__item"><i class="far fa-check-circle"></i> Flour</span>
+            <span class="ingredients__message"></span>
+
+          <span class="ingredients__item"><i class="far fa-times-circle"></i> Sugar</span>
+            <span class="ingredients__message">You'll need xyz more of this.</span>
+
+          <span class="ingredients__item"><i class="far fa-times-circle"></i> Vanilla</span>
+            <span class="ingredients__message">You'll need xyz more of this.</span>
+
+          <span class="ingredients__item"><i class="far fa-check-circle"></i> Chocolate Chips</span>
+            <span class="ingredients__message"></span>
+
+          <span class="ingredients__item"><i class="far fa-times-circle"></i> Eggs</span>
+            <span class="ingredients__message">You'll need xyz more of this.</span>
+      </section>
+
+
 
 
 

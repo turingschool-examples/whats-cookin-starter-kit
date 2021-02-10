@@ -53,14 +53,14 @@ main {
     padding-top: 5px;
 }
 
-#content1 {
+.content1 {
     background: #6fffd2;
     grid-area: content1;
     border-radius: 10px;
     padding-top: 5px;
 }
 
-#content2 {
+.content2 {
     background: #64ffda;
     grid-area: content2;
     border-radius: 10px;
