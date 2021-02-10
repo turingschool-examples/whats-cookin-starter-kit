@@ -1,16 +1,18 @@
 const chai = require('chai');
 const expect = chai.expect;
 
+const ingredientTestData = require('./ingredient-test-data');
+const ingredientData = ingredientTestData.ingredientData;
+
+const recipeTestData = require('./recipe-test-data');
+const usersData = require('./user-test-data');
 const RecipeRepo = require('../src/RecipeRepo');
 const Recipe = require('../src/Recipe');
 
-let recipeData = [{'id': 2021, 'image': 'https://i.pinimg.com/originals/ee/28/89/ee288996db69afeb8ec5cbf84f8c0d10.jpg',
-                  'ingredients': [{'id': 23, 'quantity': {'amount': 42, 'unit': 'octoban'}}], 'instructions': [{
-                    'instruction': 'Get a paddle and some marshmallows and peanut butter','number': 1}, {'instruction': 'Whip it good. With a Whisk. Whip it!', 'number': 2}],
-                    'name': 'fluffer-nutter', 'tags': ['chocolate','cheese']}];
-
 
 describe ('Recipe', () => {
+  const recipeData = recipeTestData.recipeData;
+  const userData = usersData.usersData;
   let recipeRepo;
   let recipe;
 
@@ -52,5 +54,25 @@ describe ('Recipe', () => {
   it('should have an ingredients list', () => {
 
     expect(recipeNumberOne.ingredients[0].quantity.unit).to.deep.equal('octoban');
+  });
+
+  describe('Inquiries', () => {
+
+    it('should determine names of needed ingredients', () => {
+      recipeNumberOne.getIngredientsNeeded();
+
+      expect()
+    });
+
+    it('should get the total cost of the ingredients', () => {
+      const cost = recipeNumberOne.getCost();
+
+      expect(cost).to.deep.equal(42*42/100)
+    });
+
+    it('should return instructions', () => {
+
+    });
+
   });
 });

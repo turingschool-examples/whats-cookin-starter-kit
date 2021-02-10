@@ -1,28 +1,17 @@
 const chai = require('chai');
 const expect = chai.expect;
-
+// write test: it needs to have a User!!
 const RecipeRepo = require('../src/RecipeRepo');
 const Recipe = require('../src/Recipe');
+const recipeTestData = require('./recipe-test-data');
+const usersData = require('./user-test-data');
 
 describe('RecipeRepo', () => {
+  const userData = usersData.usersData;
+  const recipeData = recipeTestData.recipeData;
   let recipeRepo;
   let recipe;
-  let recipeData = [{'id': 2021, 'image': 'https://i.pinimg.com/originals/ee/28/89/ee288996db69afeb8ec5cbf84f8c0d10.jpg',
-                      'ingredients': [{'id': 23, 'quantity': {'amount': 42, 'unit': 'octoban'}}], 'instructions': [{
-                      'instruction': 'Get a paddle and some marshmallows and peanut butter','number': 1}, {'instruction': 'Whip it good. With a Whisk. Whip it!', 'number': 2}],
-                      'name': 'fluffer-nutter', 'tags': ['chocolate','cheese']
-                    },
-                    {'id': 2011, 'image': 'https://i.pinimg.com/originals/ee/28/89/ee288996db69afeb8ec5cbf84f8c0d10.jpg',
-                      'ingredients': [{'id': 24, 'quantity': {'amount': 56, 'unit': 'octoban'}}], 'instructions': [{
-                      'instruction': 'Get a paddle and some marshmallows and peanut butter','number': 1}, {'instruction': 'Whip it good. With a Whisk. Whip it!', 'number': 2}],
-                      'name': 'figgy pudding', 'tags': ['cheerios','cheez-its']
-                    },
-                    {'id': 3115, 'image': 'https://i.pinimg.com/originals/ee/28/89/ee288996db69afeb8ec5cbf84f8c0d10.jpg',
-                      'ingredients': [{'id': 25, 'quantity': {'amount': 85, 'unit': 'octoban'}}], 'instructions': [{
-                      'instruction': 'Get a paddle and some marshmallows and peanut butter','number': 1}, {'instruction': 'Whip it good. With a Whisk. Whip it!', 'number': 2}],
-                      'name': 'gryndilow guts', 'tags': ['cheddar','cheetos']
-                    },
-                   ];
+
   beforeEach('create a recipe repository', () => {
     recipeRepo = new RecipeRepo(recipeData);
     recipeNumberOne = recipeRepo.recipes[0];
@@ -49,9 +38,11 @@ describe('RecipeRepo', () => {
     expect(recipeRepo.recipes[2].name).to.deep.equal(recipeData[2].name);
   });
 
-  describe('filter by tag', () => {
+  describe('filter', () => {
     let tag = 'cheez-its';
     let ingredientId = 24;
+    let name = 'figgy pudding';
+
     it('should filter recipes by tag', () => {
 
       recipeRepo.matchTag(tag);
@@ -62,8 +53,13 @@ describe('RecipeRepo', () => {
     it('should filter recipes by ingredient', () => {
 
       recipeRepo.matchIngredient(ingredientId);
+      expect(recipeRepo.recipes[1].tags).to.deep.equal(recipeData[1].tags);
+    });
 
-      expect(recipeRepo.recipes[0].tags).to.deep.equal(recipeData[1].tags);
+    it('should filter recipes by name', () => {
+
+      recipeRepo.matchName(name);
+      expect(recipeRepo.recipes[0].name).to.deep.equal(recipeData[1].name);
     });
   });
 

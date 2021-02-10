@@ -4,19 +4,14 @@ const expect = chai.expect;
 const RecipeRepo = require('../src/RecipeRepo');
 const Recipe = require('../src/Recipe');
 const User = require('../src/User');
+const recipeTestData = require('./recipe-test-data');
+const usersData = require('./user-test-data');
 
-let recipeData = [{'id': 2021, 'image': 'https://i.pinimg.com/originals/ee/28/89/ee288996db69afeb8ec5cbf84f8c0d10.jpg',
-                  'ingredients': [{'id': 23, 'quantity': {'amount': 42, 'unit': 'octoban'}}], 'instructions': [{
-                    'instruction': 'Get a paddle and some marshmallows and peanut butter','number': 1}, {'instruction': 'Whip it good. With a Whisk. Whip it!', 'number': 2}],
-                    'name': 'fluffer-nutter', 'tags': ['chocolate','cheese']}];
 
-let userData = {
-                  "name": "Bosphorous Immanuel",
-                  "id": 42,
-                  "pantry": [{"ingredient": 61, "amount": 6}, {"ingredient": 62, "amount": 6}]
-                }
 
 describe ('User', () => {
+  const recipeData = recipeTestData.recipeData;
+  const userData = usersData.usersData;
   let recipeRepo;
   let recipe;
   let user;
