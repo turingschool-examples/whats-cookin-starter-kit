@@ -1,5 +1,5 @@
 
-const Ingredient = require('../src/Ingredient.js');
+// const Ingredient = require('../src/Ingredient.js');
 
 class Recipe {
   constructor(recipe, ingredientsArray) {
@@ -16,7 +16,7 @@ class Recipe {
   }
 
   getIngredientsCost() {
-    let centsCost = this.ingredients.reduce((totalCost, ingredient) => totalCost += ingredient.estimatedCost, 0);
+    let centsCost = this.ingredients.reduce((totalCost, ingredient) => totalCost += ingredient.estimatedCost * ingredient.quantity.amount, 0);
     return `$${centsCost / 100}`
   }
 
@@ -27,4 +27,6 @@ class Recipe {
   }
 }
 
-module.exports = Recipe;
+if (typeof module !== 'undefined') {
+  module.exports = Recipe;
+}

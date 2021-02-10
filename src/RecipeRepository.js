@@ -1,4 +1,4 @@
-const Recipe = require("./Recipe")
+// const Recipe = require("./Recipe")
 
 class RecipeRepository {
   constructor(recipeArray, ingredientsArray) {
@@ -15,7 +15,7 @@ class RecipeRepository {
 
   filterByName(search) {
     search = this.validateSearch(search);
-    return Array.from(new Set(search.map(word => this.recipes.filter(recipe => recipe.name.toLowerCase().includes(word))).flat()));
+    return Array.from(new Set(search.map(word => this.recipes.filter(recipe => recipe.name.toLowerCase().split(' ').includes(word))).flat()));
   }
 
   filterByTag(search) {
@@ -36,4 +36,6 @@ class RecipeRepository {
   }
 }
 
-module.exports = RecipeRepository
+if (typeof module !== 'undefined') {
+  module.exports = RecipeRepository;
+}
