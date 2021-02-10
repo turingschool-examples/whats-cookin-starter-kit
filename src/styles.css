@@ -2,9 +2,10 @@
 html, body {
   height: 100%;
   font-family: Garamond;
-  background-color: rgba(122, 47, 45, 0.555);
+  background-color: #F0F0E1;
   background-size: cover;
   width: 100%;
+  margin: 0px;
 }
 
 button {
@@ -18,7 +19,6 @@ li {
 header {
 height: 5%;
 text-align: center;
-background-color: #FAE6B1;
 margin: -1% -1% 0px -1%;
 padding-top: 20px;
 font-size: 30px;
@@ -43,8 +43,9 @@ main {
   bottom: 0;
   transform: rotate(-90deg);
   text-align: center;
-  color: #FAE6B1;
+  color: #FC913A;
   border-bottom: solid;
+  font-size: 1.5em;
 }
 
 /* USER BUTTONS */
@@ -53,15 +54,16 @@ main {
   flex-flow: row;
   align-items: flex-start;
   width: 100%;
+  align-self: flex-start;
 }
 
 .buttonContainer > button {
-  border: 0;
+  border: 1px solid #FC913A;
   border-radius: 10%;
-  background-color: #FAE6B1;
+  background-color: inherit;
   padding: 10px;
   color: #FC913A;
-  margin: 2%;
+  margin: 5%;
   text-align: center;
 }
 
@@ -75,7 +77,7 @@ main {
   border-top: 0;
   border-right: 0;
   border-left: 0;
-  border-color:#FAE6B1;
+  border-color:#FC913A;
   color: #FC913A;
   font-size: 20px;
   margin: 2%;
@@ -85,6 +87,29 @@ input:focus,
 button:focus {
   outline: none;
 }
+/* CURRENT RECIPE */
+.current-recipe-container {
+  align-self: center;
+  display: flex;
+  width: 100%;
+}
+
+.current-recipe {
+  flex: 2;
+  display: flex;
+  flex-flow: row wrap;
+  background-color: #FAE6B1;
+  border-radius: 5%;
+  width: 100%;
+  height: auto;
+}
+
+.current-recipe-img {
+  height: 35%;
+  width: 35%;
+  border-radius: 5%;
+}
+
 /* INTERACTIVE-AREA */
 
 .my-list-container {
@@ -109,7 +134,7 @@ form {
   height: 100%;
   width: 50%;
   border-radius: 20px;
-  margin: 0px 2% 0px 1%;
+  margin: 0px 2% 0px 3%;
 }
 
 input[type="radio"] {
@@ -120,7 +145,7 @@ input[type="radio"] {
   cursor: pointer;
   border: 1px solid #FC913A;
   border-radius: 10px;
-  padding: 2px 5px 2px 5px;
+  padding: 1%;
   margin: 0px 2px 10px 2px;
   color: #FC913A;
   height: 20px;
@@ -129,17 +154,7 @@ input[type="radio"] {
 .key-word-container > label:hover, 
 .key-word-container > input:checked + label {
   background-color: #FAE6B1;  
-  font-size: 1.1em;
-}
-
-/* Recipe Buttons */
-
-.make-this {
-  background-color: #FAE6B1;
-  color: #FC913A;
-  border: none;
-  border-radius: 20px;
-  text-align: center;
+  font-size: 1.001em;
 }
 
 /* Recipe */
@@ -148,13 +163,13 @@ input[type="radio"] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: 2%;
 }
 
 .recipe-card {
   display: flex;
   flex: 1;
   flex-direction: row;
+  margin-left: .25%;
 } 
 /* UNFEATURED/HOVERED RECIPE */
 .recipe {
@@ -184,11 +199,6 @@ input[type="radio"] {
   animation:ease-in-out;
 }
 
-.recipe-card:hover .favorite-btn, 
-.recipe-card:hover .make-this {
-  visibility: visible;
-  display: initial;
-}
 
 .recipe-card:hover .recipe-img {
   height: 150px;
@@ -206,20 +216,28 @@ input[type="radio"] {
   background-repeat: no-repeat;
 }
 
-.favorite-btn:hover,
-.favorite-input:checked + .favorite-btn {
+.favorite-btn:hover {
   background-color: #FC913A;
   border-radius: 50%;
   height: 31px;
   width: 31px;
 }
+.recipe-card:hover .favorite-btn, 
+.recipe-card:hover .make-this {
+  visibility: visible;
+  display: initial;
+}
 
-.favorite-input {
+#favoriteInput {
   border: 0px;
 }
 
 .make-this {
-  background-image: none;
+  background-color: #FAE6B1;
+  color: #FC913A;
+  border: none;
+  border-radius: 20px;
+  text-align: center;
   align-self: flex-end;
   margin: 5%;
 }
@@ -248,5 +266,5 @@ input[type="radio"] {
 
 .interactive-area {
   display: flex;
-  height: 45%
+  height: 45%;
 }
