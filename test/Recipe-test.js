@@ -13,7 +13,7 @@ let recipeData = [{'id': 2021, 'image': 'https://i.pinimg.com/originals/ee/28/89
 describe ('Recipe', () => {
   let recipeRepo;
   let recipe;
-  
+
   beforeEach('create a recipe repository', () => {
     recipeRepo = new RecipeRepo(recipeData);
     recipeNumberOne = recipeRepo.recipes[0];
@@ -45,8 +45,8 @@ describe ('Recipe', () => {
     expect(recipeNumberOne.instructions).to.deep.equal(recipeData[0].instructions);
   });
 
-  it.skip('should instantiate an ingredient', () => {
-
+  it('should instantiate an ingredient', () => {
+    expect(recipeNumberOne.ingredients[0].id).to.deep.equal(23);
   });
 
   it.skip('should have an ingredients list', () => {

@@ -1233,4 +1233,4 @@ let ingredientsData = [
     "estimatedCostInCents": 613
   }
 ];
-module.exports = { Data };
+module.exports = { ingredientsData };
