@@ -1,12 +1,13 @@
 const chai = require('chai');
 const expect = chai.expect;
-const Ingredient = require('../src/ingredient.js');
-const IngredientRepo = require('../src/ingredientRepo.js');
+const Ingredient = require('../src/Ingredient');
+const IngredientRepo = require('../src/IngredientRepo');
 
 describe('Ingredient Repo', () => {
-  let ingredients;
+  let ingredientList;
+  let defaultIngredientList;
   beforeEach(() => {
-    ingredientData = [
+    const ingredientData = [
       {
         id: 20081,
         name: 'wheat flour',
@@ -33,11 +34,8 @@ describe('Ingredient Repo', () => {
         estimatedCostInCents: 200,
       },
     ];
-    ingredients = new IngredientRepo(
-      ingredientData.id,
-      ingredientData.name,
-      ingredientData.estimatedCostInCents
-    );
+    defaultIngredientList = new IngredientRepo();
+    ingredientList = new IngredientRepo(ingredientData);
   });
 
   it('should be a function', () => {
@@ -45,19 +43,19 @@ describe('Ingredient Repo', () => {
   });
 
   it('should create an instance of IngredientRepo', () => {
-    expect(ingredients).to.be.an.instanceof(IngredientRepo);
+    expect(ingredientList).to.be.an.instanceof(IngredientRepo);
   });
 
   it('should have no Ingredients by default', () => {
-    expect(ingredients.ingredients).to.deep.equal([]);
+    expect(defaultIngredientList.ingredients).to.deep.equal([]);
   });
 
   it('should hold a list of Ingredients', () => {
-    expect(ingredients.ingredients[0]).to.be.an.instanceof(Ingredient);
+    expect(ingredientList.ingredients[0]).to.be.an.instanceof(Ingredient);
   });
 
   it('should return an ingredient id', () => {
-    const ingredientId = ingredients.returnIngredientId('butter');
+    const ingredientId = ingredientList.returnIngredientId('butter');
     expect(ingredientId).to.equal(1001);
   });
 });
