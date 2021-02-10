@@ -3,7 +3,6 @@
 /* font-family: 'Raleway', sans-serif; */
 /*colors:  navy blue (#026B81), turquoise (#03B0AA), pink (#D49C96), dusty rose (#CBBDBE)*/
 
-
 /* *** General *** */
 * {
     box-sizing: border-box;
@@ -162,36 +161,11 @@ main {
 
 }
 
-/*.img {*/
-/*    grid-area: img;*/
-/*    border-radius: 10px;*/
-/*    padding-top: 5px;*/
-/*}*/
-
-/*.recipe {*/
-/*    grid-area: recipe;*/
-/*    border-radius: 10px;*/
-/*    padding-top: 5px;*/
-/*}*/
-
-/*.cooked {*/
-/*    grid-area: cooked;*/
-/*    border-radius: 10px;*/
-/*    padding-top: 5px;*/
-/*}*/
-
-/*.action-items {*/
-/*    grid-area: action-items;*/
-/*    border-radius: 10px;*/
-/*    padding-top: 5px;*/
-/*}*/
-
 ul {
     list-style-type: none;
 }
 
 /* *** Footer *** */
-
 footer {
     background: #CBBDBE;
     grid-area: footer;
@@ -204,6 +178,7 @@ footer {
     color: red;
 }
 
+/* *** miscellaneous *** */
 .hidden {
     display: none;
 }
