@@ -29,8 +29,8 @@ describe('RecipeRepo', () => {
       ],
       instructions: [
         { instruction: 'step 1', number: 1 },
-        { instruction: 'step 1', number: 1 },
-        { instruction: 'step 1', number: 1 }
+        { instruction: 'step 2', number: 2 },
+        { instruction: 'step 3', number: 3 }
       ],
       name: 'Buffalo Chicken Example',
       tags: ['lunch', 'main course', 'main dish', 'dinner']
@@ -102,12 +102,40 @@ describe('RecipeRepo', () => {
 
   describe('Methods', () => {
 
-    it('should be able to filter recipes by tag(s)', () => {
+    it('should be able to filter recipes by a tag', () => {
       recipe = new RecipeRepo([buffaloChicken, beefNoodle]);
       const result = recipe.filterRecipesByTag('noodles')
 
       expect(result).deep.equal([beefNoodle]);
-    })
+    });
+
+    it('should return an empty array if tag isn\'t found', () => {
+      recipe = new RecipeRepo([buffaloChicken, beefNoodle]);
+      const result = recipe.filterRecipesByTag('snack');
+
+      expect(result).deep.equal([]);
+    });
+
+    it('should be able to filter recipes by a name', () => {
+      recipe = new RecipeRepo([buffaloChicken, beefNoodle]);
+      const result = recipe.filterRecipesByName('Beef Noodle');
+
+      expect(result).deep.equal(beefNoodle);
+    });
+
+    it('should return undefined if the recipe doesn\'t exist', () => {
+      recipe = new RecipeRepo([buffaloChicken, beefNoodle]);
+      const result = recipe.filterRecipesByName('Pork Tacos');
+
+      expect(result).deep.equal(undefined);
+    });
+
+    it('should be able to filter recipes by an ingredient', () => {
+      recipe = new RecipeRepo([buffaloChicken, beefNoodle]);
+      const result = recipe.filterRecipesByIngredients('butter');
+
+      expect(result).deep.equal([buffaloChicken]);
+    });
   })
 
 

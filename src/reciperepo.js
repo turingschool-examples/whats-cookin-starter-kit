@@ -7,7 +7,7 @@ class RecipeRepo {
       recipe.image,
       recipe.ingredients,
       recipe.instructions,
-      recipe.name,
+      recipe.name,//all lower case?
       recipe.tags
     ))
   }
@@ -17,6 +17,24 @@ class RecipeRepo {
       return recipe.tags.includes(tag);
     })
     return searchByTag;
+  }
+
+  filterRecipesByName(recipeName) {
+    //make name lowercase?
+    return this.recipes.find(recipe => recipe.name === recipeName);
+  }
+
+  filterRecipesByIngredients(ingredientName) {
+    const ingName = this.recipes.forEach(recipe => {
+      const name = recipe.returnIngredientNames(ingredientData)
+      return name;
+    })
+    console.log(ingName);
+
+    // const searchByIngredient = this.recipes.filter(recipe => {
+    //   return recipe.ingredients.includes(ingredient);
+    // })
+    // return searchByIngredient;
   }
 
 
