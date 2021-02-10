@@ -14,6 +14,9 @@ class IngredientRepo {
     const ingredient = this.ingredients.find(ingredient => {
       return ingredient.name === ingredientName;
     });
+    if (!ingredient) {
+      return false;
+    }
     return ingredient.id;
   }
 }

@@ -4,10 +4,9 @@ const Ingredient = require('../src/Ingredient');
 const IngredientRepo = require('../src/IngredientRepo');
 
 describe('Ingredient Repo', () => {
-  let ingredientList;
-  let defaultIngredientList;
+  let ingredientList, defaultIngredientList, ingredientData;
   beforeEach(() => {
-    const ingredientData = [
+    ingredientData = [
       {
         id: 20081,
         name: 'wheat flour',
@@ -57,5 +56,10 @@ describe('Ingredient Repo', () => {
   it('should return an ingredient id', () => {
     const ingredientId = ingredientList.returnIngredientId('butter');
     expect(ingredientId).to.equal(1001);
+  });
+
+  it('should return false if ingredient id is not found', () => {
+    const ingredientId = ingredientList.returnIngredientId('water');
+    expect(ingredientId).to.equal(false);
   });
 });
