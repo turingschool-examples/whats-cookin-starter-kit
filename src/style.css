@@ -13,6 +13,7 @@ html {
 }
 
 body {
+  background-color: #ad3b81;
   height: 100%;
   font-family: Verdana, sans-serif;
 }
@@ -68,11 +69,88 @@ body {
 }
 
 .search-options {
-  height: 40px;
+  height: 45px;
+  font-size: 1em;
 }
 
 .search-bar {
   width: 40%;
   height: 40px;
   font-size: 1.2em;
+}
+
+@media screen and (max-width: 480px) {
+  .search-container {
+    width: 90%;
+  }
+
+  .search-bar {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+/* ----------------filter and recipe list area------------ */
+
+/* .recipes {
+  display: flex;
+  justify-content: space-around;
+} */
+
+.recipe-tags-title {
+  margin-bottom: 20px;
+}
+
+.recipe-tags {
+  display: inline-block;
+  width: 15%;
+  background-color: #e3f086;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  margin: 20px;
+}
+
+.recipe-tag {
+  padding: 5px;
+}
+
+.recipes {
+  display: inline-block;
+  vertical-align: top;
+  width: 75%;
+}
+
+.recipe-list {
+  flex: 1;
+  background-color: #e3f086;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  margin: 20px;
+}
+
+.recipe-row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.recipe-img-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  width: 28%;
+  margin: 25px;
+}
+
+.recipe-img {
+  flex: 1;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.recipe-name {
+  text-align: center;
+  padding: 20px;
 }
