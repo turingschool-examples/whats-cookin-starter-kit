@@ -1,9 +1,22 @@
 const Ingredient = require('../src/Ingredient');
 
 class IngredientRepo {
-  constructor(ingredientData = []) {}
+  constructor(ingredientData = []) {
+    this.ingredients = ingredientData.map(ingredient => {
+      return new Ingredient(
+        ingredient.id,
+        ingredient.name,
+        ingredient.estimatedCostInCents
+      );
+    });
+  }
+  returnIngredientId(ingredientName) {
+    const ingredient = this.ingredients.find(ingredient => {
+      return ingredient.name === ingredientName;
+    });
+    return ingredient.id;
+  }
 }
-
 if (typeof module !== 'undefined') {
   module.exports = IngredientRepo;
 }
