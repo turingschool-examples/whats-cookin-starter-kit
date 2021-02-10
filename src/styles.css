@@ -10,6 +10,9 @@ a {
   color: black;
   padding-bottom: 25px;
 }
+/* html {
+  width: 1350px;
+} */
 
 .container {
   display: flex;

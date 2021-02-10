@@ -7,6 +7,7 @@ const allRecipesPage = document.querySelector('.all-recipes-page');
 const searchPage = document.querySelector('.search-page')
 const homePage = document.querySelector('.home-page')
 const pageTitle = document.querySelector('.page-title')
+const instruction = document.querySelector('.instruction')
 
 const instructionCardDirections = document.querySelector('.instruction-card-directions')
 
@@ -28,6 +29,7 @@ function loadHomePage() {
 
 function loadRecipeCard(event) {
   loadHomePage()
+  instruction.classList.remove('hidden')
   let selectedRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(event.target.closest('.recipe-card').id));
   let instructions = selectedRecipe.returnInstructions().reduce((acc, instruction) => acc += `<p class="instruction-card-steps">${instruction}</p>`, '')
   let ingredients = selectedRecipe.ingredients.reduce((acc, ingredient) => acc += `<tr><td class="instruction-card-ingredient">${ingredient.name}</td><td class="instruction-card-unit">${ingredient.quantity.amount} ${ingredient.quantity.unit}</td></tr>`, '')
