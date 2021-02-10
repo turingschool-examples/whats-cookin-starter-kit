@@ -87,8 +87,8 @@ main {
 
 /* CURRENT RECIPE */
 .current-recipe-container {
-  align-self: center;
   display: flex;
+  align-self: center;
   width: 100%;
 }
 
@@ -126,8 +126,8 @@ main {
 
 /* RADIO FORM */
 .tag-container {
-  justify-content: space-between;
   display: flex;
+  justify-content: space-between;
   flex-flow: column wrap;
   height: 100%;
   width: 50%;
