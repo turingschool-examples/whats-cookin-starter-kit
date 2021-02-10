@@ -16,7 +16,7 @@ class Recipe {
   }
 
   getIngredientsCost() {
-    let centsCost = this.ingredients.reduce((totalCost, ingredient) => totalCost += ingredient.estimatedCost * ingredient.quantity.amount, 0);
+    let centsCost = this.ingredients.reduce((totalCost, ingredient) => totalCost += Math.round(ingredient.estimatedCost * ingredient.quantity.amount), 0);
     return `$${centsCost / 100}`
   }
 
