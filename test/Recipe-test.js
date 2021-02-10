@@ -49,7 +49,7 @@ describe ('Recipe', () => {
     expect(recipeNumberOne.ingredients[0].id).to.deep.equal(23);
   });
 
-  it.skip('should have an ingredients list', () => {
+  it('should have an ingredients list', () => {
 
     expect(recipeNumberOne.ingredients).to.deep.equal([{'id': 23, 'quantity': {'amount': 42, 'unit': 'octoban'}}]);
   });
