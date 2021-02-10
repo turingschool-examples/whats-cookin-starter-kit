@@ -17,10 +17,28 @@ class RecipeRepository {
     return this.recipes.filter(recipe => recipe.name.includes(name));
   }
 
-  filterRecipeByIngredients(ingredient) {
+  filterRecipeByIngredients(ingredientName) {
   // let inputedObject = allIngredients.filter(ingredients => ingredients.name === ingredient);
   // return inputedObject[0];
-  return this.recipes.filter(recipe => recipe.ingredients.id === ingredient)
+  let id = []
+  let ingredientId = allIngredients.filter(ingredient => {
+    if(ingredient.name === ingredientName){
+      id.push(ingredient.id);
+    };
+  });
+
+  let finalRecipe = [];
+  let recipeByIngredient = allRecipes.filter(recipes => {
+    recipes.ingredients.filter(ingredientsByRecipe => {
+      if(ingredientsByRecipe.id === id[0]){
+        finalRecipe.push(recipes)
+      }
+    })
+  })
+
+  return finalRecipe;
+  //return this.recipes.filter(recipe => console.log(recipe))
+  // return this.recipes.filter(recipe => recipe.ingredients.id === ingredient)
   // let returnedId = inputedObject.filter(ingredient => ingredient.id)
   // let id =
   // return inputedObject

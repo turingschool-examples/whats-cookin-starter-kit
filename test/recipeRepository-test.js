@@ -27,7 +27,13 @@ describe('RecipeRepository', function() {
 
   it('should return recipe by name', function() {
     const recipeRepository = new RecipeRepository(allRecipes);
-    console.log(recipeRepository.filterRecipeByIngredients(10010062))
+
     expect(recipeRepository.filterRecipeByName("Dirty Steve's Original Wing Sauce")).to.deep.equal([allRecipes[2]])
+  })
+
+  it('should return recipe by nameingredients', function() {
+    const recipeRepository = new RecipeRepository(allRecipes);
+
+    expect(recipeRepository.filterRecipeByIngredients("wheat flour")).to.deep.equal([allRecipes[0], allRecipes[3]])
   })
 });
