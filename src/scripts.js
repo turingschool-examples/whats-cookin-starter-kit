@@ -28,6 +28,7 @@ function loadHomePage() {
 }
 
 function loadRecipeCard(event) {
+  if(event.target.closest('.recipe-card')) {
   loadHomePage()
   instruction.classList.remove('hidden')
   let selectedRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(event.target.closest('.recipe-card').id));
@@ -49,6 +50,7 @@ function loadRecipeCard(event) {
   `
   document.querySelector('.instruction-card-img').src = selectedRecipe.image;
   document.location.href = "#recipeDetailsContainer"
+  }
 }
 
 function loadSearchPage(array) {
