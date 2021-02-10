@@ -55,10 +55,19 @@ img:hover {
   cursor: pointer;
 }
 
+.main-header:after {
+  content: '↓';
+}
+
 .active, .main-header:hover {
-  color: #B0B8B4FF;
+  text-shadow: 0px 1px #B0B8B4FF,
+  0px -1px #B0B8B4FF,
+  1px 0px #B0B8B4FF,
+  -1px 0px #B0B8B4FF;
+}
 
-
+.active:after {
+  content: '↑';
 }
 
 .user-dropdown {
@@ -67,7 +76,9 @@ img:hover {
   width: 100%;
   box-sizing: border-box;
   padding: 0 50px 0 50px;
-  height: 275px;
+  /* height: 275px; */
+  max-height: 0;
+  transition: max-height 0.5s ease-out;
 }
 
 .owned-ingredients, .you-can-make {
@@ -91,6 +102,7 @@ img:hover {
     bottom: 0px;
     text-align: center;
     height: 60%;
+    max-height: 85%;
     margin-bottom: 25px;
 }
 
@@ -143,4 +155,8 @@ img:hover {
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+.collapsed {
+  visibility: collapse;
 }
