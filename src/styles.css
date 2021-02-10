@@ -92,7 +92,7 @@ a:hover {
   width: 100%;
 }
 /*All Recipes*/
- .all-recipes{
+ .search-page {
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
@@ -293,3 +293,7 @@ td {
   justify-content: space-between;
 }
 
+
+.hidden {
+  display: none;
+}
