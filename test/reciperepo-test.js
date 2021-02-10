@@ -60,7 +60,7 @@ describe('RecipeRepo', () => {
         { instruction: 'step 3', number: 3 }
       ],
       name: 'Beef Noodle',
-      tags: ['flour made', 'main dish', 'hot dish'],
+      tags: ['noodles', 'main dish', 'hot dish'],
     };
   })
 
@@ -98,10 +98,16 @@ describe('RecipeRepo', () => {
       expect(recipe.recipes[0]).to.be.an.instanceof(Recipe);
       expect(recipe.recipes[1]).to.be.an.instanceof(Recipe);
     });
+  })
 
+  describe('Methods', () => {
 
+    it('should be able to filter recipes by tag(s)', () => {
+      recipe = new RecipeRepo([buffaloChicken, beefNoodle]);
+      const result = recipe.filterRecipesByTag('noodles')
 
-
+      expect(result).deep.equal([beefNoodle]);
+    })
   })
 
 

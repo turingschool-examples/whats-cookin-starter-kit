@@ -11,6 +11,16 @@ class RecipeRepo {
       recipe.tags
     ))
   }
+
+  filterRecipesByTag(tag) {
+    const searchByTag = this.recipes.filter(recipe => {
+      return recipe.tags.includes(tag);
+    })
+    return searchByTag;
+  }
+
+
+
 }
 
 
