@@ -211,6 +211,7 @@ a:hover {
   height: 250px;
   overflow: scroll;
 }
+
 .ingredient-container {
   height: 175px
 }
@@ -320,4 +321,8 @@ td {
 
 .hidden {
   display: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
