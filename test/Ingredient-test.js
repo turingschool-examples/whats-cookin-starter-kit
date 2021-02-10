@@ -4,6 +4,7 @@ const expect = chai.expect;
 const RecipeRepo = require('../src/RecipeRepo');
 const Recipe = require('../src/Recipe');
 const User = require('../src/User');
+const Ingredient = require('../src/Ingredient');
 
 let recipeData = [{'id': 2021, 'image': 'https://i.pinimg.com/originals/ee/28/89/ee288996db69afeb8ec5cbf84f8c0d10.jpg',
                   'ingredients': [{'id': 23, 'quantity': {'amount': 42, 'unit': 'octoban'}}], 'instructions': [{
@@ -16,7 +17,8 @@ let userData = {
                   "pantry": [{"ingredient": 61, "amount": 6}, {"ingredient": 62, "amount": 6}]
                 }
 
-describe ('User', () => {
+describe('Ingredient', () => {
+
   let recipeRepo;
   let recipe;
   let user;
@@ -26,42 +28,13 @@ describe ('User', () => {
     recipeRepo = new RecipeRepo(recipeData);
     recipeNumberOne = recipeRepo.recipes[0];
     user = new User(userData);
-
+    ingredient = new Ingredient({"id": 9999, "quantity": {"amount": 2, "unit": "tablespoons"}
+    });
   });
 
-  it('should instantiate a user', () => {
+  it('should instantiate an Ingredient', () => {
 
-    expect(user).to.be.an.instanceOf(User);
+    expect(ingredient).to.be.an.instanceOf(Ingredient);
   });
-
-  it('should have a name', () => {
-
-    expect(user.name).to.deep.equal(userData.name);
-  });
-
-  it('should have an id', () => {
-
-    expect(user.id).to.deep.equal(userData.id);
-  });
-
-  it('should have a pantry', () => {
-
-    expect(user.pantry).to.deep.equal(userData.pantry);
-  });
-
-  it('should have favorite recipes', () => {
-
-    expect(user.favorites).to.have.lengthOf(0);
-  });
-
-  it('should have planned recipes', () => {
-
-    expect(user.planned).to.have.lengthOf(0);
-  });
-
-  it('should be able to see a list of all recipes', () => {
-
-    expect(recipeNumberOne).to.deep.equal(recipeRepo.recipes[0]);
-  })
 
 })
