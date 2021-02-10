@@ -1,16 +1,15 @@
 const Recipe = require('../src/recipe');
 
 class RecipeRepo {
-  constructor(recipeData = [], ingredientData) {
+  constructor(recipeData = []) {
     this.recipes = recipeData.map(recipe => new Recipe(
       recipe.id,
       recipe.image,
       recipe.ingredients,
       recipe.instructions,
-      recipe.name,//all lower case?
+      recipe.name,
       recipe.tags
     ))
-    this.ingredientData = ingredientData;
   }
 
   filterRecipesByTag(tag) {
@@ -21,29 +20,30 @@ class RecipeRepo {
   }
 
   filterRecipesByName(recipeName) {
-    //make name lowercase?
-    return this.recipes.find(recipe => recipe.name === recipeName);
+    const searchRecipeName = recipeName.toLowerCase();
+    return this.recipes.find(recipe => recipe.name.toLowerCase() === searchRecipeName);
   }
 
-  filterRecipesByIngredients(ingredientName) {
-    // const recipeId = this.recipes.returnIngredientId(ingredientData, recipeName);
-    // const searchByIngredient = this.recipes.filter(recipe => {
-    //   return recipe.ingredients.find(ingredient => ids.includes(ingredient.id));
-    // })
-    // return searchByIngredient;
-
-    const search = [];
-    this.ingredientData.forEach(ingredient => {
-      search.push(
-        this.recipes.find(recipe => ingredient.id === recipe.ingredients.id));
+  filterRecipesByIngredients(ingredientData, ingredientName) {
+    const ingredients = new IngredientRepo(ingredientData);
+    const ingredientId = ingredients.returnIngredientId(ingredientName);
+    const filteredRecipes = [];
+    this.recipes.filter(recipe => {
+      recipe.ingredients.forEach(ingredient => {
+        if (ingredient.id === ingredientId) {
+          filteredRecipes.push(recipe);
+        }
+      });
     });
-    console.log(search);
-    return search;
+    return filteredRecipes;
   }
-
-
-
 }
+
+
+
+
+
+
 
 
 if (typeof module !== "undefined") {

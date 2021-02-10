@@ -4,7 +4,7 @@ const RecipeRepo = require('../src/reciperepo');
 const Recipe = require('../src/recipe');
 
 describe('RecipeRepo', () => {
-  let recipe, buffaloChicken, beefNoodle;
+  let recipe, buffaloChicken, beefNoodle, spaghetti, ingredientData;
 
   beforeEach(() => {
     recipe = new RecipeRepo();
@@ -62,6 +62,60 @@ describe('RecipeRepo', () => {
       name: 'Beef Noodle',
       tags: ['noodles', 'main dish', 'hot dish'],
     };
+    spaghetti = {
+      id: 1234,
+      image: "https://spoonacular.com/recipeImages/991136-556x370.jpg",
+      ingredients: [
+        {
+          id: 1001,
+          quantity: {
+            amount: 0.25,
+            unit: 'cup'
+          }
+        },
+        {
+          id: 98871,
+          quantity: {
+            amount: 12,
+            unit: 'unit'
+          }
+        },
+      ],
+      instructions: [
+        { instruction: 'step 1', number: 1 },
+        { instruction: 'step 2', number: 2 },
+        { instruction: 'step 3', number: 3 }
+      ],
+      name: 'Spaghetti',
+      tags: ['lunch', 'main course', 'main dish', 'dinner']
+    };
+    ingredientData = [
+      {
+        id: 20081,
+        name: 'wheat flour',
+        estimatedCostInCents: 142,
+      },
+      {
+        id: 18372,
+        name: 'bicarbonate of soda',
+        estimatedCostInCents: 582,
+      },
+      {
+        id: 1123,
+        name: 'eggs',
+        estimatedCostInCents: 472,
+      },
+      {
+        id: 1001,
+        name: 'butter',
+        estimatedCostInCents: 1,
+      },
+      {
+        id: 2,
+        name: 'chocolate',
+        estimatedCostInCents: 200,
+      },
+    ];
   })
 
   describe('Properties', () => {
@@ -109,6 +163,13 @@ describe('RecipeRepo', () => {
       expect(result).deep.equal([beefNoodle]);
     });
 
+    it('should be able to return multiple recipes if they share the same tag', () => {
+      recipe = new RecipeRepo([buffaloChicken, beefNoodle, spaghetti]);
+      const result = recipe.filterRecipesByTag('dinner')
+
+      expect(result).deep.equal([buffaloChicken, spaghetti]);
+    });
+
     it('should return an empty array if tag isn\'t found', () => {
       recipe = new RecipeRepo([buffaloChicken, beefNoodle]);
       const result = recipe.filterRecipesByTag('snack');
@@ -123,6 +184,13 @@ describe('RecipeRepo', () => {
       expect(result).deep.equal(beefNoodle);
     });
 
+    it('should be able to filter recipes by a name if not capitalized correctly', () => {
+      recipe = new RecipeRepo([buffaloChicken, beefNoodle]);
+      const result = recipe.filterRecipesByName('beef noodle');
+
+      expect(result).deep.equal(beefNoodle);
+    });
+
     it('should return undefined if the recipe doesn\'t exist', () => {
       recipe = new RecipeRepo([buffaloChicken, beefNoodle]);
       const result = recipe.filterRecipesByName('Pork Tacos');
@@ -130,41 +198,37 @@ describe('RecipeRepo', () => {
       expect(result).deep.equal(undefined);
     });
 
-    it.only('should be able to filter recipes by an ingredient', () => {
-      const ingredientData = [
-        {
-          id: 20081,
-          name: 'wheat flour',
-          estimatedCostInCents: 142,
-        },
-        {
-          id: 18372,
-          name: 'bicarbonate of soda',
-          estimatedCostInCents: 582,
-        },
-        {
-          id: 1123,
-          name: 'eggs',
-          estimatedCostInCents: 472,
-        },
-        {
-          id: 1001,
-          name: 'butter',
-          estimatedCostInCents: 1,
-        },
-        {
-          id: 2,
-          name: 'chocolate',
-          estimatedCostInCents: 200,
-        },
-      ];
+    it('should be able to filter recipes by an ingredient', () => {
+      // const ingredientData = [
+      //   {
+      //     id: 20081,
+      //     name: 'wheat flour',
+      //     estimatedCostInCents: 142,
+      //   },
+      //   {
+      //     id: 18372,
+      //     name: 'bicarbonate of soda',
+      //     estimatedCostInCents: 582,
+      //   },
+      //   {
+      //     id: 1123,
+      //     name: 'eggs',
+      //     estimatedCostInCents: 472,
+      //   },
+      //   {
+      //     id: 1001,
+      //     name: 'butter',
+      //     estimatedCostInCents: 1,
+      //   },
+      //   {
+      //     id: 2,
+      //     name: 'chocolate',
+      //     estimatedCostInCents: 200,
+      //   },
+      // ];
+      const result = recipe.filterRecipesByIngredients(ingredientData, 'butter');
 
-
-
-      recipe = new RecipeRepo([buffaloChicken, beefNoodle], ingredientData);
-      const result = recipe.filterRecipesByIngredients('butter');
-
-      expect(result).deep.equal([buffaloChicken]);
+      expect(result).deep.equal([buffaloChicken, spaghetti]);
     });
   })
 
