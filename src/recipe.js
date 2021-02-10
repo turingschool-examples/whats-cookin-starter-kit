@@ -13,17 +13,6 @@ class Recipe {
   }
 
   returnIngredientNames(ourIngredients)  {
-    // const names = ourIngredients.reduce((ingredientNames, item) => {
-    //     this.ingredients.forEach(function(ingredient) {
-    //       if(ingredient.id === item.id) {
-    //           ingredientNames.push(item.name);
-    //         }
-    //       })
-    //       console.log(ingredientNames)
-    //     return ingredientNames;
-    //   }, [])
-    // return names
-    //const ingredientCodes = this.ingredients.map((item) => {return item.id});
     const names = ourIngredients.reduce((ingredientNames, item) => {
       if (this.ingredientCodes.includes(item.id)) {
         ingredientNames.push(item.name);
@@ -34,15 +23,6 @@ class Recipe {
   }
 
   returnTotalCost(ourIngredients) {
-    // let totalCost = ourIngredients.reduce((ingredientNames, item) => {
-    //   this.ingredients.forEach(function(ingredient) {
-    //       if(ingredient.id === item.id) {
-    //           ingredientNames += (item.estimatedCostInCents * ingredient.quantity.amount) / 100;
-    //           }
-    //       })
-    //     return ingredientNames;
-    // }, 0)
-    // return totalCost;
     let totalCost = 0;
     const ingredientQuantity = this.ingredients.map(item => {
       return item.quantity.amount

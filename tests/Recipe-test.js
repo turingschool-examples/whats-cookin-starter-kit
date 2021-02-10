@@ -43,6 +43,11 @@ describe('Recipe', function() {
       const recipe = new Recipe(testRecipes[0]);
       expect(recipe.tags).to.deep.equal(testRecipes[0].tags);
     })
+
+    it('should have a list of ids', function() {
+      const recipe = new Recipe(testRecipes[0]);
+      expect(recipe.ingredientCodes).to.deep.equal([ 20081, 18372, 1123, 19335 ]);
+    })
   })
 
   describe('Methods', function() {
