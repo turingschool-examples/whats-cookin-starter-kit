@@ -1,15 +1,103 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link rel='stylesheet' href='style.css' />
     <title>Whats Cookin</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
-
-    <script type="text/javascript" src="../data/users.js"></script>
-    <script type="text/javascript" src="../data/recipes.js"></script>
-    <script type="text/javascript" src="../data/ingredients.js"></script>
-    <script type="text/javascript" src="./scripts.js"></script>
+    <section class='navigation'>
+      <h1 class='navigation-title'>Whats Cookin</h1>
+      <div class='navigation-buttons'>
+        <button class='button' id='returnToRecipes'>Return to Recipes</button>
+        <button class='button' id='myFavorites'>My Favorites</button>
+        <button class='button' id='myPantry'>My Pantry</button>
+      </div>
+    </section>
+    <main class="hidden">
+      <form class='search'> 
+        <div class='search-container'>
+          <label class='search-options-label' for='search-recipe-select'>Select</label>
+          <select class='search-options'name='search-recipe-options'id='search-recipe-select'>
+            <option value='recipe'>Recipe Name</option>
+            <option value='ingredient'>Ingredient</option>
+          </select> 
+          <input class='search-bar' type='text' placeholder='Search Recipes Here'>
+          <button class='button' id='searchRecipes'>Search Recipes</button> 
+        </div>  
+      </form>
+      <form class='recipe-tags'>
+        <h2 class='recipe-tags-title'>Filter Recipes</h2>
+        <div class='recipe-tag'>
+          <input type='radio' id='starter' name='recipe-tag' value='starter'>
+          <label class='recipe-tag-label' for='starter'>starter</label>
+        </div>
+        <div class='recipe-tag'>
+          <input type='radio' id='appetizer' name='recipe-tag' value='appetizer'>
+          <label class='recipe-tag-label' for='appetizer'>appetizer</label>
+        </div>
+        <div class='recipe-tag'>
+          <input type='radio' id='sideDish' name='recipe-tag' value='side-dish'>
+          <label class='recipe-tag-label' for='side-dish'>side dish</label>
+        </div>
+        <div class='recipe-tag'>
+          <input type='radio' id='snack' name='recipe-tag' value='snack'>
+          <label class='recipe-tag-label' for='snack'>snack</label>
+        </div>
+        <div class='recipe-tag'>
+          <input type='radio' id='breakfast' name='recipe-tag' value='breakfast'>
+          <label class='recipe-tag-label' for='breakfast'>breakfast</label>
+        </div>
+        <div class='recipe-tag'>
+          <input type='radio' id='brunch' name='recipe-tag' value='brunch'>
+          <label class='recipe-tag-label' for='brunch'>brunch</label>
+        </div>
+        <div class='recipe-tag'>
+          <input type='radio' id='lunch' name='recipe-tag' value='lunch'>
+          <label class='recipe-tag-label' for='lunch'>lunch</label>
+        </div>
+        <div class='recipe-tag'>
+          <input type='radio' id='dinner' name='recipe-tag' value='dinner'>
+          <label class='recipe-tag-label' for='dinner'>dinner</label>
+        </div>
+        <div class='recipe-tag'>
+          <input type='radio' id='salad' name='recipe-tag' value='salad'>
+          <label class='recipe-tag-label' for='salad'>salad</label>
+        </div>
+        <div class='recipe-tag'>
+          <input type='radio' id='sauce' name='recipe-tag' value='sauce'>
+          <label class='recipe-tag-label' for='sauce'>sauce</label>
+        </div>
+        <div class='recipe-tag'>
+          <input type='radio' id='dip' name='recipe-tag' value='dip'>
+          <label class='recipe-tag-label' for='dip'>dip</label>
+        </div>
+      </form>
+      <section class='recipes'>
+        <section class='recipe-list recipe-row'>
+          <div class='recipe-img-container'>
+            <img class='recipe-img' src='https://spoonacular.com/recipeImages/595736-556x370.jpg' alt='loaded choclate chip pudding cups'>
+            <p class='recipe-name'>Loaded choclate chip pudding cups</p>
+          </div>  
+          <div class='recipe-img-container'>
+            <img class='recipe-img' src='https://spoonacular.com/recipeImages/595736-556x370.jpg' alt='loaded choclate chip pudding cups'>
+            <p class='recipe-name'>Loaded choclate chip pudding cups</p>
+          </div>  
+          <div class='recipe-img-container'>
+            <img class='recipe-img' src='https://spoonacular.com/recipeImages/595736-556x370.jpg' alt='loaded choclate chip pudding cups'>
+            <p class='recipe-name'>Loaded choclate chip pudding cups</p>
+          </div>  
+          <div class='recipe-img-container'>
+            <img class='recipe-img' src='https://spoonacular.com/recipeImages/595736-556x370.jpg' alt='loaded choclate chip pudding cups'>
+            <p class='recipe-name'>Loaded choclate chip pudding cups</p>
+          </div> 
+        </section>
+      </section>
+    </main>
+    <script type='text/javascript src='../data/users.js"></script>
+    <script type='text/javascript' src='../data/recipes.js'></script>
+    <script type='text/javascript' src='../data/ingredients.js'></script>
+    <script type='text/javascript' src='./scripts.js'></script>
   </body>
 </html>
