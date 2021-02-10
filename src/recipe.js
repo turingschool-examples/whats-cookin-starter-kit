@@ -1,4 +1,3 @@
-const testIngredients = require('../tests/test-ingredients')
 
 class Recipe {
   constructor(recipe) {
@@ -8,7 +7,7 @@ class Recipe {
     this.instructions = recipe.instructions,
     this.tags = recipe.tags,
     this.image = recipe.image,
-    this.ingredientCodes = this.ingredients.map((item) => {
+    this.ingredientCodes = recipe.ingredients.map((item) => {
       return item.id
     });
   }
@@ -34,8 +33,8 @@ class Recipe {
     return names
   }
 
-  returnTotalCost() {
-    // let totalCost = testIngredients.reduce((ingredientNames, item) => {
+  returnTotalCost(ourIngredients) {
+    // let totalCost = ourIngredients.reduce((ingredientNames, item) => {
     //   this.ingredients.forEach(function(ingredient) {
     //       if(ingredient.id === item.id) {
     //           ingredientNames += (item.estimatedCostInCents * ingredient.quantity.amount) / 100;
@@ -48,7 +47,7 @@ class Recipe {
     const ingredientQuantity = this.ingredients.map(item => {
       return item.quantity.amount
     });
-    const cost = testIngredients.map(item => {
+    const cost = ourIngredients.map(item => {
       if (this.ingredientCodes.includes(item.id)) {
         return item.estimatedCostInCents;
       }
