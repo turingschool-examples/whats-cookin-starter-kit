@@ -27,7 +27,8 @@ class Recipe {
             const single = testIngredients[i];
             this.ingredients.forEach(function(ingredient) {
                 if(ingredient.id === single.id) {
-                    totalCost += single.estimatedCostInCents;
+                    console.log(ingredient.quantity.amount)
+                    totalCost += (single.estimatedCostInCents * ingredient.quantity.amount);
                     }
                 }) 
         }
@@ -36,7 +37,6 @@ class Recipe {
     }
     
     returnInstructions() {
-        console.log(this.instructions)
         return this.instructions;
     }
 }

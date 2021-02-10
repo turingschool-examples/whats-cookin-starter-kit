@@ -54,7 +54,7 @@ describe('Recipe', function() {
 
     it('should return the total cost of ingredients', function() {
       const recipe = new Recipe(testRecipes[0]);
-      expect(recipe.returnTotalCost()).to.deep.equal(20.98);
+      expect(recipe.returnTotalCost()).to.deep.equal(14.27);
     })
 
     it('should return recipe instructions in order', function() {
