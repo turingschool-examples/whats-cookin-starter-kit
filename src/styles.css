@@ -99,8 +99,10 @@ a:hover {
    justify-content: space-between;
    background-color: rgb(198 225 185 / 52%);
    height: fit-content;
+   min-height: 100vh;
    width: 100%;
    padding: 20px;
+   /* border-top: 1px solid rgb(179, 178, 178); */
  }
 
 
@@ -119,6 +121,7 @@ a:hover {
   height: 295px;
   width: 225px;
   background-color: rgb(255, 255, 255);
+  /* background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.6)); */
   transition: box-shadow 0.3s ease-in-out;
 }
 
@@ -181,7 +184,7 @@ a:hover {
 .instruction {
   position: relative;
   margin: 40px auto;
-  height: 1000px;
+  height: 1200px;
   width: 1350px;
   background-color: #e3ffda;
   border-radius: 10px;
@@ -200,31 +203,42 @@ a:hover {
   border-radius: 10px;
   box-shadow: 0px 13px 20px 0px rgba(78, 78, 78, 0.5);
 }
-
+.direction-container,
+.ingredient-container {
+  height: 250px;
+  overflow: scroll;
+}
+.ingredient-container {
+  height: 175px
+}
 .instruction-card-directions {
   height: 100%;
   width: 40%;
-  padding: 50px;
+  padding: 30px;
   background-color:#cbf1df;
   border-radius: 10px;
 }
 
 .instruction-card-recipe-name {
-  font-size: 3em;
+  font-size: 2em;
+  height: 120px;
 }
+
 .instruction-card-header {
   font-size: 1em;
-  margin: 20px 0 10px;
+  margin: 10px 0;
 }
 
 .instruction-card-steps {
-  font-size: .9em;
-  line-height: 1.25;
+  font-size: .8em;
+  line-height: 1.5;
+  letter-spacing: 1px;
 }
 
 table {
-  width: 60%;
+  width: 100%;
   font-size: .8em;
+  letter-spacing: 1px;
   border-spacing: 2px 0 1px 1px
 }
 
@@ -243,7 +257,7 @@ td {
 }
 
 .add-to-grocery-button{
-  margin: 15px 0;
+  margin: 20px 0;
   padding: 15px;
   background-color: rgb(255, 250, 103);
   border: none;
@@ -258,7 +272,7 @@ td {
 }
 
 .meal-suggestion {
-  margin-top: 20px;
+  margin-bottom: 60px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -280,12 +294,12 @@ td {
   width: auto;
   height: 125px;
   box-shadow: 0px 13px 20px 0px rgba(78, 78, 78, 0.5);
-  transition: transform 0.5s ease-in-out;
+  transition: transform 500ms ease-in-out;
 }
 
 .zoom:hover {
   transform: scale(1.2);
-  transition: transform 0.5s ease-in-out;
+  transition: transform 1s ease-in-out;
 }
 
 .meal-suggestion-name {

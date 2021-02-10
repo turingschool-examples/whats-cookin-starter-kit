@@ -29,16 +29,21 @@ function loadHomePage() {
 function loadRecipeCard(event) {
   loadHomePage()
   let selectedRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(event.target.closest('.recipe-card').id));
-  let instructions = selectedRecipe.returnInstructions().reduce((acc, instruction) => acc += `<p class="instruction-card-steps">${instruction}</p>`)
+  let instructions = selectedRecipe.returnInstructions().reduce((acc, instruction) => acc += `<p class="instruction-card-steps">${instruction}</p>`, '')
   let ingredients = selectedRecipe.ingredients.reduce((acc, ingredient) => acc += `<tr><td class="instruction-card-ingredient">${ingredient.name}</td><td class="instruction-card-unit">${ingredient.quantity.amount} ${ingredient.quantity.unit}</td></tr>`, '')
   instructionCardDirections.innerHTML = `
     <h1 class="instruction-card-recipe-name">${selectedRecipe.name}</h1>
-              <h2 class="instruction-card-header">Directions</h2>
-              ${instructions}
-              <h2 class="instruction-card-header">Ingredients</h2>
-              <table class="instruction-card-ingredient-list">
-                ${ingredients}
-              </table>
+    <h2 class="instruction-card-header">Directions</h2>
+    <div class="direction-container">
+      ${instructions}
+    </div>
+    <h2 class="instruction-card-header">Ingredients</h2>
+    <div class="ingredient-container">
+      <table class="instruction-card-ingredient-list">
+        ${ingredients}
+      </table>
+    </div>
+    <button class="add-to-grocery-button">Add to Grocery List</button>
   `
   document.querySelector('.instruction-card-img').src = selectedRecipe.image;
   document.location.href = "#recipeDetailsContainer"
