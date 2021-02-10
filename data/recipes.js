@@ -208,8 +208,22 @@ const recipeData = [
     ],
     "instructions": [
       {
-        "instruction": "Season the pork chops with salt and pepper and grill or pan fry over medium high heat until cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook until the sauce thickens, about 2-5 minutes.Grill or saute the apple slices until just tender but still crisp.Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!",
+        "instruction": "Season the pork chops with salt and pepper and grill or pan fry over medium high heat until " +
+          "cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)",
         "number": 1
+      },
+      {
+        "instruction": "Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook " +
+          "until the sauce thickens, about 2-5 minutes.",
+        "number": 2
+      },
+      {
+        "instruction": "Grill or saute the apple slices until just tender but still crisp.",
+        "number": 3
+      },
+      {
+        "instruction": "Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!",
+        "number": 4
       }
     ],
     "name": "Maple Dijon Apple Cider Grilled Pork Chops",
@@ -5381,3 +5395,7 @@ const recipeData = [
     ]
   }
 ];
+
+if (typeof module !== 'undefined') {
+  module.exports = { recipeData };
+}
