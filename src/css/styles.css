@@ -3,7 +3,6 @@
 /* font-family: 'Raleway', sans-serif; */
 /*colors:  navy blue (#026B81), turquoise (#03B0AA), pink (#D49C96), dusty rose (#CBBDBE)*/
 
-
 /* *** General *** */
 * {
     box-sizing: border-box;
@@ -13,45 +12,165 @@
 
 body {
     font-family: 'Raleway', sans-serif;
+    margin: 20px;
 }
 
 /* *** Grid *** */
+.grid-container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: .5fr .5fr;
+    grid-template-rows: 0.4fr 0.2fr .2fr 1.2fr 0.4fr;
+    grid-template-areas:
+        "header header"
+        "nav nav"
+        "main main"
+        "content1 content2"
+        "footer footer";
+    grid-gap: 0.2rem;
+    text-align: center;
+}
+
+nav {
+    background: #a7ffeb;
+    grid-area: nav;
+    border-radius: 10px;
+    padding-top: 5px;
+}
+
+header {
+    background: #18ffff;
+    grid-area: header;
+    border-radius: 10px;
+    padding-top: 5px;
+}
+
+main {
+    background: #84ffff;
+    grid-area: main;
+    border-radius: 10px;
+    padding-top: 5px;
+}
+
+.content1 {
+    background: #6fffd2;
+    grid-area: content1;
+    border-radius: 10px;
+    padding-top: 5px;
+}
+
+.content2 {
+    background: #64ffda;
+    grid-area: content2;
+    border-radius: 10px;
+    padding-top: 5px;
+}
 
 /* *** Header *** */
-.header__left {
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+img {
+    width: 50px;
+    padding: 5px;
+}
 
+.header__left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.header__left--text {
+    font-family: 'Alice', serif;
+    font-size: 1.5rem;
+    padding: 5px;
 }
 
 .header__right--text {
     font-family: 'Alice', serif;
+    font-size: 1.5rem;
+    padding: 5px;
 }
 
 /* *** Navigation *** */
-img {
-    width: 70px;
-}
-.nav__left--text {
-    font-family: 'Alice', serif;
+.nav__right {
+    padding-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .nav-links {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     list-style-type: none;
+}
+
+.nav-links__item {
+    flex-wrap: nowrap;
+    margin: 0 20px;
 }
 
 /* *** Main *** */
 main {
     border: 1px solid lightblue;
-    padding: 50px;
+    padding: 20px;
+}
+
+/* *** Recipe detail *** */
+.recipe-detail__top {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* *** Ingredients *** */
+.pantry__top {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* *** Recipe list *** */
+.recipe {
+    margin: 10px 5px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.item-container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.ingredients-and-cost {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+
+ul {
+    list-style-type: none;
+}
 
 /* *** Footer *** */
 footer {
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
     background: #CBBDBE;
-    padding: 10px;
+    grid-area: footer;
+    border-radius: 10px;
+    padding-top: 5px;
 }
 
 .ingredients__message {
@@ -59,15 +178,45 @@ footer {
     color: red;
 }
 
+/* *** miscellaneous *** */
 .hidden {
     display: none;
 }
 
 /* *** breakpoint 800px *** */
 @media screen and (max-width: 800px) {
-    .nav-links {
-        width: 100px;
+    .nav__left--logo {
+        display: none;
+    }
 
+    .grid-container {
+        grid-template-columns: .1fr 1.9fr;
+        grid-template-rows: .4fr .5fr 2.5fr 2.5fr .4fr;
+        grid-template-areas:
+            "header header"
+            "nav main"
+            "nav content1"
+            "nav content2"
+            "footer footer";
+    }
+
+    nav {
+        width: 100px;
+    }
+
+    .nav__right {
+        height: 100%;
+        justify-content: center;
+    }
+
+    .nav-links {
+        justify-content: flex-end;
+        align-items: center;
+        transform: rotate(270deg);
+    }
+
+    .nav-links__item {
+        width: 100px;
     }
 }
 
