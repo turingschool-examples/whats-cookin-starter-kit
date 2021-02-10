@@ -1,7 +1,7 @@
 const Recipe = require('../src/recipe');
 
 class RecipeRepo {
-  constructor(recipeData = []) {
+  constructor(recipeData = [], ingredientData) {
     this.recipes = recipeData.map(recipe => new Recipe(
       recipe.id,
       recipe.image,
@@ -10,6 +10,7 @@ class RecipeRepo {
       recipe.name,//all lower case?
       recipe.tags
     ))
+    this.ingredientData = ingredientData;
   }
 
   filterRecipesByTag(tag) {
@@ -25,16 +26,19 @@ class RecipeRepo {
   }
 
   filterRecipesByIngredients(ingredientName) {
-    const ingName = this.recipes.forEach(recipe => {
-      const name = recipe.returnIngredientNames(ingredientData)
-      return name;
-    })
-    console.log(ingName);
-
+    // const recipeId = this.recipes.returnIngredientId(ingredientData, recipeName);
     // const searchByIngredient = this.recipes.filter(recipe => {
-    //   return recipe.ingredients.includes(ingredient);
+    //   return recipe.ingredients.find(ingredient => ids.includes(ingredient.id));
     // })
     // return searchByIngredient;
+
+    const search = [];
+    this.ingredientData.forEach(ingredient => {
+      search.push(
+        this.recipes.find(recipe => ingredient.id === recipe.ingredients.id));
+    });
+    console.log(search);
+    return search;
   }
 
 

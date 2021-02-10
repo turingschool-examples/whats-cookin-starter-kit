@@ -130,8 +130,38 @@ describe('RecipeRepo', () => {
       expect(result).deep.equal(undefined);
     });
 
-    it('should be able to filter recipes by an ingredient', () => {
-      recipe = new RecipeRepo([buffaloChicken, beefNoodle]);
+    it.only('should be able to filter recipes by an ingredient', () => {
+      const ingredientData = [
+        {
+          id: 20081,
+          name: 'wheat flour',
+          estimatedCostInCents: 142,
+        },
+        {
+          id: 18372,
+          name: 'bicarbonate of soda',
+          estimatedCostInCents: 582,
+        },
+        {
+          id: 1123,
+          name: 'eggs',
+          estimatedCostInCents: 472,
+        },
+        {
+          id: 1001,
+          name: 'butter',
+          estimatedCostInCents: 1,
+        },
+        {
+          id: 2,
+          name: 'chocolate',
+          estimatedCostInCents: 200,
+        },
+      ];
+
+
+
+      recipe = new RecipeRepo([buffaloChicken, beefNoodle], ingredientData);
       const result = recipe.filterRecipesByIngredients('butter');
 
       expect(result).deep.equal([buffaloChicken]);

@@ -16,6 +16,13 @@ class Recipe {
     return recipeIngredients;
   }
 
+  returnIngredientId(ingredientData, ingredientName) {
+    const ingredient = ingredientData.find(ingredient => {
+      return ingredient.name === ingredientName;
+    });
+    return ingredient.id;
+  }
+
   returnIngredientNames(ingredientData) {
     const recipeIngredients = this.findIngredients(ingredientData);
     const ingredientNames = recipeIngredients.map(ingredient => ingredient.name);
