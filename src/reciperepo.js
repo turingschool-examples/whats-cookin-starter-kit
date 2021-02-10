@@ -1,4 +1,5 @@
-const Recipe = require('../src/recipe');
+const Recipe = require('../src/Recipe');
+const IngredientRepo = require('../src/IngredientRepo');
 
 class RecipeRepo {
   constructor(recipeData = []) {

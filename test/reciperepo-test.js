@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
-const RecipeRepo = require('../src/reciperepo');
-const Recipe = require('../src/recipe');
+const RecipeRepo = require('../src/RecipeRepo');
+const Recipe = require('../src/Recipe');
 
 describe('RecipeRepo', () => {
   let recipe, buffaloChicken, beefNoodle, spaghetti, ingredientData;
@@ -74,7 +74,7 @@ describe('RecipeRepo', () => {
           }
         },
         {
-          id: 98871,
+          id: 91,
           quantity: {
             amount: 12,
             unit: 'unit'
@@ -91,8 +91,8 @@ describe('RecipeRepo', () => {
     };
     ingredientData = [
       {
-        id: 20081,
-        name: 'wheat flour',
+        id: 98871,
+        name: 'hawaiian sweet rolls',
         estimatedCostInCents: 142,
       },
       {
@@ -199,38 +199,24 @@ describe('RecipeRepo', () => {
     });
 
     it('should be able to filter recipes by an ingredient', () => {
-      // const ingredientData = [
-      //   {
-      //     id: 20081,
-      //     name: 'wheat flour',
-      //     estimatedCostInCents: 142,
-      //   },
-      //   {
-      //     id: 18372,
-      //     name: 'bicarbonate of soda',
-      //     estimatedCostInCents: 582,
-      //   },
-      //   {
-      //     id: 1123,
-      //     name: 'eggs',
-      //     estimatedCostInCents: 472,
-      //   },
-      //   {
-      //     id: 1001,
-      //     name: 'butter',
-      //     estimatedCostInCents: 1,
-      //   },
-      //   {
-      //     id: 2,
-      //     name: 'chocolate',
-      //     estimatedCostInCents: 200,
-      //   },
-      // ];
+      recipe = new RecipeRepo([buffaloChicken, beefNoodle, spaghetti])
+      const result = recipe.filterRecipesByIngredients(ingredientData, 'hawaiian sweet rolls');
+
+      expect(result).deep.equal([buffaloChicken]);
+    });
+
+    it('should be able return all recipes that include an ingredient', () => {
+      recipe = new RecipeRepo([buffaloChicken, beefNoodle, spaghetti])
       const result = recipe.filterRecipesByIngredients(ingredientData, 'butter');
 
       expect(result).deep.equal([buffaloChicken, spaghetti]);
     });
+
+    it('should return an empty array if no ingredients are in a recipe', () => {
+      recipe = new RecipeRepo([buffaloChicken, beefNoodle, spaghetti])
+      const result = recipe.filterRecipesByIngredients(ingredientData, 'paprika');
+
+      expect(result).deep.equal([]);
+    });
   })
-
-
 });
