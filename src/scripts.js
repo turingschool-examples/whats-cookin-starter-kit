@@ -15,6 +15,8 @@ window.addEventListener('load', compileRecipeRepository);
 window.addEventListener('load', populateRecipeCarousel);
 
 recipeCarousel.addEventListener('click', () => loadRecipeCard(event))
+searchPage.addEventListener('click', () => loadRecipeCard(event))
+
 document.addEventListener('keydown', searchAllRecipes);
 allRecipesButton.addEventListener('click', () => loadSearchPage(recipeRepository.recipes))
 pageTitle.addEventListener('click', loadHomePage)
@@ -25,10 +27,10 @@ function loadHomePage() {
 }
 
 function loadRecipeCard(event) {
+  loadHomePage()
   let selectedRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(event.target.closest('.recipe-card').id));
   let instructions = selectedRecipe.returnInstructions().reduce((acc, instruction) => acc += `<p class="instruction-card-steps">${instruction}</p>`)
   let ingredients = selectedRecipe.ingredients.reduce((acc, ingredient) => acc += `<tr><td class="instruction-card-ingredient">${ingredient.name}</td><td class="instruction-card-unit">${ingredient.quantity.amount} ${ingredient.quantity.unit}</td></tr>`, '')
-  console.log(ingredients)
   instructionCardDirections.innerHTML = `
     <h1 class="instruction-card-recipe-name">${selectedRecipe.name}</h1>
               <h2 class="instruction-card-header">Directions</h2>
@@ -39,6 +41,7 @@ function loadRecipeCard(event) {
               </table>
   `
   document.querySelector('.instruction-card-img').src = selectedRecipe.image;
+  document.location.href = "#recipeDetailsContainer"
 }
 
 function loadSearchPage(array) {
