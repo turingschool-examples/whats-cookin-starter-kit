@@ -6,9 +6,7 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <header>What's Cookin?</header>
-    <section class="sidebar">What's Cookin?
-    </section>
+    <section class="sidebar">What's Cookin?</section>
     <main>
       <section class="buttonContainer">
         <button id="myMealsBtn">My Meals</button>
@@ -24,13 +22,16 @@
           <p class="recipe-ingredients">Chocolate Chips</p>
           <p class="recipe-ingredients">Chocolate Chips</p>
           <p class="recipe-ingredients">Chocolate Chips</p>
-          <button class="make-this hidden">Cook</button>
+          <button class="cook-btn">Cook</button>
         </div>
       </section>
-      <input class="search-field"type="text">
+      <form class="search-container">
+        <label for="searchField">Recipe Search: </label>
+        <input class="search-field" id="searchField" type="text">
+      </form>
       </main>
       <section class="interactive-area">
-        <form class="key-word-container">
+        <form class="tag-container">
           <input type="radio" name="" id="antipasti">
           <label for="antipasti">antipasti</label>
           <input type="radio" name="" id="starter">
@@ -74,74 +75,69 @@
           <li class="recipe-card">
             <div class="recipe">
               <input type="radio" id="favoriteInput">
-              <label class="favorite-btn vis-hidden"for="favoriteInput"></label>
+              <label class="favorite-label vis-hidden"for="favoriteInput"></label>
               <h1 class="recipe-title">Chocolate Chip Cookies</h1>
               <p class="recipe-ingredients">Chocolate Chips</p>
               <p class="recipe-ingredients">Chocolate Chips</p>
               <p class="recipe-ingredients">Chocolate Chips</p>
               <p class="recipe-ingredients">Chocolate Chips</p>
               <p class="recipe-ingredients">Chocolate Chips</p>
-              <button class="make-this hidden">Cook</button>
             </div>
             <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="" srcset="">
           </li>
           <li class="recipe-card">
             <div class="recipe">
             <input type="radio" id="favoriteInput">
-            <label class="favorite-btn vis-hidden"for="favoriteInput"></label>
+            <label class="favorite-label vis-hidden"for="favoriteInput"></label>
             <h1 class="recipe-title">Chocolate Chip Cookies</h1>
             <p class="recipe-ingredients">Chocolate Chips</p>
             <p class="recipe-ingredients">Chocolate Chips</p>
             <p class="recipe-ingredients">Chocolate Chips</p>
             <p class="recipe-ingredients">Chocolate Chips</p>
             <p class="recipe-ingredients">Chocolate Chips</p>
-            <button class="make-this hidden">Cook</button>
           </div>
           <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="" srcset="">
         </li>
         <li class="recipe-card"><div class="recipe">
           <input type="radio" id="favoriteInput">
-          <label class="favorite-btn vis-hidden"for="favoriteInput"></label>
+          <label class="favorite-label vis-hidden"for="favoriteInput"></label>
           <h1 class="recipe-title">Chocolate Chip Cookies</h1>
           <p class="recipe-ingredients">Chocolate Chips</p>
           <p class="recipe-ingredients">Chocolate Chips</p>
           <p class="recipe-ingredients">Chocolate Chips</p>
           <p class="recipe-ingredients">Chocolate Chips</p>
           <p class="recipe-ingredients">Chocolate Chips</p>
-          <button class="make-this hidden">Cook</button>
         </div>
         <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="" srcset="">
       </li>
       <li class="recipe-card"><div class="recipe">
         <input type="radio" id="favoriteInput">
-        <label class="favorite-btn vis-hidden"for="favoriteInput"></label>
+        <label class="favorite-label vis-hidden"for="favoriteInput"></label>
         <h1 class="recipe-title">Chocolate Chip Cookies</h1>
         <p class="recipe-ingredients">Chocolate Chips</p>
         <p class="recipe-ingredients">Chocolate Chips</p>
         <p class="recipe-ingredients">Chocolate Chips</p>
         <p class="recipe-ingredients">Chocolate Chips</p>
         <p class="recipe-ingredients">Chocolate Chips</p>
-        <button class="make-this hidden">Cook</button>
       </div>
       <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="" srcset="">
     </li>
     <li class="recipe-card"><div class="recipe">
       <input type="radio" id="favoriteInput">
-      <label class="favorite-btn vis-hidden"for="favoriteInput"></label>
+      <label class="favorite-label vis-hidden"for="favoriteInput"></label>
       <h1 class="recipe-title">Chocolate Chip Cookies</h1>
       <p class="recipe-ingredients">Chocolate Chips</p>
       <p class="recipe-ingredients">Chocolate Chips</p>
       <p class="recipe-ingredients">Chocolate Chips</p>
       <p class="recipe-ingredients">Chocolate Chips</p>
       <p class="recipe-ingredients">Chocolate Chips</p>
-      <button class="make-this hidden">Cook</button>
     </div>
     <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="" srcset="">
   </li>
 </ul>
 </section>
 <article class="my-list-container">
-  <button class="my-list">+ My List</button>
+  <button class="my-list-btn">+ My List</button>
 </article>
 <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
