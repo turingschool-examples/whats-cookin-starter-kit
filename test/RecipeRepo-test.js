@@ -59,7 +59,7 @@ describe('RecipeRepo', () => {
       expect(recipeRepo.recipes[0].tags).to.deep.equal(recipeData[1].tags);
     });
 
-    it.skip('should filter recipes by ingredient', () => {
+    it('should filter recipes by ingredient', () => {
 
       recipeRepo.matchIngredient(ingredientId);
 
