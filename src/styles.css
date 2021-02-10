@@ -10,6 +10,9 @@ a {
   color: black;
   padding-bottom: 25px;
 }
+/* html {
+  width: 1350px;
+} */
 
 .container {
   display: flex;
@@ -99,8 +102,10 @@ a:hover {
    justify-content: space-between;
    background-color: rgb(198 225 185 / 52%);
    height: fit-content;
+   min-height: 100vh;
    width: 100%;
    padding: 20px;
+   /* border-top: 1px solid rgb(179, 178, 178); */
  }
 
 
@@ -119,6 +124,7 @@ a:hover {
   height: 295px;
   width: 225px;
   background-color: rgb(255, 255, 255);
+  /* background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.6)); */
   transition: box-shadow 0.3s ease-in-out;
 }
 
@@ -135,38 +141,45 @@ a:hover {
 .recipe-card-name {
   padding-bottom: 10px;
   margin:10px auto;
-  width:90%;
-  text-align: center;
+  width:100%;
+  height:60px;
+  text-align: left;
   font-weight: bold;
-  border-bottom: 1px solid rgb(43, 43, 43)
+  border-bottom: 1px dotted rgb(179, 178, 178)
 }
 
 .recipe-card-cost,
 .recipe-card-button {
   display: inline;
-  position:absolute;
+  position: absolute;
+  bottom:0;
   padding: 5px 0;
-  margin: 25px 5%;
   height:fit-content;
 }
 
+.recipe-card-cost {
+  margin: 11px;
+}
+
 .recipe-card-button {
-  position:absolute;
+  background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-plus-circled-512.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 10px;
   right: 0;
+  height: 30px;
+  width: 30px;
   padding: 5px 8px;
-  border: 1px solid rgb(204, 204, 204);
-  border-radius: 5px;
-  font-size: .9em;
-  font-weight: 400;
-  background-color: rgb(204, 204, 204);
-  transition: border 0.3s, background-color 0.3s, color 0.3s ease-in-out;
+  transition: filter 0.3s ease-in-out;
+  border: none;
+  outline: none;
 }
 
 .recipe-card-button:hover {
   color: white;
-  border-color: rgb(92, 92, 92);
-  background-color: rgb(156, 156, 156);
-  transition: border 0.3s, background-color 0.3s, color 0.3s ease-in-out;
+  filter: invert(50%);
+  transition: filter 0.3s ease-in-out;
 }
 
 /*Instructions card*/
@@ -174,7 +187,7 @@ a:hover {
 .instruction {
   position: relative;
   margin: 40px auto;
-  height: 1000px;
+  height: 1200px;
   width: 1350px;
   background-color: #e3ffda;
   border-radius: 10px;
@@ -193,31 +206,43 @@ a:hover {
   border-radius: 10px;
   box-shadow: 0px 13px 20px 0px rgba(78, 78, 78, 0.5);
 }
+.direction-container,
+.ingredient-container {
+  height: 250px;
+  overflow: scroll;
+}
 
+.ingredient-container {
+  height: 175px
+}
 .instruction-card-directions {
   height: 100%;
   width: 40%;
-  padding: 50px;
+  padding: 30px;
   background-color:#cbf1df;
   border-radius: 10px;
 }
 
 .instruction-card-recipe-name {
-  font-size: 3em;
+  font-size: 2em;
+  height: 120px;
 }
+
 .instruction-card-header {
   font-size: 1em;
-  margin: 20px 0 10px;
+  margin: 10px 0;
 }
 
 .instruction-card-steps {
-  font-size: .9em;
-  line-height: 1.25;
+  font-size: .8em;
+  line-height: 1.5;
+  letter-spacing: 1px;
 }
 
 table {
-  width: 60%;
+  width: 100%;
   font-size: .8em;
+  letter-spacing: 1px;
   border-spacing: 2px 0 1px 1px
 }
 
@@ -236,7 +261,7 @@ td {
 }
 
 .add-to-grocery-button{
-  margin: 15px 0;
+  margin: 20px 0;
   padding: 15px;
   background-color: rgb(255, 250, 103);
   border: none;
@@ -251,7 +276,7 @@ td {
 }
 
 .meal-suggestion {
-  margin-top: 20px;
+  margin-bottom: 60px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -273,12 +298,12 @@ td {
   width: auto;
   height: 125px;
   box-shadow: 0px 13px 20px 0px rgba(78, 78, 78, 0.5);
-  transition: transform 0.5s ease-in-out;
+  transition: transform 500ms ease-in-out;
 }
 
 .zoom:hover {
   transform: scale(1.2);
-  transition: transform 0.5s ease-in-out;
+  transition: transform 1s ease-in-out;
 }
 
 .meal-suggestion-name {
@@ -296,4 +321,8 @@ td {
 
 .hidden {
   display: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }

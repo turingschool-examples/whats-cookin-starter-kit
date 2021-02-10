@@ -7,6 +7,7 @@ const allRecipesPage = document.querySelector('.all-recipes-page');
 const searchPage = document.querySelector('.search-page')
 const homePage = document.querySelector('.home-page')
 const pageTitle = document.querySelector('.page-title')
+const instruction = document.querySelector('.instruction')
 
 const instructionCardDirections = document.querySelector('.instruction-card-directions')
 
@@ -28,17 +29,23 @@ function loadHomePage() {
 
 function loadRecipeCard(event) {
   loadHomePage()
+  instruction.classList.remove('hidden')
   let selectedRecipe = recipeRepository.recipes.find(recipe => recipe.id === parseInt(event.target.closest('.recipe-card').id));
-  let instructions = selectedRecipe.returnInstructions().reduce((acc, instruction) => acc += `<p class="instruction-card-steps">${instruction}</p>`)
+  let instructions = selectedRecipe.returnInstructions().reduce((acc, instruction) => acc += `<p class="instruction-card-steps">${instruction}</p>`, '')
   let ingredients = selectedRecipe.ingredients.reduce((acc, ingredient) => acc += `<tr><td class="instruction-card-ingredient">${ingredient.name}</td><td class="instruction-card-unit">${ingredient.quantity.amount} ${ingredient.quantity.unit}</td></tr>`, '')
   instructionCardDirections.innerHTML = `
     <h1 class="instruction-card-recipe-name">${selectedRecipe.name}</h1>
-              <h2 class="instruction-card-header">Directions</h2>
-              ${instructions}
-              <h2 class="instruction-card-header">Ingredients</h2>
-              <table class="instruction-card-ingredient-list">
-                ${ingredients}
-              </table>
+    <h2 class="instruction-card-header">Directions</h2>
+    <div class="direction-container">
+      ${instructions}
+    </div>
+    <h2 class="instruction-card-header">Ingredients</h2>
+    <div class="ingredient-container">
+      <table class="instruction-card-ingredient-list">
+        ${ingredients}
+      </table>
+    </div>
+    <button class="add-to-grocery-button">Add to Grocery List</button>
   `
   document.querySelector('.instruction-card-img').src = selectedRecipe.image;
   document.location.href = "#recipeDetailsContainer"
@@ -53,7 +60,7 @@ function loadSearchPage(array) {
       <img class="recipe-card-img" src="${recipe.image}">
       <p class="recipe-card-name">${recipe.name}</p>
       <p class="recipe-card-cost">${recipe.getIngredientsCost()}</p>
-      <button class="recipe-card-button">Save Recipe</button>
+      <button class="recipe-card-button"></button>
     </article>
   `)
 }
@@ -70,7 +77,7 @@ function populateRecipeCarousel() {
         <img class="recipe-card-img" src="${randomRecipe.image}">
         <p class="recipe-card-name">${randomRecipe.name}</p>
         <p class="recipe-card-cost">${randomRecipe.getIngredientsCost()}</p>
-        <button class="recipe-card-button">Save Recipe</button>
+        <button class="recipe-card-button"></button>
       </article>
     `
   }
