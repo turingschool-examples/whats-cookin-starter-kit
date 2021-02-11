@@ -258,6 +258,23 @@ body {
   flex: 1;
 }
 
+@media screen and (max-width: 480px) {
+  
+  .single-recipe {
+    margin-top: 25px;
+  }
+
+  .single-recipe-container {
+    width: 95%;
+  }
+  .single-recipe-image {
+    width: 95%;
+  }
+
+  .single-recipe-list-container {
+    margin: 0px;
+  }
+
 /* ------------------state---------------------------- */
 
 .hidden {
