@@ -1,5 +1,3 @@
-
-// const Recipe = require('./Recipe');
 const allRecipesArray = [];
 
 const allRecipesButton = document.getElementById("allRecipesButton")
@@ -9,6 +7,19 @@ const randomRecipesRight = document.getElementById("reightRecipe")
 
 allRecipesButton.addEventListener("click", displayAllRecipes);
 window.addEventListener("load", loadAllRecipes);
+
+function loadAllRecipes() {
+  createRecipes();
+
+}
+
+
+function createRecipes() {
+  dummyRecipeData.forEach((recipe, i) => {
+    let recipeToBePushed = new Recipe(recipeData[i])
+    allRecipesArray.push(recipeToBePushed)
+  })
+}
 
 function displayAllRecipes() {
   allRecipesPage.classList.toggle("hidden");
@@ -20,18 +31,3 @@ function displayAllRecipes() {
     allRecipesButton.innerHTML = "All Recipes";
   }
 }
-
-function createRecipes() {
-  dummyRecipeData.forEach((recipe, i) => {
-    let recipeToBePushed = new Recipe(recipeData[i])
-    allRecipesArray.push(recipeToBePushed)
-  })
-  console.log(allRecipesArray);
-}
-
-function loadAllRecipes() {
-  createRecipes();
-//
-}
-
-innerHtml = div... image src recipe.image

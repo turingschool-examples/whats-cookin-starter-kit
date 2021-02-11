@@ -1,3 +1,18 @@
+
+.all-recipes {
+  display: flex;
+  background-color: red;
+  height: 1000px;
+  width: 90%;
+  justify-content: center;
+}
+
+.filter-recipe-button {
+  height: 10%;
+  width: 10%;
+}
+
+
 .hidden {
   display: none;
 }
