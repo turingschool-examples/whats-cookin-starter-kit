@@ -27,9 +27,10 @@ function showFeaturedRecipe (recipeTitle) {
   })
 
   featuredRecipe.ingredients.forEach(ingredient => {
-    console.log(ingredient)
     const currentIngredient = (ingredientsData.find(ingredientData => ingredientData.id === ingredient.id)).name;
-    currentRecipeIngredients.innerHTML += `<p class="recipe-ingredients">${currentIngredient}</p>`;
+    // currentRecipeIngredients.innerHTML += `<p class="recipe-ingredients">${currentIngredient}</p>`;
+    currentRecipeIngredients.innerText += ` ${currentIngredient},`;
+
   })
   buttonContainer.style.backgroundImage = `url(${featuredRecipe.image})`;
 }
@@ -37,6 +38,6 @@ function showFeaturedRecipe (recipeTitle) {
 function removeFeaturedRecipe() {
   currentRecipeContainer.classList.add('vis-hidden');
   buttonContainer.style.backgroundImage = 'none';
-  currentRecipeIngredients.innerHTML = '';
+  currentRecipeIngredients.innerHTML = 'Ingredients: ';
   currentRecipeInstructions.innerHTML = '';
 }
