@@ -13,6 +13,7 @@ const pageTitle = document.querySelector('.page-title')
 const instruction = document.querySelector('.instruction')
 const mealSuggestionContainer = document.querySelector(".meal-suggestion-container")
 const instructionCardDirections = document.querySelector('.instruction-card-directions')
+const myRecipesButton = document.querySelector('.my-recipes')
 
 const createKebab = (recipeName) => recipeName.toLowerCase().split(' ').join('-');
 
@@ -111,3 +112,4 @@ document.addEventListener('keydown', searchAllRecipes);
 allRecipesButton.addEventListener('click', () => loadSearchPage(recipeRepository.recipes));
 pageTitle.addEventListener('click', () => loadPage(homePage, searchPage));
 mealSuggestionContainer.addEventListener("click", () => loadRecipeCard(event));
+myRecipesButton.addEventListener("click", () => loadSearchPage(currentUser.favoriteRecipes.map(id => recipeRepository.recipes.find(recipe => recipe.id === id))))
