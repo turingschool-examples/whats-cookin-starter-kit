@@ -5,6 +5,12 @@
     /* border: .5px solid red; */
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 75px repeat(4, 1fr);
+}
+
 a {
   text-decoration: none;
   color: black;
@@ -14,43 +20,64 @@ a {
   width: 1350px;
 } */
 
-.container {
+/* .container {
   display: flex;
   justify-content: space-around;
   align-items: center;
-}
+} */
 
 /*Navigation*/
+header {
+  grid-column: 1/7;
+}
 
 .navigation-bar{
-  position: relative;
+  /* display: grid; */
+  /* justify-items: center; */
+  align-items: center;
+  /* position: relative; */
   height: 75px;
   width: 100%;
+  
 }
 
 .page-title, 
 .navigation-buttons, 
 .search {
-  display: inline-block;
+  /* display: inline-block; */
 }
 
 .page-title {
+ font-size: 2vw;
  height: 100%;
- padding: 20px 30px;
+ /* padding-top:1.2rem; */
+ grid-column: 1;
+ padding: auto;
+ width: fit-content;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ text-align: center;
+ /* justify-self: center; */
+ /* text-align: center;  */
+ /* vertical-align: middle; */
  border-right: 1px solid rgb(179, 178, 178);
  transition: border 0.3s, color 0.3s ease-in-out
 }
 
 .navigation-buttons {
-  position: absolute;
-  height: 100%;
-  right: 20px;
+  grid-column: 5/7;
+  grid-row: span 1;
+  display: flex;
+  justify-content: space-around;
+  /* position: absolute; */
+  /* height: 100%; */
+  /* right: 20px; */
 }
 
 .button {
   height: 73px;
-  margin: 0 20px;
-  font-size: 1em;
+  font-size: 2.5vmin;
   font-weight: bold;
   background: transparent;
   border: none;
@@ -77,11 +104,16 @@ a:hover {
 .search,
 .search-box {
   margin-left: 10px;
+  /* width: 50%; */
 }
+.search {
+  grid-column: 2/5;
 
+}
 .search-box {
+  /* grid-column: 2/5; */
   border:none;
-  width: 500px;
+  width: 80%;
   font-size: 1em;
   outline: none;
 }
