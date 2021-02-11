@@ -334,6 +334,10 @@ const recipeData = [
       {
         "instruction": "Mix the hot sauce, butter, mango habanero sauce, brown sugar, chili powder, garlic powder, onion powder, black pepper, cayenne pepper and seasoning salt in a bowl. Stir vigorously until completely combined.",
         "number": 1
+      },
+      {
+        "instruction": "Marinate your wings in this mixture for at least 30 minutes.",
+        "number": 2
       }
     ],
     "name": "Dirty Steve's Original Wing Sauce",
@@ -3557,8 +3561,16 @@ const recipeData = [
     ],
     "instructions": [
       {
-        "instruction": "Pour mixture into prepared pan, using your hands press to flatten. Set aside for 1-2 hours to set.In a separate bowl, combine powdered sugar with milk and stir to combine. Using a spoon, drizzle glaze on top of cereal bars and dust with colored sugar or sprinkles.",
+        "instruction": "Pour mixture into prepared pan, using your hands press to flatten. Set aside for 1-2 hours to set.",
         "number": 1
+      },
+      {
+        "instruction": "In a separate bowl, combine powdered sugar with milk and stir to combine.",
+        "number": 2
+      },
+      {
+        "instruction": "Using a spoon, drizzle glaze on top of cereal bars and dust with colored sugar or sprinkles.",
+        "number": 3
       }
     ],
     "name": "Cereal Marshmallow Bars",
