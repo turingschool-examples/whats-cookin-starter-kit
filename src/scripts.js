@@ -1,21 +1,26 @@
-let recipeRepository; 
-let savedRecipes = [];
+// const User = require("./User");
+
+let recipeRepository;
+let currentUser;
 
 const recipeCarousel = document.querySelector('.recipe-carousel');
 const searchBox = document.querySelector('.search-box');
 const allRecipesButton = document.querySelector('.all-recipes');
 const allRecipesPage = document.querySelector('.all-recipes-page');
-const searchPage = document.querySelector('.search-page');
-const homePage = document.querySelector('.home-page');
-const pageTitle = document.querySelector('.page-title');
-const instruction = document.querySelector('.instruction');
-const mealSuggestionContainer = document.querySelector(".meal-suggestion-container");
-const instructionCardDirections = document.querySelector('.instruction-card-directions');
-const myRecipes = document.querySelector('.my-recipes');
+const searchPage = document.querySelector('.search-page')
+const homePage = document.querySelector('.home-page')
+const pageTitle = document.querySelector('.page-title')
+const instruction = document.querySelector('.instruction')
+const mealSuggestionContainer = document.querySelector(".meal-suggestion-container")
+const instructionCardDirections = document.querySelector('.instruction-card-directions')
+const myRecipesButton = document.querySelector('.my-recipes')
 
 const createKebab = (recipeName) => recipeName.toLowerCase().split(' ').join('-');
 
-const compileRecipeRepository = () => recipeRepository = new RecipeRepository(recipeData, ingredientsData);
+const compileRecipeRepository = () => {
+  recipeRepository = new RecipeRepository(recipeData, ingredientsData)
+  currentUser = new User(usersData[0], ingredientsData);
+}
 
 const loadPage = ((pageTo, pageFrom) => {
   pageTo.classList.remove('hidden');
@@ -33,7 +38,7 @@ const printIngredients = (recipe) => {
     return acc += `
     <tr>
       <td class="instruction-card-ingredient">${ingredient.name}</td>
-      <td class="instruction-card-unit">${ingredient.quantity.amount} ${ingredient.quantity.unit}</td>
+      <td class="instruction-card-unit">${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit}</td>
     </tr>`}, '');
 };
 
@@ -41,29 +46,21 @@ const returnSelectedRecipe = (event) => {
   const clickedRecipe = event.target.closest('.recipe').className;
   return recipeRepository.recipes.find(recipe => clickedRecipe.includes(createKebab(recipe.name)));
 };
-const fixButton = (recipe) => {
-  if(savedRecipes.includes(recipe)){
-    return 'saved'
-  }
-}
-const toggleMyFavorites = (event) =>  {
-  console.log(event.currentTarget.className)
-  if (!savedRecipes.includes(returnSelectedRecipe(event))) {
-    savedRecipes.push(returnSelectedRecipe(event));
-    event.target.classList.add('saved')
-  } else {
-    savedRecipes.splice(savedRecipes.indexOf(returnSelectedRecipe(event)), 1);
-    event.target.classList.remove('saved');
-  }
-  console.log(event.currentTarget.className)
-  if (event.currentTarget.className.includes("search-page")) {
-    loadSearchPage(savedRecipes)
-  }
+
+const addToMyFavorites = (event) =>  {
+  currentUser.addRecipeToFavs(returnSelectedRecipe(event));
+  event.target.classList.add('saved'); 
+};
+
+const toggleFavoriteButton = (recipe) => {
+  if(currentUser.favoriteRecipes.includes(recipe.id)) {
+    return "saved";
+  };
 };
 
 const loadRecipeCard = (event) => {
   if (event.target.className.includes("recipe-card-button")) {
-    toggleMyFavorites(event);
+    addToMyFavorites(event);
   } else if(event.target.closest('.recipe')) {
     loadPage(homePage, searchPage);
     instruction.classList.remove('hidden');
@@ -97,7 +94,7 @@ const loadSearchPage = (array) => {
       <img class="recipe-card-img" src="${recipe.image}">
       <p class="recipe-card-name">${recipe.name}</p>
       <p class="recipe-card-cost">${recipe.getIngredientsCost()}</p>
-      <button class="recipe-card-button ${fixButton(recipe)}"></button>
+      <button class="recipe-card-button ${toggleFavoriteButton(recipe)}"></button>
     </article>
   `);
 };
@@ -110,7 +107,7 @@ const populateRecipeCarousel = () => {
         <img class="recipe-card-img" src="${randomRecipe.image}">
         <p class="recipe-card-name">${randomRecipe.name}</p>
         <p class="recipe-card-cost">${randomRecipe.getIngredientsCost()}</p>
-        <button class="recipe-card-button"></button>
+        <button class="recipe-card-button ${toggleFavoriteButton(randomRecipe)}"></button>
       </article>
     `
   };
@@ -146,4 +143,4 @@ document.addEventListener('keydown', searchAllRecipes);
 allRecipesButton.addEventListener('click', () => loadSearchPage(recipeRepository.recipes));
 pageTitle.addEventListener('click', () => loadPage(homePage, searchPage));
 mealSuggestionContainer.addEventListener("click", () => loadRecipeCard(event));
-myRecipes.addEventListener('click', () => loadSearchPage(savedRecipes));
+myRecipesButton.addEventListener("click", () => loadSearchPage(currentUser.favoriteRecipes.map(id => recipeRepository.recipes.find(recipe => recipe.id === id))))
