@@ -7,8 +7,8 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 75px repeat(4, 1fr);
+  grid-template-columns: 240px 240px repeat(4, 1fr);
+  grid-template-rows: 60px repeat(4, 1fr);
 }
 
 a {
@@ -32,11 +32,12 @@ header {
 }
 
 .navigation-bar{
+  grid-row: 1;
   /* display: grid; */
   /* justify-items: center; */
   align-items: center;
   /* position: relative; */
-  height: 75px;
+  /* height: 50px; */
   width: 100%;
   
 }
@@ -48,12 +49,12 @@ header {
 }
 
 .page-title {
- font-size: 2vw;
+ font-size: 24px;
  height: 100%;
  /* padding-top:1.2rem; */
  grid-column: 1;
- padding: auto;
- width: fit-content;
+ grid-row: 1;
+ /* padding: auto; */
  display: flex;
  justify-content: center;
  align-items: center;
@@ -67,17 +68,22 @@ header {
 
 .navigation-buttons {
   grid-column: 5/7;
-  grid-row: span 1;
+  grid-row: 1;
+  align-self: stretch;
   display: flex;
   justify-content: space-around;
+  align-items: stretch;
   /* position: absolute; */
   /* height: 100%; */
   /* right: 20px; */
 }
 
 .button {
-  height: 73px;
-  font-size: 2.5vmin;
+  /* border:2px solid black; */
+  /* height: 100%; */
+  grid-row: 1;
+  /* align-self: right; */
+  font-size: 14px;
   font-weight: bold;
   background: transparent;
   border: none;
