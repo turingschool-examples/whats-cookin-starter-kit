@@ -123,15 +123,17 @@ a:hover {
   font-size: 1em;
   outline: none;
 }
-
+.home-page {
+  grid-column: 1/7;
+}
 .main-section {
-  position: relative;
+  /* position: relative; */
+  grid-column: 1/7;
   background-image: url(https://griffinpartnerssc.com/wp-content/uploads/2019/06/food-vegetables-meal-breakfast-hd-wallpaper-high-resolution-background-images-desktop-images-of-windows-amazing-cool-images-free-stock-photos-pictures-1600x1024.jpg);
   background-size:cover;
   background-repeat: no-repeat;
   background-position: center;
   height: 90vh;
-  width: 100%;
 }
 /*All Recipes*/
  .search-page {
