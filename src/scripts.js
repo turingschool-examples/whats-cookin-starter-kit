@@ -1,16 +1,17 @@
 let recipeRepository; 
 let savedRecipes = [];
 
-const recipeCarousel = document.querySelector('.recipe-carousel')
+const recipeCarousel = document.querySelector('.recipe-carousel');
 const searchBox = document.querySelector('.search-box');
 const allRecipesButton = document.querySelector('.all-recipes');
 const allRecipesPage = document.querySelector('.all-recipes-page');
-const searchPage = document.querySelector('.search-page')
-const homePage = document.querySelector('.home-page')
-const pageTitle = document.querySelector('.page-title')
-const instruction = document.querySelector('.instruction')
-const mealSuggestionContainer = document.querySelector(".meal-suggestion-container")
-const instructionCardDirections = document.querySelector('.instruction-card-directions')
+const searchPage = document.querySelector('.search-page');
+const homePage = document.querySelector('.home-page');
+const pageTitle = document.querySelector('.page-title');
+const instruction = document.querySelector('.instruction');
+const mealSuggestionContainer = document.querySelector(".meal-suggestion-container");
+const instructionCardDirections = document.querySelector('.instruction-card-directions');
+const myRecipes = document.querySelector('.my-recipes');
 
 const createKebab = (recipeName) => recipeName.toLowerCase().split(' ').join('-');
 
@@ -41,15 +42,19 @@ const returnSelectedRecipe = (event) => {
   return recipeRepository.recipes.find(recipe => clickedRecipe.includes(createKebab(recipe.name)));
 };
 
-const addToMyFavorites = (event) =>  {
+const toggleMyFavorites = (event) =>  {
   if (!savedRecipes.includes(returnSelectedRecipe(event))) {
     savedRecipes.push(returnSelectedRecipe(event));
-  }; 
+    event.target.classList.add('saved')
+  } else {
+    savedRecipes.splice(savedRecipes.indexOf(returnSelectedRecipe(event)), 1)
+    event.target.classList.remove('saved')
+  }
 };
 
 const loadRecipeCard = (event) => {
-  if (event.target.className === "recipe-card-button") {
-    addToMyFavorites(event);
+  if (event.target.className.includes("recipe-card-button")) {
+    toggleMyFavorites(event);
   } else if(event.target.closest('.recipe')) {
     loadPage(homePage, searchPage);
     instruction.classList.remove('hidden');
@@ -132,3 +137,4 @@ document.addEventListener('keydown', searchAllRecipes);
 allRecipesButton.addEventListener('click', () => loadSearchPage(recipeRepository.recipes));
 pageTitle.addEventListener('click', () => loadPage(homePage, searchPage));
 mealSuggestionContainer.addEventListener("click", () => loadRecipeCard(event));
+myRecipes.addEventListener('click', () => loadSearchPage(savedRecipes));
