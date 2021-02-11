@@ -48,12 +48,17 @@ const returnSelectedRecipe = (event) => {
 };
 
 const addToMyFavorites = (event) =>  {
-  currentUser.addRecipeToFavs(returnSelectedRecipe(event));
-  event.target.classList.add('saved'); 
+  if (!event.target.className.includes('saved')) {
+    currentUser.addRecipeToFavs(returnSelectedRecipe(event));
+    event.target.classList.add('saved'); 
+  } else {
+    currentUser.removeRecipeFromFavs(returnSelectedRecipe(event));
+    event.target.classList.remove('saved');
+  }  
 };
 
 const toggleFavoriteButton = (recipe) => {
-  if(currentUser.favoriteRecipes.includes(recipe.id)) {
+  if(currentUser.favoriteRecipes.map(recipe => recipe.id).includes(recipe.id)) {
     return "saved";
   };
 };
@@ -143,4 +148,4 @@ document.addEventListener('keydown', searchAllRecipes);
 allRecipesButton.addEventListener('click', () => loadSearchPage(recipeRepository.recipes));
 pageTitle.addEventListener('click', () => loadPage(homePage, searchPage));
 mealSuggestionContainer.addEventListener("click", () => loadRecipeCard(event));
-myRecipesButton.addEventListener("click", () => loadSearchPage(currentUser.favoriteRecipes.map(id => recipeRepository.recipes.find(recipe => recipe.id === id))))
+myRecipesButton.addEventListener("click", () => loadSearchPage(currentUser.favoriteRecipes))
