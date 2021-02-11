@@ -41,10 +41,14 @@ const returnSelectedRecipe = (event) => {
   return recipeRepository.recipes.find(recipe => clickedRecipe.includes(createKebab(recipe.name)));
 };
 
-const addToMyFavorites = (event) =>  savedRecipes.push(returnSelectedRecipe(event));
+const addToMyFavorites = (event) =>  {
+  if (!savedRecipes.includes(returnSelectedRecipe(event))) {
+    savedRecipes.push(returnSelectedRecipe(event));
+  }; 
+};
 
 const loadRecipeCard = (event) => {
-  if (event.target.className === "recipe-card-button"){
+  if (event.target.className === "recipe-card-button") {
     addToMyFavorites(event);
   } else if(event.target.closest('.recipe')) {
     loadPage(homePage, searchPage);
