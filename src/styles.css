@@ -1,0 +1,267 @@
+
+html, body {
+  height: 100%;
+  font-family: Garamond;
+  background-color: #F0F0E1;
+  background-size: cover;
+  width: 100%;
+  margin: 0px;
+}
+
+button {
+  cursor: pointer;
+}
+
+li {
+  list-style-type: none;
+}
+
+input:focus,
+button:focus {
+  outline: none;
+}
+
+/* MAIN */
+main {
+  height: 40%;
+  display: flex;  
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.sidebar {
+  width: 100vh;
+  height: 30px;
+  transform-origin: bottom left;
+  position: absolute;
+  left: 30px;
+  bottom: 0;
+  transform: rotate(-90deg);
+  text-align: center;
+  color: #FC913A;
+  border-bottom: solid;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+/* USER BUTTONS */
+.buttonContainer {
+  display: flex;
+  align-items: flex-start;
+  width: 45%;
+  align-self: flex-start;
+}
+
+.buttonContainer > button {
+  border: 1px solid #FC913A;
+  border-radius: 10%;
+  background-color: inherit;
+  padding: 10px;
+  color: #FC913A;
+  margin: 5%;
+  text-align: center;
+}
+
+.buttonContainer > button:hover, 
+.my-list-btn:hover {
+  background-color: #ffd971cc;
+}
+/* SEARCH CONTAINER */
+.search-container {
+  display: flex;
+  align-items: flex-end;
+  flex-flow: row wrap;
+}
+
+.search-field, .search-container > label {
+  background-color: transparent;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-color:#FC913A;
+  color: #FC913A;
+  font-size: 20px;
+  margin: 2%;
+}
+
+
+/* CURRENT RECIPE */
+.current-recipe-container {
+  display: flex;
+  align-self: center;
+  width: 100%;
+}
+
+.current-recipe {
+  display: flex;
+  flex: 2;
+  flex-flow: row wrap;
+  background-color: #FAE6B1;
+  border-radius: 5%;
+  width: 100%;
+  height: auto;
+}
+
+.current-recipe-img {
+  height: 35%;
+  width: 35%;
+  border-radius: 5%;
+}
+
+/* INTERACTIVE-AREA */
+
+.my-list-container {
+  text-align: center;
+  height: 10%;
+}
+
+.my-list-btn {
+  background-color: #FAE6B1;
+  border: 0;
+  height: 50%;
+  width: 35%;
+  border-radius: 10px;
+  color: #FC913A;
+}
+
+/* RADIO FORM */
+.tag-container {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column wrap;
+  height: 100%;
+  width: 50%;
+  border-radius: 20px;
+  margin: 0px 2% 0px 3%;
+}
+
+input[type="radio"] {
+  visibility: hidden;
+}
+
+.tag-container > label {
+  cursor: pointer;
+  border: 1px solid #FC913A;
+  border-radius: 10px;
+  padding: 1%;
+  margin: 0px 2px 10px 2px;
+  color: #FC913A;
+  height: 20px;
+}
+
+.tag-container > label:hover, 
+.tag-container > input:checked + label {
+  background-color: #FAE6B1;  
+  font-size: 1.001em;
+}
+
+/* Recipe */
+
+.recipe-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recipe-card {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  margin-left: .25%;
+} 
+/* UNFEATURED RECIPE */
+.recipe {
+  display: flex;
+  flex-direction: column;
+  background-color: #FAE6B1;
+  background-size: cover;
+  height: 50%;
+  width: 80%;
+  border-radius: 10%;
+  padding-bottom: 0%;
+}
+
+.recipe-img {
+  height: 125px;
+  width: 125px;
+  border-radius: 50%;
+  margin-left: -30%;
+  opacity: 0.85;
+  align-self: center;
+}
+
+/* Recipe When hovered */
+
+.recipe-card:hover .recipe {
+  background-color: #fcef3aa2;
+}
+
+
+.recipe-card:hover .recipe-img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  margin-left: -35%;
+}
+/* RECIPE BUTTONS */
+.favorite-label {
+  align-self: flex-end;
+  height: 30px;
+  width: 30px;
+  background-image: url("https://image.flaticon.com/icons/png/512/109/109697.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.favorite-label:hover {
+  background-color: #FC913A;
+  border-radius: 50%;
+  height: 31px;
+  width: 31px;
+}
+.recipe-card:hover .favorite-label, 
+.recipe-card:hover .cook-btn {
+  visibility: visible;
+  display: initial;
+}
+
+#favoriteInput {
+  border: 0px;
+}
+
+.cook-btn {
+  background-color: #FAE6B1;
+  color: #FC913A;
+  border: none;
+  border-radius: 20px;
+  text-align: center;
+  align-self: flex-end;
+  margin: 5%;
+}
+
+/* RECIPE INFO */
+
+.recipe-title {
+  font-size: 1.25em;
+  margin: 15px 0px 0px 10px;
+  color: #FC913A;
+}
+
+.recipe-ingredients {
+  margin: 5% 5px 10px 10px;
+  color: #FC913A;
+}
+
+/* HIDDEN */
+.hidden {
+  display: none;
+} 
+
+.vis-hidden {
+  visibility: hidden;
+}
+
+.interactive-area {
+  display: flex;
+  height: 45%;
+}

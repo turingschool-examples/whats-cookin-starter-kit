@@ -3,11 +3,143 @@
   <head>
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <h1>Whats Cookin</h1>
-
-    <script type="text/javascript" src="../data/users.js"></script>
+    <section class="sidebar">What's Cookin?</section>
+    <main>
+      <section class="buttonContainer">
+        <button id="myMealsBtn">My Meals</button>
+        <button id="showFavBtn">Favorites</button>
+        <button id="checkPantry">Check Pantry</button>
+      </section>
+      <section class="current-recipe-container">
+        <img class="current-recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="" srcset="">
+        <div class="current-recipe">
+          <h1 class="recipe-title">Chocolate Chip Cookies</h1>
+          <p class="recipe-ingredients">Chocolate Chips</p>
+          <p class="recipe-ingredients">Chocolate Chips</p>
+          <p class="recipe-ingredients">Chocolate Chips</p>
+          <p class="recipe-ingredients">Chocolate Chips</p>
+          <p class="recipe-ingredients">Chocolate Chips</p>
+          <button class="cook-btn">Cook</button>
+        </div>
+      </section>
+      <form class="search-container">
+        <label for="searchField">Recipe Search: </label>
+        <input class="search-field" id="searchField" type="text">
+      </form>
+      </main>
+      <section class="interactive-area">
+        <form class="tag-container">
+          <input type="radio" name="" id="antipasti">
+          <label for="antipasti">antipasti</label>
+          <input type="radio" name="" id="starter">
+          <label for="starter">starter</label>
+          <input type="radio" name="" id="snack">
+          <label for="snack">snack</label>
+          <input type="radio" name="" id="appetizer">
+          <label for="appetizer">appetizer</label>
+          <input type="radio" name="" id="antipasto">
+          <label for="antipasto">antipasto</label>
+          <input type="radio" name="" id="hor-d'oeuvre">
+          <label for="hor-d'oeuvre">hor d'oeuvre</label>
+          <input type="radio" name="" id="lunch">
+          <label for="lunch">lunch</label>
+          <input type="radio" name="" id="main course">
+          <label for="main course">main course</label>
+          <input type="radio" name="" id="main-dish">
+          <label for="main-dish">main dish</label>
+          <input type="radio" name="" id="dinner">
+          <label for="dinner">dinner</label>
+          <input type="radio" name="" id="sauce">
+          <label for="sauce">sauce</label>
+          <input type="radio" name="" id="side-dish">
+          <label for="side-dish">side dish</label>
+          <input type="radio" name="" id="morning-meal">
+          <label for="morning-meal">morning meal</label>
+          <input type="radio" name="" id="brunch">
+          <label for="brunch">brunch</label>
+          <input type="radio" name="" id="breakfast">
+          <label for="breakfast">breakfast</label>
+          <input type="radio" name="" id="salad">
+          <label for="salad">salad</label>
+          <input type="radio" name="" id="condiment">
+          <label for="condiment">condiment</label>
+          <input type="radio" name="" id="dip">
+          <label for="dip">dip</label>
+          <input type="radio" name="" id="spread">
+          <label for="spread">spread</label>
+        </form>
+        <ul class="recipe-list">
+          <li class="recipe-card">
+            <div class="recipe">
+              <input type="radio" id="favoriteInput">
+              <label class="favorite-label vis-hidden"for="favoriteInput"></label>
+              <h1 class="recipe-title">Chocolate Chip Cookies</h1>
+              <p class="recipe-ingredients">Chocolate Chips</p>
+              <p class="recipe-ingredients">Chocolate Chips</p>
+              <p class="recipe-ingredients">Chocolate Chips</p>
+              <p class="recipe-ingredients">Chocolate Chips</p>
+              <p class="recipe-ingredients">Chocolate Chips</p>
+            </div>
+            <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="" srcset="">
+          </li>
+          <li class="recipe-card">
+            <div class="recipe">
+            <input type="radio" id="favoriteInput">
+            <label class="favorite-label vis-hidden"for="favoriteInput"></label>
+            <h1 class="recipe-title">Chocolate Chip Cookies</h1>
+            <p class="recipe-ingredients">Chocolate Chips</p>
+            <p class="recipe-ingredients">Chocolate Chips</p>
+            <p class="recipe-ingredients">Chocolate Chips</p>
+            <p class="recipe-ingredients">Chocolate Chips</p>
+            <p class="recipe-ingredients">Chocolate Chips</p>
+          </div>
+          <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="" srcset="">
+        </li>
+        <li class="recipe-card"><div class="recipe">
+          <input type="radio" id="favoriteInput">
+          <label class="favorite-label vis-hidden"for="favoriteInput"></label>
+          <h1 class="recipe-title">Chocolate Chip Cookies</h1>
+          <p class="recipe-ingredients">Chocolate Chips</p>
+          <p class="recipe-ingredients">Chocolate Chips</p>
+          <p class="recipe-ingredients">Chocolate Chips</p>
+          <p class="recipe-ingredients">Chocolate Chips</p>
+          <p class="recipe-ingredients">Chocolate Chips</p>
+        </div>
+        <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="" srcset="">
+      </li>
+      <li class="recipe-card"><div class="recipe">
+        <input type="radio" id="favoriteInput">
+        <label class="favorite-label vis-hidden"for="favoriteInput"></label>
+        <h1 class="recipe-title">Chocolate Chip Cookies</h1>
+        <p class="recipe-ingredients">Chocolate Chips</p>
+        <p class="recipe-ingredients">Chocolate Chips</p>
+        <p class="recipe-ingredients">Chocolate Chips</p>
+        <p class="recipe-ingredients">Chocolate Chips</p>
+        <p class="recipe-ingredients">Chocolate Chips</p>
+      </div>
+      <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="" srcset="">
+    </li>
+    <li class="recipe-card"><div class="recipe">
+      <input type="radio" id="favoriteInput">
+      <label class="favorite-label vis-hidden"for="favoriteInput"></label>
+      <h1 class="recipe-title">Chocolate Chip Cookies</h1>
+      <p class="recipe-ingredients">Chocolate Chips</p>
+      <p class="recipe-ingredients">Chocolate Chips</p>
+      <p class="recipe-ingredients">Chocolate Chips</p>
+      <p class="recipe-ingredients">Chocolate Chips</p>
+      <p class="recipe-ingredients">Chocolate Chips</p>
+    </div>
+    <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="" srcset="">
+  </li>
+</ul>
+</section>
+<article class="my-list-container">
+  <button class="my-list-btn">+ My List</button>
+</article>
+<script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
     <script type="text/javascript" src="./scripts.js"></script>
