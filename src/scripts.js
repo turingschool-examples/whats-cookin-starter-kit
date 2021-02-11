@@ -4,7 +4,7 @@ const allRecipesButton = document.getElementById("allRecipesButton")
 const allRecipesPage = document.getElementById("allRecipesPage")
 const randomRecipesLeft = document.getElementById("leftRecipe")
 const randomRecipesRight = document.getElementById("reightRecipe")
-
+const randomRecipes = document.getElementById("randomRecipes")
 
 allRecipesButton.addEventListener("click", displayAllRecipesPage);
 window.addEventListener("load", loadAllRecipes);
@@ -12,6 +12,8 @@ allRecipesPage.addEventListener("click", displayRecipeInfo)
 
 function loadAllRecipes() {
   createRecipes();
+  generateRandomRecipe();
+  displayRandomRecipe();
 }
 
 
@@ -22,19 +24,31 @@ function createRecipes() {
   })
 }
 
+function generateRandomRecipe() {
+  return allRecipesArray[Math.floor(Math.random() * allRecipesArray.length)].image;
+}
+
+function displayRandomRecipe() {
+  const randomImage = generateRandomRecipe()
+  const randomImage2 = generateRandomRecipe()
+  randomRecipes.innerHTML =
+    `<img id="place" class="cover-recipes-images" src=${randomImage}>
+    <img id="place" class="cover-recipes-images" src=${randomImage2}>`
+}
+
 function displayAllRecipesPage() {
   allRecipesPage.classList.toggle("hidden");
-  randomRecipesLeft.classList.toggle("hidden");
-  randomRecipesRight.classList.toggle("hidden");
+  randomRecipes.classList.toggle("hidden");
+  // randomRecipesRight.classList.toggle("hidden");
   if(allRecipesButton.innerHTML === "All Recipes") {
     allRecipesButton.innerHTML = "Home";
   } else {
     allRecipesButton.innerHTML = "All Recipes";
   }
-  displayRecipeImages();
+  displayAllRecipeImages();
 }
 
-function displayRecipeImages() {
+function displayAllRecipeImages() {
   allRecipesPage.innerHTML = ``
   allRecipesArray.forEach(recipe => {
     allRecipesPage.innerHTML +=
@@ -55,10 +69,10 @@ function recipeCardDisplay(id) {
   allRecipesArray.forEach(recipe => {
     if(recipe.id === id) {
       allRecipesPage.innerHTML =
-      `<section>${recipe.name}</section>
-      <section>${recipe.returnIngredients()}</section>
-      <section>${recipe.returnTotalCost()}</section>
-      <section>${recipe.returnInstructions()}</section>`
+      `<section class="recipe-name">${recipe.name}</section>
+      <section class="recipe-ingredients">${recipe.returnIngredients()}</section>
+      <section class="recipe-cost">${recipe.returnTotalCost()}</section>
+      <section class="recipe-instructions" >${recipe.returnInstructions()}</section>`
     }
   } )
 }
