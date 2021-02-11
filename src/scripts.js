@@ -4,14 +4,21 @@ const currentRecipeInstructions = currentRecipeContainer.querySelector('.current
 const recipeList = document.querySelector('.recipe-list');
 const buttonContainer = document.querySelector('.button-container');
 
-recipeList.addEventListener('click', (e) => {
+recipeList.addEventListener('click', clickRecipeCard);
+
+function clickRecipeCard(e) {
   const currentRecipeCard = e.target.closest('.recipe-card');
   const currentRecipeTitle = currentRecipeCard.querySelector('.recipe-title').innerText;
-  showFeaturedRecipe(currentRecipeTitle);
-  currentRecipeContainer.classList.toggle('vis-hidden');
-})
+  if (currentRecipeContainer.classList.contains('vis-hidden')) {
+    showFeaturedRecipe(currentRecipeTitle);
+  } else {
+    removeFeaturedRecipe();
+    showFeaturedRecipe(currentRecipeTitle);
+  }
+};
 
 function showFeaturedRecipe (recipeTitle) {
+  currentRecipeContainer.classList.remove('vis-hidden');
   const featuredRecipe = recipeData.find(recipe => recipe.name === recipeTitle);
  
   featuredRecipe.instructions.forEach(instruction => {
@@ -22,8 +29,14 @@ function showFeaturedRecipe (recipeTitle) {
   featuredRecipe.ingredients.forEach(ingredient => {
     console.log(ingredient)
     const currentIngredient = (ingredientsData.find(ingredientData => ingredientData.id === ingredient.id)).name;
-    console.log(currentIngredient);
     currentRecipeIngredients.innerHTML += `<p class="recipe-ingredients">${currentIngredient}</p>`;
   })
   buttonContainer.style.backgroundImage = `url(${featuredRecipe.image})`;
+}
+
+function removeFeaturedRecipe() {
+  currentRecipeContainer.classList.add('vis-hidden');
+  buttonContainer.style.backgroundImage = 'none';
+  currentRecipeIngredients.innerHTML = '';
+  currentRecipeInstructions.innerHTML = '';
 }
