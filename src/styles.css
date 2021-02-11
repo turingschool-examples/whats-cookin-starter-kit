@@ -62,6 +62,7 @@ a {
   border-bottom: 2px solid black;
   color: grey;
   transition: border 0.2s, color 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 a:hover {
@@ -131,6 +132,7 @@ a:hover {
 .recipe-card:hover{
   box-shadow: 0px 0px 8px 6px rgba(78, 78, 78, 0.5);
   transition: box-shadow 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .recipe-card-img {
@@ -276,11 +278,11 @@ td {
 }
 
 .meal-suggestion {
-  margin-bottom: 60px;
+  /* margin-bottom: 0px; */
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 200px;
+  height: 250px;
   width: 150px;
 }
 
@@ -304,6 +306,7 @@ td {
 .zoom:hover {
   transform: scale(1.2);
   transition: transform 1s ease-in-out;
+  cursor: pointer;
 }
 
 .meal-suggestion-name {
