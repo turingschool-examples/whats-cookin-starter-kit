@@ -938,8 +938,9 @@ const dummyIngredientData = [
     "estimatedCostInCents": 625
   }
 ]
-
-module.exports = {
-  dummyRecipeData,
-  dummyIngredientData
+if (typeof module !== 'undefined'){
+  module.exports = {
+    dummyRecipeData,
+    dummyIngredientData
+  }
 }

@@ -31,7 +31,7 @@ describe('RecipeRepository', function() {
     expect(recipeRepository.filterRecipeByName("Dirty Steve's Original Wing Sauce")).to.deep.equal([allRecipes[2]])
   })
 
-  it('should return recipe by nameingredients', function() {
+  it('should return recipe by ingredients', function() {
     const recipeRepository = new RecipeRepository(allRecipes);
 
     expect(recipeRepository.filterRecipeByIngredients("wheat flour")).to.deep.equal([allRecipes[0], allRecipes[3]])

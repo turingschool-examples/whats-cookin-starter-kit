@@ -1,8 +1,8 @@
-const recipes = require('../test/Data');
-const ingredients = require('../test/Data');
-const allRecipes = recipes.dummyRecipeData;
-const allIngredients = ingredients.dummyIngredientData;
-const Recipe = require('./Recipe');
+// const recipes = require('../test/Data');
+// const ingredients = require('../test/Data');
+// const allRecipes = recipes.dummyRecipeData;
+// const allIngredients = ingredients.dummyIngredientData;
+// const Recipe = require('./Recipe');
 
 class RecipeRepository {
   constructor(recipeArray) {
@@ -20,14 +20,14 @@ class RecipeRepository {
   filterRecipeByIngredients(ingredientName) {
   // let inputedObject = allIngredients.filter(ingredients => ingredients.name === ingredient);
   // return inputedObject[0];
-  let id = []
+  const id = []
   let ingredientId = allIngredients.filter(ingredient => {
     if(ingredient.name === ingredientName){
       id.push(ingredient.id);
     };
   });
 
-  let finalRecipe = [];
+  const finalRecipe = [];
   let recipeByIngredient = allRecipes.filter(recipes => {
     recipes.ingredients.filter(ingredientsByRecipe => {
       if(ingredientsByRecipe.id === id[0]){
@@ -48,8 +48,9 @@ class RecipeRepository {
 
 }
 
-
-module.exports = RecipeRepository;
+if (typeof module !== 'undefined'){
+  module.exports = RecipeRepository;
+}
 
 
 //this.recipes.map(ingredient =>

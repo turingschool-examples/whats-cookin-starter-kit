@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="styles.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
   </head>
   <body>
     <h1>Whats Cookin</h1>
-
+      <button id="myPanrtyButton">My Pantry</button>
+      <button id="favoriteRecipesButton">Favorite Recipes</button>
+      <button id="allRecipesButton">All Recipes</button>
+    <section class="random-recipe" id="leftRecipe">Left Recipe</section>
+    <section class="random-recipe" id="reightRecipe">Right Recipe</section>
+    <section  class="hidden" id="allRecipesPage">All Recipes
+      <button id="fitlerRecipesButton">Filter Recipes</button>
+    </section>
+    <script type="text/javascript" src="../test/Data.js"></script>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
+    <script type="text/javascript" src="./Recipe.js"></script>
     <script type="text/javascript" src="./scripts.js"></script>
   </body>
 </html>
