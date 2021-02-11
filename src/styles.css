@@ -329,3 +329,10 @@ td {
 ::-webkit-scrollbar {
     display: none;
 }
+
+.saved {
+  background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-minus-circled-512.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}

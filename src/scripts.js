@@ -3,7 +3,7 @@
 let recipeRepository;
 let currentUser;
 
-const recipeCarousel = document.querySelector('.recipe-carousel')
+const recipeCarousel = document.querySelector('.recipe-carousel');
 const searchBox = document.querySelector('.search-box');
 const allRecipesButton = document.querySelector('.all-recipes');
 const allRecipesPage = document.querySelector('.all-recipes-page');
@@ -27,24 +27,54 @@ const loadPage = ((pageTo, pageFrom) => {
   pageFrom.classList.add('hidden');
 });
 
+
+const printInstructions = (recipe) => {
+  return recipe.returnInstructions().reduce((acc, instruction) => {
+     return acc += `<p class="instruction-card-steps">${instruction}</p>`}, '');
+};
+
+const printIngredients = (recipe) => {
+  return recipe.ingredients.reduce((acc, ingredient) => {
+    return acc += `
+    <tr>
+      <td class="instruction-card-ingredient">${ingredient.name}</td>
+      <td class="instruction-card-unit">${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit}</td>
+    </tr>`}, '');
+};
+
+const returnSelectedRecipe = (event) => {
+  const clickedRecipe = event.target.closest('.recipe').className;
+  return recipeRepository.recipes.find(recipe => clickedRecipe.includes(createKebab(recipe.name)));
+};
+
+const addToMyFavorites = (event) =>  {
+  currentUser.addRecipeToFavs(returnSelectedRecipe(event));
+  event.target.classList.add('saved'); 
+};
+
+const toggleFavoriteButton = (recipe) => {
+  if(currentUser.favoriteRecipes.includes(recipe.id)) {
+    return "saved";
+  };
+};
+
 const loadRecipeCard = (event) => {
-  if(event.target.closest('.recipe')) {
-    const clickedRecipe = event.target.closest('.recipe').className;
+  if (event.target.className.includes("recipe-card-button")) {
+    addToMyFavorites(event);
+  } else if(event.target.closest('.recipe')) {
     loadPage(homePage, searchPage);
     instruction.classList.remove('hidden');
-    const selectedRecipe = recipeRepository.recipes.find(recipe => clickedRecipe.includes(createKebab(recipe.name)));
-    const instructions = selectedRecipe.returnInstructions().reduce((acc, instruction) => acc += `<p class="instruction-card-steps">${instruction}</p>`, '')
-    const ingredients = selectedRecipe.ingredients.reduce((acc, ingredient) => acc += `<tr><td class="instruction-card-ingredient">${ingredient.name}</td><td class="instruction-card-unit">${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit}</td></tr>`, '');
+    const selectedRecipe = returnSelectedRecipe(event)
     instructionCardDirections.innerHTML = `
       <h1 class="instruction-card-recipe-name">${selectedRecipe.name}</h1>
       <h2 class="instruction-card-header">Directions</h2>
       <div class="direction-container">
-        ${instructions}
+        ${printInstructions(selectedRecipe)}
       </div>
       <h2 class="instruction-card-header">Ingredients</h2>
       <div class="ingredient-container">
         <table class="instruction-card-ingredient-list">
-          ${ingredients}
+          ${printIngredients(selectedRecipe)}
         </table>
       </div>
       <button class="add-to-grocery-button">Add to Grocery List</button>
@@ -55,6 +85,7 @@ const loadRecipeCard = (event) => {
   }
 };
 
+
 const loadSearchPage = (array) => {
   searchPage.innerHTML = "";
   loadPage(searchPage, homePage);
@@ -63,7 +94,7 @@ const loadSearchPage = (array) => {
       <img class="recipe-card-img" src="${recipe.image}">
       <p class="recipe-card-name">${recipe.name}</p>
       <p class="recipe-card-cost">${recipe.getIngredientsCost()}</p>
-      <button class="recipe-card-button"></button>
+      <button class="recipe-card-button ${toggleFavoriteButton(recipe)}"></button>
     </article>
   `);
 };
@@ -76,7 +107,7 @@ const populateRecipeCarousel = () => {
         <img class="recipe-card-img" src="${randomRecipe.image}">
         <p class="recipe-card-name">${randomRecipe.name}</p>
         <p class="recipe-card-cost">${randomRecipe.getIngredientsCost()}</p>
-        <button class="recipe-card-button"></button>
+        <button class="recipe-card-button ${toggleFavoriteButton(randomRecipe)}"></button>
       </article>
     `
   };
