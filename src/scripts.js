@@ -33,3 +33,5 @@ function loadAllRecipes() {
   createRecipes();
 //
 }
+
+innerHtml = div... image src recipe.image

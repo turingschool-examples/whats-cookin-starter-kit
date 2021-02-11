@@ -1,8 +1,4 @@
-// const recipes = require('../test/Data');
-// const ingredients = require('../test/Data');
-// const allRecipes = recipes.dummyRecipeData;
-// const allIngredients = ingredients.dummyIngredientData;
-// const Recipe = require('./Recipe');
+
 
 class RecipeRepository {
   constructor(recipeArray) {
@@ -18,17 +14,15 @@ class RecipeRepository {
   }
 
   filterRecipeByIngredients(ingredientName) {
-  // let inputedObject = allIngredients.filter(ingredients => ingredients.name === ingredient);
-  // return inputedObject[0];
   const id = []
-  let ingredientId = allIngredients.filter(ingredient => {
+  let ingredientId = dummyIngredientData.filter(ingredient => {
     if(ingredient.name === ingredientName){
       id.push(ingredient.id);
     };
   });
 
   const finalRecipe = [];
-  let recipeByIngredient = allRecipes.filter(recipes => {
+  let recipeByIngredient = this.recipes.filter(recipes => {
     recipes.ingredients.filter(ingredientsByRecipe => {
       if(ingredientsByRecipe.id === id[0]){
         finalRecipe.push(recipes)
@@ -37,13 +31,6 @@ class RecipeRepository {
   })
 
   return finalRecipe;
-  //return this.recipes.filter(recipe => console.log(recipe))
-  // return this.recipes.filter(recipe => recipe.ingredients.id === ingredient)
-  // let returnedId = inputedObject.filter(ingredient => ingredient.id)
-  // let id =
-  // return inputedObject
-  // return this.recipes.filter(recipe => recipe.name.includes(id))
-  // return allRecipes.filter(recipe => recipe.ingredients.includes(returnedId))
   }
 
 }
@@ -51,6 +38,3 @@ class RecipeRepository {
 if (typeof module !== 'undefined'){
   module.exports = RecipeRepository;
 }
-
-
-//this.recipes.map(ingredient =>
