@@ -34,7 +34,7 @@ const loadRecipeCard = (event) => {
     instruction.classList.remove('hidden');
     const selectedRecipe = recipeRepository.recipes.find(recipe => clickedRecipe.includes(createKebab(recipe.name)));
     const instructions = selectedRecipe.returnInstructions().reduce((acc, instruction) => acc += `<p class="instruction-card-steps">${instruction}</p>`, '')
-    const ingredients = selectedRecipe.ingredients.reduce((acc, ingredient) => acc += `<tr><td class="instruction-card-ingredient">${ingredient.name}</td><td class="instruction-card-unit">${ingredient.quantity.amount} ${ingredient.quantity.unit}</td></tr>`, '');
+    const ingredients = selectedRecipe.ingredients.reduce((acc, ingredient) => acc += `<tr><td class="instruction-card-ingredient">${ingredient.name}</td><td class="instruction-card-unit">${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit}</td></tr>`, '');
     instructionCardDirections.innerHTML = `
       <h1 class="instruction-card-recipe-name">${selectedRecipe.name}</h1>
       <h2 class="instruction-card-header">Directions</h2>
