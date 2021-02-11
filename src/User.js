@@ -5,8 +5,8 @@ class User {
     this.name = userData.name
     this.id = userData.id
     this.pantry = userData.pantry.map(pantryItem => new Ingredient(pantryItem.ingredient, pantryItem.amount, ingredientsArray))
-    this.favoriteRecipes = localStorage.getItem(`${this.id}-favorites`) ? JSON.parse(localStorage.getItem(`${this.id}-favorites`)).map(id => recipeRepository.recipes.find(recipe => recipe.id === id.id)) : [];
-    this.recipesToCook = JSON.parse(localStorage.getItem(`this${this.id}-recipes-to-cook}`)) || [];
+    this.favoriteRecipes = localStorage.getItem(`${this.id}-favorites`) ? JSON.parse(localStorage.getItem(`${this.id}-favorites`)).map(storedID => recipeRepository.recipes.find(recipe => recipe.id === storedID.id)) : [];
+    this.recipesToCook = localStorage.getItem(`${this.id}-recipes-to-cook`) ? JSON.parse(localStorage.getItem(`${this.id}-recipes-to-cook`)).map(storedID => recipeRepository.recipes.find(recipe => recipe.id === storedID.id)) : [];
   }
   
   addRecipeToFavs(recipe) {
@@ -22,8 +22,8 @@ class User {
   }
 
   addRecipeToCook(recipe) {
-    if (!this.recipesToCook.includes(recipe.id)) {
-      this.recipesToCook.push(recipe.id)
+    if (!this.recipesToCook.map(recipe => recipe.id).includes(recipe.id)) {
+      this.recipesToCook.push(recipe)
       localStorage.setItem(`${this.id}-recipes-to-cook`, JSON.stringify(this.recipesToCook))
     }
   }
