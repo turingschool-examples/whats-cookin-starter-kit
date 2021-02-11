@@ -15,6 +15,7 @@ describe ('Recipe', () => {
   const userData = usersData.usersData;
   let recipeRepo;
   let recipe;
+  let recipeNumberOne;
 
   beforeEach('create a recipe repository', () => {
     recipeRepo = new RecipeRepo(recipeData);
@@ -34,7 +35,7 @@ describe ('Recipe', () => {
 
   it('should have tags', () => {
 
-    expect(recipeNumberOne.tags).to.deep.equal(['chocolate','cheese']);
+    expect(recipeNumberOne.tags).to.deep.equal(['chocolate', 'cheese']);
   });
 
   it('should have a name', () => {
@@ -75,8 +76,8 @@ describe ('Recipe', () => {
       const instructions = recipeNumberOne.getInstructions();
 
       expect(instructions).to.deep.equal([{instruction: 'Get a paddle and some marshmallows and peanut butter', number: 1},
-                                          { instruction: 'Whip it good. With a Whisk. Whip it!', number: 2 }
-                                        ]);
+        { instruction: 'Whip it good. With a Whisk. Whip it!', number: 2 }
+      ]);
     });
 
   });

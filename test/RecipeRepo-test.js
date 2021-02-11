@@ -3,6 +3,7 @@ const expect = chai.expect;
 // write test: it needs to have a User!!
 const RecipeRepo = require('../src/RecipeRepo');
 const Recipe = require('../src/Recipe');
+const User = require('../src/User');
 const recipeTestData = require('./recipe-test-data');
 const usersData = require('./user-test-data');
 
@@ -11,6 +12,7 @@ describe('RecipeRepo', () => {
   const recipeData = recipeTestData.recipeData;
   let recipeRepo;
   let recipe;
+  let recipeNumberOne;
 
   beforeEach('create a recipe repository', () => {
     recipeRepo = new RecipeRepo(recipeData);
@@ -27,8 +29,12 @@ describe('RecipeRepo', () => {
     expect(recipeNumberOne).to.be.an.instanceOf(Recipe);
   });
 
-  it('should have a name', () => {
+  it('should have a name for each recipe', () => {
     expect(recipeNumberOne.name).to.deep.equal(recipeData[0].name);
+  });
+
+  it('should have a user', () => {
+    expect(recipeRepo.user).to.be.an.instanceOf(User);
   });
 
   it('should fulfill the whole data set and have many Recipe ojects', () => {
@@ -38,7 +44,7 @@ describe('RecipeRepo', () => {
     expect(recipeRepo.recipes[2].name).to.deep.equal(recipeData[2].name);
   });
 
-  describe('filter', () => {
+  describe('Filter methods', () => {
     let tag = 'cheez-its';
     let ingredientId = 24;
     let name = 'figgy pudding';
@@ -62,7 +68,5 @@ describe('RecipeRepo', () => {
       expect(recipeRepo.recipes[0].name).to.deep.equal(recipeData[1].name);
     });
   });
-
-
 
 });

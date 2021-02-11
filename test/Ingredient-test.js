@@ -20,14 +20,14 @@ describe('Ingredient', () => {
   let recipeRepo;
   let recipe;
   let user;
+  let ingredient;
 
 
   beforeEach('create a recipe repository', () => {
     recipeRepo = new RecipeRepo(recipeData);
-    recipeNumberOne = recipeRepo.recipes[0];
     user = new User(userData);
-    ingredient = new Ingredient({"id": 9999, "quantity": {"amount": 2, "unit": "tablespoons"}
-    });
+    ingredient = new Ingredient({"id": 9999, "quantity": {"amount": 2, "unit": "tablespoons"}});
+    let recipeNumberOne = recipeRepo.recipes[0];
   });
 
   it('should instantiate an Ingredient', () => {

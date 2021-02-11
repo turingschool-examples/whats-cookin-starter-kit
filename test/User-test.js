@@ -12,6 +12,7 @@ const usersData = require('./user-test-data');
 describe ('User', () => {
   const recipeData = recipeTestData.recipeData;
   const userData = usersData.usersData;
+  let recipeNumberOne;
   let recipeRepo;
   let recipe;
   let user;
@@ -57,6 +58,25 @@ describe ('User', () => {
   it('should be able to see a list of all recipes', () => {
 
     expect(recipeNumberOne).to.deep.equal(recipeRepo.recipes[0]);
-  })
+  });
+
+  describe('Favoriting method', () => {
+
+    it('should allow a user to favorite a recipe', () => {
+      user.addFavorite(recipeNumberOne);
+
+      expect(user.favorites).to.have.lengthOf(1);
+    });
+
+    it('should allow a user to unfavorite a recipe', () => {
+      user.addFavorite(recipeNumberOne);
+
+      expect(user.favorites[0]).to.deep.equal(recipeNumberOne);
+
+      user.removeFavorite(recipeNumberOne);
+
+      expect(user.favorites).to.have.lengthOf(0);
+    });
+  });
 
 })

@@ -1,6 +1,6 @@
 const data = require('../data/users.js');
 const usersData = data.usersData;
-const userData = usersData.sort((a,b) => {return 0.5 - Math.random()})[0];
+const userData = usersData.sort((a, b) => 0.5 - Math.random())[0];
 
 class User {
   constructor(userData) {
@@ -10,6 +10,15 @@ class User {
     this.pantry = userData.pantry;
     this.favorites = [];
     this.planned = [];
+  }
+  addFavorite(recipe) {
+    this.favorites.push(recipe);
+  }
+  removeFavorite(recipe) {
+    if(this.favorites[0]) {
+      const index = this.favorites.indexOf(recipe);
+      this.favorites.splice(index, 1);
+    }
   }
 }
 
