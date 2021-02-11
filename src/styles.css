@@ -102,17 +102,12 @@ main {
   height: 100%;
   background-size: cover;
   align-items: flex-start;
-  /* background-repeat: no-repeat; */
 }
 
 .current-recipe {
   display: flex;
-  /* flex: 2; */
-  /* flex-flow: row; */
-  /* justify-content: center; */
   box-shadow: 0px 0px 2px 2px #FC913A;
   background-color: #FAE6B1;
-  /* border-radius: .5%; */
   width: 100%;
   height: 100%;
   color: #FC913A;
@@ -130,7 +125,18 @@ main {
   align-self: start;
   font-size: 1em;
   height: 100%;
+  width: 80%;
+  overflow:auto;
+}
+
+.current-recipe-ingredients {
+  /* overflow:-moz-hidden-unscrollable; */
+  word-spacing: 5px;
   width: 20%;
+  /* height: 100%; */
+  display: flex;
+  flex-flow: row wrap; 
+  justify-content: center;
 }
 
 .cook-btn {
@@ -140,7 +146,7 @@ main {
   border-radius: 20px;
   /* text-align: center; */
   align-self: flex-start;
-  margin: 5%;
+  margin: 5% 0 0 0;
 }
 
 
@@ -198,6 +204,7 @@ input[type="radio"] {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-right: 5%;
 }
 
 .recipe-card {
@@ -217,6 +224,7 @@ input[type="radio"] {
   /* border-radius: 10%; */
   /* padding-bottom: %; */
   margin-bottom: -20%;
+  opacity: .8;
   /* height: 90%; */
 }
 
@@ -232,7 +240,7 @@ input[type="radio"] {
 /* Recipe When hovered */
 
 .recipe-card:hover .recipe {
-  background-color: #fcef3aa2;
+  opacity: 1;
 }
 
 
@@ -254,15 +262,12 @@ input[type="radio"] {
 }
 
 .favorite-label:hover {
-  background-color: #FC913A;
   border-radius: 50%;
   height: 31px;
   width: 31px;
 }
-.recipe-card:hover .favorite-label, 
-.recipe-card:hover .cook-btn {
+.recipe-card:hover .favorite-label {
   visibility: visible;
-  display: initial;
 }
 
 #favoriteInput {
@@ -275,14 +280,13 @@ input[type="radio"] {
 
 .recipe-title {
   font-size: 1.25em;
-  /* margin: 15px 0px 0px 10px; */
-  margin-top: 10%;
-  color: #FC913A;
+  margin: 10% 2% 0 2%;
+  color: inherit;
 }
 
 .recipe-ingredients {
   margin: 5% 5px 10px 10px;
-  color: #FC913A;
+  color: inherit;
 }
 
 /* HIDDEN */
@@ -297,4 +301,25 @@ input[type="radio"] {
 .interactive-area {
   display: flex;
   height: 45%;
+}
+
+.green-card {
+  background-color: #ccfab1;
+  box-shadow: 0px 0px 2px 2px #66c230ab;
+  /* color: #F0F0E1; */
+}
+
+.blue-card {
+  background-color: #9af3f3c5;
+  box-shadow: 0px 0px 2px 2px #99aaff;
+}
+
+.orange-card {
+  background-color: #FC913A;
+  box-shadow: 0px 0px 2px 2px #e92626;
+}
+
+.pink-card {
+  background-color: #f1d1f1;
+  box-shadow: 0px 0px 2px 2px #eb84ff;
 }
