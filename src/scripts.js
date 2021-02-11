@@ -104,18 +104,28 @@ const loadSearchPage = (array) => {
   `);
 };
 
-const populateRecipeCarousel = () => {
-  for (i = 0; i < 5; i++) {
+const pickRandomRecipes = (amount) => {
+  return recipeRepository.recipes.reduce((array, recipe) =>{
     const randomRecipe = recipeRepository.recipes[Math.floor(Math.random() * recipeRepository.recipes.length)];
+    if(!array.includes(randomRecipe) && array.length < amount){
+      array.push(randomRecipe);
+    }
+    return array;
+  }, []);
+};
+
+const populateRecipeCarousel = () => {
+  const carousel = pickRandomRecipes(5)
+  carousel.forEach(recipe => {
     recipeCarousel.innerHTML += `
-      <article class="recipe-card recipe ${createKebab(randomRecipe.name)}" >
-        <img class="recipe-card-img" src="${randomRecipe.image}">
-        <p class="recipe-card-name">${randomRecipe.name}</p>
-        <p class="recipe-card-cost">${randomRecipe.getIngredientsCost()}</p>
-        <button class="recipe-card-button ${toggleFavoriteButton(randomRecipe)}"></button>
+      <article class="recipe-card recipe ${createKebab(recipe.name)}" >
+        <img class="recipe-card-img" src="${recipe.image}">
+        <p class="recipe-card-name">${recipe.name}</p>
+        <p class="recipe-card-cost">${recipe.getIngredientsCost()}</p>
+        <button class="recipe-card-button ${toggleFavoriteButton(recipe)}"></button>
       </article>
     `
-  };
+  });
 };
 
 const searchAllRecipes = (event) => {
@@ -127,17 +137,17 @@ const searchAllRecipes = (event) => {
 
 const suggestRecipes = () => {
   document.querySelector('.meal-suggestion-container').innerHTML = "";
-  for (i = 0; i < 3; i++) {
-    const randomRecipe = recipeRepository.recipes[Math.floor(Math.random() * recipeRepository.recipes.length)];
+  const suggestions = pickRandomRecipes(3);
+  suggestions.forEach(recipe => {
     document.querySelector('.meal-suggestion-container').innerHTML += `
-      <article class="meal-suggestion recipe ${createKebab(randomRecipe.name)}">
+      <article class="meal-suggestion recipe ${createKebab(recipe.name)}">
         <div class="img-cropper">
-          <img class="zoom meal-suggestion-img" src="${randomRecipe.image}">
+          <img class="zoom meal-suggestion-img" src="${recipe.image}">
         </div>
-        <p class="meal-suggestion-name">${randomRecipe.name}</p>
+        <p class="meal-suggestion-name">${recipe.name}</p>
       </article>
     `
-  };
+  });
 };
 
 window.addEventListener('load', compileRecipeRepository);
