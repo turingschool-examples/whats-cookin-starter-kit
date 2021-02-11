@@ -60,7 +60,7 @@ describe ('User', () => {
     expect(recipeNumberOne).to.deep.equal(recipeRepo.recipes[0]);
   });
 
-  describe('Favoriting method', () => {
+  describe('Favoriting methods', () => {
 
     it('should allow a user to favorite a recipe', () => {
       user.addFavorite(recipeNumberOne);
@@ -76,6 +76,26 @@ describe ('User', () => {
       user.removeFavorite(recipeNumberOne);
 
       expect(user.favorites).to.have.lengthOf(0);
+    });
+  });
+
+  describe('Favorite List Filtering Methods', () => {
+    it('should be able to filter favorites by multiple tags', () => {
+
+    });
+
+    it('should be able to filter favorites by recipe name search', () => {
+
+    });
+
+    it('should be able to filter favorites by ingredient search', () => {
+
+    });
+
+    it('should be able to add to planned recipe list', () => {
+      user.addToPlanned(recipeNumberOne);
+
+      expect(user.planned).to.have.lengthOf(0);
     });
   });
 

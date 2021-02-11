@@ -20,6 +20,18 @@ class User {
       this.favorites.splice(index, 1);
     }
   }
+  filterFavoritesByTags(tags) {
+
+  }
+  searchByName(name) {
+
+  }
+  searchByIngredient(ingredient) {
+
+  }
+  addToPlanned(recipe) {
+    this.planned.push(recipe);
+  }
 }
 
 module.exports = User;
