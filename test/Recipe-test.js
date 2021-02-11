@@ -1,8 +1,8 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const ingredientTestData = require('./ingredient-test-data');
-const ingredientData = ingredientTestData.ingredientData;
+//const ingredientTestData = require('./ingredient-test-data');
+//const ingredientData = ingredientTestData.ingredientData;
 
 const recipeTestData = require('./recipe-test-data');
 const usersData = require('./user-test-data');
@@ -24,7 +24,7 @@ describe ('Recipe', () => {
 
   it('should have an id number', () => {
 
-    expect(recipeNumberOne.id).to.deep.equal(2021);
+    expect(recipeRepo.recipes[1].id).to.deep.equal(2011);
   });
 
   it('should have an image', () => {
@@ -59,19 +59,24 @@ describe ('Recipe', () => {
   describe('Inquiries', () => {
 
     it('should determine names of needed ingredients', () => {
-      recipeNumberOne.getIngredientsNeeded();
+      const ingredientsNeeded = recipeNumberOne.getIngredientsNeeded();
 
-      expect()
+      expect(ingredientsNeeded).to.deep.equal(['gumdrops', 'barbarol'])
     });
 
-    it.skip('should get the total cost of the ingredients', () => {
+    it('should get the total cost of the ingredients', () => {
       const cost = recipeNumberOne.getCost();
 
-      expect(cost).to.deep.equal(42*42/100)
+      expect(cost).to.deep.equal(139.86)
     });
 
     it('should return instructions', () => {
 
+      const instructions = recipeNumberOne.getInstructions();
+
+      expect(instructions).to.deep.equal([{instruction: 'Get a paddle and some marshmallows and peanut butter', number: 1},
+                                          { instruction: 'Whip it good. With a Whisk. Whip it!', number: 2 }
+                                        ]);
     });
 
   });

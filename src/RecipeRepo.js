@@ -10,7 +10,7 @@ class RecipeRepo {
     this.recipes = this.recipes.filter(recipe => recipe.tags.includes(tag));
   }
   matchIngredient(ingredientId) {
-    this.recipes = this.recipes.filter(recipe => recipe.ingredients.filter(ingredient => ingredient.id === ingredientId)) // (includes(Object.values().includes(ingredientId))); //  Object.values(recipe.ingredients).includes(ingredientId));
+    this.recipes = this.recipes.filter(recipe => recipe.ingredients.filter(ingredient => ingredient.id === ingredientId));
   }
   matchName(name) {
     this.recipes = this.recipes.filter(recipe => recipe.name === name);

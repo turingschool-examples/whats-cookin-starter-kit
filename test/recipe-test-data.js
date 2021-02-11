@@ -1,5 +1,5 @@
 const recipeData = [{'id': 2021, 'image': 'https://i.pinimg.com/originals/ee/28/89/ee288996db69afeb8ec5cbf84f8c0d10.jpg',
-                    'ingredients': [{'id': 23, 'quantity': {'amount': 42, 'unit': 'octoban'}}], 'instructions': [{
+                    'ingredients': [{'id': 23, 'quantity': {'amount': 42, 'unit': 'octoban'}}, {'id': 27, 'quantity': {'amount': 21, 'unit': 'oz'}}], 'instructions': [{
                     'instruction': 'Get a paddle and some marshmallows and peanut butter','number': 1}, {'instruction': 'Whip it good. With a Whisk. Whip it!', 'number': 2}],
                     'name': 'fluffer-nutter', 'tags': ['chocolate','cheese']
                   },
@@ -14,5 +14,5 @@ const recipeData = [{'id': 2021, 'image': 'https://i.pinimg.com/originals/ee/28/
                     'name': 'gryndilow guts', 'tags': ['cheddar','cheetos']
                   },
                  ];
-                 
+
 module.exports = { recipeData }
