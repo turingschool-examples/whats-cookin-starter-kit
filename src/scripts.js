@@ -1,4 +1,7 @@
-let recipeRepository; 
+// const User = require("./User");
+
+let recipeRepository;
+let currentUser;
 
 const recipeCarousel = document.querySelector('.recipe-carousel')
 const searchBox = document.querySelector('.search-box');
@@ -13,7 +16,10 @@ const instructionCardDirections = document.querySelector('.instruction-card-dire
 
 const createKebab = (recipeName) => recipeName.toLowerCase().split(' ').join('-');
 
-const compileRecipeRepository = () => recipeRepository = new RecipeRepository(recipeData, ingredientsData);
+const compileRecipeRepository = () => {
+  recipeRepository = new RecipeRepository(recipeData, ingredientsData)
+  currentUser = new User(usersData[0], ingredientsData);
+}
 
 const loadPage = ((pageTo, pageFrom) => {
   pageTo.classList.remove('hidden');
