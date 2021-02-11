@@ -41,14 +41,23 @@ const returnSelectedRecipe = (event) => {
   const clickedRecipe = event.target.closest('.recipe').className;
   return recipeRepository.recipes.find(recipe => clickedRecipe.includes(createKebab(recipe.name)));
 };
-
+const fixButton = (recipe) => {
+  if(savedRecipes.includes(recipe)){
+    return 'saved'
+  }
+}
 const toggleMyFavorites = (event) =>  {
+  console.log(event.currentTarget.className)
   if (!savedRecipes.includes(returnSelectedRecipe(event))) {
     savedRecipes.push(returnSelectedRecipe(event));
     event.target.classList.add('saved')
   } else {
-    savedRecipes.splice(savedRecipes.indexOf(returnSelectedRecipe(event)), 1)
-    event.target.classList.remove('saved')
+    savedRecipes.splice(savedRecipes.indexOf(returnSelectedRecipe(event)), 1);
+    event.target.classList.remove('saved');
+  }
+  console.log(event.currentTarget.className)
+  if (event.currentTarget.className.includes("search-page")) {
+    loadSearchPage(savedRecipes)
   }
 };
 
@@ -88,7 +97,7 @@ const loadSearchPage = (array) => {
       <img class="recipe-card-img" src="${recipe.image}">
       <p class="recipe-card-name">${recipe.name}</p>
       <p class="recipe-card-cost">${recipe.getIngredientsCost()}</p>
-      <button class="recipe-card-button"></button>
+      <button class="recipe-card-button ${fixButton(recipe)}"></button>
     </article>
   `);
 };
