@@ -9,14 +9,14 @@ const recipeTestData = require('./recipe-test-data');
 const usersData = require('./user-test-data');
 
 
-describe ('User', () => {
-  const recipeData = recipeTestData.recipeData;
-  const userData = usersData.usersData;
+
+
 
 
 describe('Ingredient', () => {
 
   const recipeData = recipeTestData.recipeData;
+  const userData = usersData.usersData;
   let recipeRepo;
   let recipe;
   let user;
