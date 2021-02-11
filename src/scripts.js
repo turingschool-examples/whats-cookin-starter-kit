@@ -1,4 +1,7 @@
-let recipeRepository; 
+// const User = require("./User");
+
+let recipeRepository;
+let currentUser;
 
 const recipeCarousel = document.querySelector('.recipe-carousel')
 const searchBox = document.querySelector('.search-box');
@@ -10,10 +13,14 @@ const pageTitle = document.querySelector('.page-title')
 const instruction = document.querySelector('.instruction')
 const mealSuggestionContainer = document.querySelector(".meal-suggestion-container")
 const instructionCardDirections = document.querySelector('.instruction-card-directions')
+const myRecipesButton = document.querySelector('.my-recipes')
 
 const createKebab = (recipeName) => recipeName.toLowerCase().split(' ').join('-');
 
-const compileRecipeRepository = () => recipeRepository = new RecipeRepository(recipeData, ingredientsData);
+const compileRecipeRepository = () => {
+  recipeRepository = new RecipeRepository(recipeData, ingredientsData)
+  currentUser = new User(usersData[0], ingredientsData);
+}
 
 const loadPage = ((pageTo, pageFrom) => {
   pageTo.classList.remove('hidden');
@@ -27,7 +34,7 @@ const loadRecipeCard = (event) => {
     instruction.classList.remove('hidden');
     const selectedRecipe = recipeRepository.recipes.find(recipe => clickedRecipe.includes(createKebab(recipe.name)));
     const instructions = selectedRecipe.returnInstructions().reduce((acc, instruction) => acc += `<p class="instruction-card-steps">${instruction}</p>`, '')
-    const ingredients = selectedRecipe.ingredients.reduce((acc, ingredient) => acc += `<tr><td class="instruction-card-ingredient">${ingredient.name}</td><td class="instruction-card-unit">${ingredient.quantity.amount} ${ingredient.quantity.unit}</td></tr>`, '');
+    const ingredients = selectedRecipe.ingredients.reduce((acc, ingredient) => acc += `<tr><td class="instruction-card-ingredient">${ingredient.name}</td><td class="instruction-card-unit">${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit}</td></tr>`, '');
     instructionCardDirections.innerHTML = `
       <h1 class="instruction-card-recipe-name">${selectedRecipe.name}</h1>
       <h2 class="instruction-card-header">Directions</h2>
@@ -105,3 +112,4 @@ document.addEventListener('keydown', searchAllRecipes);
 allRecipesButton.addEventListener('click', () => loadSearchPage(recipeRepository.recipes));
 pageTitle.addEventListener('click', () => loadPage(homePage, searchPage));
 mealSuggestionContainer.addEventListener("click", () => loadRecipeCard(event));
+myRecipesButton.addEventListener("click", () => loadSearchPage(currentUser.favoriteRecipes.map(id => recipeRepository.recipes.find(recipe => recipe.id === id))))
