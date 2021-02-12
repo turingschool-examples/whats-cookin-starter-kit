@@ -5,3 +5,7 @@ class Ingredient {
     this.cost = obj.estimatedCostInCents;
   }
 }
+
+if (typeof module !== 'undefined') {
+  module.exports = Ingredient;
+}
