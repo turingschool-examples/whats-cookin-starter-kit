@@ -3,17 +3,21 @@ const expect = chai.expect;
 // write test: it needs to have a User!!
 const RecipeRepo = require('../src/RecipeRepo');
 const Recipe = require('../src/Recipe');
-const recipeTestData = require('./recipe-test-data');
-const usersData = require('./user-test-data');
+const User = require('../src/User');
+
+const recipeTestData = require('../test-data/recipe-test-data');
+const usersTestData = require('../test-data/user-test-data');
+const ingredientsTestData = require('../test-data/ingredient-test-data');
 
 describe('RecipeRepo', () => {
-  const userData = usersData.usersData;
+  const userData = usersTestData.usersData;
   const recipeData = recipeTestData.recipeData;
+  const ingredientsData = ingredientsTestData.ingredientsData;
   let recipeRepo;
-  let recipe;
+  let recipeNumberOne;
 
   beforeEach('create a recipe repository', () => {
-    recipeRepo = new RecipeRepo(recipeData);
+    recipeRepo = new RecipeRepo(recipeData, userData, ingredientsData);
     recipeNumberOne = recipeRepo.recipes[0];
   });
 
@@ -27,8 +31,12 @@ describe('RecipeRepo', () => {
     expect(recipeNumberOne).to.be.an.instanceOf(Recipe);
   });
 
-  it('should have a name', () => {
+  it('should have a name for each recipe', () => {
     expect(recipeNumberOne.name).to.deep.equal(recipeData[0].name);
+  });
+
+  it('should have a user', () => {
+    expect(recipeRepo.user).to.be.an.instanceOf(User);
   });
 
   it('should fulfill the whole data set and have many Recipe ojects', () => {
@@ -38,16 +46,16 @@ describe('RecipeRepo', () => {
     expect(recipeRepo.recipes[2].name).to.deep.equal(recipeData[2].name);
   });
 
-  describe('filter', () => {
-    let tag = 'cheez-its';
+  describe('Filter methods', () => {
+    let tags = ['cheez-its'];
     let ingredientId = 24;
     let name = 'figgy pudding';
 
-    it('should filter recipes by tag', () => {
+    it('should filter recipes by tags', () => {
 
-      recipeRepo.matchTag(tag);
+      recipeRepo.matchTags(tags);
 
-      expect(recipeRepo.recipes[0].tags).to.deep.equal(recipeData[1].tags);
+      expect(recipeNumberOne.tags).to.deep.equal(recipeData[0].tags);
     });
 
     it('should filter recipes by ingredient', () => {
@@ -62,7 +70,5 @@ describe('RecipeRepo', () => {
       expect(recipeRepo.recipes[0].name).to.deep.equal(recipeData[1].name);
     });
   });
-
-
 
 });

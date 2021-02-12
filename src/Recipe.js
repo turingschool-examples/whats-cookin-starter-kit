@@ -1,50 +1,38 @@
 const Ingredient = require('./Ingredient');
-const ingredientsData = require('../data/ingredients.js')
-const ingredients = ingredientsData.ingredientsData;
 
 class Recipe {
-  constructor(recipe) {  //original data
+  constructor(recipe, ingredientsData) {
     this.id = recipe.id;
     this.image = recipe.image;
-    this.ingredients = recipe.ingredients.map(ingredient => new Ingredient(ingredient));
+    this.ingredients = recipe.ingredients.map(ingredient =>
+      new Ingredient(ingredient));
     this.instructions = recipe.instructions;
     this.name = recipe.name;
     this.tags = recipe.tags;
+    this.ingredientsData = ingredientsData;
+
   }
-  getIngredientsNeeded() {
 
-    const ingredientIds = this.ingredients.map(ingredient => ingredient.id);
-    console.log(ingredientIds)
-    const ingredientNames = ingredients.reduce((ings,ing) => {
-      console.log(ing);
-      if (ingredientIds.includes(ing.id)) {
-        ings.push(ing.name);
-      } else {
-        return;
-      }
-      console.log(ings);
-        //  ing === [ingredientIds.indexOf(ing.id)]
-        //console.log(ingredientIds[ings.length]);
-
-        return ings;
-      }, []);
-      console.log(ingredientNames);
-      //ingredientNames.push(ingredients.find(ing => Object.keys(ing.id) === id).name);
-    //});
-    //console.log(ingredientNames)
+  getIngredientsByName() {
+    const ingredientNames = this.ingredients.map(recipeIngredient => {
+      let matchingId = this.ingredientsData.find(ingredient => {
+        return ingredient.id === recipeIngredient.id;
+      });
+      return matchingId.name;
+    });
     return ingredientNames;
   }
+
   getCost() {
-    let total = 0;
-    this.ingredients.forEach(listedIngredient => {
-      ingredients.forEach(ingredient => {
-        if (listedIngredient.id === ingredient.id) {
-          total += (ingredient.estimatedCostInCents * ingredient.quantity.amount) / 100
-        }
-      });
-    });
-    return total;
+    const costInCents = this.ingredients.reduce((acc, recipeIngredient) => {
+      acc += recipeIngredient.amount * this.ingredientsData[
+        this.ingredientsData.findIndex(ingredient =>
+          ingredient.id === recipeIngredient.id)].estimatedCostInCents;
+      return acc;
+    }, 0);
+    return (costInCents / 100);
   }
+
   getInstructions() {
     return this.instructions;
   }
