@@ -2,12 +2,12 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Montserrat";
-    border: .5px solid red;
+    /* border: .5px solid red; */
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 240px 240px repeat(4, 1fr);
+  grid-template-columns:240px minmax(300px, 600px) auto;
   grid-template-rows: 60px 95vh;
 }
 
@@ -28,16 +28,14 @@ a {
 
 /*Navigation*/
 header {
-  grid-column: 1/7;
+  grid-column: 1/4;
+
 }
 
 .navigation-bar{
+  grid-column: 1/3;
   grid-row: 1;
-  /* display: grid; */
-  /* justify-items: center; */
   align-items: center;
-  /* position: relative; */
-  /* height: 50px; */
   width: 100%;
   
 }
@@ -51,38 +49,30 @@ header {
 .page-title {
  font-size: 24px;
  height: 100%;
- /* padding-top:1.2rem; */
  grid-column: 1;
  grid-row: 1;
- /* padding: auto; */
  display: flex;
  justify-content: center;
  align-items: center;
  text-align: center;
- /* justify-self: center; */
- /* text-align: center;  */
- /* vertical-align: middle; */
  border-right: 1px solid rgb(179, 178, 178);
  transition: border 0.3s, color 0.3s ease-in-out
 }
 
 .navigation-buttons {
-  grid-column: 5/7;
+
+  grid-column: 3;
   grid-row: 1;
-  align-self: stretch;
+  justify-self: space-around;
   display: flex;
   justify-content: space-around;
-  align-items: stretch;
-  /* position: absolute; */
-  /* height: 100%; */
-  /* right: 20px; */
+  /* align-items: stretch; */
+  right: 0;
 }
 
 .button {
-  /* border:2px solid black; */
-  /* height: 100%; */
+  padding: 0 20px;
   grid-row: 1;
-  /* align-self: right; */
   font-size: 14px;
   font-weight: bold;
   background: transparent;
@@ -110,23 +100,24 @@ a:hover {
 .search,
 .search-box {
   margin-left: 10px;
-  /* width: 50%; */
 }
 .search {
-  grid-column: 2/5;
+  grid-column: 2
 
 }
 .search-box {
-  /* grid-column: 2/5; */
   border:none;
   width: 80%;
   font-size: 1em;
   outline: none;
 }
+@media screen and (max-width: 890px){
+
+}
 
 .home-page,
 .search-page {
-  grid-column: 1/7;
+  grid-column: 1/4;
   grid-row:2
 }
 
@@ -143,25 +134,16 @@ a:hover {
 .search-page {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  /* grid-template-rows: repeat(auto-fill, minmax(200px, 3fr)); */
   justify-items: center;
-  /* align-items:center; */
-  /* display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around; */
   background-color: rgb(198 225 185 / 52%);
   height: fit-content;
   min-height: 100vh;
-  /* width: 100%; */
-  /* border-top: 1px solid rgb(179, 178, 178); */
 }
 
 
 /*Recipe cards */
 
 .recipe-carousel {
-  /* grid: 1/7; */
   display: flex;
   justify-content: space-around;
   position: absolute;
@@ -193,11 +175,12 @@ a:hover {
 }
 
 .recipe-card-name {
-  padding-bottom: 10px;
-  margin:10px auto;
+  padding: 2px 10px;
+  /* margin:10px auto; */
   width:100%;
   height:60px;
   text-align: left;
+  font-size: 16px;
   font-weight: bold;
   border-bottom: 1px dotted rgb(179, 178, 178)
 }
@@ -383,6 +366,7 @@ td {
   .instruction-card-directions {
   height: fit-content;
   width: 90%;
+  margin-bottom: 80px;
   order: 1
 }
 
