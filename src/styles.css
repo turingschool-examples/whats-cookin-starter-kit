@@ -2,7 +2,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Montserrat";
-    /* border: .5px solid red; */
+    border: .5px solid red;
 }
 
 .grid {
@@ -20,11 +20,11 @@ a {
   width: 1350px;
 } */
 
-/* .container {
+.container {
   display: flex;
   justify-content: space-around;
   align-items: center;
-} */
+}
 
 /*Navigation*/
 header {
@@ -123,10 +123,12 @@ a:hover {
   font-size: 1em;
   outline: none;
 }
+
 .home-page {
   grid-column: 1/7;
   grid-row:2
 }
+
 .main-section {
   background-image: url(https://griffinpartnerssc.com/wp-content/uploads/2019/06/food-vegetables-meal-breakfast-hd-wallpaper-high-resolution-background-images-desktop-images-of-windows-amazing-cool-images-free-stock-photos-pictures-1600x1024.jpg);
   background-size:cover;
@@ -134,19 +136,21 @@ a:hover {
   background-position: center;
   height: 95vh;
 }
+
 /*All Recipes*/
- .search-page {
-   display: flex;
-   flex-direction: row;
-   flex-wrap: wrap;
-   justify-content: space-between;
-   background-color: rgb(198 225 185 / 52%);
-   height: fit-content;
-   min-height: 100vh;
-   width: 100%;
-   padding: 20px;
-   /* border-top: 1px solid rgb(179, 178, 178); */
- }
+
+.search-page {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: rgb(198 225 185 / 52%);
+  height: fit-content;
+  min-height: 100vh;
+  width: 100%;
+  padding: 20px;
+  /* border-top: 1px solid rgb(179, 178, 178); */
+}
 
 
 /*Recipe cards */
@@ -233,16 +237,16 @@ a:hover {
   position: relative;
   margin: 40px auto;
   height: 1200px;
-  width: 1350px;
+  width: 95%;
   background-color: #e3ffda;
   border-radius: 10px;
 }
 
 .instruction-card {
-  padding: 100px 0;
+  padding: 100px 40px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content:space-between;
   align-items: center;
   flex-wrap: wrap;
   height: 80%;
@@ -300,8 +304,8 @@ td {
 }
 
 .instruction-card-img {
-  height: 370px;
-  width: auto;
+  height: auto;
+  width: 45%;
   border-radius: 10px;
 }
 
@@ -326,7 +330,7 @@ td {
   align-items: center;
   flex-direction: column;
   height: 250px;
-  width: 150px;
+  width: 33%;
 }
 
 .img-cropper {
@@ -355,15 +359,54 @@ td {
 .meal-suggestion-name {
   margin-top: 30px;
   text-align: center;
-  width: 175px;
-  font-weight: bold;
+  width: 100%;
+  font-size: 14px;
+ 
 }
 
 .meal-suggestion-container{
-  width: 550px;
+  width: 45%;
   justify-content: space-between;
 }
+@media screen and (max-width: 1120px) {
+  .instruction,
+  .instrcution-card{
+    height: fit-content;
+    padding: 40px 0;
+  }
 
+  .instruction-card-directions {
+  height: fit-content;
+  width: 90%;
+  order: 1
+}
+
+.instruction-card-recipe-name {
+  height: fit-content;
+  margin-bottom: 20px;
+}
+
+.direction-container,
+.ingredient-container {
+  height: fit-content;
+  overflow: scroll;
+}
+
+.instruction-card-header {
+  font-size: 1em;
+  margin: 20px 0;
+}
+
+.instruction-card-img {
+  height: auto;
+  width: 90%;
+  margin-bottom: 80px;
+}
+.meal-suggestion-container{
+  width: 90%;
+  order: 1
+}
+}
 
 .hidden {
   display: none;
