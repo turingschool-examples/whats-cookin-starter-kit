@@ -142,9 +142,10 @@ a:hover {
 
 .search-page {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 7fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  /* grid-template-rows: repeat(auto-fill, minmax(200px, 3fr)); */
   justify-items: center;
-  align-items:center;
+  /* align-items:center; */
   /* display: flex;
   flex-direction: row;
   flex-wrap: wrap;
