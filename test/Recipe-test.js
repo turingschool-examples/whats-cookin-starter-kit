@@ -1,13 +1,11 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const recipeTestData = require('./recipe-test-data');
-const usersData = require('./user-test-data');
-const ingredientsTestData = require('./ingredient-test-data');
+const recipeTestData = require('../test-data/recipe-test-data');
+const usersData = require('../test-data/user-test-data');
+const ingredientsTestData = require('../test-data/ingredient-test-data');
 
 const RecipeRepo = require('../src/RecipeRepo');
-const Recipe = require('../src/Recipe');
-
 
 describe ('Recipe', () => {
   const recipeData = recipeTestData.recipeData;
@@ -29,7 +27,8 @@ describe ('Recipe', () => {
 
   it('should have an image', () => {
 
-    expect(recipeNumberOne.image).to.deep.equal('https://i.pinimg.com/originals/ee/28/89/ee288996db69afeb8ec5cbf84f8c0d10.jpg');
+    expect(recipeNumberOne.image).to.deep.equal(
+      'https://i.pinimg.com/originals/ee/28/89/ee288996db69afeb8ec5cbf84f8c0d10.jpg');
   });
 
   it('should have tags', () => {
@@ -74,8 +73,9 @@ describe ('Recipe', () => {
 
       const instructions = recipeNumberOne.getInstructions();
 
-      expect(instructions).to.deep.equal([{instruction: 'Get a paddle and some marshmallows and peanut butter', number: 1},
-        { instruction: 'Whip it good. With a Whisk. Whip it!', number: 2 }
+      expect(instructions).to.deep.equal([{instruction:
+      'Get a paddle and some marshmallows and peanut butter', number: 1},
+      { instruction: 'Whip it good. With a Whisk. Whip it!', number: 2 }
       ]);
     });
 

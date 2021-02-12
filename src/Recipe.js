@@ -4,7 +4,8 @@ class Recipe {
   constructor(recipe, ingredientsData) {
     this.id = recipe.id;
     this.image = recipe.image;
-    this.ingredients = recipe.ingredients.map(ingredient => new Ingredient(ingredient));
+    this.ingredients = recipe.ingredients.map(ingredient =>
+      new Ingredient(ingredient));
     this.instructions = recipe.instructions;
     this.name = recipe.name;
     this.tags = recipe.tags;
@@ -14,10 +15,10 @@ class Recipe {
 
   getIngredientsByName() {
     const ingredientNames = this.ingredients.map(recipeIngredient => {
-        let matchingId = this.ingredientsData.find(ingredient => {
-          return ingredient.id === recipeIngredient.id;
-        });
-        return matchingId.name;
+      let matchingId = this.ingredientsData.find(ingredient => {
+        return ingredient.id === recipeIngredient.id;
+      });
+      return matchingId.name;
     });
     return ingredientNames;
   }

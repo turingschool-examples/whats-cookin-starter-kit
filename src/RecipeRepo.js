@@ -1,13 +1,10 @@
-//const data = require('../data/recipes');
-//const recipeData = data.recipeData;
-//const userData = require('../data/users');
 const Recipe = require('./Recipe');
 const User = require('./User');
 
 class RecipeRepo {
   constructor(recipeData, userData, ingredientsData) {
     this.recipes = recipeData.map(recipe => new Recipe(recipe, ingredientsData));
-    this.user = new User(userData);
+    this.user = new User(userData, ingredientsData);
   }
 
   matchTags(tags) {
@@ -19,7 +16,8 @@ class RecipeRepo {
   }
 
   matchIngredient(ingredientId) {
-    this.recipes = this.recipes.filter(recipe => recipe.ingredients.filter(ingredient => ingredient.id === ingredientId));
+    this.recipes = this.recipes.filter(recipe =>
+      recipe.ingredients.filter(ingredient => ingredient.id === ingredientId));
   }
 
   matchName(name) {
@@ -28,3 +26,4 @@ class RecipeRepo {
 }
 
 module.exports = RecipeRepo;
+//userData.sort((a, b) => 0.5 - Math.random())[0];

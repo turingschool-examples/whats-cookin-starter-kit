@@ -5,16 +5,15 @@ const RecipeRepo = require('../src/RecipeRepo');
 const Recipe = require('../src/Recipe');
 const User = require('../src/User');
 
-const recipeTestData = require('./recipe-test-data');
-const usersTestData = require('./user-test-data');
-const ingredientsTestData = require('./ingredient-test-data');
+const recipeTestData = require('../test-data/recipe-test-data');
+const usersTestData = require('../test-data/user-test-data');
+const ingredientsTestData = require('../test-data/ingredient-test-data');
 
 describe('RecipeRepo', () => {
   const userData = usersTestData.usersData;
   const recipeData = recipeTestData.recipeData;
   const ingredientsData = ingredientsTestData.ingredientsData;
   let recipeRepo;
-  let recipe;
   let recipeNumberOne;
 
   beforeEach('create a recipe repository', () => {
