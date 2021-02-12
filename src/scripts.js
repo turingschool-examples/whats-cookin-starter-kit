@@ -139,10 +139,10 @@ const populateRecipeCarousel = () => {
 };
 
 const searchAllRecipes = (event) => {
-  if ((event.key === "Enter" && searchBox.value && searchBox.classList.value.includes("search-all-mode")) || (event.target.className.includes("search-button") && searchBox.value )) {
+  if ((event.key === "Enter" && searchBox.value && searchBox.classList.value.includes("search-all-mode")) || (event.target.className.includes("search-button") && searchBox.value && searchBox.classList.value.includes("search-all-mode") )) {
     event.preventDefault();
     loadSearchPage(recipeRepository.masterSearch(searchBox.value));
-  } else if ((event.key === "Enter" && searchBox.value&& searchBox.classList.value.includes("search-favs-mode")) || (event.target.className.includes("search-button") && searchBox.value )) {
+  } else if ((event.key === "Enter" && searchBox.value && searchBox.classList.value.includes("search-favs-mode")) || (event.target.className.includes("search-button") && searchBox.value && searchBox.classList.value.includes("search-favs-mode") )) {
     event.preventDefault()
     loadSearchPage(currentUser.favoritesMasterSearch(searchBox.value));
   }
