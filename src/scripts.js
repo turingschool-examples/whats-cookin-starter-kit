@@ -9,12 +9,14 @@ const buttonContainer = document.querySelector('.button-container');
 const nextPageArrow = recipeList.querySelector('.right');
 const prevPageArrow = recipeList.querySelector('.left');
 const recipeRepo = new RecipeRepo(recipeData);
+let currentFilters = [];
 
 
 recipeList.addEventListener('click', clickRecipeCard);
 window.addEventListener('load', generateRecipeCards);
 nextPageArrow.addEventListener('click', showNextPage);
 prevPageArrow.addEventListener('click', showPrevPage);
+tagContainer.addEventListener('click', clickTagFilter);
 
 
 function clickRecipeCard(e) {
@@ -28,11 +30,23 @@ function clickRecipeCard(e) {
   }
 };
 
+function clickTagFilter(e) {
+  const currentTagButton = e.target;
+  if (!currentFilters.includes(currentTagButton)) {
+    currentFilters.push(currentTagButton);
+    console.log(currentFilters);
+  } else {
+    console.log(currentTagButton);
+    const input = tagContainer.getElementById(`#${currentTagButton}`);
+    console.log(input)
+  }
+}
+
 function showFeaturedRecipe (recipeTitle) {
   currentRecipeContainer.classList.remove('vis-hidden');
   currentRecipeTitle.classList.remove('vis-hidden');
   const featuredRecipe = recipeRepo.recipes.find(recipe => recipe.name === recipeTitle);
-  buttonContainer.style.backgroundImage = `url(${featuredRecipe.image})`;
+  currentRecipeTitle.style.backgroundImage = `url(${featuredRecipe.image})`;
   featuredRecipe.instructions.forEach(instruction => {
     currentRecipeInstructions.innerHTML += `<p class="recipe-instruction">
     ${instruction.number}: ${instruction.instruction}</p>`;
@@ -43,9 +57,8 @@ function showFeaturedRecipe (recipeTitle) {
     (ingredientsData.find(ingredientData => 
       ingredientData.id === ingredient.id)).name;
       currentRecipeIngredients.innerText += 
-      ` ${currentIngredientName}: ${ingredient.quantity.amount.toFixed(2)}${ingredient.quantity.unit},`;
+      ` ${currentIngredientName}: ${ingredient.quantity.amount.toFixed(2)}${ingredient.quantity.unit}.`;
     })
-  randomizeCardColor(currentRecipeContainer);
 }
 
 function removeFeaturedRecipe() {
@@ -95,9 +108,9 @@ function showPrevPage() {
 }
 
 function randomizeCardColor(recipeCard) {
-  const colorArr = ['green-card', 'blue-card', 'orange-card', 'pink-card'];
+  const colorArr = ['green-card', 'blue-card', 'orange-card', 'pink-card', 'cyan-card'];
   var color = colorArr[Math.floor(Math.random() * colorArr.length)];
-  recipeCard.classList.toggle(color);
+  recipeCard.classList = `recipe ${color}`;
 
 }
 
