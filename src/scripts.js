@@ -29,7 +29,7 @@ const compileRecipeRepository = () => {
 const loadPage = ((pageTo, pageFrom) => {
   pageTo.classList.remove('hidden');
   pageFrom.classList.add('hidden');
-  if ((pageTo = homePage) || (pageTo = allRecipesPage)) {
+  if ((pageTo === homePage) || (pageTo === allRecipesPage)) {
     searchBox.classList.add('search-all-mode')
     searchBox.classList.remove('search-favs-mode')
     searchBox.placeholder = "Search all recipes";
