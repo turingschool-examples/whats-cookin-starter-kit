@@ -29,6 +29,12 @@ const compileRecipeRepository = () => {
 const loadPage = ((pageTo, pageFrom) => {
   pageTo.classList.remove('hidden');
   pageFrom.classList.add('hidden');
+  if ((pageTo = homePage) || (pageTo = allRecipesPage)) {
+    searchBox.classList.add('search-all-mode')
+    searchBox.classList.remove('search-favs-mode')
+    searchBox.placeholder = "Search all recipes";
+  }
+  searchBox.value = "";
 });
 
 
@@ -133,10 +139,13 @@ const populateRecipeCarousel = () => {
 };
 
 const searchAllRecipes = (event) => {
-  if ((event.key === "Enter" && searchBox.value ) || (event.target.className.includes("search-button") && searchBox.value )) {
+  if ((event.key === "Enter" && searchBox.value && searchBox.classList.value.includes("search-all-mode")) || (event.target.className.includes("search-button") && searchBox.value )) {
     event.preventDefault();
     loadSearchPage(recipeRepository.masterSearch(searchBox.value));
-  };
+  } else if ((event.key === "Enter" && searchBox.value&& searchBox.classList.value.includes("search-favs-mode")) || (event.target.className.includes("search-button") && searchBox.value )) {
+    event.preventDefault()
+    loadSearchPage(currentUser.favoritesMasterSearch(searchBox.value));
+  }
 };
 
 const suggestRecipes = () => {
@@ -191,11 +200,26 @@ window.addEventListener('load', compileRecipeRepository);
 window.addEventListener('load', populateRecipeCarousel);
 recipeCarousel.addEventListener('click', () => loadRecipeCard(event));
 searchPage.addEventListener('click', () => loadRecipeCard(event));
-document.addEventListener('keydown', searchAllRecipes);
-allRecipesButton.addEventListener('click', () => loadSearchPage(recipeRepository.recipes));
 pageTitle.addEventListener('click', () => loadPage(homePage, searchPage));
 mealSuggestionContainer.addEventListener("click", () => loadRecipeCard(event));
-myRecipesButton.addEventListener("click", () => loadSearchPage(currentUser.favoriteRecipes))
+
+document.addEventListener('keydown', searchAllRecipes)
+
+allRecipesButton.addEventListener('click', () => {
+  loadSearchPage(recipeRepository.recipes)
+  searchBox.classList.add('search-all-mode')
+  searchBox.classList.remove('search-favs-mode')
+  searchBox.placeholder = "Search all recipes";
+});
+
+
+myRecipesButton.addEventListener("click", () => {
+  loadSearchPage(currentUser.favoriteRecipes)
+  searchBox.classList.remove('search-all-mode')
+  searchBox.classList.add('search-favs-mode')
+  searchBox.placeholder = "Search favorite recipes";
+})
+
 window.addEventListener('click', () => openDropDownMenu(event))
 window.addEventListener("resize", autoCloseMenu);
 navigationBar.addEventListener("click", () => loadMobileSearch(event))
