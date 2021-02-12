@@ -113,7 +113,9 @@ a:hover {
   font-size: 1em;
   outline: none;
 }
-
+.search-button{
+  display: none;
+}
 .drop-down {
   display: none;
   background: url(https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png);
@@ -127,6 +129,7 @@ a:hover {
   border: none;
   outline: none;
 }
+
 .search-icon {
   display: none;
   background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-search-strong-512.png);
@@ -150,10 +153,46 @@ a:hover {
   .navigation-buttons {
     display: none
   }
+  .search {
+    display: flex;
+    grid-row: 2;
+    z-index: 5;
+    grid-column: 1/5;
+    justify-self: stretch;
+    align-self: stretch;
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(255, 255, 255);
+    margin: 0;
+    border: .5px solid grey;
+  }
+  .search:before {
+    align-self: center;
+  }
+  .search-box {
+    width: 60%;
+    margin-right: 20px;
+    border: .25px solid grey;
+    height: 80%;
+    border-radius: 3px
+  }
+
+  .search-button {
+    display: none;
+  }
   .search-icon {
     display: block;
     grid-column: 4;
     grid-row: 1;
+  }
+  .search-button {
+    display: block;
+    height: 80%;
+    width: 40px;
+    background-color: #f36454;
+    border: .5px solid grey;
+    border-radius: 3px;
+    outline: none;
   }
   .drop-down {
     display: block;
@@ -175,6 +214,9 @@ a:hover {
     border-bottom: .5px solid black;
   }
 
+  .search-page {
+    margin-top:50px;
+  }
 
   .page-title {
     grid-column: 2/-1;

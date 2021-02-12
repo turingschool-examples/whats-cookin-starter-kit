@@ -14,7 +14,9 @@ const instruction = document.querySelector('.instruction')
 const mealSuggestionContainer = document.querySelector(".meal-suggestion-container")
 const instructionCardDirections = document.querySelector('.instruction-card-directions')
 const navButtons = document.querySelector(".navigation-buttons");
-const myRecipesButton = document.querySelector('.my-recipes')
+const myRecipesButton = document.querySelector('.my-recipes');
+const searchIcon = document.querySelector('.search-icon');
+const searchButton = document.querySelector('.search-button');
 
 const createKebab = (recipeName) => recipeName.toLowerCase().split(' ').join('-');
 
@@ -130,7 +132,7 @@ const populateRecipeCarousel = () => {
 };
 
 const searchAllRecipes = (event) => {
-  if (event.key === "Enter" && searchBox.value) {
+  if ((event.key === "Enter" && searchBox.value ) || (event.target.className.includes("search-button") && searchBox.value )) {
     event.preventDefault();
     loadSearchPage(recipeRepository.masterSearch(searchBox.value));
   };
@@ -177,4 +179,5 @@ pageTitle.addEventListener('click', () => loadPage(homePage, searchPage));
 mealSuggestionContainer.addEventListener("click", () => loadRecipeCard(event));
 myRecipesButton.addEventListener("click", () => loadSearchPage(currentUser.favoriteRecipes))
 window.addEventListener('click', () => openDropDownMenu(event))
-window.addEventListener("resize", autoCloseMenu)
+window.addEventListener("resize", autoCloseMenu);
+searchButton.addEventListener("click", () => searchAllRecipes(event));
