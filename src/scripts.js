@@ -1,26 +1,34 @@
 const allRecipesArray = [];
-const filterRecipeButton = document.getElementById('filterRecipeButton')
-const allRecipesButton = document.getElementById("allRecipesButton")
-const allRecipesPage = document.getElementById("allRecipesPage")
-const randomRecipesLeft = document.getElementById("leftRecipe")
-const randomRecipesRight = document.getElementById("reightRecipe")
-const randomRecipes = document.getElementById("randomRecipes")
+let allTags = [];
+const filterRecipeButton = document.getElementById('filterRecipeButton');
+const allRecipesButton = document.getElementById("allRecipesButton");
+const allRecipesPage = document.getElementById("allRecipesPage");
+const randomRecipesLeft = document.getElementById("leftRecipe");
+const randomRecipesRight = document.getElementById("reightRecipe");
+const randomRecipes = document.getElementById("randomRecipes");
+const tag1Ddl = document.getElementById("dropdown1");
+const tag2Ddl = document.getElementById("dropdown2");
+const tag3Ddl = document.getElementById("dropdown3");
+const tagFilterDdl = document.querySelectorAll(".tag-filter");
 
 allRecipesButton.addEventListener("click", displayAllRecipesPage);
 window.addEventListener("load", loadAllRecipes);
-allRecipesPage.addEventListener("click", displayRecipeInfo)
+allRecipesPage.addEventListener("click", displayRecipeInfo);
+
 
 function loadAllRecipes() {
   createRecipes();
   generateRandomRecipe();
   displayRandomRecipe();
+  createTagArray();
+  loadTagOptions();
 }
 
 
 function createRecipes() {
   recipeData.forEach((recipe, i) => {
-    let recipeToBePushed = new Recipe(recipeData[i])
-    allRecipesArray.push(recipeToBePushed)
+    let recipeToBePushed = new Recipe(recipeData[i]);
+    allRecipesArray.push(recipeToBePushed);
   })
 }
 
@@ -82,4 +90,25 @@ function recipeCardDisplay(id) {
       <section class="recipe-instructions" >${recipe.returnInstructions()}</section>`
     }
   } )
+}
+
+function createTagArray() {
+  tempTags = []
+  allRecipesArray.forEach(recipe => tempTags.push(...recipe.tags))
+  allTags = [...new Set(tempTags)]
+  allTags.sort()
+}
+
+function loadTagOptions() {
+  allTags.forEach(tag => {
+    tagFilterDdl.forEach(ddl => {
+      ddl.innerHTML +=
+      `<option value="${tag}">${tag}</option>`
+    })
+  })
+  tagFilterDdl.forEach(tag => tag.addEventListener('change', filterChanged));
+}
+
+function filterChanged(e) {
+  console.log(e);
 }

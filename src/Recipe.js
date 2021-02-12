@@ -6,6 +6,7 @@ class Recipe {
     this.image = recipeObject.image;
     this.ingredients = recipeObject.ingredients;
     this.instructions = recipeObject.instructions;
+    this.tags = recipeObject.tags;
   }
 
   returnIngredients() {
