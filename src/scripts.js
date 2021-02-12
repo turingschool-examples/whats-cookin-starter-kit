@@ -151,14 +151,7 @@ const suggestRecipes = () => {
   });
 };
 
-// const toggleMenu = () => {
-//   const navButtons = document.querySelector(".navigation-buttons");
-//   if(!event.target.className.includes("drop-down") || window.innerWidth > 890){
-//     navButtons.classList.remove('flex');
-//   } else {
-//     navButtons.classList.add('flex');
-//   };
-// };
+
 
 const openDropDownMenu = (event) => {
     if(event.target.className.includes("drop-down")){
@@ -167,6 +160,7 @@ const openDropDownMenu = (event) => {
       navButtons.classList.remove('flex');
     };
 };
+
 const autoCloseMenu = () => {
   if(window.innerWidth > 800) {
     navButtons.classList.remove('flex');

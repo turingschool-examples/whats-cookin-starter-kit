@@ -93,7 +93,7 @@ a:hover {
 }
 
 .search::before {
-  display: none;
+  /* display: none; */
   content: url(https://static01.nyt.com/applications/cooking/d766d05/assets/nav-inline-search-glass.svg);
 }
 
@@ -127,13 +127,34 @@ a:hover {
   border: none;
   outline: none;
 }
-
+.search-icon {
+  display: none;
+  background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-search-strong-512.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 30px;
+  width: 30px;
+  justify-self: center;
+  transition: filter 0.3s ease-in-out;
+  border: none;
+  outline: none;
+}
 @media screen and (max-width: 890px){
+  .navigation-bar {
+    grid-template-columns: 60px 180px auto 60px;
+    grid-template-rows: 60px repeat(5, 50px);
+  }
+
   .search,
   .navigation-buttons {
     display: none
   }
-
+  .search-icon {
+    display: block;
+    grid-column: 4;
+    grid-row: 1;
+  }
   .drop-down {
     display: block;
   }
@@ -154,18 +175,6 @@ a:hover {
     border-bottom: .5px solid black;
   }
 
-  .my-recipes {
-    grid-column: 1;
-  }
-
-  .navigation-bar {
-    grid-template-columns: 60px 180px auto;
-    grid-template-rows: 60px repeat(5, 50px);
-  }
-
-  /* .button {
-    grid-column: 1;
-  } */
 
   .page-title {
     grid-column: 2/-1;
