@@ -17,6 +17,7 @@ const navButtons = document.querySelector(".navigation-buttons");
 const myRecipesButton = document.querySelector('.my-recipes');
 const searchIcon = document.querySelector('.search-icon');
 const searchButton = document.querySelector('.search-button');
+const navigationBar = document.querySelector(".navigation-bar")
 
 const createKebab = (recipeName) => recipeName.toLowerCase().split(' ').join('-');
 
@@ -166,7 +167,24 @@ const openDropDownMenu = (event) => {
 const autoCloseMenu = () => {
   if(window.innerWidth > 800) {
     navButtons.classList.remove('flex');
+    document.querySelector(".search").classList.remove('flex')
+    document.querySelector(".search").reset();
+    searchIcon.classList.remove('disabled')
   }
+}
+
+const loadMobileSearch = (event) => {
+  console.log(searchBox.value)
+  const target = event.target.className
+  if (target.includes('search-icon')) {
+    document.querySelector(".search").classList.toggle('flex')
+    searchIcon.classList.toggle("disabled")
+    document.querySelector(".search").reset();
+  } else if(target.includes('search-button')){
+    document.querySelector(".search").classList.remove('flex')
+    searchIcon.classList.toggle("disabled")
+  }
+  searchAllRecipes(event)
 }
 
 window.addEventListener('load', compileRecipeRepository);
@@ -180,4 +198,5 @@ mealSuggestionContainer.addEventListener("click", () => loadRecipeCard(event));
 myRecipesButton.addEventListener("click", () => loadSearchPage(currentUser.favoriteRecipes))
 window.addEventListener('click', () => openDropDownMenu(event))
 window.addEventListener("resize", autoCloseMenu);
-searchButton.addEventListener("click", () => searchAllRecipes(event));
+navigationBar.addEventListener("click", () => loadMobileSearch(event))
+// searchButton.addEventListener("click", () => searchAllRecipes(event));
