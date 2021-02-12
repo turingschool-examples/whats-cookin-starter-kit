@@ -13,6 +13,7 @@ const pageTitle = document.querySelector('.page-title')
 const instruction = document.querySelector('.instruction')
 const mealSuggestionContainer = document.querySelector(".meal-suggestion-container")
 const instructionCardDirections = document.querySelector('.instruction-card-directions')
+const navButtons = document.querySelector(".navigation-buttons");
 const myRecipesButton = document.querySelector('.my-recipes')
 
 const createKebab = (recipeName) => recipeName.toLowerCase().split(' ').join('-');
@@ -150,6 +151,28 @@ const suggestRecipes = () => {
   });
 };
 
+// const toggleMenu = () => {
+//   const navButtons = document.querySelector(".navigation-buttons");
+//   if(!event.target.className.includes("drop-down") || window.innerWidth > 890){
+//     navButtons.classList.remove('flex');
+//   } else {
+//     navButtons.classList.add('flex');
+//   };
+// };
+
+const openDropDownMenu = (event) => {
+    if(event.target.className.includes("drop-down")){
+      navButtons.classList.add('flex');
+    } else {
+      navButtons.classList.remove('flex');
+    };
+};
+const autoCloseMenu = () => {
+  if(window.innerWidth > 800) {
+    navButtons.classList.remove('flex');
+  }
+}
+
 window.addEventListener('load', compileRecipeRepository);
 window.addEventListener('load', populateRecipeCarousel);
 recipeCarousel.addEventListener('click', () => loadRecipeCard(event));
@@ -159,3 +182,5 @@ allRecipesButton.addEventListener('click', () => loadSearchPage(recipeRepository
 pageTitle.addEventListener('click', () => loadPage(homePage, searchPage));
 mealSuggestionContainer.addEventListener("click", () => loadRecipeCard(event));
 myRecipesButton.addEventListener("click", () => loadSearchPage(currentUser.favoriteRecipes))
+window.addEventListener('click', () => openDropDownMenu(event))
+window.addEventListener("resize", autoCloseMenu)
