@@ -24,7 +24,9 @@ class Recipe {
 
   getCost() {
     const costInCents = this.ingredients.reduce((acc, recipeIngredient) => {
-      acc += recipeIngredient.amount * this.ingredientsData[this.ingredientsData.findIndex(el => el.id === recipeIngredient.id)].estimatedCostInCents;
+      acc += recipeIngredient.amount * this.ingredientsData[
+        this.ingredientsData.findIndex(ingredient =>
+          ingredient.id === recipeIngredient.id)].estimatedCostInCents;
       return acc;
     }, 0);
     return (costInCents / 100);
