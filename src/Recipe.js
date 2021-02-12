@@ -13,7 +13,6 @@ class Recipe {
   }
 
   getIngredientsByName() {
-    console.log(this.ingredientsData);
     const ingredientNames = this.ingredients.map(recipeIngredient => {
         let matchingId = this.ingredientsData.find(ingredient => {
           return ingredient.id === recipeIngredient.id;
@@ -24,8 +23,8 @@ class Recipe {
   }
 
   getCost() {
-    const costInCents = this.ingredients.reduce((acc, ing) => {
-      acc += ing.amount * ingredients[ingredients.findIndex(el => el.id === ing.id)].estimatedCostInCents;
+    const costInCents = this.ingredients.reduce((acc, recipeIngredient) => {
+      acc += recipeIngredient.amount * this.ingredientsData[this.ingredientsData.findIndex(el => el.id === recipeIngredient.id)].estimatedCostInCents;
       return acc;
     }, 0);
     return (costInCents / 100);
