@@ -21,6 +21,9 @@ allRecipesButton.addEventListener("click", displayAllRecipesPage);
 window.addEventListener("load", loadAllRecipes);
 allRecipesPage.addEventListener("click", displayRecipeInfo);
 
+nameDdl.addEventListener('change', displayNameFilteredRecipes)
+ingredientsDdl.addEventListener('change', displayIngredientFilteredRecipe)
+
 
 
 
@@ -131,7 +134,6 @@ function loadNamesArray() {
       nameDdl.innerHTML +=
       `<option value="${name}">${name}</option>`
     })
-  // tagFilterDdl.forEach(tag => tag.addEventListener('change', displayFilteredRecipes));
 }
 
 function createIngredientsArray() {
@@ -139,7 +141,6 @@ function createIngredientsArray() {
   allIngredientsArray.forEach(ingredient => tempTags.push(ingredient.name))
   allInredients = [...new Set(tempTags)]
   allInredients.sort()
-  console.log(allInredients)
 }
 
 function loadIngredientsArray() {
@@ -147,7 +148,6 @@ function loadIngredientsArray() {
       ingredientsDdl.innerHTML +=
       `<option value="${ingredient}">${ingredient}</option>`
     })
-  // tagFilterDdl.forEach(tag => tag.addEventListener('change', displayFilteredRecipes));
 }
 
 
@@ -158,7 +158,7 @@ function loadTagOptions() {
       `<option value="${tag}">${tag}</option>`
     })
   })
-  // tagFilterDdl.forEach(tag => tag.addEventListener('change', displayFilteredRecipes));
+  tagFilterDdl.forEach(tag => tag.addEventListener('change', displayFilteredRecipes));
 }
 
 function displayFilteredRecipes(e) {
@@ -170,4 +170,25 @@ function displayFilteredRecipes(e) {
       `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`
     }
   })
+}
+
+
+function displayNameFilteredRecipes(e) {
+  allRecipesPage.innerHTML = ''
+  allRecipesArray.forEach(recipe => {
+    if(recipe.name === e.target.value) {
+      allRecipesPage.innerHTML +=
+      `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`
+    }
+  })
+}
+
+function displayIngredientFilteredRecipe(e) {
+  allRecipesPage.innerHTML = ''
+  let filteredIngredients = recipeRepository.filterRecipeByIngredients(e.target.value)
+  console.log(recipeRepository.filterRecipeByIngredients(`butter`))
+  filteredIngredients.forEach((recipe => {
+    allRecipesPage.innerHTML +=
+    `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
+  }))
 }

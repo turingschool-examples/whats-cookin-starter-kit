@@ -15,21 +15,21 @@ class RecipeRepository {
 
   filterRecipeByIngredients(ingredientName) {
   const id = []
-  let ingredientId = dummyIngredientData.filter(ingredient => {
+  let ingredientId = ingredientsData.filter(ingredient => {
     if(ingredient.name === ingredientName){
       id.push(ingredient.id);
     };
   });
 
-  const finalRecipe = [];
+  const tempRecipe = [];
   let recipeByIngredient = this.recipes.filter(recipes => {
     recipes.ingredients.filter(ingredientsByRecipe => {
       if(ingredientsByRecipe.id === id[0]){
-        finalRecipe.push(recipes)
+        tempRecipe.push(recipes)
       }
     })
   })
-
+  let finalRecipe = [...new Set(tempRecipe)]
   return finalRecipe;
   }
 
