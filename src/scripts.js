@@ -2,6 +2,7 @@
 const currentRecipeContainer = document.querySelector('.current-recipe-container');
 const currentRecipeIngredients = currentRecipeContainer.querySelector('.current-recipe-ingredients');
 const currentRecipeInstructions = currentRecipeContainer.querySelector('.current-recipe-instructions')
+const currentRecipeTitle = currentRecipeContainer.querySelector('.current-recipe-title')
 const recipeList = document.querySelector('.recipe-list');
 const tagContainer = document.querySelector('.tag-container');
 const buttonContainer = document.querySelector('.button-container');
@@ -29,19 +30,26 @@ function clickRecipeCard(e) {
 
 function showFeaturedRecipe (recipeTitle) {
   currentRecipeContainer.classList.remove('vis-hidden');
+  currentRecipeTitle.classList.remove('vis-hidden');
   const featuredRecipe = recipeRepo.recipes.find(recipe => recipe.name === recipeTitle);
+  buttonContainer.style.backgroundImage = `url(${featuredRecipe.image})`;
   featuredRecipe.instructions.forEach(instruction => {
     currentRecipeInstructions.innerHTML += `<p class="recipe-instruction">
     ${instruction.number}: ${instruction.instruction}</p>`;
   })
+  currentRecipeTitle.innerText = recipeTitle;
   featuredRecipe.ingredients.forEach(ingredient => {
-    const currentIngredient = (ingredientsData.find(ingredientData => ingredientData.id === ingredient.id)).name;
-    currentRecipeIngredients.innerText += ` ${currentIngredient},`;
-  })
-  buttonContainer.style.backgroundImage = `url(${featuredRecipe.image})`;
+    const currentIngredientName = 
+    (ingredientsData.find(ingredientData => 
+      ingredientData.id === ingredient.id)).name;
+      currentRecipeIngredients.innerText += 
+      ` ${currentIngredientName}: ${ingredient.quantity.amount.toFixed(2)}${ingredient.quantity.unit},`;
+    })
+  randomizeCardColor(currentRecipeContainer);
 }
 
 function removeFeaturedRecipe() {
+  currentRecipeTitle.innerText = "";
   currentRecipeContainer.classList.add('vis-hidden');
   buttonContainer.style.backgroundImage = 'none';
   currentRecipeIngredients.innerHTML = 'Ingredients: ';
@@ -56,13 +64,14 @@ function generateRecipeCards(newRecipes) {
     iterationCount ++;
     recipeCard.querySelector('.recipe-title').innerText = currentRecipe.name;
     recipeCard.querySelector('.recipe-img').src = currentRecipe.image;
-    randomizeCardColor(recipeCard);
+    getCardInfo(currentRecipe);
+    randomizeCardColor(recipeCard.querySelector('.recipe'));
   }
   )
 }
 
 function showNextPage() {
-  tagContainer.classList.add('hidden');
+  tagContainer.classList.add('vis-hidden');
   prevPageArrow.classList.remove('vis-hidden');
   const currentRecipes = recipeList.querySelectorAll('.recipe-card');
   const lastRecipeCard = currentRecipes[4];
@@ -80,7 +89,7 @@ function showPrevPage() {
   const pastRecipes = recipeRepo.recipes.slice(recipeRepo.recipes.indexOf(firstRecipe) - 4);
   generateRecipeCards(pastRecipes);
   if (recipeList.querySelector('.recipe-card').innerText === recipeRepo.recipes[0].name) {
-    tagContainer.classList.remove('hidden');
+    tagContainer.classList.remove('vis-hidden');
     prevPageArrow.classList.add('vis-hidden');
   }
 }
@@ -88,6 +97,10 @@ function showPrevPage() {
 function randomizeCardColor(recipeCard) {
   const colorArr = ['green-card', 'blue-card', 'orange-card', 'pink-card'];
   var color = colorArr[Math.floor(Math.random() * colorArr.length)];
-  console.log(colorArr);
-  recipeCard.querySelector('.recipe').classList.toggle(color);
+  recipeCard.classList.toggle(color);
+
+}
+
+function getCardInfo() {
+
 }
