@@ -124,7 +124,8 @@ a:hover {
   outline: none;
 }
 
-.home-page {
+.home-page,
+.search-page {
   grid-column: 1/7;
   grid-row:2
 }
@@ -140,15 +141,18 @@ a:hover {
 /*All Recipes*/
 
 .search-page {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 7fr));
+  justify-items: center;
+  align-items:center;
+  /* display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around; */
   background-color: rgb(198 225 185 / 52%);
   height: fit-content;
   min-height: 100vh;
-  width: 100%;
-  padding: 20px;
+  /* width: 100%; */
   /* border-top: 1px solid rgb(179, 178, 178); */
 }
 
@@ -414,4 +418,11 @@ td {
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+.saved {
+  background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-minus-circled-512.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
