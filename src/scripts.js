@@ -25,15 +25,22 @@ function createRecipes() {
 }
 
 function generateRandomRecipe() {
-  return allRecipesArray[Math.floor(Math.random() * allRecipesArray.length)].image;
+  return allRecipesArray[Math.floor(Math.random() * allRecipesArray.length)];
 }
 
 function displayRandomRecipe() {
-  const randomImage = generateRandomRecipe()
-  const randomImage2 = generateRandomRecipe()
+  const randomRecipe = generateRandomRecipe()
+  const randomRecipe2 = generateRandomRecipe()
+  console.log(randomRecipe)
   randomRecipes.innerHTML =
-    `<img id="place" class="cover-recipes-images" src=${randomImage}>
-    <img id="place" class="cover-recipes-images" src=${randomImage2}>`
+    `<img id=${randomRecipe.id} class="cover-recipes-images" src=${randomRecipe.image}>
+      <p class="recipe-name">${randomRecipe.name}</p>
+    <img id=${randomRecipe2.id} class="cover-recipes-images" src=${randomRecipe2.image}>
+      <p class="recipe-name">${randomRecipe2.name}</p>`
+}
+
+function displayRandomRecipeInfo() {
+  
 }
 
 function displayAllRecipesPage() {
