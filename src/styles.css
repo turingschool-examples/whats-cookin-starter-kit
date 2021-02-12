@@ -1,8 +1,14 @@
 * {
     margin: 0;
     box-sizing: border-box;
-    font-family: "Montserrat";
+    font-family: "Brygada 1918"
     /* border: .5px solid red; */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns:240px minmax(300px, 600px) auto;
+  grid-template-rows: 60px 95vh;
 }
 
 a {
@@ -21,36 +27,52 @@ a {
 }
 
 /*Navigation*/
+header {
+  grid-column: 1/4;
+
+}
 
 .navigation-bar{
-  position: relative;
-  height: 75px;
+  grid-column: 1/3;
+  grid-row: 1;
+  align-items: center;
   width: 100%;
+  
 }
 
 .page-title, 
 .navigation-buttons, 
 .search {
-  display: inline-block;
+  /* display: inline-block; */
 }
 
 .page-title {
+ font-size: 24px;
  height: 100%;
- padding: 20px 30px;
+ grid-column: 1;
+ grid-row: 1;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ text-align: center;
  border-right: 1px solid rgb(179, 178, 178);
  transition: border 0.3s, color 0.3s ease-in-out
 }
 
 .navigation-buttons {
-  position: absolute;
+  /* border: .5px solid red; */
   height: 100%;
-  right: 20px;
+  grid-column: 3;
+  grid-row: 1;
+  display: flex;
+  justify-self: stretch;
+  justify-content: space-around;
 }
 
 .button {
-  height: 73px;
-  margin: 0 20px;
-  font-size: 1em;
+  height: 100%;
+  grid-row: 1;
+  font-size: 14px;
   font-weight: bold;
   background: transparent;
   border: none;
@@ -71,6 +93,7 @@ a:hover {
 }
 
 .search::before {
+  /* display: none; */
   content: url(https://static01.nyt.com/applications/cooking/d766d05/assets/nav-inline-search-glass.svg);
 }
 
@@ -79,40 +102,198 @@ a:hover {
   margin-left: 10px;
 }
 
+.search {
+  grid-column: 2
+
+}
+
 .search-box {
   border:none;
-  width: 500px;
+  width: 80%;
   font-size: 1em;
   outline: none;
 }
+.search-button{
+  display: none;
+}
+.drop-down {
+  display: none;
+  background: url(https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 30px;
+  width: 30px;
+  justify-self: center;
+  transition: filter 0.3s ease-in-out;
+  border: none;
+  outline: none;
+}
+
+.search-icon {
+  display: none;
+  background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-search-strong-512.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 30px;
+  width: 30px;
+  justify-self: center;
+  transition: filter 0.3s ease-in-out;
+  border: none;
+  outline: none;
+}
+
+@media screen and (min-width: 1450px) {
+  .navigation-buttons{
+    /* display: none; */
+    width: 530px;
+    justify-self: right;
+  }
+}
+
+@media screen and (max-width: 890px){
+  .navigation-bar {
+    grid-template-columns: 60px 180px auto 60px;
+    grid-template-rows: 60px repeat(5, 50px);
+  }
+
+  .search,
+  .navigation-buttons {
+    display: none
+  }
+
+  .search {
+    /* display: flex; */
+    grid-row: 2;
+    z-index: 5;
+    grid-column: 1/5;
+    justify-self: stretch;
+    align-self: stretch;
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(255, 255, 255);
+    margin: 0;
+    border: .5px solid grey;
+    /* margin-bottom: 30px; */
+  }
+
+  .search:before {
+    align-self: center;
+  }
+
+  .search-box {
+    width: 60%;
+    margin-right: 20px;
+    border: .25px solid grey;
+    height: 80%;
+    border-radius: 3px
+  }
+
+  .search-button {
+    display: none;
+  }
+
+  .search-icon {
+    display: block;
+    grid-column: 4;
+    grid-row: 1;
+  }
+
+  .disabled {
+    background: url(https://cdn0.iconfinder.com/data/icons/mobile-basic-vol-1/32/Close-512.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 20px;
+    width: 20px;
+  }
+
+  .search-button {
+    display: block;
+    height: 80%;
+    width: 40px;
+    background-color: #f36454;
+    border: .5px solid grey;
+    border-radius: 3px;
+    outline: none;
+  }
+
+  .drop-down {
+    display: block;
+  }
+
+  .navigation-buttons {
+    border-top: .5px solid black;
+    z-index: 5;
+    grid-row: 2/5;
+    grid-column: 1/ span 2;
+    /* justify-self: center; */
+    flex-direction: column;
+    background: white;
+    /* justify-self: stretch */
+  }
+
+  .button {
+    height: 50px;
+    border-bottom: .5px solid black;
+  }
+
+  .search-page {
+    /* position: */
+  }
+
+  .page-title {
+    grid-column: 2/-1;
+    margin-right:60px;
+    width: fit-content;
+    border:none;
+    justify-self: center;
+  }
+
+  .drop-down {
+    grid-column: 1;
+  }
+}
+
+.home-page,
+.search-page {
+  grid-column: 1/4;
+  grid-row:2
+}
+
+.home-page-header {
+  text-align: center;
+  color: rgb(236, 236, 236);
+  font-size: 6em;
+  padding-top: 150px;
+}
 
 .main-section {
-  position: relative;
-  background-image: url(https://griffinpartnerssc.com/wp-content/uploads/2019/06/food-vegetables-meal-breakfast-hd-wallpaper-high-resolution-background-images-desktop-images-of-windows-amazing-cool-images-free-stock-photos-pictures-1600x1024.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)), url(https://griffinpartnerssc.com/wp-content/uploads/2019/06/food-vegetables-meal-breakfast-hd-wallpaper-high-resolution-background-images-desktop-images-of-windows-amazing-cool-images-free-stock-photos-pictures-1600x1024.jpg);
   background-size:cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 90vh;
-  width: 100%;
+  height: 95vh;
 }
+
 /*All Recipes*/
- .search-page {
-   display: flex;
-   flex-direction: row;
-   flex-wrap: wrap;
-   justify-content: space-between;
-   background-color: rgb(198 225 185 / 52%);
-   height: fit-content;
-   min-height: 100vh;
-   width: 100%;
-   padding: 20px;
-   /* border-top: 1px solid rgb(179, 178, 178); */
- }
+
+.search-page {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  justify-items: center;
+  background-color: rgb(198 225 185 / 52%);
+  height: fit-content;
+  min-height: 100vh;
+}
 
 
 /*Recipe cards */
 
 .recipe-carousel {
+  display: flex;
+  justify-content: space-around;
   position: absolute;
   height: 43%;
   width: 100%;
@@ -121,11 +302,12 @@ a:hover {
 
 .recipe-card {
   position: relative;
+  display: inline-block;
   margin: 20px;
   height: 295px;
   width: 225px;
+  min-width: 200px;
   background-color: rgb(255, 255, 255);
-  /* background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.6)); */
   transition: box-shadow 0.3s ease-in-out;
 }
 
@@ -141,11 +323,12 @@ a:hover {
 }
 
 .recipe-card-name {
-  padding-bottom: 10px;
-  margin:10px auto;
+  padding: 2px 10px;
+  /* margin:10px auto; */
   width:100%;
   height:60px;
   text-align: left;
+  font-size: 15px;
   font-weight: bold;
   border-bottom: 1px dotted rgb(179, 178, 178)
 }
@@ -190,16 +373,16 @@ a:hover {
   position: relative;
   margin: 40px auto;
   height: 1200px;
-  width: 1350px;
+  width: 95%;
   background-color: #e3ffda;
   border-radius: 10px;
 }
 
 .instruction-card {
-  padding: 100px 0;
+  padding: 100px 40px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content:space-between;
   align-items: center;
   flex-wrap: wrap;
   height: 80%;
@@ -257,8 +440,8 @@ td {
 }
 
 .instruction-card-img {
-  height: 370px;
-  width: auto;
+  height: auto;
+  width: 45%;
   border-radius: 10px;
 }
 
@@ -283,7 +466,7 @@ td {
   align-items: center;
   flex-direction: column;
   height: 250px;
-  width: 150px;
+  width: 33%;
 }
 
 .img-cropper {
@@ -312,15 +495,55 @@ td {
 .meal-suggestion-name {
   margin-top: 30px;
   text-align: center;
-  width: 175px;
-  font-weight: bold;
+  width: 100%;
+  font-size: 14px;
+ 
 }
 
 .meal-suggestion-container{
-  width: 550px;
+  width: 45%;
   justify-content: space-between;
 }
+@media screen and (max-width: 1120px) {
+  .instruction,
+  .instrcution-card{
+    height: fit-content;
+    padding: 40px 0;
+  }
 
+  .instruction-card-directions {
+  height: fit-content;
+  width: 90%;
+  margin-bottom: 80px;
+  order: 1
+}
+
+.instruction-card-recipe-name {
+  height: fit-content;
+  margin-bottom: 20px;
+}
+
+.direction-container,
+.ingredient-container {
+  height: fit-content;
+  overflow: scroll;
+}
+
+.instruction-card-header {
+  font-size: 1em;
+  margin: 20px 0;
+}
+
+.instruction-card-img {
+  height: auto;
+  width: 90%;
+  margin-bottom: 80px;
+}
+.meal-suggestion-container{
+  width: 90%;
+  order: 1
+}
+}
 
 .hidden {
   display: none;
@@ -335,4 +558,7 @@ td {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+.flex{
+  display: flex;
 }

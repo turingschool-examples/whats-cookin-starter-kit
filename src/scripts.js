@@ -13,7 +13,11 @@ const pageTitle = document.querySelector('.page-title')
 const instruction = document.querySelector('.instruction')
 const mealSuggestionContainer = document.querySelector(".meal-suggestion-container")
 const instructionCardDirections = document.querySelector('.instruction-card-directions')
-const myRecipesButton = document.querySelector('.my-recipes')
+const navButtons = document.querySelector(".navigation-buttons");
+const myRecipesButton = document.querySelector('.my-recipes');
+const searchIcon = document.querySelector('.search-icon');
+const searchButton = document.querySelector('.search-button');
+const navigationBar = document.querySelector(".navigation-bar")
 
 const createKebab = (recipeName) => recipeName.toLowerCase().split(' ').join('-');
 
@@ -129,7 +133,7 @@ const populateRecipeCarousel = () => {
 };
 
 const searchAllRecipes = (event) => {
-  if (event.key === "Enter" && searchBox.value) {
+  if ((event.key === "Enter" && searchBox.value ) || (event.target.className.includes("search-button") && searchBox.value )) {
     event.preventDefault();
     loadSearchPage(recipeRepository.masterSearch(searchBox.value));
   };
@@ -150,6 +154,39 @@ const suggestRecipes = () => {
   });
 };
 
+
+
+const openDropDownMenu = (event) => {
+    if(event.target.className.includes("drop-down")){
+      navButtons.classList.add('flex');
+    } else {
+      navButtons.classList.remove('flex');
+    };
+};
+
+const autoCloseMenu = () => {
+  if(window.innerWidth > 800) {
+    navButtons.classList.remove('flex');
+    document.querySelector(".search").classList.remove('flex')
+    document.querySelector(".search").reset();
+    searchIcon.classList.remove('disabled')
+  }
+}
+
+const loadMobileSearch = (event) => {
+  console.log(searchBox.value)
+  const target = event.target.className
+  if (target.includes('search-icon')) {
+    document.querySelector(".search").classList.toggle('flex')
+    searchIcon.classList.toggle("disabled")
+    document.querySelector(".search").reset();
+  } else if(target.includes('search-button')){
+    document.querySelector(".search").classList.remove('flex')
+    searchIcon.classList.toggle("disabled")
+  }
+  searchAllRecipes(event)
+}
+
 window.addEventListener('load', compileRecipeRepository);
 window.addEventListener('load', populateRecipeCarousel);
 recipeCarousel.addEventListener('click', () => loadRecipeCard(event));
@@ -159,3 +196,7 @@ allRecipesButton.addEventListener('click', () => loadSearchPage(recipeRepository
 pageTitle.addEventListener('click', () => loadPage(homePage, searchPage));
 mealSuggestionContainer.addEventListener("click", () => loadRecipeCard(event));
 myRecipesButton.addEventListener("click", () => loadSearchPage(currentUser.favoriteRecipes))
+window.addEventListener('click', () => openDropDownMenu(event))
+window.addEventListener("resize", autoCloseMenu);
+navigationBar.addEventListener("click", () => loadMobileSearch(event))
+// searchButton.addEventListener("click", () => searchAllRecipes(event));
