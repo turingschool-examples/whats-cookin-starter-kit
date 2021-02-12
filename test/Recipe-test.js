@@ -1,11 +1,10 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-//const ingredientTestData = require('./ingredient-test-data');
-//const ingredientData = ingredientTestData.ingredientData;
 
 const recipeTestData = require('./recipe-test-data');
 const usersData = require('./user-test-data');
+const ingredientsTestData = require('./ingredient-test-data');
 const RecipeRepo = require('../src/RecipeRepo');
 const Recipe = require('../src/Recipe');
 
@@ -13,12 +12,12 @@ const Recipe = require('../src/Recipe');
 describe ('Recipe', () => {
   const recipeData = recipeTestData.recipeData;
   const userData = usersData.usersData;
+  const ingredientsData = ingredientsTestData.ingredientData;
   let recipeRepo;
-  let recipe;
   let recipeNumberOne;
 
   beforeEach('create a recipe repository', () => {
-    recipeRepo = new RecipeRepo(recipeData);
+    recipeRepo = new RecipeRepo(recipeData, userData, ingredientsData);
     recipeNumberOne = recipeRepo.recipes[0];
   });
 
@@ -60,7 +59,7 @@ describe ('Recipe', () => {
   describe('Inquiries', () => {
 
     it('should determine names of needed ingredients', () => {
-      const ingredientsNeeded = recipeNumberOne.getIngredientsNeeded();
+      const ingredientsNeeded = recipeNumberOne.getIngredientsByName();
 
       expect(ingredientsNeeded).to.deep.equal(['gumdrops', 'barbarol'])
     });

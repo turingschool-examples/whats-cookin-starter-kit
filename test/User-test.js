@@ -6,12 +6,14 @@ const Recipe = require('../src/Recipe');
 const User = require('../src/User');
 const recipeTestData = require('./recipe-test-data');
 const usersData = require('./user-test-data');
-
+const ingredientsTestData = require('./ingredient-test-data');
 
 
 describe ('User', () => {
   const recipeData = recipeTestData.recipeData;
   const userData = usersData.usersData;
+  const ingredientsData = ingredientsTestData.ingredientsData;
+
   let recipeNumberOne;
   let recipeRepo;
   let recipe;
@@ -19,7 +21,7 @@ describe ('User', () => {
 
 
   beforeEach('create a recipe repository', () => {
-    recipeRepo = new RecipeRepo(recipeData);
+    recipeRepo = new RecipeRepo(recipeData, userData, ingredientsData);
     recipeNumberOne = recipeRepo.recipes[0];
     user = new User(userData);
 
@@ -80,22 +82,40 @@ describe ('User', () => {
   });
 
   describe('Favorite List Filtering Methods', () => {
+
+    beforeEach('add favorites to user favorites', () => {
+
+      user.addFavorite(recipeNumberOne);
+      user.addFavorite(recipeRepo.recipes[1]);
+    });
+
     it('should be able to filter favorites by multiple tags', () => {
 
+      const newFaves = user.getFavoritesByTags(['cheerios', 'chocolate']);
+
+      expect(newFaves).to.have.lengthOf(2);
     });
 
     it('should be able to filter favorites by recipe name search', () => {
 
+      const newFaves = user.getFavoritesByName('fluffer-nutter');
+
+      expect(newFaves).to.have.lengthOf(1);
+
     });
 
-    it('should be able to filter favorites by ingredient search', () => {
+    it.skip('should be able to filter favorites by ingredient search', () => {
 
+      const newFaves = user.getFavoritesByIngredient('gumdrops');
+console.log(user.favorites)
+console.log(newFaves)
+      expect(newFaves).to.have.lengthOf(1);
     });
 
     it('should be able to add to planned recipe list', () => {
-      user.addToPlanned(recipeNumberOne);
+      user.addPlanned(recipeNumberOne);
 
-      expect(user.planned).to.have.lengthOf(0);
+      expect(user.planned).to.have.lengthOf(1);
     });
   });
 

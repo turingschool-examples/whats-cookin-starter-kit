@@ -1241,6 +1241,7 @@ let ingredientsData = [
     "id": 27,
     "name": "barbarol",
     "estimatedCostInCents": 582
-  }
+  },
+  
 ];
 module.exports = { ingredientsData };

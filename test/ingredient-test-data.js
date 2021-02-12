@@ -1,15 +1,15 @@
-const ingredientData = [
+const ingredientsData = [
   {
     "id": 23,
     "name": "gumdrops",
     "estimatedCostInCents": 42
   },
   {
-    "id": 999,
+    "id": 27,
     "name": "barbarol",
     "estimatedCostInCents": 582
   }
 ];
 
 
-module.exports = { ingredientData }
+module.exports = { ingredientsData }

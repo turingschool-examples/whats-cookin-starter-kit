@@ -18,14 +18,11 @@ describe('Ingredient', () => {
   const recipeData = recipeTestData.recipeData;
   const userData = usersData.usersData;
   let recipeRepo;
-  let recipe;
-  let user;
   let ingredient;
 
 
   beforeEach('create a recipe repository', () => {
-    recipeRepo = new RecipeRepo(recipeData);
-    user = new User(userData);
+    recipeRepo = new RecipeRepo(recipeData, userData);
     ingredient = new Ingredient({"id": 9999, "quantity": {"amount": 2, "unit": "tablespoons"}});
     let recipeNumberOne = recipeRepo.recipes[0];
   });

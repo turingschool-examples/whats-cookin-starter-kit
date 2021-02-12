@@ -5,17 +5,19 @@ const RecipeRepo = require('../src/RecipeRepo');
 const Recipe = require('../src/Recipe');
 const User = require('../src/User');
 const recipeTestData = require('./recipe-test-data');
-const usersData = require('./user-test-data');
+const usersTestData = require('./user-test-data');
+const ingredientsTestData = require('./ingredient-test-data');
 
 describe('RecipeRepo', () => {
-  const userData = usersData.usersData;
+  const userData = usersTestData.usersData;
   const recipeData = recipeTestData.recipeData;
+  const ingredientsData = ingredientsTestData.ingredientsData;
   let recipeRepo;
   let recipe;
   let recipeNumberOne;
 
   beforeEach('create a recipe repository', () => {
-    recipeRepo = new RecipeRepo(recipeData);
+    recipeRepo = new RecipeRepo(recipeData, userData, ingredientsData);
     recipeNumberOne = recipeRepo.recipes[0];
   });
 
@@ -45,15 +47,15 @@ describe('RecipeRepo', () => {
   });
 
   describe('Filter methods', () => {
-    let tag = 'cheez-its';
+    let tags = ['cheez-its'];
     let ingredientId = 24;
     let name = 'figgy pudding';
 
-    it('should filter recipes by tag', () => {
+    it('should filter recipes by tags', () => {
 
-      recipeRepo.matchTag(tag);
+      recipeRepo.matchTags(tags);
 
-      expect(recipeRepo.recipes[0].tags).to.deep.equal(recipeData[1].tags);
+      expect(recipeNumberOne.tags).to.deep.equal(recipeData[0].tags);
     });
 
     it('should filter recipes by ingredient', () => {
