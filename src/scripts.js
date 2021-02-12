@@ -23,7 +23,11 @@ allRecipesPage.addEventListener("click", displayRecipeInfo);
 
 nameDdl.addEventListener('change', displayNameFilteredRecipes)
 ingredientsDdl.addEventListener('change', displayIngredientFilteredRecipe)
+tag1Ddl.addEventListener(`change`, testFunction)
 
+function testFunction() {
+  console.log(tag1Ddl.value)
+}
 
 
 
@@ -161,34 +165,31 @@ function loadTagOptions() {
   tagFilterDdl.forEach(tag => tag.addEventListener('change', displayFilteredRecipes));
 }
 
-function displayFilteredRecipes(e) {
-  // e.preventDefault();
+function displayFilteredRecipes() {
   allRecipesPage.innerHTML = ''
-  allRecipesArray.forEach(recipe => {
-    if(recipe.tags.includes(e.target.value)) {
-      allRecipesPage.innerHTML +=
-      `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`
-    }
+  let filteredTags = recipeRepository.filterRecipeByTag(tag1Ddl.value, tag2Ddl.value, tag3Ddl.value)
+  filteredTags.forEach(recipe => {
+    allRecipesPage.innerHTML +=
+    `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
   })
+
 }
 
 
 function displayNameFilteredRecipes(e) {
   allRecipesPage.innerHTML = ''
-  allRecipesArray.forEach(recipe => {
-    if(recipe.name === e.target.value) {
-      allRecipesPage.innerHTML +=
-      `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`
-    }
+  let filteredNames = recipeRepository.filterRecipeByName(e.target.value)
+  filteredNames.forEach(recipe => {
+    allRecipesPage.innerHTML +=
+    `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
   })
 }
 
 function displayIngredientFilteredRecipe(e) {
   allRecipesPage.innerHTML = ''
   let filteredIngredients = recipeRepository.filterRecipeByIngredients(e.target.value)
-  console.log(recipeRepository.filterRecipeByIngredients(`butter`))
-  filteredIngredients.forEach((recipe => {
+  filteredIngredients.forEach(recipe => {
     allRecipesPage.innerHTML +=
     `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
-  }))
+  })
 }
