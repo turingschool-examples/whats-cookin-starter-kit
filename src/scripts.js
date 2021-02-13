@@ -20,10 +20,12 @@ const nameDdl = document.querySelector('.name-filter');
 const ingredientsDdl = document.querySelector('.ingredients-filter');
 const addToFavoritesButton = document.getElementById('addToFavoritesButton');
 const addToCookButton = document.getElementById('addToCookButton');
+const favoritesButton = document.getElementById('favoriteRecipesButton')
 
 allRecipesButton.addEventListener("click", displayAllRecipesPage);
 window.addEventListener("load", loadAllRecipes);
 allRecipesPage.addEventListener("click", displayRecipeInfo);
+favoritesButton.addEventListener("click", displayFavoriteRecipes);
 
 nameDdl.addEventListener('change', helperName);
 ingredientsDdl.addEventListener('change', helperIngredient);
@@ -109,7 +111,7 @@ function displayAllRecipeImages() {
 function displayRecipeInfo() {
   const clickedRecipeImage = event.target.closest('.all-recipes-images');
   allRecipesArray.forEach(recipe => {
-    if(recipe.id === Number(clickedRecipeImage.id)){
+    if(clickedRecipeImage && recipe.id === Number(clickedRecipeImage.id)){
       recipeCardDisplay(recipe.id)
       recipeToBePushed = recipe;
     }
