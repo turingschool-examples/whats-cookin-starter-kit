@@ -5,7 +5,7 @@ let allTags = [];
 let allNames = [];
 let allIngredients = [];
 let recipeToBePushed;
-const recipeRepository = new RecipeRepository(allRecipesArray);
+let recipeRepository = new RecipeRepository(allRecipesArray);
 const filterRecipeButton = document.getElementById('filterRecipeButton');
 const allRecipesButton = document.getElementById("allRecipesButton");
 const allRecipesPage = document.getElementById("allRecipesPage");
@@ -53,11 +53,13 @@ function loadAllRecipes() {
 function addToCookHelper() {
   toggleButtonText(recipesToCookButton, "Recipes to Cook")
   displayAllRecipesPage(user.recipesToCookArray)
+  recipeRepository = new RecipeRepository(user.recipesToCookArray)
 }
 
 function favoriteRecipesHelper() {
 toggleButtonText(favoritesButton, "Favorite Recipes")
   displayAllRecipesPage(user.favoriteRecipesArray)
+  recipeRepository = new RecipeRepository(user.favoriteRecipesArray)
 }
 
 function allRecipesHelper() {
@@ -215,10 +217,10 @@ function helperIngredient() {
 }
 
 function displayFilteredRecipes(elementToBeChanged) {
-  elementToBeChanged.innerHTML = ''
+  allRecipesPage.innerHTML = ''
   let filteredTags = recipeRepository.filterRecipeByTag(tag1Ddl.value, tag2Ddl.value, tag3Ddl.value)
   filteredTags.forEach(recipe => {
-    elementToBeChanged.innerHTML +=
+    allRecipesPage.innerHTML +=
     `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
   })
 
@@ -226,19 +228,19 @@ function displayFilteredRecipes(elementToBeChanged) {
 
 
 function displayNameFilteredRecipes(elementToBeChanged) {
-  elementToBeChanged.innerHTML = ''
+  allRecipesPage.innerHTML = ''
   let filteredNames = recipeRepository.filterRecipeByName(nameDdl.value)
   filteredNames.forEach(recipe => {
-    elementToBeChanged.innerHTML +=
+    allRecipesPage.innerHTML +=
     `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
   })
 }
 
 function displayIngredientFilteredRecipe(elementToBeChanged) {
-  elementToBeChanged.innerHTML = ''
+  allRecipesPage.innerHTML = ''
   let filteredIngredients = recipeRepository.filterRecipeByIngredients(ingredientsDdl.value)
   filteredIngredients.forEach(recipe => {
-    elementToBeChanged.innerHTML +=
+    allRecipesPage.innerHTML +=
     `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
   })
 }
