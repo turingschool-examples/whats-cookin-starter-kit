@@ -9,6 +9,7 @@ const buttonContainer = document.querySelector('.button-container');
 const nextPageArrow = recipeList.querySelector('.right');
 const prevPageArrow = recipeList.querySelector('.left');
 const recipeRepo = new RecipeRepo(recipeData, usersData, ingredientsData);
+const recipeCards = recipeList.querySelectorAll('.recipe-card');
 let currentFilters = [];
 let currentRecipes = recipeRepo.recipes;
 
@@ -42,9 +43,12 @@ function clickTagFilter(e) {
     currentFilters.splice(currentFilters.indexOf(currentTagName));
   } else if (currentTagName) {
     currentFilters.push(currentTagName);
-    console.log(currentTagBtn)
     currentTagBtn.labels[0].classList.add('tag-label-checked');
   }
+  applyTags();
+}
+
+function applyTags() {
   const tags = recipeRepo.matchTags(currentFilters);
   const uniqueTags = tags.filter((tag, index) => tags.indexOf(tag) === index);
   generateRecipeCards(uniqueTags, 0);
@@ -53,17 +57,22 @@ function clickTagFilter(e) {
 function showFeaturedRecipe (recipeTitle) {
   currentRecipeContainer.classList.remove('vis-hidden');
   currentRecipeTitle.classList.remove('vis-hidden');
+  currentRecipeTitle.innerText = recipeTitle;
   const featuredRecipe = currentRecipes.find(recipe => recipe.name === recipeTitle);
+  showFeaturedInfo(featuredRecipe);
+  
+}
+
+function showFeaturedInfo(featuredRecipe) {
   currentRecipeTitle.style.backgroundImage = `url(${featuredRecipe.image})`;
   featuredRecipe.instructions.forEach(instruction => {
     currentRecipeInstructions.innerHTML += `<p class="recipe-instruction">
     ${instruction.number}: ${instruction.instruction}</p>`;
   })
-  currentRecipeTitle.innerText = recipeTitle;
-  const ingredientObjList = featuredRecipe.getIngredients();
-  ingredientObjList.forEach(ingredientObj => {
+  featuredRecipe.getIngredients().forEach(ingredientObj => {
     currentRecipeIngredients.innerText += 
-    ` ${ingredientObj.nameObj.name}: ${ingredientObj.quantity.amount.toFixed(2)}${ingredientObj.quantity.unit}.`;
+    ` ${ingredientObj.quantity.amount.toFixed(2)}${ingredientObj.quantity.unit}: 
+    ${ingredientObj.nameObj.name}.`;
   })
 }
 
@@ -76,36 +85,31 @@ function removeFeaturedRecipe() {
 }
 
 function generateRecipeCards(newRecipes, iterationCounter) {  
-  const recipeCards = recipeList.querySelectorAll('.recipe-card');
+  currentRecipes = newRecipes;
   let iterationCount = iterationCounter;
-  if (newRecipes.length <= recipeCards.length) {
-    generateLimitedCards(newRecipes);
-  // } else if (newRecipes.length - iterationCounter < 3) {
-  //   const smallDeck = newRecipes.splice(iterationCounter);
-  //   newRecipes.push(...smallDeck);
-  //   generateLimitedCards(smallDeck);
-  // } 
+  if (currentRecipes.length - iterationCount <= recipeCards.length) {
+    generateLimitedCards(currentRecipes.slice(iterationCount));
   } else if (currentRecipes.length - iterationCount > 4 && iterationCount > -1) {
-    currentRecipes = newRecipes;
     recipeCards.forEach(recipeCard => {
       const currentRecipe = newRecipes[iterationCount];
       iterationCount ++;
       createCardContents(recipeCard, currentRecipe, true);
-    }
-    )
+    });
   } else {
     nextPageArrow.classList.add('vis-hidden');
   }
 }
 
 function createCardContents (cardLi, recipe, booleanDecision = false) {
-  cardLi.querySelector('.recipe-title').innerText = recipe.name;
-  cardLi.querySelector('.recipe-img').src = recipe.image;
-  randomizeCardColor(cardLi.querySelector('.recipe'));
-  cardLi.querySelector('.recipe-cost').innerText = `$${recipe.getCost()}`;
-  cardLi.classList.remove('vis-hidden');
-  if (booleanDecision) {
-    nextPageArrow.classList.remove('vis-hidden');
+  if (cardLi) {
+    cardLi.querySelector('.recipe-title').innerText = recipe.name;
+    cardLi.querySelector('.recipe-img').src = recipe.image;
+    randomizeCardColor(cardLi.querySelector('.recipe'));
+    cardLi.querySelector('.recipe-cost').innerText = `$${recipe.getCost()}`;
+    cardLi.classList.remove('vis-hidden');
+    if (booleanDecision) {
+      nextPageArrow.classList.remove('vis-hidden');
+    }
   }
 }
 
@@ -128,11 +132,10 @@ function generateLimitedCards(recipeArr) {
 function showNextPage() {
   tagContainer.classList.add('vis-hidden');
   prevPageArrow.classList.remove('vis-hidden');
-  const recipeCards = recipeList.querySelectorAll('.recipe-card');
   const lastRecipeCard = recipeCards[4];
   const lastRecipeTitle = lastRecipeCard.querySelector('.recipe-title').innerText;
   const lastRecipe = currentRecipes.find(recipe => recipe.name === lastRecipeTitle);
-  const nextRecipe = currentRecipes[(currentRecipes.indexOf(lastRecipe)) + 1]
+  const nextRecipe = currentRecipes[(currentRecipes.indexOf(lastRecipe)) + 1];
   if (currentRecipes.indexOf(nextRecipe) >= 4) {
     generateRecipeCards(currentRecipes, currentRecipes.indexOf(nextRecipe));
   } else if (currentRecipes.indexOf(nextRecipe) <= 4) {
@@ -141,13 +144,13 @@ function showNextPage() {
 }
 
 function showPrevPage() {
-  const recipeCards = recipeList.querySelectorAll('.recipe-card');
   const firstRecipeCard = recipeCards[0];
   const firstRecipeTitle = firstRecipeCard.querySelector('.recipe-title').innerText;
   const firstRecipe = currentRecipes.find(recipe => recipe.name === firstRecipeTitle);
-  const firstRecipeIndex = currentRecipes.indexOf(firstRecipe)
+  const firstRecipeIndex = currentRecipes.indexOf(firstRecipe);
   generateRecipeCards(currentRecipes, firstRecipeIndex - 5);
-  if (recipeList.querySelector('.recipe-title').innerText === currentRecipes[0].name) {
+  if 
+  (recipeList.querySelector('.recipe-title').innerText === currentRecipes[0].name) {
     tagContainer.classList.remove('vis-hidden');
     prevPageArrow.classList.add('vis-hidden');
   }
@@ -157,7 +160,6 @@ function randomizeCardColor(recipeCard) {
   const colorArr = ['green-card', 'blue-card', 'orange-card', 'pink-card', 'cyan-card'];
   var color = colorArr[Math.floor(Math.random() * colorArr.length)];
   recipeCard.classList = `recipe ${color}`;
-
 }
 
 
