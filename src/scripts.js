@@ -6,6 +6,7 @@ const currentRecipeTitle = currentRecipeContainer.querySelector('.current-recipe
 const recipeList = document.querySelector('.recipe-list');
 const tagContainer = document.querySelector('.tag-container');
 const buttonContainer = document.querySelector('.button-container');
+const searchForm = document.querySelector('.search-container');
 const nextPageArrow = recipeList.querySelector('.right');
 const prevPageArrow = recipeList.querySelector('.left');
 const recipeRepo = new RecipeRepo(recipeData, usersData, ingredientsData);
@@ -19,9 +20,70 @@ window.addEventListener('load', openPage);
 nextPageArrow.addEventListener('click', showNextPage);
 prevPageArrow.addEventListener('click', showPrevPage);
 tagContainer.addEventListener('click', clickTagFilter);
+searchForm.addEventListener('submit', submitSearch);
+
 
 function openPage() {
   generateRecipeCards(currentRecipes, 0);
+}
+
+function randomizeCardColor(recipeCard) {
+  const colorArr = ['green-card', 'blue-card', 'orange-card', 'pink-card', 'cyan-card'];
+  var color = colorArr[Math.floor(Math.random() * colorArr.length)];
+  recipeCard.classList = `recipe ${color}`;
+}
+
+function applyTags() {
+  const tags = recipeRepo.matchTags(currentFilters);
+  const uniqueTags = tags.filter((tag, index) => tags.indexOf(tag) === index);
+  generateRecipeCards(uniqueTags, 0);
+}
+
+function showFeaturedRecipe (recipeTitle) {
+  currentRecipeContainer.classList.remove('vis-hidden');
+  currentRecipeTitle.classList.remove('vis-hidden');
+  currentRecipeTitle.innerText = recipeTitle;
+  const featuredRecipe = currentRecipes.find(recipe => recipe.name === recipeTitle);
+  showFeaturedInfo(featuredRecipe);
+}
+
+function removeFeaturedRecipe() {
+  currentRecipeTitle.innerText = "";
+  currentRecipeContainer.classList.add('vis-hidden');
+  buttonContainer.style.backgroundImage = 'none';
+  currentRecipeIngredients.innerHTML = 'Ingredients: ';
+  currentRecipeInstructions.innerHTML = '';
+}
+
+function submitSearch(e) {
+  e.preventDefault();
+  const searchValue = searchForm.querySelector('.search-field').value;
+  console.log(searchValue)
+  // Goal: take this submitted search value
+  // Input: string
+  // Output: new list of recipes
+  // Steps:
+  // if recipe repo.recipes.find
+  // For each recipe get ingredients and then check the name
+  // console.log(matchedName)
+  const matchedName = recipeRepo.recipes.find(recipe => recipe.name.includes(searchValue))
+  let ifFound = 0;
+  recipeRepo.recipes.forEach(recipe => {
+    const currentIngredients = recipe.getIngredients();
+    const found = currentIngredients.find(currentIngredient => currentIngredient.nameObj.name.includes(searchValue));
+    if (found) {
+      // console.log(found)
+      ifFound = found.id;
+    }
+  })
+  if (matchedName) {
+    console.log('hello')
+    generateRecipeCards(recipeRepo.matchName(searchValue), 0);
+  } else if (ifFound !== 0) {
+    console.log(recipeRepo.matchIngredient(ifFound))
+    generateRecipeCards(recipeRepo.matchIngredient(ifFound), 0);
+  }
+  
 }
 
 function clickRecipeCard(e) {
@@ -48,21 +110,6 @@ function clickTagFilter(e) {
   applyTags();
 }
 
-function applyTags() {
-  const tags = recipeRepo.matchTags(currentFilters);
-  const uniqueTags = tags.filter((tag, index) => tags.indexOf(tag) === index);
-  generateRecipeCards(uniqueTags, 0);
-}
-
-function showFeaturedRecipe (recipeTitle) {
-  currentRecipeContainer.classList.remove('vis-hidden');
-  currentRecipeTitle.classList.remove('vis-hidden');
-  currentRecipeTitle.innerText = recipeTitle;
-  const featuredRecipe = currentRecipes.find(recipe => recipe.name === recipeTitle);
-  showFeaturedInfo(featuredRecipe);
-  
-}
-
 function showFeaturedInfo(featuredRecipe) {
   currentRecipeTitle.style.backgroundImage = `url(${featuredRecipe.image})`;
   featuredRecipe.instructions.forEach(instruction => {
@@ -71,20 +118,14 @@ function showFeaturedInfo(featuredRecipe) {
   })
   featuredRecipe.getIngredients().forEach(ingredientObj => {
     currentRecipeIngredients.innerText += 
-    ` ${ingredientObj.quantity.amount.toFixed(2)}${ingredientObj.quantity.unit}: 
-    ${ingredientObj.nameObj.name}.`;
+    ` ${ingredientObj.nameObj.name}: 
+    ${ingredientObj.quantity.amount} ${ingredientObj.quantity.unit}.`;
   })
 }
 
-function removeFeaturedRecipe() {
-  currentRecipeTitle.innerText = "";
-  currentRecipeContainer.classList.add('vis-hidden');
-  buttonContainer.style.backgroundImage = 'none';
-  currentRecipeIngredients.innerHTML = 'Ingredients: ';
-  currentRecipeInstructions.innerHTML = '';
-}
 
 function generateRecipeCards(newRecipes, iterationCounter) {  
+  console.log(newRecipes)
   currentRecipes = newRecipes;
   let iterationCount = iterationCounter;
   if (currentRecipes.length - iterationCount <= recipeCards.length) {
@@ -154,12 +195,6 @@ function showPrevPage() {
     tagContainer.classList.remove('vis-hidden');
     prevPageArrow.classList.add('vis-hidden');
   }
-}
-
-function randomizeCardColor(recipeCard) {
-  const colorArr = ['green-card', 'blue-card', 'orange-card', 'pink-card', 'cyan-card'];
-  var color = colorArr[Math.floor(Math.random() * colorArr.length)];
-  recipeCard.classList = `recipe ${color}`;
 }
 
 
