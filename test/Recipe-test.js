@@ -24,7 +24,9 @@ describe('Recipe', () => {
 
   it('should be able to calculate the total cost of ingredients', () => {
     let recipe = new Recipe(data.recipeData[0], data.ingredientsData);
-    expect(recipe.getIngredientsCost(data.ingredientsData)).to.deep.equal("$26.11");
+    let ingredientsTotalCost = recipe.ingredients.reduce((sum, ingredient) => sum += ingredient.quantity.amount * ingredient.estimatedCost, 0)
+
+    expect(recipe.getIngredientsCost(data.ingredientsData)).to.deep.equal(`$${ingredientsTotalCost/100}`);
   })
 
   it('should return its directions', () => {

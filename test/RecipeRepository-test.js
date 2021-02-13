@@ -34,7 +34,7 @@ describe('RecipeRepository', () => {
     let recipeRepository = new RecipeRepository(data.recipeData, data.ingredientsData)
     let recipe = new Recipe(data.recipeData[1], data.ingredientsData)
 
-    expect(recipeRepository.filterByName('2')).to.deep.equal([recipe])
+    expect(recipeRepository.filterByName('two')).to.deep.equal([recipe])
   })
 
   it('should be able to filter by ingredients', () => {

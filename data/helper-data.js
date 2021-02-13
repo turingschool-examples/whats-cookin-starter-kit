@@ -103,7 +103,7 @@ const recipeData = [
         "number": 4
       }
     ],
-    "name": "Random dish 1",
+    "name": "Random dish one",
     "tags": [
       "lunch",
       "main course",
@@ -177,7 +177,7 @@ const recipeData = [
         "number": 4
       }
     ],
-    "name": "Random dish 2",
+    "name": "Random dish two",
     "tags": [
       "lunch",
       "main course",

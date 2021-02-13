@@ -23,7 +23,22 @@ const createKebab = (recipeName) => recipeName.toLowerCase().split(' ').join('-'
 
 const compileRecipeRepository = () => {
   recipeRepository = new RecipeRepository(recipeData, ingredientsData)
-  currentUser = new User(usersData[0], ingredientsData);
+}
+
+function loadRandomUser() {
+  let randomUser = usersData[0] // userData[Math.floor(Math.random() * userData.length)]
+  currentUser = new User(randomUser, 
+    ingredientsData, 
+    fetchLocalStorageData(`${randomUser.id}-favorites`), 
+    fetchLocalStorageData(`${randomUser.id}-recipes-to-cook`));
+}
+
+function fetchLocalStorageData(library) {
+  if (localStorage.getItem(library)) {
+    return JSON.parse(localStorage.getItem(library)).map(storedID => recipeRepository.recipes.find(recipe => recipe.id === storedID.id));
+  } else {
+    return [];
+  }
 }
 
 const loadPage = ((pageTo, pageFrom) => {
@@ -197,6 +212,8 @@ const loadMobileSearch = (event) => {
 }
 
 window.addEventListener('load', compileRecipeRepository);
+window.addEventListener('load', loadRandomUser);
+
 window.addEventListener('load', populateRecipeCarousel);
 recipeCarousel.addEventListener('click', () => loadRecipeCard(event));
 searchPage.addEventListener('click', () => loadRecipeCard(event));
@@ -211,7 +228,6 @@ allRecipesButton.addEventListener('click', () => {
   searchBox.classList.remove('search-favs-mode')
   searchBox.placeholder = "Search all recipes";
 });
-
 
 myRecipesButton.addEventListener("click", () => {
   loadSearchPage(currentUser.favoriteRecipes)
