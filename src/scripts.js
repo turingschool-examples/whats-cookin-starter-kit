@@ -79,7 +79,8 @@ const addToMyFavorites = (event) =>  {
   } else {
     currentUser.removeRecipeFromFavs(returnSelectedRecipe(event));
     event.target.classList.remove('saved');
-  }  
+  }
+  localStorage.setItem(`${currentUser.id}-favorites`, JSON.stringify(currentUser.favoriteRecipes))
 };
 
 const toggleFavoriteButton = (recipe) => {
@@ -159,7 +160,10 @@ const searchAllRecipes = (event) => {
     loadSearchPage(recipeRepository.masterSearch(searchBox.value));
   } else if ((event.key === "Enter" && searchBox.value && searchBox.classList.value.includes("search-favs-mode")) || (event.target.className.includes("search-button") && searchBox.value && searchBox.classList.value.includes("search-favs-mode") )) {
     event.preventDefault()
-    loadSearchPage(currentUser.favoritesMasterSearch(searchBox.value));
+    loadSearchPage(recipeRepository.masterSearch(searchBox.value)
+    .filter(recipe => currentUser.favoriteRecipes
+    .map(favorite => favorite.id)
+    .includes(recipe.id)))
   }
 };
 

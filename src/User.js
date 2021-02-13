@@ -1,4 +1,4 @@
-const Ingredient = require('../src/Ingredient.js');
+// const Ingredient = require('../src/Ingredient.js');
 
 class User {
   constructor(userData, ingredientsArray, storedFavs, storedRecipesToCook) {
@@ -12,13 +12,11 @@ class User {
   addRecipeToFavs(recipe) {
     if (!this.favoriteRecipes.map(recipe => recipe.id).includes(recipe.id)) {
       this.favoriteRecipes.push(recipe)
-      localStorage.setItem(`${this.id}-favorites`, JSON.stringify(this.favoriteRecipes))
     }
   }
 
   removeRecipeFromFavs(recipe) {
     this.favoriteRecipes.splice(this.favoriteRecipes.indexOf(this.favoriteRecipes.find(savedRecipe => savedRecipe.id === recipe.id)), 1)
-    localStorage.setItem(`${this.id}-favorites`, JSON.stringify(this.favoriteRecipes))
   }
 
   addRecipeToCook(recipe) {
@@ -26,36 +24,6 @@ class User {
       this.recipesToCook.push(recipe)
       localStorage.setItem(`${this.id}-recipes-to-cook`, JSON.stringify(this.recipesToCook))
     }
-  }
-
-  favoritesMasterSearch(search) {
-    let results = [];
-    results.push(this.favoritesFilterByName(search));
-    results.push(this.favoritesFilterByTag(search));
-    results.push(this.favoritesFilterByIngredients(search));
-    return Array.from(new Set(results.flat()));
-  }
-
-  favoritesFilterByName(search) {
-   search = this.validateSearch(search);
-   return Array.from(new Set(search.map(word => this.favoriteRecipes.filter(recipe => recipe.name.toLowerCase().split(' ').includes(word))).flat()));
-  }
-
-  favoritesFilterByTag(search) {
-   search = this.validateSearch(search);
-   return Array.from(new Set(search.map(word => this.favoriteRecipes.filter(recipe => recipe.tags.map(tag => tag.split(' ')).flat().includes(word))).flat()));
-  }
-
-  favoritesFilterByIngredients(search) {
-   search = this.validateSearch(search);
-   return Array.from(new Set(search.map(word => this.favoriteRecipes.filter(recipe => recipe.getIngredients().map(ingredient => ingredient.split(' ')).flat().includes(word))).flat()));
-  }
-
-  validateSearch(search) {
-    return search.toLowerCase()
-    .split(' ')
-    .map(word => word.replace(/[^a-zA-Z ]/g, ""))
-    .filter(element => element);
   }
 
 }
