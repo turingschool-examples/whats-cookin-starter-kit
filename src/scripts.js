@@ -21,23 +21,19 @@ const ingredientsDdl = document.querySelector('.ingredients-filter');
 const addToFavoritesButton = document.getElementById('addToFavoritesButton');
 const addToCookButton = document.getElementById('addToCookButton');
 const favoritesButton = document.getElementById('favoriteRecipesButton')
+const recipesToCookButton = document.getElementById('recipesToCookButton');
 
-allRecipesButton.addEventListener("click", displayAllRecipesPage);
+
+allRecipesButton.addEventListener("click", allRecipesHelper);
 window.addEventListener("load", loadAllRecipes);
 allRecipesPage.addEventListener("click", displayRecipeInfo);
-favoritesButton.addEventListener("click", displayFavoriteRecipes);
+favoritesButton.addEventListener("click", favoriteRecipesHelper);
+recipesToCookButton.addEventListener("click", addToCookHelper);
 
 nameDdl.addEventListener('change', helperName);
 ingredientsDdl.addEventListener('change', helperIngredient);
-tag1Ddl.addEventListener(`change`, testFunction);
 addToFavoritesButton.addEventListener('click', pushToFavorites);
 addToCookButton.addEventListener('click', pushToCookList);
-
-
-function testFunction() {
-  console.log(tag1Ddl.value)
-}
-
 
 
 function loadAllRecipes() {
@@ -52,6 +48,29 @@ function loadAllRecipes() {
   loadNamesArray();
   createIngredientsArray();
   loadIngredientsArray();
+}
+
+function addToCookHelper() {
+  toggleButtonText(recipesToCookButton, "Recipes to Cook")
+  displayAllRecipesPage(user.recipesToCookArray)
+}
+
+function favoriteRecipesHelper() {
+toggleButtonText(favoritesButton, "Favorite Recipes")
+  displayAllRecipesPage(user.favoriteRecipesArray)
+}
+
+function allRecipesHelper() {
+  toggleButtonText(allRecipesButton, "All Recipes")
+  displayAllRecipesPage(allRecipesArray)
+}
+
+function toggleButtonText(element, innerText) {
+  if(element.innerHTML === innerText) {
+    element.innerHTML = "Home";
+  } else {
+    element.innerHTML = innerText;
+  }
 }
 
 function chooseRandomUser() {
@@ -87,22 +106,17 @@ function displayRandomRecipe() {
       <p class="recipe-name">${randomRecipe2.name}</p>`
 }
 
-function displayAllRecipesPage() {
+function displayAllRecipesPage(array) {
   allRecipesPage.classList.toggle("hidden");
   randomRecipes.classList.toggle("hidden");
   addToFavoritesButton.classList.toggle("hidden")
   addToCookButton.classList.toggle('hidden')
-  if(allRecipesButton.innerHTML === "All Recipes") {
-    allRecipesButton.innerHTML = "Home";
-  } else {
-    allRecipesButton.innerHTML = "All Recipes";
-  }
-  displayAllRecipeImages();
+  displayAllRecipeImages(array);
 }
 
-function displayAllRecipeImages() {
+function displayAllRecipeImages(array) {
   allRecipesPage.innerHTML = `` ;
-  allRecipesArray.forEach(recipe => {
+  array.forEach(recipe => {
     allRecipesPage.innerHTML +=
     `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
   })
