@@ -1,12 +1,10 @@
 const chai = require('chai');
 const expect = chai.expect;
+const data = require('../data/helper-data.js')
 
-const User = require('../src/User');
-const Recipe = require('../src/Recipe');
-const Ingredient = require('../src/Ingredient');
-const data = require('../data/helper-data.js');
-
-
+const Ingredient = require('../src/Ingredient.js');
+const Recipe = require("../src/Recipe")
+const User = require('../src/User.js')
 
 describe('Ingredient', () => {
   

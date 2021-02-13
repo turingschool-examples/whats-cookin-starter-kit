@@ -1,9 +1,9 @@
 const chai = require('chai');
 const expect = chai.expect;
-
-const RecipeRepository = require('../src/RecipeRepository')
-const Recipe = require('../src/Recipe')
 const data = require('../data/helper-data.js')
+
+const Recipe = require("../src/Recipe")
+const RecipeRepository = require('../src/RecipeRepository')
 
 describe('RecipeRepository', () => {
 

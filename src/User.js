@@ -1,5 +1,6 @@
 // const Ingredient = require('../src/Ingredient.js');
 
+
 class User {
   constructor(userData, ingredientsArray, storedFavs, storedRecipesToCook) {
     this.name = userData.name
@@ -22,9 +23,14 @@ class User {
   addRecipeToCook(recipe) {
     if (!this.recipesToCook.map(recipe => recipe.id).includes(recipe.id)) {
       this.recipesToCook.push(recipe)
-      localStorage.setItem(`${this.id}-recipes-to-cook`, JSON.stringify(this.recipesToCook))
+      // localStorage.setItem(`${this.id}-recipes-to-cook`, JSON.stringify(this.recipesToCook))
     }
   }
+
+  removeRecipeToCook(recipe) {
+    this.recipesToCook.splice(this.recipesToCook.indexOf(this.recipesToCook.find(savedRecipe => savedRecipe.id === recipe.id)), 1)
+  }
+
 
 }
 
