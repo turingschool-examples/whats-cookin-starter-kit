@@ -14,15 +14,15 @@ const tag1Ddl = document.getElementById("dropdown1");
 const tag2Ddl = document.getElementById("dropdown2");
 const tag3Ddl = document.getElementById("dropdown3");
 const tagFilterDdl = document.querySelectorAll(".tag-filter");
-const nameDdl = document.querySelector('.name-filter')
-const ingredientsDdl = document.querySelector('.ingredients-filter')
+const nameDdl = document.querySelector('.name-filter');
+const ingredientsDdl = document.querySelector('.ingredients-filter');
 
 allRecipesButton.addEventListener("click", displayAllRecipesPage);
 window.addEventListener("load", loadAllRecipes);
 allRecipesPage.addEventListener("click", displayRecipeInfo);
 
-nameDdl.addEventListener('change', displayNameFilteredRecipes)
-ingredientsDdl.addEventListener('change', displayIngredientFilteredRecipe)
+nameDdl.addEventListener('change', helperName)
+ingredientsDdl.addEventListener('change', helperIngredient)
 tag1Ddl.addEventListener(`change`, testFunction)
 
 function testFunction() {
@@ -69,13 +69,9 @@ function displayRandomRecipe() {
   const randomRecipe2 = generateRandomRecipe()
   randomRecipes.innerHTML =
     `<img id=${randomRecipe.id} class="cover-recipes-images" src=${randomRecipe.image}>
-       <p class="recipe-name">${randomRecipe.name}</p>
+      <p class="recipe-name">${randomRecipe.name}</p>
      <img id=${randomRecipe2.id} class="cover-recipes-images" src=${randomRecipe2.image}>
-       <p class="recipe-name">${randomRecipe2.name}</p>`
-}
-
-function displayRandomRecipeInfo() {
-
+      <p class="recipe-name">${randomRecipe2.name}</p>`
 }
 
 function displayAllRecipesPage() {
@@ -162,34 +158,58 @@ function loadTagOptions() {
       `<option value="${tag}">${tag}</option>`
     })
   })
-  tagFilterDdl.forEach(tag => tag.addEventListener('change', displayFilteredRecipes));
+  tagFilterDdl.forEach(tag => tag.addEventListener('change', helperTag));
 }
 
-function displayFilteredRecipes() {
-  allRecipesPage.innerHTML = ''
+function helperTag() {
+  if(!allRecipesPage.classList.contains("hidden")) {
+    displayFilteredRecipes(allRecipesPage)
+  } else if(!favorites.classList.contains("hidden")) {
+    displayFilteredRecipes(favorites)
+  }
+}
+
+function helperName() {
+  if(!allRecipesPage.classList.contains("hidden")) {
+    displayNameFilteredRecipes(allRecipesPage)
+  } else if(!favorites.classList.contains("hidden")) {
+    displayNameFilteredRecipes(favorites)
+  }
+}
+
+function helperIngredient() {
+  if(!allRecipesPage.classList.contains("hidden")) {
+    displayIngredientFilteredRecipe(allRecipesPage)
+  } else if(!favorites.classList.contains("hidden")) {
+    displayIngredientFilteredRecipe(favorites)
+  }
+}
+
+function displayFilteredRecipes(elementToBeChanged) {
+  elementToBeChanged.innerHTML = ''
   let filteredTags = recipeRepository.filterRecipeByTag(tag1Ddl.value, tag2Ddl.value, tag3Ddl.value)
   filteredTags.forEach(recipe => {
-    allRecipesPage.innerHTML +=
+    elementToBeChanged.innerHTML +=
     `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
   })
 
 }
 
 
-function displayNameFilteredRecipes(e) {
-  allRecipesPage.innerHTML = ''
-  let filteredNames = recipeRepository.filterRecipeByName(e.target.value)
+function displayNameFilteredRecipes(elementToBeChanged) {
+  elementToBeChanged.innerHTML = ''
+  let filteredNames = recipeRepository.filterRecipeByName(nameDdl.value)
   filteredNames.forEach(recipe => {
-    allRecipesPage.innerHTML +=
+    elementToBeChanged.innerHTML +=
     `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
   })
 }
 
-function displayIngredientFilteredRecipe(e) {
-  allRecipesPage.innerHTML = ''
-  let filteredIngredients = recipeRepository.filterRecipeByIngredients(e.target.value)
+function displayIngredientFilteredRecipe(elementToBeChanged) {
+  elementToBeChanged.innerHTML = ''
+  let filteredIngredients = recipeRepository.filterRecipeByIngredients(ingredientsDdl.value)
   filteredIngredients.forEach(recipe => {
-    allRecipesPage.innerHTML +=
+    elementToBeChanged.innerHTML +=
     `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
   })
 }

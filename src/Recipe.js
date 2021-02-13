@@ -20,7 +20,7 @@ class Recipe {
   }
 
   returnInstructions() {
-    return this.instructions.map(instruction => `Step ${instruction.number}: ${instruction.instruction}`);
+    return this.instructions.map(instruction => `Step ${instruction.number}: ${instruction.instruction} `);
   }
 
 }
