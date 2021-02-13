@@ -1,5 +1,5 @@
-const Recipe = require('./Recipe');
-const User = require('./User');
+// const Recipe = require('./Recipe');
+// const User = require('./User');
 
 class RecipeRepo {
   constructor(recipeData, userData, ingredientsData) {
@@ -8,22 +8,27 @@ class RecipeRepo {
   }
 
   matchTags(tags) {
-    this.recipes = this.recipes.filter(recipe => {
-      return tags.filter(tag => {
-        return recipe.tags.includes(tag);
-      });
-    });
+    return tags.reduce((acc, tag) => {
+      acc.push(...(this.recipes.filter(recipe => recipe.tags.includes(tag))));
+      return acc;
+    }, []);
   }
-
+    
+    
   matchIngredient(ingredientId) {
-    this.recipes = this.recipes.filter(recipe =>
-      recipe.ingredients.filter(ingredient => ingredient.id === ingredientId));
+    return this.recipes.filter(recipe => {
+      return recipe.ingredients.find(ingredient => {
+        console.log(ingredient.id === ingredientId);
+        return ingredient.id === ingredientId
+      });
+    })
   }
-
+      
   matchName(name) {
-    this.recipes = this.recipes.filter(recipe => recipe.name === name);
+    return this.recipes.filter(recipe => recipe.name.includes(name));
   }
 }
+    
 
-module.exports = RecipeRepo;
+// module.exports = RecipeRepo;
 //userData.sort((a, b) => 0.5 - Math.random())[0];
