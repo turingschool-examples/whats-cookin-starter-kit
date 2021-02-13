@@ -21,16 +21,31 @@ describe('User', () => {
     user.addRecipeToFavs(recipeRepository.recipes[0])
     expect(user.favoriteRecipes).to.deep.equal([recipeRepository.recipes[0]])
     user.addRecipeToFavs(recipeRepository.recipes[1])
-    expect(user.favoriteRecipes).to.deep.equal([recipeRepository.recipes[0], recipeRepository.recipes[0]])
+    expect(user.favoriteRecipes).to.deep.equal([recipeRepository.recipes[0], recipeRepository.recipes[1]])
 
   })
 
-  it.skip('should be albe to filter by name', () => {
+  it('should be able to remove recipes from its array of favorites', () => {
+    let user = new User(data.usersData[0], data.ingredientsData)
+    let recipeRepository = new RecipeRepository(data.recipeData, data.ingredientsData)
+    
+    user.addRecipeToFavs(recipeRepository.recipes[0])
+    user.removeRecipeFromFavs(recipeRepository.recipes[0])
+
+    expect(user.favoriteRecipes).to.deep.equal([]);
+  })
+
+  it('should be able to add recipes to its list of recipes to cook', () => {
+    let user = new User(data.usersData[0], data.ingredientsData)
+    let recipeRepository = new RecipeRepository(data.recipeData, data.ingredientsData)
+
+    user.addRecipeToCook(recipeRepository.recipes[0])
+    expect(user.recipesToCook).to.deep.equal([recipeRepository.recipes[0]])
+    user.addRecipeToCook(recipeRepository.recipes[1])
+    expect(user.recipesToCook).to.deep.equal([recipeRepository.recipes[0], recipeRepository.recipes[1]])
 
   })
 
-  it.skip('should be able to filter by one or more ingredient', () => {
-
-  })
+  
 
 })
