@@ -161,6 +161,11 @@ main {
 
 /* INTERACTIVE-AREA */
 
+.interactive-area {
+  display: flex;
+  height: 45%;
+}
+
 .my-list-container {
   text-align: center;
   height: 10%;
@@ -199,8 +204,8 @@ input[type="radio"] {
   height: 20px;
 }
 
-.tag-container > label:hover, 
-.tag-container > input:checked + label {
+.tag-label-checked, 
+.tag-container > label:hover {
   background-color: #ccfab1;  
   font-size: 1.001em;
 }
@@ -223,6 +228,7 @@ input[type="radio"] {
   height: 100%;
 } 
 /* UNFEATURED RECIPE */
+
 .recipe {
   display: flex;
   flex-direction: column;
@@ -248,7 +254,7 @@ input[type="radio"] {
 
 }
 
-/* Recipe When hovered */
+/* RECIPE WHEN HOVERED */
 
 .recipe-card:hover .recipe,
 .recipe-card:hover .recipe-img {
@@ -268,6 +274,21 @@ input[type="radio"] {
   border-radius: 35%;
   transform: translateX(-15%);
 }
+
+/* RECIPE INFO */
+
+.recipe-title {
+  font-size: 1.25em;
+  margin: 10% 2% 0px 5%;
+  color: inherit;
+  width: 75%;
+}
+
+.recipe-ingredients {
+  margin: 5% 5px 10px 10px;
+  color: inherit;
+}
+
 /* RECIPE BUTTONS */
 .favorite-label {
   align-self: flex-end;
@@ -295,34 +316,32 @@ input[type="radio"] {
 }
 
 
+/* CHANGE PAGE ARROWS */
 
-/* RECIPE INFO */
-
-.recipe-title {
-  font-size: 1.25em;
-  margin: 10% 2% 0px 5%;
-  color: inherit;
-  width: 75%;
+.arrow {
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  color: #4eac17b2;
+  margin-top: -31px;
+  position: absolute;
+}
+  
+.right {
+  border-bottom: 3px solid;
+  border-left: 3px solid;
+  transform: rotate(-135deg);
+  right: 3%;
 }
 
-.recipe-ingredients {
-  margin: 5% 5px 10px 10px;
-  color: inherit;
+.left {
+  border-bottom: 3px solid;
+  border-left: 3px solid;
+  transform: rotate(45deg);
+  left: 15%;
 }
 
-/* HIDDEN */
-.hidden {
-  display: none;
-} 
-
-.vis-hidden {
-  visibility: hidden;
-}
-
-.interactive-area {
-  display: flex;
-  height: 45%;
-}
+/* RECIPE CARD COLORS */
 
 .cyan-card {
   background-color: #B5DDD1;
@@ -348,26 +367,11 @@ input[type="radio"] {
   background-color: #FDBCCF;
   box-shadow: 0px 0px 2px 2px #FDBCCF;
 }
+/* HIDDEN */
+.hidden {
+  display: none;
+} 
 
-.arrow {
-  cursor: pointer;
-  width: 48px;
-  height: 48px;
-  color: #4eac17b2;
-  margin-top: -31px;
-  position: absolute;
-}
-  
-.right {
-  border-bottom: 3px solid;
-  border-left: 3px solid;
-  transform: rotate(-135deg);
-  right: 3%;
-}
-
-.left {
-  border-bottom: 3px solid;
-  border-left: 3px solid;
-  transform: rotate(45deg);
-  left: 15%;
+.vis-hidden {
+  visibility: hidden;
 }
