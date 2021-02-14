@@ -1,4 +1,4 @@
-const user = new User(chooseRandomUser);
+const user = new User(chooseRandomUser());
 const allRecipesArray = [];
 const allIngredientsArray = [];
 let allTags = [];
@@ -22,6 +22,9 @@ const addToFavoritesButton = document.getElementById('addToFavoritesButton');
 const addToCookButton = document.getElementById('addToCookButton');
 const favoritesButton = document.getElementById('favoriteRecipesButton')
 const recipesToCookButton = document.getElementById('recipesToCookButton');
+const myPantryButton = document.getElementById("myPantryButton");
+const filterButtons = document.getElementById("filterButtons");
+const nameDisplay = document.getElementById("userName");
 
 
 allRecipesButton.addEventListener("click", allRecipesHelper);
@@ -37,7 +40,6 @@ addToCookButton.addEventListener('click', pushToCookList);
 
 
 function loadAllRecipes() {
-  chooseRandomUser();
   createRecipes();
   createIngredients();
   generateRandomRecipe();
@@ -48,36 +50,49 @@ function loadAllRecipes() {
   loadNamesArray();
   createIngredientsArray();
   loadIngredientsArray();
+  displayUserName();
+}
+
+function displayUserName() {
+  nameDisplay.innerText = `${user.name}`
 }
 
 function addToCookHelper() {
-  toggleButtonText(recipesToCookButton, "Recipes to Cook")
+  toggleButtonText(recipesToCookButton, "Recipes to Cook", favoritesButton, allRecipesButton, myPantryButton)
   displayAllRecipesPage(user.recipesToCookArray)
   recipeRepository = new RecipeRepository(user.recipesToCookArray)
 }
 
 function favoriteRecipesHelper() {
-toggleButtonText(favoritesButton, "Favorite Recipes")
+toggleButtonText(favoritesButton, "Favorite Recipes", recipesToCookButton, allRecipesButton, myPantryButton)
   displayAllRecipesPage(user.favoriteRecipesArray)
   recipeRepository = new RecipeRepository(user.favoriteRecipesArray)
 }
 
 function allRecipesHelper() {
-  toggleButtonText(allRecipesButton, "All Recipes")
+  toggleButtonText(allRecipesButton, "All Recipes", favoritesButton, recipesToCookButton, myPantryButton)
   displayAllRecipesPage(allRecipesArray)
 }
 
-function toggleButtonText(element, innerText) {
+function toggleButtonText(element, innerText, buttonToHide, buttonToHide2, buttonToHide3) {
   if(element.innerHTML === innerText) {
     element.innerHTML = "Home";
   } else {
     element.innerHTML = innerText;
   }
+  buttonToHide.classList.toggle("hidden")
+  buttonToHide2.classList.toggle("hidden")
+  buttonToHide3.classList.toggle("hidden")
+  filterButtons.classList.toggle("hidden")
+  addToFavoritesButton.classList.add("hidden")
+  addToCookButton.classList.add('hidden')
 }
 
 function chooseRandomUser() {
   let randomUser = usersData[Math.floor(Math.random() * usersData.length)]
+
   return randomUser;
+
 }
 
 function createRecipes() {
@@ -111,8 +126,6 @@ function displayRandomRecipe() {
 function displayAllRecipesPage(array) {
   allRecipesPage.classList.toggle("hidden");
   randomRecipes.classList.toggle("hidden");
-  addToFavoritesButton.classList.toggle("hidden")
-  addToCookButton.classList.toggle('hidden')
   displayAllRecipeImages(array);
 }
 
@@ -132,6 +145,8 @@ function displayRecipeInfo() {
       recipeToBePushed = recipe;
     }
   })
+  addToFavoritesButton.classList.remove("hidden")
+  addToCookButton.classList.remove('hidden')
 }
 
 function recipeCardDisplay(id) {
@@ -247,10 +262,8 @@ function displayIngredientFilteredRecipe(elementToBeChanged) {
 
 function pushToFavorites() {
   user.favoriteRecipes(recipeToBePushed);
-  console.log(user.favoriteRecipesArray);
 }
 
 function pushToCookList() {
   user.recipesToCook(recipeToBePushed);
-  console.log(user.recipesToCookArray);
 }

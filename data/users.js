@@ -7603,7 +7603,6 @@ let usersData = [
 ]
 
 if (typeof module !== 'undefined') {
-  module.exports = {
-    usersData
+  module.exports = { usersData
   }
 }
