@@ -1,4 +1,5 @@
 const user = new User(chooseRandomUser());
+const pantry = new Pantry(user.pantry)
 const allRecipesArray = [];
 const allIngredientsArray = [];
 let allTags = [];
@@ -25,7 +26,8 @@ const recipesToCookButton = document.getElementById('recipesToCookButton');
 const myPantryButton = document.getElementById("myPantryButton");
 const filterButtons = document.getElementById("filterButtons");
 const nameDisplay = document.getElementById("userName");
-
+const recipeToBeCookedButton = document.getElementById("recipeToBeCookedButton");
+const recipeCookedText = document.getElementById("cookRecipeText");
 
 allRecipesButton.addEventListener("click", allRecipesHelper);
 window.addEventListener("load", loadAllRecipes);
@@ -37,7 +39,8 @@ nameDdl.addEventListener('change', helperName);
 ingredientsDdl.addEventListener('change', helperIngredient);
 addToFavoritesButton.addEventListener('click', pushToFavorites);
 addToCookButton.addEventListener('click', pushToCookList);
-
+myPantryButton.addEventListener('click', displayPantryIngredients)
+recipeToBeCookedButton.addEventListener('click', cookRecipe)
 
 function loadAllRecipes() {
   createRecipes();
@@ -53,6 +56,12 @@ function loadAllRecipes() {
   displayUserName();
 }
 
+function cookRecipe() {
+  // pantry.checkUserIngredients(recipeToBePushed);
+  console.log(pantry)
+  recipeCookedText.innerText = `${pantry.checkUserIngredients(recipeToBePushed)}`
+}
+
 function displayUserName() {
   nameDisplay.innerText = `${user.name}`
 }
@@ -61,6 +70,7 @@ function addToCookHelper() {
   toggleButtonText(recipesToCookButton, "Recipes to Cook", favoritesButton, allRecipesButton, myPantryButton)
   displayAllRecipesPage(user.recipesToCookArray)
   recipeRepository = new RecipeRepository(user.recipesToCookArray)
+  recipeToBeCookedButton.classList.toggle("hidden")
 }
 
 function favoriteRecipesHelper() {
@@ -143,6 +153,7 @@ function displayRecipeInfo() {
     if(clickedRecipeImage && recipe.id === Number(clickedRecipeImage.id)){
       recipeCardDisplay(recipe.id)
       recipeToBePushed = recipe;
+      console.log(recipeToBePushed)
     }
   })
   addToFavoritesButton.classList.remove("hidden")
@@ -258,6 +269,11 @@ function displayIngredientFilteredRecipe(elementToBeChanged) {
     allRecipesPage.innerHTML +=
     `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
   })
+}
+
+function displayPantryIngredients() {
+  allRecipesPage.innerHTML = '';
+  allRecipesPage.innerHTML
 }
 
 function pushToFavorites() {

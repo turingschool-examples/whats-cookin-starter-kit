@@ -4,8 +4,12 @@ class Pantry {
     this.canCook = false;
   }
 
+  returnPantryIngredients() {
+
+  }
+
   checkUserIngredients(recipe) {
-  let result = "You can cook this!"
+  let result = "You cooked this!"
 	let missingIngredient;
 
    recipe.ingredients.forEach(recipeIngredient => {
