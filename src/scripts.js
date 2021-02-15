@@ -1,4 +1,4 @@
-const user = new User(chooseRandomUser());
+const user = new User(usersData[0]);
 const pantry = new Pantry(user.pantry)
 const allRecipesArray = [];
 const allIngredientsArray = [];
@@ -57,8 +57,7 @@ function loadAllRecipes() {
 }
 
 function cookRecipe() {
-  // pantry.checkUserIngredients(recipeToBePushed);
-  console.log(pantry)
+  recipeCookedText.classList.toggle('hidden')
   recipeCookedText.innerText = `${pantry.checkUserIngredients(recipeToBePushed)}`
 }
 
@@ -70,7 +69,6 @@ function addToCookHelper() {
   toggleButtonText(recipesToCookButton, "Recipes to Cook", favoritesButton, allRecipesButton, myPantryButton)
   displayAllRecipesPage(user.recipesToCookArray)
   recipeRepository = new RecipeRepository(user.recipesToCookArray)
-  recipeToBeCookedButton.classList.toggle("hidden")
 }
 
 function favoriteRecipesHelper() {
@@ -96,6 +94,8 @@ function toggleButtonText(element, innerText, buttonToHide, buttonToHide2, butto
   filterButtons.classList.toggle("hidden")
   addToFavoritesButton.classList.add("hidden")
   addToCookButton.classList.add('hidden')
+  recipeToBeCookedButton.classList.add('hidden')
+  recipeCookedText.classList.add("hidden")
 }
 
 function chooseRandomUser() {
@@ -148,6 +148,7 @@ function displayAllRecipeImages(array) {
 }
 
 function displayRecipeInfo() {
+  recipeToBeCookedButton.classList.toggle("hidden")
   const clickedRecipeImage = event.target.closest('.all-recipes-images');
   allRecipesArray.forEach(recipe => {
     if(clickedRecipeImage && recipe.id === Number(clickedRecipeImage.id)){
