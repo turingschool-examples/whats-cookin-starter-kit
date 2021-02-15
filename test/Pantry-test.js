@@ -25,9 +25,11 @@ describe('Pantry', function() {
   });
 
   it.only('check users pantry for ingredients', function() {
-    // console.log(ingredientsData)
     const pantry = new Pantry(userData[0].pantry)
-    console.log(pantry.checkUserIngredients(allRecipes[0]))
+    console.log(pantry.ingredients)
+    pantry.checkUserIngredients(allRecipes[4])
+    // pantry.cookMeal(allRecipes[0])
+    console.log(pantry.ingredients)
     expect(pantry).to.equal('test')
   });
 
