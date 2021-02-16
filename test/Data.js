@@ -4,24 +4,6 @@ const dummyRecipeData = [
     "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
     "ingredients": [
       {
-        "id": 11477,
-        "quantity": {
-          "amount": 1.5,
-          "unit": "c"
-        }
-      },
-      {
-        "id": 11297,
-        "quantity": {
-          "amount": 0.5,
-          "unit": "tsp"
-        }
-      } ] },
-  {
-    "id": 595736,
-    "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
-    "ingredients": [
-      {
         "id": 20081,
         "quantity": {
           "amount": 1.5,
@@ -631,7 +613,68 @@ const dummyRecipeData = [
     ],
     "name": "Mock Udi\u2019s Gluten Free Whole Grain Bread",
     "tags": []
-  }
+  }, {
+    "id": 595736,
+    "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
+    "ingredients": [
+      {
+        "id": 6150,
+        "quantity": {
+          "amount": 1.5,
+          "unit": "c"
+        }
+      },
+      {
+        "id": 2050,
+        "quantity": {
+          "amount": 0.5,
+          "unit": "tsp"
+        }
+      } ], 
+      "instructions": [
+        {
+          "instruction": "Grease or spray oil a 9\u00d75 inch loaf pan.Preheat oven to 170 \u2013 200\u00b0F (lowest possible).",
+          "number": 1
+        },
+        {
+          "instruction": "Mix warm water with brown rice syrup, molasses, and yeast in a cup larger than 8 oz., as it may bubble over; set aside until foamy on the top, no more than 5 minutes.In the bowl of your mixer, beat the eggs at high speed in a large mixing bowl until large bubbles form, about 20 seconds.",
+          "number": 2
+        },
+        {
+          "instruction": "Whisk together the dry ingredients; set aside.",
+          "number": 3
+        },
+        {
+          "instruction": "Add the oil, vinegar and yeast mixture to the egg whites and blend on low for a few seconds.",
+          "number": 4
+        },
+        {
+          "instruction": "Add dry ingredients all at once and mix on low speed until all dry ingredients are moistened. Then beat on high for 1 minute.",
+          "number": 5
+        },
+        {
+          "instruction": "Add dough batter to prepared pan and distribute and smooth the top using a rubber spatula. You'll want to meet all sides of the pan. If you miss the corners that will still be okay. It will fill in upon rising. To even out top, drop a few drops of filtered water on top, and spread evenly with a rubber spatula, or dip spatula in water several times.",
+          "number": 6
+        },
+        {
+          "instruction": "Place the bread pan in the oven. Turn oven off. Allow the dough to rise until the center is about 1/2\u201d over the top of the pan, about 22 minutes. It will rise more while the oven is heating and during baking.",
+          "number": 7
+        },
+        {
+          "instruction": "Remove pan from oven and preheat oven to 375\u00b0F.",
+          "number": 8
+        },
+        {
+          "instruction": "Place the pan on the center of the rack in the center of the oven and bake for about 45 minutes or more.",
+          "number": 9
+        },
+        {
+          "instruction": "Remove the loaf from the oven and immediately remove it from the pan (careful it will be hot), and set the loaf on a cooling rack to cool. If you do not remove it right away the steam will make the crust soggy.Slice off the two ends to allow the steam to escape, or it will begin to sink in on the sides and bottom.Once cooled, it will shrink a little bit. Slice it with an electric slicer, electric knife or serrated knife. You'll get about 13-16, depending upon how thick you slice it.",
+          "number": 10
+        }
+      ],
+      "name": "Mock Udi\u2019s Gluten Free Whole Grain Bread",
+      "tags": [] }
 ]
 
 const dummyIngredientData = [

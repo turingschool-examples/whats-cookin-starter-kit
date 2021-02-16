@@ -11,7 +11,7 @@ const userData = users.usersData
 
 
 
-describe.only('User', function() {
+describe('User', function() {
 
   it('should store favortied recipes', function() {
     const user = new User(userData[0]);

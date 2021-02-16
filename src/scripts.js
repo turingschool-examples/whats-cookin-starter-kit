@@ -1,4 +1,4 @@
-const user = new User(usersData[0]);
+const user = new User(chooseRandomUser());
 const pantry = new Pantry(user.pantry)
 const allRecipesArray = [];
 const allIngredientsArray = [];
