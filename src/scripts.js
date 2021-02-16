@@ -39,8 +39,10 @@ nameDdl.addEventListener('change', helperName);
 ingredientsDdl.addEventListener('change', helperIngredient);
 addToFavoritesButton.addEventListener('click', pushToFavorites);
 addToCookButton.addEventListener('click', pushToCookList);
-myPantryButton.addEventListener('click', displayPantryIngredients)
+myPantryButton.addEventListener('click', displayPantryHelper)
 recipeToBeCookedButton.addEventListener('click', cookRecipe)
+
+pantry.returnPantryIngredients()
 
 function loadAllRecipes() {
   createRecipes();
@@ -56,6 +58,7 @@ function loadAllRecipes() {
   displayUserName();
 }
 
+
 function cookRecipe() {
   recipeCookedText.classList.toggle('hidden')
   recipeCookedText.innerText = `${pantry.checkUserIngredients(recipeToBePushed)}`
@@ -63,6 +66,12 @@ function cookRecipe() {
 
 function displayUserName() {
   nameDisplay.innerText = `${user.name}`
+}
+
+function displayPantryHelper() {
+  toggleButtonText(myPantryButton, "My Pantry", favoritesButton, allRecipesButton, recipesToCookButton)
+  filterButtons.classList.toggle("hidden")
+  displayPantryIngredients();
 }
 
 function addToCookHelper() {
@@ -273,8 +282,11 @@ function displayIngredientFilteredRecipe(elementToBeChanged) {
 }
 
 function displayPantryIngredients() {
-  allRecipesPage.innerHTML = '';
-  allRecipesPage.innerHTML
+  randomRecipes.classList.toggle("hidden")
+  allRecipesPage.innerHTML = "";
+  allRecipesPage.classList.toggle("hidden")
+  allRecipesPage.innerText = pantry.returnPantryIngredients();
+
 }
 
 function pushToFavorites() {
