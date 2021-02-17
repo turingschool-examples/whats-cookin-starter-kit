@@ -3,26 +3,29 @@
   <head>
     <link href="styles.css" rel="stylesheet">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Whats Cookin</title>
   </head>
   <body>
     <h1>Whats Cookin</h1>
     <h2 id="userName"></h2>
-      <button id="myPantryButton">My Pantry</button>
-      <button id="favoriteRecipesButton">Favorite Recipes</button>
-      <button id="recipesToCookButton">Recipes to Cook</button>
+    <div class="buttons">
+      <button id="myPantryButton" class="button-spacing">My Pantry</button>
+      <button id="favoriteRecipesButton" class="button-spacing">Favorite Recipes</button>
+      <button id="recipesToCookButton" class="button-spacing">Recipes to Cook</button>
       <button id="allRecipesButton">All Recipes</button>
-    <div id="filterButtons" class="hidden">
-      <select id="dropdown1" class="tag-filter">
+    </div>
+    <div id="filterButtons" class="hidden buttons">
+      <select id="dropdown1" class="tag-filter button-spacing">
         <option value="defualt">Filter By Tag...</option>
       </select>
-      <select id="dropdown2" class="tag-filter">
+      <select id="dropdown2" class="tag-filter button-spacing">
         <option value="defualt">Filter By Tag...(optional)</option>
       </select>
-      <select id="dropdown3" class="tag-filter">
+      <select id="dropdown3" class="tag-filter button-spacing">
         <option value="defualt">Filter By Tag...(optional)</option>
       </select>
-      <select id="dropdownName" class="name-filter">
+      <select id="dropdownName" class="name-filter button-spacing">
         <option value="defualt">Filter By Name...</option>
       </select>
       <select id="dropdownIngredients" class="ingredients-filter">
@@ -30,10 +33,14 @@
       </select>
     </div>
     <section class="random-recipe" id="randomRecipes">Left Recipe</section>
-    <section class="hidden all-recipes" id="allRecipesPage"></section>
-    <button class="hidden" id="addToFavoritesButton">Add to Favorites</button>
-    <button class="hidden" id="addToCookButton">Add to Recipes to be Cooked</button>
-    <button class="hidden" id="recipeToBeCookedButton">Cook this Recipe</button>
+    <div class="all-recipes-style">
+      <section class="hidden all-recipes" id="allRecipesPage"></section>
+    </div>
+    <div class="buttons">
+      <button class="hidden button-spacing" id="addToFavoritesButton">Add to Favorites</button>
+      <button class="hidden button-spacing" id="addToCookButton">Add to Recipes to be Cooked</button>
+      <button class="hidden" id="recipeToBeCookedButton">Cook this Recipe</button>
+    </div>
     <p id="cookRecipeText"></p>
     <script type="text/javascript" src="../test/Data.js"></script>
     <script type="text/javascript" src="../data/users.js"></script>
