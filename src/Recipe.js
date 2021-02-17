@@ -16,7 +16,9 @@ class Recipe {
   returnTotalCost() {
     let costs = this.ingredients.map(ingredient => ingredientsData.find(i => i.id === ingredient.id).estimatedCostInCents * ingredient.quantity.amount);
     let totalCost = costs.reduce((total, currentValue) => total + currentValue);
-    return totalCost / 100;
+    let dollarCost = totalCost / 100;
+    let roundedCost = Math.round(dollarCost * 100) / 100
+    return roundedCost;
   }
 
   returnInstructions() {
