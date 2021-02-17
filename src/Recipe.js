@@ -10,7 +10,8 @@ class Recipe {
   }
 
   returnIngredients() {
-    return this.ingredients.map(ingredient => ingredientsData.find(i => i.id === ingredient.id).name);
+    let ingredientsToJoin = this.ingredients.map(ingredient => ingredientsData.find(i => i.id === ingredient.id).name);
+    return ingredientsToJoin.join(", ")
   }
 
   returnTotalCost() {
@@ -22,7 +23,8 @@ class Recipe {
   }
 
   returnInstructions() {
-    return this.instructions.map(instruction => `Step ${instruction.number}: ${instruction.instruction} `);
+    let instructionsToJoin = this.instructions.map(instruction => `Step ${instruction.number}: ${instruction.instruction} `);
+    return instructionsToJoin.join('')
   }
 
 }

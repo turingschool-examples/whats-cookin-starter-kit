@@ -57,8 +57,11 @@ function loadAllNeededOnPageLoad() {
 
 function chooseRandomUser() {
   let randomUser = usersData[Math.floor(Math.random() * usersData.length)];
-
   return randomUser;
+}
+
+function generateRandomRecipe() {
+  return allRecipesArray[Math.floor(Math.random() * allRecipesArray.length)];
 }
 
 function createRecipes() {
@@ -75,8 +78,88 @@ function createIngredients() {
   })
 }
 
-function generateRandomRecipe() {
-  return allRecipesArray[Math.floor(Math.random() * allRecipesArray.length)];
+function createTagArray() {
+  tempTags = []
+  allRecipesArray.forEach(recipe => tempTags.push(...recipe.tags))
+  allTags = [...new Set(tempTags)]
+  allTags.sort()
+}
+
+function createNamesArray() {
+  tempTags = []
+  allRecipesArray.forEach(recipe => tempTags.push(recipe.name))
+  allNames = [...new Set(tempTags)]
+  allNames.sort()
+}
+
+function createIngredientsArray() {
+  tempTags = []
+  allIngredientsArray.forEach(ingredient => tempTags.push(ingredient.name))
+  allInredients = [...new Set(tempTags)]
+  allInredients.sort()
+}
+
+function loadNamesArray() {
+  allNames.forEach(name => {
+      nameDdl.innerHTML +=
+      `<option value="${name}">${name}</option>`
+    })
+}
+
+function loadIngredientsArray() {
+  allInredients.forEach(ingredient => {
+      ingredientsDdl.innerHTML +=
+      `<option value="${ingredient}">${ingredient}</option>`
+    })
+}
+
+function loadTagOptions() {
+  allTags.forEach(tag => {
+    tagFilterDdl.forEach(ddl => {
+      ddl.innerHTML +=
+      `<option value="${tag}">${tag}</option>`
+    })
+  })
+  tagFilterDdl.forEach(tag => tag.addEventListener('change', helperTag));
+}
+
+function displayFilteredRecipes(elementToBeChanged) {
+  allRecipesPage.innerHTML = ''
+  let filteredTags = recipeRepository.filterRecipeByTag(tag1Ddl.value, tag2Ddl.value, tag3Ddl.value)
+  filteredTags.forEach(recipe => {
+    allRecipesPage.innerHTML +=
+    `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
+  })
+}
+
+function displayUserName() {
+  nameDisplay.innerText = `${user.name}`
+}
+
+function displayNameFilteredRecipes(elementToBeChanged) {
+  allRecipesPage.innerHTML = ''
+  let filteredNames = recipeRepository.filterRecipeByName(nameDdl.value)
+  filteredNames.forEach(recipe => {
+    allRecipesPage.innerHTML +=
+    `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
+  })
+}
+
+function displayIngredientFilteredRecipe(elementToBeChanged) {
+  allRecipesPage.innerHTML = ''
+  let filteredIngredients = recipeRepository.filterRecipeByIngredients(ingredientsDdl.value)
+  filteredIngredients.forEach(recipe => {
+    allRecipesPage.innerHTML +=
+    `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
+  })
+}
+
+function displayPantryIngredients() {
+  randomRecipes.classList.toggle("hidden")
+  allRecipesPage.innerHTML = "";
+  allRecipesPage.classList.toggle("hidden")
+  allRecipesPage.innerText = pantry.returnPantryIngredients();
+
 }
 
 function displayPantryHelper() {
@@ -102,29 +185,28 @@ function allRecipesHelper() {
   displayAllRecipesPage(allRecipesArray)
 }
 
-function cookRecipe() {
-  recipeCookedText.classList.toggle('hidden')
-  recipeCookedText.innerText = `${pantry.checkUserIngredients(recipeToBePushed)}`
-}
-
-function displayUserName() {
-  nameDisplay.innerText = `${user.name}`
-}
-
-function toggleButtonText(element, innerText, buttonToHide, buttonToHide2, buttonToHide3) {
-  if(element.innerHTML === innerText) {
-    element.innerHTML = "Home";
-  } else {
-    element.innerHTML = innerText;
+function helperTag() {
+  if(!allRecipesPage.classList.contains("hidden")) {
+    displayFilteredRecipes(allRecipesPage)
+  } else if(!favorites.classList.contains("hidden")) {
+    displayFilteredRecipes(favorites)
   }
-  buttonToHide.classList.toggle("hidden")
-  buttonToHide2.classList.toggle("hidden")
-  buttonToHide3.classList.toggle("hidden")
-  filterButtons.classList.toggle("hidden")
-  addToFavoritesButton.classList.add("hidden")
-  addToCookButton.classList.add('hidden')
-  recipeToBeCookedButton.classList.add('hidden')
-  recipeCookedText.classList.add("hidden")
+}
+
+function helperName() {
+  if(!allRecipesPage.classList.contains("hidden")) {
+    displayNameFilteredRecipes(allRecipesPage)
+  } else if(!favorites.classList.contains("hidden")) {
+    displayNameFilteredRecipes(favorites)
+  }
+}
+
+function helperIngredient() {
+  if(!allRecipesPage.classList.contains("hidden")) {
+    displayIngredientFilteredRecipe(allRecipesPage)
+  } else if(!favorites.classList.contains("hidden")) {
+    displayIngredientFilteredRecipe(favorites)
+  }
 }
 
 function displayRandomRecipe() {
@@ -152,17 +234,37 @@ function displayAllRecipeImages(array) {
 }
 
 function displayRecipeInfo() {
-  recipeToBeCookedButton.classList.toggle("hidden")
   const clickedRecipeImage = event.target.closest('.all-recipes-images');
   allRecipesArray.forEach(recipe => {
     if(clickedRecipeImage && recipe.id === Number(clickedRecipeImage.id)){
       recipeCardDisplay(recipe.id)
       recipeToBePushed = recipe;
-      console.log(recipeToBePushed)
     }
   })
   addToFavoritesButton.classList.remove("hidden")
   addToCookButton.classList.remove('hidden')
+  recipeToBeCookedButton.classList.remove("hidden")
+}
+
+function cookRecipe() {
+  recipeCookedText.classList.toggle('hidden')
+  recipeCookedText.innerText = `${pantry.checkUserIngredients(recipeToBePushed)}`
+}
+
+function toggleButtonText(element, innerText, buttonToHide, buttonToHide2, buttonToHide3) {
+  if(element.innerHTML === innerText) {
+    element.innerHTML = "Home";
+  } else {
+    element.innerHTML = innerText;
+  }
+  buttonToHide.classList.toggle("hidden")
+  buttonToHide2.classList.toggle("hidden")
+  buttonToHide3.classList.toggle("hidden")
+  filterButtons.classList.toggle("hidden")
+  addToFavoritesButton.classList.add("hidden")
+  addToCookButton.classList.add('hidden')
+  recipeToBeCookedButton.classList.add('hidden')
+  recipeCookedText.classList.add("hidden")
 }
 
 function recipeCardDisplay(id) {
@@ -177,112 +279,6 @@ function recipeCardDisplay(id) {
       </div>`
     }
   } )
-}
-
-function createTagArray() {
-  tempTags = []
-  allRecipesArray.forEach(recipe => tempTags.push(...recipe.tags))
-  allTags = [...new Set(tempTags)]
-  allTags.sort()
-}
-
-function createNamesArray() {
-  tempTags = []
-  allRecipesArray.forEach(recipe => tempTags.push(recipe.name))
-  allNames = [...new Set(tempTags)]
-  allNames.sort()
-}
-
-function loadNamesArray() {
-  allNames.forEach(name => {
-      nameDdl.innerHTML +=
-      `<option value="${name}">${name}</option>`
-    })
-}
-
-function createIngredientsArray() {
-  tempTags = []
-  allIngredientsArray.forEach(ingredient => tempTags.push(ingredient.name))
-  allInredients = [...new Set(tempTags)]
-  allInredients.sort()
-}
-
-function loadIngredientsArray() {
-  allInredients.forEach(ingredient => {
-      ingredientsDdl.innerHTML +=
-      `<option value="${ingredient}">${ingredient}</option>`
-    })
-}
-
-
-function loadTagOptions() {
-  allTags.forEach(tag => {
-    tagFilterDdl.forEach(ddl => {
-      ddl.innerHTML +=
-      `<option value="${tag}">${tag}</option>`
-    })
-  })
-  tagFilterDdl.forEach(tag => tag.addEventListener('change', helperTag));
-}
-
-function helperTag() {
-  if(!allRecipesPage.classList.contains("hidden")) {
-    displayFilteredRecipes(allRecipesPage)
-  } else if(!favorites.classList.contains("hidden")) {
-    displayFilteredRecipes(favorites)
-  }
-}
-
-function helperName() {
-  if(!allRecipesPage.classList.contains("hidden")) {
-    displayNameFilteredRecipes(allRecipesPage)
-  } else if(!favorites.classList.contains("hidden")) {
-    displayNameFilteredRecipes(favorites)
-  }
-}
-
-function helperIngredient() {
-  if(!allRecipesPage.classList.contains("hidden")) {
-    displayIngredientFilteredRecipe(allRecipesPage)
-  } else if(!favorites.classList.contains("hidden")) {
-    displayIngredientFilteredRecipe(favorites)
-  }
-}
-
-function displayFilteredRecipes(elementToBeChanged) {
-  allRecipesPage.innerHTML = ''
-  let filteredTags = recipeRepository.filterRecipeByTag(tag1Ddl.value, tag2Ddl.value, tag3Ddl.value)
-  filteredTags.forEach(recipe => {
-    allRecipesPage.innerHTML +=
-    `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
-  })
-}
-
-
-function displayNameFilteredRecipes(elementToBeChanged) {
-  allRecipesPage.innerHTML = ''
-  let filteredNames = recipeRepository.filterRecipeByName(nameDdl.value)
-  filteredNames.forEach(recipe => {
-    allRecipesPage.innerHTML +=
-    `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
-  })
-}
-
-function displayIngredientFilteredRecipe(elementToBeChanged) {
-  allRecipesPage.innerHTML = ''
-  let filteredIngredients = recipeRepository.filterRecipeByIngredients(ingredientsDdl.value)
-  filteredIngredients.forEach(recipe => {
-    allRecipesPage.innerHTML +=
-    `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
-  })
-}
-
-function displayPantryIngredients() {
-  randomRecipes.classList.toggle("hidden")
-  allRecipesPage.innerHTML = "";
-  allRecipesPage.classList.toggle("hidden")
-  allRecipesPage.innerText = pantry.returnPantryIngredients();
-
 }
 
 function pushToFavorites() {

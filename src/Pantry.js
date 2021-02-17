@@ -16,9 +16,9 @@ class Pantry {
           return acc;
         }, "")
         if(recipeUnit) {
-          return `${ingredient.amount} ${recipeUnit}s of ${ingredientName.name}`
+          return ` ${ingredient.amount} ${recipeUnit}s of ${ingredientName.name}`
         }
-        return `${ingredient.amount} ${ingredientName.name}`
+        return ` ${ingredient.amount} ${ingredientName.name}`
       })
       return ingredientInfo;
     }

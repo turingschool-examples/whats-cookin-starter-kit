@@ -88,3 +88,18 @@ h2 {
 .recipe-instructions {
   font-size: 15px;
 }
+
+@media screen and (max-width: 1000px){
+  .dropdown-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .all-recipes-images {
+    height: 25%;
+    width: 25%;
+    margin: 10px;
+    position: relative;
+  }
+}
