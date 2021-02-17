@@ -6,7 +6,7 @@ class RecipeRepository {
   }
 
   filterRecipeByTag(tag1, tag2, tag3) {
-    return this.recipes.filter(recipe => recipe.tags.includes(tag1) || recipe.tags.includes(tag2) || recipe.tags.includes(tag3))
+    return this.recipes.filter(recipe => recipe.tags.includes(tag1) || recipe.tags.includes(tag2) || recipe.tags.includes(tag3));
   }
 
   filterRecipeByName(name) {
@@ -25,11 +25,12 @@ class RecipeRepository {
   let recipeByIngredient = this.recipes.filter(recipes => {
     recipes.ingredients.filter(ingredientsByRecipe => {
       if(ingredientsByRecipe.id === id[0]){
-        tempRecipe.push(recipes)
+        tempRecipe.push(recipes);
       }
     })
   })
-  let finalRecipe = [...new Set(tempRecipe)]
+
+  let finalRecipe = [...new Set(tempRecipe)];
   return finalRecipe;
   }
 
