@@ -9,13 +9,13 @@ class Pantry {
       let ingredientName = ingredientsData.find(y => ingredient.ingredient === y.id)
       let recipeUnit = recipeData.reduce((acc, current) => {
         current.ingredients.forEach(r => {
-          if(r.id === ingredient.ingredient) {
+          if (r.id === ingredient.ingredient) {
             acc = r.quantity.unit;
           }
         })
         return acc;
       }, "")
-      if(recipeUnit) {
+      if (recipeUnit) {
         return ` ${ingredient.amount} ${recipeUnit} of ${ingredientName.name}`
       }
       return ` ${ingredient.amount} ${ingredientName.name}`
@@ -24,35 +24,37 @@ class Pantry {
   }
 
   checkUserIngredients(recipe) {
-  let result = "You cooked this!"
-	let missingIngredient;
-   recipe.ingredients.forEach(recipeIngredient => {
-      if(!this.ingredients.find(pantryIngredient => recipeIngredient.id === pantryIngredient.ingredient && recipeIngredient.quantity.amount <= pantryIngredient.amount)) {
-		missingIngredient = recipeIngredient;
+    let result = "You cooked this!"
+    let missingIngredient;
+    recipe.ingredients.forEach(recipeIngredient => {
+      if (!this.ingredients.find(pantryIngredient => recipeIngredient.id === pantryIngredient.ingredient && recipeIngredient.quantity.amount <= pantryIngredient.amount)) {
+        missingIngredient = recipeIngredient;
       }
     });
-	if(missingIngredient){
-		let qtyOnHand = 0;
-		let ingredientOnHand = this.ingredients.find(pantryIngredient => missingIngredient.id === pantryIngredient.ingredient);
-		if(ingredientOnHand) {
-			qtyOnHand = ingredientOnHand.amount;
-		}
-    let missingIngredientName = ingredientsData.find(ingredient => ingredient.id === missingIngredient.id).name;
-		let missingAmount = missingIngredient.quantity.amount - qtyOnHand;
-    this.canCook = false;
-	  result = `You can’t cook this, you need ${missingAmount} more ${missingIngredient.quantity.unit} of ${missingIngredientName}`;
-    return result;
-	}
+    if (missingIngredient) {
+      let qtyOnHand = 0;
+      let ingredientOnHand = this.ingredients.find(pantryIngredient => missingIngredient.id === pantryIngredient.ingredient);
+      if (ingredientOnHand) {
+        qtyOnHand = ingredientOnHand.amount;
+      }
+      let missingIngredientName = ingredientsData.find(ingredient => ingredient.id === missingIngredient.id).name;
+      let missingAmount = missingIngredient.quantity.amount - qtyOnHand;
+      this.canCook = false;
+      result = `You can’t cook this, you need ${missingAmount} more ${missingIngredient.quantity.unit} of ${missingIngredientName}`;
+      return result;
+    }
     this.canCook = true;
     this.cookMeal(recipe);
     return result;
   }
 
   cookMeal(recipe) {
-    if(this.canCook) {recipe.ingredients.forEach(recipeIngredient => {
-    let pantryIngredient = this.ingredients.find(pantryIngredient => pantryIngredient.ingredient === recipeIngredient.id);
-    pantryIngredient.amount -= recipeIngredient.quantity.amount;
-    });}
+    if (this.canCook) {
+      recipe.ingredients.forEach(recipeIngredient => {
+        let pantryIngredient = this.ingredients.find(pantryIngredient => pantryIngredient.ingredient === recipeIngredient.id);
+        pantryIngredient.amount -= recipeIngredient.quantity.amount;
+      });
+    }
   }
 }
 

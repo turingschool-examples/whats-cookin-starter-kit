@@ -8,7 +8,7 @@ const Recipe = require('../src/Recipe');
 const User = require('../src/User');
 const users = require('../data/users')
 const userData = users.usersData
-const Pantry = require ('../src/Pantry')
+const Pantry = require('../src/Pantry')
 const ingredients = require("../data/ingredients")
 ingredientsData = ingredients.ingredientsData
 

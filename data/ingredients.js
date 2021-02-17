@@ -1,5 +1,4 @@
-let ingredientsData = [
-  {
+let ingredientsData = [{
     "id": 20081,
     "name": "wheat flour",
     "estimatedCostInCents": 142
@@ -1233,7 +1232,7 @@ let ingredientsData = [
     "estimatedCostInCents": 613
   }
 ]
-if (typeof module !== 'undefined'){
+if (typeof module !== 'undefined') {
   module.exports = {
     ingredientsData
   }

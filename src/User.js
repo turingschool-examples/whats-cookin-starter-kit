@@ -8,13 +8,13 @@ class User {
   }
 
   favoriteRecipes(recipe) {
-    if(!this.favoriteRecipesArray.includes(recipe)) {
+    if (!this.favoriteRecipesArray.includes(recipe)) {
       this.favoriteRecipesArray.push(recipe);
     }
   }
 
   recipesToCook(recipe) {
-    if(!this.recipesToCookArray.includes(recipe)) {
+    if (!this.recipesToCookArray.includes(recipe)) {
       this.recipesToCookArray.push(recipe);
     }
   }

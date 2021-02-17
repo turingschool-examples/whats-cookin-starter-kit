@@ -1,4 +1,3 @@
-
 class Recipe {
   constructor(recipeObject) {
     this.id = recipeObject.id;
