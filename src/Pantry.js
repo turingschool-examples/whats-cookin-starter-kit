@@ -20,7 +20,6 @@ class Pantry {
         }
         return `${ingredient.amount} ${ingredientName.name}`
       })
-      console.log(ingredientInfo)
       return ingredientInfo;
     }
 

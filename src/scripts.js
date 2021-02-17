@@ -30,11 +30,10 @@ const recipeToBeCookedButton = document.getElementById("recipeToBeCookedButton")
 const recipeCookedText = document.getElementById("cookRecipeText");
 
 allRecipesButton.addEventListener("click", allRecipesHelper);
-window.addEventListener("load", loadAllRecipes);
+window.addEventListener("load", loadAllNeededOnPageLoad);
 allRecipesPage.addEventListener("click", displayRecipeInfo);
 favoritesButton.addEventListener("click", favoriteRecipesHelper);
 recipesToCookButton.addEventListener("click", addToCookHelper);
-
 nameDdl.addEventListener('change', helperName);
 ingredientsDdl.addEventListener('change', helperIngredient);
 addToFavoritesButton.addEventListener('click', pushToFavorites);
@@ -42,9 +41,7 @@ addToCookButton.addEventListener('click', pushToCookList);
 myPantryButton.addEventListener('click', displayPantryHelper)
 recipeToBeCookedButton.addEventListener('click', cookRecipe)
 
-pantry.returnPantryIngredients()
-
-function loadAllRecipes() {
+function loadAllNeededOnPageLoad() {
   createRecipes();
   createIngredients();
   generateRandomRecipe();
@@ -58,14 +55,28 @@ function loadAllRecipes() {
   displayUserName();
 }
 
+function chooseRandomUser() {
+  let randomUser = usersData[Math.floor(Math.random() * usersData.length)];
 
-function cookRecipe() {
-  recipeCookedText.classList.toggle('hidden')
-  recipeCookedText.innerText = `${pantry.checkUserIngredients(recipeToBePushed)}`
+  return randomUser;
 }
 
-function displayUserName() {
-  nameDisplay.innerText = `${user.name}`
+function createRecipes() {
+  recipeData.forEach((recipe, i) => {
+    let recipeToBeCreated = new Recipe(recipeData[i]);
+    allRecipesArray.push(recipeToBeCreated);
+  })
+}
+
+function createIngredients() {
+  ingredientsData.forEach((ingredient, i) => {
+    let ingredientToBePushed = new Ingredient(ingredientsData[i]);
+    allIngredientsArray.push(ingredientToBePushed);
+  })
+}
+
+function generateRandomRecipe() {
+  return allRecipesArray[Math.floor(Math.random() * allRecipesArray.length)];
 }
 
 function displayPantryHelper() {
@@ -91,6 +102,15 @@ function allRecipesHelper() {
   displayAllRecipesPage(allRecipesArray)
 }
 
+function cookRecipe() {
+  recipeCookedText.classList.toggle('hidden')
+  recipeCookedText.innerText = `${pantry.checkUserIngredients(recipeToBePushed)}`
+}
+
+function displayUserName() {
+  nameDisplay.innerText = `${user.name}`
+}
+
 function toggleButtonText(element, innerText, buttonToHide, buttonToHide2, buttonToHide3) {
   if(element.innerHTML === innerText) {
     element.innerHTML = "Home";
@@ -105,31 +125,6 @@ function toggleButtonText(element, innerText, buttonToHide, buttonToHide2, butto
   addToCookButton.classList.add('hidden')
   recipeToBeCookedButton.classList.add('hidden')
   recipeCookedText.classList.add("hidden")
-}
-
-function chooseRandomUser() {
-  let randomUser = usersData[Math.floor(Math.random() * usersData.length)]
-
-  return randomUser;
-
-}
-
-function createRecipes() {
-  recipeData.forEach((recipe, i) => {
-    let recipeToBeCreated = new Recipe(recipeData[i]);
-    allRecipesArray.push(recipeToBeCreated);
-  })
-}
-
-function createIngredients() {
-  ingredientsData.forEach((ingredient, i) => {
-    let ingredientToBePushed = new Ingredient(ingredientsData[i]);
-    allIngredientsArray.push(ingredientToBePushed);
-  })
-}
-
-function generateRandomRecipe() {
-  return allRecipesArray[Math.floor(Math.random() * allRecipesArray.length)];
 }
 
 function displayRandomRecipe() {
@@ -174,10 +169,12 @@ function recipeCardDisplay(id) {
   allRecipesArray.forEach(recipe => {
     if(recipe.id === id) {
       allRecipesPage.innerHTML =
-      `<section class="recipe-name">${recipe.name}</section>
-       <section class="recipe-ingredients">${recipe.returnIngredients()}</section>
-       <section class="recipe-cost">${recipe.returnTotalCost()}</section>
-       <section class="recipe-instructions" >${recipe.returnInstructions()}</section>`
+      `<div class="recipe-card">
+        <section class="recipe-name card-text">${recipe.name}</section>
+        <section class="recipe-ingredients card-text">Ingredients: ${recipe.returnIngredients()}</section>
+        <section class="recipe-cost card-text">Price: $${recipe.returnTotalCost()}</section>
+        <section class="recipe-instructions card-text">Instructions: ${recipe.returnInstructions()}</section>
+      </div>`
     }
   } )
 }
@@ -259,7 +256,6 @@ function displayFilteredRecipes(elementToBeChanged) {
     allRecipesPage.innerHTML +=
     `<img id=${recipe.id} class="all-recipes-images" src=${recipe.image}>`;
   })
-
 }
 
 

@@ -60,3 +60,31 @@ h2 {
 .hidden {
   display: none;
 }
+
+
+.recipe-card {
+  display: block;
+  text-align: center;
+}
+
+.card-text {
+  margin-bottom: 1em;
+}
+
+.recipe-name {
+  font-size: 43px;
+  margin-top: 1em;
+}
+
+.recipe-ingredients {
+  font-size: 26px;
+}
+
+.recipe-cost {
+  font-size: 22px;
+  font-style: bold;
+}
+
+.recipe-instructions {
+  font-size: 15px;
+}
