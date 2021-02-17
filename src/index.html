@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,10 +12,10 @@
     <h1>Whats Cookin</h1>
     <h2 id="userName"></h2>
     <div class="buttons">
-      <button id="myPantryButton" class="button-spacing">My Pantry</button>
-      <button id="favoriteRecipesButton" class="button-spacing">Favorite Recipes</button>
-      <button id="recipesToCookButton" class="button-spacing">Recipes to Cook</button>
-      <button id="allRecipesButton">All Recipes</button>
+      <button id="myPantryButton" class="button-styling button-spacing">My Pantry</button>
+      <button id="favoriteRecipesButton" class="button-styling button-spacing">Favorite Recipes</button>
+      <button id="recipesToCookButton" class="button-styling button-spacing">Recipes to Cook</button>
+      <button id="allRecipesButton" class="button-styling">All Recipes</button>
     </div>
     <div id="filterButtons" class="hidden buttons dropdown-buttons">
       <select id="dropdown1" class="tag-filter button-spacing">
@@ -37,11 +39,11 @@
       <section class="hidden all-recipes" id="allRecipesPage"></section>
     </div>
     <div class="buttons">
-      <button class="hidden button-spacing" id="addToFavoritesButton">Add to Favorites</button>
-      <button class="hidden button-spacing" id="addToCookButton">Add to Recipes to be Cooked</button>
-      <button class="hidden" id="recipeToBeCookedButton">Cook this Recipe</button>
+      <button class="button-styling hidden button-spacing" id="addToFavoritesButton">Add to Favorites</button>
+      <button class="button-styling hidden button-spacing" id="addToCookButton">Add to Recipes to be Cooked</button>
+      <button class="button-styling hidden" id="recipeToBeCookedButton">Cook this Recipe</button>
     </div>
-    <p id="cookRecipeText"></p>
+    <p class="recipe-cooked-text" id="cookRecipeText"></p>
     <script type="text/javascript" src="../test/Data.js"></script>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>

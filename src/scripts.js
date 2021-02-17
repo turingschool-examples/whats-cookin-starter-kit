@@ -133,7 +133,7 @@ function displayFilteredRecipes(elementToBeChanged) {
 }
 
 function displayUserName() {
-  nameDisplay.innerText = `${user.name}`
+  nameDisplay.innerText = `Welcome ${user.name}`
 }
 
 function displayNameFilteredRecipes(elementToBeChanged) {
@@ -158,7 +158,8 @@ function displayPantryIngredients() {
   randomRecipes.classList.toggle("hidden")
   allRecipesPage.innerHTML = "";
   allRecipesPage.classList.toggle("hidden")
-  allRecipesPage.innerText = pantry.returnPantryIngredients();
+  allRecipesPage.innerHTML =
+  `<p class="pantry-text">Your pantry: ${pantry.returnPantryIngredients()}</p>`
 
 }
 
@@ -214,9 +215,9 @@ function displayRandomRecipe() {
   const randomRecipe2 = generateRandomRecipe()
   randomRecipes.innerHTML =
     `<img id=${randomRecipe.id} class="cover-recipes-images" src=${randomRecipe.image}>
-      <p class="recipe-name">${randomRecipe.name}</p>
+      <p class="random-recipe-name">${randomRecipe.name}</p>
      <img id=${randomRecipe2.id} class="cover-recipes-images" src=${randomRecipe2.image}>
-      <p class="recipe-name">${randomRecipe2.name}</p>`
+      <p class="random-recipe-name">${randomRecipe2.name}</p>`
 }
 
 function displayAllRecipesPage(array) {
@@ -241,9 +242,11 @@ function displayRecipeInfo() {
       recipeToBePushed = recipe;
     }
   })
-  addToFavoritesButton.classList.remove("hidden")
-  addToCookButton.classList.remove('hidden')
-  recipeToBeCookedButton.classList.remove("hidden")
+  if(clickedRecipeImage){
+    addToFavoritesButton.classList.remove("hidden")
+    addToCookButton.classList.remove('hidden')
+    recipeToBeCookedButton.classList.remove("hidden")
+  }
 }
 
 function cookRecipe() {

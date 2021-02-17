@@ -5,23 +5,23 @@ class Pantry {
   }
 
   returnPantryIngredients() {
-      let ingredientInfo = this.ingredients.map(ingredient => {
-        let ingredientName = ingredientsData.find(y => ingredient.ingredient === y.id)
-        let recipeUnit = recipeData.reduce((acc, current) => {
-          current.ingredients.forEach(r => {
-            if(r.id === ingredient.ingredient) {
-              acc = r.quantity.unit;
-            }
-          })
-          return acc;
-        }, "")
-        if(recipeUnit) {
-          return ` ${ingredient.amount} ${recipeUnit}s of ${ingredientName.name}`
-        }
-        return ` ${ingredient.amount} ${ingredientName.name}`
-      })
-      return ingredientInfo;
-    }
+    let ingredientInfo = this.ingredients.map(ingredient => {
+      let ingredientName = ingredientsData.find(y => ingredient.ingredient === y.id)
+      let recipeUnit = recipeData.reduce((acc, current) => {
+        current.ingredients.forEach(r => {
+          if(r.id === ingredient.ingredient) {
+            acc = r.quantity.unit;
+          }
+        })
+        return acc;
+      }, "")
+      if(recipeUnit) {
+        return ` ${ingredient.amount} ${recipeUnit} of ${ingredientName.name}`
+      }
+      return ` ${ingredient.amount} ${ingredientName.name}`
+    })
+    return ingredientInfo;
+  }
 
   checkUserIngredients(recipe) {
   let result = "You cooked this!"
