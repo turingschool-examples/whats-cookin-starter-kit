@@ -1,51 +1,108 @@
-# What's Cookin'? Starter Kit 
+## Whats Cookin
+---
 
-The details of this project are outlined in the <a href="https://frontend.turing.io/projects/whats-cookin.html" target="\__blank">project spec</a>.
-
-## Set Up 
-
-1. Within your group, decide on one person to have the project repository on their Github account. This person will *fork* this repository - on the top right corner of the page, click the fork button. 
-2. Both group members should then clone down the forked repository (make sure that everyone is added as a collaborator as well). Since you don't want your project to be named "whats-cookin-starter-kit", add an optional argument after the repo url when cloning. The command should look like this: `git clone [remote-address] [what you want to name the repo]`.
-3. Once you have cloned the repo, change into the directory and install the project dependencies. Run npm install to install project dependencies.
-4. Run open src/index.html in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page)
-5. Make sure both members of your team are collaborators on the forked repo.
-
-## Testing 
-
-There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran npm install, then the tooling you need to start testing is already installed (mocha and chai).
-
-## Linting Your Code 
-
-Run the command in your terminal npm run lint to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit, but that's ok - the linter is still running successfully.
-
-Your linter will look only at the JavaScript files you have within the src and the test directories.
+A [Front-End Project](https://frontend.turing.io/projects/whats-cookin.html) by [Matt McVey](https://github.com/mattmcvey) and [Owen Hallgren](https://github.com/owenhallgren)
 
 
-## Data Model
-### Users
-```js
-{
-  "id": [number],
-  "name": [string],
-  "pantry": [array of objects with amount and ingredient id properties]
-},
-```
 
-### Recipes
-```js
-{
-  "ingredients" [array of objects with ingredients ids(connection to ingredients), ingredient names, and quantity data],
-  "instructions": [array of objects with instructions properties and numbered steps],
-  "name": [string],
-  "tags": [array of strings representing info about the recipes]
-}
-```
+1. [Overview](#overview)
+2. [Learning Goals](#learning-goals)
+3. [Technologies](#technologies)
+4. [Features](#features)
+5. [Challenges](#challenges)
+6. [Wins](#wins)
+7. [Future Additions](#future-additions)
 
-### Ingredients
-```js
-{
-  "estimatedCostInCents": [number],
-  "id": [number -- connection to users and recipes],
-  "name": [string]
-}
-```
+
+## Overview
+
+This is a Turing School of Software and Design Module 2 project. This project was designed by us. Its intention is to be able to view a list of recipes. Based on those recipes, a randomly selected user can favorite recipes and add them to a page of recipes to cook. A user can view the ingredients they have in their pantry. When a recipe is selected the user can try to cook that dish. When a recipe can not be cooked, the user will be shown how many more ingredients will be needed. If they can cook it, the ingredients will be subtracted from their pantry.
+
+
+## Learning Goals
+
+* Get better with iterator methods.
+* Start a webpage from scratch without a comp to base it on
+* Increase understanding of DOM last
+* Work on test first classes
+* Craft code with clean style, using small functions that show trends toward DRYness and SRP
+
+
+## Technologies
+
+* HTML
+* CSS
+* Javascript
+* Git
+* GitHub
+
+---
+## Features
+
++ [Random Recipe on Page Load](#Random-Recipe)
++ [Clicked Recipe](#Clicked-Recipe)
++ [Save Recipe](#Save-Recipe)
++ [Filter](#Filter)
++ [Cook Recipe](#Cook-Recipe)
++ [Pantry](#Pantry)
+
+## Random Recipe
+
+On page load, two random recipes will be show to the user
+
+![](https://media.giphy.com/media/6CdU1UuIRCVB0DW4U2/giphy.gif)
+
+
+## Clicked Recipe
+When the user clicks on a recipe, the name, ingredients, price, and instructions will show to the user.
+![](https://media.giphy.com/media/A8awBMSoUFAwobaHX2/giphy.gif)
+
+
+## Save Recipe
+
+If the user clicks the favorite recipe or recipe to cook button, the current recipe will be added to the corresponding page.
+
+![](https://media.giphy.com/media/rGNFXpE4WFvveQS5MN/giphy.gif)
+
+---
+
+
+## Filter
+
+The user can filter any set of recipes by 1, 2, or 3 tags, the name, or the ingredients used.
+
+![](https://media.giphy.com/media/PRa0f767yMtEtwxeSc/giphy.gif)
+
+## Cook Recipe
+
+The user can attempt to cook any recipe. If the user can't cook the recipe, the page will tell the user what ingredients they need. If they can cook the recipe, the users pantry will be effected.
+
+![](https://media.giphy.com/media/p3cInIS6jLqVIRGS4h/giphy.gif)
+
+## Pantry
+
+The user can look in their pantry and see how much of each ingredient they have.
+
+![](https://media.giphy.com/media/vRimrMsxEbuK0tiN70/giphy.gif)
+
+
+## Challenges
+
+* Thinking test first
+* Full implementation on 1 web page
+* Using no 'for loops'
+* Learning iterator methods
+
+---
+## Wins
+
+* We got a working webpage
+* We are proud of the look of the site
+* Solid problem solving
+* Finding creative solutions to problems
+
+---
+## Future Additions
+* Animations
+* A back button on a recipe
+* More sad/happy test paths
