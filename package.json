@@ -17,7 +17,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack",
-    "test": "./node_modules/.bin/mocha",
+    "test": "mochapack 'test/**/*.js'",
     "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'"
   },
   "author": "Turing School of Software and Design",
