@@ -21,7 +21,7 @@ Run the command in your terminal npm run lint to run the linter on your JavaScri
 Your linter will look only at the JavaScript files you have within the src and the test directories.
 
 
-## Data Model
+## Data Model from Endpoints
 ### Users
 ```js
 {
