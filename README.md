@@ -25,15 +25,17 @@ Your linter will look only at the JavaScript files you have within the src and t
 ### Users
 ```js
 {
+ "name": [string],
   "id": [number],
-  "name": [string],
-  "pantry": [array of objects with amount and ingredient id properties]
+  "pantry": [array of objects with amount and ingredient properties]
 },
 ```
 
 ### Recipes
 ```js
 {
+  "id": [number],
+  "image": [string],
   "ingredients" [array of objects with ingredients ids(connection to ingredients), ingredient names, and quantity data],
   "instructions": [array of objects with instructions properties and numbered steps],
   "name": [string],
