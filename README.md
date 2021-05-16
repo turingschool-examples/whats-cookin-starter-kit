@@ -20,3 +20,34 @@ Run the command in your terminal npm run lint to run the linter on your JavaScri
 
 Your linter will look only at the JavaScript files you have within the src and the test directories.
 
+
+## Data Model from Endpoints
+### Users
+```js
+{
+ "name": [string],
+  "id": [number],
+  "pantry": [array of objects with amount and ingredient properties]
+},
+```
+
+### Recipes
+```js
+{
+  "id": [number],
+  "image": [string],
+  "ingredients" [array of objects with ingredients ids(connection to ingredients), ingredient names, and quantity data],
+  "instructions": [array of objects with instructions properties and numbered steps],
+  "name": [string],
+  "tags": [array of strings representing info about the recipes]
+}
+```
+
+### Ingredients
+```js
+{
+  "estimatedCostInCents": [number],
+  "id": [number -- connection to users and recipes],
+  "name": [string]
+}
+```
