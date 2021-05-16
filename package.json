@@ -11,6 +11,7 @@
     "html-webpack-plugin": "^4.5.1",
     "mocha": "^8.2.1",
     "mochapack": "^2.0.6",
+    "node-sass": "^5.0.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
     "webpack": "^4.31.0",
@@ -24,8 +25,5 @@
     "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'"
   },
   "author": "Turing School of Software and Design",
-  "license": "MIT",
-  "dependencies": {
-    "sass": "^1.32.13"
-  }
+  "license": "MIT"
 }
