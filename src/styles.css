@@ -18,7 +18,8 @@ main {
 
 .images-div {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 img {
@@ -28,6 +29,8 @@ img {
 /* <---------- FILTER BOX ----------> */
 .filter-article {
   flex-direction: column;
+  position: sticky;
+  top: 0;
 }
 
 /* <---------- NAV BAR ----------> */
@@ -60,9 +63,9 @@ nav ul li {
 }
 
 nav ul li:hover,
-nav ul li a.active {
-  color: #fff;
+nav ul li.active {
   background: black;
+  color: #fff;
 }
 
 
