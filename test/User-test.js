@@ -1,15 +1,12 @@
-const chai = require("chai");
-const expect = chai.expect;
-
-const Ingredient = require("../src/Ingredient");
-const User = require("../src/User");
+import { expect } from 'chai';
+import Ingredient from '../src/classes/Ingredient';
+import User = from "../src/User";
 
 describe("User", () => {
   let user
   beforeEach(() => {
-    const recipe = new Recipe(11297, "Saige O'Kon");
+    user = new User(11297, "Saige O'Kon", ["ge", "o", "i"]);
     });
-    // How can we pass different recipes ? Should we pass them as an arguments in our instances ? Or what other way we can assign an array of ingredients ?
     it('should be a function', () => {
 
       expect(User).to.be.function());
@@ -28,14 +25,20 @@ describe("User", () => {
   });
   it('should store related ingredients', () => {
 
-    expect(user.pantry).to.be.array());
+    expect(user.pantry).to.deep.equal(["ge", "o", "i"]));
   });
-  it('should store favorites recipes as an array', () => {
+  it('should be able to store favorites recipes', () => {
 
-    expect(user.favoriteRecipes).to.be.array());
+    user.addTofavoriteRecipe("eggs");
+
+    expect(user.favoriteRecipes).to.deep.equal(["eggs"]));
+    // expect(user.addToFavoriteRecipe())
   });
   it('should store all the required ingredients for the recipe', () => {
 
-    expect(user.recipesToCook).to.be.array());
+        user.addToRecipeCook("cookies");
+
+     expect(user.recipesToCook).to.deep.equal(["cookies"]));
+     // expect(user.addToRecipeCook());
   });
 });

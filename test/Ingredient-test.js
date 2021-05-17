@@ -1,7 +1,5 @@
-const chai = require("chai");
-const expect = chai.expect;
-
-const Ingredient = require("../src/Ingredient");
+import { expect } from 'chai';
+import Ingredient from '../src/classes/Ingredient';
 
 describe("Ingredient", () => {
   let ingredient
@@ -19,6 +17,7 @@ describe("Ingredient", () => {
   it('should be stored with an id number', () => {
 
     expect(ingredient.id).to.be.number());
+    expect(ingredient.id).to.queal(20081));
   });
   it('should store the name of the ingredient', () => {
 
