@@ -5,7 +5,7 @@ const Ingredient = require("../src/Ingredient");
 
 describe("Ingredient", function() {
   let ingredient
-    beforeEach(() => {
+  beforeEach(() => {
     const ingredient = new Ingredient(20081, "wheat flour", 142);
     });
     it('should be a function', function() {
