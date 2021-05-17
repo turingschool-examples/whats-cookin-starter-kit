@@ -6,7 +6,7 @@ describe("Recipe", () => {
   let ingredient, recipe
   beforeEach(() => {
     const ingredient = new Ingredient(1123, "eggs", 472);
-    const recipe = new Recipe(678353, "https://spoonacular.com/recipeImages/678353-556x370.jpg", "[{ "instruction": "Season the pork chops with salt and pepper", "number": 1}]???",  recipe, "Maple Dijon Apple Cider Grilled Pork Chops", "tags?");
+    const recipe = new Recipe(678353, "https://spoonacular.com/recipeImages/678353-556x370.jpg", [{ "instruction": "Season the pork chops with salt and pepper", "number": 1}???], "Maple Dijon Apple Cider Grilled Pork Chops", "tags?");
     });
     it('should be a function', () => {
 

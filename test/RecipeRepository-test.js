@@ -3,9 +3,10 @@ import RecipeRepository from '../src/classes/RecipeRepository';
 import Recipe from "../src/Recipe";
 
 describe('RecipeRepository', () => {
-  let recipeRepo
+  let recipeRepo, recipe
   beforeEach(() => {
-    const recipeRepo = new RecipeRepository(// how to pass an array from other module??)
+    recipe = new Recipe(678353, "https://spoonacular.com/recipeImages/678353-556x370.jpg", [{ "instruction": "Season the pork chops with salt and pepper", "number": 1}], "Maple Dijon Apple Cider Grilled Pork Chops", "tags?");
+    recipeRepo = new RecipeRepository(recipe);
   });
   it('should be a function', () => {
 

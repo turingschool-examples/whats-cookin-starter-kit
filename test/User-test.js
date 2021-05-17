@@ -1,11 +1,12 @@
 import { expect } from 'chai';
-import Ingredient from '../src/classes/Ingredient';
 import User = from "../src/User";
+import Ingredient from '../src/classes/Ingredient';
 
 describe("User", () => {
   let user
   beforeEach(() => {
-    user = new User(11297, "Saige O'Kon", ["ge", "o", "i"]);
+    user = new User(11297, "Saige O'Kon", ["ge", "o", "i"], ingredient);
+    ingredient = new Ingredient(18372, "bicarbonate of soda", 582);
     });
     it('should be a function', () => {
 
