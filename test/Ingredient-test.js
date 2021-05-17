@@ -1,22 +1,22 @@
 const chai = require("chai");
 const expect = chai.expect;
 
-const Ingredient = require("../src/Card");
+const Ingredient = require("../src/Ingredient");
 
 describe("Ingredient", function() {
   let ingredient
     beforeEach(() => {
-    const ingredient = new Ingredient(20081, "tortilla", 130);
+    const ingredient = new Ingredient(20081, "wheat flour", 142);
     });
     it('should be a function', function() {
 
-      expect(Ingredient).to.be.a('function');
+      expect(Ingredient).to.be.function());
     });
   it('should be an instance of Ingredient', function() {
 
     expect(ingredient).to.be.an.instanceof(Ingredient);
   });
-  it('should be store with an id number', function() {
+  it('should be stored with an id number', function() {
 
     expect(ingredient.id).to.be.number());
   });
