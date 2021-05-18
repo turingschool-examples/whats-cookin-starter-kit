@@ -12,36 +12,34 @@
       <ul>
         <li id="recipes">Recipes</li>
         <li id="favorites">Favorites</li>
-        <li id="shoppingList">Shopping List</li>
         <li id="recipesToCook">Recipes to Cook</li>
         <input type="text" class="recipe-search-bar" id="recipeSearchBar" placeholder="Search Recipes...">
       </ul>
     </nav>
-    <article class="filter-article">
-      <!-- filter box for tags -->
-      <aside class="filter-aside" id="filterBox"> 
-        <!-- I want checked boxes with the tags so you can select as many as you want? -->
-        <h1>Tag Box</h1>
-        <input type="checkbox" id="sideDish" name="side-dish" value="sidedish">
-        <label for="side-dish"> Side Dish</label><br>
-        <input type="checkbox" id="appetizer" name="appetizer" value="appetizer">
-        <label for="appetizer"> Appetizer</label><br>
-        <input type="checkbox" id="lunch" name="lunch" value="lunch">
-        <label for="lunch"> Lunch</label><br>
-        <input type="checkbox" id="dinner" name="dinner" value="dinner">
-        <label for="dinner"> Dinner</label><br>
-        <input type="checkbox" id="sauce" name="sauce" value="sauce">
-        <label for="sauce"> Sauce</label><br>
-        <input type="checkbox" id="breakfast" name="breakfast" value="breakfast">
-        <label for="breakfast"> Breakfast</label><br>
-        <input type="checkbox" id="salad" name="salad" value="salad">
-        <label for="salad"> Salad</label><br>
-        <input type="checkbox" id="condiment" name="condiment" value="condiment">
-        <label for="condiment"> Condiment</label><br>
-      </aside>
-    </article>
     <main>
-
+      <article class="filter-article">
+        <!-- filter box for tags -->
+        <aside class="filter-aside" id="filterBox"> 
+          <!-- I want checked boxes with the tags so you can select as many as you want? -->
+          <h1>Tag Box</h1>
+          <input type="checkbox" id="sideDish" name="side-dish" value="sidedish">
+          <label for="side-dish"> Side Dish</label><br>
+          <input type="checkbox" id="appetizer" name="appetizer" value="appetizer">
+          <label for="appetizer"> Appetizer</label><br>
+          <input type="checkbox" id="lunch" name="lunch" value="lunch">
+          <label for="lunch"> Lunch</label><br>
+          <input type="checkbox" id="dinner" name="dinner" value="dinner">
+          <label for="dinner"> Dinner</label><br>
+          <input type="checkbox" id="sauce" name="sauce" value="sauce">
+          <label for="sauce"> Sauce</label><br>
+          <input type="checkbox" id="breakfast" name="breakfast" value="breakfast">
+          <label for="breakfast"> Breakfast</label><br>
+          <input type="checkbox" id="salad" name="salad" value="salad">
+          <label for="salad"> Salad</label><br>
+          <input type="checkbox" id="condiment" name="condiment" value="condiment">
+          <label for="condiment"> Condiment</label><br>
+        </aside>
+      </article>
       <article class="recipe-cards">
         <!-- here is where the individual recipe 'cards' will live -->
         <div class="recipe-card">
@@ -49,43 +47,43 @@
           <p>Price</p>
           <p>Name</p>
           <button>View Recipe</button>
-          <button>Add to Recipes to Cook</button>
         </div>
         <div class="recipe-card">
           <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
           <p>Price</p>
           <p>Name</p>
           <button>View Recipe</button>
-          <button>Add to Recipes to Cook</button>
         </div>
         <div class="recipe-card">
           <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
           <p>Price</p>
           <p>Name</p>
           <button>View Recipe</button>
-          <button>Add to Recipes to Cook</button>
         </div>
         <div class="recipe-card">
           <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
           <p>Price</p>
           <p>Name</p>
           <button>View Recipe</button>
-          <button>Add to Recipes to Cook</button>
         </div>
         <div class="recipe-card">
           <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
           <p>Price</p>
           <p>Name</p>
           <button>View Recipe</button>
-          <button>Add to Recipes to Cook</button>
         </div>
         <div class="recipe-card">
           <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
           <p>Price</p>
           <p>Name</p>
           <button>View Recipe</button>
-          <button>Add to Recipes to Cook</button>
         </div>
+      </article>
+      <article class="favorite-page .hidden" id="favoritePage">
+
+      </article>
+      <article class="favorite-page .hidden" id="favoritePage">
+
       </article>
     </main>
   </body>
