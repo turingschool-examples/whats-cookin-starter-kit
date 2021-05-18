@@ -9,6 +9,10 @@ body {
   background-color: #fff;
   margin: 0;
   padding: 0;
+  /* position:fixed; */
+  /* z-index:10;
+  background:inherit; */
+  /* overflow-x:hidden; */
 }
 
 main {
@@ -22,6 +26,7 @@ main {
   align-items: center;    
   flex-wrap: wrap;
   justify-content: space-evenly;
+  margin-left: 10rem;
 }
 
 .recipe-card {
@@ -54,6 +59,9 @@ nav{
   padding-top: 1rem;
   position: sticky; 
   top: 0;
+  /* position:fixed; */
+  z-index:10;
+  background:inherit;
 }
 
 nav ul {
