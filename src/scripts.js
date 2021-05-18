@@ -13,8 +13,3 @@ viewRecipe.addEventListener('click', () => {
 closeButton.addEventListener('click', () => {
   modalBox.classList.remove('show')
 })
-
-
-// const modalBox = (element) => toggle(element)
-
-// const toggle = (element) => element.classList.toggle('hidden') 
