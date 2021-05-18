@@ -15,7 +15,7 @@ closeButton.addEventListener('click', () => {
 })
 
 
-// closeButton
+// 
 
 // const modalBox = (element) => toggle(element)
 
