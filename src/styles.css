@@ -25,10 +25,6 @@ main {
   margin-left: 10rem;
 }
 
-.recipe-card {
-
-}
-
 img {
   height: 250px;
   width: 250px;
@@ -47,6 +43,12 @@ img {
   width: 100vw;
   opacity: 0;
   pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.modal-container.show {
+  pointer-events: auto;
+  opacity: 1;
 }
 
 .modal {
@@ -125,7 +127,6 @@ nav ul li.active {
   background: black;
   color: #fff;
 }
-
 
 .hidden {
   display: none
