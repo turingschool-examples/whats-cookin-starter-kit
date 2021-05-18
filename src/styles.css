@@ -26,22 +26,20 @@ main {
 }
 
 .recipe-card {
-  
+
 }
 
 img {
   height: 250px;
   width: 250px;
 }
-/* <---------- FILTER BOX ----------> */
+/* <---------- TAG BOX ----------> */
 .filter-article {
   flex-direction: column;
   height: 14rem;
   width: 9rem;
-  position: sticky;
+  position: fixed;
   top: 0;
-  /* overflow:scroll;
-  overflow-x:hidden; */
 }
 
 /* <---------- NAV BAR ----------> */
