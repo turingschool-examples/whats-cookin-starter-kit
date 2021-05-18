@@ -22,6 +22,7 @@
         <aside class="filter-aside" id="filterBox"> 
           <!-- I want checked boxes with the tags so you can select as many as you want? -->
           <h1>Tag Box</h1>
+          <h1>RAWR</h1>
           <input type="checkbox" id="sideDish" name="side-dish" value="sidedish">
           <label for="side-dish"> Side Dish</label><br>
           <input type="checkbox" id="appetizer" name="appetizer" value="appetizer">
@@ -41,22 +42,22 @@
         </aside>
       </article>
       <article class="recipe-cards">
-        <!-- here is where the individual recipe 'cards' will live -->
-        <div class="recipe-card">
-          <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
-          <p>Price</p>
-          <p>Name</p>
-          <button id="viewRecipe">View Recipe</button>
-        </div>
-        <div class="modal-container">
+        <div class="modal-container hidden">
           <span class="modal">
             <h1>RECIPE NAME</h1>
             <p>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. In eius, amet eaque sit quibusdam officiis explicabo at quia totam dignissimos, aut aperiam aliquam natus! Ea ipsum quae eaque ipsam velit.
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti assumenda perspiciatis dolor dolorem dolores unde deserunt minima eum! Aperiam, soluta deserunt impedit accusamus exercitationem animi tenetur? Voluptatibus minima ab quibusdam.
             </p>
-            <button id="close">Close</button>
+            <button class="close" id="close">Close</button>
           </span>
+        </div>
+        <!-- here is where the individual recipe 'cards' will live -->
+        <div class="recipe-card">
+          <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
+          <p>Price</p>
+          <p>Name</p>
+          <button id="viewRecipe">View Recipe</button>
         </div>
         <div class="recipe-card">
           <img class="recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
