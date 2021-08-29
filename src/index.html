@@ -9,18 +9,22 @@
   <body>
     <header>
       <h1>What's Cookin', Oscar?</h1>
-        <button class="home-btn">
-          <img class="home-img" src="../data/home.svg" alt="home icon"/>
-          <div class="nav-item">Home</div>
-        </button>
-        <button class="favorites-btn">
-          <img class="fav-img" src="../data/favorite.svg" alt="heart icon"/>
-          <div class="nav-item">My Favorites</div>
-        </button>
-        <button class="list-btn ">
-          <img class="list-img" src="../data/list.svg" alt="list icon"/>
-          <div class="nav-item">My List</div>
-        </button>
+      <div class="search-wrapper">
+        <img class="search-icon" src="../data/search.svg" alt="magnifying glass"/>
+        <input type="text" class="input-search" placeholder="onions">
+      </div>
+      <button class="home-btn">
+        <img class="home-img" src="../data/home.svg" alt="home icon"/>
+        <div class="nav-item">Home</div>
+      </button>
+      <button class="favorites-btn">
+        <img class="fav-img" src="../data/favorite.svg" alt="heart icon"/>
+        <div class="nav-item">My Favorites</div>
+      </button>
+      <button class="list-btn">
+        <img class="list-img" src="../data/list.svg" alt="list icon"/>
+        <div class="nav-item">My List</div>
+      </button>
     </header>
     <section class="main-page">
       <section class="left-pane">
@@ -34,18 +38,17 @@
                 <label for="lunch"> Lunch</label>
               </li>
               <li><input type="checkbox" class="checked-tag" id="dinner">
-                <label for="lunch"> Dinner</label>
+                <label for="dinner"> Dinner</label>
               </li>
               <li><input type="checkbox" class="checked-tag" id="breakfast">
-                <label for="lunch"> Breakfast</label>
+                <label for="breakfast"> Breakfast</label>
               </li>
               <li><input type="checkbox" class="checked-tag" id="dessert">
-                <label for="lunch"> Dessert</label>
+                <label for="dessert"> Dessert</label>
               </li>
             </ul>
+            <button class="filter-btn">Filter Recipes</button>
         </div>
-          <form>
-          </form>
         </section>
         <section class="my-pantry">
         </section>
