@@ -15,7 +15,6 @@ header {
 
 .main-page {
   display: flex;
-  /* flex-direction: column; */
   min-height: 98vh;
   width: 100%;
   background-image: url("../data/food.jpeg");
@@ -29,8 +28,18 @@ h1 {
   font-size: 24px;
 }
 
+h2 {
+  text-decoration: underline;
+  /* border: 2px solid green; */
+  align-self: center;
+  margin: 0px;
+}
 button {
   cursor: pointer;
+}
+
+ul {
+   list-style-type: none;
 }
 
 .nav-item {
@@ -74,6 +83,7 @@ button {
 
 .left-pane {
   display: flex;
+  flex-direction: row;
   flex: 1;
 }
 
@@ -82,10 +92,26 @@ button {
   flex: 3;
 }
 
-.recipe-type {
+.search-recipe {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
   width: 100%;
-  max-height: 92%;
-  margin: 20px 10px 20px 20px;
+  max-height: 90%;
+  margin: 30px 10px 60px 20px;
+  padding-top: 20px;
   background-color: #69D6D0;
-  border-radius: 1%;
+  border-radius: 2%;
+  /* border: 2px solid red; */
+}
+
+.burger-img {
+  height:34px;
+  width: 34px;
+}
+
+.tag-list {
+  display: flex;
+  /* border-spacing: none;
+  margin: none; */
 }
