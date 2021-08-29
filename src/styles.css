@@ -1,3 +1,91 @@
 body {
   background-color: blueviolet;
+  font-family: 'Comfortaa', cursive;
+  margin: 0;
+}
+
+header {
+  background-color: #69D6D0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* border: 4px solid black; */
+  height: 50px;
+}
+
+.main-page {
+  display: flex;
+  /* flex-direction: column; */
+  min-height: 98vh;
+  width: 100%;
+  background-image: url("../data/food.jpeg");
+  background-position: center;
+  background-size: cover;
+}
+
+h1 {
+  flex: 1;
+  padding: 10px 0px 10px 20px;
+  font-size: 24px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.nav-item {
+  padding-top: 6px;
+}
+
+.home-btn:hover, .favorites-btn:hover, .list-btn:hover {
+  background-color: #23B0A9;
+}
+
+.home-btn, .list-btn, .favorites-btn {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  font-size: 22px;
+  background-color: #69D6D0;
+  border: none;
+  padding: 0px 20px 0px 16px;
+  /* border: 4px solid orange; */
+}
+
+.list-img {
+  /* border: 1px solid blue; */
+  padding-right: 3px;
+  height:30px;
+  width: 30px;
+}
+
+.fav-img {
+  /* border: 1px solid blue; */
+  height:37px;
+  width: 37px;
+}
+
+.home-img {
+  /* border: 1px solid blue; */
+  padding-right: 1px;
+  height:28px;
+  width: 28px;
+}
+
+.left-pane {
+  display: flex;
+  flex: 1;
+}
+
+.right-pane {
+  display: flex;
+  flex: 3;
+}
+
+.recipe-type {
+  width: 100%;
+  max-height: 92%;
+  margin: 20px 10px 20px 20px;
+  background-color: #69D6D0;
+  border-radius: 1%;
 }
