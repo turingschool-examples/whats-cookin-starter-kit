@@ -99,6 +99,6 @@ describe('Recipe', () => {
   })
 
   it('Should filter by ingredients', () => {
-    expect(recipeRepo.filterByIngredients())
+    expect(recipeRepo.filterByIngredients(["apple cider"]).to.deep.equal([recipeRepo.data[1]]))
   })
 })

@@ -1,12 +1,12 @@
 class RecipeRepository {
   constructor(recipeRepo) {
-    this.data = recipeRepo
+    this.recipeRepo = recipeRepo
   }
 
 filterByTags(userTag){
   let tagRecipes = [];
    let findTag = userTag.forEach(tag => {
-     this.data.forEach(recipe => {
+     this.recipeRepo.forEach(recipe => {
        if(recipe.tags.includes(tag) && !tagRecipes.includes(recipe)) {
          tagRecipes.push(recipe)
        }
@@ -17,12 +17,16 @@ filterByTags(userTag){
 
 filterByName(userGeneratedName) {
   let nameRecipes = [];
-  let findName = this.data.forEach(recipe => {
+  let findName = this.recipeRepo.forEach(recipe => {
     if(recipe.name.includes(userGeneratedName)) {
       nameRecipes.push(recipe)
     }
   })
   return nameRecipes
+}
+
+filterByIngredients(userGeneratedIngredients, ingredientsData) {
+  let ingredientRecipes = []
 }
 
 }
