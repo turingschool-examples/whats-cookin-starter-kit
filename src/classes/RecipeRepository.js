@@ -27,6 +27,28 @@ filterByName(userGeneratedName) {
 
 filterByIngredients(userGeneratedIngredients, ingredientsData) {
   let ingredientRecipes = []
+  let ingredientID = []
+  let userIngredients = userGeneratedIngredients.split(", ")
+
+  let findIngredient = ingredientsData.forEach(ingredient => {
+      userIngredients.forEach(userIngredient => {
+        if(ingredient.name === userIngredient) {
+          ingredientID.push(ingredient.id)
+        }
+      })
+  })
+
+  let findRecipe = ingredientID.forEach(id => {
+    this.recipeRepo.forEach(recipe => {
+      recipe.ingredients.forEach(ingredient => {
+        if(ingredient.id === id && !ingredientRecipes.includes(recipe)) {
+          ingredientRecipes.push(recipe)
+        }
+      })
+    })
+  })
+
+  return ingredientRecipes
 }
 
 }

@@ -5,6 +5,17 @@ describe('Recipe', () => {
   
   let recipeRepo;
 
+  let ingredientRepo = [{
+    "id": 1009016,
+    "name": "apple cider",
+    "estimatedCostInCents": 468
+  },
+  {
+    "id": 9003,
+    "name": "apple",
+    "estimatedCostInCents": 207
+  }]
+
   beforeEach(() => {
     recipeRepo = new RecipeRepository(
       [{ "id": 595736,
@@ -82,23 +93,25 @@ describe('Recipe', () => {
   });
 
   it('Should hold recipe data', () => {
-    expect(recipeRepo.data).to.deep.equal(recipeRepo.data)    
+    expect(recipeRepo.recipeRepo).to.deep.equal(recipeRepo.recipeRepo)    
   })
 //filter by name has to be in arrays
   it('Should filter through recipes by one or more tags', () => {
-    expect(recipeRepo.filterByTags(["main dish"])).to.deep.equal([recipeRepo.data[1]])
-    expect(recipeRepo.filterByTags(["main dish", "snack"])).to.deep.equal([recipeRepo.data[1], recipeRepo.data[0]])
+    expect(recipeRepo.filterByTags(["main dish"])).to.deep.equal([recipeRepo.recipeRepo[1]])
+    expect(recipeRepo.filterByTags(["main dish", "snack"])).to.deep.equal([recipeRepo.recipeRepo[1], recipeRepo.recipeRepo[0]])
   })
 //filter by name has to be strings
   it('Should filter by name', () => {
-    expect(recipeRepo.filterByName("Loaded Chocolate Chip Pudding Cookie Cups")).to.deep.equal([recipeRepo.data[0]])
+    expect(recipeRepo.filterByName("Loaded Chocolate Chip Pudding Cookie Cups")).to.deep.equal([recipeRepo.recipeRepo[0]])
   })
 
   it('Should filter by name partial name', () => {
-    expect(recipeRepo.filterByName("Chocolate Chip Pudding")).to.deep.equal([recipeRepo.data[0]])
+    expect(recipeRepo.filterByName("Chocolate Chip Pudding")).to.deep.equal([recipeRepo.recipeRepo[0]])
+
   })
 
   it('Should filter by ingredients', () => {
-    expect(recipeRepo.filterByIngredients(["apple cider"]).to.deep.equal([recipeRepo.data[1]]))
+    expect(recipeRepo.filterByIngredients("apple cider, apple", ingredientRepo)).to.deep.equal([recipeRepo.recipeRepo[1]])
   })
+
 })
