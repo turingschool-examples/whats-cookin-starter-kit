@@ -26,7 +26,7 @@ const ingredientsData = [
     },
     {
       "id": 19334,
-      "name": "brown sugar",
+      "name": "brown sugar–",
       "estimatedCostInCents": 559
     },
     {
