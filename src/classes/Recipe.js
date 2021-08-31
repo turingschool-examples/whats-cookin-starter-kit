@@ -11,9 +11,11 @@ class Recipe {
     this.ingredientsLibrary = new IngredientsLibrary(ingredientsInfo);
   }
 
-  //gatherIngredients()
+  gatherIngredients(recipeName) {
+    console.log(recipeName)
+  }
   
 }
-// let newRecipe = new Recipe();
+
 
 export default Recipe;

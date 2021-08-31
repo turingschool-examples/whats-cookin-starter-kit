@@ -5,7 +5,7 @@ import RecipeRepository from '../src/classes/RecipeRepository';
 
 describe('', () => {
 
-  let recipes;
+  let recipe;
   let ingredients;
 
   beforeEach(() => {
@@ -21,7 +21,7 @@ describe('', () => {
         "estimatedCostInCents": 280
       }]
     )
-    recipes = new RecipeRepository(
+    recipe = new Recipe(
       [{
       "id": 988243,
       "image": "https://spoonacular.com/recipeImages/988243-556x370.jpg",
@@ -67,6 +67,10 @@ describe('', () => {
 
   it('Should be a function', () => {
     expect(Recipe).to.be.a('function');
+  })
+
+  it('Should gather names of ingredients needed', () => {
+    expect(recipe.gatherIngredients('Brown Butter Garlic Shrimp')).to.deep.equal(["dried red chili", "salt"]);
   })
 
 });
