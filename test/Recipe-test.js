@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import IngredientsLibrary from '../src/classes/IngrediantsRepository';
+import IngredientsLibrary from '../src/classes/IngredientsRepository';
 import Recipe from '../src/classes/Recipe';
 import RecipeRepository from '../src/classes/RecipeRepository';
 
@@ -9,8 +9,8 @@ describe('', () => {
   let ingredients;
 
   beforeEach(() => {
-    ingredients = new IngredientsLibrary([
-      {
+    ingredients = new IngredientsLibrary(
+      [{
         "id": 1032009,
         "name": "dried red chili",
         "estimatedCostInCents": 1015
@@ -19,11 +19,10 @@ describe('', () => {
         "id": 2047,
         "name": "salt",
         "estimatedCostInCents": 280
-      }
-    ])
+      }]
+    )
     recipes = new RecipeRepository(
-      [
-      {
+      [{
       "id": 988243,
       "image": "https://spoonacular.com/recipeImages/988243-556x370.jpg",
       "ingredients": [
@@ -63,10 +62,11 @@ describe('', () => {
         "main dish",
         "dinner"
       ]
-    }
-  ); 
+    }])
+  })
 
   it('Should be a function', () => {
     expect(Recipe).to.be.a('function');
   })
+
 });

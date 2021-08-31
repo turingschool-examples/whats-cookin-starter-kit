@@ -10,6 +10,9 @@ class Recipe {
     this.tags = recipe.tags;
     this.ingredientsLibrary = new IngredientsLibrary(ingredientsInfo);
   }
+
+  //gatherIngredients()
+  
 }
 // let newRecipe = new Recipe();
 
