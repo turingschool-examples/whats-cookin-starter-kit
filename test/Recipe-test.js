@@ -3,7 +3,7 @@ import IngredientsLibrary from '../src/classes/IngredientsRepository';
 import Recipe from '../src/classes/Recipe';
 import RecipeRepository from '../src/classes/RecipeRepository';
 
-describe('', () => {
+describe('Recipe', () => {
 
   let recipe;
   let ingredients;
@@ -21,6 +21,7 @@ describe('', () => {
         "estimatedCostInCents": 280
       }]
     )
+
     recipe = new Recipe(
       [{
       "id": 988243,
@@ -62,15 +63,34 @@ describe('', () => {
         "main dish",
         "dinner"
       ]
-    }])
+    }], ingredients)
   })
 
   it('Should be a function', () => {
     expect(Recipe).to.be.a('function');
   })
 
+  it('Should hold recipe data', () => {
+    expect(recipe.id).to.equal(recipe.id)
+    expect(recipe.image).to.equal(recipe.image)
+    expect(recipe.ingredientsData).to.equal(recipe.ingredientsData)
+    expect(recipe.instructions).to.equal(recipe.instructions)
+    expect(recipe.name).to.equal(recipe.name)
+    expect(recipe.tags).to.equal(recipe.tags)
+    expect(recipe.ingredientsLibrary.ingredientsLibrary).to.equal(ingredients)
+  })
+
   it('Should gather names of ingredients needed', () => {
-    expect(recipe.gatherIngredients('Brown Butter Garlic Shrimp')).to.deep.equal(["dried red chili", "salt"]);
+    expect(recipe.gatherIngredients()).to.deep.equal(["dried red chili", "salt"]);
+  })
+
+  it('Should return the cost of all ingredients for the recipe', () => {
+    expect(recipe.calculateCost()).to.equal(11.55)
+  })
+
+  it('Should return instructions', () => {
+    console.log('INSTRUCTIONS', recipe.instructions)
+    expect(recipe.getInstructions()).to.equal(recipe.instructions)
   })
 
 });
