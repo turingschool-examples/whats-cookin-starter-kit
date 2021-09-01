@@ -1,3 +1,130 @@
 body {
-  background-color: blueviolet;
+  background-color: darkgrey;
+  color: black;
+  height: 100%;
+  width: 100%;
+  background-color: #FFE3D6;
+  margin: 0px;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-bottom: .5rem;
+  background-color: #c8553d;
+  margin: 0px;
+}
+
+button {
+  height: 1.5rem;
+  width: auto;
+  padding: 0rem 1rem 0rem 1rem;
+  border: 0px;
+  border-radius: .5rem;
+}
+
+h1 {
+  margin: 0px;
+}
+
+.hidden {
+  display: none;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background-color: #c8553d;
+}
+
+.title-container {
+  text-align: center;
+  color: white;
+  background-color: #c8553d;
+  padding: .5rem 0rem .3rem 0rem;
+  margin: 0px;
+  border: 0px;
+}
+
+.sidebars {
+  display: inline-flex;
+  /* position: relative; */
+  background-color: #8FB7B7;
+  margin: 0px;
+  border: 0px;
+}
+
+aside>button {
+  margin-top: 2rem;
+  padding: 0px;
+  border: 0px;
+  width: 3rem;
+  height: 3rem;
+}
+
+.left-sidebar {
+  display: inline-block;
+  position: absolute;
+  left: 1rem;
+  width: 14%;
+  height: 100%;
+  padding-top: 2rem;
+}
+
+.right-sidebar {
+  display: inline-block;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  right: 1rem;
+  width: 10%;
+  height: 100%;
+  padding-top: 2rem;
+}
+
+.scroll-arrow {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 8rem;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #8FB7B7;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.main-content {
+  background-color: #588b8b;
+  height: 30rem;
+  width: 40rem;
+}
+
+.recipe {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 15rem;
+  width: 12rem;
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.recipe-content>img {
+  height: 5rem;
+  width: 5rem;
 }
