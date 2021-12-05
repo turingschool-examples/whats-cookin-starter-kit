@@ -1,5 +1,5 @@
-import { expect } from 'chai';
-import RecipeRepository from '../src/classes/RecipeRepository';
+// import { expect } from 'chai';
+// import RecipeRepository from '../src/classes/RecipeRepository';
 
 // describe('Recipe', () => {
 //   let recipe;
@@ -56,6 +56,17 @@ import RecipeRepository from '../src/classes/RecipeRepository';
 //   })
 //
 // })
+
+
+
+//it should be a function
+//should be an instance of recipe RecipeRepository
+//should take in recipe recipeData
+//recipe data should be instance of recipes
+//should be able to filter recipes based on one tag
+//should be able to filter recipes based on more than one tag
+//should be able to filter recipes by name
+//should be able to filter recipes by ingredients
 
 
 
