@@ -12,37 +12,28 @@ describe('Cookbook', () => {
   it('Should be a function', () => {
     expect(RecipeRepository).to.be.a('function');
   });
-  it('should be an instance of Recipe Repository', () => {
+  it.skip('should be an instance of Recipe Repository', () => {
     expect(cookbook).to.be.an.instanceof(RecipeRepository)
   })
-  it('should take in recipes', () => {
+  it.skip('should take in recipes', () => {
     expect(cookbook.recipes.length).to.equal(3)
   })
+  it.skip('recipes should be instances of Recipe', () => {
+    //CHECK TO SEE IF RECIPES ARE INSTSANCES
+  })
+  it.skip('should be able to filter recipes with a tag', () => {
+    //METHOD
+  })
+  it.skip('should be able to filter recipes on more than one tag', () => {
+    //METHOD
+  })
+  it.skip('should be able to filter recipes based on keyword', () => {
+    //METHOD
+  })
+  it.skip('should be able to filter recipes based on multiple keywords', () => {
+    
+  })
+  it.skip('should be able to filter recipes based on ingredients', () => {
+    //METHOD
+  })
 })
-
-
-//it should be a function
-//should be an instance of recipe RecipeRepository
-//should take in recipe recipeData
-//recipe data should be instance of recipes
-//should be able to filter recipes based on one tag
-//should be able to filter recipes based on more than one tag
-//should be able to filter recipes by name
-//should be able to filter recipes by ingredients
-
-
-
-//Instantiate Recipe
-//It should have id
-//It should have recipeImages
-//should have ingredientList
-//should have instructions
-  //instructions should have step/single instruction
-  //instructions should have number/step order
-//should have recipeTitle
-//it should have tags
-//it should be able to hold multiple tags
-//ingredient list should have an id
-//ingredient list should have quantity
-  //quantity should have amount
-  //quanity should have unit
