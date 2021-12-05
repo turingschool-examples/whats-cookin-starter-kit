@@ -1,7 +1,8 @@
 class RecipeRepository {
-  constructor() {
-
-    // One class to get you started!
+  constructor(recipe) {
+    this.id = recipe.id;
+    this.image = recipe.image;
+    this.ingredients = [];
   }
 }
 
