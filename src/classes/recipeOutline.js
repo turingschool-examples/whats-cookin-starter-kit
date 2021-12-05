@@ -37,3 +37,19 @@ CookBook [
         tags (recipeProperty): [tag1, tag2, tag3]
       }
     ]
+
+
+    //Instantiate Recipe
+    //It should have id
+    //It should have recipeImages
+    //should have ingredientList
+    //should have instructions
+      //instructions should have step/single instruction
+      //instructions should have number/step order
+    //should have recipeTitle
+    //it should have tags
+    //it should be able to hold multiple tags
+    //ingredient list should have an id
+    //ingredient list should have quantity
+      //quantity should have amount
+      //quanity should have unit
