@@ -18,26 +18,27 @@ describe('Cookbook', () => {
     expect(cookbook).to.be.an.instanceof(RecipeRepository)
   })
   it('should take in recipes', () => {
-    console.log(cookbook);
     expect(cookbook.recipeList.length).to.equal(3)
-    
+
   })
   // it.skip('recipes should be instances of Recipe', () => {
   //   //CHECK TO SEE IF RECIPES ARE INSTSANCES
   // })
   it('should be able to filter recipes with a tag', () => {
     let filteredRecipes = cookbook.filterByTag('main course');
-    
+        console.log(cookbook);
     expect(filteredRecipes.length).to.equal(2)
   })
-  it.skip('should be able to filter recipes on more than one tag', () => {
-    //METHOD
+  it('should be able to filter recipes on more than one tag', () => {
+    let filteredRecipes = cookbook.filterByTag('main course', 'side dish');
+        console.log(cookbook);
+    expect(filteredRecipes.length).to.equal(1)
   })
   it.skip('should be able to filter recipes based on keyword', () => {
     //METHOD
   })
   it.skip('should be able to filter recipes based on multiple keywords', () => {
-    
+
   })
   it.skip('should be able to filter recipes based on ingredients', () => {
     //METHOD

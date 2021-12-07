@@ -5,7 +5,7 @@ class RecipeRepository {
   }
 
   filterByTag(mealType) {
-   let filteredArray = this.recipeList.filter(recipe => (recipe.tags.includes(mealType))) 
+   let filteredArray = this.recipeList.filter(recipe => (recipe.tags.includes(mealType)))
    this.filteredRecipes = filteredArray;
    return filteredArray;
   }
