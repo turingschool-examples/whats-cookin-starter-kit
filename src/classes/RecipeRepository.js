@@ -1,7 +1,13 @@
 class RecipeRepository {
-  constructor() {
+  constructor(recipes) {
+    this.recipeList = recipes;
+    this.filteredRecipes = null;
+  }
 
-    // One class to get you started!
+  filterByTag(mealType) {
+   let filteredArray = this.recipeList.filter(recipe => (recipe.tags.includes(mealType))) 
+   this.filteredRecipes = filteredArray;
+   return filteredArray;
   }
 }
 
