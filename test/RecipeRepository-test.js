@@ -26,12 +26,22 @@ describe('Cookbook', () => {
   // })
   it('should be able to filter recipes with a tag', () => {
     let filteredRecipes = cookbook.filterByTag('main course');
-        console.log(cookbook);
     expect(filteredRecipes.length).to.equal(2)
   })
   it('should be able to filter recipes on more than one tag', () => {
+    //Cookbook with three recipes
+    cookbook = new RecipeRepository([recipe1, recipe2, recipe3]);
+    //Only want main courses
+    cookbook.filterByTag('main course');
+    //Only see two recipes
+    let filters = [recipe1, recipe3]
+
+    //Only want main courses that can also be side dishes
+    cookbook.filterByMultipleTags('main course', 'side dish')
+    //Only have one recipe
+    let filter = [recipe1]
     let filteredRecipes = cookbook.filterByTag('main course', 'side dish');
-        console.log(cookbook);
+    console.log(cookbook);
     expect(filteredRecipes.length).to.equal(1)
   })
   it.skip('should be able to filter recipes based on keyword', () => {
