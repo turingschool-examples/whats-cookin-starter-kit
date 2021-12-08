@@ -7,29 +7,34 @@
   </head>
   <body>
     <nav class="navigation-bar">
-      <h1 id="homeView">RoboChef</h1>
+      <h1>RoboChef</h1>
       <ul class="navigation-links">
-        <li>Home</li>
-        <li>Recipes</li>
-        <li>Favorites</li>
-        <li>Recipes To Try</li>
-        <li>
+        <li><div id="buttonHome">Home</div></li>
+        <li id="buttonRecipes">Recipes</li>
+        <li id="buttonFavorites">Favorites</li>
+        <li id="buttonRecipesToTry">Recipes To Try</li>
+        <li id="buttonSearch">
             <button>
               <img class="search-icon" src="assets/search-icon.png" alt="search icon">
             </button>
             <input type="text" name="search-input" class="search-bar" id="search-bar" placeholder="Search recipes">
-      </li>
+        </li>
       </ul>
     </nav>
     <main>
-      <section class="viewHome">
+      <section class="view-home" id="viewHome">
         <section class="featured-recipe-slider">
-          <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fthescranline.com%2Fdancing-queen-cupcakes%2F&psig=AOvVaw32_K2F5CsBPcsGIzB-hOFW&ust=1638801875506000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCOiRpe_yzPQCFQAAAAAdAAAAABAJ" alt="Featured Recipe" class="featured-photo"/>
+          <div class="featured-gradient">
+            <img src="https://thescranline.com/wp-content/uploads/2021/03/Dancing-Queen-Cupcakes.jpg" alt="Featured Recipe" class="featured-photo"/>
+          </div>
           <h2 class="featured-title">Featured Recipe: Cupcakes</h2>
-          <p class="featured-tagline">These wonderful cupcakes are made from all natural stuffs. This recipie was invented back in 1894 when they invented... <a href="www.google.com">LEARN MORE</a></p>
+          <p class="featured-tagline">These wonderful cupcakes are made from all natural stuffs. This recipe was invented back in 1894 when they invented... <a href="www.google.com">LEARN MORE</a></p>
         </section>
         <section class="recipe-grid">
           <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
             <div class="card-info">
               <div class="card-title-and-categories">
                 <h3 class="recipe-title">
@@ -40,11 +45,15 @@
                 </section>
               </div>
               <div class="card-favorite-and-save">
-                ❤️ 💾
+                <span class="card-icons" id="buttonFavorite">❤️</span> 
+                <span class="card-icons" id="buttonSaveForLater">💾</span>
               </div>
             </div>
           </section>
           <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
             <div class="card-info">
               <div class="card-title-and-categories">
                 <h3 class="recipe-title">
@@ -55,11 +64,15 @@
                 </section>
               </div>
               <div class="card-favorite-and-save">
-                ❤️ 💾
+                <span class="card-icons" id="buttonFavorite">❤️</span> 
+                <span class="card-icons" id="buttonSaveForLater">💾</span>
               </div>
             </div>
           </section>
           <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
             <div class="card-info">
               <div class="card-title-and-categories">
                 <h3 class="recipe-title">
@@ -70,11 +83,15 @@
                 </section>
               </div>
               <div class="card-favorite-and-save">
-                ❤️ 💾
+                <span class="card-icons" id="buttonFavorite">❤️</span> 
+                <span class="card-icons" id="buttonSaveForLater">💾</span>
               </div>
             </div>
           </section>
           <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
             <div class="card-info">
               <div class="card-title-and-categories">
                 <h3 class="recipe-title">
@@ -85,11 +102,15 @@
                 </section>
               </div>
               <div class="card-favorite-and-save">
-                ❤️ 💾
+                <span class="card-icons" id="buttonFavorite">❤️</span> 
+                <span class="card-icons" id="buttonSaveForLater">💾</span>
               </div>
             </div>
           </section>
           <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
             <div class="card-info">
               <div class="card-title-and-categories">
                 <h3 class="recipe-title">
@@ -100,11 +121,15 @@
                 </section>
               </div>
               <div class="card-favorite-and-save">
-                ❤️ 💾
+                <span class="card-icons" id="buttonFavorite">❤️</span> 
+                <span class="card-icons" id="buttonSaveForLater">💾</span>
               </div>
             </div>
           </section>
           <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
             <div class="card-info">
               <div class="card-title-and-categories">
                 <h3 class="recipe-title">
@@ -115,24 +140,26 @@
                 </section>
               </div>
               <div class="card-favorite-and-save">
-                ❤️ 💾
+                <span class="card-icons" id="buttonFavorite">❤️</span> 
+                <span class="card-icons" id="buttonSaveForLater">💾</span>
               </div>
             </div>
           </section>
         </section>
       </section>
-      <section class="viewRecipes">
-
+      <section class="view-recipes hidden" id="viewRecipes">
+        view recipie example text
       </section>
-      <section class="viewFavorites">
-
+      <section class="view-favorites hidden" id="viewFavorites">
+        view favorites example text
       </section>
-      <section class="viewRecipessToTry">
-
+      <section class="view-recipes-to-try hidden" id="viewRecipesToTry">
+        view recipies to try example text
       </section>
-      <section class="viewSearch">
-
+      <section class="view-search hidden" id="viewSearch">
+        view search example text
       </section>
     </main>
   </body>
+  <script type="text/javascript" src="main.js"></script>
 </html>
