@@ -1,15 +1,11 @@
-class Ingredient {
-  constructor(ingredient) {
-    this.id = ingredient.id;
-    this.name = ingredient.name;
-    this.unit = ingredient.quanitity.unit;
-    this.amount = ingredient.quantity.amount;
-    this.cost;
-  }
-  getCost() {
-    this.cost = this.amount * ingredient.estimatedCostInCents;
-  }
+import ingredientsData from '../data/ingredients.js';
 
+class Ingredient {
+  constructor(ingredientsData) {
+    this.ingredients = [] || ingredientsData;
+    this.id = ingredientsData.id;
+    this.name = ingredientsData.name;
+  }
 }
 
 export default Ingredient;
