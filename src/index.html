@@ -9,15 +9,18 @@
     <nav class="navigation-bar">
       <h1>RoboChef</h1>
       <ul class="navigation-links">
-        <li><div id="buttonHome">Home</div></li>
+        <li id="buttonHome">Home</li>
         <li id="buttonRecipes">Recipes</li>
         <li id="buttonFavorites">Favorites</li>
-        <li id="buttonRecipesToTry">Recipes To Try</li>
-        <li id="buttonSearch">
-            <button>
+        <li id="buttonRecipesToTry">Saved</li>
+        <li class="search">
+            <!-- <button>
               <img class="search-icon" src="assets/search-icon.png" alt="search icon">
-            </button>
-            <input type="text" name="search-input" class="search-bar" id="search-bar" placeholder="Search recipes">
+            </button> -->
+            <input type="text" name="search-input" class="search-bar" id="searchBar" placeholder="Search recipes">
+            <button type="submit" class="searchButton" id="buttonSearch">
+              Search
+           </button>
         </li>
       </ul>
     </nav>
@@ -27,9 +30,11 @@
           <div class="featured-gradient">
             <img src="https://thescranline.com/wp-content/uploads/2021/03/Dancing-Queen-Cupcakes.jpg" alt="Featured Recipe" class="featured-photo"/>
           </div>
-          <h2 class="featured-title">Featured Recipe: Cupcakes</h2>
-          <p class="featured-tagline">These wonderful cupcakes are made from all natural stuffs. This recipe was invented back in 1894 when they invented... <a href="www.google.com">LEARN MORE</a></p>
-        </section>
+          <div class="featured-slider-text">
+            <h2 class="featured-title">Featured Recipe: Cupcakes</h2>
+            <p class="featured-tagline">These wonderful cupcakes are made from all natural stuffs. This recipe was invented back in 1894 when they invented... <a href="www.google.com">LEARN MORE</a></p>
+          </div>
+          </section>
         <section class="recipe-grid">
           <section class="recipe-card">
             <div class="recipe-thumbnail">
@@ -161,5 +166,4 @@
       </section>
     </main>
   </body>
-  <script type="text/javascript" src="main.js"></script>
 </html>
