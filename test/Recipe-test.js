@@ -44,23 +44,9 @@ describe.only('Recipe', () => {
     expect(recipeSample2.tags).to.equal(sampleRecipeData[1].tags);
   })
   it('should get the names of each ingredient', () => {
-
-    //Ingredients are linked through ids in different data sets (Recipe and Ingredient)
-    //Method to check the match
-    //Method to access name
-    // console.log(ingredient)
-    // console.log(recipeSample1.ingredients[0])
-    //ingredient.id === recipe.ingredients[0].id
-        //=>ingredient.name
-    //expect(recipe.indreerwe).to.equal.(ingredients.name)
-
-    // expect(recipeSample1.ingredients[0]).to.equal('salt')
-    //
     //if id = id, print name;
     recipeSample2.accessIngredientName()
     expect(recipeSample2.ingredients[1].id).to.equal(ingredient.name)
-    // expect(recipeSample2.ingredients.id).to.equal(ingredient.name)
-    //Write different test
 
   })
   it('should get different names of each ingredient', () => {
