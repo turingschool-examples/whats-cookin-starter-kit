@@ -10,7 +10,7 @@ describe.only('Recipe', () => {
   beforeEach(() => {
     recipeSample1 = new Recipe(sampleRecipeData[0]);
     recipeSample2 = new Recipe(sampleRecipeData[1]);
-    ingredient = new Ingredient(ingredientsData[0])
+    ingredient = new Ingredient(ingredientsData[0]);
   });
   it('Should be a function', () => {
     expect(Recipe).to.be.a('function');
@@ -46,7 +46,8 @@ describe.only('Recipe', () => {
   it('should get the names of each ingredient', () => {
     //if id = id, print name;
     recipeSample2.accessIngredientName()
-    expect(recipeSample2.ingredients[1].id).to.equal(ingredient.name)
+    recipeSample2.ingredients[1].id === ingredient.id
+    expect(recipeSample2.accessIngredientName()).to.equal(ingredient.name)
 
   })
   it('should get different names of each ingredient', () => {

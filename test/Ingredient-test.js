@@ -18,6 +18,7 @@ describe('Ingredient', function() {
     expect(ingredient.id).to.equal(222);
   })
   it('should have a name', () => {
+    ingredient.findMe()
     expect(ingredient.name).to.equal('chicken')
   })
 })
