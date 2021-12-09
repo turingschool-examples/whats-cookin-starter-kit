@@ -5,7 +5,9 @@ class Recipe {
   constructor(recipeData, ingredientData) {
     this.id = recipeData.id;
     this.image = recipeData.image;
-    this.ingredients = recipeData.ingredients;
+    this.ingredients = recipeData.ingredients.map(ingredient => {
+      return new Ingredient({id: ingredient.id, name: ingredient.name, estimatedCostInCents: ingredient.estimatedCostInCents})
+    });
     this.instructions = recipeData.instructions;
     this.name = recipeData.name;
     this.tags = recipeData.tags;
@@ -13,14 +15,14 @@ class Recipe {
   }
   accessIngredientName() {
     let recipeIngredients = this.ingredients;
-    let appleCider = new Ingredient({id: 1009016, name: "apple cider", estimatedCostInCents: 468})
-    let ingredientData = appleCider.accessIngredientNameAndId()
-    console.log(recipeIngredients)
-    let recipeIds = []
-    let getRecipeIds = recipeIngredients.map(id => {
-        recipeIds.push(recipeIngredients.id)
-    })
-    console.log(recipeIds)
+    //let appleCider = new Ingredient({id: 1009016, name: "apple cider", estimatedCostInCents: 468})
+    //let ingredientData = appleCider.accessIngredientNameAndId()
+    //console.log(recipeIngredients)
+    // let recipeIds = []
+    // let getRecipeIds = recipeIngredients.map(id => {
+    //     recipeIds.push(recipeIngredients.id)
+    //})
+    //console.log(recipeIds)
     // let getItems = dataId.maps(ingredient => {
     //   if (ingredient.id === recipeIngredients.id) {
     //     console.log("YO")

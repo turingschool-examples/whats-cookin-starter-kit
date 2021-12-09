@@ -1,10 +1,11 @@
 import ingredientsData from '../data/ingredients.js';
 
+
 class Ingredient {
-  constructor(ingredientsData) {
-    this.id = ingredientsData.id;
-    this.name = ingredientsData.name;
-    this.estimatedCostInCents = ingredientsData.estimatedCostInCents
+  constructor(ingredientsDataYeah) {
+    this.id = ingredientsDataYeah.id;
+    this.name = ingredientsData.find(ingredient => this.id === ingredient.id).name
+    this.estimatedCostInCents = ingredientsData.find(ingredient => this.id === ingredient.id).estimatedCostInCents
   }
   accessIngredientNameAndId() {
     let data = ingredientsData;

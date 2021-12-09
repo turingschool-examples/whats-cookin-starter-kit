@@ -29,7 +29,8 @@ describe.only('Recipe', () => {
   })
   it('should have an ingredients list', () => {
     expect(recipeSample1.ingredients.length).to.deep.equal(11)
-    expect(recipeSample2.ingredients).to.deep.equal(sampleRecipeData[1].ingredients)
+    expect(recipeSample2.ingredients).to.be.an("array")
+    expect(recipeSample2.ingredients[0]).to.be.an.instanceof(Ingredient)
   })
   it('should have instructions', () => {
     expect(recipeSample1.instructions.length).to.deep.equal(6)
@@ -44,11 +45,7 @@ describe.only('Recipe', () => {
     expect(recipeSample2.tags).to.equal(sampleRecipeData[1].tags);
   })
   it('should get the names of each ingredient', () => {
-    //if id = id, print name;
-    recipeSample2.accessIngredientName()
-    recipeSample2.ingredients[1].id === ingredient.id
-    expect(recipeSample2.accessIngredientName()).to.equal(ingredient.name)
-
+    expect(recipeSample1.ingredients[0].name).to.equal("wheat flour")
   })
   it('should get different names of each ingredient', () => {
     expect(recipeSample2.ingredients.name).to.equal(sampleRecipeData[1].ingredients.name)
