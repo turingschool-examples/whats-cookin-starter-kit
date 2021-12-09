@@ -5,7 +5,7 @@ import Ingredient from '../src/classes/Ingredient';
 import sampleRecipeData from '../src/data/sampleRecipeData.js';
 import ingredientsData from '../src/data/ingredients.js';
 
-describe.only('Recipe', () => {
+describe('Recipe', () => {
   let recipeSample1, recipeSample2, ingredient;
   beforeEach(() => {
     recipeSample1 = new Recipe(sampleRecipeData[0]);
@@ -50,8 +50,8 @@ describe.only('Recipe', () => {
   it('should get different names of each ingredient', () => {
     expect(recipeSample2.ingredients.name).to.equal(sampleRecipeData[1].ingredients.name)
   })
-//   it.skip('should calculate the total cost of its ingredients', () => {
-//   })
-//   it.skip('should provide directions', () {
-//   })
+  it('should calculate the total cost of its ingredients', () => {
+    //recipeSample2.calculateTotalCost()
+    expect(recipeSample2.calculateTotalCost()).to.equal('$63.64')
+  })
 })

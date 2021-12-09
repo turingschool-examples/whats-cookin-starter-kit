@@ -18,6 +18,18 @@ class RecipeRepository {
     return filteredArray;
 
   }
+
+  filterByName(mealName) {
+    let filteredNames = this.recipeList.filter(recipe => (recipe.name.includes(mealName)))
+    this.filteredRecipeNames = filteredNames;
+    return filteredNames;
+   }
+
+   filterByIngredient(ingredientName) {
+    let filteredIngredient = this.recipeList.filter(recipe => (recipe.name.includes(ingredientName)))
+    this.filteredIngredientNames = filteredIngredient;
+    return filteredIngredient;
+   }
 }
 
 export default RecipeRepository;
