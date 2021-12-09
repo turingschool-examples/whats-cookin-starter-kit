@@ -2,44 +2,40 @@ import { expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
 import Recipe from '../src/classes/Recipe';
 import Ingredient from '../src/classes/Ingredient';
+import sampleRecipeData from '../src/data/sampleRecipeData.js';
+//import ingredientsData from '../data/ingredients.js';
+
 
 describe('Cookbook', () => {
-  let cookbook, recipe1, recipe2, recipe3;
+  let cookbook, recipeSample1, recipeSample2, ingredient;
   beforeEach(() => {
-    cookbook = new RecipeRepository([recipe1, recipe2, recipe3]);
-    recipe1 = new Recipe({id: 334, image: 'https://spoonacular.com/recipeImages/595736-556x370.jpg', ingredients: [], instructions: [], name: 'Strawberry & Tomato Soup', tags: ['side dish', 'snack', 'main course']});
-    recipe2 = new Recipe({id: 928, image:'https://www.yumyumlondon.com/project/friends.html', ingredients: [], instructions: [], name: 'Speed Juice', tags: ['side dish', 'salad']});
-    recipe3 = new Recipe({id: 233, image: 'https://tasty.co/recipe/one-bowl-chocolate-chip-banana-bread', ingredients: [], instructions: [], name: 'Chocolate Banana Bread', tags: ['main course', 'condiment']});
+    cookbook = new RecipeRepository([recipeSample1, recipeSample2]);
+    recipeSample1 = new Recipe(sampleRecipeData[0]);
+    recipeSample2 = new Recipe(sampleRecipeData[1]);
   })
-  it('Should be a function', () => {
-    expect(RecipeRepository).to.be.a('function');
-  });
+
   it('should be an instance of Recipe Repository', () => {
     expect(cookbook).to.be.an.instanceof(RecipeRepository)
   })
   it('should take in recipes', () => {
-    console.log(cookbook);
-    expect(cookbook.recipeList.length).to.equal(3)
-    
+    expect(cookbook.recipeList.length).to.equal(2)
   })
-  // it.skip('recipes should be instances of Recipe', () => {
-  //   //CHECK TO SEE IF RECIPES ARE INSTSANCES
-  // })
   it('should be able to filter recipes with a tag', () => {
     let filteredRecipes = cookbook.filterByTag('main course');
-    
-    expect(filteredRecipes.length).to.equal(2)
+    expect(filteredRecipes.length).to.equal(1)
   })
-  it.skip('should be able to filter recipes on more than one tag', () => {
-    //METHOD
+  it('should be able to filter recipes on more than one tag', () => {
+    cookbook.filterByTag('main course');
+    cookbook.filterByMultipleTags('main course', 'side dish')
+    let filteredRecipes = cookbook.filterByTag('main course', 'side dish');
+    expect(filteredRecipes.length).to.equal(1)
   })
-  it.skip('should be able to filter recipes based on keyword', () => {
-    //METHOD
+  it('should be able to filter recipes based on name', () => {
+    let filteredRecipesNames = cookbook.filterByName('Loaded Chocolate Chip Pudding Cookie Cups');
+    expect(filteredRecipesNames.length).to.equal(1)
   })
-  it.skip('should be able to filter recipes based on multiple keywords', () => {
-    
-  })
-  it.skip('should be able to filter recipes based on ingredients', () => {
-    //METHOD
+  it('should be able to filter recipes based on ingredients', () => {
+    let filteredIngredientNames = cookbook.filterByIngredient('wheat flour');
+    expect(filteredIngredientNames.length).to.equal(1)
   })
 })
