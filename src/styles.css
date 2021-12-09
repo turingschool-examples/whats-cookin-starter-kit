@@ -113,7 +113,7 @@ a:hover {
 }
 
 .searchButton {
-  width: 80px;
+  width: 40px;
   height: 46px;
   border: 3px solid #8100ac;
   background: #8100ac;
@@ -124,23 +124,20 @@ a:hover {
   font-size: 20px;
 }
 
-/* .search-bar > button {
-  width: 27px;
-  height: 27px;
-  background-color: #2E094C;
-  border: 1px solid #00F2EC;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-}
-
-.search-icon {
-  width: 100%;
-  height: 100%;
+.search-icon, .favorite-icon, .save-icon, .save-icon-active, .favorite-icon-active {
+  width: 20px;
+  height: 20px;
   margin: 0px;
   padding: 0px;
-  border: 3px solid #00F2EC;
-} */
+} 
+
+.favorite-icon, .save-icon, .save-icon-active, .favorite-icon-active {
+  width: 30px;
+  height: 30px;
+  margin: 0px;
+  padding: 15px 0px 0px 0px;
+  filter: brightness(125%);
+} 
 
 .featured-recipe-slider {
   background-color: black;
