@@ -21,14 +21,8 @@ describe('Cookbook', () => {
     expect(cookbook.recipeList.length).to.equal(2)
   })
   it('should be able to filter recipes with a tag', () => {
-    let filteredRecipes = cookbook.filterByTag('main course');
-    expect(filteredRecipes.length).to.equal(1)
-  })
-  it('should be able to filter recipes on more than one tag', () => {
     cookbook.filterByTag('main course');
-    cookbook.filterByMultipleTags('main course', 'side dish')
-    let filteredRecipes = cookbook.filterByTag('main course', 'side dish');
-    expect(filteredRecipes.length).to.equal(1)
+    expect(cookbook.filterByTag()).to.deep.equal(sampleRecipeData[1])
   })
   it('should be able to filter recipes based on name', () => {
     let filteredRecipesNames = cookbook.filterByName('Loaded Chocolate Chip Pudding Cookie Cups');
