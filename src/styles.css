@@ -194,7 +194,8 @@ a:hover {
   justify-content: space-around;
 }
 
-.recipe-card {
+.recipe-card,
+.recipe-overview {
   height: 280px;
   width: 25%;
   background-color: #CCCCCC;
@@ -288,6 +289,67 @@ a:hover {
 
 }
 
+.recipe-overview {
+  height: 100%;
+  width: auto;
+  color: black!important;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.selected-recipe-image {
+  max-width: 40%;
+  border-radius: 5px;
+
+}
+
+.dropbtn {
+  background-color: #2E094C;
+  color: #00F2EC;
+  list-style-type: none;
+  font-size: 20px;
+  border-bottom: 1px solid #ffffff00;
+  font-weight: 200;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #2e094c;
+  color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #4f1181}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  
+}
+
 .hidden {
   display: none;
 }
+
