@@ -35,7 +35,7 @@ describe('Cookbook', () => {
     expect(filteredRecipesNames.length).to.equal(1)
   })
   it('should be able to filter recipes based on ingredients', () => {
-    let filteredIngredientNames = cookbook.filterByIngredient('wheat flour');
-    expect(filteredIngredientNames.length).to.equal(1)
+    cookbook.searchByIngredient('wheat flour', cookbook.recipeList)
+    expect(cookbook.matchingRecipes).to.equal(sampleRecipeData[0])
   })
 })
