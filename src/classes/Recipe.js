@@ -11,7 +11,7 @@ class Recipe {
     this.instructions = recipeData.instructions;
     this.name = recipeData.name;
     this.tags = recipeData.tags;
-    this.ingredientData = ingredientsData;
+    // this.ingredientData = ingredientsData;
   }
   accessIngredientName() {
     let recipeIngredients = this.ingredients;
@@ -44,9 +44,3 @@ class Recipe {
 
 }
 export default Recipe;
-
-
-
-
-
-
