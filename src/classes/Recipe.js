@@ -14,7 +14,9 @@ class Recipe {
     this.ingredientData = ingredientsData;
   }
   accessIngredientName() {
-    let recipeIngredients = this.ingredients;
+    return this.ingredients.map(ingredient => {
+      return `${ingredient.name}`
+    })
   }
 
   calculateTotalCost() {
@@ -29,6 +31,13 @@ class Recipe {
     let totalPriceInDollars = addCosts/100;
     return "$" + totalPriceInDollars
   }
+
+  getRecipeInstructions() {
+    return this.instructions.map(instruction => {
+     return `step ${instruction.number}: ${instruction.instruction} `;
+    });
+  }
+
 
   //Output: Array ingredient names
   //Input: IngredientData with names and ids
