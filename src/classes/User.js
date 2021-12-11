@@ -3,6 +3,8 @@ class User {
       this.name = user.name;
       this.id = user.id;
       this.pantry = user.pantry;
+      this.recipesToCook = user.recipesToCook;
+      this.favoriteRecipes = [];
       this.favoriteRecipeIds = [];
       this.savedForLaterRecipeIds = [];
     }
