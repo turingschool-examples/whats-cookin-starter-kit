@@ -3,18 +3,19 @@ class User {
       this.name = user.name;
       this.id = user.id;
       this.pantry = user.pantry;
-      this.recipesToCook = user.recipesToCook;
-      this.favoriteRecipes = [];
+      this.recipesToCook = [];
       this.favoriteRecipeIds = [];
       this.savedForLaterRecipeIds = [];
     }
     addRecipeToFavorites(recipeId) {
-      //dynamically grab recipe ID
-      this.favoriteRecipeIds.push(recipeId);
+      if(!this.favoriteRecipeIds.includes(recipeId)) {
+      this.favoriteRecipeIds.push(recipeId)
+      }
     }
     addRecipeToSavedForLater(recipeId) {
-      //dynamically grab recipe ID
+      if(!this.savedForLaterRecipeIds.includes(recipeId)) {
       this.savedForLaterRecipeIds.push(recipeId);
+      }
     }
     removeRecipeToFavorites(recipeId) {
       //dynamically grab recipe ID
@@ -30,11 +31,26 @@ class User {
         this.savedForLaterRecipeIds.splice(index, 1)
       }
     }
-    filterFavoriteRecipes() {
-      //on click, send array to DOM to populate recipe cards
+    filterFavoriteRecipes(mealType) {
+      return this.favoriteRecipeIds.filter(recipe => recipe.tags.includes(mealType));
     }
-    searchFavoriteRecipes() {
+    searchFavoriteRecipes(userInput) {
       //on click, send array to DOM to populate recipe cards
+    const keyword = userInput.toLowerCase();
+    user.favoriteRecipeIds.forEach(recipe => {
+      this.searchFavoriteRecipesByName(keyword)
+      this.searchFavoriteRecipesByIngredient(keyword)
+      })
+    }
+    searchFavoriteRecipesByName(keyword) {
+      return this.recipeList.filter(recipe => {
+        return recipe.name.toLowerCase().includes(keyword)
+      }
+    }
+    searchFavoriteRecipesByIngredient(keyword) {
+      const matchyMatchy = ingredient => ingredient.name.includes(keyword);
+      let filteredRecipesByIngredient = this.recipeList.filter((recipe => recipe.ingredients.some(matchyMatchy)))
+      this.matchingRecipes.push(filteredRecipesByIngredient)
     }
 }
 export default User;

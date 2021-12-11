@@ -30,16 +30,22 @@ describe('User', () => {
   })
   it('should be able to remove favorite recipes', () => {
     user.addRecipeToFavorites(5468)
-    user.removeRecipeToFavorites(5468) 
+    user.removeRecipeToFavorites(5468)
     expect(user.favoriteRecipeIds).to.deep.equal([])
   })
   it('should be able to add saved for later recipes', () => {
-    user.addRecipeToSavedForLater(5468) 
+    user.addRecipeToSavedForLater(5468)
     expect(user.savedForLaterRecipeIds).to.deep.equal([5468])
   })
   it('should be able to remove saved for later recipes', () => {
-    user.addRecipeToSavedForLater(5468) 
+    user.addRecipeToSavedForLater(5468)
     user.removeRecipeToSavedForLater(5468)
     expect(user.savedForLaterRecipeIds).to.deep.equal([])
+  })
+  it.only('should be able to filter favorite recipes by tag', () => {
+    expect(user.filterFavoriteRecipes('main course')).to.deep.equal(user.favoriteRecipeIds[5468, 2389, 2452])
+  })
+  it('should be able to search recipes by keyword', () => {
+    expect(user.searchFavoriteRecipes('SUGAR')).to.deep.equal([5435, 3453, 5467])
   })
 })
