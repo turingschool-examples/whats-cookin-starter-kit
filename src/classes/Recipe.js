@@ -11,7 +11,7 @@ class Recipe {
     this.instructions = recipeData.instructions;
     this.name = recipeData.name;
     this.tags = recipeData.tags;
-    this.ingredientData = ingredientsData;
+    // this.ingredientData = ingredientsData;
   }
   accessIngredientName() {
     return this.ingredients.map(ingredient => {
@@ -53,9 +53,3 @@ class Recipe {
 
 }
 export default Recipe;
-
-
-
-
-
-
