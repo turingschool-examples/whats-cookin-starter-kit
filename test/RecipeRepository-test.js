@@ -19,9 +19,13 @@ describe('Cookbook', () => {
     expect(cookbook.recipeList.length).to.equal(2)
   })
   it.skip('should be able to filter recipes with a tag', () => {
+    //Pops out extra ingredient info and fails test
     cookbook.filteredRecipes = []
     cookbook.filterByTag('main course');
-    expect(cookbook.filteredRecipes).to.equal([sampleRecipeData[1]])
+    expect(cookbook.filteredRecipes).to.deep.equal([sampleRecipeData[1]])
+  })
+  it('should search for recipes by name', () => {
+    expect(cookbook.searchByName('Maple')).to.equal([sampleRecipeData[1]])
   })
   // it('should be able to filter recipes with a tag', () => {
   //   cookbook.filterByTag('main course');
