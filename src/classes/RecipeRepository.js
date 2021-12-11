@@ -5,22 +5,21 @@ class RecipeRepository {
     this.matchingRecipes = [];
   }
   filterByTag(mealType) {
-    let recipesTypes = this.recipeList.filter(recipe => recipe.tags.includes(mealType));
-    this.filteredRecipes.push(recipesTypes)
+    return this.recipeList.filter(recipe => recipe.tags.includes(mealType));
+    // this.filteredRecipes.push(recipesTypes)
     //Use DOM manipulation to campture value on tags
   }
   searchByName(userInput) {
     const keyword = userInput.toLowerCase();
-    return this.recipeList.filter(recipe =>
-      recipe.name.toLowerCase().includes(keyword));
-   }
-   searchByIngredient(userInput) {
+    return this.recipeList.filter(recipe => {
+      return recipe.name.toLowerCase().includes(keyword)
+    });
+  }
+  searchByIngredient(userInput) {
     const keyword = userInput.toLowerCase();
     const matchyMatchy = ingredient => ingredient.name.includes(keyword);
-     return this.recipeList.filter((recipe => recipe.ingredients.some(matchyMatchy)))
-    //
-    // this.recipeList.map(recipe => {
-    //   recipe.ingredients.filter(ingredient => ingredient.name.includes(keyword))
+    let filteredRecipesByIngredient = this.recipeList.filter((recipe => recipe.ingredients.some(matchyMatchy)))
+    this.matchingRecipes.push(filteredRecipesByIngredient)
   }
 }
 
