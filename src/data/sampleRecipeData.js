@@ -220,6 +220,224 @@ const sampleRecipeData = [
         "dinner"
       ]
     },
+    {
+      "id": 741603,
+      "image": "https://spoonacular.com/recipeImages/741603-556x370.jpeg",
+      "ingredients": [
+        {
+          "id": 20081,
+          "quantity": {
+            "amount": 1,
+            "unit": "cup"
+          }
+        },
+        {
+          "id": 18371,
+          "quantity": {
+            "amount": 2,
+            "unit": "teaspoons"
+          }
+        },
+        {
+          "id": 9040,
+          "quantity": {
+            "amount": 12,
+            "unit": "servings"
+          }
+        },
+        {
+          "id": 20011,
+          "quantity": {
+            "amount": 1,
+            "unit": "cup"
+          }
+        },
+        {
+          "id": 1001,
+          "quantity": {
+            "amount": 2,
+            "unit": "tablespoons"
+          }
+        },
+        {
+          "id": 1001,
+          "quantity": {
+            "amount": 6,
+            "unit": "tablespoons"
+          }
+        },
+        {
+          "id": 1230,
+          "quantity": {
+            "amount": 2,
+            "unit": "cups"
+          }
+        },
+        {
+          "id": 1123,
+          "quantity": {
+            "amount": 2,
+            "unit": ""
+          }
+        },
+        {
+          "id": 19296,
+          "quantity": {
+            "amount": 12,
+            "unit": "servings"
+          }
+        },
+        {
+          "id": 16098,
+          "quantity": {
+            "amount": 12,
+            "unit": "servings"
+          }
+        },
+        {
+          "id": 2047,
+          "quantity": {
+            "amount": 1,
+            "unit": "teaspoon"
+          }
+        },
+        {
+          "id": 19335,
+          "quantity": {
+            "amount": 2,
+            "unit": "teaspoons"
+          }
+        }
+      ],
+      "instructions": [
+        {
+          "instruction": "Watch how to make this recipe.",
+          "number": 1
+        },
+        {
+          "instruction": "In a large bowl, whisk together buttermilk, eggs, baking powder, sugar, salt and butter.",
+          "number": 2
+        },
+        {
+          "instruction": "In another large bowl mix together all-purpose flour and buckwheat flour.",
+          "number": 3
+        },
+        {
+          "instruction": "Slowly add flour into the wet ingredients mixing with a whisk.",
+          "number": 4
+        },
+        {
+          "instruction": "Mix until there are no lumps and the batter is smooth and velvety.",
+          "number": 5
+        },
+        {
+          "instruction": "In a large cast iron skillet or flat grill pan over medium-high heat, melt a tablespoon of butter. Ladle pancake batter onto skillet to desired size. Using the ladle, form pancake into circular shape. Cook on each side for 2 to 3 minutes or until golden brown. Set pancakes aside and keep warm. Repeat with remaining ingredients.",
+          "number": 6
+        },
+        {
+          "instruction": "Once completed, spread peanut butter on a pancake, layer it with sliced bananas and drizzle it with honey. Top the pancake with another pancake to form a sandwich. Repeat with remaining pancakes and serve with extra honey.",
+          "number": 7
+        }
+      ],
+      "name": "Elvis Pancakes",
+      "tags": [
+        "side dish"
+      ]
+    },
+    {
+      "id": 507921,
+      "image": "https://spoonacular.com/recipeImages/507921-556x370.jpg",
+      "ingredients": [
+        {
+          "id": 18371,
+          "quantity": {
+            "amount": 1,
+            "unit": "teaspoon"
+          }
+        },
+        {
+          "id": 19350,
+          "quantity": {
+            "amount": 0.25,
+            "unit": "cup"
+          }
+        },
+        {
+          "id": 1123,
+          "quantity": {
+            "amount": 1,
+            "unit": ""
+          }
+        },
+        {
+          "id": 1124,
+          "quantity": {
+            "amount": 2,
+            "unit": "large"
+          }
+        },
+        {
+          "id": 20081,
+          "quantity": {
+            "amount": 1,
+            "unit": "cup"
+          }
+        },
+        {
+          "id": 9099,
+          "quantity": {
+            "amount": 15,
+            "unit": "oz"
+          }
+        },
+        {
+          "id": 19335,
+          "quantity": {
+            "amount": 0.5,
+            "unit": "cup"
+          }
+        },
+        {
+          "id": 2047,
+          "quantity": {
+            "amount": 1,
+            "unit": "pinch"
+          }
+        },
+        {
+          "id": 2050,
+          "quantity": {
+            "amount": 1,
+            "unit": "teaspoon"
+          }
+        },
+        {
+          "id": 14412,
+          "quantity": {
+            "amount": 2,
+            "unit": "tablespoons"
+          }
+        }
+      ],
+      "instructions": [
+        {
+          "instruction": "To make the Cupcakes: Preheat oven to 350 degrees. Line 12 cupcake tins with paper holders.",
+          "number": 1
+        },
+        {
+          "instruction": "Whisk together dry Fruit Cocktail Cupcakes ingredients.",
+          "number": 2
+        },
+        {
+          "instruction": "Add in wet Fruit Cocktail Cupcakes ingredients and stir with a rubber spatula until thoroughly combined. Fill cupcake tins evenly, and bake for 20 minutes or until thin knife inserted in center comes out clean.",
+          "number": 3
+        }
+      ],
+      "name": "Ambrosia Cupcakes",
+      "tags": [
+        "side dish"
+      ]
+    },
 
   ]
 export default sampleRecipeData;

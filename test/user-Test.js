@@ -37,7 +37,7 @@ describe('User', () => {
     user.addRecipeToFavorites(recipeSample4)
     expect(user.favoriteRecipeIds).to.deep.equal([recipeSample1, recipeSample2, recipeSample3, recipeSample4])
   })
-  it.skip('should be able to remove favorite recipes', () => {
+  it('should be able to remove favorite recipes', () => {
     user.addRecipeToFavorites(recipeSample1)
     user.addRecipeToFavorites(recipeSample2)
     user.addRecipeToFavorites(recipeSample3)
@@ -45,35 +45,38 @@ describe('User', () => {
     user.removeRecipeToFavorites(recipeSample2)
     expect(user.favoriteRecipeIds).to.deep.equal([recipeSample1, recipeSample3, recipeSample4])
   })
-  it.skip('should be able to add saved for later recipes', () => {
-    user.addRecipeToFavorites(recipeSample1)
-    user.addRecipeToFavorites(recipeSample2)
-    user.addRecipeToFavorites(recipeSample3)
+  it('should be able to add saved for later recipes', () => {
+    user.addRecipeToSavedForLater(recipeSample1)
+    user.addRecipeToSavedForLater(recipeSample2)
+    user.addRecipeToSavedForLater(recipeSample3)
     expect(user.savedForLaterRecipeIds).to.deep.equal([recipeSample1, recipeSample2, recipeSample3])
   })
-  it.skip('should be able to remove saved for later recipes', () => {
-    user.addRecipeToFavorites(recipeSample1)
-    user.addRecipeToFavorites(recipeSample2)
-    user.addRecipeToFavorites(recipeSample3)
+  it('should be able to remove saved for later recipes', () => {
+    user.addRecipeToSavedForLater(recipeSample1)
+    user.addRecipeToSavedForLater(recipeSample2)
+    user.addRecipeToSavedForLater(recipeSample3)
     user.removeRecipeToSavedForLater(recipeSample3)
     expect(user.savedForLaterRecipeIds).to.deep.equal([recipeSample1, recipeSample2])
   })
-  it.skip('should be able to filter favorite recipes by tag', () => {
+  it('should be able to filter favorite recipes by tag', () => {
     user.addRecipeToFavorites(recipeSample1)
     user.addRecipeToFavorites(recipeSample3)
     user.addRecipeToFavorites(recipeSample4)
-    expect(user.filterFavoriteRecipes('side dish')).to.deep.equal(user.favoriteRecipeIds[recipeSample3, recipeSample4])
+    user.filterFavoriteRecipes('side dish')
+    expect(user.filterFavoriteRecipes('side dish')).to.deep.equal([recipeSample3, recipeSample4])
   })
-  it.skip('should be able to search recipes by ingredient', () => {
+  it('should be able to search favorite recipes by ingredient', () => {
     user.addRecipeToFavorites(recipeSample1)
     user.addRecipeToFavorites(recipeSample3)
     user.addRecipeToFavorites(recipeSample4)
-    expect(user.searchFavoriteRecipes('FRUIT')).to.deep.equal([recipeSample4])
+    expect(user.searchFavoriteRecipesByName('ELVIS')).to.deep.equal([user.favoriteRecipeIds[1]])
   })
-  it.skip('should be able to search recipes by name', () => {
+  it('should be able to search favorite recipes by name', () => {
     user.addRecipeToFavorites(recipeSample1)
     user.addRecipeToFavorites(recipeSample3)
     user.addRecipeToFavorites(recipeSample4)
-    expect(user.searchFavoriteRecipes('Cake')).to.deep.equal([recipeSample3, recipeSample4])
+    console.log(user.favoriteRecipeIds)
+    user.searchFavoriteRecipesByIngredient('Eggs')
+    expect(user.favoriteRecipeIds.length).to.equal(3)
   })
 })

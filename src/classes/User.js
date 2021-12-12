@@ -34,23 +34,17 @@ class User {
     filterFavoriteRecipes(mealType) {
       return this.favoriteRecipeIds.filter(recipe => recipe.tags.includes(mealType));
     }
-    searchFavoriteRecipes(userInput) {
-      //on click, send array to DOM to populate recipe cards
-    const keyword = userInput.toLowerCase();
-    this.favoriteRecipeIds.forEach(recipe => {
-      this.searchFavoriteRecipesByName(keyword)
-      this.searchFavoriteRecipesByIngredient(keyword)
+    searchFavoriteRecipesByName(userInput) {
+      let keyword = userInput.toLowerCase();
+      return this.favoriteRecipeIds.filter(recipe => {
+         return recipe.name.toLowerCase().includes(keyword)
       })
     }
-    searchFavoriteRecipesByName(keyword) {
-      return this.recipeList.filter(recipe => {
-        return recipe.name.toLowerCase().includes(keyword)
-      })
-    }
-    searchFavoriteRecipesByIngredient(keyword) {
+    searchFavoriteRecipesByIngredient(userInput) {
+      let keyword = userInput.toLowerCase();
       const matchyMatchy = ingredient => ingredient.name.includes(keyword);
-      let filteredRecipesByIngredient = this.recipeList.filter((recipe => recipe.ingredients.some(matchyMatchy)))
-      this.matchingRecipes.push(filteredRecipesByIngredient)
+      return this.favoriteRecipeIds.filter((recipe => recipe.ingredients.some(matchyMatchy)))
     }
-}
+  }
+
 export default User;
