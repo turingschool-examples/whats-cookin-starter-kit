@@ -3,8 +3,825 @@
   <head>
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;900&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <nav class="navigation-bar">
+      <h1>RoboChef</h1>
+      <ul class="navigation-links">
+        <li id="buttonHome">Home</li>
+        <div class="dropdown">
+          <button class="dropbtn">Recipes</button>
+          <div class="dropdown-content">
+            <a href="#">Breakfast</a>
+            <a href="#">Lunch</a>
+            <a href="#">Dinner</a>
+            <a href="#">Salad</a>
+            <a href="#">Side Dish</a>
+            <a href="#">View All</a>
+
+            <a href="#">Dessert</a>
+            <a id="buttonRecipes" href="#">View All</a>
+          </div>
+        </div>
+        <li id="buttonFavorites">Favorites</li>
+        <li id="buttonRecipesToTry">Saved</li>
+        <li class="search">
+          <input type="text" name="search-input" class="search-bar" id="searchBar" placeholder="Search recipes">
+          <button type="submit" class="searchButton" id="buttonSearch">
+            <img class="search-icon" src="./images/search.png" alt="search icon">
+          </button>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <section class="view-home" id="viewHome">
+        <section class="featured-recipe-slider">
+          <div class="featured-gradient">
+            <img src="https://thescranline.com/wp-content/uploads/2021/03/Dancing-Queen-Cupcakes.jpg" alt="Featured Recipe" class="featured-photo"/>
+          </div>
+          <div class="featured-slider-text">
+            <h2 class="featured-title">Featured Recipe: Cupcakes</h2>
+            <p class="featured-tagline">These wonderful cupcakes are made from all natural stuffs. This recipe was invented back in 1894 when they invented... <a href="www.google.com">LEARN MORE</a></p>
+          </div>
+          </section>
+        <section class="recipe-grid">
+          <section class="recipe-card" id="recipeCard">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+        </section>
+      </section>
+      <section class="view-recipes hidden" id="viewRecipes">
+        <section class="recipe-grid">
+          <section class="recipe-card" id="recipeCard">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+        </section>
+      </section>
+      <section class="view-favorites hidden" id="viewFavorites">
+        <section class="recipe-grid">
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+        </section>
+      </section>
+      <section class="view-recipes-to-try hidden" id="viewRecipesToTry">
+        <section class="recipe-grid">
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+        </section>
+      </section>
+      <section class="view-search hidden" id="viewSearch">
+        <section class="recipe-grid">
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+          <section class="recipe-card">
+            <div class="recipe-thumbnail">
+              <img src="https://www.foodnetwork.com/content/dam/images/food/video/0/02/022/0226/0226118.jpg" alt="Pulled Pork" class="recipe-thumbnail"/>
+            </div>
+            <div class="card-info">
+              <div class="card-title-and-categories">
+                <h3 class="recipe-title">
+                  <a href="www.google.com">PULLED PORK</a>
+                </h3>
+                <section class="recipe-categories">
+                  BBQ, Meat
+                </section>
+              </div>
+              <div class="card-favorite-and-save">
+                <span class="card-icons">
+                  <img class="favorite-icon" src="./images/favorite-white-border.png" alt="favorite icon"  id="buttonFavorite">
+                  <img class="favorite-icon-active hidden" src="./images/favorite-pink-inside-white-border.png" alt="favorite icon active" id="buttonFavoriteRemove">
+                </span> 
+                <span class="card-icons">
+                  <img class="save-icon" src="./images/save-white-border.png" alt="save icon" id="buttonSaveForLater">
+                  <img class="save-icon-active hidden" src="./images/save-pink-inside-white-border.png" alt="save icon active" id="buttonSaveForLaterRemove">
+                </span>
+              </div>
+            </div>
+          </section>
+        </section>
+      </section>
+      <section class="view-selected-recipe hidden" id="viewSelectedRecipe">
+        <section class="recipe-overview" id="recipeOverview">
+          <section class="recipe-title" id="selectedRecipeTitle"><h2>Puddin' Cookies</h2></section>
+          <img class="selected-recipe-image" id="selectedRecipeImage" src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F4558122.jpg&w=300&h=201&c=sc&poi=face&q=85" alt="HA HAHA"/>
+          <section class="selected-recipe-ingredients" id="selectedRecipeIngredients">chocolate chips</section>
+          <section class="selected-recipe-instructions" id="selectedRecipeInstructions">bake them</section>
+        </section>
+      </section>
+    </main>
   </body>
 </html>
