@@ -37,7 +37,7 @@ class User {
     searchFavoriteRecipes(userInput) {
       //on click, send array to DOM to populate recipe cards
     const keyword = userInput.toLowerCase();
-    user.favoriteRecipeIds.forEach(recipe => {
+    this.favoriteRecipeIds.forEach(recipe => {
       this.searchFavoriteRecipesByName(keyword)
       this.searchFavoriteRecipesByIngredient(keyword)
       })
@@ -45,7 +45,7 @@ class User {
     searchFavoriteRecipesByName(keyword) {
       return this.recipeList.filter(recipe => {
         return recipe.name.toLowerCase().includes(keyword)
-      }
+      })
     }
     searchFavoriteRecipesByIngredient(keyword) {
       const matchyMatchy = ingredient => ingredient.name.includes(keyword);
