@@ -1,3 +1,4 @@
+
 const recipeData = [
     {
       "id": 595736,
@@ -5381,3 +5382,7 @@ const recipeData = [
       ]
     }
   ]
+
+  module.exports = {
+    recipeData
+  }
