@@ -40,7 +40,6 @@ describe('Recipe Repository', () => {
     expect(output[3].id).to.equal(583738);
     expect(output.length).to.equal(4);
     let output2 = repository.filterByName('Cookie');
-    console.log(output2.length);
     expect(output2.length).to.equal(6);
     expect(output2[5].id).to.equal(583738);
   });
