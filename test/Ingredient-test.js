@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import Ingredient from '../src/classes/Ingredient';
 const {ingredientsData} = require('../src/data/ingredients');
 
-describe.only('Ingredient', () => {
+describe('Ingredient', () => {
 	let ingredient;
 
 	beforeEach(() => {
