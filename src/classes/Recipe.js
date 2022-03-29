@@ -39,14 +39,14 @@ class Recipe {
 					numOfUnits = data.quantity.amount
 				}
 			})
-			cost += (ingredient.costInCents * numOfUnits)
-			return cost
+			return cost += (ingredient.costInCents * numOfUnits)		
 		}, 0)
-		// get the cost of its ingredients
 	}
 
 	giveInstructions () {
-		// return its instructions 
+	return this.instructions.map((instruction) => ({
+	[`${instruction.number}`]: instruction.instruction
+		}))
 	}
 
 };
