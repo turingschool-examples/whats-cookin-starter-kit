@@ -3,10 +3,6 @@ import RecipeRepository from '../src/classes/RecipeRepository';
 import Recipe from "../src/classes/Recipe";
 const {recipeData} = require('../src/data/recipes');
 
-
-
-// const repository = new RecipeRepository(recipeData);
-
 describe.only('Recipe Repository', () => {
   let repository;
   beforeEach(() => {

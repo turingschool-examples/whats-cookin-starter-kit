@@ -1,6 +1,6 @@
 * {
   font-family: 'Alegreya', serif;
-  border: 1px solid black ;
+  border: 1px solid red ;
 }
 
 .hidden {
@@ -85,7 +85,7 @@ main {
 .filter-section {
   height: 90%;
   width: 20%;
-  
+
 }
 
 .recipes-wrapper {
@@ -94,14 +94,14 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
 }
 
 .recipes-section {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  
+
 }
 .recipe-preview {
   height: 250px;
@@ -159,4 +159,9 @@ main {
 
 .ingredients-name {
   width: 30%
+}
+
+.filter-header {
+  font-size: 25px;
+  background-color: #7D98A1;
 }
