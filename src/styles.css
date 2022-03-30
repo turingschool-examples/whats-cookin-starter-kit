@@ -35,6 +35,10 @@ h3 {
   margin: 0;
 }
 
+p {
+  margin: 0;
+}
+
 main {
   height: 800px;
   width: 100%;
@@ -123,7 +127,36 @@ main {
 .recipe-img img {
   max-width: 100%;
 }
+.tag-icon-section {
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.tag {
+  display: flex;
+  justify-content: center;
+  height: 20px;
+  align-items: center;
+  width: 75px;
+  background-color: #7D98A1;
+  border-radius: 12px;
+}
+
+.tag-name {
+  font-size: 13px;
+  color:#F0F0F0;
+}
 
 .icon {
-  height: 30px;
+  height: 25px;
+}
+
+.recipe-ingredients {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ingredients-name {
+  width: 30%
 }
