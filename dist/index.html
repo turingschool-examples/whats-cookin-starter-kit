@@ -2,10 +2,49 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya" rel="stylesheet">
     <title>Whats Cookin</title>
   </head>
   <body>
-    <h1>Whats Cooking</h1>
+    <header>
+      <h1>Whats Cooking</h1>
+      <section class="nav-bar">
+        <div class="page-select">
+          <div class="nav-bar-item">
+            <h2>All Recipes</h2>
+            <div class= "underline-box hidden"id="selectFormIndicator1"></div>
+          </div>
+          <div class="nav-bar-item">
+            <h2>Saved Recipes</h2>
+            <div class= "underline-box" id="selectFormIndicator2"></div>
+          </div>
+        </div>
+      </section>
+    </header>
+    <main> 
+      <section class="filter-section">
+
+      </section>
+      <section class="recipes-wrapper">
+        <input type="text" placeholder="Search..">
+        <section class="recipes-section">
+          <section class="recipe-preview">
+            <section class="recipe-heading">
+              <h3>Recipe Name</h3>
+            </section>
+            <div class="recipe-img">
+              <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/180906-delish-seo-00017-1537277923.jpg?crop=1.00xw:0.751xh;0,0.249xh&resize=1200:*">
+            </div>
+            <section class="recipe-info">
+              <div class="tag-section">
+                <p>Tags:</p>
+                <div class="tag"></div>
+              </div>
+            </section>
+          </section>
+        </section>
+      </section>
+    </main>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
