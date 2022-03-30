@@ -27,7 +27,7 @@ class RecipeRepository {
       return acc
     },[])
   }
-  
+
   filterByTag(tag){
    return this.recipeObjects.filter((recipeObject) => {
      return recipeObject.tags.includes(tag);
@@ -40,5 +40,4 @@ class RecipeRepository {
     });
   }
 }
-
 export default RecipeRepository;
