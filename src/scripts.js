@@ -30,6 +30,7 @@ var initiatePage = () => {
 var createRecipePreview = () => {
   recipeSection.innerHTML = "";
   recipes.forEach((recipe) => {
+    recipe.showDisplayTag();
     recipeSection.innerHTML += `
       <section class="recipe-preview" id="${recipe.id}">
         <section class="recipe-heading">
@@ -76,7 +77,6 @@ var createRecipePreview = () => {
 
 
 /*
-As a user, I should be able to view a list of all recipes.
 
 As a user, I should be able to click on a recipe to view more information including directions, ingredients needed, and total cost.
 
