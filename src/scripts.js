@@ -54,15 +54,6 @@ var createRecipePreview = () => {
   })
 }
 
-
-
-
-
-
-
-
-
-
 //~~~~~~~~~~~~~~~~~~~~ CODE/PSUEDOCODE DUMP ~~~~~~~~~~~~~~~~~~~~~~~~~~
 // think about how to pull correct tag to display
 // var viewRecipeDetail = () => {
