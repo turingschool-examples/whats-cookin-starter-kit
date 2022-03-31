@@ -1,28 +1,29 @@
+//~~~~~~~~~~~~~~~~~~~~ IMPORTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import './styles.css';
 import apiCalls from './apiCalls';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png';
 import './images/icon_banner_add.png';
 import './images/icon_banner_remove.png';
 import './images/icon_fire_symbol_lit.png';
 import './images/icon_fire_symbol_unlit.png';
 import RecipeRepository from '../src/classes/RecipeRepository';
-
-
+//~~~~~~~~~~~~~~~~~~~~ QUERY SELECTORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const recipePreview = document.querySelector('.recipe-preview');
 const recipeSection = document.querySelector('.recipes-section');
 
+//~~~~~~~~~~~~~~~~~~~~ GLOBAL VARIABLES ~~~~~~~~~~~~~~~~~~~~~~~
 var recipeRepository = new RecipeRepository();
 recipeRepository.addRecipes();
 var recipes = recipeRepository.recipeObjects;
-//Should this be a local variable in createRecipePreview^^
 
-// event listeners
+
+//~~~~~~~~~~~~~~~~~~~~ EVENT LISTENERS  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 window.addEventListener('load', () => {initiatePage()});
 // recipePreview.addEventListener('click', () => {viewRecipeDetail()});
 
 
-// functions, event handlers
+//~~~~~~~~~~~~~~~~~~~~ EVENT HANDLERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 var initiatePage = () => {
   createRecipePreview();
 }
@@ -30,7 +31,8 @@ var initiatePage = () => {
 var createRecipePreview = () => {
   recipeSection.innerHTML = "";
   recipes.forEach((recipe) => {
-    recipe.showDisplayTag();
+    recipe.showDisplayTag()
+    recipe.collectIngredients();
     recipeSection.innerHTML += `
       <section class="recipe-preview" id="${recipe.id}">
         <section class="recipe-heading">
@@ -41,19 +43,9 @@ var createRecipePreview = () => {
         </div>
         <section class="recipe-info">
           <section class="tag-icon-section">
-            <p>Tags:</p>
-            <div class="tag">
-              <p class="tag-name">${recipe.displayedTag}</p>
-            </div>
             <div class="icons-section">
               <img class="icon add-to-cook" src="./images/icon_fire_symbol_unlit.png">
               <img class="icon add-to-saved" src="./images/icon_banner_add.png">
-            </div>
-          </section>>
-          <section class="recipe-ingredients">
-            <p class="ingredients-name">Ingredients</p>
-            <div class="ingredients">
-              <p>${recipe.ingredientNames}</p>
             </div>
           </section>
         </section>
@@ -61,6 +53,17 @@ var createRecipePreview = () => {
       `
   })
 }
+
+
+
+
+
+
+
+
+
+
+//~~~~~~~~~~~~~~~~~~~~ CODE/PSUEDOCODE DUMP ~~~~~~~~~~~~~~~~~~~~~~~~~~
 // think about how to pull correct tag to display
 // var viewRecipeDetail = () => {
 //

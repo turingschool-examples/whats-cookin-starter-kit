@@ -64,15 +64,14 @@ class Recipe {
 		  this.displayedTag = keyTags.join(' / ');
 		} else {
 			this.displayedTag = 'other'};
-		console.log ('tags:' , this.tags);
-		console.log('keytags array from filter: ', keyTags);
 	};
-	assignKeyTag(){
-		//try using a switch statement
-		// setting up condition if includes any of these: make it lunch
-		// if any of these make it side
-		//if includes
-	}
+	
+	// assignKeyTag(){
+	// 	//try using a switch statement
+	// 	// setting up condition if includes any of these: make it lunch
+	// 	// if any of these make it side
+	// 	//if includes
+	// }
 
 };
 
