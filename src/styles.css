@@ -1,12 +1,11 @@
 * {
   font-family: 'Alegreya', serif;
-  border: 1px solid black ;
+  /* border: 1px solid black ; */
 }
 
 body {
   background-color: #F0f0f0;
   display: grid;
-
   margin: 0;
 }
 
@@ -87,7 +86,10 @@ main {
 .filter-section {
   height: 90%;
   width: 20%;
-
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: inset  2px 2px 3px 2px #ffffff,
+  2px 2px 4px 2px #1d1d1d;
 }
 
 .recipes-wrapper {
@@ -112,6 +114,8 @@ main {
   border-radius: 25px;
   overflow: hidden;
   margin:3px;
+  box-shadow: inset  2px 2px 3px 2px #ffffff,
+  2px 2px 4px 2px #1d1d1d;
 }
 
 .recipe-heading {
@@ -199,11 +203,20 @@ main {
   background-color: white;
   height: 75%;
   width: 75%;
+  border-radius: 25px;
+  overflow: hidden;
 }
 
 .popup-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #7D98A1;
   height: 10%
+}
+
+.popup-name h3 {
+  font-size: 30px;
 }
 
 .popup-image {
@@ -212,9 +225,16 @@ main {
   overflow: hidden;
 }
 
+.popup-image img {
+  width: 100%;
+}
+
 .popup-icons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   height: 10%;
-  width: 100%
+  width: 100%;
 }
 
 .popup-icon {
@@ -222,7 +242,37 @@ main {
   width: 50px;
 }
 
+.popup-data {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+}
+
+.popup-ingredient {
+  height: 90%;
+  width: 30%;
+  overflow: hidden;
+  border-radius: 25px;
+  box-shadow: inset  2px 2px 3px 2px #ffffff,
+  2px 2px 4px 2px #1d1d1d;
+}
+
+.popup-instructions {
+  height: 90%;
+  width: 60%;
+  overflow: hidden;
+  border-radius: 25px;
+  box-shadow: inset  2px 2px 3px 2px #ffffff,
+  2px 2px 4px 2px #1d1d1d;
+}
+
+.popup-instructions h3,.popup-ingredient h3 {
+  font-size: 25px;
+  width: 100%;
+  background-color: #7D98A1;
+} 
 .hidden {
   display: none;
 }
-
