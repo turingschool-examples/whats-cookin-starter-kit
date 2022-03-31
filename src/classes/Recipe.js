@@ -60,16 +60,18 @@ class Recipe {
 		else if(keyTags.length === 1){
 			this.displayedTag = keyTags.toString();
 		}
-		else if(keyTags.length === 1){
+		else if(keyTags.length > 1){
 		  this.displayedTag = keyTags.join(' / ');
 		} else {
-			this.displayedTag = 'other'}; 
+			this.displayedTag = 'other'};
 		console.log ('tags:' , this.tags);
 		console.log('keytags array from filter: ', keyTags);
 	};
-	//another directions
 	assignKeyTag(){
 		//try using a switch statement
+		// setting up condition if includes any of these: make it lunch
+		// if any of these make it side
+		//if includes
 	}
 
 };
