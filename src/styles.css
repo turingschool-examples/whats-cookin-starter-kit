@@ -3,18 +3,18 @@
   border: 1px solid black ;
 }
 
-.hidden {
-  display: none;
-}
-
 body {
   background-color: #F0f0f0;
-  margin:0;
+  display: grid;
+
+  margin: 0;
 }
+
+
 
 header {
   background-color: #324C54;
-  display:flex;
+  display: flex;
   justify-content: space-evenly;
   height: 110px;
   width: 100%;
@@ -33,6 +33,8 @@ h2 {
 h3 {
   color: #F0F0F0;
   margin: 0;
+  text-align: center;
+  padding: 2px;
 }
 
 p {
@@ -85,7 +87,7 @@ main {
 .filter-section {
   height: 90%;
   width: 20%;
-  
+
 }
 
 .recipes-wrapper {
@@ -94,20 +96,22 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
 }
 
 .recipes-section {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around;
   width: 100%;
-  
 }
 .recipe-preview {
   height: 250px;
   width: 300px;
   border-radius: 25px;
   overflow: hidden;
+  margin:3px;
 }
 
 .recipe-heading {
@@ -120,7 +124,7 @@ main {
 
 .recipe-img {
   width: 100%;
-  height: 75px;
+  height: 125px;
   overflow: hidden;
 }
 
@@ -145,7 +149,8 @@ main {
 
 .tag-name {
   font-size: 13px;
-  color:#F0F0F0;
+  /* color:#F0F0F0; */
+  color: black;
 }
 
 .icon {
@@ -160,3 +165,64 @@ main {
 .ingredients-name {
   width: 30%
 }
+
+.filter-header {
+  font-size: 25px;
+  background-color: #7D98A1;
+}
+
+
+/* Pop-up window */
+.popup-shadow {
+  background-color: black;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  opacity: .6;
+}
+
+.popup-div {
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.recipe-popout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  height: 75%;
+  width: 75%;
+}
+
+.popup-name {
+  background-color: #7D98A1;
+  height: 10%
+}
+
+.popup-image {
+  height: 30%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.popup-icons {
+  height: 10%;
+  width: 100%
+}
+
+.popup-icon {
+  height: 50px;
+  width: 50px;
+}
+
+.hidden {
+  display: none;
+}
+

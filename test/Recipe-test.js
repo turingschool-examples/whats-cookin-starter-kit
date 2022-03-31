@@ -3,11 +3,12 @@ import Recipe from '../src/classes/Recipe';
 const {recipeData} = require('../src/data/recipes');
 import Ingredient from '../src/classes/Ingredient';
 
-describe('Recipe', () => {
-	let recipe;
+describe.only('Recipe', () => {
+	let recipe, recipe2;
 
 	beforeEach(() => {
 		recipe = new Recipe(recipeData[0])
+		recipe2 = new Recipe(recipeData[1])
 	});
 
 	it('should be a function', () => {
@@ -84,18 +85,13 @@ describe('Recipe', () => {
 		expect(output).to.be.a('array')
 		expect(output[0]['1']).to.equal("In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
 		"number")
+	});
 
-	})
+	it('should have a string of its main displayedTag', () => {
+			recipe.showDisplayTag();
+			console.log(recipe.displayedTag);
+			recipe2.showDisplayTag();
+			console.log(recipe2.displayedTag);
+	});
 
-
-
-
-
-
-
-
-
-
-	
-
-})
+});

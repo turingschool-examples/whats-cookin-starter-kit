@@ -7,10 +7,8 @@ class RecipeRepository {
   constructor() {
     this.recipeObjects = [];
     this.tags = [];
-    // One class to get you started!
-    //this is going to have methods to sort our data
   }
-  
+
   addRecipes() {
     this.recipeObjects = recipeData.map((data) => {
       return new Recipe(data)
