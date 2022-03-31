@@ -14,6 +14,8 @@ const recipeSection = document.querySelector('.recipes-section');
 
 var recipeRepository = new RecipeRepository();
 recipeRepository.addRecipes();
+var recipes = recipeRepository.recipeObjects;
+//Should this be a local variable in createRecipePreview^^
 
 // event listeners
 window.addEventListener('load', () => {initiatePage()});
@@ -22,41 +24,41 @@ window.addEventListener('load', () => {initiatePage()});
 
 // functions, event handlers
 var initiatePage = () => {
-
+  createRecipePreview();
 }
 
 var createRecipePreview = () => {
-
-
-recipeSection.innerHTML += `
-<section class="recipe-preview" id="${}">
-  <section class="recipe-heading">
-    <h3>${}</h3>
-  </section>
-  <div class="recipe-img">
-    <img src="${}">
-  </div>
-  <section class="recipe-info">
-    <section class="tag-icon-section">
-      <p>Tags:</p>
-      <div class="tag">
-        <p class="tag-name">Breakfast</p>
-      </div>
-      <div class="icons-section" >
-        <img class="icon add-to-cook" src="./images/icon_fire_symbol_unlit.png">
-        <img class="icon add-to-saved" src="./images/icon_banner_add.png">
-      </div>
-    </section>>
-    <section class="recipe-ingredients">
-      <p class="ingredients-name">Ingredients</p>
-      <div class="ingredients">
-        <p>${}</p>
-      </div>
-    </section>
-  </section>
-</section>
-`
-
+  recipeSection.innerHTML = "";
+  recipes.forEach((recipe) => {
+    recipeSection.innerHTML += `
+      <section class="recipe-preview" id="${recipe.id}">
+        <section class="recipe-heading">
+          <h3>${recipe.name}</h3>
+        </section>
+        <div class="recipe-img">
+          <img src="${recipe.img}">
+        </div>
+        <section class="recipe-info">
+          <section class="tag-icon-section">
+            <p>Tags:</p>
+            <div class="tag">
+              <p class="tag-name">${recipe.displayedTag}</p>
+            </div>
+            <div class="icons-section">
+              <img class="icon add-to-cook" src="./images/icon_fire_symbol_unlit.png">
+              <img class="icon add-to-saved" src="./images/icon_banner_add.png">
+            </div>
+          </section>>
+          <section class="recipe-ingredients">
+            <p class="ingredients-name">Ingredients</p>
+            <div class="ingredients">
+              <p>${recipe.ingredientNames}</p>
+            </div>
+          </section>
+        </section>
+      </section>
+      `
+  })
 }
 // think about how to pull correct tag to display
 // var viewRecipeDetail = () => {

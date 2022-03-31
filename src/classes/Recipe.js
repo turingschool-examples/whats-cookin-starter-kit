@@ -10,6 +10,7 @@ class Recipe {
 		this.instructions = recipe.instructions
 		this.name = recipe.name
 		this.tags = recipe.tags
+		this.displayedTag;
 		this.ingredients;
 		this.ingredientNames;
 	}
@@ -19,7 +20,7 @@ class Recipe {
 			ingredientsData.forEach((dataPoint) => {
 				if(dataPoint.id === ingredient.id) {
 					ingredient = new Ingredient(dataPoint)
-				} 
+				}
 			})
 			return ingredient
 		})
@@ -39,7 +40,7 @@ class Recipe {
 					numOfUnits = data.quantity.amount
 				}
 			})
-			return cost += (ingredient.costInCents * numOfUnits)		
+			return cost += (ingredient.costInCents * numOfUnits)
 		}, 0)
 	}
 
@@ -47,6 +48,15 @@ class Recipe {
 	return this.instructions.map((instruction) => ({
 	[`${instruction.number}`]: instruction.instruction
 		}))
+	}
+
+	showDisplayTag() {
+		//filter out the things we DO care about
+		// we want to display specifically the most important tag 
+		//if includes breakfast lunch or Dinner
+				//		this.displayedTag = one of those
+				//if lunch and dinner then interpole Lunch/Dinner
+
 	}
 
 };

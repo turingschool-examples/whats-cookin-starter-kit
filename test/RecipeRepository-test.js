@@ -52,9 +52,10 @@ describe.only('Recipe Repository', () => {
     expect(output2.length).to.equal(6);
     expect(output2[5].id).to.equal(583738);
   });
-  it("should be able to record all individual tags from the data set", () => {
-    const cookieTag = recipeData[0].tags[0]
-    expect(repository.tags[0]).to.equal(cookieTag)
+  it('should be able to record all individual tags from the data set', () => {
+    const cookieTag = recipeData[0].tags[0];
+    console.log(repository.tags);
+    expect(repository.tags[0]).to.equal(cookieTag);
   })
 })
 /*
