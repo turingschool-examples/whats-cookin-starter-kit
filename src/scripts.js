@@ -8,8 +8,11 @@ import './images/icon_fire_symbol_lit.png';
 import './images/icon_fire_symbol_unlit.png';
 import RecipeRepository from '../src/classes/RecipeRepository';
 //~~~~~~~~~~~~~~~~~~~~ QUERY SELECTORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const recipePreview = document.querySelector('.recipe-preview');
-const recipeSection = document.querySelector('.recipes-section');
+
+
+const recipeSection = document.getElementById('recipesSection')
+var recipePreview = document.querySelector('.recipe-preview')
+;
 
 //~~~~~~~~~~~~~~~~~~~~ GLOBAL VARIABLES ~~~~~~~~~~~~~~~~~~~~~~~
 var recipeRepository = new RecipeRepository();
@@ -20,7 +23,28 @@ var recipes = recipeRepository.recipeObjects;
 //~~~~~~~~~~~~~~~~~~~~ EVENT LISTENERS  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 window.addEventListener('load', () => {initiatePage()});
-// recipePreview.addEventListener('click', () => {viewRecipeDetail()});
+
+recipeSection.addEventListener('click', (e) => {
+  displayRecipeDetail(e)
+  })
+
+const displayRecipeDetail = (e) => {
+  if(e.target.dataset.id) {
+    recipes.find((recipe) => {
+      console.log(recipe.id)
+      recipe.id ===  e.target.dataset.id
+    })
+   
+  } 
+};
+
+// take our id and compare and use find or filter through our respoitory to find
+// the matching whatever. 
+// assign innerHtml to our popout div and unhide it
+// when we click off that div what happens? 
+// we hide it thats happens
+
+
 
 
 //~~~~~~~~~~~~~~~~~~~~ EVENT HANDLERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -28,22 +52,25 @@ var initiatePage = () => {
   createRecipePreview();
 }
 
+
+
+
 var createRecipePreview = () => {
   recipeSection.innerHTML = "";
   recipes.forEach((recipe) => {
     recipe.showDisplayTag()
     recipe.collectIngredients();
     recipeSection.innerHTML += `
-      <section class="recipe-preview" id="${recipe.id}">
-        <section class="recipe-heading">
-          <h3>${recipe.name}</h3>
+      <section class="recipe-preview" data-id="${recipe.id}">
+        <section class="recipe-heading" data-id="${recipe.id}">
+          <h3 data-id="${recipe.id}">${recipe.name}</h3>
         </section>
-        <div class="recipe-img">
-          <img src="${recipe.img}">
+        <div data-id="${recipe.id}" class="recipe-img">
+          <img data-id="${recipe.id}" src="${recipe.img}">
         </div>
-        <section class="recipe-info">
-          <section class="tag-icon-section">
-            <div class="icons-section">
+        <section class="recipe-info" data-id="${recipe.id}">
+          <section class="tag-icon-section" data-id="${recipe.id}">
+            <div class="icons-section" data-id="${recipe.id}">
               <img class="icon add-to-cook" src="./images/icon_fire_symbol_unlit.png">
               <img class="icon add-to-saved" src="./images/icon_banner_add.png">
             </div>
@@ -58,12 +85,7 @@ var targetRecipeToDisplay = () => {
   (event) => {
    var idToDisplay = recipes.find((recipe) => `${recipe.id}` === event.target.id); };
 }
-var displayRecipeDetail = (event) => {
-  //may need to check whether there are any duplicate ids
 
-      //create recipe popup
-      //show recipe detail
-    });
   // onclick we need the recipe id to match the recipe-preview id
 
   recipeSection.innerHTML = "";
