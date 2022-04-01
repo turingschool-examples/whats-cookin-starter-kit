@@ -12,12 +12,20 @@ import RecipeRepository from '../src/classes/RecipeRepository';
 const recipeSection = document.getElementById('recipesSection');
 var recipePreview = document.querySelector('.recipe-preview');
 let popUp = document.querySelector('.popup-div'); 
-let popUpShadow = document.getElementById('test');
+const popUpShadow = document.getElementById('shadow');
+
+const filterBreakfast = document.getElementById("breakfast")
+const filterLunch = document.getElementById("lunch")
+const filterDinner = document.getElementById("dinner")
+const filterSnack = document.getElementById("snack")
+const filterDip = document.getElementById("dip")
+
+const searchBar = document.getElementById("searchBar")
 
 //~~~~~~~~~~~~~~~~~~~~ GLOBAL VARIABLES ~~~~~~~~~~~~~~~~~~~~~~~
 var recipeRepository = new RecipeRepository();
 recipeRepository.addRecipes();
-var recipes = recipeRepository.recipeObjects;
+var recipesFull = recipeRepository.recipeObjects;
 
 //~~~~~~~~~~~~~~~~~~~~ EVENT LISTENERS  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 window.addEventListener('load', () => {initiatePage()});
@@ -29,8 +37,24 @@ recipeSection.addEventListener('click', (e) => {
   displayRecipeDetail(e)
   })
 
+  filterBreakfast.addEventListener("click", () => {
+  displayFilteredTags("breakfast")})
+
+    filterLunch.addEventListener("click", () => {
+  displayFilteredTags("lunch")})
+
+  filterDinner.addEventListener("click", () => {
+    displayFilteredTags("dinner")})
+
+  filterSnack.addEventListener("click", () => {
+      displayFilteredTags("snack")})
+
+  filterDip.addEventListener("click", () => {
+     displayFilteredTags("dip")})
   
-  
+  searchBar.addEventListener("search", () => {
+    displayRecipesByName(searchBar.value)
+  })
   
   //~~~~~~~~~~~~~~~~~~~~ EVENT HANDLERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   let hidePopUp = (e) => {
@@ -42,7 +66,7 @@ recipeSection.addEventListener('click', (e) => {
   
   const displayRecipeDetail = (e) => {
     if(e.target.dataset.id) {
-      var foundRecipe = recipes.find((recipe) => {
+      var foundRecipe = recipesFull.find((recipe) => {
         return `${recipe.id}` ===  e.target.dataset.id
       });
       displayPopUp(foundRecipe);
@@ -52,10 +76,10 @@ recipeSection.addEventListener('click', (e) => {
   };
   
 var initiatePage = () => {
-  createRecipePreview();
+  createRecipePreview(recipesFull);
 }
 
-var createRecipePreview = () => {
+var createRecipePreview = (recipes) => {
   recipeSection.innerHTML = "";
   recipes.forEach((recipe) => {
     recipe.showDisplayTag()
@@ -81,6 +105,16 @@ var createRecipePreview = () => {
     </section>
     `
   })
+}
+
+const displayFilteredTags = (tagToFilter) => {
+  const tempRecipeArr = recipeRepository.filterByTag(tagToFilter);
+  createRecipePreview(tempRecipeArr)
+}
+
+const displayRecipesByName = (inputName) => {
+  const tempRecipeArr = recipeRepository.filterByName(inputName);
+  createRecipePreview(tempRecipeArr)
 }
 
 const displayPopUp = (recipe) => {

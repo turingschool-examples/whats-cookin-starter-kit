@@ -34,6 +34,9 @@ class RecipeRepository {
 
   filterByName(recipeName){
     return this.recipeObjects.filter((recipeObject) => {
+      //input make lowercase 
+      //for each recipenames lowercase
+
       return recipeObject.name.includes(recipeName);
     });
   }
