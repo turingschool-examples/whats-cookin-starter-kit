@@ -53,7 +53,30 @@ var createRecipePreview = () => {
       `
   })
 }
+/*
+var targetRecipeToDisplay = () => {
+  (event) => {
+   var idToDisplay = recipes.find((recipe) => `${recipe.id}` === event.target.id); };
+}
+var displayRecipeDetail = (event) => {
+  //may need to check whether there are any duplicate ids
 
+      //create recipe popup
+      //show recipe detail
+    });
+  // onclick we need the recipe id to match the recipe-preview id
+
+  recipeSection.innerHTML = "";
+  recipes.forEach((recipe) => {
+    recipe.showDisplayTag();
+    recipe.collectIngredients();
+    recipePopout.innerHTML += `
+
+      `
+
+      // As a user, I should be able to click on a recipe to view more information including directions, ingredients needed, and total cost.
+}
+*/
 //~~~~~~~~~~~~~~~~~~~~ CODE/PSUEDOCODE DUMP ~~~~~~~~~~~~~~~~~~~~~~~~~~
 // think about how to pull correct tag to display
 // var viewRecipeDetail = () => {
