@@ -28,22 +28,24 @@ recipeSection.addEventListener('click', (e) => {
   displayRecipeDetail(e)
   })
 
+// As a user, I should be able to click on a recipe to view more information including directions, ingredients needed, and total cost.
 const displayRecipeDetail = (e) => {
   if(e.target.dataset.id) {
-    recipes.find((recipe) => {
-      console.log(recipe.id)
-      recipe.id ===  e.target.dataset.id
-    })
-   
-  } 
+    var found = recipes.find((recipe) => {
+      return `${recipe.id}` ===  e.target.dataset.id
+    });
+  //console.log(found)
+    displayPopUp();
+  }
 };
-
 // take our id and compare and use find or filter through our respoitory to find
-// the matching whatever. 
+// the matching whatever.
 // assign innerHtml to our popout div and unhide it
-// when we click off that div what happens? 
+// when we click off that div what happens?
 // we hide it thats happens
+const displayPopUp = () => {
 
+}
 
 
 
@@ -51,9 +53,6 @@ const displayRecipeDetail = (e) => {
 var initiatePage = () => {
   createRecipePreview();
 }
-
-
-
 
 var createRecipePreview = () => {
   recipeSection.innerHTML = "";
@@ -80,45 +79,11 @@ var createRecipePreview = () => {
       `
   })
 }
-/*
-var targetRecipeToDisplay = () => {
-  (event) => {
-   var idToDisplay = recipes.find((recipe) => `${recipe.id}` === event.target.id); };
-}
 
-  // onclick we need the recipe id to match the recipe-preview id
-
-  recipeSection.innerHTML = "";
-  recipes.forEach((recipe) => {
-    recipe.showDisplayTag();
-    recipe.collectIngredients();
-    recipePopout.innerHTML += `
-
-      `
-
-      // As a user, I should be able to click on a recipe to view more information including directions, ingredients needed, and total cost.
-}
-*/
 //~~~~~~~~~~~~~~~~~~~~ CODE/PSUEDOCODE DUMP ~~~~~~~~~~~~~~~~~~~~~~~~~~
-// think about how to pull correct tag to display
-// var viewRecipeDetail = () => {
-//
-// }
 
+//As a user, I should be able to click on a recipe to view more information including directions, ingredients needed, and total cost.
 
-// var displayAllRecipes = () => {
-//   console.log('did this display recipes?')
-//
-// }
+//As a user, I should be able to filter recipes by a tag. (Extension option: by multiple tags)
 
-//for every instance of recipe we want to create recipes
-//class is recipe-preview
-
-
-/*
-
-As a user, I should be able to click on a recipe to view more information including directions, ingredients needed, and total cost.
-
-As a user, I should be able to filter recipes by a tag. (Extension option: by multiple tags)
-
-As a user, I should be able to search recipes by their name. (Extension option: by name or ingredients)*/
+//As a user, I should be able to search recipes by their name. (Extension option: by name or ingredients)
