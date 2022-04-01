@@ -253,7 +253,7 @@ main {
 .popup-ingredient {
   height: 90%;
   width: 30%;
-  overflow: hidden;
+  overflow-y: scroll;
   border-radius: 25px;
   box-shadow: inset  2px 2px 3px 2px #ffffff,
   2px 2px 4px 2px #1d1d1d;
@@ -262,7 +262,7 @@ main {
 .popup-instructions {
   height: 90%;
   width: 60%;
-  overflow: hidden;
+  overflow-y: scroll;
   border-radius: 25px;
   box-shadow: inset  2px 2px 3px 2px #ffffff,
   2px 2px 4px 2px #1d1d1d;
@@ -273,6 +273,7 @@ main {
   width: 100%;
   background-color: #7D98A1;
 }
+
 .hidden {
   display: none;
 }
