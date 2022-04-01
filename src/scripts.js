@@ -12,12 +12,15 @@ import RecipeRepository from '../src/classes/RecipeRepository';
 const recipeSection = document.getElementById('recipesSection');
 var recipePreview = document.querySelector('.recipe-preview');
 let popUp = document.querySelector('.popup-div'); 
-let popUpShadow = document.getElementById('test');
-let filterBreakfast = document.getElementById("breakfast")
-let filterLunch = document.getElementById("lunch")
-let filterDinner = document.getElementById("dinner")
-let filterSnack = document.getElementById("snack")
-let filterDip = document.getElementById("dip")
+const popUpShadow = document.getElementById('shadow');
+
+const filterBreakfast = document.getElementById("breakfast")
+const filterLunch = document.getElementById("lunch")
+const filterDinner = document.getElementById("dinner")
+const filterSnack = document.getElementById("snack")
+const filterDip = document.getElementById("dip")
+
+const searchBar = document.getElementById("searchBar")
 
 //~~~~~~~~~~~~~~~~~~~~ GLOBAL VARIABLES ~~~~~~~~~~~~~~~~~~~~~~~
 var recipeRepository = new RecipeRepository();
@@ -49,6 +52,9 @@ recipeSection.addEventListener('click', (e) => {
   filterDip.addEventListener("click", () => {
      displayFilteredTags("dip")})
   
+  searchBar.addEventListener("search", () => {
+    displayRecipesByName(searchBar.value)
+  })
   
   //~~~~~~~~~~~~~~~~~~~~ EVENT HANDLERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   let hidePopUp = (e) => {
@@ -101,6 +107,16 @@ var createRecipePreview = (recipes) => {
   })
 }
 
+const displayFilteredTags = (tagToFilter) => {
+  const tempRecipeArr = recipeRepository.filterByTag(tagToFilter);
+  createRecipePreview(tempRecipeArr)
+}
+
+const displayRecipesByName = (inputName) => {
+  const tempRecipeArr = recipeRepository.filterByName(inputName);
+  createRecipePreview(tempRecipeArr)
+}
+
 const displayPopUp = (recipe) => {
   let popUpName = document.getElementById('popupName')
   let popUpImage = document.getElementById('popupImage')
@@ -131,12 +147,6 @@ const displayTotalCost = (recipe) => {
   totalCost.classList.add('total-cost-popup')
   totalCost.innerHTML = `Total Cost: $${(recipe.calculateCost()/100).toFixed(2)}`
   ingredientsBlock.appendChild(totalCost)
-}
-
-const displayFilteredTags = (tagToFilter) => {
-  const tempRecipeArr = recipeRepository.filterByTag(tagToFilter);
-  console.log(tempRecipeArr)
-  createRecipePreview(tempRecipeArr)
 }
 
 const toggleHidden = (element) => {
