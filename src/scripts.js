@@ -12,7 +12,6 @@ import RecipeRepository from '../src/classes/RecipeRepository';
 
 const recipeSection = document.getElementById('recipesSection')
 var recipePreview = document.querySelector('.recipe-preview')
-;
 
 //~~~~~~~~~~~~~~~~~~~~ GLOBAL VARIABLES ~~~~~~~~~~~~~~~~~~~~~~~
 var recipeRepository = new RecipeRepository();
@@ -23,30 +22,59 @@ var recipes = recipeRepository.recipeObjects;
 //~~~~~~~~~~~~~~~~~~~~ EVENT LISTENERS  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 window.addEventListener('load', () => {initiatePage()});
+let popUp = document.querySelector('.popup-div');
+let popUpShadow = document.getElementById('test');
+popUp.addEventListener('click', (e) => {
+  hidePopUp(e)
+})
+
+let hidePopUp = (e) => {
+  console.log(e.target.id, 'specificRecipe')
+  if(e.target.id === 'specificRecipe') {   
+    toggleHidden(popUp)
+    toggleHidden(popUpShadow)
+  }
+}
 
 recipeSection.addEventListener('click', (e) => {
   displayRecipeDetail(e)
   })
 
-// As a user, I should be able to click on a recipe to view more information including directions, ingredients needed, and total cost.
 const displayRecipeDetail = (e) => {
   if(e.target.dataset.id) {
-    var found = recipes.find((recipe) => {
+    var foundRecipe = recipes.find((recipe) => {
       return `${recipe.id}` ===  e.target.dataset.id
     });
-  //console.log(found)
-    displayPopUp();
+    displayPopUp(foundRecipe);
+    toggleHidden(popUpShadow);
+    toggleHidden(popUp);
   }
 };
-// take our id and compare and use find or filter through our respoitory to find
-// the matching whatever.
-// assign innerHtml to our popout div and unhide it
-// when we click off that div what happens?
-// we hide it thats happens
-const displayPopUp = () => {
 
+const displayPopUp = (recipe) => {
+  let popUpName = document.getElementById('popupName')
+  let popUpImage = document.getElementById('popupImage')
+  recipe.instructions.forEach((instruction) => {
+    let newListInstruction = document.createElement('li')
+    newListInstruction.classList.add('instructions-list')
+    newListInstruction.innerHTML = `Step${instruction.number}: ${instruction.instruction}`
+    popupInstructions.appendChild(newListInstruction)
+  })
+  recipe.ingredients.forEach((ingredient, i) => {
+    let newListIngredient = document.createElement('li')
+    newListIngredient.classList.add('ingredients-list')
+    newListIngredient.innerHTML = `${ingredient.name}:  ${recipe.ingredientsInfo[i].quantity.amount}${recipe.ingredientsInfo[i].quantity.unit}`
+    popupIngredients.appendChild(newListIngredient)
+  })
+  popUpImage.src = recipe.img
+  popUpName.innerHTML = recipe.name
 }
 
+const toggleHidden = (element) => {
+  console.log('line 76: ', element)
+  let classes = element.classList 
+  classes.toggle('hidden')
+}
 
 
 //~~~~~~~~~~~~~~~~~~~~ EVENT HANDLERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -59,6 +87,8 @@ var createRecipePreview = () => {
   recipes.forEach((recipe) => {
     recipe.showDisplayTag()
     recipe.collectIngredients();
+    recipe.giveInstructions();
+    recipe.nameIngredients();
     recipeSection.innerHTML += `
       <section class="recipe-preview" data-id="${recipe.id}">
         <section class="recipe-heading" data-id="${recipe.id}">

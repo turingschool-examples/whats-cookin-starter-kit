@@ -60,15 +60,15 @@
         </section>
       </section>
     </main>
-    <div class="popup-shadow hidden">
+    <div class="popup-shadow hidden" id="test">
     </div>
     <section class="popup-div hidden" id="specificRecipe">
       <section class="recipe-popout">
         <div class="popup-name">
-          <h3>Cookies!</h3>
+          <h3 id="popupName">Cookies!</h3>
         </div>
         <div class="popup-image">
-          <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/180906-delish-seo-00017-1537277923.jpg?crop=1.00xw:0.751xh;0,0.249xh&resize=1200:*">
+          <img id="popupImage" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/180906-delish-seo-00017-1537277923.jpg?crop=1.00xw:0.751xh;0,0.249xh&resize=1200:*">
         </div>
         <div class="popup-icons">
           <img class="popup-icon add-to-cook" src="./images/icon_fire_symbol_unlit.png">
@@ -77,9 +77,11 @@
         <div class="popup-data">
           <div class="popup-ingredient">
             <h3>Ingredients</h3>
+            <p id="popupIngredients"></p>
           </div>        
           <div class="popup-instructions">
             <h3>Instructions</h3>
+            <p id="popupInstructions"></p>
           </div>
         </div>
       </section>
