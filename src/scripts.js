@@ -21,6 +21,7 @@ const filterDinner = document.getElementById("dinner")
 const filterSnack = document.getElementById("snack")
 const filterDip = document.getElementById("dip")
 const searchBar = document.getElementById("searchBar")
+const resetFilters = document.getElementById('clear')
 // const buttonAddCookPopup = document.getElementById("popupAddCook")
 const buttonAddSavedPopup = document.getElementById("popupAddSaved")
 let savedRecipes = document.getElementById('saveRecipes')
@@ -72,6 +73,10 @@ recipeSection.addEventListener('click', (e) => {
   filterDip.addEventListener("click", () => {
      displayFilteredTags("dip")})
 
+  resetFilters.addEventListener('click', () => {
+    resetPageRender()
+  })
+
   searchBar.addEventListener("input", () => {
     displayRecipesByName(searchBar.value)
   })
@@ -103,6 +108,16 @@ recipeSection.addEventListener('click', (e) => {
   })
 
   //~~~~~~~~~~~~~~~~~~~~ EVENT HANDLERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+  let resetPageRender = () => {
+    if(user.viewingSavedRecipe) {
+      createRecipePreview(user.favoriteRecipes)
+    } else {
+      createRecipePreview(recipesFull)
+    }
+  }
+
 
   let identifyRecipe = (e) => {
     let recipe = recipesFull.find((recipe) => {
@@ -219,13 +234,23 @@ let findSaveIcon = (recipe) => {
 
 
 const displayFilteredTags = (tagToFilter) => {
+  if(user.viewingSavedRecipe) {
+    let userFilteredSavedRecipes = user.filterFavsByTag(tagToFilter);
+    createRecipePreview(userFilteredSavedRecipes)
+    return
+  }
   const tempRecipeArr = recipeRepository.filterByTag(tagToFilter);
   createRecipePreview(tempRecipeArr)
 }
 
 const displayRecipesByName = (inputName) => {
-  const tempRecipeArr = recipeRepository.filterByName(inputName);
-  createRecipePreview(tempRecipeArr)
+  if(user.viewingSavedRecipe) {
+    const filterSavedRecipesByName = user.filterFavsByName(inputName);
+    createRecipePreview(filterSavedRecipesByName)
+    return 
+  }
+  const tempRecipesArray = recipeRepository.filterByName(inputName);
+  createRecipePreview(tempRecipesArray)
 }
 
 const displayPopUp = (recipe) => {

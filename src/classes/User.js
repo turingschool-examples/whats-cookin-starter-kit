@@ -28,6 +28,7 @@ class User {
   }
 
   addRecipeToCook(recipe) {
+    if(!this.recipesToCook.includes(recipe))
     this.recipesToCook.push(recipe);
   }
 
