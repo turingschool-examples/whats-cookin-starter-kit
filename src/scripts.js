@@ -7,6 +7,8 @@ import './images/icon_banner_remove.png';
 import './images/icon_fire_symbol_lit.png';
 import './images/icon_fire_symbol_unlit.png';
 import RecipeRepository from '../src/classes/RecipeRepository';
+import User from '../src/classes/User';
+const { usersData } = require('../src/data/users')
 
 //~~~~~~~~~~~~~~~~~~~~ QUERY SELECTORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const recipeSection = document.getElementById('recipesSection');
@@ -26,17 +28,25 @@ const buttonAddCookPopup = document.getElementById("popupAddCook")
 const buttonAddSavedPopup = document.getElementById("popupAddSaved")
 //~~~~~~~~~~~~~~~~~~~~ GLOBAL VARIABLES ~~~~~~~~~~~~~~~~~~~~~~~
 var recipeRepository = new RecipeRepository();
+
 recipeRepository.addRecipes();
 var recipesFull = recipeRepository.recipeObjects;
-
+const user = new User(usersData[Math.floor(Math.random() * usersData.length)])
 //~~~~~~~~~~~~~~~~~~~~ EVENT LISTENERS  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-window.addEventListener('load', () => {initiatePage()});
+window.addEventListener('load', () => {
+  initiatePage()
+});
 popUp.addEventListener('click', (e) => {
   hidePopUp(e)
 })
 
 recipeSection.addEventListener('click', (e) => {
   displayRecipeDetail(e)
+  saveRecipeToCook(e)
+  callFavoriteRecipeFunction(e)
+  // if(e.target.dataset.cookid) {
+  //   toggleSaveIcon(e)
+  // }
   })
 
   filterBreakfast.addEventListener("click", () => {
@@ -54,18 +64,62 @@ recipeSection.addEventListener('click', (e) => {
   filterDip.addEventListener("click", () => {
      displayFilteredTags("dip")})
 
-  searchBar.addEventListener("search", () => {
+  searchBar.addEventListener("input", () => {
     displayRecipesByName(searchBar.value)
   })
 
-  buttonAddCookPopup.addEventListener("click", () => {
-
+  buttonAddCookPopup.addEventListener("click", (e) => {
+   saveRecipeToCook(e)
   })
-
-  buttonAddSavedPopup.addEventListener("click", () => {
-
+  
+  buttonAddSavedPopup.addEventListener("click", (e) => {
+    callFavoriteRecipeFunction(e)
   })
   //~~~~~~~~~~~~~~~~~~~~ EVENT HANDLERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  let callFavoriteRecipeFunction = (e) => {
+    favoriteRecipe(e)
+    if(e.target.dataset.saveid) {
+      toggleSaveIcon(e)
+    }
+  }
+
+
+  let toggleSaveIcon = (e) => {
+    if(!e.target.checked) {
+      e.target.src = './images/icon_banner_remove.png'
+      e.target.checked = true;
+      return
+    }
+    e.target.src = './images/icon_banner_add.png'
+    e.target.checked = false;
+    removeFavoriteRecipe(e)
+   } 
+
+  let removeFavoriteRecipe = (e) => {
+    let output = recipesFull.find((recipe) => {
+      return `${recipe.id}` ===  e.target.dataset.saveid
+    })
+     user.removeFavoriteRecipe(output)
+  }
+  
+  let favoriteRecipe = (e) => {
+
+    if(e.target.dataset.saveid && !e.target.checked) {
+      let output = recipesFull.find((recipe) => {
+        return `${recipe.id}` ===  e.target.dataset.saveid
+      })
+      user.favoriteARecipe(output)
+    } 
+  }
+
+  let saveRecipeToCook = (e) => {
+    if(e.target.dataset.cookid) {
+      console.log(e.target.dataset.cookid)
+    }
+  }
+
+
   let hidePopUp = (e) => {
     if(e.target.id === 'specificRecipe') {
       toggleHidden(popUp)
@@ -90,13 +144,11 @@ var initiatePage = () => {
 
 var createRecipePreview = (recipes) => {
   recipeSection.innerHTML = "";
-  let numOfRecipes = 0
   recipes.forEach((recipe) => {
     recipe.showDisplayTag()
     recipe.collectIngredients();
     recipe.giveInstructions();
     recipe.nameIngredients();
-    numOfRecipes++
     recipeSection.innerHTML += `
     <section class="recipe-preview" data-id="${recipe.id}">
       <section class="recipe-heading" data-id="${recipe.id}">
@@ -108,8 +160,8 @@ var createRecipePreview = (recipes) => {
       <section class="recipe-info" data-id="${recipe.id}">
         <section class="tag-icon-section" data-id="${recipe.id}">
           <div class="icons-section" data-id="${recipe.id}">
-            <img class="icon add-to-cook" src="./images/icon_fire_symbol_unlit.png" id="${recipe.id}">
-              <img class="icon add-to-saved" src="./images/icon_banner_add.png" id="bannerSymbol${recipe.id}">
+            <img class="icon add-to-cook" src="./images/icon_fire_symbol_unlit.png" data-cookId="${recipe.id}">
+              <img class="icon add-to-saved" id="saveIcon" src="./images/icon_banner_add.png" data-saveId="${recipe.id}">
           </div>
         </section>
       </section>
@@ -117,6 +169,7 @@ var createRecipePreview = (recipes) => {
     `
   })
 }
+
 
 const displayFilteredTags = (tagToFilter) => {
   const tempRecipeArr = recipeRepository.filterByTag(tagToFilter);
@@ -133,6 +186,9 @@ const displayPopUp = (recipe) => {
   let popUpImage = document.getElementById('popupImage')
   let popupInstructions = document.getElementById('popupInstructions')
   let popupIngredients = document.getElementById('popupIngredients')
+  buttonAddCookPopup.setAttribute('data-cookid', `${recipe.id}`)
+  buttonAddSavedPopup.setAttribute('data-saveid', `${recipe.id}`)
+
   popupIngredients.innerHTML = '';
   popupInstructions.innerHTML = '';
   recipe.instructions.forEach((instruction) => {
