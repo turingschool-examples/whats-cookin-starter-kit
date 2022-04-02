@@ -22,6 +22,8 @@ const filterDip = document.getElementById("dip")
 
 const searchBar = document.getElementById("searchBar")
 
+const buttonAddCookPopup = document.getElementById("popupAddCook")
+const buttonAddSavedPopup = document.getElementById("popupAddSaved")
 //~~~~~~~~~~~~~~~~~~~~ GLOBAL VARIABLES ~~~~~~~~~~~~~~~~~~~~~~~
 var recipeRepository = new RecipeRepository();
 recipeRepository.addRecipes();
@@ -56,6 +58,13 @@ recipeSection.addEventListener('click', (e) => {
     displayRecipesByName(searchBar.value)
   })
 
+  buttonAddCookPopup.addEventListener("click", () => {
+
+  })
+
+  buttonAddSavedPopup.addEventListener("click", () => {
+
+  })
   //~~~~~~~~~~~~~~~~~~~~ EVENT HANDLERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   let hidePopUp = (e) => {
     if(e.target.id === 'specificRecipe') {
@@ -81,11 +90,13 @@ var initiatePage = () => {
 
 var createRecipePreview = (recipes) => {
   recipeSection.innerHTML = "";
+  let numOfRecipes = 0
   recipes.forEach((recipe) => {
     recipe.showDisplayTag()
     recipe.collectIngredients();
     recipe.giveInstructions();
     recipe.nameIngredients();
+    numOfRecipes++
     recipeSection.innerHTML += `
     <section class="recipe-preview" data-id="${recipe.id}">
       <section class="recipe-heading" data-id="${recipe.id}">
@@ -97,8 +108,8 @@ var createRecipePreview = (recipes) => {
       <section class="recipe-info" data-id="${recipe.id}">
         <section class="tag-icon-section" data-id="${recipe.id}">
           <div class="icons-section" data-id="${recipe.id}">
-            <img class="icon add-to-cook" src="./images/icon_fire_symbol_unlit.png">
-              <img class="icon add-to-saved" src="./images/icon_banner_add.png">
+            <img class="icon add-to-cook" src="./images/icon_fire_symbol_unlit.png" id="${recipe.id}">
+              <img class="icon add-to-saved" src="./images/icon_banner_add.png" id="bannerSymbol${recipe.id}">
           </div>
         </section>
       </section>
@@ -153,6 +164,7 @@ const toggleHidden = (element) => {
   let classes = element.classList
   classes.toggle('hidden')
 }
+
 
 //~~~~~~~~~~~~~~~~~~~~ CODE/PSUEDOCODE DUMP ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
