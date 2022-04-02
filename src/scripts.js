@@ -11,7 +11,7 @@ import RecipeRepository from '../src/classes/RecipeRepository';
 //~~~~~~~~~~~~~~~~~~~~ QUERY SELECTORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const recipeSection = document.getElementById('recipesSection');
 var recipePreview = document.querySelector('.recipe-preview');
-let popUp = document.querySelector('.popup-div'); 
+let popUp = document.querySelector('.popup-div');
 const popUpShadow = document.getElementById('shadow');
 
 const filterBreakfast = document.getElementById("breakfast")
@@ -51,19 +51,19 @@ recipeSection.addEventListener('click', (e) => {
 
   filterDip.addEventListener("click", () => {
      displayFilteredTags("dip")})
-  
+
   searchBar.addEventListener("search", () => {
     displayRecipesByName(searchBar.value)
   })
-  
+
   //~~~~~~~~~~~~~~~~~~~~ EVENT HANDLERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   let hidePopUp = (e) => {
-    if(e.target.id === 'specificRecipe') {   
+    if(e.target.id === 'specificRecipe') {
       toggleHidden(popUp)
       toggleHidden(popUpShadow)
     }
   }
-  
+
   const displayRecipeDetail = (e) => {
     if(e.target.dataset.id) {
       var foundRecipe = recipesFull.find((recipe) => {
@@ -74,7 +74,7 @@ recipeSection.addEventListener('click', (e) => {
       toggleHidden(popUp);
     }
   };
-  
+
 var initiatePage = () => {
   createRecipePreview(recipesFull);
 }
@@ -88,20 +88,20 @@ var createRecipePreview = (recipes) => {
     recipe.nameIngredients();
     recipeSection.innerHTML += `
     <section class="recipe-preview" data-id="${recipe.id}">
-    <section class="recipe-heading" data-id="${recipe.id}">
-    <h3 data-id="${recipe.id}">${recipe.name}</h3>
-    </section>
-    <div data-id="${recipe.id}" class="recipe-img">
-    <img data-id="${recipe.id}" src="${recipe.img}">
-    </div>
-    <section class="recipe-info" data-id="${recipe.id}">
-    <section class="tag-icon-section" data-id="${recipe.id}">
-    <div class="icons-section" data-id="${recipe.id}">
-    <img class="icon add-to-cook" src="./images/icon_fire_symbol_unlit.png">
-    <img class="icon add-to-saved" src="./images/icon_banner_add.png">
-    </div>
-    </section>
-    </section>
+      <section class="recipe-heading" data-id="${recipe.id}">
+        <h3 data-id="${recipe.id}">${recipe.name}</h3>
+      </section>
+      <div data-id="${recipe.id}" class="recipe-img">
+        <img data-id="${recipe.id}" src="${recipe.img}">
+      </div>
+      <section class="recipe-info" data-id="${recipe.id}">
+        <section class="tag-icon-section" data-id="${recipe.id}">
+          <div class="icons-section" data-id="${recipe.id}">
+            <img class="icon add-to-cook" src="./images/icon_fire_symbol_unlit.png">
+              <img class="icon add-to-saved" src="./images/icon_banner_add.png">
+          </div>
+        </section>
+      </section>
     </section>
     `
   })
@@ -150,7 +150,7 @@ const displayTotalCost = (recipe) => {
 }
 
 const toggleHidden = (element) => {
-  let classes = element.classList 
+  let classes = element.classList
   classes.toggle('hidden')
 }
 
