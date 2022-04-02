@@ -8,6 +8,7 @@ class User {
     this.name = userInfo.name;
     this.id = userInfo.id;
     this.pantry = userInfo.pantry;
+    this.viewingSavedRecipe = false
     this.favoriteRecipes = [];
     this.recipesToCook = [];
   }
