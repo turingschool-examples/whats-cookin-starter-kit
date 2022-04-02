@@ -15,17 +15,15 @@ const recipeSection = document.getElementById('recipesSection');
 var recipePreview = document.querySelector('.recipe-preview');
 let popUp = document.querySelector('.popup-div');
 const popUpShadow = document.getElementById('shadow');
-
 const filterBreakfast = document.getElementById("breakfast")
 const filterLunch = document.getElementById("lunch")
 const filterDinner = document.getElementById("dinner")
 const filterSnack = document.getElementById("snack")
 const filterDip = document.getElementById("dip")
-
 const searchBar = document.getElementById("searchBar")
-
 const buttonAddCookPopup = document.getElementById("popupAddCook")
 const buttonAddSavedPopup = document.getElementById("popupAddSaved")
+let savedRecipes = document.getElementById('saveRecipes')
 //~~~~~~~~~~~~~~~~~~~~ GLOBAL VARIABLES ~~~~~~~~~~~~~~~~~~~~~~~
 var recipeRepository = new RecipeRepository();
 
@@ -75,8 +73,13 @@ recipeSection.addEventListener('click', (e) => {
   buttonAddSavedPopup.addEventListener("click", (e) => {
     callFavoriteRecipeFunction(e)
   })
-  //~~~~~~~~~~~~~~~~~~~~ EVENT HANDLERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+  savedRecipes.addEventListener('click', (e) => {
+    createRecipePreview(user.favoriteRecipes)
+    console.log(user.favoriteRecipes)
+  })
+
+  //~~~~~~~~~~~~~~~~~~~~ EVENT HANDLERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   let callFavoriteRecipeFunction = (e) => {
     favoriteRecipe(e)
     if(e.target.dataset.saveid) {
@@ -84,11 +87,11 @@ recipeSection.addEventListener('click', (e) => {
     }
   }
 
-
-  let toggleSaveIcon = (e) => {
+  let toggleSaveIcon = (e, ) => {
     if(!e.target.checked) {
       e.target.src = './images/icon_banner_remove.png'
       e.target.checked = true;
+      
       return
     }
     e.target.src = './images/icon_banner_add.png'
@@ -104,7 +107,6 @@ recipeSection.addEventListener('click', (e) => {
   }
   
   let favoriteRecipe = (e) => {
-
     if(e.target.dataset.saveid && !e.target.checked) {
       let output = recipesFull.find((recipe) => {
         return `${recipe.id}` ===  e.target.dataset.saveid
@@ -118,7 +120,6 @@ recipeSection.addEventListener('click', (e) => {
       console.log(e.target.dataset.cookid)
     }
   }
-
 
   let hidePopUp = (e) => {
     if(e.target.id === 'specificRecipe') {
