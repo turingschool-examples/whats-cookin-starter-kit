@@ -11,7 +11,7 @@ class Recipe {
 		this.name = recipe.name;
 		this.tags = recipe.tags;
 		this.saved = false;
-		// this.readyToCook = false
+		this.wantToCook = false
 		this.displayedTag;
 		this.ingredients;
 		this.ingredientNames;
@@ -67,7 +67,7 @@ class Recipe {
 		} else {
 			this.displayedTag = 'other'};
 	};
-	
+
 	// assignKeyTag(){
 	// 	//try using a switch statement
 	// 	// setting up condition if includes any of these: make it lunch

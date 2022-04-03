@@ -159,6 +159,7 @@ main {
 
 .icon {
   height: 25px;
+  cursor: pointer;
 }
 
 .recipe-ingredients {

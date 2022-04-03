@@ -4,7 +4,7 @@ import Ingredient from './Ingredient';
 import Recipe from './Recipe';
 
 class User {
-  constructor(userInfo){
+  constructor(userInfo) {
     this.name = userInfo.name;
     this.id = userInfo.id;
     this.pantry = userInfo.pantry;
@@ -13,13 +13,13 @@ class User {
     this.recipesToCook = [];
   }
 
-  favoriteARecipe(recipe){
+  favoriteARecipe(recipe) {
     if(!this.favoriteRecipes.includes(recipe)) {
       this.favoriteRecipes.push(recipe);
     }
   }
 
-  removeFavoriteRecipe(recipe){
+  removeFavoriteRecipe(recipe) {
     this.favoriteRecipes.forEach((favoriteRecipe, i) => {
       if(favoriteRecipe === recipe){
         this.favoriteRecipes.splice(i, 1);
@@ -28,11 +28,13 @@ class User {
   }
 
   addRecipeToCook(recipe) {
-    if(!this.recipesToCook.includes(recipe))
-    this.recipesToCook.push(recipe);
+    if(!this.recipesToCook.includes(recipe)){
+      recipe.wantToCook = true;
+      this.recipesToCook.push(recipe);
+    }
   }
 
-  filterFavsByTag(tag){
+  filterFavsByTag(tag) {
    return this.favoriteRecipes.filter((favoriteRecipe) => {
      return favoriteRecipe.tags.includes(tag);
    });
@@ -43,7 +45,6 @@ class User {
       return favoriteRecipe.name.includes(recipeName);
     });
   }
-
 
 };
 
