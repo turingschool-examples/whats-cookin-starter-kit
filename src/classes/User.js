@@ -1,16 +1,19 @@
-const {ingredientsData} = require('../data/ingredients');
-const {recipeData} = require('../data/recipes');
 import Ingredient from './Ingredient';
 import Recipe from './Recipe';
 
 class User {
-  constructor(userInfo) {
-    this.name = userInfo.name;
-    this.id = userInfo.id;
-    this.pantry = userInfo.pantry;
+  constructor(userData) {
+    this.currentUser = this.generateRandomUser(userData)
+    this.name = this.currentUser.name;
+    this.id = this.currentUser.id;
+    this.pantry = this.currentUser.pantry;
     this.viewingSavedRecipe = false
     this.favoriteRecipes = [];
     this.recipesToCook = [];
+  }
+
+  generateRandomUser(userData) {
+    return new User(userData[Math.floor(Math.random() * userData.length)])
   }
 
   favoriteARecipe(recipe) {
@@ -45,7 +48,6 @@ class User {
       return favoriteRecipe.name.includes(recipeName);
     });
   }
-
 };
 
 

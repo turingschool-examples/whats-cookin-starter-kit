@@ -10,6 +10,24 @@ import RecipeRepository from '../src/classes/RecipeRepository';
 import User from '../src/classes/User';
 const { usersData } = require('../src/data/users')
 
+
+
+const instantiateClasses = (userData, recipeData, ingredientData) => {
+  let recipeRepositoryApi = new RecipeRepository(recipeData, ingredientData)
+  let userApi = new User(userData)
+  console.log(recipeRepositoryApi.allRecipes)
+
+
+}
+
+apiCalls.then(data => {
+  let userData = data[0].usersData
+  let recipeData = data[1].recipeData
+  let ingredientData = data[2].ingredientsData
+  instantiateClasses(userData, recipeData, ingredientData)
+})
+
+
 //~~~~~~~~~~~~~~~~~~~~ QUERY SELECTORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const recipeSection = document.getElementById('recipesSection');
 var recipePreview = document.querySelector('.recipe-preview');
@@ -28,10 +46,10 @@ let savedRecipes = document.getElementById('saveRecipes')
 let allRecipesBar = document.querySelector('.underline-box-all')
 let savedRecipesBar = document.querySelector('.underline-box-saved')
 //~~~~~~~~~~~~~~~~~~~~ GLOBAL VARIABLES ~~~~~~~~~~~~~~~~~~~~~~~
-var recipeRepository = new RecipeRepository();
-recipeRepository.addRecipes();
-var recipesFull = recipeRepository.recipeObjects;
-const user = new User(usersData[Math.floor(Math.random() * usersData.length)])
+// var recipeRepository = new RecipeRepository();
+// recipeRepository.addRecipes();
+// var recipesFull = recipeRepository.recipeObjects;
+
 //~~~~~~~~~~~~~~~~~~~~ EVENT LISTENERS  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 window.addEventListener('load', () => {
   initiatePage()
@@ -206,8 +224,8 @@ var initiatePage = () => {
 var createRecipePreview = (recipes, e) => {
   recipeSection.innerHTML = '';
   recipes.forEach((recipe) => {
-    recipe.collectIngredients();
-    recipe.nameIngredients();
+    // recipe.collectIngredients();
+    // recipe.nameIngredients();
     let srcCook = findCookIcon(recipe);
     let srcSave = findSaveIcon(recipe);
     recipeSection.innerHTML += `

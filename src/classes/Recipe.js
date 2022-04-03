@@ -1,9 +1,7 @@
-const {ingredientsData} = require('../data/ingredients');
-const {recipeData} = require('../data/recipes');
 import Ingredient from './Ingredient';
 
 class Recipe {
-	constructor(recipe) {
+	constructor(recipe, ingredientData) {
 		this.id = recipe.id;
 		this.img = recipe.image;
 		this.ingredientsInfo = recipe.ingredients; //what the recipe object gives us
@@ -12,14 +10,14 @@ class Recipe {
 		this.tags = recipe.tags;
 		this.saved = false;
 		this.wantToCook = false
-		this.displayedTag;
-		this.ingredients;
-		this.ingredientNames;
+		// this.displayedTag;
+		this.ingredients = this.collectIngredients(ingredientData)
+		// this.ingredientNames;
 	}
 
-	collectIngredients() {
-		this.ingredients = this.ingredientsInfo.map((ingredient) => {
-			ingredientsData.forEach((dataPoint) => {
+	collectIngredients(ingredientData) {
+		return this.ingredientsInfo.map((ingredient) => {
+			ingredientData.forEach((dataPoint) => {
 				if(dataPoint.id === ingredient.id) {
 					ingredient = new Ingredient(dataPoint);
 				}
@@ -52,21 +50,21 @@ class Recipe {
 		}));
 	};
 
-	showDisplayTag() {
-		let appTags = ['breakfast', 'lunch', 'dinner', 'snack', 'sauce', 'dip'];
-		let keyTags = this.tags.filter((tag) => appTags.includes(tag));
+	// showDisplayTag() {
+	// 	let appTags = ['breakfast', 'lunch', 'dinner', 'snack', 'sauce', 'dip'];
+	// 	let keyTags = this.tags.filter((tag) => appTags.includes(tag));
 
-		if(this.tags.length === 1) {
-			this.displayedTag = this.tags.toString();
-		}
-		else if(keyTags.length === 1){
-			this.displayedTag = keyTags.toString();
-		}
-		else if(keyTags.length > 1){
-		  this.displayedTag = keyTags.join(' / ');
-		} else {
-			this.displayedTag = 'other'};
-	};
+	// 	if(this.tags.length === 1) {
+	// 		this.displayedTag = this.tags.toString();
+	// 	}
+	// 	else if(keyTags.length === 1){
+	// 		this.displayedTag = keyTags.toString();
+	// 	}
+	// 	else if(keyTags.length > 1){
+	// 	  this.displayedTag = keyTags.join(' / ');
+	// 	} else {
+	// 		this.displayedTag = 'other'};
+	// };
 
 	// assignKeyTag(){
 	// 	//try using a switch statement

@@ -1,17 +1,15 @@
-const {ingredientsData} = require('../data/ingredients');
-const {recipeData} = require('../data/recipes');
 import Ingredient from './Ingredient';
 import Recipe from './Recipe';
 
 class RecipeRepository {
-  constructor() {
-    this.recipeObjects = [];
+  constructor(recipeData, ingredientData) {
+    this.allRecipes = this.addRecipes(recipeData, ingredientData);
     this.tags = [];
   }
 
-  addRecipes() {
-    this.recipeObjects = recipeData.map((data) => {
-      return new Recipe(data)
+  addRecipes(recipeData, ingredientData) {
+    return recipeData.map((data) => {
+      return new Recipe(data, ingredientData)
     })
   }
 
@@ -27,14 +25,14 @@ class RecipeRepository {
   }
 
   filterByTag(tag){
-   return this.recipeObjects.filter((recipeObject) => {
-     return recipeObject.tags.includes(tag);
+   return this.allRecipes.filter((recipe) => {
+     return recipe.tags.includes(tag);
    });
   }
 
   filterByName(recipeName){
-    return this.recipeObjects.filter((recipeObject) => {
-      return recipeObject.name.includes(recipeName);
+    return this.allRecipes.filter((recipe) => {
+      return recipe.name.includes(recipeName);
     });
   }
 }
