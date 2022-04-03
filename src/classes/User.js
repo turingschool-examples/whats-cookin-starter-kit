@@ -1,17 +1,16 @@
-const {ingredientsData} = require('../data/ingredients');
-const {recipeData} = require('../data/recipes');
 import Ingredient from './Ingredient';
 import Recipe from './Recipe';
 
 class User {
-  constructor(userInfo) {
-    this.name = userInfo.name;
-    this.id = userInfo.id;
-    this.pantry = userInfo.pantry;
+  constructor(userData) {
+    this.name = userData.name;
+    this.id = userData.id;
+    this.pantry = userData.pantry;
     this.viewingSavedRecipe = false
     this.favoriteRecipes = [];
     this.recipesToCook = [];
   }
+
 
   favoriteARecipe(recipe) {
     if(!this.favoriteRecipes.includes(recipe)) {
@@ -45,7 +44,6 @@ class User {
       return favoriteRecipe.name.includes(recipeName);
     });
   }
-
 };
 
 

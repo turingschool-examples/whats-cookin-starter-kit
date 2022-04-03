@@ -14,7 +14,6 @@ describe.only('User', () => {
     recipe1 = new Recipe(recipeData[1]);
     recipe2 = new Recipe(recipeData[2]);
     recipe3 = new Recipe(recipeData[3]);
-
   });
 
   it('should be a function', () => {
@@ -74,12 +73,3 @@ describe.only('User', () => {
   });
 
 })
-
-/*userData:
-Array of Objects
-  Keys
-    name(string)
-    id(number)
-    pantry: Array, Objects,
-      Keys: ingredient:(number), amount: (number)
-*/
