@@ -3,7 +3,7 @@ import Recipe from '../src/classes/Recipe';
 const {recipeData} = require('../src/data/recipes');
 import Ingredient from '../src/classes/Ingredient';
 
-describe.only('Recipe', () => {
+describe('Recipe', () => {
 	let recipe, recipe2;
 
 	beforeEach(() => {
@@ -67,14 +67,12 @@ describe.only('Recipe', () => {
 		recipe.collectIngredients()
 		recipe.nameIngredients()
 		let output = recipe.calculateCost()
-
-		console.log(recipe.ingredients.map((ingredient) => {
+		recipe.ingredients.map((ingredient) => {
 		  return ingredient.costInCents
-		}))
-
-		console.log(recipe.ingredientsInfo.map((ingredient) => {
+		})
+		recipe.ingredientsInfo.map((ingredient) => {
 			return ingredient.quantity.amount
-		}))
+		})
 
 		expect(output).to.equal(17776)
 	})
@@ -89,9 +87,7 @@ describe.only('Recipe', () => {
 
 	it('should have a string of its main displayedTag', () => {
 			recipe.showDisplayTag();
-			console.log(recipe.displayedTag);
 			recipe2.showDisplayTag();
-			console.log(recipe2.displayedTag);
 	});
 
 });

@@ -10,13 +10,13 @@
       <h1>Whats Cooking</h1>
       <section class="nav-bar">
         <div class="page-select">
-          <div class="nav-bar-item">
+          <div class="nav-bar-item" id="allRecipes">
             <h2>All Recipes</h2>
-            <div class= "underline-box"id="selectFormIndicator1"></div>
+            <div class= "underline-box-all underline-box"></div>
           </div>
-          <div class="nav-bar-item">
+          <div class="nav-bar-item" id="saveRecipes">
             <h2>Saved Recipes</h2>
-            <div class= "underline-box hidden" id="selectFormIndicator2"></div>
+            <div class= "underline-box-saved underline-box hidden"></div>
           </div>
         </div>
       </section>
@@ -35,7 +35,10 @@
           <input type="radio" id="snack" name="meal-type" value="snack">
           <label for="snack">Snack</label><br>
           <input type="radio" id="dip" name="meal-type" value="dip">
-          <label for="dip">Dip</label>
+          <label for="dip">Dip</label><br>
+          <button id="clear" type='reset' class="reset-filters-button" name="meal-type">
+            Reset Filters
+          </button>
         </form>
       </section>
       <section class="recipes-wrapper">
@@ -52,7 +55,7 @@
               <section class="tag-icon-section">
                 <div class="icons-section" >
                   <img class="icon add-to-cook" src="./images/icon_fire_symbol_unlit.png">
-                  <img class="icon add-to-saved" src="./images/icon_banner_add.png">
+                  <img class="icon add-to-saved" id="saveIcon" src="./images/icon_banner_add.png">
                 </div>
               </section>
             </section>
@@ -71,8 +74,8 @@
           <img id="popupImage" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/180906-delish-seo-00017-1537277923.jpg?crop=1.00xw:0.751xh;0,0.249xh&resize=1200:*">
         </div>
         <div class="popup-icons">
-          <img class="popup-icon add-to-cook" src="./images/icon_fire_symbol_unlit.png">
-          <img class="popup-icon add-to-saved" src="./images/icon_banner_add.png">
+          <img class="popup-icon add-to-cook" src="./images/icon_fire_symbol_unlit.png" id="popupAddCook">
+          <img class="popup-icon add-to-saved" src="./images/icon_banner_add.png" id="popupAddSaved">
         </div>
         <div class="popup-data">
           <div class="popup-ingredient">
