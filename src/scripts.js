@@ -163,9 +163,9 @@ recipeSection.addEventListener('click', (e) => {
     })
     //refactor ↓ to handleSavingRecipes later
     if(recipe.saved && user.viewingSavedRecipe) {
+      recipe.saved = false
       toggleSaveIcon(e, recipe)
       user.removeFavoriteRecipe(recipe)
-      recipe.saved = false
       createRecipePreview(user.favoriteRecipes)
     } else if(recipe.saved && !user.viewingSavedRecipe) {
       user.removeFavoriteRecipe(recipe)
@@ -175,6 +175,10 @@ recipeSection.addEventListener('click', (e) => {
       recipe.saved = true
       user.favoriteARecipe(recipe)
       toggleSaveIcon(e, recipe)
+    } else if(!recipe.saved && user.viewingSavedRecipe) {
+      recipe.saved = true
+      toggleSaveIcon(e, recipe)
+      user.favoriteARecipe(recipe)
     }
   }
 
