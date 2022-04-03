@@ -3,18 +3,14 @@ import Recipe from './Recipe';
 
 class User {
   constructor(userData) {
-    this.currentUser = this.generateRandomUser(userData)
-    this.name = this.currentUser.name;
-    this.id = this.currentUser.id;
-    this.pantry = this.currentUser.pantry;
+    this.name = userData.name;
+    this.id = userData.id;
+    this.pantry = userData.pantry;
     this.viewingSavedRecipe = false
     this.favoriteRecipes = [];
     this.recipesToCook = [];
   }
 
-  generateRandomUser(userData) {
-    return new User(userData[Math.floor(Math.random() * userData.length)])
-  }
 
   favoriteARecipe(recipe) {
     if(!this.favoriteRecipes.includes(recipe)) {

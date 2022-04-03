@@ -12,19 +12,23 @@ const { usersData } = require('../src/data/users')
 
 
 
-const instantiateClasses = (userData, recipeData, ingredientData) => {
-  let recipeRepositoryApi = new RecipeRepository(recipeData, ingredientData)
-  let userApi = new User(userData)
-  console.log(recipeRepositoryApi.allRecipes)
-
-
+const instantiateClasses = (recipeData, ingredientData, userData) => {
+  let recipeRepository = new RecipeRepository(recipeData, ingredientData)
+    let generateRandomUser = () => {
+      return userData[Math.floor(Math.random() * userData.length)]
+    }
+  let user = new User(generateRandomUser())
+  createRecipePreview(recipeRepository.allRecipes)
+  createEventListeners(recipeRepository, user)
 }
+
+
 
 apiCalls.then(data => {
   let userData = data[0].usersData
   let recipeData = data[1].recipeData
   let ingredientData = data[2].ingredientsData
-  instantiateClasses(userData, recipeData, ingredientData)
+  instantiateClasses(recipeData, ingredientData, userData)
 })
 
 
@@ -46,14 +50,15 @@ let savedRecipes = document.getElementById('saveRecipes')
 let allRecipesBar = document.querySelector('.underline-box-all')
 let savedRecipesBar = document.querySelector('.underline-box-saved')
 //~~~~~~~~~~~~~~~~~~~~ GLOBAL VARIABLES ~~~~~~~~~~~~~~~~~~~~~~~
-// var recipeRepository = new RecipeRepository();
-// recipeRepository.addRecipes();
-// var recipesFull = recipeRepository.recipeObjects;
+
 
 //~~~~~~~~~~~~~~~~~~~~ EVENT LISTENERS  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-window.addEventListener('load', () => {
-  initiatePage()
-});
+// window.addEventListener('load', () => {
+//   initiatePage()
+// });
+
+
+const createEventListeners = (recipeRepository, user) => {
 
 popUp.addEventListener('click', (e) => {
   hidePopUp(e)
@@ -61,55 +66,54 @@ popUp.addEventListener('click', (e) => {
   if(user.viewingSavedRecipe) {
     createRecipePreview(user.favoriteRecipes, e)
   } else {
-      createRecipePreview(recipesFull, e)
+      createRecipePreview(recipeRepository.allRecipes, e)
     }
 })
 
 recipeSection.addEventListener('click', (e) => {
-  displayRecipeDetail(e)
+  displayRecipeDetail(e, recipeRepository)
   if(e.target.dataset.cookid){
-    saveRecipeToCook(e)
+    saveRecipeToCook(e, recipeRepository, user)
   }
   if(e.target.dataset.saveid) {
-    identifyRecipe(e)
+    identifyRecipe(e, recipeRepository, user)
   }
   })
 
-//Maybe implement event bubbling 🛁 here
   filterBreakfast.addEventListener('click', () => {
-    displayFilteredTags('breakfast')
+    displayFilteredTags('breakfast', user, recipeRepository)
   });
 
   filterLunch.addEventListener('click', () => {
-    displayFilteredTags('lunch')
+    displayFilteredTags('lunch', user, recipeRepository)
   });
 
   filterDinner.addEventListener('click', () => {
-    displayFilteredTags('dinner')
+    displayFilteredTags('dinner', user, recipeRepository)
   });
 
   filterSnack.addEventListener('click', () => {
-    displayFilteredTags('snack')
+    displayFilteredTags('snack', user, recipeRepository)
   });
 
   filterDip.addEventListener('click', () => {
-    displayFilteredTags('dip')
+    displayFilteredTags('dip', user, recipeRepository)
   });
 
   resetFilters.addEventListener('click', () => {
-    resetPageRender()
+    resetPageRender(recipeRepository, user)
   });
 
   searchBar.addEventListener('input', () => {
-    displayRecipesByName(searchBar.value)
+    displayRecipesByName(searchBar.value, recipeRepository, user )
   });
 
   popupToCookIcon.addEventListener('click', (e) => {
-    saveRecipeToCook(e)
+    saveRecipeToCook(e, recipeRepository, user)
   });
 
   popupSaveIcon.addEventListener('click', (e) => {
-    identifyRecipe(e)
+    identifyRecipe(e, recipeRepository, user)
   });
 
   savedRecipes.addEventListener('click', (e) => {
@@ -125,16 +129,18 @@ recipeSection.addEventListener('click', (e) => {
     if(user.viewingSavedRecipe) {
       toggleHidden(allRecipesBar)
       toggleHidden(savedRecipesBar)
-      createRecipePreview(recipesFull)
+      createRecipePreview(recipeRepository.allRecipes)
     }
     user.viewingSavedRecipe = false
   });
 
+}
+
   //~~~~~~~~~~~~~~~~~~~~ EVENT HANDLERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   //🌎 GLOBAL VARIABLE REQUIRED
-  let saveRecipeToCook = (e) => {
-    let recipe = recipesFull.find((recipe) => {
+  let saveRecipeToCook = (e, recipeRepository, user) => {
+    let recipe = recipeRepository.allRecipes.find((recipe) => {
       return `${recipe.id}` ===  e.target.dataset.cookid
     })
     user.addRecipeToCook(recipe)
@@ -142,17 +148,17 @@ recipeSection.addEventListener('click', (e) => {
   }
 
   //🌎 GLOBAL VARIABLE REQUIRED
-  let resetPageRender = () => {
+  let resetPageRender = (recipeRepository, user) => {
     if(user.viewingSavedRecipe) {
       createRecipePreview(user.favoriteRecipes)
     } else {
-      createRecipePreview(recipesFull)
+      createRecipePreview(recipeRepository.allRecipes)
     }
   }
 
   //🌎 GLOBAL VARIABLE REQUIRED
-  let identifyRecipe = (e) => {
-    let recipe = recipesFull.find((recipe) => {
+  let identifyRecipe = (e, recipeRepository, user) => {
+    let recipe = recipeRepository.allRecipes.find((recipe) => {
       return `${recipe.id}` ===  e.target.dataset.saveid
     })
     //refactor ↓ to handleSavingRecipes later
@@ -190,7 +196,7 @@ recipeSection.addEventListener('click', (e) => {
 
   //🌎 GLOBAL VARIABLE REQUIRED
   let removeFavoriteRecipe = (e) => {
-    let output = recipesFull.find((recipe) => {
+    let output = recipeRepository.allRecipes.find((recipe) => {
       return `${recipe.id}` ===  e.target.dataset.saveid
     })
      user.removeFavoriteRecipe(output)
@@ -204,9 +210,9 @@ recipeSection.addEventListener('click', (e) => {
   };
 
   //🌎 GLOBAL VARIABLE REQUIRED
-  const displayRecipeDetail = (e) => {
+  const displayRecipeDetail = (e, recipeRepository) => {
     if(e.target.dataset.id) {
-      var foundRecipe = recipesFull.find((recipe) => {
+      var foundRecipe = recipeRepository.allRecipes.find((recipe) => {
         return `${recipe.id}` ===  e.target.dataset.id
       });
       displayPopUp(foundRecipe);
@@ -217,15 +223,13 @@ recipeSection.addEventListener('click', (e) => {
 
 //🌎 GLOBAL VARIABLE REQUIRED
 //Re-evaluate whether we need initiate page↓
-var initiatePage = () => {
-  createRecipePreview(recipesFull);
-};
+// var initiatePage = () => {
+//   createRecipePreview(recipeRepository.allRecipes);
+// };
 
 var createRecipePreview = (recipes, e) => {
   recipeSection.innerHTML = '';
   recipes.forEach((recipe) => {
-    // recipe.collectIngredients();
-    // recipe.nameIngredients();
     let srcCook = findCookIcon(recipe);
     let srcSave = findSaveIcon(recipe);
     recipeSection.innerHTML += `
@@ -265,8 +269,8 @@ let findSaveIcon = (recipe) => {
   }
 }
 
-//🌎 GLOBAL VARIABLE REQUIRED -recipeRepository
-const displayFilteredTags = (tagToFilter) => {
+//🌎 GLOBAL VARIABLE REQUIRED 
+const displayFilteredTags = (tagToFilter, user, recipeRepository) => {
   if(user.viewingSavedRecipe) {
     let userFilteredSavedRecipes = user.filterFavsByTag(tagToFilter);
     createRecipePreview(userFilteredSavedRecipes)
@@ -277,7 +281,7 @@ const displayFilteredTags = (tagToFilter) => {
 }
 
 //🌎 GLOBAL VARIABLE REQUIRED -recipeRepository
-const displayRecipesByName = (inputName) => {
+const displayRecipesByName = (inputName, recipeRepository, user) => {
   if(user.viewingSavedRecipe) {
     const filterSavedRecipesByName = user.filterFavsByName(inputName);
     createRecipePreview(filterSavedRecipesByName)
