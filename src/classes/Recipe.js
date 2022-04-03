@@ -11,6 +11,7 @@ class Recipe {
 		this.name = recipe.name;
 		this.tags = recipe.tags;
 		this.saved = false;
+		// this.readyToCook = false
 		this.displayedTag;
 		this.ingredients;
 		this.ingredientNames;

@@ -37,6 +37,7 @@ const user = new User(usersData[Math.floor(Math.random() * usersData.length)])
 window.addEventListener('load', () => {
   initiatePage()
 });
+
 popUp.addEventListener('click', (e) => {
   hidePopUp(e)
   if(user.viewingSavedRecipe) {
@@ -52,26 +53,27 @@ recipeSection.addEventListener('click', (e) => {
   if(e.target.dataset.saveid) {
     identifyRecipe(e)
   }
-  // callFavoriteRecipeFunction(e)
-  // if(e.target.dataset.cookid) {
-  //   toggleSaveIcon(e)
-  // }
   })
 
   filterBreakfast.addEventListener("click", () => {
-  displayFilteredTags("breakfast")})
+    displayFilteredTags("breakfast")
+  })
 
-    filterLunch.addEventListener("click", () => {
-  displayFilteredTags("lunch")})
+  filterLunch.addEventListener("click", () => {
+    displayFilteredTags("lunch")
+  })
 
   filterDinner.addEventListener("click", () => {
-    displayFilteredTags("dinner")})
+    displayFilteredTags("dinner")
+  })
 
   filterSnack.addEventListener("click", () => {
-      displayFilteredTags("snack")})
+    displayFilteredTags("snack")
+  })
 
   filterDip.addEventListener("click", () => {
-     displayFilteredTags("dip")})
+    displayFilteredTags("dip")
+  })
 
   resetFilters.addEventListener('click', () => {
     resetPageRender()
@@ -82,7 +84,7 @@ recipeSection.addEventListener('click', (e) => {
   })
 
   // buttonAddCookPopup.addEventListener("click", (e) => {
-  //  saveRecipeToCook(e)
+  //   saveRecipeToCook(e)
   // })
   
   buttonAddSavedPopup.addEventListener("click", (e) => {
@@ -106,9 +108,15 @@ recipeSection.addEventListener('click', (e) => {
     }
     user.viewingSavedRecipe = false
   })
-
+  
   //~~~~~~~~~~~~~~~~~~~~ EVENT HANDLERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+  // let saveRecipeToCook = (e) => {
+  //   if(e.target.dataset.cookid) {
+  //     console.log(e.target.dataset.cookid)
+  //   }
+  // }
+  
+  
 
   let resetPageRender = () => {
     if(user.viewingSavedRecipe) {
@@ -147,31 +155,12 @@ recipeSection.addEventListener('click', (e) => {
     e.target.src = './images/icon_banner_add.png'
    } 
 
-  // let favoriteRecipe = (e) => {
-  //   if(e.target.dataset.saveid && !e.target.checked) {
-  //     let recipe = recipesFull.find((recipe) => {
-  //       return `${recipe.id}` ===  e.target.dataset.saveid
-  //     })
-  //     recipe.saved = true
-  //     user.favoriteARecipe(recipe)
-  //     toggleSaveIcon(e)
-  //   } 
-  // }
-
-
   let removeFavoriteRecipe = (e) => {
     let output = recipesFull.find((recipe) => {
       return `${recipe.id}` ===  e.target.dataset.saveid
     })
      user.removeFavoriteRecipe(output)
   }
-  
-
-  // let saveRecipeToCook = (e) => {
-  //   if(e.target.dataset.cookid) {
-  //     console.log(e.target.dataset.cookid)
-  //   }
-  // }
 
   let hidePopUp = (e) => {
     if(e.target.id === 'specificRecipe') {
@@ -202,6 +191,7 @@ var createRecipePreview = (recipes, e) => {
     recipe.collectIngredients();
     recipe.giveInstructions();
     recipe.nameIngredients();
+    // let srcCook = findCookIcon(recipe)
     let srcSave = findSaveIcon(recipe)
     recipeSection.innerHTML += `
     <section class="recipe-preview" data-id="${recipe.id}">
@@ -224,6 +214,14 @@ var createRecipePreview = (recipes, e) => {
   })
 }
 
+// let findCookIcon = (recipe) => {
+//   if (recipe.readyToCook) {
+//     return './images/icon_fire_symbol_lit.png'
+//   } else {
+//     return "./images/icon_fire_symbol_unlit.png"
+//   }
+// }
+
 let findSaveIcon = (recipe) => {
   if (recipe.saved) {
     return './images/icon_banner_remove.png'
@@ -231,7 +229,6 @@ let findSaveIcon = (recipe) => {
     return './images/icon_banner_add.png'
   }
 }
-
 
 const displayFilteredTags = (tagToFilter) => {
   if(user.viewingSavedRecipe) {
