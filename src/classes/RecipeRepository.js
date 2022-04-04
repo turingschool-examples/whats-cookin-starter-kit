@@ -3,7 +3,7 @@ import Recipe from './Recipe';
 class RecipeRepository {
   constructor(recipeData, ingredientData) {
     this.allRecipes = this.addRecipes(recipeData, ingredientData);
-    this.tags = [];
+    this.tags = this.getTags(recipeData);
   };
 
   addRecipes(recipeData, ingredientData) {
@@ -12,8 +12,8 @@ class RecipeRepository {
     });
   };
 
-  getTags() {
-    this.tags = recipeData.reduce((acc, recipe) => {
+  getTags(recipeData) {
+    return recipeData.reduce((acc, recipe) => {
       recipe.tags.forEach((tag) => {
         if(!acc.includes(tag)) {
           acc.push(tag);
