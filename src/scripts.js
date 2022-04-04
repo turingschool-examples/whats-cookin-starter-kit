@@ -29,24 +29,27 @@ apiCalls.then(data => {
 
 //~~~~~~~~~~~~~~~~~~~~ QUERY SELECTORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const recipeSection = document.getElementById('recipesSection');
+let allRecipesBar = document.querySelector('.underline-box-all');
+const searchBar = document.getElementById('searchBar');
+
+let savedRecipes = document.getElementById('saveRecipes');
+let savedRecipesBar = document.querySelector('.underline-box-saved');
+
 let popUp = document.querySelector('.popup-div');
-const popUpShadow = document.getElementById('shadow');
+let popUpShadow = document.getElementById('shadow');
+let popupName = document.getElementById('popupName');
+let popupImage = document.getElementById('popupImage');
+let popupInstructions = document.getElementById('popupInstructions');
+let popupIngredients = document.getElementById('popupIngredients');
+let popupToCookIcon = document.getElementById('popupAddCook');
+let popupSaveIcon = document.getElementById('popupAddSaved');
+
 const filterBreakfast = document.getElementById('breakfast');
 const filterLunch = document.getElementById('lunch');
 const filterDinner = document.getElementById('dinner');
 const filterSnack = document.getElementById('snack');
 const filterDip = document.getElementById('dip');
-const searchBar = document.getElementById('searchBar');
 const resetFilters = document.getElementById('clear');
-const popupToCookIcon = document.getElementById('popupAddCook');
-const popupSaveIcon = document.getElementById('popupAddSaved');
-let savedRecipes = document.getElementById('saveRecipes');
-let allRecipesBar = document.querySelector('.underline-box-all');
-let savedRecipesBar = document.querySelector('.underline-box-saved');
-let popupName = document.getElementById('popupName');
-let popupImage = document.getElementById('popupImage');
-let popupInstructions = document.getElementById('popupInstructions');
-let popupIngredients = document.getElementById('popupIngredients');
 
 //~~~~~~~~~~~~~~~~~~~~ EVENT LISTENERS  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -150,39 +153,35 @@ const createEventListeners = (recipeRepository, user) => {
       return `${recipe.id}` ===  e.target.dataset.saveid
     });
     if(recipe.saved && user.viewingSavedRecipe) {
-      recipe.saved = false
-      toggleSaveIcon(e, recipe)
-      user.removeFavoriteRecipe(recipe)
+      user.removeFavoriteRecipe(recipe);
+      toggleSaveIcon(e, recipe);
       createRecipePreview(user.favoriteRecipes)
     } else if(recipe.saved && !user.viewingSavedRecipe) {
-      user.removeFavoriteRecipe(recipe)
-      recipe.saved = false
-      toggleSaveIcon(e, recipe)
+      user.removeFavoriteRecipe(recipe);
+      toggleSaveIcon(e, recipe);
     } else if(!recipe.saved && !user.viewingSavedRecipe) {
-      recipe.saved = true
-      user.favoriteARecipe(recipe)
-      toggleSaveIcon(e, recipe)
+      user.favoriteARecipe(recipe);
+      toggleSaveIcon(e, recipe);
     } else if(!recipe.saved && user.viewingSavedRecipe) {
-      recipe.saved = true
-      toggleSaveIcon(e, recipe)
-      user.favoriteARecipe(recipe)
+      user.favoriteARecipe(recipe);
+      toggleSaveIcon(e, recipe);
     };
   };
 
   let toggleSaveIcon = (e, recipe) => {
     if(recipe.saved) {
-      e.target.src = './images/icon_banner_remove.png'
+      e.target.src = './images/icon_banner_remove.png';
       return
-    }
-    e.target.src = './images/icon_banner_add.png'
+    };
+    e.target.src = './images/icon_banner_add.png';
   };
 
   let toggleToCookIcon = (e, recipe) => {
     if(recipe.wantToCook) {
-      e.target.src = './images/icon_fire_symbol_lit.png'
-      return
+      e.target.src = './images/icon_fire_symbol_lit.png';
+      return;
     };
-    e.target.src = './images/icon_fire_symbol_unlit.png'
+    e.target.src = './images/icon_fire_symbol_unlit.png';
   };
 
   let hidePopUp = (e) => {

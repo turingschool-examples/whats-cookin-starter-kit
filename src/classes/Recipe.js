@@ -4,33 +4,25 @@ class Recipe {
 	constructor(recipe, ingredientData) {
 		this.id = recipe.id;
 		this.img = recipe.image;
-		this.ingredientsInfo = recipe.ingredients; //what the recipe object gives us
+		this.ingredientsInfo = recipe.ingredients;
 		this.instructions = recipe.instructions;
 		this.name = recipe.name;
 		this.tags = recipe.tags;
 		this.saved = false;
-		this.wantToCook = false
-		// this.displayedTag;
-		this.ingredients = this.collectIngredients(ingredientData)
-		// this.ingredientNames;
-	}
+		this.wantToCook = false;
+		this.ingredients = this.collectIngredients(ingredientData);
+	};
 
 	collectIngredients(ingredientData) {
 		return this.ingredientsInfo.map((ingredient) => {
 			ingredientData.forEach((dataPoint) => {
 				if(dataPoint.id === ingredient.id) {
 					ingredient = new Ingredient(dataPoint);
-				}
-			})
+				};
+			});
 			return ingredient;
-		})
-	}
-
-	nameIngredients() {
-		this.ingredientNames = this.ingredients.map((ingredient) => {
-			return ingredient.name;
-		})
-	}
+		});
+	};
 
 	calculateCost() {
 		return this.ingredients.reduce((cost, ingredient) => {
@@ -38,41 +30,17 @@ class Recipe {
 			this.ingredientsInfo.forEach((data) => {
 				if(data.id === ingredient.id) {
 					numOfUnits = data.quantity.amount;
-				}
-			})
-			return cost += (ingredient.costInCents * numOfUnits)
+				};
+			});
+			return cost += (ingredient.costInCents * numOfUnits);
 		}, 0);
-	}
+	};
 
 	giveInstructions () {
 		return this.instructions.map((instruction) => ({
 			[`${instruction.number}`]: instruction.instruction
 		}));
 	};
-
-	// showDisplayTag() {
-	// 	let appTags = ['breakfast', 'lunch', 'dinner', 'snack', 'sauce', 'dip'];
-	// 	let keyTags = this.tags.filter((tag) => appTags.includes(tag));
-
-	// 	if(this.tags.length === 1) {
-	// 		this.displayedTag = this.tags.toString();
-	// 	}
-	// 	else if(keyTags.length === 1){
-	// 		this.displayedTag = keyTags.toString();
-	// 	}
-	// 	else if(keyTags.length > 1){
-	// 	  this.displayedTag = keyTags.join(' / ');
-	// 	} else {
-	// 		this.displayedTag = 'other'};
-	// };
-
-	// assignKeyTag(){
-	// 	//try using a switch statement
-	// 	// setting up condition if includes any of these: make it lunch
-	// 	// if any of these make it side
-	// 	//if includes
-	// }
-
 };
 
 
