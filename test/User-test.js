@@ -1,19 +1,17 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
-import Ingredient from '../src/classes/Ingredient';
 import User from '../src/classes/User';
-const {recipeData} = require('../src/data/recipes');
-const {usersData} = require('../src/data/users');
+const {recipeData, usersData, ingredientsData} = require('../src/data/sampleDatasets');
 
 describe.only('User', () => {
-  let user, user2, recipe0, recipe1, recipe2, recipe3;
+  let user, user2, recipe0, recipe1, recipe2;
+
   beforeEach(() => {
     user = new User(usersData[0]);
-    user2 = new User(usersData[3]);
-    recipe0 = new Recipe(recipeData[0]);
-    recipe1 = new Recipe(recipeData[1]);
-    recipe2 = new Recipe(recipeData[2]);
-    recipe3 = new Recipe(recipeData[3]);
+    user2 = new User(usersData[1]);
+    recipe0 = new Recipe(recipeData[0], ingredientsData);
+    recipe1 = new Recipe(recipeData[1], ingredientsData);
+    recipe2 = new Recipe(recipeData[2], ingredientsData);
   });
 
   it('should be a function', () => {
@@ -25,8 +23,8 @@ describe.only('User', () => {
   });
 
   it('should populate user data', () => {
-    expect(user.name).to.equal("Saige O'Kon");
-    expect(user.id).to.equal(1);
+    expect(user.name).to.equal("Julia Childs");
+    expect(user.id).to.equal(3277);
     expect(user.pantry.length).to.equal(usersData[0].pantry.length);
     expect(user.pantry[0].amount).to.equal(4);
   });
@@ -47,7 +45,7 @@ describe.only('User', () => {
     user.favoriteARecipe(recipe2);
     user.removeFavoriteRecipe(recipe1);
     expect(user.favoriteRecipes[0].id).to.equal(595736);
-    expect(user.favoriteRecipes[1].id).to.equal(412309);
+    expect(user.favoriteRecipes[1].id).to.equal(678353);
     expect(user.favoriteRecipes[1]).to.equal(recipe2);
   })
 

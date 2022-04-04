@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Ingredient from '../src/classes/Ingredient';
-const {ingredientsData} = require('../src/data/ingredients');
+const { ingredientsData } = require('../src/data/sampleDatasets');
 
 describe('Ingredient', () => {
 	let ingredient;
