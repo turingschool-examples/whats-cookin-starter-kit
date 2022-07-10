@@ -14,3 +14,7 @@ The details of this project are outlined in the <a href="https://frontend.turing
 ## Testing
 
 Mocha and chai are already set up, with a boilerplate test for you.
+
+
+## Planning
+# [Project setup link!](https://excalidraw.com/#json=tqSup9XSiEcpL4QRGa2sn,1NzJMhXp0uDfNDJA3Io-uw)
