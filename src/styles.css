@@ -1,3 +1,38 @@
+* {
+  border: red solid 1px;
+  font-family: 'Open Sans', sans-serif;
+}
+
 body {
   background-color: blueviolet;
+}
+
+.top-bar {
+  height: 100px;
+}
+
+.main {
+  height: 800px;
+  display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+.left-box {
+  width: 25%;
+  height: 800px;
+}
+
+.right-box {
+  width: 75%;
+  height: 800px;
+}
+
+.ingredient-card {
+  height: 200px;
+  width: 150px;
+  margin: 20px;
 }
