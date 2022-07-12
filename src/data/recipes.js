@@ -5383,7 +5383,7 @@ const recipeData = [
   ]
 
 
-  const recipeDataTest = [
+  const testRecipeData = [
     {
       "id": 595736,
       "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -5468,6 +5468,7 @@ const recipeData = [
         "lunch",
         "main course",
         "main dish",
+        "test"
       ]
     },
     {
@@ -5504,16 +5505,14 @@ const recipeData = [
         ],
         "name": "Dirty Steve's Original Wing Sauce",
         "tags": [
-          "sauce"
+          "sauce",
+          "test"
         ]
       },
   ]
 
-  const allRecipeData = {
-    realData: recipeData,
-    testData: recipeDataTest
-  }
 
   module.exports = {
-    allRecipeData
+    recipeData,
+    testRecipeData
   }
