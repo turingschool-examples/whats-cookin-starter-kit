@@ -2,7 +2,7 @@
 // import { recipeData } from './Recipes';
 
 class Recipe {
-    constructor(recipe, ingredient){
+    constructor(recipe, ingredientList){
         this.id = recipe.id;
         this.image = recipe.image;
         this.ingredients = recipe.ingredients;
@@ -18,10 +18,20 @@ class Recipe {
             //Get the cost of its ingredients
             //Return its directions / instructions
     };
-    gatherIngredientNames(){
-        // match id# to the name of the item in ingredients data with
-        // matching id#. 
-    };
+
+    // getIngredientName( ingredientList, ingredient ){
+
+    //     match id# to the name of the item in ingredients data with
+    //     matching id#. 
+    //     const ingredientData = ingredientList;
+    //     console.log(ingredientData);
+    //     const findName = ingredientData.filter( ( item ) => {
+    //         console.log(item);
+    //       return [ item.id ].includes( ingredient.id );
+    //     });
+    //     console.log(findName);
+    //     return findName[ 0 ].name;
+    //   };
 
     sumCost(){
 

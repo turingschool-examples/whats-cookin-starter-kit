@@ -319,8 +319,9 @@ describe('Recipe', () => {
           ]);
     });
 
-    // it('should gather ingredient names', () => {
-
-    // });
+    it('should gather ingredient names', () => {
+        // console.log({recipe})
+        expect(recipe.getIngredientName(dataRecipe, dataIngredient)).to.equal("wheat flour") 
+    });
 });
 
