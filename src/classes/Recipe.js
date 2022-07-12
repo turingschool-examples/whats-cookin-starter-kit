@@ -1,4 +1,4 @@
-// import { ingredientsData } from './Ingredients'; 
+import  Ingredient  from './Ingredient'; 
 // import { recipeData } from './Recipes';
 
 class Recipe {
@@ -11,34 +11,45 @@ class Recipe {
         //this.name is in reference to the recipe name, not ingredient.
 
         this.tags = recipe.tags;
-        //A Recipe represents one recipe object.
-        //It should hold on to all its information (provided in the data file).
-        //It should have methods to:
-            //Determine the names of ingredients needed
-            //Get the cost of its ingredients
-            //Return its directions / instructions
+        this.ingredientList = ingredientList;           
+            
     };
 
+    getIngredientName( ingredientList, ingredient ){
+        // console.log( 'ingredientList: ', ingredientList)
+        // console.log( 'ingredient: ', ingredient)
+        const data = ingredientList;
+        const findName = data.filter( ( item ) => [ item.id ].includes( ingredient.id ) );
+        return findName[ 0 ].name;
+      };
+    
     // getIngredientName( ingredientList, ingredient ){
-
-    //     match id# to the name of the item in ingredients data with
-    //     matching id#. 
-    //     const ingredientData = ingredientList;
-    //     console.log(ingredientData);
-    //     const findName = ingredientData.filter( ( item ) => {
-    //         console.log(item);
-    //       return [ item.id ].includes( ingredient.id );
+    //     // console.log( 'ingredientList: ', ingredientList)
+    //     // console.log( 'ingredient: ', ingredient)
+    //     const data = ingredientList;
+    //     const findName = data.filter( ( item ) => {
+    //         return [ item.id ].includes( ingredient.ingredients[0].id );
     //     });
-    //     console.log(findName);
-    //     return findName[ 0 ].name;
+    //     return findName[0].name;
     //   };
 
-    sumCost(){
-
+    //Get the cost of its ingredients
+    // Probably need to match the id's again to get what the recipe calls for 
+    // and how much the ingredient cost
+    // multiply the cost by the recipeIngredient amount needed
+    getCostOfIngredients( ingredientList, recipeIngredient ){
+        // console.log( 'ingredientList: ', ingredientList)
+        // console.log( 'ingredient: ', recipeIngredient)
+        const data = ingredientList;
+        const findCost = data.filter( ( item ) => [ item.id ].includes( recipeIngredient.id ) );
+        // console.log( 'FINDCOST: ', findCost[0].estimatedCostInCents )
+        // console.log( 'RECIPEINGREDIENT: ', recipeIngredient.quantity.amount )
+        return findCost[ 0 ].estimatedCostInCents * recipeIngredient.quantity.amount;
     };
 
+    //Return its directions / instructions
     returnInstructions(){
-
+        return this.instructions;
     };
 };
 
