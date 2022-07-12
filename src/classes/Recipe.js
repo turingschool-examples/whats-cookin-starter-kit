@@ -34,8 +34,9 @@ class Recipe {
     //   };
 
     //Get the cost of its ingredients
-    // Probably need to match the id's again and return
-
+    // Probably need to match the id's again to get what the recipe calls for 
+    // and how much the ingredient cost
+    // multiply the cost by the recipeIngredient amount needed
     getCostOfIngredients( ingredientList, recipeIngredient ){
         // console.log( 'ingredientList: ', ingredientList)
         // console.log( 'ingredient: ', recipeIngredient)
@@ -48,7 +49,7 @@ class Recipe {
 
     //Return its directions / instructions
     returnInstructions(){
-
+        return this.instructions;
     };
 };
 
