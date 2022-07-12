@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
+    <meta charset="UTF-8" />
+    <title>Famish: Food is family</title>
   </head>
-  <body>
-    <h1>Whats Cookin</h1>
-  </body>
+  <main>
+    <nav>
+      <button type="button">Home</button>
+      <button type="button">My Recipes</button>
+      <button type="button">Pantry</button>
+    </nav>
+    <section class="greeting">
+      <h2>Welcome, User!</h2>
+    </section>
+    <section class="search-bar">
+      <div>
+        <span>🔎</span>
+        <input type="search" placeholder="Search by Title" />
+      </div>
+      <section id="keyword-section" class="hidden">
+        <h3>or Search by keyword</h3>
+        <ul class="keyword-list">
+          <li class="keyword"></li>
+        </ul>
+      </section>
+    </section>
+    <section class="results">
+      <h1 class="results-header">All Recipes</h1>
+      <article class="mini-card">
+        <span class="favorite-button">❤️</span>
+        <img class="recipe-image" /><img />
+        <p class="recipe-name"></p>
+      </article>
+    </section>
+  </main>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>
