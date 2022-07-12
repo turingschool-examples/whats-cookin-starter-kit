@@ -1,8 +1,10 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
+import Ingredient from '../src/classes/Ingredient';
 
 describe('Recipe', () => {
   let recipe;
+  let ingredient;
 
   beforeEach(() => {
     recipe = new Recipe({
@@ -267,8 +269,8 @@ describe('Recipe', () => {
     ]);
   });
 
-  // it.skip('Should determine name of ingredients needed', () => {
-  //   exp
-  // })
+   it.skip('Should determine name of ingredients needed', () => {
+     expect(recipe.ingredientsName()).to.
+   })
 
 });
