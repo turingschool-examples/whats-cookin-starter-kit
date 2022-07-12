@@ -128,7 +128,8 @@ describe('Recipe', () => {
             ]
           };
           
-        dataIngredient = [{
+        dataIngredient = [
+          {
             "id": 20081,
             "name": "wheat flour",
             "estimatedCostInCents": 142
@@ -172,7 +173,8 @@ describe('Recipe', () => {
             "id": 10019903,
             "name": "semi sweet chips",
             "estimatedCostInCents": 253
-          }];
+          }
+        ];
           
         recipe = new Recipe(dataRecipe, dataIngredient);
 
@@ -309,6 +311,7 @@ describe('Recipe', () => {
     });
 
     it('should have recipe tags', () => {
+        expect(recipe.tags).to.be.a("array");
         expect(recipe.tags).to.deep.equal([
             "antipasti",
             "starter",
@@ -319,9 +322,13 @@ describe('Recipe', () => {
           ]);
     });
 
-    it('should gather ingredient names', () => {
-        // console.log({recipe})
-        expect(recipe.getIngredientName(dataRecipe, dataIngredient)).to.equal("wheat flour") 
+    it('should get an ingredients name', () => {
+      expect(recipe.getIngredientName(dataIngredient, dataRecipe.ingredients[0])).to.equal("wheat flour") 
+        // expect(recipe.getIngredientName(dataIngredient, dataRecipe)).to.equal("wheat flour") 
+    });
+
+    it('should get cost of ingredients', () => {
+      expect(recipe.getCostOfIngredients(dataIngredient, dataRecipe.ingredients[0])).to.equal(213) 
     });
 });
 
