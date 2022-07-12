@@ -206,5 +206,26 @@ describe('Recipe', () => {
         ]
       ) 
     });
+
+    it('should return recipe ingredient list', () => {
+      expect(recipe.getIngredientList()).to.deep.equal([
+        {
+          id: 20081,
+          name: 'wheat flour',
+          estimatedCostInCents: '$2.13'
+        },
+        {
+          id: 18372,
+          name: 'bicarbonate of soda',
+          estimatedCostInCents: '$2.91'
+        },
+        { id: 1123, name: 'eggs', estimatedCostInCents: '$4.72' },
+        {
+          id: 19335,
+          name: 'sucrose',
+          estimatedCostInCents: '$4.51'
+        }
+      ]);
+    });
 });
 
