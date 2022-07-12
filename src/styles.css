@@ -1,3 +1,58 @@
 body {
-  background-color: blueviolet;
+  display: flex;
+  flex-direction: column;
+  background-color: #060911;
+}
+
+.user-welcome {
+  color: #F9F6EE;
+  font-size: 3vw;
+}
+
+.logo-title {
+  width: 3vw;
+  height: 3vh;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #060911;
+  width: 100vw;
+  height: 20vh;
+}
+
+.main-section-title {
+  color: #060911;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #F9F6EE;
+  width: 100vw;
+  height: 65vh;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: flex-end;
+  background-color: #060911;
+  width: 100vw;
+  height: 15vh;
+}
+
+.footer-text {
+  margin-left: 3vw;
+  color: #F9F6EE;
+}
+
+button {
+  background-color: #F9F6EE;
+  color: #060911;
 }
