@@ -2,10 +2,41 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Whats Cookin</title>
+    <title>What's Cookin?</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+
+    <section class="top-section">
+      <section class="user-log-in">
+        <p class="user-welcome">Welcome back, Fred!</p>
+      </section>
+      <section class="Logo-title">
+        <img 
+        class="logo-image" 
+        src="./images/fork.png" 
+        alt="whats cookin logo"
+        />
+      </section>
+      <section class="go-to-saved-recipes">
+        <button class="saved-recipes" id="saved-recipes-button"></button>
+      </section>
+      <nav class="nav-bar">
+        <button class="nav-buttons hidden" id="homescreen">Home</button>
+        <button class="nav-buttons" id="myFavorites">My Favorites</button>
+        <button class="nav-buttons" id="pantryButton">My Pantry</button>
+        <button class="nav-buttons" id="wantToCookButton">What to Cook</button>
+      </nav>
+      
+    </section>
+      <h2 class="main-section-title">So What IS Cookin?</h2>
+    <section class="main-section">
+      <div class="box-of-recipes"></div>
+    </section>
+    <section class="recipe-view hidden"></section>
+    
+    
+     
+
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
