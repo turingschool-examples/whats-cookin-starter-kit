@@ -54,12 +54,14 @@ button {
   display: flex;
   align-items: flex-start;
   height: 70vh;
+  width: 100%;
 }
 
 .recipe-directions {
+  background-color: #EAF0CE;
   border-style: solid;
   height: 54%;
-  width: 100%;
+  width: 50%;
   text-align: center;
 }
 
