@@ -139,14 +139,86 @@ describe('Recipe', () => {
         expect(newRecipe.image).to.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg")
     })
 
-    it('should be able to store an ingredient of a recipe', () => {
-        expect(newRecipe.ingredients).to.equal( {
-            "id": 20081,
-            "quantity": {
-            "amount": 1.5,
-            "unit": "c"
+    it('should be able to store a ingredients of a recipe', () => {
+        expect(newRecipe.ingredients).to.equal( [
+            {
+              "id": 20081,
+              "quantity": {
+                "amount": 1.5,
+                "unit": "c"
+              }
+            },
+            {
+              "id": 18372,
+              "quantity": {
+                "amount": 0.5,
+                "unit": "tsp"
+              }
+            },
+            {
+              "id": 1123,
+              "quantity": {
+                "amount": 1,
+                "unit": "large"
+              }
+            },
+            {
+              "id": 19335,
+              "quantity": {
+                "amount": 0.5,
+                "unit": "c"
+              }
+            },
+            {
+              "id": 19206,
+              "quantity": {
+                "amount": 3,
+                "unit": "Tbsp"
+              }
+            },
+            {
+              "id": 19334,
+              "quantity": {
+                "amount": 0.5,
+                "unit": "c"
+              }
+            },
+            {
+              "id": 2047,
+              "quantity": {
+                "amount": 0.5,
+                "unit": "tsp"
+              }
+            },
+            {
+              "id": 1012047,
+              "quantity": {
+                "amount": 24,
+                "unit": "servings"
+              }
+            },
+            {
+              "id": 10019903,
+              "quantity": {
+                "amount": 2,
+                "unit": "c"
+              }
+            },
+            {
+              "id": 1145,
+              "quantity": {
+                "amount": 0.5,
+                "unit": "c"
+              }
+            },
+            {
+              "id": 2050,
+              "quantity": {
+                "amount": 0.5,
+                "unit": "tsp"
+              }
             }
-        }
+          ]
     })
 
     it('should be able to store instructions of a recipe', () => {
@@ -239,12 +311,3 @@ describe('Recipe', () => {
     })
 
 });
-
-
-// A Recipe represents one recipe object.
-
-// It should hold on to all its information (provided in the data file).
-// It should have methods to:
-// Determine the names of ingredients needed
-// Get the cost of its ingredients
-// Return its directions / instructions
