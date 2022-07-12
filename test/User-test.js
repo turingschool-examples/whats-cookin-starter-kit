@@ -1,6 +1,5 @@
-const chai = require('chai');
-const expect = chai.expect;
-const User = require('../src/User');
+import { expect } from 'chai'
+import User from '../src/classes/User'
 
 
 describe('User', () => {
