@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>Famish: Food is family</title>
   </head>
+  
   <main>
     <nav>
       <button type="button">Home</button>
@@ -27,13 +28,46 @@
     </section>
     <section class="results">
       <h1 class="results-header">All Recipes</h1>
-      <article class="mini-card">
+      <article class="mini-card recipe-result">
         <span class="favorite-button">❤️</span>
         <img class="recipe-image" /><img />
         <p class="recipe-name"></p>
       </article>
     </section>
+    
+    <section class="mega-card specific-recipe hidden">
+      <header>
+        <h2 class=“title”>Recipe Title</h2>
+        <span class="save-recipe-icon">:heart:</span>
+        <span class="close-icon">:x:</span>
+      </header>
+      <img class=“specific-recipe-image”>url<img>
+      <section class=“recipe-cost”>
+        <h3>Total Cost</h3>
+        <div>
+          <h5>$23.00</h5>
+        </div>
+        <button class=“cook-button” type=“button”>Cook Recipe</button>
+      </section>
+
+      <section class=“ingredients”>
+        <h3>Ingredients Needed</h3>
+        <ol>
+          <li>
+          </li>
+        </ol>
+      </section>
+      <section class=“instructions”>
+        <h3>Instructions</h3>
+        <ol>
+          <li>
+          </li>
+        </ol>
+      </section>
+    </section>
   </main>
+    
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>
+    
