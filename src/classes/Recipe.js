@@ -17,21 +17,43 @@ class Recipe {
     const ingredients = ingredientsData.map(ingredient => {
       return new Ingredient(ingredient);
     });
-
+    // console.log(ingredients)
     return ingredients;
   }
 
-  returnIngredientNames() {
-    let ingredients = this.makeIngredients();
+  returnAllIngredientIDs() {
+      let ingredients = this.makeIngredients();
+      let allIngredientIDs = ingredients.map(ingredient => {
+        return ingredient.id
+      })
+      return allIngredientIDs;
+  }
+
+  returnRecipeIngredientIDs() {
     const ingredientIDs = this.ingredients.map((ingredient) => {
       return ingredient.id;
     })
 
-    const ingredientNames = ingredientIDs.map(id => {
-      if(ingredients.includes(id)) =
+    return ingredientIDs;
+  }
 
-    });
+  returnIngredientNames() {
+    // let names = [];
+    let allIngredients = this.makeIngredients();
+    let recipeIngredientIDs = this.returnRecipeIngredientIDs();
+    let allIngredientIDs = this.returnAllIngredientIDs();;
 
+    let newRecipeIngredients = allIngredients.filter(ingredient => {
+      if (recipeIngredientIDs.includes(ingredient.id)) {
+        return true;
+        }
+      })
+        let names = newRecipeIngredients.map(ingredient => {
+          return ingredient.name;
+      })
+
+        console.log(names);
+        return names;
     //iterate through this.ingredients and then grab their IDs.
     //then we want to iterate through the ingredients array and
     //compare the this.ingredients ID's to the ID's of the
@@ -44,7 +66,11 @@ class Recipe {
   }
 
   returnRecipeInstructions() {
-
+    let instructionsParagraph = this.instructions.reduce((wholeString, instruction) => {
+      return wholeString += `
+      ${instruction.number}) ${instruction.instruction}`
+    }, '')
+    return instructionsParagraph;
   }
 };
 
