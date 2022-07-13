@@ -13,13 +13,14 @@ class RecipeRepository {
     });
   }
 
-  filterRecipeByName(userSearch){
-    let recipeMatch = []
-    if(this.recipes.name == userSearch){
-      recipeMatch.push(this.recipes.name)
-    }
-    return recipeMatch[0]
-  };
+  filterRecipeByName(userInput){
+    return this.recipes.filter((recipe) => {
+      if( recipe.name.includes(userInput) ) {
+        console.log({recipe})
+        return recipe
+      }
+    });
+  }
 }
 
 export default RecipeRepository;
