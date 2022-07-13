@@ -5,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>ANYONE CAN COOK</title>
-    <link rel="icon" href=".src/images/turing-logo.png" />
   </head>
 
   <body>
-    <nav>
+    <section class ="main-body"> 
       <header class ="header-container" id ="headerContainer">
         <h1>ANYONE CAN COOK</h1>
         <button class="home-button" id="homeButton"></button>
         <button class="favorite-button" id="favoriteButton"></button> 
-      </header> 
-    </nav>
-    <article class ="search-container">
+      </header>
+    <article class ="search-container" id="searchContainer">
       <div class ="search-header" id="searchHeader">Find a Recipe </div>
       <div class ="search-bar" id="searchBar">
         <input type="search" id="query" name="q"
@@ -25,26 +23,32 @@
         </div>
     </article>
     <section class ="feature-container" id="featureContainer">
-      <img class="feature-image" id="featureImage" src="../src/images/turing-logo.png">
-      <div class="buzzword-container">buzzzz</div>
-      <div class="meal-box" id="mealBox">What's for ${time}</div>
+      <div class ="feature-box" id="featureBox">
+        <div class="feature-image-box" id="featureImageBox"></div>
+        <div class="buzzword-container">buzzzz</div>
+        <div class="meal-box" id="mealBox">What's for ${time}</div>
+      </div>
+      <section class="feature-image-container">
+        <div class ="recipe-icons" id="recipeIcons"></div>
+      </section>
     </section>
-    <aside class ="recipe-bar" id ="recipeBar">
-      <div class ="side-bar-header" is="sideHeader"> Recipes </div>
-      <div class ="all-recipes" id="allRecipes"> innerHTML Recipes</div>
+  </section> 
+    <aside class ="home-recipe-bar" id ="homeRecipeBar">
+      <p class ="side-bar-header" is="sideHeader"> Recipes </p>
+      <p class ="all-recipes" id="allRecipes"> innerHTML Recipes</p>
     </aside>
-    <article class ="recipe-container hidden" id="recipeContainer">
-      <div class ="recipe-r-side-box" id="recipeRSideBox">
+    <section class ="recipe-container hidden" id="recipeContainer">
+      <article class ="recipe-r-side-box" id="recipeRSideBox">
         <div class ="recipe-title-box" id="recipeTitleBox">innerHTML recipe title</div>
         <div class ="recipe-box" id="recipeBox">recipeInfo</div>
-      </div>
-      <div class ="recipe-l-side-box" id="recipeLSideBox">
+      </article>
+      <div section ="recipe-l-side-box hidden" id="recipeLSideBox">
         <div class="recipe-image-container" id="recipeImageContainer">
-          <img class="school-logo" id="schoolLogo" src="../src/images/turing-logo.png">
-        </div>
-        <div class="price-box" id="priceBox">innerHTML price list</div>
+          <img class="school-logo" id="schoolLogo" src="./src/images/turing-logo.png">
+          <article class="price-box" id="priceBox">innerHTML price list</article>
+        </section>
       </div>
-    </article>
+    </section>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>

@@ -2,41 +2,131 @@
   font-family: sans-serif;
   font-weight: 275;
   font-style: normal;
-  
-
+  border: 1px solid blueviolet;
 }
 
 body {
-  background-color: green;
+  display: flex;
+  background-color: ffffff;
   height: 100vh;
   width: 100vw;
-  font-style: normal;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
 }
 
 header {
   display: flex;
-  width: 100%;
   justify-content: center;
+  width: 100%;
   margin: 0px;
-  border: 2px solid red;
 }
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~text~~~~~~~~~~~~~~~~~~~~~~~ */
+h1{
+  font-size: 100%;
+}
+/* ~~~~~~~~~~~~~~~~~~buttons~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+
+
+
+
+/* ~~~~~~~~~~~~~~~~~~images~~~~~~~~~~~~~~~~~~~~~~ */
+
+
 .feature-image{
   height: 10%;
 }
-.header-container{
+
+/* ~~~~~~~~~~~~~~~~~~search bar~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+
+/* ~~~~~~~~~~~~~~~style containers~~~~~~~~~~~~~~~~~~~ */
+
+.main-body{
   display: flex;
-  justify-content: row;
-  height: 10%;
-  border: 2px solid red;
-}
-.recipe-container{
-display: flex;
-height: 30%;
+  flex-direction: column;
+  width: 80%;
 }
 
+
+.header-container{
+  display: flex;
+  height: 10%;
+  width: 100%;
+}
+
+
+.search-container{
+display:flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 20%;
+width: 100%;
+}
+
+.home-recipe-bar{
+display:flex;
+flex-direction: column;
+align-items: center;
+height: 100%;
+width: 20%;
+}
+
+.recipe-container{
+display: flex;
+/* height: 30%;
+width: 30%; */
+}
+
+
+
+.feature-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.recipe-icons{
+display: flex;
+background: blueviolet;
+height: 10%;
+width: 10%;
+}
+
+
+.feature-box{
+  display: flex;
+  height: 70%;
+  width: 100;
+}
+
+.feature-image-box{
+width: 60%;
+height:78%;
+}
+
+
+.feature-image-container{
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+align-items: center;
+flex-wrap: wrap;
+height: 100%;
+width: 30%;
+}
+
+
+/* ~~~~~~~~~~~~~~~~~~aux~~~~~~~~~~~~~~~~~~~~~~ */
  .hidden {
   display: none;
  }
+
+
