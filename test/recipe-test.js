@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe'
 import { recipeData } from '../src/data/recipes';
+import { ingredientsData } from '../src/data/ingredients'
 
 describe('Recipe Test', () => {
     it('Should be an instance of recipe', () => {
@@ -15,7 +16,8 @@ describe('Recipe Test', () => {
         });
     });
     it('should be able to get ingredients names', () => {
-        expect(recipe.returnNeeded(recipeData)).to.deep.equal([
+        recipe.getIngredientDetail();
+        expect(recipe.returnNeeded()).to.deep.equal([
             "wheat flour",
             "bicarbonate of soda",
             "eggs",
@@ -28,5 +30,14 @@ describe('Recipe Test', () => {
             "unsalted butter",
             "vanilla"
         ]);
+    });
+    it('should be dynamic for ingredients names', () => {
+        const firstRecipe = recipeData[1];
+        console.log('recipe', firstRecipe);
+        console.log('first ingredients', firstRecipe.ingredients)
+        expect(recipe.getIngredientDetail()).to.deep.equal([firstRecipe.ingredients]);
+    });
+    it('should get cost of ingredients', () => {
+        expect(recipe.getCostToDollar(recipe.requiredIngredients)).to.equal(59.21);
     });
 });
