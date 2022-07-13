@@ -24,14 +24,14 @@ class User {
         })
     }
 
-    // removeRecipeFromFavorites(recipe) {
-    //     this.favoriteRecipes.forEach((favoriteRecipe) => {
-    //         if (favoriteRecipe.id === recipe.id) {
-    //           this.favoriteRecipes.splice(this.favoriteRecipes.indexOf(recipe), 1) 
-    //         }
-    //         return this.favoriteRecipes
-    //     })
-    // };
+    removeRecipeFromFavorites(recipe) {
+        this.favoriteRecipes.forEach((favoriteRecipe) => {
+            if (favoriteRecipe.id === recipe.id) {
+              this.favoriteRecipes.splice(this.favoriteRecipes.indexOf(recipe), 1) 
+            }
+            return this.favoriteRecipes
+        })
+    };
     filterFavoriteRecipesByTag( userInput ){
         let tagMatches = this.favoriteRecipes.filter((recipe) => {
             return recipe.tags.includes(userInput.toLowerCase())
