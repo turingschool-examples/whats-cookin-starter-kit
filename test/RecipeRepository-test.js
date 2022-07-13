@@ -237,31 +237,35 @@ describe('RecipeRepository', () => {
     expect(recipeRepository).to.be.an.instanceof(RecipeRepository);
   });
 
-  it.skip('Should have one parameter taking in data', () => {
+  it('Should have one parameter taking in data', () => {
     expect(recipeRepository.recipeData).to.deep.equal(recipeData);
   });
 
-  it.skip('Should be an array of Recipes', () => {
+  it('Should be an array of Recipes', () => {
     recipeRepository.listRecipes();
     expect(recipeRepository.recipeList).to.deep.equal(recipeData);
   });
 
-  it.skip('Should filter recipes based on tag', () => {
+  it('Should filter recipes based on tag', () => {
+    recipeRepository.listRecipes();
     const recipeByTag = recipeRepository.findRecipeByTag("lunch");
-    expect(recipeByTag).to.deep.equal(recipeData[1]);
+    expect(recipeByTag).to.deep.equal([recipeData[1]]);
   });
 
-  it.skip('Should give response if recipe is not found', () => {
+  it('Should give response if recipe is not found', () => {
+    recipeRepository.listRecipes();
     const recipeByTag = recipeRepository.findRecipeByTag("figs");
     expect(recipeByTag).to.equal("Sorry, no recipe with figs.");
   });
 
-  it.skip('Should filter recipes by name', () => {
+  it('Should filter recipes by name', () => {
+    recipeRepository.listRecipes();
     const recipeByName = recipeRepository.findRecipeByName("Loaded Chocolate Chip Pudding Cookie Cups");
-    expect(recipeByName).to.deep.equal(recipeData[0]);
+    expect(recipeByName).to.deep.equal([recipeData[0]]);
   });
 
-  it.skip('Should give response if recipe name is not found', () => {
+  it('Should give response if recipe name is not found', () => {
+    recipeRepository.listRecipes();
     const recipeByName = recipeRepository.findRecipeByName("Broccoli and Cheese Casserole");
     expect(recipeByName).to.equal("Sorry, no recipe named Broccoli and Cheese Casserole.");
   });
