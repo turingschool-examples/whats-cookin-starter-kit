@@ -75,20 +75,20 @@ describe("Recipe", () => {
     expect(recipe1.ingredients).to.deep.equal(newRecipe.ingredients);
   });
 
-  it.skip("Should have an instructions", () => {
+  it("Should have an instructions", () => {
     expect(recipe1.instructions).to.deep.equal(newRecipe.instructions);
   });
 
-  it.skip("Should have an name", () => {
+  it("Should have an name", () => {
     expect(recipe1.name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
   });
 
-  it.skip("Should have tags", () => {
+  it("Should have tags", () => {
     expect(recipe1.tags).to.deep.equal(newRecipe.tags);
   });
 
-  it.skip("Should determine the name of ingredients", () => {
-    expect(recipe1.getIngedients()).to.deep.equal([
+  it("Should determine the name of ingredients", () => {
+    expect(recipe1.getIngredients()).to.deep.equal([
       "wheat flour",
       "bicarbonate of soda",
       "eggs",
