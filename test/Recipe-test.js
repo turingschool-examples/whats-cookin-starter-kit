@@ -45,7 +45,7 @@ describe('Recipe', () => {
 
     it('the constructor should generate a random number by default', () => {
         expect(recipe1.id).to.equal(1);
-
+        expect(recipeUndefined.id).to.be.a('number');
         expect(recipeUndefined.generateRandomId()).to.be.a('number');
 
     });
@@ -74,18 +74,22 @@ describe('Recipe', () => {
 
     it('the constructor should have list of ingredients needed', () => {
 
+        expect(recipe1.portions[0].name).to.deep.equal('Flour');
+        expect(recipe2.portions.length).to.equal(1);
+
         expect(recipe3.portions).to.deep.equal([{ ingredientId: 3, name: 'Pork Chop', amount: 1, cost: 300, unit: 'serving' }])
 
         expect(recipe3.portions.length).to.equal(1);
         expect(recipe3.portions[0].name).to.equal('Pork Chop');
 
-        expect(recipe2.portions.length).to.equal(1);
-        expect(recipe1.portions[0].name).to.deep.equal('Flour');
+        expect(recipe4.portions).to.deep.equal([{ ingredientId: 4, name: 'Chicken', amount: 1, cost: 423, unit: 'each' }, { ingredientId: 5, name: 'Curry', amount: 2, cost: 500, unit: 'Cup' }])
 
+        expect(recipe4.portions.length).to.equal(2);
+        
 
     });
 
-    it('the constructor should default to an empty portions array', () => {
+    it('the constructor should default to an empty instructions array', () => {
         expect(recipeNoInstructions.instructions).to.deep.equal([]);
 
     });
@@ -106,12 +110,12 @@ describe('Recipe', () => {
     it('should have a list of tags', () => {
 
         expect(recipe2.tags).to.deep.equal(['snack', 'lunch']);
-        expect(recipe2.tags).to.have.lengthOf(2);
     });
 
     it('should be able to show the names of ingredients needed', () => {
 
         expect(recipe1.getPortionNames().length).to.equal(1)
+        expect(recipe4.getPortionNames().length).to.equal(2)
 
         expect(recipe1.getPortionNames()[0]).to.equal('Flour');
 
