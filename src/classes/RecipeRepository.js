@@ -10,6 +10,12 @@ class RecipeRepository {
 })
     return recipes
 }
+filterName(name) {
+  const recipe = this.recipes.find((value) => {
+    return value.name.includes(name)
+  })
+  return recipe
+}
 }
 
 export default RecipeRepository;

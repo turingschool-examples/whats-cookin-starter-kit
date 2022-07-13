@@ -105,11 +105,11 @@ describe('RecipeRepository', () => {
 
   it('Should be able to filter by tag', () => {
 
-    console.log("1", recipeData[1]);
+   
     expect(recipeRepository.filterTag('sauce')).to.deep.equal([recipeData[1]])
   })
 
-  it.skip('Should be able to filter by name', () => {
-    expect(recipRepository.filterName("Loaded Chocolate Chip Pudding Cookie Cups")).to.deeply.equal(recipeData[0])
+  it('Should be able to filter by name', () => {
+    expect(recipeRepository.filterName("Loaded Chocolate Chip Pudding Cookie Cups")).to.deep.equal(recipeData[0])
   })
 })
