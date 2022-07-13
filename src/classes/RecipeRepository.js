@@ -10,8 +10,11 @@ class RecipeRepository {
       return tagMatches[0]
   };
   
-  filterRecipeByName(){
-
+  filterRecipeByName(userSearch){
+    let queryResult = this.recipes.filter((recipe) => {
+      return userSearch == recipe.name
+    })
+      return queryResult
   };
 }
 
