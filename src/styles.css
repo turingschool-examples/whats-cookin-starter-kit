@@ -68,6 +68,19 @@ header {
   align-content: space-between;
   width: 100vw;
   height: 65vh;
+<<<<<<< HEAD
+=======
+  
+}
+
+.box-of-recipes {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  align-content: space-between;
+  width: 100vw;
+  height: 65vh;
+>>>>>>> bf4f86ccd70a0e15938e98c1b5f58e06d61c6c82
   overflow-y: hidden;
   overflow-x: scroll;
 }
