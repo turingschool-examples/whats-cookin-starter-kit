@@ -1,7 +1,4 @@
 import { ingredientsData } from '../data/ingredients';
-// It should hold on to all its information (provided in the data file).
-// It should have methods to:
-// Determine the names of ingredients needed
 class Recipe {
     constructor(data) {
         this.requiredIngredients = [];
@@ -16,6 +13,8 @@ class Recipe {
             this.requiredIngredients.push(currentIngredient);
         });
     };
-
+    returnNeeded() {
+        return this.requiredIngredients.map(ing => ing.name)
+    }
 };
 export default Recipe;
