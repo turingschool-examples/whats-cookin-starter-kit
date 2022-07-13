@@ -1,8 +1,10 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
+import Ingredient from '../src/classes/Ingredient';
 
 describe('Recipe', () => {
   let recipe;
+  let ingredient;
 
   beforeEach(() => {
     recipe = new Recipe({
@@ -402,7 +404,7 @@ describe('Recipe', () => {
       estimatedCostInCents: 207
     }];
     // By calling this method we are assigning the recipe.ingredients key
-    // to the value of just the ingredients needed 
+    // to the value of just the ingredients needed
     recipe.buildIngredientsNeeded(ingredients);
     expect(recipe.ingredientsNeeded).to.deep.equal([{
       id: 20081,
@@ -559,7 +561,6 @@ describe('Recipe', () => {
         number: 6
       }
     ]);
-  
-  });
 
+  });
 });
