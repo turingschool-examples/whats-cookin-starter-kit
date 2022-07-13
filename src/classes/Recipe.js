@@ -1,6 +1,6 @@
 class Recipe {
     constructor(recipeDetails) {
-        this.id = recipeDetails.id;
+        this.id = recipeDetails.id || this.generateRandomId();
         this.name = recipeDetails.name;
         this.image = recipeDetails.image;
         this.portions = recipeDetails.portions;
@@ -8,6 +8,10 @@ class Recipe {
         this.tags = recipeDetails.tags;
 
     }
+    generateRandomId() {
+        return Math.floor(Math.random() * 1000);
+    }
+    
     showIngredientsNeeded() {
         return this.portions.map((portion) => {
             return portion.name;  
