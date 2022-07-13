@@ -1254,6 +1254,21 @@ const testIngredients = [
     "id": 19335,
     "name": "sucrose",
     "estimatedCostInCents": 902
+    },
+    {
+    "id": 1009016,
+    "name": "apple cider",
+    "estimatedCostInCents": 468
+    },
+    {
+    "id": 9003,
+    "name": "apple",
+    "estimatedCostInCents": 207
+    },
+    {
+    "id": 20027,
+    "name": "corn starch",
+    "estimatedCostInCents": 236
     }
   ];
 

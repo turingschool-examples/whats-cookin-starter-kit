@@ -16,10 +16,7 @@ class Recipe {
       const foundIngredient = this.ingredientData.find(
         data => data.id === ingredient.id
       );
-      //console.log('foundIngredient:', foundIngredient)
-      //console.log('ingredient:', ingredient)
       const newObject = Object.assign(foundIngredient, ingredient);
-      //console.log('new obj:', newObject)
       const newIngredient = new Ingredient(newObject);
       return newIngredient.name
     });
@@ -27,11 +24,32 @@ class Recipe {
    }
 
   getCostofIngredients() {
-    //get id from recipe, go to ingredients find ID, get costs in cents * recipeAmt
+    const matchedIngredientCost = this.ingredients.map(ingredient => {
+      const foundIngredient = this.ingredientData.find(
+        data => data.id === ingredient.id
+      );
+      const newObject = Object.assign(foundIngredient, ingredient);
+      const newIngredient = new Ingredient(newObject);
+      return (newObject.estimatedCostInCents * newObject.quantity.amount)
+    })
+    return matchedIngredientCost
   }
-  returnRecipeInstructions() {
 
+  getCostofRecipe() {
+    const recipeCost = this.getCostofIngredients().reduce((sum, cost) => {
+      return sum += cost
+    }, 0);
+    return `$${(recipeCost/100).toString()}`
   }
-}
+
+  returnRecipeInstructions() {
+    const instructions = this.instructions.reduce((list, instruction, index) => {
+      list[index] = `${instruction.number}: ${instruction.instruction}`
+      return list;
+    }, []);
+    return instructions;
+  }
+
+};
 
 export default Recipe;
