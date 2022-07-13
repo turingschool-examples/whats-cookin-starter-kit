@@ -281,4 +281,9 @@ describe('User', () => {
             ]
          )
     });
+
+    it( 'should filter favorite recipes by tag', () => {
+        user.addRecipeToFavorites( recipeData )
+        expect(user.filterFavoriteRecipesByTag( )).to.equal()
+    });
 });
