@@ -3,7 +3,10 @@ class Ingredient {
         this.id = id
         this.name = name
         this.costInCents = cost
-    }
+        this.quantity
+        this.amount
+        this.unit
+ }
 }
 
 
