@@ -5,20 +5,15 @@
     <title>What's Cookin?</title>
   </head>
   <body>
-
-    <section class="top-section">
+    <header class="top-section">
       <section class="user-log-in">
         <p class="user-welcome">Welcome back, Fred!</p>
       </section>
-      <section class="Logo-title">
-        <img 
-        class="logo-image" 
-        src="./images/fork.png" 
-        alt="whats cookin logo"
-        />
+      <section class="logo-title">
+        <img class="logo-image" src="src/images/fork.png" alt="whats cookin logo">
       </section>
       <section class="go-to-saved-recipes">
-        <button class="saved-recipes" id="saved-recipes-button"></button>
+        <button class="saved-recipes" id="saved-recipes-button">Saved Recipes</button>
       </section>
       <nav class="nav-bar">
         <button class="nav-buttons hidden" id="homescreen">Home</button>
@@ -27,12 +22,17 @@
         <button class="nav-buttons" id="wantToCookButton">What to Cook</button>
       </nav>
       
-    </section>
-      <h2 class="main-section-title">So What IS Cookin?</h2>
+    </header>
+      
     <section class="main-section">
-      <div class="box-of-recipes"></div>
+      <h2 class="main-section-title">So... what IS cookin?</h2>
+      <div class="box-of-recipes center-container" style="overflow-x:scroll">
+      </div>
     </section>
     <section class="recipe-view hidden"></section>
+    <footer>
+    <p class="footer-text">© Anthony, Cole, Emma, Morgan 2022</p>
+    </footer>
     
     
      
