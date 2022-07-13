@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import Ingredient from '../src/classes/Ingredient';
 const data = require('../src/data/ingredients.js');
-const testData = data.testIngredients;
+const testIngData = data.testIngredients;
 
 describe('Ingredient', () => {
 
@@ -11,10 +11,10 @@ describe('Ingredient', () => {
   let ingredient4;
 
   beforeEach(() => {
-    ingredient = new Ingredient(testData[0]);
-    ingredient2 = new Ingredient(testData[1]);
-    ingredient3 = new Ingredient(testData[2]);
-    ingredient4 = new Ingredient(testData[3]);
+    ingredient = new Ingredient(testIngData[0]);
+    ingredient2 = new Ingredient(testIngData[1]);
+    ingredient3 = new Ingredient(testIngData[2]);
+    ingredient4 = new Ingredient(testIngData[3]);
   });
 
   it('should be a function', () => {
@@ -40,6 +40,4 @@ describe('Ingredient', () => {
     expect(ingredient4.estimatedCostInCents).to.equal(902);
   });
 
-
 });
-

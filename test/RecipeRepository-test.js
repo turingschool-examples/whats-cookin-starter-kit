@@ -1,16 +1,16 @@
 import { expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
 const data = require('../src/data/recipes.js');
-const testData = data.testRecipeData;
+const testRecipeData = data.testRecipeData;
 
-describe('Recipe', () => {
+describe('Recipe Repository', () => {
 
   let repository;
 
   beforeEach(() => {
-    repository = new RecipeRepository(testData);
+    repository = new RecipeRepository(testRecipeData);
   });
-  
+
   it('should be a function', () => {
     expect(RecipeRepository).to.be.a('function');
   });
