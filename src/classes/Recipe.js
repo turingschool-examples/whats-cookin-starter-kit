@@ -36,7 +36,6 @@ class Recipe {
             return new Ingredient( ingredient.id, ingredientName,  ingredientCost );
         })
         return listOfIngredients;
-
     };
     
     getTotalCostOfRecipe(){
@@ -44,8 +43,6 @@ class Recipe {
             return acc += ingredient.estimatedCostInCents
         },0 );
         return price;
-        //take in the cost of each ingredient on list
-        //add for total cost of receipe
     };
 };
 
