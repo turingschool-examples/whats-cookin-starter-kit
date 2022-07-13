@@ -15,3 +15,8 @@ import './images/turing-logo.png';
 
 
 
+// function getRandomUser( traveler ) {
+//     const randomUserIndex = Math.floor( Math.random() * traveler.length )
+//     console.log(traveler[ randomUserIndex ])
+//     return traveler[ randomUserIndex ]
+// }
