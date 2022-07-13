@@ -287,4 +287,9 @@ describe('User', () => {
         const testData = user.filterFavoriteRecipesByTag( "antipasti" )
         expect(testData[0]).to.equal("antipasti")
     });
+    it('should filter favorite recipes by name', () => {
+      user.addRecipeToFavorites( dataRecipe )
+      const testData = user.filterFavoriteRecipesByName( "Loaded Chocolate Chip Pudding Cookie Cups" )
+      expect(testData).to.equal( "Loaded Chocolate Chip Pudding Cookie Cups" )
+    });
 });
