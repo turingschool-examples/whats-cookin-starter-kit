@@ -9,21 +9,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@100;200&display=swap" rel="stylesheet">
   </head>
   <body>
-    <nav><h1>What's Cookin</h1>
+    <nav><h1>What's Cookin?</h1>
     <section class="button-container">
       <button class="button" id="homeButton">Home</button>
       <button class="button" id="viewAllButton">View All Recipes</button>
       <button class="button" id="favoritesButton">Favorite Recipes</button>
     </section></nav>
-    <section class="home-page-view hidden">
-    <section class="main-body">
+    <section class="home-page-view">
       <aside class="search-sidebar">
       <h3>Recipe Search:</h3>
-      <form id="form"> 
+      <form id="form">
         <input type="search" id="query" name="q" placeholder="Search...">
-        <button>Search</button>
+        <button class="search-button">Search</button>
         <h3>Filter Recipes:</h3>
         <input type="checkbox" id="keto" name="" value="">
         <label for="keto">Keto</label><br>
@@ -49,12 +50,11 @@
             </div>
           </div>
         </div>
-      </section>
   </section>
-  <section class="recipe-details-page">
+  <section class="recipe-details-page hidden">
     <aside class="search-sidebar">
       <h3>Recipe Search:</h3>
-      <form id="form"> 
+      <form id="form">
         <input type="search" id="query" name="q" placeholder="Search...">
         <button>Search</button>
         <h3>Filter Recipes:</h3>
