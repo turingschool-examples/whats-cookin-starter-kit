@@ -94,9 +94,10 @@ describe('RecipeRepository', () => {
         }
       ];
         
-      recipe = new Recipe(dataRecipe, dataIngredient);
-
-      recipeRepo = new RecipeRepository(recipe)
+      // recipe = new Recipe(, dataIngredient);
+      // console.log(`RECIPE CLASS INSTANCE: `, recipe);
+      recipeRepo = new RecipeRepository(dataRecipe)
+      // console.log(`REPO CLASS INSTANCE: `, recipeRepo);
   });
 
 
@@ -112,4 +113,8 @@ describe('RecipeRepository', () => {
   it('should filter by tag', () => {
     expect(recipeRepo.filterRecipeByTag('Antipasti')).to.equal('antipasti')
   });
+
+  it('should filter by a user-given name', () => {
+    expect(recipeRepo.filterRecipeByName("Loaded Chocolate Chip Pudding Cookie Cups")).to.equal("Loaded Chocolate Chip Pudding Cookie Cups")
+  })
 })

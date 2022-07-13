@@ -10,5 +10,8 @@ import './images/turing-logo.png';
 // As a user, I should be able to filter recipes by a tag. (Extension option: by multiple tags)
 // As a user, I should be able to search recipes by their name. (Extension option: by name or ingredients)
 
+//consider using the filter function written by 
+//Farelli in Ideabox: https://github.com/jfarelli/ideabox/blob/main/Idea.js
+
 
 

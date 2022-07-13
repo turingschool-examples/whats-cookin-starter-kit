@@ -11,10 +11,14 @@ class RecipeRepository {
   };
   
   filterRecipeByName(userSearch){
-    let queryResult = this.recipes.filter((recipe) => {
-      return userSearch == recipe.name
-    })
-      return queryResult
+
+    let recipeMatch = []
+    if(this.recipes.name == userSearch){
+      recipeMatch.push(this.recipes.name)
+      // console.log(recipeMatch);
+    }
+    
+    return recipeMatch[0]
   };
 }
 
