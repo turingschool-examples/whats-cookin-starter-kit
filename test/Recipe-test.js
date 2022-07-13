@@ -174,9 +174,9 @@ describe('Recipe', () => {
 
     })
 
-    it.skip('should be able to get the cost of the ingredients of a recipe', () => {
+    it('should be able to get the cost of the ingredients of a recipe', () => {
         let ingredientCosts = newRecipe.returnIngredientCosts()
-        expect(ingredientCosts).to.equal(176.36)
+        expect(ingredientCosts).to.equal(177.76)
 
     })
 
