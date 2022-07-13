@@ -1,11 +1,54 @@
 <!DOCTYPE html>
+<html lang="en" dir="ltr"></html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <title>Whats Cookin</title>
+    <title>ANYONE CAN COOK</title>
   </head>
+
   <body>
-    <h1>Whats Cookin</h1>
+    <section class ="main-body"> 
+      <header class ="header-container" id ="headerContainer">
+        <h1>ANYONE CAN COOK</h1>
+        <button class="home-button" id="homeButton"></button>
+        <button class="favorite-button" id="favoriteButton"></button> 
+      </header>
+    <article class ="search-container" id="searchContainer">
+      <div class ="search-header" id="searchHeader">Find a Recipe </div>
+      <div class ="search-bar" id="searchBar">
+        <input type="search" id="query" name="q"
+        placeholder="Search recipes..."
+        aria-label="Search through recipes by name or ingredient">
+        </div>
+    </article>
+    <section class ="feature-container" id="featureContainer">
+      <div class ="feature-box" id="featureBox">
+        <div class="feature-image-box" id="featureImageBox"></div>
+        <div class="buzzword-container">buzzzz</div>
+        <div class="meal-box" id="mealBox">What's for ${time}</div>
+      </div>
+      <section class="feature-image-container">
+        <div class ="recipe-icons" id="recipeIcons"></div>
+      </section>
+    </section>
+  </section> 
+    <aside class ="home-recipe-bar" id ="homeRecipeBar">
+      <p class ="side-bar-header" is="sideHeader"> Recipes </p>
+      <p class ="all-recipes" id="allRecipes"> innerHTML Recipes</p>
+    </aside>
+    <section class ="recipe-container hidden" id="recipeContainer">
+      <article class ="recipe-r-side-box" id="recipeRSideBox">
+        <div class ="recipe-title-box" id="recipeTitleBox">innerHTML recipe title</div>
+        <div class ="recipe-box" id="recipeBox">recipeInfo</div>
+      </article>
+      <div section ="recipe-l-side-box hidden" id="recipeLSideBox">
+        <div class="recipe-image-container" id="recipeImageContainer">
+          <img class="school-logo" id="schoolLogo" src="./src/images/turing-logo.png">
+          <article class="price-box" id="priceBox">innerHTML price list</article>
+        </section>
+      </div>
+    </section>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
