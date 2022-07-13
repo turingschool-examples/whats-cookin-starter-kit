@@ -12,16 +12,33 @@ body {
 .logo-title {
   width: 3vw;
   height: 3vh;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 20%;
+  margin-right: 80%;
+}
+
+.logo-image {
+  align-items: center;
+  border-radius: 8%;
+  display: flex;
+  height: 65%;
+  justify-content: center;
+  margin-top: 13%;
+  width: 65%;
+  margin-left: auto;
 }
 
 header {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   background-color: #060911;
   width: 100vw;
-  height: 20vh;
+  height: 35vh;
 }
 
 .main-section-title {
@@ -34,7 +51,7 @@ header {
   justify-content: center;
   background-color: #F9F6EE;
   width: 100vw;
-  height: 65vh;
+  height: 62.5vh;
 }
 
 footer {
@@ -44,7 +61,7 @@ footer {
   align-items: flex-end;
   background-color: #060911;
   width: 100vw;
-  height: 15vh;
+  height: 7.5vh;
 }
 
 .footer-text {
@@ -53,6 +70,11 @@ footer {
 }
 
 button {
-  background-color: #F9F6EE;
+  margin-top: 5px;
+  background-color:#427861;
   color: #060911;
+  font-family:'Roboto',sans-serif;
+  padding:0.5em 3em;
+  font-weight:400;
+  text-transform:uppercase;
 }
