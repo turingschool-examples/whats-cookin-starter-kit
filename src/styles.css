@@ -1,4 +1,10 @@
+* {
+  font-family: sans-serif;
+  font-weight: 275;
+  font-style: normal;
+  
 
+}
 
 body {
   background-color: green;
@@ -10,4 +16,27 @@ body {
   flex-direction: column;
 }
 
- 
+header {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 0px;
+  border: 2px solid red;
+}
+.feature-image{
+  height: 10%;
+}
+.header-container{
+  display: flex;
+  justify-content: row;
+  height: 10%;
+  border: 2px solid red;
+}
+.recipe-container{
+display: flex;
+height: 30%;
+}
+
+ .hidden {
+  display: none;
+ }
