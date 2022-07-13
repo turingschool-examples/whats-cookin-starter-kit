@@ -1,15 +1,14 @@
 class User {
     constructor( user ) {
         this.name = user.name;
-        console.log( this.name )
         this.id = user.id;
         this.pantry = user.pantry;
         this.recipesToCook = [ ];
         this.favoriteRecipes = [ ];
     };
 
-    addRecipeToRecipesToCook() {
-
+    addRecipeToRecipesToCook( recipe ) {
+        this.recipesToCook.push( recipe )
     }
 
     addRecipeToFavorites() {
