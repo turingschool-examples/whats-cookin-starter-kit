@@ -1,3 +1,79 @@
+* {
+  /* border: red solid 1px; */
+  font-family: 'Open Sans', sans-serif;
+}
+
 body {
   background-color: blueviolet;
+}
+
+.top-bar {
+  height: 100px;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: center;
+	align-content: center;
+  border-bottom: black solid 5px;
+}
+
+.main {
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.left-box {
+  display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: space-evenly;
+  width: 25%;
+  height: 800px;
+  border-right: black solid 5px;
+}
+
+.right-box {
+  width: 75%;
+  height: 800px;
+}
+
+.left-buttons {
+  display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-evenly;
+	align-items: center;
+	align-content: center;
+}
+
+.ingredient-card {
+  height: 230px;
+  width: 180px;
+  margin: 20px;
+  border: black solid 1px;
+  display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: space-evenly;
+}
+
+.card-image {
+  height: 100px;
+  width: 100px;
+  border: black solid 1px;
+  margin: 20px;
+}
+
+button {
+  border-radius: 5px;
 }
