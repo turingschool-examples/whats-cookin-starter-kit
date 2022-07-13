@@ -23,11 +23,11 @@ class User {
 
     }
 
-    filterFavoriteRecipesByTag(userInput){
-        let tagMatches = this.favoriteRecipes.filter((tag) => {
-          return userInput.toLowerCase() == tag
+    filterFavoriteRecipesByTag( userInput ){
+        let tagMatches = this.favoriteRecipes.filter((recipe) => {
+            return recipe.tags.includes(userInput.toLowerCase())
         })
-          return tagMatches[0]
+          return tagMatches[0].tags
       };
       
     // filterFavoriteRecipesByName(userSearch){

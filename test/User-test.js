@@ -283,7 +283,8 @@ describe('User', () => {
     });
 
     it( 'should filter favorite recipes by tag', () => {
-        user.addRecipeToFavorites( recipeData )
-        expect(user.filterFavoriteRecipesByTag( )).to.equal()
+        user.addRecipeToFavorites( dataRecipe )
+        const testData = user.filterFavoriteRecipesByTag( "antipasti" )
+        expect(testData[0]).to.equal("antipasti")
     });
 });
