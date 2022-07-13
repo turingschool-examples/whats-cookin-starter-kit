@@ -212,20 +212,23 @@ describe('Recipe', () => {
         {
           id: 20081,
           name: 'wheat flour',
-          estimatedCostInCents: '$2.13'
+          estimatedCostInCents: 213
         },
         {
           id: 18372,
           name: 'bicarbonate of soda',
-          estimatedCostInCents: '$2.91'
+          estimatedCostInCents: 291
         },
-        { id: 1123, name: 'eggs', estimatedCostInCents: '$4.72' },
+        { id: 1123, name: 'eggs', estimatedCostInCents: 472 },
         {
           id: 19335,
           name: 'sucrose',
-          estimatedCostInCents: '$4.51'
+          estimatedCostInCents: 451
         }
       ]);
+    });
+    it('should return total cost of recipe', () => {
+      expect(recipe.getTotalCostOfRecipe()).to.equal(1427);
     });
 });
 

@@ -30,7 +30,7 @@ class Recipe {
             // console.log(this.ingredientList, ingredient);
             const ingredientName = this.getIngredientName( this.ingredientList, ingredient );
             const ingredientCost = this.getCostOfIngredients( this.ingredientList, ingredient );
-            return new Ingredient( ingredient.id, ingredientName, `$${ingredientCost * .01}` );
+            return new Ingredient( ingredient.id, ingredientName,  ingredientCost );
         })
         // console.log(listOfIngredients)
         return listOfIngredients;
@@ -38,6 +38,10 @@ class Recipe {
         //take in each item to calculate (add) all ingredient
     };
     getTotalCostOfRecipe(){
+        const price = this.getIngredientList().reduce( ( acc, ingredient ) => {
+            return acc += ingredient.estimatedCostInCents
+        },0 );
+        return price;
         //take in the cost of each ingredient on list
         //add for total cost of receipe
     };
