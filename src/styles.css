@@ -19,7 +19,7 @@ nav {
   justify-content: center;
   text-align: center;
   font-size: 34px;
-  margin-bottom: 6%;
+  margin-bottom: 1%;
 }
 
 h1 {
@@ -31,9 +31,8 @@ h1 {
 
 .home-page-view, .recipe-details-page {
   display: flex;
-  justify-content: center;
   width: 95%;
-  height: 100%;
+  height: 70%;
   align-items: center;
 }
 
@@ -69,7 +68,7 @@ h1 {
 }
 
 .recipe-icon-image {
-  width: 35vh;
+  width: 100%;
 }
 
 #recipeDetail {
@@ -105,4 +104,8 @@ h1 {
 h3, #form {
   margin-left: 5%;
   color: white;
+}
+
+.glide__slide {
+  height: 50px;
 }
