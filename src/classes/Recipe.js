@@ -1,5 +1,5 @@
 import { ingredientsData } from '../data/ingredients';
-class Recipe {
+export class Recipe {
     constructor(data) {
         this.requiredIngredients = [];
         this.id = data.id;
@@ -17,4 +17,3 @@ class Recipe {
         return this.requiredIngredients.map(ing => ing.name)
     }
 };
-export default Recipe;
