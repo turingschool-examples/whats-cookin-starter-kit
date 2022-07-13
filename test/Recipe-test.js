@@ -125,23 +125,23 @@ describe('Recipe', () => {
     });
   });
 
-  it.skip('Should be a function', () => {
+  it('Should be a function', () => {
       expect(Recipe).to.be.a('function');
   });
 
-  it.skip('Should be an instance of Recipe', () => {
+  it('Should be an instance of Recipe', () => {
     expect(recipe).to.be.an.instanceof(Recipe);
   });
 
-  it.skip('Should have an id', () => {
+  it('Should have an id', () => {
     expect(recipe.id).to.equal(595736);
   });
 
-  it.skip('Should have an image', () => {
+  it('Should have an image', () => {
     expect(recipe.image).to.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg");
   });
 
-  it.skip('Should have an ingredients', () => {
+  it('Should have an ingredients', () => {
     expect(recipe.ingredients).to.deep.equal([
       {
         id: 20081,
@@ -223,7 +223,7 @@ describe('Recipe', () => {
     ]);
   });
 
-  it.skip('Should have an instructions', () => {
+  it('Should have an instructions', () => {
     expect(recipe.instructions).to.deep.equal([
       {
         instruction: "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
@@ -252,11 +252,11 @@ describe('Recipe', () => {
     ]);
   });
 
-  it.skip('Should have a name', () => {
+  it('Should have a name', () => {
     expect(recipe.name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
   });
 
-  it.skip('Should have tags', () => {
+  it('Should have tags', () => {
     expect(recipe.tags).to.deep.equal([
       "antipasti",
       "starter",
@@ -267,7 +267,7 @@ describe('Recipe', () => {
     ]);
   });
 
-  it.skip('Should return array of Ingredients', () => {
+  it('Should return array of Ingredients', () => {
     const ingredients = [{
       id: 20081,
       name: "wheat flour",
@@ -336,7 +336,7 @@ describe('Recipe', () => {
     expect(ingredient).to.deep.equal(ingredients);
   });
 
-  it.skip('Should create and store an array of ingredients needed', () => {
+  it('Should create and store an array of ingredients needed', () => {
     const ingredients = [{
       id: 20081,
       name: "wheat flour",
@@ -404,7 +404,7 @@ describe('Recipe', () => {
     // By calling this method we are assigning the recipe.ingredients key
     // to the value of just the ingredients needed 
     recipe.buildIngredientsNeeded(ingredients);
-    expect(recipe.ingredients).to.deep.equal([{
+    expect(recipe.ingredientsNeeded).to.deep.equal([{
       id: 20081,
       name: "wheat flour",
       estimatedCostInCents: 142
@@ -459,8 +459,9 @@ describe('Recipe', () => {
       name: "vanilla",
       estimatedCostInCents: 926
     }]);
+  });
 
-    it.skip('Should get total cost of ingredients needed', () => {
+    it('Should get total cost of ingredients needed', () => {
       const ingredients = [{
       id: 20081,
       name: "wheat flour",
@@ -527,10 +528,10 @@ describe('Recipe', () => {
     }];
     recipe.buildIngredientsNeeded(ingredients);
     const totalCost = recipe.getTotalCost();
-    expect(totalCost).to.equal('$59.22');
+    expect(totalCost).to.equal('$59.21');
     });
 
-  it.skip('Should return recipe instructions', () => {
+  it('Should return recipe instructions', () => {
     const returnInstructions = recipe.returnInstructions();
     expect(returnInstructions).to.deep.equal([
       {
@@ -558,7 +559,7 @@ describe('Recipe', () => {
         number: 6
       }
     ]);
-    });
+  
   });
 
 });
