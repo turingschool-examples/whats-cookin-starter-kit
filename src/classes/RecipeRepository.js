@@ -1,20 +1,20 @@
 import Recipe from './Recipe';
 
 class RecipeRepository {
-  constructor(recipe, createAllRecipes) {
-    this.recipe = recipe
-    // this.recipe = createAllRecipes(recipeData)
+  constructor(rawRecipes) {
+    this.rawRecipes = rawRecipes
+    this.allRecipes;
   }
   createAllRecipes() {
-    return 
+    this.allRecipes = this.rawRecipes.map(recipe => new Recipe(recipe))
   }
-  filterByTag() {
-    return this.recipe.filter(tag => {
-      // const recipes = recipeData.filter(tag => {
-      return tag.tags.includes(tag)
-    })
-    /* know we need to find whatever tag the user inputs and check if 
-    it exists in the recipesData file*/
+  filterByTag(tag) {
+    const filterRecipes = this.allRecipes.filter(recipe => recipe.tags.includes(tag))
+    return filterRecipes;
+  }
+  filterByName(name) {
+    const filterNames = this.allRecipes.filter(recipe => recipe.name.includes(name))
+    return filterNames
   }
 }
 

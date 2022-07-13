@@ -8,7 +8,6 @@ class Recipe {
         this.instructions = recipe.instructions;
         this.name = recipe.name;
         this.tags = recipe.tags;
-        this.ingredients = this.collectIngredients(ingredientData);
     }
 }
 
