@@ -1,7 +1,7 @@
 
 * {
   font-family:Verdana, Geneva, Tahoma, sans-serif
-
+}
 body {
   display: flex;
   flex-direction: column;
@@ -68,8 +68,6 @@ header {
   align-content: space-between;
   width: 100vw;
   height: 65vh;
-<<<<<<< HEAD
-=======
   
 }
 
@@ -80,7 +78,6 @@ header {
   align-content: space-between;
   width: 100vw;
   height: 65vh;
->>>>>>> bf4f86ccd70a0e15938e98c1b5f58e06d61c6c82
   overflow-y: hidden;
   overflow-x: scroll;
 }
