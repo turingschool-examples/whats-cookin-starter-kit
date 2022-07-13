@@ -3,35 +3,35 @@ class Recipe {
         this.id = recipeDetails.id || this.generateRandomId();
         this.name = recipeDetails.name;
         this.image = recipeDetails.image;
-        this.portions = recipeDetails.portions;
-        this.instructions = recipeDetails.instructions;
-        this.tags = recipeDetails.tags;
+        this.portions = recipeDetails.portions || [];
+        this.instructions = recipeDetails.instructions || [];
+        this.tags = recipeDetails.tags || [];
 
     }
     generateRandomId() {
         return Math.floor(Math.random() * 1000);
     }
     
-    showIngredientsNeeded() {
+    getPortionNames() {
         return this.portions.map((portion) => {
             return portion.name;  
         });
     }
-    calcTotalIngredientCost() {
+    getPortionCosts() {
         const ingredientsCost = this.portions.map((portion) => {
             return (portion.amount * portion.cost).toFixed(2) / 100;
         });
         return ingredientsCost;
     }
-    calcRecipeCost() {
-        const storedIngredients = this.calcTotalIngredientCost();
+    calcTotalRecipeCost() {
+        const storedIngredients = this.getPortionCosts();
         const reducedIngredientCost = storedIngredients.reduce((acc, cur) => {
             acc += cur;
             return acc;
         }, 0);
         return reducedIngredientCost;
     }
-    returnRecipeSteps() {
+    getInstructions() {
         return this.instructions
     }
   }
