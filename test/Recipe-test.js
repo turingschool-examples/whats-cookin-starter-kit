@@ -8,71 +8,106 @@ describe('Recipe', () => {
 
 let recipe1;
 let recipe2;
-let recipe3;    
+let recipe3; 
+let recipe4;   
 
  beforeEach(() => {
-recipe1 = new Recipe({id: 1, image:'recipe image 1', portions: [{ ingredientId: 1, name: 'Cookie',  amount: 2, estimatedCostInCents: 100, unit: 'C'}], instructions: ['Bake it'], tags: ['snack', 'dessert']});
+recipe1 = new Recipe({id: 1, name: 'Chocolate Chip Cookie', image:'https://recipe-image-1.jpg', portions: [{ ingredientId: 1, name: 'Flour',  amount: 2, cost: 101, unit: 'C'}], instructions: ['Bake it'], tags: ['snack', 'dessert']});
 
-recipe2 = new Recipe({id: 2, image:'recipe image 2', portions: [{ingredientId: 1, name: 'Sandwich', amount: 5, estimatedCostInCents: 200,  unit: 'loaf'}], instructions: ['Make Sandwich'],  tags: ['snack', 'lunch']});
+recipe2 = new Recipe({id: 2, name: 'Ham Sandwich', image:'https://recipe-image-2.jpg', portions: [{ingredientId: 2, name: 'Bread', amount: 5, cost: 200,  unit: 'loaf'}], instructions: ['Make Sandwich'],  tags: ['snack', 'lunch']});
 
-recipe3 = new Recipe({id: 3, image:'recipe image 3', portions: [{ingredientId: 1, name: 'Pork Chop', amount: 1, estimatedCostInCents: 300, unit: 'serving'}], instructions: ['Grill it up'],  tags: ['pork', 'dinner']});
+recipe3 = new Recipe({id: 3, name: 'Glazed Chops', image:'https://recipe-image-3.jpg', portions: [{ingredientId: 3, name: 'Pork Chop', amount: 1, cost: 300, unit: 'serving'}], instructions: ['Grill it up'],  tags: ['pork', 'dinner']});
+
+recipe4 = new Recipe({id: 4, name: 'Thai Chicken Noodles', image:'https://recipe-image-4.jpg', portions: [{ingredientId: 4, name: 'Chicken', amount: 1, cost: 423, unit: 'each'}, {ingredientId: 5, name: 'Curry', amount: 2, cost: 500, unit: 'Cup'} ], instructions: ['Saute it', 'Simmer it, Eat it'],  tags: ['Chicken', 'Spicy']});
 
  });
 
-    it.skip('should have an id number', () => {
+    it('the constructor should have an id number', () => {
     // expect the id to be a 'number'
+    expect(recipe1.id).to.equal(1);
+    expect(recipe2.id).to.equal(2);
     
   }); 
 
-    it.skip('should contain a recipe image', () => {
-    // expect the recipeData["image"] to be a 'string'
+    it('the constructor should contain a recipe name', () => {
+    
+    expect(recipe1.name).to.equal('Chocolate Chip Cookie');
+    expect(recipe2.name).to.equal('Ham Sandwich');
 
 });
 
-it.skip('should have list of ingredients needed', () => {
-// Need to adjust the ingredients array and create a portions array
+    it('the constructor should contain a recipe image', () => {
+    // expect the recipeData.image to be a 'string'
+    expect(recipe1.image).to.equal('https://recipe-image-1.jpg');
+    expect(recipe2.image).to.equal('https://recipe-image-2.jpg');
+
+});
+
+it('the constructor should have list of ingredients needed', () => {
 
     // expect recipe.portions to be an 'array'
-    // expect recipe.portions[0]to be an 'object'
-    // expect recipe.portions[0]["ingredientId"] to be 'number'
+    expect(recipe3.portions).to.deep.equal([{ingredientId: 3, name: 'Pork Chop', amount: 1, cost: 300, unit: 'serving'}])
+
+    expect(recipe3.portions.length).to.equal(1);
+    expect(recipe3.portions[0].name).to.equal('Pork Chop');
+
+    expect(recipe2.portions.length).to.equal(1);
+    expect(recipe1.portions[0].name).to.deep.equal('Flour');
     
-    // expect recipe.portions[0]["ampunt"] to be a 'number'
-    // expect recipe.portions[0]["unit"]to be a 'string'  
+
 });
 
-it.skip('should contain instructions to make a recipe', () => {
+it('the constructor should contain instructions to make a recipe', () => {
+
     // expect instructions[0] to equal ('SPECIFIC STRING HERE')
+    expect(recipe1.instructions[0]).to.equal('Bake it');
+    expect(recipe2.instructions[0]).to.equal('Make Sandwich');
 
 });
 
-it.skip('should have a recipe name', () => {
-    // expect the recipe1.name to be a 'string'
-    // expect the recipe.name to equal('cookie')
-  });
-
-  it.skip('should have a list to tags', () => {
-    // expect the recipe1.tags to be an 'array'
+  it('should have a list of tags', () => {
     // expect the reciep1.tags[0] to deep equal('snack')
+
+    expect(recipe2.tags).to.deep.equal(['snack', 'lunch']);
+    expect(recipe2.tags).to.have.lengthOf(2);
   });
 
-  it.skip('should be able to determine the names of ingredients needed', () => {
+  it('should be able to show the names of ingredients needed', () => {
     // is a method test
     //showIngredientsNeeded();
+    expect(recipe1.showIngredientsNeeded().length).to.equal(1)
+    expect(recipe1.showIngredientsNeeded()[0]).to.equal('Flour');
+
+    expect(recipe2.showIngredientsNeeded()[0]).to.equal('Bread');
+
   });
 
-  it.skip('should be able to calculate the total cost of ingredients', () => {
+  it('should be able to calculate the total cost of ingredients', () => {
     // is a method test
     //calcTotalIngredientCost()
+
+    // recipe1.calcTotalIngredientCost(2, 101);
+
+    expect(recipe1.calcTotalIngredientCost(2, 100)[0]).to.equal(2.02);
   });
 
-  it.skip('should be able to calculate the total cost of a recipe', () => {
+  it('should be able to calculate the total cost of a recipe', () => {
     // is a method test
-    // calcTotalRecipeCost()
+    // calcRecipeCost()
+
+
+    expect(recipe1.calcRecipeCost()).to.equal(2.02);
+
+
+    expect(recipe4.calcRecipeCost()).to.equal(14.23);
+
+
+    
   });
 
-  it.skip('should be return the recipe instructions', () => {
-    // is a method test
-    //returnRecipeInstructions()
+  it('should be return the recipe instructions', () => {
+
+    expect(recipe4.returnRecipeSteps()).to.deep.equal(['Saute it', 'Simmer it, Eat it'])
   });
 
 });
