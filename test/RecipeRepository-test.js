@@ -1,7 +1,8 @@
 import { expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
+import Recipe from '../src/classes/Recipe';
 
-describe('Recipe', () => {
+describe('RecipeRepository', () => {
   let recipeData;
   let newRecipe;
 
@@ -128,7 +129,7 @@ describe('Recipe', () => {
 
           newRecipe = new Recipe(recipeData)
     })
-    
+
 
 
   it('should be a function', () => {

@@ -14,56 +14,47 @@ class Recipe {
   }
 
   makeIngredients() {
-    const ingredients = ingredientsData.map(ingredient => {
-      return new Ingredient(ingredient);
-    });
-    // console.log(ingredients)
+    const ingredients = ingredientsData.map(ingredient => new Ingredient(ingredient));
     return ingredients;
   }
 
   returnAllIngredientIDs() {
       let ingredients = this.makeIngredients();
-      let allIngredientIDs = ingredients.map(ingredient => {
-        return ingredient.id
-      })
+      let allIngredientIDs = ingredients.map(ingredient => ingredient.id);
       return allIngredientIDs;
   }
 
   returnRecipeIngredientIDs() {
-    const ingredientIDs = this.ingredients.map((ingredient) => {
-      return ingredient.id;
-    })
-
+    const ingredientIDs = this.ingredients.map(ingredient => ingredient.id);
     return ingredientIDs;
   }
 
   returnIngredientNames() {
-    // let names = [];
     let allIngredients = this.makeIngredients();
     let recipeIngredientIDs = this.returnRecipeIngredientIDs();
     let allIngredientIDs = this.returnAllIngredientIDs();;
-
-    let newRecipeIngredients = allIngredients.filter(ingredient => {
-      if (recipeIngredientIDs.includes(ingredient.id)) {
-        return true;
-        }
-      })
-        let names = newRecipeIngredients.map(ingredient => {
-          return ingredient.name;
-      })
-
-        console.log(names);
-        return names;
-    //iterate through this.ingredients and then grab their IDs.
-    //then we want to iterate through the ingredients array and
-    //compare the this.ingredients ID's to the ID's of the
-    //objects in the ingredients array. Then, if the ID's match, take the corresponding
-    //ingredient name and store it in a new array, return that array.
+    let newRecipeIngredients = allIngredients.filter(ingredient => recipeIngredientIDs.includes(ingredient.id));
+    let names = newRecipeIngredients.map(ingredient => ingredient.name);
+    return names;
   }
 
   returnIngredientCosts() {
+    const allIngredients = this.makeIngredients();
+    const recipeIngredientIDs = this.returnRecipeIngredientIDs();
+    const newRecipeIngredients = allIngredients.filter(ingredient => (recipeIngredientIDs.includes(ingredient.id)));
+    const costs = newRecipeIngredients.map(ingredient => ingredient.estimatedCostInCents);
+    const ingredientQuantitiesNeeded = this.ingredients.map(ingredient => ingredient.quantity.amount);
+    const multCostByAmt = costs.map((cost, index) => {
+      let quantity = ingredientQuantitiesNeeded[index];
+      return cost * quantity
+    })
+    const sumTotalCost = multCostByAmt.reduce((sum, cost) => {
+      return sum + cost;
+    }, 0)
+    return (sumTotalCost / 100)
 
   }
+
 
   returnRecipeInstructions() {
     let instructionsParagraph = this.instructions.reduce((wholeString, instruction) => {
