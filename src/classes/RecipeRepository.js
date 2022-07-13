@@ -1,7 +1,12 @@
+import ingredientsData from '../data/ingredients';
+import recipeData from '../data/recipes';
+import Ingredient from '../classes/Ingredient'
+import Recipe from '../classes/Recipe';
+ 
 class RecipeRepository {
-  constructor() {
-    // One class to get you started!
-  }
+ constructor(recipeData) {
+   this.recipeData = recipeData
+ }
 }
-
+ 
 export default RecipeRepository;
