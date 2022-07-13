@@ -1,16 +1,16 @@
 import { expect } from 'chai';
 import Ingredient from '../src/classes/Ingredient.js';
 import Recipe from '../src/classes/Recipe.js';
-import { ingredientData } from '../src/data/ingredients.js';
-import { recipeData } from '../src/data/recipes.js';
+import { sampleIngredientData } from '../src/test/sampleIngredientData.js';
+import { sampleRecipeData } from '../src/test/sampleRecipeData.js';
 
 describe('Recipe Class', () => {
   let recipe;
   let ingredient;
 
   beforeEach( () => {
-    recipe = new Recipe(recipeData[0]);
-    ingredient = new Ingredient(ingredientData[0]);
+    recipe = new Recipe(sampleRecipeData[0]);
+    ingredient = new Ingredient(sampleIngredientData[0]);
   });
 
   it('should be a function', () => {
@@ -30,20 +30,35 @@ describe('Recipe Class', () => {
   });
 
   it('should store ingredients', () => {
-    expect(recipe.ingredients).to.equal(recipeData[0].ingredients)
+    expect(recipe.ingredients).to.equal(sampleRecipeData[0].ingredients)
   });
 
-  it('should create an instance of Ingredients and store them', () => {
-    expect(recipe.ingredients).to.be.an('array');
-    expect(recipe.ingredients.length).to.equal(recipeData[0].ingredients.length);
+  it('should create an instance of Ingredients with an id', () => {
     expect(recipe.ingredients[0]).to.be.an.instanceof(Ingredient);
     expect(recipe.ingredients[0].id).to.equal(20081);
   });
 
+  it('should store an instance of Ingredients in an array', () => {
+    expect(recipe.ingredients).to.be.an('array');
+    expect(recipe.ingredients).to.deep.equal([
+      {"id": 20081,"quantity": { "amount": 1.5, "unit": "c"}  },
+      {"id": 18372,"quantity": {"amount": 0.5,"unit": "tsp"}  },
+      {"id": 1123,"quantity": {"amount": 1,"unit": "large"}  },
+      {"id": 19335,"quantity": {"amount": 0.5,"unit": "c"}  },
+      {"id": 19206,"quantity": {"amount": 3,"unit": "Tbsp"} },
+      {"id": 19334,"quantity": {"amount": 0.5,"unit": "c"}  },
+      {"id": 2047,"quantity": {"amount": 0.5,"unit": "tsp"} },
+      {"id": 1012047,"quantity": {"amount": 24,"unit": "servings"}  },
+      {"id": 10019903,"quantity": {"amount": 2,"unit": "c"} },
+      {"id": 1145,"quantity": {"amount": 0.5,"unit": "c"} },
+      {"id": 2050,"quantity": {"amount": 0.5,"unit": "tsp"} }
+    ]);
+  })
+
   it('should store a list of instructions', () => {
     expect(recipe.instructions).to.be.an('array');
     expect(recipe.instructions[0].number).to.equal(1);
-    expect(recipe.instructions).to.deep.equal(recipeData[0].instructions);
+    expect(recipe.instructions).to.deep.equal(sampleRecipeData[0].instructions);
   });
 
   it('should have a name', () => {
@@ -52,7 +67,7 @@ describe('Recipe Class', () => {
 
   it('should store a list of tags', () => {
     expect(recipe.tags).to.be.an('array');
-    expect(recipe.tags).to.equal(recipeData[0].tags);
+    expect(recipe.tags).to.equal(sampleRecipeData[0].tags);
   });
 });
 
@@ -88,7 +103,7 @@ describe('Recipe Class', () => {
     it('should return the instructions', () => {
       const instructions = recipe.returnInstructions(recipeData);
 
-      expect(instructions.length).to.deep.equal(recipeData[0].instructions.length);
+      expect(instructions.length).to.deep.equal(sampleRecipeData[0].instructions.length);
       expect(instructions).to.be.an('array');
       expect(instructions[1]).to.equal("Add egg and vanilla and mix until combined.");
     });
