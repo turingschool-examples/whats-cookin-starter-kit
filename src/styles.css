@@ -1,3 +1,105 @@
+
+* {
+  margin:0px;
+  padding: 0px;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-around; 
+}
+
+.nav button {
+  height: 60px;
+  width: 100px;
+}
+
+.nav button:hover {
+  cursor: pointer;
+}
+
+.greeting {
+  display: flex;
+}
+
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+}
+
+.results-header {
+  display: flex;
+  align-self: center;
+}
+
+.mini-card{
+  display: flex;
+  flex-direction: column;
+  height: 160px;
+  width: 120px;
+}
+
+.mini-card img{
+  height: 120px;
+}
+
+.mini-card p{
+  justify-content: flex-end;
+  align-self: center;
+}
+
+.favorite-button{
+  align-self: flex-end;
+}
+
+.mega-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mega-card header {
+  display: flex;
+  flex-direction: row;
+}
+
+.mega-card header span:hover {
+  cursor: pointer;
+}
+
+.mega-card img {
+  height: 350px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .hidden {
   display: none;
 }
