@@ -39,3 +39,14 @@ it.skip('should contain instructions to make a recipe', () => {
     // expect instruction["number"] to be a 'number'
     //expect instruction["number"] to equal(specific) 
 });
+
+it.skip('should have a recipe name', () => {
+    // expect the instructions.name to be a 'string'
+    // expect the instructions.name to equal('SPECIFIC STRING')
+  });
+
+  it.skip('should have a list to tags', () => {
+    // expect the instructions.tags to be an 'array'
+    // expect the instructions.tags to deep equal('SPECIFIC STRING')
+  });
+
