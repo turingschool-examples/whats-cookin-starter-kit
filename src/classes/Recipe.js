@@ -25,8 +25,8 @@ class Recipe {
     }
     calcTotalRecipeCost() {
         const storedIngredients = this.getPortionCosts();
-        const reducedIngredientCost = storedIngredients.reduce((sumOfPortionCosts, currentPortionValue) => {
-            sumOfPortionCosts += currentPortionValue;
+        const reducedIngredientCost = storedIngredients.reduce((sumOfPortionCosts, currentPortionCost) => {
+            sumOfPortionCosts += currentPortionCost;
             return sumOfPortionCosts;
         }, 0);
         return reducedIngredientCost;
