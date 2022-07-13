@@ -1,7 +1,12 @@
+
+* {
+  font-family:Verdana, Geneva, Tahoma, sans-serif
+
 body {
   display: flex;
   flex-direction: column;
   background-color: #060911;
+  color: #F9F6EE;
 }
 
 .user-welcome {
@@ -30,11 +35,43 @@ header {
 
 .main-section {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   background-color: #F9F6EE;
   width: 100vw;
   height: 65vh;
+  
+}
+
+.box-of-recipes {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  align-content: space-between;
+  width: 100vw;
+  height: 65vh;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+
+.recipe-pic-box {
+  width: 20vw;
+  height: 50vh;
+  border: 2px solid #060911;
+  border-radius: 20px;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  padding-left: 13vw;
+  padding-right: 13vw;
+}
+
+.first-box {
+  margin-left: 5vw;
+}
+
+.last-box {
+  margin-right: 5vw;
 }
 
 footer {
