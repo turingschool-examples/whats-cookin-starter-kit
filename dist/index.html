@@ -3,9 +3,78 @@
   <head>
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
+    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
+    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.theme.min.css">
+    <link rel="stylesheet" href="/src/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@100;200&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <nav><h1>What's Cookin?</h1>
+    <section class="button-container">
+      <button class="button" id="homeButton">Home</button>
+      <button class="button" id="viewAllButton">View All Recipes</button>
+      <button class="button" id="favoritesButton">Favorite Recipes</button>
+    </section></nav>
+    <section class="home-page-view">
+      <aside class="search-sidebar">
+      <h3>Recipe Search:</h3>
+      <form id="form">
+        <input type="search" id="query" name="q" placeholder="Search...">
+        <button class="search-button">Search</button>
+        <h3>Filter Recipes:</h3>
+        <input type="checkbox" id="keto" name="" value="">
+        <label for="keto">Keto</label><br>
+        <input type="checkbox" id="vegan" name="" value="">
+        <label for="vegan">Vegan</label><br>
+        <input type="checkbox" id="paleo" name="" value="">
+        <label for="paleo">Paleo</label><br><br>
+        <input type="submit" value="Submit">
+      </form>
+      </aside>
+        <div class="container">
+          <div class="glide">
+            <div class="glide__track" data-glide-el="track">
+              <ul class="glide__slides">
+                <li class="glide__slide"><img class="recipe-icon-image" src="https://www.acouplecooks.com/wp-content/uploads/2021/03/Cheese-Tortellini-011.jpg"></li>
+                <li class="glide__slide"><img class="recipe-icon-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyow8KKKcZism-6074nsEn915ekFAmswTwEA&usqp=CAU"></li>
+                <li class="glide__slide"><img class="recipe-icon-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfd_xE3ZHCb0mAEXc26ofg9JiQPFwfQlHWgA&usqp=CAU"></li>
+              </ul>
+            </div>
+            <div class="glide__arrows" data-glide-el="controls">
+              <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+              <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+            </div>
+          </div>
+        </div>
+  </section>
+  <section class="recipe-details-page hidden">
+    <aside class="search-sidebar">
+      <h3>Recipe Search:</h3>
+      <form id="form">
+        <input type="search" id="query" name="q" placeholder="Search...">
+        <button>Search</button>
+        <h3>Filter Recipes:</h3>
+        <input type="checkbox" id="keto" name="" value="">
+        <label for="keto">Keto</label><br>
+        <input type="checkbox" id="vegan" name="" value="">
+        <label for="vegan">Vegan</label><br>
+        <input type="checkbox" id="paleo" name="" value="">
+        <label for="paleo">Paleo</label><br><br>
+        <input type="submit" value="Submit">
+      </form>
+    </aside>
+      <img id="recipeDetail" src="https://www.halfbakedharvest.com/wp-content/uploads/2019/05/No-Fuss-Lemon-Tart-1.jpg" alt="random-recipe-image">
+      <section class="recipe-directions">
+        <h2>Instructions</h2>
+        <p class="details">
+          murr murr murr
+        </p>
+      </section>
+  </section>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
