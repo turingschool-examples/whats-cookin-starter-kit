@@ -1,52 +1,54 @@
 import { expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
 
-describe('Recipe', () => {
+describe('RecipeRepository', () => {
+  let recipeData;
+  let recipeRepository;
   beforeEach(function() {
-  const recipeData = [{
-    id: 595736,
-    image: "https://spoonacular.com/recipeImages/595736-556x370.jpg",
-    ingredients: [
+    recipeData = [{
+    "id": 595736,
+    "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
+    "ingredients": [
       {
-        id: 20081,
-        quantity: {
-          amount: 1.5,
-          unit: "c",
+        "id": 20081,
+        "quantity": {
+          "amount": 1.5,
+          "unit": "c",
         },
       },
       {
-        id: 18372,
-        quantity: {
-          amount: 0.5,
-          unit: "tsp",
+        "id": 18372,
+        "quantity": {
+          "amount": 0.5,
+          "unit": "tsp",
         },
       },
       {
-        id: 1123,
-        quantity: {
-          amount: 1,
-          unit: "large",
+        "id": 1123,
+        "quantity": {
+          "amount": 1,
+          "unit": "large",
         },
       },
     ],
-    instructions: [
+    "instructions": [
       {
-        instruction:
+        "instruction":
           "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
-        number: 1,
+        "number": 1,
       },
       {
-        instruction: "Add egg and vanilla and mix until combined.",
-        number: 2,
+        "instruction": "Add egg and vanilla and mix until combined.",
+        "number": 2,
       },
       {
-        instruction:
+        "instruction":
           "Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.",
-        number: 3,
+        "number": 3,
       },
     ],
-    name: "Loaded Chocolate Chip Pudding Cookie Cups",
-    tags: ["antipasti", "starter", "snack"],
+    "name": "Loaded Chocolate Chip Pudding Cookie Cups",
+    "tags": ["antipasti", "starter", "snack"],
   }, {
     "id": 412309,
     "image": "https://spoonacular.com/recipeImages/412309-556x370.jpeg",
@@ -85,26 +87,26 @@ describe('Recipe', () => {
       "sauce"
   ]
   }]
-    
-  recipeRepository = new RecipeRepository(recipeData);
-
+  recipeRepository = new RecipeRepository(recipeData)
   })
 
-  it.skip('Should be a function', () => {
+  it('Should be a function', () => {
     expect(RecipeRepository).to.be.a('function');
   });
 
-  it.skip('Should instantiate an instance of RecipeRepository', () => {
+  it('Should instantiate an instance of RecipeRepository', () => {
     
     expect(recipeRepository).to.be.an.instanceof(RecipeRepository);
   })
 
-  it.skip('Should take in recipe data', () => {
-    expect(recipeRepository.recipes).to.deeply.equal(recipeData)
+  it('Should take in recipe data', () => {
+    expect(recipeRepository.recipes).to.equal(recipeData)
   })
 
-  it.skip('Should be able to filter by tag', () => {
-    expect(recipRepository.filterTag(sauce)).to.deeply.equal(recipeData[1])
+  it('Should be able to filter by tag', () => {
+
+    console.log("1", recipeData[1]);
+    expect(recipeRepository.filterTag('sauce')).to.deep.equal([recipeData[1]])
   })
 
   it.skip('Should be able to filter by name', () => {
