@@ -292,4 +292,16 @@ describe('User', () => {
       const testData = user.filterFavoriteRecipesByName( "Loaded Chocolate Chip Pudding Cookie Cups" )
       expect(testData).to.equal( "Loaded Chocolate Chip Pudding Cookie Cups" )
     });
+
+    it('should remove saved recipes from array', () => {
+      user.addRecipeToRecipesToCook( dataRecipe );
+      user.removeRecipeFromRecipesToCook( dataRecipe );
+      expect(user.recipesToCook).to.deep.equal([ ]);
+    });
+
+    it('should remove a recipe from the favorited recipes', () => {
+      user.addRecipeToFavorites( dataRecipe );
+      user.removeRecipeFromFavorites( dataRecipe );
+      expect(user.favoriteRecipes).to.deep.equal([ ]);
+    })
 });
