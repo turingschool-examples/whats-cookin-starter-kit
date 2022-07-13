@@ -19,9 +19,14 @@ class Recipe {
   }
 
   returnAllIngredientIDs() {
-      let ingredients = this.makeIngredients();
-      let allIngredientIDs = ingredients.map(ingredient => ingredient.id);
-      return allIngredientIDs;
+    const ingredients = this.makeIngredients();
+    const allIngredientIDs = ingredients.map(ingredient => ingredient.id);
+    return allIngredientIDs;
+  }
+
+  handleIngredientData() {
+    const allIngredients = this.makeIngredients();
+    const recipeIngredientIDs = this.returnRecipeIngredientIDs();
   }
 
   returnRecipeIngredientIDs() {
@@ -30,11 +35,11 @@ class Recipe {
   }
 
   returnIngredientNames() {
-    let allIngredients = this.makeIngredients();
-    let recipeIngredientIDs = this.returnRecipeIngredientIDs();
-    let allIngredientIDs = this.returnAllIngredientIDs();;
-    let newRecipeIngredients = allIngredients.filter(ingredient => recipeIngredientIDs.includes(ingredient.id));
-    let names = newRecipeIngredients.map(ingredient => ingredient.name);
+    const allIngredients = this.makeIngredients();
+    const recipeIngredientIDs = this.returnRecipeIngredientIDs();
+    const allIngredientIDs = this.returnAllIngredientIDs();;
+    const newRecipeIngredients = allIngredients.filter(ingredient => recipeIngredientIDs.includes(ingredient.id));
+    const names = newRecipeIngredients.map(ingredient => ingredient.name);
     return names;
   }
 
@@ -51,6 +56,7 @@ class Recipe {
     const sumTotalCost = multCostByAmt.reduce((sum, cost) => {
       return sum + cost;
     }, 0)
+
     return (sumTotalCost / 100)
 
   }
