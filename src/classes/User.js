@@ -11,8 +11,8 @@ class User {
         this.recipesToCook.push( recipe )
     }
 
-    addRecipeToFavorites() {
-
+    addRecipeToFavorites( recipe ) {
+        this.favoriteRecipes.push( recipe )
     }
 
     removeRecipeFromRecipesToCook() {
@@ -22,6 +22,22 @@ class User {
     removeRecipeFromFavorites() {
 
     }
+
+    filterFavoriteRecipesByTag(userInput){
+        let tagMatches = this.favoriteRecipes.filter((tag) => {
+          return userInput.toLowerCase() == tag
+        })
+          return tagMatches[0]
+      };
+      
+    // filterFavoriteRecipesByName(userSearch){
+    
+    //     let recipeMatch = []
+    //     if(this.recipes.name == userSearch){
+    //       recipeMatch.push(this.recipes.name)
+    //     }
+    //     return recipeMatch[0]
+    //   };
   
   }
   
