@@ -30,16 +30,14 @@ class User {
           return tagMatches[0].tags
       };
       
-    // filterFavoriteRecipesByName(userSearch){
-    
-    //     let recipeMatch = []
-    //     if(this.recipes.name == userSearch){
-    //       recipeMatch.push(this.recipes.name)
-    //     }
-    //     return recipeMatch[0]
-    //   };
-  
-  }
+    filterFavoriteRecipesByName(userSearch){
+
+        let nameMatches = this.favoriteRecipes.filter((recipe) => {
+            return recipe.name.includes(userSearch)
+        })
+          return nameMatches[0].name
+      };
+  };
   
   export default User;
 
