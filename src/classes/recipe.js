@@ -1,18 +1,46 @@
-import Ingredient from "./ingredient"
-// const recipeData = require('src/data/recipes.js');
+import Ingredient from "./Ingredient"
+// const recipeDataSet = require('/src/data/recipes.js');
 
 class Recipe {
-    constructor(id, image, ingredients, instructions, name, tags) {
-        this.id = id
-        this.image = image
-        this.ingredients = ingredients
-        this.instructions = instructions
-        this.name = name
-        this.tags = tags
+    constructor(recipeData, ingDataSet) {
+        this.id = recipeData.id
+        this.image = recipeData.image
+        this.ingredients = recipeData.ingredients
+        this.instructions = recipeData.instructions
+        this.name = recipeData.name
+        this.tags = recipeData.tags
+        this.ingData = ingDataSet
     }
 
     determineIngredientNames() {
-        let ingredientNames = this.ingredients.map(ingredient => ingredient.name)
+        let listOfNames = []
+        let ingredientNames = this.ingredients.forEach(ingredient => {
+            this.ingData.forEach(element => {
+                if (element.id === ingredient.id) {
+                    listOfNames.push(element.name)
+                }
+            })
+        })
+        return listOfNames
+    }
+
+    determineCostOfAllIngredients() {
+        let totalCost = 0
+        let getTotalCost = this.ingredients.forEach(ingredient => {
+            this.ingData.forEach(element => {
+                if (ingredient.id === element.id) {
+                    totalCost += ingredient.quantity.amount * element.costInCents
+                }
+            })
+        })
+        return totalCost
+    }
+
+    listDirections() {
+        let steps = this.instructions.map(step => {
+            return `Step ${step.number}: ${step.instruction}`
+        })
+        return steps
     }
 
     // if ingredientsData.id === recipeData.id
