@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe'
 import { recipeData } from '../src/data/recipes';
 
-describe('recipe', () => {
+describe('Recipe Test', () => {
     it('Should be an instance of recipe', () => {
         expect(Recipe).to.be.a('function');
     });
@@ -29,4 +29,4 @@ describe('recipe', () => {
             "vanilla"
         ]);
     });
-})
+});
