@@ -1,9 +1,9 @@
+# Describe the changes being made 
+
 - [ ] New feature (adds functionality)
-- [ ] # How Has This Been Tested?
+- [ ] Debugging/Refactor
 ​
 # How Has This Been Tested?
-​
-Please describe the tests that you ran to verify your changes.
 ​
 - [ ] I tested my changes in the browser
 - [ ] I tested with Mocha/Chai
