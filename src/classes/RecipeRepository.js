@@ -1,17 +1,19 @@
 class RecipeRepository {
   constructor( recipeList ) {
-    this.recipes = recipeList 
+    this.recipes = recipeList;
+    
   };
 
-  filterRecipeByTag(userInput){
-    let tagMatches = this.recipes.tags.filter((tag) => {
-      return userInput.toLowerCase() == tag
-    })
-      return tagMatches[0]
-  };
-  
+  filterRecipeByTag(userInput) {
+     return this.recipes.filter((recipe) => {
+      if( recipe.tags.includes(userInput) ) {
+        console.log({recipe})
+        return recipe
+      }
+    });
+  }
+
   filterRecipeByName(userSearch){
-
     let recipeMatch = []
     if(this.recipes.name == userSearch){
       recipeMatch.push(this.recipes.name)
