@@ -1,23 +1,25 @@
 class RecipeRepository {
   constructor(recipes) {
     this.recipes = recipes
-    // One class to get you started!
   }
 
   filterTags(tag) {
     let filteredByTag = this.recipes.filter(recipe => {
-      return recipe.tags === tag;
+      if (recipe.tags.includes(tag)) {
+      return recipe
+    }
     });
       return filteredByTag
   }
 
   filterNames(name) {
     let filteredByName = this.recipes.filter(recipe => {
-      return recipe.name === name;
+      if (recipe.name.includes(name)) {
+      return recipe
+    }
     });
       return filteredByName
   }
-
 }
 
 export default RecipeRepository;

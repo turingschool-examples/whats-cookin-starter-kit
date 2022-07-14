@@ -1,4 +1,4 @@
-const ingredientsData = [
+export const ingredientsData = [
     {
       "id": 20081,
       "name": "wheat flour",
@@ -1233,3 +1233,5 @@ const ingredientsData = [
       "estimatedCostInCents": 613
     }
   ];
+
+// export default ingredientsData

@@ -9,12 +9,13 @@ describe('Recipe', () => {
     let ingredient2;
     let ingDataSet;
     let recDataSet;
-    
+    let recipeDetails;
+
     beforeEach(() => {
                             ingredient1 = new Ingredient(20081, 'wheat flour', 142)
                             ingredient2 = new Ingredient(18372, 'bicarbonate of soda', 582)
                             ingDataSet = [ingredient1, ingredient2]
-                            recDataSet = {"id": 595736,
+                            recipeDetails = {"id": 595736,
                             "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
                             "ingredients": [
                               {
@@ -72,16 +73,16 @@ describe('Recipe', () => {
                                 "antipasto",
                                 "hor d'oeuvre"
                               ]}
-                            recipe = new Recipe(recDataSet, ingDataSet)
+                            recipe = new Recipe(recipeDetails, ingDataSet)
                         })
                         it('should be a function', () => {
                             expect(Recipe).to.be.a('function');
                         })
-                        
+
                         it('should be an instance of recipe', () => {
                             expect(recipe).to.be.an.instanceof(Recipe)
                         })
-                        
+
                         it('should have an id', () => {
         expect(recipe.id).to.equal(595736)
     })
