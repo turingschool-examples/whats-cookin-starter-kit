@@ -21,17 +21,24 @@ const icon4Img = document.querySelector('.icon-4-img');
 // ***** Event Listeners ***** //
 
 window.addEventListener('load', updateMainPageRecipeIcons);
+window.addEventListener('load', loadNewUser);
 
 // ***** Global Variables ***** //
 
 const recipeTest = recipeData.recipeData.map(recipe => {
   return new Recipe(recipe);
 })
+let user;
 
 // ***** Functions ***** //
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
+}
+
+function loadNewUser() {
+user = new User(userData.usersData[getRandomIndex(recipeTest)])
+console.log(user)
 }
 
 function updateMainPageRecipeIcons() {
