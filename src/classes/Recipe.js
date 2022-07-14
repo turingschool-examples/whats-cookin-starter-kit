@@ -1,5 +1,5 @@
 class Recipe {
-    constructor(recipeDetails) {
+    constructor(recipeDetails = {}) {
         this.id = recipeDetails.id || this.generateRandomId();
         this.name = recipeDetails.name;
         this.image = recipeDetails.image;
@@ -11,10 +11,10 @@ class Recipe {
     generateRandomId() {
         return Math.floor(Math.random() * 1000);
     }
-    
+
     getPortionNames() {
         return this.portions.map((portion) => {
-            return portion.name;  
+            return portion.name;
         });
     }
     getPortionCosts() {
