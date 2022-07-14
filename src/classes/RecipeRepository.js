@@ -6,7 +6,7 @@ import Recipe from '../classes/Recipe';
  
 class RecipeRepository {
  constructor(recipeData) {
-   this.recipeData = recipeData
+   this.recipeData = recipeData;
  }
 
   listRecipeTags(tag) {
@@ -16,10 +16,13 @@ class RecipeRepository {
       return filteredByTag;
   }
 
-  // listRecipeNames()
-
+  listRecipeNames(name) {
+  const filteredByName = this.recipeData.filter(recipe => 
+    recipe.name.includes(name)
+    );
+    return filteredByName;
+  }
 }
-
 
 
  
