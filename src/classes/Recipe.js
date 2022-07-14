@@ -19,15 +19,21 @@ class Recipe {
     };
   });
   filteredIngredients.forEach(ingredient => {
-    this.ingredientsNeeded.push(ingredient.name);
+    this.ingredientsNeeded.push(ingredient);
   });
-  return this.ingredientsNeeded
-  console.log(this.ingredientsNeeded);
+  const ingredientNames = this.ingredientsNeeded.map(ingredient => ingredient.name)
+  return ingredientNames
+
   }
 
   getInstructions() {
-    console.log(this.instructions)
+    return this.instructions
   }  
+
+  getCost() {
+    const recipeCostTotal = this.ingredientsNeeded.reduce((arr, values) => arr + values.estimatedCostInCents, 0)
+    return recipeCostTotal/100
+  }
 }
 
 export default Recipe;

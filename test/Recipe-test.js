@@ -136,7 +136,9 @@ describe("Recipe", () => {
     ]);
   });
 
-  it.skip("Should determine the cost of ingredients", () => {
-    expect(recipe1.getCost()).to.equal(23.03);
+  it("Should determine the cost of ingredients", () => {
+    recipe1.getIngredients(newIngredients)
+
+    expect(recipe1.getCost()).to.equal(11.96);
   });
 });
