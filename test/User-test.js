@@ -12,17 +12,14 @@ describe('User', () => {
   
   let user1;
   let user2;
-  
-
-  let recipe;
+  let recipe1;
   let recipe2;
   let recipe3;
 
   beforeEach(() => {
     user1 = new User(testUserData[0]);
     user2 = new User(testUserData[1]);
-
-    recipe = new Recipe(testRecipeData[0], testIngData);
+    recipe1 = new Recipe(testRecipeData[0], testIngData);
     recipe2 = new Recipe(testRecipeData[1], testIngData);
     recipe3 = new Recipe(testRecipeData[2], testIngData);
   
@@ -71,19 +68,44 @@ describe('User', () => {
         },
       ]);
     });
-    it('should store recipes to cook', () => {
-      user1.addRecipesToCook(recipe)
-      user1.addRecipesToCook(recipe2)
+    it('should store recipes to cook, without duplicate recipes', () => {
+      user1.addRecipesToCook(recipe1);
+      user1.addRecipesToCook(recipe2);
+      user1.addRecipesToCook(recipe2);
 
-      expect(user1.recipesToCook[0]).to.deep.equal(recipe)
-      expect(user1.recipesToCook[1]).to.deep.equal(recipe2)
-  });
+      expect(user1.recipesToCook[0]).to.deep.equal(recipe1);
+      expect(user1.recipesToCook[1]).to.deep.equal(recipe2);
+      expect(user1.recipesToCook.length).to.equal(2);
+    });
 
-  it('should remove recipes to cook', () => {
-    user1.addRecipesToCook(recipe)
-    user1.addRecipesToCook(recipe2)
+    it('should be able to remove recipes from recipes to cook array', () => {
+      user1.addRecipesToCook(recipe1);
+      user1.addRecipesToCook(recipe2);
 
-    expect(user1.recipesToCook[0]).to.deep.equal(recipe)
-    expect(user1.recipesToCook[1]).to.deep.equal(recipe2)
-});
+      expect(user1.recipesToCook[0]).to.deep.equal(recipe1);
+      expect(user1.recipesToCook[1]).to.deep.equal(recipe2);
+
+      user1.removeRecipesToCook(595736);
+
+      expect(user1.recipesToCook[0]).to.deep.equal(recipe2);
+
+      user1.removeRecipesToCook(678353);
+
+      expect(user1.recipesToCook.length).to.equal(0);
+    });
+
+    it('should be able to filter the saved recipes by tag', () => {
+      user1.addRecipesToCook(recipe1);
+      user1.addRecipesToCook(recipe2);
+      user1.addRecipesToCook(recipe3);
+      user2.addRecipesToCook(recipe1);
+      user2.addRecipesToCook(recipe2);
+      user2.addRecipesToCook(recipe3);
+
+      expect(user1.filterSavedRecipesByTag('antipasti')).to.deep.equal([recipe1])
+      expect(user1.filterSavedRecipesByTag('antipasti')[0].name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups')
+      expect(user2.filterSavedRecipesByTag('test')).to.deep.equal([recipe2, recipe3])
+      expect(user2.filterSavedRecipesByTag('test')[1].name).to.equal('Dirty Steve\'s Original Wing Sauce')
+    })
+
 }); 
