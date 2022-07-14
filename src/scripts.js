@@ -25,7 +25,7 @@ function loadData( ) {
         ingredientList = data[ 2 ].ingredientsData;
         currentUser = new User( userList[ Math.floor( Math.random() * userList.length ) ] );
         ingredientClass = new Ingredient( ingredientList.map(ingredient => ingredient.id), ingredientList.map(ingredient => ingredient.name), ingredientList.map(ingredient =>  ingredient.estimatedCostInCents) );
-        recipeClass = new Recipe( recipeList[0], ingredientList )
+        recipeClass = new Recipe( recipeList[0], ingredientList );
         recipeRepository = new RecipeRepository( recipeList );
         displayRandomUserName( );
         displayAllRecipesOnPage( );
