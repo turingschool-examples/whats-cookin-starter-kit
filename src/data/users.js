@@ -6518,3 +6518,8 @@ const testUserData = [
     ],
   },
 ];
+
+module.exports = {
+  usersData,
+  testUserData
+}
