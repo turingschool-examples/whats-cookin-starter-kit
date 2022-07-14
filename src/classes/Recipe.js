@@ -1,5 +1,5 @@
 class Recipe {
-    constructor(recipeDetails) {
+    constructor(recipeDetails = {}) {
         this.id = recipeDetails.id || this.generateRandomId();
         this.name = recipeDetails.name;
         this.image = recipeDetails.image;
