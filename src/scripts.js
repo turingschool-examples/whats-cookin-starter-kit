@@ -1,8 +1,32 @@
 import './styles.css';
-import apiCalls from './apiCalls';
+import { getData } from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png';
+import Ingredient from './classes/Ingredient.js'
+import Recipe from './classes/Recipe.js'
+import RecipeRepository from './classes/RecipeRepository.js'
+import User from './classes/User.js'
 
+let userData;
+let recipesData;
+let ingredientData;
+let userRepository;
+let recipeRepository;
+let ingredientRepository;
+
+function loadData( ) {
+    Promise.all( [ getData( 'users' ), getData( 'recipes' ), getData( 'ingredients' ) ] ).then( data => {
+        userData = data[ 0 ].usersData;
+        recipesData = data[ 1 ].recipeData;
+        console.log( recipesData)
+        ingredientData = data[ 2 ].ingredientsData;
+        userRepository = new User( userData );
+        recipeRepository = new RecipeRepository( recipesData );
+        ingredientRepository = new Ingredient( ingredientData );
+
+    } );
+}
+loadData();
 
 
 //As a user, I should be able to view a list of all recipes.
