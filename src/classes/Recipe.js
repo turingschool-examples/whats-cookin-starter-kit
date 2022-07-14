@@ -3,13 +3,17 @@ import  Ingredient  from './Ingredient';
 
 class Recipe {
     constructor(recipe, ingredientList){
+        // console.log('RECIPE: ', recipe)
+        // console.log({ingredientList})
         this.id = recipe.id;
+        // console.log('THIS.ID: ', this.id)
         this.image = recipe.image;
-        this.ingredients = recipe.ingredients;
+        this.recipeIngredients = recipe.ingredients;
         this.instructions = recipe.instructions;
         this.name = recipe.name;
         this.tags = recipe.tags;
-        this.ingredientList = ingredientList;           
+        this.ingredientList = ingredientList;      
+        // console.log('INGREDIENTLIST: ', this.ingredientList)     
             
     };
 
@@ -30,7 +34,7 @@ class Recipe {
     };
 
     getIngredientList(){
-        const listOfIngredients = this.ingredients.map( ( ingredient ) => {
+        const listOfIngredients = this.recipeIngredients.map( ( ingredient ) => {
             const ingredientName = this.getIngredientName( this.ingredientList, ingredient );
             const ingredientCost = this.getCostOfIngredients( this.ingredientList, ingredient );
             return new Ingredient( ingredient.id, ingredientName,  ingredientCost );

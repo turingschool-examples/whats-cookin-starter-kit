@@ -1,32 +1,73 @@
 import './styles.css';
-import { getData } from './apiCalls';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png';
-import Ingredient from './classes/Ingredient.js'
-import Recipe from './classes/Recipe.js'
-import RecipeRepository from './classes/RecipeRepository.js'
-import User from './classes/User.js'
+import { getData } from './apiCalls';
+import User from './classes/User'
+import Recipe from './classes/Recipe'
+import Ingredient from './classes/Ingredient'
+import RecipeRepository from './classes/RecipeRepository'
 
-let userData;
-let recipesData;
-let ingredientData;
-let userRepository;
+let userList;
+let recipeList;
+let recipeClass;
+let ingredientList;
+let ingredientClass;
 let recipeRepository;
-let ingredientRepository;
+let currentUser;
+
+
+let welcomeUserMessage = document.getElementById( 'welcomeUserMessage' );
+window.addEventListener( 'load', loadData );
 
 function loadData( ) {
     Promise.all( [ getData( 'users' ), getData( 'recipes' ), getData( 'ingredients' ) ] ).then( data => {
-        userData = data[ 0 ].usersData;
-        recipesData = data[ 1 ].recipeData;
-        console.log( recipesData)
-        ingredientData = data[ 2 ].ingredientsData;
-        userRepository = new User( userData );
-        recipeRepository = new RecipeRepository( recipesData );
-        ingredientRepository = new Ingredient( ingredientData );
-
+        userList = data[ 0 ].usersData;
+        recipeList = data[ 1 ].recipeData;
+        ingredientList = data[ 2 ].ingredientsData;
+        currentUser = new User( userList[ Math.floor( Math.random() * userList.length ) ] );
+        ingredientClass = new Ingredient( ingredientList.map(ingredient => ingredient.id), ingredientList.map(ingredient => ingredient.name), ingredientList.map(ingredient =>  ingredient.estimatedCostInCents) );
+        recipeClass = new Recipe( recipeList[0], ingredientList )
+        recipeRepository = new RecipeRepository( recipeList );
+        displayRandomUserName( );
+        displayAllRecipesOnPage( );
     } );
 }
-loadData();
+
+
+// Display random users name on page load
+function displayRandomUserName( ) {
+    welcomeUserMessage.innerText = `Welcome, ${ currentUser.name.split( ' ' )[ 0 ] }!`
+}
+
+// Display all recipes on page
+function displayAllRecipesOnPage(  ) {
+    let recipeCard = document.querySelector(".recipe-grid-container")
+    let newRecipe = new RecipeRepository( recipeList  )
+    const result = newRecipe.recipes.map( recipe => {
+        // const recipePreview = ( `<section class='recipe-card' id="recipeCard">
+        //            <img src="${ recipe.image }" class="recipe-image" alt="">
+        //            <h3>${ recipe.name }</h3>
+        //            <button>Let's Make It!</button>
+        //            <div>
+        //               <button>Favorite!</button>
+        //               <button>Save it!</button>
+        //            </div>
+        //        </section>`)
+        // return recipePreview;
+       return `<section class='recipe-card' id="recipeCard">
+                   <img src="${ recipe.image }" class="recipe-image" alt="">
+                   <h3>${ recipe.name }</h3>
+                   <button>Let's Make It!</button>
+                   <div>
+                      <button>Favorite!</button>
+                      <button>Save it!</button>
+                   </div>
+               </section>`
+   } );
+   const recipeInfo = recipeCard;
+   recipeInfo.innerHTML = result;
+   return recipeInfo
+}
+
 
 
 //As a user, I should be able to view a list of all recipes.
@@ -39,8 +80,3 @@ loadData();
 
 
 
-// function getRandomUser( traveler ) {
-//     const randomUserIndex = Math.floor( Math.random() * traveler.length )
-//     console.log(traveler[ randomUserIndex ])
-//     return traveler[ randomUserIndex ]
-// }
