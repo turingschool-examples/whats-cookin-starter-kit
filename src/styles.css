@@ -19,6 +19,7 @@ h3 {
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
+  font-size: medium;
 }
 
 h4 {
@@ -56,8 +57,12 @@ h2 {
 
 .recipe-grid-container {
   display: flex;
-  padding: 5%;
-  justify-content: space-between;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100vh;
+  justify-content: space-evenly;
+  padding: 2%;
 }
 
 .recipe-search {
@@ -68,6 +73,7 @@ h2 {
   height: 300px;
   width: 200px;
   text-align: center;
+  word-wrap: break-word;
 }
 
 .recipe-image {
