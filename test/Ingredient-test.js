@@ -6,7 +6,6 @@ import Recipe from '../src/classes/Recipe.js';
 
 
 describe('Ingredient', () => {
-    let recipe;
     let ingredient;
 
     beforeEach(() => {
@@ -21,6 +20,7 @@ describe('Ingredient', () => {
 
     it('should be an instance of Ingredient', () => {
         expect(ingredient).to.be.an.instanceof(Ingredient);
+        expect(ingredient2).to.be.an.instanceof(Ingredient);
     });
 
     it('should have a name', () => {
@@ -49,7 +49,16 @@ describe('Ingredient', () => {
         expect(ingredient2.costPerUnitInCents).to.equal(902);
     });
 
-    it('should be able to calculate the cost per ingredient', () => {
+    it(`should be able to calculate the unit cost by the recipe's ingredient type`, () => {
+        var costPerRecipeIngredient;
+        costPerRecipeIngredient = ingredient.calculateCost();
+        expect(costPerRecipeIngredient).to.equal(213);
+
+        costPerRecipeIngredient = ingredient2.calculateCost();
+        expect(costPerRecipeIngredient).to.equal(451);
+    });
+
+    it('should be able to return the cost per recipe ingredient as a dollar amount', () => {
         var costPerRecipeIngredient;
         costPerRecipeIngredient = ingredient.calculateCost();
         expect(costPerRecipeIngredient).to.equal(2.13);
