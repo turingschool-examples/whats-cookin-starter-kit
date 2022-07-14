@@ -18,7 +18,6 @@ describe('RecipeRepository', () => {
 
     })
     
-  
   it('should be a function', () => {
     expect(RecipeRepository).to.be.a('function');
   });
@@ -36,12 +35,7 @@ describe('RecipeRepository', () => {
   })
   
   it('should have a filtered list of recipes based on a name', () => {
-    expect(nameResults[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    expect(nameResults[0].name).to.deep.equal("Loaded Chocolate Chip Pudding Cookie Cups");
   })
- })
-  
- // It should have a parameter to take in recipe data.
- // It should have methods to determine:
- // A filtered list of recipes based on a tag. (Extension option: filtering by multiple tags)
- // A filtered list of recipes based on its name. (Extension option: filtering by name or ingredients)
+})
  

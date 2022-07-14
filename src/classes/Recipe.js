@@ -1,7 +1,5 @@
 import ingredientsData from '../data/ingredients';
-import recipeData from '../data/recipes';
 import Ingredient from '../classes/Ingredient'
-
 
 class Recipe {
   constructor(recipeData) {
@@ -58,9 +56,7 @@ class Recipe {
     }, 0)
 
     return (sumTotalCost / 100)
-
   }
-
 
   returnRecipeInstructions() {
     let instructionsParagraph = this.instructions.reduce((wholeString, instruction) => {
@@ -72,3 +68,4 @@ class Recipe {
 };
 
 export default Recipe;
+
