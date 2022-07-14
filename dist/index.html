@@ -2,11 +2,31 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Whats Cookin</title>
+    <link rel="stylesheet" href="../src/styles.css">
+    <title>Pantry to Pan</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <section class="search-options">
+      <section class="title-search">
+        <h1>Pantry2Pan</h1>
+        <input type="text" id="recipe-search" name="recipe-search" placeholder="Recipe Search">
+      </section>
+      <section class="filter-boxes">
+        <button type="button">All Recipes</button>
+        <button type="button">Categories</button>
+        <button type="button">Saved Recipes</button>
+        <button type="button">Pantry</button>
+      </section>
+    </section>
+    <section class="slider-boxes">
+      <section class="recipe-box">
+        <h2>Recipe Title</h2>
+        <src>imagesource</src>
+      </section>
+    </section>  
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>
+
+

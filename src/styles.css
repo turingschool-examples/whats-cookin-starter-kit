@@ -1,3 +1,56 @@
 body {
-  background-color: blueviolet;
+  height: 100vh;
+  width: 100vw;
+}
+
+* {
+  border: solid 2px red;
+}
+
+.search-options {
+  height: 30%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-search {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+.filter-boxes {
+  height: 20%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+button {
+  height: 50%;
+}
+
+.slider-boxes {
+  height: 70%;
+  display: flex;
+  align-items: center;
+  padding-left: 5%;
+}
+
+.recipe-box {
+  height: 60%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  text-align: center;
 }
