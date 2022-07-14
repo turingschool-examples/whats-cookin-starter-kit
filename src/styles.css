@@ -54,6 +54,14 @@ h1{
   width: 100%;
 }
 
+.icon-1-img,
+.icon-2-img,
+.icon-3-img,
+.icon-4-img {
+  height: 100%;
+  width: 100%;
+}
+
 
 /* ~~~~~~~~~~~~~~~~~~search bar~~~~~~~~~~~~~~~~~~~~~~ */
 
