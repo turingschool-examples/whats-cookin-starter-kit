@@ -16,14 +16,14 @@ describe('Recipe', () => {
 
     beforeEach(() => {
 
-        recipeNoTags = new Recipe({ id: 6, name: 'Succotash', image: 'https://recipe-image-7.jpg', portions: [{ ingredientId: 1, name: 'Lima Beans', amount: 1, cost: 605, unit: 'Bag' }], instructions: ['Open Bag'], tags: [] });
-        recipeNoInstructions = new Recipe({ id: 6, name: 'Pancakes', image: 'https://recipe-image-6.jpg', portions: [{ ingredientId: 1, name: 'Batter', amount: 1, cost: 201, unit: 'Bag' }], instructions: [], tags: ['Breakfast', 'Brunch'] });
-        recipeNoPortions = new Recipe({ id: 5, name: 'Frittata', image: 'https://recipe-image-1.jpg', portions: [], instructions: ['Bake In Oven'], tags: ['Breakfast', 'Brunch'] });
-        recipeUndefined = new Recipe({ id: undefined, name: 'Chips', image: 'https://recipe-image-Und.jpg', portions: [{ ingredientId: 1, name: 'Potato', amount: 1, cost: 101, unit: 'Bag' }], instructions: ['Fry it'], tags: ['snack', 'Dinner'] });
-        recipe1 = new Recipe({ id: 1, name: 'Chocolate Chip Cookie', image: 'https://recipe-image-1.jpg', portions: [{ ingredientId: 1, name: 'Flour', amount: 2, cost: 101, unit: 'C' }], instructions: ['Bake it'], tags: ['snack', 'dessert'] });
-        recipe2 = new Recipe({ id: 2, name: 'Ham Sandwich', image: 'https://recipe-image-2.jpg', portions: [{ ingredientId: 2, name: 'Bread', amount: 5, cost: 200, unit: 'loaf' }], instructions: ['Make Sandwich'], tags: ['snack', 'lunch'] });
-        recipe3 = new Recipe({ id: 3, name: 'Glazed Chops', image: 'https://recipe-image-3.jpg', portions: [{ ingredientId: 3, name: 'Pork Chop', amount: 1, cost: 300, unit: 'serving' }], instructions: ['Grill it up'], tags: ['pork', 'dinner'] });
-        recipe4 = new Recipe({ id: 4, name: 'Thai Chicken Noodles', image: 'https://recipe-image-4.jpg', portions: [{ ingredientId: 4, name: 'Chicken', amount: 1, cost: 423, unit: 'each' }, { ingredientId: 5, name: 'Curry', amount: 2, cost: 500, unit: 'Cup' }], instructions: ['Saute it', 'Simmer it, Eat it'], tags: ['Chicken', 'Spicy'] });
+        recipeNoTags = new Recipe({ id: 6, name: 'Succotash', imageURL: 'https://recipe-image-7.jpg', portions: [{ ingredientId: 1, name: 'Lima Beans', amount: 1, cost: 605, unit: 'Bag' }], instructions: ['Open Bag'], tags: [] });
+        recipeNoInstructions = new Recipe({ id: 6, name: 'Pancakes', imageURL: 'https://recipe-image-6.jpg', portions: [{ ingredientId: 1, name: 'Batter', amount: 1, cost: 201, unit: 'Bag' }], instructions: [], tags: ['Breakfast', 'Brunch'] });
+        recipeNoPortions = new Recipe({ id: 5, name: 'Frittata', imageURL: 'https://recipe-image-1.jpg', portions: [], instructions: ['Bake In Oven'], tags: ['Breakfast', 'Brunch'] });
+        recipeUndefined = new Recipe({ id: undefined, name: 'Chips', imageURL: 'https://recipe-image-Und.jpg', portions: [{ ingredientId: 1, name: 'Potato', amount: 1, cost: 101, unit: 'Bag' }], instructions: ['Fry it'], tags: ['snack', 'Dinner'] });
+        recipe1 = new Recipe({ id: 1, name: 'Chocolate Chip Cookie', imageURL: 'https://recipe-image-1.jpg', portions: [{ ingredientId: 1, name: 'Flour', amount: 2, cost: 101, unit: 'C' }], instructions: ['Bake it'], tags: ['snack', 'dessert'] });
+        recipe2 = new Recipe({ id: 2, name: 'Ham Sandwich', imageURL: 'https://recipe-image-2.jpg', portions: [{ ingredientId: 2, name: 'Bread', amount: 5, cost: 200, unit: 'loaf' }], instructions: ['Make Sandwich'], tags: ['snack', 'lunch'] });
+        recipe3 = new Recipe({ id: 3, name: 'Glazed Chops', imageURL: 'https://recipe-image-3.jpg', portions: [{ ingredientId: 3, name: 'Pork Chop', amount: 1, cost: 300, unit: 'serving' }], instructions: ['Grill it up'], tags: ['pork', 'dinner'] });
+        recipe4 = new Recipe({ id: 4, name: 'Thai Chicken Noodles', imageURL: 'https://recipe-image-4.jpg', portions: [{ ingredientId: 4, name: 'Chicken', amount: 1, cost: 423, unit: 'each' }, { ingredientId: 5, name: 'Curry', amount: 2, cost: 500, unit: 'Cup' }], instructions: ['Saute it', 'Simmer it, Eat it'], tags: ['Chicken', 'Spicy'] });
     });
 
     it('the constructor should have an id number', () => {
@@ -43,8 +43,8 @@ describe('Recipe', () => {
     });
 
     it('the constructor should contain a recipe image', () => {
-        expect(recipe1.image).to.equal('https://recipe-image-1.jpg');
-        expect(recipe2.image).to.equal('https://recipe-image-2.jpg');
+        expect(recipe1.imageURL).to.equal('https://recipe-image-1.jpg');
+        expect(recipe2.imageURL).to.equal('https://recipe-image-2.jpg');
     });
 
     it('the constructor should default to an empty portions array', () => {

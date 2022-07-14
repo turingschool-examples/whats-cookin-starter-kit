@@ -2,7 +2,7 @@ class Recipe {
     constructor(recipeDetails = {}) {
         this.id = recipeDetails.id || this.generateRandomId();
         this.name = recipeDetails.name;
-        this.image = recipeDetails.image;
+        this.imageURL = recipeDetails.imageURL;
         this.portions = recipeDetails.portions || [];
         this.instructions = recipeDetails.instructions || [];
         this.tags = recipeDetails.tags || [];
