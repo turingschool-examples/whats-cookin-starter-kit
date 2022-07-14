@@ -9,6 +9,7 @@ export default class Recipe {
         this.name = data.name;
         this.tags = data.tags;
         this.ingredientsData = ingredientsData;
+        this.toBeCooked = false;       
     };
     makeIngredientData() {
 
@@ -19,7 +20,8 @@ export default class Recipe {
                 name: currentIngredient.name,
                 estimatedCostInCents: currentIngredient.estimatedCostInCents,
                 amount: ingredient.quantity.amount,
-                unit: ingredient.quantity.unit
+                unit: ingredient.quantity.unit,
+                toBeCooked: ingredient.toBeCooked
             });
         });
     }
