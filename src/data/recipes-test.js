@@ -324,7 +324,8 @@ const recipeData = [
       ],
       "name": "Dirty Steve's Original Wing Sauce",
       "tags": [
-        "sauce"
+        "sauce",
+        "testTag"
       ]
     },
     {
@@ -448,7 +449,8 @@ const recipeData = [
       ],
       "name": "Elvis Pancakes",
       "tags": [
-        "side dish"
+        "side dish",
+        "testTag"
       ]
     },
     {
@@ -611,7 +613,7 @@ const recipeData = [
         }
       ],
       "name": "Mock Udi’s Gluten Free Whole Grain Bread",
-      "tags": []
+      "tags": ["testTag"]
     }
   ]
 
