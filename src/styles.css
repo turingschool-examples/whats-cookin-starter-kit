@@ -15,13 +15,13 @@ body {
 }
 
 .logo-title {
-  width: 3vw;
-  height: 3vh;
+  width: 2vw;
+  height: 1vh; 
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 20%;
+  width: 12%;
   margin-right: 80%;
 }
 
@@ -29,11 +29,11 @@ body {
   align-items: center;
   border-radius: 8%;
   display: flex;
-  height: 65%;
+  /* height: 65%; */
   justify-content: center;
   margin-top: 13%;
   width: 65%;
-  margin-left: auto;
+  margin-right: 30px;
 }
 
 header {
@@ -59,6 +59,19 @@ header {
   width: 100vw;
   height: 62.5vh;
   
+}
+
+.user-search-container {
+  display:flex;
+  flex-direction: row-reverse;
+  
+}
+
+.search-image {
+  background-color: #f7f5f6;
+  height: 60%;
+  padding-right: 2%;
+  width: 8%;
 }
 
 .box-of-recipes {
@@ -101,7 +114,7 @@ header {
   margin-right: 5vw;
 }
 
-footer {
+.footer {
   display: flex;
   flex-direction: row;
   justify-content: left;
