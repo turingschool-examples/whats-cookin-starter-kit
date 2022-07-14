@@ -117,7 +117,7 @@ describe("Recipe", () => {
     ]);
   });
 
-  it.skip("Should determine the instructions", () => {
+  it("Should determine the instructions", () => {
     expect(recipe1.getInstructions()).to.deep.equal([
       {
         instruction:

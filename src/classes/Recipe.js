@@ -24,6 +24,10 @@ class Recipe {
   return this.ingredientsNeeded
   console.log(this.ingredientsNeeded);
   }
+
+  getInstructions() {
+    console.log(this.instructions)
+  }  
 }
 
 export default Recipe;
