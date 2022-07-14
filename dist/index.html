@@ -11,29 +11,35 @@
     <section class ="main-body"> 
       <header class ="header-container" id ="headerContainer">
         <h1>ANYONE CAN COOK</h1>
-        <button class="home-button" id="homeButton"></button>
-        <button class="favorite-button" id="favoriteButton"></button> 
+        <button class="home-button" id="homeButton">
+          <img class="home-img" id="homeImg" src="./src/images/home-icon-svg.svg">
+        </button>
+        <button class="favorite-button" id="favoriteButton">
+          <img class="fav-img" id="favImg" src="./src/images/favorite-svg.svg">
+        </button> 
       </header>
     <article class ="search-container" id="searchContainer">
       <div class ="search-header" id="searchHeader">Find a Recipe </div>
       <div class ="search-bar" id="searchBar">
         <input type="search" id="query" name="q"
-        placeholder="Search recipes..."
-        aria-label="Search through recipes by name or ingredient">
+        placeholder="Search recipes...">🔎
         </div>
     </article>
-    <section class ="feature-container" id="featureContainer">
-      <div class ="feature-box" id="featureBox">
+    <section class ="main-page-container" id="mainPageContainer">
+      <div class ="feature-container" id="featureContainer">
         <div class="feature-image-box" id="featureImageBox"></div>
         <div class="buzzword-container">buzzzz</div>
         <div class="meal-box" id="mealBox">What's for ${time}</div>
       </div>
-      <section class="feature-image-container">
-        <div class ="recipe-icons" id="recipeIcons"></div>
+      <section class="recipe-icon-container">
+        <div class ="recipe-icons" id="recipeIcon1">1</div>
+        <div class ="recipe-icons" id="recipeIcons">2</div>
+        <div class ="recipe-icons" id="recipeIcon3">3</div>
+        <div class ="recipe-icons" id="recipeIcon4">4</div>
       </section>
     </section>
   </section> 
-    <aside class ="home-recipe-bar" id ="homeRecipeBar">
+    <aside class ="home-recipe-sidebar" id ="homeRecipeBar">
       <p class ="side-bar-header" is="sideHeader"> Recipes </p>
       <p class ="all-recipes" id="allRecipes"> innerHTML Recipes</p>
     </aside>
