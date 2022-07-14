@@ -17,7 +17,6 @@ describe('Recipe Test', () => {
     it('should be able to get ingredients names', () => {
 
         recipe.makeIngredientData()
-        console.log(recipe.requiredIngredients);
 
         expect(recipe.returnNeeded(recipeData)).to.deep.equal([
             "wheat flour",
