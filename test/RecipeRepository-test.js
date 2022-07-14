@@ -11,6 +11,7 @@ let recipeObj;
   beforeEach(() => {
     recipeRepository = new RecipeRepository(recipeData);
     recipeRepository.createAllRecipes()
+    // console.log('createALl: ', recipeRepository.createAllRecipes());
   })
 
   it('Should be a function', () => {

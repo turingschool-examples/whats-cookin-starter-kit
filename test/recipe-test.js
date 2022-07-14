@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe'
 import { recipeData } from '../src/data/recipes';
+import { ingredientsData } from '../src/data/ingredients';
 
 describe('Recipe Test', () => {
     it('Should be an instance of recipe', () => {
@@ -8,7 +9,7 @@ describe('Recipe Test', () => {
     });
     const keys = Object.keys(recipeData[0]);
     const firstRecipe = recipeData[0];
-    const recipe = new Recipe(firstRecipe);
+    const recipe = new Recipe(firstRecipe, ingredientsData);
     keys.forEach(key => {
         it(`should create a recipe object with a key of ${key}`, () => {
             expect(recipe[key]).to.equal(firstRecipe[key]);
@@ -17,7 +18,6 @@ describe('Recipe Test', () => {
     it('should be able to get ingredients names', () => {
 
         recipe.makeIngredientData()
-        console.log(recipe.requiredIngredients);
 
         expect(recipe.returnNeeded(recipeData)).to.deep.equal([
             "wheat flour",
@@ -34,7 +34,7 @@ describe('Recipe Test', () => {
         ]);
     });
     it('should be dynamic for ingredients names', () => {
-        const recipe2 = new Recipe(recipeData[1])
+        const recipe2 = new Recipe(recipeData[1], ingredientsData)
         recipe2.makeIngredientData()
         const firstRecipe = recipeData[1];
         expect(recipe2.returnNeeded(recipeData)).to.deep.equal([

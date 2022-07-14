@@ -6,8 +6,9 @@ class RecipeRepository {
     this.allRecipes;
   }
   createAllRecipes() {
-    this.allRecipes = this.rawRecipes.map(recipe => new Recipe(recipe))
-    console.log(this.allRecipes);
+    const grabRecipe = this.allRecipes = this.rawRecipes.map(recipe => new Recipe(recipe))
+    return grabRecipe
+  
   }
   filterByTag(tag) {
     const filterRecipes = this.allRecipes.filter(recipe => recipe.tags.includes(tag))
