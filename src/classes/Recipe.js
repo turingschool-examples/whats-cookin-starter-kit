@@ -9,10 +9,17 @@ export default class Recipe {
         this.name = data.name;
         this.tags = data.tags;
     };
-    getIngredientDetail() {
+    makeIngredientData() {
+
         return this.ingredients.forEach(ingredient => {
             const currentIngredient = ingredientsData.find(ing => ing.id === ingredient.id);
-            this.requiredIngredients.push(currentIngredient);
+            this.requiredIngredients.push({
+                id: currentIngredient.id,
+                name: currentIngredient.name,
+                estimatedCostInCents: currentIngredient.estimatedCostInCents,
+                amount: ingredient.quantity.amount,
+                unit: ingredient.quantity.unit
+            });
         });
     }
     returnNeeded() {
@@ -24,5 +31,9 @@ export default class Recipe {
         }, 0);
         let totalCostInDollars = parseFloat((totalCostInCents / 100).toFixed(2));
         return totalCostInDollars;
+    }
+
+    getInstructions() {
+        return this.instructions
     }
 };
