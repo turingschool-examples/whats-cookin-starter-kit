@@ -1,6 +1,6 @@
-import { ingredientsData } from '../data/ingredients';
+
 export default class Recipe {
-    constructor(data) {
+    constructor(data, ingredientsData) {
         this.requiredIngredients = [];
         this.id = data.id;
         this.image = data.image;
@@ -8,11 +8,12 @@ export default class Recipe {
         this.instructions = data.instructions;
         this.name = data.name;
         this.tags = data.tags;
+        this.ingredientsData = ingredientsData;
     };
     makeIngredientData() {
 
         return this.ingredients.forEach(ingredient => {
-            const currentIngredient = ingredientsData.find(ing => ing.id === ingredient.id);
+            const currentIngredient = this.ingredientsData.find(ing => ing.id === ingredient.id);
             this.requiredIngredients.push({
                 id: currentIngredient.id,
                 name: currentIngredient.name,

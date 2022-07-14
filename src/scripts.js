@@ -24,13 +24,13 @@ const cardFavoriteButton = document.querySelector('.favorite-button')
 const unFavoriteButton = document.querySelector('.un-favorite-button')
 
 // EventListeners
-favoriteButton.addEventListener('click',)
-cookbookButton.addEventListener('click',)
-radioSearchButton.addEventListener('click',)
-viewRecipeButton.addEventListener('click',)
-addToCookbookButton.addEventListener('click',)
-cardFavoriteButton.addEventListener('click',)
-unFavoriteButton.addEventListener('click',)
+// favoriteButton.addEventListener('click',)
+// cookbookButton.addEventListener('click',)
+// radioSearchButton.addEventListener('click',)
+// viewRecipeButton.addEventListener('click',)
+// addToCookbookButton.addEventListener('click',)
+// cardFavoriteButton.addEventListener('click',)
+// unFavoriteButton.addEventListener('click',)
 
 // Global Variables
 let recipeRepo = new RecipeRepository(recipeData)
@@ -42,6 +42,11 @@ function showAllRecipes() {
     recipeRepo.createAllRecipes()
     hide(searchBar)
     console.log('IT WOERKS')
+    // HERE we need to: recipeRepo.allRecipes append to main section of our app
+    // want to loop through all recipes somehow, forEach/for loop
+    // in order to get it to populate on the DOM
+    // inner.HTML
+    
 }
 
 allRecipesButton.addEventListener('click', showAllRecipes, console.log(recipeRepo.createAllRecipes()))
