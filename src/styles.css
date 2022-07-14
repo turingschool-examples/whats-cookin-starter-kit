@@ -29,19 +29,19 @@ h1 {
   margin-bottom: 0px;
 }
 
-.home-page-view, .recipe-details-page {
+.home-page-view, .recipe-details-page, .view-all-page {
   display: flex;
   width: 95%;
   height: 70%;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .search-sidebar {
   background-color: #443850;
-  margin-right: 2%;
-  margin-left: 2%;
-  height: 100%;
-  width: 250px;
+  margin-right: 5px;
+  margin-left: 5px;
+  height: 600px;
+  width: 200px;
 }
 
 .button {
@@ -55,10 +55,11 @@ h1 {
   background-color: #7D8491;
   color: white;
 }
+
 .button:hover {
   cursor: pointer;
   background-color: #C0C5C1;
-  
+
 }
 
 .recipe-icon {
@@ -88,16 +89,12 @@ h1 {
   text-align: center;
 }
 
-.hidden {
-  display: none;
-}
-
 .container {
   height: 50%;
   width: 70%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   padding: 15px;
 }
 
@@ -108,4 +105,29 @@ h3, #form {
 
 .glide__slide {
   height: 50px;
+}
+
+.view-all-recipe-image {
+  width: 20vw;
+}
+
+.view-all-page {
+  display: flex;
+}
+
+.all-recipes {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 7px 7px;
+}
+
+p {
+  font-size: 20px;
+  font-weight: 300;
+  text-align: center;
+  margin-top: 0px;
+}
+
+.hidden {
+  display: none;
 }
