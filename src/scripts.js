@@ -24,6 +24,7 @@ new Glide('.glide', config).mount()
 
 let recipeRepository = new RecipeRepository(recipeData)
 
+
 const viewAllButton = document.querySelector('#viewAllButton')
 const homePageView = document.querySelector('.home-page-view')
 const viewAllPage = document.querySelector('.view-all-page')
@@ -32,12 +33,16 @@ const favoritesButton = document.querySelector('#favoritesButton')
 const glideRecipes = document.querySelector('.glide__slides')
 const recipeDetailsPage = document.querySelector('.recipe-details-page')
 const allRecipesContainer = document.querySelector('.all-recipes')
+const recipeDetailImage = document.querySelector('#recipeDetail')
+const recipeDetailTitle = document.querySelector('h2')
+const recipeInstructions = document.querySelector('.details')
+const ingredientNames = document.querySelector('.ingredient-list-names')
+const totalCost = document.querySelector('.total-cost')
 
 viewAllButton.addEventListener('click', showViewAllPage)
 homeButton.addEventListener('click', showHomePage)
 favoritesButton.addEventListener('click', showFavoritesPage)
 allRecipesContainer.addEventListener('click', function(event) {
-    console.log(event.target)
     showRecipeDetailsPage(event)
   })
 // viewAllRecipeIconImage.addEventListener('event', () => {
@@ -48,13 +53,17 @@ function showViewAllPage() {
     homePageView.classList.add('hidden')
     viewAllPage.classList.remove('hidden')
     recipeDetailsPage.classList.add('hidden')
+    homeButton.classList.remove('hidden')
 }
 
 function showHomePage() {
     homePageView.classList.remove('hidden')
     viewAllPage.classList.add('hidden')
     recipeDetailsPage.classList.add('hidden')
+    homeButton.classList.add('hidden')
 }
+
+showHomePage()
 
 function showFavoritesPage() {
     homePageView.classList.add('hidden')
@@ -79,11 +88,20 @@ populateAllRecipes()
 
 function showRecipeDetailsPage(event) {
     if (event.target.classList.contains('view-all-recipe-image')){
+        const getTitle = recipeData.filter(recipe => 
+            event.target.src === recipe.image
+        )
+        let recipe = new Recipe(getTitle[0], ingredientsData)
         homePageView.classList.add('hidden')
         viewAllPage.classList.add('hidden')
         recipeDetailsPage.classList.remove('hidden')
+        recipeDetailImage.src = `${event.target.src}`
+        recipeDetailTitle.innerText = `${getTitle[0].name}`
+        let directions = recipe.listDirections()
+        recipeInstructions.innerText = `${directions}`
+        console.log('ingredients', recipe.determineIngredientNames())
+        ingredientNames.innerText = `${recipe.determineIngredientNames()}`
     }
-    
 }
 
 // 

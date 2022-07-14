@@ -14,14 +14,23 @@ class Recipe {
 
     determineIngredientNames() {
         let listOfNames = []
+        let listOfAmounts = []
+        let listOfUnits = []
+
         let ingredientNames = this.ingredients.forEach(ingredient => {
             this.ingData.forEach(element => {
                 if (element.id === ingredient.id) {
-                    listOfNames.push(element.name)
+                    return `${element.name}: ${ingredient.quantity.amount} ${ingredient.quantity.unit}`
+                    // listOfNames.push(element.name)
+                    // listOfAmounts.push(ingredient.quantity.amount)
+                    // listOfUnits.push(ingredient.quantity.unit)
+                    // console.log('ing', ingredient)
+                    // console.log('amountarray', listOfAmounts)
+                    // console.log('unitarray', listOfUnits)
                 }
             })
         })
-        return listOfNames
+        //listOfNames.join('\n') + listOfAmounts.join('\n')
     }
 
     determineCostOfAllIngredients() {
@@ -40,7 +49,7 @@ class Recipe {
     listDirections() {
         let steps = this.instructions.map(step => {
             return `Step ${step.number}: ${step.instruction}`
-        })
+        }).join("\n")
         return steps
     }
 
