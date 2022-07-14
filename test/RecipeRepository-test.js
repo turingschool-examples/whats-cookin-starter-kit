@@ -7,13 +7,14 @@ describe('RecipeRepository', () => {
   let recipeRepository
   let data = recipeData;
   let newRecipe;
+  let tagResults;
   
     beforeEach( () => {
           recipeRepository = new RecipeRepository(data)
           newRecipe = new Recipe(data)
+          tagResults = recipeRepository.listRecipeTags("testTag");
     })
-    console.log('thank you anthony again')
-  
+    
   
   it('should be a function', () => {
     expect(RecipeRepository).to.be.a('function');
@@ -28,8 +29,8 @@ describe('RecipeRepository', () => {
   })
   
   it('should have a filtered list of recipes based on a tag', () => {
-    // listRecipeTags()
-  
+    console.log(tagResults)
+    expect(tagResults.length).to.equal(3)
   })
   
   it('should have a filtered list of recipes based on a name', () => {

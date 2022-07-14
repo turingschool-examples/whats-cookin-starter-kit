@@ -147,7 +147,7 @@ describe('Recipe', () => {
         expect(newRecipe.image).to.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg")
     })
 
-    it('should be able to store a ingredients of a recipe', () => {
+    it('should be able to store ingredients of a recipe', () => {
 
         expect(newRecipe.ingredients.length).to.equal(11);
 
