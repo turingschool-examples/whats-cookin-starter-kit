@@ -183,8 +183,7 @@ describe("RecipeRepository", () => {
       }
     )
     
-    recipeRepository.importRecipesFromFile(testRecipeData)
-    
+    recipeRepository.importRecipesFromFile(testRecipeData, testIngredientData)
     expect(recipeRepository.recipes[0]).to.deep.equal(testRecipe)
   });
 });
