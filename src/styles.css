@@ -1,69 +1,89 @@
-
-*{
+* {
   border: 1px solid red;
 }
+
 body {
   background-color: white;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 }
-.nav-bar {
-  display: flex;
-  flex-direction: column;
-}
+
 h1{
-  font-size: 14px;
+  font-size: 24px;
   margin: 0;
   width: 40%;
+  margin: 5px 0 0 5px;
 }
-.nav-search-container {
-  display: flex;
-  justify-content: space-between;
+
+h3 {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
+
+h4 {
+  font-size: 16px;
+}
+
 input {
   height: 10%;
   width: 30%;
   text-align: center;
   align-self: flex-end;
 }
+
 h2 {
   font-size: 21px;
   text-align: center;
 }
+
+.nav-bar {
+  display: flex;
+  flex-direction: column;
+  /* background-color: #0097A7; */
+}
+
+.nav-search-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .nav-button-container {
   justify-content: space-between;
   align-self: center;
+  margin-bottom: 10px;
 }
+
 .recipe-grid-container {
   display: flex;
   padding: 5%;
   justify-content: space-between;
 }
+
+.recipe-search {
+  margin: 0px 16px 0px 0px;
+}
+
 .recipe-card {
   height: 300px;
   width: 200px;
   text-align: center;
 }
+
 .recipe-image {
   height: 75%;
   width: 100%;
   margin-left: 0;
   margin-right: 0;
 }
-h3 {
-  padding: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
+
 .recipe-modal {
   /* background-image: "./images/turing-logo.png" */
   text-align: center;
   height: 80%;
   width: 80%;
 }
-h4 {
-  font-size: 16px;
-}
+
 .ingredient-and-direction-container {
   display: flex;
   justify-content: space-evenly;

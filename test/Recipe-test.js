@@ -9,7 +9,8 @@ describe('Recipe', () => {
 
     beforeEach(() => {
        
-        dataRecipe =  {
+        dataRecipe =  
+          {
             "id": 595736,
             "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
             "ingredients": [
@@ -112,8 +113,8 @@ describe('Recipe', () => {
         expect(recipe.image).to.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg")
     });
 
-    it('should contain ingredients', () => {
-        expect(recipe.ingredients).to.deep.equal([
+    it('should contain recipe ingredients', () => {
+        expect(recipe.recipeIngredients).to.deep.equal([
             {
               "id": 20081,
               "quantity": {
@@ -179,7 +180,16 @@ describe('Recipe', () => {
         );
     });
 
+  //   it('should take in the ingredients list', () => {
+  //     expect(recipe.ingredientList).to.equal()
+  // });
+
     it('should get an ingredients name', () => {
+      expect(recipe.getIngredientName(dataIngredient, dataRecipe.ingredients[0])).to.equal("wheat flour") 
+        // expect(recipe.getIngredientName(dataIngredient, dataRecipe)).to.equal("wheat flour") 
+    });
+
+    it('should take in an ouside ingredient list', () => {
       expect(recipe.getIngredientName(dataIngredient, dataRecipe.ingredients[0])).to.equal("wheat flour") 
         // expect(recipe.getIngredientName(dataIngredient, dataRecipe)).to.equal("wheat flour") 
     });
@@ -191,44 +201,48 @@ describe('Recipe', () => {
     it('should return directions and instructions', () => {
       expect(recipe.returnInstructions(dataIngredient, dataRecipe.instructions[0])).to.deep.equal(
         [
-          {
-            "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
-            "number": 1
+              {
+                "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
+                "number": 1
+              },
+              {
+                "instruction": "Add egg and vanilla and mix until combined.",
+                "number": 2
+              },
+              {
+                "instruction": "Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.",
+                "number": 3
+              }
+            ]
+      ) 
+    });
+
+    it('should get a list of recipe ingredients needed', () => {
+      expect(recipe.getIngredientList()).to.deep.equal(
+        [
+           {
+            id: 20081,
+            name: 'wheat flour',
+            estimatedCostInCents: 213
           },
-          {
-            "instruction": "Add egg and vanilla and mix until combined.",
-            "number": 2
+           {
+            id: 18372,
+            name: 'bicarbonate of soda',
+            estimatedCostInCents: 291
           },
-          {
-            "instruction": "Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.",
-            "number": 3
-          }
+           { id: 1123, 
+            name: 'eggs', 
+            estimatedCostInCents: 472 
+          },
+           { id: 19335, 
+            name: 'sucrose', 
+            estimatedCostInCents: 451 }
         ]
       ) 
     });
 
-    it('should return recipe ingredient list', () => {
-      expect(recipe.getIngredientList()).to.deep.equal([
-        {
-          id: 20081,
-          name: 'wheat flour',
-          estimatedCostInCents: 213
-        },
-        {
-          id: 18372,
-          name: 'bicarbonate of soda',
-          estimatedCostInCents: 291
-        },
-        { id: 1123, name: 'eggs', estimatedCostInCents: 472 },
-        {
-          id: 19335,
-          name: 'sucrose',
-          estimatedCostInCents: 451
-        }
-      ]);
-    });
-    it('should return total cost of recipe', () => {
-      expect(recipe.getTotalCostOfRecipe()).to.equal(1427);
+    it('should get total cost of recipe', () => {
+      expect(recipe.getTotalCostOfRecipe()).to.equal(1427) 
     });
 });
 
