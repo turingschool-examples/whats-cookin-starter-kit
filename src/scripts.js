@@ -13,7 +13,7 @@ let ingredientList;
 let ingredientClass;
 let recipeRepository;
 let currentUser;
-
+let newRecipe;
 
 let welcomeUserMessage = document.getElementById( 'welcomeUserMessage' );
 window.addEventListener( 'load', loadData );
@@ -41,7 +41,7 @@ function displayRandomUserName( ) {
 // Display all recipes on page
 function displayAllRecipesOnPage(  ) {
     let recipeCard = document.querySelector(".recipe-grid-container")
-    let newRecipe = new RecipeRepository( recipeList  )
+    newRecipe = new RecipeRepository( recipeList  )
     const result = newRecipe.recipes.map( recipe => {
         // const recipePreview = ( `<section class='recipe-card' id="recipeCard">
         //            <img src="${ recipe.image }" class="recipe-image" alt="">
@@ -56,18 +56,48 @@ function displayAllRecipesOnPage(  ) {
        return `<section class='recipe-card' id="recipeCard">
                    <img src="${ recipe.image }" class="recipe-image" alt="">
                    <h3>${ recipe.name }</h3>
-                   <button>Let's Make It!</button>
+                   <button id="${ recipe.id }">Let's Make It!</button>
                    <div>
                       <button>Favorite!</button>
                       <button>Save it!</button>
                    </div>
                </section>`
    } );
-   const recipeInfo = recipeCard;
-   recipeInfo.innerHTML = result;
-   return recipeInfo
+   return recipeCard.innerHTML = result;
+
+};
+let recipeModal = document.querySelector( '.recipe-modal' );
+let recipeContainer = document.querySelector( '.recipe-grid-container' );
+let h4 = document.querySelector( '.rec-name' )
+let totalCost = document.querySelector( '.dish-cost' )
+recipeContainer.addEventListener( 'click' , displayModal );
+
+function show(element) {
+    element.classList.remove('hidden')
 }
 
+function displayModal( e ){
+    newRecipe = new RecipeRepository( recipeList )
+    newRecipe.recipes.map(( dish ) => {
+        if( e.target.id == dish.id ){
+            recipeModal.classList.remove('hidden')
+            recipeModal.id = dish.id  
+            h4.innerText = dish.name        
+            // recipeClass = new Recipe(dish, dish.ingredients)
+            // console.log(recipeClass)
+            // totalCost.innerText = recipeClass.totalCost
+            return 
+        }       
+    })
+}
+
+function assignCost(dish) {
+    
+}
+
+function hide(element) {
+    element.classList.add('hidden')
+}
 
 
 //As a user, I should be able to view a list of all recipes.

@@ -12,7 +12,8 @@ class Recipe {
         this.instructions = recipe.instructions;
         this.name = recipe.name;
         this.tags = recipe.tags;
-        this.ingredientList = ingredientList;      
+        this.ingredientList = ingredientList;
+        // this.totalCost = this.getTotalCostOfRecipe()    
         // console.log('INGREDIENTLIST: ', this.ingredientList)     
             
     };

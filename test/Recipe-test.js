@@ -244,5 +244,9 @@ describe('Recipe', () => {
     it('should get total cost of recipe', () => {
       expect(recipe.getTotalCostOfRecipe()).to.equal(1427) 
     });
+
+    // it('should have a total cost in its constructor', () => {
+    //   expect(recipe.totalCost).to.equal(1427)
+    // })
 });
 
