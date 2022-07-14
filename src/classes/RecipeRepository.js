@@ -55,9 +55,8 @@ class RecipeRepository {
         tags: recipeDatum.tags
       }
       recipeToAdd = new Recipe(data)
+      this.addRecipe(recipeToAdd)
     })
-
-    this.addRecipe(recipeToAdd)
   }
 
   createPortion(ingredientObject, ingredientData){
