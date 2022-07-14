@@ -36,6 +36,7 @@ class Recipe {
         return totalCost
     }
 
+
     listDirections() {
         let steps = this.instructions.map(step => {
             return `Step ${step.number}: ${step.instruction}`
@@ -54,14 +55,14 @@ class Recipe {
 
 
     calculateCosts() {
-        // let totalCost = this.ingredients
-        // .map(() =>
-        // Ingredient.cost * this.quantity.amount
-        // )
-        // .reduce()
+        let totalCost = this.ingredients
+        .map(() =>
+        Ingredient.cost * this.quantity.amount
+        )
+        .reduce()
 
 
-        // return totalCost
+        return totalCost
     }
 }
 
