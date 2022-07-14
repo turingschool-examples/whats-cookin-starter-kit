@@ -6,10 +6,23 @@ class Recipe {
     this.instructions = recipeInfo.instructions;
     this.name = recipeInfo.name;
     this.tags = recipeInfo.tags;
+    this.ingredientsNeeded = [];
   }
 
-  getIngredients() {
-    return this.ingredients;
+  getIngredients(ingredients) {
+  const ingredientIds = this.ingredients.map(ingredient => {
+    return ingredient.id;
+  });
+  const filteredIngredients = ingredients.filter(ingredient => {
+    if (ingredientIds.includes(ingredient.id)) {
+      return ingredient;
+    };
+  });
+  filteredIngredients.forEach(ingredient => {
+    this.ingredientsNeeded.push(ingredient.name);
+  });
+  return this.ingredientsNeeded
+  console.log(this.ingredientsNeeded);
   }
 }
 

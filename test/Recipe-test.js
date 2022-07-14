@@ -3,6 +3,7 @@ import Recipe from "../src/classes/Recipe";
 
 describe("Recipe", () => {
   let newRecipe, recipe1
+  let newIngredients = []
 
   beforeEach(() => {
     newRecipe = {
@@ -50,6 +51,27 @@ describe("Recipe", () => {
       name: "Loaded Chocolate Chip Pudding Cookie Cups",
       tags: ["antipasti", "starter", "snack"],
     };
+    newIngredients = [
+      {
+        "id": 20081,
+        "name": "wheat flour",
+        "estimatedCostInCents": 142
+      },
+      {
+        "id": 18372,
+        "name": "bicarbonate of soda",
+        "estimatedCostInCents": 582
+      },
+      {
+        "id": 1123,
+        "name": "eggs",
+        "estimatedCostInCents": 472
+      },
+      {
+        "id": 9003,
+        "name": "apple",
+        "estimatedCostInCents": 207
+      }]
     recipe1 = new Recipe(newRecipe);
   });
 
@@ -88,7 +110,7 @@ describe("Recipe", () => {
   });
 
   it("Should determine the name of ingredients", () => {
-    expect(recipe1.getIngredients()).to.deep.equal([
+    expect(recipe1.getIngredients(newIngredients)).to.deep.equal([
       "wheat flour",
       "bicarbonate of soda",
       "eggs",
