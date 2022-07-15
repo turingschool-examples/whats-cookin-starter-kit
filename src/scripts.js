@@ -6,6 +6,7 @@ import Recipe from './classes/Recipe'
 import Ingredient from './classes/Ingredient'
 import RecipeRepository from './classes/RecipeRepository'
 
+
 let userList;
 let recipeList;
 let recipeClass;
@@ -14,16 +15,22 @@ let ingredientClass;
 let recipeRepository;
 let currentUser;
 let newRecipe;
+let matchingTagConditions = [];
+let matchingNameConditions = [];
 
 
-//Query Selectors
+// Query Selectors <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+let searchButton = document.querySelector(".search-button");
+let searchBox = document.querySelector(".recipe-search")
 let welcomeUserMessage = document.getElementById( 'welcomeUserMessage' );
-let favoriteRecipeButton = document.querySelector('.favorite-button');
+// let favoriteRecipeButton = document.querySelector('.favorite-button');
 let recipeCard = document.querySelector(".recipe-grid-container");
 
-//Event Listeners
+
+// Event Listeners <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+searchButton.addEventListener("click", searchRecipe);
 window.addEventListener( 'load', loadData );
-favoriteRecipeButton.addEventListener('click', addToFaves);
+// favoriteRecipeButton.addEventListener('click', addToFaves);
 
 
 function loadData( ) {
@@ -40,41 +47,74 @@ Promise.all( [ getData( 'users' ), getData( 'recipes' ), getData( 'ingredients' 
     } );
 }
 
-function addToFaves (e) {
-    const favorites = []
-    let recipeCards = recipeCard; //<<<< need this to access the grid conatiner
-    //without this, null error persists
-    //will need to access both this and an event listener for the faves botton?????
-    //how to pull these id's on click on this button to push into array
-    newRecipe.recipes.map((favoriteDish) => {
-        if(e.target.id == favoriteDish.id) {
-            favorites.push(favoriteDish)
-        }
-    })
-    console.log(favorites)
-    return favorites
-}
 
-// Display random users name on page load
 function displayRandomUserName( ) {
     welcomeUserMessage.innerText = `Welcome, ${ currentUser.name.split( ' ' )[ 0 ] }!`
 }
 
-// Display all recipes on page
+
+function searchRecipe() {
+    if ( !searchBox.value ) {
+      displayAllRecipesOnPage( );
+    }
+    const tagSearched = recipeRepository.filterRecipeByTag( searchBox.value );
+    const nameSearched = recipeRepository.filterRecipeByName( searchBox.value);
+    if ( tagSearched.length > 0 ) {
+        console.log( 'tagSearched: ', tagSearched )
+        matchingTagConditions = tagSearched 
+        displayFilteredRecipesByTagOnPage(  )
+
+    } else if ( nameSearched.length > 0 ) {
+        console.log( 'nameSearched: ', nameSearched )
+        matchingNameConditions = nameSearched 
+        return displayFilteredRecipesByNameOnPage(  )
+    } else {
+      return displayAllRecipesOnPage( );
+    }
+  }
+
+
+  function displayFilteredRecipesByTagOnPage( ) {
+    const result = matchingTagConditions.map( recipe => {
+        console.log( 'TAG RECIPE: ', recipe)
+        return `<section class='recipe-card' id="recipeCard">
+        <img src="${ recipe.image }" class="recipe-image" alt="">
+        <h3>${ recipe.name }</h3>
+        <button id="${ recipe.id }">Let's Make It!</button>
+        <div>
+        <button class="favorite-button">Favorite!</button>
+        <button class="save-button">Save it!</button>
+        </div>
+        </section>`
+    } );
+    matchingTagConditions = recipeCard;
+    return recipeCard.innerHTML = result;
+}
+
+
+function displayFilteredRecipesByNameOnPage( ) {
+    const result = matchingNameConditions.map( recipe => {
+        console.log( 'NAME RECIPE: ', recipe)
+        return `<section class='recipe-card' id="recipeCard">
+        <img src="${ recipe.image }" class="recipe-image" alt="">
+        <h3>${ recipe.name }</h3>
+        <button id="${ recipe.id }">Let's Make It!</button>
+        <div>
+        <button class="favorite-button">Favorite!</button>
+        <button class="save-button">Save it!</button>
+        </div>
+        </section>`
+    } );
+    console.log('NEW MATCHING NAMES ARRAY: ', matchingNameConditions )
+    matchingNameConditions = recipeCard;
+    return recipeCard.innerHTML = result;
+}
+
+
 function displayAllRecipesOnPage(  ) {
     let recipeCards = recipeCard;
     newRecipe = new RecipeRepository( recipeList  )
     const result = newRecipe.recipes.map( recipe => {
-        // const recipePreview = ( `<section class='recipe-card' id="recipeCard">
-        //            <img src="${ recipe.image }" class="recipe-image" alt="">
-        //            <h3>${ recipe.name }</h3>
-        //            <button>Let's Make It!</button>
-        //            <div>
-        //               <button>Favorite!</button>
-        //               <button>Save it!</button>
-        //            </div>
-        //        </section>`)
-        // return recipePreview;
         return `<section class='recipe-card' id="recipeCard">
         <img src="${ recipe.image }" class="recipe-image" alt="">
         <h3>${ recipe.name }</h3>
@@ -86,8 +126,11 @@ function displayAllRecipesOnPage(  ) {
         </section>`
     } ).join('');
     return recipeCards.innerHTML = result;
-    
 };
+
+
+
+
 
 
 let recipeModal = document.querySelector( '.recipe-modal' );
@@ -127,6 +170,21 @@ function hide(element) {
 function viewFaves () {
 
 }
+
+// function addToFaves (e) {
+//     const favorites = []
+//     let recipeCards = recipeCard; //<<<< need this to access the grid conatiner
+//     //without this, null error persists
+//     //will need to access both this and an event listener for the faves botton?????
+//     //how to pull these id's on click on this button to push into array
+//     newRecipe.recipes.map((favoriteDish) => {
+//         if(e.target.id == favoriteDish.id) {
+//             favorites.push(favoriteDish)
+//         }
+//     })
+//     console.log(favorites)
+//     return favorites
+// }
 
 //As a user, I should be able to view a list of all recipes.
 // As a user, I should be able to click on a recipe to view more information including directions, ingredients needed, and total cost.

@@ -19,7 +19,7 @@ class RecipeRepository {
 
   filterRecipeByName(userInput){
     return this.recipes.filter((recipe) => {
-      if( recipe.name.includes(userInput) ) {
+      if( recipe.name.includes(userInput) || recipe.name.toLowerCase().includes(userInput) ) {
         // console.log({recipe})
         return recipe
       }
