@@ -1,36 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <title> WHATS COOKIN </title>
 </head>
+
 <body>
   <div class="top-bar">
-      <h1> WHATS COOKIN </h1>
-      <button id="recipe-button"> RECIPES </button>
-      <button id="favorite-button"> FAVORITES </button>
-      <button id="cookbook-button"> COOKBOOK </button>
-      <div class="search-container">
-        <form action="/action_page.php">
-          <input type="text" placeholder="Search..." name="search">
-          <button type="submit">Submit</button>
-        </form>
+    <h1 class='project-title'>What's Cookin?</h1>
+    <button class='take-home hidden'>Back to Home</button>
+    <div class="user-card card">
+      <h3 class="userGreeting">User Info</h3>
+      <div class="card-box" id="userCardProperties">
+        <nav id="userName"></nav>
       </div>
+    </div>
+    <button id="recipe-button"> RECIPES </button>
+    <button id="favorite-button"> FAVORITES </button>
+    <button id="cookbook-button"> COOKBOOK </button>
+    <div class="search-container">
+      <form action="/action_page.php">
+        <input type="text" placeholder="Search..." name="search">
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   </div>
   <div class="main">
     <div class="left-box">
       <form class="left-buttons">
+        <h1></h1>
         <p> FILTER BY TAG: </p>
         <div>
-          <input type="radio" id="tags"
-           name="tags" value="tags">
+          <input type="radio" id="tags" name="tags" value="tags">
           <label for="contactChoice1"> BREAKFAST </label><br>
-          <input type="radio" id="tags"
-           name="tags" value="tags">
+          <input type="radio" id="tags" name="tags" value="tags">
           <label for="contactChoice2"> LUNCH </label><br>
-          <input type="radio" id="tags"
-           name="tags" value="tags">
+          <input type="radio" id="tags" name="tags" value="tags">
           <label for="contactChoice3"> DINNER </label><br>
         </div>
         <div>
@@ -42,6 +49,7 @@
       <div class="ingredient-card">
         <div class="card-image" src="" alt="food"></div>
         <img class="heart" src='./images/heart.svg' alt="heart">
+        <nav id="recipeName"></nav>
         <button class="view-recipe-button"> VIEW RECIPE </button>
         <button class="add-to-cookbook-button"> ADD TO COOKBOOK </button>
         <button class="favorite-button"> FAVORITE </button>
@@ -59,4 +67,5 @@
   </div>
   <script type="text/javascript" src="bundle.js"></script>
 </body>
+
 </html>
