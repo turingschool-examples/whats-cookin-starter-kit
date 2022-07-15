@@ -16,6 +16,7 @@ const homePage = document.querySelector('.main-page-container');
 const recipePage = document.querySelector('.recipe-container');
 const homeButton = document.querySelector('.home-img');
 const favoriteButton = document.querySelector('.fav-img');
+const searchButton = document.querySelector('.search-button')
 const allRecipesSection = document.querySelector('.all-recipes');
 const icon1Img = document.querySelector('.icon-1-img');
 const icon2Img = document.querySelector('.icon-2-img');
@@ -24,6 +25,7 @@ const icon4Img = document.querySelector('.icon-4-img');
 const recipeNameBox = document.querySelector('.recipe-title-box');
 const recipePriceList = document.querySelector('.price-box');
 const recipeDetailsBox = document.querySelector('.recipe-box')
+const searchInput = document.querySelector('.search-bar');
 
 
 // ***** Event Listeners ***** //
@@ -33,6 +35,7 @@ window.addEventListener('load', loadNewUser);
 window.addEventListener('load', displayAllRecipeNames);
 allRecipesSection.addEventListener('click', viewRecipe);
 homeButton.addEventListener('click', showHomePage);
+searchButton.addEventListener('keyup', filterRecipe);
 
 // ***** Global Variables ***** //
 
@@ -87,9 +90,25 @@ function viewRecipe(event) {
   recipeNameBox.innerText = selectedRecipe[0].name
   recipeDetailsBox.innerText = selectedRecipe[0].returnRecipeInstructions()
   recipePriceList.innerText = selectedRecipe[0].getCostofRecipe()
-  //add individual ingredient price functionality 
+  //add individual ingredient price functionality
 }
 
-function filterRecipeByTag() {
+function filterRecipe() {
+  filterRecipeByTag()
+  filterRecipeByName()
+  //show filtered view
+  //hide all recipes
+}
 
+//These next two functions are not quite fleshed out yet
+function filterRecipeByTag(tag) {
+   const input = e.target.value.toLowerCase()
+
+  if(searchInput.value.includes(tag))
+  recipeRepository.filterbyTag(tag)
+}
+
+function filterRecipeByName(name) {
+  if (searchInput.value.includes(name))
+  recipeRepository.filterbyTag(name)
 }
