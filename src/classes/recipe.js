@@ -14,14 +14,15 @@ class Recipe {
 
     determineIngredientNames() {
         let listOfNames = []
+
         let ingredientNames = this.ingredients.forEach(ingredient => {
             this.ingData.forEach(element => {
                 if (element.id === ingredient.id) {
-                    listOfNames.push(element.name)
+                    listOfNames.push(`${element.name}: ${ingredient.quantity.amount} ${ingredient.quantity.unit}`)
                 }
             })
         })
-        return listOfNames
+        return listOfNames.join('\n')
     }
 
     determineCostOfAllIngredients() {
@@ -29,40 +30,23 @@ class Recipe {
         let getTotalCost = this.ingredients.forEach(ingredient => {
             this.ingData.forEach(element => {
                 if (ingredient.id === element.id) {
-                    totalCost += ingredient.quantity.amount * element.costInCents
+                    console.log('amount', ingredient.quantity.amount)
+                    console.log('cents', element.costInCents)
+                    totalCost += ingredient.quantity.amount * element.estimatedCostInCents
+                      console.log('ingredient', ingredient)
+                      console.log('element', element)
                 }
             })
         })
-        return totalCost
+        return `$${(totalCost/100).toFixed(2)}`
     }
 
 
     listDirections() {
         let steps = this.instructions.map(step => {
             return `Step ${step.number}: ${step.instruction}`
-        })
+        }).join("\n")
         return steps
-    }
-
-    // if ingredientsData.id === recipeData.id
-    // return ingredientsData.name
-
-    // method called determineInredientAmount
-    // assess if ingredientsdata.id === recipedata.ingredients.id THEN
-    // new array 
-    // ingredient.amount = recipedata.ingredients.amount
-    // redefining the ingredient amount property in ingredient class
-
-
-    calculateCosts() {
-        let totalCost = this.ingredients
-        .map(() =>
-        Ingredient.cost * this.quantity.amount
-        )
-        .reduce()
-
-
-        return totalCost
     }
 }
 
