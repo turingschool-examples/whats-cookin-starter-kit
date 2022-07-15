@@ -4,16 +4,16 @@ import User from '../src/classes/User'
 
 describe('User', () => {
 
-    let userData;
+    let usersData;
     let user;
-    let userData2;
+    let usersData2;
     let user2;
     let recipeData;
     
 
     beforeEach( () => {
 
-      userData = 
+      usersData = 
         {
           "name": "Saige O'Kon",
           "id": 1,
@@ -34,7 +34,7 @@ describe('User', () => {
         }
       
 
-      userData2 = [
+      usersData2 = 
         {
            "name": "Ephraim Goyette",
            "id": 2,
@@ -53,7 +53,7 @@ describe('User', () => {
         }
       ]
     }
-  ]     
+      
   
     recipeData = [
       {
@@ -78,13 +78,37 @@ describe('User', () => {
         "tags": [
           "sauce"
         ]
+      },
+
+      {
+        "id": 593432,
+        "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
+        "ingredients": [
+          {
+            "id": 20081,
+            "quantity": {
+              "amount": 1.5,
+              "unit": "c"
+            }
+          },
+        ],
+        "instructions": [
+          {
+            "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
+            "number": 1
+          },
+        ],
+        "name": "Dirty Pete's Original Wing Powder",
+        "tags": [
+          "sauce"
+        ]
       }
     ]
 
 
 
-     user = new User(userData);
-     user2 = new User(userData2[0]);
+     user = new User(usersData);
+     user2 = new User(usersData2);
 
     })
 
@@ -117,8 +141,13 @@ describe('User', () => {
     });
 
     it('should allow a user to delete a recipe to their recipesToCook list', () => {
-
-      expect(user.recipesToCook).to.equal([]);
+        expect(user.recipesToCook.length).to.equal(0)
+        user.addRecipeToCook(recipeData[0])
+        expect(user.recipesToCook.length).to.equal(1)
+        user.addRecipeToCook(recipeData[1])
+        expect(user.recipesToCook.length).to.equal(2)
+        user.removeRecipeToCook(recipeData[0])
+        expect(user.recipesToCook.length).to.equal(1);
     });
 
     it('Should filter recipes in recipesToCook by tag', () => {
