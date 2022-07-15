@@ -10,30 +10,44 @@
   <body>
     <section class ="main-body"> 
       <header class ="header-container" id ="headerContainer">
-        <h1>ANYONE CAN COOK</h1>
-        <button class="home-button" id="homeButton"></button>
-        <button class="favorite-button" id="favoriteButton"></button> 
+        <div class="h1-wrapper">
+          <h1>ANYONE CAN COOK</h1>
+        </div> 
+        <div class ="header-icons-container"> 
+          <img class="home-img" id="homeImg" src="./home-icon-svg.svg">
+          <img class="fav-img" id="favImg" src="./favorite-svg.svg">
+        </div>
       </header>
     <article class ="search-container" id="searchContainer">
       <div class ="search-header" id="searchHeader">Find a Recipe </div>
       <div class ="search-bar" id="searchBar">
         <input type="search" id="query" name="q"
-        placeholder="Search recipes..."
-        aria-label="Search through recipes by name or ingredient">
+        placeholder="Search recipes...">🔎
         </div>
     </article>
-    <section class ="feature-container" id="featureContainer">
-      <div class ="feature-box" id="featureBox">
+    <section class ="main-page-container" id="mainPageContainer">
+      <div class ="feature-container" id="featureContainer">
         <div class="feature-image-box" id="featureImageBox"></div>
         <div class="buzzword-container">buzzzz</div>
         <div class="meal-box" id="mealBox">What's for ${time}</div>
       </div>
-      <section class="feature-image-container">
-        <div class ="recipe-icons" id="recipeIcons"></div>
+      <section class="recipe-icon-container">
+        <div class ="recipe-icons" id="recipeIcon1">
+          <img class="icon-1-img" src="">
+        </div>
+        <div class ="recipe-icons" id="recipeIcons">
+          <img class="icon-2-img" src="">
+        </div>
+        <div class ="recipe-icons" id="recipeIcon3">
+          <img class="icon-3-img" src="">
+        </div>
+        <div class ="recipe-icons" id="recipeIcon4">
+          <img class="icon-4-img" src="">
+        </div>
       </section>
     </section>
   </section> 
-    <aside class ="home-recipe-bar" id ="homeRecipeBar">
+    <aside class ="home-recipe-sidebar" id ="homeRecipeBar">
       <p class ="side-bar-header" is="sideHeader"> Recipes </p>
       <p class ="all-recipes" id="allRecipes"> innerHTML Recipes</p>
     </aside>
@@ -44,7 +58,6 @@
       </article>
       <div section ="recipe-l-side-box hidden" id="recipeLSideBox">
         <div class="recipe-image-container" id="recipeImageContainer">
-          <img class="school-logo" id="schoolLogo" src="./src/images/turing-logo.png">
           <article class="price-box" id="priceBox">innerHTML price list</article>
         </section>
       </div>
