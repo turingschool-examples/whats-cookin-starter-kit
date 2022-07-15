@@ -54,15 +54,18 @@ describe('Ingredient', () => {
         expect(ingredient2.costPerUnitInCents).to.equal(582);
     });
 
-    it(`should be able to calculate the unit cost by the recipe's ingredient type`, () => {
-        
-    });
+    // it(`should be able to calculate the unit cost by the recipe's ingredient type`, () => {
+    //
+    // });
 
     it('should be able to return the cost per recipe ingredient as a dollar amount', () => {
         var costPerRecipeIngredient;
+
         ingredient.updateProperties(recipeData);
         ingredient2.updateProperties(recipeData);
+
         costPerRecipeIngredient = ingredient.calculateCost();
+
         expect(costPerRecipeIngredient).to.equal(2.13);
 
         costPerRecipeIngredient = ingredient2.calculateCost();

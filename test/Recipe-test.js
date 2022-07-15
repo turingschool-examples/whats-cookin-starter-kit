@@ -17,28 +17,29 @@ describe('Recipe Class', () => {
     expect(Recipe).to.be.a('function');
   });
 
-  it.skip('should be an instance of Recipe', () => {
+  it('should be an instance of Recipe', () => {
     expect(recipe).to.be.an.instanceof(Recipe);
   });
 
-  it.skip('should have an id', () => {
+  it('should have an id', () => {
     expect(recipe.id).to.equal(595736);
   });
 
-  it.skip('should store an image url', () => {
+  it('should store an image url', () => {
     expect(recipe.image).to.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg")
   });
 
-  it.skip('should store ingredients', () => {
-    expect(recipe.ingredients).to.equal(sampleRecipeData[0].ingredients)
+  it('should store ingredients', () => {
+    expect(recipe.ingredients).to.equal(recipeData[0].ingredients)
   });
 
-  it.skip('should create an instance of Ingredients with an id', () => {
+  it('should create an instance of Ingredients with an id', () => {
+    console.log(recipe.ingredients[0].id);
     expect(recipe.ingredients[0]).to.be.an.instanceof(Ingredient);
     expect(recipe.ingredients[0].id).to.equal(20081);
   });
 
-  it.skip('should store an instance of Ingredients in an array', () => {
+  it('should store an instance of Ingredients in an array', () => {
     expect(recipe.ingredients).to.be.an('array');
     expect(recipe.ingredients).to.deep.equal([
       {"id": 20081,"quantity": { "amount": 1.5, "unit": "c"}  },
@@ -55,24 +56,24 @@ describe('Recipe Class', () => {
     ]);
   })
 
-  it.skip('should store a list of instructions', () => {
+  it('should store a list of instructions', () => {
     expect(recipe.instructions).to.be.an('array');
     expect(recipe.instructions[0].number).to.equal(1);
-    expect(recipe.instructions).to.deep.equal(sampleRecipeData[0].instructions);
+    expect(recipe.instructions).to.deep.equal(recipeData[0].instructions);
   });
 
-  it.skip('should have a name', () => {
+  it('should have a name', () => {
     expect(recipe.name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
   });
 
-  it.skip('should store a list of tags', () => {
+  it('should store a list of tags', () => {
     expect(recipe.tags).to.be.an('array');
-    expect(recipe.tags).to.equal(sampleRecipeData[0].tags);
+    expect(recipe.tags).to.equal(recipeData[0].tags);
   });
-});
+
 
   describe('Recipe methodology', () => {
-    it.skip('should return a list of ingredients', () => {
+    it('should return a list of ingredients', () => {
       const expected = [
         "1.50 c wheat flour",
         "0.50 tsp bicarbonate of soda",
@@ -87,7 +88,7 @@ describe('Recipe Class', () => {
         "0.50 tsp vanilla"
       ];
 
-      const listOfIngredients = recipe.returnIngredientList(ingredientData, recipeData);
+      const listOfIngredients = recipe.returnIngredientList();
 
       expect(listOfIngredients).to.be.an('array');
       expect(listOfIngredients).to.deep.equal(expected)
@@ -108,3 +109,4 @@ describe('Recipe Class', () => {
       expect(instructions[1]).to.equal("Add egg and vanilla and mix until combined.");
     });
   });
+});
