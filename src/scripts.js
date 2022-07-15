@@ -15,6 +15,13 @@ let recipeRepository;
 let currentUser;
 let newRecipe;
 
+let searchButton = document.querySelector(".search-button");
+let searchBox = document.querySelector(".recipe-search")
+let recipeCardsContainer = document.querySelector(".recipe-grid-container")
+let recipeCardsOnPage = recipeCardsContainer.getElementsByClassName('recipe-card');
+searchButton.addEventListener("click", searchRecipe);
+// searchBox.addEventListener('onclick', searchRecipe);
+
 
 //Query Selectors
 let welcomeUserMessage = document.getElementById( 'welcomeUserMessage' );
@@ -39,6 +46,25 @@ Promise.all( [ getData( 'users' ), getData( 'recipes' ), getData( 'ingredients' 
         displayAllRecipesOnPage( );
     } );
 }
+
+function searchRecipe() {
+    if ( !searchBox.value ) {
+      displayAllRecipesOnPage( );
+    }
+    const tagSearched = recipeRepository.filterRecipeByTag( searchBox.value );
+    const nameSearched = recipeRepository.filterRecipeByName( searchBox.value) ;
+    console.log( 'nameSearched: ', nameSearched )
+    if ( tagSearched.length > 0 ) {
+        console.log( 'tagSearched: ', tagSearched )
+      return displayAllRecipesOnPage( tagSearched );
+    } 
+    if ( nameSearched.length > 0 ) {
+      return displayAllRecipesOnPage( nameSearched );
+    } else {
+      return displayAllRecipesOnPage( );
+    }
+    // domUpdates.toggleErrorMessage(true);
+  }
 
 function addToFaves (e) {
     const favorites = []
