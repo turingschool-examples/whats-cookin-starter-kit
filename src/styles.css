@@ -15,6 +15,7 @@ body {
 .header-container {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   width: 100%;
   height: 5%;
   margin: 0px;
@@ -23,6 +24,12 @@ body {
 
 /* ~~~~~~~~~~~~~~~~~~~text~~~~~~~~~~~~~~~~~~~~~~~ */
 
+h1{
+  justify-self: center !important;
+  align-items: center;
+  font-size: 100%;
+  font-weight: 700;
+}
 
 .search-header{
   font-size: 200%;
@@ -35,19 +42,13 @@ body {
 /* ~~~~~~~~~~~~~~~~~~images~~~~~~~~~~~~~~~~~~~~~~ */
 .home-img,
 .fav-img {
-  justify-self: flex-end;
+  display: flex;
   align-self: center;
   height: 50%;
   width: 5;
   cursor: pointer;
 }
 
-h1{
-  justify-self: center;
-  align-items: center;
-  font-size: 100%;
-  font-weight: 700;
-}
 
 .icon-1-img,
 .icon-2-img,
@@ -65,13 +66,26 @@ h1{
 /* ~~~~~~~~~~~~~~~style containers~~~~~~~~~~~~~~~~~~~ */
 
 
-
+.h1-wrapper {
+display: flex;
+justify-content: center !important;
+width: 100%;
+}
 
 .main-body{
   display: flex;
   flex-direction: column;
   width: 80%;
 }
+
+.header-icons-container{
+  display: flex;
+  justify-content: flex-end;
+  height: 100%;
+  width: 10%;
+  margin: 0px;
+}
+
 
 .search-container{
 display:flex;
