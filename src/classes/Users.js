@@ -1,5 +1,5 @@
-import Recipe from './Recipe';
 
+import Recipe from './Recipe';
 class Users {
     constructor(user) {
         this.name = user.name;
@@ -29,5 +29,4 @@ class Users {
         return grabbedName
     }
 }
-
 export default Users;
