@@ -139,5 +139,11 @@ describe("User", () => {
     
     expect(user2.filterRecipeByTag('snack')).to.deep.equal([recipe1, recipe2])
   });
+  it('should be able to filter a recipe by name', () => {
+    user3.addRecipesToCook(recipe1);
+    user3.addRecipesToCook(recipe2);
+    user3.addRecipesToCook(recipe3);
 
+    expect(user3.userFilteredRecipesByName("Chocolate Chip Cookie")).to.deep.equal([recipe1])
+  }); 
 });
