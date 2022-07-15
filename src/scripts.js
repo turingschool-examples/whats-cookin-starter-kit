@@ -14,6 +14,7 @@ import "/node_modules/@glidejs/glide/dist/css/glide.theme.min.css"
 import RecipeRepository from './classes/RecipeRepository.js'
 
 import Recipe from './classes/recipe'
+import Ingredient from './classes/Ingredient';
 
 const config = {
     type:'carousel',
@@ -38,6 +39,8 @@ const recipeDetailTitle = document.querySelector('h2')
 const recipeInstructions = document.querySelector('.details')
 const ingredientNames = document.querySelector('.ingredient-list-names')
 const totalCost = document.querySelector('.total-cost')
+
+let newRecipeIngredient;
 
 viewAllButton.addEventListener('click', showViewAllPage)
 homeButton.addEventListener('click', showHomePage)
@@ -92,6 +95,13 @@ function showRecipeDetailsPage(event) {
             event.target.src === recipe.image
         )
         let recipe = new Recipe(getTitle[0], ingredientsData)
+    //     let ingredients = ingredientsData.forEach(ingredient => {
+    //         if(ingredient.id === recipe.ingredients.id) {
+    //             newRecipeIngredient = new Ingredient(ingredient.id, ingredient.name, ingredient.estimatedCostInCents)
+    //     }
+    // })
+        //let recipe = new Recipe(getTitle[0], newRecipeIngredient)
+         //let recipe = new Recipe(getTitle[0], ingredients)
         homePageView.classList.add('hidden')
         viewAllPage.classList.add('hidden')
         recipeDetailsPage.classList.remove('hidden')
@@ -101,6 +111,10 @@ function showRecipeDetailsPage(event) {
         recipeInstructions.innerText = `${directions}`
         console.log('ingredients', recipe.determineIngredientNames())
         ingredientNames.innerText = `${recipe.determineIngredientNames()}`
+        totalCost.innerText = `${recipe.determineCostOfAllIngredients()}`
+        //console.log('cost', recipe.determineCostOfAllIngredients())
+        console.log('recipe', recipe)
+        console.log('ingredients', ingredientsData)
     }
 }
 

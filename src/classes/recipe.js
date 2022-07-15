@@ -14,23 +14,15 @@ class Recipe {
 
     determineIngredientNames() {
         let listOfNames = []
-        let listOfAmounts = []
-        let listOfUnits = []
 
         let ingredientNames = this.ingredients.forEach(ingredient => {
             this.ingData.forEach(element => {
                 if (element.id === ingredient.id) {
-                    return `${element.name}: ${ingredient.quantity.amount} ${ingredient.quantity.unit}`
-                    // listOfNames.push(element.name)
-                    // listOfAmounts.push(ingredient.quantity.amount)
-                    // listOfUnits.push(ingredient.quantity.unit)
-                    // console.log('ing', ingredient)
-                    // console.log('amountarray', listOfAmounts)
-                    // console.log('unitarray', listOfUnits)
+                    listOfNames.push(`${element.name}: ${ingredient.quantity.amount} ${ingredient.quantity.unit}`)
                 }
             })
         })
-        //listOfNames.join('\n') + listOfAmounts.join('\n')
+        return listOfNames.join('\n')
     }
 
     determineCostOfAllIngredients() {
@@ -38,11 +30,19 @@ class Recipe {
         let getTotalCost = this.ingredients.forEach(ingredient => {
             this.ingData.forEach(element => {
                 if (ingredient.id === element.id) {
-                    totalCost += ingredient.quantity.amount * element.costInCents
+                    console.log('amount', ingredient.quantity.amount)
+                    console.log('cents', element.costInCents)
+                    totalCost += ingredient.quantity.amount * element.estimatedCostInCents
+                    // return totalCost
+                    // console.log('cost', element.costInCents)
+                      console.log('ingredient', ingredient)
+                      console.log('element', element)
                 }
+                //return totalCost
             })
         })
-        return totalCost
+        console.log('cost', totalCost)
+        return `$${(totalCost/100).toFixed(2)}`
     }
 
 
