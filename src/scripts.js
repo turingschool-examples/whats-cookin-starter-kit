@@ -21,9 +21,9 @@ const getRandomRecipe = () => {
 const users = []
 const userId = getRandomId();
 const recipeID = getRandomRecipe();
-const user = new Users(usersData[userId])
+const user = new Users(usersData[2])
 const recipe = new Recipe(recipeData[recipeID])
-
+console.log('user: ', user)
 // QuerySelectors
 const allRecipesButton = document.querySelector('#recipe-button')
 const favoriteButton = document.querySelector('#favorite-button')
@@ -39,6 +39,8 @@ const recipeLocation = document.querySelector('#recipeName')
 const recipeImage = document.querySelector('.heart')
 const wholeImage = document.querySelector('.right-box')
 const goBack = document.querySelector('.take-home')
+const recipeCard = document.querySelector('.recipe-card')
+const viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
 
 // EventListeners
 // favoriteButton.addEventListener('click',)
@@ -48,13 +50,26 @@ const goBack = document.querySelector('.take-home')
 // addToCookbookButton.addEventListener('click',)
 // cardFavoriteButton.addEventListener('click',)
 // unFavoriteButton.addEventListener('click',)
+viewRecipeButtons.forEach((button) => {
+  button.addEventListener('click', viewRecipeCard)
+})
+
+console.log('buttons:',viewRecipeButtons)
 
 // Global Variables
 let recipeRepo = new RecipeRepository(recipeData)
 const newRecipe = new Recipe(ingredientsData)
 
 function showAllRecipes() {
-    recipeRepo.createAllRecipes()
+    const recipes = recipeRepo.createAllRecipes()
+    console.log('recipe: ',recipes)
+
+    recipes.forEach((recipe) => {
+      recipeCard.innerHTML += `<button class="view-recipe-button"> <h2> ${recipe.name} </h2> 
+      <img src=${recipe.image} alt=${recipe.name}>
+      </button>`
+    })
+
     hide(searchBar)
     hide(favoriteButton)
     hide(cookbookButton)
@@ -73,22 +88,32 @@ function showAllRecipes() {
 
     //MAKE WHATS COOKING A TOGGLE SO IT CAN TAKE US BACK TO THE
     //TAKE HOME PAGE WHEN WE CLICK IT AFTER SHOWING ALL RECIPES
-
-
 }
 
 
-const userBuildAttributes = (user) => {
-    userGreeting.innerHTML = `Welcome ${user.name.split(" ")[1]}!`
+// for each button we need to add a eventlistener and the call back in this recipe card to call back.
+function viewRecipeCard() {
+  console.log('hi')
+  console.log(recipe.name)
+}
+
+
+const userBuildAttributes = (sumtine) => {
+    userGreeting.innerHTML = `Welcome ${sumtine.name.split(" ")[0]}!`
     // recipeImage.src = `${recipe.image}`;
-    recipeLocation.innerHTML = `${recipe.name}`
+    //recipeLocation.innerHTML = `${recipe.name}`
 };
+
+
 function show(element) {
     element.classList.remove('hidden');
 };
+
 function hide(element) {
     element.classList.add('hidden');
-}
+};
+
+
 allRecipesButton.addEventListener('click', showAllRecipes, console.log(recipeRepo.createAllRecipes()))
 userBuildAttributes(user);
-goBack.addEventListener('click', userBuildAttributes())
+goBack.addEventListener('click', userBuildAttributes)

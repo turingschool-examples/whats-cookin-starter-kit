@@ -1,5 +1,5 @@
-import Recipe from './Recipe';
 
+import Recipe from './Recipe';
 class Users {
     constructor(user) {
         this.name = user.name;
@@ -21,13 +21,12 @@ class Users {
         }
     }
     filterByTagUser(tag) {
-        const grabbedTag = this.recipesToCook.filter(saveRecipe => saveRecipe.tags.includes(tag))
+        const grabbedTag = this.recipeToCook.filter(saveRecipe => saveRecipe.tags.includes(tag))
         return grabbedTag
     }
     filterByNameUser(name) {
-        const grabbedName = this.recipesToCook.filter(saveRecipe => saveRecipe.name.includes(name))
+        const grabbedName = this.recipeToCook.filter(saveRecipe => saveRecipe.name.includes(name))
         return grabbedName
     }
 }
-
 export default Users;
