@@ -10,9 +10,17 @@ class Recipe {
     this.tags = recipe.tags;
   }
 
+  getIngredientsData(ingredientsData) {
+    this.ingredients = this.ingredients.map(ingredient => {
+      return new Ingredient(ingredient);
+    });
+
+    this.ingredients.forEach(ingredient => ingredient.findIngredientInfo(ingredientsData))
+  }
+
   returnIngredientList() {
     return this.ingredients.map(ingredient =>
-      `${ingredient.amount}) ${ingredient.unit} ${ingredient.name}`
+      `${ingredient.quantityAmount} ${ingredient.quantityUnit} ${ingredient.name}`
     )
   };
 
