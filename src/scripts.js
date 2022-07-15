@@ -84,7 +84,7 @@ function displayAllRecipesOnPage(  ) {
         <button class="save-button">Save it!</button>
         </div>
         </section>`
-    } );
+    } ).join('');
     return recipeCards.innerHTML = result;
     
 };
