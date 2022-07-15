@@ -15,10 +15,12 @@ window.addEventListener('load', displayRecipeList);
    recipeRepository.listRecipes();
    recipeRepository.recipeList.forEach((recipe) => {
      recipeDisplay.innerHTML += (`
-       <img class="recipe-image" src=${recipe.image} alt=${recipe.name}>
-       <p class="recipe-name">${recipe.name}</p>
-       <button class="favorite-button" id="favoriteButton">Favorite</button>
-       `)
+        <div class="recipe-image-wrapper">
+          <img class="recipe-image" src=${recipe.image} alt=${recipe.name}>
+          <p class="recipe-name">${recipe.name}</p>
+          <button class="favorite-button" id="favoriteButton">Favorite</button>
+        </div>
+      `)
    });
 
  };
