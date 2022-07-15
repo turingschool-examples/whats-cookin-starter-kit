@@ -21,8 +21,17 @@ class User {
         return true;
       }
     });
-    console.log(filteredRecipesByTag)
     return filteredRecipesByTag;
+  }
+  userFilteredRecipesByName(recipeName) {
+    let userFilteredRecipe = this.recipesToCook.filter((recipe) => {
+      let lowerCaseRecipeName = recipe.name.toLowerCase();
+      let lowerCaseInput = recipeName.toLowerCase();
+      if (lowerCaseRecipeName.includes(lowerCaseInput)) {
+        return true;
+      }
+    });
+    return userFilteredRecipe;
   }
 
  
