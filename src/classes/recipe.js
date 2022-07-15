@@ -33,15 +33,11 @@ class Recipe {
                     console.log('amount', ingredient.quantity.amount)
                     console.log('cents', element.costInCents)
                     totalCost += ingredient.quantity.amount * element.estimatedCostInCents
-                    // return totalCost
-                    // console.log('cost', element.costInCents)
                       console.log('ingredient', ingredient)
                       console.log('element', element)
                 }
-                //return totalCost
             })
         })
-        console.log('cost', totalCost)
         return `$${(totalCost/100).toFixed(2)}`
     }
 
@@ -51,27 +47,6 @@ class Recipe {
             return `Step ${step.number}: ${step.instruction}`
         }).join("\n")
         return steps
-    }
-
-    // if ingredientsData.id === recipeData.id
-    // return ingredientsData.name
-
-    // method called determineInredientAmount
-    // assess if ingredientsdata.id === recipedata.ingredients.id THEN
-    // new array 
-    // ingredient.amount = recipedata.ingredients.amount
-    // redefining the ingredient amount property in ingredient class
-
-
-    calculateCosts() {
-        let totalCost = this.ingredients
-        .map(() =>
-        Ingredient.cost * this.quantity.amount
-        )
-        .reduce()
-
-
-        return totalCost
     }
 }
 

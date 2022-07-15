@@ -112,9 +112,6 @@ function showRecipeDetailsPage(event) {
         console.log('ingredients', recipe.determineIngredientNames())
         ingredientNames.innerText = `${recipe.determineIngredientNames()}`
         totalCost.innerText = `${recipe.determineCostOfAllIngredients()}`
-        //console.log('cost', recipe.determineCostOfAllIngredients())
-        console.log('recipe', recipe)
-        console.log('ingredients', ingredientsData)
     }
 }
 
