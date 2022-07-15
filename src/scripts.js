@@ -19,7 +19,7 @@ import Ingredient from './classes/Ingredient';
 const config = {
     type:'carousel',
     startAt: 0,
-    perView: 3
+    perView: 1
 }
 
 new Glide('.glide', config).mount()
@@ -41,6 +41,9 @@ const recipeInstructions = document.querySelector('.details')
 const ingredientNames = document.querySelector('.ingredient-list-names')
 const totalCost = document.querySelector('.total-cost')
 const tagContainer = document.querySelector('.tag-container')
+const form = document.querySelector('#form')
+const searchbar = document.querySelector("#searchbar")
+const searchButton = document.querySelector(".search-button")
 
 
 let newRecipeIngredient;
@@ -51,6 +54,13 @@ favoritesButton.addEventListener('click', showFavoritesPage)
 allRecipesContainer.addEventListener('click', function(event) {
     showRecipeDetailsPage(event)
   })
+window.addEventListener('click', function(event) {
+      filterByTag(event)
+    })
+window.addEventListener('load', showHomePage)
+window.addEventListener('load', createTags)
+searchButton.addEventListener('click', filterByName)
+
 // viewAllRecipeIconImage.addEventListener('event', () => {
 //     console.log('event')
 // })
@@ -60,7 +70,7 @@ function showViewAllPage() {
     viewAllPage.classList.remove('hidden')
     recipeDetailsPage.classList.add('hidden')
     homeButton.classList.remove('hidden')
-    
+    viewAllButton.classList.add('hidden')
 }
 
 function showHomePage() {
@@ -68,9 +78,8 @@ function showHomePage() {
     viewAllPage.classList.add('hidden')
     recipeDetailsPage.classList.add('hidden')
     homeButton.classList.add('hidden')
+    viewAllButton.classList.remove('hidden')
 }
-
-showHomePage()
 
 function showFavoritesPage() {
     homePageView.classList.add('hidden')
@@ -88,7 +97,10 @@ function populateAllRecipes() {
     </p>
   </section>`
 
-    glideRecipes.innerHTML += `<li class="glide__slide"><img class="view-all-recipe-image" src="${recipe.image}"></li>`
+    // glideRecipes.innerHTML += `<li class="glide__slide"><img class="recipe-icon-image" src="${recipe.image}"></li>`
+
+    //or use a few links from data set and call it "featured recipes"
+    //look in docs to see how to add new data to carousel
 })
 //  console.log(glideRecipes.innerHTML)
 }
@@ -97,17 +109,10 @@ populateAllRecipes()
 
 function showRecipeDetailsPage(event) {
     if (event.target.classList.contains('view-all-recipe-image')){
-        const getTitle = recipeData.filter(recipe => 
+        const getTitle = recipeData.filter(recipe =>
             event.target.src === recipe.image
         )
         let recipe = new Recipe(getTitle[0], ingredientsData)
-    //     let ingredients = ingredientsData.forEach(ingredient => {
-    //         if(ingredient.id === recipe.ingredients.id) {
-    //             newRecipeIngredient = new Ingredient(ingredient.id, ingredient.name, ingredient.estimatedCostInCents)
-    //     }
-    // })
-        //let recipe = new Recipe(getTitle[0], newRecipeIngredient)
-         //let recipe = new Recipe(getTitle[0], ingredients)
         homePageView.classList.add('hidden')
         viewAllPage.classList.add('hidden')
         recipeDetailsPage.classList.remove('hidden')
@@ -122,6 +127,7 @@ function showRecipeDetailsPage(event) {
 }
 
 function createTags() {
+    // const tagContainer = document.querySelector('.tag-container')
     const getRecipeTags = recipeData.map(recipe => {
         return recipe.tags
     }).flat()
@@ -129,16 +135,40 @@ function createTags() {
     const uniqueTags = getRecipeTags.filter((recipe, index)=> {
         return getRecipeTags.indexOf(recipe) === index;
     })
-    
+
     const recipeTags = uniqueTags.forEach(tag => {
-        tagContainer.innerHTML += `<input type="checkbox" id="${tag}" name="" value="">
+        tagContainer.innerHTML += `<input type="checkbox" id="${tag}" unchecked>
     <label for="${tag}">${tag}</label><br>`
     });
 }
 
-createTags()
 
-// 
-// const recipe = new Recipe(recipeData, ingredientsData)
-//instatiate a new recipe using data sets as arguments?
-//for each recipe that we are passing through from the data, create new recipe instance
+function filterByTag(event) {
+  if (event.target.type === "checkbox") {
+    let filteredRecipesByTag = recipeRepository.filterTags(event.target.id)
+    viewAllPage.childNodes[3].innerHTML = ""
+    filteredRecipesByTag.forEach(recipe => {
+    viewAllPage.childNodes[3].innerHTML += `<section class="recipe-icon">
+    <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
+    <p>
+      ${recipe.name}
+    </p>
+  </section>`
+})
+}
+}
+
+function filterByName(event) {
+  event.preventDefault()
+  console.log("test")
+  let filteredRecipesByName = recipeRepository.filterNames(searchbar.value)
+  viewAllPage.childNodes[3].innerHTML = ""
+  filteredRecipesByName.forEach(recipe => {
+  viewAllPage.childNodes[3].innerHTML += `<section class="recipe-icon">
+  <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
+  <p>
+    ${recipe.name}
+  </p>
+</section>`
+})
+}
