@@ -13,6 +13,7 @@ const userData = require('./data/users');
 // ***** Query Selectors ***** //
 
 const recipeIconContainer = document.querySelector('.recipe-icon-container');
+const allRecipesSection = document.querySelector('.all-recipes');
 const icon1Img = document.querySelector('.icon-1-img');
 const icon2Img = document.querySelector('.icon-2-img');
 const icon3Img = document.querySelector('.icon-3-img');
@@ -22,12 +23,15 @@ const icon4Img = document.querySelector('.icon-4-img');
 
 window.addEventListener('load', updateMainPageRecipeIcons);
 window.addEventListener('load', loadNewUser);
+window.addEventListener('load', displayAllRecipeNames);
+allRecipesSection.addEventListener('click', viewRecipe);
 
 // ***** Global Variables ***** //
 
-const recipeTest = recipeData.recipeData.map(recipe => {
+const allRecipes = recipeData.recipeData.map(recipe => {
   return new Recipe(recipe);
 })
+const recipeRepository =  new RecipeRepository(allRecipes)
 let user;
 
 // ***** Functions ***** //
@@ -37,13 +41,27 @@ function getRandomIndex(array) {
 }
 
 function loadNewUser() {
-user = new User(userData.usersData[getRandomIndex(recipeTest)])
-console.log(user)
+user = new User(userData.usersData[getRandomIndex(userData.usersData)])
 }
 
 function updateMainPageRecipeIcons() {
-  icon1Img.src = recipeTest[getRandomIndex(recipeTest)].image;
-  icon2Img.src = recipeTest[getRandomIndex(recipeTest)].image;
-  icon3Img.src = recipeTest[getRandomIndex(recipeTest)].image;
-  icon4Img.src = recipeTest[getRandomIndex(recipeTest)].image;
+  icon1Img.src = allRecipes[getRandomIndex(allRecipes)].image;
+  icon2Img.src = allRecipes[getRandomIndex(allRecipes)].image;
+  icon3Img.src = allRecipes[getRandomIndex(allRecipes)].image;
+  icon4Img.src = allRecipes[getRandomIndex(allRecipes)].image;
+}
+
+function displayAllRecipeNames() {
+  const allRecipeNames = allRecipes.map(recipe => recipe.name)
+  allRecipeNames.forEach(name => {
+    console.log(allRecipeNames)
+    allRecipesSection.innerHTML += `<p>${name}</p>`
+  });
+}
+
+function viewRecipe() {
+  //hide HomePage
+  //view Recipe page
+  //Populate Recipe page with name, instructions, ingredients
+  
 }
