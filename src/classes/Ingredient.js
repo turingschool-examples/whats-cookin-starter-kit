@@ -1,14 +1,13 @@
 class Ingredient {
-    constructor(ingredient) {
+    constructor(ingredient,recipe) {
         this.name = ingredient.name;
         this.id = ingredient.id;
-        this.quantityAmount = ingredient.quantity.amount;
-        this.quantityUnit = ingredient.quantity.unit;
+        this.quantityAmount = recipe.quantity.amount;
+        this.quantityUnit = recipe.quantity.unit;
         this.costPerUnitInCents = ingredient.estimatedCostInCents;
     }
     calculateCost() {
-        const recipeIngredientCost = ((this.quantityAmount * this.costPerUnitInCents) / 100)
-        return recipeIngredientCost
+        return ((this.quantityAmount * this.costPerUnitInCents) / 100)
     }
 
 };
