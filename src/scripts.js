@@ -41,7 +41,6 @@ const newRecipe = new Recipe(ingredientsData)
 function showAllRecipes() {
     recipeRepo.createAllRecipes()
     hide(searchBar)
-    console.log('IT WOERKS')
     // HERE we need to: recipeRepo.allRecipes append to main section of our app
     // want to loop through all recipes somehow, forEach/for loop
     // in order to get it to populate on the DOM

@@ -42,6 +42,19 @@ describe('User test', () => {
         expect(user.recipeToCook.length).to.equal(2);
     });
 
-    
+    it('Should be able to filter saved recipes using a tag', () => {
+        user.addRecipesToCook(recipe);
+        user.addRecipesToCook(recipe1);
+        expect(user.filterByTagUser('snack').length).to.equal(1)
+    })
 
+    it('Should be able to filter saved recipes using a name', () => {
+        user.addRecipesToCook(recipe);
+        user.addRecipesToCook(recipe1);
+        expect(user.filterByNameUser("Loaded Chocolate Chip Pudding Cookie Cups").length).to.equal(1)
+    })
+     
+      it('should be able to be filtered by any name', () => {
+        expect(user.filterByNameUser('booger').length).to.equal(0)
+      })
 })
