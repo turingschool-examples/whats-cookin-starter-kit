@@ -129,7 +129,15 @@ describe("User", () => {
     user2.addRecipesToCook(recipe3);
     expect(user2.recipesToCook.length).to.equal(3);
     user2.removeRecipesToCook(recipe2);
-    console.log(user2.recipesToCook);
     expect(user2.recipesToCook).to.deep.equal([recipe1, recipe3]);
   });
+
+  it('should be able to filter a recipe by its tag', () => {
+    user2.addRecipesToCook(recipe1);
+    user2.addRecipesToCook(recipe2);
+    user2.addRecipesToCook(recipe3);
+    
+    expect(user2.filterRecipeByTag('snack')).to.deep.equal([recipe1, recipe2])
+  });
+
 });
