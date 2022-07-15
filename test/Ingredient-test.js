@@ -2,16 +2,15 @@ import { expect } from 'chai';
 import { sampleIngredientData } from '../src/data/sampleIngredientData.js';
 import { sampleRecipeData } from '../src/data/sampleRecipeData.js';
 import Ingredient from '../src/classes/Ingredient.js';
-import Recipe from '../src/classes/Recipe.js';
-
+// import Recipe from '../src/classes/Recipe.js';
 
 describe('Ingredient', () => {
     let ingredient;
 
     beforeEach(() => {
-        recipe = new Recipe(sampleRecipeData);
-        ingredient = new Ingredient(sampleIngredientData, sampleRecipeData);
-        ingredient2 = new Ingredient(sampleIngredientData, sampleRecipeData);
+        // recipe = new Recipe(sampleRecipeData);
+        ingredient = new Ingredient(sampleIngredientData);
+        ingredient2 = new Ingredient(sampleIngredientData);
     });
 
     it('should be a function', () => {
