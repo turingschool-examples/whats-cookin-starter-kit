@@ -19,29 +19,19 @@ class User {
     })
   }
 
-  listRecipeTags(tag) {
+  listRecipeToCookByTag(tag) {
     const filterRecipeByTag = this.recipesToCook.filter(recipe => 
       recipe.tags.includes(tag)
       );
       return filterRecipeByTag;
     }
+
+    listRecipebyToCookName(name) {
+      const filterRecipeByName = this.recipesToCook.filter(recipe => 
+        recipe.name.includes(name)
+        );
+        return filterRecipeByTag;
+      }
 };
-
-
-
-
-// //  listRecipeTags(tag) {
-//   const filteredByTag = this.recipeData.filter(recipe => 
-//     recipe.tags.includes(tag)
-//     );
-//     return filteredByTag;
-// }
-
-//way of filtering the recipesToCook array by:
-//name
-//tag
-
-//copy the structure of the listRecipeTags method
-//because 
 
 module.exports = User;
