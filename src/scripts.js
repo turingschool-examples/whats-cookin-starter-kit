@@ -83,10 +83,13 @@ function viewRecipe(event) {
   hide(homePage);
   show(recipePage);
   let selectedRecipeName = event.target.innerText
-  console.log(selectedRecipeName)
   let selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name)
   recipeNameBox.innerText = selectedRecipe[0].name
   recipeDetailsBox.innerText = selectedRecipe[0].returnRecipeInstructions()
   recipePriceList.innerText = selectedRecipe[0].getCostofRecipe()
+  //add individual ingredient price functionality 
+}
+
+function filterRecipeByTag() {
 
 }
