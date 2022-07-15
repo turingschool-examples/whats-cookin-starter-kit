@@ -40,6 +40,8 @@ const recipeDetailTitle = document.querySelector('h2')
 const recipeInstructions = document.querySelector('.details')
 const ingredientNames = document.querySelector('.ingredient-list-names')
 const totalCost = document.querySelector('.total-cost')
+const tagContainer = document.querySelector('.tag-container')
+
 
 let newRecipeIngredient;
 
@@ -58,6 +60,7 @@ function showViewAllPage() {
     viewAllPage.classList.remove('hidden')
     recipeDetailsPage.classList.add('hidden')
     homeButton.classList.remove('hidden')
+    
 }
 
 function showHomePage() {
@@ -87,7 +90,7 @@ function populateAllRecipes() {
 
     glideRecipes.innerHTML += `<li class="glide__slide"><img class="view-all-recipe-image" src="${recipe.image}"></li>`
 })
- console.log(glideRecipes.innerHTML)
+//  console.log(glideRecipes.innerHTML)
 }
 
 populateAllRecipes()
@@ -118,11 +121,22 @@ function showRecipeDetailsPage(event) {
     }
 }
 
-// function createTags() {
+function createTags() {
+    const getRecipeTags = recipeData.map(recipe => {
+        return recipe.tags
+    }).flat()
 
-// }
+    const uniqueTags = getRecipeTags.filter((recipe, index)=> {
+        return getRecipeTags.indexOf(recipe) === index;
+    })
+    
+    const recipeTags = uniqueTags.forEach(tag => {
+        tagContainer.innerHTML += `<input type="checkbox" id="${tag}" name="" value="">
+    <label for="${tag}">${tag}</label><br>`
+    });
+}
 
-// createTags()
+createTags()
 
 // 
 // const recipe = new Recipe(recipeData, ingredientsData)
