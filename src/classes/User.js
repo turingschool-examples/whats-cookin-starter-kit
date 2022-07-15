@@ -3,17 +3,21 @@ class User {
     this.name = usersData.name;
     this.id = usersData.id;
     this.pantry = usersData.pantry;
-    // this.recipeToCook = []
+    this.recipesToCook = []
     // this.favoriteRecipes =[]
   }
 
   addRecipeToCook(recipe) {
     this.recipesToCook.push(recipe)
+    console.log("Hey", this.recipesToCook)
+  }
+
+  removeRecipeToCook(recipe) {
+
   }
 };
 
-//this.recipesToCook = []
-//for this one, use .push upon user click
+
 
 // //  listRecipeTags(tag) {
 //   const filteredByTag = this.recipeData.filter(recipe => 
