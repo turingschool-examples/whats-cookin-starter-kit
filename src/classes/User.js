@@ -15,8 +15,18 @@ class User {
     this.recipesToCook.splice(recipeToRemove, 1);
     return this.recipesToCook;
   }
+  filterRecipeByTag(tag) {
+    let filteredRecipesByTag = this.recipesToCook.filter((recipe) => {
+      if (recipe.tags.includes(tag)) {
+        return true;
+      }
+    });
+    console.log(filteredRecipesByTag)
+    return filteredRecipesByTag;
+  }
 
-
+ 
 }
+
 
 export default User;
