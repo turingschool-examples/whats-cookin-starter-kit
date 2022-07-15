@@ -10,8 +10,8 @@ describe('Ingredient', () => {
 
     beforeEach(() => {
         recipe = new Recipe(sampleRecipeData);
-        ingredient = new Ingredient(sampleIngredientData);
-        ingredient2 = new Ingredient(sampleIngredientData);
+        ingredient = new Ingredient(sampleIngredientData, sampleRecipeData);
+        ingredient2 = new Ingredient(sampleIngredientData, sampleRecipeData);
     });
 
     it('should be a function', () => {
