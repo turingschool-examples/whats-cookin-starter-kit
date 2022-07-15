@@ -5,17 +5,23 @@ class User {
     this.pantry = usersData.pantry;
     this.recipesToCook = []
     // this.favoriteRecipes =[]
+    console.log("nama jeff", this.name)
   }
 
   addRecipeToCook(recipe) {
     this.recipesToCook.push(recipe)
-    console.log("Hey", this.recipesToCook)
   }
 
-  removeRecipeToCook(recipe) {
-
+  removeRecipeToCook(recipeToRemove) {
+    this.recipesToCook.filter((recipe) => {
+      if (recipe.id === recipeToRemove.id){
+        this.recipesToCook.splice(recipeToRemove, 1)
+      }
+      console.log('removed log', this.recipesToCook)
+    })
   }
 };
+
 
 
 
