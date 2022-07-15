@@ -21,9 +21,10 @@ const icon1Img = document.querySelector('.icon-1-img');
 const icon2Img = document.querySelector('.icon-2-img');
 const icon3Img = document.querySelector('.icon-3-img');
 const icon4Img = document.querySelector('.icon-4-img');
+const selectedRecipeImg = document.querySelector('.selected-recipe-img')
 const recipeNameBox = document.querySelector('.recipe-title-box');
 const recipePriceList = document.querySelector('.price-box');
-const recipeDetailsBox = document.querySelector('.recipe-box')
+const recipeDetailsBox = document.querySelector('.recipe-info-box')
 
 
 // ***** Event Listeners ***** //
@@ -82,11 +83,10 @@ function showHomePage() {
 function viewRecipe(event) {
   hide(homePage);
   show(recipePage);
-  let selectedRecipeName = event.target.innerText
-  console.log(selectedRecipeName)
-  let selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name)
-  recipeNameBox.innerText = selectedRecipe[0].name
-  recipeDetailsBox.innerText = selectedRecipe[0].returnRecipeInstructions()
-  recipePriceList.innerText = selectedRecipe[0].getCostofRecipe()
-
+  let selectedRecipeName = event.target.innerText;
+  let selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name);
+  recipeNameBox.innerText = selectedRecipe[0].name;
+  recipeDetailsBox.innerText = selectedRecipe[0].returnRecipeInstructions();
+  recipePriceList.innerText = selectedRecipe[0].getCostofRecipe();
+  selectedRecipeImg.src = selectedRecipe[0].image;
 }

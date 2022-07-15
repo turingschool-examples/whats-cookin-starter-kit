@@ -173,22 +173,31 @@ margin-left: 5%;
  /* ~~~~~~~~~~~~~~~~~~view recipe user story~~~~~~~~~~~~~~~~~~~~~~ */
   .recipe-container {
     display: flex;
-    flex-direction: column;
-    height: 30%;
-    width: 30%;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
     }
 
-    .recipe-l-side-box {
-    display: flex;
-    flex-direction: column;
+    .recipe-img-price-container {
+      width: 40%;
+      height: 100%;
     }
 
-    .recipe-image-container {
-      display: flex;
-      justify-content: flex-start;
+    .recipe-description-box {
+      width: 30%;
+      margin: 5%;
+    }
+
+    .price-box {
+      width: 30%;
+      margin: 5%;
+    }
+
+    .selected-recipe-img {
       height: 60%;
-      width: 70%;
-
+      margin: 5%;
+      aspect-ratio: 1/1;
     }
   
 /* ~~~~~~~~~~~~~~~~~~aux~~~~~~~~~~~~~~~~~~~~~~ */
