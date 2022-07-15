@@ -18,6 +18,7 @@ import Ingredient from './classes/Ingredient';
 
 const config = {
     type:'carousel',
+    startAt: 0,
     perView: 3
 }
 
@@ -76,15 +77,17 @@ function showFavoritesPage() {
 
 function populateAllRecipes() {
     recipeData.forEach(recipe => {
+    //glideRecipes.src += `${recipe.image}`
     viewAllPage.childNodes[3].innerHTML += `<section class="recipe-icon">
     <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
     <p>
       ${recipe.name}
     </p>
   </section>`
-    // glideRecipes.innerHTML += `<li class="glide__slide"><img class="recipe-icon-image" src="${recipe.image}"></li>`
+
+    glideRecipes.innerHTML += `<li class="glide__slide"><img class="view-all-recipe-image" src="${recipe.image}"></li>`
 })
-// console.log(glideRecipes.innerHTML)
+ console.log(glideRecipes.innerHTML)
 }
 
 populateAllRecipes()
@@ -114,6 +117,12 @@ function showRecipeDetailsPage(event) {
         totalCost.innerText = `${recipe.determineCostOfAllIngredients()}`
     }
 }
+
+// function createTags() {
+
+// }
+
+// createTags()
 
 // 
 // const recipe = new Recipe(recipeData, ingredientsData)
