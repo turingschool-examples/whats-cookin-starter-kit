@@ -45,8 +45,29 @@ function showAllRecipes() {
     // want to loop through all recipes somehow, forEach/for loop
     // in order to get it to populate on the DOM
     // inner.HTML
-    
+    hide(favoriteButton)
+    hide(cookbookButton)
+    hide(cardFavoriteButton);
+    hide(allRecipesButton);
+    hide(addToCookbookButton);
+    hide(unFavoriteButton);
+    hide(wholeImage);
+    show(goBack)
+    console.log('IT WOEKS')
+    var currentRecipe = new Recipe(data.id, data.image. data.name)
 }
+// function getRandomCoverPageLoad(event) {
+//     var cover = covers[getRandomIndex(covers)]
+//     var title = titles[getRandomIndex(titles)]
+//     var descriptor1 = descriptors[getRandomIndex(descriptors)]
+//     var descriptor2 = descriptors[getRandomIndex(descriptors)]
+//     currentCover = new Cover(cover, title, descriptor1, descriptor2)
+//     coverImage.src = currentCover.cover
+//     coverTitle.innerText = currentCover.title
+//     taglineOne.innerText = currentCover.tagline1
+//     taglineTwo.innerText = currentCover.tagline2
+//   }
+//   getRandomCoverPageLoad()
 
 allRecipesButton.addEventListener('click', showAllRecipes, console.log(recipeRepo.createAllRecipes()))
 
