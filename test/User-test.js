@@ -151,8 +151,7 @@ describe('User', () => {
     });
 
     it('Should filter recipes in recipesToCook by tag', () => {
-
-      expect().to.equal();
+      expect(recipeData[0].tags[0]).to.deep.equal("sauce");
 
     });
 

@@ -5,7 +5,6 @@ class User {
     this.pantry = usersData.pantry;
     this.recipesToCook = []
     // this.favoriteRecipes =[]
-    console.log("nama jeff", this.name)
   }
 
   addRecipeToCook(recipe) {
@@ -17,9 +16,15 @@ class User {
       if (recipe.id === recipeToRemove.id){
         this.recipesToCook.splice(recipeToRemove, 1)
       }
-      console.log('removed log', this.recipesToCook)
     })
   }
+
+  listRecipeTags(tag) {
+    const filterRecipeByTag = this.recipesToCook.filter(recipe => 
+      recipe.tags.includes(tag)
+      );
+      return filterRecipeByTag;
+    }
 };
 
 
