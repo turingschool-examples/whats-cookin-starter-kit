@@ -135,8 +135,10 @@ function displayAllRecipesOnPage(  ) {
 
 let recipeModal = document.querySelector( '.recipe-modal' );
 let recipeContainer = document.querySelector( '.recipe-grid-container' );
-let h4 = document.querySelector( '.rec-name' )
-let totalCost = document.querySelector( '.dish-cost' )
+let h4 = document.querySelector( '.rec-name' );
+let instructionText = document.querySelector( '.modal-instructions' );
+let totalCost = document.querySelector( '.dish-cost' );
+let ingredientText = document.querySelector( 'modal-ingredients')
 recipeContainer.addEventListener( 'click' , displayModal );
 
 function show(element) {
@@ -145,14 +147,16 @@ function show(element) {
 
 function displayModal( e ){
     newRecipe = new RecipeRepository( recipeList )
+    // console.log(newRecipe);
     newRecipe.recipes.map(( dish ) => {
         if( e.target.id == dish.id ){
+            recipeClass = new Recipe( dish, dish.ingredients )
+            // recipeClass.getIngredientName()
             recipeModal.classList.remove('hidden')
             recipeModal.id = dish.id  
-            h4.innerText = dish.name        
-            // recipeClass = new Recipe(dish, dish.ingredients)
-            // console.log(recipeClass)
-            // totalCost.innerText = recipeClass.totalCost
+            h4.innerText = dish.name  
+            instructionText.innerText = dish.instructions.map(task => `${task.number}: ${task.instruction}`).join('  ');
+            ingredientText.innerText = dish.ingredients.map(item => recipeClass.getIngredientName( [item] , recipeList));
             return 
         }       
     })
@@ -185,14 +189,5 @@ function viewFaves () {
 //     console.log(favorites)
 //     return favorites
 // }
-
-//As a user, I should be able to view a list of all recipes.
-// As a user, I should be able to click on a recipe to view more information including directions, ingredients needed, and total cost.
-// As a user, I should be able to filter recipes by a tag. (Extension option: by multiple tags)
-// As a user, I should be able to search recipes by their name. (Extension option: by name or ingredients)
-
-//consider using the filter function written by 
-//Farelli in Ideabox: https://github.com/jfarelli/ideabox/blob/main/Idea.js
-
 
 
