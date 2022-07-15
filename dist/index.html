@@ -7,7 +7,7 @@
   
   <main>
     <nav class="nav">
-      <button type="button">Home</button>
+      <button type="button" class="home-button">Home</button>
       <button type="button">My Recipes</button>
       <button type="button">Pantry</button>
     </nav>
@@ -29,12 +29,6 @@
     <section class="results">
       <h1 class="results-header">All Recipes</h1>
       <section class="results-grid-container">
-
-        <article id="mini-recipe-template" class="mini-card recipe-result hidden">
-          <span class="favorite-button">❤️</span>
-          <img class="recipe-image" src="https://static01.nyt.com/images/2022/06/12/dining/12Korokke/merlin_208197630_39a1b4ee-998e-4706-9f2f-8d5696f5e6ac-mobileMasterAt3x.jpg"/>
-          <p class="recipe-name">Test Card Title</p>
-        </article>
       </section>
     </section>
     <section id="mega-recipe-template" class="mega-card specific-recipe hidden">
@@ -68,7 +62,12 @@
       </section>
     </section>
   </main>
-    
+
+  <article id="mini-recipe-template" class="mini-card recipe-result hidden">
+    <span class="favorite-button">❤️</span>
+    <img class="recipe-image" src="https://static01.nyt.com/images/2022/06/12/dining/12Korokke/merlin_208197630_39a1b4ee-998e-4706-9f2f-8d5696f5e6ac-mobileMasterAt3x.jpg"/>
+    <p class="recipe-name">Test Card Title</p>
+  </article>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>

@@ -81,7 +81,7 @@ main {
   position: absolute;
   cursor: pointer;
   filter: grayscale(0) opacity(1.0);
-  /* TODO: Figure out how to move them away from the right edge without taking them outside the parent container. margin-right: 10px; and right: 10px; do not work. */
+  /* TODO: Figure out how to move them away from the right edge without taking them outside the parent container. Margin-right: 10px; and right: 10px; do not work. */
 }
 
 

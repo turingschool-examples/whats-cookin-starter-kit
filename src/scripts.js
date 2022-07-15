@@ -13,12 +13,19 @@ recipeRepo.importRecipesFromFile(recipeData, ingredientsData)
 const resultTemplate = document.querySelector("#mini-recipe-template")
 const resultCardsContainer = document.querySelector(".results-grid-container")
 
-recipeRepo.recipes.forEach(
-  (recipe) => {
-    let recipeCard = makeRecipeCard(recipe)
-    addRecipeCardToResultsContainer(recipeCard)
-  }
-)
+
+window.addEventListener("load", displayAllRecipesView)
+document.querySelector(".home-button").addEventListener('click', displayAllRecipesView)
+
+function displayAllRecipesView() {
+  resultCardsContainer.replaceChildren()
+  recipeRepo.recipes.forEach(
+    (recipe) => {
+      let recipeCard = makeRecipeCard(recipe)
+      addRecipeCardToResultsContainer(recipeCard)
+    }
+  )
+}
 
 function makeRecipeCard(recipe){
   let newCard = resultTemplate.cloneNode(true)
