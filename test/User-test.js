@@ -20,11 +20,11 @@ describe("User", () => {
       id: 28,
       pantry: [
         {
-          ingredient: 11297,
+          ingredientId: 11297,
           amount: 4,
         },
         {
-          ingredient: 1082047,
+          ingredientId: 1082047,
           amount: 10,
         },
       ],
@@ -35,11 +35,11 @@ describe("User", () => {
       id: 111,
       pantry: [
         {
-          ingredient: 6150,
+          ingredientId: 6150,
           amount: 3,
         },
         {
-          ingredient: 1032009,
+          ingredientId: 1032009,
           amount: 7,
         },
       ],
@@ -50,11 +50,11 @@ describe("User", () => {
       id: 4444,
       pantry: [
         {
-          ingredient: 18372,
+          ingredientId: 18372,
           amount: 8,
         },
         {
-          ingredient: 1102047,
+          ingredientId: 1102047,
           amount: 1,
         },
       ],
@@ -70,6 +70,7 @@ describe("User", () => {
       instructions: ["Bake it"],
       tags: ["snack", "dessert"],
     });
+
     recipe2 = new Recipe({
       id: 2,
       name: "Ham Sandwich",
@@ -108,42 +109,65 @@ describe("User", () => {
     expect(user3.name).to.equal("David");
   });
 
-  it("should contain an array of ingredient objects", () => {
+  it("should contain an array of ingredients", () => {
     expect(user1.pantry.length).to.equal(2);
-    expect(user1.pantry[0].ingredient).to.equal(11297);
+    expect(user1.pantry[0].ingredientId).to.equal(11297);
+  });
+
+  it("should have no ingredients in the pantry by default", () => {
+    let user4 = new User();
+    expect(user4.pantry).to.deep.equal([]);
   });
 
   it("should have no recipes to cook by default", () => {
     expect(user2.recipesToCook.length).to.equal(0);
   });
 
-  it("should be able to add recipes to cook", () => {
-    user3.addRecipesToCook(recipe1);
-    console.log(user3.recipesToCook);
+  it("should be able to add recipes to cook if they are not already included", () => {
+    user3.addRecipeToCook(recipe1);
     expect(user3.recipesToCook).to.deep.equal([recipe1]);
+    user3.addRecipeToCook(recipe1);
+    expect(user3.recipesToCook.length).to.deep.equal(1);
   });
 
-  it("should be able to remove recipes from the recipesToCook", () => {
-    user2.addRecipesToCook(recipe1);
-    user2.addRecipesToCook(recipe2);
-    user2.addRecipesToCook(recipe3);
+  it("should be able to remove recipes from the recipesToCook array only if there have been recipes added", () => {
+    expect(user2.removeRecipeToCook(recipe2)).to.equal(
+      `There are no recipes to remove!`
+    );
+    user2.addRecipeToCook(recipe1);
+    user2.addRecipeToCook(recipe2);
+    user2.addRecipeToCook(recipe3);
     expect(user2.recipesToCook.length).to.equal(3);
-    user2.removeRecipesToCook(recipe2);
+    user2.removeRecipeToCook(recipe2);
     expect(user2.recipesToCook).to.deep.equal([recipe1, recipe3]);
   });
 
-  it('should be able to filter a recipe by its tag', () => {
-    user2.addRecipesToCook(recipe1);
-    user2.addRecipesToCook(recipe2);
-    user2.addRecipesToCook(recipe3);
-    
-    expect(user2.filterRecipeByTag('snack')).to.deep.equal([recipe1, recipe2])
-  });
-  it('should be able to filter a recipe by name', () => {
-    user3.addRecipesToCook(recipe1);
-    user3.addRecipesToCook(recipe2);
-    user3.addRecipesToCook(recipe3);
+  it("should be able to filter a recipe by its tag", () => {
+    user2.addRecipeToCook(recipe1);
+    user2.addRecipeToCook(recipe2);
+    user2.addRecipeToCook(recipe3);
 
-    expect(user3.userFilteredRecipesByName("Chocolate Chip Cookie")).to.deep.equal([recipe1])
-  }); 
+    expect(user2.filterRecipesByTag("snack")).to.deep.equal([recipe1, recipe2]);
+  });
+  it("should be able to filter a recipe by name", () => {
+    let recipe5 = new Recipe({
+      id: 1,
+      name: "Oatmeal Cookie",
+      imageURL: "https://recipe-image-1.jpg",
+      portions: [
+        { ingredientId: 1, name: "Flour", amount: 2, cost: 101, unit: "C" },
+      ],
+      instructions: ["Bake it"],
+      tags: ["snack", "dessert"],
+    });
+    user3.addRecipeToCook(recipe1);
+    user3.addRecipeToCook(recipe2);
+    user3.addRecipeToCook(recipe3);
+    user3.addRecipeToCook(recipe5);
+
+    expect(user3.filterRecipesByName("Cookie")).to.deep.equal([
+      recipe1,
+      recipe5,
+    ]);
+  });
 });
