@@ -25,7 +25,7 @@ const selectedRecipeImg = document.querySelector('.selected-recipe-img')
 const recipeNameBox = document.querySelector('.recipe-title-box');
 const recipePriceList = document.querySelector('.price-box');
 const recipeDetailsBox = document.querySelector('.recipe-info-box')
-
+const searchBtn = document.querySelector('.search-button');
 
 // ***** Event Listeners ***** //
 

@@ -37,7 +37,9 @@ h1{
 
 /* ~~~~~~~~~~~~~~~~~~buttons~~~~~~~~~~~~~~~~~~~~~~ */
 
-
+.search-button :hover{
+cursor: pointer;
+}
 
 /* ~~~~~~~~~~~~~~~~~~images~~~~~~~~~~~~~~~~~~~~~~ */
 .home-img,
@@ -125,12 +127,14 @@ overflow: scroll;
 }
 
 .feature-image-box{
+display: flex;
 height:100%;
 width: 200%;
 margin-left: 5%;
 }
 
 .buzzword-container{
+  display: flex;
   background: lightyellow;
   height: 100%;
   width: 150%;
@@ -139,6 +143,7 @@ margin-left: 5%;
 }
 
 .meal-box{
+  display: flex;
   background: lightblue;
   margin-top: 30%;
   margin-bottom: -10%;
@@ -174,32 +179,91 @@ margin-left: 5%;
   .recipe-container {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     height: 100%;
     width: 100%;
     }
 
     .recipe-img-price-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       width: 40%;
       height: 100%;
     }
 
     .recipe-description-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       width: 30%;
       margin: 5%;
     }
 
     .price-box {
+      display: flex;
       width: 30%;
       margin: 5%;
     }
 
+    
+    .recipe-title-box{
+      display: flex;
+      align-items: center;
+      height: 10%;
+      width: 90%;
+    }
+    .recipe-container-upper-wrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 55%;
+      width: 90%;
+    }
+
     .selected-recipe-img {
-      height: 60%;
-      margin: 5%;
-      aspect-ratio: 1/1;
+      display: flex;
+      height: 80%;
+      width: 100%;
     }
   
+    .recipe-container-lower-wrapper{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+      height: 30%;
+      width: 90%;
+    }
+
+    .price-box {
+     display: flex;
+     flex-direction: column;
+     height: 90%;
+     width: 30%;
+     margin: 0;
+    }
+
+    .ingredient-box{
+      display: flex;
+      flex-direction: row;
+      align-content: center;
+      /* height: 90%;
+      width: 80%;
+      overflow: scroll; */
+    }
+
+    .recipe-info-box{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 80%;
+      width: 90%;
+      margin: 2px;
+      overflow: scroll;
+    }
 /* ~~~~~~~~~~~~~~~~~~aux~~~~~~~~~~~~~~~~~~~~~~ */
  .hidden {
   display: none;

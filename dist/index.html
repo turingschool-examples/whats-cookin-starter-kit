@@ -21,7 +21,8 @@
         <div class ="search-header" id="searchHeader">Find a Recipe </div>
         <div class ="search-bar" id="searchBar">
           <input type="search" id="query" name="q"
-          placeholder="Search recipes...">🔎
+          placeholder="Search recipes...">
+          <button class = "search-button">🔎</button>
         </div>
       </article>
       <section class ="main-page-container hidden" id="mainPageContainer">
@@ -47,8 +48,13 @@
       </section>
       <section class ="recipe-container" id="recipeContainer">
         <div class="recipe-img-price-container">
+          <div class="recipe-container-upper-wrapper">
           <img class="selected-recipe-img" src="" alt="selected recipe">
+        </div>
+          <div class="recipe-container-lower-wrapper">
+          <p class="ingredient-box" id="ingredientBox">Ingredient Box</p>
           <p class="price-box" id="priceBox">innerHTML price list</p>
+        </div>
         </div>
         <article class ="recipe-description-box" id="recipeRSideBox">
           <p class ="recipe-title-box" id="recipeTitleBox">innerHTML recipe title</p>
