@@ -16,7 +16,7 @@ body {
 
 .logo-title {
   width: 2vw;
-  height: 1vh; 
+  height: 1vh;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -52,20 +52,67 @@ header {
 
 .main-section {
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #F9F6EE;
+  width: 100vw;
+  height: 62.5vh;
+
+}
+
+.home-view-container {
+  display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   background-color: #F9F6EE;
   width: 100vw;
   height: 62.5vh;
-  
+}
+
+.recipe-view-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #F9F6EE;
+  width: 100vw;
+  height: 62.5vh;
+  border: 2px solid black;
+}
+
+.recipe-view-small-box {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 25%;
+  border: 2px solid black;
+}
+
+.recipe-view-big-box {
+  height: 100%;
+  width: 50%;
+  border: 2px solid black;
 }
 
 .user-search-container {
   display:flex;
   flex-direction: row-reverse;
-  
 }
+
+.ingredient-name {
+  width: 100%;
+  height: 20%;
+  border: 2px solid black;
+}
+
+.ingredient-details {
+  width: 100%;
+  height: 80%;
+  border: 2px solid black;
+}
+
 
 .search-image {
   background-color: #f7f5f6;
@@ -81,7 +128,7 @@ header {
   align-content: space-between;
   width: 100vw;
   height: 65vh;
-  
+
 }
 
 .box-of-recipes {
@@ -137,4 +184,7 @@ button {
   padding:0.5em 3em;
   font-weight:400;
   text-transform:uppercase;
+}
+.hidden {
+  display: none;
 }
