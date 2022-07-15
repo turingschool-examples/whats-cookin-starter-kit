@@ -1,11 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Whats Cookin</title>
+    <title>What's Cookin?!</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <nav class="nav-bar">
+      <div class="nav-bar_tabs">
+        <button type="button" class="nav-tabs_all-recipes" id="allRecipesButton">All Recipes</button>
+        <button type="button" class="nav-tabs_favorites" id="favoritesViewButton">Favorites</button>
+      </div>
+      <div class="nav-bar_search">
+        <form class="search-bar">
+          <label for="searchBarInput" class="search-bar_search-label">Search</label>
+          <input type="search" class="search-bar_search-input" name="searchInput" value="" id="searchBarInput">
+        </form>
+        <button type="button" class="search-bar_main-button" id="mainPageButton" label="to-main">
+          <p class="search-bar_main-page-button-text">What's Cookin'?!</p
+        </button>
+      </div>
+    </nav>
+    <main class="main">
+      <section class="main-page" id="mainPageSection">
+        <section class="tag-section_recipes-container hidden" id="tagRecipesContainer"></section>
+        <h1 class="main-title">What's Cookin'?!</h1>
+        <article class="tag-label-container" id="tagLabelIcon">
+          <button class="tag-label_button" value="breakfast"
+            <p class="tag-label_name">breakfast</p>
+          </button>
+          <button class="tag-label_button" value="second breakfast"
+            <p class="tag-label_name">second breakfast</p>
+          </button>
+          <button class="tag-label_button" value="elevensies"
+            <p class="tag-label_name">elevensies</p>
+          </button>
+          <button class="tag-label_button" value="lunch"
+            <p class="tag-label_name">lunch</p>
+          </button>
+          <button class="tag-label_button" value="dinner"
+            <p class="tag-label_name">dinner</p>
+          </button>
+          <button class="tag-label_button" value="supper"
+            <p class="tag-label_name">supper</p>
+          </button>
+          <button class="tag-label_button" value="side dish"
+            <p class="tag-label_name">side dish</p>
+          </button>
+          <button class="tag-label_button" value="soup"
+            <p class="tag-label_name">soup</p>
+          </button>
+          <button class="tag-label_button" value="snack"
+            <p class="tag-label_name">snack</p>
+          </button>
+          <button class="tag-label_button" value="dessert"
+            <p class="tag-label_name">dessert</p>
+          </button>
+          <button class="tag-label_button" value="salad"
+            <p class="tag-label_name">salad</p>
+          </button>
+        </article>
+      </section>
+      <section class="searched-recipes_recipe-results-container hidden" id="searchedRecipesContainer">
+        <h2 class="search-results">Search Results:</h2>
+        <p class="searched-recipes_no-results-container hidden" id="noResultsContainer">Sorry, no recipes match your search"></p>
+        <section class="recipes-container_search-results" id="searchedRecipes"></section>
+      </section>
+      <section class="all-recipes-page hidden" id="allRecipesSection"></section>
+        <div class="top-banner">
+          <h1 class="top-banner_title">All Recipes</h1>
+        </div>
+        <section class="all-recipes-page_recipes-container" id="allRecipesContainer"></section>
+      </section>
+      <section class="favorites-view hidden" id="favoriteRecipesSection">
+        <h1 class="top-banner_title">Favorite Recipes</h1>
+        <p class="recipe-container_"
+
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
