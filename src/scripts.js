@@ -64,15 +64,18 @@ function helperSwitch(element) {
 };
 
 function showRecipeInstructions(event) {
-    if (event.target.getAttribute("data-recipeId")) {
-        helperSwitch(searchLabel);
-        helperSwitch(recipeNameInput);
-        helperSwitch(searchButton);
-        helperSwitch(filterLabel);
-        helperSwitch(recipeTagInput);
-        helperSwitch(filterButton);
-        helperSwitch(favoriteButton);
-        helperSwitch(homeButton);
+    if (event.target.getAttribute("data-recipeId")) { 
+        if (!event.target.getAttribute("data-recipeDisplay")) {
+            helperSwitch(searchLabel);
+            helperSwitch(recipeNameInput);
+            helperSwitch(searchButton);
+            helperSwitch(filterLabel);
+            helperSwitch(recipeTagInput);
+            helperSwitch(filterButton);
+            helperSwitch(favoriteButton);
+            helperSwitch(homeButton);
+        }
+
         const recipeId = parseInt(event.target.getAttribute("data-recipeId"));
         const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === recipeId);
         selectedRecipe.buildIngredientsNeeded(ingredientsInfo.ingredientsData);
@@ -81,12 +84,14 @@ function showRecipeInstructions(event) {
         recipeDisplay.innerHTML = "";
         recipeHeading.innerText = `${selectedRecipe.name}`;
         recipeDisplay.innerHTML = (`
-            <img class="selected-recipe-image" src=${selectedRecipe.image} alt=${selectedRecipe.name}>
-            <button class="favorite-button" id="favoriteButton">Favorite</button>
-            <ol id="recipeInstructions"></ol>
-            <h3 class="ingredients">Ingredients</h3>
-            <ul class="ingredients-list" id="ingredientsList"></ul>
-            <p class="total">Total Cost: ${totalCost}</p>
+            <div class="selected-recipe-display">
+                <img class="selected-recipe-image" src=${selectedRecipe.image} alt=${selectedRecipe.name}>
+                <button class="favorite-button" id="favoriteButton">Favorite</button>
+                <ol id="recipeInstructions"></ol>
+                <h3 class="ingredients">Ingredients</h3>
+                <ul class="ingredients-list" id="ingredientsList"></ul>
+                <p class="total">Total Cost: ${totalCost}</p>
+            </div>
         `);
 
         selectedRecipe.instructions.forEach((instruction) => {
@@ -127,7 +132,7 @@ function filterRecipeTag(event) {
     requestedRecipes.forEach((recipe) => {
     recipeDisplay.innerHTML += (`
         <div class="recipe-image-wrapper">
-          <img class="recipe-image" data-recipeId=${recipe.id} src=${recipe.image} alt=${recipe.name}>
+          <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
           <p class="recipe-name">${recipe.name}</p>
           <button class="favorite-button" id="favoriteButton">Favorite</button>
         </div>
