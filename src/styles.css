@@ -72,7 +72,7 @@ h1 {
   width: 100%;
 }
 
-.add-to-favorites-icon, .unfavorite {
+.add-to-favorites-icon, .unfavorite, .trash-icon {
   width: 40px;
   margin-bottom: -266px;
 }
@@ -117,11 +117,11 @@ h3, #form {
   margin-bottom: -260px;
 }
 
-.view-all-page {
+.view-all-page, .favorite-recipes {
   display: flex;
 }
 
-.all-recipes {
+.all-recipes, .favorite-recipe-icons, .trash-icon {
   display: grid;
   grid-template-columns: auto auto auto;
   gap: 7px 7px;

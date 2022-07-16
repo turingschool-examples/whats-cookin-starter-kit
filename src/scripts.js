@@ -4,6 +4,7 @@ import apiCalls from './apiCalls';
 import './images/turing-logo.png'
 import './images/heart.png'
 import './images/filled-heart.png'
+import './images/trash.png'
 
 import { ingredientsData } from './data/ingredients'
 import { recipeData } from './data/recipes'
@@ -17,7 +18,7 @@ import "/node_modules/@glidejs/glide/dist/css/glide.theme.min.css"
 import RecipeRepository from './classes/RecipeRepository.js'
 
 import Recipe from './classes/recipe'
-import Ingredient from './classes/Ingredient'
+//import Ingredient from './classes/Ingredient'
 import User from './classes/user-class'
 
 
@@ -49,12 +50,14 @@ const tagContainer = document.querySelector('.tag-container')
 const tagContainer2 = document.querySelector('.tag-container2')
 const form = document.querySelector('#form')
 const searchbar = document.querySelector("#searchbar")
+const favoriteSearchBar = document.querySelector("#searchbar2")
 const searchButton = document.querySelector(".search-button")
+const searchButton2 = document.querySelector('.search-button2')
 const favoriteRecipesPage = document.querySelector('.favorite-recipes')
+const favoritePageContainer = document.querySelector('.favorite-recipe-icons')
 
 
 let newUser;
-let newRecipeIngredient;
 
 viewAllButton.addEventListener('click', showViewAllPage)
 homeButton.addEventListener('click', showHomePage)
@@ -64,12 +67,17 @@ allRecipesContainer.addEventListener('click', function(event) {
   })
 window.addEventListener('click', function(event) {
       filterByTag(event)
+      favoriteFilterByTag(event)
     })
 window.addEventListener('load', showHomePage)
 searchButton.addEventListener('click', filterByName)
+searchButton2.addEventListener('click', favoriteFilterByName)
 window.addEventListener('load', generateRandomUser)
 viewAllPage.childNodes[3].addEventListener('click', function(event) {
     changeHearts(event)
+})
+favoriteRecipesPage.childNodes[3].addEventListener('click', function(event) {
+  deleteRecipe(event)
 })
 
 function changeHearts(event) {
@@ -81,11 +89,27 @@ function changeHearts(event) {
             newUser.addRecipeToCook(recipe)
           }
         })        
-    } else if (event.target.classList.contains('unfavorite')) {
+    } else if (event.target.classList.contains('unfavorite') || event.target.classList.contains('trash-icon')) {
         event.target.src = "./images/heart.png"
         event.target.classList = 'add-to-favorites-icon'
+        recipeRepository.recipes.forEach(recipe => {
+          if (recipe.image === event.target.parentNode.childNodes[1].src) {
+            newUser.removeRecipeToCook(recipe)
+          }
+        })
     }   
   }
+
+  function deleteRecipe(event) {
+      if (event.target.classList.contains('trash-icon')) {
+        recipeRepository.recipes.forEach(recipe => {
+          if (recipe.image === event.target.parentNode.childNodes[1].src) {
+            newUser.removeRecipeToCook(recipe)
+            showFavoritesPage()
+          }
+    })
+  }
+}
 // 
 
 function generateRandomUser() {
@@ -119,11 +143,11 @@ function showFavoritesPage() {
     recipeDetailsPage.classList.add('hidden')
     favoriteRecipesPage.classList.remove('hidden')
     createTags(tagContainer2)
-    console.log(favoriteRecipesPage.childNodes[3].innerHTML) // <--- find dis agin
-    favoriteRecipesPage.childNodes[3].innerHTML += generateRandomUser().recipesToCook.forEach(recipe => {
-        //glideRecipes.src += `${recipe.image}`
-        viewAllPage.childNodes[3].innerHTML += `<section class="recipe-icon">
-        <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
+    favoritePageContainer.innerHTML = ''
+    newUser.recipesToCook.forEach(recipe => {
+        console.log(newUser.recipesToCook)
+        favoritePageContainer.innerHTML += `<section class="recipe-icon">
+        <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image"><img class="trash-icon" src="./images/trash.png">
         <p>
           ${recipe.name}
         </p>
@@ -132,21 +156,15 @@ function showFavoritesPage() {
 }
 
 function populateAllRecipes() {
+  console.log('view', newUser)
     recipeData.forEach(recipe => {
-    //glideRecipes.src += `${recipe.image}`
     viewAllPage.childNodes[3].innerHTML += `<section class="recipe-icon">
-    <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image"><img class="add-to-favorites-icon" src="./images/heart.png">
+    <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image"><img class="add-to-favorites-icon" src='./images/heart.png'>
     <p>
       ${recipe.name}
     </p>
   </section>`  
-
-    // glideRecipes.innerHTML += `<li class="glide__slide"><img class="recipe-icon-image" src="${recipe.image}"></li>`
-
-    //or use a few links from data set and call it "featured recipes"
-    //look in docs to see how to add new data to carousel
 })
-//  console.log(glideRecipes.innerHTML)
 }
 
 populateAllRecipes()
@@ -170,7 +188,6 @@ function showRecipeDetailsPage(event) {
 }
 
 function createTags(tagContainer) {
-    // const tagContainer = document.querySelector('.tag-container')
     const getRecipeTags = recipeData.map(recipe => {
         return recipe.tags
     }).flat()
@@ -202,6 +219,22 @@ function filterByTag(event) {
 }
 }
 
+function favoriteFilterByTag(event) {
+  if (event.target.type === "checkbox") {
+    let filteredRecipesByTag = newUser.userFilterTags(event.target.id)
+  favoriteRecipesPage.childNodes[3].innerHTML = ''
+  filteredRecipesByTag.forEach(recipe => {
+  favoriteRecipesPage.childNodes[3].innerHTML += `<section class="recipe-icon">
+  <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image"><img class='trash-icon' src="./images/trash.png">
+  <p>
+    ${recipe.name}
+  </p>
+</section>`
+})
+  }
+}
+
+
 function filterByName(event) {
   event.preventDefault()
   let filteredRecipesByName = recipeRepository.filterNames(searchbar.value)
@@ -213,5 +246,19 @@ function filterByName(event) {
     ${recipe.name}
   </p>
 </section>`
+})
+}
+
+function favoriteFilterByName(event) {
+  event.preventDefault()
+  let filteredRecipesByName = newUser.userFilterNames(favoriteSearchBar.value)
+  favoriteRecipesPage.childNodes[3].innerHTML = ''
+  filteredRecipesByName.forEach(recipe => {
+  favoriteRecipesPage.childNodes[3].innerHTML += `<section class="recipe-icon">
+  <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image"><img class='trash-icon' src="./images/trash.png">
+  <p>
+    ${recipe.name}
+  </p>
+  </section>`
 })
 }
