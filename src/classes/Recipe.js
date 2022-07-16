@@ -40,7 +40,7 @@ class Recipe {
     returnInstructions(){
         return this.instructions;
     };
-
+    
     // getIngredientNamesForRecipe( recipe , ingredientList ){
     //     return recipe.reduce( ( acc, recipeIngredient ) => {
     //         // console.log('INGREDIENTLIST: ', ingredientList)
