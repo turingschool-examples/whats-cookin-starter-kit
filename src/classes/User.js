@@ -4,6 +4,8 @@ class User {
     this.name = userData.name;
     this.pantry = userData.pantry || [];
     this.recipesToCook = [];
+    this.selectedTags = [];
+    this.filteredResults = [];
   }
 
   addRecipeToCook(recipe) {
@@ -20,14 +22,36 @@ class User {
     this.recipesToCook.splice(indexOfRecipeToRemove, 1);
     return this.recipesToCook;
   }
-  filterRecipesByTag(tag) {
-    let filteredRecipesByTag = this.recipesToCook.filter((recipe) => {
-      if (recipe.tags.includes(tag)) {
-        return true;
-      }
-    });
-    return filteredRecipesByTag;
+  // filterRecipesByTag(tag) {
+  //   let filteredRecipesByTag = this.recipesToCook.filter((recipe) => {
+  //     if (recipe.tags.includes(tag)) {
+  //       return true;
+  //     }
+  //   });
+  //   return filteredRecipesByTag;
+  // }
+  addTagsToSearch(keyword) {
+    if (!this.selectedTags.includes(keyword)) {
+      this.selectedTags.push(keyword);
+    }
+    this.filterByMultipleTags();
   }
+
+  filterByMultipleTags() {
+    this.filteredResults = this.recipesToCook.filter((recipe) => {
+      let containsOr = false;
+      if (
+        this.selectedTags.some((keyword) => {
+          return recipe.tags.includes(keyword);
+        })
+      ) {
+        containsOr = true;
+      }
+      return containsOr;
+    });
+    return this.filteredResults;
+  }
+
   filterRecipesByName(recipeName) {
     let filteredRecipesByName = this.recipesToCook.filter((recipe) => {
       let lowerCaseRecipeName = recipe.name.toLowerCase();
@@ -38,21 +62,12 @@ class User {
     });
     return filteredRecipesByName;
   }
-
-  filterByMultipleTags(keywords) {
-    let filtered = this.recipesToCook.filter((recipe) => {
-      let containsOr = false
-      if (
-        keywords.some((keyword) => {
-          return recipe.tags.includes(keyword);
-        })
-      ) {
-        containsOr = true;
-      }
-      return containsOr;
-    });
-    return filtered;
+  clearImmediate() {
+    this.selectedTags = [];
+    this.filteredResults = [];
   }
 }
+
+
 
 export default User;
