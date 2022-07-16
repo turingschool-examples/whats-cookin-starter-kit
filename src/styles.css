@@ -1,5 +1,5 @@
 * {
-  border: 1px solid blueviolet;
+  /* border: 1px solid blueviolet; */
 }
 
 body {
@@ -327,13 +327,14 @@ filter: drop-shadow(5px 10px 3px black);
 
     .price-list-container{
       display: flex;
+      flex-direction: column;
       align-items: center;
       height: 90%;
       width: 100%;
       margin: 0;
     }
 
-    .price-box{
+    .total-price-box{
       display: flex;
       align-items: center;
       justify-content: center;
@@ -348,7 +349,7 @@ filter: drop-shadow(5px 10px 3px black);
 
     .ingredient-box{
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: center;
       align-content: center;
       height: 90%;
@@ -365,7 +366,15 @@ filter: drop-shadow(5px 10px 3px black);
       overflow: scroll;
     }
 
+    .ingredient-prices {
+      margin: 0;
+    }
+
     .recipe-instructions {
+      margin: 0;
+    }
+
+    .recipe-ingredients {
       margin: 0;
     }
 /* ~~~~~~~~~~~~~~~~~~aux~~~~~~~~~~~~~~~~~~~~~~ */

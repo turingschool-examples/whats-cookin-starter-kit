@@ -23,20 +23,27 @@ class Recipe {
     return matchedIngredientNames
    }
 
-  getCostofIngredients() {
+  getCostOfIngredients() {
     const matchedIngredientCost = this.ingredients.map(ingredient => {
       const foundIngredient = this.ingredientData.find(
         data => data.id === ingredient.id
       );
       const newObject = Object.assign(foundIngredient, ingredient);
       const newIngredient = new Ingredient(newObject);
-      return (newObject.estimatedCostInCents * newObject.quantity.amount)
+      return newObject.estimatedCostInCents * newObject.quantity.amount
     })
     return matchedIngredientCost
   }
 
-  getCostofRecipe() {
-    const recipeCost = this.getCostofIngredients().reduce((sum, cost) => {
+  getCostOfIngredientsInDollars() {
+    let ingredientCostInDollars = this.getCostOfIngredients().map(cost => {
+      return `$${(cost/100).toFixed(2)}`
+    })
+    return ingredientCostInDollars
+  }
+
+  getCostOfRecipe() {
+    const recipeCost = this.getCostOfIngredients().reduce((sum, cost) => {
       return sum += cost
     }, 0);
     return `$${(recipeCost/100).toFixed(2)}`

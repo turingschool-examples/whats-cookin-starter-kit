@@ -94,13 +94,13 @@ describe('Recipe', () => {
   });
 
   it('should have a method to get cost of ingredients in cents', () => {
-    expect(recipe2.getCostofIngredients()).to.deep.equal([702, 414, 236])
-    expect(recipe.getCostofIngredients()).to.deep.equal([213, 291, 472])
+    expect(recipe2.getCostOfIngredients()).to.deep.equal([702, 414, 236])
+    expect(recipe.getCostOfIngredients()).to.deep.equal([213, 291, 472])
   });
 
   it('should have a method to get the total cost in dollars for a recipe', () => {
-    expect(recipe2.getCostofRecipe()).to.equal('$13.52')
-    expect(recipe.getCostofRecipe()).to.equal('$9.76')
+    expect(recipe2.getCostOfRecipe()).to.equal('$13.52')
+    expect(recipe.getCostOfRecipe()).to.equal('$9.76')
   });
 
   it('should have a method to return recipe instructions', () => {
