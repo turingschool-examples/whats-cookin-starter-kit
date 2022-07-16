@@ -4,7 +4,7 @@ class User {
     this.name = userData.name;
     this.pantry = userData.pantry || [];
     this.recipesToCook = [];
-    this.selectedTags = [];
+    this.selectedInput = [];
     this.filteredResults = [];
   }
 
@@ -31,8 +31,8 @@ class User {
   //   return filteredRecipesByTag;
   // }
   addTagsToSearch(keyword) {
-    if (!this.selectedTags.includes(keyword)) {
-      this.selectedTags.push(keyword);
+    if (!this.selectedInput.includes(keyword)) {
+      this.selectedInput.push(keyword);
     }
     this.filterByMultipleTags();
   }
@@ -41,7 +41,7 @@ class User {
     this.filteredResults = this.recipesToCook.filter((recipe) => {
       let containsOr = false;
       if (
-        this.selectedTags.some((keyword) => {
+        this.selectedInput.some((keyword) => {
           return recipe.tags.includes(keyword);
         })
       ) {
@@ -62,8 +62,23 @@ class User {
     });
     return filteredRecipesByName;
   }
+  filterByMultipleRecipeNames() {
+    this.filteredResults = this.recipesToCook.filter((recipe) => {
+      let containsOr = false;
+      if (
+        this.selectedInput.some((keyword) => {
+          return recipe.tags.includes(keyword);
+        })
+      ) {
+        containsOr = true;
+      }
+      return containsOr;
+    });
+    return this.filteredResults;
+  }
+
   clearImmediate() {
-    this.selectedTags = [];
+    this.selectedInput = [];
     this.filteredResults = [];
   }
 }
