@@ -26,7 +26,7 @@
           <img class="fav-img" id="favImg" src="./favorite-svg.svg">
         </div>
       </header>
-        <article class ="search-container" id="searchContainer">
+        <article class ="search-container hidden" id="searchContainer">
           <div class ="search-header" id="searchHeader">Find a Recipe </div>
           <div class ="search-bar" id="searchBar">
             <form>
@@ -40,7 +40,7 @@
             <input class = "name-search" type = "radio" name = "searchMode" value = "name">Search by Name</input>
           </div>
         </article>
-      <section class ="main-page-container" id="mainPageContainer">
+      <section class ="main-page-container hidden" id="mainPageContainer">
         <div class ="feature-container" id="featureContainer">
           <div class="feature-image-box" id="featureImageBox">
             <img class="random-feature-img" src="">
@@ -71,12 +71,7 @@
           </div>
         </section>
       </section>
-      <section class ="recipe-container hidden" id="recipeContainer">
-        <article class ="recipe-r-side-box" id="recipeRSideBox">
-          <p class ="recipe-title-box" id="recipeTitleBox">innerHTML recipe title</p>
-          <p class ="recipe-box" id="recipeBox">recipeInfo</p>
-        </article>
-       <section class ="recipe-container" id="recipeContainer">
+      <section class ="recipe-container" id="recipeContainer">
           <div class="recipe-img-price-container">
             <div class="recipe-container-upper-wrapper">
               <img class="selected-recipe-img" src="" alt="selected recipe">
@@ -91,10 +86,9 @@
           </div>
           <article class ="recipe-description-box" id="recipeRSideBox">
             <p class ="recipe-title-box" id="recipeTitleBox">innerHTML recipe title</p>
-            <p class ="recipe-info-box" id="recipeBox">recipeInfo</p>
+            <p class ="recipe-info-box" id="recipeBox"></p>
           </article>
         </section>
-      </section>
     </section>
     <aside class ="home-recipe-sidebar" id ="homeRecipeBar">
       <div class="side-bar-title-wrapper">

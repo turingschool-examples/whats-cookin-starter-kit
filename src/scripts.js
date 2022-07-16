@@ -109,7 +109,10 @@ function viewRecipe(event) {
   let selectedRecipeName = event.target.innerText
   let selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name)
   recipeNameBox.innerText = selectedRecipe[0].name
-  recipeDetailsBox.innerText = selectedRecipe[0].returnRecipeInstructions()
+  recipeDetailsBox.innerHTML = ''
+  selectedRecipe[0].returnRecipeInstructions().forEach(instruction => {
+    recipeDetailsBox.innerHTML += `<p class='recipe-instructions'> ${instruction} </p></br>`
+  })
   recipePriceList.innerText = selectedRecipe[0].getCostofRecipe()
   selectedRecipeImg.src = selectedRecipe[0].image;
 }

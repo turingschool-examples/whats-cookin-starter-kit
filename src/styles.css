@@ -1,5 +1,5 @@
 * {
-  /* border: 1px solid blueviolet; */
+  border: 1px solid blueviolet;
 }
 
 body {
@@ -363,6 +363,10 @@ filter: drop-shadow(5px 10px 3px black);
       width: 90%;
       margin: 2px;
       overflow: scroll;
+    }
+
+    .recipe-instructions {
+      margin: 0;
     }
 /* ~~~~~~~~~~~~~~~~~~aux~~~~~~~~~~~~~~~~~~~~~~ */
  .hidden {

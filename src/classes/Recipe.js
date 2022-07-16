@@ -39,7 +39,7 @@ class Recipe {
     const recipeCost = this.getCostofIngredients().reduce((sum, cost) => {
       return sum += cost
     }, 0);
-    return `$${(recipeCost/100).toString()}`
+    return `$${(recipeCost/100).toFixed(2)}`
   }
 
   returnRecipeInstructions() {
