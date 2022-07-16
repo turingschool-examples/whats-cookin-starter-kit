@@ -144,14 +144,22 @@ header {
 }
 
 .recipe-pic-box {
-  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 15vw;
   height: 50vh;
-  border: 2px solid #060911;
+  /* border: 2px solid #060911; */
   border-radius: 20px;
   margin-left: 2vw;
   margin-right: 2vw;
-  padding-left: 13vw;
-  padding-right: 13vw;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+.recipe-label {
+  color: black
 }
 
 .first-box {
