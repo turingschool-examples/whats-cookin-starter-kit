@@ -189,6 +189,16 @@ describe("User", () => {
     expect(user3.filteredResults).to.deep.equal([recipe1, recipe3]);
   });
 
+  it('should be able to search for multiple recipes by name', () => {
+    user3.addRecipeToCook(recipe1);
+    user3.addRecipeToCook(recipe2);
+    user3.addRecipeToCook(recipe3);
+    user3.addInputToSearch("Chip");
+    user3.addInputToSearch("glazed");
+    user3.filterByMultipleRecipeNames();
+    expect(user3.filteredResults).to.deep.equal([recipe1, recipe3]);
+  });
+
   it('should clear the selected input & filtered results array after filteration is complete', () => {
     user3.addRecipeToCook(recipe1);
     user3.addRecipeToCook(recipe2);
@@ -201,18 +211,5 @@ describe("User", () => {
     expect(user3.selectedInput).to.deep.equal([]);
     expect(user3.filteredResults).to.deep.equal([]);
   })
-  it('should be able to search for multiple recipes by name', () => {
-    user3.addRecipeToCook(recipe1);
-    user3.addRecipeToCook(recipe2);
-    user3.addRecipeToCook(recipe3);
-    user3.addInputToSearch("Chip");
-    user3.addInputToSearch("glazed");
-    user3.filterByMultipleRecipeNames();
-    expect(user3.filteredResults).to.deep.equal([recipe1, recipe3]);
-
-
-  });
-
-
 
 });
