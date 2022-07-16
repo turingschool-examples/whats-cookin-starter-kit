@@ -30,7 +30,7 @@ let recipeContainer = document.querySelector( '.recipe-grid-container' );
 let h4 = document.querySelector( '.rec-name' );
 let instructionText = document.querySelector( '.modal-instructions' );
 let totalCost = document.querySelector( '.dish-cost' );
-let ingredientText = document.querySelector( 'modal-ingredients')
+let ingredientText = document.querySelector( '.modal-ingredients')
 let recipeCard = document.querySelector(".recipe-grid-container");
 
 
@@ -164,17 +164,17 @@ function displayRecipeInfo( e ){
     newRecipe = new RecipeRepository( recipeList )
     // console.log(newRecipe);
     newRecipe.recipes.map(( dish ) => {
-        console.log('DIS DISH; ', dish)
+        // console.log('DIS DISH; ', dish)
         if( e.target.id == dish.id ){
             recipeClass = new Recipe( dish, dish.ingredients )
-            // recipeClass.getIngredientName()
+            recipeClass.getIngredientsWithNames(dish.ingredients, ingredientList)
+            console.log(dish)
             // recipeModal.id = dish.id  
             h4.innerText = dish.name  
             instructionText.innerText = dish.instructions.map(task => `${task.number}: ${task.instruction}`).join('  ');
             // ingredientText.innerText = dish.ingredients.map(item => `${recipeClass.getIngredientsWithNames( dish, recipeList)}`);
             // ^^^^^^^^^^^ dis has a lot of potential!
             //need to figure out how to pull in the result of 'getIngredientsWithNames' function
-            console.log('DISH: ', dish) 
             // console.log('DISH: ', recipeClass.getIngredientsWithNames(dish.ingredientList, newRecipe))
             return 
         }       
