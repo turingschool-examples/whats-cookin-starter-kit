@@ -32,31 +32,61 @@ describe("RecipeRepository", () => {
     expect(recipeRepository.recipes[1]).to.deep.equal(anotherRecipe);
   });
 
-  it("Should be able to filter recipes by tag", () => {
+  // it("Should be able to filter recipes by tag", () => {
+  //   let dinnerRecipeData = {
+  //     tags: ["dinner", "main dish"],
+  //   };
+  //   let breakfastRecipeData = {
+  //     tags: ["breakfast", "side"],
+  //   };
+  //   let dinnerRecipe = new Recipe(dinnerRecipeData);
+  //   let breakfastRecipe = new Recipe(breakfastRecipeData);
+  //   recipeRepository.addRecipe(dinnerRecipe);
+  //   recipeRepository.addRecipe(breakfastRecipe);
+
+  //   expect(recipeRepository.filterRecipesByTag("dinner")).to.include(
+  //     dinnerRecipe
+  //   );
+  //   expect(recipeRepository.filterRecipesByTag("breakfast")).to.include(
+  //     breakfastRecipe
+  //   );
+
+  //   expect(recipeRepository.filterRecipesByTag("dinner")).to.not.include(
+  //     breakfastRecipe
+  //   );
+  //   expect(recipeRepository.filterRecipesByTag("breakfast")).to.not.include(
+  //     dinnerRecipe
+  //   );
+  // });
+
+  it.only("Should be able to filter recipes by multiple tags", () => {
     let dinnerRecipeData = {
       tags: ["dinner", "main dish"],
     };
     let breakfastRecipeData = {
       tags: ["breakfast", "side"],
     };
+    let lunchRecipeData = {
+      tags: ["lunch", "sandwich"],
+    };
+
     let dinnerRecipe = new Recipe(dinnerRecipeData);
     let breakfastRecipe = new Recipe(breakfastRecipeData);
+    let lunchRecipe = new Recipe(lunchRecipeData);
+
     recipeRepository.addRecipe(dinnerRecipe);
     recipeRepository.addRecipe(breakfastRecipe);
+    recipeRepository.addRecipe(lunchRecipe);
 
-    expect(recipeRepository.filterRecipesByTag("dinner")).to.include(
-      dinnerRecipe
-    );
-    expect(recipeRepository.filterRecipesByTag("breakfast")).to.include(
-      breakfastRecipe
-    );
+    recipeRepository.addInputToSearch("dinner");
+    recipeRepository.addInputToSearch("breakfast");
+    
+    expect(recipeRepository.filterByMultipleTags("dinner")).to.include(
+      dinnerRecipe);
 
-    expect(recipeRepository.filterRecipesByTag("dinner")).to.not.include(
-      breakfastRecipe
-    );
-    expect(recipeRepository.filterRecipesByTag("breakfast")).to.not.include(
-      dinnerRecipe
-    );
+    expect(recipeRepository.filterByMultipleTags("breakfast")).to.include(breakfastRecipe);
+
+    expect(recipeRepository.filteredAllRecipes).to.deep.equal([dinnerRecipe, breakfastRecipe])
   });
 
   it("Should be able to filter recipes by a portion of their name", () => {
