@@ -29,8 +29,6 @@ let instructionText = document.querySelector( '.modal-instructions' );
 let totalCost = document.querySelector( '.dish-cost' );
 let ingredientText = document.querySelector( '.modal-ingredients')
 let recipeCard = document.querySelector(".recipe-grid-container");
-
-
 let recipeCardGridContainer = document.getElementById("gridContainer")
 let closeModalButton = document.getElementById("closeModal")
 
@@ -38,13 +36,14 @@ let closeModalButton = document.getElementById("closeModal")
 searchButton.addEventListener("click", searchRecipe);
 window.addEventListener( 'load', loadData );
 recipeContainer.addEventListener( 'click' , displayRecipeInfo );
+recipeContainer.addEventListener( 'click' , showCookingProfile)
 // favoriteRecipeButton.addEventListener('click', addToFaves);
 
 
 recipeCardGridContainer.addEventListener('click', (e) => {
-    e.target
-    // put modal display info here
-    MicroModal.show('recipeModal');
+    if (e.target.classList == 'lets-make-it-button') {
+        MicroModal.show('recipeModal');
+    }  
 })
 
 closeModalButton.addEventListener('click', () => {
@@ -103,7 +102,7 @@ function searchRecipe() {
         <h3>${ recipe.name }</h3>
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
-        <button class="save-button">Save to cooking profile!</button>
+        <button class="save-button" id="${ recipe.id }">Save to cooking profile!</button>
         </div>
         </section>`
     } );
@@ -159,6 +158,7 @@ function displayRecipeInfo( e ){
         if( e.target.id == dish.id ){
             recipeClass = new Recipe( dish, dish.ingredients );
             recipeClass.getIngredientsWithNames(dish.ingredients, ingredientList);
+            console.log(dish);
             h4.innerText = dish.name;  
             instructionText.innerText = dish.instructions.map( task => `${ task.number }: ${ task.instruction }` ).join( '  ' );
             ingredientText.innerText = dish.ingredients.map( foodItem => ` ${ ( foodItem.quantity.amount ).toFixed( 2 ) } ${ foodItem.quantity.unit } ${ foodItem.name }` );
@@ -168,17 +168,85 @@ function displayRecipeInfo( e ){
     });
 };
 
-function assignCost(dish) {
-    
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+// Save the recipe cards when button is clicked:
+
+function saveRecipeToRecipesToCook (e) {
+    const recipesToCook = []
+    let recipeCards = recipeCard; //<<<< need this to access the grid conatiner
+    //without this, null error persists
+    //will need to access both this and an event listener for the faves botton?????
+    //how to pull these id's on click on this button to push into array
+    recipeCards.recipes.map((favoriteDish) => {
+        if(e.target.id == favoriteDish.id) {
+            recipesToCook.push(favoriteDish)
+        }
+    })
+    console.log(recipesToCook)
+    return recipesToCook
 }
+
+
+// function setCardEventHandler() {
+//     var ideaCard = document.getElementById(`${currentIdea.id}`)
+//     ideaCard.addEventListener("click", function(event) {
+//       for (var i = 0; i < savedIdeas.length; i++) {
+//         if (event.target.className.includes("star") && savedIdeas[i].id == event.currentTarget.id) {
+//             return setStar(event.target, savedIdeas[i])
+//         }
+//         if (event.target.className.includes("delete") && savedIdeas[i].id == event.currentTarget.id) {
+//           savedIdeas.splice(i, 1)
+//           event.currentTarget.remove();
+//         }
+//       }
+//     })
+//   }
+
+
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+// Display the saved recipe cards on new page after
+// * Need to change 'View My Cooking Profile' button to 'Return to Main Page" when the 
+// saved page is displayed
+
+// * Need to have a 'REMOVE FROM COOKING PROFILE BUTTON' on the recipe cards in the 
+// saved page
+function showCookingProfile( e ) {
+    if (e.target.classList == 'save-button') {
+        console.log('success')
+    }
+    //gatekeeper conditional to check if `save to cooking profile was clicked`
+    //some form of alert or notification confirming the recipe was saved.
+    //function takes user to a new page.
+    //reference filterRecipeByName( ) to 
+
+}
+
+// function showStarredIdeas() {
+//     console.log(ideaCards);
+//     if (showStarred.textContent.includes('Show Starred Ideas')) {
+//       showStarred.textContent = 'Show All Ideas';
+//       for (var i = 0; i < savedIdeas.length; i++) {
+//         var idsMatch = savedIdeas[i].id == ideaCards[i].id
+//         if (idsMatch && !savedIdeas[i].star) {
+//           ideaCards[i].style.display = "none";
+//         }
+//       }
+//     } else if (showStarred.textContent.includes('Show All Ideas')) {
+//       showStarred.textContent = 'Show Starred Ideas';
+//       for (var i = 0; i < ideaCards.length; i++) {
+//         ideaCards[i].style.display = "";
+//       }
+//     }
+//   }
+
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 function hide(element) {
     element.classList.add('hidden');
-}
-
-
-function viewFaves () {
-
 }
 
 function addToFaves (e) {
