@@ -114,11 +114,7 @@ cursor: pointer;
 }
 
 
-/* ~~~~~~~~~~~~~~~~~~search bar~~~~~~~~~~~~~~~~~~~~~~ */
-
-
-
-/* ~~~~~~~~~~~~~~~style containers~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~home page~~~~~~~~~~~~~~~~~~~ */
 
 
 .h1-wrapper {
@@ -416,12 +412,6 @@ filter: drop-shadow(5px 10px 3px black);
     }
 
 /* ~~~~~~~~~~~~~~~~~~view favorite recipe user story~~~~~~~~~~~~~~~~~~~~~~ */
-
-    .favorite-container{
-      height: 100%;
-      width: 100%;
-    }
-
     .search-favorite-container{
       display:flex;
       flex-direction: column;
@@ -433,10 +423,39 @@ filter: drop-shadow(5px 10px 3px black);
       color: white;
       }
 
+    .main-favorite-container{
+      height: 100%;
+      width: 100%;
+    }
+
+    .favorite-container{
+      display: flex;
+      flex-direction: row;
+      background-image: url("../dist/anyonecancook-logo.svg");
+    }
+    
+    /* .fav-page-logo-img{
+      display: flex;
+      height: 100%;
+      width: 100%;
+      opacity: 20%;
+    } */
+    
+   
       .favorite-recipe-icon-container{
-       background-image: "/anyonecancook-logo.svg";
-       
+        display: flex;
+        height: 50%;
+        width: 100%;
       }
+
+      .favorite-recipe-icons{
+          display: flex;
+          height: 125px;  
+          width: 125px;
+          filter: drop-shadow(5px 10px 3px black);
+          cursor: pointer;
+          }
+      
 
 /* ~~~~~~~~~~~~~~~~~~aux~~~~~~~~~~~~~~~~~~~~~~ */
  .hidden {
