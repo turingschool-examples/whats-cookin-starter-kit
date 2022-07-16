@@ -15,18 +15,21 @@ const recipeNameInput = document.querySelector('#recipeNameInput');
 const filterLabel = document.querySelector('#filterLabel');
 const recipeTagInput = document.querySelector('#recipeTagInput');
 const filterForm = document.querySelector('#filterForm');
+const searchForm = document.querySelector('#searchForm');
 
 const ingredientsInfo = {ingredientsData};
 const recipeInfo = {recipeData};
 const recipeRepository = new RecipeRepository(recipeInfo.recipeData);
+recipeRepository.listRecipes();
 
 window.addEventListener('load', displayRecipeList);
 recipeDisplay.addEventListener('click', showRecipeInstructions);
 homeButton.addEventListener('click', goHome);
 filterForm.addEventListener('submit', filterRecipeTag);
+searchForm.addEventListener('submit', searchRecipeName);
 
 function displayRecipeList() {
- recipeRepository.listRecipes();
+ recipeDisplay.innerHTML = "";
  recipeRepository.recipeList.forEach((recipe) => {
     recipeDisplay.innerHTML += (`
         <div class="recipe-image-wrapper">
@@ -61,8 +64,8 @@ function helperSwitch(element) {
 };
 
 function showRecipeInstructions(event) {
-    if (event.target.getAttribute("data-recipeId")) { 
-        helperSwitch(searchLabel); 
+    if (event.target.getAttribute("data-recipeId")) {
+        helperSwitch(searchLabel);
         helperSwitch(recipeNameInput);
         helperSwitch(searchButton);
         helperSwitch(filterLabel);
@@ -74,7 +77,7 @@ function showRecipeInstructions(event) {
         const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === recipeId);
         selectedRecipe.buildIngredientsNeeded(ingredientsInfo.ingredientsData);
         const totalCost = selectedRecipe.getTotalCost();
-        
+
         recipeDisplay.innerHTML = "";
         recipeHeading.innerText = `${selectedRecipe.name}`;
         recipeDisplay.innerHTML = (`
@@ -85,7 +88,7 @@ function showRecipeInstructions(event) {
             <ul class="ingredients-list" id="ingredientsList"></ul>
             <p class="total">Total Cost: ${totalCost}</p>
         `);
-        
+
         selectedRecipe.instructions.forEach((instruction) => {
             document.querySelector("#recipeInstructions").innerHTML += (`
                 <li class="instructions">${instruction.instruction}</li>
@@ -102,7 +105,7 @@ function showRecipeInstructions(event) {
 
 function filterRecipeTag(event) {
     event.preventDefault();
-    helperSwitch(searchLabel); 
+    helperSwitch(searchLabel);
     helperSwitch(recipeNameInput);
     helperSwitch(searchButton);
     helperSwitch(filterLabel);
@@ -110,11 +113,11 @@ function filterRecipeTag(event) {
     helperSwitch(filterButton);
     helperSwitch(favoriteButton);
     helperSwitch(homeButton);
-    
+
     const inputValue = recipeTagInput.value;
     const requestedRecipes = recipeRepository.findRecipeByTag(inputValue);
 
-    recipeHeading.innerText = 'Filtered Recipes';
+    recipeHeading.innerText = 'Filtered Recipes by Tag';
     recipeDisplay.innerHTML = "";
 
     if (requestedRecipes === `Sorry, no recipe with ${inputValue}.`) {
@@ -131,3 +134,35 @@ function filterRecipeTag(event) {
       `)
    });
 }
+
+function searchRecipeName(event) {
+    event.preventDefault();
+    helperSwitch(searchLabel);
+    helperSwitch(recipeNameInput);
+    helperSwitch(searchButton);
+    helperSwitch(filterLabel);
+    helperSwitch(recipeTagInput);
+    helperSwitch(filterButton);
+    helperSwitch(favoriteButton);
+    helperSwitch(homeButton);
+
+    const inputValue = recipeNameInput.value;
+    const requestedRecipes = recipeRepository.findRecipeByName(inputValue);
+
+    recipeHeading.innerText = 'Filtered Recipes by Name';
+    recipeDisplay.innerHTML = "";
+
+    if (requestedRecipes === `Sorry, no recipe named ${inputValue}.`) {
+        return recipeHeading.innerText = requestedRecipes;
+    }
+
+    requestedRecipes.forEach((recipe) => {
+    recipeDisplay.innerHTML += (`
+        <div class="recipe-image-wrapper">
+          <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
+          <p class="recipe-name">${recipe.name}</p>
+          <button class="favorite-button" id="favoriteButton">Favorite</button>
+        </div>
+      `)
+   });
+ }
