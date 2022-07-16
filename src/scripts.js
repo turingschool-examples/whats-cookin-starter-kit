@@ -14,6 +14,7 @@ const userData = require('./data/users');
 
 const homePage = document.querySelector('.main-page-container');
 const recipePage = document.querySelector('.recipe-container');
+const searchContainer = document.querySelector('.search-container')
 const homeButton = document.querySelector('.home-img');
 const favoriteButton = document.querySelector('.fav-img');
 const searchButton = document.querySelector('.search-button')
@@ -22,6 +23,9 @@ const icon1Img = document.querySelector('.icon-1-img');
 const icon2Img = document.querySelector('.icon-2-img');
 const icon3Img = document.querySelector('.icon-3-img');
 const icon4Img = document.querySelector('.icon-4-img');
+const icon5Img = document.querySelector('.icon-5-img');
+const icon6Img = document.querySelector('.icon-6-img');
+const featureImage = document.querySelector('.random-feature-img');
 const selectedRecipeImg = document.querySelector('.selected-recipe-img')
 const recipeNameBox = document.querySelector('.recipe-title-box');
 const recipePriceList = document.querySelector('.price-box');
@@ -33,6 +37,7 @@ const nameRadioBtn = document.querySelector('.name-search');
 // ***** Event Listeners ***** //
 
 window.addEventListener('load', updateMainPageRecipeIcons);
+window.addEventListener('load', updateMainPaigeFeatureImg);
 window.addEventListener('load', loadNewUser);
 window.addEventListener('load', displayAllNames);
 allRecipesSection.addEventListener('click', viewRecipe);
@@ -70,7 +75,14 @@ function updateMainPageRecipeIcons() {
   icon2Img.src = allRecipes[getRandomIndex(allRecipes)].image;
   icon3Img.src = allRecipes[getRandomIndex(allRecipes)].image;
   icon4Img.src = allRecipes[getRandomIndex(allRecipes)].image;
+  icon5Img.src = allRecipes[getRandomIndex(allRecipes)].image;
+  icon6Img.src = allRecipes[getRandomIndex(allRecipes)].image;
 }
+
+function updateMainPaigeFeatureImg(){
+  featureImage.src = allRecipes[getRandomIndex(allRecipes)].image;
+}
+
 
 function displayRecipeNames(recipeData) {
   allRecipesSection.innerHTML = ''
@@ -87,10 +99,12 @@ function displayAllNames() {
 function showHomePage() {
   hide(recipePage);
   show(homePage);
+  show(searchContainer);
 }
 
 function viewRecipe(event) {
   hide(homePage);
+  hide(searchContainer);
   show(recipePage);
   let selectedRecipeName = event.target.innerText
   let selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name)
@@ -106,7 +120,7 @@ function filterRecipe(event) {
     filterRecipeByTag(searchValue.value)
   } else if (nameRadioBtn.checked) {
     filterRecipeByName(searchValue.value)
-  }
+  } 
 }
 
 function filterRecipeByTag(tag) {

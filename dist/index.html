@@ -4,11 +4,20 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner&family=Raleway:wght@300&display=swap" rel="stylesheet">
     <title>ANYONE CAN COOK</title>
   </head>
   <body>
     <section class ="main-body">
       <header class ="header-container" id ="headerContainer">
+        <div class ="header-logo-container">
+          <img class="logo-img" id="LogoImg" src="./anyonecancook-logo.svg">
+        </div>
         <div class="h1-wrapper">
           <h1>ANYONE CAN COOK</h1>
         </div>
@@ -17,22 +26,28 @@
           <img class="fav-img" id="favImg" src="./favorite-svg.svg">
         </div>
       </header>
-    <article class ="search-container" id="searchContainer">
-      <div class ="search-header" id="searchHeader">Find a Recipe </div>
-      <div class ="search-bar" id="searchBar">
-        <form>
-          <input type="search" class = "search-input" id="query" name="q"
-            placeholder="Search recipes..."><button type ="submit" class = "search-button">🔎</button>
-        </form>
-      </div>
-        <input class = "tag-search" type = "radio" name = "searchMode" value = "tag">Search by Tag</input>
-        <input class = "name-search" type = "radio" name = "searchMode" value = "name">Search by Name</input>
-    </article>
+        <article class ="search-container" id="searchContainer">
+          <div class ="search-header" id="searchHeader">Find a Recipe </div>
+          <div class ="search-bar" id="searchBar">
+            <form>
+              <input type="search" class = "search-input" id="query" name="q"
+                placeholder="Search recipes..."><button type ="submit" class = "search-button">🔎</button>
+            </form>
+          </div>
+          <div class="radio-wrapper">
+            <input class = "tag-search" type = "radio" name = "searchMode" value = "tag">Search by Tag</input>
+            <input class = "name-search" type = "radio" name = "searchMode" value = "name">Search by Name</input>
+          </div>
+          </article>
     <section class ="main-page-container" id="mainPageContainer">
       <div class ="feature-container" id="featureContainer">
-        <div class="feature-image-box" id="featureImageBox"></div>
-        <div class="buzzword-container">buzzzz</div>
-        <div class="meal-box" id="mealBox">What's for ${time}</div>
+        <div class="feature-image-box" id="featureImageBox">
+          <img class="random-feature-img" src="">
+        </div>
+        <!-- <div class="buzzword-container">buzzzz</div> -->
+        <div class="meal-box" id="mealBox">
+          <h2>Foodies  Welcome</h2>
+        </div>
       </div>
       <section class="recipe-icon-container">
         <div class ="recipe-icons" id="recipeIcon1">
@@ -47,6 +62,12 @@
         <div class ="recipe-icons" id="recipeIcon4">
           <img class="icon-4-img" src="">
         </div>
+        <div class ="recipe-icons" id="recipeIcon5">
+          <img class="icon-5-img" src="">
+        </div>
+        <div class ="recipe-icons" id="recipeIcon6">
+          <img class="icon-6-img" src="">
+        </div>
       </section>
     </section>
   </section>
@@ -55,49 +76,32 @@
         <p class ="recipe-title-box" id="recipeTitleBox">innerHTML recipe title</p>
         <div class ="recipe-box" id="recipeBox">recipeInfo</div>
       </article>
-      <section class ="main-page-container hidden" id="mainPageContainer">
-        <div class ="feature-container" id="featureContainer">
-          <div class="feature-image-box" id="featureImageBox"></div>
-          <div class="buzzword-container">buzzzz</div>
-          <div class="meal-box" id="mealBox">What's for ${time}</div>
-        </div>
-        <section class="recipe-icon-container">
-          <div class ="recipe-icons" id="recipeIcon1">
-            <img class="icon-1-img" src="">
-          </div>
-          <div class ="recipe-icons" id="recipeIcons">
-            <img class="icon-2-img" src="">
-          </div>
-          <div class ="recipe-icons" id="recipeIcon3">
-            <img class="icon-3-img" src="">
-          </div>
-          <div class ="recipe-icons" id="recipeIcon4">
-            <img class="icon-4-img" src="">
-          </div>
-        </section>
-      </section>
       <section class ="recipe-container" id="recipeContainer">
         <div class="recipe-img-price-container">
           <div class="recipe-container-upper-wrapper">
             <img class="selected-recipe-img" src="" alt="selected recipe">
           </div>
           <div class="recipe-container-lower-wrapper">
-            <p class="ingredient-box" id="ingredientBox">Ingredient Box</p>
+              <p class="ingredient-box" id="ingredientBox">Ingredient Box</p>
             <div class="price-list-wrapper" id="priceListWrapper">
               <p class="price-list-container" id="priceListContainer"></p>
-             <p class="price-box" id="priceBox">innerHTML price list</p>
+              <p class="price-box" id="priceBox">innerHTML price list</p>
             </div>
           </div>
         </div>
-        <article class ="recipe-description-box" id="recipeRSideBox">
+      <article class ="recipe-description-box" id="recipeRSideBox">
           <p class ="recipe-title-box" id="recipeTitleBox">innerHTML recipe title</p>
           <p class ="recipe-info-box" id="recipeBox">recipeInfo</p>
-       </article>
-      </section>
-    </section> 
+      </article>
+    </section>
+    </section>
     <aside class ="home-recipe-sidebar" id ="homeRecipeBar">
-      <p class ="side-bar-header" is="sideHeader"> Recipes </p>
-      <p class ="list-recipes" id="allRecipes"> innerHTML Recipes</p>
+      <div class="side-bar-title-wrapper">
+        <p class ="side-bar-Recipe-title" is="sideTitle"> Recipes </p>
+      </div>
+      <div class="recipe-list-names">
+        <p class ="list-recipes" id="allRecipes"> innerHTML Recipes</p>
+      </div>
     </aside>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
