@@ -8,9 +8,61 @@ describe("RecipeRepository", () => {
   });
 
   let recipeRepository;
+  let recipe1;
+  let recipe2;
+  let recipe3;
 
   beforeEach(() => {
     recipeRepository = new RecipeRepository();
+    recipe1 = new Recipe({
+      id: 1,
+      name: "Chocolate Chip Cookie",
+      imageURL: "https://recipe-image-1.jpg",
+      portions: [
+        {
+          ingredientId: 1,
+          name: "Flour",
+          amount: 2,
+          cost: 101,
+          unit: "C",
+        },
+      ],
+      instructions: ["Bake it"],
+      tags: ["snack", "dessert"],
+    });
+
+    recipe2 = new Recipe({
+      id: 2,
+      name: "Glazed Ham Sandwich",
+      imageURL: "https://recipe-image-2.jpg",
+      portions: [
+        {
+          ingredientId: 2,
+          name: "Bread",
+          amount: 5,
+          cost: 200,
+          unit: "loaf",
+        },
+      ],
+      instructions: ["Make Sandwich"],
+      tags: ["snack", "lunch"],
+    });
+    recipe3 = new Recipe({
+      id: 3,
+      name: "Glazed Chops",
+      imageURL: "https://recipe-image-3.jpg",
+      portions: [
+        {
+          ingredientId: 3,
+          name: "Pork Chop",
+          amount: 1,
+          cost: 300,
+          unit: "serving",
+        },
+      ],
+      instructions: ["Grill it up"],
+      tags: ["pork", "dinner"],
+    });
   });
 
   it("Should have an array of recipes", () => {
@@ -18,138 +70,34 @@ describe("RecipeRepository", () => {
   });
 
   it("Should be able to add a recipe to the array of recipes", () => {
-    let recipe = new Recipe();
-    recipeRepository.addRecipe(recipe);
-
+    recipeRepository.addRecipe(recipe1);
     expect(recipeRepository.recipes.length).to.equal(1);
-    expect(recipeRepository.recipes[0]).to.deep.equal(recipe);
-
-    let anotherRecipe = new Recipe();
-    recipeRepository.addRecipe(anotherRecipe);
-
+    recipeRepository.addRecipe(recipe2);
     expect(recipeRepository.recipes.length).to.equal(2);
-    expect(recipeRepository.recipes[0]).to.deep.equal(recipe);
-    expect(recipeRepository.recipes[1]).to.deep.equal(anotherRecipe);
   });
 
-  // it("Should be able to filter recipes by tag", () => {
-  //   let dinnerRecipeData = {
-  //     tags: ["dinner", "main dish"],
-  //   };
-  //   let breakfastRecipeData = {
-  //     tags: ["breakfast", "side"],
-  //   };
-  //   let dinnerRecipe = new Recipe(dinnerRecipeData);
-  //   let breakfastRecipe = new Recipe(breakfastRecipeData);
-  //   recipeRepository.addRecipe(dinnerRecipe);
-  //   recipeRepository.addRecipe(breakfastRecipe);
-
-  //   expect(recipeRepository.filterRecipesByTag("dinner")).to.include(
-  //     dinnerRecipe
-  //   );
-  //   expect(recipeRepository.filterRecipesByTag("breakfast")).to.include(
-  //     breakfastRecipe
-  //   );
-
-  //   expect(recipeRepository.filterRecipesByTag("dinner")).to.not.include(
-  //     breakfastRecipe
-  //   );
-  //   expect(recipeRepository.filterRecipesByTag("breakfast")).to.not.include(
-  //     dinnerRecipe
-  //   );
-  // });
-
   it("Should be able to filter recipes by multiple tags", () => {
-    let dinnerRecipeData = {
-      tags: ["dinner", "main dish"],
-    };
-    let breakfastRecipeData = {
-      tags: ["breakfast", "side"],
-    };
-    let lunchRecipeData = {
-      tags: ["lunch", "sandwich"],
-    };
-
-    let dinnerRecipe = new Recipe(dinnerRecipeData);
-    let breakfastRecipe = new Recipe(breakfastRecipeData);
-    let lunchRecipe = new Recipe(lunchRecipeData);
-
-    recipeRepository.addRecipe(dinnerRecipe);
-    recipeRepository.addRecipe(breakfastRecipe);
-    recipeRepository.addRecipe(lunchRecipe);
-
+    recipeRepository.addRecipe(recipe1);
+    recipeRepository.addRecipe(recipe2);
+    recipeRepository.addRecipe(recipe3);
     recipeRepository.addInputToSearch("dinner");
-    recipeRepository.addInputToSearch("breakfast");
-
-    expect(recipeRepository.filterByMultipleTags("dinner")).to.include(
-      dinnerRecipe
-    );
-
-    expect(recipeRepository.filterByMultipleTags("breakfast")).to.include(
-      breakfastRecipe
-    );
-
+    recipeRepository.addInputToSearch("dessert");
+    recipeRepository.filterByMultipleTags();
     expect(recipeRepository.filteredAllRecipes).to.deep.equal([
-      dinnerRecipe,
-      breakfastRecipe,
+      recipe1,
+      recipe3,
     ]);
   });
 
-  // it("Should be able to filter recipes by a portion of their name", () => {
-  //   let chickenAlfredoData = {
-  //     name: "Chicken Alfredo",
-  //     tags: ["main", "pasta"],
-  //   };
-
-  //   let bakedChickenAlfredoData = {
-  //     name: "Baked Chicken Alfredo",
-  //     tags: ["main", "pasta"],
-  //   };
-
-  //   let chickenAlfredo = new Recipe(chickenAlfredoData);
-  //   let bakedChickenAlfredo = new Recipe(bakedChickenAlfredoData);
-  //   recipeRepository.addRecipe(chickenAlfredo);
-  //   recipeRepository.addRecipe(bakedChickenAlfredo);
-
-  //   expect(recipeRepository.filterRecipesByName("Chick")).to.include(
-  //     chickenAlfredo,
-  //     bakedChickenAlfredo
-  //   );
-
-  //   expect(recipeRepository.filterRecipesByName("baked")).to.include(
-  //     bakedChickenAlfredo
-  //   );
-  // });
-
   it("Should be able to filter multiple recipes by a portion of their name", () => {
-    let chickenAlfredoData = {
-      name: "Chicken Alfredo",
-      tags: ["main", "pasta"],
-    };
-
-    let bakedChickenAlfredoData = {
-      name: "Baked Chicken Alfredo",
-      tags: ["main", "pasta"],
-    };
-
-    let bakedChickenParmesanData = {
-      name: "Baked Chicken Parmesan",
-      tags: ["main", "pasta"],
-    };
-
-    let chickenAlfredo = new Recipe(chickenAlfredoData);
-    let bakedChickenAlfredo = new Recipe(bakedChickenAlfredoData);
-    let bakedChickenParmesan = new Recipe(bakedChickenParmesanData);
-
-    recipeRepository.addRecipe(chickenAlfredo);
-    recipeRepository.addRecipe(bakedChickenAlfredo);
-    recipeRepository.addRecipe(bakedChickenParmesan);
-    recipeRepository.addInputToSearch("Alf");
+    recipeRepository.addRecipe(recipe1);
+    recipeRepository.addRecipe(recipe2);
+    recipeRepository.addRecipe(recipe3);
+    recipeRepository.addInputToSearch("Glaze");
     recipeRepository.filterByMultipleRecipeNames();
-
     expect(recipeRepository.filteredAllResults).to.deep.equal([
-      chickenAlfredo,
-      bakedChickenAlfredo,
+      recipe2,
+      recipe3,
     ]);
   });
 
@@ -158,21 +106,13 @@ describe("RecipeRepository", () => {
   });
 
   it("Should update its array of tags whenever new recipes are added", () => {
-    let chickenAlfredoData = {
-      name: "Chicken Alfredo",
-      tags: ["main", "pasta"],
-    };
-
-    let bakedChickenAlfredoData = {
-      name: "Baked Chicken Alfredo",
-      tags: ["main", "pasta", "baked"],
-    };
-    let chickenAlfredo = new Recipe(chickenAlfredoData);
-    let bakedChickenAlfredo = new Recipe(bakedChickenAlfredoData);
-    recipeRepository.addRecipe(chickenAlfredo);
-    recipeRepository.addRecipe(bakedChickenAlfredo);
-
-    expect(recipeRepository.allTags).to.deep.equal(["main", "pasta", "baked"]);
+    recipeRepository.addRecipe(recipe1);
+    recipeRepository.addRecipe(recipe2);
+    expect(recipeRepository.allTags).to.deep.equal([
+      "snack",
+      "dessert",
+      "lunch",
+    ]);
   });
 
   it("should be able to import data and create a new instance of Recipe", () => {
@@ -257,49 +197,6 @@ describe("RecipeRepository", () => {
   });
 
   it("should be able to search by multiple ingredients", () => {
-    let recipe1 = new Recipe({
-      id: 1,
-      name: "Chocolate Chip Cookie",
-      imageURL: "https://recipe-image-1.jpg",
-      portions: [
-        { ingredientId: 1, name: "Flour", amount: 2, cost: 101, unit: "C" },
-      ],
-      instructions: ["Bake it"],
-      tags: ["snack", "dessert"],
-    });
-
-    let recipe2 = new Recipe({
-      id: 2,
-      name: "Ham Sandwich",
-      imageURL: "https://recipe-image-2.jpg",
-      portions: [
-        {
-          ingredientId: 2,
-          name: "Bread",
-          amount: 5,
-          cost: 200,
-          unit: "loaf",
-        },
-      ],
-      instructions: ["Make Sandwich"],
-      tags: ["snack", "lunch"],
-    });
-    let recipe3 = new Recipe({
-      id: 3,
-      name: "Glazed Chops",
-      imageURL: "https://recipe-image-3.jpg",
-      portions: [
-        {
-          ingredientId: 3,
-          name: "Pork Chop",
-          amount: 1,
-          cost: 300,
-          unit: "serving",
-        },
-      ],
-      instructions: ["Grill it up"],
-      tags: ["pork", "dinner"],
-    });
     recipeRepository.addRecipe(recipe1);
     recipeRepository.addRecipe(recipe2);
     recipeRepository.addRecipe(recipe3);
@@ -313,63 +210,19 @@ describe("RecipeRepository", () => {
     ]);
   });
 
-    it("should clear the selected input & filtered results array after filteration is complete", () => {
-
-        let recipe1 = new Recipe({
-          id: 1,
-          name: "Chocolate Chip Cookie",
-          imageURL: "https://recipe-image-1.jpg",
-          portions: [
-            { ingredientId: 1, name: "Flour", amount: 2, cost: 101, unit: "C" },
-          ],
-          instructions: ["Bake it"],
-          tags: ["snack", "dessert"],
-        });
-
-        let recipe2 = new Recipe({
-          id: 2,
-          name: "Ham Sandwich",
-          imageURL: "https://recipe-image-2.jpg",
-          portions: [
-            {
-              ingredientId: 2,
-              name: "Bread",
-              amount: 5,
-              cost: 200,
-              unit: "loaf",
-            },
-          ],
-          instructions: ["Make Sandwich"],
-          tags: ["snack", "lunch"],
-        });
-        let recipe3 = new Recipe({
-          id: 3,
-          name: "Glazed Chops",
-          imageURL: "https://recipe-image-3.jpg",
-          portions: [
-            {
-              ingredientId: 3,
-              name: "Pork Chop",
-              amount: 1,
-              cost: 300,
-              unit: "serving",
-            },
-          ],
-          instructions: ["Grill it up"],
-          tags: ["pork", "dinner"],
-        });
-      recipeRepository.addRecipe(recipe1);
-      recipeRepository.addRecipe(recipe2);
-      recipeRepository.addRecipe(recipe3);
-      recipeRepository.addInputToSearch("dessert");
-      recipeRepository.addInputToSearch("pork");
-      recipeRepository.filterByMultipleTags();
-      expect(recipeRepository.filteredAllRecipes).to.deep.equal([
-        recipe1,
-        recipe3,
-      ]);
-      recipeRepository.clearImmediate();
-      expect(recipeRepository.selectedInput).to.deep.equal([]);
-      expect(recipeRepository.filteredAllRecipes).to.deep.equal([]);
-    });
+  it("should clear the selected input & filtered results array after filteration is complete", () => {
+    recipeRepository.addRecipe(recipe1);
+    recipeRepository.addRecipe(recipe2);
+    recipeRepository.addRecipe(recipe3);
+    recipeRepository.addInputToSearch("dessert");
+    recipeRepository.addInputToSearch("pork");
+    recipeRepository.filterByMultipleTags();
+    expect(recipeRepository.filteredAllRecipes).to.deep.equal([
+      recipe1,
+      recipe3,
+    ]);
+    recipeRepository.clearData();
+    expect(recipeRepository.selectedInput).to.deep.equal([]);
+    expect(recipeRepository.filteredAllRecipes).to.deep.equal([]);
+  });
 });

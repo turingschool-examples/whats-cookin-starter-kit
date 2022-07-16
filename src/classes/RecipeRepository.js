@@ -7,6 +7,7 @@ class RecipeRepository {
     this.selectedInput = [];
     this.filteredAllRecipes = [];
   }
+
   addRecipe(recipe) {
     this.recipes.push(recipe);
     this.addTags(recipe.tags);
@@ -18,6 +19,13 @@ class RecipeRepository {
         this.allTags.push(tag);
       }
     });
+  }
+
+  addInputToSearch(keyword) {
+    let lowerCaseInput = keyword.toLowerCase();
+    if (!this.selectedInput.includes(lowerCaseInput)) {
+      this.selectedInput.push(lowerCaseInput);
+    }
   }
 
   lowerCaseIngredients() {
@@ -52,22 +60,7 @@ class RecipeRepository {
     return this.filteredAllRecipese;
   }
 
-  addInputToSearch(keyword) {
-    let lowerCaseInput = keyword.toLowerCase();
-    if (!this.selectedInput.includes(lowerCaseInput)) {
-      this.selectedInput.push(lowerCaseInput);
-    }
-  }
-
-  // filterRecipesByTag(tag) {
-  //   let matchingRecipes = this.recipes.filter((recipe) => {
-  //     if (recipe.tags.includes(tag)) {
-  //       return true;
-  //     }
-  //   });
-  //   return matchingRecipes;
-  // }
-  filterByMultipleTags(keyword) {
+  filterByMultipleTags() {
     this.filteredAllRecipes = this.recipes.filter((recipe) => {
       let containsOr = false;
       if (
@@ -82,16 +75,6 @@ class RecipeRepository {
     return this.filteredAllRecipes;
   }
 
-  // filterRecipesByName(input) {
-  //   let matchingRecipes = this.recipes.filter((recipe) => {
-  //     let lowerCaseRecipeName = recipe.name.toLowerCase();
-  //     let lowerCaseInput = input.toLowerCase();
-  //     if (lowerCaseRecipeName.includes(lowerCaseInput)) {
-  //       return true;
-  //     }
-  //   });
-  //   return matchingRecipes;
-  // }
   filterByMultipleRecipeNames() {
     this.filteredAllResults = this.recipes.filter((recipe) => {
       let lowerCaseRecipeName = recipe.name.toLowerCase();
@@ -109,23 +92,23 @@ class RecipeRepository {
   }
 
   importRecipesFromFile(recipeData, ingredientsData) {
-    var recipeToAdd;
+    let recipeToAdd;
 
     recipeData.forEach((recipeDatum) => {
-      var data = {
+      let data = {
         id: recipeDatum.id,
         name: recipeDatum.name,
         imageURL: recipeDatum.image,
         portions: recipeDatum.ingredients.map((ingredientObject) => {
-          var ingredientData = ingredientsData.find(
+          let ingredientData = ingredientsData.find(
             (storedIngredient) => storedIngredient.id === ingredientObject.id
           );
-          var portion = this.createPortion(ingredientObject, ingredientData);
+          let portion = this.createPortion(ingredientObject, ingredientData);
           return portion;
         }),
         instructions: recipeDatum.instructions.map(
           (instruction) => instruction.instruction
-        ), //recipeDatum.instructions,
+        ),
         tags: recipeDatum.tags,
       };
       recipeToAdd = new Recipe(data);
@@ -135,19 +118,18 @@ class RecipeRepository {
 
   createPortion(ingredientObject, ingredientData) {
     return {
-      ingredientId: ingredientObject.id, // 20081
-      name: ingredientData["name"], // “wheat flour”
-      cost: ingredientData["estimatedCostInCents"], // 142
-      amount: ingredientObject.quantity.amount, // 1.5
-      unit: ingredientObject.quantity.unit, // “c”
+      ingredientId: ingredientObject.id,
+      name: ingredientData["name"],
+      cost: ingredientData["estimatedCostInCents"],
+      amount: ingredientObject.quantity.amount,
+      unit: ingredientObject.quantity.unit,
     };
   }
 
-  clearImmediate() {
+  clearData() {
     this.selectedInput = [];
     this.filteredAllRecipes = [];
   }
-
 }
 
 export default RecipeRepository;
