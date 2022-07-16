@@ -1,68 +1,60 @@
 import { expect } from 'chai';
-import Ingredient from '../src/classes/Ingredient.js';
-import Recipe from '../src/classes/Recipe.js';
 import { ingredientsData } from '../src/data/sampleIngredientData.js';
 import { recipeData } from '../src/data/sampleRecipeData.js';
+import Ingredient from '../src/classes/Ingredient.js';
+import Recipe from '../src/classes/Recipe.js';
 
 describe('Recipe Class', () => {
-  let recipe;
-  let ingredient;
+    let recipe;
 
-  beforeEach(() => {
-    recipe = new Recipe(recipeData[0]);
-    // ingredient = new Ingredient(ingredientsData[0]);
-  });
+    beforeEach(() => {
+        recipe = new Recipe(recipeData[0]);
+    });
 
-  it('should be a function', () => {
-    expect(Recipe).to.be.a('function');
-  });
+    it('should be a function', () => {
+        expect(Recipe).to.be.a('function');
+    });
 
-  it('should be an instance of Recipe', () => {
-    expect(recipe).to.be.an.instanceof(Recipe);
-  });
+    it('should be an instance of Recipe', () => {
+        expect(recipe).to.be.an.instanceof(Recipe);
+    });
 
-describe('Recipe constructor properties', function() {
-  it('should have an id', () => {
-    expect(recipe.id).to.equal(595736);
-  });
+  describe('Recipe constructor properties', function() {
+    it('should have an id', () => {
+      expect(recipe.id).to.equal(595736);
+    });
 
-  it('should store an image url', () => {
-    expect(recipe.image).to.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg")
-  });
+    it('should store an image url', () => {
+      expect(recipe.image).to.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg")
+    });
 
-  it('should store ingredients', () => {
-    expect(recipe.ingredients).to.equal(recipeData[0].ingredients)
-  });
+    it('should store ingredients', () => {
+      expect(recipe.ingredients).to.equal(recipeData[0].ingredients)
+    });
 
-  // it('should create an instance of Ingredients with an id', () => {
-  //   console.log(recipe.ingredients[0].id);
-  //   expect(recipe.ingredients[0]).to.be.an.instanceof(Ingredient);
-  //   expect(recipe.ingredients[0].id).to.equal(20081);
-  // });
+    it('should be able to create instances of Ingredients and store them', function() {
+      recipe.getIngredientsData(ingredientsData);
 
-  it('should be able to create instances of Ingredients and store them', function() {
-     recipe.getIngredientsData(ingredientsData);
+      expect(recipe.ingredients).to.be.an('array');
+      expect(recipe.ingredients.length).to.equal(recipeData[0].ingredients.length);
+      expect(recipe.ingredients[0]).to.be.an.instanceOf(Ingredient);
+      expect(recipe.ingredients[0].name).to.equal('wheat flour');
+    });
 
-     expect(recipe.ingredients).to.be.an('array');
-     expect(recipe.ingredients.length).to.equal(recipeData[0].ingredients.length);
-     expect(recipe.ingredients[0]).to.be.an.instanceOf(Ingredient);
-     expect(recipe.ingredients[0].name).to.equal('wheat flour');
-   });
+    it('should store a list of instructions', () => {
+      expect(recipe.instructions).to.be.an('array');
+      expect(recipe.instructions[0].number).to.equal(1);
+      expect(recipe.instructions).to.deep.equal(recipeData[0].instructions);
+    });
 
-  it('should store a list of instructions', () => {
-    expect(recipe.instructions).to.be.an('array');
-    expect(recipe.instructions[0].number).to.equal(1);
-    expect(recipe.instructions).to.deep.equal(recipeData[0].instructions);
-  });
+    it('should have a name', () => {
+      expect(recipe.name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    });
 
-  it('should have a name', () => {
-    expect(recipe.name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
-  });
-
-  it('should store a list of tags', () => {
-    expect(recipe.tags).to.be.an('array');
-    expect(recipe.tags).to.equal(recipeData[0].tags);
-  });
+    it('should store a list of tags', () => {
+      expect(recipe.tags).to.be.an('array');
+      expect(recipe.tags).to.equal(recipeData[0].tags);
+    });
 
 
   describe('Recipe methodology', () => {
