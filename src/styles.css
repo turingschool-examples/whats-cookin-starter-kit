@@ -190,6 +190,13 @@ button {
   margin-right: 5vw;
 }
 
+.all-recipes-view,
+.saved-recipes-view {
+  border: 2px solid black;
+  height: 475px;
+  width: 1000px;
+}
+
 /* Bottom Section */
 .footer {
   display: flex;
