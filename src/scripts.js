@@ -14,7 +14,7 @@ const searchLabel = document.querySelector('#searchLabel');
 const recipeNameInput = document.querySelector('#recipeNameInput');
 const filterLabel = document.querySelector('#filterLabel');
 const recipeTagInput = document.querySelector('#recipeTagInput');
-
+const filterForm = document.querySelector('#filterForm');
 
 const ingredientsInfo = {ingredientsData};
 const recipeInfo = {recipeData};
@@ -22,7 +22,8 @@ const recipeRepository = new RecipeRepository(recipeInfo.recipeData);
 
 window.addEventListener('load', displayRecipeList);
 recipeDisplay.addEventListener('click', showRecipeInstructions);
-navBar.addEventListener('click', goHome);
+homeButton.addEventListener('click', goHome);
+filterForm.addEventListener('submit', filterRecipeTag);
 
 function displayRecipeList() {
  recipeRepository.listRecipes();
@@ -38,6 +39,7 @@ function displayRecipeList() {
 };
 
 function goHome() {
+    recipeHeading.innerText = 'All Recipes';
     helperSwitch(searchLabel);
     helperSwitch(recipeNameInput);
     helperSwitch(searchButton);
@@ -76,7 +78,8 @@ function showRecipeInstructions(event) {
         recipeDisplay.innerHTML = "";
         recipeHeading.innerText = `${selectedRecipe.name}`;
         recipeDisplay.innerHTML = (`
-            <img class="selected-recipe-image" data-recipeId=${selectedRecipe.id} src=${selectedRecipe.image} alt=${selectedRecipe.name}>
+            <img class="selected-recipe-image" src=${selectedRecipe.image} alt=${selectedRecipe.name}>
+            <button class="favorite-button" id="favoriteButton">Favorite</button>
             <ol id="recipeInstructions"></ol>
             <h3 class="ingredients">Ingredients</h3>
             <ul class="ingredients-list" id="ingredientsList"></ul>
@@ -97,4 +100,34 @@ function showRecipeInstructions(event) {
     };
 };
 
+function filterRecipeTag(event) {
+    event.preventDefault();
+    helperSwitch(searchLabel); 
+    helperSwitch(recipeNameInput);
+    helperSwitch(searchButton);
+    helperSwitch(filterLabel);
+    helperSwitch(recipeTagInput);
+    helperSwitch(filterButton);
+    helperSwitch(favoriteButton);
+    helperSwitch(homeButton);
+    
+    const inputValue = recipeTagInput.value;
+    const requestedRecipes = recipeRepository.findRecipeByTag(inputValue);
 
+    recipeHeading.innerText = 'Filtered Recipes';
+    recipeDisplay.innerHTML = "";
+
+    if (requestedRecipes === `Sorry, no recipe with ${inputValue}.`) {
+        return recipeHeading.innerText = requestedRecipes;
+    }
+
+    requestedRecipes.forEach((recipe) => {
+    recipeDisplay.innerHTML += (`
+        <div class="recipe-image-wrapper">
+          <img class="recipe-image" data-recipeId=${recipe.id} src=${recipe.image} alt=${recipe.name}>
+          <p class="recipe-name">${recipe.name}</p>
+          <button class="favorite-button" id="favoriteButton">Favorite</button>
+        </div>
+      `)
+   });
+}
