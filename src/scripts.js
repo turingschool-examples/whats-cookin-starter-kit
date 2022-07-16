@@ -180,13 +180,13 @@ function displayRecipeInfo( e ){
 // Save the recipe cards when button is clicked:
 
 function saveRecipeToRecipesToCook ( e ) {
-    const savedRecipes = newRecipe.recipes.filter((favoriteDish) => {
+    return newRecipe.recipes.filter((favoriteDish) => {
         if(currentUser.recipesToCook.includes(favoriteDish.id && favoriteDish.name)) {
+            currentUser.recipesToCook.push(favoriteDish.id)
         }
-        return currentUser.recipesToCook.push(favoriteDish.id)
+        console.log('SAVED RECIPES: ', currentUser.recipesToCook)
+        return currentUser.recipesToCook;
     })
-    console.log('SAVED RECIPES: ', savedRecipes)
-    return currentUser.recipesToCook;
 }
 
 
