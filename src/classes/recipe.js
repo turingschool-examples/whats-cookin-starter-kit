@@ -30,11 +30,9 @@ class Recipe {
         let getTotalCost = this.ingredients.forEach(ingredient => {
             this.ingData.forEach(element => {
                 if (ingredient.id === element.id) {
-                    console.log('amount', ingredient.quantity.amount)
-                    console.log('cents', element.costInCents)
+                
                     totalCost += ingredient.quantity.amount * element.estimatedCostInCents
-                      console.log('ingredient', ingredient)
-                      console.log('element', element)
+                      
                 }
             })
         })
