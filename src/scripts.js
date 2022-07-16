@@ -5,6 +5,7 @@ import './images/turing-logo.png'
 
 import { ingredientsData } from './data/ingredients'
 import { recipeData } from './data/recipes'
+import { usersData } from './data/users'
 
 import Glide from '@glidejs/glide'
 
@@ -14,7 +15,9 @@ import "/node_modules/@glidejs/glide/dist/css/glide.theme.min.css"
 import RecipeRepository from './classes/RecipeRepository.js'
 
 import Recipe from './classes/recipe'
-import Ingredient from './classes/Ingredient';
+import Ingredient from './classes/Ingredient'
+import User from './classes/user-class'
+
 
 const config = {
     type:'carousel',
@@ -44,6 +47,7 @@ const tagContainer = document.querySelector('.tag-container')
 const form = document.querySelector('#form')
 const searchbar = document.querySelector("#searchbar")
 const searchButton = document.querySelector(".search-button")
+const favoriteRecipesPage= document.querySelector('.favorite-recipes')
 
 
 let newRecipeIngredient;
@@ -60,10 +64,16 @@ window.addEventListener('click', function(event) {
 window.addEventListener('load', showHomePage)
 window.addEventListener('load', createTags)
 searchButton.addEventListener('click', filterByName)
+window.addEventListener('load', generateRandomUser)
+
 
 // viewAllRecipeIconImage.addEventListener('event', () => {
 //     console.log('event')
 // })
+
+function generateRandomUser() {
+    return usersData[Math.floor(Math.random() * usersData.length)]
+    };
 
 function showViewAllPage() {
     homePageView.classList.add('hidden')
@@ -71,6 +81,7 @@ function showViewAllPage() {
     recipeDetailsPage.classList.add('hidden')
     homeButton.classList.remove('hidden')
     viewAllButton.classList.add('hidden')
+    favoriteRecipesPage.classList.add('hidden')
 }
 
 function showHomePage() {
@@ -79,12 +90,15 @@ function showHomePage() {
     recipeDetailsPage.classList.add('hidden')
     homeButton.classList.add('hidden')
     viewAllButton.classList.remove('hidden')
+    favoriteRecipesPage.classList.add('hidden')
 }
 
 function showFavoritesPage() {
     homePageView.classList.add('hidden')
     viewAllPage.classList.add('hidden')
     recipeDetailsPage.classList.add('hidden')
+    favoriteRecipesPage.classList.remove('hidden')
+
 }
 
 function populateAllRecipes() {
