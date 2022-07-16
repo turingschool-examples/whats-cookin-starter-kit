@@ -38,35 +38,39 @@ class RecipeRepository {
     return matchingRecipes;
   }
 
-  importRecipesFromFile(recipeData, ingredientsData){
+  importRecipesFromFile(recipeData, ingredientsData) {
     var recipeToAdd;
 
-    recipeData.forEach( (recipeDatum) => {
+    recipeData.forEach((recipeDatum) => {
       var data = {
         id: recipeDatum.id,
         name: recipeDatum.name,
         imageURL: recipeDatum.image,
-        portions: recipeDatum.ingredients.map( (ingredientObject) => {
-          var ingredientData = ingredientsData.find( (storedIngredient) => storedIngredient.id === ingredientObject.id )
-          var portion = this.createPortion(ingredientObject, ingredientData)
+        portions: recipeDatum.ingredients.map((ingredientObject) => {
+          var ingredientData = ingredientsData.find(
+            (storedIngredient) => storedIngredient.id === ingredientObject.id
+          );
+          var portion = this.createPortion(ingredientObject, ingredientData);
           return portion;
         }),
-        instructions: recipeDatum.instructions.map( (instruction) => instruction.instruction) , //recipeDatum.instructions,
-        tags: recipeDatum.tags
-      }
-      recipeToAdd = new Recipe(data)
-      this.addRecipe(recipeToAdd)
-    })
+        instructions: recipeDatum.instructions.map(
+          (instruction) => instruction.instruction
+        ), //recipeDatum.instructions,
+        tags: recipeDatum.tags,
+      };
+      recipeToAdd = new Recipe(data);
+      this.addRecipe(recipeToAdd);
+    });
   }
 
-  createPortion(ingredientObject, ingredientData){
+  createPortion(ingredientObject, ingredientData) {
     return {
       ingredientId: ingredientObject.id, // 20081
       name: ingredientData["name"], // “wheat flour”
       cost: ingredientData["estimatedCostInCents"], // 142
       amount: ingredientObject.quantity.amount, // 1.5
-      unit: ingredientObject.quantity.unit // “c”
-    }
+      unit: ingredientObject.quantity.unit, // “c”
+    };
   }
 }
 
