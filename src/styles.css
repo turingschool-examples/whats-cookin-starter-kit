@@ -7,6 +7,8 @@
 body {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #060911;
   color: #F9F6EE;
 }
@@ -48,6 +50,13 @@ header {
   background-color: #060911;
   width: 100vw;
   height: 35vh;
+}
+
+.nav-bar {
+  width: 1000px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .user-search-container {
@@ -193,7 +202,6 @@ button {
 }
 
 .footer-text {
-  margin-left: 5vw;
   color: #F9F6EE;
 }
 
