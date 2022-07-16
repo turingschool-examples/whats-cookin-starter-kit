@@ -31,14 +31,20 @@ let ingredientText = document.querySelector( '.modal-ingredients')
 let recipeCard = document.querySelector(".recipe-grid-container");
 let recipeCardGridContainer = document.getElementById("gridContainer")
 let closeModalButton = document.getElementById("closeModal")
+let navViewProfileButton = document.querySelector('.view-profile-button')
+// let 
 
 // Event Listeners <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 searchButton.addEventListener("click", searchRecipe);
 window.addEventListener( 'load', loadData );
 recipeContainer.addEventListener( 'click' , displayRecipeInfo );
-recipeContainer.addEventListener( 'click' , showCookingProfile)
-// favoriteRecipeButton.addEventListener('click', addToFaves);
+navViewProfileButton.addEventListener( 'click' , showCookingProfile);
 
+recipeCardGridContainer.addEventListener('click', ( e ) => {
+    if (e.target.classList == 'save-button') {
+        saveRecipeToRecipesToCook( e );
+    }
+})
 
 recipeCardGridContainer.addEventListener('click', (e) => {
     if (e.target.classList == 'lets-make-it-button') {
@@ -102,7 +108,7 @@ function searchRecipe() {
         <h3>${ recipe.name }</h3>
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
-        <button class="save-button" id="${ recipe.id }">Save to cooking profile!</button>
+        <button class="save-button" id= ${ recipe.id }>Save to cooking profile!</button>
         </div>
         </section>`
     } );
@@ -119,7 +125,7 @@ function displayFilteredRecipesByNameOnPage( ) {
         <h3>${ recipe.name }</h3>
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
-        <button class="save-button">Save to cooking profile!</button>
+        <button id= ${recipe.id} class="save-button">Save to cooking profile!</button>
         </div>
         </section>`
     } );
@@ -139,7 +145,7 @@ function displayAllRecipesOnPage( e ) {
         <h3>${ recipe.name }</h3>
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
-        <button class="save-button">Save to cooking profile!</button>
+        <button id= ${recipe.id} class="save-button">Save to cooking profile!</button>
         </div>
         </section>`
     } ).join('');
@@ -171,37 +177,17 @@ function displayRecipeInfo( e ){
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 // Save the recipe cards when button is clicked:
-
-function saveRecipeToRecipesToCook (e) {
-    const recipesToCook = []
-    let recipeCards = recipeCard; //<<<< need this to access the grid conatiner
-    //without this, null error persists
-    //will need to access both this and an event listener for the faves botton?????
-    //how to pull these id's on click on this button to push into array
-    recipeCards.recipes.map((favoriteDish) => {
-        if(e.target.id == favoriteDish.id) {
-            recipesToCook.push(favoriteDish)
+//NEED TO ADD A FOCUS TO SHOW WHEN THE RECIPE HAS BEEN SAVED
+function saveRecipeToRecipesToCook ( e ) {
+    return newRecipe.recipes.filter((favoriteDish) => {
+        if((e.target.id == favoriteDish.id) && (!currentUser.recipesToCook.includes(favoriteDish.id && favoriteDish.name))) {
+           //look at the .includes comparision, now that bang operator was added -- prevent duplicates
+            currentUser.recipesToCook.push(favoriteDish)
         }
+        console.log('SAVED RECIPES: ', currentUser.recipesToCook)
+        return currentUser.recipesToCook;
     })
-    console.log(recipesToCook)
-    return recipesToCook
 }
-
-
-// function setCardEventHandler() {
-//     var ideaCard = document.getElementById(`${currentIdea.id}`)
-//     ideaCard.addEventListener("click", function(event) {
-//       for (var i = 0; i < savedIdeas.length; i++) {
-//         if (event.target.className.includes("star") && savedIdeas[i].id == event.currentTarget.id) {
-//             return setStar(event.target, savedIdeas[i])
-//         }
-//         if (event.target.className.includes("delete") && savedIdeas[i].id == event.currentTarget.id) {
-//           savedIdeas.splice(i, 1)
-//           event.currentTarget.remove();
-//         }
-//       }
-//     })
-//   }
 
 
 
@@ -213,7 +199,24 @@ function saveRecipeToRecipesToCook (e) {
 // * Need to have a 'REMOVE FROM COOKING PROFILE BUTTON' on the recipe cards in the 
 // saved page
 function showCookingProfile( e ) {
-    if (e.target.classList == 'save-button') {
+    if(e.target.classList == 'view-profile-button') {
+        const result = currentUser.recipesToCook.map( recipe => {
+            console.log('RECIPE: ', recipe)
+            return `<section class='recipe-card' id="recipeCard">
+            <img src="${ recipe.image }" class="recipe-image" alt="">
+            <h3>${ recipe.name }</h3>
+            <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
+            <div>
+            <button id= ${recipe.id} class="remove-button">Remove from cooking profile!</button>
+            </div>
+            </section>`
+            //NEED TO ADD THE REMOVE BUTTON 
+            //COPY THE ABOVE SAVE FUNCTION AND SPLICE RATHER THAN PUSH 
+        } );
+        console.log('NEW MATCHING NAMES ARRAY: ', currentUser.recipesToCook )
+        currentUser.recipesToCook = recipeCard;
+        return recipeCard.innerHTML = result;
+    }
         console.log('success')
     }
     //gatekeeper conditional to check if `save to cooking profile was clicked`
@@ -221,7 +224,7 @@ function showCookingProfile( e ) {
     //function takes user to a new page.
     //reference filterRecipeByName( ) to 
 
-}
+
 
 // function showStarredIdeas() {
 //     console.log(ideaCards);
