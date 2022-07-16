@@ -179,7 +179,7 @@ margin-left: 5%;
   .recipe-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
     height: 100%;
     width: 100%;
     }
@@ -188,7 +188,7 @@ margin-left: 5%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 40%;
+      width: 70%;
       height: 100%;
     }
 
@@ -198,7 +198,7 @@ margin-left: 5%;
       justify-content: center;
       align-items: center;
       width: 30%;
-      margin: 5%;
+      margin: 0;
     }
 
     .price-box {
@@ -207,10 +207,10 @@ margin-left: 5%;
       margin: 5%;
     }
 
-    
     .recipe-title-box{
       display: flex;
       align-items: center;
+      justify-content: center;
       height: 10%;
       width: 90%;
     }
@@ -237,7 +237,7 @@ margin-left: 5%;
       width: 90%;
     }
 
-    .price-box {
+    .price-list-wrapper {
      display: flex;
      flex-direction: column;
      height: 90%;
@@ -245,20 +245,40 @@ margin-left: 5%;
      margin: 0;
     }
 
+    .price-list-container{
+      display: flex;
+      align-items: center;
+      height: 90%;
+      width: 100%;
+      margin: 0;
+    }
+
+    .price-box{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-wrap: wrap;
+      font-size: 60%;
+      height: 10%;
+      width: 100%;
+      margin: 0;
+      margin-top: 2px;
+    }
+
     .ingredient-box{
       display: flex;
       flex-direction: row;
+      justify-content: center;
       align-content: center;
-      /* height: 90%;
+      height: 90%;
       width: 80%;
-      overflow: scroll; */
+      overflow: scroll;
     }
 
     .recipe-info-box{
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
       height: 80%;
       width: 90%;
       margin: 2px;
