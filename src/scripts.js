@@ -181,7 +181,8 @@ function displayRecipeInfo( e ){
 
 function saveRecipeToRecipesToCook ( e ) {
     return newRecipe.recipes.filter((favoriteDish) => {
-        if(currentUser.recipesToCook.includes(favoriteDish.id && favoriteDish.name)) {
+        if((e.target.id == favoriteDish.id) && (!currentUser.recipesToCook.includes(favoriteDish.id && favoriteDish.name))) {
+           //look at the .includes comparision, now that bang operator was added -- prevent duplicates
             currentUser.recipesToCook.push(favoriteDish.id)
         }
         console.log('SAVED RECIPES: ', currentUser.recipesToCook)
