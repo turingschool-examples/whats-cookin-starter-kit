@@ -39,7 +39,7 @@ const ingredientBox = document.querySelector('.ingredient-box');
 // ***** Event Listeners ***** //
 
 window.addEventListener('load', updateMainPageRecipeIcons);
-window.addEventListener('load', updateMainPaigeFeatureImg);
+window.addEventListener('load', updateMainPageFeatureImg);
 window.addEventListener('load', loadNewUser);
 window.addEventListener('load', displayAllNames);
 allRecipesSection.addEventListener('click', viewRecipe);
@@ -81,7 +81,7 @@ function updateMainPageRecipeIcons() {
   icon6Img.src = allRecipes[getRandomIndex(allRecipes)].image;
 }
 
-function updateMainPaigeFeatureImg(){
+function updateMainPageFeatureImg(){
   featureImage.src = allRecipes[getRandomIndex(allRecipes)].image;
 }
 
