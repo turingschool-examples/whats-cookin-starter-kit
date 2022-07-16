@@ -53,15 +53,31 @@ class RecipeRepository {
     return this.filteredAllRecipes;
   }
 
-  filterRecipesByName(input) {
-    let matchingRecipes = this.recipes.filter((recipe) => {
+  // filterRecipesByName(input) {
+  //   let matchingRecipes = this.recipes.filter((recipe) => {
+  //     let lowerCaseRecipeName = recipe.name.toLowerCase();
+  //     let lowerCaseInput = input.toLowerCase();
+  //     if (lowerCaseRecipeName.includes(lowerCaseInput)) {
+  //       return true;
+  //     }
+  //   });
+  //   return matchingRecipes;
+  // }
+
+  filterByMultipleRecipeNames() {
+    this.filteredAllResults = this.recipes.filter((recipe) => {
       let lowerCaseRecipeName = recipe.name.toLowerCase();
-      let lowerCaseInput = input.toLowerCase();
-      if (lowerCaseRecipeName.includes(lowerCaseInput)) {
-        return true;
+      let containsOr = false;
+      if (
+        this.selectedInput.some((keyword) => {
+          return lowerCaseRecipeName.includes(keyword);
+        })
+      ) {
+        containsOr = true;
       }
+      return containsOr;
     });
-    return matchingRecipes;
+    return this.filteredResults;
   }
 
   importRecipesFromFile(recipeData, ingredientsData) {
