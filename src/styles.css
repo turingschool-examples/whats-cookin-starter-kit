@@ -72,6 +72,11 @@ h1 {
   width: 100%;
 }
 
+.add-to-favorites-icon, .unfavorite {
+  width: 40px;
+  margin-bottom: -266px;
+}
+
 #recipeDetail {
   height: 40%;
 }
@@ -109,6 +114,7 @@ h3, #form {
 
 .view-all-recipe-image {
   width: 20vw;
+  margin-bottom: -260px;
 }
 
 .view-all-page {
@@ -125,7 +131,7 @@ p {
   font-size: 20px;
   font-weight: 300;
   text-align: center;
-  margin-top: 0px;
+  margin-top: 489px
 }
 
 .ingredient-list-names,

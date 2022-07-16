@@ -2,6 +2,8 @@ import './styles.css';
 import apiCalls from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
+import './images/heart.png'
+import './images/filled-heart.png'
 
 import { ingredientsData } from './data/ingredients'
 import { recipeData } from './data/recipes'
@@ -44,10 +46,12 @@ const recipeInstructions = document.querySelector('.details')
 const ingredientNames = document.querySelector('.ingredient-list-names')
 const totalCost = document.querySelector('.total-cost')
 const tagContainer = document.querySelector('.tag-container')
+const tagContainer2 = document.querySelector('.tag-container2')
 const form = document.querySelector('#form')
 const searchbar = document.querySelector("#searchbar")
 const searchButton = document.querySelector(".search-button")
-const favoriteRecipesPage= document.querySelector('.favorite-recipes')
+const favoriteRecipesPage = document.querySelector('.favorite-recipes')
+
 
 
 let newRecipeIngredient;
@@ -62,17 +66,26 @@ window.addEventListener('click', function(event) {
       filterByTag(event)
     })
 window.addEventListener('load', showHomePage)
-window.addEventListener('load', createTags)
 searchButton.addEventListener('click', filterByName)
 window.addEventListener('load', generateRandomUser)
+viewAllPage.childNodes[3].addEventListener('click', function(event) {
+    changeHearts(event)
+})
 
-
-// viewAllRecipeIconImage.addEventListener('event', () => {
-//     console.log('event')
-// })
+function changeHearts(event) {
+    if (event.target.classList.contains('add-to-favorites-icon')){
+        event.target.src = "./images/filled-heart.png"
+        event.target.classList = 'unfavorite'
+    } else if (event.target.classList.contains('unfavorite')) {
+        event.target.src = "./images/heart.png"
+        event.target.classList = 'add-to-favorites-icon'
+    }   
+}
 
 function generateRandomUser() {
-    return usersData[Math.floor(Math.random() * usersData.length)]
+    let newUserData = usersData[Math.floor(Math.random() * usersData.length)]
+    let newUser = new User(newUserData)
+    return newUser
     };
 
 function showViewAllPage() {
@@ -82,6 +95,7 @@ function showViewAllPage() {
     homeButton.classList.remove('hidden')
     viewAllButton.classList.add('hidden')
     favoriteRecipesPage.classList.add('hidden')
+    createTags(tagContainer)
 }
 
 function showHomePage() {
@@ -98,18 +112,27 @@ function showFavoritesPage() {
     viewAllPage.classList.add('hidden')
     recipeDetailsPage.classList.add('hidden')
     favoriteRecipesPage.classList.remove('hidden')
-
+    createTags(tagContainer2)
+    favoriteRecipesPage.childNodes[3].innerHTML += generateRandomUser().recipesToCook.forEach(recipe => {
+        //glideRecipes.src += `${recipe.image}`
+        viewAllPage.childNodes[3].innerHTML += `<section class="recipe-icon">
+        <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
+        <p>
+          ${recipe.name}
+        </p>
+      </section>`
+})
 }
 
 function populateAllRecipes() {
     recipeData.forEach(recipe => {
     //glideRecipes.src += `${recipe.image}`
     viewAllPage.childNodes[3].innerHTML += `<section class="recipe-icon">
-    <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
+    <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image"><img class="add-to-favorites-icon" src="./images/heart.png">
     <p>
       ${recipe.name}
     </p>
-  </section>`
+  </section>`  
 
     // glideRecipes.innerHTML += `<li class="glide__slide"><img class="recipe-icon-image" src="${recipe.image}"></li>`
 
@@ -140,7 +163,7 @@ function showRecipeDetailsPage(event) {
     }
 }
 
-function createTags() {
+function createTags(tagContainer) {
     // const tagContainer = document.querySelector('.tag-container')
     const getRecipeTags = recipeData.map(recipe => {
         return recipe.tags
@@ -150,6 +173,7 @@ function createTags() {
         return getRecipeTags.indexOf(recipe) === index;
     })
 
+    tagContainer.innerHTML = ''
     const recipeTags = uniqueTags.forEach(tag => {
         tagContainer.innerHTML += `<input type="checkbox" id="${tag}" unchecked>
     <label for="${tag}">${tag}</label><br>`
