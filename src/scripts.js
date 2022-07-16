@@ -35,16 +35,16 @@ const recipeViewPicBox = document.querySelector('.recipe-view-pic-box')
 const allRecipesContainer = document.querySelector('.all-recipes-view')
 
 
-
+// ###########  Global Variables  ###############
 const recipeRepo = new RecipeRepository(recipeData);
 const user = new User(usersData[randomIndex(usersData)]);
 console.log(user);
 
-window.addEventListener('load', welcomeUser)
+window.addEventListener('load', welcomeUser);
 window.addEventListener('load', populateRecipesInHomeView);
-homeButton.addEventListener('click', displayHomeView)
-allRecipesButton.addEventListener('click', displayAllRecipesView)
-savedRecipesButton.addEventListener('click', displaySavedRecipesView)
+homeButton.addEventListener('click', displayHomeView);
+allRecipesButton.addEventListener('click', populateAllRecipesView);
+savedRecipesButton.addEventListener('click', displaySavedRecipesView);
 // myFavoritesButton.addEventListener('click', )
 // pantryButton.addEventListener('click', )
 
@@ -58,17 +58,28 @@ function welcomeUser() {
 
 function populateRecipesInHomeView() {
 
-  const imageLinks = recipeRepo.recipeData.map(recipe => {
-    return recipe.image;
+  recipePicBoxes.forEach((image, index) => {
+    image.innerHTML += `<img class='recipe-image' 
+    id='${recipeRepo.recipeData[index].id}' src='${recipeRepo.recipeData[index].image}'>
+    <p class='recipe-label'>${recipeRepo.recipeData[index].name}</p>`;
+  });
+
+}
+
+function populateAllRecipesView() {
+
+  displayAllRecipesView()
+  allRecipesContainer.innerHTML = '';
+
+  recipeRepo.recipeData.forEach((recipe) => {
+    allRecipesContainer.innerHTML += `<img class='recipe-image' 
+    id='${recipe.id}' src='${recipe.image}'>
+    <p class='recipe-label'>${recipe.name}</p>`;
   })
 
-  recipePicBoxes.forEach((image, index) => {
-    // image.innerHTML = '';
-    image.innerHTML += `<img class='recipe-image' src='${imageLinks[index]}'>
-    <p class='recipe-label'>Name</p>`;
-  });
-  // console.log(recipePicBoxes);
 }
+
+
 
 function hide(elements) {
   elements.forEach((element) => {
@@ -114,6 +125,6 @@ function displayAllRecipesView() {
       ])
   show([homeButton,
         savedRecipesButton,
-        allRecipesContainer
+        allRecipesContainer,
       ])
 }

@@ -97,6 +97,8 @@ button {
   background-color: #F9F6EE;
   width: 100vw;
   height: 62.5vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
 
 }
 
@@ -194,13 +196,21 @@ button {
   border: 2px solid black;
   height: 475px;
   width: 1000px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  
 }
 
 .saved-recipes-view {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
   border: 2px solid pink;
   height: 475px;
   width: 1000px;
 }
+
 
 /* Bottom Section */
 .footer {
