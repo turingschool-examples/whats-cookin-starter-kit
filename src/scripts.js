@@ -28,7 +28,7 @@ const allRecipesButton = document.querySelector('#recipe-button')
 const favoriteButton = document.querySelector('#favorite-button')
 const cookbookButton = document.querySelector('#cookbook-button')
 const searchBar = document.querySelector('.search-container')
-const radioSearchButton = document.querySelector('.radio-search-container')
+const radioSearchButton = document.querySelector('.radio-search-button')
 // const viewRecipeButton = document.querySelector('.view-recipe-button')
 const addToCookbookButton = document.querySelector('.add-to-cookbook-button')
 const cardFavoriteButton = document.querySelector('.favorite-button')
@@ -43,9 +43,10 @@ const ingredientCard = document.querySelector('.ingredient-card')
 let viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
 const recipeCardWrapper = document.querySelector('.recipe-card-wrapper')
 const ingredientCardWrapper = document.querySelector('.ingredient-card-wrapper')
-const recipeInput = document.querySelector('#recipe-tags-input')
+const recipeTagInput = document.querySelector('#recipe-tag-input')
 const recipeDisplay = document.querySelector('#recipeDisplay');
 const recipeHeading = document.querySelector('#recipeHeading');
+const radioValue = document.querySelectorAll('.radio-value');
 
 // EventListeners
 // favoriteButton.addEventListener('click',)
@@ -54,7 +55,6 @@ const recipeHeading = document.querySelector('#recipeHeading');
 // addToCookbookButton.addEventListener('click',)
 // cardFavoriteButton.addEventListener('click',)
 // unFavoriteButton.addEventListener('click',)
-
 window.addEventListener('load', () => {
   showAllRecipes()
   viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
@@ -64,7 +64,7 @@ window.addEventListener('load', () => {
     })
   })
 });
-// radioSearchButton.addEventListener('click', filterRecipeByTag)
+radioSearchButton.addEventListener('click', filterRecipeByTag)
 
 // Global Variables
 let recipeRepo = new RecipeRepository(recipeData)
@@ -72,7 +72,7 @@ let newRecipe = new Recipe(recipeData[0], ingredientsData)
 
 function showAllRecipes() {
     const recipes = recipeRepo.createAllRecipes(ingredientsData)
-
+    recipeCard.innerHTML =''
     recipes.forEach((recipe) => {
       recipeCard.innerHTML += `<button class="view-recipe-button" id=${recipe.id} data-recipeId=${recipe.id}> <h2 data-recipeId=${recipe.id}> ${recipe.name} </h2> 
       <img class='card-image' src=${recipe.image} data-recipeId=${recipe.id} alt=${recipe.name}>
@@ -132,17 +132,18 @@ newRecipe.instructions.forEach(instruction => {
 hide(recipeCardWrapper)
 }
 
+
+
 function filterRecipeByTag(event) {
-  event.preventDefault();
-
+   event.preventDefault();
+  const radioButtons = document.getElementsByName('tags')
+ // console.log('tag:', recipeTagInput.value)
   const tagInput = recipeTagInput.value;
-  const requestedRecipes = recipeRepo.filterByTag(tagInput);
-
-  recipeHeading.innerText = 'Recipes by Tag';
-  recipeDisplay.innerHTML = '';
-
+  const requestedRecipes = recipeRepo.filterByTag('lunch');
+  console.log(requestedRecipes)
+recipeCard.innerHTML = ''
   requestedRecipes.forEach((recipe) => {
-    recipeDisplay.innerHTML += (`
+    recipeCard.innerHTML += (`
         <div class="recipe-card-wrapper">
           <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
           <p class="recipe-name">${recipe.name}</p>
@@ -151,6 +152,10 @@ function filterRecipeByTag(event) {
       `)
     });
 }
+
+// get data from radio buttons
+// filtering by tag
+// display based on filter
 
 const userBuildAttributes = (user) => {
     userGreeting.innerHTML = `Welcome ${user.name.split(" ")[0]}!`
