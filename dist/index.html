@@ -19,9 +19,35 @@
       </section>
     </section>
     <section class='main-container'>
-      <section class='recipe-grid-container' style="overflow-x:scroll; overflow-y:scroll">
+      <section class='recipe-grid-container' id="gridContainer" style="overflow-x:scroll; overflow-y:scroll">
       </section>
-      <section class='recipe-modal hidden' id="recipeModal">
+
+
+        <section class='recipe-modal modal' id="recipeModal" aria-hidden="true">
+          <section class="modal_overlay" tabindex="-1" data-micromodal-close>
+            <section tabindex="-1" data-micromodal-close>
+              <section role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                <section id="modal-1-content">
+                  <button aria-label="Close modal" id="closeModal" data-micromodal-close>Close</button>
+                  <h4 class='rec-name' id="modal-1-title">Recipe Name</h4>
+                  <p class='dish-cost'>Total Cost:</p>
+                  <section class="ingredient-and-direction-container">
+                    <section class="cooking-directions">
+                      <h5>Cooking Directions</h5>
+                      <p class="modal-instructions">DIRECTIONS GO HERE</p>
+                    </section>
+                    <section class="ingredient-list">
+                      <h5>Ingredients</h5>
+                      <p class="modal-ingredients">INGREDIENTS GO HERE</p>
+                    </section>
+                  </section>
+                </section>
+              </section>
+            </section>
+          </section>
+        </section>
+
+      <!-- <section class='recipe-modal hidden' id="recipeModal">
         <button>Close</button>
         <h4 class='rec-name'>Recipe Name</h4>
         <p class='dish-cost'>Total Cost:</p>
@@ -35,7 +61,9 @@
             <p class="modal-ingredients">INGREDIENTS GO HERE</p>
           </section>
         </section>
-      </section>
+      </section> -->
+
+
     </section>
   </body>
   <script src="scripts.js"></script>

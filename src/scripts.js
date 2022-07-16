@@ -6,6 +6,8 @@ import Recipe from './classes/Recipe'
 import Ingredient from './classes/Ingredient'
 import RecipeRepository from './classes/RecipeRepository'
 
+import MicroModal from 'micromodal';
+
 
 let userList;
 let recipeList;
@@ -32,11 +34,26 @@ let ingredientText = document.querySelector( 'modal-ingredients')
 let recipeCard = document.querySelector(".recipe-grid-container");
 
 
+let recipeCardGridContainer = document.getElementById("gridContainer")
+let closeModalButton = document.getElementById("closeModal")
+
 // Event Listeners <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 searchButton.addEventListener("click", searchRecipe);
 window.addEventListener( 'load', loadData );
 recipeContainer.addEventListener( 'click' , displayModal );
 // favoriteRecipeButton.addEventListener('click', addToFaves);
+
+
+recipeCardGridContainer.addEventListener('click', (e) => {
+    e.target
+    // put modal display info here
+    MicroModal.show('recipeModal');
+})
+
+closeModalButton.addEventListener('click', () => {
+    console.log('OI!!!!')
+    MicroModal.close('recipeModal')
+})
 
 
 function loadData( ) {
@@ -50,8 +67,10 @@ Promise.all( [ getData( 'users' ), getData( 'recipes' ), getData( 'ingredients' 
         recipeRepository = new RecipeRepository( recipeList );
         displayRandomUserName( );
         displayAllRecipesOnPage( );
+
     } );
 }
+
 
 
 function displayRandomUserName( ) {
@@ -86,7 +105,7 @@ function searchRecipe() {
         return `<section class='recipe-card' id="recipeCard">
         <img src="${ recipe.image }" class="recipe-image" alt="">
         <h3>${ recipe.name }</h3>
-        <button id="${ recipe.id }">Let's Make It!</button>
+        <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
         <button class="favorite-button">Favorite!</button>
         <button class="save-button">Save it!</button>
@@ -104,7 +123,7 @@ function displayFilteredRecipesByNameOnPage( ) {
         return `<section class='recipe-card' id="recipeCard">
         <img src="${ recipe.image }" class="recipe-image" alt="">
         <h3>${ recipe.name }</h3>
-        <button id="${ recipe.id }">Let's Make It!</button>
+        <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
         <button class="favorite-button">Favorite!</button>
         <button class="save-button">Save it!</button>
@@ -124,7 +143,7 @@ function displayAllRecipesOnPage(  ) {
         return `<section class='recipe-card' id="recipeCard">
         <img src="${ recipe.image }" class="recipe-image" alt="">
         <h3>${ recipe.name }</h3>
-        <button id="${ recipe.id }">Let's Make It!</button>
+        <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
         <button class="favorite-button">Favorite!</button>
         <button class="save-button">Save it!</button>
@@ -134,23 +153,30 @@ function displayAllRecipesOnPage(  ) {
     return recipeCards.innerHTML = result;
 };
 
+let recipeModal = document.querySelector( '.recipe-modal' );
+let recipeContainer = document.querySelector( '.recipe-grid-container' );
+let h4 = document.querySelector( '.rec-name' );
+let instructionText = document.querySelector( '.modal-instructions' );
+let totalCost = document.querySelector( '.dish-cost' );
+let ingredientText = document.querySelector( 'modal-ingredients')
+recipeContainer.addEventListener( 'click' , displayRecipeInfo );
+
 function show(element) {
     element.classList.remove('hidden')
 }
 
-function displayModal( e ){
-    // newRecipe = new RecipeRepository( recipeList )
+function displayRecipeInfo( e ){
+    newRecipe = new RecipeRepository( recipeList )
     // console.log(newRecipe);
     newRecipe.recipes.map(( dish ) => {
         if( e.target.id == dish.id ){
-            recipeClass = new Recipe( dish, ingredientList );
-            console.log(dish);
-            console.log(recipeClass.getIngredientsWithNames( dish.ingredients , ingredientList))
-            recipeModal.classList.remove('hidden')
-            recipeModal.id = dish.id  
+            recipeClass = new Recipe( dish, dish.ingredients )
+            // recipeClass.getIngredientName()
+            // recipeModal.id = dish.id  
             h4.innerText = dish.name  
             instructionText.innerText = dish.instructions.map(task => `${task.number}: ${task.instruction}`).join('  ');
-        
+            // ingredientText.innerText = dish.ingredients.map(item => recipeClass.getIngredientName( [item] , recipeList));
+
             return 
         }       
     })
