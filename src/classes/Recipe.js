@@ -15,25 +15,25 @@ class Recipe {
       return new Ingredient(ingredient);
     });
 
-    this.ingredients.forEach(ingredient => ingredient.findIngredientInfo(ingredientsData))
+    this.ingredients.forEach(ingredient => ingredient.findIngredientInfo(ingredientsData));
   }
 
   returnIngredientList() {
     return this.ingredients.map(ingredient =>
       `${ingredient.quantityAmount} ${ingredient.quantityUnit} ${ingredient.name}`
-    )
+    );
   };
 
   returnTotalCost() {
-    const cost = this.ingredients.reduce((acc, ingredient) => {
-      acc += ingredient.calculateCost();
-      return acc;
+    const cost = this.ingredients.reduce((recipeCost, ingredient) => {
+      recipeCost += ingredient.calculateCost();
+      return recipeCost;
     }, 0)
     return cost.toFixed(2);
   }
 
   returnInstructions() {
-    return this.instructions.map(instruction => `${instruction.instruction}`)
+    return this.instructions.map(instruction => `${instruction.instruction}`);
   };
 }
 
