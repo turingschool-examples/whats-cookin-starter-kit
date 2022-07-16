@@ -139,26 +139,31 @@
     /* flex-grow:inherit; */
   }
   
-  /* .recipe-modal {
+  .recipe-modal {
+    display: none;
     text-align: center;
     height: 90%;
     width: 60%;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
+    top: 10%;
+    left: 10%;
     transition: 200ms ease-in-out;
     border: 1px solid black;
     border-radius: 10px;
     z-index: 10;
     background-color: white;
-  } */
+  }
+
+  .recipe-modal.is-open {
+    display: block;
+    }
+
   
-  /* .recipe-modal:active {
+ /* .recipe-modal:active {
     transform: translate(-50%, -50%) scale(1);
   } */
   
-  /* .overlay {
+  /* .modal_overlay {
     position: fixed;
     opacity: 0;
     top: 0;
