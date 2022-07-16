@@ -16,7 +16,8 @@ const homePage = document.querySelector('.main-page-container');
 const recipePage = document.querySelector('.recipe-container');
 const homeButton = document.querySelector('.home-img');
 const favoriteButton = document.querySelector('.fav-img');
-const allRecipesSection = document.querySelector('.all-recipes');
+const searchButton = document.querySelector('.search-button')
+const allRecipesSection = document.querySelector('.list-recipes');
 const icon1Img = document.querySelector('.icon-1-img');
 const icon2Img = document.querySelector('.icon-2-img');
 const icon3Img = document.querySelector('.icon-3-img');
@@ -25,15 +26,18 @@ const selectedRecipeImg = document.querySelector('.selected-recipe-img')
 const recipeNameBox = document.querySelector('.recipe-title-box');
 const recipePriceList = document.querySelector('.price-box');
 const recipeDetailsBox = document.querySelector('.recipe-info-box')
-const searchBtn = document.querySelector('.search-button');
+const searchValue = document.querySelector('.search-input');
+const tagRadioBtn = document.querySelector('.tag-search');
+const nameRadioBtn = document.querySelector('.name-search');
 
 // ***** Event Listeners ***** //
 
 window.addEventListener('load', updateMainPageRecipeIcons);
 window.addEventListener('load', loadNewUser);
-window.addEventListener('load', displayAllRecipeNames);
+window.addEventListener('load', displayAllNames);
 allRecipesSection.addEventListener('click', viewRecipe);
 homeButton.addEventListener('click', showHomePage);
+searchButton.addEventListener('click', filterRecipe);
 
 // ***** Global Variables ***** //
 
@@ -68,11 +72,16 @@ function updateMainPageRecipeIcons() {
   icon4Img.src = allRecipes[getRandomIndex(allRecipes)].image;
 }
 
-function displayAllRecipeNames() {
-  const allRecipeNames = allRecipes.map(recipe => recipe.name);
-  allRecipeNames.forEach(name => {
+function displayRecipeNames(recipeData) {
+  allRecipesSection.innerHTML = ''
+  const recipeNames = recipeData.map(recipe => recipe.name);
+  recipeNames.forEach(name => {
     allRecipesSection.innerHTML += `<p>${name}</p>`
   });
+}
+
+function displayAllNames() {
+  displayRecipeNames(recipeRepository.recipeData)
 }
 
 function showHomePage() {
@@ -83,10 +92,35 @@ function showHomePage() {
 function viewRecipe(event) {
   hide(homePage);
   show(recipePage);
-  let selectedRecipeName = event.target.innerText;
-  let selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name);
-  recipeNameBox.innerText = selectedRecipe[0].name;
-  recipeDetailsBox.innerText = selectedRecipe[0].returnRecipeInstructions();
-  recipePriceList.innerText = selectedRecipe[0].getCostofRecipe();
+  let selectedRecipeName = event.target.innerText
+  let selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name)
+  recipeNameBox.innerText = selectedRecipe[0].name
+  recipeDetailsBox.innerText = selectedRecipe[0].returnRecipeInstructions()
+  recipePriceList.innerText = selectedRecipe[0].getCostofRecipe()
   selectedRecipeImg.src = selectedRecipe[0].image;
+}
+
+function filterRecipe(event) {
+  event.preventDefault();
+  if (tagRadioBtn.checked) {
+    filterRecipeByTag(searchValue.value)
+  } else if (nameRadioBtn.checked) {
+    filterRecipeByName(searchValue.value)
+  }
+}
+
+function filterRecipeByTag(tag) {
+  let input = tag.toLowerCase()
+  let filteredRecipes = recipeRepository.filterByTag(input)
+  displayRecipeNames(filteredRecipes)
+}
+
+function filterRecipeByName(name) {
+  // let input = name.toLowerCase()
+  // let lowerCaseRecipes = recipeRepository.recipeData
+  // lowerCaseRecipes.forEach(recipe => {
+  //   recipe.name = recipe.name.toLowerCase()
+  // })
+  let filteredRecipes = recipeRepository.filterByName(name)
+  displayRecipeNames(filteredRecipes)
 }
