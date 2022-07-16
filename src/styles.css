@@ -152,7 +152,7 @@ button {
   padding-right: 10vw;
 }
 
-.recipe-view-small-box {
+.recipe-view-small-box, .recipe-view--box {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -190,9 +190,14 @@ button {
   margin-right: 5vw;
 }
 
-.all-recipes-view,
-.saved-recipes-view {
+.all-recipes-view {
   border: 2px solid black;
+  height: 475px;
+  width: 1000px;
+}
+
+.saved-recipes-view {
+  border: 2px solid pink;
   height: 475px;
   width: 1000px;
 }
