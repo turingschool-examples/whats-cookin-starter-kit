@@ -25,7 +25,12 @@ let matchingNameConditions = [];
 let searchButton = document.querySelector(".search-button");
 let searchBox = document.querySelector(".recipe-search")
 let welcomeUserMessage = document.getElementById( 'welcomeUserMessage' );
-// let favoriteRecipeButton = document.querySelector('.favorite-button');
+let recipeModal = document.querySelector( '.recipe-modal' );
+let recipeContainer = document.querySelector( '.recipe-grid-container' );
+let h4 = document.querySelector( '.rec-name' );
+let instructionText = document.querySelector( '.modal-instructions' );
+let totalCost = document.querySelector( '.dish-cost' );
+let ingredientText = document.querySelector( 'modal-ingredients')
 let recipeCard = document.querySelector(".recipe-grid-container");
 
 
@@ -35,6 +40,7 @@ let closeModalButton = document.getElementById("closeModal")
 // Event Listeners <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 searchButton.addEventListener("click", searchRecipe);
 window.addEventListener( 'load', loadData );
+recipeContainer.addEventListener( 'click' , displayModal );
 // favoriteRecipeButton.addEventListener('click', addToFaves);
 
 
@@ -147,11 +153,6 @@ function displayAllRecipesOnPage(  ) {
     return recipeCards.innerHTML = result;
 };
 
-
-
-
-
-
 let recipeModal = document.querySelector( '.recipe-modal' );
 let recipeContainer = document.querySelector( '.recipe-grid-container' );
 let h4 = document.querySelector( '.rec-name' );
@@ -175,6 +176,7 @@ function displayRecipeInfo( e ){
             h4.innerText = dish.name  
             instructionText.innerText = dish.instructions.map(task => `${task.number}: ${task.instruction}`).join('  ');
             // ingredientText.innerText = dish.ingredients.map(item => recipeClass.getIngredientName( [item] , recipeList));
+
             return 
         }       
     })

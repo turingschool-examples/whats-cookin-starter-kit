@@ -18,11 +18,12 @@ class Recipe {
             
     };
 
-    // getIngredientName( ingredientList, recipeIngredient ){
-    //     const data = ingredientList;
-    //     const findName = data.filter( ( item ) => [ item.id ].includes( recipeIngredient.id ) );
-    //     return findName[ 0 ].name;
-    //   };
+        getIngredientsWithNames( recipeIngredients , ingredientList ){
+            return recipeIngredients.map(ingredient => { 
+                ingredient.name = ingredientList.find( ing => ing.id === ingredient.id ).name;
+                return ingredient;
+            });       
+      };
 
     getCostOfIngredients( ingredientList, recipeIngredient ){
         const data = ingredientList;
