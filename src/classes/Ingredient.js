@@ -1,6 +1,6 @@
 class Ingredient {
     constructor(ingredient) {
-        this.name = '';
+        this.name = ''
         this.id = ingredient.id;
         this.quantityAmount = ingredient.quantity.amount;
         this.quantityUnit = ingredient.quantity.unit;
@@ -8,23 +8,14 @@ class Ingredient {
     }
 
     findIngredientInfo(ingredientsData) {
-        const ingredient = ingredientsData.find(ingredient => ingredient.id === this.id);
-        this.name = ingredient.name;
-        this.costPerUnitInCents = ingredient.estimatedCostInCents;
+      const ingredient = ingredientsData.find(ingredient => ingredient.id === this.id);
+      this.name = ingredient.name
+      this.costPerUnitInCents = ingredient.estimatedCostInCents;
     }
 
     calculateCost() {
-        return ((this.quantityAmount * this.costPerUnitInCents) / 100);
+        return this.quantityAmount * this.costPerUnitInCents / 100
     }
-
-};
-
-export default Ingredient;
-
-
-
-
-
 
     // updateProperties(recipeData) {
     //     let allIngredients = [];
@@ -37,3 +28,11 @@ export default Ingredient;
     //     this.quantityAmount = ingredientObj.quantity.amount;
     //     this.quantityUnit = ingredientObj.quantity.unit;
     // }
+
+
+
+
+};
+
+
+export default Ingredient;
