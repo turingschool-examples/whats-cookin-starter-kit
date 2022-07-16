@@ -7,22 +7,53 @@
     <title>ANYONE CAN COOK</title>
   </head>
   <body>
-    <section class ="main-body"> 
+    <section class ="main-body">
       <header class ="header-container" id ="headerContainer">
         <div class="h1-wrapper">
           <h1>ANYONE CAN COOK</h1>
-        </div> 
-        <div class ="header-icons-container"> 
+        </div>
+        <div class ="header-icons-container">
           <img class="home-img" id="homeImg" src="./home-icon-svg.svg">
           <img class="fav-img" id="favImg" src="./favorite-svg.svg">
         </div>
       </header>
-      <article class ="search-container" id="searchContainer">
-        <div class ="search-header" id="searchHeader">Find a Recipe </div>
-        <div class ="search-bar" id="searchBar">
-          <input type="search" id="query" name="q"
-          placeholder="Search recipes...">🔎
+    <article class ="search-container" id="searchContainer">
+      <div class ="search-header" id="searchHeader">Find a Recipe </div>
+      <div class ="search-bar" id="searchBar">
+        <form>
+          <input type="search" class = "search-input" id="query" name="q"
+            placeholder="Search recipes..."><button type ="submit" class = "search-button">🔎</button>
+        </form>
+      </div>
+        <input class = "tag-search" type = "radio" name = "searchMode" value = "tag">Search by Tag</input>
+        <input class = "name-search" type = "radio" name = "searchMode" value = "name">Search by Name</input>
+    </article>
+    <section class ="main-page-container" id="mainPageContainer">
+      <div class ="feature-container" id="featureContainer">
+        <div class="feature-image-box" id="featureImageBox"></div>
+        <div class="buzzword-container">buzzzz</div>
+        <div class="meal-box" id="mealBox">What's for ${time}</div>
+      </div>
+      <section class="recipe-icon-container">
+        <div class ="recipe-icons" id="recipeIcon1">
+          <img class="icon-1-img" src="">
         </div>
+        <div class ="recipe-icons" id="recipeIcons">
+          <img class="icon-2-img" src="">
+        </div>
+        <div class ="recipe-icons" id="recipeIcon3">
+          <img class="icon-3-img" src="">
+        </div>
+        <div class ="recipe-icons" id="recipeIcon4">
+          <img class="icon-4-img" src="">
+        </div>
+      </section>
+    </section>
+  </section>
+    <section class ="recipe-container hidden" id="recipeContainer">
+      <article class ="recipe-r-side-box" id="recipeRSideBox">
+        <p class ="recipe-title-box" id="recipeTitleBox">innerHTML recipe title</p>
+        <div class ="recipe-box" id="recipeBox">recipeInfo</div>
       </article>
       <section class ="main-page-container hidden" id="mainPageContainer">
         <div class ="feature-container" id="featureContainer">
@@ -58,7 +89,7 @@
     </section> 
     <aside class ="home-recipe-sidebar" id ="homeRecipeBar">
       <p class ="side-bar-header" is="sideHeader"> Recipes </p>
-      <p class ="all-recipes" id="allRecipes"> innerHTML Recipes</p>
+      <p class ="list-recipes" id="allRecipes"> innerHTML Recipes</p>
     </aside>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
