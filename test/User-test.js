@@ -152,12 +152,14 @@ describe('User', () => {
 
     it('Should filter recipes in recipesToCook by tag', () => {
       expect(recipeData[0].tags[0]).to.deep.equal("sauce");
-
+      user.addRecipeToCook(recipeData[0]);
+      expect(user.listRecipeToCookByTag("sauce")[0].tags[0]).to.deep.equal("sauce")
     });
 
     it('should filter recipes in recipesToCook by name', () => {
-
-      expect().to.equal();
+      expect(recipeData[0].name).to.deep.equal("Dirty Steve's Original Wing Sauce");
+      user.addRecipeToCook(recipeData[0]);
+      expect(user.listRecipebyToCookName("Dirty Steve's Original Wing Sauce")[0].name).to.deep.equal("Dirty Steve's Original Wing Sauce");
     })
 
 
