@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <title>ANYONE CAN COOK</title>
   </head>
-
   <body>
     <section class ="main-body">
       <header class ="header-container" id ="headerContainer">
@@ -56,16 +55,42 @@
         <p class ="recipe-title-box" id="recipeTitleBox">innerHTML recipe title</p>
         <div class ="recipe-box" id="recipeBox">recipeInfo</div>
       </article>
-      <div section ="recipe-l-side-box hidden" id="recipeLSideBox">
-        <div class="recipe-image-container" id="recipeImageContainer">
-          <article class="price-box" id="priceBox">innerHTML price list</article>
+      <section class ="main-page-container hidden" id="mainPageContainer">
+        <div class ="feature-container" id="featureContainer">
+          <div class="feature-image-box" id="featureImageBox"></div>
+          <div class="buzzword-container">buzzzz</div>
+          <div class="meal-box" id="mealBox">What's for ${time}</div>
+        </div>
+        <section class="recipe-icon-container">
+          <div class ="recipe-icons" id="recipeIcon1">
+            <img class="icon-1-img" src="">
+          </div>
+          <div class ="recipe-icons" id="recipeIcons">
+            <img class="icon-2-img" src="">
+          </div>
+          <div class ="recipe-icons" id="recipeIcon3">
+            <img class="icon-3-img" src="">
+          </div>
+          <div class ="recipe-icons" id="recipeIcon4">
+            <img class="icon-4-img" src="">
+          </div>
         </section>
+      </section>
+      <section class ="recipe-container" id="recipeContainer">
+        <div class="recipe-img-price-container">
+          <img class="selected-recipe-img" src="" alt="selected recipe">
+          <p class="price-box" id="priceBox">innerHTML price list</p>
+        </div>
+        <article class ="recipe-description-box" id="recipeRSideBox">
+          <p class ="recipe-title-box" id="recipeTitleBox">innerHTML recipe title</p>
+          <p class ="recipe-info-box" id="recipeBox">recipeInfo</p>
+       </article>
+      </section>
+    </section> 
     <aside class ="home-recipe-sidebar" id ="homeRecipeBar">
       <p class ="side-bar-header" is="sideHeader"> Recipes </p>
       <p class ="list-recipes" id="allRecipes"> innerHTML Recipes</p>
     </aside>
-      </div>
-    </section>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
