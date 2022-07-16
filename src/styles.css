@@ -45,7 +45,8 @@ padding-top: .3em;
 }
 
 
-.search-header{
+.search-header,
+.search-favorite-header{
   font-size: 220%;
   font-family: 'Raleway', sans-serif;
   margin: 0;
@@ -113,11 +114,7 @@ cursor: pointer;
 }
 
 
-/* ~~~~~~~~~~~~~~~~~~search bar~~~~~~~~~~~~~~~~~~~~~~ */
-
-
-
-/* ~~~~~~~~~~~~~~~style containers~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~home page~~~~~~~~~~~~~~~~~~~ */
 
 
 .h1-wrapper {
@@ -334,6 +331,7 @@ filter: drop-shadow(5px 10px 3px black);
       height: 90%;
       width: 100%;
       margin: 0;
+      overflow: scroll;
     }
 
     .total-price-box{
@@ -356,7 +354,9 @@ filter: drop-shadow(5px 10px 3px black);
       align-content: center;
       height: 90%;
       width: 80%;
+      color: white;
       background-color: black;
+      overflow: scroll;
     }
 
     .ingredient-title-wrapper{
@@ -410,6 +410,53 @@ filter: drop-shadow(5px 10px 3px black);
     .recipe-ingredients {
       margin: 0;
     }
+
+/* ~~~~~~~~~~~~~~~~~~view favorite recipe user story~~~~~~~~~~~~~~~~~~~~~~ */
+    .search-favorite-container{
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 20%;
+      width: 100%;
+      background-color: black;
+      color: white;
+      }
+
+    .main-favorite-container{
+      height: 100%;
+      width: 100%;
+    }
+
+    .favorite-container{
+      display: flex;
+      flex-direction: row;
+      background-image: url("../dist/anyonecancook-logo.svg");
+    }
+    
+    /* .fav-page-logo-img{
+      display: flex;
+      height: 100%;
+      width: 100%;
+      opacity: 20%;
+    } */
+    
+   
+      .favorite-recipe-icon-container{
+        display: flex;
+        height: 50%;
+        width: 100%;
+      }
+
+      .favorite-recipe-icons{
+          display: flex;
+          height: 125px;  
+          width: 125px;
+          filter: drop-shadow(5px 10px 3px black);
+          cursor: pointer;
+          }
+      
+
 /* ~~~~~~~~~~~~~~~~~~aux~~~~~~~~~~~~~~~~~~~~~~ */
  .hidden {
   display: none;
