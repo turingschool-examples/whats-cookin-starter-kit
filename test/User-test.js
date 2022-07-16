@@ -150,10 +150,10 @@ describe('User', () => {
         expect(user.recipesToCook).to.deep.equal( [] )
     }); 
 
-    it( 'should take in favoriteRecipes', () => {
-        expect(user.favoriteRecipes).to.be.a("array")
-        expect(user.favoriteRecipes).to.deep.equal( [] )
-    });
+    // it( 'should take in favoriteRecipes', () => {
+    //     expect(user.favoriteRecipes).to.be.a("array")
+    //     expect(user.favoriteRecipes).to.deep.equal( [] )
+    // });
 
     it( 'should save a recipe in recipesToCook array', () => {
         user.addRecipeToRecipesToCook( dataRecipe )
@@ -218,80 +218,80 @@ describe('User', () => {
         )
     });
 
-    it( 'should favorite recipe to favoriteRecipes', () => {
-        user.addRecipeToFavorites( dataRecipe )
-        expect(user.favoriteRecipes).to.be.a("array")
-        expect(user.favoriteRecipes.length).to.equal( 1 )
-        expect(user.favoriteRecipes).to.deep.equal( 
-            [
-                {
-                    "id": 595736,
-                    "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
-                    "ingredients": [
-                      {
-                        "id": 20081,
-                        "quantity": {
-                          "amount": 1.5,
-                          "unit": "c"
-                        }
-                      },
-                      {
-                        "id": 18372,
-                        "quantity": {
-                          "amount": 0.5,
-                          "unit": "tsp"
-                        }
-                      },
-                      {
-                        "id": 1123,
-                        "quantity": {
-                          "amount": 1,
-                          "unit": "large"
-                        }
-                      },
-                      {
-                        "id": 19335,
-                        "quantity": {
-                          "amount": 0.5,
-                          "unit": "c"
-                        }
-                      }
-                    ],
-                    "instructions": [
-                      {
-                        "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
-                        "number": 1
-                      },
-                      {
-                        "instruction": "Add egg and vanilla and mix until combined.",
-                        "number": 2
-                      },
-                      {
-                        "instruction": "Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.",
-                        "number": 3
-                      }
-                    ],
-                    "name": "Loaded Chocolate Chip Pudding Cookie Cups",
-                    "tags": [
-                      "antipasti",
-                      "starter",
-                      "snack",
-                    ]
-                }
-            ]
-         )
-    });
+    // it( 'should favorite recipe to favoriteRecipes', () => {
+    //     user.addRecipeToFavorites( dataRecipe )
+    //     expect(user.favoriteRecipes).to.be.a("array")
+    //     expect(user.favoriteRecipes.length).to.equal( 1 )
+    //     expect(user.favoriteRecipes).to.deep.equal( 
+    //         [
+    //             {
+    //                 "id": 595736,
+    //                 "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
+    //                 "ingredients": [
+    //                   {
+    //                     "id": 20081,
+    //                     "quantity": {
+    //                       "amount": 1.5,
+    //                       "unit": "c"
+    //                     }
+    //                   },
+    //                   {
+    //                     "id": 18372,
+    //                     "quantity": {
+    //                       "amount": 0.5,
+    //                       "unit": "tsp"
+    //                     }
+    //                   },
+    //                   {
+    //                     "id": 1123,
+    //                     "quantity": {
+    //                       "amount": 1,
+    //                       "unit": "large"
+    //                     }
+    //                   },
+    //                   {
+    //                     "id": 19335,
+    //                     "quantity": {
+    //                       "amount": 0.5,
+    //                       "unit": "c"
+    //                     }
+    //                   }
+    //                 ],
+    //                 "instructions": [
+    //                   {
+    //                     "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
+    //                     "number": 1
+    //                   },
+    //                   {
+    //                     "instruction": "Add egg and vanilla and mix until combined.",
+    //                     "number": 2
+    //                   },
+    //                   {
+    //                     "instruction": "Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.",
+    //                     "number": 3
+    //                   }
+    //                 ],
+    //                 "name": "Loaded Chocolate Chip Pudding Cookie Cups",
+    //                 "tags": [
+    //                   "antipasti",
+    //                   "starter",
+    //                   "snack",
+    //                 ]
+    //             }
+    //         ]
+    //      )
+    // });
 
-    it( 'should filter favorite recipes by tag', () => {
-        user.addRecipeToFavorites( dataRecipe )
-        const testData = user.filterFavoriteRecipesByTag( "antipasti" )
-        expect(testData[0]).to.equal("antipasti")
-    });
-    it('should filter favorite recipes by name', () => {
-      user.addRecipeToFavorites( dataRecipe )
-      const testData = user.filterFavoriteRecipesByName( "Loaded Chocolate Chip Pudding Cookie Cups" )
-      expect(testData).to.equal( "Loaded Chocolate Chip Pudding Cookie Cups" )
-    });
+    // it( 'should filter favorite recipes by tag', () => {
+    //     user.addRecipeToFavorites( dataRecipe )
+    //     const testData = user.filterFavoriteRecipesByTag( "antipasti" )
+    //     expect(testData[0]).to.equal("antipasti")
+    // });
+    // it('should filter favorite recipes by name', () => {
+    //   user.addRecipeToFavorites( dataRecipe )
+    //   const testData = user.filterFavoriteRecipesByName( "Loaded Chocolate Chip Pudding Cookie Cups" )
+    //   expect(testData).to.equal( "Loaded Chocolate Chip Pudding Cookie Cups" )
+    // });
 
     it('should remove saved recipes from array', () => {
       user.addRecipeToRecipesToCook( dataRecipe );
@@ -299,9 +299,9 @@ describe('User', () => {
       expect(user.recipesToCook).to.deep.equal([ ]);
     });
 
-    it('should remove a recipe from the favorited recipes', () => {
-      user.addRecipeToFavorites( dataRecipe );
-      user.removeRecipeFromFavorites( dataRecipe );
-      expect(user.favoriteRecipes).to.deep.equal([ ]);
-    })
+    // it('should remove a recipe from the favorited recipes', () => {
+    //   user.addRecipeToFavorites( dataRecipe );
+    //   user.removeRecipeFromFavorites( dataRecipe );
+    //   expect(user.favoriteRecipes).to.deep.equal([ ]);
+    // })
 });

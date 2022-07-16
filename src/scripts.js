@@ -107,7 +107,6 @@ function searchRecipe() {
         <h3>${ recipe.name }</h3>
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
-        <button class="favorite-button">Favorite!</button>
         <button class="save-button">Save it!</button>
         </div>
         </section>`
@@ -125,7 +124,6 @@ function displayFilteredRecipesByNameOnPage( ) {
         <h3>${ recipe.name }</h3>
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
-        <button class="favorite-button">Favorite!</button>
         <button class="save-button">Save it!</button>
         </div>
         </section>`
@@ -146,7 +144,6 @@ function displayAllRecipesOnPage( e ) {
         <h3>${ recipe.name }</h3>
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
-        <button class="favorite-button">Favorite!</button>
         <button class="save-button">Save it!</button>
         </div>
         </section>`

@@ -4,16 +4,16 @@ class User {
         this.id = user.id;
         this.pantry = user.pantry;
         this.recipesToCook = [ ];
-        this.favoriteRecipes = [ ];
+        // this.favoriteRecipes = [ ];
     };
 
     addRecipeToRecipesToCook( recipe ) {
         this.recipesToCook.push( recipe )
     }
 
-    addRecipeToFavorites( recipe ) {
-        this.favoriteRecipes.push( recipe )
-    }
+    // addRecipeToFavorites( recipe ) {
+    //     this.favoriteRecipes.push( recipe )
+    // }
 
     removeRecipeFromRecipesToCook( recipe ) {
         this.recipesToCook.forEach((favoriteRecipe) => {
@@ -24,29 +24,47 @@ class User {
         })
     }
 
-    removeRecipeFromFavorites(recipe) {
-        this.favoriteRecipes.forEach((favoriteRecipe) => {
-            if (favoriteRecipe.id === recipe.id) {
-              this.favoriteRecipes.splice(this.favoriteRecipes.indexOf(recipe), 1) 
-            }
-            return this.favoriteRecipes
-        })
-    };
-    filterFavoriteRecipesByTag( userInput ){
-        let tagMatches = this.favoriteRecipes.filter((recipe) => {
-            return recipe.tags.includes(userInput.toLowerCase())
-        });
-          return tagMatches[0].tags;
-      };
+    // removeRecipeFromFavorites(recipe) {
+    //     this.favoriteRecipes.forEach((favoriteRecipe) => {
+    //         if (favoriteRecipe.id === recipe.id) {
+    //           this.favoriteRecipes.splice(this.favoriteRecipes.indexOf(recipe), 1) 
+    //         }
+    //         return this.favoriteRecipes
+    //     })
+    // };
+    // filterFavoriteRecipesByTag( userInput ){
+    //     let tagMatches = this.favoriteRecipes.filter((recipe) => {
+    //         return recipe.tags.includes(userInput.toLowerCase())
+    //     });
+    //       return tagMatches[0].tags;
+    //   };
       
-    filterFavoriteRecipesByName(userSearch){
+    // filterFavoriteRecipesByName(userSearch){
 
-        let nameMatches = this.favoriteRecipes.filter((recipe) => {
+    //     let nameMatches = this.favoriteRecipes.filter((recipe) => {
+    //         return recipe.name.includes(userSearch)
+    //     })
+    //       return nameMatches[0].name
+    //   };
+
+      // Need to add tests if we intend on using this.
+    filterRecipesToCookByTag( userInput ){
+    let tagMatches = this.recipesToCook.filter((recipe) => {
+        return recipe.tags.includes(userInput.toLowerCase())
+    });
+        return tagMatches[0].tags;
+    };
+      
+    filterRecipesToCookByName(userSearch){
+
+        let nameMatches = this.recipesToCook.filter((recipe) => {
             return recipe.name.includes(userSearch)
         })
           return nameMatches[0].name
       };
   };
+
+  
   
   export default User;
 
