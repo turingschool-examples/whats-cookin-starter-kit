@@ -1,5 +1,4 @@
 import './styles.css';
-import './images/turing-logo.png';
 import { getData } from './apiCalls';
 import User from './classes/User'
 import Recipe from './classes/Recipe'
@@ -7,7 +6,6 @@ import Ingredient from './classes/Ingredient'
 import RecipeRepository from './classes/RecipeRepository'
 
 import MicroModal from 'micromodal';
-
 
 let userList;
 let recipeList;
@@ -19,7 +17,6 @@ let currentUser;
 let newRecipe;
 let matchingTagConditions = [];
 let matchingNameConditions = [];
-
 
 // Query Selectors <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 let searchButton = document.querySelector(".search-button");
