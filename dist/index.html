@@ -11,59 +11,80 @@
       <button type="button">My Recipes</button>
       <button type="button">Pantry</button>
     </nav>
-    <section class="greeting">
-      <h2>Welcome, User!</h2>
-    </section>
-    <section class="search-bar">
-      <div>
-        <span>🔎</span>
-        <input type="search" placeholder="Search by Title" />
-      </div>
-      <section id="keyword-section" class="hidden">
-        <h3>or Search by keyword</h3>
-        <ul class="keyword-list">
-          <li class="keyword"></li>
-        </ul>
+
+    <section class="body-container">
+      <section class="greeting">
+        <h2>Welcome, User!</h2>
       </section>
-    </section>
-    <section class="results">
-      <h1 class="results-header">All Recipes</h1>
-      <section class="results-grid-container">
-      </section>
-    </section>
-    <section id="specific-recipe-section" class="mega-card specific-recipe hidden">
-      <header>
-        <h2 class=“title”>Recipe Title</h2>
-        <span class="save-recipe-icon">❤️</span>
-        <span class="close-icon">❌</span>
-      </header>
-      <img class=“specific-recipe-image” src="https://static01.nyt.com/images/2022/06/12/dining/12Korokke/merlin_208197630_39a1b4ee-998e-4706-9f2f-8d5696f5e6ac-mobileMasterAt3x.jpg">
-      <section class=“recipe-cost”>
-        <h3>Total Cost</h3>
+      <section class="search-bar">
         <div>
-          <h5>$23.00</h5>
+          <span>🔎</span>
+          <input type="search" placeholder="Search by Title" />
         </div>
-        <button class=“cook-button” type=“button”>Cook Recipe!</button>
+        <section id="keyword-section" class="hidden">
+          <h3>or Search by keyword</h3>
+          <ul class="keyword-list">
+            <li class="keyword"></li>
+          </ul>
+        </section>
       </section>
+
+      <section class="sides-container">
+
+        <section class="left-side">
+
+        </section>
+
+        <section class="results center">
+          <h1 class="results-header">All Recipes</h1>
+          <section class="results-grid-container">
+          </section>
+        </section>
+
+        <section class="right-side">
+
+        </section>
+
+        <section id="specific-recipe-section" class="mega-card card-border specific-recipe hidden">
+          <header>
+            <h2 class="title">Recipe Title</h2>
+            <span class="save-recipe-icon">❤️</span>
+            <span class="close-icon">❌</span>
+          </header>
+
+          <section class="mega-body">
+            <img class="specific-recipe-image" src="https://static01.nyt.com/images/2022/06/12/dining/12Korokke/merlin_208197630_39a1b4ee-998e-4706-9f2f-8d5696f5e6ac-mobileMasterAt3x.jpg">
+            <section class="recipe-cost">
+              <h3>Total Cost</h3>
+              <div>
+                <h5>$23.00</h5>
+              </div>
+              <button class="cook-button" type="button">Cook Recipe!</button>
+            </section>
+            
+            <section class="ingredients">
+              <h3>Ingredients Needed</h3>
+              <ol>
+              </ol>
+            </section>
+            <section class="instructions">
+              <h3>Instructions</h3>
+              <ol>
+              </ol>
+            </section>
+          </section>
+        </section>
+
       </section>
-      <section class=“ingredients”>
-        <h3>Ingredients Needed</h3>
-        <ol>
-          <li>
-          </li>
-        </ol>
-      </section>
-      <section class=“instructions”>
-        <h3>Instructions</h3>
-        <ol>
-          <li>
-          </li>
-        </ol>
-      </section>
+
     </section>
   </main>
 
-  <article id="mini-recipe-template" class="mini-card recipe-result hidden" data-id="0">
+  <div class="grey-out-bg hidden">
+
+  </div>
+
+  <article id="mini-recipe-template" class="mini-card card-border recipe-result hidden" data-id="0">
     <span class="favorite-button">❤️</span>
     <img class="recipe-image" src="https://static01.nyt.com/images/2022/06/12/dining/12Korokke/merlin_208197630_39a1b4ee-998e-4706-9f2f-8d5696f5e6ac-mobileMasterAt3x.jpg"/>
     <p class="recipe-name">Test Card Title</p>

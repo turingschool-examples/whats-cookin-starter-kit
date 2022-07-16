@@ -13,9 +13,13 @@ recipeRepo.importRecipesFromFile(recipeData, ingredientsData)
 const resultTemplate = document.querySelector("#mini-recipe-template")
 const resultCardsContainer = document.querySelector(".results-grid-container")
 const specificRecipeSection = document.getElementById("specific-recipe-section")
+const modalCurtain = document.querySelector(".grey-out-bg")
+const closeIcon = document.querySelector(".close-icon")
+const homeButton = document.querySelector(".home-button")
 
 window.addEventListener("load", displayAllRecipesView)
-document.querySelector(".home-button").addEventListener('click', displayAllRecipesView)
+homeButton.addEventListener('click', displayAllRecipesView)
+closeIcon.addEventListener('click', closeSpecificRecipe)
 
 resultCardsContainer.addEventListener('click', specificRecipeClicked)
 
@@ -40,10 +44,40 @@ function findSpecificRecipe(recipeID) {
 
 function displaySpecificRecipe(recipe){
   console.log(recipe)
-  // show(specificRecipeSection)
+  
+  specificRecipeSection.querySelector(".title").innerText = recipe.name;
+  specificRecipeSection.querySelector(".specific-recipe-image").src = recipe.imageURL;
+  specificRecipeSection.querySelector(".specific-recipe-image").src = recipe.imageURL;
+  let ingredientsList = specificRecipeSection.querySelector(".ingredients ol")
+  let portionNames = recipe.getPortionNames()
+  portionNames.forEach( (portionName) => {
+    let listItem = document.createElement("li")
+    listItem.innerText = capitalize(portionName);
+    ingredientsList.append(listItem)
+  })
+  
+  let instructionsList = specificRecipeSection.querySelector(".instructions ol")
+  let instructions = recipe.getInstructions()
+  instructions.forEach( (instruction) => {
+    let listItem = document.createElement("li")
+    listItem.innerText = capitalize(instruction);
+    instructionsList.append(listItem)
+  })
+
+  specificRecipeSection.querySelector(".recipe-cost h5").innerText = "$" + recipe.calcTotalRecipeCost();
+  
+  show(specificRecipeSection)
+  show(modalCurtain)
+}
+
+function closeSpecificRecipe(){
+  hide(specificRecipeSection)
+  hide(modalCurtain)
 }
 
 function displayAllRecipesView() {
+  console.log("displaying all recipes") // TODO: remove this before merging to main
+
   resultCardsContainer.replaceChildren()
   recipeRepo.recipes.forEach(
     (recipe) => {
@@ -58,16 +92,9 @@ function makeRecipeCard(recipe){
   newCard.removeAttribute("id")
 
   newCard.dataset.id = recipe.id;
-  
-  newCard.childNodes.forEach( (node) => {
-    if (node.nodeName === "#text") {
-      // skip
-    } else if (node.classList.contains("recipe-name")){
-      node.innerText = recipe.name;
-    } else if (node.classList.contains("recipe-image")) {
-      node.src = recipe.imageURL;
-    }
-  })
+
+  newCard.querySelector(".recipe-name").innerText = recipe.name;
+  newCard.querySelector(".recipe-image").src = recipe.imageURL;
 
   show(newCard)
   return newCard;
@@ -83,4 +110,10 @@ function hide(domElement){
 
 function show(domElement){
   domElement.classList.remove("hidden")
+}
+
+function capitalize(string){
+  let stringArray = string.split('')
+  stringArray[0] = stringArray[0].toUpperCase()
+  return stringArray.join("")  
 }
