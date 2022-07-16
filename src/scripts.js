@@ -177,7 +177,7 @@ function displayRecipeInfo( e ){
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 // Save the recipe cards when button is clicked:
-
+//NEED TO ADD A FOCUS TO SHOW WHEN THE RECIPE HAS BEEN SAVED
 function saveRecipeToRecipesToCook ( e ) {
     return newRecipe.recipes.filter((favoriteDish) => {
         if((e.target.id == favoriteDish.id) && (!currentUser.recipesToCook.includes(favoriteDish.id && favoriteDish.name))) {
@@ -207,9 +207,11 @@ function showCookingProfile( e ) {
             <h3>${ recipe.name }</h3>
             <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
             <div>
-            <button id= ${recipe.id} class="save-button">Save to cooking profile!</button>
+            <button id= ${recipe.id} class="remove-button">Remove from cooking profile!</button>
             </div>
             </section>`
+            //NEED TO ADD THE REMOVE BUTTON 
+            //COPY THE ABOVE SAVE FUNCTION AND SPLICE RATHER THAN PUSH 
         } );
         console.log('NEW MATCHING NAMES ARRAY: ', currentUser.recipesToCook )
         currentUser.recipesToCook = recipeCard;
