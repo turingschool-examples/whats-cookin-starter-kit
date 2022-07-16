@@ -189,15 +189,12 @@ describe('Recipe', () => {
       // expect(recipe.getIngredientName(dataIngredient, dataRecipe)).to.equal("wheat flour") 
   });
 
-  it('should take in an ouside ingredient list', () => {
-    expect(recipe.getIngredientName(dataIngredient, dataRecipe.ingredients[0])).to.equal("wheat flour") 
-    // expect(recipe.getIngredientName(dataIngredient, dataRecipe)).to.equal("wheat flour") 
-  });
   it('should get cost of ingredients', () => {
-    expect(recipe.getCostOfIngredients(dataIngredient, dataRecipe.ingredients[0])).to.equal(213) 
+    expect(recipe.getCostOfIngredients(dataRecipe.ingredients , dataIngredient)).to.equal(451) 
   });
+  
   it('should return directions and instructions', () => {
-    expect(recipe.returnInstructions(dataIngredient, dataRecipe.instructions[0])).to.deep.equal(
+    expect(recipe.returnInstructions(dataRecipe.ingredients , dataIngredient)).to.deep.equal(
       [
         {
           "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",

@@ -171,7 +171,7 @@ function displayRecipeInfo( e ){
             // recipeModal.id = dish.id  
             h4.innerText = dish.name  
             instructionText.innerText = dish.instructions.map(task => `${task.number}: ${task.instruction}`).join('  ');
-            ingredientText.innerText = dish.ingredients.map(item => `${recipeClass.getIngredientsWithNames( dish, recipeList)}`);
+            // ingredientText.innerText = dish.ingredients.map(item => `${recipeClass.getIngredientsWithNames( dish, recipeList)}`);
             // ^^^^^^^^^^^ dis has a lot of potential!
             //need to figure out how to pull in the result of 'getIngredientsWithNames' function
             console.log('DISH: ', dish) 
@@ -197,19 +197,19 @@ function viewFaves () {
 
 }
 
-// function addToFaves (e) {
-//     const favorites = []
-//     let recipeCards = recipeCard; //<<<< need this to access the grid conatiner
-//     //without this, null error persists
-//     //will need to access both this and an event listener for the faves botton?????
-//     //how to pull these id's on click on this button to push into array
-//     newRecipe.recipes.map((favoriteDish) => {
-//         if(e.target.id == favoriteDish.id) {
-//             favorites.push(favoriteDish)
-//         }
-//     })
-//     console.log(favorites)
-//     return favorites
-// }
+function addToFaves (e) {
+    const favorites = []
+    let recipeCards = recipeCard; //<<<< need this to access the grid conatiner
+    //without this, null error persists
+    //will need to access both this and an event listener for the faves botton?????
+    //how to pull these id's on click on this button to push into array
+    recipeCards.recipes.map((favoriteDish) => {
+        if(e.target.id == favoriteDish.id) {
+            favorites.push(favoriteDish)
+        }
+    })
+    console.log(favorites)
+    return favorites
+}
 
 

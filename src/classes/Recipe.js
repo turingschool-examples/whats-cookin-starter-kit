@@ -20,17 +20,22 @@ class Recipe {
 
     getIngredientsWithNames( recipe , ingredientList ){
         return recipe.map(ingredient => { 
-           
             ingredient.name = ingredientList.find( ing => ing.id === ingredient.id ).name;
             console.log('INGR LIST: ', ingredient.name)
             return ingredient.name;
         });       
-  };
+    };
 
-    getCostOfIngredients( ingredientList, recipeIngredient ){
-        const data = ingredientList;
-        const findCost = data.filter( ( item ) => [ item.id ].includes( recipeIngredient.id ) );
-        return findCost[ 0 ].estimatedCostInCents * recipeIngredient.quantity.amount;
+    getCostOfIngredients( recipe , ingredientList ){
+        return recipe.reduce( ( acc, item ) => {
+            ingredientList.forEach( ingredient => {
+                if( item.id === ingredient.id ) {
+                    let total = item.quantity.amount * ingredient.estimatedCostInCents
+                    acc = total
+                }
+            } )
+            return acc
+        },0 )
     };
 
     returnInstructions(){
@@ -39,7 +44,7 @@ class Recipe {
 
     getIngredientList(){
         const listOfIngredients = this.recipeIngredients.map( ( ingredient ) => {
-            const ingredientName = this.getIngredientName( this.ingredientList, ingredient );
+            const ingredientName = this.getIngredientsWithNames( this.ingredientList, ingredient );
             const ingredientCost = this.getCostOfIngredients( this.ingredientList, ingredient );
             return new Ingredient( ingredient.id, ingredientName,  ingredientCost );
         })
