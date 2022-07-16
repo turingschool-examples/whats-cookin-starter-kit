@@ -1,0 +1,16 @@
+html {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-image: url(https://images.unsplash.com/photo-1503810473512-f64b56827964?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80);
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  width: 0;
+}
