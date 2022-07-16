@@ -38,6 +38,21 @@ class User {
     });
     return filteredRecipesByName;
   }
+
+  filterByMultipleTags(keywords) {
+    let filtered = this.recipesToCook.filter((recipe) => {
+      let containsOr = false
+      if (
+        keywords.some((keyword) => {
+          return recipe.tags.includes(keyword);
+        })
+      ) {
+        containsOr = true;
+      }
+      return containsOr;
+    });
+    return filtered;
+  }
 }
 
 export default User;
