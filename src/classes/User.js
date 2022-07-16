@@ -12,6 +12,18 @@ class User {
     if (!this.recipesToCook.includes(recipe)) {
       this.recipesToCook.push(recipe);
     }
+    this.lowerCaseIngredients();
+  }
+
+  lowerCaseIngredients() {
+    this.recipesToCook.portions = this.recipesToCook.forEach((recipe) => {
+      recipe.portions.forEach(portion => {
+        portion.name.toLowerCase()
+        this.recipesToCook.portions
+      }) 
+      this.recipesToCook.portions
+    });
+    console.log(11111, this.recipesToCook.portions)
   }
 
   removeRecipeToCook(recipe) {
@@ -64,14 +76,28 @@ class User {
   //   return filteredRecipesByName;
   // }
   filterByMultipleRecipeNames() {
-   
     this.filteredResults = this.recipesToCook.filter((recipe) => {
-     
       let lowerCaseRecipeName = recipe.name.toLowerCase();
       let containsOr = false;
       if (
         this.selectedInput.some((keyword) => {
           return lowerCaseRecipeName.includes(keyword);
+        })
+      ) {
+        containsOr = true;
+      }
+      return containsOr;
+    });
+    return this.filteredResults;
+  }
+ 
+  filterByMultipleIngredients() {
+    console.log('are portions lower?', this.recipesToCook.portions)
+    this.filteredResults = this.recipesToCook.filter((recipe) => {
+      let containsOr = false;
+      if (
+        this.selectedInput.some((keyword) => {
+          return recipe.portions.includes(keyword);
         })
       ) {
         containsOr = true;
