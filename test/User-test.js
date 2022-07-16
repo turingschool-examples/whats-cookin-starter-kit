@@ -170,4 +170,11 @@ describe("User", () => {
       recipe5,
     ]);
   });
+
+  it.only('should allow the user to search by multiple tags', () => {
+     user3.addRecipeToCook(recipe1);
+     user3.addRecipeToCook(recipe2);
+     user3.addRecipeToCook(recipe3);
+    user3.filterByMultipleTags(['dessert', 'pork']).to.deep.equal([recipe1, recipe2])
+  })
 });
