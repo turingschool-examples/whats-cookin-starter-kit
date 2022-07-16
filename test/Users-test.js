@@ -32,19 +32,11 @@ describe('User test', () => {
         user.removeRecipesToCook(recipe);
         expect(user.recipeToCook.length).to.equal(2);
     });
-<<<<<<< HEAD
-
-=======
->>>>>>> de03794cfead1db1035e997f8551a047bf44a057
     it('Should be able to filter saved recipes using a tag', () => {
         user.addRecipesToCook(recipe);
         user.addRecipesToCook(recipe1);
         expect(user.filterByTagUser('snack').length).to.equal(1)
     })
-<<<<<<< HEAD
-
-=======
->>>>>>> de03794cfead1db1035e997f8551a047bf44a057
     it('Should be able to filter saved recipes using a name', () => {
         user.addRecipesToCook(recipe);
         user.addRecipesToCook(recipe1);

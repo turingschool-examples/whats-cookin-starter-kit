@@ -5,6 +5,8 @@
 
 body {
   background-color: blueviolet;
+  height: 100vh;
+  width: 100vw;
 }
 
 .top-bar {
@@ -41,8 +43,14 @@ body {
 }
 
 .right-box {
+  display: flex;
   width: 75%;
   height: 800px;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: flex-start;
 }
 
 .left-buttons {
@@ -54,24 +62,29 @@ body {
 	align-content: center;
 }
 
-.ingredient-card {
+.recipe-card {
   height: 230px;
   width: 180px;
   margin: 20px;
-  border: black solid 1px;
   display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
-	align-items: center;
+	/* align-items: center; */
 	align-content: space-evenly;
+  margin: 15px;
 }
 
 .card-image {
   height: 100px;
   width: 100px;
-  border: black solid 1px;
+  /* border: black solid 1px; */
   margin: 20px;
+}
+
+.view-recipe-button {
+  margin: 15px;
+  width: 500px;
 }
 
 button {

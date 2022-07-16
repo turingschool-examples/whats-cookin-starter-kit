@@ -12,7 +12,6 @@ export default class Recipe {
         this.toBeCooked = false;       
     };
     makeIngredientData() {
-
         return this.ingredients.forEach(ingredient => {
             const currentIngredient = this.ingredientsData.find(ing => ing.id === ingredient.id);
             this.requiredIngredients.push({
@@ -35,6 +34,7 @@ export default class Recipe {
         let totalCostInDollars = parseFloat((totalCostInCents / 100).toFixed(2));
         return totalCostInDollars;
     }
+    //need to refactor (* 3 or however many ingredients to get actual total cost)
 
     getInstructions() {
         return this.instructions

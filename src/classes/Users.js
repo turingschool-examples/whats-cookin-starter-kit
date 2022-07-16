@@ -6,7 +6,6 @@ class Users {
         this.id = user.id;
         this.pantry = user.pantry;
         this.recipeToCook = [];
-        this.favRecipes = [];
     }
     addRecipesToCook(recipe) {
         recipe.toBeCooked = true;
