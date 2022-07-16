@@ -12,14 +12,14 @@ import { ingredientsData } from './data/ingredients';
 import { usersData } from './data/users';
 
 
-const getRandomId = () => {
+const getRandomUserId = () => {
     return Math.floor(Math.random() * 41) + 1;
 };
 const getRandomRecipe = () => {
     return Math.floor(Math.random() * 49) + 1;
 }
 const users = []
-const userId = getRandomId();
+const userId = getRandomUserId();
 const recipeID = getRandomRecipe();
 const user = new Users(usersData[2])
 const recipe = new Recipe(recipeData[recipeID])
@@ -37,26 +37,24 @@ const userGreeting = document.querySelector("#userName");
 const recipeLocation = document.querySelector('#recipeName')
 const recipeImage = document.querySelector('.card-image')
 const rightBox = document.querySelector('.right-box')
-const goBack = document.querySelector('.take-home')
+const goHomeButton = document.querySelector('.take-home')
 const recipeCard = document.querySelector('.recipe-card')
 const ingredientCard = document.querySelector('.ingredient-card')
 let viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
 const recipeCardWrapper = document.querySelector('.recipe-card-wrapper')
 const ingredientCardWrapper = document.querySelector('.ingredient-card-wrapper')
+const recipeInput = document.querySelector('#recipe-tags-input')
+const recipeDisplay = document.querySelector('#recipeDisplay');
+const recipeHeading = document.querySelector('#recipeHeading');
 
 // EventListeners
 // favoriteButton.addEventListener('click',)
 // cookbookButton.addEventListener('click',)
-// radioSearchButton.addEventListener('click',)
 // viewRecipeButton.addEventListener('click',)
 // addToCookbookButton.addEventListener('click',)
 // cardFavoriteButton.addEventListener('click',)
 // unFavoriteButton.addEventListener('click',)
-// viewRecipeButtons.addEventListener('click', showAllRecipeDetails)
-// viewRecipeButtons.forEach((button) => {
-//   console.log('button', button)
-//   button.addEventListener('click', showAllRecipeDetails)
-// })
+
 window.addEventListener('load', () => {
   showAllRecipes()
   viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
@@ -66,6 +64,7 @@ window.addEventListener('load', () => {
     })
   })
 });
+// radioSearchButton.addEventListener('click', filterRecipeByTag)
 
 // Global Variables
 let recipeRepo = new RecipeRepository(recipeData)
@@ -93,7 +92,7 @@ function showAllRecipes() {
     // hide(addToCookbookButton);
     // hide(unFavoriteButton);
     // hide(rightBox);
-    show(goBack)
+    show(goHomeButton)
     console.log('IT WOEKS')
 
     // HERE we need to: recipeRepo.allRecipes append to main section of our app
@@ -106,9 +105,7 @@ function showAllRecipes() {
 }
 
 function showAllRecipeDetails(id) {
-  console.log('id: ', id)
   newRecipe = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(id))
-  console.log('newRecipe: ', newRecipe)
 newRecipe.makeIngredientData()
 ingredientCard.innerHTML = `<div>
 <ul>
@@ -132,15 +129,32 @@ newRecipe.instructions.forEach(instruction => {
   <p><span>${instruction.number}. </span>${instruction.instruction}</p>
   </div>`
 })
-  //iterate through ingredietns to show each ingredient name
-    //show name, amount+unit and cost
 hide(recipeCardWrapper)
 }
 
+function filterRecipeByTag(event) {
+  event.preventDefault();
 
+  const tagInput = recipeTagInput.value;
+  const requestedRecipes = recipeRepo.filterByTag(tagInput);
 
-const userBuildAttributes = (sumtine) => {
-    userGreeting.innerHTML = `Welcome ${sumtine.name.split(" ")[0]}!`
+  recipeHeading.innerText = 'Recipes by Tag';
+  recipeDisplay.innerHTML = '';
+
+  requestedRecipes.forEach((recipe) => {
+    recipeDisplay.innerHTML += (`
+        <div class="recipe-card-wrapper">
+          <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
+          <p class="recipe-name">${recipe.name}</p>
+          <button class="favorite-button" id="favoriteButton">Favorite</button>
+        </div>
+      `)
+    });
+}
+
+const userBuildAttributes = (user) => {
+    userGreeting.innerHTML = `Welcome ${user.name.split(" ")[0]}!`
+    // do we need to invoke getRandomUserId here to get a random user name in the greeting every time?
     // recipeImage.src = `${recipe.image}`;
     // recipeLocation.innerHTML = `${recipe.name}`
 };
@@ -157,4 +171,4 @@ function hide(element) {
 
 // allRecipesButton.addEventListener('click', showAllRecipes, recipeRepo.createAllRecipes())
 userBuildAttributes(user);
-goBack.addEventListener('click', userBuildAttributes)
+goHomeButton.addEventListener('click', userBuildAttributes)
