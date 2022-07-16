@@ -4,6 +4,8 @@ class RecipeRepository {
   constructor() {
     this.recipes = [];
     this.allTags = [];
+    this.selectedInput = [];
+    this.filteredAllRecipes = [];
   }
   addRecipe(recipe) {
     this.recipes.push(recipe);
@@ -18,13 +20,37 @@ class RecipeRepository {
     });
   }
 
-  filterRecipesByTag(tag) {
-    let matchingRecipes = this.recipes.filter((recipe) => {
-      if (recipe.tags.includes(tag)) {
-        return true;
+  // filterRecipesByTag(tag) {
+  //   let matchingRecipes = this.recipes.filter((recipe) => {
+  //     if (recipe.tags.includes(tag)) {
+  //       return true;
+  //     }
+  //   });
+  //   return matchingRecipes;
+  // }
+
+  addInputToSearch(keyword) {
+    let lowerCaseInput = keyword.toLowerCase();
+    if (!this.selectedInput.includes(lowerCaseInput)) {
+      this.selectedInput.push(lowerCaseInput);
+    }
+    
+  }
+
+  filterByMultipleTags(keyword) {
+    
+    this.filteredAllRecipes = this.recipes.filter((recipe) => {
+      let containsOr = false;
+      if (
+        this.selectedInput.some((keyword) => {
+          return recipe.tags.includes(keyword);
+        })
+      ) {
+        containsOr = true;
       }
+      return containsOr;
     });
-    return matchingRecipes;
+    return this.filteredAllRecipes;
   }
 
   filterRecipesByName(input) {
