@@ -53,7 +53,7 @@ const searchButton = document.querySelector(".search-button")
 const favoriteRecipesPage = document.querySelector('.favorite-recipes')
 
 
-
+let newUser;
 let newRecipeIngredient;
 
 viewAllButton.addEventListener('click', showViewAllPage)
@@ -76,15 +76,21 @@ function changeHearts(event) {
     if (event.target.classList.contains('add-to-favorites-icon')){
         event.target.src = "./images/filled-heart.png"
         event.target.classList = 'unfavorite'
+        recipeRepository.recipes.forEach(recipe => {
+          if (recipe.image === event.target.parentNode.childNodes[1].src) {
+            newUser.addRecipeToCook(recipe)
+          }
+        })        
     } else if (event.target.classList.contains('unfavorite')) {
         event.target.src = "./images/heart.png"
         event.target.classList = 'add-to-favorites-icon'
     }   
-}
+  }
+// 
 
 function generateRandomUser() {
     let newUserData = usersData[Math.floor(Math.random() * usersData.length)]
-    let newUser = new User(newUserData)
+    newUser = new User(newUserData)
     return newUser
     };
 
@@ -113,6 +119,7 @@ function showFavoritesPage() {
     recipeDetailsPage.classList.add('hidden')
     favoriteRecipesPage.classList.remove('hidden')
     createTags(tagContainer2)
+    console.log(favoriteRecipesPage.childNodes[3].innerHTML) // <--- find dis agin
     favoriteRecipesPage.childNodes[3].innerHTML += generateRandomUser().recipesToCook.forEach(recipe => {
         //glideRecipes.src += `${recipe.image}`
         viewAllPage.childNodes[3].innerHTML += `<section class="recipe-icon">
@@ -157,7 +164,6 @@ function showRecipeDetailsPage(event) {
         recipeDetailTitle.innerText = `${getTitle[0].name}`
         let directions = recipe.listDirections()
         recipeInstructions.innerText = `${directions}`
-        console.log('ingredients', recipe.determineIngredientNames())
         ingredientNames.innerText = `${recipe.determineIngredientNames()}`
         totalCost.innerText = `${recipe.determineCostOfAllIngredients()}`
     }
@@ -187,7 +193,7 @@ function filterByTag(event) {
     viewAllPage.childNodes[3].innerHTML = ""
     filteredRecipesByTag.forEach(recipe => {
     viewAllPage.childNodes[3].innerHTML += `<section class="recipe-icon">
-    <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
+    <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image"><img class="add-to-favorites-icon" src="./images/heart.png">
     <p>
       ${recipe.name}
     </p>
@@ -198,12 +204,11 @@ function filterByTag(event) {
 
 function filterByName(event) {
   event.preventDefault()
-  console.log("test")
   let filteredRecipesByName = recipeRepository.filterNames(searchbar.value)
   viewAllPage.childNodes[3].innerHTML = ""
   filteredRecipesByName.forEach(recipe => {
   viewAllPage.childNodes[3].innerHTML += `<section class="recipe-icon">
-  <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
+  <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image"><img class="add-to-favorites-icon" src="./images/heart.png">
   <p>
     ${recipe.name}
   </p>
