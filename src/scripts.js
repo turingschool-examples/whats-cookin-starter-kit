@@ -96,7 +96,6 @@ function viewRecipe(event) {
   recipeNameBox.innerText = selectedRecipe[0].name
   recipeDetailsBox.innerText = selectedRecipe[0].returnRecipeInstructions()
   recipePriceList.innerText = selectedRecipe[0].getCostofRecipe()
-  //add individual ingredient price functionality
 }
 
 function filterRecipe(event) {
