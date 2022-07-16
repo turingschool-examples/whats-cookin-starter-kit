@@ -211,35 +211,6 @@ describe('Recipe', () => {
       ]
       ) 
     });
-
-    it('should get a list of recipe ingredients needed', () => {
-      expect(recipe.getIngredientList()).to.deep.equal(
-        [
-           {
-            id: 20081,
-            name: 'wheat flour',
-            estimatedCostInCents: 213
-          },
-           {
-            id: 18372,
-            name: 'bicarbonate of soda',
-            estimatedCostInCents: 291
-          },
-           { id: 1123, 
-            name: 'eggs', 
-            estimatedCostInCents: 472 
-          },
-           { id: 19335, 
-            name: 'sucrose', 
-            estimatedCostInCents: 451 }
-        ]
-      ) 
-    });
-
-    it('should get total cost of recipe', () => {
-      expect(recipe.getTotalCostOfRecipe()).to.equal(1427) 
-    });
-
     // it('should have a total cost in its constructor', () => {
     //   expect(recipe.totalCost).to.equal(1427)
     // })
