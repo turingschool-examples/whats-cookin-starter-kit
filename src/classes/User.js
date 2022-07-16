@@ -5,7 +5,6 @@ class User {
     this.pantry = usersData.pantry;
     this.recipesToCook = []
     // this.favoriteRecipes =[]
-    console.log("nama jeff", this.name)
   }
 
   addRecipeToCook(recipe) {
@@ -17,26 +16,22 @@ class User {
       if (recipe.id === recipeToRemove.id){
         this.recipesToCook.splice(recipeToRemove, 1)
       }
-      console.log('removed log', this.recipesToCook)
     })
   }
+
+  listRecipeToCookByTag(tag) {
+    const filterRecipeByTag = this.recipesToCook.filter(recipe => 
+      recipe.tags.includes(tag)
+      );
+      return filterRecipeByTag;
+    }
+
+    listRecipebyToCookName(name) {
+      const filterRecipeByName = this.recipesToCook.filter(recipe => 
+        recipe.name.includes(name)
+        );
+        return filterRecipeByName;
+      }
 };
-
-
-
-
-// //  listRecipeTags(tag) {
-//   const filteredByTag = this.recipeData.filter(recipe => 
-//     recipe.tags.includes(tag)
-//     );
-//     return filteredByTag;
-// }
-
-//way of filtering the recipesToCook array by:
-//name
-//tag
-
-//copy the structure of the listRecipeTags method
-//because 
 
 module.exports = User;
