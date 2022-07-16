@@ -382,6 +382,7 @@ filter: drop-shadow(5px 10px 3px black);
 
     .ingredients-listed{
       display: flex;
+      flex-direction: column;
       align-items: flex-start;
       color: white;     
       font-family: 'Raleway', sans-serif;

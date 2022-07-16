@@ -17,8 +17,8 @@ const recipePage = document.querySelector('.recipe-container');
 const searchContainer = document.querySelector('.search-container');
 const homeButton = document.querySelector('.home-img');
 const favoriteButton = document.querySelector('.fav-img');
-const searchButton = document.querySelector('.search-button')
-const allRecipesSection = document.querySelector('.list-recipes');
+const searchButton = document.querySelector('.search-button');
+const recipeSidebarList = document.querySelector('.list-recipes');
 const icon1Img = document.querySelector('.icon-1-img');
 const icon2Img = document.querySelector('.icon-2-img');
 const icon3Img = document.querySelector('.icon-3-img');
@@ -28,13 +28,13 @@ const icon6Img = document.querySelector('.icon-6-img');
 const featureImage = document.querySelector('.random-feature-img');
 const selectedRecipeImg = document.querySelector('.selected-recipe-img');
 const recipeNameBox = document.querySelector('.recipe-title-box');
-const priceListBox = document.querySelector('.price-list-container')
+const priceListBox = document.querySelector('.price-list-container');
 const totalPriceBox = document.querySelector('.total-price-box');
 const recipeDetailsBox = document.querySelector('.recipe-info-box');
 const searchValue = document.querySelector('.search-input');
 const tagRadioBtn = document.querySelector('.tag-search');
 const nameRadioBtn = document.querySelector('.name-search');
-const ingredientBox = document.querySelector('.ingredient-box');
+const ingredientBox = document.querySelector('.ingredients-listed');
 
 // ***** Event Listeners ***** //
 
@@ -42,17 +42,17 @@ window.addEventListener('load', updateMainPageRecipeIcons);
 window.addEventListener('load', updateMainPageFeatureImg);
 window.addEventListener('load', loadNewUser);
 window.addEventListener('load', displayAllNames);
-allRecipesSection.addEventListener('click', viewRecipe);
+recipeSidebarList.addEventListener('click', viewRecipe);
 homeButton.addEventListener('click', showHomePage);
 searchButton.addEventListener('click', filterRecipe);
 
 // ***** Global Variables ***** //
 
-const allRecipes = recipeData.recipeData.map(recipe => {
-  return new Recipe(recipe, ingredientData.ingredientsData);
-})
+const allRecipes = recipeData.recipeData.map(recipe => new Recipe(recipe, ingredientData.ingredientsData));
 const recipeRepository =  new RecipeRepository(allRecipes);
 let user;
+let selectedRecipeName;
+let selectedRecipe;
 
 // ***** Functions ***** //
 
@@ -85,12 +85,11 @@ function updateMainPageFeatureImg(){
   featureImage.src = allRecipes[getRandomIndex(allRecipes)].image;
 }
 
-
-function displayRecipeNames(recipeData) {
-  allRecipesSection.innerHTML = ''
-  const recipeNames = recipeData.map(recipe => recipe.name);
+function displayRecipeNames(recipes) {
+  recipeSidebarList.innerHTML = ''
+  const recipeNames = recipes.map(recipe => recipe.name);
   recipeNames.forEach(name => {
-    allRecipesSection.innerHTML += `<p>${name}</p>`
+    recipeSidebarList.innerHTML += `<p>${name}</p>`
   });
 }
 
@@ -105,30 +104,58 @@ function showHomePage() {
 }
 
 function viewRecipe(event) {
+  selectedRecipeName = event.target.innerText;
+  selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name);
   hide(homePage);
   hide(searchContainer);
   show(recipePage);
-  let selectedRecipeName = event.target.innerText;
-  let selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name);
+  displaySelectedRecipeName();
+  displayRecipeInstructions();
+  displayIngredientNames();
+  displayIngredientCosts();
+  // displayIngredientQuantities();
+  displayTotalCostOfAllIngredients();
+  displaySelectedRecipeImg();
+}
+
+function displaySelectedRecipeName() {
   recipeNameBox.innerText = selectedRecipe[0].name;
-console.log(selectedRecipe[0])
+}
+
+function displaySelectedRecipeImg() {
+  selectedRecipeImg.src = selectedRecipe[0].image;
+}
+
+function displayRecipeInstructions() {
   recipeDetailsBox.innerHTML = '';
   selectedRecipe[0].returnRecipeInstructions().forEach(instruction => {
-    recipeDetailsBox.innerHTML += `<p class='recipe-instructions'> ${instruction} </p></br>`
+  recipeDetailsBox.innerHTML += `<p class='recipe-instructions'> ${instruction} </p></br>`;
   });
-// put code above into separate helper function
+}
+
+function displayIngredientNames() {
   ingredientBox.innerHTML = '';
   selectedRecipe[0].getIngredientNames().forEach(ingredient => {
-    ingredientBox.innerHTML += `<p class='recipe-ingredients'> ${ingredient} </p></br>`
+  ingredientBox.innerHTML += `<p class='recipe-ingredients'> ${ingredient} </p></br>`;
   });
-// put code above into separate helper function
+}
+
+function displayIngredientCosts() {
   priceListBox.innerHTML = '';
   selectedRecipe[0].getCostOfIngredientsInDollars().forEach(cost => {
-  priceListBox.innerHTML += `<p class='ingredient-prices'> ${cost} </p></br>`
+  priceListBox.innerHTML += `<p class='ingredient-prices'> ${cost} </p></br>`;
   });
-// put code above into separate helper function
+}
+
+// function displayIngredientQuantities() {
+//   quantityBox.innerHTML = '';
+//   selectedRecipe[0].getAmountOfIngredients().forEach(amount => {
+//   quantityBox.innerHTML += `<p class='ingredient-quantities'> ${amount} </p></br>`;
+//   });
+// }
+
+function displayTotalCostOfAllIngredients() {
   totalPriceBox.innerText = selectedRecipe[0].getCostOfRecipe();
-  selectedRecipeImg.src = selectedRecipe[0].image;
 }
 
 function filterRecipe(event) {

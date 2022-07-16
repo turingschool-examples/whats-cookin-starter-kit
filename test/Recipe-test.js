@@ -80,7 +80,7 @@ describe('Recipe', () => {
 
   it('should hold recipe names', () => {
     expect(recipe3.name).to.equal("Dirty Steve's Original Wing Sauce");
-    expect(recipe2.name).to.equal("Maple Dijon Apple Cider Grilled Pork Chops")
+    expect(recipe2.name).to.equal("Maple Dijon Apple Cider Grilled Pork Chops");
   });
 
   it('should hold recipe tags', () => {
@@ -89,18 +89,28 @@ describe('Recipe', () => {
   });
 
   it('should have a method to get ingredient names', () => {
-    expect(recipe2.getIngredientNames()).to.deep.equal(['apple cider', 'apple', 'corn starch'])
-    expect(recipe.getIngredientNames()).to.deep.equal(['wheat flour', 'bicarbonate of soda', 'eggs'])
+    expect(recipe2.getIngredientNames()).to.deep.equal(['apple cider', 'apple', 'corn starch']);
+    expect(recipe.getIngredientNames()).to.deep.equal(['wheat flour', 'bicarbonate of soda', 'eggs']);
   });
+
+  it('should have a method to get the amount and unit of each ingredient', () => {
+    expect(recipe.getAmountOfIngredients()).to.deep.equal(['1.5 c', '0.5 tsp', '1 large']);
+    expect(recipe2.getAmountOfIngredients()).to.deep.equal(['1.5 cups', '2 ', '1 tablespoon']);
+  })
 
   it('should have a method to get cost of ingredients in cents', () => {
-    expect(recipe2.getCostOfIngredients()).to.deep.equal([702, 414, 236])
-    expect(recipe.getCostOfIngredients()).to.deep.equal([213, 291, 472])
+    expect(recipe2.getCostOfIngredients()).to.deep.equal([702, 414, 236]);
+    expect(recipe.getCostOfIngredients()).to.deep.equal([213, 291, 472]);
   });
 
+  it('should have a method to get the cost of indregients in dollars', () => {
+    expect(recipe.getCostOfIngredientsInDollars()).to.deep.equal(['$2.13', '$2.91', '$4.72']);
+    expect(recipe2.getCostOfIngredientsInDollars()).to.deep.equal(['$7.02', '$4.14', '$2.36']);
+  })
+
   it('should have a method to get the total cost in dollars for a recipe', () => {
-    expect(recipe2.getCostOfRecipe()).to.equal('$13.52')
-    expect(recipe.getCostOfRecipe()).to.equal('$9.76')
+    expect(recipe2.getCostOfRecipe()).to.equal('$13.52');
+    expect(recipe.getCostOfRecipe()).to.equal('$9.76');
   });
 
   it('should have a method to return recipe instructions', () => {
@@ -108,10 +118,11 @@ describe('Recipe', () => {
       '1: In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.',
       '2: Add egg and vanilla and mix until combined.',
       '3: Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.'
-    ])
+    ]);
     expect(recipe2.returnRecipeInstructions()).to.deep.equal([
       '1: Season the pork chops with salt and pepper and grill or pan fry over medium high heat until cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook until the sauce thickens, about 2-5 minutes.Grill or saute the apple slices until just tender but still crisp.Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!'
-    ])
+    ]);
+    recipe2.getCostOfIngredientsInDollars()
   });
 
 });
