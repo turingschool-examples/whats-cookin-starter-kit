@@ -171,8 +171,8 @@ describe("User", () => {
     ]);
   });
 
-  it("should start off with an empty array of tags to be searched", () => {
-    expect(user1.selectedTags).to.deep.equal([]);
+  it("should start off with an empty array of input to be searched", () => {
+    expect(user1.selectedInput).to.deep.equal([]);
   });
 
   it("should start off with an empty array of filtered results", () => {
@@ -188,16 +188,16 @@ describe("User", () => {
     expect(user3.filteredResults).to.deep.equal([recipe1, recipe3]);
   });
 
-  it('should clear the selected tags array after filteration is complete', () => {
-     user3.addRecipeToCook(recipe1);
-     user3.addRecipeToCook(recipe2);
-     user3.addRecipeToCook(recipe3);
-     user3.addTagsToSearch("dessert");
-     user3.addTagsToSearch("pork");
-     expect(user3.filteredResults).to.deep.equal([recipe1, recipe3]);
-     user3.clearImmediate()
-     expect(user3.selectedTags).to.deep.equal([]);
-     expect(user3.filteredResults).to.deep.equal([]);
+  it('should clear the selected input & filtered results array after filteration is complete', () => {
+    user3.addRecipeToCook(recipe1);
+    user3.addRecipeToCook(recipe2);
+    user3.addRecipeToCook(recipe3);
+    user3.addTagsToSearch("dessert");
+    user3.addTagsToSearch("pork");
+    expect(user3.filteredResults).to.deep.equal([recipe1, recipe3]);
+    user3.clearImmediate()
+    expect(user3.selectedInput).to.deep.equal([]);
+    expect(user3.filteredResults).to.deep.equal([]);
   })
   
 
