@@ -6,75 +6,106 @@
   </head>
   <body>
     <nav class="nav-bar">
-      <div class="nav-bar_tabs">
-        <button type="button" class="nav-tabs_all-recipes" id="allRecipesButton">All Recipes</button>
-        <button type="button" class="nav-tabs_favorites" id="favoritesViewButton">Favorites</button>
+      <div class="nav-bar-tabs">
+        <button type="button" class="nav-tabs-all-recipes" id="allRecipesButton">All Recipes</button>
+        <button type="button" class="nav-tabs-favorites" id="favoritesViewButton">Favorites</button>
       </div>
-      <div class="nav-bar_search">
+      <div class="nav-bar-search">
         <form class="search-bar">
-          <label for="searchBarInput" class="search-bar_search-label">Search</label>
-          <input type="search" class="search-bar_search-input" name="searchInput" value="" id="searchBarInput">
+          <label for="searchBarInput" class="search-bar-search-label">Search</label>
+          <input type="search" class="search-bar-search-input" name="searchInput" value="" id="searchBarInput">
         </form>
-        <button type="button" class="search-bar_main-button" id="mainPageButton" label="to-main">
-          <p class="search-bar_main-page-button-text">What's Cookin'?!</p
+        <button type="button" class="search-bar-main-button" id="mainPageButton" label="to-main">
+          <p class="search-bar-main-page-button-text">What's Cookin'?!</p>
+          <div class="icons" label="home-icon">Home</div>
         </button>
       </div>
     </nav>
     <main class="main">
       <section class="main-page" id="mainPageSection">
-        <section class="tag-section_recipes-container hidden" id="tagRecipesContainer"></section>
+        <section class="tag-section-recipes-container hidden" id="tagRecipesContainer"></section>
         <h1 class="main-title">What's Cookin'?!</h1>
         <article class="tag-label-container" id="tagLabelIcon">
+          <button class="tag-label-button" value="snacks"
+            <p class="tag-label-name">snacks</p>
+          </button>
+          <button class="tag-label_button" value="appetizers"
+            <p class="tag-label-name">appetizers</p>
+          </button>
+          <button class="tag-label-button" value="side dishes"
+            <p class="tag-label-name">side dishes</p>
+          </button>
+          <button class="tag-label_button" value="soups"
+            <p class="tag-label-name">soups</p>
+          </button>
+          <button class="tag-label_button" value="salads"
+            <p class="tag-label-name">salads</p>
+          </button>
           <button class="tag-label_button" value="breakfast"
-            <p class="tag-label_name">breakfast</p>
+            <p class="tag-label-name">breakfast</p>
           </button>
-          <button class="tag-label_button" value="second breakfast"
-            <p class="tag-label_name">second breakfast</p>
+          <button class="tag-label-button" value="lunch"
+            <p class="tag-label-name">lunch</p>
           </button>
-          <button class="tag-label_button" value="elevensies"
-            <p class="tag-label_name">elevensies</p>
+          <button class="tag-label-button" value="dinner"
+            <p class="tag-label-name">dinner</p>
           </button>
-          <button class="tag-label_button" value="lunch"
-            <p class="tag-label_name">lunch</p>
-          </button>
-          <button class="tag-label_button" value="dinner"
-            <p class="tag-label_name">dinner</p>
-          </button>
-          <button class="tag-label_button" value="supper"
-            <p class="tag-label_name">supper</p>
-          </button>
-          <button class="tag-label_button" value="side dish"
-            <p class="tag-label_name">side dish</p>
-          </button>
-          <button class="tag-label_button" value="soup"
-            <p class="tag-label_name">soup</p>
-          </button>
-          <button class="tag-label_button" value="snack"
-            <p class="tag-label_name">snack</p>
-          </button>
-          <button class="tag-label_button" value="dessert"
-            <p class="tag-label_name">dessert</p>
-          </button>
-          <button class="tag-label_button" value="salad"
-            <p class="tag-label_name">salad</p>
+          <button class="tag-label-button" value="dessert"
+            <p class="tag-label-name">dessert</p>
           </button>
         </article>
       </section>
-      <section class="searched-recipes_recipe-results-container hidden" id="searchedRecipesContainer">
+      <section class="searched-recipes-recipe-results-container hidden" id="searchedRecipesContainer">
         <h2 class="search-results">Search Results:</h2>
-        <p class="searched-recipes_no-results-container hidden" id="noResultsContainer">Sorry, no recipes match your search"></p>
-        <section class="recipes-container_search-results" id="searchedRecipes"></section>
+        <p class="searched-recipes-no-results-container hidden" id="noResultsContainer">Sorry, no recipes match your search"></p>
+        <section class="recipes-container-search-results" id="searchedRecipes"></section>
       </section>
-      <section class="all-recipes-page hidden" id="allRecipesSection"></section>
+      <section class="all-recipes-view hidden" id="allRecipesSection"></section>
         <div class="top-banner">
-          <h1 class="top-banner_title">All Recipes</h1>
+          <h1 class="top-banner-title">All Recipes</h1>
         </div>
-        <section class="all-recipes-page_recipes-container" id="allRecipesContainer"></section>
+        <section class="all-recipes-view-recipes-container" id="allRecipesContainer"></section>
       </section>
       <section class="favorites-view hidden" id="favoriteRecipesSection">
         <h1 class="top-banner_title">Favorite Recipes</h1>
-        <p class="recipe-container_"
-
+        <p class="recipe-container-no-favorites" id="noFavoritesMessage"><div class="icons">favorite-border</div
+        >No favorite recipes have been added yet. Check out the all recipes section!<div class="icons">favorite_border</div></p>
+        <section class="favorites-view-favorites-container hidden" id="favoriteTaggedRecipesContainer">
+        </section>
+        <section class="single-recipe-view hidden" id="singleRecipeView">
+          <h1 class="recipe-title" id="recipeName">Recipe Name</h1>
+          <div class="single-recipe-view-recipe-details">
+            <div class="recipe-details-container">
+              <h2>Ingredients</h1>
+              <ol class="ingredient-list" id="recipeIngredients"></ol>
+              <p class="total-cost">Cost:<span class="icons"> money-icon</span><span id="recipeCost"></span></p>
+            </div>
+            <div class="recipe-details-container">
+              <img class="recipe-image" id="recipeImage" alt="A beautiful photograph of luscious food crafted with legendary skill">
+              <div class="recipe-buttons-container">
+                <button type="button" class="recipe-button-favorite-button" id="addToFavoritesButton">
+                  <span class="icons" label="favorites-icon">favorite-border</span>
+                  <p label="add to favorites">Add to Favorites</p>
+                </button>
+                <button type="button" class="recipe-button-favorite-button hidden" id="removeFromFavoritesButton">
+                  <span class="icons" label="active-favorites-icon">favorite-border</span>
+                  <p>Remove From Favorites</p>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="single-recipe-view-instructions">
+            <h2>Instructions</h2>
+            <ol class="instructions-list" id="recipeInstructions"></ol>
+          </div>
+          <aside>
+            <h2><span class="icons">food-icon</span>Your Pantry</h2>
+            <ul class="pantry-ingredients" id="pantryIngredients">Pantry list
+            </ul>
+            <button class="cook-recipe-button" id="cookRecipeButton">Cook Recipe</button>
+          </aside>
+        </section>
+      </main>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
