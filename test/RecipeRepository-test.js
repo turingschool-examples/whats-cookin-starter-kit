@@ -89,7 +89,36 @@ describe("RecipeRepository", () => {
     expect(recipeRepository.filteredAllRecipes).to.deep.equal([dinnerRecipe, breakfastRecipe])
   });
 
-  it("Should be able to filter recipes by a portion of their name", () => {
+  // it("Should be able to filter recipes by a portion of their name", () => {
+  //   let chickenAlfredoData = {
+  //     name: "Chicken Alfredo",
+  //     tags: ["main", "pasta"],
+  //   };
+
+  //   let bakedChickenAlfredoData = {
+  //     name: "Baked Chicken Alfredo",
+  //     tags: ["main", "pasta"],
+  //   };
+
+  //   let chickenAlfredo = new Recipe(chickenAlfredoData);
+  //   let bakedChickenAlfredo = new Recipe(bakedChickenAlfredoData);
+  //   recipeRepository.addRecipe(chickenAlfredo);
+  //   recipeRepository.addRecipe(bakedChickenAlfredo);
+
+  //   expect(recipeRepository.filterRecipesByName("Chick")).to.include(
+  //     chickenAlfredo,
+  //     bakedChickenAlfredo
+  //   );
+
+  //   expect(recipeRepository.filterRecipesByName("baked")).to.include(
+  //     bakedChickenAlfredo
+  //   );
+  // });
+
+
+
+
+  it("Should be able to filter multiple recipes by a portion of their name", () => {
     let chickenAlfredoData = {
       name: "Chicken Alfredo",
       tags: ["main", "pasta"],
@@ -99,21 +128,33 @@ describe("RecipeRepository", () => {
       name: "Baked Chicken Alfredo",
       tags: ["main", "pasta"],
     };
+    
+    let bakedChickenParmesanData = {
+      name: "Baked Chicken Parmesan",
+      tags: ["main", "pasta"],
+    };
 
     let chickenAlfredo = new Recipe(chickenAlfredoData);
     let bakedChickenAlfredo = new Recipe(bakedChickenAlfredoData);
+    let bakedChickenParmesan = new Recipe(bakedChickenParmesanData);
+
     recipeRepository.addRecipe(chickenAlfredo);
     recipeRepository.addRecipe(bakedChickenAlfredo);
+    recipeRepository.addRecipe(bakedChickenParmesan);
 
-    expect(recipeRepository.filterRecipesByName("Chick")).to.include(
+    expect(recipeRepository.filterByMultipleRecipeNames("Chick")).to.include(
       chickenAlfredo,
       bakedChickenAlfredo
     );
 
-    expect(recipeRepository.filterRecipesByName("baked")).to.include(
-      bakedChickenAlfredo
+    expect(recipeRepository.filterByMutipleRecipeNames("baked")).to.include(
+      bakedChickenAlfredo,
+      bakedChickenParmesan
     );
   });
+
+
+
 
   it("Should have an array of tags that is empty by default", () => {
     expect(recipeRepository.allTags).to.deep.equal([]);
