@@ -18,12 +18,14 @@ class Recipe {
             
     };
 
-        getIngredientsWithNames( recipeIngredients , ingredientList ){
-            return recipeIngredients.map(ingredient => { 
-                ingredient.name = ingredientList.find( ing => ing.id === ingredient.id ).name;
-                return ingredient;
-            });       
-      };
+    getIngredientsWithNames( recipe , ingredientList ){
+        return recipe.map(ingredient => { 
+           
+            ingredient.name = ingredientList.find( ing => ing.id === ingredient.id ).name;
+            console.log('INGR LIST: ', ingredient.name)
+            return ingredient.name;
+        });       
+  };
 
     getCostOfIngredients( ingredientList, recipeIngredient ){
         const data = ingredientList;
@@ -41,6 +43,7 @@ class Recipe {
             const ingredientCost = this.getCostOfIngredients( this.ingredientList, ingredient );
             return new Ingredient( ingredient.id, ingredientName,  ingredientCost );
         })
+        console.log('LIST OF INGREDIENTS: ', listOfIngredients)
         return listOfIngredients;
     };
     

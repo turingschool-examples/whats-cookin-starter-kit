@@ -40,7 +40,7 @@ let closeModalButton = document.getElementById("closeModal")
 // Event Listeners <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 searchButton.addEventListener("click", searchRecipe);
 window.addEventListener( 'load', loadData );
-recipeContainer.addEventListener( 'click' , displayModal );
+recipeContainer.addEventListener( 'click' , displayRecipeInfo );
 // favoriteRecipeButton.addEventListener('click', addToFaves);
 
 
@@ -63,7 +63,7 @@ Promise.all( [ getData( 'users' ), getData( 'recipes' ), getData( 'ingredients' 
         ingredientList = data[ 2 ].ingredientsData;
         currentUser = new User( userList[ Math.floor( Math.random() * userList.length ) ] );
         ingredientClass = new Ingredient( ingredientList.map(ingredient => ingredient.id), ingredientList.map(ingredient => ingredient.name), ingredientList.map(ingredient =>  ingredient.estimatedCostInCents) );
-        recipeClass = new Recipe( recipeList[0], ingredientList );
+        recipeClass = new Recipe( recipeList, ingredientList );
         recipeRepository = new RecipeRepository( recipeList );
         displayRandomUserName( );
         displayAllRecipesOnPage( );
@@ -136,7 +136,8 @@ function displayFilteredRecipesByNameOnPage( ) {
 }
 
 
-function displayAllRecipesOnPage(  ) {
+function displayAllRecipesOnPage( e ) {
+    
     let recipeCards = recipeCard;
     newRecipe = new RecipeRepository( recipeList  )
     const result = newRecipe.recipes.map( recipe => {
@@ -153,13 +154,7 @@ function displayAllRecipesOnPage(  ) {
     return recipeCards.innerHTML = result;
 };
 
-let recipeModal = document.querySelector( '.recipe-modal' );
-let recipeContainer = document.querySelector( '.recipe-grid-container' );
-let h4 = document.querySelector( '.rec-name' );
-let instructionText = document.querySelector( '.modal-instructions' );
-let totalCost = document.querySelector( '.dish-cost' );
-let ingredientText = document.querySelector( 'modal-ingredients')
-recipeContainer.addEventListener( 'click' , displayRecipeInfo );
+// recipeContainer.addEventListener( 'click' , displayRecipeInfo );
 
 function show(element) {
     element.classList.remove('hidden')
@@ -169,18 +164,25 @@ function displayRecipeInfo( e ){
     newRecipe = new RecipeRepository( recipeList )
     // console.log(newRecipe);
     newRecipe.recipes.map(( dish ) => {
+        console.log('DIS DISH; ', dish)
         if( e.target.id == dish.id ){
             recipeClass = new Recipe( dish, dish.ingredients )
             // recipeClass.getIngredientName()
             // recipeModal.id = dish.id  
             h4.innerText = dish.name  
             instructionText.innerText = dish.instructions.map(task => `${task.number}: ${task.instruction}`).join('  ');
-            // ingredientText.innerText = dish.ingredients.map(item => recipeClass.getIngredientName( [item] , recipeList));
-
+            ingredientText.innerText = dish.ingredients.map(item => `${recipeClass.getIngredientsWithNames( dish, recipeList)}`);
+            // ^^^^^^^^^^^ dis has a lot of potential!
+            //need to figure out how to pull in the result of 'getIngredientsWithNames' function
+            console.log('DISH: ', dish) 
+            // console.log('DISH: ', recipeClass.getIngredientsWithNames(dish.ingredientList, newRecipe))
             return 
         }       
     })
 }
+
+//if from dish.instructions.map, 'instructions' is coming from 'dish'
+
 
 function assignCost(dish) {
     
