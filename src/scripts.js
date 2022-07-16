@@ -6,6 +6,15 @@ import {ingredientsData} from './data/ingredients';
 
 const recipeDisplay = document.querySelector('#recipeDisplay');
 const recipeHeading = document.querySelector('#recipeHeading');
+const homeButton = document.querySelector('#homeButton');
+const favoriteButton = document.querySelector('#favoriteButton');
+const filterButton = document.querySelector('#filterButton');
+const searchButton = document.querySelector('#searchButton');
+const searchLabel = document.querySelector('#searchLabel');
+const recipeNameInput = document.querySelector('#recipeNameInput');
+const filterLabel = document.querySelector('#filterLabel');
+const recipeTagInput = document.querySelector('#recipeTagInput');
+
 
 const ingredientsInfo = {ingredientsData};
 const recipeInfo = {recipeData};
@@ -13,6 +22,7 @@ const recipeRepository = new RecipeRepository(recipeInfo.recipeData);
 
 window.addEventListener('load', displayRecipeList);
 recipeDisplay.addEventListener('click', showRecipeInstructions);
+navBar.addEventListener('click', goHome);
 
 function displayRecipeList() {
  recipeRepository.listRecipes();
@@ -27,35 +37,64 @@ function displayRecipeList() {
    });
 };
 
+function goHome() {
+    helperSwitch(searchLabel);
+    helperSwitch(recipeNameInput);
+    helperSwitch(searchButton);
+    helperSwitch(filterLabel);
+    helperSwitch(recipeTagInput);
+    helperSwitch(filterButton);
+    helperSwitch(favoriteButton);
+    helperSwitch(homeButton);
+    recipeDisplay.innerHTML = "";
+    displayRecipeList();
+}
+
+function helperSwitch(element) {
+    if (!element.classList.contains("hidden")) {
+        element.classList.add("hidden");
+    } else {
+        element.classList.remove("hidden");
+    }
+};
+
 function showRecipeInstructions(event) {
     if (event.target.getAttribute("data-recipeId")) { 
-       const recipeId = parseInt(event.target.getAttribute("data-recipeId"));
-       const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === recipeId);
-       selectedRecipe.buildIngredientsNeeded(ingredientsInfo.ingredientsData);
-       const totalCost = selectedRecipe.getTotalCost();
-
-       recipeDisplay.innerHTML = "";
-       recipeHeading.innerText = `${selectedRecipe.name}`;
-       recipeDisplay.innerHTML = (`
-        <img class="selected-recipe-image" data-recipeId=${selectedRecipe.id} src=${selectedRecipe.image} alt=${selectedRecipe.name}>
-        <ol id="recipeInstructions"></ol>
-        <h3 class="ingredients">Ingredients</h3>
-        <ul class="ingredients-list" id="ingredientsList"></ul>
-        <p class="total">Total Cost: ${totalCost}</p>
-       `);
-
-       selectedRecipe.instructions.forEach((instruction) => {
-         document.querySelector("#recipeInstructions").innerHTML += (`
-            <li class="instructions">${instruction.instruction}</li>
-         `);
+        helperSwitch(searchLabel); 
+        helperSwitch(recipeNameInput);
+        helperSwitch(searchButton);
+        helperSwitch(filterLabel);
+        helperSwitch(recipeTagInput);
+        helperSwitch(filterButton);
+        helperSwitch(favoriteButton);
+        helperSwitch(homeButton);
+        const recipeId = parseInt(event.target.getAttribute("data-recipeId"));
+        const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === recipeId);
+        selectedRecipe.buildIngredientsNeeded(ingredientsInfo.ingredientsData);
+        const totalCost = selectedRecipe.getTotalCost();
+        
+        recipeDisplay.innerHTML = "";
+        recipeHeading.innerText = `${selectedRecipe.name}`;
+        recipeDisplay.innerHTML = (`
+            <img class="selected-recipe-image" data-recipeId=${selectedRecipe.id} src=${selectedRecipe.image} alt=${selectedRecipe.name}>
+            <ol id="recipeInstructions"></ol>
+            <h3 class="ingredients">Ingredients</h3>
+            <ul class="ingredients-list" id="ingredientsList"></ul>
+            <p class="total">Total Cost: ${totalCost}</p>
+        `);
+        
+        selectedRecipe.instructions.forEach((instruction) => {
+            document.querySelector("#recipeInstructions").innerHTML += (`
+                <li class="instructions">${instruction.instruction}</li>
+            `);
         });
 
         selectedRecipe.ingredientsNeeded.forEach((ingredient) => {
             document.querySelector("#ingredientsList").innerHTML += (`
-            <li>${ingredient.name}</li>
+                <li>${ingredient.name}</li>
             `);
         });
-   };
+    };
 };
 
 

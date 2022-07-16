@@ -6,15 +6,15 @@
   </head>
   <body>
     <h1>Whats Cookin</h1>
-    <nav>
-      <label>Search Recipe by Name</label>
-      <input type="text" id="name">
-      <button>Search</button>
-      <label>Filter Recipe by Tags</label>
-      <input type="text" id="tag">
-      <button>Filter</button>
-      <button>Favorite Recipes</button>
-      <button class="hidden">Go Back Home</button>
+    <nav class="nav-bar" id="navBar">
+      <label class="nav-label" id="searchLabel">Search Recipe by Name</label>
+      <input class="input" type="text" id="recipeNameInput">
+      <button class="nav-button" id="searchButton">Search</button>
+      <label class="nav-label" id="filterLabel">Filter Recipe by Tags</label>
+      <input class="input" type="text" id="recipeTagInput">
+      <button class="nav-button" id="filterButton">Filter</button>
+      <button class="nav-button" id="favoriteButton">Favorite Recipes</button>
+      <button class="nav-button hidden" id="homeButton">Go Back Home</button>
     </nav>
     <main>
       <h2 id="recipeHeading">All Recipes</h2>
