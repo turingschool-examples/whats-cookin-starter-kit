@@ -7,9 +7,11 @@
   <body>
     <h1>Whats Cookin</h1>
     <nav class="nav-bar" id="navBar">
-      <label class="nav-label" id="searchLabel">Search Recipe by Name</label>
-      <input class="input" type="text" id="recipeNameInput">
-      <button class="nav-button" id="searchButton">Search</button>
+      <form id="searchForm">
+        <label class="nav-label" id="searchLabel">Search Recipe by Name</label>
+        <input class="input" type="text" id="recipeNameInput">
+        <input class="nav-button" id="searchButton" type="submit" value="Search">
+      </form>
       <form id="filterForm">
         <label class="nav-label" id="filterLabel">Filter Recipe by Tags</label>
         <input class="input" type="text" id="recipeTagInput">
