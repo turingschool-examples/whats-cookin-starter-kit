@@ -70,7 +70,7 @@
           </div>
         </section>
       </section>
-      <section class ="recipe-container" id="recipeContainer">
+      <section class ="recipe-container hidden" id="recipeContainer">
           <div class="recipe-img-price-container">
             <div class="recipe-container-upper-wrapper">
               <img class="selected-recipe-img" src="" alt="selected recipe">
@@ -95,8 +95,27 @@
             <p class ="recipe-info-box" id="recipeBox"></p>
           </article>
       </section>
+    
+    <section class ="favorite-container" id="FavoriteContainer">
+      <article class ="search-favorite-container" id="searchFavoriteContainer">
+        <div class ="search-favorite-header" id="searchHeader">Search Favorites</div>
+        <div class ="search-favorite-bar" id="searchFavoriteBar">
+          <form>
+            <input type="search" class = "search-favorite-input" id="queryFav" name="q2"
+              placeholder="Search recipes...">
+            <button type ="submit" class = "search-button">🔎</button>
+          </form>
+        </div>
+        <div class="radio-wrapper">
+          <input class = "tag-search" type = "radio" name = "searchMode" value = "tag">Search by Tag</input>
+          <input class = "name-search" type = "radio" name = "searchMode" value = "name">Search by Name</input>
+        </div>
+      </article>
+      <section class="logo-container" id="logoContainer">
+
+      </section>
     </section>
-    <section class ="favorite-container hidden" id="FavoriteContainer"></section>
+    </section>
     <aside class ="home-recipe-sidebar" id ="homeRecipeBar">
       <div class="side-bar-title-wrapper">
         <p class ="side-bar-Recipe-title" is="sideTitle"> Recipes </p>
