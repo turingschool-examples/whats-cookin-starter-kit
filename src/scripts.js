@@ -10,7 +10,8 @@ import Recipe from './classes/Recipe';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 
-const recipeBoxes = document.querySelectorAll('.recipe-pic-box');
+const recipeImages = document.querySelectorAll('.recipe-image');
+const recipePicBoxes = document.querySelectorAll('.recipe-pic-box');
 const userWelcome = document.querySelector('.user-welcome')
 
 
@@ -22,7 +23,8 @@ console.log(user);
 
 
 
-window.addEventListener('load', welcomeUser);
+window.addEventListener('load', welcomeUser)
+window.addEventListener('load', populateRecipesInHomeView);
 
 
 function randomIndex(array) {
@@ -33,13 +35,16 @@ function welcomeUser() {
   userWelcome.innerText = `Feeling hungry, ${user.name}?`;
 }
 
-// function populateRecipesInHomeView() {
-//   let innerHTML = [];
-//
-//   recipeRepo.recipeData.forEach(recipe => {
-//     innerHTML.push(`<img class="recipe-pic-box src="${recipe.image}" ">`)
-//   })
-//   console.log(innerHTML)
-//   // recipeBoxes.forEach(box, index => {
-//
-// }
+function populateRecipesInHomeView() {
+
+  const imageLinks = recipeRepo.recipeData.map(recipe => {
+    return recipe.image;
+  })
+
+  recipePicBoxes.forEach((image, index) => {
+    // image.innerHTML = '';
+    image.innerHTML += `<img class='recipe-image' src='${imageLinks[index]}'>
+    <p class='recipe-label'>Name</p>`;
+  });
+  // console.log(recipePicBoxes);
+}
