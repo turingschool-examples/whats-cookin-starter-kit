@@ -12,19 +12,35 @@ class User {
     if (!this.recipesToCook.includes(recipe)) {
       this.recipesToCook.push(recipe);
     }
-    this.lowerCaseIngredients();
   }
 
   lowerCaseIngredients() {
-    this.recipesToCook.portions = this.recipesToCook.forEach((recipe) => {
-      recipe.portions.forEach(portion => {
-        portion.name.toLowerCase()
-        this.recipesToCook.portions
-      }) 
-      this.recipesToCook.portions
+    this.recipesToCook.forEach((recipe) => {
+      recipe.portions = recipe.portions.reduce((newPortions, portion) => {
+        newPortions.push({
+          ingredientId: portion.ingredientId,
+          name: portion.name.toLowerCase(),
+          amount: portion.amount,
+          cost: portion.cost,
+          unit: portion.unit,
+        });
+        return newPortions;
+      }, []);
     });
-    console.log(11111, this.recipesToCook.portions)
   }
+
+  //  lowerCaseIngredients() {
+  //     this.recipesToCook.portions = this.recipesToCook.portions.reduce((newPortions, recipe) => {
+  //       newPortions.push({
+  //         ingredientId: recipes
+  //         name: "Pork Chop",
+  //         amount: 1,
+  //         cost: 300,
+  //         unit: "serving",
+  //       });
+  //       }, [])
+  //     return this.recipesToCook.portions
+  //     };
 
   removeRecipeToCook(recipe) {
     let indexOfRecipeToRemove = this.recipesToCook.indexOf(recipe);
@@ -47,7 +63,6 @@ class User {
     if (!this.selectedInput.includes(lowerCaseInput)) {
       this.selectedInput.push(lowerCaseInput);
     }
-    
   }
 
   filterByMultipleTags() {
@@ -90,29 +105,27 @@ class User {
     });
     return this.filteredResults;
   }
- 
+
   filterByMultipleIngredients() {
-    console.log('are portions lower?', this.recipesToCook.portions)
     this.filteredResults = this.recipesToCook.filter((recipe) => {
-      let containsOr = false;
-      if (
-        this.selectedInput.some((keyword) => {
-          return recipe.portions.includes(keyword);
+       let containsOr = false;
+      recipe.portions.forEach((portion) => {
+      if(this.selectedInput.some((keyword) => {
+          return portion.name.includes(keyword);
         })
       ) {
         containsOr = true;
       }
-      return containsOr;
     });
-    return this.filteredResults;
-  }
+    return containsOr;
+  })
+   return this.filteredResults;
+}
 
   clearImmediate() {
     this.selectedInput = [];
     this.filteredResults = [];
   }
 }
-
-
 
 export default User;
