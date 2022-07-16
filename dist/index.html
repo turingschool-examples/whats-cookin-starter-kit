@@ -45,7 +45,6 @@
           <div class="feature-image-box" id="featureImageBox">
             <img class="random-feature-img" src="">
           </div>
-          <!-- <div class="buzzword-container">buzzzz</div> -->
           <div class="meal-box" id="mealBox">
             <h2>Foodies  Welcome</h2>
           </div>
@@ -77,7 +76,14 @@
               <img class="selected-recipe-img" src="" alt="selected recipe">
             </div>
             <div class="recipe-container-lower-wrapper">
-              <p class="ingredient-box" id="ingredientBox">Ingredient Box</p>
+              <section class="ingredient-box" id="ingredientBox">
+                <div class="ingredient-title-wrapper">
+                   <p class="ingredient-title">Ingredients</p>
+                </div>
+                <div class="ingredients-wrapper">
+                   <p class="ingredients-listed" id="ingredientsListed">listedIngredients</p>
+                </div>
+              </section>
               <div class="price-list-wrapper" id="priceListWrapper">
                 <p class="price-list-container" id="priceListContainer"></p>
                 <p class="total-price-box" id="priceBox">innerHTML price list</p>
@@ -88,8 +94,9 @@
             <p class ="recipe-title-box" id="recipeTitleBox">innerHTML recipe title</p>
             <p class ="recipe-info-box" id="recipeBox"></p>
           </article>
-        </section>
+      </section>
     </section>
+    <section class ="favorite-container hidden" id="FavoriteContainer"></section>
     <aside class ="home-recipe-sidebar" id ="homeRecipeBar">
       <div class="side-bar-title-wrapper">
         <p class ="side-bar-Recipe-title" is="sideTitle"> Recipes </p>
