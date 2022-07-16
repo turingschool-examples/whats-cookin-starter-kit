@@ -23,10 +23,10 @@ closeIcon.addEventListener('click', closeSpecificRecipe)
 
 resultCardsContainer.addEventListener('click', specificRecipeClicked)
 
-function specificRecipeClicked(event){
+function specificRecipeClicked(event) {
   let specificRecipeId;
 
-  if(event.target.classList.contains("recipe-result")){
+  if(event.target.classList.contains("recipe-result")) {
     specificRecipeId = event.target.dataset.id;
     findSpecificRecipe(specificRecipeId);    
   } else if(event.target.parentElement.classList.contains("recipe-result")) {
@@ -42,42 +42,48 @@ function findSpecificRecipe(recipeID) {
   displaySpecificRecipe(specificRecipe)
 }
 
-function displaySpecificRecipe(recipe){
-  console.log(recipe)
-  
+function displaySpecificRecipe(recipe) {
+  updateSpecificRecipeCard(recipe)
+  show(specificRecipeSection)
+  show(modalCurtain)
+}
+
+function updateSpecificRecipeCard(recipe) {
   specificRecipeSection.querySelector(".title").innerText = recipe.name;
   specificRecipeSection.querySelector(".specific-recipe-image").src = recipe.imageURL;
-  specificRecipeSection.querySelector(".specific-recipe-image").src = recipe.imageURL;
+  updateSpecificRecipeIngredients(recipe)
+  updateSpecificRecipeInstructions(recipe)
+  specificRecipeSection.querySelector(".recipe-cost h5").innerText = "$" + recipe.calcTotalRecipeCost();
+}
+
+function updateSpecificRecipeIngredients(recipe) {
   let ingredientsList = specificRecipeSection.querySelector(".ingredients ol")
+  ingredientsList.replaceChildren()
   let portionNames = recipe.getPortionNames()
   portionNames.forEach( (portionName) => {
     let listItem = document.createElement("li")
     listItem.innerText = capitalize(portionName);
     ingredientsList.append(listItem)
   })
-  
+}
+
+function updateSpecificRecipeInstructions(recipe) {
   let instructionsList = specificRecipeSection.querySelector(".instructions ol")
+  instructionsList.replaceChildren()
   let instructions = recipe.getInstructions()
   instructions.forEach( (instruction) => {
     let listItem = document.createElement("li")
     listItem.innerText = capitalize(instruction);
     instructionsList.append(listItem)
   })
-
-  specificRecipeSection.querySelector(".recipe-cost h5").innerText = "$" + recipe.calcTotalRecipeCost();
-  
-  show(specificRecipeSection)
-  show(modalCurtain)
 }
 
-function closeSpecificRecipe(){
+function closeSpecificRecipe() {
   hide(specificRecipeSection)
   hide(modalCurtain)
 }
 
 function displayAllRecipesView() {
-  console.log("displaying all recipes") // TODO: remove this before merging to main
-
   resultCardsContainer.replaceChildren()
   recipeRepo.recipes.forEach(
     (recipe) => {
@@ -87,7 +93,9 @@ function displayAllRecipesView() {
   )
 }
 
-function makeRecipeCard(recipe){
+
+
+function makeRecipeCard(recipe) {
   let newCard = resultTemplate.cloneNode(true)
   newCard.removeAttribute("id")
 
@@ -100,19 +108,19 @@ function makeRecipeCard(recipe){
   return newCard;
 }
 
-function addRecipeCardToResultsContainer(recipeCard){
+function addRecipeCardToResultsContainer(recipeCard) {
   resultCardsContainer.appendChild(recipeCard)
 }
 
-function hide(domElement){
+function hide(domElement) {
   domElement.classList.add("hidden")
 }
 
-function show(domElement){
+function show(domElement) {
   domElement.classList.remove("hidden")
 }
 
-function capitalize(string){
+function capitalize(string) {
   let stringArray = string.split('')
   stringArray[0] = stringArray[0].toUpperCase()
   return stringArray.join("")  
