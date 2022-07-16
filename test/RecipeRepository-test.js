@@ -59,7 +59,7 @@ describe("RecipeRepository", () => {
   //   );
   // });
 
-  it.only("Should be able to filter recipes by multiple tags", () => {
+  it("Should be able to filter recipes by multiple tags", () => {
     let dinnerRecipeData = {
       tags: ["dinner", "main dish"],
     };
@@ -80,13 +80,19 @@ describe("RecipeRepository", () => {
 
     recipeRepository.addInputToSearch("dinner");
     recipeRepository.addInputToSearch("breakfast");
-    
+
     expect(recipeRepository.filterByMultipleTags("dinner")).to.include(
-      dinnerRecipe);
+      dinnerRecipe
+    );
 
-    expect(recipeRepository.filterByMultipleTags("breakfast")).to.include(breakfastRecipe);
+    expect(recipeRepository.filterByMultipleTags("breakfast")).to.include(
+      breakfastRecipe
+    );
 
-    expect(recipeRepository.filteredAllRecipes).to.deep.equal([dinnerRecipe, breakfastRecipe])
+    expect(recipeRepository.filteredAllRecipes).to.deep.equal([
+      dinnerRecipe,
+      breakfastRecipe,
+    ]);
   });
 
   // it("Should be able to filter recipes by a portion of their name", () => {
@@ -115,9 +121,6 @@ describe("RecipeRepository", () => {
   //   );
   // });
 
-
-
-
   it("Should be able to filter multiple recipes by a portion of their name", () => {
     let chickenAlfredoData = {
       name: "Chicken Alfredo",
@@ -128,7 +131,7 @@ describe("RecipeRepository", () => {
       name: "Baked Chicken Alfredo",
       tags: ["main", "pasta"],
     };
-    
+
     let bakedChickenParmesanData = {
       name: "Baked Chicken Parmesan",
       tags: ["main", "pasta"],
@@ -141,20 +144,16 @@ describe("RecipeRepository", () => {
     recipeRepository.addRecipe(chickenAlfredo);
     recipeRepository.addRecipe(bakedChickenAlfredo);
     recipeRepository.addRecipe(bakedChickenParmesan);
+    recipeRepository.addInputToSearch("Alf");
+    console.log(recipeRepository.filteredAllResults);
+    recipeRepository.filterByMultipleRecipeNames();
+    console.log(recipeRepository.filteredAllResults);
 
-    expect(recipeRepository.filterByMultipleRecipeNames("Chick")).to.include(
+    expect(recipeRepository.filteredAllResults).to.deep.equal([
       chickenAlfredo,
-      bakedChickenAlfredo
-    );
-
-    expect(recipeRepository.filterByMutipleRecipeNames("baked")).to.include(
       bakedChickenAlfredo,
-      bakedChickenParmesan
-    );
+    ]);
   });
-
-
-
 
   it("Should have an array of tags that is empty by default", () => {
     expect(recipeRepository.allTags).to.deep.equal([]);
@@ -181,80 +180,81 @@ describe("RecipeRepository", () => {
   it("should be able to import data and create a new instance of Recipe", () => {
     const testRecipeData = [
       {
-        "id": 595736,
-        "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
-        "ingredients": [
+        id: 595736,
+        image: "https://spoonacular.com/recipeImages/595736-556x370.jpg",
+        ingredients: [
           {
-            "id": 20081,
-            "quantity": {
-              "amount": 1.5,
-              "unit": "c"
-            }
+            id: 20081,
+            quantity: {
+              amount: 1.5,
+              unit: "c",
+            },
           },
           {
-            "id": 18372,
-            "quantity": {
-              "amount": 0.5,
-              "unit": "tsp"
-            }
-          }
+            id: 18372,
+            quantity: {
+              amount: 0.5,
+              unit: "tsp",
+            },
+          },
         ],
-        "instructions": [
+        instructions: [
           {
-            "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
-            "number": 1
+            instruction:
+              "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
+            number: 1,
           },
           {
-            "instruction": "Add egg and vanilla and mix until combined.",
-            "number": 2
-          }
+            instruction: "Add egg and vanilla and mix until combined.",
+            number: 2,
+          },
         ],
-        "name": "Loaded Chocolate Chip Pudding Cookie Cups",
-        "tags": [ "starter", "snack", "appetizer"]
-      }
-    ]
+        name: "Loaded Chocolate Chip Pudding Cookie Cups",
+        tags: ["starter", "snack", "appetizer"],
+      },
+    ];
 
     const testIngredientData = [
       {
-        "id": 20081,
-        "name": "wheat flour",
-        "estimatedCostInCents": 142
+        id: 20081,
+        name: "wheat flour",
+        estimatedCostInCents: 142,
       },
       {
-        "id": 18372,
-        "name": "bicarbonate of soda",
-        "estimatedCostInCents": 582
-      }
-    ]
+        id: 18372,
+        name: "bicarbonate of soda",
+        estimatedCostInCents: 582,
+      },
+    ];
 
-    const testRecipe = new Recipe(
-      {
-        id: 595736,
-        name: "Loaded Chocolate Chip Pudding Cookie Cups",
-        imageURL: "https://spoonacular.com/recipeImages/595736-556x370.jpg",
-        portions: [ 
-          { 
-            ingredientId: 20081,
-            name: "wheat flour",
-            cost: 142,
-            amount: 1.5,
-            unit: "c"
-          },
-          {
-            ingredientId: 18372,
-            name: "bicarbonate of soda",
-            cost: 582,
-            amount: 0.5,
-            unit: "tsp"
-          }
-        ],
-        instructions: [ "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.", 
-          "Add egg and vanilla and mix until combined." ],
-        tags: [ "starter", "snack", "appetizer"]
-      }
-    )
-    
-    recipeRepository.importRecipesFromFile(testRecipeData, testIngredientData)
-    expect(recipeRepository.recipes[0]).to.deep.equal(testRecipe)
+    const testRecipe = new Recipe({
+      id: 595736,
+      name: "Loaded Chocolate Chip Pudding Cookie Cups",
+      imageURL: "https://spoonacular.com/recipeImages/595736-556x370.jpg",
+      portions: [
+        {
+          ingredientId: 20081,
+          name: "wheat flour",
+          cost: 142,
+          amount: 1.5,
+          unit: "c",
+        },
+        {
+          ingredientId: 18372,
+          name: "bicarbonate of soda",
+          cost: 582,
+          amount: 0.5,
+          unit: "tsp",
+        },
+      ],
+      instructions: [
+        "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
+        "Add egg and vanilla and mix until combined.",
+      ],
+      tags: ["starter", "snack", "appetizer"],
+    });
+
+    recipeRepository.importRecipesFromFile(testRecipeData, testIngredientData);
+    expect(recipeRepository.recipes[0]).to.deep.equal(testRecipe);
   });
 });

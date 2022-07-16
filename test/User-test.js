@@ -199,7 +199,7 @@ describe("User", () => {
     expect(user3.filteredResults).to.deep.equal([recipe1, recipe3]);
   });
 
-  it.only('should be able to search for multiple ingredients by name', () => {
+  it('should be able to search for multiple ingredients by name', () => {
     user3.addRecipeToCook(recipe1);
     user3.addRecipeToCook(recipe2);
     user3.addRecipeToCook(recipe3);

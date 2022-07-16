@@ -34,11 +34,9 @@ class RecipeRepository {
     if (!this.selectedInput.includes(lowerCaseInput)) {
       this.selectedInput.push(lowerCaseInput);
     }
-    
   }
 
   filterByMultipleTags(keyword) {
-    
     this.filteredAllRecipes = this.recipes.filter((recipe) => {
       let containsOr = false;
       if (
@@ -77,7 +75,7 @@ class RecipeRepository {
       }
       return containsOr;
     });
-    return this.filteredResults;
+    return this.filteredAllResults;
   }
 
   importRecipesFromFile(recipeData, ingredientsData) {
