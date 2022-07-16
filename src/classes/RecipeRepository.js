@@ -93,7 +93,6 @@ class RecipeRepository {
 
   importRecipesFromFile(recipeData, ingredientsData) {
     let recipeToAdd;
-
     recipeData.forEach((recipeDatum) => {
       let data = {
         id: recipeDatum.id,

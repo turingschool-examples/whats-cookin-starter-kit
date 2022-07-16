@@ -14,6 +14,13 @@ class User {
     }
   }
 
+  addInputToSearch(keyword) {
+    let lowerCaseInput = keyword.toLowerCase();
+    if (!this.selectedInput.includes(lowerCaseInput)) {
+      this.selectedInput.push(lowerCaseInput);
+    }
+  }
+
   lowerCaseIngredients() {
     this.recipesToCook.forEach((recipe) => {
       recipe.portions = recipe.portions.reduce((newPortions, portion) => {
@@ -29,19 +36,6 @@ class User {
     });
   }
 
-  //  lowerCaseIngredients() {
-  //     this.recipesToCook.portions = this.recipesToCook.portions.reduce((newPortions, recipe) => {
-  //       newPortions.push({
-  //         ingredientId: recipes
-  //         name: "Pork Chop",
-  //         amount: 1,
-  //         cost: 300,
-  //         unit: "serving",
-  //       });
-  //       }, [])
-  //     return this.recipesToCook.portions
-  //     };
-
   removeRecipeToCook(recipe) {
     let indexOfRecipeToRemove = this.recipesToCook.indexOf(recipe);
     if (indexOfRecipeToRemove < 0) {
@@ -49,20 +43,6 @@ class User {
     }
     this.recipesToCook.splice(indexOfRecipeToRemove, 1);
     return this.recipesToCook;
-  }
-  // filterRecipesByTag(tag) {
-  //   let filteredRecipesByTag = this.recipesToCook.filter((recipe) => {
-  //     if (recipe.tags.includes(tag)) {
-  //       return true;
-  //     }
-  //   });
-  //   return filteredRecipesByTag;
-  // }
-  addInputToSearch(keyword) {
-    let lowerCaseInput = keyword.toLowerCase();
-    if (!this.selectedInput.includes(lowerCaseInput)) {
-      this.selectedInput.push(lowerCaseInput);
-    }
   }
 
   filterByMultipleTags() {
@@ -80,16 +60,6 @@ class User {
     return this.filteredResults;
   }
 
-  // filterRecipesByName(recipeName) {
-  //   let filteredRecipesByName = this.recipesToCook.filter((recipe) => {
-  //     let lowerCaseRecipeName = recipe.name.toLowerCase();
-  //     let lowerCaseInput = recipeName.toLowerCase();
-  //     if (lowerCaseRecipeName.includes(lowerCaseInput)) {
-  //       return true;
-  //     }
-  //   });
-  //   return filteredRecipesByName;
-  // }
   filterByMultipleRecipeNames() {
     this.filteredResults = this.recipesToCook.filter((recipe) => {
       let lowerCaseRecipeName = recipe.name.toLowerCase();
@@ -108,21 +78,22 @@ class User {
 
   filterByMultipleIngredients() {
     this.filteredResults = this.recipesToCook.filter((recipe) => {
-       let containsOr = false;
+      let containsOr = false;
       recipe.portions.forEach((portion) => {
-      if(this.selectedInput.some((keyword) => {
-          return portion.name.includes(keyword);
-        })
-      ) {
-        containsOr = true;
-      }
+        if (
+          this.selectedInput.some((keyword) => {
+            return portion.name.includes(keyword);
+          })
+        ) {
+          containsOr = true;
+        }
+      });
+      return containsOr;
     });
-    return containsOr;
-  })
-   return this.filteredResults;
-}
+    return this.filteredResults;
+  }
 
-  clearImmediate() {
+  clearData() {
     this.selectedInput = [];
     this.filteredResults = [];
   }
