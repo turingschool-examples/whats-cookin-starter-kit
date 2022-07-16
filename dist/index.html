@@ -8,7 +8,7 @@
   </head>
 
   <body>
-    <section class ="main-body"> 
+    <section class ="main-body">
       <header class ="header-container" id ="headerContainer">
         <div class="h1-wrapper">
           <h1>ANYONE CAN COOK</h1>
@@ -21,9 +21,13 @@
     <article class ="search-container" id="searchContainer">
       <div class ="search-header" id="searchHeader">Find a Recipe </div>
       <div class ="search-bar" id="searchBar">
-        <input type="search" id="query" name="q"
-        placeholder="Search recipes..."><button class = "search-button">🔎</button>
-        </div>
+        <form>
+          <input type="search" class = "search-input" id="query" name="q"
+            placeholder="Search recipes..."><button type ="submit" class = "search-button">🔎</button>
+        </form>
+      </div>
+        <input class = "tag-search" type = "radio" name = "searchMode" value = "tag">Search by Tag</input>
+        <input class = "name-search" type = "radio" name = "searchMode" value = "name">Search by Name</input>
     </article>
     <section class ="main-page-container" id="mainPageContainer">
       <div class ="feature-container" id="featureContainer">
@@ -59,7 +63,7 @@
         </section>
     <aside class ="home-recipe-sidebar" id ="homeRecipeBar">
       <p class ="side-bar-header" is="sideHeader"> Recipes </p>
-      <p class ="all-recipes" id="allRecipes"> innerHTML Recipes</p>
+      <p class ="list-recipes" id="allRecipes"> innerHTML Recipes</p>
     </aside>
       </div>
     </section>
