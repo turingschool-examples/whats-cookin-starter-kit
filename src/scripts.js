@@ -48,7 +48,6 @@ recipeCardGridContainer.addEventListener('click', (e) => {
 })
 
 closeModalButton.addEventListener('click', () => {
-    console.log('OI!!!!')
     MicroModal.close('recipeModal')
 })
 
@@ -104,7 +103,7 @@ function searchRecipe() {
         <h3>${ recipe.name }</h3>
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
-        <button class="save-button">Save it!</button>
+        <button class="save-button">Save to cooking profile!</button>
         </div>
         </section>`
     } );
@@ -121,7 +120,7 @@ function displayFilteredRecipesByNameOnPage( ) {
         <h3>${ recipe.name }</h3>
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
-        <button class="save-button">Save it!</button>
+        <button class="save-button">Save to cooking profile!</button>
         </div>
         </section>`
     } );
@@ -141,7 +140,7 @@ function displayAllRecipesOnPage( e ) {
         <h3>${ recipe.name }</h3>
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
-        <button class="save-button">Save it!</button>
+        <button class="save-button">Save to cooking profile!</button>
         </div>
         </section>`
     } ).join('');
@@ -151,39 +150,30 @@ function displayAllRecipesOnPage( e ) {
 // recipeContainer.addEventListener( 'click' , displayRecipeInfo );
 
 function show(element) {
-    element.classList.remove('hidden')
-}
+    element.classList.remove('hidden');
+};
 
 function displayRecipeInfo( e ){
     newRecipe = new RecipeRepository( recipeList )
-    // console.log(newRecipe);
     newRecipe.recipes.map(( dish ) => {
-        // console.log('DIS DISH; ', dish)
         if( e.target.id == dish.id ){
-            recipeClass = new Recipe( dish, dish.ingredients )
-            recipeClass.getIngredientsWithNames(dish.ingredients, ingredientList)
-            console.log(dish)
-            // recipeModal.id = dish.id  
-            h4.innerText = dish.name  
-            instructionText.innerText = dish.instructions.map(task => `${task.number}: ${task.instruction}`).join('  ');
-            // ingredientText.innerText = dish.ingredients.map(item => `${recipeClass.getIngredientsWithNames( dish, recipeList)}`);
-            // ^^^^^^^^^^^ dis has a lot of potential!
-            //need to figure out how to pull in the result of 'getIngredientsWithNames' function
-            // console.log('DISH: ', recipeClass.getIngredientsWithNames(dish.ingredientList, newRecipe))
+            recipeClass = new Recipe( dish, dish.ingredients );
+            recipeClass.getIngredientsWithNames(dish.ingredients, ingredientList);
+            h4.innerText = dish.name;  
+            instructionText.innerText = dish.instructions.map( task => `${ task.number }: ${ task.instruction }` ).join( '  ' );
+            ingredientText.innerText = dish.ingredients.map( foodItem => ` ${ ( foodItem.quantity.amount ).toFixed( 2 ) } ${ foodItem.quantity.unit } ${ foodItem.name }` );
+            totalCost.innerText = `Total Cost: $${ parseFloat( recipeClass.getCostOfIngredients( dish.ingredients, ingredientList ) * .01 ).toFixed( 2 ) }`;
             return 
-        }       
-    })
-}
-
-//if from dish.instructions.map, 'instructions' is coming from 'dish'
-
+        };       
+    });
+};
 
 function assignCost(dish) {
     
 }
 
 function hide(element) {
-    element.classList.add('hidden')
+    element.classList.add('hidden');
 }
 
 
@@ -207,3 +197,8 @@ function addToFaves (e) {
 }
 
 
+// Need change 'View My Cooking Profile' button to 'Return to Main Page" when the 
+// saved page is displayed
+
+// Need to have a 'REMOVE FROM COOKING PROFILE BUTTON' on the recipe cards in the 
+// saved page
