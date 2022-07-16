@@ -199,6 +199,16 @@ describe("User", () => {
     expect(user3.filteredResults).to.deep.equal([recipe1, recipe3]);
   });
 
+  it('should be able to search for multiple ingredients by name', () => {
+    user3.addRecipeToCook(recipe1);
+    user3.addRecipeToCook(recipe2);
+    user3.addRecipeToCook(recipe3);
+    user3.addInputToSearch("Flour");
+    user3.addInputToSearch("bread");
+    user3.filterByMultipleIngredients();
+    expect(user3.filteredResults).to.deep.equal([recipe1, recipe2]);
+  });
+
   it('should clear the selected input & filtered results array after filteration is complete', () => {
     user3.addRecipeToCook(recipe1);
     user3.addRecipeToCook(recipe2);
