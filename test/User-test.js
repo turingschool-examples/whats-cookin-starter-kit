@@ -189,7 +189,7 @@ describe("User", () => {
     expect(user3.filteredResults).to.deep.equal([recipe1, recipe3]);
   });
 
-  it('should be able to search for multiple recipes by name', () => {
+  it("should be able to search for multiple recipes by name", () => {
     user3.addRecipeToCook(recipe1);
     user3.addRecipeToCook(recipe2);
     user3.addRecipeToCook(recipe3);
@@ -199,7 +199,7 @@ describe("User", () => {
     expect(user3.filteredResults).to.deep.equal([recipe1, recipe3]);
   });
 
-  it('should be able to search for multiple ingredients by name', () => {
+  it("should be able to search for multiple ingredients by name", () => {
     user3.addRecipeToCook(recipe1);
     user3.addRecipeToCook(recipe2);
     user3.addRecipeToCook(recipe3);
@@ -210,7 +210,7 @@ describe("User", () => {
     expect(user3.filteredResults).to.deep.equal([recipe1, recipe2]);
   });
 
-  it('should clear the selected input & filtered results array after filteration is complete', () => {
+  it("should clear the selected input & filtered results array after filteration is complete", () => {
     user3.addRecipeToCook(recipe1);
     user3.addRecipeToCook(recipe2);
     user3.addRecipeToCook(recipe3);
@@ -218,9 +218,8 @@ describe("User", () => {
     user3.addInputToSearch("pork");
     user3.filterByMultipleTags();
     expect(user3.filteredResults).to.deep.equal([recipe1, recipe3]);
-    user3.clearImmediate()
+    user3.clearImmediate();
     expect(user3.selectedInput).to.deep.equal([]);
     expect(user3.filteredResults).to.deep.equal([]);
-  })
-
+  });
 });

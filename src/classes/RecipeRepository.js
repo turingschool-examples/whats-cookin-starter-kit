@@ -20,14 +20,37 @@ class RecipeRepository {
     });
   }
 
-  // filterRecipesByTag(tag) {
-  //   let matchingRecipes = this.recipes.filter((recipe) => {
-  //     if (recipe.tags.includes(tag)) {
-  //       return true;
-  //     }
-  //   });
-  //   return matchingRecipes;
-  // }
+  lowerCaseIngredients() {
+    this.recipes.forEach((recipe) => {
+      recipe.portions = recipe.portions.reduce((newPortions, portion) => {
+        newPortions.push({
+          ingredientId: portion.ingredientId,
+          name: portion.name.toLowerCase(),
+          amount: portion.amount,
+          cost: portion.cost,
+          unit: portion.unit,
+        });
+        return newPortions;
+      }, []);
+    });
+  }
+
+  filterByMultipleIngredients() {
+    this.filteredAllRecipes = this.recipes.filter((recipe) => {
+      let containsOr = false;
+      recipe.portions.forEach((portion) => {
+        if (
+          this.selectedInput.some((keyword) => {
+            return portion.name.includes(keyword);
+          })
+        ) {
+          containsOr = true;
+        }
+      });
+      return containsOr;
+    });
+    return this.filteredAllRecipese;
+  }
 
   addInputToSearch(keyword) {
     let lowerCaseInput = keyword.toLowerCase();
@@ -36,6 +59,14 @@ class RecipeRepository {
     }
   }
 
+  // filterRecipesByTag(tag) {
+  //   let matchingRecipes = this.recipes.filter((recipe) => {
+  //     if (recipe.tags.includes(tag)) {
+  //       return true;
+  //     }
+  //   });
+  //   return matchingRecipes;
+  // }
   filterByMultipleTags(keyword) {
     this.filteredAllRecipes = this.recipes.filter((recipe) => {
       let containsOr = false;
@@ -61,7 +92,6 @@ class RecipeRepository {
   //   });
   //   return matchingRecipes;
   // }
-
   filterByMultipleRecipeNames() {
     this.filteredAllResults = this.recipes.filter((recipe) => {
       let lowerCaseRecipeName = recipe.name.toLowerCase();
@@ -112,6 +142,12 @@ class RecipeRepository {
       unit: ingredientObject.quantity.unit, // “c”
     };
   }
+
+  clearImmediate() {
+    this.selectedInput = [];
+    this.filteredAllRecipes = [];
+  }
+
 }
 
 export default RecipeRepository;

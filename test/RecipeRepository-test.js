@@ -145,9 +145,7 @@ describe("RecipeRepository", () => {
     recipeRepository.addRecipe(bakedChickenAlfredo);
     recipeRepository.addRecipe(bakedChickenParmesan);
     recipeRepository.addInputToSearch("Alf");
-    console.log(recipeRepository.filteredAllResults);
     recipeRepository.filterByMultipleRecipeNames();
-    console.log(recipeRepository.filteredAllResults);
 
     expect(recipeRepository.filteredAllResults).to.deep.equal([
       chickenAlfredo,
@@ -257,4 +255,121 @@ describe("RecipeRepository", () => {
     recipeRepository.importRecipesFromFile(testRecipeData, testIngredientData);
     expect(recipeRepository.recipes[0]).to.deep.equal(testRecipe);
   });
+
+  it("should be able to search by multiple ingredients", () => {
+    let recipe1 = new Recipe({
+      id: 1,
+      name: "Chocolate Chip Cookie",
+      imageURL: "https://recipe-image-1.jpg",
+      portions: [
+        { ingredientId: 1, name: "Flour", amount: 2, cost: 101, unit: "C" },
+      ],
+      instructions: ["Bake it"],
+      tags: ["snack", "dessert"],
+    });
+
+    let recipe2 = new Recipe({
+      id: 2,
+      name: "Ham Sandwich",
+      imageURL: "https://recipe-image-2.jpg",
+      portions: [
+        {
+          ingredientId: 2,
+          name: "Bread",
+          amount: 5,
+          cost: 200,
+          unit: "loaf",
+        },
+      ],
+      instructions: ["Make Sandwich"],
+      tags: ["snack", "lunch"],
+    });
+    let recipe3 = new Recipe({
+      id: 3,
+      name: "Glazed Chops",
+      imageURL: "https://recipe-image-3.jpg",
+      portions: [
+        {
+          ingredientId: 3,
+          name: "Pork Chop",
+          amount: 1,
+          cost: 300,
+          unit: "serving",
+        },
+      ],
+      instructions: ["Grill it up"],
+      tags: ["pork", "dinner"],
+    });
+    recipeRepository.addRecipe(recipe1);
+    recipeRepository.addRecipe(recipe2);
+    recipeRepository.addRecipe(recipe3);
+    recipeRepository.lowerCaseIngredients();
+    recipeRepository.addInputToSearch("Flour");
+    recipeRepository.addInputToSearch("BREAD");
+    recipeRepository.filterByMultipleIngredients();
+    expect(recipeRepository.filteredAllRecipes).to.deep.equal([
+      recipe1,
+      recipe2,
+    ]);
+  });
+
+    it("should clear the selected input & filtered results array after filteration is complete", () => {
+
+        let recipe1 = new Recipe({
+          id: 1,
+          name: "Chocolate Chip Cookie",
+          imageURL: "https://recipe-image-1.jpg",
+          portions: [
+            { ingredientId: 1, name: "Flour", amount: 2, cost: 101, unit: "C" },
+          ],
+          instructions: ["Bake it"],
+          tags: ["snack", "dessert"],
+        });
+
+        let recipe2 = new Recipe({
+          id: 2,
+          name: "Ham Sandwich",
+          imageURL: "https://recipe-image-2.jpg",
+          portions: [
+            {
+              ingredientId: 2,
+              name: "Bread",
+              amount: 5,
+              cost: 200,
+              unit: "loaf",
+            },
+          ],
+          instructions: ["Make Sandwich"],
+          tags: ["snack", "lunch"],
+        });
+        let recipe3 = new Recipe({
+          id: 3,
+          name: "Glazed Chops",
+          imageURL: "https://recipe-image-3.jpg",
+          portions: [
+            {
+              ingredientId: 3,
+              name: "Pork Chop",
+              amount: 1,
+              cost: 300,
+              unit: "serving",
+            },
+          ],
+          instructions: ["Grill it up"],
+          tags: ["pork", "dinner"],
+        });
+      recipeRepository.addRecipe(recipe1);
+      recipeRepository.addRecipe(recipe2);
+      recipeRepository.addRecipe(recipe3);
+      recipeRepository.addInputToSearch("dessert");
+      recipeRepository.addInputToSearch("pork");
+      recipeRepository.filterByMultipleTags();
+      expect(recipeRepository.filteredAllRecipes).to.deep.equal([
+        recipe1,
+        recipe3,
+      ]);
+      recipeRepository.clearImmediate();
+      expect(recipeRepository.selectedInput).to.deep.equal([]);
+      expect(recipeRepository.filteredAllRecipes).to.deep.equal([]);
+    });
 });
