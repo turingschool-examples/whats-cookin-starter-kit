@@ -35,7 +35,6 @@ body {
   align-items: center;
   border-radius: 8%;
   display: flex;
-  /* height: 65%; */
   justify-content: center;
   margin-top: 13%;
   width: 65%;
@@ -172,6 +171,7 @@ button:hover {
   height: 100%;
   width: 25%;
   border: 2px solid black;
+  overflow-y: scroll;
 }
 
 .recipe-view-big-box {
@@ -183,6 +183,7 @@ button:hover {
 
 .cooking-instructions {
   height: 92%;
+  overflow-y: scroll;
 }
 
 .save-recipe-button-container {
