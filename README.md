@@ -16,7 +16,7 @@
 
 ## Introduction
 
-  Visit Whats cookin to...
+  Visit Whats cookin to view ingredients, cost, and steps to cook a recipe.
 
 ## Technologies
   - Javascript
@@ -25,7 +25,9 @@
 
 ## Features
 
-   - You are able to...
+   - Users are able to view ingredients, cost, and steps to cook a recipe. 
+   - Users are able to save recipe information to cookbook to view.
+   - Users are able to filter by name and tag in search bar.
 
 ## Illustrations
 
@@ -37,7 +39,8 @@ Visit our published IdeaBox page [here]()
 
 ## Possible Future Extensions
 
-  -
+  - Users are able to edit recipes
+  - Users are able to create recipes
 
 ## Set Up
 
@@ -46,8 +49,8 @@ Visit our published IdeaBox page [here]()
 3. View the project in the browser by running open index.html in your terminal
 
 ## Organizational Resources
-- [Figma]()
-
+- [Figma](https://www.figma.com/file/jQPYixsteH1dHIhJAUwOwP/Untitled?node-id=0%3A1)
+- [Figma board](https://www.figma.com/file/I1GaI2N1QhgmRMTRXYRy3J/Untitled?node-id=18%3A22)
 
 ## Sources
   - [MDN](http://developer.mozilla.org/en-US/)
