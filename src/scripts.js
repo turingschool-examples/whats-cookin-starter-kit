@@ -53,7 +53,19 @@ saveRecipeButton.addEventListener('click', saveChosenRecipe);
 // myFavoritesButton.addEventListener('click', )
 // pantryButton.addEventListener('click', )
 
-
+const pageNames = [
+  'My Grandma Taught Me This',
+  `Let's Eat Grandpa`,
+  'Eating My Empire',
+  'Dribbling Spoonfuls',
+  'Yum Yum & Tum Tum',
+  'Bite My Kitchen',
+  'Big Taste Table',
+  'Cooking with Hubby',
+  'Queen of Tarts',
+  `What ISN'T cookin'?`,
+  'THANK YOU BASED COLE',
+]
 
 function randomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -64,10 +76,13 @@ function getRandomRecipe() {
   return recipeRepo.recipeData[recipeIndex]
 }
 
-
+function getRandomPageName() {
+  const pageNameIndex = randomIndex(pageNames);
+  return pageNames[pageNameIndex]
+}
 
 function welcomeUser() {
-  userWelcome.innerText = `Feeling hungry, ${user.name}?`;
+  userWelcome.innerText = `${getRandomPageName()}, ${user.name}?`;
 }
 
 function populateRecipesInHomeView() {
