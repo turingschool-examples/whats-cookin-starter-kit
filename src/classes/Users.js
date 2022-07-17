@@ -5,27 +5,27 @@ class Users {
         this.name = user.name;
         this.id = user.id;
         this.pantry = user.pantry;
-        this.recipeToCook = [];
+        this.recipesToCook = [];
     }
     addRecipesToCook(recipe) {
-        recipe.toBeCooked = true;
-        if (!this.recipeToCook.includes(recipe)) {
-        this.recipeToCook.push(recipe);
+        if (!this.recipesToCook.includes(recipe)) {
+            console.log('adding');
+            this.recipesToCook.push(recipe);
+            console.log({ cooking: this.recipesToCook });
         }
     }
     removeRecipesToCook(recipe) {
-        recipe.toBeCooked = false;
-        if (this.recipeToCook.includes(recipe)) {
-        this.recipeToCook.splice(0, 1);
+        if (this.recipesToCook.includes(recipe)) {
+            this.recipesToCook = this.recipesToCook.filter(rec => rec !== recipe);
         }
     }
     filterByTagUser(tag) {
-        const grabbedTag = this.recipeToCook.filter(saveRecipe => saveRecipe.tags.includes(tag))
-        return grabbedTag
+        const taggedRecipes = this.recipesToCook.filter(saveRecipe => saveRecipe.tags.includes(tag))
+        return taggedRecipes
     }
     filterByNameUser(name) {
-        const grabbedName = this.recipeToCook.filter(saveRecipe => saveRecipe.name.includes(name))
-        return grabbedName
+        const recipesByName = this.recipesToCook.filter(saveRecipe => saveRecipe.name.includes(name))
+        return recipesByName
     }
 }
 export default Users;

@@ -12,11 +12,11 @@ body {
 .top-bar {
   height: 100px;
   display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
-	align-items: center;
-	align-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
   border-bottom: black solid 5px;
 }
 
@@ -32,11 +32,11 @@ body {
 
 .left-box {
   display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: center;
-	align-content: space-evenly;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: space-evenly;
   width: 25%;
   height: 800px;
   border-right: black solid 5px;
@@ -46,20 +46,20 @@ body {
   display: flex;
   width: 75%;
   height: 800px;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	align-items: center;
-	align-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: flex-start;
 }
 
 .left-buttons {
   display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: space-evenly;
-	align-items: center;
-	align-content: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
 }
 
 .recipe-card {
@@ -67,11 +67,11 @@ body {
   width: 180px;
   margin: 20px;
   display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	/* align-items: center; */
-	align-content: space-evenly;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  /* align-items: center; */
+  align-content: space-evenly;
   margin: 15px;
 }
 
@@ -92,5 +92,9 @@ button {
 }
 
 .hidden {
-	display: none;
-  }
+  display: none;
+}
+
+.favorite-button {
+  flex-direction: row-reverse;
+}

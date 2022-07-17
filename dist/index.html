@@ -12,9 +12,8 @@
     <h1 class='project-title'>What's Cookin?</h1>
     <button class='take-home hidden'>Back to Home</button>
     <div class="user-card card">
-      <h3 class="userGreeting">User Info</h3>
       <div class="card-box" id="userCardProperties">
-        <nav id="userName"></nav>
+        <h3 id="userName"></h3>
       </div>
     </div>
     <button id="recipe-button"> RECIPES </button>
@@ -23,7 +22,7 @@
     <div class="search-container">
       <form action="/action_page.php">
         <input type="text" placeholder="Search..." name="search">
-        <button type="submit">Submit</button>
+        <button type="submit">Search!</button>
       </form>
     </div>
   </div>
@@ -31,18 +30,6 @@
     <div class="left-box">
       <form class="left-buttons">
         <h1></h1>
-        <p> FILTER BY TAG: </p>
-        <div>
-          <input class="radio-value" type="radio"  name="tags" value="breakfast">
-          <label for="contactChoice1"> BREAKFAST </label><br>
-          <input class="radio-value" type="radio"  name="tags" value="lunch">
-          <label for="contactChoice2"> LUNCH </label><br>
-          <input class="radio-value" type="radio"  name="tags" value="dinner">
-          <label for="contactChoice3"> DINNER </label><br>
-        </div>
-        <div>
-          <button id="recipe-tag-input" class=" radio-search-button" type="submit"> SEARCH </button>
-        </div>
       </form>
     </div>
     <div class="right-box">
@@ -51,17 +38,18 @@
       </div>
       <div class="ingredient-card-wrapper">
         <div class="ingredient-card">
-        <div class="card-image" src="" alt="food"></div>
-        <!-- <img class="heart" src='./images/heart.svg' alt="heart"> -->
-        <!-- <nav id="recipeName"></nav> -->
-        <!-- <button class="view-recipe-button"> VIEW RECIPE </button> -->
-        <!-- <button class="add-to-cookbook-button"> ADD TO COOKBOOK </button>
-        <button class="favorite-button"> FAVORITE </button>
-        <button class="un-favorite-button"> UN-FAVORITE </button> -->
+          <div class="card-image" src="" alt="food"></div>
+          <!-- <img class="heart" src='./images/heart.svg' alt="heart">
+          <nav id="recipeName"></nav>
+          <button class="view-recipe-button"> VIEW RECIPE </button>
+          <button class="add-to-cookbook-button"> ADD TO COOKBOOK </button>
+          <button class="favorite-button"> Add to cookbook! </button>
+          <button class="un-favorite-button"> UN-FAVORITE </button> -->
+        </div>
       </div>
     </div>
-      </div>
-    </div>
+    <!-- <nav> <button id="add-to-cookbook" class=""> Add to cookbook! </button></nav> -->
+  </div>
   </div>
   <script type="text/javascript" src="bundle.js"></script>
 </body>
