@@ -249,7 +249,7 @@ button:hover {
 
 }
 
-.all-recipes-pic-box {
+.all-recipes-pic-box, .saved-recipes-pic-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
