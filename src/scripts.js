@@ -40,7 +40,7 @@ fetchData().then(responses => {
     searchForm.addEventListener('submit', searchRecipeName);
     favoriteButton.addEventListener('click', showFavorites);
     filterFavoriteForm.addEventListener('submit', filterFavoriteRecipiesByTag);
-    favSearchForm.addEventListener('submit', searchFavRecipeListByName);
+    // favSearchForm.addEventListener('submit', searchFavRecipeListByName);
     
     displayRecipeList();
 
