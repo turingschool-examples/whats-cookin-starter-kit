@@ -26,7 +26,7 @@
           <img class="fav-img" id="favImg" src="./favorite-svg.svg">
         </div>
       </header>
-        <article class ="search-container" id="searchContainer">
+        <article class ="search-container hidden" id="searchContainer">
           <div class ="search-header" id="searchHeader">Find a Recipe </div>
           <div class ="search-bar" id="searchBar">
             <form>
@@ -40,7 +40,7 @@
             <input class = "name-search" type = "radio" name = "searchMode" value = "name">Search by Name</input>
           </div>
         </article>
-      <section class ="main-page-container" id="mainPageContainer">
+      <section class ="main-page-container hidden" id="mainPageContainer">
         <div class ="feature-container" id="featureContainer">
           <div class="feature-image-box" id="featureImageBox">
             <img class="random-feature-img" src="">
@@ -94,7 +94,7 @@
             <p class ="recipe-info-box" id="recipeBox"></p>
           </article>
       </section>
-        <article class ="search-favorite-container hidden" id="searchFavoriteContainer">
+        <article class ="search-favorite-container" id="searchFavoriteContainer">
             <div class ="search-favorite-header" id="searchHeader">Search Favorites</div>
             <div class ="search-favorite-bar" id="searchFavoriteBar">
             <form>
@@ -108,7 +108,7 @@
             <input class = "name-search-favorite" type = "radio" name = "searchMode" value = "name">Search by Name</input>
           </div>
         </article>
-        <section class ="main-favorite-container hidden" id="mainFavoriteContainer">
+        <section class ="main-favorite-container" id="mainFavoriteContainer">
           <section class="favorite-recipe-container" id="favoriteRecipeContainer">
             <div class="favorite-recipe-title-wrapper"> 
               <p class="favorite-recipe-title">Favorite Recipes</p>
@@ -119,8 +119,16 @@
           <div class="user-pantry-title-wrapper"> 
             <p class="user-pantry-title">User's Pantry</p>
           </div>
-          <div class ="pantry-ingredient-wrapper" id="pantryIngredientWrapper"> 
-            <p class="pantry-ingredient">Pantry Ingredient</p>
+          <div class ="pantry-ingredient-wrapper" id="pantryIngredientWrapper1"> 
+            <p class="pantry-ingredient">Out Shopping...</p>
+            <!-- <img class="pantry-ingredient-icon" src=""> -->
+          </div>
+          <div class ="pantry-ingredient-wrapper" id="pantryIngredientWrapper2"> 
+            <p class="pantry-ingredient">Pantry Items Coming Soon</p>
+            <!-- <img class="pantry-ingredient-icon" src=""> -->
+          </div>
+          <div class ="pantry-ingredient-wrapper" id="pantryIngredientWrapper3"> 
+            <p class="pantry-ingredient">Part 2</p>
             <!-- <img class="pantry-ingredient-icon" src=""> -->
           </div>
         </section>

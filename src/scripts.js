@@ -43,7 +43,8 @@ const ingredientBox = document.querySelector('.ingredients-listed');
 const addFavoriteButton = document.querySelector('.add-favorite-button');
 const quantities = document.querySelector('.quantities');
 const names = document.querySelector('.names');
-const prices = document.querySelector('.prices')
+const prices = document.querySelector('.prices');
+
 
 // ***** Event Listeners ***** //
 
@@ -57,6 +58,7 @@ searchButton.addEventListener('click', filterRecipe);
 favoriteSearchButton.addEventListener('click', filterFavoriteRecipes)
 favoritePageButton.addEventListener('click', showFavoritesPage);
 addFavoriteButton.addEventListener('click', addToFavorites)
+
 
 // ***** Global Variables ***** //
 
@@ -83,6 +85,7 @@ function show(element) {
 function loadNewUser() {
   user = new User(userData.usersData[getRandomIndex(userData.usersData)]);
 }
+
 
 function updateMainPageRecipeIcons() {
   icon1Img.src = allRecipes[getRandomIndex(allRecipes)].image;
