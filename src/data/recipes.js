@@ -822,7 +822,7 @@ const recipeData = [
           "number": 6
         }
       ],
-      "name": "Creamy Coconut Yogurt Bowl with Chocolate Granola (Video)",
+      "name": "Creamy Coconut Yogurt Bowl with Chocolate Granola",
       "tags": [
         "side dish"
       ]
