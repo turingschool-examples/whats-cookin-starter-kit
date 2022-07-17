@@ -1,4 +1,3 @@
-
 export default class Recipe {
     constructor(data, ingredientsData) {
         this.requiredIngredients = [];
@@ -37,7 +36,6 @@ export default class Recipe {
             return cost += (ingredient.estimatedCostInCents * numOfUnits);
         }, 0) / 100;
     };
-    //need to refactor (* 3 or however many ingredients to get actual total cost)
 
     getInstructions() {
         return this.instructions
