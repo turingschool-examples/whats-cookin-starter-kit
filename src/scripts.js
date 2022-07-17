@@ -31,6 +31,7 @@ recipeDisplay.addEventListener('click', recipeDisplayHandeler);
 homeButton.addEventListener('click', goHome);
 filterForm.addEventListener('submit', filterRecipeTag);
 searchForm.addEventListener('submit', searchRecipeName);
+favoriteButton.addEventListener('click', showFavorites);
 
 function createUser() {
     const randomNumber = Math.floor(Math.random() * userInfo.usersData.length);
@@ -52,6 +53,22 @@ function addToFavorite(event) {
     user.addRecipesToCook(selectedRecipe);
 }
 
+function showFavorites(event) {
+    homeButton.classList.remove('hidden');
+    homeButton.classList.add('favorite');
+    recipeHeading.innerText = 'Favorite Recipes';
+    recipeDisplay.innerHTML = "";
+    user.recipesToCook.forEach((recipe) => {
+        recipeDisplay.innerHTML += (`
+            <div class="recipe-image-wrapper">
+            <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="favorite" src=${recipe.image} alt=${recipe.name}>
+            <p class="recipe-name">${recipe.name}</p>
+            <button class="remove-button" data-favoriteRecipe=${recipe.id} id="removeButton">Remove</button>
+            </div>
+        `)
+    });
+};
+
 function displayRecipeList() {
  recipeDisplay.innerHTML = "";
  recipeRepository.recipeList.forEach((recipe) => {
@@ -65,18 +82,27 @@ function displayRecipeList() {
    });
 };
 
-function goHome() {
+function goHome(event) {
+    console.log(event.target);
     recipeHeading.innerText = 'All Recipes';
-    helperSwitch(searchLabel);
-    helperSwitch(recipeNameInput);
-    helperSwitch(searchButton);
-    helperSwitch(filterLabel);
-    helperSwitch(recipeTagInput);
-    helperSwitch(filterButton);
-    helperSwitch(favoriteButton);
-    helperSwitch(homeButton);
-    recipeDisplay.innerHTML = "";
-    displayRecipeList();
+
+    if(homeButton.classList.contains('favorite')) {
+        homeButton.classList.remove('favorite');
+        homeButton.classList.add('hidden');
+        recipeDisplay.innerHTML = "";
+        displayRecipeList();
+    } else {
+        helperSwitch(searchLabel);
+        helperSwitch(recipeNameInput);
+        helperSwitch(searchButton);
+        helperSwitch(filterLabel);
+        helperSwitch(recipeTagInput);
+        helperSwitch(filterButton);
+        helperSwitch(favoriteButton);
+        helperSwitch(homeButton);
+        recipeDisplay.innerHTML = "";
+        displayRecipeList();
+    }
 }
 
 function helperSwitch(element) {
