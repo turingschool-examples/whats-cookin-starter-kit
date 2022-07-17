@@ -23,15 +23,14 @@ const getRandomRecipe = () => {
 const recipePromise = fetchApiData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
 const userPromise = fetchApiData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users');
 const ingredientPromise = fetchApiData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients');
-let userRepo;
+let ourUser;
 const users = []
 const userId = getRandomUserId();
 const recipeID = getRandomRecipe();
-const recipe = new Recipe(recipeData)
+// const recipe = new Recipe(recipeData)
 Promise.all([userPromise, ingredientPromise, recipePromise])
     .then((value) => {
-        setUserData(value[0].name)
-        const ourUser = setUserData()
+        ourUser = setUserData(value[0].usersData[userId])
         userAttribute(ourUser)
     })
 //     Promise.all([userPromise, hydrationPromise, sleepPromise, activityPromise])
@@ -57,10 +56,11 @@ const userGreeting = document.querySelector("#userName");
 const recipeLocation = document.querySelector('#recipeName')
 const recipeImage = document.querySelector('.card-image')
 const mainBox = document.querySelector('.main-box')
-const goHomeButton = document.querySelector('#home-button')
+const goHomeButton = document.getElementById('home-button')
 const recipeCard = document.querySelector('.recipe-card')
 const ingredientCard = document.querySelector('.ingredient-card')
 let viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
+let letsMakeIt = document.querySelector('.lets-make-it-button')
 const recipeCardWrapper = document.querySelector('.recipe-card-wrapper')
 const ingredientCardWrapper = document.querySelector('.ingredient-card-wrapper')
 const recipeTagInput = document.querySelector('#recipe-tag-input')
@@ -74,12 +74,14 @@ const searchButton = document.querySelector('.search-submit');
 const addToCookbookButtonEventHandler = (id, recipeToAdd) => {
     const addToCookbook = document.querySelector(`#${id}`);
     addToCookbook.addEventListener('click', (event) => {
-        user.addRecipesToCook(recipeToAdd);
+
+        ourUser.addRecipesToCook(recipeToAdd);
     });
 }
 const showFilteredIngredients = () => {
-    const letsMakeIt = document.querySelector('.lets-make-it-button')
+    letsMakeIt = document.querySelector('.lets-make-it-button')
     letsMakeIt.addEventListener('click', (id) => {
+
         showAllRecipeDetails(id)
     })
 }
@@ -93,9 +95,19 @@ window.addEventListener('load', () => {
             showAllRecipeDetails(event.target.getAttribute('data-recipeId'))
         })
     })
-    console.log({ favoriteButton });
-    console.log('HERE');
 });
+
+goHomeButton.addEventListener('click', showAllHelper)
+
+function showAllHelper() {
+  showAllRecipes()
+  viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
+  viewRecipeButtons.forEach((button) => {
+      button.addEventListener('click', (event) => {
+          showAllRecipeDetails(event.target.getAttribute('data-recipeId'))
+      })
+  })
+}
 
 // Global Variables
 let recipeRepo = new RecipeRepository(recipeData)
@@ -114,7 +126,6 @@ let newRecipe = new Recipe(recipeData[0], ingredientsData)
 function showAllRecipes() {
     const recipes = recipeRepo.createAllRecipes(ingredientsData)
     recipeCard.innerHTML = '';
-    console.log('SHOWING!')
     recipes.forEach((recipe) => {
         recipeCard.innerHTML += `<button class="view-recipe-button" id=${recipe.id} data-recipeId=${recipe.id}> <h2 data-recipeId=${recipe.id}> ${recipe.name} </h2> 
       <img class='card-image' src=${recipe.image} data-recipeId=${recipe.id} alt=${recipe.name}>
@@ -126,9 +137,10 @@ function showAllRecipes() {
 }
 
 function showAllRecipeDetails(id) {
-    newRecipe.makeIngredientData();
+    newRecipe.makeIngredientData(ingredientsData);
     newRecipe = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(id));
     window.currentRecipe = newRecipe;
+    console.log('newRecipe: ', newRecipe)
     ingredientCard.innerHTML = `<div>
     <button id="add-to-cookbook" class=""> Add to cookbook! </button>
 <ul>
@@ -158,7 +170,7 @@ INSTRUCTIONS
     show(favoriteButton)
     show(ingredientCardWrapper)
     show(goHomeButton)
-    showFilteredIngredients();
+    // showFilteredIngredients();
 }
 
 
@@ -180,8 +192,8 @@ function searchRecipe(event) {
 }
 
 function showCookbookrecipes(event) {
-    console.log({ userRecipes: user.recipesToCook });
-    displayRecipeBySearchResults(user.recipesToCook);
+    // console.log({ userRecipes: user.recipesToCook });
+    displayRecipeBySearchResults(ourUser.recipesToCook);
 }
 
 function displayRecipeBySearchResults(recipes) {
@@ -211,12 +223,11 @@ function hide(element) {
 };
 cookbookButton.addEventListener('click', showCookbookrecipes)
 searchButton.addEventListener('click', searchRecipe)
-goHomeButton.addEventListener('click', showAllRecipes,);
 
 
 const userAttribute = (user) => {
     userGreeting.innerHTML = `Welcome ${user.name.split(" ")[0]}!`
 }
 const setUserData = (someData) => {
-    userRepo = new Users(someData);
+    return new Users(someData);
 };
