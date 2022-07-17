@@ -286,17 +286,7 @@ filter: drop-shadow(5px 10px 3px black);
       color: white;
       margin: 0;
       border: 1px solid white;
-<<<<<<< HEAD
       border-radius: 10px;
-=======
-      padding-right: 2em;
-    }
-
-    .price-box {
-      display: flex;
-      width: 30%;
-      margin: 5%;
->>>>>>> main
     }
 
     .recipe-title-box{
@@ -383,20 +373,6 @@ filter: drop-shadow(5px 10px 3px black);
       width: 100%;
     }
 
-<<<<<<< HEAD
-=======
-    .ingredients-listed{
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      color: white;
-      font-family: 'Raleway', sans-serif;
-      margin: 0%;
-      padding-top: .5em;
-      overflow: scroll;
-    }
-
->>>>>>> main
     .recipe-info-box{
       display: flex;
       flex-direction: column;

@@ -128,11 +128,8 @@ function showFavoritesPage() {
   hide(searchContainer);
   hide(recipePage);
   show(favoritesPage);
-<<<<<<< HEAD
   show(searchFavoritesContainer);
-=======
   showFavoriteRecipeImages();
->>>>>>> main
 }
 
 function viewRecipe(event) {
