@@ -10,7 +10,7 @@ import User from "./classes/User";
 
 const recipeRepo = new RecipeRepository();
 const user = new User(usersData[Math.floor(Math.random() * 41)]);
-
+var testEvent;
 recipeRepo.importRecipesFromFile(recipeData, ingredientsData);
 
 const resultTemplate = document.querySelector("#mini-recipe-template");
@@ -30,7 +30,7 @@ const saveIcon = document.querySelector(".save-recipe-icon");
 window.addEventListener("load", displayAllRecipesView);
 homeButton.addEventListener("click", displayAllRecipesView);
 closeIcon.addEventListener("click", closeSpecificRecipe);
-saveIcon.addEventListener("click", addUserRecipes);
+saveIcon.addEventListener("click", specificRecipeClicked);
 // document.querySelector(".results").addEventListener("click", removeUserRecipes);
 resultCardsContainer.addEventListener("click", specificRecipeClicked);
 // document
@@ -52,15 +52,15 @@ resultCardsContainer.addEventListener("click", specificRecipeClicked);
 //   user.addRecipeToCook(recipeRepo.recipes[22]);
 // }
 
-function addUserRecipes(event) {
-  let clickedCardId = event.currentTarget.id;
- recipeRepo.forEach((recipe) => {
-    if (recipe.id === clickedCardId) {
-      return user.recipesToCook.push(recipe)
-    }
-  });
-displayUserRecipes();
-}
+// function addUserRecipes(event) {
+//   let clickedCardId = event.currentTarget.id;
+//  recipeRepo.forEach((recipe) => {
+//     if (recipe.id === clickedCardId) {
+//       return user.recipesToCook.push(recipe)
+//     }
+//   });
+// displayUserRecipes();
+// }
 
 // function removeUserRecipes(event) {
 //   let clickedCardId = event.currentTarget.id;
@@ -73,32 +73,34 @@ displayUserRecipes();
 //   //displayUserRecipes();
 // }
 
-
+function addUserRecipes(recipe) {
+  user.addRecipeToCook(recipe);
+  console.log(user.recipesToCook);
+}
 
 function specificRecipeClicked(event) {
-  let specificRecipeId;
-  if (event.target.classList.contains("recipe-result")) {
-    specificRecipeId = event.target.dataset.id;
-    findSpecificRecipe(specificRecipeId);
-  } else if (event.target.parentElement.classList.contains("recipe-result")) {
-    specificRecipeId = event.target.parentElement.dataset.id;
-    findSpecificRecipe(specificRecipeId);
+
+  let recipeID = getRecipeIdFromClickEvent(event);
+  let specificRecipe = findSpecificRecipe(recipeID);
+  if (event.target.classList.contains("favorite-button")) {
+    addUserRecipes(specificRecipe);
+  } else {
+    displaySpecificRecipe(specificRecipe);
   }
+}
+
+function getRecipeIdFromClickEvent(event) {
+  let specificRecipeId = event.target.closest("[data-id]").dataset.id;
+  return specificRecipeId;
 }
 
 function findSpecificRecipe(recipeID) {
   let specificRecipe = recipeRepo.recipes.find((recipe) => {
     return recipe.id === parseInt(recipeID);
-  }); 
-  displaySpecificRecipe(specificRecipe);
+  });
+  return specificRecipe;
 }
 
-// function displayHelper(event) {
-//   specificRecipeClicked(event)
-//   console.log(specificRecipe)
-//   displaySpecificRecipe(specificRecipe);
-  
-// }
 function displaySpecificRecipe(recipe) {
   updateSpecificRecipeCard(recipe);
   show(specificRecipeSection);
@@ -107,6 +109,8 @@ function displaySpecificRecipe(recipe) {
 
 function updateSpecificRecipeCard(recipe) {
   specificRecipeSection.querySelector(".title").innerText = recipe.name;
+  specificRecipeSection.querySelector(".save-recipe-icon").dataset.id =
+    recipe.id;
   specificRecipeSection.querySelector(".specific-recipe-image").src =
     recipe.imageURL;
   updateSpecificRecipeIngredients(recipe);
@@ -168,7 +172,7 @@ function closeSpecificRecipe() {
 
 function displayAllRecipesView() {
   //greeting.innerText = `Welcome, ${user.name}!`;
- // header.innerText = `All Recipes!`;
+  // header.innerText = `All Recipes!`;
   resultCardsContainer.replaceChildren();
   recipeRepo.recipes.forEach((recipe) => {
     let recipeCard = makeRecipeCard(recipe);
@@ -179,12 +183,9 @@ function displayAllRecipesView() {
 function makeRecipeCard(recipe) {
   let newCard = resultTemplate.cloneNode(true);
   newCard.removeAttribute("id");
-
   newCard.dataset.id = recipe.id;
-
   newCard.querySelector(".recipe-name").innerText = recipe.name;
   newCard.querySelector(".recipe-image").src = recipe.imageURL;
-
   show(newCard);
   return newCard;
 }
