@@ -36,8 +36,8 @@ body {
   border-radius: 8%;
   display: flex;
   justify-content: center;
-  margin-top: 13%;
-  width: 65%;
+  margin-bottom: 30%;
+  width: 80%;
   margin-right: 30px;
 }
 
@@ -54,8 +54,9 @@ header {
 .nav-bar {
   width: 1000px;
   display: flex;
+  align-items: center;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .user-search-container {
@@ -95,8 +96,8 @@ button:hover {
 }
 
 .recipe-image {
-  height: 150px;
-  border: 1px solid black;
+  height: 30vh;
+  width: 20vw;
   border-radius: 20px;
 }
 
@@ -156,17 +157,17 @@ button:hover {
 
 .recipe-pic-box {
   display: flex;
-  flex-direction: column;
+  align-content: flex-start;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  width: 7vw;
+  width: 20vw;
   height: 40vh;
   border-radius: 20px;
-  margin-left: 2vw;
-  margin-right: 2vw;
-  padding-left: 10vw;
-  padding-right: 10vw;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  
 }
 
 .recipe-view-small-box, .recipe-view-pic-box {
@@ -225,7 +226,8 @@ button:hover {
 }
 
 .recipe-label {
-  color: black
+  color: black;
+  width: 15vw;
 }
 
 .recipe-label:hover {
