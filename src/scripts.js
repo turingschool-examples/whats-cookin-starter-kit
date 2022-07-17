@@ -2,9 +2,6 @@ import './styles.css';
 import {apiCalls} from './apiCalls';
 import User from './classes/User'
 import RecipeRepository from './classes/RecipeRepository';
-import {recipeData} from './data/recipes';
-import {ingredientsData} from './data/ingredients';
-import {usersData} from './data/users';
 const {fetchData} = apiCalls;
 
 const recipeDisplay = document.querySelector('#recipeDisplay');
