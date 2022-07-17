@@ -44,6 +44,8 @@ const addFavoriteButton = document.querySelector('.add-favorite-button');
 const quantities = document.querySelector('.quantities');
 const names = document.querySelector('.names');
 const prices = document.querySelector('.prices')
+const favoriteRecipeImages = document.querySelector('.favorite-recipe-icon')
+const favoriteRecipeContainer = document.querySelector('.favorite-recipe-container')
 
 // ***** Event Listeners ***** //
 
@@ -57,6 +59,9 @@ searchButton.addEventListener('click', filterRecipe);
 favoriteSearchButton.addEventListener('click', filterFavoriteRecipes)
 favoritePageButton.addEventListener('click', showFavoritesPage);
 addFavoriteButton.addEventListener('click', addToFavorites)
+favoriteRecipeContainer.addEventListener('dblclick', function(event) {
+  removeFromFavorites(event)
+})
 
 // ***** Global Variables ***** //
 
@@ -120,6 +125,7 @@ function showFavoritesPage() {
   hide(searchContainer);
   hide(recipePage);
   show(favoritesPage);
+  showFavoriteRecipeImages();
 }
 
 function viewRecipe(event) {
@@ -183,7 +189,7 @@ function filterRecipe(event) {
     filterRecipeByTag(searchValue.value);
   } else if (nameRadioBtn.checked) {
     filterRecipeByName(searchValue.value);
-  } 
+  }
 }
 
 function filterRecipeByTag(tag) {
@@ -210,7 +216,6 @@ function filterRecipeByName(name) {
 
 function addToFavorites() {
   user.addRecipesToCook(selectedRecipe)
-  console.log(user.recipesToCook)
 }
 
 function filterFavoriteRecipes(event) {
@@ -219,16 +224,33 @@ function filterFavoriteRecipes(event) {
     filterFavoriteRecipesByTag(favoriteSearchValue.value);
   } else if (nameRadioBtnFavorite.checked) {
     filterFavoriteRecipesByName(favoriteSearchValue.value);
-  } 
+  }
 }
 
 function filterFavoriteRecipesByTag(tag) {
   let input = tag.toLowerCase();
   let filteredRecipes = user.filterSavedRecipesByTag(input);
-  // display favorite recipe images
+  showFavoriteRecipeImages()
 }
 
 function filterFavoriteRecipesByName(name) {
   let filteredRecipes = user.filterSavedRecipesByName(name);
-  // display favorite recipe images
+  showFavoriteRecipeImages()
+}
+
+function showFavoriteRecipeImages(){
+  favoriteRecipeImages.innerHTML = '';
+  user.recipesToCook.forEach(recipe => {
+  favoriteRecipeImages.innerHTML += `<section class = "favorite-recipe-icon" >
+  <img class = "recipe-icons" src = ${recipe.image} id = ${recipe.id}>
+  </section>`;
+  });
+}
+
+function removeFromFavorites(event) {
+  let recipe = event.target
+  if(recipe.classList.contains("recipe-icons")) {
+    recipe.closest("section").remove()
+    user.removeRecipesToCook(parseInt(recipe.id))
+  }
 }

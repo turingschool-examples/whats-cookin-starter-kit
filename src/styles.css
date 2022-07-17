@@ -201,7 +201,7 @@ overflow: scroll;
   width: 50%;
   margin-left: -20%;
   background-color: black;
-  filter: drop-shadow(5px 10px 3px black);  
+  filter: drop-shadow(5px 10px 3px black);
   border-radius: 8px;
 }
 
@@ -212,7 +212,7 @@ width: 60%;
 margin-left: 5%;
 background: rgb(8, 2, 1, .5);
 border-radius: 8px;
-filter: drop-shadow(5px 10px 3px black);  
+filter: drop-shadow(5px 10px 3px black);
 }
 
 .recipe-icon-container {
@@ -227,10 +227,10 @@ filter: drop-shadow(5px 10px 3px black);
 
   .recipe-icons{
    display: flex;
-   height: 125px;  
+   height: 125px;
    width: 125px;
    filter: drop-shadow(5px 6px 3px grey);
-   border: 1px solid grey; 
+   border: 1px solid grey;
    border-radius: 8px;
    cursor: pointer;
   }
@@ -248,14 +248,14 @@ filter: drop-shadow(5px 10px 3px black);
     width: 100%;
     color: white;
    }
-   
- 
 
-  
+
+
+
  /* ~~~~~~~~~~~~~~~~~~view recipe user story~~~~~~~~~~~~~~~~~~~~~~ */
   .recipe-container {
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     justify-content: space-around;
     height: 80%;
     width: 100%;
@@ -278,7 +278,7 @@ filter: drop-shadow(5px 10px 3px black);
       background-color: black;
       color: white;
       margin: 0;
-      border: 1px solid white; 
+      border: 1px solid white;
       padding-right: 2em;
     }
 
@@ -314,7 +314,7 @@ filter: drop-shadow(5px 10px 3px black);
       height: 90%;
       width: 60%;
     }
-  
+
     .recipe-container-lower-wrapper{
       display: flex;
       flex-direction: row;
@@ -392,7 +392,7 @@ filter: drop-shadow(5px 10px 3px black);
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      color: white;     
+      color: white;
       font-family: 'Raleway', sans-serif;
       margin: 0%;
       padding-top: .5em;
@@ -452,9 +452,9 @@ filter: drop-shadow(5px 10px 3px black);
       display: flex;
       flex-direction: column;
       height: 100%;
-      width: 100%; 
+      width: 100%;
     }
- 
+
     /* .favorite-container div{
         background-image: url("../dist/anyonecancook-logo.svg");
         background-repeat: no-repeat;
@@ -468,7 +468,7 @@ filter: drop-shadow(5px 10px 3px black);
       width: 100%;
       opacity: 20%;
     } */
-   
+
       .favorite-recipe-container,
       .user-info-pantry-container{
         display: flex;
@@ -478,10 +478,11 @@ filter: drop-shadow(5px 10px 3px black);
         width: 90%;
         padding-top: 2em;
       }
-      
+
       .favorite-recipe-container :nth-child(2){
         flex-direction: row;
-        justify-content: center;
+        justify-self: center;
+        align-self: center;
       }
 
       .favorite-recipe-title-wrapper,
@@ -493,10 +494,10 @@ filter: drop-shadow(5px 10px 3px black);
 
     .favorite-recipe-icon{
       display: flex;
-      height: 125px;  
+      height: 125px;
       width: 125px;
       filter: drop-shadow(5px 6px 3px grey);
-      border: 1px solid grey; 
+      border: 1px solid grey;
       border-radius: 8px;
       cursor: pointer;
     }
@@ -516,7 +517,7 @@ filter: drop-shadow(5px 10px 3px black);
        justify-content: center;
        align-items: center;
        height: 10%;
-       width: 25%; 
+       width: 25%;
        margin: 0;
        padding-left: 1em;
      }
@@ -529,12 +530,10 @@ filter: drop-shadow(5px 10px 3px black);
        font-family: 'Raleway', sans-serif;
        margin: 0;
        padding-top: .5em;
-     }  
-      
+     }
+
 
 /* ~~~~~~~~~~~~~~~~~~aux~~~~~~~~~~~~~~~~~~~~~~ */
  .hidden {
   display: none;
  }
-
-
