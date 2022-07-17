@@ -32,7 +32,10 @@ const recipeName = document.querySelector('.recipe-name');
 const ingredientDetails = document.querySelector('.ingredient-details');
 const recipeViewBigBox = document.querySelector('.recipe-view-big-box');
 const recipeViewPicBox = document.querySelector('.recipe-view-pic-box');
+const cookingInstructions = document.querySelector('.cooking-instructions');
 const allRecipesContainer = document.querySelector('.all-recipes-view');
+const ingredientCost = document.querySelector('.ingredient-cost');
+
 // const recipePicBoxes = document.querySelectorAll('.recipe-pic-box');
 
 
@@ -47,6 +50,7 @@ homeButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', populateAllRecipesView);
 savedRecipesButton.addEventListener('click', displaySavedRecipesView);
 homeViewContainer.addEventListener('click', populateChosenRecipe);
+// allRecipesContainer.addEventListener('click', populateChosenRecipe);
 // myFavoritesButton.addEventListener('click', )
 // pantryButton.addEventListener('click', )
 
@@ -80,10 +84,30 @@ function populateAllRecipesView() {
 
 }
 
-function populateChosenRecipe() {
+
+function assignChosenRecipeProperties(recipe) {
+  // console.log(recipe.returnIngredientCosts());
+  recipeName.innerText = recipe.name;
+  ingredientDetails.innerText = `Ingredients required:
+
+  ${recipe.returnIngredientNames()}`;
+  ingredientCost.innerText = `Cost of Ingredients: $${recipe.returnIngredientCosts()}`;
+  cookingInstructions.innerText= `Recipe Instructions:
+  ${recipe.returnRecipeInstructions()}`;
+  recipeViewPicBox.innerHTML = '';
+  recipeViewPicBox.innerHTML += `<img class='recipe-view-pic-box' src='${recipe.image}' >`
+}
+
+function populateChosenRecipe(event) {
+  let recipeObjs = recipeRepo.convertRecipeObjects();
+  event.preventDefault();
   displayChosenRecipeView();
-  // recipeName.innerText = "Hello";
-  console.log(recipePicBoxes);
+  let targetID = event.target.id
+  recipeObjs.forEach(recipe => {
+    if (recipe.id == targetID) {
+      assignChosenRecipeProperties(recipe);
+    }
+  })
 }
 
 
