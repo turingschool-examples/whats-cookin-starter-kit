@@ -10,11 +10,6 @@ class User {
     addRecipeToRecipesToCook( recipe ) {
         this.recipesToCook.push( recipe )
     }
-
-    // addRecipeToFavorites( recipe ) {
-    //     this.favoriteRecipes.push( recipe )
-    // }
-
     removeRecipeFromRecipesToCook( recipe ) {
         this.recipesToCook.forEach((favoriteRecipe) => {
             if (favoriteRecipe.id === recipe.id) {
