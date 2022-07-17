@@ -18,6 +18,7 @@ const userWelcome = document.querySelector('.user-welcome');
 const homeButton = document.getElementById('homeButton');
 const allRecipesButton = document.getElementById('allRecipesButton');
 const savedRecipesButton = document.getElementById('savedRecipesButton');
+const saveRecipeButton = document.getElementById('saveRecipeButton');
 // const myFavoritesButton = document.getElementById('myFavoritesButton')
 // const pantryButton = document.getElementById('pantryButton')
 
@@ -50,6 +51,7 @@ homeButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', populateAllRecipesView);
 savedRecipesButton.addEventListener('click', displaySavedRecipesView);
 homeViewContainer.addEventListener('click', populateChosenRecipe);
+saveRecipeButton.addEventListener('click', saveChosenRecipe);
 // allRecipesContainer.addEventListener('click', populateChosenRecipe);
 // myFavoritesButton.addEventListener('click', )
 // pantryButton.addEventListener('click', )
@@ -190,3 +192,15 @@ function displayChosenRecipeView() {
   ])
 }
 // console.log(recipePicBoxes);
+
+//functions to save a recipe
+
+function saveChosenRecipe(){
+saveRecipeButton.innerText = 'Recipe Saved!'
+
+recipeData.forEach((recipe) => {
+  if (recipeName.innerText === recipe.name && !user.recipesToCook.includes(recipe)) {
+    user.addRecipeToCook(recipe)}
+})
+console.log('to cook:', user.recipesToCook)
+}
