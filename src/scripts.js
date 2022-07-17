@@ -16,6 +16,7 @@ const homePage = document.querySelector('.main-page-container');
 const recipePage = document.querySelector('.recipe-container');
 const favoritesPage = document.querySelector('.main-favorite-container');
 const searchContainer = document.querySelector('.search-container');
+const searchFavoritesContainer = document.querySelector('.search-favorite-container')
 const homeButton = document.querySelector('.home-img');
 const favoritePageButton = document.querySelector('.fav-img');
 const searchButton = document.querySelector('.search-button');
@@ -30,7 +31,6 @@ const icon6Img = document.querySelector('.icon-6-img');
 const featureImage = document.querySelector('.random-feature-img');
 const selectedRecipeImg = document.querySelector('.selected-recipe-img');
 const recipeNameBox = document.querySelector('.recipe-title-box');
-const priceListBox = document.querySelector('.price-list-container');
 const totalPriceBox = document.querySelector('.total-price-box');
 const recipeDetailsBox = document.querySelector('.recipe-info-box');
 const searchValue = document.querySelector('.search-input');
@@ -39,7 +39,6 @@ const tagRadioBtn = document.querySelector('.tag-search');
 const nameRadioBtn = document.querySelector('.name-search');
 const nameRadioBtnFavorite = document.querySelector('.name-search-favorite');
 const tagRadioBtnFavorite = document.querySelector('.tag-search-favorite');
-const ingredientBox = document.querySelector('.ingredients-listed');
 const addFavoriteButton = document.querySelector('.add-favorite-button');
 const quantities = document.querySelector('.quantities');
 const names = document.querySelector('.names');
@@ -118,6 +117,8 @@ function displayAllNames() {
 
 function showHomePage() {
   hide(recipePage);
+  hide(favoritesPage);
+  hide(searchFavoritesContainer);
   show(homePage);
   show(searchContainer);
 }
@@ -127,7 +128,11 @@ function showFavoritesPage() {
   hide(searchContainer);
   hide(recipePage);
   show(favoritesPage);
+<<<<<<< HEAD
+  show(searchFavoritesContainer);
+=======
   showFavoriteRecipeImages();
+>>>>>>> main
 }
 
 function viewRecipe(event) {
@@ -135,6 +140,8 @@ function viewRecipe(event) {
   selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name)[0];
   hide(homePage);
   hide(searchContainer);
+  hide(favoritesPage);
+  hide(searchFavoritesContainer);
   show(recipePage);
   displaySelectedRecipeName();
   displayRecipeInstructions();
@@ -163,21 +170,21 @@ function displayRecipeInstructions() {
 function displayIngredientNames() {
   names.innerHTML = '';
   selectedRecipe.getIngredientNames().forEach(ingredient => {
-  names.innerHTML += `<p class='recipe-ingredients'> ${ingredient} </p></br>`;
+  names.innerHTML += `<p class='recipe-ingredients'> ${ingredient} </p>`;
   });
 }
 
 function displayIngredientCosts() {
   prices.innerHTML = '';
   selectedRecipe.getCostOfIngredientsInDollars().forEach(cost => {
-  prices.innerHTML += `<p class='ingredient-prices'> ${cost} </p></br>`;
+  prices.innerHTML += `<p class='ingredient-prices'> ${cost} </p>`;
   });
 }
 
 function displayIngredientQuantities() {
   quantities.innerHTML = '';
   selectedRecipe.getAmountOfIngredients().forEach(amount => {
-  quantities.innerHTML += `<p class='ingredient-quantities'> ${amount} </p></br>`;
+  quantities.innerHTML += `<p class='ingredient-quantities'> ${amount} </p>`;
   });
 }
 

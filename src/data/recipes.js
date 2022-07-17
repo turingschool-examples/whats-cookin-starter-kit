@@ -465,7 +465,7 @@ const recipeData = [
         {
           "id": 18371,
           "quantity": {
-            "amount": 0.3333333333333333,
+            "amount": 0.33,
             "unit": "teaspoon"
           }
         },
@@ -1719,7 +1719,7 @@ const recipeData = [
         {
           "id": 10116098,
           "quantity": {
-            "amount": 0.3333333333333333,
+            "amount": 0.33,
             "unit": "cup"
           }
         },
@@ -2095,7 +2095,7 @@ const recipeData = [
         {
           "id": 19296,
           "quantity": {
-            "amount": 0.3333333333333333,
+            "amount": 0.33,
             "unit": "cup"
           }
         },
@@ -2434,7 +2434,7 @@ const recipeData = [
           "number": 4
         }
       ],
-      "name": "quinoa tabbouleh",
+      "name": "Quinoa Tabbouleh",
       "tags": [
         "side dish"
       ]
@@ -2446,14 +2446,14 @@ const recipeData = [
         {
           "id": 14242,
           "quantity": {
-            "amount": 0.6666666666666666,
+            "amount": 0.66,
             "unit": "cup"
           }
         },
         {
           "id": 14130,
           "quantity": {
-            "amount": 0.6666666666666666,
+            "amount": 0.66,
             "unit": "cup"
           }
         },
@@ -2481,7 +2481,7 @@ const recipeData = [
         {
           "id": 14051,
           "quantity": {
-            "amount": 0.6666666666666666,
+            "amount": 0.66,
             "unit": "cup"
           }
         },
@@ -2980,7 +2980,7 @@ const recipeData = [
         {
           "id": 19335,
           "quantity": {
-            "amount": 0.3333333333333333,
+            "amount": 0.33,
             "unit": "cup"
           }
         },
@@ -4595,7 +4595,7 @@ const recipeData = [
         {
           "id": 4641,
           "quantity": {
-            "amount": 0.3333333333333333,
+            "amount": 0.33,
             "unit": "cup"
           }
         },
@@ -4848,7 +4848,7 @@ const recipeData = [
         {
           "id": 1145,
           "quantity": {
-            "amount": 0.3333333333333333,
+            "amount": 0.33,
             "unit": "cup"
           }
         },
@@ -5178,7 +5178,7 @@ const recipeData = [
         {
           "id": 9079,
           "quantity": {
-            "amount": 0.3333333333333333,
+            "amount": 0.33,
             "unit": "cup"
           }
         },
@@ -5352,7 +5352,7 @@ const recipeData = [
         {
           "id": 19335,
           "quantity": {
-            "amount": 0.3333333333333333,
+            "amount": 0.33,
             "unit": "cup"
           }
         }
