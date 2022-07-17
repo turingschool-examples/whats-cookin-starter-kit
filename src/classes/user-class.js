@@ -28,7 +28,7 @@ class User {
 
     userFilterNames(name) {
             let filteredByName = this.recipesToCook.filter(recipe => {
-              if (recipe.name.includes(name)) {
+              if (recipe.name.toLowerCase().includes(name.toLowerCase())) {
               return recipe
             }
             });

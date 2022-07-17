@@ -164,7 +164,6 @@ function changeHearts(event) {
   }
 }
 
-
 // function generateRandomUser() {
 //     let newUserData = usersData[Math.floor(Math.random() * usersData.length)]
 //     newUser = new User(newUserData)
@@ -242,7 +241,6 @@ function filledHeartHandler(recipe) {
   </p>
   </section>`
 }
-
 
 function showRecipeDetailsPage(event) {
     if (event.target.classList.contains('view-all-recipe-image')){

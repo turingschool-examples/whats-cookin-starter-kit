@@ -18,7 +18,7 @@ class Recipe {
         let ingredientNames = this.ingredients.forEach(ingredient => {
             this.ingData.forEach(element => {
                 if (element.id === ingredient.id) {
-                    listOfNames.push(`${element.name}: ${ingredient.quantity.amount} ${ingredient.quantity.unit}`)
+                    listOfNames.push(`${element.name}: ${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit}`)
                 }
             })
         })
