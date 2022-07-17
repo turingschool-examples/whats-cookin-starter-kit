@@ -208,7 +208,8 @@ function hide(element) {
 }
 
 function showCookingProfile( e ) {
-    if(e.target.classList == 'view-profile-button') {
+    if(e.target.innerText == 'View Your Cooking Profile') {
+        navViewProfileButton.innerText = "Return Home"
         const result = currentUser.recipesToCook.map( recipe => {
             // console.log('RECIPE: ', recipe)
             return `<section class='recipe-card' id=${recipe.id}>
@@ -220,22 +221,25 @@ function showCookingProfile( e ) {
             </div>
             </section>`
         } );
-        console.log('current recipes to cook 223: ', currentUser.recipesToCook )
-        console.log('target id 224: ', e.target.id)
         return recipeCard.innerHTML = result;
     }
-    console.log('success')
+    if(e.target.innerText == 'Return Home'){
+        returnHome()
+    }
 }
 
 function deleteRecipeFromRecipesToCook( e ) { 
     if(e.target.classList.contains("remove-button")) {
         newRecipe.recipes.find(removeDish => {
-            console.log('current recipes to cook 235: ', currentUser.recipesToCook)
             e.target.closest('section').remove();
             return currentUser.removeRecipeFromRecipesToCook(removeDish.id)
         })  
     };
-    console.log('current recipes to cook 240: ', currentUser.recipesToCook)
     return currentUser.recipesToCook
 }
-//^^^^need to remove commas redering on page in saved recipes
+//^^^^need to remove commas rendering on page in saved recipes
+
+function returnHome(  ) {
+    navViewProfileButton.innerText = "View Your Cooking Profile"
+    displayAllRecipesOnPage(  )
+}
