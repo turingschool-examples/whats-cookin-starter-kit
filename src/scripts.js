@@ -129,7 +129,8 @@ function assignChosenRecipeProperties(recipe) {
   cookingInstructions.innerText= `Recipe Instructions:
   ${recipe.returnRecipeInstructions()}`;
   recipeViewPicBox.innerHTML = '';
-  recipeViewPicBox.innerHTML += `<img class='recipe-view-pic-box' src='${recipe.image}' >`
+  recipeViewPicBox.innerHTML += `<img class='recipe-view-pic' src='${recipe.image}'>
+  <img class='recipe-view-pic' src='https://us.123rf.com/450wm/deagreez/deagreez1910/deagreez191008478/133027063-portrait-of-sad-upset-girl-hold-hand-feel-hungry-have-stomach-ache-want-eat-more-unhealthy-dieting-c.jpg?ver=6'>`
 }
 
 function returnRecipeIngredientsAndCostPerServing(recipe) {
