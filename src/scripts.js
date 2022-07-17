@@ -18,6 +18,9 @@ const userWelcome = document.querySelector('.user-welcome');
 const homeButton = document.getElementById('homeButton');
 const allRecipesButton = document.getElementById('allRecipesButton');
 const savedRecipesButton = document.getElementById('savedRecipesButton');
+var filterByNameRadio = document.getElementById('filterByName');
+var filterByTagRadio = document.getElementById('filterByTag');
+var searchButton = document.getElementById('searchButton');
 // const myFavoritesButton = document.getElementById('myFavoritesButton')
 // const pantryButton = document.getElementById('pantryButton')
 
@@ -50,6 +53,9 @@ homeButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', populateAllRecipesView);
 savedRecipesButton.addEventListener('click', displaySavedRecipesView);
 homeViewContainer.addEventListener('click', populateChosenRecipe);
+filterByNameRadio.addEventListener('click', returnFilteredByNameResults);
+filterByTagRadio.addEventListener('click', returnFilteredByTagResults);
+searchButton.addEventListener('click', searchButtonAction);
 // allRecipesContainer.addEventListener('click', populateChosenRecipe);
 // myFavoritesButton.addEventListener('click', )
 // pantryButton.addEventListener('click', )
@@ -127,6 +133,18 @@ function returnRecipeIngredientsAndCostPerServing(recipe) {
   })
   return allInfo;
 }
+
+function returnFilteredByNameResults() {
+
+}
+
+// function returnFilteredByTagResults() {
+
+// }
+
+// function searchButtonAction() {
+
+// }
 
 //functions to affect displaying different views and hiding others
 
