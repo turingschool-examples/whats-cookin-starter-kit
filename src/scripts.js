@@ -251,6 +251,7 @@ function showRecipeDetailsPage(event) {
         homePageView.classList.add('hidden')
         viewAllPage.classList.add('hidden')
         recipeDetailsPage.classList.remove('hidden')
+        viewAllButton.classList.remove('hidden')
         recipeDetailImage.src = `${event.target.src}`
         recipeDetailTitle.innerText = `${getTitle[0].name}`
         let directions = recipe.listDirections()
