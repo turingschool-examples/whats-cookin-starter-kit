@@ -39,6 +39,9 @@ const ingredientCost = document.querySelector('.ingredient-cost');
 const filteredContainer = document.querySelector('.filtered-recipes-view')
 const filterByTag = document.getElementById('filterByTag');
 const filterByName = document.getElementById('filterByName')
+const userSearchContainer1 = document.querySelector('.user-search-container');
+const userSearchContainer2 = document.querySelector('.user-search-container2');
+
 
 // const recipePicBoxes = document.querySelectorAll('.recipe-pic-box');
 
@@ -245,11 +248,13 @@ function displayHomeView(){
         recipeViewContainer,
         savedRecipesContainer,
         allRecipesContainer,
-        filteredContainer
+        filteredContainer,
+        userSearchContainer2,
   ])
   show([allRecipesButton,
         savedRecipesButton,
         homeViewContainer,
+        userSearchContainer1,
   ])
 }
 
@@ -259,10 +264,13 @@ function displaySavedRecipesView(){
         recipeViewContainer,
         homeViewContainer,
         filteredContainer,
+        userSearchContainer1,
   ])
   show([homeButton,
         allRecipesButton,
-        savedRecipesContainer
+        savedRecipesContainer,
+        userSearchContainer2,
+
   ])
 }
 
@@ -272,10 +280,12 @@ function displayAllRecipesView() {
         recipeViewContainer,
         savedRecipesContainer,
         filteredContainer,
+        userSearchContainer2,
       ])
   show([homeButton,
         savedRecipesButton,
         allRecipesContainer,
+        userSearchContainer1
       ])
 }
 
@@ -283,12 +293,14 @@ function displayChosenRecipeView() {
   hide([savedRecipesContainer,
         homeViewContainer,
         allRecipesContainer,
-        filteredContainer
+        filteredContainer,
+        userSearchContainer2,
   ])
   show([homeButton,
       savedRecipesButton,
       allRecipesButton,
-      recipeViewContainer
+      recipeViewContainer,
+      userSearchContainer1,
   ])
 }
 
@@ -297,11 +309,13 @@ function displayFilteredView() {
         homeViewContainer,
         allRecipesContainer,
         recipeViewContainer,
+        userSearchContainer2,
   ])
   show([homeButton,
       savedRecipesButton,
       allRecipesButton,
-      filteredContainer
+      filteredContainer,
+      userSearchContainer1,
   ])
 }
 // console.log(recipePicBoxes);
