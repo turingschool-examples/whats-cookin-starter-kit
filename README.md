@@ -2,24 +2,25 @@
 ## We believe 'Anyone Can Cook!'
 
 ## Table of Contents
-- [Introduction](https://github.com/tfettig/whats-cookin-group-project#introduction)
-- [Links](https://github.com/tfettig/whats-cookin-group-project#links)
-- [Setup](https://github.com/tfettig/whats-cookin-group-project#setup)
-- [Features](https://github.com/tfettig/whats-cookin-group-project#features)
-- [Future Additions](https://github.com/tfettig/whats-cookin-group-project#futureadditions)
-- [Contributors](https://github.com/tfettig/whats-cookin-group-project#contributors)
-- [Languages](https://github.com/tfettig/whats-cookin-group-project#languages)
+- [Introduction](#introduction)
+- [Links](#links)
+- [Setup](#setup)
+- [Features](#features)
+- [Future Additions](#future-additions)
+- [Contributors](#contributors)
+- [Languages](#languages)
 
 ## Introduction
 'Anyone Can Cook!' is an interactive website similar to Epicurious, AllRecipes, or NYTimes cooking. A user can browse recipes and save their favorites for later. Users can browse recipes by tag (course) or search for recipes by name. If a photo or name catches their eye, they can click on the recipe to see more details about the recipe such as ingredients, amounts, estimated cost to make, and step by step instructions. On the recipe page, they even have the option to add it to their Favorites aka future list of recipes to cook! The user can also search on their Favorites page by recipe name or by tags as well.
 
 ## Links
-- [Project spec](https://frontend.turing.edu/projects/What%27sCookin-PartOne.html)
+- [Project spec](https://frontend.turing.edu/projects/whats-cookin-part-one.html)
 - [Project Board](https://github.com/users/tfettig22/projects/1)
 - [DTR](https://gist.github.com/GOECHA/d7bcb7fc6ac06c54144e9aa1259c1cfb)
-- [WireFrame](https://github.com/users/tfettig22/projects/1)
+- [WireFrame- Home Page](https://user-images.githubusercontent.com/102189342/179422204-fdd7ef75-4062-4c24-b966-a88e76d447c7.png)
+- [WireFrame- Recipe/Favorite Page](https://user-images.githubusercontent.com/102189342/179422201-08ee9c5e-4410-476b-b611-b7a8f3c3bdfc.png)
 
-## Set Up
+## Setup
 1. This project fetches data from an API so you will need to begin by cloning down the API and running it.
 2. Clone the API by running `git clone (add link here)`
 3. CD into that directory, run npm install and then npm start. You should see “What's cookin-starter-kit API is now running on http://localhost:3001 !”
