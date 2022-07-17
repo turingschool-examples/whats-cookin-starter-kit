@@ -54,15 +54,18 @@ homeViewContainer.addEventListener('click', populateChosenRecipe);
 // myFavoritesButton.addEventListener('click', )
 // pantryButton.addEventListener('click', )
 
+
+
 function randomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
-
 
 function getRandomRecipe() {
   const recipeIndex = randomIndex(recipeRepo.recipeData);
   return recipeRepo.recipeData[recipeIndex]
 }
+
+
 
 function welcomeUser() {
   userWelcome.innerText = `Feeling hungry, ${user.name}?`;
@@ -77,12 +80,15 @@ function populateRecipesInHomeView() {
     
     image.innerHTML += `<img class='recipe-image' id='${randomRecipe.id}' src='${randomRecipe.image}'>
     <p class='recipe-label'>${randomRecipe.name}</p>`;
+
+
   });
 
 }
 
-function populateAllRecipesView() {
+//functions to affect the all recipes view
 
+function populateAllRecipesView() {
   displayAllRecipesView()
   allRecipesContainer.innerHTML = '';
 
@@ -95,12 +101,26 @@ function populateAllRecipesView() {
 }
 
 
+
+//functions to populate the chosen recipe view
+
+function populateChosenRecipe(event) {
+  let recipeObjs = recipeRepo.convertRecipeObjects();
+  event.preventDefault();
+  let targetID = event.target.id
+  recipeObjs.forEach(recipe => {
+    if (recipe.id == targetID) {
+      displayChosenRecipeView();
+      assignChosenRecipeProperties(recipe);
+    }
+  })
+}
+
 function assignChosenRecipeProperties(recipe) {
-  // console.log(recipe.returnIngredientCosts());
+
   recipeName.innerText = recipe.name;
   ingredientDetails.innerText = `Ingredients required:
-
-  ${recipe.returnIngredientNames()}`;
+  ${returnRecipeIngredientsAndCostPerServing(recipe)}`;
   ingredientCost.innerText = `Cost of Ingredients: $${recipe.returnIngredientCosts()}`;
   cookingInstructions.innerText= `Recipe Instructions:
   ${recipe.returnRecipeInstructions()}`;
@@ -108,19 +128,18 @@ function assignChosenRecipeProperties(recipe) {
   recipeViewPicBox.innerHTML += `<img class='recipe-view-pic-box' src='${recipe.image}' >`
 }
 
-function populateChosenRecipe(event) {
-  let recipeObjs = recipeRepo.convertRecipeObjects();
-  event.preventDefault();
-  displayChosenRecipeView();
-  let targetID = event.target.id
-  recipeObjs.forEach(recipe => {
-    if (recipe.id == targetID) {
-      assignChosenRecipeProperties(recipe);
-    }
+function returnRecipeIngredientsAndCostPerServing(recipe) {
+  const ingredientNames = recipe.returnIngredientNames();
+  const quantitiesNeeded = recipe.ingredients.map(ingredient => ingredient.quantity.amount)
+  const units = recipe.ingredients.map(ingredient => ingredient.quantity.unit);
+  const allInfo = ingredientNames.map((name, index) => {
+    return `
+     ${name}: ${quantitiesNeeded[index]} ${units[index]}`;
   })
+  return allInfo;
 }
 
-
+//functions to affect displaying different views and hiding others
 
 function hide(elements) {
   elements.forEach((element) => {
