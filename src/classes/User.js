@@ -8,14 +8,15 @@ class User {
   }
 
   addRecipesToCook(recipeToAdd) {
-    this.recipesToCook.push(recipeToAdd);
+    if (!this.recipesToCook.filter(recipe => recipe.id === recipeToAdd.id).length) {
+      this.recipesToCook.push(recipeToAdd);
+    }
   }
 
   removeRecipesToCook(id) {
     this.recipesToCook.forEach((recipe, index) => {
       if(recipe.id === id) {
         this.recipesToCook.splice(index, 1);
-
       }
 
     });
