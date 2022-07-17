@@ -1,4 +1,5 @@
 import './styles.css';
+import './images/nav-background.jpg'
 import { getData } from './apiCalls';
 import User from './classes/User'
 import Recipe from './classes/Recipe'
@@ -214,8 +215,8 @@ function showCookingProfile( e ) {
             <h3>${ recipe.name }</h3>
             <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
             <div>
-            <button id= ${recipe.id} class="remove-button">Remove from cooking profile!</button>
             <button id= ${recipe.id} class="save-button hidden">Save to cooking profile!</button>
+            <button id= ${recipe.id} class="remove-button">Remove from cooking profile!</button>
             </div>
             </section>`
         } );
