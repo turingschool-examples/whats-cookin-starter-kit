@@ -1,7 +1,5 @@
 import { expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
-// import Recipe from '../src/classes/Recipe'
-
 
 describe( 'RecipeRepository', ( ) => {
   let dataRecipe;
@@ -225,5 +223,5 @@ describe( 'RecipeRepository', ( ) => {
     expect( recipeRepo.filterRecipeByName( "Maple Dijon Apple Cider Grilled Pork Chops" ) ).to.deep.equal( [ dataRecipe[ 1 ] ] )
     expect( recipeRepo.filterRecipeByName( "loaded chocolate chip pudding cookie cups" ) ).to.deep.equal( [ dataRecipe[ 0 ] ] )
   } );
-  
+
 } );

@@ -1,25 +1,16 @@
-import  Ingredient  from './Ingredient'; 
-// import { recipeData } from './Recipes';
-
 class Recipe {
-    constructor(recipe, ingredientList){
-        // console.log('RECIPE: ', recipe)
-        // console.log({ingredientList})
+    constructor( recipe, ingredientList ){
         this.id = recipe.id;
-        // console.log('THIS.ID: ', this.id)
         this.image = recipe.image;
         this.recipeIngredients = recipe.ingredients;
         this.instructions = recipe.instructions;
         this.name = recipe.name;
         this.tags = recipe.tags;
-        this.ingredientList = ingredientList;
-        // this.totalCost = this.getTotalCostOfRecipe()    
-        // console.log('INGREDIENTLIST: ', this.ingredientList)     
-            
+        this.ingredientList = ingredientList;            
     };
 
     getIngredientsWithNames( recipe , ingredientList ){
-        return recipe.map(ingredient => { 
+        return recipe.map( ingredient => { 
             ingredient.name = ingredientList.find( ing => ing.id == ingredient.id ).name;
             return ingredient.name;
         });       
@@ -34,28 +25,13 @@ class Recipe {
                 }
             } )
             return acc
-        },0 )
+        }, 0 )
     };
 
-    returnInstructions(){
+    returnInstructions( ){
         return this.instructions;
     };
-    
-    // getIngredientNamesForRecipe( recipe , ingredientList ){
-    //     return recipe.reduce( ( acc, recipeIngredient ) => {
-    //         // console.log('INGREDIENTLIST: ', ingredientList)
-    //         ingredientList.forEach( ingredient => {
-    //             console.log('RECIPEINGREDIENT: ', recipeIngredient)
-    //             console.log('INGREDIENT: ', ingredient)
-    //             if( recipeIngredient.id === ingredient.id ) {
-    //                 recipeIngredient.name = ingredient.name
-    //                 acc.push( recipeIngredient )
-    //                 console.log('ACC: ', acc)
-    //             }
-    //         } )
-    //         return acc
-    //     }, [ ] )
-    // }
+   
 };
 
 export default Recipe;
