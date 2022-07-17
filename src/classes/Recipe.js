@@ -33,6 +33,7 @@ class Recipe {
     const allIngredientIDs = this.returnAllIngredientIDs();;
     const newRecipeIngredients = allIngredients.filter(ingredient => recipeIngredientIDs.includes(ingredient.id));
     const names = newRecipeIngredients.map(ingredient => ingredient.name);
+    console.log(names);
     return names;
   }
 
@@ -60,6 +61,7 @@ class Recipe {
     }, '')
     return instructionsParagraph;
   }
+
 };
 
 export default Recipe;
