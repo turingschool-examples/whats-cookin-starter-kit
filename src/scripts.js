@@ -60,7 +60,12 @@ function randomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
-// functions to populate the home view
+function getRandomRecipe() {
+  const recipeIndex = randomIndex(recipeRepo.recipeData);
+  return recipeRepo.recipeData[recipeIndex]
+}
+
+
 
 function welcomeUser() {
   userWelcome.innerText = `Feeling hungry, ${user.name}?`;
@@ -68,9 +73,15 @@ function welcomeUser() {
 
 function populateRecipesInHomeView() {
 
-  recipePicBoxes.forEach((image, index) => {
-    image.innerHTML += `<img class='recipe-image' id='${recipeRepo.recipeData[index].id}' src='${recipeRepo.recipeData[index].image}'>
-    <p class='recipe-label' id='${recipeRepo.recipeData[index].id}'>${recipeRepo.recipeData[index].name}</p>`;
+
+  recipePicBoxes.forEach(image  => {
+
+    var randomRecipe = getRandomRecipe()
+    
+    image.innerHTML += `<img class='recipe-image' id='${randomRecipe.id}' src='${randomRecipe.image}'>
+    <p class='recipe-label'>${randomRecipe.name}</p>`;
+
+
   });
 
 }
