@@ -165,7 +165,7 @@ function displayIngredientCosts() {
 
 // function displayIngredientQuantities() {
 //   quantityBox.innerHTML = '';
-//   selectedRecipe[0].getAmountOfIngredients().forEach(amount => {
+//   selectedRecipe.getAmountOfIngredients().forEach(amount => {
 //   quantityBox.innerHTML += `<p class='ingredient-quantities'> ${amount} </p></br>`;
 //   });
 // }
@@ -190,12 +190,18 @@ function filterRecipeByTag(tag) {
 }
 
 function filterRecipeByName(name) {
-  // let input = name.toLowerCase()
-  // let lowerCaseRecipes = recipeRepository.recipeData
-  // lowerCaseRecipes.forEach(recipe => {
-  //   recipe.name = recipe.name.toLowerCase()
-  // })
-  let filteredRecipes = recipeRepository.filterByName(name);
+  let input = name.toLowerCase()
+  recipeRepository.recipeData.forEach(recipe => {
+    recipe.name = recipe.name.toLowerCase()
+  })
+  let filteredRecipes = recipeRepository.filterByName(input);
+  filteredRecipes.forEach(recipe => {
+    let wordsInName = recipe.name.split(' ')
+    let capitalizedWords = str1.map(word => {
+      return word.charAt(0).toUpperCase() + word.slice(1)
+    })
+    recipe.name = capitalizedWords.join(' ')
+  })
   displayRecipeNames(filteredRecipes);
 }
 
