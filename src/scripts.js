@@ -192,7 +192,7 @@ function filterRecipeTag(event) {
         <div class="recipe-image-wrapper">
           <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
           <p class="recipe-name">${recipe.name}</p>
-          <button class="favorite-button" id="favoriteBtn">Favorite</button>
+          <button class="favorite-button" id="favoriteBtn" data-favoriteRecipe=${recipe.id}>Favorite</button>
         </div>
       `)
    });
@@ -224,7 +224,7 @@ function searchRecipeName(event) {
         <div class="recipe-image-wrapper">
           <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
           <p class="recipe-name">${recipe.name}</p>
-          <button class="favorite-button" id="favoriteButton">Favorite</button>
+          <button class="favorite-button" id="favoriteButton" data-favoriteRecipe=${recipe.id}>Favorite</button>
         </div>
       `)
    });
