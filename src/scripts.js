@@ -62,7 +62,9 @@ const glideRecipes = document.querySelector('.glide__slides')
 const recipeDetailsPage = document.querySelector('.recipe-details-page')
 const allRecipesContainer = document.querySelector('.all-recipes')
 const recipeDetailImage = document.querySelector('#recipeDetail')
+const featuredTitle = document.querySelector('#featuredTitle')
 const recipeDetailTitle = document.querySelector('h2')
+const mainHeader = document.querySelector('h1')
 const recipeInstructions = document.querySelector('.details')
 const ingredientNames = document.querySelector('.ingredient-list-names')
 const totalCost = document.querySelector('.total-cost')
@@ -178,8 +180,10 @@ function showViewAllPage() {
     viewAllButton.classList.add('hidden')
     favoriteRecipesPage.classList.add('hidden')
     favoritesButton.classList.remove('hidden')
+    featuredTitle.classList.add('hidden')
     createTags(tagContainer)
     populateAllRecipes()
+    changeHeader()
 }
 
 function showHomePage() {
@@ -188,7 +192,10 @@ function showHomePage() {
     recipeDetailsPage.classList.add('hidden')
     homeButton.classList.add('hidden')
     viewAllButton.classList.remove('hidden')
+    favoritesButton.classList.remove('hidden')
     favoriteRecipesPage.classList.add('hidden')
+    featuredTitle.classList.remove('hidden')
+    changeHeader()
 }
 
 function showFavoritesPage() {
@@ -198,7 +205,9 @@ function showFavoritesPage() {
     favoriteRecipesPage.classList.remove('hidden')
     viewAllButton.classList.remove('hidden')
     favoritesButton.classList.add('hidden')
+    featuredTitle.classList.add('hidden')
     createTags(tagContainer2)
+    changeHeader()
     favoritePageContainer.innerHTML = ''
     newUser.recipesToCook.forEach(recipe => {
         console.log(newUser.recipesToCook)
@@ -248,6 +257,7 @@ function showRecipeDetailsPage(event) {
             event.target.src === recipe.image
         )
         let recipe = new Recipe(getTitle[0], ingredientsData)
+        featuredTitle.classList.add('hidden')
         homePageView.classList.add('hidden')
         viewAllPage.classList.add('hidden')
         recipeDetailsPage.classList.remove('hidden')
@@ -259,6 +269,7 @@ function showRecipeDetailsPage(event) {
         ingredientNames.innerText = `${recipe.determineIngredientNames()}`
         totalCost.innerText = `${recipe.determineCostOfAllIngredients()}`
     }
+    changeHeader()
 }
 
 function createTags(tagContainer) {
@@ -336,4 +347,12 @@ function favoriteFilterByName(event) {
   </p>
   </section>`
 })
+}
+
+function changeHeader() {
+  if (!favoriteRecipesPage.classList.contains('hidden')) {
+  mainHeader.innerText = `${newUser.name}'s Favorites`
+} else {
+  mainHeader.innerText = "What's Cookin?"
+}
 }
