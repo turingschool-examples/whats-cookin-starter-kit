@@ -120,6 +120,9 @@ function showAllRecipes() {
       <img class='card-image' src=${recipe.image} data-recipeId=${recipe.id} alt=${recipe.name}>
       </button>`
     })
+    hide(goHomeButton)
+    hide(ingredientCardWrapper)
+    show(recipeCardWrapper)
 }
 
 function showAllRecipeDetails(id) {
@@ -153,6 +156,8 @@ INSTRUCTIONS
     addToCookbookButtonEventHandler('add-to-cookbook', newRecipe);
     hide(recipeCardWrapper)
     show(favoriteButton)
+    show(ingredientCardWrapper)
+    show(goHomeButton)
     showFilteredIngredients();
 }
 
@@ -170,6 +175,8 @@ function searchRecipe(event) {
     } else {
         showAllRecipes();
     }
+    show(goHomeButton)
+    hide(ingredientCard)
 }
 
 function showCookbookrecipes(event) {
