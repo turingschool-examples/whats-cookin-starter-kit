@@ -154,6 +154,7 @@ function show(elements) {
   elements.forEach((element) => {
     element.classList.remove('hidden')
   })
+  saveRecipeButton.innerText = 'Save Recipe';
 }
 
 function displayHomeView(){
