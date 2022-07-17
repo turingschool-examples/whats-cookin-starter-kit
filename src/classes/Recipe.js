@@ -33,7 +33,6 @@ class Recipe {
     const allIngredientIDs = this.returnAllIngredientIDs();;
     const newRecipeIngredients = allIngredients.filter(ingredient => recipeIngredientIDs.includes(ingredient.id));
     const names = newRecipeIngredients.map(ingredient => ingredient.name);
-    console.log(names);
     return names;
   }
 
@@ -50,8 +49,8 @@ class Recipe {
     const sumTotalCost = multCostByAmt.reduce((sum, cost) => {
       return sum + cost;
     }, 0)
-
-    return (sumTotalCost / 100)
+     const parsedSum = parseFloat((sumTotalCost/100).toFixed(2));
+    return parsedSum;
   }
 
   returnRecipeInstructions() {

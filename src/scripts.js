@@ -12,13 +12,13 @@ import User from './classes/User';
 
 const recipeImages = document.querySelectorAll('.recipe-image');
 const recipePicBoxes = document.querySelectorAll('.recipe-pic-box');
-// const recipePicBox = document.querySelector('.recipe-pic-box');
 const userWelcome = document.querySelector('.user-welcome');
 
 const homeButton = document.getElementById('homeButton');
 const allRecipesButton = document.getElementById('allRecipesButton');
 const savedRecipesButton = document.getElementById('savedRecipesButton');
 var searchButton = document.getElementById('searchButton');
+const saveRecipeButton = document.getElementById('saveRecipeButton');
 // const myFavoritesButton = document.getElementById('myFavoritesButton')
 // const pantryButton = document.getElementById('pantryButton')
 
@@ -36,10 +36,14 @@ const recipeViewPicBox = document.querySelector('.recipe-view-pic-box');
 const cookingInstructions = document.querySelector('.cooking-instructions');
 const allRecipesContainer = document.querySelector('.all-recipes-view');
 const ingredientCost = document.querySelector('.ingredient-cost');
+
 const filterByTag = document.getElementById('filterByTag');
 const filterByName = document.getElementById('filterByName')
 
 // const recipePicBoxes = document.querySelectorAll('.recipe-pic-box');
+
+const trashCan = document.querySelectorAll('.trash-can');
+
 
 
 // ###########  Global Variables  ###############
@@ -51,33 +55,62 @@ window.addEventListener('load', welcomeUser);
 window.addEventListener('load', populateRecipesInHomeView);
 homeButton.addEventListener('click', repopulateHome);
 allRecipesButton.addEventListener('click', populateAllRecipesView);
-savedRecipesButton.addEventListener('click', displaySavedRecipesView);
+savedRecipesButton.addEventListener('click', populateSavedRecipesView);
 homeViewContainer.addEventListener('click', populateChosenRecipe);
+
 searchButton.addEventListener('click', searchButtonAction);
-// searchInput.addEventListener('input', captureUserInput);
-// allRecipesContainer.addEventListener('click', populateChosenRecipe);
+searchInput.addEventListener('input', captureUserInput);
+allRecipesContainer.addEventListener('click', populateChosenRecipe);
+
+allRecipesContainer.addEventListener('click', populateChosenRecipe);
+saveRecipeButton.addEventListener('click', saveChosenRecipe);
+
 // myFavoritesButton.addEventListener('click', )
 // pantryButton.addEventListener('click', )
+savedRecipesContainer.addEventListener('click', deleteRecipe);
+savedRecipesContainer.addEventListener('click', populateChosenRecipe);
 
-
+const pageNames = [
+  'My Grandma Taught Me This',
+  `Let's Eat Grandpa`,
+  'Eating My Empire',
+  'Dribbling Spoonfuls',
+  'Yum Yum & Tum Tum',
+  'Bite My Kitchen',
+  'Big Taste Table',
+  'Cooking with Hubby',
+  'Queen of Tarts',
+  `What ISN'T cookin'?`,
+  'THANK YOU BASED COLE',
+  'Eat to change your life',
+  `What's Eating`,
+  'Not to be rude but who names their kid'
+]
 
 function randomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
-// functions to populate the home view
+function getRandomRecipe() {
+  const recipeIndex = randomIndex(recipeRepo.recipeData);
+  return recipeRepo.recipeData[recipeIndex]
+}
+
+function getRandomPageName() {
+  const pageNameIndex = randomIndex(pageNames);
+  return pageNames[pageNameIndex]
+}
 
 function welcomeUser() {
-  userWelcome.innerText = `Feeling hungry, ${user.name}?`;
+  userWelcome.innerText = `${getRandomPageName()}, ${user.name}?`;
 }
 
 function populateRecipesInHomeView() {
-
-  recipePicBoxes.forEach((image, index) => {
-    image.innerHTML += `<img class='recipe-image' id='${recipeRepo.recipeData[index].id}' src='${recipeRepo.recipeData[index].image}'>
-    <p class='recipe-label' id='${recipeRepo.recipeData[index].id}'>${recipeRepo.recipeData[index].name}</p>`;
+  recipePicBoxes.forEach(image  => {
+    var randomRecipe = getRandomRecipe()
+    image.innerHTML += `<img class='recipe-image' id='${randomRecipe.id}' src='${randomRecipe.image}'>
+    <p class='recipe-label'>${randomRecipe.name}</p>`;
   });
-
 }
 
 //functions to affect the all recipes view
@@ -94,12 +127,26 @@ function populateAllRecipesView() {
 
 }
 
+//functions to affect the saved recipes view
 
+function populateSavedRecipesView() {
+  displaySavedRecipesView()
+  savedRecipesContainer.innerHTML = '';
+  user.recipesToCook.forEach((recipe) => {
+    savedRecipesContainer.innerHTML += `<div class='trash-this-one'>
+    <img class='saved-recipes-pic-box'
+    id='${recipe.id}' src='${recipe.image}'>
+    <p class='recipe-label'>${recipe.name}</p>
+    <img class='trash-can' src='./trash.png'>
+    </div>`;
+  })
+
+}
 
 //functions to populate the chosen recipe view
 
 function populateChosenRecipe(event) {
-  let recipeObjs = recipeRepo.convertRecipeObjects();
+  const recipeObjs = recipeRepo.convertRecipeObjects();
   event.preventDefault();
   let targetID = event.target.id
   recipeObjs.forEach(recipe => {
@@ -111,7 +158,6 @@ function populateChosenRecipe(event) {
 }
 
 function assignChosenRecipeProperties(recipe) {
-
   recipeName.innerText = recipe.name;
   ingredientDetails.innerText = `Ingredients required:
   ${returnRecipeIngredientsAndCostPerServing(recipe)}`;
@@ -119,8 +165,10 @@ function assignChosenRecipeProperties(recipe) {
   cookingInstructions.innerText= `Recipe Instructions:
   ${recipe.returnRecipeInstructions()}`;
   recipeViewPicBox.innerHTML = '';
-  recipeViewPicBox.innerHTML += `<img class='recipe-view-pic-box' src='${recipe.image}' >`
+  recipeViewPicBox.innerHTML += `<img class='recipe-view-pic' src='${recipe.image}'>
+  <img class='recipe-view-pic' src='https://us.123rf.com/450wm/deagreez/deagreez1910/deagreez191008478/133027063-portrait-of-sad-upset-girl-hold-hand-feel-hungry-have-stomach-ache-want-eat-more-unhealthy-dieting-c.jpg?ver=6'>`
 }
+
 
 function returnRecipeIngredientsAndCostPerServing(recipe) {
   const ingredientNames = recipe.returnIngredientNames();
@@ -203,6 +251,7 @@ function show(elements) {
   elements.forEach((element) => {
     element.classList.remove('hidden')
   })
+  saveRecipeButton.innerText = 'Save Recipe';
 }
 
 function displayHomeView(){
@@ -253,3 +302,21 @@ function displayChosenRecipeView() {
   ])
 }
 // console.log(recipePicBoxes);
+
+//functions to save/remove a recipe
+
+function saveChosenRecipe(){
+saveRecipeButton.innerText = 'Recipe Saved!'
+
+recipeData.forEach((recipe) => {
+  if (recipeName.innerText === recipe.name && !user.recipesToCook.includes(recipe)) {
+    user.addRecipeToCook(recipe)}
+})
+console.log('to cook:', user.recipesToCook)
+}
+
+function deleteRecipe(event) {
+  if (event.target.classList.contains("trash-can")) {
+    event.target.closest('div').remove();
+  }
+}
