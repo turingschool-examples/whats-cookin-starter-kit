@@ -6,9 +6,9 @@ import './images/heart.png'
 import './images/filled-heart.png'
 import './images/trash.png'
 
-import { ingredientsData } from './data/ingredients'
+// import { ingredientsData } from './data/ingredients'
 // import { recipeData } from './data/recipes'
-import { usersData } from './data/users'
+// import { usersData } from './data/users'
 
 import Glide from '@glidejs/glide'
 
@@ -32,6 +32,9 @@ new Glide('.glide', config).mount()
 
 let recipeData;
 let recipeRepository;
+let usersData;
+let ingredientsData;
+let newUser;
 
 
 // console.log(data)
@@ -74,7 +77,7 @@ const favoriteRecipesPage = document.querySelector('.favorite-recipes')
 const favoritePageContainer = document.querySelector('.favorite-recipe-icons')
 
 
-let newUser;
+
 
 viewAllButton.addEventListener('click', showViewAllPage)
 homeButton.addEventListener('click', showHomePage)
@@ -90,13 +93,10 @@ window.addEventListener('load', showHomePage)
 searchButton.addEventListener('click', filterByName)
 searchButton2.addEventListener('click', favoriteFilterByName)
 window.addEventListener('load', function(event) {
-  generateRandomUser()
-  fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes")
-  .then(response => response.json())
-  .then(data => {
-  recipeData = data.recipeData
-  recipeRepository = new RecipeRepository(recipeData)
-})
+  // generateRandomUser()
+  fetchUsers()
+  fetchRecipes()
+  fetchIngredients()
 })
 viewAllPage.childNodes[3].addEventListener('click', function(event) {
     changeHearts(event)
@@ -106,6 +106,32 @@ favoriteRecipesPage.childNodes[3].addEventListener('click', function(event) {
 })
 
 
+function fetchRecipes() {
+  fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes")
+  .then(response => response.json())
+  .then(data => {
+  recipeData = data.recipeData
+  recipeRepository = new RecipeRepository(recipeData)
+})
+}
+
+function fetchUsers() {
+  fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users")
+  .then(response => response.json())
+  .then(data => {
+  usersData = data.usersData
+  let newUserData = usersData[Math.floor(Math.random() * usersData.length)]
+  newUser = new User(newUserData)
+})
+};
+
+function fetchIngredients() {
+  fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients")
+  .then(response => response.json())
+  .then(data =>{
+    ingredientsData = data.ingredientsData
+  })
+};
 
 function changeHearts(event) {
     if (event.target.classList.contains('add-to-favorites-icon')){
@@ -137,13 +163,13 @@ function changeHearts(event) {
     })
   }
 }
-//
 
-function generateRandomUser() {
-    let newUserData = usersData[Math.floor(Math.random() * usersData.length)]
-    newUser = new User(newUserData)
-    return newUser
-    };
+
+// function generateRandomUser() {
+//     let newUserData = usersData[Math.floor(Math.random() * usersData.length)]
+//     newUser = new User(newUserData)
+//     return newUser
+//     };
 
 function showViewAllPage() {
     homePageView.classList.add('hidden')
