@@ -41,6 +41,8 @@ window.addEventListener( 'load', loadData );
 recipeContainer.addEventListener( 'click' , displayRecipeInfo );
 navViewProfileButton.addEventListener( 'click' , showCookingProfile);
 
+//POSSIBLE TO COMBINE EVENT LISTENER METHODS WITH A CONDITIONAL RATHER THAN REWRITING???
+
 recipeCardGridContainer.addEventListener('click', ( e ) => {
     if (e.target.classList == 'save-button') {
       return  saveRecipeToRecipesToCook( e );
@@ -110,7 +112,7 @@ function searchRecipe() {
   function displayFilteredRecipesByTagOnPage( ) {
     const result = matchingTagConditions.map( recipe => {
         console.log( 'TAG RECIPE: ', recipe)
-        return `<section class='recipe-card' id="recipeCard">
+        return `<section class='recipe-card' id=${recipe.id}>
         <img src="${ recipe.image }" class="recipe-image" alt="">
         <h3>${ recipe.name }</h3>
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
@@ -127,7 +129,7 @@ function searchRecipe() {
 function displayFilteredRecipesByNameOnPage( ) {
     const result = matchingNameConditions.map( recipe => {
         console.log( 'NAME RECIPE: ', recipe)
-        return `<section class='recipe-card' id="recipeCard">
+        return `<section class='recipe-card' id=${recipe.id}>
         <img src="${ recipe.image }" class="recipe-image" alt="">
         <h3>${ recipe.name }</h3>
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
@@ -136,7 +138,7 @@ function displayFilteredRecipesByNameOnPage( ) {
         </div>
         </section>`
     } );
-    console.log('NEW MATCHING NAMES ARRAY: ', matchingNameConditions )
+    // console.log('NEW MATCHING NAMES ARRAY: ', matchingNameConditions )
     matchingNameConditions = recipeCard;
     return recipeCard.innerHTML = result;
 }
@@ -147,7 +149,7 @@ function displayAllRecipesOnPage( e ) {
     let recipeCards = recipeCard;
     newRecipe = new RecipeRepository( recipeList  )
     const result = newRecipe.recipes.map( recipe => {
-        return `<section class='recipe-card' id="recipeCard">
+        return `<section class='recipe-card' id=${recipe.id}>
         <img src="${ recipe.image }" class="recipe-image" alt="">
         <h3>${ recipe.name }</h3>
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
@@ -171,7 +173,7 @@ function displayRecipeInfo( e ){
         if( e.target.id == dish.id ){
             recipeClass = new Recipe( dish, dish.ingredients );
             recipeClass.getIngredientsWithNames(dish.ingredients, ingredientList);
-            console.log('DEEEZ:', dish);
+            // console.log('DEEEZ:', dish);
             h4.innerText = dish.name;  
             instructionText.innerText = dish.instructions.map( task => `${ task.number }: ${ task.instruction }` ).join( '  ' );
             ingredientText.innerText = dish.ingredients.map( foodItem => ` ${ ( foodItem.quantity.amount ).toFixed( 2 ) } ${ foodItem.quantity.unit } ${ foodItem.name }` );
@@ -190,7 +192,7 @@ function saveRecipeToRecipesToCook ( e ) {
         if((e.target.id == favoriteDish.id) && (!currentUser.recipesToCook.includes(favoriteDish))) {
            currentUser.addRecipeToRecipesToCook(favoriteDish)
         }
-        console.log('SAVED RECIPES: ', currentUser.recipesToCook)
+        // console.log('SAVED RECIPES: ', currentUser.recipesToCook)
         return currentUser.recipesToCook;
     })
 }
@@ -205,46 +207,35 @@ function hide(element) {
     element.classList.add('hidden');
 }
 
-// * Need to have a 'REMOVE FROM COOKING PROFILE BUTTON' on the recipe cards in the 
-// saved page
 function showCookingProfile( e ) {
     if(e.target.classList == 'view-profile-button') {
         const result = currentUser.recipesToCook.map( recipe => {
             // console.log('RECIPE: ', recipe)
-            return `<section class='recipe-card' id="recipeCard">
-            <img src="${ recipe.image }" class="recipe-image" alt="">
+            return `<section class='recipe-card' id=${recipe.id}>
+            <img src=${ recipe.image } class="recipe-image" alt="">
             <h3>${ recipe.name }</h3>
-            <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
+            <button class="lets-make-it-button" id=${ recipe.id }>Let's Make It!</button>
             <div>
             <button id= ${recipe.id} class="remove-button">Remove from cooking profile!</button>
             </div>
             </section>`
         } );
-        // console.log('NEW MATCHING NAMES ARRAY: ', currentUser.recipesToCook )
-        currentUser.recipesToCook = recipeCard;
+        console.log('current recipes to cook 223: ', currentUser.recipesToCook )
+        console.log('target id 224: ', e.target.id)
         return recipeCard.innerHTML = result;
     }
     console.log('success')
 }
 
 function deleteRecipeFromRecipesToCook( e ) { 
-    return newRecipe.recipes.find((removeDish) => {
-    if(e.target.id == removeDish.id) {
-       currentUser.removeRecipeFromRecipesToCook(removeDish)
-
-    //    console.log('FUNCTION', displayRecipeInfo( e ))
-    //    displayRecipeInfo( e );
-    }
-    //forEach targeted id, remove from HTML?
-    //ERROR READING .includes in this function -- to fix
-    // console.log('REMOVED RECIPES: ', currentUser.recipesToCook)
-    console.log('ARRAY: ', currentUser.recipesToCook)
+    if(e.target.classList.contains("remove-button")) {
+        newRecipe.recipes.find(removeDish => {
+            console.log('current recipes to cook 235: ', currentUser.recipesToCook)
+            e.target.closest('section').remove();
+            return currentUser.removeRecipeFromRecipesToCook(removeDish.id)
+        })  
+    };
+    console.log('current recipes to cook 240: ', currentUser.recipesToCook)
     return currentUser.recipesToCook
-    // return recipeCard.innerHTML = `this has been removed`
-   //^^change the innerHTML to reflect it being removed
-    })
 }
-
-// function removeRecipeCardFromDisplay () {
-//     return currentUser.recipesToCook
-// }
+//^^^^need to remove commas redering on page in saved recipes
