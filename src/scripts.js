@@ -35,7 +35,7 @@ const recipeViewPicBox = document.querySelector('.recipe-view-pic-box');
 const cookingInstructions = document.querySelector('.cooking-instructions');
 const allRecipesContainer = document.querySelector('.all-recipes-view');
 const ingredientCost = document.querySelector('.ingredient-cost');
-const trashCan = document.querySelectorAll('.trash-can')
+const trashCan = document.querySelectorAll('.trash-can');
 
 
 // ###########  Global Variables  ###############
@@ -53,7 +53,8 @@ allRecipesContainer.addEventListener('click', populateChosenRecipe);
 saveRecipeButton.addEventListener('click', saveChosenRecipe);
 // myFavoritesButton.addEventListener('click', )
 // pantryButton.addEventListener('click', )
-savedRecipesContainer.addEventListener('click', deleteRecipe)
+savedRecipesContainer.addEventListener('click', deleteRecipe);
+savedRecipesContainer.addEventListener('click', populateChosenRecipe);
 
 const pageNames = [
   'My Grandma Taught Me This',
@@ -153,6 +154,7 @@ function assignChosenRecipeProperties(recipe) {
   recipeViewPicBox.innerHTML += `<img class='recipe-view-pic' src='${recipe.image}'>
   <img class='recipe-view-pic' src='https://us.123rf.com/450wm/deagreez/deagreez1910/deagreez191008478/133027063-portrait-of-sad-upset-girl-hold-hand-feel-hungry-have-stomach-ache-want-eat-more-unhealthy-dieting-c.jpg?ver=6'>`
 }
+
 
 function returnRecipeIngredientsAndCostPerServing(recipe) {
   const ingredientNames = recipe.returnIngredientNames();
