@@ -101,7 +101,8 @@ function populateSavedRecipesView() {
   user.recipesToCook.forEach((recipe) => {
     savedRecipesContainer.innerHTML += `<img class='saved-recipes-pic-box'
     id='${recipe.id}' src='${recipe.image}'>
-    <p class='recipe-label'>${recipe.name}</p>`;
+    <p class='recipe-label'>${recipe.name}</p>
+    <img class='trash-can' src='./trash.png'>`;
   })
 
 }
