@@ -18,8 +18,6 @@ const userWelcome = document.querySelector('.user-welcome');
 const homeButton = document.getElementById('homeButton');
 const allRecipesButton = document.getElementById('allRecipesButton');
 const savedRecipesButton = document.getElementById('savedRecipesButton');
-var filterByNameRadio = document.getElementById('filterByName');
-var filterByTagRadio = document.getElementById('filterByTag');
 var searchButton = document.getElementById('searchButton');
 // const myFavoritesButton = document.getElementById('myFavoritesButton')
 // const pantryButton = document.getElementById('pantryButton')
@@ -38,6 +36,8 @@ const recipeViewPicBox = document.querySelector('.recipe-view-pic-box');
 const cookingInstructions = document.querySelector('.cooking-instructions');
 const allRecipesContainer = document.querySelector('.all-recipes-view');
 const ingredientCost = document.querySelector('.ingredient-cost');
+const filterByTag = document.getElementById('filterByTag');
+const filterByName = document.getElementById('filterByName')
 
 // const recipePicBoxes = document.querySelectorAll('.recipe-pic-box');
 
@@ -49,13 +49,12 @@ console.log(user);
 
 window.addEventListener('load', welcomeUser);
 window.addEventListener('load', populateRecipesInHomeView);
-homeButton.addEventListener('click', displayHomeView);
+homeButton.addEventListener('click', repopulateHome);
 allRecipesButton.addEventListener('click', populateAllRecipesView);
 savedRecipesButton.addEventListener('click', displaySavedRecipesView);
 homeViewContainer.addEventListener('click', populateChosenRecipe);
-filterByNameRadio.addEventListener('click', returnFilteredByNameResults);
-filterByTagRadio.addEventListener('click', returnFilteredByTagResults);
 searchButton.addEventListener('click', searchButtonAction);
+// searchInput.addEventListener('input', captureUserInput);
 // allRecipesContainer.addEventListener('click', populateChosenRecipe);
 // myFavoritesButton.addEventListener('click', )
 // pantryButton.addEventListener('click', )
@@ -134,17 +133,63 @@ function returnRecipeIngredientsAndCostPerServing(recipe) {
   return allInfo;
 }
 
-function returnFilteredByNameResults() {
 
+function repopulateHome() {
+  homeViewContainer.innerHTML = '';
+
+  displayHomeView();
+  populateRecipesInHomeView();
 }
 
-// function returnFilteredByTagResults() {
-
+// function recreateHomePage() {
+  
 // }
 
-// function searchButtonAction() {
+function searchButtonAction() {
+// Needs to fire either returnFilteredByNameResults or returnFilteredByTagResults
+// based on radio button selected and display the return in the 
+// carousel view
+// Filter will reurn array of differeing length
+// Use returned arrahy to populate the page
+// Logic to verify which radio button is selected
+  
 
-// }
+  if (filterByName.checked) {
+    showFilteredNames(searchInput.value);
+    console.log('Yes')
+    // console.log(searchInput.value);
+  } else {
+    showFilteredTags(searchInput.value);
+    console.log('No')
+    console.log(searchInput.value);
+  }
+
+  displayHomeView();
+  homeButton.classList.remove('hidden')
+}
+
+function showFilteredNames(name) {
+  const nameResults = recipeRepo.listRecipeNames(name);
+  homeViewContainer.innerHTML = '';
+ 
+  nameResults.forEach((recipe) => {
+   homeViewContainer.innerHTML += `<img class='recipe-pic-box'
+     id='${recipe.id}' src='${recipe.image}'>
+     <p class='recipe-label'>${recipe.name}</p>`;
+   })
+ }
+
+
+function showFilteredTags(tag) {
+ const tagResults = recipeRepo.listRecipeTags(tag);
+ homeViewContainer.innerHTML = '';
+
+ tagResults.forEach((recipe) => {
+  homeViewContainer.innerHTML += `<img class='recipe-pic-box'
+    id='${recipe.id}' src='${recipe.image}'>
+    <p class='recipe-label'>${recipe.name}</p>`;
+  })
+}
 
 //functions to affect displaying different views and hiding others
 
