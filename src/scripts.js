@@ -35,6 +35,7 @@ const recipeViewPicBox = document.querySelector('.recipe-view-pic-box');
 const cookingInstructions = document.querySelector('.cooking-instructions');
 const allRecipesContainer = document.querySelector('.all-recipes-view');
 const ingredientCost = document.querySelector('.ingredient-cost');
+const trashCan = document.querySelectorAll('.trash-can')
 
 
 // ###########  Global Variables  ###############
@@ -52,6 +53,7 @@ allRecipesContainer.addEventListener('click', populateChosenRecipe);
 saveRecipeButton.addEventListener('click', saveChosenRecipe);
 // myFavoritesButton.addEventListener('click', )
 // pantryButton.addEventListener('click', )
+savedRecipesContainer.addEventListener('click', deleteRecipe)
 
 const pageNames = [
   'My Grandma Taught Me This',
@@ -65,6 +67,9 @@ const pageNames = [
   'Queen of Tarts',
   `What ISN'T cookin'?`,
   'THANK YOU BASED COLE',
+  'Eat to change your life',
+  `What's Eating`,
+  'Not to be rude but who names their kid'
 ]
 
 function randomIndex(array) {
@@ -112,12 +117,13 @@ function populateAllRecipesView() {
 function populateSavedRecipesView() {
   displaySavedRecipesView()
   savedRecipesContainer.innerHTML = '';
-
   user.recipesToCook.forEach((recipe) => {
-    savedRecipesContainer.innerHTML += `<img class='saved-recipes-pic-box'
+    savedRecipesContainer.innerHTML += `<div class='trash-this-one'>
+    <img class='saved-recipes-pic-box'
     id='${recipe.id}' src='${recipe.image}'>
     <p class='recipe-label'>${recipe.name}</p>
-    <img class='trash-can' src='./trash.png'>`;
+    <img class='trash-can' src='./trash.png'>
+    </div>`;
   })
 
 }
@@ -222,7 +228,7 @@ function displayChosenRecipeView() {
 }
 // console.log(recipePicBoxes);
 
-//functions to save a recipe
+//functions to save/remove a recipe
 
 function saveChosenRecipe(){
 saveRecipeButton.innerText = 'Recipe Saved!'
@@ -232,4 +238,10 @@ recipeData.forEach((recipe) => {
     user.addRecipeToCook(recipe)}
 })
 console.log('to cook:', user.recipesToCook)
+}
+
+function deleteRecipe(event) {
+  if (event.target.classList.contains("trash-can")) {
+    event.target.closest('div').remove();
+  }
 }
