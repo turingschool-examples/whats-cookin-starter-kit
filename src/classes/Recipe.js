@@ -9,7 +9,6 @@ export default class Recipe {
         this.name = data.name;
         this.tags = data.tags;
         this.ingredientsData = ingredientsData;
-        this.toBeCooked = false;       
     };
     makeIngredientData() {
         return this.ingredients.forEach(ingredient => {

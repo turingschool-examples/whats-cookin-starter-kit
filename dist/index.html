@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <title> WHATS COOKIN </title>
 </head>
@@ -11,18 +11,17 @@
   <div class="top-bar">
     <h1 class='project-title'>What's Cookin?</h1>
     <div class="user-card card">
-      <h3 class="userGreeting">User Info</h3>
       <div class="card-box" id="userCardProperties">
-        <nav id="userName"></nav>
+        <h3 id="userName"></h3>
       </div>
     </div>
     <button id="home-button"> HOME </button>
     <button id="favorite-button"> FAVORITES </button>
     <button id="cookbook-button"> COOKBOOK </button>
     <div class="search-container">
-      <form>
+      <form action="/action_page.php">
         <input class="search-box" type="text" placeholder="Search..." name="search">
-        <button class="search-submit" type="submit">Submit</button>
+        <button class="search-submit" type="submit">Search!</button>
       </form>
     </div>
   </div>
@@ -32,10 +31,21 @@
         <div class="recipe-card"></div>
       </div>
       <div class="ingredient-card-wrapper">
-        <div class="ingredient-card"></div>
+        <div class="ingredient-card">
+          <div class="card-image" src="" alt="food"></div>
+          <!-- <img class="heart" src='./images/heart.svg' alt="heart">
+          <nav id="recipeName"></nav>
+          <button class="view-recipe-button"> VIEW RECIPE </button>
+          <button class="add-to-cookbook-button"> ADD TO COOKBOOK </button>
+          <button class="favorite-button"> Add to cookbook! </button>
+          <button class="un-favorite-button"> UN-FAVORITE </button> -->
+        </div>
       </div>
     </div>
+    <!-- <nav> <button id="add-to-cookbook" class=""> Add to cookbook! </button></nav> -->
+  </div>
   </div>
   <script type="text/javascript" src="bundle.js"></script>
 </body>
+
 </html>

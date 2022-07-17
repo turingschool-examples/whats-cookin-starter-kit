@@ -19,17 +19,15 @@ const getRandomRecipe = () => {
 }
 
 // Global Variables
-let recipeRepo = new RecipeRepository(recipeData)
-let newRecipe = new Recipe(recipeData[0], ingredientsData)
 const users = []
 const userId = getRandomUserId();
 const recipeID = getRandomRecipe();
-const user = new Users(usersData[2])
+const user = new Users(usersData[userId])
 const recipe = new Recipe(recipeData[recipeID])
-
+// const savedRecipe = new Users()
 // QuerySelectors
-
-const favoriteButton = document.querySelector('#favorite-button')
+const allRecipesButton = document.querySelector('#recipe-button')
+const favoriteButton = document.querySelector('#favorite-button');
 const cookbookButton = document.querySelector('#cookbook-button')
 const searchBar = document.querySelector('.search-container')
 // const viewRecipeButton = document.querySelector('.view-recipe-button')
@@ -53,6 +51,13 @@ const radioValue = document.querySelectorAll('.radio-value');
 const searchBox = document.querySelector('.search-box');
 const searchButton = document.querySelector('.search-submit');
 
+const addToCookbookButtonEventHandler = () => {
+    const addToCookbook = document.querySelector('#add-to-cookbook');
+    addToCookbook.addEventListener('click', (event) => {
+        user.addRecipesToCook(window.currentRecipe);
+    });
+}
+
 // EventListeners
 // favoriteButton.addEventListener('click',)
 // cookbookButton.addEventListener('click',)
@@ -61,14 +66,20 @@ const searchButton = document.querySelector('.search-submit');
 // cardFavoriteButton.addEventListener('click',)
 // unFavoriteButton.addEventListener('click',)
 window.addEventListener('load', () => {
-  showAllRecipes()
-  viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
-  viewRecipeButtons.forEach((button) => {
-    button.addEventListener('click', (event) => {
-      showAllRecipeDetails(event.target.getAttribute('data-recipeId'))
+    showAllRecipes()
+    viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
+    viewRecipeButtons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+            showAllRecipeDetails(event.target.getAttribute('data-recipeId'))
+        })
     })
-  })
+    console.log({ favoriteButton });
+    console.log('HERE');
 });
+
+// Global Variables
+let recipeRepo = new RecipeRepository(recipeData)
+let newRecipe = new Recipe(recipeData[recipeID], ingredientsData)
 // radioSearchButton.addEventListener('click', filterRecipeByTag)
 searchButton.addEventListener('click', searchRecipe)
 
@@ -77,94 +88,131 @@ searchButton.addEventListener('click', searchRecipe)
 
 function showAllRecipes() {
     const recipes = recipeRepo.createAllRecipes(ingredientsData)
-    recipeCard.innerHTML =''
+    recipeCard.innerHTML = '';
     recipes.forEach((recipe) => {
-      recipeCard.innerHTML += `<button class="view-recipe-button" id=${recipe.id} data-recipeId=${recipe.id}> <h2 data-recipeId=${recipe.id}> ${recipe.name} </h2> 
+        recipeCard.innerHTML += `<button class="view-recipe-button" id=${recipe.id} data-recipeId=${recipe.id}> <h2 data-recipeId=${recipe.id}> ${recipe.name} </h2> 
       <img class='card-image' src=${recipe.image} data-recipeId=${recipe.id} alt=${recipe.name}>
       </button>`
     })
-    console.log('IT WOEKS')
+    /*
+    do on page load show random new set of all recipes
+    */
+    hide(favoriteButton);
+    hide(allRecipesButton);
+    show(goHomeButton)
 }
 
 function showAllRecipeDetails(id) {
-newRecipe = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(id))
-newRecipe.makeIngredientData()
-ingredientCard.innerHTML = `<div>
+    newRecipe = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(id));
+    newRecipe.makeIngredientData();
+    window.currentRecipe = newRecipe;
+    ingredientCard.innerHTML = `<div>
+    <button id="add-to-cookbook" class=""> Add to cookbook! </button>
 <ul>
 <h2> RECIPE INFORMATION </h2>
 <li> NAME: ${newRecipe.name}</li>
 <li> TOTAL COST: ${newRecipe.getCostToDollar()}</li>
 </ul>
 </div>
-<h3> INGREDIENTS </h3>`
-newRecipe.requiredIngredients.forEach(ingredient => {
-  ingredientCard.innerHTML += `  <div class="recipe-information">
+<h3> INGREDIENTS </h3>
+`
+    newRecipe.requiredIngredients.forEach(ingredient => {
+        ingredientCard.innerHTML += `  <div class="recipe-information">
   <p>${ingredient.name}</p>
   </div>
   `
-})
-ingredientCard.innerHTML += `<h3>
+    })
+    ingredientCard.innerHTML += `<h3>
 INSTRUCTIONS
 </h3>`
-newRecipe.instructions.forEach(instruction => {
-  ingredientCard.innerHTML += `<div>
+    newRecipe.instructions.forEach(instruction => {
+        ingredientCard.innerHTML += `<div>
   <p><span>${instruction.number}. </span>${instruction.instruction}</p>
   </div>`
-})
-hide(recipeCardWrapper)
+    });
+    addToCookbookButtonEventHandler();
+    hide(recipeCardWrapper)
+    show(favoriteButton)
 }
 
 
 function searchRecipe(event) {
-  event.preventDefault();
-  if ( !searchBox.value ) {
-    showAllRecipes( );
-  }
-  const tagSearched = recipeRepo.filterByTag( searchBox.value );
-  const nameSearched = recipeRepo.filterByName( searchBox.value);
-  if ( tagSearched.length > 0 ) {
-    console.log( 'tagSearched: ', tagSearched )
-    recipeRepo.filteredTags = tagSearched 
-    displayRecipeByTag()
-  } else if ( nameSearched.length > 0 ) {
-    console.log( 'nameSearched: ', nameSearched )
-    recipeRepo.filteredNames = nameSearched 
-    return displayRecipeByName()
-  } else {
-   return showAllRecipes();
-  }
- }
-
- function displayRecipeByTag( ) {
-  const result = recipeRepo.filteredTags.map( recipe => {
-      console.log( 'TAG RECIPE: ', recipe)
-      return `<section class='recipe-card' id="recipeCard">
-      <img src="${ recipe.image }" class="recipe-image" alt="">
-      <h3>${ recipe.name }</h3>
-      <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
-      <div>
-      <button class="save-button" id= ${ recipe.id }>Save to cooking profile!</button>
-      </div>
-      </section>`
-  } );
-  recipeRepo.filteredTags = recipeCard;
-  return recipeCard.innerHTML = result;
+    event.preventDefault();
+    if (!searchBox.value) {
+        showAllRecipes();
+    }
+    const tagSearched = recipeRepo.filterByTag(searchBox.value);
+    const nameSearched = recipeRepo.filterByName(searchBox.value);
+    if (tagSearched.length > 0) {
+        console.log('tagSearched: ', tagSearched)
+        recipeRepo.filteredTags = tagSearched
+        displayRecipeByTag()
+    } else if (nameSearched.length > 0) {
+        console.log('nameSearched: ', nameSearched)
+        recipeRepo.filteredNames = nameSearched
+        return displayRecipeByName()
+    } else {
+        return showAllRecipes();
+    }
 }
 
-function displayRecipeByName( ) {
-  const result = recipeRepo.filteredTags.map( recipe => {
-      console.log( 'TAG RECIPE: ', recipe)
-      return `<section class='recipe-card' id="recipeCard">
-      <img src="${ recipe.image }" class="recipe-image" alt="">
-      <h3>${ recipe.name }</h3>
-      <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
+function filterRecipeByTag(event) {
+    event.preventDefault();
+    // console.log('tag:', recipeTagInput.value)
+    const tagInput = recipeTagInput.value;
+    const requestedRecipes = recipeRepo.filterByTag('lunch');
+    console.log(requestedRecipes)
+    recipeCard.innerHTML = ''
+    requestedRecipes.forEach((recipe) => {
+        recipeCard.innerHTML += (`
+        <div class="recipe-card-wrapper">
+          <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
+          <p class="recipe-name">${recipe.name}</p>
+          <button class="favorite-button" id="favoriteButton">Favorite</button>
+        </div>
+      `)
+    });
+}
+function displayRecipeByTag() {
+    const result = recipeRepo.filteredTags.map(recipe => {
+        console.log('TAG RECIPE: ', recipe)
+        return `<section class='recipe-card' id="recipeCard">
+      <img src="${recipe.image}" class="recipe-image" alt="">
+      <h3>${recipe.name}</h3>
+      <button class="lets-make-it-button" id="${recipe.id}">Let's Make It!</button>
       <div>
-      <button class="save-button" id= ${ recipe.id }>Save to cooking profile!</button>
+      <button class="save-button" id= ${recipe.id}>Save to cooking profile!</button>
       </div>
       </section>`
-  } );
-  recipeRepo.filteredNames = recipeCard;
-  return recipeCard.innerHTML = result;
+    });
+    recipeRepo.filteredTags = recipeCard;
+    return recipeCard.innerHTML = result;
+}
+function mySavedRecipes() {
+    recipeCard.innerHTML += (`
+    <div class="recipe-card-wrapper">
+      <img class="recipe-image" data-recipeId=${user.recipesToCook.id} data-recipeDisplay="filtered" src=${user.recipesToCook.image} alt=${user.recipesToCook.name}>
+      <p class="recipe-name">${user.recipesToCook.name}</p>
+      <button class="favorite-button" id="favoriteButton">Favorite</button>
+    </div>
+  `)
+    show(cookbookButton)
+}
+
+function displayRecipeByName() {
+    const result = recipeRepo.filteredTags.map(recipe => {
+        console.log('TAG RECIPE: ', recipe)
+        return `<section class='recipe-card' id="recipeCard">
+      <img src="${recipe.image}" class="recipe-image" alt="">
+      <h3>${recipe.name}</h3>
+      <button class="lets-make-it-button" id="${recipe.id}">Let's Make It!</button>
+      <div>
+      <button class="save-button" id= ${recipe.id}>Save to cooking profile!</button>
+      </div>
+      </section>`
+    });
+    recipeRepo.filteredNames = recipeCard;
+    return recipeCard.innerHTML = result;
 }
 
 
@@ -190,5 +238,6 @@ function hide(element) {
 
 
 // allRecipesButton.addEventListener('click', showAllRecipes, recipeRepo.createAllRecipes())
-// userBuildAttributes(user);
+userBuildAttributes(user);
 // goHomeButton.addEventListener('click', userBuildAttributes)
+cookbookButton.addEventListener('click', mySavedRecipes)
