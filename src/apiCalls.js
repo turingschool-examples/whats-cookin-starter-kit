@@ -1,18 +1,69 @@
 // Your fetch requests will live here!
-fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
-    .then(response => response.json())
-    .then(data => data)
-    .catch(error => console.log(error));
+const finalDestination = 'https://what-s-cookin-starter-kit.herokuapp.com';
 
-fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients')
-    .then(response => response.json())
-    .then(data => data)
-    .catch(error => console.log(error));
+function loadUsers() {
+  return fetch(`${finalDestination}/api/v1/users`)
+  .then(response => response.json())
+  .then(data => data)
+  .catch(error => console.log(error));
+};
 
-fetch('Get all recipes	https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
-    .then(response => response.json())
-    .then(data => data)
-    .catch(error => console.log(error))
+function loadIngredients() {
+  return fetch(`${finalDestination}/api/v1/ingredients`)
+  .then(response => response.json())
+  .then(data => data)
+  .catch(error => console.log(error));
+};
+
+function loadRecipes() {
+  return fetch(`${finalDestination}/api/v1/recipes`)
+  .then(response => response.json())
+  .then(data => {return data})
+  .catch(error => console.log(error))
+}
+
+export { loadUsers, loadIngredients, loadRecipes };
 
 
-console.log('I will be a fetch request!')
+// function fetchData(url) {
+//   return fetch(url)
+//     .then(checkStatus)
+//     .then(res => res.json())
+//     .catch(error => console.log('Looks like there was a problem', error))
+// }
+
+// Promise.all([
+//   fetchData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
+//     .then(data => generateOptions(data.message)),
+//   fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
+//     .then(data => generateImage(data.message)),
+//   fetch('https://dog.ceo/api/breeds/image/random')
+//     .then(data => generateImage(data.message))
+// ])
+//   .then(data => {
+//     const breedList = data[0].message;
+//     const randomImage = data[1].message;
+
+//     generateOptions(breedList);
+//     generateImage(randomImage);
+//   })
+
+// function checkStatus(response) {
+//   if (response.ok) {
+//     return Promise.resolve(response);
+//   } else {
+//     return Promise.reject(new Error(response.statusText));
+//   }
+// }
+
+// function generateOptions(data) {
+//   const options = data.map(item => `<option value='${item}'>${item}</option>`).join();
+//   select.innerHTML = options;
+// }
+
+// function generateImage(data) {
+//   const html =
+//     `<img src='${data} alt>
+//         <p>Click to view images of ${select.value}s</p>`;
+//   card.innerHTML = html;
+// }
