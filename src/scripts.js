@@ -10,9 +10,7 @@ const homeButton = document.querySelector('#homeButton');
 const favoriteButton = document.querySelector('#favoriteButton');
 const filterButton = document.querySelector('#filterButton');
 const searchButton = document.querySelector('#searchButton');
-const searchLabel = document.querySelector('#searchLabel');
 const recipeNameInput = document.querySelector('#recipeNameInput');
-const filterLabel = document.querySelector('#filterLabel');
 const recipeTagInput = document.querySelector('#recipeTagInput');
 const filterForm = document.querySelector('#filterForm');
 const searchForm = document.querySelector('#searchForm');
@@ -39,12 +37,20 @@ fetchData().then(responses => {
     filterForm.addEventListener('submit', filterRecipeTag);
     searchForm.addEventListener('submit', searchRecipeName);
     favoriteButton.addEventListener('click', showFavorites);
-    filterFavoriteForm.addEventListener('submit', filterFavoriteRecipiesByTag);
-    // favSearchForm.addEventListener('submit', searchFavRecipeListByName);
+    filterFavoriteForm.addEventListener('submit', filterFavoriteRecipesByTag);
+    favSearchForm.addEventListener('submit', searchFavRecipeListByName);
     
     displayRecipeList();
 
 });
+
+function hideOn(element) {
+    element.classList.add('hidden')
+}
+
+function hideOff(element) {
+    element.classList.remove('hidden')
+}
 
 
 function createUser() {
@@ -67,7 +73,13 @@ function addToFavorite(event) {
     user.addRecipesToCook(selectedRecipe);
 }
 
-function showFavorites(event) {
+function showFavorites() {
+    hideOn(searchForm);
+    hideOn(filterForm);
+    hideOn(favoriteButton);
+    hideOff(filterFavoriteForm);
+    hideOff(favSearchForm);
+    hideOff(homeButton);
     homeButton.classList.remove('hidden');
     homeButton.classList.add('favorite');
     recipeHeading.innerText = 'Favorite Recipes';
@@ -75,15 +87,20 @@ function showFavorites(event) {
     user.recipesToCook.forEach((recipe) => {
         recipeDisplay.innerHTML += (`
             <div class="recipe-image-wrapper">
-            <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="favorite" src=${recipe.image} alt=${recipe.name}>
-            <p class="recipe-name">${recipe.name}</p>
-            <button class="remove-button" data-favoriteRecipe=${recipe.id} id="removeButton">Remove</button>
+                <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="favorite" src=${recipe.image} alt=${recipe.name}>
+                <p class="recipe-name">${recipe.name}</p>
             </div>
         `)
     });
 };
 
 function displayRecipeList() {
+    hideOff(searchForm);
+    hideOff(filterForm);
+    hideOff(favoriteButton);
+    hideOn(homeButton);
+    hideOn(filterFavoriteForm);
+    hideOn(favSearchForm);
  recipeDisplay.innerHTML = "";
  recipeRepository.recipeList.forEach((recipe) => {
     recipeDisplay.innerHTML += (`
@@ -96,49 +113,21 @@ function displayRecipeList() {
    });
 };
 
-function goHome(event) {
-    console.log(event.target);
+function goHome() {
     recipeHeading.innerText = 'All Recipes';
-
-    if(homeButton.classList.contains('favorite')) {
-        homeButton.classList.remove('favorite');
-        homeButton.classList.add('hidden');
-        recipeDisplay.innerHTML = "";
-        displayRecipeList();
-    } else {
-        helperSwitch(searchLabel);
-        helperSwitch(recipeNameInput);
-        helperSwitch(searchButton);
-        helperSwitch(filterLabel);
-        helperSwitch(recipeTagInput);
-        helperSwitch(filterButton);
-        helperSwitch(favoriteButton);
-        helperSwitch(homeButton);
-        recipeDisplay.innerHTML = "";
-        displayRecipeList();
-    }
+    hideOn(homeButton);
+    recipeDisplay.innerHTML = "";
+    displayRecipeList();
+   
 }
 
-function helperSwitch(element) {
-    if (!element.classList.contains("hidden")) {
-        element.classList.add("hidden");
-    } else {
-        element.classList.remove("hidden");
-    }
-};
-
 function showRecipeInstructions(event) {
-    if (!event.target.getAttribute("data-recipeDisplay")) {
-        helperSwitch(searchLabel);
-        helperSwitch(recipeNameInput);
-        helperSwitch(searchButton);
-        helperSwitch(filterLabel);
-        helperSwitch(recipeTagInput);
-        helperSwitch(filterButton);
-        helperSwitch(favoriteButton);
-        helperSwitch(homeButton);
-    }
-
+    hideOn(searchForm);
+    hideOn(filterForm);
+    hideOn(filterFavoriteForm);
+    hideOn(favSearchForm);
+    hideOff(favoriteButton);
+    hideOff(homeButton);
     const recipeId = parseInt(event.target.getAttribute("data-recipeId"));
     const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === recipeId);
     selectedRecipe.buildIngredientsNeeded(ingredientsInfo.ingredientsData);
@@ -172,14 +161,6 @@ function showRecipeInstructions(event) {
 
 function filterRecipeTag(event) {
     event.preventDefault();
-    helperSwitch(searchLabel);
-    helperSwitch(recipeNameInput);
-    helperSwitch(searchButton);
-    helperSwitch(filterLabel);
-    helperSwitch(recipeTagInput);
-    helperSwitch(filterButton);
-    helperSwitch(favoriteButton);
-    helperSwitch(homeButton);
 
     const inputValue = recipeTagInput.value;
     const requestedRecipes = recipeRepository.findRecipeByTag(inputValue);
@@ -204,14 +185,6 @@ function filterRecipeTag(event) {
 
 function searchRecipeName(event) {
     event.preventDefault();
-    helperSwitch(searchLabel);
-    helperSwitch(recipeNameInput);
-    helperSwitch(searchButton);
-    helperSwitch(filterLabel);
-    helperSwitch(recipeTagInput);
-    helperSwitch(filterButton);
-    helperSwitch(favoriteButton);
-    helperSwitch(homeButton);
 
     const inputValue = recipeNameInput.value;
     const requestedRecipes = recipeRepository.findRecipeByName(inputValue);
@@ -234,7 +207,7 @@ function searchRecipeName(event) {
    });
  }
 
- function filterFavoriteRecipiesByTag(event) {
+ function filterFavoriteRecipesByTag(event) {
     event.preventDefault();
 
     const inputValue = recipeFavoriteTagInput.value;
@@ -252,7 +225,6 @@ function searchRecipeName(event) {
         <div class="recipe-image-wrapper">
           <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
           <p class="recipe-name">${recipe.name}</p>
-          <button class="remove-button" data-favoriteRecipe=${recipe.id} id="removeButton">Remove</button>
         </div>
       `)
    });
@@ -276,7 +248,6 @@ function searchRecipeName(event) {
        <div class="recipe-image-wrapper">
          <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
          <p class="recipe-name">${recipe.name}</p>
-         <button class="remove-button" data-favoriteRecipe=${recipe.id} id="removeButton">Remove</button>
        </div>
      `)
   });
