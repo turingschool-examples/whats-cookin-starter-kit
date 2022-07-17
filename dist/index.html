@@ -9,17 +9,15 @@
       <section class="user-log-in">
         <p class="user-welcome">Welcome back, Fred!</p>
         <section class="user-search-container">
-          <img
-            class="search-image hidden"
-            src="./loupe.png"
-            alt="search icon"
-          />
-          <input
-            class="search-input hidden"
-            type="text"
-            placeholder="Search Recipes"
-            id="search"
-          />
+          <img class="search-image" src="./loupe.png" alt="search icon"/>
+          <input class="search-input" type="text" placeholder="Search Recipes" id="search"/>
+          <form>
+          <p>Search by:</p>
+          <input type="radio" id="filterByName" name="search" value="Name">
+          <label for="Name">Name</label><br>
+          <input type="radio" id="filterByTag" name="search" value="Tag">
+          <label for="Tag">Tag</label><br>
+          </form>
         </section>
       </section>
       <section class="logo-title">
