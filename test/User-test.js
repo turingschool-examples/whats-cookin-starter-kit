@@ -161,15 +161,15 @@ describe('User', () => {
       expect(user).to.be.an.instanceof(User);
     });
 
-    it.skip("Should have a name", () => {
+    it("Should have a name", () => {
       expect(user.name).to.equal("Saige O'Kon");
     });
 
-    it.skip("Should have an id", () => {
+    it("Should have an id", () => {
       expect(user.id).to.equal(1);
     });
 
-    it.skip("Should have a pantry", () => {
+    it("Should have a pantry", () => {
       expect(user.pantry).to.deep.equal([
         {
           "ingredient": 11297,
@@ -314,11 +314,11 @@ describe('User', () => {
       ]);
     });
 
-    it.skip("Should start off with an empty recipes to cook list", () => {
+    it("Should start off with an empty recipes to cook list", () => {
       expect(user.recipesToCook).to.deep.equal([]);
     });
 
-    it.skip("Should add recipes to a list of recipes to cook", () => {
+    it("Should add recipes to a list of recipes to cook", () => {
       const recipesToCookList = {
         id: 595736,
         image: "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -440,7 +440,7 @@ describe('User', () => {
       expect(user.recipesToCook).to.deep.equal([recipesToCookList]);
     });
 
-    it.skip("Should remove a recipe from the recipes to cook list", () => {
+    it("Should remove a recipe from the recipes to cook list", () => {
       const recipesToCookList = {
         id: 595736,
         image: "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -560,11 +560,11 @@ describe('User', () => {
         ]};
 
       user.addRecipesToCook(recipesToCookList);
-      user.removeRecipesToCook(recipesToCookList);
+      user.removeRecipesToCook(595736);
       expect(user.recipesToCook).to.deep.equal([]);
     });
 
-    it.skip("Should filter recipes to cook by tag", () => {
+    it("Should filter recipes to cook by tag", () => {
       const recipe1 = {
         id: 595736,
         image: "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -1025,7 +1025,7 @@ describe('User', () => {
       expect(filteredRecipesToCook).to.deep.equal([recipe1]);
     });
 
-    it.skip("Should display message if no recipe tag found", () => {
+    it("Should display message if no recipe tag found", () => {
       const recipe1 = {
         id: 595736,
         image: "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -1486,7 +1486,7 @@ describe('User', () => {
       expect(filteredRecipesToCook).to.equal(`Sorry, no recipe with tadpoles.`);
     });
 
-    it.skip("Should filter recipes to cook by name", () => {
+    it("Should filter recipes to cook by name", () => {
       const recipe1 = {
         id: 595736,
         image: "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -1947,7 +1947,7 @@ describe('User', () => {
       expect(filteredRecipesToCook).to.deep.equal([recipe4]);
     });
 
-    it.skip("Should filter recipes to cook by name", () => {
+    it("Should display message if no recipe name found", () => {
       const recipe1 = {
         id: 595736,
         image: "https://spoonacular.com/recipeImages/595736-556x370.jpg",
