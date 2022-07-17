@@ -58,15 +58,25 @@ function randomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
+
+function getRandomRecipe() {
+  const recipeIndex = randomIndex(recipeRepo.recipeData);
+  return recipeRepo.recipeData[recipeIndex]
+}
+
 function welcomeUser() {
   userWelcome.innerText = `Feeling hungry, ${user.name}?`;
 }
 
 function populateRecipesInHomeView() {
 
-  recipePicBoxes.forEach((image, index) => {
-    image.innerHTML += `<img class='recipe-image' id='${recipeRepo.recipeData[index].id}' src='${recipeRepo.recipeData[index].image}'>
-    <p class='recipe-label'>${recipeRepo.recipeData[index].name}</p>`;
+
+  recipePicBoxes.forEach(image  => {
+
+    var randomRecipe = getRandomRecipe()
+    
+    image.innerHTML += `<img class='recipe-image' id='${randomRecipe.id}' src='${randomRecipe.image}'>
+    <p class='recipe-label'>${randomRecipe.name}</p>`;
   });
 
 }
