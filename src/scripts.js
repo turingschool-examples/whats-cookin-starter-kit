@@ -46,7 +46,7 @@ window.addEventListener('load', populateRecipesInHomeView);
 homeButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', populateAllRecipesView);
 savedRecipesButton.addEventListener('click', displaySavedRecipesView);
-// recipeImages.addEventListener('click', populateChosenRecipe);
+homeViewContainer.addEventListener('click', populateChosenRecipe);
 // myFavoritesButton.addEventListener('click', )
 // pantryButton.addEventListener('click', )
 

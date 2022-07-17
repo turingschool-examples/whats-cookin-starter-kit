@@ -80,6 +80,12 @@ button {
   text-transform:uppercase;
 }
 
+button:hover {
+  cursor:pointer;
+  border-bottom-color: #427861;
+  box-shadow: 0px 2px #f7f5f6;
+}
+
 /* Main Section */
 .main-section-title {
   color: #060911;
@@ -89,6 +95,11 @@ button {
   height: 250px;
   border: 1px solid black;
   border-radius: 20px;
+}
+
+.recipe-image:hover {
+  cursor:pointer;
+  box-shadow: 0px 2px #427861;
 }
 
 .main-section {
@@ -186,6 +197,11 @@ button {
   color: black
 }
 
+.recipe-label:hover {
+  text-shadow: 1px 1px #427861;
+  cursor:pointer;
+}
+
 .first-box {
   margin-left: 5vw;
 }
@@ -215,9 +231,17 @@ button {
   width: 15vw;
   height: 45vh;
   border: 1px solid #060911;
-  border-color: purple;
+  border-color: #060911;
   border-radius: 20px;
 }
+
+.all-recipes-pic-box:hover {
+  cursor:pointer;
+  border-color: #427861;
+  box-shadow: 1px 2px #427861;
+}
+
+
 
 .saved-recipes-view {
   display: flex;
