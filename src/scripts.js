@@ -22,13 +22,12 @@ const greeting = document.querySelector(".greeting");
 const closeIcon = document.querySelector(".close-icon");
 const homeButton = document.querySelector(".home-button");
 const header = document.querySelector(".results-header");
-//const keywordSection = document.querySelector(".keyword-section");
 const keywordList = document.getElementById("keyword-list");
 const saveIcon = document.querySelector(".save-recipe-icon");
 const searchIcon = document.querySelector(".search-icon");
 window.addEventListener("load", displayAllRecipesView);
 window.addEventListener("load", listKeywords);
-keywordList.addEventListener("click", keywordClicked)
+keywordList.addEventListener("click", keywordClicked);
 homeButton.addEventListener("click", displayAllRecipesView);
 searchIcon.addEventListener("click", executeSearch);
 closeIcon.addEventListener("click", closeSpecificRecipe);
@@ -39,37 +38,40 @@ document
   .querySelector(".my-recipes-button")
   .addEventListener("click", displayUserRecipes);
 
-function listKeywords(){
+function listKeywords() {
   recipeRepo.allTags.forEach((tag) => {
-  let keyword = document.createElement("div");
-  keyword.classList.add("keyword")
-  keyword.innerText = tag
-   keywordList.appendChild(keyword); 
+    let keyword = document.createElement("div");
+    keyword.classList.add("keyword");
+    keyword.innerText = tag;
+    keywordList.appendChild(keyword);
   });
 }
 
 function keywordClicked(event) {
- let specificKeyword = event.target.closest(".keyword");
- specificKeyword.classList.add("clicked")
- recipeRepo.addInputToSearch(specificKeyword.innerText)
- console.log('myinput', recipeRepo.selectedInput)
- console.log(specificKeyword)
+  let keywordElement = event.target.closest(".keyword");
+  if (keywordElement.classList.contains("clicked")) {
+    keywordElement.classList.remove("clicked");
+    recipeRepo.selectedInput.find((inputItem) =>
+      recipeRepo.selectedInput.splice(inputItem, 1)
+    );
+  } else {
+    keywordElement.classList.add("clicked");
+    recipeRepo.addInputToSearch(keywordElement.innerText);
+  }
 }
 
 function executeSearch() {
-  recipeRepo.filterByMultipleTags()
-   header.innerText = `Your search results`;
-   resultCardsContainer.replaceChildren();
-   recipeRepo.filteredAllRecipes.forEach((recipe) => {
-     let recipeCard = makeRecipeCard(recipe);
-     addRecipeCardToResultsContainer(recipeCard);
-   });
+  recipeRepo.filterByMultipleTags();
+  header.innerText = `Your search results`;
+  resultCardsContainer.replaceChildren();
+  recipeRepo.filteredAllRecipes.forEach((recipe) => {
+    let recipeCard = makeRecipeCard(recipe);
+    addRecipeCardToResultsContainer(recipeCard);
+  });
 }
-
 
 function removeUserRecipe(recipe) {
   user.removeRecipeToCook(recipe);
-  displayUserRecipes();
 }
 
 function addUserRecipe(recipe) {
@@ -169,19 +171,6 @@ function closeSpecificRecipe() {
   hide(specificRecipeSection);
   hide(modalCurtain);
 }
-
-// function displayUserPantry() {
-// user.pantry.forEach((pantryItem) => {
-//     ingredientsData.forEach((ingredient) => {
-//       console.log(ingredient.name)
-//       if (pantryItem.ingredient === ingredient.id) {
-//         return pantryItem.ingredient = ingredientsData.name
-//       }
-//     });
-// })
-// console.log("event", user.pantry);
-// return user.pantry;
-// }
 
 function displayAllRecipesView() {
   greeting.innerText = `Welcome, ${user.name}!`;
