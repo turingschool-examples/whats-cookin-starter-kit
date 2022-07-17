@@ -15,34 +15,41 @@ recipeRepo.importRecipesFromFile(recipeData, ingredientsData);
 
 const resultTemplate = document.querySelector("#mini-recipe-template");
 const resultCardsContainer = document.querySelector(".results-grid-container");
-const greeting = document.querySelector(".greeting");
-const header = document.querySelector(".results-header");
+const specificRecipeSection = document.getElementById(
+  "specific-recipe-section"
+);
+const modalCurtain = document.querySelector(".grey-out-bg");
+//const greeting = document.querySelector(".greeting");
+const closeIcon = document.querySelector(".close-icon");
+const homeButton = document.querySelector(".home-button");
+//const header = document.querySelector(".results-header");
 //const results = document.querySelector(".results");
-const favoriteBtn = document.querySelector(".favorite-button");
+const saveIcon = document.querySelector(".save-recipe-icon");
 //resultTemplate.addEventListener("click", removeUserRecipes);
 //heartBtn.addEventListener("click", removeUserRecipes);
 window.addEventListener("load", displayAllRecipesView);
-document.querySelector(".results").addEventListener("click", removeUserRecipes);
-document
-  .querySelector(".mini-card")
-  .addEventListener("click", removeUserRecipes);
-document
-  .querySelector(".home-button")
-  .addEventListener("click", displayAllRecipesView);
-document
-  .querySelector(".my-recipes")
-  .addEventListener("click", displayUserRecipes);
+homeButton.addEventListener("click", displayAllRecipesView);
+closeIcon.addEventListener("click", closeSpecificRecipe);
+saveIcon.addEventListener("click", addUserRecipes);
+// document.querySelector(".results").addEventListener("click", removeUserRecipes);
+resultCardsContainer.addEventListener("click", specificRecipeClicked);
+// document
+//   .querySelector(".mini-card")
+//   .addEventListener("click", removeUserRecipes);
+// document
+//   .querySelector(".home-button")
+//   .addEventListener("click", displayAllRecipesView);
+// document
+//   .querySelector(".my-recipes")
+//   .addEventListener("click", displayUserRecipes);
 // document
 //   .querySelector(".my-pantry")
 //   .addEventListener("click", displayUserPantry);
 
-function populateTest() {
-  user.addRecipeToCook(recipeRepo.recipes[8]);
-  user.addRecipeToCook(recipeRepo.recipes[4]);
-  user.addRecipeToCook(recipeRepo.recipes[22]);
-}
-
-// function addUserRecipes() {
+// function populateTest() {
+//   user.addRecipeToCook(recipeRepo.recipes[8]);
+//   user.addRecipeToCook(recipeRepo.recipes[4]);
+//   user.addRecipeToCook(recipeRepo.recipes[22]);
 // }
 
 function addUserRecipes(event) {
@@ -52,29 +59,99 @@ function addUserRecipes(event) {
       return user.recipesToCook.push(recipe)
     }
   });
-  //displayUserRecipes();
+displayUserRecipes();
 }
 
-function removeUserRecipes(event) {
-  let clickedCardId = event.currentTarget.id;
-  console.log(event.currentTarget);
-  user.recipesToCook.forEach((recipe) => {
-    if (recipe.id === clickedCardId) {
-      return user.recipesToCook.splice(recipe, 1);
-    }
-  });
-  //displayUserRecipes();
+// function removeUserRecipes(event) {
+//   let clickedCardId = event.currentTarget.id;
+//   console.log(event.currentTarget);
+//   user.recipesToCook.forEach((recipe) => {
+//     if (recipe.id === clickedCardId) {
+//       return user.recipesToCook.splice(recipe, 1);
+//     }
+//   });
+//   //displayUserRecipes();
+// }
+
+
+
+function specificRecipeClicked(event) {
+  let specificRecipeId;
+  if (event.target.classList.contains("recipe-result")) {
+    specificRecipeId = event.target.dataset.id;
+    findSpecificRecipe(specificRecipeId);
+  } else if (event.target.parentElement.classList.contains("recipe-result")) {
+    specificRecipeId = event.target.parentElement.dataset.id;
+    findSpecificRecipe(specificRecipeId);
+  }
 }
 
-function displayUserRecipes() {
-  greeting.innerText = ``;
-  header.innerText = `${user.name}'s recipes!`;
-  resultCardsContainer.replaceChildren();
-  user.recipesToCook.forEach((recipe) => {
-    let recipeCard = makeRecipeCard(recipe);
-    addRecipeCardToResultsContainer(recipeCard);
+function findSpecificRecipe(recipeID) {
+  let specificRecipe = recipeRepo.recipes.find((recipe) => {
+    return recipe.id === parseInt(recipeID);
+  }); 
+  displaySpecificRecipe(specificRecipe);
+}
+
+// function displayHelper(event) {
+//   specificRecipeClicked(event)
+//   console.log(specificRecipe)
+//   displaySpecificRecipe(specificRecipe);
+  
+// }
+function displaySpecificRecipe(recipe) {
+  updateSpecificRecipeCard(recipe);
+  show(specificRecipeSection);
+  show(modalCurtain);
+}
+
+function updateSpecificRecipeCard(recipe) {
+  specificRecipeSection.querySelector(".title").innerText = recipe.name;
+  specificRecipeSection.querySelector(".specific-recipe-image").src =
+    recipe.imageURL;
+  updateSpecificRecipeIngredients(recipe);
+  updateSpecificRecipeInstructions(recipe);
+  specificRecipeSection.querySelector(".recipe-cost h5").innerText =
+    "$" + recipe.calcTotalRecipeCost();
+}
+
+function updateSpecificRecipeIngredients(recipe) {
+  let ingredientsList = specificRecipeSection.querySelector(".ingredients ol");
+  ingredientsList.replaceChildren();
+  let portionNames = recipe.getPortionNames();
+  portionNames.forEach((portionName) => {
+    let listItem = document.createElement("li");
+    listItem.innerText = capitalize(portionName);
+    ingredientsList.append(listItem);
   });
 }
+
+function updateSpecificRecipeInstructions(recipe) {
+  let instructionsList =
+    specificRecipeSection.querySelector(".instructions ol");
+  instructionsList.replaceChildren();
+  let instructions = recipe.getInstructions();
+  instructions.forEach((instruction) => {
+    let listItem = document.createElement("li");
+    listItem.innerText = capitalize(instruction);
+    instructionsList.append(listItem);
+  });
+}
+
+function closeSpecificRecipe() {
+  hide(specificRecipeSection);
+  hide(modalCurtain);
+}
+
+// function displayUserRecipes() {
+//   greeting.innerText = ``;
+//   header.innerText = `${user.name}'s recipes!`;
+//   resultCardsContainer.replaceChildren();
+//   user.recipesToCook.forEach((recipe) => {
+//     let recipeCard = makeRecipeCard(recipe);
+//     addRecipeCardToResultsContainer(recipeCard);
+//   });
+// }
 
 // function displayUserPantry() {
 // user.pantry.forEach((pantryItem) => {
@@ -90,36 +167,42 @@ function displayUserRecipes() {
 // }
 
 function displayAllRecipesView() {
-  greeting.innerText = `Welcome, ${user.name}!`;
-  header.innerText = `All Recipes!`;
+  //greeting.innerText = `Welcome, ${user.name}!`;
+ // header.innerText = `All Recipes!`;
   resultCardsContainer.replaceChildren();
   recipeRepo.recipes.forEach((recipe) => {
     let recipeCard = makeRecipeCard(recipe);
     addRecipeCardToResultsContainer(recipeCard);
   });
-  populateTest();
 }
 
 function makeRecipeCard(recipe) {
   let newCard = resultTemplate.cloneNode(true);
-  //newCard.removeAttribute("id")
+  newCard.removeAttribute("id");
 
-  newCard.childNodes.forEach((node) => {
-    if (node.nodeName === "#text") {
-      // skip
-    } else if (node.classList.contains("recipe-name")) {
-      node.innerText = recipe.name;
-    } else if (node.classList.contains("recipe-image")) {
-      node.src = recipe.imageURL;
-      node.id = recipe.id;
-    } else if (node.classList.contains("mini-card recipe-result")) {
-      node.id = recipe.id;
-    }
-  });
-  newCard.classList.remove("hidden");
+  newCard.dataset.id = recipe.id;
+
+  newCard.querySelector(".recipe-name").innerText = recipe.name;
+  newCard.querySelector(".recipe-image").src = recipe.imageURL;
+
+  show(newCard);
   return newCard;
 }
 
 function addRecipeCardToResultsContainer(recipeCard) {
   resultCardsContainer.appendChild(recipeCard);
+}
+
+function hide(domElement) {
+  domElement.classList.add("hidden");
+}
+
+function show(domElement) {
+  domElement.classList.remove("hidden");
+}
+
+function capitalize(string) {
+  let stringArray = string.split("");
+  stringArray[0] = stringArray[0].toUpperCase();
+  return stringArray.join("");
 }

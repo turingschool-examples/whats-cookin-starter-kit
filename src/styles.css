@@ -1,136 +1,169 @@
+ *{
+   margin: 0px;
+   padding: 0px;
+ }
 
-* {
-  margin:0px;
-  padding: 0px;
-}
+ body {}
 
-body {
-  
-}
+ div.grey-out-bg {
+   position: fixed;
+   top: 0px;
+   left: 0px;
+   width: 100vw;
+   height: 100vh;
 
-main {
-  height: 100vh;
-  width: 100vw;
-  background-color: #f4f3f3
-}
+   background-color: black;
+   filter: opacity(0.5);
+ }
 
-.nav {
-  display: flex;
-  justify-content: space-around; 
-}
+ main {
+   height: 100vh;
+   width: 100vw;
+   background-color: #f4f3f3;
 
-.nav button {
-  height: 60px;
-  width: 100px;
-}
+   position: relative;
+ }
 
-.nav button:hover {
-  cursor: pointer;
-}
+ .nav {
+   display: flex;
+   justify-content: space-around;
+ }
 
-.greeting {
-  display: flex;
-}
+ .nav button {
+   height: 60px;
+   width: 100px;
+ }
 
-.search-bar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+ .nav button:hover {
+   cursor: pointer;
+ }
 
-.results {
-  display: flex;
-  flex-direction: column;
-}
-
-.results-header {
-  display: flex;
-  align-self: center;
-}
-
-.results-grid-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.mini-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-
-  height: 200px;
-  width: 160px;
-  margin: 5px;
-  background-color: #ffff;
-  border: #eee 1px solid;
-  box-shadow: 1px 1px 6px 0 rgb(0 0 0 / 9%);
-}
-
-.mini-card img{
-  height: 120px;
-}
-
-.mini-card .favorite-button{
-  position: absolute;
-  cursor: pointer;
-  filter: grayscale(100) opacity(0.75);
-}
-
-.mini-card .favorite-button .selected{
-  position: absolute;
-  cursor: pointer;
-  filter: grayscale(0) opacity(1.0);
-  /* TODO: Figure out how to move them away from the right edge without taking them outside the parent container. Margin-right: 10px; and right: 10px; do not work. */
-}
+ .body-container {
+   width: 100vw;
+   position: relative;
+ }
 
 
-.mini-card p{
-  
-  align-self: flex-start;
-}
+ .greeting {
+   display: flex;
+ }
 
-.favorite-button{
-  align-self: flex-end;
-}
+ .search-bar {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
 
-.mega-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+ .sides-container {
+   width: 100vw;
 
-.mega-card header {
-  display: flex;
-  flex-direction: row;
-}
+   display: flex;
+   justify-content: space-evenly;
+ }
 
-.mega-card header span:hover {
-  cursor: pointer;
-}
+ .left-side {
+   width: 20%;
+ }
 
-.mega-card img {
-  height: 350px;
-}
+ .center {
+   width: 80%;
+ }
+
+ .right-side {
+   width: 20%;
+ }
+
+ .results {
+   display: flex;
+   flex-direction: column;
+ }
+
+ .results-header {
+   display: flex;
+   align-self: center;
+ }
+
+ .results-grid-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+ }
+
+ .card-border {
+   background-color: #ffffff;
+   border: #eee;
+   box-shadow: 1px 1px 6px 0 rgb(0 0 0 / 9%);
+   border-radius: 10px;
+
+   overflow: hidden;
+ }
+
+ .mini-card {
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+
+   height: 200px;
+   width: 160px;
+   margin: 5px;
+ }
+
+ .mini-card img {
+   height: 120px;
+ }
+
+ .mini-card .favorite-button {
+   position: absolute;
+   cursor: pointer;
+   filter: grayscale(100) opacity(0.75);
+ }
+
+ .mini-card .favorite-button .selected {
+   position: absolute;
+   cursor: pointer;
+   filter: grayscale(0) opacity(1.0);
+   /* TODO: Figure out how to move them away from the right edge without taking them outside the parent container. Margin-right: 10px; and right: 10px; do not work. */
+ }
 
 
+ .mini-card p {
+   align-self: flex-start;
+ }
 
+ .favorite-button {
+   align-self: flex-end;
+ }
 
+ .mega-card {
+   position: absolute;
+   top: 0px;
+   right: 10vw;
+   display: flex;
+   z-index: 1000;
 
+   max-width: 50vw;
 
+   flex-direction: column;
+   align-items: center;
+ }
 
+ .mega-card header {
+   display: flex;
+   flex-direction: row;
+ }
 
+ .mega-card header span:hover {
+   cursor: pointer;
+ }
 
+ .mega-card img {
+   height: 350px;
+ }
 
+ .mega-card .mega-body {
+   width: 80%;
+ }
 
-
-
-
-
-
-
-
-
-.hidden {
-  display: none;
-}
+ .hidden {
+   display: none;
+ }
