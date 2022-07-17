@@ -49,7 +49,7 @@ window.addEventListener('load', welcomeUser);
 window.addEventListener('load', populateRecipesInHomeView);
 homeButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', populateAllRecipesView);
-savedRecipesButton.addEventListener('click', displaySavedRecipesView);
+savedRecipesButton.addEventListener('click', populateSavedRecipesView);
 homeViewContainer.addEventListener('click', populateChosenRecipe);
 saveRecipeButton.addEventListener('click', saveChosenRecipe);
 // allRecipesContainer.addEventListener('click', populateChosenRecipe);
@@ -91,7 +91,19 @@ function populateAllRecipesView() {
 
 }
 
+//functions to affect the saved recipes view
 
+function populateSavedRecipesView() {
+  displaySavedRecipesView()
+  savedRecipesContainer.innerHTML = '';
+
+  user.recipesToCook.forEach((recipe) => {
+    savedRecipesContainer.innerHTML += `<img class='saved-recipes-pic-box'
+    id='${recipe.id}' src='${recipe.image}'>
+    <p class='recipe-label'>${recipe.name}</p>`;
+  })
+
+}
 
 //functions to populate the chosen recipe view
 
