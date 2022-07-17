@@ -10,7 +10,6 @@ import User from "./classes/User";
 
 const recipeRepo = new RecipeRepository();
 const user = new User(usersData[Math.floor(Math.random() * 41)]);
-var testEvent;
 recipeRepo.importRecipesFromFile(recipeData, ingredientsData);
 
 const resultTemplate = document.querySelector("#mini-recipe-template");
@@ -19,71 +18,90 @@ const specificRecipeSection = document.getElementById(
   "specific-recipe-section"
 );
 const modalCurtain = document.querySelector(".grey-out-bg");
-//const greeting = document.querySelector(".greeting");
+const greeting = document.querySelector(".greeting");
 const closeIcon = document.querySelector(".close-icon");
 const homeButton = document.querySelector(".home-button");
-//const header = document.querySelector(".results-header");
-//const results = document.querySelector(".results");
+const header = document.querySelector(".results-header");
+//const keywordSection = document.querySelector(".keyword-section");
+const keywordList = document.getElementById("keyword-list");
 const saveIcon = document.querySelector(".save-recipe-icon");
-//resultTemplate.addEventListener("click", removeUserRecipes);
-//heartBtn.addEventListener("click", removeUserRecipes);
+const searchIcon = document.querySelector(".search-icon");
 window.addEventListener("load", displayAllRecipesView);
+window.addEventListener("load", listKeywords);
+keywordList.addEventListener("click", keywordClicked)
 homeButton.addEventListener("click", displayAllRecipesView);
+searchIcon.addEventListener("click", executeSearch);
 closeIcon.addEventListener("click", closeSpecificRecipe);
 saveIcon.addEventListener("click", specificRecipeClicked);
-// document.querySelector(".results").addEventListener("click", removeUserRecipes);
 resultCardsContainer.addEventListener("click", specificRecipeClicked);
-// document
-//   .querySelector(".mini-card")
-//   .addEventListener("click", removeUserRecipes);
-// document
-//   .querySelector(".home-button")
-//   .addEventListener("click", displayAllRecipesView);
-// document
-//   .querySelector(".my-recipes")
-//   .addEventListener("click", displayUserRecipes);
-// document
-//   .querySelector(".my-pantry")
-//   .addEventListener("click", displayUserPantry);
 
-// function populateTest() {
-//   user.addRecipeToCook(recipeRepo.recipes[8]);
-//   user.addRecipeToCook(recipeRepo.recipes[4]);
-//   user.addRecipeToCook(recipeRepo.recipes[22]);
-// }
+document
+  .querySelector(".my-recipes-button")
+  .addEventListener("click", displayUserRecipes);
 
-// function addUserRecipes(event) {
-//   let clickedCardId = event.currentTarget.id;
-//  recipeRepo.forEach((recipe) => {
-//     if (recipe.id === clickedCardId) {
-//       return user.recipesToCook.push(recipe)
-//     }
-//   });
-// displayUserRecipes();
-// }
+function listKeywords(){
+  recipeRepo.allTags.forEach((tag) => {
+  let keyword = document.createElement("div");
+  keyword.classList.add("keyword")
+  keyword.innerText = tag
+   keywordList.appendChild(keyword); 
+  });
+}
 
-// function removeUserRecipes(event) {
-//   let clickedCardId = event.currentTarget.id;
-//   console.log(event.currentTarget);
-//   user.recipesToCook.forEach((recipe) => {
-//     if (recipe.id === clickedCardId) {
-//       return user.recipesToCook.splice(recipe, 1);
-//     }
-//   });
-//   //displayUserRecipes();
-// }
+function keywordClicked(event) {
+ let specificKeyword = event.target.closest(".keyword");
+ specificKeyword.classList.add("clicked")
+ recipeRepo.addInputToSearch(specificKeyword.innerText)
+ console.log('myinput', recipeRepo.selectedInput)
+ console.log(specificKeyword)
+}
 
-function addUserRecipes(recipe) {
+function executeSearch() {
+  recipeRepo.filterByMultipleTags()
+   header.innerText = `Your search results`;
+   resultCardsContainer.replaceChildren();
+   recipeRepo.filteredAllRecipes.forEach((recipe) => {
+     let recipeCard = makeRecipeCard(recipe);
+     addRecipeCardToResultsContainer(recipeCard);
+   });
+}
+
+
+function removeUserRecipe(recipe) {
+  user.removeRecipeToCook(recipe);
+  displayUserRecipes();
+}
+
+function addUserRecipe(recipe) {
   user.addRecipeToCook(recipe);
-  console.log(user.recipesToCook);
+}
+
+function displayUserRecipes() {
+  greeting.innerText = ``;
+  if (user.recipesToCook.length >= 1) {
+    header.innerText = `${user.name}'s recipes!`;
+    resultCardsContainer.replaceChildren();
+    user.recipesToCook.forEach((recipe) => {
+      let recipeCard = makeRecipeCard(recipe);
+      addRecipeCardToResultsContainer(recipeCard);
+    });
+  } else {
+    header.innerText = `There are no recipes saved.`;
+    resultCardsContainer.replaceChildren();
+  }
 }
 
 function specificRecipeClicked(event) {
-
   let recipeID = getRecipeIdFromClickEvent(event);
   let specificRecipe = findSpecificRecipe(recipeID);
   if (event.target.classList.contains("favorite-button")) {
-    addUserRecipes(specificRecipe);
+    if (event.target.classList.contains("saved")) {
+      event.target.classList.remove("saved");
+      removeUserRecipe(specificRecipe);
+    } else {
+      event.target.classList.add("saved");
+      addUserRecipe(specificRecipe);
+    }
   } else {
     displaySpecificRecipe(specificRecipe);
   }
@@ -109,6 +127,11 @@ function displaySpecificRecipe(recipe) {
 
 function updateSpecificRecipeCard(recipe) {
   specificRecipeSection.querySelector(".title").innerText = recipe.name;
+  if (user.recipesToCook.includes(recipe)) {
+    specificRecipeSection
+      .querySelector(".save-recipe-icon")
+      .classList.add("saved");
+  }
   specificRecipeSection.querySelector(".save-recipe-icon").dataset.id =
     recipe.id;
   specificRecipeSection.querySelector(".specific-recipe-image").src =
@@ -147,16 +170,6 @@ function closeSpecificRecipe() {
   hide(modalCurtain);
 }
 
-// function displayUserRecipes() {
-//   greeting.innerText = ``;
-//   header.innerText = `${user.name}'s recipes!`;
-//   resultCardsContainer.replaceChildren();
-//   user.recipesToCook.forEach((recipe) => {
-//     let recipeCard = makeRecipeCard(recipe);
-//     addRecipeCardToResultsContainer(recipeCard);
-//   });
-// }
-
 // function displayUserPantry() {
 // user.pantry.forEach((pantryItem) => {
 //     ingredientsData.forEach((ingredient) => {
@@ -171,8 +184,8 @@ function closeSpecificRecipe() {
 // }
 
 function displayAllRecipesView() {
-  //greeting.innerText = `Welcome, ${user.name}!`;
-  // header.innerText = `All Recipes!`;
+  greeting.innerText = `Welcome, ${user.name}!`;
+  header.innerText = `All Recipes!`;
   resultCardsContainer.replaceChildren();
   recipeRepo.recipes.forEach((recipe) => {
     let recipeCard = makeRecipeCard(recipe);
@@ -184,6 +197,9 @@ function makeRecipeCard(recipe) {
   let newCard = resultTemplate.cloneNode(true);
   newCard.removeAttribute("id");
   newCard.dataset.id = recipe.id;
+  if (user.recipesToCook.includes(recipe)) {
+    newCard.querySelector(".favorite-button").classList.add("saved");
+  }
   newCard.querySelector(".recipe-name").innerText = recipe.name;
   newCard.querySelector(".recipe-image").src = recipe.imageURL;
   show(newCard);
