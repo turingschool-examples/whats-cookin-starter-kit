@@ -92,7 +92,7 @@ button:hover {
 }
 
 .recipe-image {
-  height: 250px;
+  height: 150px;
   border: 1px solid black;
   border-radius: 20px;
 }
@@ -159,7 +159,6 @@ button:hover {
   align-items: center;
   width: 7vw;
   height: 40vh;
-  /* border: 1px solid #060911; */
   border-radius: 20px;
   margin-left: 2vw;
   margin-right: 2vw;
@@ -168,7 +167,6 @@ button:hover {
 }
 
 .recipe-view-small-box, .recipe-view-pic-box {
-  /* background-color: black; */
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -189,7 +187,6 @@ button:hover {
 
 .save-recipe-button-container {
   height: 8%;
-  /* border: 2px solid black; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
