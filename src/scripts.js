@@ -1,15 +1,14 @@
 import './styles.css';
 import apiCalls from './apiCalls';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import "./images/heart.svg"
 import RecipeRepository from '../src/classes/RecipeRepository';
 import Users from '../src/classes/Users';
 import { recipeData } from './data/recipes';
-// import { raw } from 'file-loader';
 import Recipe from '../src/classes/Recipe'
 import { ingredientsData } from './data/ingredients';
 import { usersData } from './data/users';
+// import { raw } from 'file-loader';
 
 
 const getRandomUserId = () => {
@@ -18,17 +17,21 @@ const getRandomUserId = () => {
 const getRandomRecipe = () => {
     return Math.floor(Math.random() * 49) + 1;
 }
+
+// Global Variables
+let recipeRepo = new RecipeRepository(recipeData)
+let newRecipe = new Recipe(recipeData[0], ingredientsData)
 const users = []
 const userId = getRandomUserId();
 const recipeID = getRandomRecipe();
 const user = new Users(usersData[2])
 const recipe = new Recipe(recipeData[recipeID])
+
 // QuerySelectors
-const allRecipesButton = document.querySelector('#recipe-button')
+
 const favoriteButton = document.querySelector('#favorite-button')
 const cookbookButton = document.querySelector('#cookbook-button')
 const searchBar = document.querySelector('.search-container')
-const radioSearchButton = document.querySelector('.radio-search-button')
 // const viewRecipeButton = document.querySelector('.view-recipe-button')
 const addToCookbookButton = document.querySelector('.add-to-cookbook-button')
 const cardFavoriteButton = document.querySelector('.favorite-button')
@@ -36,8 +39,8 @@ const unFavoriteButton = document.querySelector('.un-favorite-button')
 const userGreeting = document.querySelector("#userName");
 const recipeLocation = document.querySelector('#recipeName')
 const recipeImage = document.querySelector('.card-image')
-const rightBox = document.querySelector('.right-box')
-const goHomeButton = document.querySelector('.take-home')
+const mainBox = document.querySelector('.main-box')
+const goHomeButton = document.querySelector('.home-button')
 const recipeCard = document.querySelector('.recipe-card')
 const ingredientCard = document.querySelector('.ingredient-card')
 let viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
@@ -47,6 +50,8 @@ const recipeTagInput = document.querySelector('#recipe-tag-input')
 const recipeDisplay = document.querySelector('#recipeDisplay');
 const recipeHeading = document.querySelector('#recipeHeading');
 const radioValue = document.querySelectorAll('.radio-value');
+const searchBox = document.querySelector('.search-box');
+const searchButton = document.querySelector('.search-submit');
 
 // EventListeners
 // favoriteButton.addEventListener('click',)
@@ -64,11 +69,11 @@ window.addEventListener('load', () => {
     })
   })
 });
-radioSearchButton.addEventListener('click', filterRecipeByTag)
+// radioSearchButton.addEventListener('click', filterRecipeByTag)
+searchButton.addEventListener('click', searchRecipe)
 
-// Global Variables
-let recipeRepo = new RecipeRepository(recipeData)
-let newRecipe = new Recipe(recipeData[0], ingredientsData)
+
+
 
 function showAllRecipes() {
     const recipes = recipeRepo.createAllRecipes(ingredientsData)
@@ -78,34 +83,11 @@ function showAllRecipes() {
       <img class='card-image' src=${recipe.image} data-recipeId=${recipe.id} alt=${recipe.name}>
       </button>`
     })
-
-    /*
-    do on page load show random new set of all recipes
-    */
-
-
-    hide(searchBar)
-    hide(favoriteButton)
-    // hide(cookbookButton)
-    // hide(cardFavoriteButton);
-    hide(allRecipesButton);
-    // hide(addToCookbookButton);
-    // hide(unFavoriteButton);
-    // hide(rightBox);
-    show(goHomeButton)
     console.log('IT WOEKS')
-
-    // HERE we need to: recipeRepo.allRecipes append to main section of our app
-    // want to loop through all recipes somehow, forEach/for loop
-    // in order to get it to populate on the DOM
-    // inner.HTML
-
-    //MAKE WHATS COOKING A TOGGLE SO IT CAN TAKE US BACK TO THE
-    //TAKE HOME PAGE WHEN WE CLICK IT AFTER SHOWING ALL RECIPES
 }
 
 function showAllRecipeDetails(id) {
-  newRecipe = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(id))
+newRecipe = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(id))
 newRecipe.makeIngredientData()
 ingredientCard.innerHTML = `<div>
 <ul>
@@ -133,29 +115,62 @@ hide(recipeCardWrapper)
 }
 
 
+function searchRecipe(event) {
+  event.preventDefault();
+  if ( !searchBox.value ) {
+    showAllRecipes( );
+  }
+  const tagSearched = recipeRepo.filterByTag( searchBox.value );
+  const nameSearched = recipeRepo.filterByName( searchBox.value);
+  if ( tagSearched.length > 0 ) {
+    console.log( 'tagSearched: ', tagSearched )
+    recipeRepo.filteredTags = tagSearched 
+    displayRecipeByTag()
+  } else if ( nameSearched.length > 0 ) {
+    console.log( 'nameSearched: ', nameSearched )
+    recipeRepo.filteredNames = nameSearched 
+    return displayRecipeByName()
+  } else {
+   return showAllRecipes();
+  }
+ }
 
-function filterRecipeByTag(event) {
-   event.preventDefault();
-  const radioButtons = document.getElementsByName('tags')
- // console.log('tag:', recipeTagInput.value)
-  const tagInput = recipeTagInput.value;
-  const requestedRecipes = recipeRepo.filterByTag('lunch');
-  console.log(requestedRecipes)
-recipeCard.innerHTML = ''
-  requestedRecipes.forEach((recipe) => {
-    recipeCard.innerHTML += (`
-        <div class="recipe-card-wrapper">
-          <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
-          <p class="recipe-name">${recipe.name}</p>
-          <button class="favorite-button" id="favoriteButton">Favorite</button>
-        </div>
-      `)
-    });
+ function displayRecipeByTag( ) {
+  const result = recipeRepo.filteredTags.map( recipe => {
+      console.log( 'TAG RECIPE: ', recipe)
+      return `<section class='recipe-card' id="recipeCard">
+      <img src="${ recipe.image }" class="recipe-image" alt="">
+      <h3>${ recipe.name }</h3>
+      <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
+      <div>
+      <button class="save-button" id= ${ recipe.id }>Save to cooking profile!</button>
+      </div>
+      </section>`
+  } );
+  recipeRepo.filteredTags = recipeCard;
+  return recipeCard.innerHTML = result;
 }
 
-// get data from radio buttons
-// filtering by tag
-// display based on filter
+function displayRecipeByName( ) {
+  const result = recipeRepo.filteredTags.map( recipe => {
+      console.log( 'TAG RECIPE: ', recipe)
+      return `<section class='recipe-card' id="recipeCard">
+      <img src="${ recipe.image }" class="recipe-image" alt="">
+      <h3>${ recipe.name }</h3>
+      <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
+      <div>
+      <button class="save-button" id= ${ recipe.id }>Save to cooking profile!</button>
+      </div>
+      </section>`
+  } );
+  recipeRepo.filteredNames = recipeCard;
+  return recipeCard.innerHTML = result;
+}
+
+
+
+
+
 
 const userBuildAttributes = (user) => {
     userGreeting.innerHTML = `Welcome ${user.name.split(" ")[0]}!`
@@ -175,5 +190,5 @@ function hide(element) {
 
 
 // allRecipesButton.addEventListener('click', showAllRecipes, recipeRepo.createAllRecipes())
-userBuildAttributes(user);
-goHomeButton.addEventListener('click', userBuildAttributes)
+// userBuildAttributes(user);
+// goHomeButton.addEventListener('click', userBuildAttributes)
