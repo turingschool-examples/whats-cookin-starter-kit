@@ -16,6 +16,8 @@ const filterLabel = document.querySelector('#filterLabel');
 const recipeTagInput = document.querySelector('#recipeTagInput');
 const filterForm = document.querySelector('#filterForm');
 const searchForm = document.querySelector('#searchForm');
+const favSearchForm = document.querySelector('#favSearchForm');
+const recipeFavNameInput = document.querySelector('#favRecipeNameInput')
 
 let user;
 let ingredientsInfo;
@@ -34,7 +36,8 @@ fetchData().then(responses => {
     filterForm.addEventListener('submit', filterRecipeTag);
     searchForm.addEventListener('submit', searchRecipeName);
     favoriteButton.addEventListener('click', showFavorites);
-    
+    favSearchForm.addEventListener('submit', searchFavRecipeListByName);
+
     displayRecipeList();
 
 });
@@ -120,7 +123,7 @@ function helperSwitch(element) {
     }
 };
 
-function showRecipeInstructions(event) { 
+function showRecipeInstructions(event) {
     if (!event.target.getAttribute("data-recipeDisplay")) {
         helperSwitch(searchLabel);
         helperSwitch(recipeNameInput);
@@ -225,4 +228,28 @@ function searchRecipeName(event) {
         </div>
       `)
    });
+ }
+
+ function searchFavRecipeListByName(event) {
+   event.preventDefault();
+
+   const inputValue = recipeFavNameInput.value;
+   const requestedRecipes = user.filterRecipesToCookByName(inputValue);
+
+   recipeHeading.innerText = 'Filtered Favorite Recipes by Name';
+   recipeDisplay.innerHTML = "";
+
+   if (requestedRecipes === `Sorry, no recipe named ${inputValue}.`) {
+       return recipeHeading.innerText = requestedRecipes;
+   }
+
+   requestedRecipes.forEach((recipe) => {
+   recipeDisplay.innerHTML += (`
+       <div class="recipe-image-wrapper">
+         <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
+         <p class="recipe-name">${recipe.name}</p>
+         <button class="remove-button" data-favoriteRecipe=${recipe.id} id="removeButton">Remove</button>
+       </div>
+     `)
+  });
  }
