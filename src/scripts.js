@@ -1,8 +1,10 @@
 import './styles.css';
 import apiCalls from './apiCalls';
+import User from './classes/User'
 import RecipeRepository from './classes/RecipeRepository';
 import {recipeData} from './data/recipes';
 import {ingredientsData} from './data/ingredients';
+import {usersData} from './data/users';
 
 const recipeDisplay = document.querySelector('#recipeDisplay');
 const recipeHeading = document.querySelector('#recipeHeading');
@@ -19,14 +21,36 @@ const searchForm = document.querySelector('#searchForm');
 
 const ingredientsInfo = {ingredientsData};
 const recipeInfo = {recipeData};
+const userInfo = {usersData};
+const user = createUser();
 const recipeRepository = new RecipeRepository(recipeInfo.recipeData);
 recipeRepository.listRecipes();
 
 window.addEventListener('load', displayRecipeList);
-recipeDisplay.addEventListener('click', showRecipeInstructions);
+recipeDisplay.addEventListener('click', recipeDisplayHandeler);
 homeButton.addEventListener('click', goHome);
 filterForm.addEventListener('submit', filterRecipeTag);
 searchForm.addEventListener('submit', searchRecipeName);
+
+function createUser() {
+    const randomNumber = Math.floor(Math.random() * userInfo.usersData.length);
+    const user = userInfo.usersData[randomNumber];
+    return new User(user);
+}
+
+function recipeDisplayHandeler(event) {
+    if (event.target.getAttribute("data-recipeId")) {
+        showRecipeInstructions(event);
+    } else if (event.target.getAttribute("data-favoriteRecipe")) {
+        addToFavorite(event);
+    }
+}
+
+function addToFavorite(event) {
+    const recipeId = parseInt(event.target.getAttribute('data-favoriteRecipe'))
+    const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === recipeId);
+    user.addRecipesToCook(selectedRecipe);
+}
 
 function displayRecipeList() {
  recipeDisplay.innerHTML = "";
@@ -35,7 +59,7 @@ function displayRecipeList() {
         <div class="recipe-image-wrapper">
           <img class="recipe-image" data-recipeId=${recipe.id} src=${recipe.image} alt=${recipe.name}>
           <p class="recipe-name">${recipe.name}</p>
-          <button class="favorite-button" id="favoriteButton">Favorite</button>
+          <button class="favorite-button" data-favoriteRecipe=${recipe.id} id="favoriteButton">Favorite</button>
         </div>
       `)
    });
@@ -63,49 +87,47 @@ function helperSwitch(element) {
     }
 };
 
-function showRecipeInstructions(event) {
-    if (event.target.getAttribute("data-recipeId")) { 
-        if (!event.target.getAttribute("data-recipeDisplay")) {
-            helperSwitch(searchLabel);
-            helperSwitch(recipeNameInput);
-            helperSwitch(searchButton);
-            helperSwitch(filterLabel);
-            helperSwitch(recipeTagInput);
-            helperSwitch(filterButton);
-            helperSwitch(favoriteButton);
-            helperSwitch(homeButton);
-        }
+function showRecipeInstructions(event) { 
+    if (!event.target.getAttribute("data-recipeDisplay")) {
+        helperSwitch(searchLabel);
+        helperSwitch(recipeNameInput);
+        helperSwitch(searchButton);
+        helperSwitch(filterLabel);
+        helperSwitch(recipeTagInput);
+        helperSwitch(filterButton);
+        helperSwitch(favoriteButton);
+        helperSwitch(homeButton);
+    }
 
-        const recipeId = parseInt(event.target.getAttribute("data-recipeId"));
-        const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === recipeId);
-        selectedRecipe.buildIngredientsNeeded(ingredientsInfo.ingredientsData);
-        const totalCost = selectedRecipe.getTotalCost();
+    const recipeId = parseInt(event.target.getAttribute("data-recipeId"));
+    const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === recipeId);
+    selectedRecipe.buildIngredientsNeeded(ingredientsInfo.ingredientsData);
+    const totalCost = selectedRecipe.getTotalCost();
 
-        recipeDisplay.innerHTML = "";
-        recipeHeading.innerText = `${selectedRecipe.name}`;
-        recipeDisplay.innerHTML = (`
-            <div class="selected-recipe-display">
-                <img class="selected-recipe-image" src=${selectedRecipe.image} alt=${selectedRecipe.name}>
-                <button class="favorite-button" id="favoriteButton">Favorite</button>
-                <ol id="recipeInstructions"></ol>
-                <h3 class="ingredients">Ingredients</h3>
-                <ul class="ingredients-list" id="ingredientsList"></ul>
-                <p class="total">Total Cost: ${totalCost}</p>
-            </div>
+    recipeDisplay.innerHTML = "";
+    recipeHeading.innerText = `${selectedRecipe.name}`;
+    recipeDisplay.innerHTML = (`
+        <div class="selected-recipe-display">
+            <img class="selected-recipe-image" src=${selectedRecipe.image} alt=${selectedRecipe.name}>
+            <button class="favorite-button" id="favoriteButton" data-favoriteRecipe=${selectedRecipe.id}>Favorite</button>
+            <ol id="recipeInstructions"></ol>
+            <h3 class="ingredients">Ingredients</h3>
+            <ul class="ingredients-list" id="ingredientsList"></ul>
+            <p class="total">Total Cost: ${totalCost}</p>
+        </div>
+    `);
+
+    selectedRecipe.instructions.forEach((instruction) => {
+        document.querySelector("#recipeInstructions").innerHTML += (`
+            <li class="instructions">${instruction.instruction}</li>
         `);
+    });
 
-        selectedRecipe.instructions.forEach((instruction) => {
-            document.querySelector("#recipeInstructions").innerHTML += (`
-                <li class="instructions">${instruction.instruction}</li>
-            `);
-        });
-
-        selectedRecipe.ingredientsNeeded.forEach((ingredient) => {
-            document.querySelector("#ingredientsList").innerHTML += (`
-                <li>${ingredient.name}</li>
-            `);
-        });
-    };
+    selectedRecipe.ingredientsNeeded.forEach((ingredient) => {
+        document.querySelector("#ingredientsList").innerHTML += (`
+            <li>${ingredient.name}</li>
+        `);
+    });
 };
 
 function filterRecipeTag(event) {
@@ -134,7 +156,7 @@ function filterRecipeTag(event) {
         <div class="recipe-image-wrapper">
           <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
           <p class="recipe-name">${recipe.name}</p>
-          <button class="favorite-button" id="favoriteButton">Favorite</button>
+          <button class="favorite-button" id="favoriteBtn">Favorite</button>
         </div>
       `)
    });
