@@ -80,8 +80,8 @@ class RecipeRepository {
       let lowerCaseRecipeName = recipe.name.toLowerCase();
       let containsOr = false;
       if (
-        this.selectedInput.some((keyword) => {
-          return lowerCaseRecipeName.includes(keyword);
+        this.selectedInput.some((input) => {
+          return lowerCaseRecipeName.includes(input);
         })
       ) {
         containsOr = true;

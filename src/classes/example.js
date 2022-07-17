@@ -3,7 +3,7 @@ recipeRepository.recipes.filter((recipe) => {
 
   if (
     userSubmittedKeywords.some((keyword) => {
-      recipe.tags.includes(keyword);
+      return recipe.tags.includes(keyword);
     })
   ) {
     containsOr = true;

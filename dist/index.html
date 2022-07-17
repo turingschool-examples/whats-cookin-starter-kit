@@ -8,11 +8,11 @@
   <main>
     <nav class="nav">
       <button type="button" class="home-button">Home</button>
-      <button type="button">My Recipes</button>
-      <button type="button">Pantry</button>
+      <button type="button" class="my-recipes">My Recipes</button>
+      <button type="button" class="my-pantry">Pantry</button>
     </nav>
-    <section class="greeting">
-      <h2>Welcome, User!</h2>
+    <section>
+      <h2 class="greeting">Welcome, User!</h2>
     </section>
     <section class="search-bar">
       <div>
@@ -63,10 +63,11 @@
     </section>
   </main>
 
-  <article id="mini-recipe-template" class="mini-card recipe-result hidden">
-    <span class="favorite-button">❤️</span>
-    <img class="recipe-image" src="https://static01.nyt.com/images/2022/06/12/dining/12Korokke/merlin_208197630_39a1b4ee-998e-4706-9f2f-8d5696f5e6ac-mobileMasterAt3x.jpg"/>
+  <article id="mini-recipe-template" class="mini-card recipe-result" >
+    <button type="button" class="favorite-button" id="">❤️</button>
+    <img class="recipe-image" id=""src="https://static01.nyt.com/images/2022/06/12/dining/12Korokke/merlin_208197630_39a1b4ee-998e-4706-9f2f-8d5696f5e6ac-mobileMasterAt3x.jpg"/>
     <p class="recipe-name">Test Card Title</p>
+
   </article>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
