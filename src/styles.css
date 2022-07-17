@@ -402,14 +402,30 @@ filter: drop-shadow(5px 10px 3px black);
 
     .ingredient-prices {
       margin: 0;
+      padding: 0;
     }
 
     .recipe-instructions {
       margin: 0;
+      padding: 0;
     }
 
     .recipe-ingredients {
       margin: 0;
+      padding: 0;
+    }
+
+    .ingredient-quantities {
+      margin: 0;
+      padding: 0;
+    }
+
+    .ingredient-boxes-container {
+      height: 50%;
+      display: grid;
+      grid-template-columns: 25% 50% 25%;
+      margin: 0;
+      padding: 0;
     }
 
 /* ~~~~~~~~~~~~~~~~~~view favorite recipe user story~~~~~~~~~~~~~~~~~~~~~~ */

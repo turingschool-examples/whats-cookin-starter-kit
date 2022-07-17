@@ -41,6 +41,9 @@ const nameRadioBtnFavorite = document.querySelector('.name-search-favorite');
 const tagRadioBtnFavorite = document.querySelector('.tag-search-favorite');
 const ingredientBox = document.querySelector('.ingredients-listed');
 const addFavoriteButton = document.querySelector('.add-favorite-button');
+const quantities = document.querySelector('.quantities');
+const names = document.querySelector('.names');
+const prices = document.querySelector('.prices')
 
 // ***** Event Listeners ***** //
 
@@ -129,7 +132,7 @@ function viewRecipe(event) {
   displayRecipeInstructions();
   displayIngredientNames();
   displayIngredientCosts();
-  // displayIngredientQuantities();
+  displayIngredientQuantities();
   displayTotalCostOfAllIngredients();
   displaySelectedRecipeImg();
 }
@@ -150,25 +153,25 @@ function displayRecipeInstructions() {
 }
 
 function displayIngredientNames() {
-  ingredientBox.innerHTML = '';
+  names.innerHTML = '';
   selectedRecipe.getIngredientNames().forEach(ingredient => {
-  ingredientBox.innerHTML += `<p class='recipe-ingredients'> ${ingredient} </p></br>`;
+  names.innerHTML += `<p class='recipe-ingredients'> ${ingredient} </p></br>`;
   });
 }
 
 function displayIngredientCosts() {
-  priceListBox.innerHTML = '';
+  prices.innerHTML = '';
   selectedRecipe.getCostOfIngredientsInDollars().forEach(cost => {
-  priceListBox.innerHTML += `<p class='ingredient-prices'> ${cost} </p></br>`;
+  prices.innerHTML += `<p class='ingredient-prices'> ${cost} </p></br>`;
   });
 }
 
-// function displayIngredientQuantities() {
-//   quantityBox.innerHTML = '';
-//   selectedRecipe.getAmountOfIngredients().forEach(amount => {
-//   quantityBox.innerHTML += `<p class='ingredient-quantities'> ${amount} </p></br>`;
-//   });
-// }
+function displayIngredientQuantities() {
+  quantities.innerHTML = '';
+  selectedRecipe.getAmountOfIngredients().forEach(amount => {
+  quantities.innerHTML += `<p class='ingredient-quantities'> ${amount} </p></br>`;
+  });
+}
 
 function displayTotalCostOfAllIngredients() {
   totalPriceBox.innerText = selectedRecipe.getCostOfRecipe();
