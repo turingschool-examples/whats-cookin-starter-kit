@@ -16,8 +16,11 @@ const filterLabel = document.querySelector('#filterLabel');
 const recipeTagInput = document.querySelector('#recipeTagInput');
 const filterForm = document.querySelector('#filterForm');
 const searchForm = document.querySelector('#searchForm');
+const filterFavoriteForm = document.querySelector('#filterFavoriteForm');
+const recipeFavoriteTagInput = document.querySelector('#recipeFavoriteTagInput');
 const favSearchForm = document.querySelector('#favSearchForm');
 const recipeFavNameInput = document.querySelector('#favRecipeNameInput')
+
 
 let user;
 let ingredientsInfo;
@@ -36,8 +39,9 @@ fetchData().then(responses => {
     filterForm.addEventListener('submit', filterRecipeTag);
     searchForm.addEventListener('submit', searchRecipeName);
     favoriteButton.addEventListener('click', showFavorites);
+    filterFavoriteForm.addEventListener('submit', filterFavoriteRecipiesByTag);
     favSearchForm.addEventListener('submit', searchFavRecipeListByName);
-
+    
     displayRecipeList();
 
 });
@@ -192,7 +196,7 @@ function filterRecipeTag(event) {
         <div class="recipe-image-wrapper">
           <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
           <p class="recipe-name">${recipe.name}</p>
-          <button class="favorite-button" id="favoriteBtn">Favorite</button>
+          <button class="favorite-button" id="favoriteBtn" data-favoriteRecipe=${recipe.id}>Favorite</button>
         </div>
       `)
    });
@@ -224,7 +228,31 @@ function searchRecipeName(event) {
         <div class="recipe-image-wrapper">
           <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
           <p class="recipe-name">${recipe.name}</p>
-          <button class="favorite-button" id="favoriteButton">Favorite</button>
+          <button class="favorite-button" id="favoriteButton" data-favoriteRecipe=${recipe.id}>Favorite</button>
+        </div>
+      `)
+   });
+ }
+
+ function filterFavoriteRecipiesByTag(event) {
+    event.preventDefault();
+
+    const inputValue = recipeFavoriteTagInput.value;
+    const requestedRecipes = user.filterRecipesToCookByTag(inputValue);
+
+    recipeHeading.innerText = 'Filtered Favorite Recipes by Tag';
+    recipeDisplay.innerHTML = "";
+
+    if (requestedRecipes === `Sorry, no recipe with ${inputValue}.`) {
+        return recipeHeading.innerText = requestedRecipes;
+    }
+
+    requestedRecipes.forEach((recipe) => {
+    recipeDisplay.innerHTML += (`
+        <div class="recipe-image-wrapper">
+          <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
+          <p class="recipe-name">${recipe.name}</p>
+          <button class="remove-button" data-favoriteRecipe=${recipe.id} id="removeButton">Remove</button>
         </div>
       `)
    });
