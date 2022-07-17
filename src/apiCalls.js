@@ -4,7 +4,7 @@ export const apiCalls = {
             .then(responses => {
                 return responses
             });
-            return result;
+        return result;
     },
 
     getAllData() {
