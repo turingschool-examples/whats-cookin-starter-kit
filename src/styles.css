@@ -63,11 +63,15 @@ header {
   flex-direction: row-reverse;
 }
 
-.search-image {
+.search-image, .search-image2 {
   background-color: #f7f5f6;
   height: 60%;
   padding-right: 2%;
   width: 8%;
+}
+
+.search-by, .radio2 {
+  color: black;
 }
 button {
   margin-top: 5px;
