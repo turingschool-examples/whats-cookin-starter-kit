@@ -49,8 +49,8 @@ class Recipe {
     const sumTotalCost = multCostByAmt.reduce((sum, cost) => {
       return sum + cost;
     }, 0)
-
-    return (sumTotalCost / 100)
+     const parsedSum = parseFloat((sumTotalCost/100).toFixed(2));
+    return parsedSum;
   }
 
   returnRecipeInstructions() {
