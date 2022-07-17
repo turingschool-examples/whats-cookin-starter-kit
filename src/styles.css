@@ -58,7 +58,7 @@
    display: flex;
  }
 
- .search-bar {
+ .search-section {
    display: flex;
    flex-direction: column;
    align-items: center;

@@ -16,13 +16,14 @@
       <section class="greeting">
         <h2>Welcome, User!</h2>
       </section>
-      <section class="search-bar">
-        <div>
-          <input type="search" placeholder="Search by Title" />
+      <section class="search-section">
+        <div class="search-bar-container">
+          <input class="search-bar"type="search" placeholder="Search by Title" />
           <span class="search-icon">🔎</span>
         </div>
-        <section class="keyword-section" class="">
-          <h3>or Search by keyword</h3>
+        <button class="submit-search" type="button">Submit Search</button>
+        <h3 class="toggle-search-option">or Search by keyword</h3>
+        <section class="keyword-section hidden">
           <div id="keyword-list"></div>
         </section>
       </section>

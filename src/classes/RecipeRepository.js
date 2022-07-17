@@ -23,6 +23,7 @@ class RecipeRepository {
 
   addInputToSearch(keyword) {
     let lowerCaseInput = keyword.toLowerCase();
+    
     if (!this.selectedInput.includes(lowerCaseInput)) {
       this.selectedInput.push(lowerCaseInput);
     }
@@ -57,7 +58,7 @@ class RecipeRepository {
       });
       return containsOr;
     });
-    return this.filteredAllRecipese;
+    return this.filteredAllRecipes;
   }
 
   filterByMultipleTags() {
@@ -76,7 +77,7 @@ class RecipeRepository {
   }
 
   filterByMultipleRecipeNames() {
-    this.filteredAllResults = this.recipes.filter((recipe) => {
+    this.filteredAllRecipes = this.recipes.filter((recipe) => {
       let lowerCaseRecipeName = recipe.name.toLowerCase();
       let containsOr = false;
       if (
@@ -88,7 +89,7 @@ class RecipeRepository {
       }
       return containsOr;
     });
-    return this.filteredAllResults;
+    return this.filteredAllRecipes;
   }
 
   importRecipesFromFile(recipeData, ingredientsData) {

@@ -95,7 +95,7 @@ describe("RecipeRepository", () => {
     recipeRepository.addRecipe(recipe3);
     recipeRepository.addInputToSearch("Glaze");
     recipeRepository.filterByMultipleRecipeNames();
-    expect(recipeRepository.filteredAllResults).to.deep.equal([
+    expect(recipeRepository.filteredAllRecipes).to.deep.equal([
       recipe2,
       recipe3,
     ]);

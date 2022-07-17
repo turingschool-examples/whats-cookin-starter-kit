@@ -19,17 +19,22 @@ const specificRecipeSection = document.getElementById(
 );
 const modalCurtain = document.querySelector(".grey-out-bg");
 const greeting = document.querySelector(".greeting");
+const searchBar = document.querySelector(".search-bar");
 const closeIcon = document.querySelector(".close-icon");
 const homeButton = document.querySelector(".home-button");
 const header = document.querySelector(".results-header");
 const keywordList = document.getElementById("keyword-list");
+const toggleSeachOption = document.querySelector(".toggle-search-option");
+const keywordSection = document.querySelector(".keyword-section");
+
 const saveIcon = document.querySelector(".save-recipe-icon");
-const searchIcon = document.querySelector(".search-icon");
+const searchButton = document.querySelector(".submit-search");
 window.addEventListener("load", displayAllRecipesView);
-window.addEventListener("load", listKeywords);
+toggleSeachOption.addEventListener("click", showKeywords);
+
 keywordList.addEventListener("click", keywordClicked);
 homeButton.addEventListener("click", displayAllRecipesView);
-searchIcon.addEventListener("click", executeSearch);
+searchButton.addEventListener("click", executeSearch);
 closeIcon.addEventListener("click", closeSpecificRecipe);
 saveIcon.addEventListener("click", specificRecipeClicked);
 resultCardsContainer.addEventListener("click", specificRecipeClicked);
@@ -39,6 +44,7 @@ document
   .addEventListener("click", displayUserRecipes);
 
 function listKeywords() {
+  keywordList.replaceChildren();
   recipeRepo.allTags.forEach((tag) => {
     let keyword = document.createElement("div");
     keyword.classList.add("keyword");
@@ -47,8 +53,19 @@ function listKeywords() {
   });
 }
 
+function showKeywords() {
+  toggle(searchBar);
+  toggle(keywordSection)
+   listKeywords();
+   toggleSeachOption.innerText = `or search by name`
+   searchBar.value = ``;
+
+}
+
 function keywordClicked(event) {
   let keywordElement = event.target.closest(".keyword");
+    searchBar.classList.add("disabled");
+    //ingredientList.classList.add("disabled");
   if (keywordElement.classList.contains("clicked")) {
     keywordElement.classList.remove("clicked");
     recipeRepo.selectedInput.find((inputItem) =>
@@ -61,14 +78,32 @@ function keywordClicked(event) {
 }
 
 function executeSearch() {
-  recipeRepo.filterByMultipleTags();
+  if (!searchBar.value) {
+ recipeRepo.filterByMultipleTags();
   header.innerText = `Your search results`;
   resultCardsContainer.replaceChildren();
   recipeRepo.filteredAllRecipes.forEach((recipe) => {
     let recipeCard = makeRecipeCard(recipe);
     addRecipeCardToResultsContainer(recipeCard);
   });
+} else {
+  recipeRepo.clearData()
+  let searchInput = searchBar.value
+  let searchTerms = searchInput.split(',')
+  searchTerms.forEach((term) => recipeRepo.addInputToSearch(term));
+  recipeRepo.filterByMultipleRecipeNames()
+  recipeRepo.filterByMultipleIngredients()
+  header.innerText = `Your search results`;
+  resultCardsContainer.replaceChildren();
+  recipeRepo.filteredAllRecipes.forEach((recipe) => {
+  let recipeCard = makeRecipeCard(recipe);
+  addRecipeCardToResultsContainer(recipeCard);
+})
 }
+searchBar.value = ``
+}
+
+
 
 function removeUserRecipe(recipe) {
   user.removeRecipeToCook(recipe);
@@ -173,6 +208,8 @@ function closeSpecificRecipe() {
 }
 
 function displayAllRecipesView() {
+  recipeRepo.clearData();
+  listKeywords();
   greeting.innerText = `Welcome, ${user.name}!`;
   header.innerText = `All Recipes!`;
   resultCardsContainer.replaceChildren();
@@ -205,6 +242,9 @@ function hide(domElement) {
 
 function show(domElement) {
   domElement.classList.remove("hidden");
+}
+function toggle(domElement) {
+  domElement.classList.toggle("hidden");
 }
 
 function capitalize(string) {
