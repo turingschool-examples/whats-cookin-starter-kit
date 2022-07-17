@@ -163,8 +163,8 @@ function displayRecipeInfo( e ){
             recipeClass = new Recipe( dish, dish.ingredients );
             recipeClass.getIngredientsWithNames( dish.ingredients, ingredientList );
             h4.innerText = dish.name;  
-            instructionText.innerText = dish.instructions.map( task => `${ task.number }: ${ task.instruction }` ).join( '  ' );
-            ingredientText.innerText = dish.ingredients.map( foodItem => ` ${ ( foodItem.quantity.amount ).toFixed( 2 ) } ${ foodItem.quantity.unit } ${ foodItem.name }` );
+            instructionText.innerText = dish.instructions.map( task => `${ task.number }: ${ task.instruction }` ).join( ' \n \n ' );
+            ingredientText.innerText = dish.ingredients.map( foodItem => ` ${ ( foodItem.quantity.amount ).toFixed( 2 ) } ${ foodItem.quantity.unit } ${ foodItem.name }` ).join( ' \n \n ');
             totalCost.innerText = `Total Cost: $${ parseFloat( recipeClass.getCostOfIngredients( dish.ingredients, ingredientList ) * .01 ).toFixed( 2 ) }`;
             return 
         };       
