@@ -29,19 +29,23 @@ h1 {
   margin-bottom: 0px;
 }
 
-.home-page-view, .recipe-details-page, .view-all-page {
+.home-page-view, .recipe-details-page, .view-all-page, .favorite-recipes {
   display: flex;
   width: 95%;
-  height: 70%;
-  align-items: flex-start;
+  height: 90%;
+  justify-content: center;
 }
 
 .search-sidebar {
   background-color: #443850;
   margin-right: 5px;
   margin-left: 5px;
-  height: 800px;
+  height: 100%;
   width: 200px;
+}
+
+#searchbar {
+  width: 90%;
 }
 
 .button {
@@ -74,7 +78,7 @@ h1 {
 
 .add-to-favorites-icon, .unfavorite, .trash-icon {
   width: 40px;
-  margin-bottom: -266px;
+  margin-bottom: 0px;
 }
 
 #recipeDetail {
@@ -114,24 +118,20 @@ h3, #form {
 
 .view-all-recipe-image {
   width: 20vw;
-  margin-bottom: -260px;
-}
-
-.view-all-page, .favorite-recipes {
-  display: flex;
+  margin-bottom: 0px;
 }
 
 .all-recipes, .favorite-recipe-icons, .trash-icon {
   display: grid;
   grid-template-columns: auto auto auto;
-  gap: 7px 7px;
+  gap: 4px 4px;
 }
 
 p {
   font-size: 20px;
   font-weight: 300;
   text-align: center;
-  margin-top: 489px
+  margin-top: 0px
 }
 
 .ingredient-list-names,
