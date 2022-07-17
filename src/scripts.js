@@ -41,13 +41,19 @@ window.addEventListener( 'load', loadData );
 recipeContainer.addEventListener( 'click' , displayRecipeInfo );
 navViewProfileButton.addEventListener( 'click' , showCookingProfile);
 
+//POSSIBLE TO COMBINE EVENT LISTENER METHODS WITH A CONDITIONAL RATHER THAN REWRITING???
+
 recipeCardGridContainer.addEventListener('click', ( e ) => {
     if (e.target.classList == 'save-button') {
       return  saveRecipeToRecipesToCook( e );
-    } else { (e.target.classList == 'remove-button') 
-}
-return deleteRecipeFromRecipesToCook( e );
-})
+    };
+}) 
+
+recipeCardGridContainer.addEventListener('click', ( e ) => {
+if(e.target.classList == 'remove-button') {
+ return deleteRecipeFromRecipesToCook( e );
+    };
+});
 
 recipeCardGridContainer.addEventListener('click', (e) => {
     if (e.target.classList == 'lets-make-it-button') {
@@ -106,13 +112,12 @@ function searchRecipe() {
   function displayFilteredRecipesByTagOnPage( ) {
     const result = matchingTagConditions.map( recipe => {
         console.log( 'TAG RECIPE: ', recipe)
-        return `<section class='recipe-card' id="recipeCard">
+        return `<section class='recipe-card' id=${recipe.id}>
         <img src="${ recipe.image }" class="recipe-image" alt="">
         <h3>${ recipe.name }</h3>
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
         <button class="save-button" id= ${ recipe.id }>Save to cooking profile!</button>
-        <button id= ${recipe.id} class="remove-button hidden">Save to cooking profile!</button>
         </div>
         </section>`
     } );
@@ -124,17 +129,16 @@ function searchRecipe() {
 function displayFilteredRecipesByNameOnPage( ) {
     const result = matchingNameConditions.map( recipe => {
         console.log( 'NAME RECIPE: ', recipe)
-        return `<section class='recipe-card' id="recipeCard">
+        return `<section class='recipe-card' id=${recipe.id}>
         <img src="${ recipe.image }" class="recipe-image" alt="">
         <h3>${ recipe.name }</h3>
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
         <button id= ${recipe.id} class="save-button">Save to cooking profile!</button>
-        <button id= ${recipe.id} class="remove-button hidden">Save to cooking profile!</button>
         </div>
         </section>`
     } );
-    console.log('NEW MATCHING NAMES ARRAY: ', matchingNameConditions )
+    // console.log('NEW MATCHING NAMES ARRAY: ', matchingNameConditions )
     matchingNameConditions = recipeCard;
     return recipeCard.innerHTML = result;
 }
@@ -145,13 +149,12 @@ function displayAllRecipesOnPage( e ) {
     let recipeCards = recipeCard;
     newRecipe = new RecipeRepository( recipeList  )
     const result = newRecipe.recipes.map( recipe => {
-        return `<section class='recipe-card' id="recipeCard">
+        return `<section class='recipe-card' id=${recipe.id}>
         <img src="${ recipe.image }" class="recipe-image" alt="">
         <h3>${ recipe.name }</h3>
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
         <button id= ${recipe.id} class="save-button">Save to cooking profile!</button>
-        <button id= ${recipe.id} class="remove-button hidden">Save to cooking profile!</button>
         </div>
         </section>`
     } ).join('');
@@ -170,7 +173,7 @@ function displayRecipeInfo( e ){
         if( e.target.id == dish.id ){
             recipeClass = new Recipe( dish, dish.ingredients );
             recipeClass.getIngredientsWithNames(dish.ingredients, ingredientList);
-            console.log(dish);
+            // console.log('DEEEZ:', dish);
             h4.innerText = dish.name;  
             instructionText.innerText = dish.instructions.map( task => `${ task.number }: ${ task.instruction }` ).join( '  ' );
             ingredientText.innerText = dish.ingredients.map( foodItem => ` ${ ( foodItem.quantity.amount ).toFixed( 2 ) } ${ foodItem.quantity.unit } ${ foodItem.name }` );
@@ -189,7 +192,7 @@ function saveRecipeToRecipesToCook ( e ) {
         if((e.target.id == favoriteDish.id) && (!currentUser.recipesToCook.includes(favoriteDish))) {
            currentUser.addRecipeToRecipesToCook(favoriteDish)
         }
-        console.log('SAVED RECIPES: ', currentUser.recipesToCook)
+        // console.log('SAVED RECIPES: ', currentUser.recipesToCook)
         return currentUser.recipesToCook;
     })
 }
@@ -204,36 +207,35 @@ function hide(element) {
     element.classList.add('hidden');
 }
 
-// * Need to have a 'REMOVE FROM COOKING PROFILE BUTTON' on the recipe cards in the 
-// saved page
 function showCookingProfile( e ) {
     if(e.target.classList == 'view-profile-button') {
         const result = currentUser.recipesToCook.map( recipe => {
             // console.log('RECIPE: ', recipe)
-            return `<section class='recipe-card' id="recipeCard">
-            <img src="${ recipe.image }" class="recipe-image" alt="">
+            return `<section class='recipe-card' id=${recipe.id}>
+            <img src=${ recipe.image } class="recipe-image" alt="">
             <h3>${ recipe.name }</h3>
-            <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
+            <button class="lets-make-it-button" id=${ recipe.id }>Let's Make It!</button>
             <div>
-            <button id= ${recipe.id} class="save-button hidden">Save to cooking profile!</button>
             <button id= ${recipe.id} class="remove-button">Remove from cooking profile!</button>
             </div>
             </section>`
         } );
-        // console.log('NEW MATCHING NAMES ARRAY: ', currentUser.recipesToCook )
-        currentUser.recipesToCook = recipeCard;
+        console.log('current recipes to cook 223: ', currentUser.recipesToCook )
+        console.log('target id 224: ', e.target.id)
         return recipeCard.innerHTML = result;
     }
     console.log('success')
 }
 
 function deleteRecipeFromRecipesToCook( e ) { 
-    return newRecipe.recipes.filter((favoriteDish) => {
-    if((e.target.id == favoriteDish.id) && (currentUser.recipeCard.includes(favoriteDish))) {
-       currentUser.removeRecipeFromRecipesToCook(favoriteDish)
-    }
-    //ERROR READING .includes in this function -- to fix
-    // console.log('REMOVED RECIPES: ', currentUser.recipesToCook)
-    return showCookingProfile( e );
-    })
+    if(e.target.classList.contains("remove-button")) {
+        newRecipe.recipes.find(removeDish => {
+            console.log('current recipes to cook 235: ', currentUser.recipesToCook)
+            e.target.closest('section').remove();
+            return currentUser.removeRecipeFromRecipesToCook(removeDish.id)
+        })  
+    };
+    console.log('current recipes to cook 240: ', currentUser.recipesToCook)
+    return currentUser.recipesToCook
 }
+//^^^^need to remove commas redering on page in saved recipes

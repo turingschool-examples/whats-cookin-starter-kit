@@ -11,43 +11,10 @@ class User {
         this.recipesToCook.push( recipe )
     }
 
-    // addRecipeToFavorites( recipe ) {
-    //     this.favoriteRecipes.push( recipe )
-    // }
-
     removeRecipeFromRecipesToCook( recipe ) {
-        this.recipesToCook.forEach((favoriteRecipe) => {
-            if (favoriteRecipe.id === recipe.id) {
-              this.recipesToCook.splice(this.recipesToCook.indexOf(recipe), 1) 
-            }
-            return this.recipesToCook
-        })
-    }
+            return  this.recipesToCook.splice(this.recipesToCook.indexOf(recipe.id), 1) 
+        }
 
-    // removeRecipeFromFavorites(recipe) {
-    //     this.favoriteRecipes.forEach((favoriteRecipe) => {
-    //         if (favoriteRecipe.id === recipe.id) {
-    //           this.favoriteRecipes.splice(this.favoriteRecipes.indexOf(recipe), 1) 
-    //         }
-    //         return this.favoriteRecipes
-    //     })
-    // };
-    // filterFavoriteRecipesByTag( userInput ){
-    //     let tagMatches = this.favoriteRecipes.filter((recipe) => {
-    //         return recipe.tags.includes(userInput.toLowerCase())
-    //     });
-    //       return tagMatches[0].tags;
-    //   };
-      
-    // filterFavoriteRecipesByName(userSearch){
-
-    //     let nameMatches = this.favoriteRecipes.filter((recipe) => {
-    //         return recipe.name.includes(userSearch)
-    //     })
-    //       return nameMatches[0].name
-    //   };
-
-      // Need to add tests if we intend on using this.
     filterRecipesToCookByTag( userInput ){
     let tagMatches = this.recipesToCook.filter((recipe) => {
         return recipe.tags.includes(userInput.toLowerCase())
