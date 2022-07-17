@@ -16,7 +16,7 @@ class User {
     // }
 
     removeRecipeFromRecipesToCook( recipe ) {
-        this.recipesToCook.forEach((favoriteRecipe) => {    
+        this.recipesToCook.forEach((favoriteRecipe) => {
             if (favoriteRecipe.id === recipe.id) {
               this.recipesToCook.splice(this.recipesToCook.indexOf(recipe), 1) 
             }

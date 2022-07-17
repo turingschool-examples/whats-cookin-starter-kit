@@ -42,8 +42,10 @@ navViewProfileButton.addEventListener( 'click' , showCookingProfile);
 
 recipeCardGridContainer.addEventListener('click', ( e ) => {
     if (e.target.classList == 'save-button') {
-        saveRecipeToRecipesToCook( e );
-    }
+      return  saveRecipeToRecipesToCook( e );
+    } else { (e.target.classList == 'remove-button') 
+}
+return deleteRecipeFromRecipesToCook( e );
 })
 
 recipeCardGridContainer.addEventListener('click', (e) => {
@@ -109,6 +111,7 @@ function searchRecipe() {
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
         <button class="save-button" id= ${ recipe.id }>Save to cooking profile!</button>
+        <button id= ${recipe.id} class="remove-button hidden">Save to cooking profile!</button>
         </div>
         </section>`
     } );
@@ -126,6 +129,7 @@ function displayFilteredRecipesByNameOnPage( ) {
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
         <button id= ${recipe.id} class="save-button">Save to cooking profile!</button>
+        <button id= ${recipe.id} class="remove-button hidden">Save to cooking profile!</button>
         </div>
         </section>`
     } );
@@ -146,6 +150,7 @@ function displayAllRecipesOnPage( e ) {
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
         <button id= ${recipe.id} class="save-button">Save to cooking profile!</button>
+        <button id= ${recipe.id} class="remove-button hidden">Save to cooking profile!</button>
         </div>
         </section>`
     } ).join('');
@@ -180,9 +185,8 @@ function displayRecipeInfo( e ){
 //NEED TO ADD A FOCUS TO SHOW WHEN THE RECIPE HAS BEEN SAVED
 function saveRecipeToRecipesToCook ( e ) {
     return newRecipe.recipes.filter((favoriteDish) => {
-        if((e.target.id == favoriteDish.id) && (!currentUser.recipesToCook.includes(favoriteDish.id && favoriteDish.name))) {
-           //look at the .includes comparision, now that bang operator was added -- prevent duplicates
-            currentUser.recipesToCook.push(favoriteDish)
+        if((e.target.id == favoriteDish.id) && (!currentUser.recipesToCook.includes(favoriteDish))) {
+           currentUser.addRecipeToRecipesToCook(favoriteDish)
         }
         console.log('SAVED RECIPES: ', currentUser.recipesToCook)
         return currentUser.recipesToCook;
@@ -195,81 +199,40 @@ function saveRecipeToRecipesToCook ( e ) {
 // Display the saved recipe cards on new page after
 // * Need to change 'View My Cooking Profile' button to 'Return to Main Page" when the 
 // saved page is displayed
+function hide(element) {
+    element.classList.add('hidden');
+}
 
 // * Need to have a 'REMOVE FROM COOKING PROFILE BUTTON' on the recipe cards in the 
 // saved page
 function showCookingProfile( e ) {
     if(e.target.classList == 'view-profile-button') {
         const result = currentUser.recipesToCook.map( recipe => {
-            console.log('RECIPE: ', recipe)
+            // console.log('RECIPE: ', recipe)
             return `<section class='recipe-card' id="recipeCard">
             <img src="${ recipe.image }" class="recipe-image" alt="">
             <h3>${ recipe.name }</h3>
             <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
             <div>
             <button id= ${recipe.id} class="remove-button">Remove from cooking profile!</button>
+            <button id= ${recipe.id} class="save-button hidden">Save to cooking profile!</button>
             </div>
             </section>`
-            //NEED TO ADD THE REMOVE BUTTON 
-            //COPY THE ABOVE SAVE FUNCTION AND SPLICE RATHER THAN PUSH 
         } );
-        console.log('NEW MATCHING NAMES ARRAY: ', currentUser.recipesToCook )
+        // console.log('NEW MATCHING NAMES ARRAY: ', currentUser.recipesToCook )
         currentUser.recipesToCook = recipeCard;
         return recipeCard.innerHTML = result;
     }
-        console.log('success')
+    console.log('success')
+}
+
+function deleteRecipeFromRecipesToCook( e ) { 
+    return newRecipe.recipes.filter((favoriteDish) => {
+    if((e.target.id == favoriteDish.id) && (currentUser.recipeCard.includes(favoriteDish))) {
+       currentUser.removeRecipeFromRecipesToCook(favoriteDish)
     }
-    //gatekeeper conditional to check if `save to cooking profile was clicked`
-    //some form of alert or notification confirming the recipe was saved.
-    //function takes user to a new page.
-    //reference filterRecipeByName( ) to 
-
-
-
-// function showStarredIdeas() {
-//     console.log(ideaCards);
-//     if (showStarred.textContent.includes('Show Starred Ideas')) {
-//       showStarred.textContent = 'Show All Ideas';
-//       for (var i = 0; i < savedIdeas.length; i++) {
-//         var idsMatch = savedIdeas[i].id == ideaCards[i].id
-//         if (idsMatch && !savedIdeas[i].star) {
-//           ideaCards[i].style.display = "none";
-//         }
-//       }
-//     } else if (showStarred.textContent.includes('Show All Ideas')) {
-//       showStarred.textContent = 'Show Starred Ideas';
-//       for (var i = 0; i < ideaCards.length; i++) {
-//         ideaCards[i].style.display = "";
-//       }
-//     }
-//   }
-
-
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-function hide(element) {
-    element.classList.add('hidden');
-}
-
-function addToFaves (e) {
-    const favorites = []
-    let recipeCards = recipeCard; //<<<< need this to access the grid conatiner
-    //without this, null error persists
-    //will need to access both this and an event listener for the faves botton?????
-    //how to pull these id's on click on this button to push into array
-    recipeCards.recipes.map((favoriteDish) => {
-        if(e.target.id == favoriteDish.id) {
-            favorites.push(favoriteDish)
-        }
+    //ERROR READING .includes in this function
+    // console.log('REMOVED RECIPES: ', currentUser.recipesToCook)
+    return showCookingProfile( e );
     })
-    console.log(favorites)
-    return favorites
 }
-
-
-// Need change 'View My Cooking Profile' button to 'Return to Main Page" when the 
-// saved page is displayed
-
-// Need to have a 'REMOVE FROM COOKING PROFILE BUTTON' on the recipe cards in the 
-// saved page
