@@ -179,6 +179,24 @@ button:hover {
   height: 100%;
   width: 50%;
   border: 2px solid black;
+  text-align: center;
+}
+
+.cooking-instructions {
+  height: 92%;
+}
+
+.save-recipe-button-container {
+  height: 8%;
+  /* border: 2px solid black; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.save-recipe-button {
+  margin-top: 10px;
 }
 
 .recipe-name {
@@ -240,9 +258,6 @@ button:hover {
   border-color: #427861;
   box-shadow: 1px 2px #427861;
 }
-
-
-
 .saved-recipes-view {
   display: flex;
   flex-direction: row;
