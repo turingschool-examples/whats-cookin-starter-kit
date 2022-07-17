@@ -14,10 +14,12 @@ const userData = require('./data/users');
 
 const homePage = document.querySelector('.main-page-container');
 const recipePage = document.querySelector('.recipe-container');
+const favoritesPage = document.querySelector('.main-favorite-container');
 const searchContainer = document.querySelector('.search-container');
 const homeButton = document.querySelector('.home-img');
-const favoriteButton = document.querySelector('.fav-img');
+const favoritePageButton = document.querySelector('.fav-img');
 const searchButton = document.querySelector('.search-button');
+const favoriteSearchButton = document.querySelector('.favorite-search-button')
 const recipeSidebarList = document.querySelector('.list-recipes');
 const icon1Img = document.querySelector('.icon-1-img');
 const icon2Img = document.querySelector('.icon-2-img');
@@ -32,9 +34,13 @@ const priceListBox = document.querySelector('.price-list-container');
 const totalPriceBox = document.querySelector('.total-price-box');
 const recipeDetailsBox = document.querySelector('.recipe-info-box');
 const searchValue = document.querySelector('.search-input');
+const favoriteSearchValue = document.querySelector('.search-favorite-input');
 const tagRadioBtn = document.querySelector('.tag-search');
 const nameRadioBtn = document.querySelector('.name-search');
+const nameRadioBtnFavorite = document.querySelector('.name-search-favorite');
+const tagRadioBtnFavorite = document.querySelector('.tag-search-favorite');
 const ingredientBox = document.querySelector('.ingredients-listed');
+const addFavoriteButton = document.querySelector('.add-favorite-button');
 
 // ***** Event Listeners ***** //
 
@@ -45,6 +51,9 @@ window.addEventListener('load', displayAllNames);
 recipeSidebarList.addEventListener('click', viewRecipe);
 homeButton.addEventListener('click', showHomePage);
 searchButton.addEventListener('click', filterRecipe);
+favoriteSearchButton.addEventListener('click', filterFavoriteRecipes)
+favoritePageButton.addEventListener('click', showFavoritesPage);
+addFavoriteButton.addEventListener('click', addToFavorites)
 
 // ***** Global Variables ***** //
 
@@ -103,9 +112,16 @@ function showHomePage() {
   show(searchContainer);
 }
 
+function showFavoritesPage() {
+  hide(homePage);
+  hide(searchContainer);
+  hide(recipePage);
+  show(favoritesPage);
+}
+
 function viewRecipe(event) {
   selectedRecipeName = event.target.innerText;
-  selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name);
+  selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name)[0];
   hide(homePage);
   hide(searchContainer);
   show(recipePage);
@@ -119,30 +135,30 @@ function viewRecipe(event) {
 }
 
 function displaySelectedRecipeName() {
-  recipeNameBox.innerText = selectedRecipe[0].name;
+  recipeNameBox.innerText = selectedRecipe.name;
 }
 
 function displaySelectedRecipeImg() {
-  selectedRecipeImg.src = selectedRecipe[0].image;
+  selectedRecipeImg.src = selectedRecipe.image;
 }
 
 function displayRecipeInstructions() {
   recipeDetailsBox.innerHTML = '';
-  selectedRecipe[0].returnRecipeInstructions().forEach(instruction => {
+  selectedRecipe.returnRecipeInstructions().forEach(instruction => {
   recipeDetailsBox.innerHTML += `<p class='recipe-instructions'> ${instruction} </p></br>`;
   });
 }
 
 function displayIngredientNames() {
   ingredientBox.innerHTML = '';
-  selectedRecipe[0].getIngredientNames().forEach(ingredient => {
+  selectedRecipe.getIngredientNames().forEach(ingredient => {
   ingredientBox.innerHTML += `<p class='recipe-ingredients'> ${ingredient} </p></br>`;
   });
 }
 
 function displayIngredientCosts() {
   priceListBox.innerHTML = '';
-  selectedRecipe[0].getCostOfIngredientsInDollars().forEach(cost => {
+  selectedRecipe.getCostOfIngredientsInDollars().forEach(cost => {
   priceListBox.innerHTML += `<p class='ingredient-prices'> ${cost} </p></br>`;
   });
 }
@@ -155,7 +171,7 @@ function displayIngredientCosts() {
 // }
 
 function displayTotalCostOfAllIngredients() {
-  totalPriceBox.innerText = selectedRecipe[0].getCostOfRecipe();
+  totalPriceBox.innerText = selectedRecipe.getCostOfRecipe();
 }
 
 function filterRecipe(event) {
@@ -181,4 +197,29 @@ function filterRecipeByName(name) {
   // })
   let filteredRecipes = recipeRepository.filterByName(name);
   displayRecipeNames(filteredRecipes);
+}
+
+function addToFavorites() {
+  user.addRecipesToCook(selectedRecipe)
+  console.log(user.recipesToCook)
+}
+
+function filterFavoriteRecipes(event) {
+  event.preventDefault();
+  if (tagRadioBtnFavorite.checked) {
+    filterFavoriteRecipesByTag(favoriteSearchValue.value);
+  } else if (nameRadioBtnFavorite.checked) {
+    filterFavoriteRecipesByName(favoriteSearchValue.value);
+  } 
+}
+
+function filterFavoriteRecipesByTag(tag) {
+  let input = tag.toLowerCase();
+  let filteredRecipes = user.filterSavedRecipesByTag(input);
+  // display favorite recipe images
+}
+
+function filterFavoriteRecipesByName(name) {
+  let filteredRecipes = user.filterSavedRecipesByName(name);
+  // display favorite recipe images
 }
