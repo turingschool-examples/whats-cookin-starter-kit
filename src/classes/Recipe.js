@@ -19,7 +19,6 @@ export default class Recipe {
                 estimatedCostInCents: currentIngredient.estimatedCostInCents,
                 amount: ingredient.quantity.amount,
                 unit: ingredient.quantity.unit,
-                toBeCooked: ingredient.toBeCooked
             });
         });
     }
@@ -27,12 +26,17 @@ export default class Recipe {
         return this.requiredIngredients.map(ing => ing.name)
     }
     getCostToDollar() {
-        let totalCostInCents = this.requiredIngredients.reduce((total, ingredientDetail) => {
-            return total += ingredientDetail.estimatedCostInCents
-        }, 0);
-        let totalCostInDollars = parseFloat((totalCostInCents / 100).toFixed(2));
-        return totalCostInDollars;
-    }
+        return this.requiredIngredients.reduce((cost, ingredient) => {
+            let numOfUnits;
+            this.requiredIngredients.forEach((data) => {
+                if (data.id === ingredient.id) {
+                    numOfUnits = data.amount;
+                };
+            });
+
+            return cost += (ingredient.estimatedCostInCents * numOfUnits);
+        }, 0) / 100;
+    };
     //need to refactor (* 3 or however many ingredients to get actual total cost)
 
     getInstructions() {

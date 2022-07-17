@@ -1,4 +1,6 @@
 import { ingredientsData } from '../src/data/ingredients';
+import { expect } from 'chai';
+import Ingredient from '../src/classes/Ingredient'
 
 describe('Ingredient Test', () => {
 
