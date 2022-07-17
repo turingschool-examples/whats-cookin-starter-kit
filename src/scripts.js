@@ -178,6 +178,7 @@ function showViewAllPage() {
     homeButton.classList.remove('hidden')
     viewAllButton.classList.add('hidden')
     favoriteRecipesPage.classList.add('hidden')
+    favoritesButton.classList.remove('hidden')
     createTags(tagContainer)
     populateAllRecipes()
 }
@@ -196,6 +197,8 @@ function showFavoritesPage() {
     viewAllPage.classList.add('hidden')
     recipeDetailsPage.classList.add('hidden')
     favoriteRecipesPage.classList.remove('hidden')
+    viewAllButton.classList.remove('hidden')
+    favoritesButton.classList.add('hidden')
     createTags(tagContainer2)
     favoritePageContainer.innerHTML = ''
     newUser.recipesToCook.forEach(recipe => {
@@ -210,16 +213,35 @@ function showFavoritesPage() {
 }
 
 function populateAllRecipes() {
+    viewAllPage.childNodes[3].innerHTML = ""
     recipeData.forEach(recipe => {
-    viewAllPage.childNodes[3].innerHTML += `<section class="recipe-icon">
-    <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image"><img class="add-to-favorites-icon" src='./images/heart.png'>
-    <p>
-      ${recipe.name}
-    </p>
-  </section>`
-})
+      if (!newUser.recipesToCook.includes(recipe)) {
+        heartHandler(recipe)
+      } else {
+        filledHeartHandler(recipe)
+      }
+    })
 }
 
+function heartHandler(recipe) {
+  viewAllPage.childNodes[3].innerHTML += `<section class="recipe-icon">
+  <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
+  <img class="add-to-favorites-icon" src='./images/heart.png'>
+  <p>
+    ${recipe.name}
+  </p>
+  </section>`
+}
+
+function filledHeartHandler(recipe) {
+  viewAllPage.childNodes[3].innerHTML += `<section class="recipe-icon">
+  <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
+  <img class="unfavorite" src='./images/filled-heart.png'>
+  <p>
+    ${recipe.name}
+  </p>
+  </section>`
+}
 
 
 function showRecipeDetailsPage(event) {
