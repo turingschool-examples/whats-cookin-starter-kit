@@ -1,10 +1,11 @@
 import './styles.css';
-import apiCalls from './apiCalls';
+import {apiCalls} from './apiCalls';
 import User from './classes/User'
 import RecipeRepository from './classes/RecipeRepository';
 import {recipeData} from './data/recipes';
 import {ingredientsData} from './data/ingredients';
 import {usersData} from './data/users';
+const {fetchData} = apiCalls;
 
 const recipeDisplay = document.querySelector('#recipeDisplay');
 const recipeHeading = document.querySelector('#recipeHeading');
@@ -19,19 +20,28 @@ const recipeTagInput = document.querySelector('#recipeTagInput');
 const filterForm = document.querySelector('#filterForm');
 const searchForm = document.querySelector('#searchForm');
 
-const ingredientsInfo = {ingredientsData};
-const recipeInfo = {recipeData};
-const userInfo = {usersData};
-const user = createUser();
-const recipeRepository = new RecipeRepository(recipeInfo.recipeData);
-recipeRepository.listRecipes();
+let user;
+let ingredientsInfo;
+let userInfo;
+let recipeRepository;
+fetchData().then(responses => {
+    ingredientsInfo = responses[1]
+    userInfo = responses[2]
+    recipeRepository = new RecipeRepository(responses[0].recipeData)
 
-window.addEventListener('load', displayRecipeList);
-recipeDisplay.addEventListener('click', recipeDisplayHandeler);
-homeButton.addEventListener('click', goHome);
-filterForm.addEventListener('submit', filterRecipeTag);
-searchForm.addEventListener('submit', searchRecipeName);
-favoriteButton.addEventListener('click', showFavorites);
+    recipeRepository.listRecipes();
+    user = createUser();
+
+    recipeDisplay.addEventListener('click', recipeDisplayHandler);
+    homeButton.addEventListener('click', goHome);
+    filterForm.addEventListener('submit', filterRecipeTag);
+    searchForm.addEventListener('submit', searchRecipeName);
+    favoriteButton.addEventListener('click', showFavorites);
+    
+    displayRecipeList();
+
+});
+
 
 function createUser() {
     const randomNumber = Math.floor(Math.random() * userInfo.usersData.length);
@@ -39,7 +49,7 @@ function createUser() {
     return new User(user);
 }
 
-function recipeDisplayHandeler(event) {
+function recipeDisplayHandler(event) {
     if (event.target.getAttribute("data-recipeId")) {
         showRecipeInstructions(event);
     } else if (event.target.getAttribute("data-favoriteRecipe")) {
