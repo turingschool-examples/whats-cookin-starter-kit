@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <title> WHATS COOKIN </title>
 </head>
@@ -10,29 +10,23 @@
 <body>
   <div class="top-bar">
     <h1 class='project-title'>What's Cookin?</h1>
-    <button class='take-home hidden'>Back to Home</button>
     <div class="user-card card">
       <div class="card-box" id="userCardProperties">
         <h3 id="userName"></h3>
       </div>
     </div>
-    <button id="recipe-button"> RECIPES </button>
+    <button id="home-button"> HOME </button>
     <button id="favorite-button"> FAVORITES </button>
     <button id="cookbook-button"> COOKBOOK </button>
     <div class="search-container">
       <form action="/action_page.php">
-        <input type="text" placeholder="Search..." name="search">
-        <button type="submit">Search!</button>
+        <input class="search-box" type="text" placeholder="Search..." name="search">
+        <button class="search-submit" type="submit">Search!</button>
       </form>
     </div>
   </div>
   <div class="main">
-    <div class="left-box">
-      <form class="left-buttons">
-        <h1></h1>
-      </form>
-    </div>
-    <div class="right-box">
+    <div class="main-box">
       <div class="recipe-card-wrapper">
         <div class="recipe-card"></div>
       </div>

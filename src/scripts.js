@@ -1,15 +1,14 @@
 import './styles.css';
 import apiCalls from './apiCalls';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import "./images/heart.svg"
 import RecipeRepository from '../src/classes/RecipeRepository';
 import Users from '../src/classes/Users';
 import { recipeData } from './data/recipes';
-// import { raw } from 'file-loader';
 import Recipe from '../src/classes/Recipe'
 import { ingredientsData } from './data/ingredients';
 import { usersData } from './data/users';
+// import { raw } from 'file-loader';
 
 
 const getRandomUserId = () => {
@@ -18,7 +17,8 @@ const getRandomUserId = () => {
 const getRandomRecipe = () => {
     return Math.floor(Math.random() * 49) + 1;
 }
-//global variables!
+
+// Global Variables
 const users = []
 const userId = getRandomUserId();
 const recipeID = getRandomRecipe();
@@ -30,7 +30,6 @@ const allRecipesButton = document.querySelector('#recipe-button')
 const favoriteButton = document.querySelector('#favorite-button');
 const cookbookButton = document.querySelector('#cookbook-button')
 const searchBar = document.querySelector('.search-container')
-const radioSearchButton = document.querySelector('.radio-search-button')
 // const viewRecipeButton = document.querySelector('.view-recipe-button')
 const addToCookbookButton = document.querySelector('.add-to-cookbook-button')
 const cardFavoriteButton = document.querySelector('.favorite-button')
@@ -38,8 +37,8 @@ const unFavoriteButton = document.querySelector('.un-favorite-button')
 const userGreeting = document.querySelector("#userName");
 const recipeLocation = document.querySelector('#recipeName')
 const recipeImage = document.querySelector('.card-image')
-const rightBox = document.querySelector('.right-box')
-const goHomeButton = document.querySelector('.take-home')
+const mainBox = document.querySelector('.main-box')
+const goHomeButton = document.querySelector('.home-button')
 const recipeCard = document.querySelector('.recipe-card')
 const ingredientCard = document.querySelector('.ingredient-card')
 let viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
@@ -49,6 +48,8 @@ const recipeTagInput = document.querySelector('#recipe-tag-input')
 const recipeDisplay = document.querySelector('#recipeDisplay');
 const recipeHeading = document.querySelector('#recipeHeading');
 const radioValue = document.querySelectorAll('.radio-value');
+const searchBox = document.querySelector('.search-box');
+const searchButton = document.querySelector('.search-submit');
 
 const addToCookbookButtonEventHandler = () => {
     const addToCookbook = document.querySelector('#add-to-cookbook');
@@ -79,6 +80,11 @@ window.addEventListener('load', () => {
 // Global Variables
 let recipeRepo = new RecipeRepository(recipeData)
 let newRecipe = new Recipe(recipeData[recipeID], ingredientsData)
+// radioSearchButton.addEventListener('click', filterRecipeByTag)
+searchButton.addEventListener('click', searchRecipe)
+
+
+
 
 function showAllRecipes() {
     const recipes = recipeRepo.createAllRecipes(ingredientsData)
@@ -94,7 +100,6 @@ function showAllRecipes() {
     hide(favoriteButton);
     hide(allRecipesButton);
     show(goHomeButton)
-    console.log('IT WOEKS')
 }
 
 function showAllRecipeDetails(id) {
@@ -131,6 +136,25 @@ INSTRUCTIONS
 }
 
 
+function searchRecipe(event) {
+    event.preventDefault();
+    if (!searchBox.value) {
+        showAllRecipes();
+    }
+    const tagSearched = recipeRepo.filterByTag(searchBox.value);
+    const nameSearched = recipeRepo.filterByName(searchBox.value);
+    if (tagSearched.length > 0) {
+        console.log('tagSearched: ', tagSearched)
+        recipeRepo.filteredTags = tagSearched
+        displayRecipeByTag()
+    } else if (nameSearched.length > 0) {
+        console.log('nameSearched: ', nameSearched)
+        recipeRepo.filteredNames = nameSearched
+        return displayRecipeByName()
+    } else {
+        return showAllRecipes();
+    }
+}
 
 function filterRecipeByTag(event) {
     event.preventDefault();
@@ -149,6 +173,21 @@ function filterRecipeByTag(event) {
       `)
     });
 }
+function displayRecipeByTag() {
+    const result = recipeRepo.filteredTags.map(recipe => {
+        console.log('TAG RECIPE: ', recipe)
+        return `<section class='recipe-card' id="recipeCard">
+      <img src="${recipe.image}" class="recipe-image" alt="">
+      <h3>${recipe.name}</h3>
+      <button class="lets-make-it-button" id="${recipe.id}">Let's Make It!</button>
+      <div>
+      <button class="save-button" id= ${recipe.id}>Save to cooking profile!</button>
+      </div>
+      </section>`
+    });
+    recipeRepo.filteredTags = recipeCard;
+    return recipeCard.innerHTML = result;
+}
 function mySavedRecipes() {
     recipeCard.innerHTML += (`
     <div class="recipe-card-wrapper">
@@ -160,9 +199,26 @@ function mySavedRecipes() {
     show(cookbookButton)
 }
 
-// get data from radio buttons
-// filtering by tag
-// display based on filter
+function displayRecipeByName() {
+    const result = recipeRepo.filteredTags.map(recipe => {
+        console.log('TAG RECIPE: ', recipe)
+        return `<section class='recipe-card' id="recipeCard">
+      <img src="${recipe.image}" class="recipe-image" alt="">
+      <h3>${recipe.name}</h3>
+      <button class="lets-make-it-button" id="${recipe.id}">Let's Make It!</button>
+      <div>
+      <button class="save-button" id= ${recipe.id}>Save to cooking profile!</button>
+      </div>
+      </section>`
+    });
+    recipeRepo.filteredNames = recipeCard;
+    return recipeCard.innerHTML = result;
+}
+
+
+
+
+
 
 const userBuildAttributes = (user) => {
     userGreeting.innerHTML = `Welcome ${user.name.split(" ")[0]}!`

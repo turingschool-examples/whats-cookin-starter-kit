@@ -5,6 +5,8 @@ class RecipeRepository {
   constructor(rawRecipes) {
     this.rawRecipes = rawRecipes
     this.allRecipes;
+    this.filteredTags = [];
+    this.filteredNames = [];
   }
   createAllRecipes(ingredientsData) {
     const grabRecipe = this.allRecipes = this.rawRecipes.map(recipe => new Recipe(recipe, ingredientsData))
@@ -12,10 +14,14 @@ class RecipeRepository {
   }
   filterByTag(tag) {
     const filterRecipes = this.allRecipes.filter(recipe => recipe.tags.includes(tag))
+    this.filteredTags.push(tag)
+    console.log("filteredTags:", this.filteredTags);
     return filterRecipes;
   }
   filterByName(name) {
     const filterNames = this.allRecipes.filter(recipe => recipe.name.includes(name))
+    this.filteredNames.push(name)
+    console.log("names: ", this.filteredNames);
     return filterNames
   }
 }
