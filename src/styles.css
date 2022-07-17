@@ -226,13 +226,13 @@ filter: drop-shadow(5px 10px 3px black);
   }
 
   .recipe-icons{
-  display: flex;
-  height: 125px;  
-  width: 125px;
-  filter: drop-shadow(5px 6px 3px grey);
+   display: flex;
+   height: 125px;  
+   width: 125px;
+   filter: drop-shadow(5px 6px 3px grey);
    border: 1px solid grey; 
    border-radius: 8px;
-  cursor: pointer;
+   cursor: pointer;
   }
 
   .recipe-icon-container div:hover{
@@ -433,6 +433,8 @@ filter: drop-shadow(5px 10px 3px black);
       }
 
     .main-favorite-container{
+      display: flex;
+      flex-direction: column;
       height: 100%;
       width: 100%; 
     }
@@ -451,18 +453,7 @@ filter: drop-shadow(5px 10px 3px black);
       opacity: 20%;
     } */
    
-      .logo-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 80%;
-        width: 100%;
-      }
-
-    
-
-      .favorite-recipe-icon-container,
+      .favorite-recipe-container,
       .user-info-pantry-container{
         display: flex;
         flex-direction: column;
@@ -471,25 +462,30 @@ filter: drop-shadow(5px 10px 3px black);
         width: 90%;
         padding-top: 2em;
       }
-   
-
-      .favorite-recipe-icons{
-        display: inline;
-        height: 500px;
-        width: 500px;
-        background: aqua;
-        border: 2px red;
+      
+      .favorite-recipe-container :nth-child(2){
+        flex-direction: row;
+        justify-content: center;
       }
 
-      
-      .fav-recipe-container-title-wrapper,
+      .favorite-recipe-title-wrapper,
       .user-pantry-title-wrapper{
         display: flex;
         height: 15%;
         width: 100%;
       }
 
-      .fav-rec-con-title,
+    .favorite-recipe-icon{
+      display: flex;
+      height: 125px;  
+      width: 125px;
+      filter: drop-shadow(5px 6px 3px grey);
+      border: 1px solid grey; 
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+      .favorite-recipe-title,
       .user-pantry-title{
         display: flex;
         justify-content: center;
@@ -517,9 +513,7 @@ filter: drop-shadow(5px 10px 3px black);
        font-family: 'Raleway', sans-serif;
        margin: 0;
        padding-top: .5em;
-     }
-
-         
+     }  
       
 
 /* ~~~~~~~~~~~~~~~~~~aux~~~~~~~~~~~~~~~~~~~~~~ */
