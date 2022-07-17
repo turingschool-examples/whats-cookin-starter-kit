@@ -36,7 +36,7 @@ const recipeViewPicBox = document.querySelector('.recipe-view-pic-box');
 const cookingInstructions = document.querySelector('.cooking-instructions');
 const allRecipesContainer = document.querySelector('.all-recipes-view');
 const ingredientCost = document.querySelector('.ingredient-cost');
-
+const filteredContainer = document.querySelector('.filtered-recipes-view')
 const filterByTag = document.getElementById('filterByTag');
 const filterByName = document.getElementById('filterByName')
 
@@ -53,15 +53,12 @@ console.log(user);
 
 window.addEventListener('load', welcomeUser);
 window.addEventListener('load', populateRecipesInHomeView);
-homeButton.addEventListener('click', repopulateHome);
+homeButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', populateAllRecipesView);
 savedRecipesButton.addEventListener('click', populateSavedRecipesView);
 homeViewContainer.addEventListener('click', populateChosenRecipe);
-
+filteredContainer.addEventListener('click', populateChosenRecipe);
 searchButton.addEventListener('click', searchButtonAction);
-searchInput.addEventListener('input', captureUserInput);
-allRecipesContainer.addEventListener('click', populateChosenRecipe);
-
 allRecipesContainer.addEventListener('click', populateChosenRecipe);
 saveRecipeButton.addEventListener('click', saveChosenRecipe);
 
@@ -160,7 +157,7 @@ function populateChosenRecipe(event) {
 function assignChosenRecipeProperties(recipe) {
   recipeName.innerText = recipe.name;
   ingredientDetails.innerText = `Ingredients required:
-  ${returnRecipeIngredientsAndCostPerServing(recipe)}`;
+  ${returnRecipeIngredientsAndQuantities(recipe)}`;
   ingredientCost.innerText = `Cost of Ingredients: $${recipe.returnIngredientCosts()}`;
   cookingInstructions.innerText= `Recipe Instructions:
   ${recipe.returnRecipeInstructions()}`;
@@ -170,7 +167,7 @@ function assignChosenRecipeProperties(recipe) {
 }
 
 
-function returnRecipeIngredientsAndCostPerServing(recipe) {
+function returnRecipeIngredientsAndQuantities(recipe) {
   const ingredientNames = recipe.returnIngredientNames();
   const quantitiesNeeded = recipe.ingredients.map(ingredient => ingredient.quantity.amount)
   const units = recipe.ingredients.map(ingredient => ingredient.quantity.unit);
@@ -182,25 +179,14 @@ function returnRecipeIngredientsAndCostPerServing(recipe) {
 }
 
 
-function repopulateHome() {
-  homeViewContainer.innerHTML = '';
-
-  displayHomeView();
-  populateRecipesInHomeView();
-}
-
-// function recreateHomePage() {
-  
-// }
-
 function searchButtonAction() {
 // Needs to fire either returnFilteredByNameResults or returnFilteredByTagResults
-// based on radio button selected and display the return in the 
+// based on radio button selected and display the return in the
 // carousel view
 // Filter will reurn array of differeing length
 // Use returned arrahy to populate the page
 // Logic to verify which radio button is selected
-  
+
 
   if (filterByName.checked) {
     showFilteredNames(searchInput.value);
@@ -212,16 +198,16 @@ function searchButtonAction() {
     console.log(searchInput.value);
   }
 
-  displayHomeView();
-  homeButton.classList.remove('hidden')
+  displayFilteredView();
+
 }
 
 function showFilteredNames(name) {
   const nameResults = recipeRepo.listRecipeNames(name);
-  homeViewContainer.innerHTML = '';
- 
+  filteredContainer.innerHTML = '';
+
   nameResults.forEach((recipe) => {
-   homeViewContainer.innerHTML += `<img class='recipe-pic-box'
+   filteredContainer.innerHTML += `<img class='recipe-pic-box'
      id='${recipe.id}' src='${recipe.image}'>
      <p class='recipe-label'>${recipe.name}</p>`;
    })
@@ -230,10 +216,10 @@ function showFilteredNames(name) {
 
 function showFilteredTags(tag) {
  const tagResults = recipeRepo.listRecipeTags(tag);
- homeViewContainer.innerHTML = '';
+ filteredContainer.innerHTML = '';
 
  tagResults.forEach((recipe) => {
-  homeViewContainer.innerHTML += `<img class='recipe-pic-box'
+  filteredContainer.innerHTML += `<img class='recipe-pic-box'
     id='${recipe.id}' src='${recipe.image}'>
     <p class='recipe-label'>${recipe.name}</p>`;
   })
@@ -258,7 +244,8 @@ function displayHomeView(){
   hide([homeButton,
         recipeViewContainer,
         savedRecipesContainer,
-        allRecipesContainer
+        allRecipesContainer,
+        filteredContainer
   ])
   show([allRecipesButton,
         savedRecipesButton,
@@ -270,7 +257,8 @@ function displaySavedRecipesView(){
   hide([savedRecipesButton,
         allRecipesContainer,
         recipeViewContainer,
-        homeViewContainer
+        homeViewContainer,
+        filteredContainer,
   ])
   show([homeButton,
         allRecipesButton,
@@ -282,7 +270,8 @@ function displayAllRecipesView() {
   hide([allRecipesButton,
         homeViewContainer,
         recipeViewContainer,
-        savedRecipesContainer
+        savedRecipesContainer,
+        filteredContainer,
       ])
   show([homeButton,
         savedRecipesButton,
@@ -294,11 +283,25 @@ function displayChosenRecipeView() {
   hide([savedRecipesContainer,
         homeViewContainer,
         allRecipesContainer,
+        filteredContainer
   ])
   show([homeButton,
       savedRecipesButton,
       allRecipesButton,
       recipeViewContainer
+  ])
+}
+
+function displayFilteredView() {
+  hide([savedRecipesContainer,
+        homeViewContainer,
+        allRecipesContainer,
+        recipeViewContainer,
+  ])
+  show([homeButton,
+      savedRecipesButton,
+      allRecipesButton,
+      filteredContainer
   ])
 }
 // console.log(recipePicBoxes);
