@@ -54,7 +54,8 @@ describe('Recipe Test', () => {
         ]);
     });
     it('should get cost of ingredients', () => {
-        expect(recipe.getCostToDollar(recipe.requiredIngredients)).to.deep.equal(59.21);
+        recipe.makeIngredientData();
+        expect(recipe.getCostToDollar(recipe.requiredIngredients)).to.deep.equal(355.52);
     });
     it('should be able to get recipe instructions', () => {
         expect(recipe.getInstructions()).to.deep.equal([

@@ -8,6 +8,7 @@ import { recipeData } from './data/recipes';
 import Recipe from '../src/classes/Recipe'
 import { ingredientsData } from './data/ingredients';
 import { usersData } from './data/users';
+import { fetchApiData } from './apiCalls';
 // import { raw } from 'file-loader';
 
 
@@ -19,11 +20,32 @@ const getRandomRecipe = () => {
 }
 
 // Global Variables
+const recipePromise = fetchApiData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
+const userPromise = fetchApiData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users');
+const ingredientPromise = fetchApiData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients');
+let userRepo;
 const users = []
 const userId = getRandomUserId();
 const recipeID = getRandomRecipe();
-const user = new Users(usersData[userId])
 const recipe = new Recipe(recipeData)
+Promise.all([userPromise, ingredientPromise, recipePromise])
+    .then((value) => {
+        setUserData(value[0].name)
+        const ourUser = setUserData()
+        userAttribute(ourUser)
+    })
+//     Promise.all([userPromise, hydrationPromise, sleepPromise, activityPromise])
+//   .then((value) => {
+//     setUserData(value[0].userData)
+//     const thisUser = getUserData();
+//     userBuildAttributes(thisUser);
+//     setHydrationData(value[1].hydrationData);
+//     hydrationBuildAttributes(hydrationRepo);
+//     setSleepData(value[2].sleepData);
+//     sleepBuildAttributes(sleepRepo);
+//     setActivityData(value[3].activityData);
+//     activityBuildAttributes(activityRepo);
+//   })
 // QuerySelectors
 const favoriteButton = document.querySelector('#favorite-button');
 const cookbookButton = document.querySelector('#cookbook-button')
@@ -49,30 +71,20 @@ const searchBox = document.querySelector('.search-box');
 const searchButton = document.querySelector('.search-submit');
 
 
-const addToCookbookButtonEventHandler = () => {
-    const addToCookbook = document.querySelector('#add-to-cookbook');
+const addToCookbookButtonEventHandler = (id, recipeToAdd) => {
+    const addToCookbook = document.querySelector(`#${id}`);
     addToCookbook.addEventListener('click', (event) => {
-        user.addRecipesToCook(window.currentRecipe);
+        user.addRecipesToCook(recipeToAdd);
     });
 }
-// const showFilteredIngredients = () => {
-//     const letsMakeIt = document.querySelector('.lets-make-it-button')
-//     letsMakeIt.addEventListener('click', (id) => {
-//         showAllRecipeDetails(id)
-//     })
-// }
-// function addClickHandler(element, callback) {
-//     element.addEventListener('click', (event) => {
-//         callback(event);
-//     });
-// };
+const showFilteredIngredients = () => {
+    const letsMakeIt = document.querySelector('.lets-make-it-button')
+    letsMakeIt.addEventListener('click', (id) => {
+        showAllRecipeDetails(id)
+    })
+}
+
 // EventListeners
-// favoriteButton.addEventListener('click',)
-// cookbookButton.addEventListener('click',)
-// viewRecipeButton.addEventListener('click',)
-// addToCookbookButton.addEventListener('click',)
-// cardFavoriteButton.addEventListener('click',)
-// unFavoriteButton.addEventListener('click',)
 window.addEventListener('load', () => {
     showAllRecipes()
     viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
@@ -111,8 +123,8 @@ function showAllRecipes() {
 }
 
 function showAllRecipeDetails(id) {
-    newRecipe = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(id));
     newRecipe.makeIngredientData();
+    newRecipe = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(id));
     window.currentRecipe = newRecipe;
     ingredientCard.innerHTML = `<div>
     <button id="add-to-cookbook" class=""> Add to cookbook! </button>
@@ -138,9 +150,10 @@ INSTRUCTIONS
   <p><span>${instruction.number}. </span>${instruction.instruction}</p>
   </div>`
     });
+    addToCookbookButtonEventHandler('add-to-cookbook', newRecipe);
     hide(recipeCardWrapper)
     show(favoriteButton)
-    // showFilteredIngredients();
+    showFilteredIngredients();
 }
 
 
@@ -160,42 +173,28 @@ function searchRecipe(event) {
 }
 
 function showCookbookrecipes(event) {
+    console.log({ userRecipes: user.recipesToCook });
     displayRecipeBySearchResults(user.recipesToCook);
 }
 
-function displayRecipeBySearchResults(recipe) {
-    const result = recipe.map(recipes => {
-        console.log('TAG RECIPE: ', recipes)
-        return `<section class='recipe-card' id="recipeCard">
-      <img src="${recipes.image}" class="recipe-image" alt="">
-      <h3>${recipes.name}</h3>
-      <button class="lets-make-it-button" id="${recipes.id}">Let's Make It!</button>
+function displayRecipeBySearchResults(recipes) {
+    recipeCard.innerHTML = '';
+    recipes.forEach((recipe, index) => {
+        console.log('TAG RECIPE: ', recipe);
+        const addToCookbookId = `add-to-cookbook-${index}`
+        recipeCard.innerHTML += `<section class='recipe-card' id="recipeCard">
+      <img src="${recipe.image}" class="recipe-image" alt="">
+      <h3>${recipe.name}</h3>
+      <button class="lets-make-it-button" id="${recipe.id}">Let's Make It!</button>
       <div>
-      <button id="add-to-cookbook" class=""> Add to cookbook! </button>
+      <button id="${addToCookbookId}" class=""> Add to cookbook! </button>
       </div>
       </section>`
+        addToCookbookButtonEventHandler(addToCookbookId, recipe);
+        showFilteredIngredients()
     });
-    recipeCard.innerHTML = result;
-    // showFilteredIngredients();
-    addToCookbookButtonEventHandler();
-}
-function savedRecipes() {
-    const user1 = new Users(usersData[userId])
-    const result = user1.recipesToCook.map(recipe => {
-        console.log('TAG RECIPE: ', recipe)
-        return `<section class='recipe-card' id="recipeCard">
-      <img src="${user1.recipesToCook.image}" class="recipe-image" alt="">
-      <h3>${user1.recipesToCook.name}</h3>
-      <button class="lets-make-it-button" id="${user1.recipesToCook.id}">Let's Make It!</button>
-      <div>
-      <button id="add-to-cookbook" class=""> Add to cookbook! </button>
-      </div>
-      </section>`
 
-    });
-    recipeCard.innerHTML = result;
 }
-
 function show(element) {
     element.classList.remove('hidden');
 };
@@ -205,14 +204,12 @@ function hide(element) {
 };
 cookbookButton.addEventListener('click', showCookbookrecipes)
 searchButton.addEventListener('click', searchRecipe)
-goHomeButton.addEventListener('click', showAllRecipes);
+goHomeButton.addEventListener('click', showAllRecipes,);
 
 
-/* For the fist methodd, we need to add buttons to the html,<button>remove from list </button> and make it
-so when it gets clicked, it removes that recipe from the array
-
- <div class="recipe-card-wrapper">
-//       <img class="recipe-image" data-recipeId=${user.recipesToCook.id} data-recipeDisplay="filtered" src=${user.recipesToCook.image} alt=${user.recipesToCook.name}>
-//       <p class="recipe-name">${user.recipesToCook.name}</p>
-//       <button class="favorite-button" id="favoriteButton">Favorite</button>
-//     </div>*/
+const userAttribute = (user) => {
+    userGreeting.innerHTML = `Welcome ${user.name.split(" ")[0]}!`
+}
+const setUserData = (someData) => {
+    userRepo = new Users(someData);
+};
