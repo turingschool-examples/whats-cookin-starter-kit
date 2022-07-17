@@ -63,6 +63,7 @@ favoriteRecipeContainer.addEventListener('dblclick', function(event) {
   removeFromFavorites(event)
 })
 
+
 // ***** Global Variables ***** //
 
 const allRecipes = recipeData.recipeData.map(recipe => new Recipe(recipe, ingredientData.ingredientsData));
@@ -88,6 +89,7 @@ function show(element) {
 function loadNewUser() {
   user = new User(userData.usersData[getRandomIndex(userData.usersData)]);
 }
+
 
 function updateMainPageRecipeIcons() {
   icon1Img.src = allRecipes[getRandomIndex(allRecipes)].image;
