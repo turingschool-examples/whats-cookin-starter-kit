@@ -36,7 +36,7 @@ fetchData().then(responses => {
     filterForm.addEventListener('submit', filterRecipeTag);
     searchForm.addEventListener('submit', searchRecipeName);
     favoriteButton.addEventListener('click', showFavorites);
-    filterFavoriteForm.addEventListener('submit', filterFavoriteRecipiesByName);
+    filterFavoriteForm.addEventListener('submit', filterFavoriteRecipiesByTag);
     
     displayRecipeList();
 
@@ -230,7 +230,7 @@ function searchRecipeName(event) {
    });
  }
 
- function filterFavoriteRecipiesByName(event) {
+ function filterFavoriteRecipiesByTag(event) {
     event.preventDefault();
 
     const inputValue = recipeFavoriteTagInput.value;
