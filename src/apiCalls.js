@@ -1,5 +1,5 @@
 // Your fetch requests will live here!
-const finalDestination = 'https://what-s-cookin-starter-kit.herokuapp.com';
+// const finalDestination = 'https://what-s-cookin-starter-kit.herokuapp.com';
 
 function loadUsers() {
   return fetch(`${finalDestination}/api/v1/users`)
@@ -18,7 +18,7 @@ function loadIngredients() {
 function loadRecipes() {
   return fetch(`${finalDestination}/api/v1/recipes`)
   .then(response => response.json())
-  .then(data => {return data})
+  .then(data => data.recipes)
   .catch(error => console.log(error))
 }
 
@@ -37,7 +37,7 @@ export { loadUsers, loadIngredients, loadRecipes };
 //     .then(data => generateOptions(data.message)),
 //   fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
 //     .then(data => generateImage(data.message)),
-//   fetch('https://dog.ceo/api/breeds/image/random')
+//   fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients')
 //     .then(data => generateImage(data.message))
 // ])
 //   .then(data => {
