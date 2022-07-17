@@ -12,7 +12,6 @@ import User from './classes/User';
 
 const recipeImages = document.querySelectorAll('.recipe-image');
 const recipePicBoxes = document.querySelectorAll('.recipe-pic-box');
-// const recipePicBox = document.querySelector('.recipe-pic-box');
 const userWelcome = document.querySelector('.user-welcome');
 
 const homeButton = document.getElementById('homeButton');
@@ -37,8 +36,6 @@ const cookingInstructions = document.querySelector('.cooking-instructions');
 const allRecipesContainer = document.querySelector('.all-recipes-view');
 const ingredientCost = document.querySelector('.ingredient-cost');
 
-// const recipePicBoxes = document.querySelectorAll('.recipe-pic-box');
-
 
 // ###########  Global Variables  ###############
 const recipeRepo = new RecipeRepository(recipeData);
@@ -51,8 +48,8 @@ homeButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', populateAllRecipesView);
 savedRecipesButton.addEventListener('click', populateSavedRecipesView);
 homeViewContainer.addEventListener('click', populateChosenRecipe);
+allRecipesContainer.addEventListener('click', populateChosenRecipe);
 saveRecipeButton.addEventListener('click', saveChosenRecipe);
-// allRecipesContainer.addEventListener('click', populateChosenRecipe);
 // myFavoritesButton.addEventListener('click', )
 // pantryButton.addEventListener('click', )
 
@@ -74,18 +71,11 @@ function welcomeUser() {
 }
 
 function populateRecipesInHomeView() {
-
-
   recipePicBoxes.forEach(image  => {
-
     var randomRecipe = getRandomRecipe()
-    
     image.innerHTML += `<img class='recipe-image' id='${randomRecipe.id}' src='${randomRecipe.image}'>
     <p class='recipe-label'>${randomRecipe.name}</p>`;
-
-
   });
-
 }
 
 //functions to affect the all recipes view
@@ -119,7 +109,7 @@ function populateSavedRecipesView() {
 //functions to populate the chosen recipe view
 
 function populateChosenRecipe(event) {
-  let recipeObjs = recipeRepo.convertRecipeObjects();
+  const recipeObjs = recipeRepo.convertRecipeObjects();
   event.preventDefault();
   let targetID = event.target.id
   recipeObjs.forEach(recipe => {
@@ -131,7 +121,6 @@ function populateChosenRecipe(event) {
 }
 
 function assignChosenRecipeProperties(recipe) {
-
   recipeName.innerText = recipe.name;
   ingredientDetails.innerText = `Ingredients required:
   ${returnRecipeIngredientsAndCostPerServing(recipe)}`;
