@@ -14,11 +14,14 @@ class Recipe {
 
     determineIngredientNames() {
         let listOfNames = []
-
         let ingredientNames = this.ingredients.forEach(ingredient => {
             this.ingData.forEach(element => {
                 if (element.id === ingredient.id) {
+                    if (ingredient.quantity.amount % 1 === 0) {
+                        listOfNames.push(`${element.name}: ${ingredient.quantity.amount} ${ingredient.quantity.unit}`)                       
+                    } else {
                     listOfNames.push(`${element.name}: ${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit}`)
+                    }
                 }
             })
         })
