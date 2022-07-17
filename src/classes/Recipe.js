@@ -22,11 +22,6 @@ class Recipe {
     return allIngredientIDs;
   }
 
-  handleIngredientData() {
-    const allIngredients = this.makeIngredients();
-    const recipeIngredientIDs = this.returnRecipeIngredientIDs();
-  }
-
   returnRecipeIngredientIDs() {
     const ingredientIDs = this.ingredients.map(ingredient => ingredient.id);
     return ingredientIDs;
