@@ -7,7 +7,7 @@ import './images/filled-heart.png'
 import './images/trash.png'
 
 import { ingredientsData } from './data/ingredients'
-import { recipeData } from './data/recipes'
+// import { recipeData } from './data/recipes'
 import { usersData } from './data/users'
 
 import Glide from '@glidejs/glide'
@@ -30,8 +30,25 @@ const config = {
 
 new Glide('.glide', config).mount()
 
-let recipeRepository = new RecipeRepository(recipeData)
+let recipeData;
+let recipeRepository;
 
+
+// console.log(data)
+// console.log(recipeData)
+
+// .then(data => {
+//   let fetchedData = new RecipeRepository(data)
+//   recipeData = fetchedData.recipes
+//   populateAllRecipes()
+// })
+
+// console.log(fetchedRecipes)
+
+// // console.log(recipeRepository.recipes)
+// const recipeData = recipeRepository.recipes
+// console.log(recipeData)
+// console.log(ingredientsData)
 
 const viewAllButton = document.querySelector('#viewAllButton')
 const homePageView = document.querySelector('.home-page-view')
@@ -72,13 +89,23 @@ window.addEventListener('click', function(event) {
 window.addEventListener('load', showHomePage)
 searchButton.addEventListener('click', filterByName)
 searchButton2.addEventListener('click', favoriteFilterByName)
-window.addEventListener('load', generateRandomUser)
+window.addEventListener('load', function(event) {
+  generateRandomUser()
+  fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes")
+  .then(response => response.json())
+  .then(data => {
+  recipeData = data.recipeData
+  recipeRepository = new RecipeRepository(recipeData)
+})
+})
 viewAllPage.childNodes[3].addEventListener('click', function(event) {
     changeHearts(event)
 })
 favoriteRecipesPage.childNodes[3].addEventListener('click', function(event) {
   deleteRecipe(event)
 })
+
+
 
 function changeHearts(event) {
     if (event.target.classList.contains('add-to-favorites-icon')){
@@ -88,7 +115,7 @@ function changeHearts(event) {
           if (recipe.image === event.target.parentNode.childNodes[1].src) {
             newUser.addRecipeToCook(recipe)
           }
-        })        
+        })
     } else if (event.target.classList.contains('unfavorite') || event.target.classList.contains('trash-icon')) {
         event.target.src = "./images/heart.png"
         event.target.classList = 'add-to-favorites-icon'
@@ -97,7 +124,7 @@ function changeHearts(event) {
             newUser.removeRecipeToCook(recipe)
           }
         })
-    }   
+    }
   }
 
   function deleteRecipe(event) {
@@ -110,7 +137,7 @@ function changeHearts(event) {
     })
   }
 }
-// 
+//
 
 function generateRandomUser() {
     let newUserData = usersData[Math.floor(Math.random() * usersData.length)]
@@ -126,6 +153,7 @@ function showViewAllPage() {
     viewAllButton.classList.add('hidden')
     favoriteRecipesPage.classList.add('hidden')
     createTags(tagContainer)
+    populateAllRecipes()
 }
 
 function showHomePage() {
@@ -156,18 +184,17 @@ function showFavoritesPage() {
 }
 
 function populateAllRecipes() {
-  console.log('view', newUser)
     recipeData.forEach(recipe => {
     viewAllPage.childNodes[3].innerHTML += `<section class="recipe-icon">
     <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image"><img class="add-to-favorites-icon" src='./images/heart.png'>
     <p>
       ${recipe.name}
     </p>
-  </section>`  
+  </section>`
 })
 }
 
-populateAllRecipes()
+
 
 function showRecipeDetailsPage(event) {
     if (event.target.classList.contains('view-all-recipe-image')){
@@ -188,6 +215,7 @@ function showRecipeDetailsPage(event) {
 }
 
 function createTags(tagContainer) {
+  console.log(recipeData)
     const getRecipeTags = recipeData.map(recipe => {
         return recipe.tags
     }).flat()
