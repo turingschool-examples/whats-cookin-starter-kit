@@ -20,7 +20,7 @@ class User {
             if (favoriteRecipe.id === recipe.id) {
               this.recipesToCook.splice(this.recipesToCook.indexOf(recipe), 1) 
             }
-            return this.recipesToCook
+            return this.recipesToCook.indexOf(recipe)
         })
     }
 

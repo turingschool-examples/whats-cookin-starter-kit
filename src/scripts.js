@@ -112,7 +112,6 @@ function searchRecipe() {
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
         <button class="save-button" id= ${ recipe.id }>Save to cooking profile!</button>
-        <button id= ${recipe.id} class="remove-button hidden">Save to cooking profile!</button>
         </div>
         </section>`
     } );
@@ -130,7 +129,6 @@ function displayFilteredRecipesByNameOnPage( ) {
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
         <button id= ${recipe.id} class="save-button">Save to cooking profile!</button>
-        <button id= ${recipe.id} class="remove-button hidden">Save to cooking profile!</button>
         </div>
         </section>`
     } );
@@ -151,7 +149,6 @@ function displayAllRecipesOnPage( e ) {
         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
         <div>
         <button id= ${recipe.id} class="save-button">Save to cooking profile!</button>
-        <button id= ${recipe.id} class="remove-button hidden">Save to cooking profile!</button>
         </div>
         </section>`
     } ).join('');
@@ -215,7 +212,6 @@ function showCookingProfile( e ) {
             <h3>${ recipe.name }</h3>
             <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
             <div>
-            <button id= ${recipe.id} class="save-button hidden">Save to cooking profile!</button>
             <button id= ${recipe.id} class="remove-button">Remove from cooking profile!</button>
             </div>
             </section>`
@@ -228,12 +224,12 @@ function showCookingProfile( e ) {
 }
 
 function deleteRecipeFromRecipesToCook( e ) { 
-    return newRecipe.recipes.filter((favoriteDish) => {
-    if((e.target.id == favoriteDish.id) && (currentUser.recipeCard.includes(favoriteDish))) {
-       currentUser.removeRecipeFromRecipesToCook(favoriteDish)
+    return newRecipe.recipes.find((removeDish) => {
+    if(e.target.id == removeDish.id) {
+       currentUser.removeRecipeFromRecipesToCook(removeDish)
     }
     //ERROR READING .includes in this function -- to fix
     // console.log('REMOVED RECIPES: ', currentUser.recipesToCook)
-    return showCookingProfile( e );
+    return currentUser.recipesToCook
     })
 }
