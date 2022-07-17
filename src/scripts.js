@@ -231,7 +231,7 @@ function deleteRecipeFromRecipesToCook( e ) {
     if((e.target.id == favoriteDish.id) && (currentUser.recipeCard.includes(favoriteDish))) {
        currentUser.removeRecipeFromRecipesToCook(favoriteDish)
     }
-    //ERROR READING .includes in this function
+    //ERROR READING .includes in this function -- to fix
     // console.log('REMOVED RECIPES: ', currentUser.recipesToCook)
     return showCookingProfile( e );
     })
