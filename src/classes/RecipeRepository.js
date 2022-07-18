@@ -4,7 +4,10 @@ class RecipeRepository {
   constructor() {
     this.recipes = [];
     this.allTags = [];
+    this.selectedInput = [];
+    this.filteredAllRecipes = [];
   }
+
   addRecipe(recipe) {
     this.recipes.push(recipe);
     this.addTags(recipe.tags);
@@ -18,44 +21,94 @@ class RecipeRepository {
     });
   }
 
-  filterRecipesByTag(tag) {
-    let matchingRecipes = this.recipes.filter((recipe) => {
-      if (recipe.tags.includes(tag)) {
-        return true;
-      }
-    });
-    return matchingRecipes;
+  addInputToSearch(keyword) {
+    let lowerCaseInput = keyword.toLowerCase();
+    
+    if (!this.selectedInput.includes(lowerCaseInput)) {
+      this.selectedInput.push(lowerCaseInput);
+    }
   }
 
-  filterRecipesByName(input) {
-    let matchingRecipes = this.recipes.filter((recipe) => {
-      let lowerCaseRecipeName = recipe.name.toLowerCase();
-      let lowerCaseInput = input.toLowerCase();
-      if (lowerCaseRecipeName.includes(lowerCaseInput)) {
-        return true;
-      }
+  lowerCaseIngredients() {
+    this.recipes.forEach((recipe) => {
+      recipe.portions = recipe.portions.reduce((newPortions, portion) => {
+        newPortions.push({
+          ingredientId: portion.ingredientId,
+          name: portion.name.toLowerCase(),
+          amount: portion.amount,
+          cost: portion.cost,
+          unit: portion.unit,
+        });
+        return newPortions;
+      }, []);
     });
-    return matchingRecipes;
+  }
+
+  filterByMultipleIngredients() {
+    this.filteredAllRecipes = this.recipes.filter((recipe) => {
+      let containsOr = false;
+      recipe.portions.forEach((portion) => {
+        if (
+          this.selectedInput.some((keyword) => {
+            return portion.name.includes(keyword);
+          })
+        ) {
+          containsOr = true;
+        }
+      });
+      return containsOr;
+    });
+    return this.filteredAllRecipes;
+  }
+
+  filterByMultipleTags() {
+    this.filteredAllRecipes = this.recipes.filter((recipe) => {
+      let containsOr = false;
+      if (
+        this.selectedInput.some((keyword) => {
+          return recipe.tags.includes(keyword);
+        })
+      ) {
+        containsOr = true;
+      }
+      return containsOr;
+    });
+    return this.filteredAllRecipes;
+  }
+
+  filterByMultipleRecipeNames() {
+    this.filteredAllRecipes = this.recipes.filter((recipe) => {
+      let lowerCaseRecipeName = recipe.name.toLowerCase();
+      let containsOr = false;
+      if (
+        this.selectedInput.some((input) => {
+          return lowerCaseRecipeName.includes(input);
+        })
+      ) {
+        containsOr = true;
+      }
+      return containsOr;
+    });
+    return this.filteredAllRecipes;
   }
 
   importRecipesFromFile(recipeData, ingredientsData) {
-    var recipeToAdd;
-
+    let recipeToAdd;
     recipeData.forEach((recipeDatum) => {
-      var data = {
+      let data = {
         id: recipeDatum.id,
         name: recipeDatum.name,
         imageURL: recipeDatum.image,
         portions: recipeDatum.ingredients.map((ingredientObject) => {
-          var ingredientData = ingredientsData.find(
+          let ingredientData = ingredientsData.find(
             (storedIngredient) => storedIngredient.id === ingredientObject.id
           );
-          var portion = this.createPortion(ingredientObject, ingredientData);
+          let portion = this.createPortion(ingredientObject, ingredientData);
           return portion;
         }),
         instructions: recipeDatum.instructions.map(
           (instruction) => instruction.instruction
-        ), //recipeDatum.instructions,
+        ),
         tags: recipeDatum.tags,
       };
       recipeToAdd = new Recipe(data);
@@ -65,12 +118,17 @@ class RecipeRepository {
 
   createPortion(ingredientObject, ingredientData) {
     return {
-      ingredientId: ingredientObject.id, // 20081
-      name: ingredientData["name"], // “wheat flour”
-      cost: ingredientData["estimatedCostInCents"], // 142
-      amount: ingredientObject.quantity.amount, // 1.5
-      unit: ingredientObject.quantity.unit, // “c”
+      ingredientId: ingredientObject.id,
+      name: ingredientData["name"],
+      cost: ingredientData["estimatedCostInCents"],
+      amount: ingredientObject.quantity.amount,
+      unit: ingredientObject.quantity.unit,
     };
+  }
+
+  clearData() {
+    this.selectedInput = [];
+    this.filteredAllRecipes = [];
   }
 }
 

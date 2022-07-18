@@ -8,7 +8,7 @@
   <main>
     <nav class="nav">
       <button type="button" class="home-button">Home</button>
-      <button type="button">My Recipes</button>
+      <button type="button" class="my-recipes-button">My Recipes</button>
       <button type="button">Pantry</button>
     </nav>
 
@@ -16,16 +16,15 @@
       <section class="greeting">
         <h2>Welcome, User!</h2>
       </section>
-      <section class="search-bar">
-        <div>
-          <span>🔎</span>
-          <input type="search" placeholder="Search by Title" />
+      <section class="search-section">
+        <div class="search-bar-container">
+          <input class="search-bar"type="search" placeholder="Search by Title" />
+          <span class="search-icon">🔎</span>
         </div>
-        <section id="keyword-section" class="hidden">
-          <h3>or Search by keyword</h3>
-          <ul class="keyword-list">
-            <li class="keyword"></li>
-          </ul>
+        <button class="submit-search" type="button">Submit Search</button>
+        <h3 class="toggle-search-option">or Search by keyword</h3>
+        <section class="keyword-section hidden">
+          <div id="keyword-list"></div>
         </section>
       </section>
 
@@ -48,7 +47,7 @@
         <section id="specific-recipe-section" class="mega-card card-border specific-recipe hidden">
           <header>
             <h2 class="title">Recipe Title</h2>
-            <span class="save-recipe-icon">❤️</span>
+            <span class="save-recipe-icon favorite-button" data-id="">❤️</span>
             <span class="close-icon">❌</span>
           </header>
 
@@ -92,4 +91,3 @@
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>
-    

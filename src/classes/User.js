@@ -4,12 +4,36 @@ class User {
     this.name = userData.name;
     this.pantry = userData.pantry || [];
     this.recipesToCook = [];
+    this.selectedInput = [];
+    this.filteredResults = [];
   }
 
   addRecipeToCook(recipe) {
     if (!this.recipesToCook.includes(recipe)) {
       this.recipesToCook.push(recipe);
     }
+  }
+
+  addInputToSearch(keyword) {
+    let lowerCaseInput = keyword.toLowerCase();
+    if (!this.selectedInput.includes(lowerCaseInput)) {
+      this.selectedInput.push(lowerCaseInput);
+    }
+  }
+
+  lowerCaseIngredients() {
+    this.recipesToCook.forEach((recipe) => {
+      recipe.portions = recipe.portions.reduce((newPortions, portion) => {
+        newPortions.push({
+          ingredientId: portion.ingredientId,
+          name: portion.name.toLowerCase(),
+          amount: portion.amount,
+          cost: portion.cost,
+          unit: portion.unit,
+        });
+        return newPortions;
+      }, []);
+    });
   }
 
   removeRecipeToCook(recipe) {
@@ -20,23 +44,58 @@ class User {
     this.recipesToCook.splice(indexOfRecipeToRemove, 1);
     return this.recipesToCook;
   }
-  filterRecipesByTag(tag) {
-    let filteredRecipesByTag = this.recipesToCook.filter((recipe) => {
-      if (recipe.tags.includes(tag)) {
-        return true;
+
+  filterByMultipleTags() {
+    this.filteredResults = this.recipesToCook.filter((recipe) => {
+      let containsOr = false;
+      if (
+        this.selectedInput.some((keyword) => {
+          return recipe.tags.includes(keyword);
+        })
+      ) {
+        containsOr = true;
       }
+      return containsOr;
     });
-    return filteredRecipesByTag;
+    return this.filteredResults;
   }
-  filterRecipesByName(recipeName) {
-    let filteredRecipesByName = this.recipesToCook.filter((recipe) => {
+
+  filterByMultipleRecipeNames() {
+    this.filteredResults = this.recipesToCook.filter((recipe) => {
       let lowerCaseRecipeName = recipe.name.toLowerCase();
-      let lowerCaseInput = recipeName.toLowerCase();
-      if (lowerCaseRecipeName.includes(lowerCaseInput)) {
-        return true;
+      let containsOr = false;
+      if (
+        this.selectedInput.some((keyword) => {
+          return lowerCaseRecipeName.includes(keyword);
+        })
+      ) {
+        containsOr = true;
       }
+      return containsOr;
     });
-    return filteredRecipesByName;
+    return this.filteredResults;
+  }
+
+  filterByMultipleIngredients() {
+    this.filteredResults = this.recipesToCook.filter((recipe) => {
+      let containsOr = false;
+      recipe.portions.forEach((portion) => {
+        if (
+          this.selectedInput.some((keyword) => {
+            return portion.name.includes(keyword);
+          })
+        ) {
+          containsOr = true;
+        }
+      });
+      return containsOr;
+    });
+    return this.filteredResults;
+  }
+
+  clearData() {
+    this.selectedInput = [];
+    this.filteredResults = [];
   }
 }
 

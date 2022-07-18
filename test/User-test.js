@@ -142,32 +142,55 @@ describe("User", () => {
     expect(user2.recipesToCook).to.deep.equal([recipe1, recipe3]);
   });
 
-  it("should be able to filter a recipe by its tag", () => {
-    user2.addRecipeToCook(recipe1);
-    user2.addRecipeToCook(recipe2);
-    user2.addRecipeToCook(recipe3);
-
-    expect(user2.filterRecipesByTag("snack")).to.deep.equal([recipe1, recipe2]);
+  it("should start off with an empty array of input to be searched", () => {
+    expect(user1.selectedInput).to.deep.equal([]);
   });
-  it("should be able to filter a recipe by name", () => {
-    let recipe5 = new Recipe({
-      id: 1,
-      name: "Oatmeal Cookie",
-      imageURL: "https://recipe-image-1.jpg",
-      portions: [
-        { ingredientId: 1, name: "Flour", amount: 2, cost: 101, unit: "C" },
-      ],
-      instructions: ["Bake it"],
-      tags: ["snack", "dessert"],
-    });
+
+  it("should start off with an empty array of filtered results", () => {
+    expect(user1.filteredResults).to.deep.equal([]);
+  });
+
+  it("should allow the user to search by multiple tags", () => {
     user3.addRecipeToCook(recipe1);
     user3.addRecipeToCook(recipe2);
     user3.addRecipeToCook(recipe3);
-    user3.addRecipeToCook(recipe5);
+    user3.addInputToSearch("dessert");
+    user3.addInputToSearch("pork");
+    user3.filterByMultipleTags();
+    expect(user3.filteredResults).to.deep.equal([recipe1, recipe3]);
+  });
 
-    expect(user3.filterRecipesByName("Cookie")).to.deep.equal([
-      recipe1,
-      recipe5,
-    ]);
+  it("should be able to search for multiple recipes by name", () => {
+    user3.addRecipeToCook(recipe1);
+    user3.addRecipeToCook(recipe2);
+    user3.addRecipeToCook(recipe3);
+    user3.addInputToSearch("Chip");
+    user3.addInputToSearch("glazed");
+    user3.filterByMultipleRecipeNames();
+    expect(user3.filteredResults).to.deep.equal([recipe1, recipe3]);
+  });
+
+  it("should be able to search for multiple ingredients by name", () => {
+    user3.addRecipeToCook(recipe1);
+    user3.addRecipeToCook(recipe2);
+    user3.addRecipeToCook(recipe3);
+    user3.lowerCaseIngredients();
+    user3.addInputToSearch("Flour");
+    user3.addInputToSearch("bread");
+    user3.filterByMultipleIngredients();
+    expect(user3.filteredResults).to.deep.equal([recipe1, recipe2]);
+  });
+
+  it("should clear the selected input & filtered results array after filteration is complete", () => {
+    user3.addRecipeToCook(recipe1);
+    user3.addRecipeToCook(recipe2);
+    user3.addRecipeToCook(recipe3);
+    user3.addInputToSearch("dessert");
+    user3.addInputToSearch("pork");
+    user3.filterByMultipleTags();
+    expect(user3.filteredResults).to.deep.equal([recipe1, recipe3]);
+    user3.clearData();
+    expect(user3.selectedInput).to.deep.equal([]);
+    expect(user3.filteredResults).to.deep.equal([]);
   });
 });
