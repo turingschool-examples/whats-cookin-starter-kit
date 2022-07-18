@@ -3,7 +3,7 @@
 }
 
 html, body, main {
-  background-color: white;
+  background-color: rgba(211,211,211, 0.7);
   height: 100vh;
   width: 100vw;
   margin: 0%;
@@ -11,9 +11,8 @@ html, body, main {
 
 h1 {
   font-size: 24px;
-  margin: 0;
   width: 40%;
-  margin: 5px 0 0 15px;
+  margin: 5px;
   color: white;
   text-shadow: 2px 2px rgba(0,0,0,0.6);
 }
@@ -24,7 +23,7 @@ h2 {
   color: white;
   text-shadow: 2px 2px rgba(0,0,0,0.6);
   margin: 0;
-  margin-top: 10px;
+  padding-top: 2%;
 }
 
 h3 {
@@ -35,6 +34,7 @@ h3 {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  margin: 0;
 }
 
 h4 {
@@ -53,9 +53,12 @@ h5 {
 
 input {
   height: 10%;
-  width: 30%;
+  width: 20%;
   text-align: center;
   align-self: flex-end;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 button {
@@ -79,20 +82,12 @@ button:active {
   transform: translateY(1px);
 }
 
-img {
-  height: auto;
-  width: auto;
-  flex-grow: 10;
-  flex-shrink: 10;
-}
-
 .nav-bar {
   display: flex;
-  flex-direction: column;
-  float: top;
+    flex-direction: column;
   position: fixed;
-  top: 0;
-  width: 100%;
+  float: inline-start;
+  margin: 0%, 0%, 0%, 0%;
   box-shadow: 0 1px 6px rgba(0,0,0, .75);
   background-image: linear-gradient(
     rgba(0, 0, 0, 0.4),
@@ -101,39 +96,38 @@ img {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  height: 28vh;
+  padding-top: 2%
 }
 
 .nav-search-container, .nav-input-search-container {
   display: flex;
-  justify-content: flex-end;
-  align-content: center;
-  width: 100%;
-  height: 100%;
- width: 15vw;
-  height: 15vh;
+    justify-content: flex-end;
+    align-content: center;
+  width: 100vw;
+
 }
 
 .search-button {
   margin-right: 5%;
-  height: 27px;
+  height: 3vh relative;
+  width: 1vw relative;
   border: 1px solid black;
   background-color: lightgray;
   border-radius: 0px;
-  flex-grow: inherit;
 }
 
-
-/* .search-button:hover {
+.search-button:hover {
   background-color: black;
   filter: invert(0%) sepia(5%) saturate(7500%) hue-rotate(228deg) brightness(106%) contrast(106%);
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
-} */
+}
 
 .recipe-search {
-  margin: 0px 16px 0px 30px;
-  transform: translateX(161px);
   padding: 5px;
   border: 1px solid gray;
+  height: 3vh;
+  width: 33vw;
 }
 
 .nav-button-container {
@@ -144,43 +138,41 @@ img {
     align-items: center;
     align-content: space-between;
   align-self: center;
-  margin-bottom: 10px;
   width: 30%;
 }
 
+
 .grid-container {
+  display: flex;
   width: auto;
   height: auto;
-}
-
-.recipe-container, .recipe-grid-container {
-  /* display: flex; */
-  /* align-items: flex-start; */
-  /* align-content: stretch; */
-  /* flex-direction: row; */
-  flex-grow: 10;
-  flex-shrink: 10;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 95vw;
-  height: 100vh;
-  padding: 2%;
   background-color: rgba(211,211,211, 0.7);
 }
 
-.recipe-card {
-  height: 55%;
-  width: 15%;
-  text-align: center;
-  margin: 2px;
-  margin-bottom: 17px;
+.recipe-container, .recipe-grid-container {
+  background-color: rgba(211,211,211, 0.7);
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: initial;
+  justify-content: space-around;
   padding: 2%;
-  flex-grow: inherit;
+  gap: 1%;
+  padding-top: 35vh;
+  z-index: 10;
+}
+
+.recipe-card {
+  flex-wrap: wrap;
+  height: 65vh fixed;
+  width: 20vw;
+  text-align: center;
+  margin-top: 2%;
+  margin-bottom: 3%;
+  padding: 15px;
   border: 1px  solid rgba(0,0,0, .45);
   box-shadow: 0 1px 6px rgba(0,0,0, .75);
   border-radius: 10px;
   background-color: white;
-  z-index: 10;
 }
 
 .recipe-card:hover {
@@ -188,10 +180,11 @@ img {
 }
 
 .recipe-image {
-  height: 75%;
-  width: 100%;
+  height: 45vh;
+  width: 18vw;
   margin-left: 0;
   margin-right: 0;
+  border-radius: 10px;
 }
 
 .recipe-modal {
@@ -210,16 +203,17 @@ img {
 }
 
 .recipe-modal.is-open {
-  display: block;
+  display: flex;
+  justify-content: center;
 }
-
+/* 
   #modal-1-content {
     background-color: rgba(0,0,0,0.1);
-}
-
-/* .recipe-modal:active {
-  transform: translate(-50%, -50%) scale(1);
 } */
+
+.recipe-modal:active {
+  transform: (-50%, -50%) scale(1);
+}
 
 /* .modal_overlay {
   position: fixed;
@@ -233,45 +227,63 @@ img {
   pointer-events: none;
 } */
 
-/* .overlay:active {
+.overlay:active {
   opacity: 1;
   pointer-events: all;
-} */
+  height: 55vh fixed;
+  width: 33vw;
+  text-overflow: wrap;
+  z-index: 10;
+}
 
 .ingredient-and-direction-container {
   display: flex;
   justify-content: space-evenly;
-  transform: translateY(50px);
-  height: 80%;
   background-color: rgba(211,211,211, 0.55);
   border: 1px solid rgba(0,0,0,0.7);
-  /* border-radius: 0px, 0px, 15px, 15px; */
+  border-radius: 0px, 0px, 15px, 15px;
   background-image: linear-gradient(
     rgba(0, 0, 0, 0.4),
     rgba(0, 0, 0, 0.4)
-  ), url('./images/nav-background.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  /* height: 90%;
-  width: 90%; */
-}
-
-/* #modal-1-content {
-  background-image: linear-gradient(
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.4)
-  ), url('./images/nav-background.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-} */
-
-.cooking-directions, .ingredient-list {
-  height: 580px;
-  width: 450px;
+    ), url('./images/nav-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  #modal-1-content {
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
+      ), url('./images/nav-background.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      text-overflow: wrap;
+    }
+    
+    .ingredient-list, .cooking-directions {
+      display: flex;
+      flex-direction: column;
+      background-color: rgba(255,255,255,0.95);
+      font-size: 90%;
+      padding: 1%;
+      text-overflow: wrap;
+      height: 55vh fixed;
+      /* width: 33vw; */
+    }
+    .modal-directions, .modal-ingredients, .modal-instructions {
   background-color: rgba(255,255,255,0.95);
-  font-size: 1.5vh;
+  display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+  font-size: 90%;
+  height: 55vh;
+  width: 33vw;
+  text-overflow: wrap;
 }
 
 .dish-cost {
@@ -280,6 +292,7 @@ img {
   font-weight: bold;
   margin: 0;
   margin-top: 10px
+
 }
 
 #closeModal {
