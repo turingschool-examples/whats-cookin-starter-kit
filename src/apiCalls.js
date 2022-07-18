@@ -1,4 +1,3 @@
-// Your fetch requests will live here!
 const getIngredientData = () => {
     return fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients')
     .then(response => response.json())
@@ -25,6 +24,4 @@ const getIngredientData = () => {
     return result;
   }
 
-export default { getAllData }
-
-console.log('I will be a fetch request!')
+export { getAllData }

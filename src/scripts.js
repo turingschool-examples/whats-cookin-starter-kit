@@ -1,14 +1,14 @@
 import './styles.css';
 import apiCalls from './apiCalls';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
+import { getAllData } from './apiCalls'
 import './images/turing-logo.png';
 import RecipeRepository from './classes/RecipeRepository';
 import Recipe from './classes/Recipe';
 import Ingredient from './classes/Ingredient';
 import User from './classes/User';
-const recipeData = require('./data/recipes');
-const ingredientData = require('./data/ingredients');
-const userData = require('./data/users');
+// const recipeData = require('./data/recipes');
+// const ingredientData = require('./data/ingredients');
+// const userData = require('./data/users');
 
 // ***** Query Selectors ***** //
 
@@ -51,8 +51,8 @@ const userWelcomeMessage = document.querySelector('.user-welcome-message');
 // ***** Event Listeners ***** //
 // window.addEventListener('load', updateMainPageRecipeIcons);
 // window.addEventListener('load', updateMainPageFeatureImg);
-// window.addEventListener('load', loadNewUser);
 // window.addEventListener('load', displayAllNames);
+window.addEventListener('load', getAllData())
 recipeSidebarList.addEventListener('click', viewRecipe);
 recipeIconContainer.addEventListener('click', viewRecipeFromIcon);
 favoriteRecipeImages.addEventListener('click', viewRecipeFromIcon);
@@ -65,25 +65,31 @@ favoriteRecipeImages.addEventListener('rightclick', removeFromFavorites);
 removeFiltersButton.addEventListener('click', showFavoritesPage);
 
 // ***** Global Variables ***** //
-
-const allRecipes = recipeData.recipeData.map(recipe => new Recipe(recipe, ingredientData.ingredientsData));
+let ingredientData;
+let userData;
 let user;
 let selectedRecipeName;
 let selectedRecipeIcon;
 let selectedRecipe;
 let recipeRepository;
-
+let allRecipes;
 // ***** Functions ***** //
 
+
+
 getAllData().then(responses => {
-  recipeRepository =  new RecipeRepository(responses[0]);
   ingredientData = responses[1];
   userData = responses[2];
+  allRecipes = responses[0].recipeData.map(recipe => new Recipe(recipe, ingredientData.ingredientsData));
+  recipeRepository =  new RecipeRepository(allRecipes);
   window.addEventListener('load', updateMainPageRecipeIcons);
   window.addEventListener('load', updateMainPageFeatureImg);
-  window.addEventListener('load', loadNewUser);
   window.addEventListener('load', displayAllNames);
 });
+console.log('recipedata:', allRecipes)
+console.log('ingredientdata:', ingredientData)
+console.log('userdata:', userData)
+
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
