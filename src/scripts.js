@@ -2,15 +2,14 @@ import './styles.css';
 import apiCalls from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
-import ingredientsData from './data/ingredients';
+// import ingredientsData from './data/ingredients';
 import recipeData from './data/recipes';
 import usersData from './data/users';
-import Ingredient from './classes/Ingredient';
-import Recipe from './classes/Recipe';
+// import Ingredient from './classes/Ingredient';
+// import Recipe from './classes/Recipe';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 
-const recipeImages = document.querySelectorAll('.recipe-image');
 const recipePicBoxes = document.querySelectorAll('.recipe-pic-box');
 const userWelcome = document.querySelector('.user-welcome');
 const homeButton = document.getElementById('homeButton');
@@ -19,28 +18,23 @@ const savedRecipesButton = document.getElementById('savedRecipesButton');
 const searchButton = document.getElementById('searchButton')
 const searchButton2 = document.getElementById('searchButton2');
 const saveRecipeButton = document.getElementById('saveRecipeButton');
-const searchImage = document.querySelector('.search-image');
 const searchInput = document.querySelector('.search-input');
-const searchInput2 = document.querySelector('.search-input2')
+const searchInput2 = document.querySelector('.search-input2');
 const homeViewContainer = document.querySelector('.home-view-container');
 const recipeViewContainer = document.querySelector('.recipe-view-container');
 const savedRecipesContainer = document.querySelector('.saved-recipes-view');
-const recipeViewSmallBox = document.querySelector('.recipe-view-small-box');
 const recipeName = document.querySelector('.recipe-name');
 const ingredientDetails = document.querySelector('.ingredient-details');
-const recipeViewBigBox = document.querySelector('.recipe-view-big-box');
 const recipeViewPicBox = document.querySelector('.recipe-view-pic-box');
 const cookingInstructions = document.querySelector('.cooking-instructions');
 const allRecipesContainer = document.querySelector('.all-recipes-view');
 const ingredientCost = document.querySelector('.ingredient-cost');
 const filteredContainer = document.querySelector('.filtered-recipes-view')
-const filterByTag = document.getElementById('filterByTag');
 const filterByName = document.getElementById('filterByName');
-const filterByTag2 = document.getElementById('filterByTag2');
 const filterByName2 = document.getElementById('filterByName2');
 const userSearchContainer1 = document.querySelector('.user-search-container');
 const userSearchContainer2 = document.querySelector('.user-search-container2');
-const trashCan = document.querySelectorAll('.trash-can');
+const form = document.querySelector('.form')
 
 
 
@@ -63,20 +57,20 @@ savedRecipesContainer.addEventListener('click', deleteRecipe);
 savedRecipesContainer.addEventListener('click', populateChosenRecipe);
 
 const pageNames = [
-  'My Grandma Taught Me This',
-  `Let's Eat Grandpa`,
-  'Eating My Empire',
-  'Dribbling Spoonfuls',
-  'Yum Yum & Tum Tum',
-  'Bite My Kitchen',
-  'Big Taste Table',
-  'Cooking with Hubby',
-  'Queen of Tarts',
-  `What ISN'T cookin'?`,
-  'THANK YOU BASED COLE',
-  'Eat to change your life',
+  'My Grandma Taught Me This,',
+  `Let's Eat`,
+  'Eating My Empire,',
+  'Dribbling Spoonfuls for',
+  'Yum Yum & Tum Tum with',
+  'Bite My Kitchen,',
+  '"Big Taste Table," starring',
+  'Cooking with Hubby,',
+  'Queen of Tarts:',
+  `What ISN'T cookin',`,
+  'THANK YOU BASED COLE!! Oh, hi',
+  'Eat to change your life,',
   `What's Eating`,
-  'Not to be rude but who names their kid'
+  'Who names their kid'
 ]
 
 function randomIndex(array) {
@@ -94,7 +88,7 @@ function getRandomPageName() {
 }
 
 function welcomeUser() {
-  userWelcome.innerText = `${getRandomPageName()}, ${user.name}?`;
+  userWelcome.innerText = `${getRandomPageName()} ${user.name}?`;
 }
 
 function populateRecipesInHomeView() {
@@ -267,6 +261,7 @@ function displayHomeView(){
         savedRecipesButton,
         homeViewContainer,
         userSearchContainer1,
+        form
   ])
 }
 
@@ -277,12 +272,12 @@ function displaySavedRecipesView(){
         homeViewContainer,
         filteredContainer,
         userSearchContainer1,
+        form
   ])
   show([homeButton,
         allRecipesButton,
         savedRecipesContainer,
-        userSearchContainer2,
-
+        userSearchContainer2
   ])
 }
 
@@ -292,12 +287,13 @@ function displayAllRecipesView() {
         recipeViewContainer,
         savedRecipesContainer,
         filteredContainer,
-        userSearchContainer2,
+        userSearchContainer2
       ])
   show([homeButton,
         savedRecipesButton,
         allRecipesContainer,
-        userSearchContainer1
+        userSearchContainer1,
+        form
       ])
 }
 
@@ -306,13 +302,14 @@ function displayChosenRecipeView() {
         homeViewContainer,
         allRecipesContainer,
         filteredContainer,
-        userSearchContainer2,
+        userSearchContainer2
   ])
   show([homeButton,
       savedRecipesButton,
       allRecipesButton,
       recipeViewContainer,
       userSearchContainer1,
+      form
   ])
 }
 
@@ -321,13 +318,14 @@ function displayFilteredView() {
         homeViewContainer,
         allRecipesContainer,
         recipeViewContainer,
-        userSearchContainer2,
+        userSearchContainer2
   ])
   show([homeButton,
       savedRecipesButton,
       allRecipesButton,
       filteredContainer,
       userSearchContainer1,
+      form
   ])
 }
 
