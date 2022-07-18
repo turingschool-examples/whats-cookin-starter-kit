@@ -32,65 +32,65 @@
     * To format the video so GitHub can read it, I drap and drop my clips into a comment section in GitHub and it'll convert it and give you a link to past in.
 ​
 <br>
-​
+
 ### Under the Hood: <a name="under"></a> <br>
-​
+
 <details>
 <summary>Recipe Class</summary>
-​
+
 * Takes in an ID number, an image recipe, the ingredients list, a list of instructions, name, associated tags, and references against a master list of ingredients.
-​
+
 * `getIngredientsWithNames()` is a function that looks against a master list of ingredients, compares the recipe items to that master list, and then updates the recipe object to include names that were excluded in our data pull from the fetch request.
-​
+
 * `getCostOfIngredients()` is a function that takes each individual ingredient, and sums the total cost for reference by the user.
-​
+
 </details>
-​
+
 <details>
 <summary>Recipe Repository Class</summary>
-​
+
 * This class takes in all of the recipes from the fetch request.
-​
+
 * `filterRecipeByTag()` and `filterRecipesName()` takes in a user's input, iterates through the repository, and filters a list of matching conditions.
-​
+
 </details>
-​
+
 <details>
 <summary>Extension: Modal</summary>
-​
+
 * The modal was a cool extension that brought an interactive box over the main web page.  This posed challenges from install to project completion.
-​
+
 * The modal has the recipe's cost, ingredients, and instructions in it.  Iterator methods were used to run through the recipe's nested data to provide a readable view to the user.
-​
+
 </details>
-​
+
 <details>
 <summary>DOM Manipulation Details</summary>
-​
+
 * `searchDisplayedRecipe()` is a function that looks for matching cases > 0 to eventually return recipes with matching identifiers.
-​
+
 * `displayAllRecipesOnPage()` does exactly what is named!  It iterates through every recipe in the recipe repository, and then adds a recipe "card" to the page.
-​
+
 * `saveRecipeToRecipesToCook` looks at the event target id of the button clicked.  In `displayAllRecipesOnPage()`, we assigned the html ID of each recipe card to be the recipe ID.  When iterating through all recipes on page, if the target ID matched, it would push the recipe to the User's `recipesToCook` array. This array is then iterated through downstream when the user interacts with their cooking profile.
-​
+
 </details><br>
-​
+
 ### Challenges: <a name="challenges"></a> <br>
 
 * Andrew: One of the functions in our recipe class sought to pull the ingredient name from an upstream class.  The data in our fetch requests matched ingredients by their ID number, but the name was not included in recipes.  Figuring out how to iterate through the data, and then reassign the values of the downstream data to include the name in it.
 
 * Maia: Class to class methods and interaction (I.e. invoking one function from user class into the scripts file for functionality) to add, delete, display recipes to the profile
 
-* Jordan: ​Implement new practices ( API fetches, using the Promise.all( ) ), and also reflecting on functionality used in the past ( deleting items from a profile, filtering results, and creating pop-ups to display information ) to bring this project to completion. We all put our heads together to come up with solutions to the challenges we faced as a team, and, together, we conquered.
+* Jordan: Implement new practices ( API fetches, using the Promise.all( ) ), and also reflecting on functionality used in the past ( deleting items from a profile, filtering results, and creating pop-ups to display information ) to bring this project to completion. We all put our heads together to come up with solutions to the challenges we faced as a team, and, together, we conquered.
 
 <br>
-​
+
 ### Reflections: <a name="reflections"></a> <br>
 
 * Andrew: The importance of being flexible with a passing test needing to be revisited or refactored if its intended function changes down the line in a project.  It is okay to revisit a previously passing test, and writing a new one to fit the new requirements of the project.
 
 * Jordan: Being on the completion-side of the project, it’s nice to look back on all the code we wrote, all the struggles we faced, and feel a sense of pride at what we have accomplished together as a team.
-​
+
 * Maia: This project was very challenging, and it was so exciting to dive deeper into code. I feel like I finally got through some big and frustrating pieces of code, and sticking through those uncomfortable spots to solve it.
 
 * Maia: Working with this team was great, and I was able to learn a lot through asking questions as well as ‘just trying it out’.
