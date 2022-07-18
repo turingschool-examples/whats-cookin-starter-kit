@@ -17,14 +17,15 @@ const userWelcome = document.querySelector('.user-welcome');
 const homeButton = document.getElementById('homeButton');
 const allRecipesButton = document.getElementById('allRecipesButton');
 const savedRecipesButton = document.getElementById('savedRecipesButton');
-var searchButton = document.getElementById('searchButton');
+var searchButton = document.getElementById('searchButton')
+var searchButton2 = document.getElementById('searchButton2');
 const saveRecipeButton = document.getElementById('saveRecipeButton');
 // const myFavoritesButton = document.getElementById('myFavoritesButton')
 // const pantryButton = document.getElementById('pantryButton')
-
 // const mainSectionTitle = document.querySelector('.main-section-title')
 const searchImage = document.querySelector('.search-image');
 const searchInput = document.querySelector('.search-input');
+const searchInput2 = document.querySelector('.search-input2')
 const homeViewContainer = document.querySelector('.home-view-container');
 const recipeViewContainer = document.querySelector('.recipe-view-container');
 const savedRecipesContainer = document.querySelector('.saved-recipes-view');
@@ -38,7 +39,9 @@ const allRecipesContainer = document.querySelector('.all-recipes-view');
 const ingredientCost = document.querySelector('.ingredient-cost');
 const filteredContainer = document.querySelector('.filtered-recipes-view')
 const filterByTag = document.getElementById('filterByTag');
-const filterByName = document.getElementById('filterByName')
+const filterByName = document.getElementById('filterByName');
+const filterByTag2 = document.getElementById('filterByTag2');
+const filterByName2 = document.getElementById('filterByName2');
 const userSearchContainer1 = document.querySelector('.user-search-container');
 const userSearchContainer2 = document.querySelector('.user-search-container2');
 
@@ -62,8 +65,10 @@ savedRecipesButton.addEventListener('click', populateSavedRecipesView);
 homeViewContainer.addEventListener('click', populateChosenRecipe);
 filteredContainer.addEventListener('click', populateChosenRecipe);
 searchButton.addEventListener('click', searchButtonAction);
+searchButton2.addEventListener('click', filterSaved);
 allRecipesContainer.addEventListener('click', populateChosenRecipe);
 saveRecipeButton.addEventListener('click', saveChosenRecipe);
+
 
 // myFavoritesButton.addEventListener('click', )
 // pantryButton.addEventListener('click', )
@@ -181,24 +186,47 @@ function returnRecipeIngredientsAndQuantities(recipe) {
   return allInfo;
 }
 
+//functions for saved reciped view search button
+
+function filterSaved() {
+  if (filterByName2.checked) {
+    showFilteredSavedNames(searchInput2.value)
+  } else {
+    showFilteredSavedTags(searchInput2.value);
+  }
+  displayFilteredView();
+}
+
+
+function showFilteredSavedTags(name) {
+  const tagResults = user.listRecipeToCookByTag(name);
+  filteredContainer.innerHTML = '';
+
+  tagResults.forEach((recipe) => {
+  filteredContainer.innerHTML += `<img class='recipe-pic-box'
+    id='${recipe.id}' src='${recipe.image}'>
+    <p class='recipe-label'>${recipe.name}</p>`;
+  })
+}
+
+function showFilteredSavedNames(tag) {
+  const nameResults = user.listRecipebyToCookName(tag);
+  filteredContainer.innerHTML = '';
+
+  nameResults.forEach((recipe) => {
+    filteredContainer.innerHTML += `<img class='recipe-pic-box'
+      id='${recipe.id}' src='${recipe.image}'>
+      <p class='recipe-label'>${recipe.name}</p>`;
+    })
+}
+
+//functions for main search button
 
 function searchButtonAction() {
-// Needs to fire either returnFilteredByNameResults or returnFilteredByTagResults
-// based on radio button selected and display the return in the
-// carousel view
-// Filter will reurn array of differeing length
-// Use returned arrahy to populate the page
-// Logic to verify which radio button is selected
-
-
   if (filterByName.checked) {
     showFilteredNames(searchInput.value);
-    console.log('Yes')
-    // console.log(searchInput.value);
   } else {
     showFilteredTags(searchInput.value);
-    console.log('No')
-    console.log(searchInput.value);
   }
 
   displayFilteredView();
@@ -318,7 +346,6 @@ function displayFilteredView() {
       userSearchContainer1,
   ])
 }
-// console.log(recipePicBoxes);
 
 //functions to save/remove a recipe
 
