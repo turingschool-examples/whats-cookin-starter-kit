@@ -139,10 +139,16 @@ function showRecipeInstructions(event) {
         <div class="selected-recipe-display">
             <img class="selected-recipe-image" src=${selectedRecipe.image} alt=${selectedRecipe.name}>
             <button class="favorite-button" id="favoriteButton" data-favoriteRecipe=${selectedRecipe.id}>Favorite</button>
-            <ol id="recipeInstructions"></ol>
-            <h3 class="ingredients">Ingredients</h3>
-            <ul class="ingredients-list" id="ingredientsList"></ul>
-            <p class="total">Total Cost: ${totalCost}</p>
+            <div class="instruction-design-div">
+              <div class="instructions-display">
+              <ol id="recipeInstructions"></ol>
+             </div>
+             <div class="ingredients-design-div">
+              <h3 class="ingredients">Ingredients</h3>
+              <ul class="ingredients-list" id="ingredientsList"></ul>
+              <p class="total">Total Cost: ${totalCost}</p>  
+             </div>
+            </div>
         </div>
     `);
 
@@ -154,7 +160,7 @@ function showRecipeInstructions(event) {
 
     selectedRecipe.ingredientsNeeded.forEach((ingredient) => {
         document.querySelector("#ingredientsList").innerHTML += (`
-            <li>${ingredient.name}</li>
+            <li class="ingredient">${ingredient.name}</li>
         `);
     });
 };
