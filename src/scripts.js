@@ -50,8 +50,8 @@ const favoriteRecipesPage = document.querySelector('.favorite-recipes')
 const favoritePageContainer = document.querySelector('.favorite-recipe-icons')
 
 window.addEventListener('click', function(event) {
-      filterByTag(event)
-      favoriteFilterByTag(event)
+  filterByTag(event)
+  favoriteFilterByTag(event)
 })
 window.addEventListener('load', function(event) {
   showHomePage()
@@ -60,14 +60,14 @@ window.addEventListener('load', function(event) {
   fetchIngredients()
 })
 allRecipesContainer.addEventListener('click', function(event) {
-    showRecipeDetailsPage(event)
+  showRecipeDetailsPage(event)
 })
 favoritePageContainer.addEventListener('click', function(event) {
   showRecipeDetailsPage(event)
   hide(favoriteRecipesPage)
 })
 viewAllPage.childNodes[3].addEventListener('click', function(event) {
-    changeHearts(event)
+  changeHearts(event)
 })
 favoriteRecipesPage.childNodes[3].addEventListener('click', function(event) {
   deleteRecipe(event)
@@ -84,7 +84,7 @@ function fetchRecipes() {
   .then(data => {
   recipeData = data.recipeData
   recipeRepository = new RecipeRepository(recipeData)
-})
+  })
 }
 
 function fetchUsers() {
@@ -94,7 +94,7 @@ function fetchUsers() {
   usersData = data.usersData
   let newUserData = usersData[Math.floor(Math.random() * usersData.length)]
   newUser = new User(newUserData)
-})
+  })
 }
 
 function fetchIngredients() {
@@ -102,125 +102,123 @@ function fetchIngredients() {
   .then(response => response.json())
   .then(data =>{
     ingredientsData = data.ingredientsData
-})
+  })
 }
 
 function showViewAllPage() {
-    hide(homePageView)
-    show(viewAllPage)
-    hide(recipeDetailsPage)
-    show(homeButton)
-    hide(viewAllButton)
-    hide(favoriteRecipesPage)
-    show(favoritesButton)
-    hide(featuredTitle)
-    createTags(tagContainer)
-    populateAllRecipes()
-    changeHeader()
+  hide(homePageView)
+  show(viewAllPage)
+  hide(recipeDetailsPage)
+  show(homeButton)
+  hide(viewAllButton)
+  hide(favoriteRecipesPage)
+  show(favoritesButton)
+  hide(featuredTitle)
+  createTags(tagContainer)
+  populateAllRecipes()
+  changeHeader()
 }
 
 function showHomePage() {
-    show(homePageView)
-    hide(viewAllPage)
-    hide(recipeDetailsPage)
-    hide(homeButton)
-    show(viewAllButton)
-    show(favoritesButton)
-    hide(favoriteRecipesPage)
-    show(featuredTitle)
-    changeHeader()
+  show(homePageView)
+  hide(viewAllPage)
+  hide(recipeDetailsPage)
+  hide(homeButton)
+  show(viewAllButton)
+  show(favoritesButton)
+  hide(favoriteRecipesPage)
+  show(featuredTitle)
+  changeHeader()
 }
 
 function showFavoritesPage() {
-    hide(homePageView)
-    hide(viewAllPage)
-    hide(recipeDetailsPage)
-    show(favoriteRecipesPage)
-    show(viewAllButton)
-    hide(favoritesButton)
-    hide(featuredTitle)
-    createTags(tagContainer2)
-    changeHeader()
-    populateFavoriteRecipes()
+  hide(homePageView)
+  hide(viewAllPage)
+  hide(recipeDetailsPage)
+  show(favoriteRecipesPage)
+  show(viewAllButton)
+  hide(favoritesButton)
+  hide(featuredTitle)
+  createTags(tagContainer2)
+  changeHeader()
+  populateFavoriteRecipes()
 }
 
 function showRecipeDetailsPage(event) {
-    if (event.target.classList.contains('view-all-recipe-image')){
-        hide(featuredTitle)
-        hide(homePageView)
-        hide(viewAllPage)
-        show(recipeDetailsPage)
-        show(viewAllButton)
-        populateRecipeDetails(event)
-    }
+  if (event.target.classList.contains('view-all-recipe-image')){
+    hide(featuredTitle)
+    hide(homePageView)
+    hide(viewAllPage)
+    show(recipeDetailsPage)
+    show(viewAllButton)
+    populateRecipeDetails(event)
+  }
     changeHeader()
 }
 
 function populateRecipeDetails(event) {
-        const getTitle = recipeData.filter(recipe => event.target.src === recipe.image)
-        let recipe = new Recipe(getTitle[0], ingredientsData)
-        recipeDetailImage.src = `${event.target.src}`
-        recipeDetailTitle.innerText = `${getTitle[0].name}`
-        let directions = recipe.listDirections()
-        recipeInstructions.innerText = `${directions}`
-        ingredientNames.innerText = `${recipe.determineIngredientNames()}`
-        totalCost.innerText = `${recipe.determineCostOfAllIngredients()}`
+  const getTitle = recipeData.filter(recipe => event.target.src === recipe.image)
+  let recipe = new Recipe(getTitle[0], ingredientsData)
+  recipeDetailImage.src = `${event.target.src}`
+  recipeDetailTitle.innerText = `${getTitle[0].name}`
+  let directions = recipe.listDirections()
+  recipeInstructions.innerText = `${directions}`
+  ingredientNames.innerText = `${recipe.determineIngredientNames()}`
+  totalCost.innerText = `${recipe.determineCostOfAllIngredients()}`
 }
 
 function changeHearts(event) {
-    if (event.target.classList.contains('add-to-favorites-icon')){
-        event.target.src = "./images/filled-heart.png"
-        event.target.classList = 'unfavorite'
-        recipeRepository.recipes.forEach(recipe => {
-          if (recipe.image === event.target.parentNode.childNodes[1].src) {
-            newUser.addRecipeToCook(recipe)
-          }
-        })
-    } else if (event.target.classList.contains('unfavorite') || event.target.classList.contains('trash-icon')) {
-        event.target.src = "./images/heart.png"
-        event.target.classList = 'add-to-favorites-icon'
-        recipeRepository.recipes.forEach(recipe => {
-          if (recipe.image === event.target.parentNode.childNodes[1].src) {
-            newUser.removeRecipeToCook(recipe)
-          }
-        })
-    }
-  }
-
-  function deleteRecipe(event) {
-      if (event.target.classList.contains('trash-icon')) {
-        recipeRepository.recipes.forEach(recipe => {
-          if (recipe.image === event.target.parentNode.childNodes[1].src) {
-            newUser.removeRecipeToCook(recipe)
-            showFavoritesPage()
-          }
+  if (event.target.classList.contains('add-to-favorites-icon')){
+    event.target.src = "./images/filled-heart.png"
+    event.target.classList = 'unfavorite'
+    recipeRepository.recipes.forEach(recipe => {
+      if (recipe.image === event.target.parentNode.childNodes[1].src) {
+        newUser.addRecipeToCook(recipe)
+        }
+      })
+  } else if (event.target.classList.contains('unfavorite') || event.target.classList.contains('trash-icon')) {
+    event.target.src = "./images/heart.png"
+    event.target.classList = 'add-to-favorites-icon'
+    recipeRepository.recipes.forEach(recipe => {
+      if (recipe.image === event.target.parentNode.childNodes[1].src) {
+        newUser.removeRecipeToCook(recipe)
+      }
     })
   }
 }
 
-
-
-function populateAllRecipes() {
-    viewAllPage.childNodes[3].innerHTML = ""
-    recipeData.forEach(recipe => {
-      if (!newUser.recipesToCook.includes(recipe)) {
-        heartHandler(recipe)
-      } else {
-        filledHeartHandler(recipe)
+function deleteRecipe(event) {
+  if (event.target.classList.contains('trash-icon')) {
+    recipeRepository.recipes.forEach(recipe => {
+    if (recipe.image === event.target.parentNode.childNodes[1].src) {
+    newUser.removeRecipeToCook(recipe)
+    showFavoritesPage()
       }
     })
+  }
+}
+
+function populateAllRecipes() {
+  viewAllPage.childNodes[3].innerHTML = ""
+  recipeData.forEach(recipe => {
+    if (!newUser.recipesToCook.includes(recipe)) {
+      heartHandler(recipe)
+    } else {
+      filledHeartHandler(recipe)
+    }
+  })
 }
 
 function populateFavoriteRecipes() {
   favoritePageContainer.innerHTML = ''
   newUser.recipesToCook.forEach(recipe => {
-      favoritePageContainer.innerHTML +=
-        `<section class="recipe-icon">
-          <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
-          <img class="trash-icon" src="./images/trash.png">
-          <p>${recipe.name.toUpperCase()}</p>
-        </section>`
-  })
+    favoritePageContainer.innerHTML +=
+      `<section class="recipe-icon">
+        <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
+        <img class="trash-icon" src="./images/trash.png">
+        <p>${recipe.name.toUpperCase()}</p>
+      </section>`
+    })
 }
 
 function heartHandler(recipe) {
@@ -241,27 +239,24 @@ function filledHeartHandler(recipe) {
     </section>`
 }
 
-
 function createTags(tagContainer) {
-    const getRecipeTags = recipeData.map(recipe => {
-        return recipe.tags
-    }).flat()
-    const uniqueTags = getRecipeTags.filter((recipe, index)=> {
-        return getRecipeTags.indexOf(recipe) === index;
-    })
-    tagContainer.innerHTML = ''
-    const recipeTags = uniqueTags.forEach(tag => {
-        tagContainer.innerHTML += `<input type="checkbox" id="${tag}" unchecked>
-        <label for="${tag}">${tag}</label><br>`
-    })
+  const getRecipeTags = recipeData.map(recipe => recipe.tags).flat()
+  const uniqueTags = getRecipeTags.filter((recipe, index)=> {
+    return getRecipeTags.indexOf(recipe) === index;
+  })
+  tagContainer.innerHTML = ''
+  const recipeTags = uniqueTags.forEach(tag => {
+    tagContainer.innerHTML += `<input type="checkbox" id="${tag}" unchecked>
+      <label for="${tag}">${tag}</label><br>`
+  })
 }
 
 function filterByTag(event) {
   if (event.target.type === "checkbox") {
     let filteredRecipesByTag = recipeRepository.filterTags(event.target.id)
-    viewAllPage.childNodes[3].innerHTML = ""
-    filteredRecipesByTag.forEach(recipe => {
-      viewAllPage.childNodes[3].innerHTML +=
+      viewAllPage.childNodes[3].innerHTML = ""
+      filteredRecipesByTag.forEach(recipe => {
+        viewAllPage.childNodes[3].innerHTML +=
         `<section class="recipe-icon">
           <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
           <img class="add-to-favorites-icon" src="./images/heart.png">
@@ -274,15 +269,15 @@ function filterByTag(event) {
 function favoriteFilterByTag(event) {
   if (event.target.type === "checkbox") {
     let filteredRecipesByTag = newUser.userFilterTags(event.target.id)
-  favoriteRecipesPage.childNodes[3].innerHTML = ''
-  filteredRecipesByTag.forEach(recipe => {
-    favoriteRecipesPage.childNodes[3].innerHTML +=
-      `<section class="recipe-icon">
-        <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
-        <img class='trash-icon' src="./images/trash.png">
-        <p>${recipe.name.toUpperCase()}</p>
-      </section>`
-  })
+      favoriteRecipesPage.childNodes[3].innerHTML = ''
+      filteredRecipesByTag.forEach(recipe => {
+        favoriteRecipesPage.childNodes[3].innerHTML +=
+          `<section class="recipe-icon">
+            <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
+            <img class='trash-icon' src="./images/trash.png">
+            <p>${recipe.name.toUpperCase()}</p>
+          </section>`
+    })
   }
 }
 
@@ -317,16 +312,16 @@ function favoriteFilterByName(event) {
 
 function changeHeader() {
   if (!favoriteRecipesPage.classList.contains('hidden')) {
-  mainHeader.innerText = `${newUser.name}'s Favorites`
+    mainHeader.innerText = `${newUser.name}'s Favorites`
   } else {
-  mainHeader.innerText = "What's Cookin?"
+    mainHeader.innerText = "What's Cookin?"
   }
 }
 
 function show(element) {
-  element.classList.remove('hidden');
+  element.classList.remove('hidden')
 }
 
 function hide(element) {
-  element.classList.add('hidden');
+  element.classList.add('hidden')
 }
