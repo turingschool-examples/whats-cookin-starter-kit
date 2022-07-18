@@ -48,7 +48,7 @@ const userWelcomeMessage = document.querySelector('.user-welcome-message');
 window.addEventListener('load', getAllData);
 recipeSidebarList.addEventListener('click', viewRecipe);
 recipeIconContainer.addEventListener('click', viewRecipeFromIcon);
-favoriteRecipeImages.addEventListener('click', viewRecipeFromIcon);
+// favoriteRecipeImages.addEventListener('click', viewRecipeFromIcon);
 homeButton.addEventListener('click', showHomePage);
 searchButton.addEventListener('click', filterRecipe);
 favoriteSearchButton.addEventListener('click', filterFavoriteRecipes);
