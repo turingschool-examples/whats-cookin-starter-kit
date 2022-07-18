@@ -31,7 +31,6 @@ const homePageView = document.querySelector('.home-page-view')
 const viewAllPage = document.querySelector('.view-all-page')
 const homeButton = document.querySelector('#homeButton')
 const favoritesButton = document.querySelector('#favoritesButton')
-const glideRecipes = document.querySelector('.glide__slides')
 const recipeDetailsPage = document.querySelector('.recipe-details-page')
 const allRecipesContainer = document.querySelector('.all-recipes')
 const recipeDetailImage = document.querySelector('#recipeDetail')
@@ -43,7 +42,6 @@ const ingredientNames = document.querySelector('.ingredient-list-names')
 const totalCost = document.querySelector('.total-cost')
 const tagContainer = document.querySelector('.tag-container')
 const tagContainer2 = document.querySelector('.tag-container2')
-const form = document.querySelector('#form')
 const searchbar = document.querySelector("#searchbar")
 const favoriteSearchBar = document.querySelector("#searchbar2")
 const searchButton = document.querySelector(".search-button")
@@ -57,6 +55,10 @@ favoritesButton.addEventListener('click', showFavoritesPage)
 allRecipesContainer.addEventListener('click', function(event) {
     showRecipeDetailsPage(event)
   })
+favoritePageContainer.addEventListener('click', function(event) {
+  showRecipeDetailsPage(event)
+  hide(favoriteRecipesPage)
+})
 window.addEventListener('click', function(event) {
       filterByTag(event)
       favoriteFilterByTag(event)
@@ -133,12 +135,6 @@ function changeHearts(event) {
     })
   }
 }
-
-// function generateRandomUser() {
-//     let newUserData = usersData[Math.floor(Math.random() * usersData.length)]
-//     newUser = new User(newUserData)
-//     return newUser
-//     };
 
 function showViewAllPage() {
     hide(homePageView)
@@ -243,7 +239,6 @@ function filledHeartHandler(recipe) {
 
 
 function createTags(tagContainer) {
-  console.log(recipeData)
     const getRecipeTags = recipeData.map(recipe => {
         return recipe.tags
     }).flat()

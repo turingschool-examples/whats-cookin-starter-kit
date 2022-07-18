@@ -108,21 +108,21 @@ describe('Recipe', () => {
     })
 
     it('should have a method to determine ingredient names', () => {
-        expect(recipe.determineIngredientNames()).to.deep.equal(['wheat flour', 'bicarbonate of soda'])
+        expect(recipe.determineIngredientNames()).to.equal('wheat flour: 1.50 c' + '\n' + 'bicarbonate of soda: 0.50 tsp')
     })
 
     it('should calculate the total cost of required ingredients', () => {
-        expect(recipe.determineCostOfAllIngredients()).to.equal(504)
+        expect(recipe.determineCostOfAllIngredients()).to.equal(`$5.04`)
     })
 
     it('should provide instructions', () => {
-        expect(recipe.listDirections()).to.deep.equal([
-            'Step 1: In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.',
-            'Step 2: Add egg and vanilla and mix until combined.',
-            'Step 3: Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.',
-            'Step 4: Place the cookie dough balls into ungreased muffin pan. Sprinkle with sea salt.',
-            'Step 5: Bake for 9 to 10 minutes, or until you see the edges start to brown.',
+        expect(recipe.listDirections()).to.deep.equal(
+            'Step 1: In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.' + '\n' +
+            'Step 2: Add egg and vanilla and mix until combined.' + '\n' +
+            'Step 3: Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.' + '\n' +
+            'Step 4: Place the cookie dough balls into ungreased muffin pan. Sprinkle with sea salt.' + '\n' +
+            'Step 5: Bake for 9 to 10 minutes, or until you see the edges start to brown.' + '\n' +
             'Step 6: Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice cream and a drizzle of chocolate sauce.'
-          ])
+          )
     })
 })
