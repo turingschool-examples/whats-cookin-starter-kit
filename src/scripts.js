@@ -2,14 +2,13 @@ import './styles.css';
 import {apiCalls} from './apiCalls';
 import User from './classes/User'
 import RecipeRepository from './classes/RecipeRepository';
+
 const {fetchData} = apiCalls;
 
 const recipeDisplay = document.querySelector('#recipeDisplay');
 const recipeHeading = document.querySelector('#recipeHeading');
 const homeButton = document.querySelector('#homeButton');
 const favoriteButton = document.querySelector('#favoriteButton');
-const filterButton = document.querySelector('#filterButton');
-const searchButton = document.querySelector('#searchButton');
 const recipeNameInput = document.querySelector('#recipeNameInput');
 const recipeTagInput = document.querySelector('#recipeTagInput');
 const filterForm = document.querySelector('#filterForm');
@@ -24,6 +23,7 @@ let user;
 let ingredientsInfo;
 let userInfo;
 let recipeRepository;
+
 fetchData().then(responses => {
     ingredientsInfo = responses[1]
     userInfo = responses[2]
@@ -80,6 +80,7 @@ function showFavorites() {
     hideOff(filterFavoriteForm);
     hideOff(favSearchForm);
     hideOff(homeButton);
+    
     homeButton.classList.remove('hidden');
     homeButton.classList.add('favorite');
     recipeHeading.innerText = 'Favorite Recipes';
@@ -101,22 +102,25 @@ function displayRecipeList() {
     hideOn(homeButton);
     hideOn(filterFavoriteForm);
     hideOn(favSearchForm);
- recipeDisplay.innerHTML = "";
- recipeRepository.recipeList.forEach((recipe) => {
+
+    recipeDisplay.innerHTML = "";
+    recipeRepository.recipeList.forEach((recipe) => {
     recipeDisplay.innerHTML += (`
         <div class="recipe-image-wrapper">
-          <img class="recipe-image" data-recipeId=${recipe.id} src=${recipe.image} alt=${recipe.name}>
-          <p class="recipe-name">${recipe.name}</p>
-          <button class="favorite-button" data-favoriteRecipe=${recipe.id} id="favoriteButton">Favorite</button>
+            <img class="recipe-image" data-recipeId=${recipe.id} src=${recipe.image} alt=${recipe.name}>
+            <p class="recipe-name">${recipe.name}</p>
+            <button class="favorite-button" data-favoriteRecipe=${recipe.id} id="favoriteButton">Favorite</button>
         </div>
       `)
    });
 };
 
 function goHome() {
-    recipeHeading.innerText = 'All Recipes';
     hideOn(homeButton);
+
+    recipeHeading.innerText = 'All Recipes';
     recipeDisplay.innerHTML = "";
+
     displayRecipeList();
    
 }
@@ -128,9 +132,12 @@ function showRecipeInstructions(event) {
     hideOn(favSearchForm);
     hideOff(favoriteButton);
     hideOff(homeButton);
+
     const recipeId = parseInt(event.target.getAttribute("data-recipeId"));
     const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === recipeId);
+
     selectedRecipe.buildIngredientsNeeded(ingredientsInfo.ingredientsData);
+
     const totalCost = selectedRecipe.getTotalCost();
 
     recipeDisplay.innerHTML = "";
@@ -140,14 +147,14 @@ function showRecipeInstructions(event) {
             <img class="selected-recipe-image" src=${selectedRecipe.image} alt=${selectedRecipe.name}>
             <button class="favorite-button" id="favoriteButton" data-favoriteRecipe=${selectedRecipe.id}>Favorite</button>
             <div class="instruction-design-div">
-              <div class="instructions-display">
-              <ol id="recipeInstructions"></ol>
-             </div>
-             <div class="ingredients-design-div">
-              <h3 class="ingredients">Ingredients</h3>
-              <ul class="ingredients-list" id="ingredientsList"></ul>
-              <p class="total">Total Cost: ${totalCost}</p>  
-             </div>
+                <div class="instructions-display">
+                <ol id="recipeInstructions"></ol>
+            </div>
+            <div class="ingredients-design-div">
+                <h3 class="ingredients">Ingredients</h3>
+                <ul class="ingredients-list" id="ingredientsList"></ul>
+                <p class="total">Total Cost: ${totalCost}</p>  
+            </div>
             </div>
         </div>
     `);
@@ -229,8 +236,8 @@ function searchRecipeName(event) {
     requestedRecipes.forEach((recipe) => {
     recipeDisplay.innerHTML += (`
         <div class="recipe-image-wrapper">
-          <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
-          <p class="recipe-name">${recipe.name}</p>
+            <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
+            <p class="recipe-name">${recipe.name}</p>
         </div>
       `)
    });
@@ -252,8 +259,8 @@ function searchRecipeName(event) {
    requestedRecipes.forEach((recipe) => {
    recipeDisplay.innerHTML += (`
        <div class="recipe-image-wrapper">
-         <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
-         <p class="recipe-name">${recipe.name}</p>
+            <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
+            <p class="recipe-name">${recipe.name}</p>
        </div>
      `)
   });
