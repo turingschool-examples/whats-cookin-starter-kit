@@ -166,25 +166,6 @@ function viewRecipesHelperFunction() {
   displaySelectedRecipeImg();
 }
 
-// function viewRecipeFromFavIcon(event){
-//   selectedRecipeIcon = event.target.src
-//   console.log(selectedRecipeIcon)
-//   selectedRecipe = allRecipes.filter(recipe => selectedRecipeIcon === recipe.image)[0];
-//   hide(homePage);
-//   hide(searchContainer);
-//   hide(favoritesPage);
-//   hide(searchFavoritesContainer);
-//   show(recipePage);
-//   displaySelectedRecipeName();
-//   displayRecipeInstructions();
-//   displayIngredientNames();
-//   displayIngredientCosts();
-//   displayIngredientQuantities();
-//   displayTotalCostOfAllIngredients();
-//   displaySelectedRecipeImg();
-// }
-
-
 function displaySelectedRecipeName() {
   recipeNameBox.innerText = selectedRecipe.name;
 }
