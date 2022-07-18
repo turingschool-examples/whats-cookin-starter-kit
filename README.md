@@ -21,7 +21,7 @@ On load, the user will see a home screen which includes all the recipes availabl
 
 ### Gif
 
-![What's Cookin App Gif](../src/images/Whats Cookin.gif)
+![What's Cookin App Gif](../src/images/whats- cookin.gif)
 
 ### Technologies Used
 
