@@ -1,14 +1,9 @@
 import './styles.css';
-import apiCalls from './apiCalls';
 import { getAllData } from './apiCalls'
-import './images/turing-logo.png';
 import RecipeRepository from './classes/RecipeRepository';
 import Recipe from './classes/Recipe';
 import Ingredient from './classes/Ingredient';
 import User from './classes/User';
-// const recipeData = require('./data/recipes');
-// const ingredientData = require('./data/ingredients');
-// const userData = require('./data/users');
 
 // ***** Query Selectors ***** //
 
@@ -49,10 +44,7 @@ const removeFiltersButton = document.querySelector('.remove-filters-button');
 const userWelcomeMessage = document.querySelector('.user-welcome-message');
 
 // ***** Event Listeners ***** //
-// window.addEventListener('load', updateMainPageRecipeIcons);
-// window.addEventListener('load', updateMainPageFeatureImg);
-// window.addEventListener('load', displayAllNames);
-window.addEventListener('load', getAllData())
+window.addEventListener('load', getAllData);
 recipeSidebarList.addEventListener('click', viewRecipe);
 recipeIconContainer.addEventListener('click', viewRecipeFromIcon);
 favoriteRecipeImages.addEventListener('click', viewRecipeFromIcon);
@@ -68,6 +60,7 @@ removeFiltersButton.addEventListener('click', showFavoritesPage);
 let ingredientData;
 let userData;
 let user;
+let recipeData;
 let selectedRecipeName;
 let selectedRecipeIcon;
 let selectedRecipe;
@@ -75,21 +68,17 @@ let recipeRepository;
 let allRecipes;
 // ***** Functions ***** //
 
-
-
 getAllData().then(responses => {
+  recipeData = responses[0];
   ingredientData = responses[1];
   userData = responses[2];
-  allRecipes = responses[0].recipeData.map(recipe => new Recipe(recipe, ingredientData.ingredientsData));
+  user = new User(userData.usersData[getRandomIndex(userData.usersData)]);
+  allRecipes = recipeData.recipeData.map(recipe => new Recipe(recipe, ingredientData.ingredientsData));
   recipeRepository =  new RecipeRepository(allRecipes);
-  window.addEventListener('load', updateMainPageRecipeIcons);
-  window.addEventListener('load', updateMainPageFeatureImg);
-  window.addEventListener('load', displayAllNames);
+  updateMainPageRecipeIcons();
+  updateMainPageFeatureImg();
+  displayAllNames();
 });
-console.log('recipedata:', allRecipes)
-console.log('ingredientdata:', ingredientData)
-console.log('userdata:', userData)
-
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -103,10 +92,6 @@ function show(element) {
   element.classList.remove('hidden');
 }
 
-function loadNewUser() {
-  user = new User(userData.usersData[getRandomIndex(userData.usersData)]);
-}
-
 function updateUserWelcome(user) {
   userWelcomeMessage.innerText = `Welcome \n ${user.name}, \n ready to cook?`
 }
@@ -118,7 +103,6 @@ function updateMainPageRecipeIcons() {
   icon4Img.src = allRecipes[getRandomIndex(allRecipes)].image;
   icon5Img.src = allRecipes[getRandomIndex(allRecipes)].image;
   icon6Img.src = allRecipes[getRandomIndex(allRecipes)].image;
-  loadNewUser();
   updateUserWelcome(user);
 }
 
