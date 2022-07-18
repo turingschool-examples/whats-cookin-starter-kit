@@ -18,6 +18,9 @@ let newRecipe;
 let matchingTagConditions = [ ];
 let matchingNameConditions = [ ];
 
+let savedTagCondits = []
+let savedNameCondits = []
+
 // Query Selectors <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 let searchButton = document.querySelector( ".search-button" );
 let searchBox = document.querySelector( ".recipe-search" );
@@ -81,7 +84,10 @@ function displayRandomUserName( ) {
     welcomeUserMessage.innerText = `Welcome, ${ currentUser.name.split( ' ' )[ 0 ] }!`
 }
 
-function searchRecipe( ) {
+function searchRecipe( e ) {
+    if (e.target.id == 'search-cooking') {
+        filterCookProf()
+    } else{
     if ( !searchBox.value ) {
       displayAllRecipesOnPage( );
     }
@@ -100,7 +106,84 @@ function searchRecipe( ) {
       return displayAllRecipesOnPage( );
     }
   }
+}
+////////////
 
+function displayFilteredRecipesByTagOnCookingProf( ) {
+    // const result = currentUser.recipesToCook.map( recipe => {
+    //     console.log( 'TAG RECIPE: ', recipe )
+    //     return `<section class='recipe-card' id=${ recipe.id }>
+    //     <img src="${ recipe.image }" class="recipe-image" alt="">
+    //     <h3>${ recipe.name }</h3>
+    //     <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
+    //     <div>
+    //     <button class="save-button" id= ${ recipe.id }>Save to cooking profile!</button>
+    //     </div>
+    //     </section>`
+    // } );
+    // savedTagCondits = recipeContainer;
+    // return recipeContainer.innerHTML = result;
+}
+
+// function displayFilteredRecipesByNameOnCookingProf( ) {
+//     const result = currentUser.recipesToCook.map( recipe => {
+//         return `<section class='recipe-card' id=${recipe.id}>
+//         <img src="${ recipe.image }" class="recipe-image" alt="">
+//         <h3>${ recipe.name }</h3>
+//         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
+//         <div>
+//         <button id= ${recipe.id} class="save-button">Save to cooking profile!</button>
+//         </div>
+//         </section>`
+//     } );
+//     savedNameCondits = recipeContainer;
+//     return recipeContainer.innerHTML = result;
+// }
+
+function filterCookProf() {
+    
+    const tagSearched = currentUser.filterRecipesToCookByTag( searchBox.value );
+    const nameSearched = currentUser.filterRecipesToCookByName( searchBox.value);
+    // console.log( 'tagSearched: ', tagSearched )
+    if ( tagSearched.length > 0 ) {
+        savedTagCondits = tagSearched 
+        console.log(`tag searched: `, tagSearched);
+        const result = savedTagCondits.map( recipe => {
+            console.log( 'TAG RECIPE: ', recipe )
+            return `<section class='recipe-card' id=${ recipe.id }>
+            <img src="${ recipe.image }" class="recipe-image" alt="">
+            <h3>${ recipe.name }</h3>
+            <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
+            <div>
+            <button class="save-button" id= ${ recipe.id }>Save to cooking profile!</button>
+            </div>
+            </section>`
+        } );
+        savedTagCondits = recipeContainer;
+        return recipeContainer.innerHTML = result;
+
+    } else if ( nameSearched.length > 0 ) {
+        console.log( 'nameSearched: ', nameSearched )
+        savedNameCondits = nameSearched 
+        const result = savedNameCondits.map( recipe => {
+            return `<section class='recipe-card' id=${recipe.id}>
+            <img src="${ recipe.image }" class="recipe-image" alt="">
+            <h3>${ recipe.name }</h3>
+            <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
+            <div>
+            <button id= ${recipe.id} class="save-button">Save to cooking profile!</button>
+            </div>
+            </section>`
+        } );
+        savedNameCondits = recipeContainer;
+        return recipeContainer.innerHTML = result;
+    } else {
+        console.log('fail');
+      return;
+    }
+  }
+
+///////////
   function displayFilteredRecipesByTagOnPage( ) {
     const result = matchingTagConditions.map( recipe => {
         console.log( 'TAG RECIPE: ', recipe )
@@ -175,6 +258,7 @@ function saveRecipeToRecipesToCook ( e ) {
 
 function showCookingProfile( e ) {
     if( e.target.innerText == 'View Your Cooking Profile' ) {
+        searchButton.id = 'search-cooking'
         navViewProfileButton.innerText = "Return Home"
         const result = currentUser.recipesToCook.map( recipe => {
             return `<section class='recipe-card' id=${ recipe.id }>
@@ -189,6 +273,7 @@ function showCookingProfile( e ) {
         return recipeContainer.innerHTML = result;
     }
     if( e.target.innerText == 'Return Home' ){
+        searchButton.id = 'search'
         returnHome( )
     }
 }

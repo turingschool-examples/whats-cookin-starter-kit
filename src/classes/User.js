@@ -18,14 +18,14 @@ class User {
         let tagMatches = this.recipesToCook.filter( recipe => {
             return recipe.tags.includes(userInput.toLowerCase( ))
         });
-            return tagMatches.tags;
+            return tagMatches;
     };
       
     filterRecipesToCookByName( userSearch ){
         let nameMatches = this.recipesToCook.filter( recipe => {
             return recipe.name.includes( userSearch )
         })
-            return nameMatches.name
+            return nameMatches
       };
   };
 
