@@ -1,16 +1,36 @@
-# What's Cookin'? Starter Kit
+# What's Cookin!
+A web app for discovering and organizing all your favorite recipes in one place.
 
-The details of this project are outlined in the <a href="https://frontend.turing.edu/projects/What%27sCookin-PartOne.html" target="\__blank">project spec</a>.
+### Introduction
 
-## Set Up
+What's Cookin is our second project in Mod2 of Turing School of Software and Design (it is a group project). The goal was to create a web app that uses multiple data sets including users, recipes, and ingredients. Upon load, the app logs in a random user along with their specific information including name and personal pantry items.<br>
 
-1. Within your group, decide on one person to have the project repository on their Github account. This person will *fork* this repository - on the top right corner of the page, click the fork button.
-2. All group members should then clone down the forked repository (make sure that everyone is added as a collaborator as well). Since you don't want your project to be named "whats-cookin-starter-kit", add an optional argument after the repo url when cloning. The command should look like this: `git clone [remote-address] [what you want to name the repo]`.
-3. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` or `npm i` to install project dependencies.
-4. Run npm start in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page). `Control + C` is the command to stop running the local server. Closing the terminal without stopping the server first could allow the server to continue to run in the background and cause problems. This command is not specific to Webpack; make note of it for future use.
-5. Make sure both members of your team are collaborators on the forked repo.
-6. Do not run `npm audit fix --force`. This will update to the latest version of packages. We need to be using `webpack-dev-server@3.11.2` which is not the latest version. If you start to run into Webpack errors, first check that all group members are using the correct version.
+[**link to page**](https://anabennett11.github.io/whats-cookin-group-project/)
 
-## Testing
+### Directions and Features
 
-Mocha and chai are already set up, with a boilerplate test for you.
+On load, the user will see a home screen which includes all the recipes available represented by individual recipe cards. The site can be navigated by the nav bar on the top of the page.
+
+**Search**<br>By typing a recipe name or tag in their respective search box, a user will see their results after clicking the search button. Searches can include recipe names, recipe ingredients, or recipe tags.
+
+**View Recipe Info**<br>When a user clicks on a recipe, a new page appears revealing the full recipe info including ingredients with amounts, instructions and total costs.
+
+**Favorite Recipes**<br>When a user selects the "Favorites" button on a recipe card, the selected recipe will be added to the Favorite Recipes page. The user can navigate to the Favorite Recipes page by clicking on the "Favorite Recipes" button in the nav bar. The user can also search for and filter through their favorite recipes by name and tag while on the Favorite Recipe page.
+
+**Back To Home**<br>When a user navigates away from the home page, they can easily get back to the home page by clicking the "Go Back Home" button in the nav bar
+
+### Gif
+
+![What's Cookin App Gif](../src/images/Whats Cookin.gif)
+
+### Technologies Used
+
+HTML, CSS, Vanilla JavaScript, WebPack, Mocha, Chai
+
+### Contributors
+
+* [Ana Bennett](https://github.com/AnaBennett11)
+
+* [Anna Spitz](https://github.com/aspitz1)
+
+* [Jeffrey Cook](https://github.com/JCookDev)
