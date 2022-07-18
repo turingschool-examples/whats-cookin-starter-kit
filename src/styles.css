@@ -1,12 +1,12 @@
-/* * {
-  border: 1px solid purple;
-} */
+* {
+  border: 2px solid purple;
+}
 
-html, body {
+html, body, main {
   background-color: white;
   height: 100%;
   width: 100%;
-  margin: 0;
+  margin: 0%;
 }
 
 h1 {
@@ -28,11 +28,13 @@ h2 {
 }
 
 h3 {
-  /* display: flex; */
-  padding: 0;
+  padding: 0%;
   margin-top: 5%;
   margin-bottom: 5%;
-  font-size: medium;
+  font-size: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 h4 {
@@ -80,14 +82,18 @@ button:active {
 img {
   height: auto;
   width: auto;
-  flex-grow:inherit;
+  flex-grow: 10;
+  flex-shrink: 10;
 }
 
 .nav-bar {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* position:inherit; WANT TO GET THE NAV BAR TO BE LIKE, STATIONAIRY??? */
+  float: top;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
   box-shadow: 0 1px 6px rgba(0,0,0, .75);
   background-image: linear-gradient(
     rgba(0, 0, 0, 0.4),
@@ -109,7 +115,8 @@ img {
   border: 1px solid black;
   background-color: lightgray;
   border-radius: 0px;
-  /* flex-grow:inherit; */
+  flex-grow: 20;
+  flex-shrink: 20;
 }
 
 /* .search-button:hover {
