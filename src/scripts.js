@@ -49,7 +49,7 @@ Promise.all([userPromise, ingredientPromise, recipePromise])
 const favoriteButton = document.querySelector('#favorite-button');
 const cookbookButton = document.querySelector('#cookbook-button')
 const searchBar = document.querySelector('.search-container')
-const addToCookbookButton = document.querySelector('.add-to-cookbook-button')
+// const addToCookbookButton = document.querySelector('.add-to-cookbook-button')
 const cardFavoriteButton = document.querySelector('.favorite-button')
 const unFavoriteButton = document.querySelector('.un-favorite-button')
 const userGreeting = document.querySelector("#userName");
@@ -60,7 +60,6 @@ const goHomeButton = document.getElementById('home-button')
 const recipeCard = document.querySelector('.recipe-card')
 const ingredientCard = document.querySelector('.ingredient-card')
 let viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
-let letsMakeIt = document.querySelector('.lets-make-it-button')
 const recipeCardWrapper = document.querySelector('.recipe-card-wrapper')
 const ingredientCardWrapper = document.querySelector('.ingredient-card-wrapper')
 const recipeTagInput = document.querySelector('#recipe-tag-input')
@@ -91,23 +90,22 @@ const showFilteredIngredients = () => {
 // EventListeners
 window.addEventListener('load', () => {
     showAllRecipes()
-    viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
-    viewRecipeButtons.forEach((button) => {
-        button.addEventListener('click', (event) => {
-            showAllRecipeDetails(event.target.getAttribute('data-recipeId'))
-        })
-    })
+    // viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
+    // viewRecipeButtons.forEach((button) => {
+    //     button.addEventListener('click', (event) => {
+    //         showAllRecipeDetails(event.target.getAttribute('data-recipeId'))
+    //     })
+    // })
 });
 
-goHomeButton.addEventListener('click', showAllHelper)
+goHomeButton.addEventListener('click', showAllRecipes)
 
 function showAllHelper() {
-  showAllRecipes()
-  console.log('hi')
-  viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
-  viewRecipeButtons.forEach((button) => {
+  let letsMakeIt = document.querySelectorAll(".lets-make-it-button")
+  console.log(letsMakeIt)
+  letsMakeIt.forEach((button) => {
       button.addEventListener('click', (event) => {
-          showAllRecipeDetails(event.target.getAttribute('data-recipeId'))
+          showAllRecipeDetails(event.target.id)
       })
   })
 }
@@ -144,12 +142,14 @@ function showAllRecipes() {
 }
 
 function showAllRecipeDetails(id) {
-    newRecipe.makeIngredientData(ingredientsData);
+  console.log('recipeId', id)
     newRecipe = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(id));
+    newRecipe.makeIngredientData(ingredientsData);
     window.currentRecipe = newRecipe;
+    console.log('window', window.currentRecipe)
     console.log('newRecipe: ', newRecipe)
     ingredientCard.innerHTML = `<div>
-    <button id="add-to-cookbook" class=""> Add to cookbook! </button>
+    <button id="add-to-cookbook" class="add-to-cookbook-button"> Add to cookbook! </button>
 <ul>
 <h2> RECIPE INFORMATION </h2>
 <li> NAME: ${newRecipe.name}</li>
@@ -173,11 +173,18 @@ INSTRUCTIONS
   </div>`
     });
     // addToCookbookButtonEventHandler('add-to-cookbook', newRecipe);
+    const addToCookbookButton = document.querySelector('.add-to-cookbook-button')
+    addToCookbookButton.addEventListener('click', addSingleRecipeToCookbook)
     hide(recipeCardWrapper)
     show(favoriteButton)
     show(ingredientCardWrapper)
+    show(ingredientCard)
     show(goHomeButton)
     // showFilteredIngredients();
+}
+
+const addSingleRecipeToCookbook = () => {
+  ourUser.recipesToCook.push(newRecipe)
 }
 
 const addRecipeEventListeners = () => {
@@ -230,11 +237,11 @@ function displayRecipeBySearchResults(recipes) {
       <button id="${recipe.id}" class="add-to-cook-button"> Add to cookbook! </button>
       </div>
       </section>`
-
     });
     const addToCookButtons = document.querySelectorAll('.add-to-cook-button')
     addToCookbookButtonEventHandler(addToCookButtons);
     showFilteredIngredients()
+    showAllHelper()
 }
 function show(element) {
     element.classList.remove('hidden');
