@@ -188,18 +188,19 @@ function searchRecipe(event) {
         showAllRecipes();
     }
     show(goHomeButton)
-    hide(ingredientCard)
+    // hide(ingredientCard)
 }
 
 function showCookbookrecipes(event) {
     // console.log({ userRecipes: user.recipesToCook });
     displayRecipeBySearchResults(ourUser.recipesToCook);
+    show(goHomeButton)
 }
 
 function displayRecipeBySearchResults(recipes) {
     recipeCard.innerHTML = '';
     recipes.forEach((recipe, index) => {
-        console.log('TAG RECIPE: ', recipe);
+      // can add .find here? to find the selected recipe to add to cookbook
         const addToCookbookId = `add-to-cookbook-${index}`
         recipeCard.innerHTML += `<section class='recipe-card' id="recipeCard">
       <img src="${recipe.image}" class="recipe-image" alt="">
