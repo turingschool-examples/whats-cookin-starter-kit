@@ -31,8 +31,6 @@
 ​
     * To format the video so GitHub can read it, I drap and drop my clips into a comment section in GitHub and it'll convert it and give you a link to past in.
 ​
-https://user-images.githubusercontent.com/98445902/172243113-8f0cc359-4e85-44a3-adda-b1aa825cb9dc.mov
-​
 <br>
 ​
 ### Under the Hood: <a name="under"></a>
