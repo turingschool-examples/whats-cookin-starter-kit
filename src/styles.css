@@ -1,12 +1,13 @@
 * {
-  border: 2px solid purple;
+  /* border: 2px solid purple; */
+  font-family: Trebuchet, sans-serif;
 }
 
-html, body, main {
+html, body {
   background-color: rgba(211,211,211, 0.7);
   height: 100vh;
   width: 100vw;
-  margin: 0%;
+  margin: 0%;  
 }
 
 h1 {
@@ -39,6 +40,7 @@ h3 {
 
 h4 {
   font-size: 36px;
+  color:antiquewhite;
   text-shadow: 2px 2px rgba(0,0,0,0.3);
   margin: 0;
   margin-top: 40px;
@@ -84,15 +86,12 @@ button:active {
 
 .nav-bar {
   display: flex;
-    flex-direction: column;
+  flex-direction: column;
   position: fixed;
   float: inline-start;
   margin: 0%, 0%, 0%, 0%;
   box-shadow: 0 1px 6px rgba(0,0,0, .75);
-  background-image: linear-gradient(
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.4)
-  ), url('./images/nav-background.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('./images/nav-background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -102,10 +101,9 @@ button:active {
 
 .nav-search-container, .nav-input-search-container {
   display: flex;
-    justify-content: flex-end;
-    align-content: center;
+  justify-content: flex-end;
+  align-content: center;
   width: 100vw;
-
 }
 
 .search-button {
@@ -132,15 +130,14 @@ button:active {
 
 .nav-button-container {
   display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
-    align-items: center;
-    align-content: space-between;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: space-between;
   align-self: center;
   width: 30%;
 }
-
 
 .grid-container {
   display: flex;
@@ -205,14 +202,67 @@ button:active {
 .recipe-modal.is-open {
   display: flex;
   justify-content: center;
+  height: 55vh fixed;
+  width: 33vw;
 }
-/* 
-  #modal-1-content {
-    background-color: rgba(0,0,0,0.1);
-} */
 
 .recipe-modal:active {
   transform: (-50%, -50%) scale(1);
+}
+
+
+.overlay:active {
+  opacity: 1;
+  pointer-events: all;
+  font-stretch: ultra-condensed;
+}
+
+.ingredient-and-direction-container {
+  display: flex;
+  background-color: rgba(211,211,211, 0.55);
+  border: 1px solid rgba(0,0,0,0.7);
+  border-radius: 0px, 0px, 15px, 15px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('./images/nav-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#modal-1-content {
+  flex-wrap: wrap;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./images/nav-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.ingredient-list, .cooking-directions {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255,255,255,0.95);
+}
+
+.modal-directions, .modal-ingredients, .modal-instructions {
+  background-color: rgba(255,255,255,0.95);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  height: 55vh;
+  width: 33vw; 
+  contain: content;
+  overflow: clip scroll;
+}
+
+.dish-cost {
+  color:antiquewhite;
+  text-shadow: 2px 2px rgba(0,0,0,0.2);
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 10px
 }
 
 /* .modal_overlay {
@@ -225,80 +275,13 @@ button:active {
   background-color: rgba(0, 0, 0, 0.7);
   transition: 200ms ease-in-out;
   pointer-events: none;
-} */
-
-.overlay:active {
-  opacity: 1;
-  pointer-events: all;
-  height: 55vh fixed;
-  width: 33vw;
-  text-overflow: wrap;
-  z-index: 10;
-}
-
-.ingredient-and-direction-container {
-  display: flex;
-  justify-content: space-evenly;
-  background-color: rgba(211,211,211, 0.55);
-  border: 1px solid rgba(0,0,0,0.7);
-  border-radius: 0px, 0px, 15px, 15px;
-  background-image: linear-gradient(
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.4)
-    ), url('./images/nav-background.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  #modal-1-content {
-    background-image: linear-gradient(
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.4)
-      ), url('./images/nav-background.jpg');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
-      text-overflow: wrap;
-    }
-    
-    .ingredient-list, .cooking-directions {
-      display: flex;
-      flex-direction: column;
-      background-color: rgba(255,255,255,0.95);
-      font-size: 90%;
-      padding: 1%;
-      text-overflow: wrap;
-      height: 55vh fixed;
-      /* width: 33vw; */
-    }
-    .modal-directions, .modal-ingredients, .modal-instructions {
-  background-color: rgba(255,255,255,0.95);
-  display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: center;
-    align-items: center;
-  font-size: 90%;
   height: 55vh;
-  width: 33vw;
-  text-overflow: wrap;
-}
-
-.dish-cost {
-  text-shadow: 2px 2px rgba(0,0,0,0.2);
-  font-size: 25px;
-  font-weight: bold;
-  margin: 0;
-  margin-top: 10px
-
-}
+} */
 
 #closeModal {
   margin-top: 23px;
 }
 
-/* .hidden {
+.hidden {
   display: none;
-} */
+}
