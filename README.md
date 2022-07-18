@@ -3,6 +3,9 @@
   - A recipe card will load with the ingredients list, total cost of the ingredients and recipe directions.
   - HTML was written for the framework, CSS for personal styling, and Javascript for all functionality including DOM manipulation.
 
+## Application in Action
+![app gif](.src/images/what-cookin-gif.gif)
+
 ## Technologies
   - Javascript
   - HTML
@@ -13,8 +16,12 @@
   - GlideJS
 
 ## Illustrations
-*UPDATE THIS*
-![Screen Shot 2022-06-14 at 11 20 18 AM](https://user-images.githubusercontent.com/100726140/173638625-43b3cbde-3209-403a-9036-874f978880e5.png)
+![homepage](.src/images/Screen Shot 2022-07-17 at 9.30.18 PM.png)
+
+![view-all](.src/images/Screen Shot 2022-07-17 at 9.30.35 PM.png)
+
+![favorites-page](.src/images/Screen Shot 2022-07-17 at 9.30.50 PM.png)
+
 
 ## Goals, Challenges, and Wins
 ### Goals
