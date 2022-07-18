@@ -4,21 +4,23 @@
     <meta charset="UTF-8" />
     <title>Famish: Food is family</title>
   </head>
-  
   <main>
     <nav class="nav">
       <button type="button" class="home-button">Home</button>
       <button type="button" class="my-recipes-button">My Recipes</button>
       <button type="button">Pantry</button>
     </nav>
-
     <section class="body-container">
       <section class="greeting">
         <h2>Welcome, User!</h2>
       </section>
       <section class="search-section">
         <div class="search-bar-container">
-          <input class="search-bar"type="search" placeholder="Search by Title" />
+          <input
+            class="search-bar"
+            type="search"
+            placeholder="Search by Title"
+          />
           <span class="search-icon">🔎</span>
         </div>
         <button class="submit-search" type="button">Submit Search</button>
@@ -27,32 +29,27 @@
           <div id="keyword-list"></div>
         </section>
       </section>
-
       <section class="sides-container">
-
-        <section class="left-side">
-
-        </section>
-
+        <section class="left-side"></section>
         <section class="results center">
           <h1 class="results-header">All Recipes</h1>
-          <section class="results-grid-container">
-          </section>
+          <section class="results-grid-container"></section>
         </section>
-
-        <section class="right-side">
-
-        </section>
-
-        <section id="specific-recipe-section" class="mega-card card-border specific-recipe hidden">
+        <section class="right-side"></section>
+        <section
+          id="specific-recipe-section"
+          class="mega-card card-border specific-recipe hidden"
+        >
           <header>
             <h2 class="title">Recipe Title</h2>
             <span class="save-recipe-icon favorite-button" data-id="">❤️</span>
             <span class="close-icon">❌</span>
           </header>
-
           <section class="mega-body">
-            <img class="specific-recipe-image" src="https://static01.nyt.com/images/2022/06/12/dining/12Korokke/merlin_208197630_39a1b4ee-998e-4706-9f2f-8d5696f5e6ac-mobileMasterAt3x.jpg">
+            <img
+              class="specific-recipe-image"
+              src="https://static01.nyt.com/images/2022/06/12/dining/12Korokke/merlin_208197630_39a1b4ee-998e-4706-9f2f-8d5696f5e6ac-mobileMasterAt3x.jpg"
+            />
             <section class="recipe-cost">
               <h3>Total Cost</h3>
               <div>
@@ -60,34 +57,31 @@
               </div>
               <button class="cook-button" type="button">Cook Recipe!</button>
             </section>
-            
             <section class="ingredients">
               <h3>Ingredients Needed</h3>
-              <ol>
-              </ol>
+              <ol></ol>
             </section>
             <section class="instructions">
               <h3>Instructions</h3>
-              <ol>
-              </ol>
+              <ol></ol>
             </section>
           </section>
         </section>
-
       </section>
-
     </section>
   </main>
-
-  <div class="grey-out-bg hidden">
-
-  </div>
-
-  <article id="mini-recipe-template" class="mini-card card-border recipe-result hidden" data-id="0">
+  <div class="grey-out-bg hidden"></div>
+  <article
+    id="mini-recipe-template"
+    class="mini-card card-border recipe-result hidden"
+    data-id="0"
+  >
     <span class="favorite-button">❤️</span>
-    <img class="recipe-image" src="https://static01.nyt.com/images/2022/06/12/dining/12Korokke/merlin_208197630_39a1b4ee-998e-4706-9f2f-8d5696f5e6ac-mobileMasterAt3x.jpg"/>
+    <img
+      class="recipe-image"
+      src="https://static01.nyt.com/images/2022/06/12/dining/12Korokke/merlin_208197630_39a1b4ee-998e-4706-9f2f-8d5696f5e6ac-mobileMasterAt3x.jpg"
+    />
     <p class="recipe-name">Test Card Title</p>
   </article>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>
