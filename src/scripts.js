@@ -39,7 +39,7 @@ const addFavoriteButton = document.querySelector('.add-favorite-button');
 const quantities = document.querySelector('.quantities');
 const names = document.querySelector('.names');
 const prices = document.querySelector('.prices')
-const favoriteRecipeImages = document.querySelector('.favorite-recipe-icon-section');
+const favoriteRecipeImages = document.querySelector('.favorite-recipe-icons');
 const removeFiltersButton = document.querySelector('.remove-filters-button');
 const userWelcomeMessage = document.querySelector('.user-welcome-message');
 
@@ -47,7 +47,7 @@ const userWelcomeMessage = document.querySelector('.user-welcome-message');
 window.addEventListener('load', getAllData);
 recipeSidebarList.addEventListener('click', viewRecipe);
 recipeIconContainer.addEventListener('click', viewRecipeFromIcon);
-favoriteRecipeImages.addEventListener('click', viewRecipeFromIcon);
+// favoriteRecipeImages.addEventListener('click', viewRecipeFromIcon);
 homeButton.addEventListener('click', showHomePage);
 searchButton.addEventListener('click', filterRecipe);
 favoriteSearchButton.addEventListener('click', filterFavoriteRecipes)
@@ -229,7 +229,7 @@ function filterRecipeByName(name) {
   let filteredRecipes = recipeRepository.filterByName(input);
   filteredRecipes.forEach(recipe => {
     let wordsInName = recipe.name.split(' ')
-    let capitalizedWords = str1.map(word => {
+    let capitalizedWords = wordsInName.map(word => {
       return word.charAt(0).toUpperCase() + word.slice(1)
     })
     recipe.name = capitalizedWords.join(' ')
@@ -265,7 +265,7 @@ function filterFavoriteRecipesByName(name) {
 function showFavoriteRecipeImages(recipes){
   favoriteRecipeImages.innerHTML = '';
   recipes.forEach(recipe => {
-  favoriteRecipeImages.innerHTML += `<section class = "favorite-recipe-icon">
+  favoriteRecipeImages.innerHTML += `<section class = "favorite-recipe-icons">
   <p>${recipe.name}</p>
   <img class = "favorite-recipe-icons" src = ${recipe.image} id = ${recipe.id}>
   <button class="remove-from-favorites-btn">delete</button>
