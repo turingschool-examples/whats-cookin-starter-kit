@@ -13,16 +13,12 @@ import User from './classes/User';
 const recipeImages = document.querySelectorAll('.recipe-image');
 const recipePicBoxes = document.querySelectorAll('.recipe-pic-box');
 const userWelcome = document.querySelector('.user-welcome');
-
 const homeButton = document.getElementById('homeButton');
 const allRecipesButton = document.getElementById('allRecipesButton');
 const savedRecipesButton = document.getElementById('savedRecipesButton');
-var searchButton = document.getElementById('searchButton')
-var searchButton2 = document.getElementById('searchButton2');
+const searchButton = document.getElementById('searchButton')
+const searchButton2 = document.getElementById('searchButton2');
 const saveRecipeButton = document.getElementById('saveRecipeButton');
-// const myFavoritesButton = document.getElementById('myFavoritesButton')
-// const pantryButton = document.getElementById('pantryButton')
-// const mainSectionTitle = document.querySelector('.main-section-title')
 const searchImage = document.querySelector('.search-image');
 const searchInput = document.querySelector('.search-input');
 const searchInput2 = document.querySelector('.search-input2')
@@ -44,10 +40,6 @@ const filterByTag2 = document.getElementById('filterByTag2');
 const filterByName2 = document.getElementById('filterByName2');
 const userSearchContainer1 = document.querySelector('.user-search-container');
 const userSearchContainer2 = document.querySelector('.user-search-container2');
-
-
-// const recipePicBoxes = document.querySelectorAll('.recipe-pic-box');
-
 const trashCan = document.querySelectorAll('.trash-can');
 
 
@@ -55,7 +47,6 @@ const trashCan = document.querySelectorAll('.trash-can');
 // ###########  Global Variables  ###############
 const recipeRepo = new RecipeRepository(recipeData);
 const user = new User(usersData[randomIndex(usersData)]);
-console.log(user);
 
 window.addEventListener('load', welcomeUser);
 window.addEventListener('load', populateRecipesInHomeView);
@@ -68,10 +59,6 @@ searchButton.addEventListener('click', searchButtonAction);
 searchButton2.addEventListener('click', filterSaved);
 allRecipesContainer.addEventListener('click', populateChosenRecipe);
 saveRecipeButton.addEventListener('click', saveChosenRecipe);
-
-
-// myFavoritesButton.addEventListener('click', )
-// pantryButton.addEventListener('click', )
 savedRecipesContainer.addEventListener('click', deleteRecipe);
 savedRecipesContainer.addEventListener('click', populateChosenRecipe);
 
@@ -129,7 +116,6 @@ function populateAllRecipesView() {
     id='${recipe.id}' src='${recipe.image}'>
     <p class='recipe-label'>${recipe.name}</p>`;
   })
-
 }
 
 //functions to affect the saved recipes view
@@ -228,9 +214,7 @@ function searchButtonAction() {
   } else {
     showFilteredTags(searchInput.value);
   }
-
   displayFilteredView();
-
 }
 
 function showFilteredNames(name) {
@@ -349,14 +333,12 @@ function displayFilteredView() {
 
 //functions to save/remove a recipe
 
-function saveChosenRecipe(){
-saveRecipeButton.innerText = 'Recipe Saved!'
-
-recipeData.forEach((recipe) => {
-  if (recipeName.innerText === recipe.name && !user.recipesToCook.includes(recipe)) {
-    user.addRecipeToCook(recipe)}
-})
-console.log('to cook:', user.recipesToCook)
+function saveChosenRecipe() {
+  saveRecipeButton.innerText = 'Recipe Saved!';
+  recipeData.forEach((recipe) => {
+    if (recipeName.innerText === recipe.name && !user.recipesToCook.includes(recipe)) {
+      user.addRecipeToCook(recipe)}
+  })
 }
 
 function deleteRecipe(event) {

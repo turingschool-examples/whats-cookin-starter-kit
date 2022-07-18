@@ -4,6 +4,7 @@
 * {
   font-family:Verdana, Geneva, Tahoma, sans-serif
 }
+
 body {
   display: flex;
   flex-direction: column;
@@ -11,6 +12,32 @@ body {
   align-items: center;
   background-color: #060911;
   color: #F9F6EE;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #060911;
+  width: 100vw;
+  height: 35vh;
+}
+
+button {
+  margin-top: 5px;
+  background-color:#427861;
+  color: #060911;
+  font-family:'Roboto',sans-serif;
+  padding:0.5em 3em;
+  font-weight:400;
+  text-transform:uppercase;
+}
+
+button:hover {
+  cursor:pointer;
+  border-bottom-color: #427861;
+  box-shadow: 0px 2px #f7f5f6;
 }
 
 /* Top Section */
@@ -41,16 +68,6 @@ body {
   margin-right: 30px;
 }
 
-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #060911;
-  width: 100vw;
-  height: 35vh;
-}
-
 .nav-bar {
   width: 1000px;
   display: flex;
@@ -73,21 +90,6 @@ header {
 
 .search-by, .radio2 {
   color: black;
-}
-button {
-  margin-top: 5px;
-  background-color:#427861;
-  color: #060911;
-  font-family:'Roboto',sans-serif;
-  padding:0.5em 3em;
-  font-weight:400;
-  text-transform:uppercase;
-}
-
-button:hover {
-  cursor:pointer;
-  border-bottom-color: #427861;
-  box-shadow: 0px 2px #f7f5f6;
 }
 
 /* Main Section */
@@ -116,7 +118,6 @@ button:hover {
   height: 62.5vh;
   overflow-x: hidden;
   overflow-y: scroll;
-
 }
 
 .home-view-container {
@@ -129,7 +130,11 @@ button:hover {
   height: 62.5vh;
 }
 
-/* Main and All Recipes view */
+/* Chosen, Saved, Filtered, and All Recipes views */
+.main-section-title {
+  color: black;
+}
+
 .recipe-view-container {
   display: flex;
   flex-direction: row;
@@ -141,8 +146,15 @@ button:hover {
   border: 2px solid black;
 }
 
-.main-section-title {
-  color: black;
+.recipe-view-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #F9F6EE;
+  width: 100vw;
+  height: 62.5vh;
+  border: 2px solid black;
 }
 
 .box-of-recipes {
@@ -167,7 +179,6 @@ button:hover {
   border-radius: 20px;
   margin-left: 1vw;
   margin-right: 1vw;
-  
 }
 
 .recipe-view-small-box, .recipe-view-pic-box {
@@ -186,10 +197,6 @@ button:hover {
   text-align: center;
 }
 
-.cooking-instructions {
-  height: 92%;
-  overflow-y: scroll;
-}
 
 .save-recipe-button-container {
   height: 8%;
@@ -220,8 +227,8 @@ button:hover {
 
 .cooking-instructions {
   color: black;
-  height: 86%;
-  /* width: 100px; */
+  height: 92%;
+  overflow-y: scroll;
   border: 1px solid black;
 }
 
@@ -284,6 +291,7 @@ button:hover {
   height: 20px;
   width: 20px;
 }
+
 .trash-can:hover {
   height: 40px;
   width: 40px;
