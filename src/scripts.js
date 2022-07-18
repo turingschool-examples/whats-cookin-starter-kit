@@ -31,6 +31,7 @@ let ingredientText = document.querySelector( '.modal-ingredients' );
 let recipeCardGridContainer = document.getElementById( "gridContainer" );
 let closeModalButton = document.getElementById( "closeModal" );
 let navViewProfileButton = document.querySelector( '.view-profile-button' );
+let overlay = document.getElementById('overlay')
 
 // Event Listeners <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 searchButton.addEventListener( "click", searchRecipe );
@@ -55,12 +56,21 @@ if( e.target.classList == 'remove-button' ) {
 recipeCardGridContainer.addEventListener( 'click', ( e ) => {
     if ( e.target.classList == 'lets-make-it-button' ) {
         MicroModal.show( 'recipeModal' );
+        overlay.classList.add( 'active' )
     }  
 } );
 
 closeModalButton.addEventListener( 'click', ( ) => {
     MicroModal.close( 'recipeModal' )
+    overlay.classList.remove( 'active' )
 } );
+
+// overlay.addEventListener( 'click', ( ) => {
+//     const modals = document.querySelectorAll( '.recipe-modal.active' )
+//     modals.forEach( modal => {
+//       closeModal( modal )
+//     })
+//   })
 
 function loadData( ) {
 Promise.all( [ getData( 'users' ), getData( 'recipes' ), getData( 'ingredients' ) ] ).then( data => {
