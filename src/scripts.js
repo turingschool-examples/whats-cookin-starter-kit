@@ -142,23 +142,16 @@ function showFavoritesPage() {
 function viewRecipe(event) {
   selectedRecipeName = event.target.innerText
   selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name)[0];
-  hide(homePage);
-  hide(searchContainer);
-  hide(favoritesPage);
-  hide(searchFavoritesContainer);
-  show(recipePage);
-  displaySelectedRecipeName();
-  displayRecipeInstructions();
-  displayIngredientNames();
-  displayIngredientCosts();
-  displayIngredientQuantities();
-  displayTotalCostOfAllIngredients();
-  displaySelectedRecipeImg();
+  viewRecipesHelperFunction()
 }
 
 function viewRecipeFromIcon(event){
   selectedRecipeIcon = event.target.src
   selectedRecipe = allRecipes.filter(recipe => selectedRecipeIcon === recipe.image)[0];
+  viewRecipesHelperFunction()
+}
+
+function viewRecipesHelperFunction() {
   hide(homePage);
   hide(searchContainer);
   hide(favoritesPage);
