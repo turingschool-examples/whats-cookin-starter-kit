@@ -21,16 +21,20 @@
 * Run `npm start` in the terminal, and copy the URL link (`http://localhost:8080/`) to see the HTML page 
 * To stop running the server, use Control + C in the terminal. (Closing the terminal without stopping the server first could allow the server to continue to run in the background and cause problems.)
 * And now you're ready to get cookin'!
-​
+
 ### How To Use: <a name="how"></a>
-​
+
 * On page load, you will see a list of recipes available to cook.  Browse through given recipes!  If you find one you like, you can click on the 'let's make it' button to get instructions and ingredients required.  If you love the recipe, you can add it to your cooking profile.  The user can view their cooking profile with a filtered list of favorited recipes.
 * User can use the search bar to filter by name or the tag of the desired meal (i.e. lunch, antipasto, etc.).
-​
-* Good to include clips of the page working 
-​
-    * To format the video so GitHub can read it, I drap and drop my clips into a comment section in GitHub and it'll convert it and give you a link to past in.
-​
+
+* Loading a new user: https://user-images.githubusercontent.com/30582452/179619930-3c479c95-a2af-4d84-be80-cbd454f6f624.mov
+
+* Modal view: https://user-images.githubusercontent.com/30582452/179620151-903274d2-a20f-45d4-b9ec-f187daabf880.mov
+
+*Save to cooking profile: https://user-images.githubusercontent.com/30582452/179620437-4ee17e5a-8b3a-48d1-8b33-b2ddff2d0810.mov 
+
+* Search filter: https://user-images.githubusercontent.com/30582452/179620358-d0359f47-3a5c-4d0b-83be-a2b2d333d836.mov
+
 <br>
 
 ### Under the Hood: <a name="under"></a> <br>
