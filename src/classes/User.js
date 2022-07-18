@@ -25,12 +25,12 @@ class User{
 
     filterSavedRecipesByTag(tag) {
       let filteredRecipes = this.recipesToCook.filter(recipe => recipe.tags.includes(tag));
-      return this.recipesToCook = filteredRecipes;
+      return filteredRecipes;
     }
 
     filterSavedRecipesByName(name) {
       let filteredRecipes = this.recipesToCook.filter(recipe => recipe.name === name);
-      return this.recipesToCook = filteredRecipes;
+      return filteredRecipes;
     }
 };
 

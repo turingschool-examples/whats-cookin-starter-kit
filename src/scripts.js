@@ -16,12 +16,13 @@ const homePage = document.querySelector('.main-page-container');
 const recipePage = document.querySelector('.recipe-container');
 const favoritesPage = document.querySelector('.main-favorite-container');
 const searchContainer = document.querySelector('.search-container');
-const searchFavoritesContainer = document.querySelector('.search-favorite-container')
+const searchFavoritesContainer = document.querySelector('.search-favorite-container');
 const homeButton = document.querySelector('.home-img');
 const favoritePageButton = document.querySelector('.fav-img');
 const searchButton = document.querySelector('.search-button');
-const favoriteSearchButton = document.querySelector('.favorite-search-button')
+const favoriteSearchButton = document.querySelector('.favorite-search-button');
 const recipeSidebarList = document.querySelector('.list-recipes');
+const recipeIconContainer = document.querySelector('.recipe-icon-container');
 const icon1Img = document.querySelector('.icon-1-img');
 const icon2Img = document.querySelector('.icon-2-img');
 const icon3Img = document.querySelector('.icon-3-img');
@@ -43,8 +44,9 @@ const addFavoriteButton = document.querySelector('.add-favorite-button');
 const quantities = document.querySelector('.quantities');
 const names = document.querySelector('.names');
 const prices = document.querySelector('.prices')
-const favoriteRecipeImages = document.querySelector('.favorite-recipe-icon')
-const favoriteRecipeContainer = document.querySelector('.favorite-recipe-container')
+const favoriteRecipeImages = document.querySelector('.favorite-recipe-icon-section');
+const removeFiltersButton = document.querySelector('.remove-filters-button');
+const userWelcomeMessage = document.querySelector('.user-welcome-message');
 
 // ***** Event Listeners ***** //
 // window.addEventListener('load', updateMainPageRecipeIcons);
@@ -52,20 +54,22 @@ const favoriteRecipeContainer = document.querySelector('.favorite-recipe-contain
 // window.addEventListener('load', loadNewUser);
 // window.addEventListener('load', displayAllNames);
 recipeSidebarList.addEventListener('click', viewRecipe);
+recipeIconContainer.addEventListener('click', viewRecipeFromIcon);
+favoriteRecipeImages.addEventListener('click', viewRecipeFromIcon);
 homeButton.addEventListener('click', showHomePage);
 searchButton.addEventListener('click', filterRecipe);
 favoriteSearchButton.addEventListener('click', filterFavoriteRecipes)
 favoritePageButton.addEventListener('click', showFavoritesPage);
-addFavoriteButton.addEventListener('click', addToFavorites)
-favoriteRecipeContainer.addEventListener('dblclick', function(event) {
-  removeFromFavorites(event)
-})
+addFavoriteButton.addEventListener('click', addToFavorites);
+favoriteRecipeImages.addEventListener('rightclick', removeFromFavorites);
+removeFiltersButton.addEventListener('click', showFavoritesPage);
 
 // ***** Global Variables ***** //
 
 const allRecipes = recipeData.recipeData.map(recipe => new Recipe(recipe, ingredientData.ingredientsData));
 let user;
 let selectedRecipeName;
+let selectedRecipeIcon;
 let selectedRecipe;
 let recipeRepository;
 
@@ -97,6 +101,10 @@ function loadNewUser() {
   user = new User(userData.usersData[getRandomIndex(userData.usersData)]);
 }
 
+function updateUserWelcome(user) {
+  userWelcomeMessage.innerText = `Welcome \n ${user.name}, \n ready to cook?`
+}
+
 function updateMainPageRecipeIcons() {
   icon1Img.src = allRecipes[getRandomIndex(allRecipes)].image;
   icon2Img.src = allRecipes[getRandomIndex(allRecipes)].image;
@@ -104,6 +112,8 @@ function updateMainPageRecipeIcons() {
   icon4Img.src = allRecipes[getRandomIndex(allRecipes)].image;
   icon5Img.src = allRecipes[getRandomIndex(allRecipes)].image;
   icon6Img.src = allRecipes[getRandomIndex(allRecipes)].image;
+  loadNewUser();
+  updateUserWelcome(user);
 }
 
 function updateMainPageFeatureImg(){
@@ -114,7 +124,7 @@ function displayRecipeNames(recipes) {
   recipeSidebarList.innerHTML = ''
   const recipeNames = recipes.map(recipe => recipe.name);
   recipeNames.forEach(name => {
-    recipeSidebarList.innerHTML += `<p>${name}</p>`
+    recipeSidebarList.innerHTML += `<p class="recipes-list">${name}</p>`
   });
 }
 
@@ -136,12 +146,22 @@ function showFavoritesPage() {
   hide(recipePage);
   show(favoritesPage);
   show(searchFavoritesContainer);
-  showFavoriteRecipeImages();
+  showFavoriteRecipeImages(user.recipesToCook);
 }
 
 function viewRecipe(event) {
-  selectedRecipeName = event.target.innerText;
+  selectedRecipeName = event.target.innerText
   selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name)[0];
+  viewRecipesHelperFunction()
+}
+
+function viewRecipeFromIcon(event){
+  selectedRecipeIcon = event.target.src
+  selectedRecipe = allRecipes.filter(recipe => selectedRecipeIcon === recipe.image)[0];
+  viewRecipesHelperFunction()
+}
+
+function viewRecipesHelperFunction() {
   hide(homePage);
   hide(searchContainer);
   hide(favoritesPage);
@@ -241,21 +261,24 @@ function filterFavoriteRecipes(event) {
 }
 
 function filterFavoriteRecipesByTag(tag) {
+  console.log('hello')
   let input = tag.toLowerCase();
   let filteredRecipes = user.filterSavedRecipesByTag(input);
-  showFavoriteRecipeImages()
+  showFavoriteRecipeImages(filteredRecipes)
 }
 
 function filterFavoriteRecipesByName(name) {
   let filteredRecipes = user.filterSavedRecipesByName(name);
-  showFavoriteRecipeImages()
+  showFavoriteRecipeImages(filteredRecipes)
 }
 
-function showFavoriteRecipeImages(){
+function showFavoriteRecipeImages(recipes){
   favoriteRecipeImages.innerHTML = '';
-  user.recipesToCook.forEach(recipe => {
-  favoriteRecipeImages.innerHTML += `<section class = "favorite-recipe-icon" >
-  <img class = "recipe-icons" src = ${recipe.image} id = ${recipe.id}>
+  recipes.forEach(recipe => {
+  favoriteRecipeImages.innerHTML += `<section class = "favorite-recipe-icon">
+  <p>${recipe.name}</p>
+  <img class = "favorite-recipe-icons" src = ${recipe.image} id = ${recipe.id}>
+  <button class="remove-from-favorites-btn">delete</button>
   </section>`;
   });
 }
