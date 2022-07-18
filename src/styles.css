@@ -2,7 +2,7 @@
 /* Global */
 
 * {
-  font-family:Verdana, Geneva, Tahoma, sans-serif
+  font-family:'Times New Roman', Times, serif
 }
 
 body {
@@ -21,7 +21,7 @@ header {
   align-items: center;
   background-color: #060911;
   width: 100vw;
-  height: 35vh;
+  height: 35vh; 
 }
 
 button {
@@ -43,8 +43,10 @@ button:hover {
 /* Top Section */
 
 .user-welcome {
-  color: #F9F6EE;
+  color: #427861;
   font-size: 3vw;
+  font-weight: 500;
+  font-style: unset;
 }
 
 .logo-title {
@@ -235,6 +237,7 @@ button:hover {
 .recipe-label {
   color: black;
   width: 15vw;
+  font-family:fantasy;
 }
 
 .recipe-label:hover {
@@ -256,7 +259,7 @@ button:hover {
   border: 2px solid black;
 }
 
-.all-recipes-view, .saved-recipes-view, .filtered {
+.all-recipes-view, .filtered {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -266,6 +269,18 @@ button:hover {
   overflow-x: hidden;
   overflow-y: scroll;
 
+}
+
+.saved-recipes-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 475px;
+  width: 1000px;
+  margin-right: 25%;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .all-recipes-pic-box, .saved-recipes-pic-box {
