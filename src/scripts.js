@@ -5,7 +5,6 @@ import User from './classes/User'
 import Recipe from './classes/Recipe'
 import Ingredient from './classes/Ingredient'
 import RecipeRepository from './classes/RecipeRepository'
-
 import MicroModal from 'micromodal';
 
 let userList;
@@ -39,8 +38,6 @@ window.addEventListener( 'load', loadData );
 recipeContainer.addEventListener( 'click' , displayRecipeInfo );
 navViewProfileButton.addEventListener( 'click' , showCookingProfile );
 
-//POSSIBLE TO COMBINE EVENT LISTENER METHODS WITH A CONDITIONAL RATHER THAN REWRITING???
-
 recipeCardGridContainer.addEventListener( 'click', ( e ) => {
     if ( e.target.classList == 'save-button' ) {
       return  saveRecipeToRecipesToCook( e );
@@ -65,13 +62,6 @@ closeModalButton.addEventListener( 'click', ( ) => {
     overlay.classList.remove( 'active' )
 } );
 
-// overlay.addEventListener( 'click', ( ) => {
-//     const modals = document.querySelectorAll( '.recipe-modal.active' )
-//     modals.forEach( modal => {
-//       closeModal( modal )
-//     })
-//   })
-
 function loadData( ) {
 Promise.all( [ getData( 'users' ), getData( 'recipes' ), getData( 'ingredients' ) ] ).then( data => {
         userList = data[ 0 ].usersData;
@@ -90,7 +80,6 @@ Promise.all( [ getData( 'users' ), getData( 'recipes' ), getData( 'ingredients' 
 function displayRandomUserName( ) {
     welcomeUserMessage.innerText = `Welcome, ${ currentUser.name.split( ' ' )[ 0 ] }!`
 }
-
 
 function searchRecipe( ) {
     if ( !searchBox.value ) {
@@ -112,7 +101,6 @@ function searchRecipe( ) {
     }
   }
 
-
   function displayFilteredRecipesByTagOnPage( ) {
     const result = matchingTagConditions.map( recipe => {
         console.log( 'TAG RECIPE: ', recipe )
@@ -128,7 +116,6 @@ function searchRecipe( ) {
     matchingTagConditions = recipeContainer;
     return recipeContainer.innerHTML = result;
 }
-
 
 function displayFilteredRecipesByNameOnPage( ) {
     const result = matchingNameConditions.map( recipe => {
@@ -162,10 +149,6 @@ function displayAllRecipesOnPage( e ) {
     return recipeCards.innerHTML = result;
 };
 
-function show( element ) {
-    element.classList.remove( 'hidden' );
-};
-
 function displayRecipeInfo( e ){
     newRecipe = new RecipeRepository( recipeList )
     newRecipe.recipes.map( dish  => {
@@ -181,7 +164,6 @@ function displayRecipeInfo( e ){
     });
 };
 
-//NEED TO ADD A FOCUS TO SHOW WHEN THE RECIPE HAS BEEN SAVED
 function saveRecipeToRecipesToCook ( e ) {
     return newRecipe.recipes.filter( favoriteDish => {
         if(( e.target.id == favoriteDish.id ) && ( !currentUser.recipesToCook.includes( favoriteDish ) ) ) {
@@ -189,10 +171,6 @@ function saveRecipeToRecipesToCook ( e ) {
         }
         return currentUser.recipesToCook;
     } );
-}
-
-function hide( element ) {
-    element.classList.add( 'hidden' );
 }
 
 function showCookingProfile( e ) {
@@ -224,7 +202,6 @@ function deleteRecipeFromRecipesToCook( e ) {
     };
     return currentUser.recipesToCook
 }
-//^^^^need to remove commas rendering on page in saved recipes
 
 function returnHome(  ) {
     navViewProfileButton.innerText = "View Your Cooking Profile"
