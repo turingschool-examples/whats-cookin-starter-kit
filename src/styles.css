@@ -261,7 +261,6 @@ button:hover {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  border: 2px solid black;
   height: 475px;
   width: 1000px;
   overflow-x: hidden;
@@ -274,17 +273,25 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 15vw;
-  height: 45vh;
-  border: 1px solid #060911;
-  border-color: #060911;
+  width: 40vw;
+  height: 40vh;
   border-radius: 20px;
+}
+
+.saved-recipes-pic-box:hover {
+  cursor:pointer;
+  border-color: #427861;
+  box-shadow: 1px 2px #427861;
 }
 
 .all-recipes-pic-box:hover {
   cursor:pointer;
   border-color: #427861;
   box-shadow: 1px 2px #427861;
+}
+
+.trash-this-one {
+  width: 20vw;
 }
 
 .trash-can {
@@ -296,6 +303,10 @@ button:hover {
   height: 40px;
   width: 40px;
   cursor:pointer;
+}
+
+.form2 {
+  color: #060911;
 }
 
 
