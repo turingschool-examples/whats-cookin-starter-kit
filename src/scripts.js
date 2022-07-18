@@ -278,7 +278,8 @@ function displayHomeView(){
         savedRecipesButton,
         homeViewContainer,
         userSearchContainer1,
-        form
+        form,
+        searchButton
   ])
 }
 
@@ -289,7 +290,8 @@ function displaySavedRecipesView(){
         homeViewContainer,
         filteredContainer,
         userSearchContainer1,
-        form
+        form,
+        searchButton
   ])
   show([homeButton,
         allRecipesButton,
@@ -310,7 +312,8 @@ function displayAllRecipesView() {
         savedRecipesButton,
         allRecipesContainer,
         userSearchContainer1,
-        form
+        form,
+        searchButton
       ])
 }
 
@@ -326,7 +329,8 @@ function displayChosenRecipeView() {
       allRecipesButton,
       recipeViewContainer,
       userSearchContainer1,
-      form
+      form,
+      searchButton
   ])
 }
 
@@ -342,7 +346,8 @@ function displayFilteredView() {
       allRecipesButton,
       filteredContainer,
       userSearchContainer1,
-      form
+      form,
+      searchButton
   ])
 }
 
