@@ -58,7 +58,7 @@ button:hover {
 /* Top Section */
 
 .user-welcome {
-  color: #427861;
+  color: #01834e;
   font-size: 3vw;
   font-weight: 500;
   font-style: unset;
@@ -302,6 +302,7 @@ button:hover {
   width: 40vw;
   height: 40vh;
   border-radius: 20px;
+  margin-top: 17px;
 }
 
 .saved-recipes-pic-box:hover {
@@ -321,8 +322,9 @@ button:hover {
 }
 
 .trash-can {
-  height: 20px;
-  width: 20px;
+  display: flex;
+  height: 30px;
+  width: 30px;
 }
 
 .trash-can:hover {
