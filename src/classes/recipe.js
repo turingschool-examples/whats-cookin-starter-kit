@@ -1,6 +1,3 @@
-import Ingredient from "./Ingredient"
-// const recipeDataSet = require('/src/data/recipes.js');
-
 class Recipe {
     constructor(recipeData, ingDataSet) {
         this.id = recipeData.id
@@ -20,7 +17,7 @@ class Recipe {
                     if (ingredient.quantity.amount % 1 === 0) {
                         listOfNames.push(`${element.name}: ${ingredient.quantity.amount} ${ingredient.quantity.unit}`)                       
                     } else {
-                    listOfNames.push(`${element.name}: ${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit}`)
+                        listOfNames.push(`${element.name}: ${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit}`)
                     }
                 }
             })
@@ -33,9 +30,7 @@ class Recipe {
         let getTotalCost = this.ingredients.forEach(ingredient => {
             this.ingData.forEach(element => {
                 if (ingredient.id === element.id) {
-                
-                    totalCost += ingredient.quantity.amount * element.estimatedCostInCents
-                      
+                    totalCost += ingredient.quantity.amount * element.estimatedCostInCents  
                 }
             })
         })
