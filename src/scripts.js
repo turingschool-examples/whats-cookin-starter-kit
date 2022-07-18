@@ -1,5 +1,5 @@
 import './styles.css';
-import { getAllData } from './apiCalls'
+import { getAllData } from './apiCalls';
 import RecipeRepository from './classes/RecipeRepository';
 import Recipe from './classes/Recipe';
 import Ingredient from './classes/Ingredient';
@@ -38,8 +38,9 @@ const tagRadioBtnFavorite = document.querySelector('.tag-search-favorite');
 const addFavoriteButton = document.querySelector('.add-favorite-button');
 const quantities = document.querySelector('.quantities');
 const names = document.querySelector('.names');
-const prices = document.querySelector('.prices')
-const favoriteRecipeImages = document.querySelector('.favorite-recipe-icon-section');
+const prices = document.querySelector('.prices');
+const favoriteRecipeImages = document.querySelector('.favorite-recipe-icons');
+const removeFavFiltersButton = document.querySelector('.remove-filters-button-fav');
 const removeFiltersButton = document.querySelector('.remove-filters-button');
 const userWelcomeMessage = document.querySelector('.user-welcome-message');
 
@@ -50,11 +51,12 @@ recipeIconContainer.addEventListener('click', viewRecipeFromIcon);
 favoriteRecipeImages.addEventListener('click', viewRecipeFromIcon);
 homeButton.addEventListener('click', showHomePage);
 searchButton.addEventListener('click', filterRecipe);
-favoriteSearchButton.addEventListener('click', filterFavoriteRecipes)
+favoriteSearchButton.addEventListener('click', filterFavoriteRecipes);
 favoritePageButton.addEventListener('click', showFavoritesPage);
 addFavoriteButton.addEventListener('click', addToFavorites);
 favoriteRecipeImages.addEventListener('rightclick', removeFromFavorites);
-removeFiltersButton.addEventListener('click', showFavoritesPage);
+removeFavFiltersButton.addEventListener('click', showFavoritesPage);
+removeFiltersButton.addEventListener('click', displayAllNames);
 
 // ***** Global Variables ***** //
 let ingredientData;
@@ -93,7 +95,17 @@ function show(element) {
 }
 
 function updateUserWelcome(user) {
-  userWelcomeMessage.innerText = `Welcome \n ${user.name}, \n ready to cook?`
+  userWelcomeMessage.innerText = `Welcome \n ${user.name}, \n ready to cook?`;
+}
+
+function changeToUpperCase(data) {
+  data.forEach(recipe => {
+    let wordsInName = recipe.name.split(' ');
+    let capitalizedWords = wordsInName.map(word => {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    recipe.name = capitalizedWords.join(' ');
+  })
 }
 
 function updateMainPageRecipeIcons() {
@@ -111,14 +123,21 @@ function updateMainPageFeatureImg(){
 }
 
 function displayRecipeNames(recipes) {
-  recipeSidebarList.innerHTML = ''
+  recipeSidebarList.innerHTML = '';
   const recipeNames = recipes.map(recipe => recipe.name);
   recipeNames.forEach(name => {
-    recipeSidebarList.innerHTML += `<p class="recipes-list">${name}</p>`
+    recipeSidebarList.innerHTML += `<p class="recipes-list">${name}</p>`;
   });
 }
 
 function displayAllNames() {
+  recipeRepository.recipeData.forEach(recipe => {
+    let wordsInName = recipe.name.split(' ');
+    let capitalizedWords = wordsInName.map(word => {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    recipe.name = capitalizedWords.join(' ')
+  })
   displayRecipeNames(recipeRepository.recipeData);
 }
 
@@ -142,13 +161,13 @@ function showFavoritesPage() {
 function viewRecipe(event) {
   selectedRecipeName = event.target.innerText
   selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name)[0];
-  viewRecipesHelperFunction()
+  viewRecipesHelperFunction();
 }
 
-function viewRecipeFromIcon(event){
-  selectedRecipeIcon = event.target.src
+function viewRecipeFromIcon(event) {
+  selectedRecipeIcon = event.target.src;
   selectedRecipe = allRecipes.filter(recipe => selectedRecipeIcon === recipe.image)[0];
-  viewRecipesHelperFunction()
+  viewRecipesHelperFunction();
 }
 
 function viewRecipesHelperFunction() {
@@ -222,23 +241,17 @@ function filterRecipeByTag(tag) {
 }
 
 function filterRecipeByName(name) {
-  let input = name.toLowerCase()
+  let input = name.toLowerCase();
   recipeRepository.recipeData.forEach(recipe => {
-    recipe.name = recipe.name.toLowerCase()
+    recipe.name = recipe.name.toLowerCase();
   })
   let filteredRecipes = recipeRepository.filterByName(input);
-  filteredRecipes.forEach(recipe => {
-    let wordsInName = recipe.name.split(' ')
-    let capitalizedWords = str1.map(word => {
-      return word.charAt(0).toUpperCase() + word.slice(1)
-    })
-    recipe.name = capitalizedWords.join(' ')
-  })
+  changeToUpperCase(filteredRecipes);
   displayRecipeNames(filteredRecipes);
 }
 
 function addToFavorites() {
-  user.addRecipesToCook(selectedRecipe)
+  user.addRecipesToCook(selectedRecipe);
 }
 
 function filterFavoriteRecipes(event) {
@@ -251,21 +264,27 @@ function filterFavoriteRecipes(event) {
 }
 
 function filterFavoriteRecipesByTag(tag) {
-  console.log('hello')
   let input = tag.toLowerCase();
   let filteredRecipes = user.filterSavedRecipesByTag(input);
-  showFavoriteRecipeImages(filteredRecipes)
+  showFavoriteRecipeImages(filteredRecipes);
 }
 
 function filterFavoriteRecipesByName(name) {
-  let filteredRecipes = user.filterSavedRecipesByName(name);
-  showFavoriteRecipeImages(filteredRecipes)
+  let input = name.toLowerCase();
+  user.recipesToCook.forEach(recipe => {
+    recipe.name = recipe.name.toLowerCase();
+  });
+  let filteredRecipes = user.filterSavedRecipesByName(input);
+  changeToUpperCase(filteredRecipes);
+  showFavoriteRecipeImages(filteredRecipes);
 }
 
-function showFavoriteRecipeImages(recipes){
+function showFavoriteRecipeImages(recipes) {
+  changeToUpperCase(user.recipesToCook);
   favoriteRecipeImages.innerHTML = '';
   recipes.forEach(recipe => {
-  favoriteRecipeImages.innerHTML += `<section class = "favorite-recipe-icon">
+  favoriteRecipeImages.innerHTML += 
+  `<section class = "favorite-recipe-icons">
   <p>${recipe.name}</p>
   <img class = "favorite-recipe-icons" src = ${recipe.image} id = ${recipe.id}>
   <button class="remove-from-favorites-btn">delete</button>
@@ -274,9 +293,9 @@ function showFavoriteRecipeImages(recipes){
 }
 
 function removeFromFavorites(event) {
-  let recipe = event.target
+  let recipe = event.target;
   if(recipe.classList.contains("recipe-icons")) {
-    recipe.closest("section").remove()
-    user.removeRecipesToCook(parseInt(recipe.id))
+    recipe.closest("section").remove();
+    user.removeRecipesToCook(parseInt(recipe.id));
   }
 }

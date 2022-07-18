@@ -29,7 +29,7 @@ class User{
     }
 
     filterSavedRecipesByName(name) {
-      let filteredRecipes = this.recipesToCook.filter(recipe => recipe.name === name);
+      let filteredRecipes = this.recipesToCook.filter(recipe => recipe.name.includes(name));
       return filteredRecipes;
     }
 };

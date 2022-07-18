@@ -515,7 +515,7 @@ filter: drop-shadow(5px 10px 3px black);
         overflow-y: scroll;
       }
 
-      .favorite-recipe-icon{
+      .favorite-recipe-icons{
         display: flex;
         justify-self: center;
         height: 125px;
