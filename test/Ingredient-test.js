@@ -25,14 +25,14 @@ describe('Ingredient', () => {
     })
 
     it('should have an id of an ingredient', function() {
-      expect(ingredient.id).to.equal(20081)
+      expect(ingredient.id).to.deep.equal(20081)
     });
 
     it('should have an ingredient name', function() {
-      expect(ingredient.name).to.equal("wheat flour")
+      expect(ingredient.name).to.deep.equal("wheat flour")
     });
 
     it('should have an ingredient estimatedCostInCents', function() {
-      expect(ingredient.estimatedCostInCents).to.equal(142)
+      expect(ingredient.estimatedCostInCents).to.deep.equal(142)
   });
 });

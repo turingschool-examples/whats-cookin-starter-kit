@@ -27,17 +27,16 @@ describe('RecipeRepository', () => {
   it('should be able to take in recipe data', () => {
     expect(recipeRepository.recipeData[0].id).to.equal(595736)
     expect(recipeRepository.recipeData[1].image).to.equal("https://spoonacular.com/recipeImages/678353-556x370.jpg")
-    expect(recipeRepository.recipeData[2].ingredients.length).to.equal(13)
-    expect(recipeRepository.recipeData[3].instructions.length).to.equal(7)
-    expect(recipeRepository.recipeData[4].name).to.equal("Mock Udi’s Gluten Free Whole Grain Bread")
+    expect(recipeRepository.recipeData[2].ingredients[0]).to.deep.equal({ id: 1002030, quantity: { amount: 4, unit: 'teaspoons' } })
+    expect(recipeRepository.recipeData[3].instructions[0]).to.deep.equal({ instruction: 'Watch how to make this recipe.', number: 1 })
+    expect(recipeRepository.recipeData[4].name).to.deep.equal("Mock Udi’s Gluten Free Whole Grain Bread")
   })
 
   it('should have a filtered list of recipes based on a tag', () => {
-    expect(tagResults.length).to.equal(3);
+    expect(tagResults[0].id).to.deep.equal(412309);
   })
 
   it('should have a filtered list of recipes based on a name', () => {
     expect(nameResults[0].name).to.deep.equal("Loaded Chocolate Chip Pudding Cookie Cups");
   })
-  
 })
