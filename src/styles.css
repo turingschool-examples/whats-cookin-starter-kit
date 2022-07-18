@@ -4,7 +4,7 @@
 }
 
 html, body {
-  background-color: rgba(211,211,211, 0.7);
+  background-color: rgba( 211, 211, 211, 0.7 );
   height: 100vh;
   width: 100vw;
   margin: 0%;  
@@ -13,16 +13,16 @@ html, body {
 h1 {
   font-size: 24px;
   width: 40%;
-  margin: 5px;
+  margin-left: 1rem;
   color: white;
-  text-shadow: 2px 2px rgba(0,0,0,0.6);
+  text-shadow: 2px 2px rgba( 0, 0, 0, 0.6 );
 }
 
 h2 {
   font-size: 50px;
   text-align: center;
   color: white;
-  text-shadow: 2px 2px rgba(0,0,0,0.6);
+  text-shadow: 2px 2px rgba( 0, 0, 0, 0.6 );
   margin: 0;
   padding-top: 2%;
 }
@@ -40,17 +40,17 @@ h3 {
 
 h4 {
   font-size: 36px;
-  color:antiquewhite;
-  text-shadow: 2px 2px rgba(0,0,0,0.3);
+  color:white;
+  text-shadow: 2px 3px rgba( 0, 0, 0, 0.6 );
   margin: 0;
   margin-top: 40px;
 }
 
 h5 {
   font-size: 20px;
-  border-bottom: 1px solid rgba(0,0,0,0.5);
-  margin: 4px;
-  margin-bottom: 2px;
+  margin: 0;
+  margin-top: 15px;
+  text-shadow: 2px 3px rgba( 0, 0, 0, 0.15 );
 }
 
 input {
@@ -64,24 +64,24 @@ input {
 }
 
 button {
-  border: 1px ridge rgba(0,0,0,0.4);
+  border: 1px ridge rgba( 0, 0, 0, 0.4 );
   border-radius: 5px;
   margin-top: 3%;
-  background-color: rgba(211,211,211, 0.55);
-  color: rgba(0,0,0,0.9);
-  box-shadow: 0 1px 2px rgba(0,0,0)
+  background-color: rgba( 211, 211, 211, 0.55 );
+  color: rgba( 0, 0, 0, 0.9 );
+  box-shadow: 0 1px 2px rgba( 0, 0, 0 )
 }
 
 button:hover{
   cursor: pointer;
-  background-color: rgba(141,182,0, 0.65);
-  color: rgb(0,0,0);
-  box-shadow: 0 1px 5px rgba(0,0,0);
+  background-color: rgba( 141, 182, 0, 0.65 );
+  color: rgb( 0, 0, 0 );
+  box-shadow: 0 1px 5px rgba( 0, 0, 0 );
 }
 
 button:active {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
-  transform: translateY(1px);
+  box-shadow: 0 1px 2px rgba( 0, 0, 0, 0.9 );
+  transform: translateY( 1px );
 }
 
 .nav-bar {
@@ -90,12 +90,12 @@ button:active {
   position: fixed;
   float: inline-start;
   margin: 0%, 0%, 0%, 0%;
-  box-shadow: 0 1px 6px rgba(0,0,0, .75);
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('./images/nav-background.jpg');
+  box-shadow: 0 1px 6px rgba( 0, 0, 0, .75 );
+  background-image: linear-gradient(rgba( 0, 0, 0, 0.4 ),rgba( 0, 0, 0, 0.4 ) ), url( './images/nav-background.jpg' );
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 28vh;
+  height: 24vh;
   padding-top: 2%
 }
 
@@ -107,18 +107,12 @@ button:active {
 }
 
 .search-button {
-  margin-right: 5%;
+  margin-right: 4%;
   height: 3vh relative;
   width: 1vw relative;
   border: 1px solid black;
   background-color: lightgray;
   border-radius: 0px;
-}
-
-.search-button:hover {
-  background-color: black;
-  filter: invert(0%) sepia(5%) saturate(7500%) hue-rotate(228deg) brightness(106%) contrast(106%);
-  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
 }
 
 .recipe-search {
@@ -143,11 +137,11 @@ button:active {
   display: flex;
   width: auto;
   height: auto;
-  background-color: rgba(211,211,211, 0.7);
+  background-color: rgba( 211, 211, 211, 0.7 );
 }
 
 .recipe-container, .recipe-grid-container {
-  background-color: rgba(211,211,211, 0.7);
+  background-color: rgba( 211, 211, 211, 0.7 );
   display: flex;
   flex-wrap: wrap;
   flex-grow: initial;
@@ -166,14 +160,14 @@ button:active {
   margin-top: 2%;
   margin-bottom: 3%;
   padding: 15px;
-  border: 1px  solid rgba(0,0,0, .45);
-  box-shadow: 0 1px 6px rgba(0,0,0, .75);
+  border: 1px  solid rgba( 0, 0, 0, .45 );
+  box-shadow: 0 1px 6px rgba( 0, 0, 0, .75 );
   border-radius: 10px;
   background-color: white;
 }
 
 .recipe-card:hover {
-  box-shadow: 0 1px 10px rgba(0,0,0);
+  box-shadow: 0 1px 10px rgba( 0, 0, 0 );
 }
 
 .recipe-image {
@@ -192,7 +186,7 @@ button:active {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate( -50%, -50% );
   border: 1px solid black;
   border-radius: 10px;
   z-index: 10;
@@ -219,10 +213,10 @@ button:active {
 
 .ingredient-and-direction-container {
   display: flex;
-  background-color: rgba(211,211,211, 0.55);
-  border: 1px solid rgba(0,0,0,0.7);
+  background-color: rgba( 211, 211, 211, 0.55 );
+  border: 1px solid rgba( 0, 0, 0, 0.7 );
   border-radius: 0px, 0px, 15px, 15px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('./images/nav-background.jpg');
+  background-image: linear-gradient( rgba( 0, 0, 0, 0.4 ),rgba( 0, 0, 0, 0.4 ) ), url( './images/nav-background.jpg' );
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -230,7 +224,7 @@ button:active {
 
 #modal-1-content {
   flex-wrap: wrap;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./images/nav-background.jpg');
+  background-image: linear-gradient( rgba( 0, 0, 0, 0.4 ), rgba( 0, 0, 0, 0.4 ) ), url( './images/nav-background.jpg' );
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -239,11 +233,12 @@ button:active {
 .ingredient-list, .cooking-directions {
   display: flex;
   flex-direction: column;
-  background-color: rgba(255,255,255,0.95);
+  background-color: rgba( 255, 255, 255, 0.95 );
 }
 
-.modal-directions, .modal-ingredients, .modal-instructions {
-  background-color: rgba(255,255,255,0.95);
+.modal-ingredients, .modal-instructions {
+  background-color: rgba( 255, 255, 255, 0.95 );
+  border: 2px solid rgba( 0, 0, 0, 0.5 );
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -257,26 +252,30 @@ button:active {
 }
 
 .dish-cost {
-  color:antiquewhite;
-  text-shadow: 2px 2px rgba(0,0,0,0.2);
+  color:white;
+  text-shadow: 2px 3px rgba( 0, 0, 0, 0.6 );
   font-size: 25px;
   font-weight: bold;
   margin-bottom: 10px;
   margin-top: 10px
 }
 
-/* .modal_overlay {
+#overlay {
   position: fixed;
   opacity: 0;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  transition: 200ms ease-in-out;
+  background-color: rgba( 0, 0, 0, 0.7 );
   pointer-events: none;
-  height: 55vh;
-} */
+  height: 100vh;
+}
+
+#overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
 
 #closeModal {
   margin-top: 23px;

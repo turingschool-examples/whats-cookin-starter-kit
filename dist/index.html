@@ -9,7 +9,7 @@
       <section class="nav-search-container">
         <h1>What's Cookin'?</h1>
         <section class="nav-input-search-container">
-          <input type="search" placeholder="Filter Recipes by Tag (i.e. 'lunch', 'snack', 'main course', ...) and/or Name " id="search" class="recipe-search" name="search">
+          <input type="search" placeholder="Filter Recipes by Tag (i.e. 'lunch', 'snack', 'main course', ...), or Name " id="search" class="recipe-search" name="search">
           <label for="search"></label>
           <button class="search-button"> 🔍  </button>
         </section>
@@ -23,7 +23,7 @@
       <section class='recipe-grid-container' id="gridContainer" >
       </section>
         <section class='recipe-modal modal' id="recipeModal" aria-hidden="true">
-          <section class="modal_overlay" tabindex="-1" data-micromodal-close>
+          <!-- <section class="modal_overlay" tabindex="-1" data-micromodal-close> -->
             <section tabindex="-1" data-micromodal-close>
               <section role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
                 <section id="modal-1-content">
@@ -43,8 +43,9 @@
                 </section>
               </section>
             </section>
-          </section>
+          <!-- </section> -->
         </section>
+      <section id="overlay"></section>
     </section>
   </body>
   <script src="scripts.js"></script>
