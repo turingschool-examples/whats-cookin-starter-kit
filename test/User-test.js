@@ -1,18 +1,14 @@
 import { expect } from 'chai'
 import User from '../src/classes/User'
 
-
 describe('User', () => {
-
     let usersData;
     let user;
     let usersData2;
     let user2;
     let recipeData;
     
-
-    beforeEach( () => {
-
+    beforeEach(() => {
       usersData = 
         {
           "name": "Saige O'Kon",
@@ -33,7 +29,6 @@ describe('User', () => {
           ]
         }
       
-
       usersData2 = 
         {
            "name": "Ephraim Goyette",
@@ -54,7 +49,6 @@ describe('User', () => {
       ]
     }
       
-  
     recipeData = [
       {
         "id": 595736,
@@ -105,8 +99,6 @@ describe('User', () => {
       }
     ]
 
-
-
      user = new User(usersData);
      user2 = new User(usersData2);
 
@@ -131,23 +123,23 @@ describe('User', () => {
     });
 
     it('Should have a pantry', () => {
-      expect(user.pantry.length).to.equal(3);
+      expect(user.pantry[0]).to.deep.equal({ ingredient: 11297, amount: 4 });
     });
 
     it('should allow a user to add a recipe to their recipesToCook list', () => {
-      expect(user.recipesToCook.length).to.equal(0);
+      expect(user.recipesToCook).to.be.an('array');
+      expect(user.recipesToCook[0]).to.deep.equal(undefined)
       user.addRecipeToCook(recipeData[0])
-      expect(user.recipesToCook.length).to.equal(1);
+      expect(user.recipesToCook[0].id).to.deep.equal(595736);
     });
 
     it('should allow a user to delete a recipe to their recipesToCook list', () => {
-        expect(user.recipesToCook.length).to.equal(0)
-        user.addRecipeToCook(recipeData[0])
-        expect(user.recipesToCook.length).to.equal(1)
-        user.addRecipeToCook(recipeData[1])
-        expect(user.recipesToCook.length).to.equal(2)
-        user.removeRecipeToCook(recipeData[0])
-        expect(user.recipesToCook.length).to.equal(1);
+        user.addRecipeToCook(recipeData[0]);
+        expect(user.recipesToCook[0].id).to.deep.equal(595736);
+        user.addRecipeToCook(recipeData[1]);
+        expect(user.recipesToCook[1].id).to.deep.equal(593432);
+        user.removeRecipeToCook(recipeData[0]);
+        expect(user.recipesToCook[0].id).to.deep.equal(593432);
     });
 
     it('Should filter recipes in recipesToCook by tag', () => {
@@ -161,23 +153,9 @@ describe('User', () => {
       user.addRecipeToCook(recipeData[0]);
       expect(user.listRecipebyToCookName("Dirty Steve's Original Wing Sauce")[0].name).to.deep.equal("Dirty Steve's Original Wing Sauce");
     })
-
-
-
-
-
 });
 
-// Allow a user to add/remove a recipe to their recipesToCook list (add to my recipesToCook)
-// Filter my recipesToCook by a tag. (Extension option: filter by multiple tags)
-// Filter my recipesToCook by its name. (Extension option: filter by name or ingredients)
 
-//#######################
-
-
-//Options: 
-//Should allow a user to add/remove to favorites
-//Should not be able to add dupicates to wantTOCook ORRR favorites
 
 
 
