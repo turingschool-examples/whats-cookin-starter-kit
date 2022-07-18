@@ -20,11 +20,11 @@ const config = {
 
 new Glide('.glide', config).mount()
 
-let recipeData;
-let recipeRepository;
-let usersData;
-let ingredientsData;
-let newUser;
+let recipeData
+let recipeRepository
+let usersData
+let ingredientsData
+let newUser
 
 const viewAllButton = document.querySelector('#viewAllButton')
 const homePageView = document.querySelector('.home-page-view')
@@ -49,27 +49,22 @@ const searchButton2 = document.querySelector('.search-button2')
 const favoriteRecipesPage = document.querySelector('.favorite-recipes')
 const favoritePageContainer = document.querySelector('.favorite-recipe-icons')
 
-viewAllButton.addEventListener('click', showViewAllPage)
-homeButton.addEventListener('click', showHomePage)
-favoritesButton.addEventListener('click', showFavoritesPage)
-allRecipesContainer.addEventListener('click', function(event) {
-    showRecipeDetailsPage(event)
-  })
-favoritePageContainer.addEventListener('click', function(event) {
-  showRecipeDetailsPage(event)
-  hide(favoriteRecipesPage)
-})
 window.addEventListener('click', function(event) {
       filterByTag(event)
       favoriteFilterByTag(event)
-    })
-searchButton.addEventListener('click', filterByName)
-searchButton2.addEventListener('click', favoriteFilterByName)
+})
 window.addEventListener('load', function(event) {
   showHomePage()
   fetchUsers()
   fetchRecipes()
   fetchIngredients()
+})
+allRecipesContainer.addEventListener('click', function(event) {
+    showRecipeDetailsPage(event)
+})
+favoritePageContainer.addEventListener('click', function(event) {
+  showRecipeDetailsPage(event)
+  hide(favoriteRecipesPage)
 })
 viewAllPage.childNodes[3].addEventListener('click', function(event) {
     changeHearts(event)
@@ -77,6 +72,11 @@ viewAllPage.childNodes[3].addEventListener('click', function(event) {
 favoriteRecipesPage.childNodes[3].addEventListener('click', function(event) {
   deleteRecipe(event)
 })
+viewAllButton.addEventListener('click', showViewAllPage)
+homeButton.addEventListener('click', showHomePage)
+favoritesButton.addEventListener('click', showFavoritesPage)
+searchButton.addEventListener('click', filterByName)
+searchButton2.addEventListener('click', favoriteFilterByName)
 
 function fetchRecipes() {
   fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes")
@@ -95,45 +95,14 @@ function fetchUsers() {
   let newUserData = usersData[Math.floor(Math.random() * usersData.length)]
   newUser = new User(newUserData)
 })
-};
+}
 
 function fetchIngredients() {
   fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients")
   .then(response => response.json())
   .then(data =>{
     ingredientsData = data.ingredientsData
-  })
-};
-
-function changeHearts(event) {
-    if (event.target.classList.contains('add-to-favorites-icon')){
-        event.target.src = "./images/filled-heart.png"
-        event.target.classList = 'unfavorite'
-        recipeRepository.recipes.forEach(recipe => {
-          if (recipe.image === event.target.parentNode.childNodes[1].src) {
-            newUser.addRecipeToCook(recipe)
-          }
-        })
-    } else if (event.target.classList.contains('unfavorite') || event.target.classList.contains('trash-icon')) {
-        event.target.src = "./images/heart.png"
-        event.target.classList = 'add-to-favorites-icon'
-        recipeRepository.recipes.forEach(recipe => {
-          if (recipe.image === event.target.parentNode.childNodes[1].src) {
-            newUser.removeRecipeToCook(recipe)
-          }
-        })
-    }
-  }
-
-  function deleteRecipe(event) {
-      if (event.target.classList.contains('trash-icon')) {
-        recipeRepository.recipes.forEach(recipe => {
-          if (recipe.image === event.target.parentNode.childNodes[1].src) {
-            newUser.removeRecipeToCook(recipe)
-            showFavoritesPage()
-          }
-    })
-  }
+})
 }
 
 function showViewAllPage() {
@@ -177,24 +146,59 @@ function showFavoritesPage() {
 
 function showRecipeDetailsPage(event) {
     if (event.target.classList.contains('view-all-recipe-image')){
-        const getTitle = recipeData.filter(recipe =>
-            event.target.src === recipe.image
-        )
-        let recipe = new Recipe(getTitle[0], ingredientsData)
         hide(featuredTitle)
         hide(homePageView)
         hide(viewAllPage)
         show(recipeDetailsPage)
         show(viewAllButton)
+        populateRecipeDetails(event)
+    }
+    changeHeader()
+}
+
+function populateRecipeDetails(event) {
+        const getTitle = recipeData.filter(recipe => event.target.src === recipe.image)
+        let recipe = new Recipe(getTitle[0], ingredientsData)
         recipeDetailImage.src = `${event.target.src}`
         recipeDetailTitle.innerText = `${getTitle[0].name}`
         let directions = recipe.listDirections()
         recipeInstructions.innerText = `${directions}`
         ingredientNames.innerText = `${recipe.determineIngredientNames()}`
         totalCost.innerText = `${recipe.determineCostOfAllIngredients()}`
-    }
-    changeHeader()
 }
+
+function changeHearts(event) {
+    if (event.target.classList.contains('add-to-favorites-icon')){
+        event.target.src = "./images/filled-heart.png"
+        event.target.classList = 'unfavorite'
+        recipeRepository.recipes.forEach(recipe => {
+          if (recipe.image === event.target.parentNode.childNodes[1].src) {
+            newUser.addRecipeToCook(recipe)
+          }
+        })
+    } else if (event.target.classList.contains('unfavorite') || event.target.classList.contains('trash-icon')) {
+        event.target.src = "./images/heart.png"
+        event.target.classList = 'add-to-favorites-icon'
+        recipeRepository.recipes.forEach(recipe => {
+          if (recipe.image === event.target.parentNode.childNodes[1].src) {
+            newUser.removeRecipeToCook(recipe)
+          }
+        })
+    }
+  }
+
+  function deleteRecipe(event) {
+      if (event.target.classList.contains('trash-icon')) {
+        recipeRepository.recipes.forEach(recipe => {
+          if (recipe.image === event.target.parentNode.childNodes[1].src) {
+            newUser.removeRecipeToCook(recipe)
+            showFavoritesPage()
+          }
+    })
+  }
+}
+
+
 
 function populateAllRecipes() {
     viewAllPage.childNodes[3].innerHTML = ""
