@@ -92,7 +92,7 @@ function loadNewUser() {
 }
 
 function updateUserWelcome(user) {
-  userWelcomeMessage.innerText = `Welcome ${user.name}, ready to cook?`
+  userWelcomeMessage.innerText = `Welcome \n ${user.name}, \n ready to cook?`
 }
 
 function updateMainPageRecipeIcons() {
