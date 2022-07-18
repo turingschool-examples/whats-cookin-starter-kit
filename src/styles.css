@@ -188,6 +188,8 @@ width: 18%;
 border-radius: 10px;
 background-image: linear-gradient(black, rgb(63, 62, 62), black);
 overflow-y: scroll;
+scrollbar-color: black;
+scrollbar-width: thin;
 }
 
 
@@ -273,7 +275,6 @@ filter: drop-shadow(5px 10px 3px black);
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-
     height: 95%;
     width: 100%;
     }
@@ -469,24 +470,14 @@ filter: drop-shadow(5px 10px 3px black);
       display: flex;
       flex-direction: column;
       justify-content: center;
+      background-image: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url("../dist/anyonecancook-logo.svg");
+      background-repeat: no-repeat;
+      background-position: center;
       align-items: center;
       height: 100%;
       width: 100%;
     }
-
-    /* .favorite-container div{
-        background-image: url("../dist/anyonecancook-logo.svg");
-        background-repeat: no-repeat;
-        background-position: center;
-        opacity: 20%;
-      } */
-
-    /* .fav-page-logo-img{
-      display: flex;
-      height: 100%;
-      width: 100%;
-      opacity: 20%;
-    } */
+ 
 
       .favorite-recipe-container,
       .user-info-pantry-container{
@@ -521,6 +512,8 @@ filter: drop-shadow(5px 10px 3px black);
       border-radius: 8px;
       margin-left: 1;
       cursor: pointer;
+      font-family: 'Edu TAS Beginner';
+      font-size: 25pt;
     }
 
       .favorite-recipe-title,
