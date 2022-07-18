@@ -1,6 +1,65 @@
 body {
-  background-color: blueviolet;
+  background-color: rgb(210, 208, 192);
+  font-family: sans-serif;
+  margin: 0;
 }
+
+.nav-wrapper {
+  background-image: url(images/nav-bar-img.jpg);
+  background-size: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 18vh;
+}
+
+.heading {
+  background-color: rgb(106, 105, 96);
+  margin-top: 30px;
+  padding: 8px 40px;
+  font-size: 3em;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.nav-bar {
+  background-color:rgb(210, 208, 192);
+  padding: 10px 0px;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+img {
+  border-radius: 25px;
+  padding: 10px;
+}
+
+.recipe-image:hover{
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, .8);
+  }
+
+
+.favorite-button{
+    background-image: linear-gradient(92.88deg, #376387 9.16%, #5643CC 43.89%, #673FD7 64.72%);
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    flex-shrink: 0;
+    height: 2rem;
+    padding: 0 1.6rem;
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+    margin-bottom: 8px;
+  }
+
+.favorite-button:hover {
+  cursor: pointer;
+  box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+}
+
 
 .recipe-display {
   display: flex;
@@ -31,4 +90,46 @@ body {
 
 .hidden {
   display: none;
+}
+
+.instructions-display {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 1000px;
+  text-align:left;
+  border-radius: 15px;
+}
+
+.instruction-design-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.ingredients-design-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-button {
+  background-color: #673FD7;
+  border: none;
+  color: #fff;
+  padding: 3px 5px;
+  border-radius: 3px;
+}
+
+.nav-button:hover {
+  cursor: pointer;
+  background-color: #376387;
+}
+
+.input {
+  border: none;
+  height: 19px;
+  border-radius: 3px;
 }
