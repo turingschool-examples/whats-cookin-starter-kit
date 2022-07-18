@@ -16,16 +16,16 @@ class User {
 
     filterRecipesToCookByTag( userInput ){
         let tagMatches = this.recipesToCook.filter( recipe => {
-            return recipe.tags.includes(userInput.toLowerCase())
+            return recipe.tags.includes(userInput.toLowerCase( ))
         });
-            return tagMatches[ 0 ].tags;
+            return tagMatches.tags;
     };
       
     filterRecipesToCookByName( userSearch ){
         let nameMatches = this.recipesToCook.filter( recipe => {
             return recipe.name.includes( userSearch )
         })
-            return nameMatches[ 0 ].name
+            return nameMatches.name
       };
   };
 

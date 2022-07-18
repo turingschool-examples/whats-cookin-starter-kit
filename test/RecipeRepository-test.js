@@ -220,8 +220,8 @@ describe( 'RecipeRepository', ( ) => {
   } );
 
   it( 'should filter by recipe name', ( ) => {
-    expect( recipeRepo.filterRecipeByName( "Maple Dijon Apple Cider Grilled Pork Chops" ) ).to.deep.equal( [ dataRecipe[ 1 ] ] )
     expect( recipeRepo.filterRecipeByName( "loaded chocolate chip pudding cookie cups" ) ).to.deep.equal( [ dataRecipe[ 0 ] ] )
+    expect( recipeRepo.filterRecipeByName( "Maple Dijon Apple Cider Grilled Pork Chops" ) ).to.deep.equal( [ dataRecipe[ 1 ] ] )
   } );
 
 } );

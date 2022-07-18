@@ -111,27 +111,41 @@ describe('User', ( ) => {
 
     it( 'should take in an user id', ( ) => {
         expect( user.id ).to.equal( dataUser.id )
-    });
+    } );
 
     it( 'should take in a user pantry', ( ) => {
         expect( user.pantry ).to.deep.equal( dataUser.pantry )
     } ); 
 
-    it( 'should take in recipesToCook', ( ) => {
+    it( 'should be able to take in recipesToCook', ( ) => {
         expect( user.recipesToCook ).to.be.a( "array" )
         expect( user.recipesToCook ).to.deep.equal( [ ] )
-    }); 
+    } ); 
 
-    it( 'should save a recipe in recipesToCook array', ( ) => {
+    it( 'should be able to save a recipe in recipesToCook array', ( ) => {
         user.addRecipeToRecipesToCook( dataRecipe )
         expect( user.recipesToCook.length ).to.deep.equal( 1 )
         expect( user.recipesToCook ).to.deep.equal( [ dataRecipe ] )
-    });
+    } );
 
-    it( 'should remove saved recipes from array', ( ) => {
+    it( 'should remove a saved recipes from recipesToCook array', ( ) => {
       user.addRecipeToRecipesToCook( dataRecipe );
       user.removeRecipeFromRecipesToCook( dataRecipe );
       expect( user.recipesToCook ).to.deep.equal( [ ] );
-    });
+    } );
+
+    it( 'should filter recipes by tag', ( ) => {
+      user.addRecipeToRecipesToCook( dataRecipe );
+      user.filterRecipesToCookByTag( 'snack' );
+      user.filterRecipesToCookByTag( 'antipasti' );
+      expect( user.recipesToCook ).to.deep.equal( [ dataRecipe ] );
+    } );
+
+    it( 'should filter recipes by name', ( ) => {
+      user.addRecipeToRecipesToCook( dataRecipe );
+      user.filterRecipesToCookByTag( 'Chocolate' );
+      user.filterRecipesToCookByTag( 'Loaded Chocolate Chip Pudding Cookie Cups' );
+      expect( user.recipesToCook ).to.deep.equal( [ dataRecipe ] );
+    } );
 
 });
