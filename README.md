@@ -40,44 +40,40 @@ https://user-images.githubusercontent.com/98445902/172243113-8f0cc359-4e85-44a3-
 <details>
 <summary>Recipe Class</summary>
 ​
-* Stuff
+* Takes in an ID number, an image recipe, the ingredients list, a list of instructions, name, associated tags, and references against a master list of ingredients.
 ​
-* More Stuff
+* `getIngredientsWithNames()` is a function that looks against a master list of ingredients, compares the recipe items to that master list, and then updates the recipe object to include names that were excluded in our data pull from the fetch request.
 ​
-* Even More Stuff
+* `getCostOfIngredients()` is a function that takes each individual ingredient, and sums the total cost for reference by the user.
 ​
 </details>
 ​
 <details>
 <summary>Recipe Repository Class</summary>
 ​
-* Stuff
+* This class takes in all of the recipes from the fetch request.
 ​
-* More Stuff
-​
-* Even More Stuff
+* `filterRecipeByTag()` and `filterRecipesName()` takes in a user's input, iterates through the repository, and filters a list of matching conditions.
 ​
 </details>
 ​
 <details>
 <summary>Extension: Modal</summary>
 ​
-* Stuff
+* The modal was a cool extension that brought an interactive box over the main web page.  This posed challenges from install to project completion.
 ​
-* More Stuff
-​
-* Even More Stuff
+* The modal has the recipe's cost, ingredients, and instructions in it.  Iterator methods were used to run through the recipe's nested data to provide a readable view to the user.
 ​
 </details>
 ​
 <details>
 <summary>DOM Manipulation Details</summary>
 ​
-* Stuff
+* `searchDisplayedRecipe()` is a function that looks for matching cases > 0 to eventually return recipes with matching identifiers.
 ​
-* More Stuff
+* `displayAllRecipesOnPage()` does exactly what is named!  It iterates through every recipe in the recipe repository, and then adds a recipe "card" to the page.
 ​
-* Even More Stuff
+* `saveRecipeToRecipesToCook` looks at the event target id of the button clicked.  In `displayAllRecipesOnPage()`, we assigned the html ID of each recipe card to be the recipe ID.  When iterating through all recipes on page, if the target ID matched, it would push the recipe to the User's `recipesToCook` array. This array is then iterated through downstream when the user interacts with their cooking profile.
 ​
 </details><br>
 ​
