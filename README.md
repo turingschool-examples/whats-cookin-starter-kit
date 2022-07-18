@@ -128,7 +128,9 @@ Chai<br>
 ​
 ​
 ### Contributors: <a name="contributors"></a>
-​
+
+<br> 
+
 Jordan Farelli: [LinkedIn](https://www.linkedin.com/in/jordan-farelli/) | [GitHub](https://github.com/jfarelli/)
 Maia Cochran: [LinkedIn](https://www.linkedin.com/in/maiaecochran/) | [GitHub](https://github.com/Maia-Cochran)
 Andrew Miller: [LinkedIn](https://www.linkedin.com/in/andrew-miller-0393b448/) | [GitHub](https://github.com/andrewmiller45)
