@@ -30,7 +30,7 @@ class Recipe {
   returnIngredientNames() {
     const allIngredients = this.makeIngredients();
     const recipeIngredientIDs = this.returnRecipeIngredientIDs();
-    const allIngredientIDs = this.returnAllIngredientIDs();;
+    const allIngredientIDs = this.returnAllIngredientIDs();
     const newRecipeIngredients = allIngredients.filter(ingredient => recipeIngredientIDs.includes(ingredient.id));
     const names = newRecipeIngredients.map(ingredient => ingredient.name);
     return names;
