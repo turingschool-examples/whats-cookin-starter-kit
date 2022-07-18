@@ -98,6 +98,7 @@
 * Maia: This is also the first time I’ve worked with a modal, and it was really cool to be able to explore more of CSS while adjusting this to reflect our desired user experience.
 
 <br>
+
 ### Future Iterations: <a name="future"></a> <br>
 
 * It would be cool to create an option for a user to log in and store their favorites to local storage.
@@ -113,6 +114,7 @@
 * Dark mode/light mode options for the page.
 
 <br>
+
 ### Technologies used:<br><a name="tech"></a>
 JavaScript<br>
 HTML<br>
@@ -121,6 +123,7 @@ Fetch API<br>
 Webpack<br>
 Mocha<br>
 Chai<br>
+
 <br>
 
 ### Contributors: <a name="contributors"></a> <br>
