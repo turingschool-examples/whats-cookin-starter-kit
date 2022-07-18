@@ -94,7 +94,7 @@ function loadNewUser() {
 }
 
 function updateUserWelcome(user) {
-  userWelcomeMessage.innerText = `Welcome ${user.name}, ready to cook?`
+  userWelcomeMessage.innerText = `Welcome \n ${user.name}, \n ready to cook?`
 }
 
 
@@ -294,7 +294,7 @@ function filterFavoriteRecipesByName(name) {
 
 function showFavoriteRecipeImages(){
   favoriteRecipeImages.innerHTML = '';
-  favoriteRecipes.forEach(recipe => {
+  user.recipesToCook.forEach(recipe => {
   favoriteRecipeImages.innerHTML += `<section class = "favorite-recipe-icon" >
   <img class = "recipe-icons" src = ${recipe.image} id = ${recipe.id}>
   </section>`;
