@@ -30,11 +30,12 @@ button {
 /* ~~~~~~~~~~~~~~~~~~~text~~~~~~~~~~~~~~~~~~~~~~~ */
 
 h1{
-  display: flex;
+  display: inline;
   justify-self: center;
   align-items: center;
   font-family: 'Edu TAS Beginner';
   font-stretch: expanded;
+  flex-shrink: 2;
   font-size: 3em;
   margin: 0%;
 }
@@ -44,10 +45,10 @@ display: flex;
 justify-content: center;
 align-items: center;
 color: white;
-font-size: 275%;
+font-size: 200%;
 text-align: center;
 width: 100%;
-padding-top: .3em;
+/* padding-top: .3em; */
 }
 
 
@@ -126,6 +127,7 @@ padding-top: .3em;
 
 .random-feature-image{
   flex: 1 0 auto;
+  flex-shrink: 1;
   height: auto;
   width: 100%;
   border-radius: 8px;
@@ -215,9 +217,9 @@ scrollbar-width: thin;
   display: flex;
   justify-self: center;
   align-self: center;
-  height: 40%;
-  width: 50%;
-  margin-left: -20%;
+  height: 175px;
+  width: 400px;
+  margin-left: -25%;
   background-image: linear-gradient(black, rgb(63, 62, 62), black);
   filter: drop-shadow(5px 10px 3px black);
   border-radius: 8px;
@@ -245,10 +247,10 @@ filter: drop-shadow(5px 10px 3px black);
 
   .recipe-icons{
    display: flex;
+   flex-wrap: wrap;
    height: 125px;
    width: 125px;
-   filter: drop-shadow(5px 6px 3px grey);
-   border: 1px solid grey;
+   filter: drop-shadow(1px 2px 2px grey);
    border-radius: 8px;
    cursor: pointer;
   }
@@ -494,7 +496,6 @@ filter: drop-shadow(5px 10px 3px black);
         flex-direction: row;
         justify-self: center;
         align-self: center;
-
       }
 
       .favorite-recipe-title-wrapper,
@@ -504,17 +505,25 @@ filter: drop-shadow(5px 10px 3px black);
         width: 100%;
       }
 
-    .favorite-recipe-icon{
-      display: flex;
-      height: 125px;
-      width: 125px;
-      filter: drop-shadow(5px 6px 3px grey);
-      border-radius: 8px;
-      margin-left: 1;
-      cursor: pointer;
-      font-family: 'Edu TAS Beginner';
-      font-size: 25pt;
-    }
+      .fav-container-lower-wrapper{
+        display: flex;
+        justify-self: center;
+        align-self: center;
+        width: 100%;
+        height: auto;
+        padding-top: 3em;
+        overflow-y: scroll;
+      }
+
+      .favorite-recipe-icon{
+        display: flex;
+        justify-self: center;
+        height: 125px;
+        width: 125px;
+        border-radius: 8px;
+        margin-left: 1em;
+        cursor: pointer;
+      }
 
       .favorite-recipe-title,
       .user-pantry-title{
@@ -549,14 +558,14 @@ filter: drop-shadow(5px 10px 3px black);
      }  
       
       .pantry-ingredient-wrapper p{
-        display: inline;
+        display: flex;
+        flex-shrink: inherit;
         font-size: 30pt;
-        margin: 2;
+        margin: 1em;
       }
 
       #pantryIngredientWrapper2 {
         width: 80%;
-
       }
 
 /* ~~~~~~~~~~~~~~~~~~aux~~~~~~~~~~~~~~~~~~~~~~ */
