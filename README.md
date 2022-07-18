@@ -47,8 +47,10 @@ Have you ever found yourself wondering what to make for dinner?  Look no further
 
 ## Project management
 - As a team, we first began working with logic in each class file and then moved onto working with the DOM in scripts.js
+- We used a google sheet to manage our excalidarws, ideas, and templates for the project: (https://docs.google.com/document/d/1HqyPQ5XYk4wWnOfB0n6NwZtEkEWUK25qzbUWfnrL12Q/edit)
 - We used a [Github Project Board](https://github.com/users/nairnairnair/projects/3/views/1) to stay on task and meet the deadline.
 - The project specs and guideline for Part One of this project can be found [here](https://frontend.turing.edu/projects/whats-cookin-part-one.html)
+
 
 ## Contributors
 

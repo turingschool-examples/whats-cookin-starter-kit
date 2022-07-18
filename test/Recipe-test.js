@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
 
-
 describe('Recipe', () => {
   let recipeData;
   let newRecipe;
@@ -140,43 +139,49 @@ describe('Recipe', () => {
     })
 
     it('should be able to store id of a recipe', () => {
-        expect(newRecipe.id).to.equal(595736)
+        expect(newRecipe.id).to.deep.equal(595736)
     })
 
     it('should be able to store an image of a recipe', () => {
-        expect(newRecipe.image).to.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg")
+        expect(newRecipe.image).to.deep.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg")
     })
 
     it('should be able to store ingredients of a recipe', () => {
-
-        expect(newRecipe.ingredients.length).to.equal(11);
-
+        expect(newRecipe.ingredients[0]).to.deep.equal({ id: 20081, quantity: { amount: 1.5, unit: 'c' } },);
       });
 
     it('should be able to store instructions of a recipe', () => {
-        expect(newRecipe.instructions.length).to.equal(6);
-
+        expect(newRecipe.instructions[0]).to.deep.equal({
+          instruction: 'In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.',
+          number: 1
+        });
     })
 
     it('should be able to store a name of a recipe', () => {
-        expect(newRecipe.name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups')
+        expect(newRecipe.name).to.deep.equal('Loaded Chocolate Chip Pudding Cookie Cups')
 
     })
 
     it('should be able to store a tag of a recipe', () => {
-        expect(newRecipe.tags.length).to.equal(6);
-
+        expect(newRecipe.tags).to.deep.equal([
+          'antipasti',
+          'starter',
+          'snack',
+          'appetizer',
+          'antipasto',
+          "hor d'oeuvre"
+        ]);
     })
 
     it('should be able to get the names of all ingredients in a recipe', () => {
         let ingredientNames = newRecipe.returnIngredientNames()
-        expect(ingredientNames[0]).to.equal('wheat flour');
+        expect(ingredientNames[0]).to.deep.equal('wheat flour');
 
     })
 
     it('should be able to get the cost of the ingredients of a recipe', () => {
         let ingredientCosts = newRecipe.returnIngredientCosts()
-        expect(ingredientCosts).to.equal(177.76)
+        expect(ingredientCosts).to.deep.equal(177.76)
 
     })
 
@@ -192,5 +197,4 @@ describe('Recipe', () => {
 
         expect(recipeInstructions).to.equal(expectedInstructions)
     })
-
 });

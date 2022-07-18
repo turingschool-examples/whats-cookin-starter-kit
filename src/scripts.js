@@ -1,10 +1,10 @@
 import './styles.css';
-import apiCalls from './apiCalls';
+import {fetchData} from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 // import ingredientsData from './data/ingredients';
-import recipeData from './data/recipes';
-import usersData from './data/users';
+// import recipeData from './data/recipes';
+// import usersData from './data/users';
 // import Ingredient from './classes/Ingredient';
 // import Recipe from './classes/Recipe';
 import RecipeRepository from './classes/RecipeRepository';
@@ -37,13 +37,27 @@ const userSearchContainer2 = document.querySelector('.user-search-container2');
 const form = document.querySelector('.form')
 
 
-
 // ###########  Global Variables  ###############
-const recipeRepo = new RecipeRepository(recipeData);
-const user = new User(usersData[randomIndex(usersData)]);
 
-window.addEventListener('load', welcomeUser);
-window.addEventListener('load', populateRecipesInHomeView);
+let recipeRepo;
+let user;
+let usersData;
+let recipeData;
+
+//Promises
+function getPromiseData() {
+  Promise.all( [fetchData('users'), fetchData('recipes'), fetchData('ingredients')]).then(data => {
+    usersData = data[0].usersData;
+    recipeData = data[1].recipeData;
+    user = new User(usersData[randomIndex(usersData)]);
+    recipeRepo = new RecipeRepository(recipeData);
+    welcomeUser();
+    populateRecipesInHomeView();
+  })
+}
+
+// window.addEventListener('load', welcomeUser);
+window.addEventListener('load', getPromiseData);
 homeButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', populateAllRecipesView);
 savedRecipesButton.addEventListener('click', populateSavedRecipesView);
