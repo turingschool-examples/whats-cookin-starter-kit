@@ -494,11 +494,11 @@ filter: drop-shadow(5px 10px 3px black);
       display: flex;
       height: 125px;
       width: 125px;
-      filter: drop-shadow(5px 6px 3px grey);
-      border: 1px solid grey;
       border-radius: 8px;
       margin-left: 1;
       cursor: pointer;
+      font-family: 'Edu TAS Beginner';
+      font-size: 25pt;
     }
 
       .favorite-recipe-title,
