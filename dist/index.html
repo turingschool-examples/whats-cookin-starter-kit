@@ -5,30 +5,32 @@
     <title>Whats Cookin</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
-    <nav class="nav-bar" id="navBar">
-      <form id="searchForm">
-        <label class="nav-label" id="searchLabel">Search Recipe by Name</label>
-        <input class="input" type="text" id="recipeNameInput">
-        <input class="nav-button" id="searchButton" type="submit" value="Search">
-      </form>
-      <form id="filterForm">
-        <label class="nav-label" id="filterLabel">Filter Recipe by Tags</label>
-        <input class="input" type="text" id="recipeTagInput">
-        <input class="nav-button" id="filterButton" type="submit" value="Filter">
-      </form>
-      <form id="filterFavoriteForm">
-        <label class="nav-label" id="filterFavoriteLabel">Filter Favorite Recipe by Tags</label>
-        <input class="input" type="text" id="recipeFavoriteTagInput">
-        <input class="nav-button" id="filterFavoriteButton" type="submit" value="Filter">
-      </form>
-      <form id="favSearchForm">
-        <label class="nav-label" id="searchLabel">Search favorite Recipes by Name</label>
-        <input class="input" type="text" id="favRecipeNameInput">
-        <input class="nav-button" id="favSearchButton" type="submit" value="Search">
-      </form>
-      <button class="nav-button" id="favoriteButton">Favorite Recipes</button>
-      <button class="nav-button hidden" id="homeButton">Go Back Home</button>
+    <div class="nav-wrapper">
+      <h1 class="heading">Whats Cookin</h1>
+      <nav class="nav-bar" id="navBar">
+        <form id="searchForm">
+          <label class="nav-label" id="searchLabel">Search Recipe by Name:</label>
+          <input class="input" type="text" id="recipeNameInput">
+          <input class="nav-button" id="searchButton" type="submit" value="Search">
+        </form>
+        <form id="filterForm">
+          <label class="nav-label" id="filterLabel">Filter Recipe by Tags:</label>
+          <input class="input" type="text" id="recipeTagInput">
+          <input class="nav-button" id="filterButton" type="submit" value="Filter">
+        </form>
+        <form id="filterFavoriteForm">
+          <label class="nav-label" id="filterFavoriteLabel">Filter Favorite Recipe by Tags</label>
+          <input class="input" type="text" id="recipeFavoriteTagInput">
+          <input class="nav-button" id="filterFavoriteButton" type="submit" value="Filter">
+        </form>
+        <form id="favSearchForm">
+          <label class="nav-label" id="searchLabel">Search favorite Recipes by Name</label>
+          <input class="input" type="text" id="favRecipeNameInput">
+          <input class="nav-button" id="favSearchButton" type="submit" value="Search">
+        </form>
+        <button class="nav-button" id="favoriteButton">Favorite Recipes</button>
+        <button class="nav-button hidden" id="homeButton">Go Back Home</button>
+      </div>
     </nav>
     <main>
       <div class="recipe-heading-wrapper">
