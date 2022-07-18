@@ -1,24 +1,19 @@
 import { expect } from 'chai';
-import RecipeRepository from '../src/classes/RecipeRepository';
-import Recipe from '../src/classes/recipe';
-import Ingredient from '../src/classes/ingredient';
+import User from '../src/classes/user-class';
+import RecipeRepository from '../src/classes/RecipeRepository'
 
-describe('Recipe Repository', () => {
-  let recipe1Data
-  let recipe2Data
-  let recipe1;
-  let recipe2;
-  let recDataSet;
-  let ingredient1;
-  let ingredient2;
-  let ingDataSet;
-  let recipeRepository;
+describe('User', () => {
+    let user;
+    let user1;
+    let recipe1;
+    let recipe2;
+    let recipeRepo;
+    let recDataSet;
 
-  beforeEach(() => {
-    ingredient1 = new Ingredient(20081, 'wheat flour', 142)
-    ingredient2 = new Ingredient(18372, 'bicarbonate of soda', 582)
-    ingDataSet = [ingredient1, ingredient2]
-    recipe1Data = {"id": 595736,
+    beforeEach(() => {
+        user1 =  { "name": "Dirty Steve", "id": 420 }
+        user = new User(user1)
+        recipe1 = { "id": 595736,
     "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
     "ingredients": [
       {
@@ -76,7 +71,8 @@ describe('Recipe Repository', () => {
         "antipasto",
         "hor d'oeuvre"
       ]}
-    recipe2Data = {
+
+    recipe2 = {
       "id": 412309,
       "image": "https://spoonacular.com/recipeImages/412309-556x370.jpeg",
       "ingredients": [
@@ -183,25 +179,46 @@ describe('Recipe Repository', () => {
         "sauce"
       ]
     }
-    recipe1 = new Recipe(recipe1Data, ingDataSet);
-    recipe2 = new Recipe(recipe2Data, ingDataSet);
     recDataSet = [recipe1, recipe2];
-    recipeRepository = new RecipeRepository(recDataSet);
-  })
+    recipeRepo = new RecipeRepository(recDataSet);
 
-  it('Should be a function', () => {
-    expect(RecipeRepository).to.be.a('function');
-  });
+    })
 
-  it('should take a paramater', () => {
-    expect(recipeRepository.recipes).to.deep.equal(recDataSet);
-  });
+    it('should be a function', () => {
+        expect(User).to.be.a('function');
+    })
 
-  it('should filter a list of recipes based on a tag', () => {
-    expect(recipeRepository.filterTags("sauce")).to.deep.equal([recipe2])
-  })
+    it('should be an instance of recipe', () => {
+        expect(user).to.be.an.instanceof(User)
+    })
 
-  it('should filter a list of recipes based on a name', () => {
-    expect(recipeRepository.filterNames("Dirty Steve's Original Wing Sauce")).to.deep.equal([recipe2])
-  })
+    it('should have a name', () => {
+        expect(user.name).to.equal('Dirty Steve')
+    })
+
+    it('should have an id', () => {
+        expect(user.id).to.equal(420)
+    })
+
+    it('should be able to add and remove recipes to cook', () => {
+        expect(user.recipesToCook).to.deep.equal([])
+        user.addRecipeToCook(recipe1)
+        expect(user.recipesToCook).to.deep.equal([recipe1])
+        user.removeRecipeToCook(recipe1)
+        expect(user.recipesToCook).to.deep.equal([])
+    })
+
+    it('should filter recipes by tags', () => {
+        user.addRecipeToCook(recipe1)
+        user.addRecipeToCook(recipe2)
+        expect(user.recipesToCook).to.deep.equal([recipe1, recipe2])
+        expect(user.userFilterTags('sauce')).to.deep.equal([recipe2])
+    })
+
+    it('should filter recipes by name', () => {
+        user.addRecipeToCook(recipe1)
+        user.addRecipeToCook(recipe2)
+        expect(user.recipesToCook).to.deep.equal([recipe1, recipe2])
+        expect(user.userFilterNames('Dirty')).to.deep.equal([recipe2])
+    }) 
 })
