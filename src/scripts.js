@@ -49,10 +49,10 @@ const removeFiltersButton = document.querySelector('.remove-filters-button');
 const userWelcomeMessage = document.querySelector('.user-welcome-message');
 
 // ***** Event Listeners ***** //
-
-window.addEventListener('load', updateMainPageRecipeIcons);
-window.addEventListener('load', updateMainPageFeatureImg);
-window.addEventListener('load', displayAllNames);
+// window.addEventListener('load', updateMainPageRecipeIcons);
+// window.addEventListener('load', updateMainPageFeatureImg);
+// window.addEventListener('load', loadNewUser);
+// window.addEventListener('load', displayAllNames);
 recipeSidebarList.addEventListener('click', viewRecipe);
 recipeIconContainer.addEventListener('click', viewRecipeFromIcon);
 favoriteRecipeImages.addEventListener('click', viewRecipeFromIcon);
@@ -67,13 +67,23 @@ removeFiltersButton.addEventListener('click', showFavoritesPage);
 // ***** Global Variables ***** //
 
 const allRecipes = recipeData.recipeData.map(recipe => new Recipe(recipe, ingredientData.ingredientsData));
-const recipeRepository =  new RecipeRepository(allRecipes);
 let user;
 let selectedRecipeName;
 let selectedRecipeIcon;
 let selectedRecipe;
+let recipeRepository;
 
 // ***** Functions ***** //
+
+getAllData().then(responses => {
+  recipeRepository =  new RecipeRepository(responses[0]);
+  ingredientData = responses[1];
+  userData = responses[2];
+  window.addEventListener('load', updateMainPageRecipeIcons);
+  window.addEventListener('load', updateMainPageFeatureImg);
+  window.addEventListener('load', loadNewUser);
+  window.addEventListener('load', displayAllNames);
+});
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
