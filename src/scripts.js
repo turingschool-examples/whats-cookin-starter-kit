@@ -22,6 +22,7 @@ const favoritePageButton = document.querySelector('.fav-img');
 const searchButton = document.querySelector('.search-button');
 const favoriteSearchButton = document.querySelector('.favorite-search-button')
 const recipeSidebarList = document.querySelector('.list-recipes');
+const recipeIconContainer = document.querySelector('.recipe-icon-container');
 const icon1Img = document.querySelector('.icon-1-img');
 const icon2Img = document.querySelector('.icon-2-img');
 const icon3Img = document.querySelector('.icon-3-img');
@@ -53,6 +54,8 @@ window.addEventListener('load', updateMainPageFeatureImg);
 window.addEventListener('load', loadNewUser);
 window.addEventListener('load', displayAllNames);
 recipeSidebarList.addEventListener('click', viewRecipe);
+recipeIconContainer.addEventListener('click', viewRecipeFromIcon);
+favoriteRecipeContainer.addEventListener('click', viewRecipeFromFavIcon);
 homeButton.addEventListener('click', showHomePage);
 searchButton.addEventListener('click', filterRecipe);
 favoriteSearchButton.addEventListener('click', filterFavoriteRecipes)
@@ -69,6 +72,7 @@ const allRecipes = recipeData.recipeData.map(recipe => new Recipe(recipe, ingred
 const recipeRepository =  new RecipeRepository(allRecipes);
 let user;
 let selectedRecipeName;
+let selectedRecipeIcon;
 let selectedRecipe;
 
 // ***** Functions ***** //
@@ -133,7 +137,8 @@ function showFavoritesPage() {
 }
 
 function viewRecipe(event) {
-  selectedRecipeName = event.target.innerText;
+  selectedRecipeName = event.target.innerText
+  console.log(selectedRecipeName)
   selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name)[0];
   hide(homePage);
   hide(searchContainer);
@@ -148,6 +153,43 @@ function viewRecipe(event) {
   displayTotalCostOfAllIngredients();
   displaySelectedRecipeImg();
 }
+
+function viewRecipeFromIcon(event){
+  selectedRecipeIcon = event.target.src
+  console.log(selectedRecipeIcon)
+  selectedRecipe = allRecipes.filter(recipe => selectedRecipeIcon === recipe.image)[0];
+  hide(homePage);
+  hide(searchContainer);
+  hide(favoritesPage);
+  hide(searchFavoritesContainer);
+  show(recipePage);
+  displaySelectedRecipeName();
+  displayRecipeInstructions();
+  displayIngredientNames();
+  displayIngredientCosts();
+  displayIngredientQuantities();
+  displayTotalCostOfAllIngredients();
+  displaySelectedRecipeImg();
+}
+
+function viewRecipeFromFavIcon(event){
+  selectedRecipeIcon = event.target.src
+  console.log(selectedRecipeIcon)
+  selectedRecipe = allRecipes.filter(recipe => selectedRecipeIcon === recipe.image)[0];
+  hide(homePage);
+  hide(searchContainer);
+  hide(favoritesPage);
+  hide(searchFavoritesContainer);
+  show(recipePage);
+  displaySelectedRecipeName();
+  displayRecipeInstructions();
+  displayIngredientNames();
+  displayIngredientCosts();
+  displayIngredientQuantities();
+  displayTotalCostOfAllIngredients();
+  displaySelectedRecipeImg();
+}
+
 
 function displaySelectedRecipeName() {
   recipeNameBox.innerText = selectedRecipe.name;
@@ -245,6 +287,7 @@ function filterFavoriteRecipesByName(name) {
 }
 
 function showFavoriteRecipeImages(){
+  show(favoriteRecipeImages);
   favoriteRecipeImages.innerHTML = '';
   user.recipesToCook.forEach(recipe => {
   favoriteRecipeImages.innerHTML += `<section class = "favorite-recipe-icon" >
