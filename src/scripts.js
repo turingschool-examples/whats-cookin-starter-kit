@@ -1,5 +1,6 @@
 import './styles.css';
 import apiCalls from './apiCalls';
+import { fetchApiData } from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png';
 import RecipeRepository from './classes/RecipeRepository';
@@ -47,11 +48,10 @@ const favoriteRecipeImages = document.querySelector('.favorite-recipe-icon')
 const favoriteRecipeContainer = document.querySelector('.favorite-recipe-container')
 
 // ***** Event Listeners ***** //
-
-window.addEventListener('load', updateMainPageRecipeIcons);
-window.addEventListener('load', updateMainPageFeatureImg);
-window.addEventListener('load', loadNewUser);
-window.addEventListener('load', displayAllNames);
+// window.addEventListener('load', updateMainPageRecipeIcons);
+// window.addEventListener('load', updateMainPageFeatureImg);
+// window.addEventListener('load', loadNewUser);
+// window.addEventListener('load', displayAllNames);
 recipeSidebarList.addEventListener('click', viewRecipe);
 homeButton.addEventListener('click', showHomePage);
 searchButton.addEventListener('click', filterRecipe);
@@ -62,16 +62,25 @@ favoriteRecipeContainer.addEventListener('dblclick', function(event) {
   removeFromFavorites(event)
 })
 
-
 // ***** Global Variables ***** //
 
 const allRecipes = recipeData.recipeData.map(recipe => new Recipe(recipe, ingredientData.ingredientsData));
-const recipeRepository =  new RecipeRepository(allRecipes);
 let user;
 let selectedRecipeName;
 let selectedRecipe;
+let recipeRepository;
 
 // ***** Functions ***** //
+
+getAllData().then(responses => {
+  recipeRepository =  new RecipeRepository(responses[0]);
+  ingredientData = responses[1];
+  userData = responses[2];
+  window.addEventListener('load', updateMainPageRecipeIcons);
+  window.addEventListener('load', updateMainPageFeatureImg);
+  window.addEventListener('load', loadNewUser);
+  window.addEventListener('load', displayAllNames);
+});
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -88,7 +97,6 @@ function show(element) {
 function loadNewUser() {
   user = new User(userData.usersData[getRandomIndex(userData.usersData)]);
 }
-
 
 function updateMainPageRecipeIcons() {
   icon1Img.src = allRecipes[getRandomIndex(allRecipes)].image;
