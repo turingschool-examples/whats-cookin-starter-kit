@@ -88,6 +88,10 @@ button:hover {
   width: 8%;
 }
 
+.search-input {
+  background-color: #F9F6EE;
+}
+
 .search-by, .radio2 {
   color: black;
 }
@@ -143,7 +147,6 @@ button:hover {
   background-color: #F9F6EE;
   width: 100vw;
   height: 62.5vh;
-  border: 2px solid black;
 }
 
 .recipe-view-container {
@@ -154,7 +157,6 @@ button:hover {
   background-color: #F9F6EE;
   width: 100vw;
   height: 62.5vh;
-  border: 2px solid black;
 }
 
 .box-of-recipes {
@@ -186,14 +188,12 @@ button:hover {
   flex-direction: column;
   height: 100%;
   width: 25%;
-  border: 2px solid black;
   overflow-y: scroll;
 }
 
 .recipe-view-big-box {
   height: 100%;
   width: 50%;
-  border: 2px solid black;
   text-align: center;
 }
 
@@ -213,14 +213,12 @@ button:hover {
 .recipe-name, .ingredient-cost {
   width: 100%;
   height: 20%;
-  border: 2px solid black;
   color: black
 }
 
 .ingredient-details {
   width: 100%;
   height: 115%;
-  border: 2px solid black;
   color: black;
   overflow-y: scroll;
 }
@@ -229,7 +227,6 @@ button:hover {
   color: black;
   height: 92%;
   overflow-y: scroll;
-  border: 1px solid black;
 }
 
 .recipe-label {
@@ -253,7 +250,6 @@ button:hover {
 
 .recipe-view-pic {
   height: 50%;
-  border: 2px solid black;
 }
 
 .all-recipes-view, .saved-recipes-view, .filtered {

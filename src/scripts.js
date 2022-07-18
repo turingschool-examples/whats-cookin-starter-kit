@@ -84,7 +84,10 @@ const pageNames = [
   'THANK YOU BASED COLE!! Oh, hi',
   'Eat to change your life,',
   `What's Eating`,
-  'Who names their kid'
+  'Who names their kid',
+  'Your goose is cooked,',
+  'GET IN MAH BELLY,',
+  'Dirty Steve sends his regards,'
 ]
 
 function randomIndex(array) {
