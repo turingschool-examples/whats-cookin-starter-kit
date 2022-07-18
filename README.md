@@ -33,7 +33,7 @@
 ​
 <br>
 ​
-### Under the Hood: <a name="under"></a>
+### Under the Hood: <a name="under"></a> <br>
 ​
 <details>
 <summary>Recipe Class</summary>
@@ -75,7 +75,7 @@
 ​
 </details><br>
 ​
-### Challenges: <a name="challenges"></a>
+### Challenges: <a name="challenges"></a> <br>
 
 * Andrew: One of the functions in our recipe class sought to pull the ingredient name from an upstream class.  The data in our fetch requests matched ingredients by their ID number, but the name was not included in recipes.  Figuring out how to iterate through the data, and then reassign the values of the downstream data to include the name in it.
 
@@ -85,7 +85,7 @@
 
 <br>
 ​
-### Reflections: <a name="reflections"></a>
+### Reflections: <a name="reflections"></a> <br>
 
 * Andrew: The importance of being flexible with a passing test needing to be revisited or refactored if its intended function changes down the line in a project.  It is okay to revisit a previously passing test, and writing a new one to fit the new requirements of the project.
 
@@ -98,8 +98,7 @@
 * Maia: This is also the first time I’ve worked with a modal, and it was really cool to be able to explore more of CSS while adjusting this to reflect our desired user experience.
 
 <br>
-​
-### Future Iterations: <a name="future"></a>
+### Future Iterations: <a name="future"></a> <br>
 
 * It would be cool to create an option for a user to log in and store their favorites to local storage.
 
@@ -112,9 +111,8 @@
 * Adjusting the images styling to allow mobile app use.
 
 * Dark mode/light mode options for the page.
-​
+
 <br>
-​
 ### Technologies used:<br><a name="tech"></a>
 JavaScript<br>
 HTML<br>
@@ -123,11 +121,9 @@ Fetch API<br>
 Webpack<br>
 Mocha<br>
 Chai<br>
-​
 <br>
-​
-​
-### Contributors: <a name="contributors"></a>
+
+### Contributors: <a name="contributors"></a> <br>
 
 <br> 
 
