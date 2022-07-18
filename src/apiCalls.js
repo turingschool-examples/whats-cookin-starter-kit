@@ -25,6 +25,6 @@ const getIngredientData = () => {
     return result;
   }
 
-
 export default { getAllData }
+
 console.log('I will be a fetch request!')
