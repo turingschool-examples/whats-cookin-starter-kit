@@ -15,7 +15,7 @@ import User from './classes/user-class'
 const config = {
     type:'carousel',
     startAt: 0,
-    perView: 1
+    perView: 2
 }
 
 new Glide('.glide', config).mount()
@@ -214,7 +214,7 @@ function populateFavoriteRecipes() {
         `<section class="recipe-icon">
           <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
           <img class="trash-icon" src="./images/trash.png">
-          <p>${recipe.name}</p>
+          <p>${recipe.name.toUpperCase()}</p>
         </section>`
   })
 }
@@ -224,7 +224,7 @@ function heartHandler(recipe) {
     `<section class="recipe-icon">
       <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
       <img class="add-to-favorites-icon" src='./images/heart.png'>
-      <p>${recipe.name}</p>
+      <p>${recipe.name.toUpperCase()}</p>
     </section>`
 }
 
@@ -233,7 +233,7 @@ function filledHeartHandler(recipe) {
     `<section class="recipe-icon">
       <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
       <img class="unfavorite" src='./images/filled-heart.png'>
-      <p>${recipe.name}</p>
+      <p>${recipe.name.toUpperCase()}</p>
     </section>`
 }
 
@@ -261,7 +261,7 @@ function filterByTag(event) {
         `<section class="recipe-icon">
           <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
           <img class="add-to-favorites-icon" src="./images/heart.png">
-          <p>${recipe.name}</p>
+          <p>${recipe.name.toUpperCase()}</p>
         </section>`
     })
   }
@@ -276,7 +276,7 @@ function favoriteFilterByTag(event) {
       `<section class="recipe-icon">
         <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
         <img class='trash-icon' src="./images/trash.png">
-        <p>${recipe.name}</p>
+        <p>${recipe.name.toUpperCase()}</p>
       </section>`
   })
   }
@@ -292,7 +292,7 @@ function filterByName(event) {
       `<section class="recipe-icon">
         <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
         <img class="add-to-favorites-icon" src="./images/heart.png">
-        <p>${recipe.name}</p>
+        <p>${recipe.name.toUpperCase()}</p>
       </section>`
   })
 }
@@ -306,7 +306,7 @@ function favoriteFilterByName(event) {
       `<section class="recipe-icon">
         <img class="view-all-recipe-image" src="${recipe.image}" alt="random-recipe-image">
         <img class='trash-icon' src="./images/trash.png">
-        <p>${recipe.name}</p>
+        <p>${recipe.name.toUpperCase()}</p>
       </section>`
   })
 }
