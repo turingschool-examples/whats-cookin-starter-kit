@@ -1,12 +1,12 @@
-import { ingredientsData } from '../data/ingredients';
 import Recipe from './Recipe';
 
 class RecipeRepository {
-  constructor(rawRecipes) {
-    this.rawRecipes = rawRecipes
-    this.allRecipes;
+  constructor(rawRecipes, ingredientsData = []) {
+    this.rawRecipes = rawRecipes;
+    this.allRecipes = this.createAllRecipes(ingredientsData);
     this.filteredTags = [];
     this.filteredNames = [];
+    this.ingredientsData = ingredientsData;
   }
   createAllRecipes(ingredientsData) {
     const grabRecipe = this.allRecipes = this.rawRecipes.map(recipe => new Recipe(recipe, ingredientsData))
