@@ -27,12 +27,13 @@ header {
 
 button {
   margin-top: 5px;
-  background-color:#427861;
+  background-color: #01834e;
   color: #060911;
   font-family:'Roboto',sans-serif;
   padding:0.5em 3em;
   font-weight:400;
   text-transform:uppercase;
+  border-radius: 4px;
 }
 
 button:hover {
@@ -45,6 +46,7 @@ button:hover {
   color: #F9F6EE;
   border-color: #060911;
   font-size: large;
+  border-radius: 2px;
 }
 .nav-buttons:hover, #search-button:hover {
   cursor:pointer;
