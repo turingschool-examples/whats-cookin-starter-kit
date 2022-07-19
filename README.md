@@ -6,7 +6,7 @@
 
 What's cookin' in your kitchen?  Need some fresh ideas? Look no further!  On page load, our application displays random recipes to cook that allows users to save and delete recipes to their own profile.  Users will even get their own randomized webpage title!  
 
-![Whats Cookin](./dist/whats-cookin.gif)
+![Whats Cookin](./whats-cookin.gif)
 
 ## Local Set Up Instructions
 
