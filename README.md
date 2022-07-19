@@ -32,7 +32,7 @@
 ## Setup
 1. Fork this repository to your own GitHub account on the top right corner of the page, click the fork button.
 2. Clone a copy of this repo to your machine by running git clone `https://github.com/tfettig22/whats-cookin-group-project`. Add an optional argument after the repo url when cloning. The command should look like this: git clone [remote-address] [what you want to name the repo].
-3. Once you have cloned the repo, change into that directory, run npm install and then npm start. You should see “Project is running at http://localhost:8080/"
+3. Once you have cloned the repo, change into that directory, run `npm install` and then `npm start`. You should see “Project is running at http://localhost:8080/"
 4. A link will appear in the terminal similar to http://localhost:8080/ (you might see 8081). Open that link in your browser. `Control + C` is the command to stop running the local server. Closing the terminal without stopping the server first could allow the server to continue to run in the background and cause problems. This command is not specific to Webpack; make note of it for future use.
 5. Enjoy!
 
