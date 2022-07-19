@@ -1,5 +1,3 @@
-// import Recipe from "./Recipe";
-
 class RecipeRepository {
   constructor( recipeList ) {
     this.recipes = recipeList;

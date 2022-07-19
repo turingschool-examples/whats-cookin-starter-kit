@@ -12,7 +12,8 @@ describe('Ingredient', ( ) => {
             "estimatedCostInCents": 142
           }
         
-        ingredient = new Ingredient( dataIngredient.id, dataIngredient.name, dataIngredient.estimatedCostInCents )
+        ingredient = new Ingredient( dataIngredient.id, dataIngredient.name, dataIngredient.estimatedCostInCents );
+        
     } );
 
     it( 'should be a function', ( ) => {

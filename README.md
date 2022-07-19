@@ -12,8 +12,11 @@
 * [Technologies Used](#tech)
 * [Contributors](#contributors)
 ​
+
+<br>
+
+
 ### Setting Up: 
-​
 * On the top right corner of this page, click the **Fork** button to fork this repo.
 * Clone down the forked repo by clicking the green **Code** button, and then copying the link under **SSH**.
 * In your terminal, type in `git clone` and then paste the copied link.
@@ -21,6 +24,8 @@
 * Run `npm start` in the terminal, and copy the URL link (`http://localhost:8080/`) to see the HTML page 
 * To stop running the server, use Control + C in the terminal. (Closing the terminal without stopping the server first could allow the server to continue to run in the background and cause problems.)
 * And now you're ready to get cookin'!
+
+<br>
 
 ### How To Use: <a name="how"></a>
 

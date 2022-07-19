@@ -1,12 +1,15 @@
+// IMPORTS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 import './styles.css';
-import './images/nav-background.jpg'
+import './images/nav-background.jpg';
 import { getData } from './apiCalls';
-import User from './classes/User'
-import Recipe from './classes/Recipe'
-import Ingredient from './classes/Ingredient'
-import RecipeRepository from './classes/RecipeRepository'
+import User from './classes/User';
+import Recipe from './classes/Recipe';
+import Ingredient from './classes/Ingredient';
+import RecipeRepository from './classes/RecipeRepository';
 import MicroModal from 'micromodal';
 
+
+// GLOBAL VARIABLES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 let userList;
 let recipeList;
 let recipeClass;
@@ -17,27 +20,28 @@ let currentUser;
 let newRecipe;
 let matchingTagConditions = [ ];
 let matchingNameConditions = [ ];
+let savedTagCondits = [ ];
+let savedNameCondits = [ ];
 
-let savedTagCondits = []
-let savedNameCondits = []
 
-// Query Selectors <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-let searchButton = document.querySelector( ".search-button" );
+// QUERY SELECTORS / ELEMENTS BY ID <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+let h4 = document.querySelector( '.rec-name' );
+let overlay = document.getElementById('overlay');
+let totalCost = document.querySelector( '.dish-cost' );
 let searchBox = document.querySelector( ".recipe-search" );
+let searchButton = document.querySelector( ".search-button" );
+let closeModalButton = document.getElementById( "closeModal" );
+let ingredientText = document.querySelector( '.modal-ingredients' );
+let instructionText = document.querySelector( '.modal-instructions' );
 let welcomeUserMessage = document.getElementById( 'welcomeUserMessage' );
 let recipeContainer = document.querySelector( '.recipe-grid-container' );
-let h4 = document.querySelector( '.rec-name' );
-let instructionText = document.querySelector( '.modal-instructions' );
-let totalCost = document.querySelector( '.dish-cost' );
-let ingredientText = document.querySelector( '.modal-ingredients' );
 let recipeCardGridContainer = document.getElementById( "gridContainer" );
-let closeModalButton = document.getElementById( "closeModal" );
 let navViewProfileButton = document.querySelector( '.view-profile-button' );
-let overlay = document.getElementById('overlay')
 
-// Event Listeners <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-searchButton.addEventListener( "click", searchRecipe );
+
+// EVENT LISTENERS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 window.addEventListener( 'load', loadData );
+searchButton.addEventListener( "click", searchRecipe );
 recipeContainer.addEventListener( 'click' , displayRecipeInfo );
 navViewProfileButton.addEventListener( 'click' , showCookingProfile );
 
@@ -56,15 +60,17 @@ if( e.target.classList == 'remove-button' ) {
 recipeCardGridContainer.addEventListener( 'click', ( e ) => {
     if ( e.target.classList == 'lets-make-it-button' ) {
         MicroModal.show( 'recipeModal' );
-        overlay.classList.add( 'active' )
+        overlay.classList.add( 'active' );
     }  
 } );
 
 closeModalButton.addEventListener( 'click', ( ) => {
-    MicroModal.close( 'recipeModal' )
-    overlay.classList.remove( 'active' )
+    MicroModal.close( 'recipeModal' );
+    overlay.classList.remove( 'active' );
 } );
 
+
+// DOM MANIPULATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 function loadData( ) {
 Promise.all( [ getData( 'users' ), getData( 'recipes' ), getData( 'ingredients' ) ] ).then( data => {
         userList = data[ 0 ].usersData;
@@ -76,80 +82,43 @@ Promise.all( [ getData( 'users' ), getData( 'recipes' ), getData( 'ingredients' 
         recipeRepository = new RecipeRepository( recipeList );
         displayRandomUserName( );
         displayAllRecipesOnPage( );
-
     } );
 }
 
+
 function displayRandomUserName( ) {
-    welcomeUserMessage.innerText = `Welcome, ${ currentUser.name.split( ' ' )[ 0 ] }!`
+    welcomeUserMessage.innerText = `Welcome, ${ currentUser.name.split( ' ' )[ 0 ] }!`;
 }
 
+
 function searchRecipe( e ) {
-    if (e.target.id == 'search-cooking') {
-        filterCookProf()
+    if ( e.target.id == 'search-cooking' ) {
+        filterCookProf( );
     } else{
     if ( !searchBox.value ) {
       displayAllRecipesOnPage( );
     }
     const tagSearched = recipeRepository.filterRecipeByTag( searchBox.value );
-    const nameSearched = recipeRepository.filterRecipeByName( searchBox.value);
+    const nameSearched = recipeRepository.filterRecipeByName( searchBox.value );
     if ( tagSearched.length > 0 ) {
-        console.log( 'tagSearched: ', tagSearched )
-        matchingTagConditions = tagSearched 
-        displayFilteredRecipesByTagOnPage(  )
-
+        matchingTagConditions = tagSearched;
+        displayFilteredRecipesByTagOnPage(  );
     } else if ( nameSearched.length > 0 ) {
-        console.log( 'nameSearched: ', nameSearched )
-        matchingNameConditions = nameSearched 
-        return displayFilteredRecipesByNameOnPage(  )
+        matchingNameConditions = nameSearched;
+        return displayFilteredRecipesByNameOnPage( );
     } else {
       return displayAllRecipesOnPage( );
     }
   }
 }
-////////////
 
-function displayFilteredRecipesByTagOnCookingProf( ) {
-    // const result = currentUser.recipesToCook.map( recipe => {
-    //     console.log( 'TAG RECIPE: ', recipe )
-    //     return `<section class='recipe-card' id=${ recipe.id }>
-    //     <img src="${ recipe.image }" class="recipe-image" alt="">
-    //     <h3>${ recipe.name }</h3>
-    //     <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
-    //     <div>
-    //     <button class="save-button" id= ${ recipe.id }>Save to cooking profile!</button>
-    //     </div>
-    //     </section>`
-    // } );
-    // savedTagCondits = recipeContainer;
-    // return recipeContainer.innerHTML = result;
-}
 
-// function displayFilteredRecipesByNameOnCookingProf( ) {
-//     const result = currentUser.recipesToCook.map( recipe => {
-//         return `<section class='recipe-card' id=${recipe.id}>
-//         <img src="${ recipe.image }" class="recipe-image" alt="">
-//         <h3>${ recipe.name }</h3>
-//         <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
-//         <div>
-//         <button id= ${recipe.id} class="save-button">Save to cooking profile!</button>
-//         </div>
-//         </section>`
-//     } );
-//     savedNameCondits = recipeContainer;
-//     return recipeContainer.innerHTML = result;
-// }
-
-function filterCookProf() {
-    
+function filterCookProf( ) {
     const tagSearched = currentUser.filterRecipesToCookByTag( searchBox.value );
-    const nameSearched = currentUser.filterRecipesToCookByName( searchBox.value);
-    // console.log( 'tagSearched: ', tagSearched )
+    const nameSearched = currentUser.filterRecipesToCookByName( searchBox.value );
     if ( tagSearched.length > 0 ) {
-        savedTagCondits = tagSearched 
-        console.log(`tag searched: `, tagSearched);
+        savedTagCondits = tagSearched;
         const result = savedTagCondits.map( recipe => {
-            console.log( 'TAG RECIPE: ', recipe )
             return `<section class='recipe-card' id=${ recipe.id }>
             <img src="${ recipe.image }" class="recipe-image" alt="">
             <h3>${ recipe.name }</h3>
@@ -161,38 +130,34 @@ function filterCookProf() {
         } );
         savedTagCondits = recipeContainer;
         return recipeContainer.innerHTML = result;
-
     } else if ( nameSearched.length > 0 ) {
-        console.log( 'nameSearched: ', nameSearched )
-        savedNameCondits = nameSearched 
+        savedNameCondits = nameSearched;
         const result = savedNameCondits.map( recipe => {
-            return `<section class='recipe-card' id=${recipe.id}>
-            <img src="${ recipe.image }" class="recipe-image" alt="">
+            return `<section class='recipe-card' id=${ recipe.id }>
+            <img src=${ recipe.image } class="recipe-image" alt="">
             <h3>${ recipe.name }</h3>
             <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
             <div>
-            <button id= ${recipe.id} class="save-button">Save to cooking profile!</button>
+            <button id=${ recipe.id } class="save-button">Save to cooking profile!</button>
             </div>
             </section>`
         } );
         savedNameCondits = recipeContainer;
         return recipeContainer.innerHTML = result;
     } else {
-        console.log('fail');
       return;
     }
-  }
+}
 
-///////////
-  function displayFilteredRecipesByTagOnPage( ) {
+
+function displayFilteredRecipesByTagOnPage( ) {
     const result = matchingTagConditions.map( recipe => {
-        console.log( 'TAG RECIPE: ', recipe )
         return `<section class='recipe-card' id=${ recipe.id }>
-        <img src="${ recipe.image }" class="recipe-image" alt="">
+        <img src=${ recipe.image } class="recipe-image" alt="">
         <h3>${ recipe.name }</h3>
-        <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
+        <button class="lets-make-it-button" id=${ recipe.id }>Let's Make It!</button>
         <div>
-        <button class="save-button" id= ${ recipe.id }>Save to cooking profile!</button>
+        <button class="save-button" id=${ recipe.id }>Save to cooking profile!</button>
         </div>
         </section>`
     } );
@@ -200,14 +165,15 @@ function filterCookProf() {
     return recipeContainer.innerHTML = result;
 }
 
+
 function displayFilteredRecipesByNameOnPage( ) {
     const result = matchingNameConditions.map( recipe => {
         return `<section class='recipe-card' id=${recipe.id}>
-        <img src="${ recipe.image }" class="recipe-image" alt="">
+        <img src=${ recipe.image } class="recipe-image" alt="">
         <h3>${ recipe.name }</h3>
-        <button class="lets-make-it-button" id="${ recipe.id }">Let's Make It!</button>
+        <button class="lets-make-it-button" id=${ recipe.id }>Let's Make It!</button>
         <div>
-        <button id= ${recipe.id} class="save-button">Save to cooking profile!</button>
+        <button id=${recipe.id} class="save-button">Save to cooking profile!</button>
         </div>
         </section>`
     } );
@@ -215,25 +181,26 @@ function displayFilteredRecipesByNameOnPage( ) {
     return recipeContainer.innerHTML = result;
 }
 
+
 function displayAllRecipesOnPage( e ) {
-    
     let recipeCards = recipeContainer;
     newRecipe = new RecipeRepository( recipeList  )
     const result = newRecipe.recipes.map( recipe => {
         return `<section class='recipe-card' id=${ recipe.id }>
-        <img src="${ recipe.image }" class="recipe-image" alt="">
+        <img src=${ recipe.image } class="recipe-image" alt="">
         <h3>${ recipe.name }</h3>
         <button class="lets-make-it-button" id=${ recipe.id }>Let's Make It!</button>
         <div>
         <button id=${ recipe.id } class="save-button">Save to cooking profile!</button>
         </div>
         </section>`
-    } ).join('');
+    } ).join( '' );
     return recipeCards.innerHTML = result;
 };
 
+
 function displayRecipeInfo( e ){
-    newRecipe = new RecipeRepository( recipeList )
+    newRecipe = new RecipeRepository( recipeList );
     newRecipe.recipes.map( dish  => {
         if( e.target.id == dish.id ){
             recipeClass = new Recipe( dish, dish.ingredients );
@@ -247,10 +214,11 @@ function displayRecipeInfo( e ){
     });
 };
 
+
 function saveRecipeToRecipesToCook ( e ) {
     return newRecipe.recipes.filter( favoriteDish => {
         if(( e.target.id == favoriteDish.id ) && ( !currentUser.recipesToCook.includes( favoriteDish ) ) ) {
-           currentUser.addRecipeToRecipesToCook( favoriteDish )
+           currentUser.addRecipeToRecipesToCook( favoriteDish );
         }
         return currentUser.recipesToCook;
     } );
@@ -258,8 +226,8 @@ function saveRecipeToRecipesToCook ( e ) {
 
 function showCookingProfile( e ) {
     if( e.target.innerText == 'View Your Cooking Profile' ) {
-        searchButton.id = 'search-cooking'
-        navViewProfileButton.innerText = "Return Home"
+        searchButton.id = 'search-cooking';
+        navViewProfileButton.innerText = "Return Home";
         const result = currentUser.recipesToCook.map( recipe => {
             return `<section class='recipe-card' id=${ recipe.id }>
             <img src=${ recipe.image } class="recipe-image" alt="">
@@ -273,22 +241,23 @@ function showCookingProfile( e ) {
         return recipeContainer.innerHTML = result;
     }
     if( e.target.innerText == 'Return Home' ){
-        searchButton.id = 'search'
-        returnHome( )
+        searchButton.id = 'search';
+        returnHome( );
     }
 }
 
+
 function deleteRecipeFromRecipesToCook( e ) { 
-    if( e.target.classList.contains( "remove-button" )) {
+    if( e.target.classList.contains( "remove-button" ) ) {
         newRecipe.recipes.find( removeDish => {
-            e.target.closest('section' ).remove( );
-            return currentUser.removeRecipeFromRecipesToCook( removeDish.id )
+            e.target.closest( 'section' ).remove( );
+            return currentUser.removeRecipeFromRecipesToCook( removeDish.id );
         } )  
     };
-    return currentUser.recipesToCook
+    return currentUser.recipesToCook;
 }
 
 function returnHome(  ) {
-    navViewProfileButton.innerText = "View Your Cooking Profile"
-    displayAllRecipesOnPage(  )
+    navViewProfileButton.innerText = "View Your Cooking Profile";
+    displayAllRecipesOnPage(  );
 }

@@ -16,7 +16,7 @@ class User {
 
     filterRecipesToCookByTag( userInput ){
         let tagMatches = this.recipesToCook.filter( recipe => {
-            return recipe.tags.includes(userInput.toLowerCase( ))
+            return recipe.tags.includes( userInput.toLowerCase( ) )
         });
             return tagMatches;
     };
