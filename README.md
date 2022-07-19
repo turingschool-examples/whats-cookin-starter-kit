@@ -30,7 +30,7 @@ The objective of this project is to create a recipe tracking / meal planning app
 
 ## Walkthrough
 
-////////walkthrough video goes here////////////
+https://user-images.githubusercontent.com/102757890/179659571-30aa8c50-5791-4934-a1ef-086eae38fa37.mp4
 
 ## Planning
 [See how it all began...](https://app.excalidraw.com/l/4QVlo5N5yo/6w5dkHQFvHG)
