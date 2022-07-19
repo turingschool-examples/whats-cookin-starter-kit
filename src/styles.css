@@ -61,7 +61,6 @@ h2 {
   display: flex;
   flex-direction: column;
   font-family: 'Raleway', sans-serif;
-  /* margin: 1px; */
   text-align: center;
   color: white;
   font-size: 80%;
@@ -294,7 +293,6 @@ h2 {
   justify-content: center;
   height: 50%;
   width: 100%;
-  /* background-color: black; */
   border: 1px solid white;
   border-radius: 10px;
 }
