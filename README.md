@@ -1,6 +1,14 @@
 # 👩‍🍳 What's Cookin'? 👩‍🍳
 ## We believe 'Anyone Can Cook!'
 
+
+![2022-07-17 18 43 51](https://media.giphy.com/media/nZSWMyKwrjrqWGK4D2/giphy.gif)
+
+![2022-07-17 18 43 51](https://media.giphy.com/media/R5CsASE1SfLs9c7tda/giphy.gif)
+
+![2022-07-17 18 43 51](https://media.giphy.com/media/dIrflY15FtColNPnd2/giphy.gif)
+
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Links](#links)
@@ -35,15 +43,12 @@
 ## Features
 - User can view all recipes on the main page and use the Search bar to filter by name or by tags (course) such as "snack" or "dinner." There are several ways to view more recipe info. The recipe images and a main recipe image on the main page as well as the links on the right side will all take you to that recipe:
 
-[insert screenshot here]
 
 - On the recipe page, the user can view the recipe information such as instructions and ingredients, add their recipe to favorites and add recipe to cooking queue:
 
-[insert screenshot here]
 
 - User can also view all Favorited Recipes and search among those recipes using the name and tag search functionality. 
 
-[insert screenshot here]
 
 ## Future Additions
 - Add login screen for user. 
