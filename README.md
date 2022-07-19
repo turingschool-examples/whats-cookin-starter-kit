@@ -5,7 +5,7 @@ A web app for discovering and organizing all your favorite recipes in one place.
 
 What's Cookin is our second project in Mod2 of Turing School of Software and Design (it is a group project). The goal was to create a web app that uses multiple data sets including users, recipes, and ingredients. Upon load, the app logs in a random user along with their specific information including name and personal pantry items.<br>
 
-[**link to page**](https://anabennett11.github.io/whats-cookin-group-project/)
+
 
 ### Directions and Features
 
