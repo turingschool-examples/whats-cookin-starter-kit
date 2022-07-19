@@ -4,9 +4,10 @@
 
 ## Overview
 
-Have you ever found yourself wondering what to make for dinner?  Look no further!  On page load, our application displays random recipes to cook that allows users to save and delete recipes to their own profile.  Users will even get their own randomized webpage title!  
+What's cookin' in your kitchen?  Need some fresh ideas? Look no further!  On page load, our application displays random recipes to cook that allows users to save and delete recipes to their own profile.  Users will even get their own randomized webpage title!  
 
--- LETS ADD OUR GIFS HERE
+![](whats-cookin.gif)
+
 
 ## Local Set Up Instructions
 
@@ -62,3 +63,4 @@ Have you ever found yourself wondering what to make for dinner?  Look no further
 ## Image Credit
 
 - specialty icons created by [Freepik-Flaticon](https://www.flaticon.com/authors/freepik)
+
