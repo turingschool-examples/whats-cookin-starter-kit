@@ -13,6 +13,7 @@ class Users {
         }
     }
     removeRecipesToCook(recipe) {
+        console.log({ userRecipe: recipe });
         if (this.recipesToCook.includes(recipe)) {
             this.recipesToCook = this.recipesToCook.filter(rec => rec !== recipe);
         }

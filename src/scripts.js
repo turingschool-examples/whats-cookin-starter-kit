@@ -4,12 +4,9 @@ import './images/turing-logo.png'
 import "./images/heart.svg"
 import RecipeRepository from '../src/classes/RecipeRepository';
 import Users from '../src/classes/Users';
-import { recipeData } from './data/recipes';
 import Recipe from '../src/classes/Recipe'
-import { ingredientsData } from './data/ingredients';
-import { usersData } from './data/users';
 import { fetchApiData } from './apiCalls';
-// import { raw } from 'file-loader';
+import Ingredient from './classes/Ingredient';
 
 
 const getRandomUserId = () => {
@@ -18,37 +15,38 @@ const getRandomUserId = () => {
 const getRandomRecipe = () => {
     return Math.floor(Math.random() * 49) + 1;
 }
+const getRandomIngredient = () => {
+    return Math.floor(Math.random() * 246) + 1;
+}
 
 // Global Variables
 const recipePromise = fetchApiData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
 const userPromise = fetchApiData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users');
 const ingredientPromise = fetchApiData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients');
 let ourUser;
-const users = []
+let thisRecipe;
+let thisIngredient;
+let recipeRepo;
+let recipes = [];
+let ingredients = [];
+let cookbookIsActive = false;
 const userId = getRandomUserId();
 const recipeID = getRandomRecipe();
-// const recipe = new Recipe(recipeData)
+const ingredientId = getRandomIngredient();
 Promise.all([userPromise, ingredientPromise, recipePromise])
     .then((value) => {
         ourUser = setUserData(value[0].usersData[userId])
         userAttribute(ourUser)
+        thisIngredient = setIngredientdata(value[1].ingredientsData[ingredientId])
+        thisRecipe = setRecipeData(value[2].recipeData[recipeID], thisIngredient)
+        recipes = value[2].recipeData;
+        ingredients = value[1].ingredientsData;
+        console.log(thisRecipe)
+        showAllRecipes();
     })
-//     Promise.all([userPromise, hydrationPromise, sleepPromise, activityPromise])
-//   .then((value) => {
-//     setUserData(value[0].userData)
-//     const thisUser = getUserData();
-//     userBuildAttributes(thisUser);
-//     setHydrationData(value[1].hydrationData);
-//     hydrationBuildAttributes(hydrationRepo);
-//     setSleepData(value[2].sleepData);
-//     sleepBuildAttributes(sleepRepo);
-//     setActivityData(value[3].activityData);
-//     activityBuildAttributes(activityRepo);
-//   })
 // QuerySelectors
 const favoriteButton = document.querySelector('#favorite-button');
 const cookbookButton = document.querySelector('#cookbook-button')
-const searchBar = document.querySelector('.search-container')
 // const addToCookbookButton = document.querySelector('.add-to-cookbook-button')
 const cardFavoriteButton = document.querySelector('.favorite-button')
 const unFavoriteButton = document.querySelector('.un-favorite-button')
@@ -71,25 +69,19 @@ const searchButton = document.querySelector('.search-submit');
 
 
 const addToCookbookButtonEventHandler = (buttons) => {
-      //  viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
-       buttons.forEach((button) => {
-           button.addEventListener('click', (event) => {
-              let recipeToAdd = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(event.target.id))
-              console.log(recipeToAdd)
-              ourUser.addRecipesToCook(recipeToAdd);
-           })
-       })
+    recipeRepo = new RecipeRepository(recipes, ingredients);
+    //  viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
+    buttons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+            let recipeToAdd = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(event.target.id))
+            console.log(recipeToAdd)
+            ourUser.addRecipesToCook(recipeToAdd);
+        })
+    })
 }
-const showFilteredIngredients = () => {
-    // letsMakeIt = document.querySelector('.lets-make-it-button')
-    // letsMakeIt.addEventListener('click', (id) => {
-    //     showAllRecipeDetails(id)
-    // })
-}
-
 // EventListeners
 window.addEventListener('load', () => {
-    showAllRecipes()
+    // showAllRecipes()
     // viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
     // viewRecipeButtons.forEach((button) => {
     //     button.addEventListener('click', (event) => {
@@ -101,33 +93,18 @@ window.addEventListener('load', () => {
 goHomeButton.addEventListener('click', showAllRecipes)
 
 function showAllHelper() {
-  let letsMakeIt = document.querySelectorAll(".lets-make-it-button")
-  console.log(letsMakeIt)
-  letsMakeIt.forEach((button) => {
-      button.addEventListener('click', (event) => {
-          showAllRecipeDetails(event.target.id)
-      })
-  })
+    let letsMakeIt = document.querySelectorAll(".lets-make-it-button")
+    letsMakeIt.forEach((button) => {
+        button.addEventListener('click', (event) => {
+            showAllRecipeDetails(event.target.id)
+        })
+    })
 }
-
-// Global Variables
-let recipeRepo = new RecipeRepository(recipeData)
-let newRecipe = new Recipe(recipeData[0], ingredientsData)
-
-
-// function addClickHandler(element, callback) {
-//     element.addEventListener('click', (event) => {
-//         callback(event);
-//     });
-// };
-
-// const someButton = document.querySelector('some selector');
-// addClickHandler(someButton, someClickHandler); 
-
 function showAllRecipes() {
-    const recipes = recipeRepo.createAllRecipes(ingredientsData)
+    recipeRepo = new RecipeRepository(recipes, ingredients);
+    const allRecipes = recipeRepo.createAllRecipes(thisIngredient)
     recipeCardWrapper.innerHTML = '';
-    recipes.forEach((recipe) => {
+    allRecipes.forEach((recipe) => {
         recipeCardWrapper.innerHTML += `
         <div class="recipe-card">
         <button class="view-recipe-button" id=${recipe.id} data-recipeId=${recipe.id}> <h2 data-recipeId=${recipe.id}> ${recipe.name} </h2> 
@@ -135,30 +112,28 @@ function showAllRecipes() {
       </button>
       </div>`
     })
-    // hide(goHomeButton)
     hide(ingredientCardWrapper)
     show(recipeCardWrapper)
     addRecipeEventListeners()
+    cookbookIsActive = false;
 }
 
 function showAllRecipeDetails(id) {
-  console.log('recipeId', id)
-    newRecipe = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(id));
-    newRecipe.makeIngredientData(ingredientsData);
-    window.currentRecipe = newRecipe;
-    console.log('window', window.currentRecipe)
-    console.log('newRecipe: ', newRecipe)
+    recipeRepo = new RecipeRepository(recipes, ingredients)
+    thisRecipe = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(id));
+    thisRecipe.makeIngredientData(thisIngredient);
+    window.currentRecipe = thisRecipe;
     ingredientCard.innerHTML = `<div>
     <button id="add-to-cookbook" class="add-to-cookbook-button"> Add to cookbook! </button>
 <ul>
 <h2> RECIPE INFORMATION </h2>
-<li> NAME: ${newRecipe.name}</li>
-<li> TOTAL COST: ${newRecipe.getCostToDollar()}</li>
+<li> NAME: ${thisRecipe.name}</li>
+<li> TOTAL COST: ${thisRecipe.getCostToDollar()}</li>
 </ul>
 </div>
 <h3> INGREDIENTS </h3>
 `
-    newRecipe.requiredIngredients.forEach(ingredient => {
+    thisRecipe.requiredIngredients.forEach(ingredient => {
         ingredientCard.innerHTML += `  <div class="recipe-information">
   <p>${ingredient.name}</p>
   </div>
@@ -167,7 +142,7 @@ function showAllRecipeDetails(id) {
     ingredientCard.innerHTML += `<h3>
 INSTRUCTIONS
 </h3>`
-    newRecipe.instructions.forEach(instruction => {
+    thisRecipe.instructions.forEach(instruction => {
         ingredientCard.innerHTML += `<div>
   <p><span>${instruction.number}. </span>${instruction.instruction}</p>
   </div>`
@@ -180,45 +155,77 @@ INSTRUCTIONS
     show(ingredientCardWrapper)
     show(ingredientCard)
     show(goHomeButton)
-    // showFilteredIngredients();
 }
 
 const addSingleRecipeToCookbook = () => {
-  ourUser.recipesToCook.push(newRecipe)
+    if (!ourUser.recipesToCook.includes(thisRecipe)) {
+        ourUser.recipesToCook.push(thisRecipe)
+    }
 }
 
 const addRecipeEventListeners = () => {
-  viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
-  viewRecipeButtons.forEach((button) => {
-      button.addEventListener('click', (event) => {
-          showAllRecipeDetails(event.target.getAttribute('data-recipeId'))
-      })
-  })
+    viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
+    viewRecipeButtons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+            showAllRecipeDetails(event.target.getAttribute('data-recipeId'))
+        })
+    })
 }
 
-
-
-function searchRecipe(event) {
+function searchUserRecipes(event) {
     event.preventDefault();
     if (!searchBox.value) {
-        showAllRecipes();
+        displayRecipeBySearchResults(ourUser.recipesToCook);
     }
-    const tagSearched = recipeRepo.filterByTag(searchBox.value);
-    const nameSearched = recipeRepo.filterByName(searchBox.value);
+    const tagSearched = ourUser.filterByTagUser(searchBox.value);
+    const nameSearched = ourUser.filterByNameUser(searchBox.value);
     const recipesToShow = [...tagSearched, ...nameSearched];
     if (recipesToShow.length > 0) {
         displayRecipeBySearchResults(recipesToShow);
     } else {
-        showAllRecipes();
+        displayRecipeBySearchResults(ourUser.recipesToCook);
     }
-    show(goHomeButton)
-    // hide(ingredientCard)
+}
+
+function searchRecipe(event) {
+    if (cookbookIsActive) {
+        searchUserRecipes(event);
+    } else {
+        recipeRepo = new RecipeRepository(recipes, ingredients)
+        event.preventDefault();
+        if (!searchBox.value) {
+            showAllRecipes();
+        }
+        const tagSearched = recipeRepo.filterByTag(searchBox.value);
+        const nameSearched = recipeRepo.filterByName(searchBox.value);
+        const recipesToShow = [...tagSearched, ...nameSearched];
+        if (recipesToShow.length > 0) {
+            displayRecipeBySearchResults(recipesToShow);
+        } else {
+            showAllRecipes();
+        }
+        show(goHomeButton)
+        // hide(ingredientCard)
+    }
 }
 
 function showCookbookrecipes(event) {
-    console.log(ourUser.recipesToCook);
     displayRecipeBySearchResults(ourUser.recipesToCook);
     show(goHomeButton)
+    cookbookIsActive = true;
+}
+
+function removeClickHandler(event) {
+    const idToRemove = parseInt(event.target.getAttribute('data-recipeId'), 10);
+    const recipe = ourUser.recipesToCook.find(recipe => recipe.id === idToRemove);
+    ourUser.removeRecipesToCook(recipe);
+    displayRecipeBySearchResults(ourUser.recipesToCook);
+}
+
+function addRemoveClickHandlers(buttons) {
+    buttons.forEach((button) => {
+        button.addEventListener('click', removeClickHandler);
+    })
 }
 
 function displayRecipeBySearchResults(recipes) {
@@ -227,20 +234,21 @@ function displayRecipeBySearchResults(recipes) {
     hide(ingredientCard)
     const addToCookIds = [];
     recipes.forEach((recipe) => {
-      // can add .find here? to find the selected recipe to add to cookbook
         addToCookIds.push(`add-to-cookbook-${recipe.id}`)
         recipeCardWrapper.innerHTML += `<section class='recipe-card' id="${recipe.id}">
       <img src="${recipe.image}" class="recipe-image" alt="">
       <h3>${recipe.name}</h3>
       <button class="lets-make-it-button" id="${recipe.id}">Let's Make It!</button>
+      <button class="remove-recipe" data-recipeId=${recipe.id} >Remove</button>
       <div>
       <button id="${recipe.id}" class="add-to-cook-button"> Add to cookbook! </button>
       </div>
       </section>`
     });
-    const addToCookButtons = document.querySelectorAll('.add-to-cook-button')
+    const addToCookButtons = document.querySelectorAll('.add-to-cook-button');
+    const removeCookButtons = document.querySelectorAll('.remove-recipe');
+    addRemoveClickHandlers(removeCookButtons);
     addToCookbookButtonEventHandler(addToCookButtons);
-    showFilteredIngredients()
     showAllHelper()
 }
 function show(element) {
@@ -260,3 +268,9 @@ const userAttribute = (user) => {
 const setUserData = (someData) => {
     return new Users(someData);
 };
+const setRecipeData = (someData) => {
+    return new Recipe(someData, ingredients)
+}
+const setIngredientdata = (someData) => {
+    return new Ingredient(someData)
+}
