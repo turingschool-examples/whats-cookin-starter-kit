@@ -44,14 +44,11 @@ Promise.all([userPromise, ingredientPromise, recipePromise])
         console.log(thisRecipe)
         showAllRecipes();
     })
+
 // QuerySelectors
 const favoriteButton = document.querySelector('#favorite-button');
 const cookbookButton = document.querySelector('#cookbook-button')
-// const addToCookbookButton = document.querySelector('.add-to-cookbook-button')
-const cardFavoriteButton = document.querySelector('.favorite-button')
-const unFavoriteButton = document.querySelector('.un-favorite-button')
 const userGreeting = document.querySelector("#userName");
-const recipeLocation = document.querySelector('#recipeName')
 const recipeImage = document.querySelector('.card-image')
 const mainBox = document.querySelector('.main-box')
 const goHomeButton = document.getElementById('home-button')
@@ -60,10 +57,6 @@ const ingredientCard = document.querySelector('.ingredient-card')
 let viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
 const recipeCardWrapper = document.querySelector('.recipe-card-wrapper')
 const ingredientCardWrapper = document.querySelector('.ingredient-card-wrapper')
-const recipeTagInput = document.querySelector('#recipe-tag-input')
-const recipeDisplay = document.querySelector('#recipeDisplay');
-const recipeHeading = document.querySelector('#recipeHeading');
-const radioValue = document.querySelectorAll('.radio-value');
 const searchBox = document.querySelector('.search-box');
 const searchButton = document.querySelector('.search-submit');
 
@@ -80,15 +73,6 @@ const addToCookbookButtonEventHandler = (buttons) => {
     })
 }
 // EventListeners
-window.addEventListener('load', () => {
-    // showAllRecipes()
-    // viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
-    // viewRecipeButtons.forEach((button) => {
-    //     button.addEventListener('click', (event) => {
-    //         showAllRecipeDetails(event.target.getAttribute('data-recipeId'))
-    //     })
-    // })
-});
 
 goHomeButton.addEventListener('click', showAllRecipes)
 
@@ -127,15 +111,15 @@ function showAllRecipeDetails(id) {
     <button id="add-to-cookbook" class="add-to-cookbook-button"> Add to cookbook! </button>
 <ul>
 <h2> RECIPE INFORMATION </h2>
-<li> NAME: ${thisRecipe.name}</li>
-<li> TOTAL COST: ${thisRecipe.getCostToDollar()}</li>
+<p> NAME: ${thisRecipe.name}</p>
+<p> TOTAL COST: ${thisRecipe.getCostToDollar()}</p>
 </ul>
 </div>
 <h3> INGREDIENTS </h3>
 `
     thisRecipe.requiredIngredients.forEach(ingredient => {
         ingredientCard.innerHTML += `  <div class="recipe-information">
-  <p>${ingredient.name}</p>
+  <li>${ingredient.name}</li>
   </div>
   `
     })
@@ -151,7 +135,6 @@ INSTRUCTIONS
     const addToCookbookButton = document.querySelector('.add-to-cookbook-button')
     addToCookbookButton.addEventListener('click', addSingleRecipeToCookbook)
     hide(recipeCardWrapper)
-    show(favoriteButton)
     show(ingredientCardWrapper)
     show(ingredientCard)
     show(goHomeButton)
@@ -205,7 +188,6 @@ function searchRecipe(event) {
             showAllRecipes();
         }
         show(goHomeButton)
-        // hide(ingredientCard)
     }
 }
 
@@ -238,10 +220,12 @@ function displayRecipeBySearchResults(recipes) {
         recipeCardWrapper.innerHTML += `<section class='recipe-card' id="${recipe.id}">
       <img src="${recipe.image}" class="recipe-image" alt="">
       <h3>${recipe.name}</h3>
-      <button class="lets-make-it-button" id="${recipe.id}">Let's Make It!</button>
-      <button class="remove-recipe" data-recipeId=${recipe.id} >Remove</button>
+      <div class="button-wrapper">
+      <button class="lets-make-it-button button-styling" id="${recipe.id}">Let's Make It!</button>
+      <button class="remove-recipe button-styling" data-recipeId=${recipe.id} > Remove from cookbook! </button>
       <div>
-      <button id="${recipe.id}" class="add-to-cook-button"> Add to cookbook! </button>
+      <button id="${recipe.id}" class="add-to-cook-button button-styling"> Add To Cookbook! </button>
+      </div>
       </div>
       </section>`
     });
