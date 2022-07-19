@@ -5,44 +5,44 @@
 html, body {
   background-color: rgba( 211, 211, 211, 0.7 );
   height: 100vh;
-  width: 100vw;
   margin: 0%;  
+  width: 100vw;
 }
 
 h1 {
-  font-size: 24px;
-  width: 40%;
-  margin-left: 3rem;
   color: white;
+  font-size: 24px;
   text-shadow: 2px 2px rgba( 0, 0, 0, 0.6 );
+  margin-left: 3rem;
+  width: 40%;
 }
 
 h2 {
+  color: white;
   font-size: 50px;
   text-align: center;
-  color: white;
   text-shadow: 2px 2px rgba( 0, 0, 0, 0.6 );
   margin: 0;
   padding-top: 2%;
 }
 
 h3 {
-  padding: 0%;
-  margin-top: 5%;
-  margin-bottom: 5%;
   font-size: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   margin: 0;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  overflow: hidden;
+  padding: 0%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 h4 {
-  font-size: 36px;
   color:white;
-  text-shadow: 2px 3px rgba( 0, 0, 0, 0.6 );
+  font-size: 36px;
   margin: 0;
   margin-top: 40px;
+  text-shadow: 2px 3px rgba( 0, 0, 0, 0.6 );
 }
 
 h5 {
@@ -53,29 +53,29 @@ h5 {
 }
 
 input {
-  height: 3vh;
-  width: 20%;
-  text-align: center;
   align-self: flex-end;
+  height: 3vh;
   overflow: hidden;
-  white-space: nowrap;
+  text-align: center;
   text-overflow: ellipsis;
+  width: 20%;
+  white-space: nowrap;
 }
 
 button {
+  background-color: rgba( 211, 211, 211, 0.55 );
   border: 1px ridge rgba( 0, 0, 0, 0.4 );
   border-radius: 5px;
-  margin-top: 2%;
-  background-color: rgba( 211, 211, 211, 0.55 );
+  box-shadow: 0 1px 2px rgba( 0, 0, 0 );
   color: rgba( 0, 0, 0, 0.9 );
-  box-shadow: 0 1px 2px rgba( 0, 0, 0 )
+  margin-top: 2%;
 }
 
 button:hover{
-  cursor: pointer;
   background-color: rgba( 141, 182, 0, 0.65 );
-  color: rgb( 0, 0, 0 );
   box-shadow: 0 1px 5px rgba( 0, 0, 0 );
+  color: rgb( 0, 0, 0 );
+  cursor: pointer;
 }
 
 button:active {
@@ -84,38 +84,37 @@ button:active {
 }
 
 .nav-bar {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  float: inline-start;
-  margin: 0%, 0%, 0%, 0%;
-  box-shadow: 0 1px 6px rgba( 0, 0, 0, .75 );
   background-image: linear-gradient(rgba( 0, 0, 0, 0.4 ),rgba( 0, 0, 0, 0.4 ) ), url( './images/nav-background.jpg' );
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
-  height: 29vh;
+  box-shadow: 0 1px 6px rgba( 0, 0, 0, .75 );
   contain: content;
+  display: flex;
+  flex-direction: column;
+  float: inline-start;
+  height: 29vh;
+  margin: 0%, 0%, 0%, 0%;
+  position: fixed;
 }
 
 .nav-search-container, .nav-input-search-container {
   display: flex;
+  align-self: baseline;
   justify-content: flex-end;
-  align-self:baseline;
-  width: 100vw;
   margin: 0px;
-  /* transform: translateX(1px); */
+  width: 100vw;
 }
 
 .search-button {
   display: flex;
   align-self: flex-end;
-  margin-right: 4%;
-  height: 3vh;
-  width: 1vw relative;
-  border: 1px solid black;
   background-color: lightgray;
+  border: 1px solid black;
   border-radius: 0px;
+  height: 3vh;
+  margin-right: 4%;
+  width: 1vw relative;
 }
 
 .recipe-search {
@@ -126,20 +125,20 @@ button:active {
 
 .nav-button-container {
   display: flex;
+  align-content: space-between;
+  align-items: center;
+  align-self: center;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-evenly;
-  align-items: center;
-  align-content: space-between;
-  align-self: center;
   width: 30%;
 }
 
 .grid-container {
-  display: flex;
-  width: auto;
-  height: auto;
   background-color: rgba( 211, 211, 211, 0.7 );
+  display: flex;
+  height: auto;
+  width: auto;
 }
 
 .recipe-container, .recipe-grid-container {
@@ -147,25 +146,25 @@ button:active {
   display: flex;
   flex-wrap: wrap;
   flex-grow: initial;
+  gap: 1%;
   justify-content: space-around;
   padding: 2%;
-  gap: 1%;
   padding-top: 35vh;
   z-index: 10;
 }
 
 .recipe-card {
+  background-color: white;
+  border: 1px  solid rgba( 0, 0, 0, .45 );
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba( 0, 0, 0, .75 );
   flex-wrap: wrap;
   height: 65vh fixed;
-  width: 20vw;
-  text-align: center;
-  margin-top: 2%;
   margin-bottom: 3%;
+  margin-top: 2%;
+  text-align: center;
   padding: 15px;
-  border: 1px  solid rgba( 0, 0, 0, .45 );
-  box-shadow: 0 1px 6px rgba( 0, 0, 0, .75 );
-  border-radius: 10px;
-  background-color: white;
+  width: 20vw;
 }
 
 .recipe-card:hover {
@@ -173,32 +172,32 @@ button:active {
 }
 
 .recipe-image {
+  border-radius: 10px;
   height: 45vh;
-  width: 18vw;
   margin-left: 0;
   margin-right: 0;
-  border-radius: 10px;
+  width: 18vw;
 }
 
 .recipe-modal {
-  display: none;
-  text-align: center;
-  height: 90%;
-  width: 70%;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate( -50%, -50% );
+  background-color: white;
   border: 1px solid black;
   border-radius: 10px;
+  display: none;
+  height: 90%;
+  left: 50%;
+  position: fixed;
+  text-align: center;
+  transform: translate( -50%, -50% );
+  top: 50%;
+  width: 70%;
   z-index: 10;
-  background-color: white;
 }
 
 .recipe-modal.is-open {
   display: flex;
-  justify-content: center;
   height: 55vh fixed;
+  justify-content: center;
   width: 33vw;
 }
 
@@ -210,68 +209,67 @@ button:active {
 .overlay:active {
   opacity: 1;
   pointer-events: all;
-  font-stretch: ultra-condensed;
 }
 
 .ingredient-and-direction-container {
   display: flex;
   background-color: rgba( 211, 211, 211, 0.55 );
   border: 1px solid rgba( 0, 0, 0, 0.7 );
-  border-radius: 0px, 0px, 15px, 15px;
   background-image: linear-gradient( rgba( 0, 0, 0, 0.4 ),rgba( 0, 0, 0, 0.4 ) ), url( './images/nav-background.jpg' );
   background-repeat: no-repeat;
-  background-size: cover;
   background-position: center;
+  border-radius: 0px, 0px, 15px, 15px;
+  background-size: cover;
 }
 
 #modal-1-content {
-  flex-wrap: wrap;
   background-image: linear-gradient( rgba( 0, 0, 0, 0.4 ), rgba( 0, 0, 0, 0.4 ) ), url( './images/nav-background.jpg' );
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  flex-wrap: wrap;
 }
 
 .ingredient-list, .cooking-directions {
+  background-color: rgba( 255, 255, 255, 0.95 );
   display: flex;
   flex-direction: column;
-  background-color: rgba( 255, 255, 255, 0.95 );
 }
 
 .modal-ingredients, .modal-instructions {
+  align-content: center;
+  align-items: center;
   background-color: rgba( 255, 255, 255, 0.95 );
   border: 2px solid rgba( 0, 0, 0, 0.5 );
+  contain: content;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: center;
-  align-items: center;
   height: 55vh;
-  width: 33vw; 
-  contain: content;
+  justify-content: flex-start;
   overflow: clip scroll;
+  width: 33vw; 
 }
 
 .dish-cost {
   color:white;
-  text-shadow: 2px 3px rgba( 0, 0, 0, 0.6 );
   font-size: 25px;
   font-weight: bold;
   margin-bottom: 10px;
-  margin-top: 10px
+  margin-top: 10px;
+  text-shadow: 2px 3px rgba( 0, 0, 0, 0.6 );
 }
 
 #overlay {
-  position: fixed;
-  opacity: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   background-color: rgba( 0, 0, 0, 0.7 );
-  pointer-events: none;
+  bottom: 0;
   height: 100vh;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  top: 0;
 }
 
 #overlay.active {
