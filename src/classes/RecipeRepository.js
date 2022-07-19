@@ -23,7 +23,6 @@ class RecipeRepository {
 
   addInputToSearch(keyword) {
     let lowerCaseInput = keyword.toLowerCase();
-    
     if (!this.selectedInput.includes(lowerCaseInput)) {
       this.selectedInput.push(lowerCaseInput);
     }

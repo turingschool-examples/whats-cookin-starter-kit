@@ -3,8 +3,6 @@
    padding: 0px;
  }
 
- body {}
-
  div.grey-out-bg {
    position: fixed;
    top: 0px;
@@ -16,6 +14,7 @@
  }
 
  main {
+
    font-family: 'Barlow', sans-serif;
    font-family: 'Raleway', sans-serif;
    height: max-content;
@@ -23,6 +22,7 @@
    background: url(https://img.freepik.com/premium-photo/raw-pasta-it-s-ingredients-arranged-row-white-wooden-table_23-2148195071.jpg?w=826);
    background-repeat: no-repeat;
    background-size: cover;
+
  }
 
  .nav {
@@ -189,6 +189,7 @@
  }
 
  .results-grid-container {
+
    display: flex;
    flex-wrap: wrap;
    justify-content: space-between;
@@ -200,7 +201,6 @@
    border: #eee;
    box-shadow: 1px 1px 6px 0 rgb(0 0 0 / 9%);
    border-radius: 10px;
-
    overflow: hidden;
  }
 
@@ -226,7 +226,6 @@
 
  .mini-card .favorite-button.saved {
    filter: none;
-   /* TODO: Figure out how to move them away from the right edge without taking them outside the parent container. Margin-right: 10px; and right: 10px; do not work. */
  }
 
 
