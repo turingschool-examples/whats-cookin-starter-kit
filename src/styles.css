@@ -3,15 +3,12 @@
    padding: 0px;
  }
 
- body {}
-
  div.grey-out-bg {
    position: fixed;
    top: 0px;
    left: 0px;
    width: 100vw;
    height: 100vh;
-
    background-color: black;
    filter: opacity(0.5);
  }
@@ -19,9 +16,8 @@
  main {
    height: 100vh;
    width: 100vw;
-   background-color: #f4f3f3;
-
    position: relative;
+  background: url(https://i.pinimg.com/564x/96/fd/01/96fd0183673d4bf3f8f22ec7d07917bb.jpg);
  }
 
  .nav {
@@ -94,6 +90,7 @@
  }
 
  .results-grid-container {
+
    display: flex;
    flex-wrap: wrap;
    justify-content: space-between;
@@ -104,7 +101,6 @@
    border: #eee;
    box-shadow: 1px 1px 6px 0 rgb(0 0 0 / 9%);
    border-radius: 10px;
-
    overflow: hidden;
  }
 
@@ -130,7 +126,6 @@
 
  .mini-card .favorite-button.saved {
    filter: none;
-   /* TODO: Figure out how to move them away from the right edge without taking them outside the parent container. Margin-right: 10px; and right: 10px; do not work. */
  }
 
 
