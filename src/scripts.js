@@ -39,7 +39,7 @@ const addFavoriteButton = document.querySelector('.add-favorite-button');
 const quantities = document.querySelector('.quantities');
 const names = document.querySelector('.names');
 const prices = document.querySelector('.prices');
-const favoriteRecipeImages = document.querySelector('.favorite-recipe-icons');
+const favoriteRecipeImages = document.querySelector('.fav-container-lower-wrapper');
 const removeFavFiltersButton = document.querySelector('.remove-filters-button-fav');
 const removeFiltersButton = document.querySelector('.remove-filters-button');
 const userWelcomeMessage = document.querySelector('.user-welcome-message');
@@ -48,13 +48,13 @@ const userWelcomeMessage = document.querySelector('.user-welcome-message');
 window.addEventListener('load', getAllData);
 recipeSidebarList.addEventListener('click', viewRecipe);
 recipeIconContainer.addEventListener('click', viewRecipeFromIcon);
-// favoriteRecipeImages.addEventListener('click', viewRecipeFromIcon);
+favoriteRecipeImages.addEventListener('click', viewRecipeFromIcon);
 homeButton.addEventListener('click', showHomePage);
 searchButton.addEventListener('click', filterRecipe);
 favoriteSearchButton.addEventListener('click', filterFavoriteRecipes);
 favoritePageButton.addEventListener('click', showFavoritesPage);
 addFavoriteButton.addEventListener('click', addToFavorites);
-favoriteRecipeImages.addEventListener('rightclick', removeFromFavorites);
+// favoriteRecipeImages.addEventListener('dblclick', removeFromFavorites);
 removeFavFiltersButton.addEventListener('click', showFavoritesPage);
 removeFiltersButton.addEventListener('click', displayAllNames);
 
@@ -165,9 +165,11 @@ function viewRecipe(event) {
 }
 
 function viewRecipeFromIcon(event) {
+  if (event.target.classList.contains('icon')) {
   selectedRecipeIcon = event.target.src;
   selectedRecipe = allRecipes.filter(recipe => selectedRecipeIcon === recipe.image)[0];
   viewRecipesHelperFunction();
+  }
 }
 
 function viewRecipesHelperFunction() {
@@ -285,8 +287,8 @@ function showFavoriteRecipeImages(recipes) {
   recipes.forEach(recipe => {
   favoriteRecipeImages.innerHTML += 
   `<section class = "favorite-recipe-icons">
-  <p>${recipe.name}</p>
-  <img class = "favorite-recipe-icons" src = ${recipe.image} id = ${recipe.id}>
+  <p class="icon-text">${recipe.name}</p>
+  <img class = "favorite-recipe-images icon" src = ${recipe.image} id = ${recipe.id}>
   <button class="remove-from-favorites-btn">delete</button>
   </section>`;
   });
