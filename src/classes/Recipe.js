@@ -21,7 +21,7 @@ class Recipe {
             ingredientList.forEach( ingredient => {
                 if( item.id === ingredient.id ) {
                     let total = item.quantity.amount * ingredient.estimatedCostInCents
-                    acc = total
+                    acc += total
                 }
             } )
             return acc
