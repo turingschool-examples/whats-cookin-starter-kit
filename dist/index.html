@@ -15,42 +15,44 @@
   <body>
     <section class ="main-body">
       <header class ="header-container" id ="headerContainer">
-        <div class ="header-logo-container">
+        <section class ="header-logo-container">
           <img class="logo-img" id="LogoImg" src="./anyonecancook-logo.svg">
-        </div>
-        <div class="h1-wrapper">
+        </section>
+        <section class="h1-wrapper">
           <h1>ANYONE CAN COOK!</h1>
-        </div>
-        <div class ="header-icons-container">
+        </section>
+        <section class ="header-icons-container">
           <img class="home-img" id="homeImg" src="./home-icon-svg.svg">
           <img class="fav-img" id="favImg" src="./favorite-svg.svg">
-        </div>
+        </section>
       </header>
-        <article class ="search-container" id="searchContainer">
-          <div class ="search-header" id="searchHeader">Find a Recipe </div>
-          <div class ="search-bar" id="searchBar">
+        <section class ="search-container" id="searchContainer">
+          <section class ="search-header" id="searchHeader">Find a Recipe </section>
+          <section class ="search-bar" id="searchBar">
             <form>
               <input type="search" class = "search-input" id="query" name="q"
                 placeholder="Search recipes...">
               <button type ="submit" class = "search-button">🔎</button>
             </form>
-          </div>
-          <div class="radio-wrapper">
-            <input class = "tag-search" type = "radio" name = "searchMode" value = "tag">Search by Tag</input>
-            <input class = "name-search" type = "radio" name = "searchMode" value = "name">Search by Name</input>
+          </section>
+          <section class="radio-wrapper">
+            <input class = "tag-search" type = "radio" name = "searchMode"
+            value = "tag">Search by Tag</input>
+            <input class = "name-search" type = "radio" name = "searchMode"
+            value = "name">Search by Name</input>
             <button class="remove-filters-button">Remove Filters</button>
-          </div>
-        </article>
+          </section>
+        </section>
       <section class ="main-page-container" id="mainPageContainer">
-        <div class ="feature-container" id="featureContainer">
-          <div class="feature-image-box" id="featureImageBox">
+        <section class ="feature-container" id="featureContainer">
+          <section class="feature-image-box" id="featureImageBox">
             <img class="random-feature-img" src="">
-          </div>
-          <div class="meal-box" id="mealBox">
+          </section>
+          <section class="meal-box" id="mealBox">
             <h2 class="user-welcome-message">Welcome User, ready to cook?</h2>
-          </div>
-        </div>
-        <section class="recipe-icon-container">
+          </section>
+        </section>
+        <div class="recipe-icon-container">
           <div class ="recipe-icons" id="recipeIcon1">
             <img class="icon-1-img icon" src="">
           </div>
@@ -69,86 +71,87 @@
           <div class ="recipe-icons" id="recipeIcon6">
             <img class="icon-6-img icon" src="">
           </div>
-        </section>
+        </div>
       </section>
       <section class ="recipe-container hidden" id="recipeContainer">
-          <div class="recipe-img-price-container">
-            <div class="recipe-container-upper-wrapper">
+          <section class="recipe-img-price-container">
+            <section class="recipe-container-upper-wrapper">
               <img class="selected-recipe-img" src="" alt="selected recipe">
-            </div>
-            <div class="recipe-container-lower-wrapper">
+            </section>
+            <section class="recipe-container-lower-wrapper">
               <section class="ingredient-box" id="ingredientBox">
-                <div class="ingredient-title-wrapper">
+                <section class="ingredient-title-wrapper">
                    <p class="ingredient-title">Ingredients</p>
-                </div>
+                </section>
                 <section class="ingredient-boxes-container">
-                  <article class="quantities">1</article>
-                  <article class="names">2</article>
-                  <article class="prices">3</article>
+                  <section class="quantities">1</section>
+                  <section class="names">2</section>
+                  <section class="prices">3</section>
                 </section>
                 <p class="total-price-box" id="priceBox">innerHTML price list</p>
               </section>
-            </div>
-          </div>
+            </section>
+          </section>
           <article class ="recipe-description-box" id="recipeRSideBox">
-            <p class ="recipe-title-box" id="recipeTitleBox">innerHTML recipe title</p>
-            <div class="favorite-button-container">
+            <p class ="recipe-title-box" id="recipeTitleBox">Recipe title</p>
+            <section class="favorite-button-container">
               <button class="add-favorite-button">❤️</button>
               <p class="add-favorites-text">Add to Favorites</p>
-            </div>
+            </section>
             <p class ="recipe-info-box" id="recipeBox"></p>
           </article>
       </section>
-        <article class ="search-favorite-container hidden" id="searchFavoriteContainer">
-            <div class ="search-favorite-header" id="searchHeader">Search Favorites</div>
-            <div class ="search-favorite-bar" id="searchFavoriteBar">
+        <section class ="search-favorite-container hidden" id="searchFavoriteContainer">
+            <section class ="search-favorite-header" id="searchHeader">
+              Search Favorites</section>
+            <section class ="search-favorite-bar" id="searchFavoriteBar">
             <form>
               <input type="search" class = "search-favorite-input" id="queryFav" name="q2"
                 placeholder="Search recipes...">
               <button type ="submit" class = "favorite-search-button">🔎</button>
             </form>
-          </div>
-          <div class="radio-wrapper">
-            <input class = "tag-search-favorite" type = "radio" name = "searchMode" value = "tag">Search by Tag</input>
-            <input class = "name-search-favorite" type = "radio" name = "searchMode" value = "name">Search by Name</input>
+          </section>
+          <section class="radio-wrapper">
+            <input class = "tag-search-favorite" type = "radio" name = "searchMode"
+            value = "tag">Search by Tag</input>
+            <input class = "name-search-favorite" type = "radio" name = "searchMode"
+            value = "name">Search by Name</input>
             <button class="remove-filters-button-fav">Remove Filters</button>
-          </div>
-        </article>
+          </section>
+        </section>
         <section class ="main-favorite-container hidden" id="mainFavoriteContainer">
           <section class="favorite-recipe-container" id="favoriteRecipeContainer">
-            <div class="favorite-recipe-title-wrapper"> 
+            <section class="favorite-recipe-title-wrapper">
               <p class="favorite-recipe-title">Favorite Recipes</p>
-            </div>
+            </section>
             <section class="fav-container-lower-wrapper">
-              <!-- <div class ="favorite-recipe-icons" id="favoriteRecipeIcon"></div> -->
             </section>
           </section>
         <section class="user-info-pantry-container" id="userInfoPantryContainer">
-          <div class="user-pantry-title-wrapper"> 
+          <section class="user-pantry-title-wrapper">
             <p class="user-pantry-title">User's Pantry</p>
-          </div>
-          <div class ="pantry-ingredient-wrapper" id="pantryIngredientWrapper1"> 
+          </section>
+          <section class ="pantry-ingredient-wrapper" id="pantryIngredientWrapper1">
             <p class="pantry-ingredient">Out Shopping...</p>
-          </div>
-          <div class ="pantry-ingredient-wrapper" id="pantryIngredientWrapper2"> 
+          </section>
+          <section class ="pantry-ingredient-wrapper" id="pantryIngredientWrapper2">
             <p class="pantry-ingredient">Pantry Items Coming Soon</p>
-          </div>
-          <div class ="pantry-ingredient-wrapper" id="pantryIngredientWrapper3"> 
+          </section>
+          <section class ="pantry-ingredient-wrapper" id="pantryIngredientWrapper3">
             <p class="pantry-ingredient">Part 2</p>
-          </div>
+          </section>
         </section>
       </Section>
       </section>
     </section>
     <aside class ="home-recipe-sidebar" id ="homeRecipeBar">
-      <div class="side-bar-title-wrapper">
+      <section class="side-bar-title-wrapper">
         <p class ="side-bar-Recipe-title" is="sideTitle"> Recipes </p>
-      </div>
-      <div class="recipe-list-names">
+      </section>
+      <section class="recipe-list-names">
         <p class ="list-recipes" id="allRecipes"> innerHTML Recipes</p>
-      </div>
+      </section>
     </aside>
   </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>

@@ -1,7 +1,3 @@
-* {
-  /* border: 1px solid blueviolet; */
-}
-
 body {
   display: flex;
   background-color: ffffff;
@@ -23,13 +19,10 @@ button {
 }
 
 /* ~~~~~~~~~~~~~~~~~~~fonts~~~~~~~~~~~~~~~~~~~~~~~ */
-
 /* font-family: 'Edu TAS Beginner'; */
 /* font-family: 'Raleway', sans-serif; */
-
 /* ~~~~~~~~~~~~~~~~~~~text~~~~~~~~~~~~~~~~~~~~~~~ */
-
-h1{
+h1 {
   display: inline;
   justify-self: center;
   align-items: center;
@@ -41,42 +34,39 @@ h1{
 }
 
 h2 {
-display: flex;
-justify-content: center;
-align-items: center;
-color: white;
-font-size: 200%;
-text-align: center;
-width: 100%;
-/* padding-top: .3em; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 200%;
+  text-align: center;
+  width: 100%;
 }
 
-
 .search-header,
-.search-favorite-header{
+.search-favorite-header {
   font-size: 220%;
   font-family: 'Raleway', sans-serif;
   margin: 0;
 }
 
-.side-bar-Recipe-title{
+.side-bar-Recipe-title {
   font-size: 200%;
   font-family: 'Raleway', sans-serif;
   margin: 0;
   padding-top: .5em;
 }
 
-.list-recipes{
+.list-recipes {
   display: flex;
   flex-direction: column;
   font-family: 'Raleway', sans-serif;
-  /* margin: 1px; */
   text-align: center;
   color: white;
   font-size: 80%;
 }
 
-.p{
+.p {
   display: flex;
   margin: 0%;
 }
@@ -88,18 +78,12 @@ width: 100%;
   font-size: 1.2em;
 }
 
-/* ~~~~~~~~~~~~~~~~~~buttons~~~~~~~~~~~~~~~~~~~~~~ */
-
-
-
 /* ~~~~~~~~~~~~~~~~~~images~~~~~~~~~~~~~~~~~~~~~~ */
-
-.logo-img{
+.logo-img {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 90%;
-
 }
 
 .home-img,
@@ -112,20 +96,19 @@ width: 100%;
   cursor: pointer;
 }
 
-
 .icon-1-img,
 .icon-2-img,
 .icon-3-img,
 .icon-4-img,
 .icon-5-img,
-.icon-6-img{
+.icon-6-img {
   flex: 1 0 auto;
   height: auto;
   width: 100%;
   border-radius: 8px;
 }
 
-.random-feature-image{
+.random-feature-image {
   flex: 1 0 auto;
   flex-shrink: 1;
   height: auto;
@@ -133,24 +116,21 @@ width: 100%;
   border-radius: 8px;
 }
 
-
 /* ~~~~~~~~~~~~~~~home page~~~~~~~~~~~~~~~~~~~ */
-
-
 .h1-wrapper {
-display: flex;
-justify-content: center;
-width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-.main-body{
+.main-body {
   display: flex;
   flex-direction: column;
   width: 80%;
 }
 
 .header-icons-container,
-.header-logo-container{
+.header-logo-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -159,19 +139,18 @@ width: 100%;
   margin: 0px;
 }
 
-
-.search-container{
-display:flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-height: 20%;
-width: 100%;
-background-image: linear-gradient(black, rgb(63, 62, 62), black);
-color: white;
+.search-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  width: 100%;
+  background-image: linear-gradient(black, rgb(63, 62, 62), black);
+  color: white;
 }
 
-.radio-wrapper{
+.radio-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -180,22 +159,20 @@ color: white;
   width: 45%;
 }
 
-
-.home-recipe-sidebar{
-display:flex;
-flex-direction: column;
-align-items: center;
-height: 100%;
-width: 18%;
-border-radius: 10px;
-background-image: linear-gradient(black, rgb(63, 62, 62), black);
-overflow-y: scroll;
-scrollbar-color: black;
-scrollbar-width: thin;
+.home-recipe-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 18%;
+  border-radius: 10px;
+  background-image: linear-gradient(black, rgb(63, 62, 62), black);
+  overflow-y: scroll;
+  scrollbar-color: black;
+  scrollbar-width: thin;
 }
 
-
-.main-page-container{
+.main-page-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -203,8 +180,7 @@ scrollbar-width: thin;
   width: 100%;
 }
 
-
-.feature-container{
+.feature-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -213,7 +189,7 @@ scrollbar-width: thin;
   border-radius: 8px;
 }
 
-.meal-box{
+.meal-box {
   display: flex;
   justify-self: center;
   align-self: center;
@@ -225,14 +201,14 @@ scrollbar-width: thin;
   border-radius: 8px;
 }
 
-.feature-image-box{
-display: flex;
-height: 100%;
-width: 60%;
-margin-left: 5%;
-background: rgb(8, 2, 1, .5);
-border-radius: 8px;
-filter: drop-shadow(5px 10px 3px black);
+.feature-image-box {
+  display: flex;
+  height: 100%;
+  width: 60%;
+  margin-left: 5%;
+  background: rgb(8, 2, 1, .5);
+  border-radius: 8px;
+  filter: drop-shadow(5px 10px 3px black);
 }
 
 .recipe-icon-container {
@@ -243,373 +219,361 @@ filter: drop-shadow(5px 10px 3px black);
   flex-wrap: wrap;
   height: 100%;
   width: 30%;
-  }
+}
 
-  .recipe-icons{
-   display: flex;
-   flex-wrap: wrap;
-   height: 125px;
-   width: 125px;
-   filter: drop-shadow(1px 2px 2px grey);
-   border-radius: 8px;
-   cursor: pointer;
-  }
+.recipe-icons {
+  display: flex;
+  flex-wrap: wrap;
+  height: 125px;
+  width: 125px;
+  filter: drop-shadow(1px 2px 2px grey);
+  border-radius: 8px;
+  cursor: pointer;
+}
 
-  .recipe-icon-container div:hover{
-    filter: drop-shadow(5px 10px 3px black);
-  }
+.recipe-icon-container div:hover {
+  filter: drop-shadow(5px 10px 3px black);
+}
 
+.side-bar-title-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  width: 100%;
+  color: white;
+}
 
-  .side-bar-title-wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 20%;
-    width: 100%;
-    color: white;
-   }
+/* ~~~~~~~~~~~~~~~~~~view recipe user story~~~~~~~~~~~~~~~~~~~~~~ */
+.recipe-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 95%;
+  width: 100%;
+}
 
+.recipe-img-price-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 49%;
+  height: 100%;
+}
 
+.recipe-description-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 49%;
+  background-color: black;
+  color: white;
+  margin: 0;
+  border: 1px solid white;
+  border-radius: 10px;
+}
 
+.recipe-title-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Edu TAS Beginner';
+  text-align: center;
+  color: white;
+  font-size: 2em;
+  height: 10%;
+  width: 90%;
+  margin-bottom: 0;
+}
 
- /* ~~~~~~~~~~~~~~~~~~view recipe user story~~~~~~~~~~~~~~~~~~~~~~ */
-  .recipe-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    height: 95%;
-    width: 100%;
-    }
+.recipe-container-upper-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 10px;
+}
 
-    .recipe-img-price-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 49%;
-      height: 100%;
-    }
+.selected-recipe-img {
+  display: flex;
+  border-radius: 10px;
+  height: 90%;
+  width: 75%;
+}
 
-    .recipe-description-box {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 49%;
-      background-color: black;
-      color: white;
-      margin: 0;
-      border: 1px solid white;
-      border-radius: 10px;
-    }
+.recipe-container-lower-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 50%;
+  width: 100%;
+}
 
-    .recipe-title-box{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Edu TAS Beginner';
-      text-align: center;
-      color: white;
-      font-size: 2em;
-      height: 10%;
-      width: 90%;
-      margin-bottom: 0;
-    }
+.total-price-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5em;
+  height: 10%;
+  width: 100%;
+  margin: 0;
+}
 
-    .recipe-container-upper-wrapper{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 50%;
-      width: 100%;
-      /* background-color: black; */
-      border: 1px solid white;
-      border-radius: 10px;
-    }
+.ingredient-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
+  height: 98%;
+  width: 100%;
+  color: white;
+  background-color: black;
+  border: 1px solid white;
+  border-radius: 10px;
+}
 
-    .selected-recipe-img {
-      display: flex;
-      border-radius: 10px;
-      height: 90%;
-      width: 75%;
-    }
+.ingredient-title-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0%;
+  width: 100%;
+}
 
-    .recipe-container-lower-wrapper{
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-evenly;
-      height: 50%;
-      width: 100%;
-    }
+.ingredient-title {
+  display: flex;
+  color: white;
+  font-family: 'Edu TAS Beginner';
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5em;
+  kerning: 4cm;
+  margin: 0%;
+  width: 100%;
+}
 
-    .total-price-box{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-size: 1.5em;
-      height: 10%;
-      width: 100%;
-      margin: 0;
-    }
+.recipe-info-box {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  width: 90%;
+  margin: 2px;
+  overflow-y: scroll;
+}
 
-    .ingredient-box{
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-content: center;
-      height: 98%;
-      width: 100%;
-      color: white;
-      background-color: black;
-      border: 1px solid white;
-      border-radius: 10px;
-    }
+.recipe-instructions {
+  font-size: 1.2em;
+  margin: 0;
+  padding: 0;
+}
 
-    .ingredient-title-wrapper{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0%;
-      width: 100%;
-    }
+.recipe-ingredients,
+.ingredient-prices,
+.ingredient-quantities {
+  margin: 0;
+  padding-left: 3%;
+  border: .5px solid white;
+}
 
-    .ingredient-title{
-      display: flex;
-      color: white;
-      font-family: 'Edu TAS Beginner';
-      justify-content: center;
-      text-align: center;
-      font-size: 1.5em;
-      kerning: 4cm;
-      margin: 0%;
-      width: 100%;
-    }
+.prices,
+.names,
+.quantities {
+  margin: 0;
+  padding: 0;
+}
 
-    .recipe-info-box{
-      display: flex;
-      flex-direction: column;
-      height: 80%;
-      width: 90%;
-      margin: 2px;
-      overflow-y: scroll;
-    }
+.ingredient-boxes-container {
+  height: 80%;
+  width: 100%;
+  font-size: 1.2em;
+  display: grid;
+  grid-template-columns: 30% 50% 20%;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+}
 
-    .recipe-instructions {
-      font-size: 1.2em;
-      margin: 0;
-      padding: 0;
-    }
+.add-favorite-button {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  margin-right: 2%;
+  font-size: 1.5em;
+  background-color: black;
+}
 
-    .recipe-ingredients,
-    .ingredient-prices,
-    .ingredient-quantities {
-      margin: 0;
-      padding-left: 3%;
-      border: .5px solid white;
-    }
+.favorite-button-container {
+  display: flex;
+  flex-direction: row;
+}
 
-    .prices,
-    .names,
-    .quantities {
-      margin: 0;
-      padding: 0;
-    }
-
-    .ingredient-boxes-container {
-      height: 80%;
-      width: 100%;
-      font-size: 1.2em;
-      display: grid;
-      grid-template-columns: 30% 50% 20%;
-      margin: 0;
-      padding: 0;
-      overflow-y: scroll;
-    }
-
-    .add-favorite-button {
-      display: flex;
-      justify-self: center;
-      align-self: center;
-      margin-right: 2%;
-      font-size: 1.5em;
-      background-color: black;
-    }
-
-    .favorite-button-container {
-      display: flex;
-      flex-direction: row;
-    }
-
-    .add-favorites-text {
-      margin-left: 2%;
-    }
+.add-favorites-text {
+  margin-left: 2%;
+}
 
 /* ~~~~~~~~~~~~~~~~~~view favorite recipe user story~~~~~~~~~~~~~~~~~~~~~~ */
-    .search-favorite-container{
-      display:flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 20%;
-      width: 100%;
-      background-image: linear-gradient(black, rgb(63, 62, 62), black);
-      color: white;
-      }
+.search-favorite-container{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  width: 100%;
+  background-image: linear-gradient(black, rgb(63, 62, 62), black);
+  color: white;
+  }
 
-    .remove-filters-button {
-      margin-left: 3%;
-      background-color: black;
-      color: white;
-    }
+.remove-filters-button {
+  margin-left: 3%;
+  background-color: black;
+  color: white;
+}
 
-    .remove-filters-button:hover {
-      background-color: rgb(42, 40, 40);
-    }
+.remove-filters-button:hover {
+  background-color: rgb(42, 40, 40);
+}
 
+.main-favorite-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("../dist/anyonecancook-logo.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
 
-    .main-favorite-container{
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      background-image: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url("../dist/anyonecancook-logo.svg");
-      background-repeat: no-repeat;
-      background-position: center;
-      align-items: center;
-      height: 100%;
-      width: 100%;
-    }
- 
+.main-favorite-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-image: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url("../dist/anyonecancook-logo.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
 
-      .favorite-recipe-container,
-      .user-info-pantry-container{
-        display: flex;
-        flex-direction: column;
-        width: 90%;
-        margin-top: 3%;
-        border: 1px solid black;
-      }
+.favorite-recipe-container,
+.user-info-pantry-container{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin-top: 3%;
+  border: 1px solid black;
+}
 
-      .user-info-pantry-container {
-        height: 200px;
-      }
+.user-info-pantry-container {
+  height: 200px;
+}
 
-      .favorite-recipe-container {
-        height: 60%;
-      }
+.favorite-recipe-container {
+  height: 60%;
+}
 
-      .favorite-recipe-title-wrapper,
-      .user-pantry-title-wrapper{
-        display: flex;
-        height: 15%;
-        width: 100%;
-      }
+.favorite-recipe-icons {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  height: 260px;
+  width: 200px;
+  border-radius: 10px;
+  margin-left: 1%;
+  border: 1px solid black;
+}
 
-      .fav-container-lower-wrapper{
-        display: flex;
-        justify-self: center;
-        align-self: center;
-        width: 100%;
-        height: 80%;
-        margin-top: 1%;
-        overflow: scroll;
-      }
+.favorite-recipe-images {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  height: 175px;
+  width: 175px;
+  border-radius: 10px;
+  margin: 3%;
+  cursor: pointer;
+  margin-bottom: 1%;
+}
 
-      .favorite-recipe-icons{
-        display: flex;
-        flex-direction: column;
-        justify-self: center;
-        height: 320px;
-        width: 200px;
-        border-radius: 10px;
-        margin-left: 1%;
-        border: 1px solid black;
-      }
+.favorite-recipe-icons{
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  height: 320px;
+  width: 200px;
+  border-radius: 10px;
+  margin-left: 1%;
+  border: 1px solid black;
+}
 
-      .favorite-recipe-images {
-        display: flex;
-        justify-self: center;
-        align-self: center;
-        height: 175px;
-        width: 175px;
-        border-radius: 10px;
-        margin-top: 20px;
-        margin-left: 10px;
-        margin-right: 10px;
-        cursor: pointer;
-        margin-bottom: 1%;
-      }
+.favorite-recipe-images {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  height: 175px;
+  width: 175px;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  margin-bottom: 1%;
+}
 
-      .icon-text {
-        display: flex;
-        align-content: center;
-        justify-content: center;
-        align-self: center;
-        justify-self: center;
-        text-align: center;
-        width: 90%;
-        height: 10%;
-        padding: 1%;
-        margin-bottom: 3%;
-      }
+.icon-text {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+  width: 90%;
+  height: 10%;
+  padding: 1%;
+  margin-bottom: 3%;
+}
 
-      .remove-from-favorites-btn {
-        display: flex;
-        justify-self: center;
-        align-self: center;
-        justify-content: center;
-        width: 50%;
-        height: 5%;
-        padding: 0;
-        margin-top:10%;
-        font-size: 10px;
-      }
+.remove-from-favorites-btn {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  justify-content: center;
+  width: 50%;
+  height: 5%;
+  padding: 0;
+  margin-top:10%;
+  font-size: 10px;
+}
 
-      .favorite-recipe-title,
-      .user-pantry-title{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        align-content: center;
-        font-family: 'Edu TAS Beginner';
-        font-size: 25pt;
-        margin: 0%;
-      }
+.pantry-ingredient {
+  display: flex;
+  text-align: center;
+  font-size: 12pt;
+  flex-wrap: wrap;
+  font-family: 'Raleway', sans-serif;
+  margin: 0;
+  padding-top: .5em;
+}
 
-     .pantry-ingredient-wrapper{
-       display: flex;
-       justify-content: center;
-       align-items: center;
-       justify-self: center;
-       align-self: center;
-       height: 20%;
-       width: 40%; 
-       margin: 2;
-       padding-left: 1em;
-     }
+.pantry-ingredient-wrapper p {
+  display: flex;
+  flex-shrink: inherit;
+  font-size: 30pt;
+  margin: 1em;
+}
 
-     .pantry-ingredient{
-       display: flex;
-       text-align: center;
-       font-size: 12pt;
-       flex-wrap: wrap;
-       font-family: 'Raleway', sans-serif;
-       margin: 0;
-       padding-top: .5em;
-     }  
-      
-      .pantry-ingredient-wrapper p{
-        display: flex;
-        flex-shrink: inherit;
-        font-size: 30pt;
-        margin: 1em;
-      }
-
-      #pantryIngredientWrapper2 {
-        width: 80%;
-      }
+#pantryIngredientWrapper2 {
+  width: 80%;
+}
 
 /* ~~~~~~~~~~~~~~~~~~aux~~~~~~~~~~~~~~~~~~~~~~ */
- .hidden {
+.hidden {
   display: none;
- }
+}
