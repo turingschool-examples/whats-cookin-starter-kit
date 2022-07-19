@@ -37,7 +37,7 @@ h1{
   font-stretch: expanded;
   flex-shrink: 2;
   font-size: 3em;
-  margin: 0%;
+  margin: -1%;
 }
 
 h2 {
@@ -453,7 +453,7 @@ filter: drop-shadow(5px 10px 3px black);
       align-items: center;
       height: 20%;
       width: 100%;
-      background-color: black;
+      background-image: linear-gradient(black, rgb(63, 62, 62), black);
       color: white;
       }
 
@@ -471,7 +471,7 @@ filter: drop-shadow(5px 10px 3px black);
     .main-favorite-container{
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       background-image: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url("../dist/anyonecancook-logo.svg");
       background-repeat: no-repeat;
       background-position: center;
@@ -485,18 +485,18 @@ filter: drop-shadow(5px 10px 3px black);
       .user-info-pantry-container{
         display: flex;
         flex-direction: column;
-        flex-wrap: wrap;
-        height: 50%;
         width: 90%;
         margin-top: 3%;
         border: 1px solid black;
       }
 
-      /* .favorite-recipe-container :nth-child(2){
-        flex-direction: row;
-        justify-self: center;
-        align-self: center;
-      } */
+      .user-info-pantry-container {
+        height: 200px;
+      }
+
+      .favorite-recipe-container {
+        height: 60%;
+      }
 
       .favorite-recipe-title-wrapper,
       .user-pantry-title-wrapper{
@@ -519,7 +519,7 @@ filter: drop-shadow(5px 10px 3px black);
         display: flex;
         flex-direction: column;
         justify-self: center;
-        height: 260px;
+        height: 320px;
         width: 200px;
         border-radius: 10px;
         margin-left: 1%;
@@ -533,7 +533,9 @@ filter: drop-shadow(5px 10px 3px black);
         height: 175px;
         width: 175px;
         border-radius: 10px;
-        margin: 3%;
+        margin-top: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
         cursor: pointer;
         margin-bottom: 1%;
       }
@@ -544,6 +546,7 @@ filter: drop-shadow(5px 10px 3px black);
         justify-content: center;
         align-self: center;
         justify-self: center;
+        text-align: center;
         width: 90%;
         height: 10%;
         padding: 1%;
@@ -558,6 +561,7 @@ filter: drop-shadow(5px 10px 3px black);
         width: 50%;
         height: 5%;
         padding: 0;
+        margin-top:10%;
         font-size: 10px;
       }
 

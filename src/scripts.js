@@ -159,9 +159,11 @@ function showFavoritesPage() {
 }
 
 function viewRecipe(event) {
+  if (event.target.classList.contains('recipes-list')) {
   selectedRecipeName = event.target.innerText
   selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name)[0];
   viewRecipesHelperFunction();
+  }
 }
 
 function viewRecipeFromIcon(event) {
