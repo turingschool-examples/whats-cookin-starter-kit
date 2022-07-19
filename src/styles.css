@@ -1,4 +1,4 @@
- *{
+ * {
    margin: 0px;
    padding: 0px;
  }
@@ -14,34 +14,128 @@
  }
 
  main {
-   height: 100vh;
-   width: 100vw;
+
+   font-family: 'Barlow', sans-serif;
+   font-family: 'Raleway', sans-serif;
+   height: max-content;
    position: relative;
-  background: url(https://i.pinimg.com/564x/96/fd/01/96fd0183673d4bf3f8f22ec7d07917bb.jpg);
+   background: url(https://img.freepik.com/premium-photo/raw-pasta-it-s-ingredients-arranged-row-white-wooden-table_23-2148195071.jpg?w=826);
+   background-repeat: no-repeat;
+   background-size: cover;
+
  }
 
  .nav {
+   padding-top: 15px;
+   padding-bottom: 20px;
    display: flex;
    justify-content: space-around;
  }
 
+
  .nav button {
-   height: 60px;
-   width: 100px;
+   background-color: seashell;
+   border-style: solid;
+   border-width: 1px;
+   border-radius: 20px;
+   height: 50px;
+   width: 120px;
  }
 
  .nav button:hover {
    cursor: pointer;
+   background-color: palegoldenrod;
+ }
+
+ .toggle-search-option:hover {
+   cursor: pointer;
+   background-color: palegoldenrod;
+ }
+
+ .search-bar:hover {
+   cursor: pointer;
+   background-color: palegoldenrod;
+ }
+
+ .search-bar {
+   height: 30px;
+   width: 300px;
+   margin: 10px;
+   border-radius: 8px;
+   text-align: center;
+ }
+
+ .toggle-search-option {
+   display: flex;
+   justify-content: center;
+   width: 20%;
+   margin-top: 10px;
+   border-color: black;
+   border-style: solid;
+   border-width: 1px;
+   border-radius: 20px;
+   background-color: seashell;
+ }
+
+ .submit-search:hover {
+   cursor: pointer;
+   background-color: palegoldenrod;
+ }
+
+ .submit-search {
+   background-color: seashell;
+   border-style: solid;
+   border-width: 1px;
+   border-radius: 20px;
+   height: 50px;
+   width: 120px;
+ }
+
+ .keyword-section {
+   width: 75%;
+   height: 25%;
+   display: flex;
+   flex-wrap: wrap;
+ }
+
+ #keyword-list {
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   border-color: black;
+   padding-top: 5px;
+   padding-bottom: 5px;
+
+ }
+
+ .keyword {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 18%;
+   height: 20%;
+   border-color: black;
+   background-color: seashell;
+   border-style: solid;
+   border-width: 1px;
+   border-radius: 20px;
+   margin: 2px;
+   padding-bottom: 1px;
  }
 
  .keyword:hover {
-  cursor: pointer;
-  color: blue;
+   background-color: palegoldenrod;
+ }
+
+ .keyword:hover {
+   cursor: pointer;
+   color: blue;
  }
 
  .clicked {
-  font-weight: bold;
-  color: darkblue;
+   font-weight: bold;
+   color: darkblue;
  }
 
  .body-container {
@@ -51,7 +145,9 @@
 
 
  .greeting {
-   display: flex;
+   font-size: 40px;
+   font-weight: bold;
+
  }
 
  .search-section {
@@ -82,11 +178,14 @@
  .results {
    display: flex;
    flex-direction: column;
+   height: max-content;
  }
 
  .results-header {
    display: flex;
+   flex-direction: row;
    align-self: center;
+   margin-top: 25px;
  }
 
  .results-grid-container {
@@ -94,6 +193,7 @@
    display: flex;
    flex-wrap: wrap;
    justify-content: space-between;
+
  }
 
  .card-border {
@@ -138,21 +238,25 @@
  }
 
  .mega-card {
+   border-style: solid;
+   border-color: none;
+   border-width: 15px;
+   margin-bottom: 10px;
    position: absolute;
    top: 0px;
    right: 10vw;
    display: flex;
    z-index: 1000;
-
    max-width: 50vw;
-
    flex-direction: column;
    align-items: center;
  }
 
  .mega-card header {
+   width: 100%;
+   padding-right: 25px;
    display: flex;
-   flex-direction: row;
+   flex-direction: row-reverse;
  }
 
  .mega-card header span:hover {
@@ -160,6 +264,11 @@
  }
 
  .mega-card img {
+   width: 100%;
+   margin: 8px;
+   border-radius: 5px;
+   display: flex;
+   align-items: center;
    height: 350px;
  }
 
