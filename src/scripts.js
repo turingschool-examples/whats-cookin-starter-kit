@@ -366,9 +366,9 @@ function deleteRecipe(event) {
   if (event.target.classList.contains("trash-can")) {
     event.target.closest('div').remove();
   }
-  user.recipesToCook.forEach(recipe => {
+  user.recipesToCook.forEach((recipe, index) => {
     if (alt === recipe.image) {
-      user.recipesToCook.splice(recipe, 1);
+      user.recipesToCook.splice(index, 1);
     }
   })
 }
