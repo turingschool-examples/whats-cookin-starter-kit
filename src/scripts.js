@@ -139,7 +139,7 @@ function populateSavedRecipesView() {
     <img class='saved-recipes-pic-box'
     id='${recipe.id}' src='${recipe.image}'>
     <p class='recipe-label'>${recipe.name}</p>
-    <img class='trash-can' src='./trash.png'>
+    <img class='trash-can' src='./trash.png' id='${recipe.id}'>
     </div>`;
   })
 
@@ -362,7 +362,14 @@ function saveChosenRecipe() {
 }
 
 function deleteRecipe(event) {
+  let id = parseInt(event.target.id);
   if (event.target.classList.contains("trash-can")) {
     event.target.closest('div').remove();
   }
+  user.recipesToCook.forEach(recipe => {
+    console.log(id, recipe.id)
+    if (id === recipe.id) {
+      user.recipesToCook.splice(recipe, 1);
+    }
+  })
 }
