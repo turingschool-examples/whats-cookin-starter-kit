@@ -20,8 +20,7 @@ class Recipe {
         return recipe.reduce( ( acc, item ) => {
             ingredientList.forEach( ingredient => {
                 if( item.id === ingredient.id ) {
-                    let total = item.quantity.amount * ingredient.estimatedCostInCents
-                    acc = total
+                    acc += item.quantity.amount * ingredient.estimatedCostInCents
                 }
             } )
             return acc

@@ -141,7 +141,7 @@ describe('Recipe', ( ) => {
 
   it( 'should get cost of ingredients', ( ) => {
     expect( recipe.getCostOfIngredients( dataRecipe.ingredients , dataIngredient ) ).to.be.a( "number" );
-    expect( recipe.getCostOfIngredients( dataRecipe.ingredients , dataIngredient ) ).to.equal( 451 );
+    expect( recipe.getCostOfIngredients( dataRecipe.ingredients , dataIngredient ) ).to.equal( 1427 );
   } );
   
   it( 'should return directions and instructions', ( ) => {

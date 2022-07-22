@@ -7,7 +7,7 @@ class User {
     };
 
     addRecipeToRecipesToCook( recipe ) {
-        this.recipesToCook.push( recipe )
+        return this.recipesToCook.push( recipe )
     }
 
     removeRecipeFromRecipesToCook( recipe ) {

@@ -47,13 +47,13 @@ navViewProfileButton.addEventListener( 'click' , showCookingProfile );
 
 recipeCardGridContainer.addEventListener( 'click', ( e ) => {
     if ( e.target.classList == 'save-button' ) {
-      return  saveRecipeToRecipesToCook( e );
+        return saveRecipeToRecipesToCook( e );
     };
 } );
 
 recipeCardGridContainer.addEventListener( 'click', ( e ) => {
-if( e.target.classList == 'remove-button' ) {
- return deleteRecipeFromRecipesToCook( e );
+    if ( e.target.classList == 'remove-button' ) {
+        return deleteRecipeFromRecipesToCook( e );
     };
 } );
 
@@ -73,15 +73,15 @@ closeModalButton.addEventListener( 'click', ( ) => {
 // DOM MANIPULATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 function loadData( ) {
 Promise.all( [ getData( 'users' ), getData( 'recipes' ), getData( 'ingredients' ) ] ).then( data => {
-        userList = data[ 0 ].usersData;
-        recipeList = data[ 1 ].recipeData;
-        ingredientList = data[ 2 ].ingredientsData;
-        currentUser = new User( userList[ Math.floor( Math.random( ) * userList.length ) ] );
-        ingredientClass = new Ingredient( ingredientList.map(ingredient => ingredient.id), ingredientList.map(ingredient => ingredient.name ), ingredientList.map( ingredient =>  ingredient.estimatedCostInCents ) );
-        recipeClass = new Recipe( recipeList, ingredientList );
-        recipeRepository = new RecipeRepository( recipeList );
-        displayRandomUserName( );
-        displayAllRecipesOnPage( );
+    userList = data[ 0 ].usersData;
+    recipeList = data[ 1 ].recipeData;
+    ingredientList = data[ 2 ].ingredientsData;
+    currentUser = new User( userList[ Math.floor( Math.random( ) * userList.length ) ] );
+    ingredientClass = new Ingredient( ingredientList.map(ingredient => ingredient.id), ingredientList.map(ingredient => ingredient.name ), ingredientList.map( ingredient =>  ingredient.estimatedCostInCents ) );
+    recipeClass = new Recipe( recipeList, ingredientList );
+    recipeRepository = new RecipeRepository( recipeList );
+    displayRandomUserName( );
+    displayAllRecipesOnPage( );
     } );
 }
 
@@ -94,8 +94,7 @@ function displayRandomUserName( ) {
 function searchRecipe( e ) {
     if ( e.target.id == 'search-cooking' ) {
         filterCookProf( );
-    } else{
-    if ( !searchBox.value ) {
+    } else if ( !searchBox.value ) {
       displayAllRecipesOnPage( );
     }
     const tagSearched = recipeRepository.filterRecipeByTag( searchBox.value );
@@ -107,10 +106,10 @@ function searchRecipe( e ) {
         matchingNameConditions = nameSearched;
         return displayFilteredRecipesByNameOnPage( );
     } else {
-      return displayAllRecipesOnPage( );
+        return displayAllRecipesOnPage( );
     }
   }
-}
+
 
 
 function filterCookProf( ) {
@@ -127,7 +126,7 @@ function filterCookProf( ) {
             <button class="save-button" id= ${ recipe.id }>Save to cooking profile!</button>
             </div>
             </section>`
-        } );
+        } ).join( '' );
         savedTagCondits = recipeContainer;
         return recipeContainer.innerHTML = result;
     } else if ( nameSearched.length > 0 ) {
@@ -141,11 +140,11 @@ function filterCookProf( ) {
             <button id=${ recipe.id } class="save-button">Save to cooking profile!</button>
             </div>
             </section>`
-        } );
+        } ).join( '' );
         savedNameCondits = recipeContainer;
         return recipeContainer.innerHTML = result;
     } else {
-      return;
+        return;
     }
 }
 
@@ -160,9 +159,9 @@ function displayFilteredRecipesByTagOnPage( ) {
         <button class="save-button" id=${ recipe.id }>Save to cooking profile!</button>
         </div>
         </section>`
-    } );
+    } ).join( '' );
     matchingTagConditions = recipeContainer;
-    return recipeContainer.innerHTML = result;
+        return recipeContainer.innerHTML = result;
 }
 
 
@@ -176,9 +175,9 @@ function displayFilteredRecipesByNameOnPage( ) {
         <button id=${recipe.id} class="save-button">Save to cooking profile!</button>
         </div>
         </section>`
-    } );
+    } ).join( '' );
     matchingNameConditions = recipeContainer;
-    return recipeContainer.innerHTML = result;
+        return recipeContainer.innerHTML = result;
 }
 
 
@@ -237,7 +236,7 @@ function showCookingProfile( e ) {
             <button id=${recipe.id} class="remove-button">Remove from cooking profile!</button>
             </div>
             </section>`
-        } );
+        } ).join( '' );
         return recipeContainer.innerHTML = result;
     }
     if( e.target.innerText == 'Return Home' ){
