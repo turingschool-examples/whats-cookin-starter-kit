@@ -111,7 +111,6 @@ function searchRecipe( e ) {
   }
 
 
-
 function filterCookProf( ) {
     const tagSearched = currentUser.filterRecipesToCookByTag( searchBox.value );
     const nameSearched = currentUser.filterRecipesToCookByName( searchBox.value );
