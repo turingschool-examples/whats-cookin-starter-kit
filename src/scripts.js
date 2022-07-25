@@ -111,7 +111,7 @@ function welcomeUser() {
 function populateRecipesInHomeView() {
   recipePicBoxes.forEach(image  => {
     var randomRecipe = getRandomRecipe()
-    image.innerHTML += `<img class='recipe-image' id='${randomRecipe.id}' src='${randomRecipe.image}'>
+    image.innerHTML += `<img class='recipe-image' id='${randomRecipe.id}' src='${randomRecipe.image}' alt='${randomRecipe.name}'>
     <p class='recipe-label'>${randomRecipe.name}</p>`;
   });
 }
@@ -124,7 +124,7 @@ function populateAllRecipesView() {
 
   recipeRepo.recipeData.forEach((recipe) => {
     allRecipesContainer.innerHTML += `<img class='all-recipes-pic-box'
-    id='${recipe.id}' src='${recipe.image}'>
+    id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
     <p class='recipe-label'>${recipe.name}</p>`;
   })
 }

@@ -22,12 +22,12 @@ header {
   align-items: center;
   background-color: #060911;
   width: 100vw;
-  height: 35vh; 
+  height: 35vh;
 }
 
 button {
   margin-top: 5px;
-  background-color: #01834e;
+  background-color: #F9F6EE;
   color: #060911;
   font-family:'Roboto',sans-serif;
   padding:0.5em 3em;
