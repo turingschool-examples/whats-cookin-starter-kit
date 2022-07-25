@@ -137,9 +137,9 @@ function populateSavedRecipesView() {
   user.recipesToCook.forEach((recipe) => {
     savedRecipesContainer.innerHTML += `<div class='trash-this-one'>
     <img class='saved-recipes-pic-box'
-    id='${recipe.id}' src='${recipe.image}'>
+    id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
     <p class='recipe-label'>${recipe.name}</p>
-    <img class='trash-can' src='./trash.png' alt='${recipe.image}'>
+    <img class='trash-can' src='./trash.png' alt='click this trash can to throw away ${recipe.name}'>
     </div>`;
   })
 
@@ -367,7 +367,7 @@ function deleteRecipe(event) {
     event.target.closest('div').remove();
   }
   user.recipesToCook.forEach((recipe, index) => {
-    if (alt === recipe.image) {
+    if (alt === `click this trash can to throw away ${recipe.name}`) {
       user.recipesToCook.splice(index, 1);
     }
   })
