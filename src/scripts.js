@@ -32,17 +32,18 @@ fetchData().then(responses => {
     recipeRepository.listRecipes();
     user = createUser();
 
-    recipeDisplay.addEventListener('click', recipeDisplayHandler);
-    homeButton.addEventListener('click', goHome);
-    filterForm.addEventListener('submit', filterRecipeTag);
-    searchForm.addEventListener('submit', searchRecipeName);
-    favoriteButton.addEventListener('click', showFavorites);
-    filterFavoriteForm.addEventListener('submit', filterFavoriteRecipesByTag);
-    favSearchForm.addEventListener('submit', searchFavRecipeListByName);
     
     displayRecipeList();
 
 });
+
+recipeDisplay.addEventListener('click', recipeDisplayHandler);
+homeButton.addEventListener('click', goHome);
+filterForm.addEventListener('submit', filterRecipeTag);
+searchForm.addEventListener('submit', searchRecipeName);
+favoriteButton.addEventListener('click', showFavorites);
+filterFavoriteForm.addEventListener('submit', filterFavoriteRecipesByTag);
+favSearchForm.addEventListener('submit', searchFavRecipeListByName);
 
 function hideOn(element) {
     element.classList.add('hidden')
@@ -58,6 +59,7 @@ function createUser() {
     const user = userInfo.usersData[randomNumber];
     return new User(user);
 }
+
 
 function recipeDisplayHandler(event) {
     if (event.target.getAttribute("data-recipeId")) {
