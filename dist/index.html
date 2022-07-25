@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
     <link rel="icon" href="./balanced-diet.png">
@@ -8,7 +8,7 @@
   <body>
     <header class="top-section">
       <section class="user-log-in">
-        <p class="user-welcome">Welcome back, Fred!</p>
+        <p class="user-welcome">Welcome back, User!</p>
       </section>
       <section class="logo-title">
         <img class="logo-image" src="./balanced-diet.png" alt="whats cookin logo">
@@ -19,12 +19,12 @@
         <button class="nav-buttons hidden" id="myFavoritesButton">My Favorites</button>
         <button class="nav-buttons hidden" id="pantryButton">My Pantry</button>
         <button class="nav-buttons" id="allRecipesButton">All Recipes</button>
-          <form class="form">
+          <form role='search'class="form">
           <p>Search by:</p>
           <input type="radio" id="filterByName" name="search" value="Name">
-          <label for="Name">Name</label><br>
+          <label for="filterByName">Name</label><br>
           <input type="radio" id="filterByTag" name="search" value="Tag">
-          <label for="Tag">Tag</label><br>
+          <label for="filterByTag">Category</label><br>
           </form>
           <section class="user-search-container">
             <input class="search-input" type="text" placeholder="Search Recipes" id="search"/>
@@ -52,10 +52,10 @@
             <p class='ingredient-details'></p>
             <p class='ingredient-cost'></p>
         </div>
-        <div class='recipe-view-big-box'>
+        <article class='recipe-view-big-box'>
             <button class='save-recipe-button' id="saveRecipeButton">Save Recipe</button>
           <p class='cooking-instructions'></p>
-        </div>
+        </article>
         <div class='recipe-view-pic-box'></div>
       </section>
       <section class="all-recipes-view hidden"></section>
@@ -64,9 +64,9 @@
         <form class="form2">
         <p class='search-by'>Search by:</p>
         <input class='radio2' type="radio" id="filterByName2" name="search" value="Name">
-        <label for="Name2">Name</label><br>
+        <label for="filterByName2">Name</label><br>
         <input class='radio2' type="radio" id="filterByTag2" name="search" value="Tag">
-        <label for="Tag2">Tag</label><br>
+        <label for="filterByTag2">Category</label><br>
         </form>
         <button class="search-button" id="searchButton2">Search</button>
       </section>
@@ -78,6 +78,5 @@
     <p class="footer-text">© Anthony, Cole, Emma, Morgan 2022</p>
     </footer>
   </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>
