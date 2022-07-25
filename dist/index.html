@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Famish: Food is family</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -9,14 +10,15 @@
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@100&family=Raleway:wght@100&display=swap"
       rel="stylesheet"
     />
+    <meta name="description" content="A cooking website" />
   </head>
   <body>
+    <nav class="nav">
+      <button type="button" class="home-button">Home</button>
+      <button type="button" class="my-recipes-button">My Recipes</button>
+      <button type="button">Pantry</button>
+    </nav>
     <main>
-      <nav class="nav">
-        <button type="button" class="home-button">Home</button>
-        <button type="button" class="my-recipes-button">My Recipes</button>
-        <button type="button">Pantry</button>
-      </nav>
       <section class="body-container">
         <section class="greeting">
           <h2></h2>
@@ -30,7 +32,9 @@
             />
           </div>
           <button class="submit-search" type="button">Submit Search</button>
-          <h3 class="toggle-search-option">search by keyword</h3>
+          <button type="button" class="toggle-search-option">
+            search by keyword
+          </button>
           <section class="keyword-section hidden">
             <div id="keyword-list"></div>
           </section>
@@ -51,10 +55,10 @@
             class="mega-card card-border specific-recipe hidden"
           >
             <header class="mega-card-header">
-              <span class="close-icon">❌</span>
-              <span class="save-recipe-icon favorite-button" data-id=""
-                >❤️</span
-              >
+              <button class="close-icon">❌</button>
+              <button class="save-recipe-icon favorite-button" data-id="">
+                ❤️
+              </button>
             </header>
             <section class="mega-card-title">
               <h2 class="title"></h2>
@@ -64,6 +68,7 @@
               <img
                 class="specific-recipe-image"
                 src="https://static01.nyt.com/images/2022/06/12/dining/12Korokke/merlin_208197630_39a1b4ee-998e-4706-9f2f-8d5696f5e6ac-mobileMasterAt3x.jpg"
+                alt="food image"
               />
               <section class="recipe-cost">
                 <h3>Total Cost</h3>
@@ -92,13 +97,13 @@
     id="mini-recipe-template"
     class="mini-card card-border recipe-result hidden"
     data-id="0"
+    tabindex="0"
   >
-    <span class="favorite-button">❤️</span>
-    <img
-      class="recipe-image"
-      src=""
-    />
-    <p class="recipe-name"></p>
+    <img class="recipe-image" src="" alt="food image" />
+    <section tabindex="0">
+      <p tabindex="0" class="recipe-name"></p>
+      <button class="favorite-button">❤️</button>
+    </section>
   </article>
   <script src="bundle.js"></script>
 </html>

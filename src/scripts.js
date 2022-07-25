@@ -52,8 +52,9 @@ function loadData() {
 function listKeywords() {
   keywordList.replaceChildren();
   recipeRepo.allTags.forEach((tag) => {
-    let keyword = document.createElement("div");
+    let keyword = document.createElement("button");
     keyword.classList.add("keyword");
+    keyword.type = "button"   
     keyword.innerText = tag;
     keywordList.appendChild(keyword);
   });
@@ -69,6 +70,7 @@ function displayAllRecipesView() {
     let recipeCard = makeRecipeCard(recipe);
     addRecipeCardToResultsContainer(recipeCard);
   });
+
 }
 
 function getRecipeIdFromClickEvent(event) {

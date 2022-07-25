@@ -21,7 +21,7 @@ class Recipe {
     const ingredientsCost = this.portions.map((portion) => {
       return (portion.amount * portion.cost).toFixed(2) / 100;
     });
-    return ingredientsCost;
+    return ingredientsCost
   }
 
   getInstructions() {
