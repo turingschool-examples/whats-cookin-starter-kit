@@ -6,6 +6,7 @@ class Users {
         this.id = data.id;
         this.pantry = data.pantry;
         this.recipesToCook = [];
+        // console.log(this.pantry);
     }
     addRecipesToCook(recipe) {
         if (!this.recipesToCook.includes(recipe)) {
@@ -13,7 +14,6 @@ class Users {
         }
     }
     removeRecipesToCook(recipe) {
-        console.log({ userRecipe: recipe });
         if (this.recipesToCook.includes(recipe)) {
             this.recipesToCook = this.recipesToCook.filter(rec => rec !== recipe);
         }
