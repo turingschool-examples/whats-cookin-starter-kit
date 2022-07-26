@@ -33,7 +33,7 @@ toggleSeachOption.addEventListener("click", showKeywords);
 keywordList.addEventListener("click", keywordClicked);
 homeButton.addEventListener("click", displayAllRecipesView);
 searchButton.addEventListener("click", executeSearch);
-// myPantryButton.addEventListener("click", displayUserPantry);
+myPantryButton.addEventListener("click", showPantry);
 myRecipesButton.addEventListener("click", displayUserRecipes);
 closeIcon.addEventListener("click", closeSpecificRecipe);
 saveIcon.addEventListener("click", specificRecipeClicked);
@@ -44,7 +44,7 @@ function convertPantryItemNames() {
 user.pantry.forEach((pantryItem) => {
     ingredientsData.forEach((ingredient) => {
       if (pantryItem.ingredient === ingredient.id) {
-       pantryItem.ingredient = ingredient.name
+       pantryItem.name = ingredient.name
       }
     });
 })
@@ -54,6 +54,7 @@ return user.pantry;
 
 function displayUserPantry() {
 convertPantryItemNames();
+console.log('user', user.pantry)
  resultCardsContainer.replaceChildren();
   user.pantry.forEach((item) => {
 let foodItem = document.createElement("div");
@@ -74,11 +75,12 @@ function loadData() {
     usersData = data[0].usersData;
     recipeData = data[1].recipeData;
     ingredientsData = data[2].ingredientsData;
-    // console.log(ingredientsData)
     user = new User(usersData[Math.floor(Math.random() * 41)]);
     // console.log(user)
     recipeRepo = new RecipeRepository();
     recipeRepo.importRecipesFromFile(recipeData, ingredientsData);
+    convertPantryItemNames();
+    makeIngredientCard();
     displayAllRecipesView();
   });
 }
@@ -95,8 +97,12 @@ function listKeywords() {
 }
 
 function displayAllRecipesView() {
+  hide(pantry);
+  show(resultCardsContainer);
   recipeRepo.clearData();
   listKeywords();
+  console.log("ingred:", ingredientsData)
+  console.log('recipes:', recipeRepo)
   greeting.innerText = `Welcome, ${user.name}!`;
   header.innerText = `All Recipes!`;
   resultCardsContainer.replaceChildren();
@@ -214,6 +220,26 @@ function makeRecipeCard(recipe) {
   show(newCard);
   return newCard;
 }
+
+const pantryItemTemplate = document.querySelector('.pantry-item-card-template');
+const pantry = document.querySelector('.pantry');
+
+function makeIngredientCard() {
+  user.pantry.forEach(item => {
+    console.log(item)
+    let newItemCard = pantryItemTemplate.cloneNode(true);
+    newItemCard.querySelector('.pantry-item-name').innerText = item.name;
+    newItemCard.querySelector('.pantry-quantity').innerText = item.amount;
+    pantry.appendChild(newItemCard);
+    show(newItemCard);
+  })
+}
+
+function showPantry() {
+  hide(resultCardsContainer);
+  show(pantry);
+}
+
 
 function addRecipeCardToResultsContainer(recipeCard) {
   resultCardsContainer.appendChild(recipeCard);
