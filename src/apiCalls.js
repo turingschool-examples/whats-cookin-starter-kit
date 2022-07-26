@@ -7,22 +7,13 @@ export const apiCalls = {
         return result;
     },
 
-    getAllData() {
-        return [apiCalls.getRecipeData(), apiCalls.getAllIngredientsData(), apiCalls.getAllUserData()];
-    },
+    getAllData(endpoint) {
+        const root = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/'
+        const url = `${root}${endpoint}`
+        return fetch(url)
+        .then(response => response.json());
+            }
+        }
 
-    getRecipeData() {
-        return fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
-            .then(response => response.json());
-    },
+    
 
-    getAllIngredientsData() {
-        return fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients')
-            .then(response => response.json());
-    },
-
-    getAllUserData() {
-        return fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
-            .then(response => response.json());
-    },
-}
