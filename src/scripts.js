@@ -94,7 +94,7 @@ getAllData().then(responses => {
   allRecipes = recipeData.recipeData.map(recipe => new Recipe(recipe, ingredientData.ingredientsData));
   recipeRepository =  new RecipeRepository(allRecipes);
   updateMainPageRecipeIcons();
-  updateMainPageFeatureImg();
+  // updateMainPageFeatureImg();
   displayAllNames();
 });
 
@@ -125,17 +125,22 @@ function changeToUpperCase(data) {
 }
 
 function updateMainPageRecipeIcons() {
-  icon1Img.src = allRecipes[getRandomIndex(allRecipes)].image;
-  icon2Img.src = allRecipes[getRandomIndex(allRecipes)].image;
-  icon3Img.src = allRecipes[getRandomIndex(allRecipes)].image;
-  icon4Img.src = allRecipes[getRandomIndex(allRecipes)].image;
-  icon5Img.src = allRecipes[getRandomIndex(allRecipes)].image;
-  icon6Img.src = allRecipes[getRandomIndex(allRecipes)].image;
+  let numbers = [];
+  let randomNumber;
+  allRecipes.forEach(recipe => {
+    randomNumber = getRandomIndex(allRecipes);
+    if (!numbers.includes(randomNumber)) {
+      numbers.push(randomNumber);
+    }
+  })
+  icon1Img.src = allRecipes[numbers[0]].image;
+  icon2Img.src = allRecipes[numbers[1]].image;
+  icon3Img.src = allRecipes[numbers[2]].image;
+  icon4Img.src = allRecipes[numbers[3]].image;
+  icon5Img.src = allRecipes[numbers[4]].image;
+  icon6Img.src = allRecipes[numbers[5]].image;
+  featureImage.src = allRecipes[numbers[6]].image;
   updateUserWelcome(user);
-}
-
-function updateMainPageFeatureImg(){
-  featureImage.src = allRecipes[getRandomIndex(allRecipes)].image;
 }
 
 function displayRecipeNames(recipes) {
