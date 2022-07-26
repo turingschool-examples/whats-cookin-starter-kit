@@ -68,30 +68,27 @@ describe('User', () => {
         },
       ]);
     });
+
     it('should store recipes to cook, without duplicate recipes', () => {
       user1.addRecipesToCook(recipe1);
-      user1.addRecipesToCook(recipe2);
-      user1.addRecipesToCook(recipe2);
+      expect(user1.recipesToCook).to.deep.equal([recipe1]);
 
-      expect(user1.recipesToCook[0]).to.deep.equal(recipe1);
-      expect(user1.recipesToCook[1]).to.deep.equal(recipe2);
-      expect(user1.recipesToCook.length).to.equal(2);
+      user1.addRecipesToCook(recipe2);
+      user1.addRecipesToCook(recipe2);
+      expect(user1.recipesToCook).to.deep.equal([recipe1, recipe2]);
     });
 
     it('should be able to remove recipes from recipes to cook array', () => {
       user1.addRecipesToCook(recipe1);
       user1.addRecipesToCook(recipe2);
 
-      expect(user1.recipesToCook[0]).to.deep.equal(recipe1);
-      expect(user1.recipesToCook[1]).to.deep.equal(recipe2);
-
       user1.removeRecipesToCook(595736);
 
-      expect(user1.recipesToCook[0]).to.deep.equal(recipe2);
+      expect(user1.recipesToCook).to.deep.equal([recipe2]);
 
       user1.removeRecipesToCook(678353);
 
-      expect(user1.recipesToCook.length).to.equal(0);
+      expect(user1.recipesToCook).to.deep.equal([]);
     });
 
     it('should be able to filter the saved recipes by tag', () => {
@@ -107,5 +104,33 @@ describe('User', () => {
       expect(user2.filterSavedRecipesByTag('test')).to.deep.equal([recipe2, recipe3])
       expect(user2.filterSavedRecipesByTag('test')[1].name).to.equal('Dirty Steve\'s Original Wing Sauce')
     })
+
+    it('filter should not return a recipe if there are no recipes that match the tag given', () => {
+      user2.addRecipesToCook(recipe1);
+      user2.addRecipesToCook(recipe2);
+      user2.addRecipesToCook(recipe3);
+      expect(user2.filterSavedRecipesByTag('brunch')).to.deep.equal([])
+    }) 
+
+    it('should be able to filter the saved recipes by name', () => {
+      user1.addRecipesToCook(recipe1);
+      user1.addRecipesToCook(recipe2);
+      user1.addRecipesToCook(recipe3);
+      user2.addRecipesToCook(recipe1);
+      user2.addRecipesToCook(recipe2);
+      user2.addRecipesToCook(recipe3);
+
+      expect(user1.filterSavedRecipesByName('Cookie')).to.deep.equal([recipe1])
+      expect(user1.filterSavedRecipesByName('Cookie')[0].name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups')
+      expect(user2.filterSavedRecipesByName('Pork')).to.deep.equal([recipe2])
+      expect(user2.filterSavedRecipesByName('Pork')[0].name).to.equal('Maple Dijon Apple Cider Grilled Pork Chops')
+    })
+
+    it('filter should not return a recipe if there are no recipes that match the name given', () => {
+      user2.addRecipesToCook(recipe1);
+      user2.addRecipesToCook(recipe2);
+      user2.addRecipesToCook(recipe3);
+      expect(user2.filterSavedRecipesByName('Lasagna')).to.deep.equal([])
+    }) 
 
 }); 
