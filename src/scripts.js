@@ -44,6 +44,7 @@ const userWelcomeMessage = document.querySelector('.user-welcome-message');
 const nameRadioBtn = document.querySelector('.name-search');
 const removeFiltersBtn = document.querySelector('.remove-filters-button');
 const tagRadioBtn = document.querySelector('.tag-search');
+const sideBarTitle = document.querySelector('.side-bar-title-wrapper')
 
 // ***** Event Listeners ***** //
 window.addEventListener('load', getAllData);
@@ -263,7 +264,23 @@ function filterRecipeByTag(tag) {
   let filteredRecipes = recipeRepository.filterByTag(input);
   displayRecipeNames(filteredRecipes);
   if (filteredRecipes.length === 0) {
-    recipeSidebarList.innerHTML = `<p>No recipes found, try one of these tags: </p>`
+    hide(sideBarTitle)
+    recipeSidebarList.innerHTML = `<p class="tag-names">No recipes found, try one of these tags: </p> <br> <li> antipasti </li>
+    <br> <li>starter </li>
+    <br> <li>snack </li>
+    <br> <li>appetizer </li>
+    <br> <li>antipasto</li>
+    <br> <li>hor d'oeuvre</li>
+    <br> <li>lunch</li>
+    <br> <li>main course</li>
+    <br> <li>main dish</li>
+    <br> <li>dinner</li>
+    <br> <li>ide dish</li>
+    <br> <li>salad</li>
+    <br> <li>condiment</li>
+    <br> <li>dip</li>
+    <br> <li>spread</li>
+    <br> <li>sauce </li>`
   }
 }
 

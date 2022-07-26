@@ -51,6 +51,9 @@ h2 {
 }
 
 .side-bar-Recipe-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 200%;
   font-family: 'Raleway', sans-serif;
   margin: 0;
@@ -61,9 +64,28 @@ h2 {
   display: flex;
   flex-direction: column;
   font-family: 'Raleway', sans-serif;
-  text-align: center;
+  text-align: left;
   color: white;
   font-size: 80%;
+  padding-left: 1em;
+}
+
+.tag-names{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 200%;
+  font-family: 'Raleway', sans-serif;
+  margin: 0;
+  padding-top: 3em;
+  padding-bottom: 2em;
+}
+
+li {
+  list-style-type: circle;
+  padding-left:1em;
+  font-size: 14pt;
 }
 
 .p {
