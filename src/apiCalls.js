@@ -1,6 +1,6 @@
 export const apiCalls = {
     fetchData() {
-        const result = Promise.all(apiCalls.getAllData())
+        const result = Promise.all([apiCalls.getAllData('recipes'), apiCalls.getAllData('ingredients'), apiCalls.getAllData('users')])
             .then(responses => {
                 return responses
             });
