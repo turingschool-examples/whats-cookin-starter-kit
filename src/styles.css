@@ -410,6 +410,7 @@ h2 {
 .favorite-button-container {
   display: flex;
   flex-direction: row;
+  height: 70px;
 }
 
 .add-favorites-text {
