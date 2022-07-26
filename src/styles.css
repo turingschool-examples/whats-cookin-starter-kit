@@ -1,6 +1,8 @@
+
 * {
   margin: 0px;
   padding: 0px;
+  border: solid red 1px;
 }
 
 body {
@@ -268,6 +270,15 @@ div.grey-out-bg {
 .mega-card .mega-body {
   width: 80%;
 }
+
+/* ~~~PANTRY SECTION ~~~~~ */
+
+.pantry {
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
 
 .hidden {
   display: none;
