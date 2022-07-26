@@ -426,7 +426,13 @@ h2 {
   width: 100%;
   background-image: linear-gradient(black, rgb(63, 62, 62), black);
   color: white;
-  }
+}
+
+.remove-filters-button-fav {
+  background-color: black;
+  color: white;
+  margin-left: 3%;
+}
 
 .fav-container-lower-wrapper {
   display: flex;
