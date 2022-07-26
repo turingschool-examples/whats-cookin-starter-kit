@@ -1,5 +1,5 @@
 class Pantry {
-  constructor(pantry =[]) {
+  constructor() {
     this.pantry = pantry;
   }
 }
