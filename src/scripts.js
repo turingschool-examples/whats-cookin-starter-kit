@@ -47,12 +47,27 @@ const tagRadioBtn = document.querySelector('.tag-search');
 // ***** Event Listeners ***** //
 window.addEventListener('load', getAllData);
 recipeSidebarList.addEventListener('click', viewRecipe);
+recipeSidebarList.addEventListener('keypress', function(event) {
+  if (event.keyCode === 13) {
+    viewRecipe(event)
+  }
+});
 recipeIconContainer.addEventListener('click', viewRecipeFromIcon);
 favoriteRecipeImages.addEventListener('click', viewRecipeFromIcon);
 homeButton.addEventListener('click', showHomePage);
+homeButton.addEventListener('keypress', function(event) {
+  if (event.keyCode === 13) {
+    showHomePage()
+  }
+});
 searchButton.addEventListener('click', filterRecipe);
 favoriteSearchBtn.addEventListener('click', filterFavoriteRecipes);
 favoritePageBtn.addEventListener('click', showFavoritesPage);
+favoritePageBtn.addEventListener('keypress', function(event) {
+  if (event.keyCode === 13) {
+    showFavoritesPage()
+  }
+});
 addFavoriteBtn.addEventListener('click', addToFavorites);
 removeFavFiltersBtn.addEventListener('click', showFavoritesPage);
 removeFiltersBtn.addEventListener('click', displayAllNames);
@@ -126,7 +141,7 @@ function displayRecipeNames(recipes) {
   recipeSidebarList.innerHTML = '';
   const recipeNames = recipes.map(recipe => recipe.name);
   recipeNames.forEach(name => {
-    recipeSidebarList.innerHTML += `<p class="recipes-list">${name}</p>`;
+    recipeSidebarList.innerHTML += `<p class="recipes-list" tabindex="0" role='button'>${name}</p>`;
   });
 }
 
