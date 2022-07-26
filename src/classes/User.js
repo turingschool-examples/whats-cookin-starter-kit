@@ -10,8 +10,12 @@ class User {
         return this.recipesToCook.push( recipe )
     }
 
-    removeRecipeFromRecipesToCook( recipe ) {
-        return this.recipesToCook.splice( this.recipesToCook.indexOf( recipe.id ), 1 ) 
+    removeRecipeFromRecipesToCook( recipeId  ) {
+        this.recipesToCook.forEach((dish, index) => {
+            if (dish.id === parseFloat(recipeId)) {
+                this.recipesToCook.splice(index, 1)
+            }
+        })
     }
 
     filterRecipesToCookByTag( userInput ){
