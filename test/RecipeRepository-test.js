@@ -50,4 +50,13 @@ describe('RecipeRepository', () => {
     expect(nameResultsWithCapsAsArg[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
   })
 
+  it('should return a sad path message for Tags', () => {
+    const sadPathResultTag = recipeRepository.sadPathResponseTag('fooo')
+    expect(sadPathResultTag).to.equal('Sorry, this search returned no results.')
+  })
+
+  it('should return a sad path message for Names', () => {
+    const sadPathResultName = recipeRepository.sadPathResponseName('barr')
+    expect(sadPathResultName).to.equal('Sorry, this search returned no results.')
+  })
 })
