@@ -1,14 +1,11 @@
+// ###########  Imports  ###########
+
 import './styles.css';
 import {fetchData} from './apiCalls';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
-// import ingredientsData from './data/ingredients';
-// import recipeData from './data/recipes';
-// import usersData from './data/users';
-// import Ingredient from './classes/Ingredient';
-// import Recipe from './classes/Recipe';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
+
+// ###########  Query Selectors ###########
 
 const recipePicBoxes = document.querySelectorAll('.recipe-pic-box');
 const userWelcome = document.querySelector('.user-welcome');
@@ -36,15 +33,14 @@ const userSearchContainer1 = document.querySelector('.user-search-container');
 const userSearchContainer2 = document.querySelector('.user-search-container2');
 const form = document.querySelector('.form')
 
-
-// ###########  Global Variables  ###############
+// ###########  Global Variables  ###########
 
 let recipeRepo;
 let user;
 let usersData;
 let recipeData;
 
-//Promises
+// ###########  Promises  ###########
 function getPromiseData() {
   Promise.all( [fetchData('users'), fetchData('recipes'), fetchData('ingredients')]).then(data => {
     usersData = data[0].usersData;
@@ -56,7 +52,8 @@ function getPromiseData() {
   })
 }
 
-// window.addEventListener('load', welcomeUser);
+// ###########  Event Listeners  ###########
+
 window.addEventListener('load', getPromiseData);
 homeButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', populateAllRecipesView);
@@ -69,6 +66,8 @@ allRecipesContainer.addEventListener('click', populateChosenRecipe);
 saveRecipeButton.addEventListener('click', saveChosenRecipe);
 savedRecipesContainer.addEventListener('click', deleteRecipe);
 savedRecipesContainer.addEventListener('click', populateChosenRecipe);
+
+// ###########  On-Load Functions  ###########
 
 const pageNames = [
   'My Grandma Taught Me This,',
@@ -116,7 +115,7 @@ function populateRecipesInHomeView() {
   });
 }
 
-//functions to affect the all recipes view
+// ###########  All Recipes View Functions  ###########
 
 function populateAllRecipesView() {
   displayAllRecipesView()
@@ -129,7 +128,7 @@ function populateAllRecipesView() {
   })
 }
 
-//functions to affect the saved recipes view
+// ###########  Saved Recipes View Functions  ###########
 
 function populateSavedRecipesView() {
   displaySavedRecipesView()
@@ -145,7 +144,7 @@ function populateSavedRecipesView() {
 
 }
 
-//functions to populate the chosen recipe view
+// ###########  Chosen Recipe View Functions  ###########
 
 function populateChosenRecipe(event) {
   const recipeObjs = recipeRepo.convertRecipeObjects();
@@ -183,12 +182,13 @@ function returnRecipeIngredientsAndQuantities(recipe) {
   return allInfo;
 }
 
-//functions for saved reciped view search button
+// ###########  Saved Recipe View Search Functions  ###########
 
 function filterSaved() {
   if (filterByName2.checked) {
     showFilteredSavedNames(searchInput2.value)
-  } else {
+  } 
+  else {
     showFilteredSavedTags(searchInput2.value);
   }
   displayFilteredView();
@@ -225,12 +225,13 @@ function showFilteredSavedNames(name) {
   }
 }
 
-//functions for main search button
+// ###########  Main Search Functions  ###########
 
 function searchButtonAction() {
   if (filterByName.checked) {
     showFilteredNames(searchInput.value);
-  } else {
+  } 
+  else {
     showFilteredTags(searchInput.value);
   }
   displayFilteredView();
@@ -267,7 +268,7 @@ function showFilteredTags(tag) {
   }
 }
 
-//functions to affect displaying different views and hiding others
+// ###########  Show/Hide View Functions  ###########
 
 function hide(elements) {
   elements.forEach((element) => {
@@ -367,7 +368,7 @@ function displayFilteredView() {
   ])
 }
 
-//functions to save/remove a recipe
+// ###########  Save/Remove Recipe Functions  ###########
 
 function saveChosenRecipe() {
   saveRecipeButton.innerText = 'Recipe Saved!';

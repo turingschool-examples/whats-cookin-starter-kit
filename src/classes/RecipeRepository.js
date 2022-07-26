@@ -2,7 +2,6 @@
 import recipeData from '../data/recipes'
 import Recipe from '../classes/Recipe'
 
-
 class RecipeRepository {
  constructor(recipes) {
    this.recipeData = null || recipes;
