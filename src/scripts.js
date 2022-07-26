@@ -22,6 +22,7 @@ const toggleSeachOption = document.querySelector(".toggle-search-option");
 const searchButton = document.querySelector(".submit-search");
 const myRecipesButton = document.querySelector(".my-recipes-button");
 const homeButton = document.querySelector(".home-button");
+const myPantryButton = document.querySelector(".my-pantry");
 const keywordList = document.getElementById("keyword-list");
 const keywordSection = document.querySelector(".keyword-section");
 const closeIcon = document.querySelector(".close-icon");
@@ -32,17 +33,50 @@ toggleSeachOption.addEventListener("click", showKeywords);
 keywordList.addEventListener("click", keywordClicked);
 homeButton.addEventListener("click", displayAllRecipesView);
 searchButton.addEventListener("click", executeSearch);
+myPantryButton.addEventListener("click", displayUserPantry);
 myRecipesButton.addEventListener("click", displayUserRecipes);
 closeIcon.addEventListener("click", closeSpecificRecipe);
 saveIcon.addEventListener("click", specificRecipeClicked);
 resultCardsContainer.addEventListener("click", specificRecipeClicked);
+
+
+function convertPantryItemNames() {
+user.pantry.forEach((pantryItem) => {
+    ingredientsData.forEach((ingredient) => {
+      if (pantryItem.ingredient === ingredient.id) {
+       pantryItem.ingredient = ingredient.name
+      }
+    });
+})
+console.log(user.pantry)
+return user.pantry;
+}
+
+function displayUserPantry() {
+convertPantryItemNames();
+ resultCardsContainer.replaceChildren();
+  user.pantry.forEach((item) => {
+let foodItem = document.createElement("div");
+    // foodItem.classList.add("keyword");
+    // foodItem.type = "button";
+    foodItem.innerText = item.ingredient
+    resultCardsContainer.appendChild(foodItem);
+  });
+ 
+
+}
+
+
+
 
 function loadData() {
   Promise.all([users, recipe, ingredients]).then((data) => {
     usersData = data[0].usersData;
     recipeData = data[1].recipeData;
     ingredientsData = data[2].ingredientsData;
+    // console.log(ingredientsData)
     user = new User(usersData[Math.floor(Math.random() * 41)]);
+    // console.log(user)
     recipeRepo = new RecipeRepository();
     recipeRepo.importRecipesFromFile(recipeData, ingredientsData);
     displayAllRecipesView();
