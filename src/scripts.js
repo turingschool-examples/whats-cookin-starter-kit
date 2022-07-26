@@ -32,7 +32,6 @@ fetchData().then(responses => {
     recipeRepository.listRecipes();
     user = createUser();
 
-    
     displayRecipeList();
 
 });
@@ -177,7 +176,7 @@ function showRecipeInstructions(event) {
 function filterRecipeTag(event) {
     event.preventDefault();
 
-    const inputValue = recipeTagInput.value;
+    const inputValue = recipeTagInput.value.toLowerCase();
     const requestedRecipes = recipeRepository.findRecipeByTag(inputValue);
 
     recipeHeading.innerText = 'Filtered Recipes by Tag';
@@ -201,7 +200,19 @@ function filterRecipeTag(event) {
 function searchRecipeName(event) {
     event.preventDefault();
 
-    const inputValue = recipeNameInput.value;
+    const inputValue = recipeNameInput.value.split(' ').map(word => {
+    return word.split('').map((letter, index) => {
+        if (!index) {
+            letter = letter.toUpperCase()
+        } else {
+            letter = letter.toLowerCase()
+        }
+
+        return letter
+    }).join('');
+    
+   }).join(' ');
+
     const requestedRecipes = recipeRepository.findRecipeByName(inputValue);
 
     recipeHeading.innerText = 'Filtered Recipes by Name';
@@ -225,7 +236,7 @@ function searchRecipeName(event) {
  function filterFavoriteRecipesByTag(event) {
     event.preventDefault();
 
-    const inputValue = recipeFavoriteTagInput.value;
+    const inputValue = recipeFavoriteTagInput.value.toLowerCase();
     const requestedRecipes = user.filterRecipesToCookByTag(inputValue);
 
     recipeHeading.innerText = 'Filtered Favorite Recipes by Tag';
@@ -248,7 +259,19 @@ function searchRecipeName(event) {
  function searchFavRecipeListByName(event) {
    event.preventDefault();
 
-   const inputValue = recipeFavNameInput.value;
+   const inputValue = recipeFavNameInput.value.split(' ').map(word => {
+    return word.split('').map((letter, index) => {
+        if (!index) {
+            letter = letter.toUpperCase()
+        } else {
+            letter = letter.toLowerCase()
+        }
+
+        return letter
+    }).join('');
+    
+   }).join(' ');
+   
    const requestedRecipes = user.filterRecipesToCookByName(inputValue);
 
    recipeHeading.innerText = 'Filtered Favorite Recipes by Name';
