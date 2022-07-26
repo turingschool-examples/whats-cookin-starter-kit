@@ -7,6 +7,8 @@ import Users from '../src/classes/Users';
 import Recipe from '../src/classes/Recipe'
 import { fetchApiData } from './apiCalls';
 import Ingredient from './classes/Ingredient';
+import Pantry from './classes/Pantry';
+import { ingredientsData } from './data/ingredients';
 
 
 const getRandomUserId = () => {
@@ -23,6 +25,7 @@ const getRandomIngredient = () => {
 const recipePromise = fetchApiData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
 const userPromise = fetchApiData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users');
 const ingredientPromise = fetchApiData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients');
+// let pantry;
 let ourUser;
 let thisRecipe;
 let thisIngredient;
@@ -41,9 +44,10 @@ Promise.all([userPromise, ingredientPromise, recipePromise])
         thisRecipe = setRecipeData(value[2].recipeData[recipeID], thisIngredient)
         recipes = value[2].recipeData;
         ingredients = value[1].ingredientsData;
-        console.log(thisRecipe)
         showAllRecipes();
     })
+
+   
 
 // QuerySelectors
 const favoriteButton = document.querySelector('#favorite-button');
@@ -52,6 +56,7 @@ const userGreeting = document.querySelector("#userName");
 const recipeImage = document.querySelector('.card-image')
 const mainBox = document.querySelector('.main-box')
 const goHomeButton = document.getElementById('home-button')
+const pantryButton = document.querySelector('#pantry-button')
 const recipeCard = document.querySelector('.recipe-card')
 const ingredientCard = document.querySelector('.ingredient-card')
 let viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
@@ -59,11 +64,11 @@ const recipeCardWrapper = document.querySelector('.recipe-card-wrapper')
 const ingredientCardWrapper = document.querySelector('.ingredient-card-wrapper')
 const searchBox = document.querySelector('.search-box');
 const searchButton = document.querySelector('.search-submit');
+const pantryWrapper = document.querySelector('.pantry-wrapper');
 
 
 const addToCookbookButtonEventHandler = (buttons) => {
     recipeRepo = new RecipeRepository(recipes, ingredients);
-    //  viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
     buttons.forEach((button) => {
         button.addEventListener('click', (event) => {
             let recipeToAdd = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(event.target.id))
@@ -75,8 +80,9 @@ const addToCookbookButtonEventHandler = (buttons) => {
 // EventListeners
 
 goHomeButton.addEventListener('click', showAllRecipes)
-cookbookButton.addEventListener('click', showCookbookrecipes)
+cookbookButton.addEventListener('click', showCookbookRecipes)
 searchButton.addEventListener('click', searchRecipe)
+pantryButton.addEventListener('click', showPantry)
 
 function showAllHelper() {
     let letsMakeIt = document.querySelectorAll(".lets-make-it-button")
@@ -192,7 +198,7 @@ function searchRecipe(event) {
     }
 }
 
-function showCookbookrecipes(event) {
+function showCookbookRecipes(event) {
     displayRecipeBySearchResults(ourUser.recipesToCook);
     show(goHomeButton)
     cookbookIsActive = true;
@@ -238,9 +244,23 @@ function displayRecipeBySearchResults(recipes) {
     showAllHelper()
 }
 
+
+
 function showPantry() {
-    
-}
+    let pantry = new Pantry(ourUser.pantry)
+    pantry.attachNameToId(ingredientsData)
+    console.log(pantry.ingredients)
+    pantryWrapper.innerHTML = `<h2> ${ourUser.name.split(" ")[0]}'s Pantry </h2>`
+    pantry.ingredients.forEach((item) => {
+        pantryWrapper.innerHTML += `<div class="ingredients">
+        <ul> 
+        <p> name: ${item.name} </p>
+        <p> amount: ${item.amount} </p>
+        </ul>
+        </div>`
+    })
+    hide(recipeCardWrapper)
+};
 
 function show(element) {
     element.classList.remove('hidden');
@@ -252,13 +272,15 @@ function hide(element) {
 
 const userAttribute = (user) => {
     userGreeting.innerHTML = `Welcome ${user.name.split(" ")[0]}!`
-}
+};
 const setUserData = (someData) => {
     return new Users(someData);
 };
+
 const setRecipeData = (someData) => {
     return new Recipe(someData, ingredients)
-}
+};
+
 const setIngredientData = (someData) => {
     return new Ingredient(someData)
-}
+};
