@@ -66,9 +66,18 @@ function createUser() {
 function recipeDisplayHandler(event) {
     if (event.target.getAttribute("data-recipeId")) {
         showRecipeInstructions(event);
-    } else if (event.target.getAttribute("data-favoriteRecipe")) {
+    } else if (event.target.getAttribute("data-favoriteRecipe") && event.target.innerHTML === 'Favorite') {
         addToFavorite(event);
+        event.target.classList.add('hidden');
+    } else if (parseInt(event.target.getAttribute('data-favoriteRecipe')) && event.target.innerHTML === 'Remove') {
+        removeFromFavorite(event);
+        showFavorites();
     }
+}
+
+function removeFromFavorite(event) {
+    const recipeId = parseInt(event.target.getAttribute('data-favoriteRecipe'));
+    user.removeRecipesToCook(recipeId);
 }
 
 function addToFavorite(event) {
@@ -88,11 +97,12 @@ function showFavorites() {
     recipeDisplay.innerHTML = "";
     user.recipesToCook.forEach((recipe) => {
         recipeDisplay.innerHTML += (`
-            <div class="recipe-image-wrapper">
+            <div class="recipe-image-wrapper" id=${recipe.id}>
                 <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="favorite" src=${recipe.image} alt=${recipe.name}>
                 <p class="recipe-name">${recipe.name}</p>
+                <button class="favorite-button" data-favoriteRecipe=${recipe.id} id="favoriteButton">Remove</button>
             </div>
-        `)
+        `)   
     });
 };
 
@@ -104,12 +114,16 @@ function displayRecipeList() {
     recipeDisplay.innerHTML = "";
     recipeRepository.recipeList.forEach((recipe) => {
     recipeDisplay.innerHTML += (`
-        <div class="recipe-image-wrapper">
+        <div class="recipe-image-wrapper" id=${recipe.id}>
             <img class="recipe-image" data-recipeId=${recipe.id} src=${recipe.image} alt=${recipe.name}>
             <p class="recipe-name">${recipe.name}</p>
-            <button class="favorite-button" data-favoriteRecipe=${recipe.id} id="favoriteButton">Favorite</button>
         </div>
       `)
+
+      if (!user.recipesToCook.includes(recipe)) {
+            document.getElementById(recipe.id).innerHTML += `<button class="favorite-button" data-favoriteRecipe=${recipe.id} id="favoriteButton">Favorite</button>`;
+        }
+
    });
 };
 
@@ -140,7 +154,7 @@ function showRecipeInstructions(event) {
     recipeDisplay.innerHTML = (`
         <div class="selected-recipe-display">
             <img class="selected-recipe-image" src=${selectedRecipe.image} alt=${selectedRecipe.name}>
-            <button class="favorite-button" id="favoriteButton" data-favoriteRecipe=${selectedRecipe.id}>Favorite</button>
+            <div id=${selectedRecipe.id}></div>
             <div class="instruction-design-div">
                 <div class="instructions-display">
                 <ol id="recipeInstructions"></ol>
@@ -153,6 +167,10 @@ function showRecipeInstructions(event) {
             </div>
         </div>
     `);
+
+    if (!user.recipesToCook.includes(selectedRecipe)) {
+            document.getElementById(selectedRecipe.id).innerHTML += `<button class="favorite-button" id="favoriteButton" data-favoriteRecipe=${selectedRecipe.id}>Favorite</button>`
+        }
 
     selectedRecipe.instructions.forEach((instruction) => {
         document.querySelector("#recipeInstructions").innerHTML += (`
