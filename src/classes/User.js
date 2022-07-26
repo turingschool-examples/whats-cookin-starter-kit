@@ -18,20 +18,22 @@ class User {
     })
   }
 
-  listRecipeToCookByTag(tag) {
+  listRecipeToCookByTag(tags) {
+    const toUpper = tags.toUpperCase();
     const filterRecipeByTag = this.recipesToCook.filter(recipe => {
-      const toUpper = tag.toUpperCase();
       let tagToUpper;
+      let capTags = []
       recipe.tags.forEach(tag => {
         tagToUpper = tag.toUpperCase();
+        capTags.push(tagToUpper)
       })
-      if (toUpper === tagToUpper) {
+      if (capTags.includes(toUpper)) {
         return true;
         }
       });
       return filterRecipeByTag;
     }
-      
+
   listRecipebyToCookName(name) {
     const filterRecipeByName = this.recipesToCook.filter(recipe => {
       const toUpper = name.toUpperCase();

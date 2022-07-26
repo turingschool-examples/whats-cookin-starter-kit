@@ -12,18 +12,20 @@ class RecipeRepository {
     return recipeObjs;
   }
 
-  listRecipeTags(tag) {
+  listRecipeTags(tags) {
+    const toUpper = tags.toUpperCase();
     const filteredByTag = this.recipeData.filter(recipe => {
-      const toUpper = tag.toUpperCase();
       let tagToUpper;
+      let capTags = []
       recipe.tags.forEach(tag => {
         tagToUpper = tag.toUpperCase();
+        capTags.push(tagToUpper);
       })
-      if (toUpper === tagToUpper) {
+      if (capTags.includes(toUpper)) {
         return true;
         }
       });
-      return filteredByTag;
+    return filteredByTag;
   }
 
   listRecipeNames(name) {
