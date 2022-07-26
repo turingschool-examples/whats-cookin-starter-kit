@@ -39,6 +39,7 @@ const favoritePageBtn = document.querySelector('.fav-img');
 const searchButton = document.querySelector('.search-button');
 const favoriteSearchBtn = document.querySelector('.favorite-search-button');
 const addFavoriteBtn = document.querySelector('.add-favorite-button');
+const addToFavoritesText = document.querySelector('.add-favorites-text')
 const userWelcomeMessage = document.querySelector('.user-welcome-message');
 const nameRadioBtn = document.querySelector('.name-search');
 const removeFiltersBtn = document.querySelector('.remove-filters-button');
@@ -205,6 +206,7 @@ function viewRecipesHelperFunction() {
   displayIngredientQuantities();
   displayTotalCostOfAllIngredients();
   displaySelectedRecipeImg();
+  toggleFavoritesButton();
 }
 
 function displaySelectedRecipeName() {
@@ -274,6 +276,17 @@ function filterRecipeByName(name) {
 
 function addToFavorites() {
   user.addRecipesToCook(selectedRecipe);
+  toggleFavoritesButton();
+}
+
+function toggleFavoritesButton() {
+  if (user.recipesToCook.includes(selectedRecipe)) {
+    hide(addFavoriteBtn);
+    addToFavoritesText.innerText = 'Favorite'
+  } else {
+    show(addFavoriteBtn);
+    addToFavoritesText.innerText = 'Add to Favorites'
+  }
 }
 
 function filterFavoriteRecipes(event) {
