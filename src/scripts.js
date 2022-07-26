@@ -154,7 +154,7 @@ function showRecipeInstructions(event) {
     recipeDisplay.innerHTML = (`
         <div class="selected-recipe-display">
             <img class="selected-recipe-image" src=${selectedRecipe.image} alt=${selectedRecipe.name}>
-            <button class="favorite-button" id="favoriteButton" data-favoriteRecipe=${selectedRecipe.id}>Favorite</button>
+            <div id=${selectedRecipe.id}></div>
             <div class="instruction-design-div">
                 <div class="instructions-display">
                 <ol id="recipeInstructions"></ol>
@@ -167,6 +167,10 @@ function showRecipeInstructions(event) {
             </div>
         </div>
     `);
+
+    if (!user.recipesToCook.includes(selectedRecipe)) {
+            document.getElementById(selectedRecipe.id).innerHTML += `<button class="favorite-button" id="favoriteButton" data-favoriteRecipe=${selectedRecipe.id}>Favorite</button>`
+        }
 
     selectedRecipe.instructions.forEach((instruction) => {
         document.querySelector("#recipeInstructions").innerHTML += (`
