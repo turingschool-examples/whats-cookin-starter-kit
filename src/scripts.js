@@ -33,7 +33,7 @@ toggleSeachOption.addEventListener("click", showKeywords);
 keywordList.addEventListener("click", keywordClicked);
 homeButton.addEventListener("click", displayAllRecipesView);
 searchButton.addEventListener("click", executeSearch);
-myPantryButton.addEventListener("click", displayUserPantry);
+// myPantryButton.addEventListener("click", displayUserPantry);
 myRecipesButton.addEventListener("click", displayUserRecipes);
 closeIcon.addEventListener("click", closeSpecificRecipe);
 saveIcon.addEventListener("click", specificRecipeClicked);
