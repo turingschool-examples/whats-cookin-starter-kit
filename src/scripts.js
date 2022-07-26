@@ -50,15 +50,20 @@ window.addEventListener('load', getAllData);
 recipeSidebarList.addEventListener('click', viewRecipe);
 recipeSidebarList.addEventListener('keypress', function(event) {
   if (event.keyCode === 13) {
-    viewRecipe(event)
+    viewRecipe(event);
   }
 });
 recipeIconContainer.addEventListener('click', viewRecipeFromIcon);
 favoriteRecipeImages.addEventListener('click', viewRecipeFromIcon);
+favoriteRecipeImages.addEventListener('keypress', function(event) {
+  if (event.keyCode === 13) {
+    viewRecipeFromIcon(event);
+  }
+});
 homeButton.addEventListener('click', showHomePage);
 homeButton.addEventListener('keypress', function(event) {
   if (event.keyCode === 13) {
-    showHomePage()
+    showHomePage();
   }
 });
 searchButton.addEventListener('click', filterRecipe);
@@ -66,7 +71,7 @@ favoriteSearchBtn.addEventListener('click', filterFavoriteRecipes);
 favoritePageBtn.addEventListener('click', showFavoritesPage);
 favoritePageBtn.addEventListener('keypress', function(event) {
   if (event.keyCode === 13) {
-    showFavoritesPage()
+    showFavoritesPage();
   }
 });
 addFavoriteBtn.addEventListener('click', addToFavorites);
@@ -189,7 +194,7 @@ function viewRecipeFromIcon(event) {
   viewRecipesHelperFunction();
   }
   if(event.target.classList.contains('remove-from-favorites-btn')) {
-    removeFromFavorites(event)
+    removeFromFavorites(event);
   }
 }
 
@@ -263,7 +268,7 @@ function filterRecipeByTag(tag) {
   let filteredRecipes = recipeRepository.filterByTag(input);
   displayRecipeNames(filteredRecipes);
   if (filteredRecipes.length === 0) {
-    recipeSidebarList.innerHTML = `<p>No recipes found, try one of these tags: </p>`
+    recipeSidebarList.innerHTML = `<p>No recipes found, try one of these tags: </p>`;
   }
 }
 
@@ -276,7 +281,7 @@ function filterRecipeByName(name) {
   changeToUpperCase(filteredRecipes);
   displayRecipeNames(filteredRecipes);
   if (filteredRecipes.length === 0) {
-    recipeSidebarList.innerHTML = `<p>No recipes found, try a different name/keyword.</p>`
+    recipeSidebarList.innerHTML = `<p>No recipes found, try a different name/keyword.</p>`;
   }
 }
 
@@ -288,10 +293,10 @@ function addToFavorites() {
 function toggleFavoritesButton() {
   if (user.recipesToCook.includes(selectedRecipe)) {
     hide(addFavoriteBtn);
-    addToFavoritesText.innerText = 'Favorite'
+    addToFavoritesText.innerText = 'Favorite';
   } else {
     show(addFavoriteBtn);
-    addToFavoritesText.innerText = 'Add to Favorites'
+    addToFavoritesText.innerText = 'Add to Favorites';
   }
 }
 
@@ -309,7 +314,7 @@ function filterFavoriteRecipesByTag(tag) {
   let filteredRecipes = user.filterSavedRecipesByTag(input);
   showFavoriteRecipeImages(filteredRecipes);
   if (filteredRecipes.length === 0) {
-    favoriteRecipeImages.innerHTML = `<p>No recipes found, try a different tag.</p>`
+    favoriteRecipeImages.innerHTML = `<p>No recipes found, try a different tag.</p>`;
   }
 }
 
@@ -322,7 +327,7 @@ function filterFavoriteRecipesByName(name) {
   changeToUpperCase(filteredRecipes);
   showFavoriteRecipeImages(filteredRecipes);
   if (filteredRecipes.length === 0) {
-    favoriteRecipeImages.innerHTML = `<p>No recipes found, try a different name/keyword.</p>`
+    favoriteRecipeImages.innerHTML = `<p>No recipes found, try a different name/keyword.</p>`;
   }
 }
 
@@ -331,18 +336,18 @@ function showFavoriteRecipeImages(recipes) {
   favoriteRecipeImages.innerHTML = '';
   recipes.forEach(recipe => {
   favoriteRecipeImages.innerHTML +=
-  `<section class = "favorite-recipe-icons">
+  `<section class="favorite-recipe-icons">
   <p class="icon-text">${recipe.name}</p>
-  <img class = "favorite-recipe-images icon" src = ${recipe.image} id = ${recipe.id}>
-  <button class="remove-from-favorites-btn" id = ${recipe.id}>delete</button>
+  <img class="favorite-recipe-images icon" src=${recipe.image} id=${recipe.id} tabindex=0>
+  <button class="remove-from-favorites-btn" id=${recipe.id}>delete</button>
   </section>`;
   });
 }
 
 function removeFromFavorites(event) {
-  let recipe = event.target
+  let recipe = event.target;
   if(recipe.classList.contains("remove-from-favorites-btn")) {
     user.removeRecipesToCook(parseInt(recipe.id));
   }
-  showFavoriteRecipeImages(user.recipesToCook)
+  showFavoriteRecipeImages(user.recipesToCook);
 }
