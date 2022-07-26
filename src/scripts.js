@@ -37,7 +37,7 @@ Promise.all([userPromise, ingredientPromise, recipePromise])
     .then((value) => {
         ourUser = setUserData(value[0].usersData[userId])
         userAttribute(ourUser)
-        thisIngredient = setIngredientdata(value[1].ingredientsData[ingredientId])
+        thisIngredient = setIngredientData(value[1].ingredientsData[ingredientId])
         thisRecipe = setRecipeData(value[2].recipeData[recipeID], thisIngredient)
         recipes = value[2].recipeData;
         ingredients = value[1].ingredientsData;
@@ -75,6 +75,8 @@ const addToCookbookButtonEventHandler = (buttons) => {
 // EventListeners
 
 goHomeButton.addEventListener('click', showAllRecipes)
+cookbookButton.addEventListener('click', showCookbookrecipes)
+searchButton.addEventListener('click', searchRecipe)
 
 function showAllHelper() {
     let letsMakeIt = document.querySelectorAll(".lets-make-it-button")
@@ -131,7 +133,6 @@ INSTRUCTIONS
   <p><span>${instruction.number}. </span>${instruction.instruction}</p>
   </div>`
     });
-    // addToCookbookButtonEventHandler('add-to-cookbook', newRecipe);
     const addToCookbookButton = document.querySelector('.add-to-cookbook-button')
     addToCookbookButton.addEventListener('click', addSingleRecipeToCookbook)
     hide(recipeCardWrapper)
@@ -199,6 +200,7 @@ function showCookbookrecipes(event) {
 
 function removeClickHandler(event) {
     const idToRemove = parseInt(event.target.getAttribute('data-recipeId'), 10);
+    // if (NaN) just return --> instead of 10 at end of 202
     const recipe = ourUser.recipesToCook.find(recipe => recipe.id === idToRemove);
     ourUser.removeRecipesToCook(recipe);
     displayRecipeBySearchResults(ourUser.recipesToCook);
@@ -235,6 +237,11 @@ function displayRecipeBySearchResults(recipes) {
     addToCookbookButtonEventHandler(addToCookButtons);
     showAllHelper()
 }
+
+function showPantry() {
+    
+}
+
 function show(element) {
     element.classList.remove('hidden');
 };
@@ -242,9 +249,6 @@ function show(element) {
 function hide(element) {
     element.classList.add('hidden');
 };
-cookbookButton.addEventListener('click', showCookbookrecipes)
-searchButton.addEventListener('click', searchRecipe)
-
 
 const userAttribute = (user) => {
     userGreeting.innerHTML = `Welcome ${user.name.split(" ")[0]}!`
@@ -255,6 +259,6 @@ const setUserData = (someData) => {
 const setRecipeData = (someData) => {
     return new Recipe(someData, ingredients)
 }
-const setIngredientdata = (someData) => {
+const setIngredientData = (someData) => {
     return new Ingredient(someData)
 }
