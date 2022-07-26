@@ -14,12 +14,27 @@ class RecipeRepository {
   }
 
   listRecipeTags(tag) {
-    const filteredByTag = this.recipeData.filter(recipe => recipe.tags.includes(tag));
+    const filteredByTag = this.recipeData.filter(recipe => {
+      const toUpper = tag.toUpperCase();
+      let tagToUpper;
+      recipe.tags.forEach(tag => {
+        tagToUpper = tag.toUpperCase();
+      })
+      if (toUpper === tagToUpper) {
+        return true;
+        }
+      });
       return filteredByTag;
   }
 
   listRecipeNames(name) {
-  const filteredByName = this.recipeData.filter(recipe => recipe.name.includes(name));
+  const filteredByName = this.recipeData.filter(recipe => {
+    const toUpper = name.toUpperCase();
+    const nameToUpper = recipe.name.toUpperCase();
+      if (toUpper === nameToUpper) {
+        return true;
+      }
+  });
     return filteredByName;
   }
 }
