@@ -111,7 +111,7 @@ function welcomeUser() {
 function populateRecipesInHomeView() {
   recipePicBoxes.forEach(image  => {
     var randomRecipe = getRandomRecipe()
-    image.innerHTML += `<img class='recipe-image' id='${randomRecipe.id}' src='${randomRecipe.image}'>
+    image.innerHTML += `<img class='recipe-image' id='${randomRecipe.id}' src='${randomRecipe.image}' alt='${randomRecipe.name}'>
     <p class='recipe-label'>${randomRecipe.name}</p>`;
   });
 }
@@ -124,7 +124,7 @@ function populateAllRecipesView() {
 
   recipeRepo.recipeData.forEach((recipe) => {
     allRecipesContainer.innerHTML += `<img class='all-recipes-pic-box'
-    id='${recipe.id}' src='${recipe.image}'>
+    id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
     <p class='recipe-label'>${recipe.name}</p>`;
   })
 }
@@ -167,8 +167,8 @@ function assignChosenRecipeProperties(recipe) {
   cookingInstructions.innerText= `Recipe Instructions:
   ${recipe.returnRecipeInstructions()}`;
   recipeViewPicBox.innerHTML = '';
-  recipeViewPicBox.innerHTML += `<img class='recipe-view-pic' src='${recipe.image}'>
-  <img class='recipe-view-pic' src='https://us.123rf.com/450wm/deagreez/deagreez1910/deagreez191008478/133027063-portrait-of-sad-upset-girl-hold-hand-feel-hungry-have-stomach-ache-want-eat-more-unhealthy-dieting-c.jpg?ver=6'>`
+  recipeViewPicBox.innerHTML += `<img class='recipe-view-pic' src='${recipe.image}' alt='${recipe.name}'>
+  <img class='recipe-view-pic' src='https://us.123rf.com/450wm/deagreez/deagreez1910/deagreez191008478/133027063-portrait-of-sad-upset-girl-hold-hand-feel-hungry-have-stomach-ache-want-eat-more-unhealthy-dieting-c.jpg?ver=6' alt='Hungry woman holding an empty plate, feeling hungry'>`
 }
 
 
