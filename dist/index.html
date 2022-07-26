@@ -44,29 +44,13 @@
 
           <section class="results center">
             <h1 class="results-header">All Recipes</h1>
-            <section class="results-grid-container hidden">
+            <section class="results-grid-container">
             </section>
 
 
 
 
-            <section class="pantry">
-                <section class="pantry-item-name">
-                  Ingredient
-
-                </section>
-                <section class="pantry-quantity">
-                  <input type="number"
-                  placeholder="0">
-
-                </section>
-                <section class="pantry-unit-type">
-                  Teaspoon
-
-                </section>
-                <section class="update-user-pantry">
-                  <button class="update-pantry-button" type="button">Submit</button>
-                </section>
+            <section class="pantry hidden">
             </section>
 
 
@@ -129,5 +113,22 @@
       <button class="favorite-button">❤️</button>
     </section>
   </article>
+
+  <section class="pantry-item-card-template hidden">
+    <section class="pantry-item-name">
+      Ingredient
+    </section>
+    <section class="pantry-quantity">
+      <input type="number"
+      placeholder="0">
+    </section>
+    <section class="pantry-unit-type">
+      Unit(s)
+    </section>
+    <section class="update-user-pantry">
+      <button class="update-pantry-button" type="button">Submit</button>
+    </section>
+  </section>  
+
   <script src="bundle.js"></script>
 </html>
