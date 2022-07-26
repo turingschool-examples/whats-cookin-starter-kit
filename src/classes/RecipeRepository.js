@@ -27,6 +27,13 @@ class RecipeRepository {
       });
     return filteredByTag;
   }
+  
+    sadPathResponseTag(tags) {
+      let result = this.listRecipeTags(tags);
+      if (result.length === 0) {
+        return 'Sorry, this search returned no results.'
+      }
+    }
 
   listRecipeNames(name) {
   const filteredByName = this.recipeData.filter(recipe => {
@@ -37,6 +44,13 @@ class RecipeRepository {
       }
   });
     return filteredByName;
+  }
+
+  sadPathResponseName(name) {
+    let result = this.listRecipeNames(name);
+    if (result.length === 0) {
+      return 'Sorry, this search returned no results.'
+    }
   }
 }
 

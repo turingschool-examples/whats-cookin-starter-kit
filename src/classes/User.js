@@ -34,6 +34,13 @@ class User {
       return filterRecipeByTag;
     }
 
+    sadPathResponseTag(tags) {
+      let result = this.listRecipeToCookByTag(tags);
+      if (result.length === 0) {
+        return 'Sorry, this search returned no results.'
+      }
+    }
+
   listRecipebyToCookName(name) {
     const filterRecipeByName = this.recipesToCook.filter(recipe => {
       const toUpper = name.toUpperCase();
@@ -43,6 +50,13 @@ class User {
         }
     });
     return filterRecipeByName;
+  }
+
+  sadPathResponseName(name) {
+    let result = this.listRecipebyToCookName(name);
+    if (result.length === 0) {
+      return 'Sorry, this search returned no results.'
+    }
   }
 };
 

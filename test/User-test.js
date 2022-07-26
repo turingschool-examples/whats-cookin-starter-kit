@@ -165,4 +165,14 @@ describe('User', () => {
       user.addRecipeToCook(recipeData[0]);
       expect(user.listRecipebyToCookName("Dirty Steve's ORIGINAL Wing Sauce")[0].name).to.deep.equal("Dirty Steve's Original Wing Sauce");
     })
+
+    it('should return a sad path message for Tags', () => {
+      const sadPathResultTag = user.sadPathResponseTag('fooo')
+      expect(sadPathResultTag).to.equal('Sorry, this search returned no results.')
+    })
+
+    it('should return a sad path message for Names', () => {
+      const sadPathResultName = user.sadPathResponseName('barr')
+      expect(sadPathResultName).to.equal('Sorry, this search returned no results.')
+    })
 });
