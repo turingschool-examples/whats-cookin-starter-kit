@@ -121,7 +121,7 @@ function displayRecipeList() {
       `)
 
       if (!user.recipesToCook.includes(recipe)) {
-            document.getElementById(recipe.id).innerHTML += `<button class="favorite-button" data-favoriteRecipe=${recipe.id} id="favoriteButton">Favorite</button>`
+            document.getElementById(recipe.id).innerHTML += `<button class="favorite-button" data-favoriteRecipe=${recipe.id} id="favoriteButton">Favorite</button>`;
         }
 
    });
