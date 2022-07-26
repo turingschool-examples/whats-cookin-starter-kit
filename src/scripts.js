@@ -18,6 +18,9 @@ const savedRecipesButton = document.getElementById('savedRecipesButton');
 const searchButton = document.getElementById('searchButton')
 const searchButton2 = document.getElementById('searchButton2');
 const saveRecipeButton = document.getElementById('saveRecipeButton');
+const deleteRecipeButton = document.getElementById('deleteRecipeButton');
+const savedConfirmation = document.querySelector('big-box-saved-confirmation');
+const buttonInstructions = document.querySelector('big-box-button-instructions');
 const searchInput = document.querySelector('.search-input');
 const searchInput2 = document.querySelector('.search-input2');
 const homeViewContainer = document.querySelector('.home-view-container');
@@ -67,6 +70,7 @@ searchButton.addEventListener('click', searchButtonAction);
 searchButton2.addEventListener('click', filterSaved);
 allRecipesContainer.addEventListener('click', populateChosenRecipe);
 saveRecipeButton.addEventListener('click', saveChosenRecipe);
+// deleteRecipeButton.addEventListener('click', deleteChosenRecipe);
 savedRecipesContainer.addEventListener('click', deleteRecipe);
 savedRecipesContainer.addEventListener('click', populateChosenRecipe);
 
@@ -353,8 +357,11 @@ function displayFilteredView() {
 
 //functions to save/remove a recipe
 
+
 function saveChosenRecipe() {
-  saveRecipeButton.innerText = 'Recipe Saved!';
+  saveRecipeButton.innerText = 'RECIPE SAVED!'
+  // savedConfirmation.innerText = 'RECIPE SAVED!'
+  // buttonInstructions.innerText = 'Click this button to remove this recipe from your saved recipes page'
   recipeData.forEach((recipe) => {
     if (recipeName.innerText === recipe.name && !user.recipesToCook.includes(recipe)) {
       user.addRecipeToCook(recipe)}

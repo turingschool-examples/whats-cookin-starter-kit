@@ -208,6 +208,14 @@ button:hover {
   text-align: center;
 }
 
+.big-box-heading {
+  color: black;
+}
+
+.big-box-button-instructions {
+  color: black;
+}
+
 .save-recipe-button-container {
   height: 8%;
   display: flex;
