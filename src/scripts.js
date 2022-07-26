@@ -36,7 +36,6 @@ fetchData().then(responses => {
     displayRecipeList();
 
 });
-
 recipeDisplay.addEventListener('click', recipeDisplayHandler);
 homeButton.addEventListener('click', goHome);
 filterForm.addEventListener('submit', filterRecipeTag);
@@ -45,12 +44,16 @@ favoriteButton.addEventListener('click', showFavorites);
 filterFavoriteForm.addEventListener('submit', filterFavoriteRecipesByTag);
 favSearchForm.addEventListener('submit', searchFavRecipeListByName);
 
-function hideOn(element) {
-    element.classList.add('hidden')
+function hideOn(elements) {
+    elements.forEach((element) => {
+        element.classList.add('hidden')
+    })
 }
 
-function hideOff(element) {
-    element.classList.remove('hidden')
+function hideOff(elements) {
+    elements.forEach((element) => {
+        element.classList.remove('hidden')
+ })
 }
 
 
@@ -76,12 +79,9 @@ function addToFavorite(event) {
 }
 
 function showFavorites() {
-    hideOn(searchForm);
-    hideOn(filterForm);
-    hideOn(favoriteButton);
-    hideOff(filterFavoriteForm);
-    hideOff(favSearchForm);
-    hideOff(homeButton);
+    hideOn([searchForm, filterForm, favoriteButton]);
+    hideOff([filterFavoriteForm, favSearchForm, homeButton]);
+  
     
     homeButton.classList.remove('hidden');
     homeButton.classList.add('favorite');
@@ -98,12 +98,9 @@ function showFavorites() {
 };
 
 function displayRecipeList() {
-    hideOff(searchForm);
-    hideOff(filterForm);
-    hideOff(favoriteButton);
-    hideOn(homeButton);
-    hideOn(filterFavoriteForm);
-    hideOn(favSearchForm);
+    hideOff([searchForm, filterForm, favoriteButton]);
+    hideOn([homeButton, filterFavoriteForm, favSearchForm]);
+
 
     recipeDisplay.innerHTML = "";
     recipeRepository.recipeList.forEach((recipe) => {
@@ -118,7 +115,7 @@ function displayRecipeList() {
 };
 
 function goHome() {
-    hideOn(homeButton);
+    hideOn([homeButton]);
 
     recipeHeading.innerText = 'All Recipes';
     recipeDisplay.innerHTML = "";
@@ -128,12 +125,9 @@ function goHome() {
 }
 
 function showRecipeInstructions(event) {
-    hideOn(searchForm);
-    hideOn(filterForm);
-    hideOn(filterFavoriteForm);
-    hideOn(favSearchForm);
-    hideOff(favoriteButton);
-    hideOff(homeButton);
+    hideOn([searchForm, filterForm, filterFavoriteForm, favSearchForm]);
+    hideOff([favoriteButton, homeButton]);
+ 
 
     const recipeId = parseInt(event.target.getAttribute("data-recipeId"));
     const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === recipeId);
