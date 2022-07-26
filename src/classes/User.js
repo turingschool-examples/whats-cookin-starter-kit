@@ -19,13 +19,11 @@ class User {
   }
 
   listRecipeToCookByTag(tag) {
-    const filterRecipeByTag = this.recipesToCook.filter(recipe => recipe.tags.includes(tag));
-      return filterRecipeByTag;
+    return this.recipesToCook.filter(recipe => recipe.tags.includes(tag));
     }
 
   listRecipebyToCookName(name) {
-    const filterRecipeByName = this.recipesToCook.filter(recipe => recipe.name.includes(name));
-      return filterRecipeByName;
+    return this.recipesToCook.filter(recipe => recipe.name.includes(name));
     }
 };
 
