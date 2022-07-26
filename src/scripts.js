@@ -260,6 +260,9 @@ function filterRecipeByTag(tag) {
   let input = tag.toLowerCase();
   let filteredRecipes = recipeRepository.filterByTag(input);
   displayRecipeNames(filteredRecipes);
+  if (filteredRecipes.length === 0) {
+    recipeSidebarList.innerHTML = `<p>No recipes found, try one of these tags: </p>`
+  }
 }
 
 function filterRecipeByName(name) {
@@ -270,6 +273,9 @@ function filterRecipeByName(name) {
   let filteredRecipes = recipeRepository.filterByName(input);
   changeToUpperCase(filteredRecipes);
   displayRecipeNames(filteredRecipes);
+  if (filteredRecipes.length === 0) {
+    recipeSidebarList.innerHTML = `<p>No recipes found, try a different name/keyword.</p>`
+  }
 }
 
 function addToFavorites() {
@@ -289,6 +295,9 @@ function filterFavoriteRecipesByTag(tag) {
   let input = tag.toLowerCase();
   let filteredRecipes = user.filterSavedRecipesByTag(input);
   showFavoriteRecipeImages(filteredRecipes);
+  if (filteredRecipes.length === 0) {
+    favoriteRecipeImages.innerHTML = `<p>No recipes found, try a different tag.</p>`
+  }
 }
 
 function filterFavoriteRecipesByName(name) {
@@ -299,6 +308,9 @@ function filterFavoriteRecipesByName(name) {
   let filteredRecipes = user.filterSavedRecipesByName(input);
   changeToUpperCase(filteredRecipes);
   showFavoriteRecipeImages(filteredRecipes);
+  if (filteredRecipes.length === 0) {
+    favoriteRecipeImages.innerHTML = `<p>No recipes found, try a different name/keyword.</p>`
+  }
 }
 
 function showFavoriteRecipeImages(recipes) {
