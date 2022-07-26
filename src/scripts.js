@@ -236,6 +236,7 @@ function showCookingProfile( e ) {
             </div>
             </section>`
         } ).join( '' );
+        console.log("before deletion/view array", currentUser.recipesToCook)
         return recipeContainer.innerHTML = result;
     }
     if( e.target.innerText == 'Return Home' ){
@@ -245,14 +246,25 @@ function showCookingProfile( e ) {
 }
 
 
-function deleteRecipeFromRecipesToCook( e ) { 
-    if( e.target.classList.contains( "remove-button" ) ) {
-        newRecipe.recipes.find( removeDish => {
-            e.target.closest( 'section' ).remove( );
-            return currentUser.removeRecipeFromRecipesToCook( removeDish.id );
-        } )  
-    };
-    return currentUser.recipesToCook;
+
+// function deleteRecipeFromRecipesToCook( e ) { 
+//     if( e.target.classList.contains( "remove-button" ) ) {
+//         newRecipe.recipes.forEach( removeDish => {
+//             ;
+//             return currentUser.removeRecipeFromRecipesToCook( removeDish );
+//         } )  
+//         // console.log("outside function",currentUser.recipesToCook)
+//     };
+//     return currentUser.recipesToCook;
+// }
+
+function deleteRecipeFromRecipesToCook(e){
+    if (e.target.classList.contains( "remove-button" )) {
+        e.target.closest( 'section' ).remove( )
+        currentUser.removeRecipeFromRecipesToCook(e.target.id)
+    }
+    console.log(currentUser.recipesToCook)
+    return currentUser.recipesToCook
 }
 
 function returnHome(  ) {
