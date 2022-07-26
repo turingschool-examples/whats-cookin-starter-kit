@@ -7,9 +7,9 @@ describe('User', () => {
     let usersData2;
     let user2;
     let recipeData;
-    
+
     beforeEach(() => {
-      usersData = 
+      usersData =
         {
           "name": "Saige O'Kon",
           "id": 1,
@@ -28,8 +28,8 @@ describe('User', () => {
             }
           ]
         }
-      
-      usersData2 = 
+
+      usersData2 =
         {
            "name": "Ephraim Goyette",
            "id": 2,
@@ -48,7 +48,7 @@ describe('User', () => {
         }
       ]
     }
-      
+
     recipeData = [
       {
         "id": 595736,
@@ -148,14 +148,21 @@ describe('User', () => {
       expect(user.listRecipeToCookByTag("sauce")[0].tags[0]).to.deep.equal("sauce")
     });
 
+    it('Should filter recipes by tag regardless of caps usage', () => {
+      expect(recipeData[0].tags[0]).to.deep.equal("sauce");
+      user.addRecipeToCook(recipeData[0]);
+      expect(user.listRecipeToCookByTag("SAUCE")[0].tags[0]).to.deep.equal("sauce")
+    });
+
     it('should filter recipes in recipesToCook by name', () => {
       expect(recipeData[0].name).to.deep.equal("Dirty Steve's Original Wing Sauce");
       user.addRecipeToCook(recipeData[0]);
       expect(user.listRecipebyToCookName("Dirty Steve's Original Wing Sauce")[0].name).to.deep.equal("Dirty Steve's Original Wing Sauce");
     })
+
+    it('should filter recipes by name regardless of caps usage', () => {
+      expect(recipeData[0].name).to.deep.equal("Dirty Steve's Original Wing Sauce");
+      user.addRecipeToCook(recipeData[0]);
+      expect(user.listRecipebyToCookName("Dirty Steve's ORIGINAL Wing Sauce")[0].name).to.deep.equal("Dirty Steve's Original Wing Sauce");
+    })
 });
-
-
-
-
-
