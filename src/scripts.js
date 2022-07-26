@@ -195,26 +195,34 @@ function filterSaved() {
 }
 
 
-function showFilteredSavedTags(name) {
-  const tagResults = user.listRecipeToCookByTag(name);
+function showFilteredSavedTags(tags) {
+  const tagResults = user.listRecipeToCookByTag(tags);
+  if (tagResults.length === 0) {
+    filteredContainer.innerHTML = '';
+    filteredContainer.innerHTML += "<h2 class='main-section-title'>Sorry, this search returned no results.</h2>";
+  } else {
   filteredContainer.innerHTML = '';
-
   tagResults.forEach((recipe) => {
   filteredContainer.innerHTML += `<img class='recipe-pic-box'
     id='${recipe.id}' src='${recipe.image}'>
     <p class='recipe-label'>${recipe.name}</p>`;
-  })
+   })
+  }
 }
 
-function showFilteredSavedNames(tag) {
-  const nameResults = user.listRecipebyToCookName(tag);
+function showFilteredSavedNames(name) {
+  const nameResults = user.listRecipebyToCookName(name);
+  if (nameResults.length === 0) {
+    filteredContainer.innerHTML = '';
+    filteredContainer.innerHTML += "<h2 class='main-section-title'>Sorry, this search returned no results.</h2>";
+  } else {
   filteredContainer.innerHTML = '';
-
   nameResults.forEach((recipe) => {
     filteredContainer.innerHTML += `<img class='recipe-pic-box'
       id='${recipe.id}' src='${recipe.image}'>
       <p class='recipe-label'>${recipe.name}</p>`;
     })
+  }
 }
 
 // ###########  Main Search Functions  ###########
@@ -231,25 +239,33 @@ function searchButtonAction() {
 
 function showFilteredNames(name) {
   const nameResults = recipeRepo.listRecipeNames(name);
+  if (nameResults.length === 0) {
+    filteredContainer.innerHTML = '';
+    filteredContainer.innerHTML += "<h2 class='main-section-title'>Sorry, this search returned no results.</h2>";
+  } else {
   filteredContainer.innerHTML = '';
-
   nameResults.forEach((recipe) => {
    filteredContainer.innerHTML += `<img class='recipe-pic-box'
      id='${recipe.id}' src='${recipe.image}'>
      <p class='recipe-label'>${recipe.name}</p>`;
    })
+  }
  }
 
 
 function showFilteredTags(tag) {
  const tagResults = recipeRepo.listRecipeTags(tag);
+ if (tagResults.length === 0) {
+  filteredContainer.innerHTML = '';
+  filteredContainer.innerHTML += "<h2 class='main-section-title'>Sorry, this search returned no results.</h2>";
+ } else {
  filteredContainer.innerHTML = '';
-
  tagResults.forEach((recipe) => {
   filteredContainer.innerHTML += `<img class='recipe-pic-box'
     id='${recipe.id}' src='${recipe.image}'>
     <p class='recipe-label'>${recipe.name}</p>`;
-  })
+    })
+  }
 }
 
 // ###########  Show/Hide View Functions  ###########

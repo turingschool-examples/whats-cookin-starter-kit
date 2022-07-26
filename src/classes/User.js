@@ -19,12 +19,29 @@ class User {
   }
 
   listRecipeToCookByTag(tag) {
-    return this.recipesToCook.filter(recipe => recipe.tags.includes(tag));
+    const filterRecipeByTag = this.recipesToCook.filter(recipe => {
+      const toUpper = tag.toUpperCase();
+      let tagToUpper;
+      recipe.tags.forEach(tag => {
+        tagToUpper = tag.toUpperCase();
+      })
+      if (toUpper === tagToUpper) {
+        return true;
+        }
+      });
+      return filterRecipeByTag;
     }
-
+      
   listRecipebyToCookName(name) {
-    return this.recipesToCook.filter(recipe => recipe.name.includes(name));
-    }
+    const filterRecipeByName = this.recipesToCook.filter(recipe => {
+      const toUpper = name.toUpperCase();
+      const nameToUpper = recipe.name.toUpperCase();
+        if (toUpper === nameToUpper) {
+          return true;
+        }
+    });
+    return filterRecipeByName;
+  }
 };
 
 module.exports = User;
