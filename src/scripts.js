@@ -241,6 +241,10 @@ function makeIngredientCard() {
 const ingredientList = document.querySelector('#ingredient-list');
 
 function addPantrySearchItems() {
+ let sortedIngredientsData = ingredientsData.sort((a, b) => {
+  return a.name - b.name
+ }); 
+ console.log(sortedIngredientsData)
   ingredientsData.forEach(ingredient => {
     let ingredientOption = document.createElement('option');
     ingredientOption.value = ingredient.name;
