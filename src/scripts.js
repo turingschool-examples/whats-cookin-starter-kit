@@ -10,7 +10,6 @@ import Ingredient from './classes/Ingredient';
 import Pantry from './classes/Pantry';
 import { ingredientsData } from './data/ingredients';
 
-
 const getRandomUserId = () => {
     return Math.floor(Math.random() * 41) + 1;
 };
@@ -167,7 +166,7 @@ function searchUserRecipes(event) {
     if (!searchBox.value) {
         displayRecipeBySearchResults(ourUser.recipesToCook);
     }
-    const tagSearched = ourUser.filterByTagUser(searchBox.value);
+    const tagSearched = ourUser.filterByTagUser(searchBox.value.toLowerCase());
     const nameSearched = ourUser.filterByNameUser(searchBox.value);
     const recipesToShow = [...tagSearched, ...nameSearched];
     if (recipesToShow.length > 0) {
@@ -186,7 +185,7 @@ function searchRecipe(event) {
         if (!searchBox.value) {
             showAllRecipes();
         }
-        const tagSearched = recipeRepo.filterByTag(searchBox.value);
+        const tagSearched = recipeRepo.filterByTag(searchBox.value.toLowerCase());
         const nameSearched = recipeRepo.filterByName(searchBox.value);
         const recipesToShow = [...tagSearched, ...nameSearched];
         if (recipesToShow.length > 0) {
@@ -249,7 +248,6 @@ function displayRecipeBySearchResults(recipes) {
 function showPantry() {
     let pantry = new Pantry(ourUser.pantry)
     pantry.attachNameToId(ingredientsData)
-    console.log(pantry.ingredients)
     pantryWrapper.innerHTML = `<h2> ${ourUser.name.split(" ")[0]}'s Pantry </h2>`
     pantry.ingredients.forEach((item) => {
         pantryWrapper.innerHTML += `<div class="ingredients">
