@@ -24,6 +24,9 @@
           <h2></h2>
         </section>
         <section class="search-section">
+
+
+        <section class="default-search">
           <div class="search-bar-container">
             <input
               class="search-bar"
@@ -38,6 +41,18 @@
           <section class="keyword-section hidden">
             <div id="keyword-list"></div>
           </section>
+        </section>
+
+        <section class="pantry-ingredient-datalist hidden">
+          <label >Find Ingredients:</label>
+          <input list="ingredient-list" id="" name=""/>
+
+          <datalist id="ingredient-list">
+              <option value="">
+          </datalist>
+
+        </section>
+
         </section>
         <section class="sides-container">
           <section class="left-side"></section>
@@ -115,17 +130,17 @@
   </article>
 
   <section class="pantry-item-card-template hidden">
-    <section class="pantry-item-name">
+    <section class="pantry-item-name size">
       Ingredient
     </section>
-    <section class="pantry-quantity">
+    <section class="pantry-quantity size">
       <input type="number"
       placeholder="0">
     </section>
-    <section class="pantry-unit-type">
+    <section class="pantry-unit-type size">
       Unit(s)
     </section>
-    <section class="update-user-pantry">
+    <section class="update-user-pantry size">
       <button class="update-pantry-button" type="button">Submit</button>
     </section>
   </section>  
