@@ -10,7 +10,9 @@ describe("User", () => {
   let user1;
   let user2;
   let user3;
-  let completeUser;
+  let completeUser1;
+  let completeUser2;
+  let completeUser3;
   let completeRecipe;
   let recipe1;
   let recipe2;
@@ -63,7 +65,7 @@ describe("User", () => {
     });
 
     ////////// Pantry testing with complete User data //////////
-    completeUser = new User({
+    completeUser1 = new User({
       filteredResults: [],
       id: 35,
       name: "Gladis",
@@ -89,6 +91,33 @@ describe("User", () => {
       recipesToCook: [],
       selectedInput: [],
     });
+
+     completeUser2 = new User({
+       filteredResults: [],
+       id: 35,
+       name: "Gladis",
+       pantry: [
+         { ingredient: 18371, amount: 2, name: "baking powder" },
+         { ingredient: 1001, amount: 1, name: "butter" },
+         { ingredient: 11124, amount: 5, name: "carrots" },
+         { ingredient: 1123, amount: 3, name: "eggs" },
+         { ingredient: 1082047, amount: 2, name: "kosher salt" },
+         { ingredient: 4025, amount: 2, name: "mayonnaise" },
+         { ingredient: 2027, amount: 3, name: "oregano" },
+         { ingredient: 2021, amount: 2, name: "powdered ginger" },
+         { ingredient: 1102047, amount: 3, name: "s&p" },
+         { ingredient: 16124, amount: 2, name: "soy sauce" },
+         { ingredient: 19335, amount: 4, name: "sucrose" },
+         { ingredient: 9019, amount: 3, name: "unsweetened apple sauce" },
+         { ingredient: 2050, amount: 2, name: "vanilla" },
+         { ingredient: 20081, amount: 3, name: "wheat flour" },
+         { ingredient: 1054, amount: 2, name: "whipped cream" },
+         { ingredient: 1077, amount: 2, name: "full-fat milk" },
+         { ingredient: 20027, amount: 0.25, name: "corn starch" },
+       ],
+       recipesToCook: [],
+       selectedInput: [],
+     });
 
     completeRecipe = new Recipe({
       id: 605132,
@@ -278,10 +307,15 @@ describe("User", () => {
     expect(user3.filteredResults).to.deep.equal([]);
   });
 
-  it("should not be able to cook a recipe if the users pantry is missing the required amount of ingredients", () => {
-    completeUser.addRecipeToCook(completeRecipe);
-    completeUser.collectMatchingIngredients(completeUser.recipesToCook[0]);
-    completeUser.compareAmounts(completeUser.recipesToCook[0]);
+  it("should not be able to cook a recipe if the users pantry is missing the required ingredients", () => {
+    completeUser1.addRecipeToCook(completeRecipe);
+    expect(completeUser1.collectMatchingIngredients(completeUser1.recipesToCook[0])).to.equal(false)
     // completeUser.compareAmounts(completeUser.recipesToCook[0]);
+    // // completeUser.compareAmounts(completeUser.recipesToCook[0]);
   });
+
+  // it("should not be able to cook a recipe if the users pantry is missing the required amount of ingredients", () => {
+
+
+  // });
 });

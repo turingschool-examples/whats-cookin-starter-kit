@@ -109,32 +109,40 @@ class User {
 
   collectMatchingIngredients(recipe) {
     var matchingIngredients = [];
-    this.pantry.forEach((item) => {
-      recipe.portions.forEach((portion) => {
+    var notMatchingIngredients = [];
+
+    recipe.portions.forEach((portion) => {
+      let found = false;
+      this.pantry.forEach((item) => {
         if (item.ingredient === portion.ingredientId) {
           matchingIngredients.push(item);
+          found = true;
         }
       });
+      if (found === false) {
+        notMatchingIngredients.push(portion);
+      }
     });
-    if (matchingIngredients.length !== recipe.portions.length) {
-      return false;
-    } else {
-    return matchingIngredients;
-    }
+    console.log(matchingIngredients);
+    // if (matchingIngredients.length !== recipe.portions.length) {
+    //   return false;
+    // } else {
+    // return matchingIngredients;
+    // }
   }
 
-  compareAmounts(recipe) {
-    let matching = this.collectMatchingIngredients(recipe);
-    matching.forEach((item) => {
-      recipe.portions.forEach((portion) => {
-        if (item.ingredient === portion.ingredientId && item.amount >= portion.amount) {
-          return true
-        } else {
-         return false
-        }
-      });
-    });
-  }
+  // compareAmounts(recipe) {
+  //   let matching = this.collectMatchingIngredients(recipe);
+  //   matching.forEach((item) => {
+  //     recipe.portions.forEach((portion) => {
+  //       if (item.ingredient === portion.ingredientId && item.amount >= portion.amount) {
+  //         return true
+  //       } else {
+  //        return false
+  //       }
+  //     });
+  //   });
+  // }
 
   clearData() {
     this.selectedInput = [];
