@@ -25,8 +25,7 @@ export default class Pantry {
         })
     }
     attachNameToId(ingredientsData) {
-        console.log('ing.id:', this.ingredients)
-        this.ingredients = this.ingredients.map((ingredient) => {
+        this.ingredients = this.ingredients.map(ingredient => {
             let foundIngredient = ingredientsData.find(ing => ingredient.ingredient === ing.id)
         return {
             name: foundIngredient.name,
