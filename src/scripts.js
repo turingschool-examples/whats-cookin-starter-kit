@@ -242,10 +242,18 @@ const ingredientList = document.querySelector('#ingredient-list');
 
 function addPantrySearchItems() {
  let sortedIngredientsData = ingredientsData.sort((a, b) => {
-  return a.name - b.name
+  if (a.name.toLowerCase() < b.name.toLowerCase() ) {
+    return -1;
+   } else if (a.name.toLowerCase() > b.name.toLowerCase()) {
+    return 1;
+   } else {
+    return 0
+   }
+
  }); 
+
  console.log(sortedIngredientsData)
-  ingredientsData.forEach(ingredient => {
+  sortedIngredientsData.forEach(ingredient => {
     let ingredientOption = document.createElement('option');
     ingredientOption.value = ingredient.name;
     ingredientList.appendChild(ingredientOption);
