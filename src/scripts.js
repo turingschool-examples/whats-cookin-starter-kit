@@ -234,7 +234,7 @@ function makeIngredientCard() {
     console.log(item)
     let newItemCard = pantryItemTemplate.cloneNode(true);
     newItemCard.querySelector('.pantry-item-name').innerText = item.name;
-    newItemCard.querySelector('.pantry-quantity').innerText = item.amount;
+    newItemCard.querySelector('.quantity').placeholder = item.amount;
     pantry.appendChild(newItemCard);
     show(newItemCard);
   })
