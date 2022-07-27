@@ -296,6 +296,17 @@ div.grey-out-bg {
   justify-content: center;
 }
 
+.pantry-ingredient-datalist {
+  width: 50%;
+  height: 75%;
+  display: flex;
+}
+
+/* .update-pantry {
+  width: 50%;
+  height: 50%;
+} */
+
 .hidden {
   display: none;
 }

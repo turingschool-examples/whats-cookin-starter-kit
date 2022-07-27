@@ -1,38 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Famish: Food is family</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Barlow:wght@100&family=Raleway:wght@100&display=swap"
-      rel="stylesheet"
-    />
-    <meta name="description" content="A cooking website" />
-  </head>
-  <body>
-    <nav class="nav">
-      <button type="button" class="home-button">Home</button>
-      <button type="button" class="my-recipes-button">My Recipes</button>
-      <button type="button" class="my-pantry">Pantry</button>
-    </nav>
-    <main>
-      <section class="body-container">
-        <section class="greeting">
-          <h2></h2>
-        </section>
-        <section class="search-section">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Famish: Food is family</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100&family=Raleway:wght@100&display=swap"
+    rel="stylesheet" />
+  <meta name="description" content="A cooking website" />
+</head>
+
+<body>
+  <nav class="nav">
+    <button type="button" class="home-button">Home</button>
+    <button type="button" class="my-recipes-button">My Recipes</button>
+    <button type="button" class="my-pantry">Pantry</button>
+  </nav>
+  <main>
+    <section class="body-container">
+      <section class="greeting">
+        <h2></h2>
+      </section>
+      <section class="search-section">
 
 
         <section class="default-search">
           <div class="search-bar-container">
-            <input
-              class="search-bar"
-              type="search"
-              placeholder="Search by Title or Ingredients"
-            />
+            <input class="search-bar" type="search" placeholder="Search by Title or Ingredients" />
           </div>
           <button class="submit-search" type="button">Submit Search</button>
           <button type="button" class="toggle-search-option">
@@ -43,107 +39,106 @@
           </section>
         </section>
 
+
+
         <section class="pantry-ingredient-datalist hidden">
-          <label >Find Ingredients:</label>
-          <input list="ingredient-list" id="" name=""/>
-
+          <label>Find Ingredients:</label>
+          <input class="update-pantry" list="ingredient-list" id="" name="" />
           <datalist id="ingredient-list" list="ingredients">
-              <option value="">
+            <option value="">
           </datalist>
-
+          <section class="update-pantry">
+            <input class="choose-ingredient-amount" type="number" placeholder="0">
+          </section>
+          <section class="update-user-pantry-button update-pantry">
+            <button class="add-ingredient-quantity" type="button">Submit</button>
+          </section>
         </section>
 
+
+
+      </section>
+      <section class="sides-container">
+        <section class="left-side"></section>
+
+        <section class="results center">
+          <h1 class="results-header">All Recipes</h1>
+          <section class="results-grid-container">
+          </section>
+
+
+
+
+          <section class="pantry hidden">
+          </section>
+
+
+
+
         </section>
-        <section class="sides-container">
-          <section class="left-side"></section>
-
-          <section class="results center">
-            <h1 class="results-header">All Recipes</h1>
-            <section class="results-grid-container">
-            </section>
-
-
-
-
-            <section class="pantry hidden">
-            </section>
-
-
-
-
+        <section class="right-side">
+        </section>
+        <section id="specific-recipe-section" class="mega-card card-border specific-recipe hidden">
+          <header class="mega-card-header">
+            <button class="close-icon">❌</button>
+            <button class="save-recipe-icon favorite-button" data-id="">
+              ❤️
+            </button>
+          </header>
+          <section class="mega-card-title">
+            <h2 class="title"></h2>
           </section>
-          <section class="right-side">
-          </section>
-          <section
-            id="specific-recipe-section"
-            class="mega-card card-border specific-recipe hidden">
-            <header class="mega-card-header">
-              <button class="close-icon">❌</button>
-              <button class="save-recipe-icon favorite-button" data-id="">
-                ❤️
-              </button>
-            </header>
-            <section class="mega-card-title">
-              <h2 class="title"></h2>
+
+          <section class="mega-body">
+            <img class="specific-recipe-image"
+              src="https://static01.nyt.com/images/2022/06/12/dining/12Korokke/merlin_208197630_39a1b4ee-998e-4706-9f2f-8d5696f5e6ac-mobileMasterAt3x.jpg"
+              alt="food image" />
+            <section class="recipe-cost">
+              <h3>Total Cost</h3>
+              <div>
+                <h5></h5>
+              </div>
+              <button class="cook-button" type="button">Cook Recipe!</button>
             </section>
 
-            <section class="mega-body">
-              <img
-                class="specific-recipe-image"
-                src="https://static01.nyt.com/images/2022/06/12/dining/12Korokke/merlin_208197630_39a1b4ee-998e-4706-9f2f-8d5696f5e6ac-mobileMasterAt3x.jpg"
-                alt="food image"
-              />
-              <section class="recipe-cost">
-                <h3>Total Cost</h3>
-                <div>
-                  <h5></h5>
-                </div>
-                <button class="cook-button" type="button">Cook Recipe!</button>
-              </section>
-
-              <section class="ingredients">
-                <h3>Ingredients Needed</h3>
-                <ol></ol>
-              </section>
-              <section class="instructions">
-                <h3>Instructions</h3>
-                <ol></ol>
-              </section>
+            <section class="ingredients">
+              <h3>Ingredients Needed</h3>
+              <ol></ol>
+            </section>
+            <section class="instructions">
+              <h3>Instructions</h3>
+              <ol></ol>
             </section>
           </section>
         </section>
       </section>
-    </main>
-  </body>
-  <div class="grey-out-bg hidden"></div>
-  <article
-    id="mini-recipe-template"
-    class="mini-card card-border recipe-result hidden"
-    data-id="0"
-    tabindex="0"
-  >
-    <img class="recipe-image" src="" alt="food image" />
-    <section tabindex="0">
-      <p tabindex="0" class="recipe-name"></p>
-      <button class="favorite-button">❤️</button>
     </section>
-  </article>
+  </main>
+</body>
+<div class="grey-out-bg hidden"></div>
+<article id="mini-recipe-template" class="mini-card card-border recipe-result hidden" data-id="0" tabindex="0">
+  <img class="recipe-image" src="" alt="food image" />
+  <section tabindex="0">
+    <p tabindex="0" class="recipe-name"></p>
+    <button class="favorite-button">❤️</button>
+  </section>
+</article>
 
-  <section class="pantry-item-card-template hidden">
-    <section class="pantry-item-name size">
-      Ingredient
-    </section>
-    <section class="pantry-quantity size">
-      <input class="quantity" type="number"
-      placeholder="0">
-    </section>
-    <section class="pantry-unit-type size">
-      Unit(s)
-    </section>
-    <section class="update-user-pantry size">
-      <button class="update-pantry-button" type="button">Submit</button>
-    </section>
-  </section>  
+<section class="pantry-item-card-template hidden">
+  <section class="pantry-item-name size">
+    Ingredient
+  </section>
+  <section class="pantry-quantity size">
+    <input class="quantity" type="number" placeholder="0">
+  </section>
+  <section class="pantry-unit-type size">
+    Unit(s)
+  </section>
+  <section class="update-user-pantry size">
+    <button class="update-pantry-button" type="button">Submit</button>
+  </section>
+</section>
 
-  <script src="bundle.js"></script>
+<script src="bundle.js"></script>
+
 </html>
