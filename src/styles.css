@@ -276,9 +276,25 @@ div.grey-out-bg {
 .pantry {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
+  
 
 }
+.pantry-item-card-template {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 50%;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
 
+.size {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+}
 
 .hidden {
   display: none;
