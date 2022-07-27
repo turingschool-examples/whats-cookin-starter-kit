@@ -1272,7 +1272,26 @@ const testIngredients = [
     }
   ];
 
+  const testIngredientsByUser = [
+    {
+      "id": 11297,
+      "name": "flat leaf parsley leaves",
+      "estimatedCostInCents": 1030
+    },
+    {
+      "id": 1082047,
+      "name": "kosher salt",
+      "estimatedCostInCents": 972
+    },
+    {
+      "id": 20081,
+      "name": "wheat flour",
+      "estimatedCostInCents": 142
+    }
+  ] 
+
   module.exports = {
     ingredientsData,
-    testIngredients
+    testIngredients,
+    testIngredientsByUser
   }
