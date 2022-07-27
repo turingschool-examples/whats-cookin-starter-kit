@@ -52,6 +52,7 @@ h2 {
 
 .side-bar-Recipe-title {
   display: flex;
+  justify-self: flex-start;
   justify-content: center;
   align-items: center;
   font-size: 200%;
@@ -72,14 +73,15 @@ h2 {
 
 .tag-names{
   display: flex;
+  justify-self: flex-start;
   justify-content: center;
   align-items: center;
   text-align: center;
   font-size: 200%;
   font-family: 'Raleway', sans-serif;
   margin: 0;
-  padding-top: 3em;
-  padding-bottom: 2em;
+  padding-top: .5em;
+  padding-bottom: 1em;
 }
 
 li {
@@ -260,10 +262,11 @@ li {
 .side-bar-title-wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 20%;
+  align-items: flex-start;
+  height: 100px;
   width: 100%;
   color: white;
+  box-sizing: border-box;
 }
 
 /* ~~~~~~~~~~~~~~~~~~view recipe user story~~~~~~~~~~~~~~~~~~~~~~ */
