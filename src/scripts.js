@@ -99,7 +99,9 @@ function showFavorites() {
     user.recipesToCook.forEach((recipe) => {
         recipeDisplay.innerHTML += (`
             <div class="recipe-image-wrapper" id=${recipe.id}>
-                <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="favorite" src=${recipe.image} alt=${recipe.name}>
+            <button class="recipe-img-btn">
+                <img class="recipe-image" data-recipeId=${recipe.id} src=${recipe.image} alt="View ${recipe.name} instructions">
+            </button>
                 <p class="recipe-name">${recipe.name}</p>
                 <button class="favorite-button" data-favoriteRecipe=${recipe.id} id="favoriteButton">Remove</button>
             </div>
@@ -116,7 +118,9 @@ function displayRecipeList() {
     recipeRepository.recipeList.forEach((recipe) => {
     recipeDisplay.innerHTML += (`
         <div class="recipe-image-wrapper" id=${recipe.id}>
-            <img class="recipe-image" data-recipeId=${recipe.id} src=${recipe.image} alt=${recipe.name}>
+            <button class="recipe-img-btn">
+                <img class="recipe-image" data-recipeId=${recipe.id} src=${recipe.image} alt="View ${recipe.name} instructions">
+            </button>
             <p class="recipe-name">${recipe.name}</p>
         </div>
       `)
