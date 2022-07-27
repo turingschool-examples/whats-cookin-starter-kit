@@ -25,10 +25,11 @@ let userInfo;
 let recipeRepository;
 
 fetchData().then(responses => {
+    
     ingredientsInfo = responses[1]
     userInfo = responses[2]
-    recipeRepository = new RecipeRepository(responses[0].recipeData)
-
+    recipeRepository = new RecipeRepository(responses[0])
+    
     recipeRepository.listRecipes();
     user = createUser();
 
@@ -57,8 +58,8 @@ function hideOff(elements) {
 
 
 function createUser() {
-    const randomNumber = Math.floor(Math.random() * userInfo.usersData.length);
-    const user = userInfo.usersData[randomNumber];
+    const randomNumber = Math.floor(Math.random() * userInfo.length);
+    const user = userInfo[randomNumber];
     return new User(user);
 }
 
@@ -145,7 +146,7 @@ function showRecipeInstructions(event) {
     const recipeId = parseInt(event.target.getAttribute("data-recipeId"));
     const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === recipeId);
 
-    selectedRecipe.buildIngredientsNeeded(ingredientsInfo.ingredientsData);
+    selectedRecipe.buildIngredientsNeeded(ingredientsInfo);
 
     const totalCost = selectedRecipe.getTotalCost();
 
