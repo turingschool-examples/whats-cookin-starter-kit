@@ -27,7 +27,7 @@ const keywordList = document.getElementById("keyword-list");
 const keywordSection = document.querySelector(".keyword-section");
 const closeIcon = document.querySelector(".close-icon");
 const saveIcon = document.querySelector(".save-recipe-icon");
-const searchSection = document.querySelector('.default-search');
+const defaultSearch = document.querySelector('.default-search');
 const pantrySearch = document.querySelector('.pantry-ingredient-datalist');
 const ingredientList = document.querySelector('#ingredient-list');
 const pantryItemTemplate = document.querySelector('.pantry-item-card-template');
@@ -53,27 +53,18 @@ function convertPantryItemNames() {
       }
     });
   })
-  console.log(user.pantry)
   return user.pantry;
 }
 
 function displayUserPantry() {
   convertPantryItemNames();
-  console.log('user', user.pantry)
   resultCardsContainer.replaceChildren();
   user.pantry.forEach((item) => {
     let foodItem = document.createElement("div");
-    // foodItem.classList.add("keyword");
-    // foodItem.type = "button";
     foodItem.innerText = item.ingredient
     resultCardsContainer.appendChild(foodItem);
   });
-
-
 }
-
-
-
 
 function loadData() {
   Promise.all([users, recipe, ingredients]).then((data) => {
@@ -81,7 +72,6 @@ function loadData() {
     recipeData = data[1].recipeData;
     ingredientsData = data[2].ingredientsData;
     user = new User(usersData[Math.floor(Math.random() * 41)]);
-    // console.log(user)
     recipeRepo = new RecipeRepository();
     recipeRepo.importRecipesFromFile(recipeData, ingredientsData);
     convertPantryItemNames();
@@ -104,11 +94,11 @@ function listKeywords() {
 
 function displayAllRecipesView() {
   hide(pantry);
+  hide(pantrySearch);
   show(resultCardsContainer);
+  show(defaultSearch);
   recipeRepo.clearData();
   listKeywords();
-  console.log("ingred:", ingredientsData)
-  console.log('recipes:', recipeRepo)
   greeting.innerText = `Welcome, ${user.name}!`;
   header.innerText = `All Recipes!`;
   resultCardsContainer.replaceChildren();
@@ -116,7 +106,6 @@ function displayAllRecipesView() {
     let recipeCard = makeRecipeCard(recipe);
     addRecipeCardToResultsContainer(recipeCard);
   });
-
 }
 
 function getRecipeIdFromClickEvent(event) {
@@ -227,11 +216,9 @@ function makeRecipeCard(recipe) {
   return newCard;
 }
 
-
-
 function makeIngredientCard() {
-  user.pantry.forEach(item => {
-    console.log(item)
+  let alphabetizedPantry = alphabetize(user.pantry)
+  alphabetizedPantry.forEach(item => {
     let newItemCard = pantryItemTemplate.cloneNode(true);
     newItemCard.querySelector('.pantry-item-name').innerText = item.name;
     newItemCard.querySelector('.quantity').placeholder = item.amount;
@@ -241,16 +228,8 @@ function makeIngredientCard() {
 }
 
 function addPantrySearchItems() {
-  let sortedIngredientsData = ingredientsData.sort((a, b) => {
-    if (a.name.toLowerCase() < b.name.toLowerCase()) {
-      return -1;
-    } else if (a.name.toLowerCase() > b.name.toLowerCase()) {
-      return 1;
-    } else {
-      return 0
-    }
-  });
-  sortedIngredientsData.forEach(ingredient => {
+let alphabetizedIngredients =alphabetize(ingredientsData)  
+  alphabetizedIngredients.forEach(ingredient => {
     let ingredientOption = document.createElement('option');
     ingredientOption.value = ingredient.name;
     ingredientList.appendChild(ingredientOption);
@@ -259,11 +238,10 @@ function addPantrySearchItems() {
 
 function showPantry() {
   hide(resultCardsContainer);
-  hide(searchSection);
+  hide(defaultSearch);
   show(pantry);
   show(pantrySearch);
 }
-
 
 function addRecipeCardToResultsContainer(recipeCard) {
   resultCardsContainer.appendChild(recipeCard);
@@ -296,6 +274,10 @@ function executeSearch() {
 }
 
 function displayUserRecipes() {
+  hide(pantry);
+  hide(pantrySearch);
+  show(defaultSearch);
+  show(resultCardsContainer);
   greeting.innerText = ``;
   if (user.recipesToCook.length >= 1) {
     header.innerText = `${user.name}'s recipes!`;
@@ -309,6 +291,19 @@ function displayUserRecipes() {
     resultCardsContainer.replaceChildren();
   }
 }
+
+function alphabetize(data) {
+  let alphabetizedData = data.sort((a, b) => {
+    if (a.name.toLowerCase() < b.name.toLowerCase()) {
+      return -1;
+    } else if (a.name.toLowerCase() > b.name.toLowerCase()) {
+      return 1;
+    } else {
+      return 0
+    }
+  });
+  return alphabetizedData;
+  }
 
 function removeUserRecipe(recipe) {
   user.removeRecipeToCook(recipe);
