@@ -2,13 +2,13 @@ class Pantry {
     constructor(pantry) {
         this.ingredientsInPantry = pantry || [];
     };
+    getIngredientDetails(ingredientData) {
 
-    addIngredientByID(ingredientId, amount, ingredientData) {
-        if(!ingredientID) {
-            return "Sorry you cannot add this ingredient."
-        }
-        
+    };
+
+    getMissingIngredients(recipeData, ingredientData) {
+
     }
-
 }
+
 export default Pantry;
