@@ -156,7 +156,6 @@ div.grey-out-bg {
 
 .sides-container {
   width: 100vw;
-
   display: flex;
   justify-content: space-evenly;
 }
@@ -300,12 +299,27 @@ div.grey-out-bg {
   width: 50%;
   height: 75%;
   display: flex;
+  justify-content: space-evenly;
 }
 
-/* .update-pantry {
+.update-pantry {
   width: 50%;
-  height: 50%;
-} */
+  height:50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}   
+
+.ingredient-datalist-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pantry-ingredient-datalist label {
+  font-size: x-large;
+  font-weight: bolder;
+}
 
 .hidden {
   display: none;
