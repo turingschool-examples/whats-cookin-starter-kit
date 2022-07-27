@@ -27,6 +27,8 @@ const keywordList = document.getElementById("keyword-list");
 const keywordSection = document.querySelector(".keyword-section");
 const closeIcon = document.querySelector(".close-icon");
 const saveIcon = document.querySelector(".save-recipe-icon");
+const searchSection = document.querySelector('.default-search');
+const pantrySearch =document.querySelector('.pantry-ingredient-datalist');
 
 window.addEventListener("load", loadData);
 toggleSeachOption.addEventListener("click", showKeywords);
@@ -81,6 +83,7 @@ function loadData() {
     recipeRepo.importRecipesFromFile(recipeData, ingredientsData);
     convertPantryItemNames();
     makeIngredientCard();
+    addPantrySearchItems()
     displayAllRecipesView();
   });
 }
@@ -90,7 +93,7 @@ function listKeywords() {
   recipeRepo.allTags.forEach((tag) => {
     let keyword = document.createElement("button");
     keyword.classList.add("keyword");
-    keyword.type = "button"   
+    keyword.type = "button"
     keyword.innerText = tag;
     keywordList.appendChild(keyword);
   });
@@ -235,9 +238,21 @@ function makeIngredientCard() {
   })
 }
 
+const ingredientList = document.querySelector('#ingredient-list');
+
+function addPantrySearchItems() {
+  ingredientsData.forEach(ingredient => {
+    let ingredientOption = document.createElement('option');
+    ingredientOption.value = ingredient.name;
+    ingredientList.appendChild(ingredientOption);
+  })
+}
+
 function showPantry() {
   hide(resultCardsContainer);
+  hide(searchSection);
   show(pantry);
+  show(pantrySearch);
 }
 
 
