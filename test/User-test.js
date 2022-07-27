@@ -41,17 +41,25 @@ describe('User', () => {
     it('should have a pantry of ingredients', () => {
       expect(user1.pantry).to.deep.equal([
         {
-          ingredient: 11297,
-          amount: 4,
+          "ingredient": 11297,
+          "amount": 4,
         },
         {
-          ingredient: 1082047,
-          amount: 10,
+          "ingredient": 1082047,
+          "amount": 10,
         },
         {
-          ingredient: 20081,
-          amount: 5,
+          "ingredient": 20081,
+          "amount": 5,
         },
+        {
+          "ingredient": 18372,
+          "amount": 9,
+        },
+        {
+          "ingredient": 1123,
+          "amount": 8,
+        }
       ]);
       expect(user2.pantry).to.deep.equal([
         {

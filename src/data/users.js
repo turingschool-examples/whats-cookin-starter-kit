@@ -6497,6 +6497,14 @@ const testUserData = [
         "ingredient": 20081,
         "amount": 5,
       },
+      {
+        "ingredient": 18372,
+        "amount": 9,
+      },
+      {
+        "ingredient": 1123,
+        "amount": 8,
+      }
     ],
   },
   {

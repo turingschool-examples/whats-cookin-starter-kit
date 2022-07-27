@@ -2,13 +2,13 @@ import { expect } from 'chai';
 import Pantry from '../src/classes/Pantry.js';
 import Recipe from '../src/classes/Recipe.js';
 import User from '../src/classes/User.js';
-const data = require('../src/data/recipes.js');
-const data1 = require('../src/data/ingredients.js');
-const data2 = require('../src/data/users.js');
-const testRecipeData = data.testRecipeData;
-const testIngData = data1.testIngredients;
-const userIngData = data1.testIngredientsByUser;
-const testUserData = data2.testUserData;
+const recipeData = require('../src/data/recipes.js');
+const ingData = require('../src/data/ingredients.js');
+const userData = require('../src/data/users.js');
+const testRecipeData = recipeData.testRecipeData;
+const testIngData = ingData.testIngredients;
+const userIngData = ingData.testIngredientsByUser;
+const testUserData = userData.testUserData;
 
 describe('Pantry', () => {
     let recipe1;
@@ -39,25 +39,48 @@ describe('Pantry', () => {
         expect(pantry1.ingredientsInPantry).to.deep.equal(user1.pantry)
     })
 
-    it('should get all the ingredients in pantry details', () => {
-        expect(pantry1.getIngredientDetails(userIngData)).to.deep.equal([
-              {
-                "id": 11297,
-                "name": "flat leaf parsley leaves",
-                "amount": 4
-              },
-              {
-                "id": 1082047,
-                "name": "kosher salt",
-                "amount": 10
-              },
-              {
-                "id": 20081,
-                "name": "wheat flour",
-                "amount": 5
-              }
-            ])
-    })
+    it('should get the details of all the ingredients in the pantry', () => {
+      expect(pantry1.getIngredientDetails(userIngData)).to.deep.equal([
+        {
+          "id": 11297,
+          "name": "flat leaf parsley leaves",
+          "amount": 4
+        },
+        {
+          "id": 1082047,
+          "name": "kosher salt",
+          "amount": 10
+        },
+        {
+          "id": 20081,
+          "name": "wheat flour",
+          "amount": 5
+        },
+        {
+          "id": 18372,
+          "name": "bicarbonate of soda",
+          "amount": 9
+        },
+        {
+          "id": 1123,
+          "name": "eggs",
+          "amount": 8
+        }
+      ]);
+    });
+
+    it('should have a method to find the required ingredients for a specific recipe', () => {
+      expect(pantry1.findRequiredIngredients(recipe1)).to.deep.equal([
+        {id: 20081, amount: 1.5},
+        {id: 18372, amount: 0.5},
+        {id: 1123, amount: 1}
+      ]);
+    });
+
+    it('should check if the user\'s pantry has enough ingredients to cook a specific recipe', () => {
+      expect(pantry1.checkIfUserCanCookRecipe(recipe1)).to.equal(true);
+      expect(pantry1.checkIfUserCanCookRecipe(recipe2)).to.equal(false);
+    });
 
     // it.skip('should be told what ingredients are still needed for a recipe', () => {
     //     expect(user1.pantry.getMissingIngredients(recipe1, userIngData)).to.deep.equal([
@@ -78,9 +101,6 @@ describe('Pantry', () => {
     //     ])
     // })
 
-    // it.skip('should check if pantry has enough ingredients to cook a recipe', () => {
-    //     expect(user1.pantry.canCookRecipe(recipe1, userIngData)).to.equal(false)
-    // })
 
     // it.skip('should check list of recipes to see if pantry has ingredients to cook recipe', () => {
     //     expect(user1.pantry.canCookAnyRecipe(user1.recipesToCook, userIngData)).to.equal(true)
