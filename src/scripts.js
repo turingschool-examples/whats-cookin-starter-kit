@@ -179,6 +179,7 @@ function displayAllNames() {
     recipe.name = capitalizedWords.join(' ')
   })
   displayRecipeNames(recipeRepository.recipeData);
+  show(sideBarTitle);
 }
 
 function showHomePage() {
@@ -288,6 +289,7 @@ function filterRecipeByTag(tag) {
   let input = tag.toLowerCase();
   let filteredRecipes = recipeRepository.filterByTag(input);
   displayRecipeNames(filteredRecipes);
+  show(sideBarTitle);
   if (filteredRecipes.length === 0) {
     hide(sideBarTitle)
     recipeSidebarList.innerHTML = 
@@ -314,7 +316,6 @@ function filterRecipeByTag(tag) {
 }
 
 function displayRecipeByClickTag(event) {
-  show(sideBarTitle)
  if(event.target.classList.contains('tag')){
   filterRecipeByTag(event.target.innerText)
  }
