@@ -13,7 +13,6 @@ const favoritesPage = document.querySelector('.main-favorite-container');
 const searchContainer = document.querySelector('.search-container');
 const searchFavoritesContainer = document.querySelector('.search-favorite-container');
 const recipeSidebarList = document.querySelector('.list-recipes');
-// const recipeSidebarTagList = document.querySelector('.tag-names');
 const recipeIconContainer = document.querySelector('.recipe-icon-container');
 const icon1Img = document.querySelector('.icon-1-img');
 const icon2Img = document.querySelector('.icon-2-img');
@@ -45,7 +44,7 @@ const userWelcomeMessage = document.querySelector('.user-welcome-message');
 const nameRadioBtn = document.querySelector('.name-search');
 const removeFiltersBtn = document.querySelector('.remove-filters-button');
 const tagRadioBtn = document.querySelector('.tag-search');
-const sideBarTitle = document.querySelector('.side-bar-title-wrapper')
+const sideBarTitle = document.querySelector('.side-bar-title-wrapper');
 
 // ***** Event Listeners ***** //
 window.addEventListener('load', getAllData);
@@ -55,15 +54,6 @@ recipeSidebarList.addEventListener('keypress', function(event) {
     viewRecipe(event);
   }
 });
-
-// recipeSidebarList.addEventListener('click', listOfRecipesFromTag);
-// recipeSidebarList.addEventListener('keypress', function(event) {
-//   if (event.keyCode === 13) {
-//     listOfRecipesFromTag(event)
-//   }
-//   //Event listener for view list of recipes when clicking on tag from sidebar
-// });
-
 recipeIconContainer.addEventListener('click', viewRecipeFromIcon);
 favoriteRecipeImages.addEventListener('click', viewRecipeFromIcon);
 favoriteRecipeImages.addEventListener('keypress', function(event) {
@@ -113,7 +103,6 @@ getAllData().then(responses => {
   allRecipes = recipeData.recipeData.map(recipe => new Recipe(recipe, ingredientData.ingredientsData));
   recipeRepository =  new RecipeRepository(allRecipes);
   updateMainPageRecipeIcons();
-  // updateMainPageFeatureImg();
   displayAllNames();
 });
 
@@ -151,7 +140,7 @@ function updateMainPageRecipeIcons() {
     if (!numbers.includes(randomNumber)) {
       numbers.push(randomNumber);
     }
-  })
+  });
   icon1Img.src = allRecipes[numbers[0]].image;
   icon2Img.src = allRecipes[numbers[1]].image;
   icon3Img.src = allRecipes[numbers[2]].image;
@@ -200,20 +189,19 @@ function showFavoritesPage() {
 }
 
 function viewRecipe(event) {
-  displayRecipeByClickTag(event)
+  displayRecipeByClickTag(event);
   if (event.target.classList.contains('recipes-list')) {
-  selectedRecipeName = event.target.innerText
-  selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name)[0];
-  viewRecipesHelperFunction();
+    selectedRecipeName = event.target.innerText
+    selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name)[0];
+    viewRecipesHelperFunction();
   }
 }
 
-
 function viewRecipeFromIcon(event) {
   if (event.target.classList.contains('icon')) {
-  selectedRecipeIcon = event.target.src;
-  selectedRecipe = allRecipes.filter(recipe => selectedRecipeIcon === recipe.image)[0];
-  viewRecipesHelperFunction();
+    selectedRecipeIcon = event.target.src;
+    selectedRecipe = allRecipes.filter(recipe => selectedRecipeIcon === recipe.image)[0];
+    viewRecipesHelperFunction();
   }
   if(event.target.classList.contains('remove-from-favorites-btn')) {
     removeFromFavorites(event);
@@ -311,14 +299,14 @@ function filterRecipeByTag(tag) {
       <br> <li class="tag"> Dip </li>
       <br> <li class="tag"> Spread </li>
       <br> <li class="tag"> Sauce </li>
-    </ul>`
+    </ul>`;
   }
 }
 
 function displayRecipeByClickTag(event) {
- if(event.target.classList.contains('tag')){
-  filterRecipeByTag(event.target.innerText)
- }
+  if(event.target.classList.contains('tag')){
+    filterRecipeByTag(event.target.innerText);
+  }
 }
 
 function filterRecipeByName(name) {
