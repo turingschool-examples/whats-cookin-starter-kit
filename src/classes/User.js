@@ -1,4 +1,5 @@
 import Recipe from './Recipe';
+import Pantry from './Pantry';
 
 class User{
     constructor(userData) {
