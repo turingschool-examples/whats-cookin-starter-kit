@@ -28,7 +28,10 @@ const keywordSection = document.querySelector(".keyword-section");
 const closeIcon = document.querySelector(".close-icon");
 const saveIcon = document.querySelector(".save-recipe-icon");
 const searchSection = document.querySelector('.default-search');
-const pantrySearch =document.querySelector('.pantry-ingredient-datalist');
+const pantrySearch = document.querySelector('.pantry-ingredient-datalist');
+const ingredientList = document.querySelector('#ingredient-list');
+const pantryItemTemplate = document.querySelector('.pantry-item-card-template');
+const pantry = document.querySelector('.pantry');
 
 window.addEventListener("load", loadData);
 toggleSeachOption.addEventListener("click", showKeywords);
@@ -43,29 +46,29 @@ resultCardsContainer.addEventListener("click", specificRecipeClicked);
 
 
 function convertPantryItemNames() {
-user.pantry.forEach((pantryItem) => {
+  user.pantry.forEach((pantryItem) => {
     ingredientsData.forEach((ingredient) => {
       if (pantryItem.ingredient === ingredient.id) {
-       pantryItem.name = ingredient.name
+        pantryItem.name = ingredient.name
       }
     });
-})
-console.log(user.pantry)
-return user.pantry;
+  })
+  console.log(user.pantry)
+  return user.pantry;
 }
 
 function displayUserPantry() {
-convertPantryItemNames();
-console.log('user', user.pantry)
- resultCardsContainer.replaceChildren();
+  convertPantryItemNames();
+  console.log('user', user.pantry)
+  resultCardsContainer.replaceChildren();
   user.pantry.forEach((item) => {
-let foodItem = document.createElement("div");
+    let foodItem = document.createElement("div");
     // foodItem.classList.add("keyword");
     // foodItem.type = "button";
     foodItem.innerText = item.ingredient
     resultCardsContainer.appendChild(foodItem);
   });
- 
+
 
 }
 
@@ -224,8 +227,7 @@ function makeRecipeCard(recipe) {
   return newCard;
 }
 
-const pantryItemTemplate = document.querySelector('.pantry-item-card-template');
-const pantry = document.querySelector('.pantry');
+
 
 function makeIngredientCard() {
   user.pantry.forEach(item => {
@@ -238,21 +240,16 @@ function makeIngredientCard() {
   })
 }
 
-const ingredientList = document.querySelector('#ingredient-list');
-
 function addPantrySearchItems() {
- let sortedIngredientsData = ingredientsData.sort((a, b) => {
-  if (a.name.toLowerCase() < b.name.toLowerCase() ) {
-    return -1;
-   } else if (a.name.toLowerCase() > b.name.toLowerCase()) {
-    return 1;
-   } else {
-    return 0
-   }
-
- }); 
-
- console.log(sortedIngredientsData)
+  let sortedIngredientsData = ingredientsData.sort((a, b) => {
+    if (a.name.toLowerCase() < b.name.toLowerCase()) {
+      return -1;
+    } else if (a.name.toLowerCase() > b.name.toLowerCase()) {
+      return 1;
+    } else {
+      return 0
+    }
+  });
   sortedIngredientsData.forEach(ingredient => {
     let ingredientOption = document.createElement('option');
     ingredientOption.value = ingredient.name;
