@@ -93,6 +93,49 @@ class User {
     return this.filteredResults;
   }
 
+  // cookRecipe(recipe) {
+  //   //let matchingIngredients = []
+  //   let isMatching = this.pantry.forEach((item) => {
+  //     recipe.portions.forEach((portion) => {
+  //       if (recipe.portion.includes(item.ingredient)) {
+  //         return true
+  //       } else {
+  //         return false
+  //       }
+  //     });
+
+  //   });
+  //     console.log(isMatching);
+
+  collectMatchingIngredients(recipe) {
+    var matchingIngredients = [];
+    this.pantry.forEach((item) => {
+      recipe.portions.forEach((portion) => {
+        if (item.ingredient === portion.ingredientId) {
+          matchingIngredients.push(item);
+        }
+      });
+    });
+    if (matchingIngredients.length !== recipe.portions.length) {
+      return false;
+    } else {
+    return matchingIngredients;
+    }
+  }
+
+  compareAmounts(recipe) {
+    let matching = this.collectMatchingIngredients(recipe);
+    matching.forEach((item) => {
+      recipe.portions.forEach((portion) => {
+        if (item.ingredient === portion.ingredientId && item.amount >= portion.amount) {
+          return true
+        } else {
+         return false
+        }
+      });
+    });
+  }
+
   clearData() {
     this.selectedInput = [];
     this.filteredResults = [];

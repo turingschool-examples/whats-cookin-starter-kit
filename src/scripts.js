@@ -106,6 +106,7 @@ function displayAllRecipesView() {
     let recipeCard = makeRecipeCard(recipe);
     addRecipeCardToResultsContainer(recipeCard);
   });
+  console.log(recipeRepo)
 }
 
 function getRecipeIdFromClickEvent(event) {
