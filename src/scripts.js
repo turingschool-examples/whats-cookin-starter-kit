@@ -25,17 +25,18 @@ let userInfo;
 let recipeRepository;
 
 fetchData().then(responses => {
-    
+
     ingredientsInfo = responses[1]
     userInfo = responses[2]
     recipeRepository = new RecipeRepository(responses[0])
-    
+
     recipeRepository.listRecipes();
     user = createUser();
 
     displayRecipeList();
 
-});
+}).catch(err => recipeDisplay.innerHTML = (`<h1>${err}</h1>`));
+
 recipeDisplay.addEventListener('click', recipeDisplayHandler);
 homeButton.addEventListener('click', goHome);
 filterForm.addEventListener('submit', filterRecipeTag);
@@ -90,8 +91,8 @@ function addToFavorite(event) {
 function showFavorites() {
     hideOn([searchForm, filterForm, favoriteButton]);
     hideOff([filterFavoriteForm, favSearchForm, homeButton]);
-  
-    
+
+
     homeButton.classList.remove('hidden');
     homeButton.classList.add('favorite');
     recipeHeading.innerText = 'Favorite Recipes';
@@ -103,7 +104,7 @@ function showFavorites() {
                 <p class="recipe-name">${recipe.name}</p>
                 <button class="favorite-button" data-favoriteRecipe=${recipe.id} id="favoriteButton">Remove</button>
             </div>
-        `)   
+        `)
     });
 };
 
@@ -135,13 +136,13 @@ function goHome() {
     recipeDisplay.innerHTML = "";
 
     displayRecipeList();
-   
+
 }
 
 function showRecipeInstructions(event) {
     hideOn([searchForm, filterForm, filterFavoriteForm, favSearchForm]);
     hideOff([favoriteButton, homeButton]);
- 
+
 
     const recipeId = parseInt(event.target.getAttribute("data-recipeId"));
     const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === recipeId);
@@ -163,7 +164,7 @@ function showRecipeInstructions(event) {
             <div class="ingredients-design-div">
                 <h3 class="ingredients">Ingredients</h3>
                 <ul class="ingredients-list" id="ingredientsList"></ul>
-                <p class="total">Total Cost: ${totalCost}</p>  
+                <p class="total">Total Cost: ${totalCost}</p>
             </div>
             </div>
         </div>
@@ -223,7 +224,7 @@ function searchRecipeName(event) {
 
         return letter
     }).join('');
-    
+
    }).join(' ');
 
     const requestedRecipes = recipeRepository.findRecipeByName(inputValue);
@@ -282,9 +283,9 @@ function searchRecipeName(event) {
 
         return letter
     }).join('');
-    
+
    }).join(' ');
-   
+
    const requestedRecipes = user.filterRecipesToCookByName(inputValue);
 
    recipeHeading.innerText = 'Filtered Favorite Recipes by Name';
