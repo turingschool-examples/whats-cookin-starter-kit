@@ -40,6 +40,10 @@ img {
   box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, .8);
   }
 
+.recipe-img-btn {
+  border: none;
+  background: none;
+}
 
 .favorite-button{
     background-image: linear-gradient(92.88deg, #376387 9.16%, #5643CC 43.89%, #673FD7 64.72%);
