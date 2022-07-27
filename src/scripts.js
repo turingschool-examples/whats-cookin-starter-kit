@@ -13,6 +13,7 @@ const favoritesPage = document.querySelector('.main-favorite-container');
 const searchContainer = document.querySelector('.search-container');
 const searchFavoritesContainer = document.querySelector('.search-favorite-container');
 const recipeSidebarList = document.querySelector('.list-recipes');
+// const recipeSidebarTagList = document.querySelector('.tag-names');
 const recipeIconContainer = document.querySelector('.recipe-icon-container');
 const icon1Img = document.querySelector('.icon-1-img');
 const icon2Img = document.querySelector('.icon-2-img');
@@ -44,6 +45,7 @@ const userWelcomeMessage = document.querySelector('.user-welcome-message');
 const nameRadioBtn = document.querySelector('.name-search');
 const removeFiltersBtn = document.querySelector('.remove-filters-button');
 const tagRadioBtn = document.querySelector('.tag-search');
+const sideBarTitle = document.querySelector('.side-bar-title-wrapper')
 
 // ***** Event Listeners ***** //
 window.addEventListener('load', getAllData);
@@ -53,6 +55,15 @@ recipeSidebarList.addEventListener('keypress', function(event) {
     viewRecipe(event);
   }
 });
+
+// recipeSidebarList.addEventListener('click', listOfRecipesFromTag);
+// recipeSidebarList.addEventListener('keypress', function(event) {
+//   if (event.keyCode === 13) {
+//     listOfRecipesFromTag(event)
+//   }
+//   //Event listener for view list of recipes when clicking on tag from sidebar
+// });
+
 recipeIconContainer.addEventListener('click', viewRecipeFromIcon);
 favoriteRecipeImages.addEventListener('click', viewRecipeFromIcon);
 favoriteRecipeImages.addEventListener('keypress', function(event) {
@@ -78,6 +89,9 @@ addFavoriteBtn.addEventListener('click', addToFavorites);
 removeFavFiltersBtn.addEventListener('click', showFavoritesPage);
 removeFiltersBtn.addEventListener('click', displayAllNames);
 
+
+
+
 // ***** Global Variables ***** //
 let ingredientData;
 let userData;
@@ -99,7 +113,7 @@ getAllData().then(responses => {
   allRecipes = recipeData.recipeData.map(recipe => new Recipe(recipe, ingredientData.ingredientsData));
   recipeRepository =  new RecipeRepository(allRecipes);
   updateMainPageRecipeIcons();
-  updateMainPageFeatureImg();
+  // updateMainPageFeatureImg();
   displayAllNames();
 });
 
@@ -130,17 +144,22 @@ function changeToUpperCase(data) {
 }
 
 function updateMainPageRecipeIcons() {
-  icon1Img.src = allRecipes[getRandomIndex(allRecipes)].image;
-  icon2Img.src = allRecipes[getRandomIndex(allRecipes)].image;
-  icon3Img.src = allRecipes[getRandomIndex(allRecipes)].image;
-  icon4Img.src = allRecipes[getRandomIndex(allRecipes)].image;
-  icon5Img.src = allRecipes[getRandomIndex(allRecipes)].image;
-  icon6Img.src = allRecipes[getRandomIndex(allRecipes)].image;
+  let numbers = [];
+  let randomNumber;
+  allRecipes.forEach(recipe => {
+    randomNumber = getRandomIndex(allRecipes);
+    if (!numbers.includes(randomNumber)) {
+      numbers.push(randomNumber);
+    }
+  })
+  icon1Img.src = allRecipes[numbers[0]].image;
+  icon2Img.src = allRecipes[numbers[1]].image;
+  icon3Img.src = allRecipes[numbers[2]].image;
+  icon4Img.src = allRecipes[numbers[3]].image;
+  icon5Img.src = allRecipes[numbers[4]].image;
+  icon6Img.src = allRecipes[numbers[5]].image;
+  featureImage.src = allRecipes[numbers[6]].image;
   updateUserWelcome(user);
-}
-
-function updateMainPageFeatureImg(){
-  featureImage.src = allRecipes[getRandomIndex(allRecipes)].image;
 }
 
 function displayRecipeNames(recipes) {
@@ -180,12 +199,14 @@ function showFavoritesPage() {
 }
 
 function viewRecipe(event) {
+  displayRecipeByClickTag(event)
   if (event.target.classList.contains('recipes-list')) {
   selectedRecipeName = event.target.innerText
   selectedRecipe = allRecipes.filter(recipe => selectedRecipeName === recipe.name)[0];
   viewRecipesHelperFunction();
   }
 }
+
 
 function viewRecipeFromIcon(event) {
   if (event.target.classList.contains('icon')) {
@@ -268,8 +289,35 @@ function filterRecipeByTag(tag) {
   let filteredRecipes = recipeRepository.filterByTag(input);
   displayRecipeNames(filteredRecipes);
   if (filteredRecipes.length === 0) {
-    recipeSidebarList.innerHTML = `<p>No recipes found, try one of these tags: </p>`;
+    hide(sideBarTitle)
+    recipeSidebarList.innerHTML = 
+    `<p class="tag-names">No recipes found, try one of these tags: </p> 
+    <ul> 
+      <br> <li class="tag"> Antipasti </li>
+      <br> <li class="tag"> Starter </li>
+      <br> <li class="tag"> Snack </li>
+      <br> <li class="tag"> Appetizer </li>
+      <br> <li class="tag"> Antipasto </li>
+      <br> <li class="tag"> Hor d'oeuvre </li>
+      <br> <li class="tag"> Lunch </li>
+      <br> <li class="tag"> Main course </li>
+      <br> <li class="tag"> Main dish </li>
+      <br> <li class="tag"> Dinner </li>
+      <br> <li class="tag"> Side dish </li>
+      <br> <li class="tag"> Salad </li>
+      <br> <li class="tag"> Condiment </li>
+      <br> <li class="tag"> Dip </li>
+      <br> <li class="tag"> Spread </li>
+      <br> <li class="tag"> Sauce </li>
+    </ul>`
   }
+}
+
+function displayRecipeByClickTag(event) {
+  show(sideBarTitle)
+ if(event.target.classList.contains('tag')){
+  filterRecipeByTag(event.target.innerText)
+ }
 }
 
 function filterRecipeByName(name) {
