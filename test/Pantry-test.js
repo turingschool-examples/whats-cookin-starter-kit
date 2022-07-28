@@ -82,7 +82,9 @@ describe('Pantry', () => {
       expect(pantry1.checkIfUserCanCookRecipe(recipe2)).to.equal(false);
     });
 
-    // it.skip('should be told what ingredients are still needed for a recipe', () => {
+    it('should be told what ingredients are still needed for a recipe', () => {
+      // pantry1.getMissingIngredients(recipe1)
+      pantry1.getMissingIngredients(recipe2)
     //     expect(user1.pantry.getMissingIngredients(recipe1, userIngData)).to.deep.equal([
     //     {
     //         "id": 11297,
@@ -99,7 +101,7 @@ describe('Pantry', () => {
     //         "amountNeeded": ,
     //       }
     //     ])
-    // })
+    })
 
 
     // it.skip('should check list of recipes to see if pantry has ingredients to cook recipe', () => {

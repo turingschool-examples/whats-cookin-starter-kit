@@ -24,7 +24,7 @@ class Pantry {
         ingredientsData.amount = ingredient.quantity.amount
         return ingredientsData
     })
-    console.log(requiredIngredients)
+    // console.log(requiredIngredients)
     return requiredIngredients
   }
 
@@ -42,6 +42,20 @@ class Pantry {
   }
 
   getMissingIngredients(recipe) {
+    let requiredIngredients = this.findRequiredIngredients(recipe) 
+    let getMissingIngredients = []  
+      requiredIngredients.forEach(item => {
+      let found = false
+     this.ingredientsInPantry.find(ing => {
+         if(item.id === ing.ingredient){
+           found = true
+         }   
+       })
+          if (found === false){
+          getMissingIngredients.push(item)
+       } 
+     })
+     console.log(`getMissingIngredients`, getMissingIngredients)
   }
 };
 
@@ -49,3 +63,4 @@ class Pantry {
 
 
 export default Pantry;
+
