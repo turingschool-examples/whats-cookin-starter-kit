@@ -31,7 +31,7 @@ describe('Pantry', () => {
           "amount": 10
         },
         {
-          "ingredient": 20081,
+          "ingredient": 20082,
           "amount": 5
         }
       ]
@@ -42,19 +42,251 @@ describe('Pantry', () => {
       "name": "Ephraim Goyette",
       "id": 2,
       "pantry": [
-    {
-      "ingredient": 6150,
-      "amount": 3
-    },
-    {
-      "ingredient": 1032009,
-      "amount": 7
-    },
-    {
-      "ingredient": 1082047,
-      "amount": 8
-    }
-    ]
+        {
+          "ingredient": 6150,
+          "amount": 3
+        },
+        {
+          "ingredient": 1032009,
+          "amount": 7
+        },
+        {
+          "ingredient": 1082047,
+          "amount": 8
+        },
+        {
+          "ingredient": 1034053,
+          "amount": 6
+        },
+        {
+          "ingredient": 2050,
+          "amount": 10
+        },
+        {
+          "ingredient": 19335,
+          "amount": 13
+        },
+        {
+          "ingredient": 1145,
+          "amount": 5
+        },
+        {
+          "ingredient": 18371,
+          "amount": 8
+        },
+        {
+          "ingredient": 19336,
+          "amount": 4
+        },
+        {
+          "ingredient": 11215,
+          "amount": 12
+        },
+        {
+          "ingredient": 9152,
+          "amount": 3
+        },
+        {
+          "ingredient": 11297,
+          "amount": 4
+        },
+        {
+          "ingredient": 1123,
+          "amount": 17
+        },
+        {
+          "ingredient": 16112,
+          "amount": 2
+        },
+        {
+          "ingredient": 4053,
+          "amount": 11
+        },
+        {
+          "ingredient": 10011693,
+          "amount": 4
+        },
+        {
+          "ingredient": 5114,
+          "amount": 2
+        },
+        {
+          "ingredient": 11529,
+          "amount": 5
+        },
+        {
+          "ingredient": 1001,
+          "amount": 14
+        },
+        {
+          "ingredient": 2027,
+          "amount": 6
+        },
+        {
+          "ingredient": 1002030,
+          "amount": 9
+        },
+        {
+          "ingredient": 20081,
+          "amount": 10
+        },
+        {
+          "ingredient": 1077,
+          "amount": 5
+        },
+        {
+          "ingredient": 14106,
+          "amount": 7
+        },
+        {
+          "ingredient": 2009,
+          "amount": 5
+        },
+        {
+          "ingredient": 16124,
+          "amount": 4
+        },
+        {
+          "ingredient": 2031,
+          "amount": 3
+        },
+        {
+          "ingredient": 2025,
+          "amount": 5
+        },
+        {
+          "ingredient": 11282,
+          "amount": 8
+        },
+        {
+          "ingredient": 20027,
+          "amount": 2
+        },
+        {
+          "ingredient": 11333,
+          "amount": 3
+        },
+        {
+          "ingredient": 19177,
+          "amount": 2
+        },
+        {
+          "ingredient": 11821,
+          "amount": 3
+        },
+        {
+          "ingredient": 18372,
+          "amount": 9
+        },
+        {
+          "ingredient": 1012047,
+          "amount": 2
+        },
+        {
+          "ingredient": 11291,
+          "amount": 2
+        },
+        {
+          "ingredient": 1102047,
+          "amount": 4
+        },
+        {
+          "ingredient": 6194,
+          "amount": 5
+        },
+        {
+          "ingredient": 19296,
+          "amount": 5
+        },
+        {
+          "ingredient": 11477,
+          "amount": 3
+        },
+        {
+          "ingredient": 2047,
+          "amount": 12
+        },
+        {
+          "ingredient": 93607,
+          "amount": 6
+        },
+        {
+          "ingredient": 12061,
+          "amount": 8
+        },
+        {
+          "ingredient": 11353,
+          "amount": 3
+        },
+        {
+          "ingredient": 6615,
+          "amount": 2
+        },
+        {
+          "ingredient": 9003,
+          "amount": 2
+        },
+        {
+          "ingredient": 19911,
+          "amount": 2
+        },
+        {
+          "ingredient": 1124,
+          "amount": 3
+        },
+        {
+          "ingredient": 11165,
+          "amount": 2
+        },
+        {
+          "ingredient": 1125,
+          "amount": 3
+        },
+        {
+          "ingredient": 1089003,
+          "amount": 2
+        },
+        {
+          "ingredient": 12120,
+          "amount": 2
+        },
+        {
+          "ingredient": 10511282,
+          "amount": 2
+        },
+        {
+          "ingredient": 1019,
+          "amount": 2
+        },
+        {
+          "ingredient": 9302,
+          "amount": 2
+        },
+        {
+          "ingredient": 1011256,
+          "amount": 2
+        },
+        {
+          "ingredient": 9019,
+          "amount": 4
+        },
+        {
+          "ingredient": 11206,
+          "amount": 2
+        },
+        {
+          "ingredient": 19350,
+          "amount": 2
+        },
+        {
+          "ingredient": 9099,
+          "amount": 18
+        },
+        {
+          "ingredient": 14412,
+          "amount": 3
+        }
+      ]
     }
 
     recipeData = [
@@ -63,7 +295,7 @@ describe('Pantry', () => {
     "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
     "ingredients": [
       {
-        "id": 20081,
+        "id": 11297,
         "quantity": {
           "amount": 1.5,
           "unit": "c"
@@ -152,7 +384,7 @@ describe('Pantry', () => {
       // expect(user.checkIngredients()).to.equal('You can cook it!')
       // Check recipe to see which ingeredients are needed
       // We want to check the users pantry for current ingeredients
-      // If the ingredients that are in the pantry are greater than equal to the 
+      // If the ingredients that are in the pantry are greater than equal to the
       // ingredients needed in the recipe, then they can cook the meal - let user know
         expect;
       })
@@ -166,8 +398,10 @@ describe('Pantry', () => {
       })
 
       it('should be able to show a user what ingredients and amounts exist inside their pantry', function() {
-        // console.log(pantry.returnIngredientNamesAndAmounts())
-        const values = "  \nflat leaf parsley leaves: 4,\n  kosher salt: 10,\n  wheat flour: 5"
+          console.log(pantry.returnIngredientNamesAndAmounts())
+        const values = `
+        flat leaf parsley leaves: 4,
+        kosher salt: 10`
         expect(pantry.returnIngredientNamesAndAmounts()).to.equal(values);
       })
 
@@ -179,8 +413,11 @@ describe('Pantry', () => {
         expect;
       })
 
-      it.skip('should', function() {
-        expect;
+      it('should tell the user if they can cook a recipe based on ingredients in the pantry', function() {
+        const response = pantry.returnIfRecipeIsCookable(recipeData[0])
+        const response2 = pantry.returnIfRecipeIsCookable(recipeData[1])
+        expect(response).to.equal("Yes! You can cook this recipe")
+        expect(response2).to.equal("Sorry! You don't have enough to cook this recipe")
       })
 
       it.skip('should not allow a user to cook a recipe if there are not sufficient ingredients', function() {
