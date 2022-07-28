@@ -95,20 +95,6 @@ class User {
     return this.filteredResults;
   }
 
-  // cookRecipe(recipe) {
-  //   //let matchingIngredients = []
-  //   let isMatching = this.pantry.forEach((item) => {
-  //     recipe.portions.forEach((portion) => {
-  //       if (recipe.portion.includes(item.ingredient)) {
-  //         return true
-  //       } else {
-  //         return false
-  //       }
-  //     });
-
-  //   });
-  //     console.log(isMatching);
-
   compareIngredientsNeeded(recipe) {
     recipe.portions.forEach((portion) => {
       let found = false;
@@ -130,30 +116,11 @@ class User {
     }
   }
 
-  // compareIngredientAmounts(recipe) {
-  //   let wrongAmount = [];
-  //   recipe.portions.forEach((portion) => {
-  //     let isCorrectAmount = false;
-  //     this.matchingIngredients.forEach((item) => {
-  //       if (
-  //         item.ingredient === portion.ingredientId &&
-  //         item.amount >= portion.amount
-  //       ) {
-  //         isCorrectAmount = true;
-  //       }
-  //     });
-  //     if (isCorrectAmount === false) {
-  //       wrongAmount.push(portion);
-  //     }
-  //   });
-
-
   compareIngredientAmounts(recipe) {
     let wrongAmount = [];
     this.matchingIngredients.forEach((item) => {
       let isCorrectAmount = false;
       recipe.portions.forEach((portion) => {
-        // console.log('recipe portions', portion)
         if (
           portion.ingredientId === item.ingredient &&
           item.amount >= portion.amount
@@ -166,8 +133,6 @@ class User {
       }
     });
 
-  
-    
     let testing = recipe.portions.reduce((acc, portion) => {
       let newObj = {};
       wrongAmount.forEach((item) => {
@@ -182,7 +147,7 @@ class User {
       });
       return acc;
     }, []);
-    console.log(testing)
+    return testing
 
  
   }
