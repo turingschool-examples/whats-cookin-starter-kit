@@ -2,11 +2,10 @@ import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
 import {recipeData} from '../src/data/recipes-test-data';
 const recipeInfo = {recipeData};
-import Ingredient from '../src/classes/Ingredient';
+
 
 describe('Recipe', () => {
   let recipe;
-  let ingredient;
 
   beforeEach(() => {
     recipe = new Recipe(recipeInfo.recipeData);
