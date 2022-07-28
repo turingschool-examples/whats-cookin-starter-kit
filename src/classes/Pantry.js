@@ -1,5 +1,5 @@
-// import usersData from '../data/users'
 import ingredientsData from '../data/ingredients'
+import recipeData from '../data/recipes'
 
 class Pantry {
   constructor(user) {
@@ -10,29 +10,35 @@ class Pantry {
   }
 
   returnIngredientNamesAndAmounts() {
-    const test = this.pantry.reduce((acc, item) => {
-      let currentIngredient = item.ingredient;
-      ingredientsData.forEach(ingredient => {
-      if (ingredient.id === currentIngredient) {
-        acc.push(`
-          ${ingredient.name}: ${item.amount}`)
+  const test = this.pantry.reduce((acc, item) => {
+    let currentIngredient = item.ingredient;
+    ingredientsData.forEach(ingredient => {
+    if (ingredient.id === currentIngredient) {
+      acc.push(`
+        ${ingredient.name}: ${item.amount}`)
+      }
+    })
+    return acc;
+    }, [])
+  return test.join();
+  }
+
+  returnIfRecipeIsCookable(recipe) {
+    const isCookable = recipe.ingredients.reduce((arr, ingredient) => {
+      this.pantry.forEach(item => {
+        if (ingredient.id === item.ingredient && ingredient.quantity.amount <= item.amount) {
+          arr.push(ingredient)
         }
       })
-      return acc;
-      }, [])
-    return test.join();
+      return arr
+    }, [])
+    if (isCookable.length === recipe.ingredients.length) {
+      return "Yes! You can cook this recipe";
+    } else {
+      return "Sorry! You don't have enough to cook this recipe";
     }
+  }
 
-  // checkIngredients() {
-  //   // Do stuff
-  // }
 }
 
-//check pantry/how many items user has in their pantry
-//determine name of item/missing ingredient
-
-
-
-
-// module.exports = Pantry;
 export default Pantry;
