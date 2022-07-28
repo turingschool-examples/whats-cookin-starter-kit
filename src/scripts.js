@@ -235,7 +235,7 @@ function displaySelectedRecipeImg() {
 function displayRecipeInstructions() {
   recipeDetailsBox.innerHTML = '';
   selectedRecipe.returnRecipeInstructions().forEach(instruction => {
-  recipeDetailsBox.innerHTML += `<p class='recipe-instructions'> ${instruction} </p></br>`;
+  recipeDetailsBox.innerHTML += `<p class='recipe-instructions'>Step ${instruction} </p></br>`;
   });
 }
 
