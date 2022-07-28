@@ -10,21 +10,18 @@ class Pantry {
   }
 
   returnIngredientNamesAndAmounts() {
-  // A method that takes in pantry data and ingredient data, 
-// and returns an array of strings, where the strings are the 
-// ingredient names and amounts on hand.
-const test = this.pantry.reduce((acc, item) => {
-  let currentIngredient = item.ingredient;
-  ingredientsData.forEach(ingredient => {
-    if (ingredient.id === currentIngredient) {
-      acc.push(`
-  ${ingredient.name}: ${item.amount}`) 
+    const test = this.pantry.reduce((acc, item) => {
+      let currentIngredient = item.ingredient;
+      ingredientsData.forEach(ingredient => {
+      if (ingredient.id === currentIngredient) {
+        acc.push(`
+          ${ingredient.name}: ${item.amount}`)
+        }
+      })
+      return acc;
+      }, [])
+    return test.join();
     }
-  })
-  return acc;
-  }, [])
-  return test.join();
-  }
 
   // checkIngredients() {
   //   // Do stuff

@@ -4,6 +4,7 @@ import './styles.css';
 import {fetchData} from './apiCalls';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
+import Pantry from './classes/Pantry';
 
 // ###########  Query Selectors ###########
 
@@ -12,6 +13,7 @@ const userWelcome = document.querySelector('.user-welcome');
 const homeButton = document.getElementById('homeButton');
 const allRecipesButton = document.getElementById('allRecipesButton');
 const savedRecipesButton = document.getElementById('savedRecipesButton');
+const pantryButton = document.getElementById('pantryButton');
 const searchButton = document.getElementById('searchButton')
 const searchButton2 = document.getElementById('searchButton2');
 const saveRecipeButton = document.getElementById('saveRecipeButton');
@@ -22,6 +24,7 @@ const searchInput = document.querySelector('.search-input');
 const searchInput2 = document.querySelector('.search-input2');
 const homeViewContainer = document.querySelector('.home-view-container');
 const recipeViewContainer = document.querySelector('.recipe-view-container');
+
 const savedRecipesContainer = document.querySelector('.saved-recipes-view');
 const recipeName = document.querySelector('.recipe-name');
 const ingredientDetails = document.querySelector('.ingredient-details');
@@ -30,6 +33,7 @@ const cookingInstructions = document.querySelector('.cooking-instructions');
 const allRecipesContainer = document.querySelector('.all-recipes-view');
 const ingredientCost = document.querySelector('.ingredient-cost');
 const filteredContainer = document.querySelector('.filtered-recipes-view')
+const pantryContainer = document.querySelector('.pantry-view')
 const filterByName = document.getElementById('filterByName');
 const filterByName2 = document.getElementById('filterByName2');
 const userSearchContainer1 = document.querySelector('.user-search-container');
@@ -42,6 +46,7 @@ let recipeRepo;
 let user;
 let usersData;
 let recipeData;
+let pantry
 
 // ###########  Promises  ###########
 function getPromiseData() {
@@ -50,6 +55,7 @@ function getPromiseData() {
     recipeData = data[1].recipeData;
     user = new User(usersData[randomIndex(usersData)]);
     recipeRepo = new RecipeRepository(recipeData);
+    pantry = new Pantry(user)
     welcomeUser();
     populateRecipesInHomeView();
   })
@@ -61,6 +67,7 @@ window.addEventListener('load', getPromiseData);
 homeButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', populateAllRecipesView);
 savedRecipesButton.addEventListener('click', populateSavedRecipesView);
+pantryButton.addEventListener('click', firePantryView)
 homeViewContainer.addEventListener('click', populateChosenRecipe);
 filteredContainer.addEventListener('click', populateChosenRecipe);
 searchButton.addEventListener('click', searchButtonAction);
@@ -70,6 +77,7 @@ saveRecipeButton.addEventListener('click', saveChosenRecipe);
 deleteRecipeButton.addEventListener('click', deleteChosenRecipe);
 savedRecipesContainer.addEventListener('click', deleteRecipe);
 savedRecipesContainer.addEventListener('click', populateChosenRecipe);
+
 
 // ###########  On-Load Functions  ###########
 
@@ -146,6 +154,17 @@ function populateSavedRecipesView() {
     </div>`;
   })
 
+}
+
+function firePantryView(){
+  populatePantryView()
+  displayPantryView()
+}
+
+function populatePantryView() {
+  let pantryInfo = pantry.returnIngredientNamesAndAmounts()
+  pantryContainer.innerHTML = ''
+  pantryContainer.innerHTML = `<h2 class='pantryText'>${pantryInfo}</h2>`
 }
 
 // ###########  Chosen Recipe View Functions  ###########
@@ -300,7 +319,9 @@ function displayHomeView(){
         homeViewContainer,
         userSearchContainer1,
         form,
-        searchButton
+        searchButton,
+        pantryButton,
+        pantryContainer
   ])
 }
 
@@ -312,12 +333,14 @@ function displaySavedRecipesView(){
         filteredContainer,
         userSearchContainer1,
         form,
-        searchButton
+        searchButton,
+        pantryContainer
   ])
   show([homeButton,
         allRecipesButton,
         savedRecipesContainer,
-        userSearchContainer2
+        userSearchContainer2,
+        pantryButton
   ])
 }
 
@@ -327,14 +350,16 @@ function displayAllRecipesView() {
         recipeViewContainer,
         savedRecipesContainer,
         filteredContainer,
-        userSearchContainer2
+        userSearchContainer2,
+        pantryContainer
       ])
   show([homeButton,
         savedRecipesButton,
         allRecipesContainer,
         userSearchContainer1,
         form,
-        searchButton
+        searchButton,
+        pantryButton
       ])
 }
 
@@ -343,7 +368,8 @@ function displayChosenRecipeView() {
         homeViewContainer,
         allRecipesContainer,
         filteredContainer,
-        userSearchContainer2
+        userSearchContainer2,
+        pantryContainer
   ])
   show([homeButton,
       savedRecipesButton,
@@ -351,7 +377,8 @@ function displayChosenRecipeView() {
       recipeViewContainer,
       userSearchContainer1,
       form,
-      searchButton
+      searchButton,
+      pantryButton
   ])
 }
 
@@ -360,7 +387,8 @@ function displayFilteredView() {
         homeViewContainer,
         allRecipesContainer,
         recipeViewContainer,
-        userSearchContainer2
+        userSearchContainer2,
+        pantryContainer
   ])
   show([homeButton,
       savedRecipesButton,
@@ -368,7 +396,28 @@ function displayFilteredView() {
       filteredContainer,
       userSearchContainer1,
       form,
-      searchButton
+      searchButton,
+      pantryButton
+  ])
+}
+
+function displayPantryView(){
+  hide([pantryButton,
+      homeViewContainer,
+      recipeViewContainer,
+      savedRecipesContainer,
+      allRecipesContainer,
+      filteredContainer,
+      userSearchContainer2
+  ])
+  
+  show([pantryContainer,
+        homeButton,
+        savedRecipesButton,
+        allRecipesButton,
+        userSearchContainer1,
+        form,
+        searchButton,
   ])
 }
 
