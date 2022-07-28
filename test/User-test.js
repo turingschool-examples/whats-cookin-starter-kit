@@ -95,7 +95,7 @@ describe("User", () => {
      completeUser2 = new User({
        filteredResults: [],
        id: 35,
-       name: "Gladis",
+       name: "Chadis",
        pantry: [
          { ingredient: 18371, amount: 2, name: "baking powder" },
          { ingredient: 1001, amount: 1, name: "butter" },
@@ -114,6 +114,7 @@ describe("User", () => {
          { ingredient: 1054, amount: 2, name: "whipped cream" },
          { ingredient: 1077, amount: 2, name: "full-fat milk" },
          { ingredient: 20027, amount: 0.25, name: "corn starch" },
+          { ingredient: 1125, amount: 2, name: "egg yolks" },
        ],
        recipesToCook: [],
        selectedInput: [],
@@ -309,13 +310,20 @@ describe("User", () => {
 
   it("should not be able to cook a recipe if the users pantry is missing the required ingredients", () => {
     completeUser1.addRecipeToCook(completeRecipe);
-    expect(completeUser1.collectMatchingIngredients(completeUser1.recipesToCook[0])).to.equal(false)
-    // completeUser.compareAmounts(completeUser.recipesToCook[0]);
-    // // completeUser.compareAmounts(completeUser.recipesToCook[0]);
+    completeUser1.compareIngredientsNeeded(completeUser1.recipesToCook[0]);
+    expect(completeUser1.notMatchingIngredients.length).to.be.greaterThan(0);
   });
 
-  // it("should not be able to cook a recipe if the users pantry is missing the required amount of ingredients", () => {
+  it("should not be able to cook a recipe if the users pantry is missing the required amount of ingredients", () => {
+  completeUser2.addRecipeToCook(completeRecipe);
+  completeUser2.compareIngredientsNeeded(completeUser2.recipesToCook[0]);
+ expect(completeUser2.notMatchingIngredients).to.deep.equal([]);
+ expect(completeUser2.matchingIngredients.length).to.equal(completeRecipe.portions.length);
+completeUser2.compareIngredientAmounts(completeUser2.recipesToCook[0]);
+
+//  expect().to.equal();
 
 
-  // });
+
+  });
 });

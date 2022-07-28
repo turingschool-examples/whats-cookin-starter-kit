@@ -6,6 +6,8 @@ class User {
     this.recipesToCook = [];
     this.selectedInput = [];
     this.filteredResults = [];
+    this.matchingIngredients = [];
+    this.notMatchingIngredients = [];
   }
 
   addRecipeToCook(recipe) {
@@ -107,42 +109,87 @@ class User {
   //   });
   //     console.log(isMatching);
 
-  collectMatchingIngredients(recipe) {
-    var matchingIngredients = [];
-    var notMatchingIngredients = [];
-
+  compareIngredientsNeeded(recipe) {
     recipe.portions.forEach((portion) => {
       let found = false;
       this.pantry.forEach((item) => {
         if (item.ingredient === portion.ingredientId) {
-          matchingIngredients.push(item);
+          this.matchingIngredients.push(item);
           found = true;
         }
       });
       if (found === false) {
-        notMatchingIngredients.push(portion);
+        this.notMatchingIngredients.push(portion);
       }
     });
-    console.log(matchingIngredients);
-    // if (matchingIngredients.length !== recipe.portions.length) {
-    //   return false;
-    // } else {
-    // return matchingIngredients;
-    // }
+
+    if (this.notMatchingIngredients.length === 0) {
+      return this.matchingIngredients;
+    } else {
+      return this.notMatchingIngredients;
+    }
   }
 
-  // compareAmounts(recipe) {
-  //   let matching = this.collectMatchingIngredients(recipe);
-  //   matching.forEach((item) => {
-  //     recipe.portions.forEach((portion) => {
-  //       if (item.ingredient === portion.ingredientId && item.amount >= portion.amount) {
-  //         return true
-  //       } else {
-  //        return false
+  // compareIngredientAmounts(recipe) {
+  //   let wrongAmount = [];
+  //   recipe.portions.forEach((portion) => {
+  //     let isCorrectAmount = false;
+  //     this.matchingIngredients.forEach((item) => {
+  //       if (
+  //         item.ingredient === portion.ingredientId &&
+  //         item.amount >= portion.amount
+  //       ) {
+  //         isCorrectAmount = true;
   //       }
   //     });
+  //     if (isCorrectAmount === false) {
+  //       wrongAmount.push(portion);
+  //     }
   //   });
-  // }
+
+
+  compareIngredientAmounts(recipe) {
+    let wrongAmount = [];
+    this.matchingIngredients.forEach((item) => {
+      let isCorrectAmount = false;
+      recipe.portions.forEach((portion) => {
+        // console.log('recipe portions', portion)
+        if (
+          portion.ingredientId === item.ingredient &&
+          item.amount >= portion.amount
+        ) {
+          isCorrectAmount = true;
+        }
+      });
+      if (isCorrectAmount === false) {
+        wrongAmount.push(item);
+      }
+    });
+
+  
+    
+    let testing = recipe.portions.reduce((acc, portion) => {
+      let newObj = {};
+      wrongAmount.forEach((item) => {
+        if (item.ingredient === portion.ingredientId) {
+          newObj = {
+            name: item.name,
+            difference: (portion.amount - item.amount),
+          };
+          acc.push(newObj);
+        }
+        return newObj;
+      });
+      return acc;
+    }, []);
+    console.log(testing)
+
+ 
+  }
+
+  
+
+
 
   clearData() {
     this.selectedInput = [];
