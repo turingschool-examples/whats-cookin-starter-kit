@@ -413,11 +413,12 @@ describe('Pantry', () => {
         expect;
       })
 
-      it('should tell the user if they can cook a recipe based on ingredients in the pantry', function() {
+      it('should tell the user if they can cook a recipe based on ingredients in the pantry. If not, it tells the user what ingredients are missing', function() {
+        // console.log(pantry.returnIfRecipeIsCookable(recipeData[1]))
         const response = pantry.returnIfRecipeIsCookable(recipeData[0])
         const response2 = pantry.returnIfRecipeIsCookable(recipeData[1])
         expect(response).to.equal("Yes! You can cook this recipe")
-        expect(response2).to.equal("Sorry! You don't have enough to cook this recipe")
+        expect(response2).to.equal("Sorry! You don't have enough ingredients to cook Dirty Pete's Original Wing Powder. you need: wheat flour: 1.5.")
       })
 
       it.skip('should not allow a user to cook a recipe if there are not sufficient ingredients', function() {
