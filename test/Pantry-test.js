@@ -13,12 +13,12 @@ describe('Pantry', () => {
         expect(pantry).to.be.an.instanceof(Pantry);
     })
 
-    it.skip('Should hold ingredients', () => {
+    it('Should hold ingredients', () => {
         const pantry = new Pantry(userInfo.usersData.pantry)
         expect(pantry.ingredients).to.deep.equal(userInfo.usersData.pantry)
     })
 
-    it.skip('Should say if there is enough ingredients to cook our recipe', () => {
+    it('Should say if there is enough ingredients to cook our recipe', () => {
         const recipe = {
             "id": 595736,
             "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -142,7 +142,7 @@ describe('Pantry', () => {
         expect(canMakeRecipe).to.equal(false)
     })
 
-    it.skip('Should determine the amount of missing ingredients needed', () => {
+    it('Should determine the amount of missing ingredients needed', () => {
         const recipe = {
             "id": 595736,
             "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -262,7 +262,7 @@ describe('Pantry', () => {
             ]
         }
         const pantry = new Pantry(userInfo.usersData.pantry);
-        const numberOfIngredientNeeded = pantry.getIngredientAmount(recipe)
+        const numberOfIngredientNeeded = pantry.getNeededIngredients(recipe)
         expect(numberOfIngredientNeeded).to.deep.equal([{
             "id": 19206,
             "quantity": {

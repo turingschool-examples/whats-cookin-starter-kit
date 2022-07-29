@@ -1,8 +1,10 @@
+import Pantry from "./Pantry";
+
 class User {
   constructor(userDetails) {
     this.name = userDetails.name;
     this.id = userDetails.id;
-    this.pantry = userDetails.pantry;
+    this.pantry = new Pantry(userDetails.pantry);
     this.recipesToCook = [];
 
   }
