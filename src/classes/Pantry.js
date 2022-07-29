@@ -24,7 +24,6 @@ class Pantry {
   }
 
   returnIfRecipeIsCookable(recipe) {
-
     const isCookable = recipe.ingredients.reduce((arr, ingredient) => {
       this.pantry.forEach(item => {
         if (ingredient.id === item.ingredient && ingredient.quantity.amount <= item.amount) {
@@ -35,6 +34,8 @@ class Pantry {
       return arr
     }, [])
 
+      /// break here
+
     const neededIngredients = recipe.ingredients.filter(ingredient => !isCookable.includes(ingredient));
 
     const sumNeededIngredients = neededIngredients.reduce((arr, ingredient) => {
@@ -42,7 +43,7 @@ class Pantry {
       if (!this.pantry.includes(ingredient)) {
         arr.push(ingredient.quantity.amount)
       }
-      this.pantry.forEach((item, index) => {
+      this.pantry.forEach((item) => {
         if (ingredient.id === item.ingredient) {
           sumNeeded = ingredient.quantity.amount - item.amount;
           arr.push(sumNeeded)
@@ -66,8 +67,10 @@ class Pantry {
 
 
     if (isCookable.length === recipe.ingredients.length) {
+      console.log("Yes! You can cook this recipe");
       return "Yes! You can cook this recipe";
     } else {
+      console.log(`Sorry! You don't have enough ingredients to cook ${recipe.name}. you need: ${formattedNameAndSum.join("\n")}.`)
       return `Sorry! You don't have enough ingredients to cook ${recipe.name}. you need: ${formattedNameAndSum.join("\n")}.`;
     }
   }
