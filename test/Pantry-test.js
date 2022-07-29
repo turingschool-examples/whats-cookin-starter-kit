@@ -11,12 +11,12 @@ describe('Pantry', () => {
     it('Should be an instance of Pantry', () => {
         const pantry = new Pantry()
         expect(pantry).to.be.an.instanceof(Pantry);
-    })
+    });
 
     it('Should hold ingredients', () => {
         const pantry = new Pantry(userInfo.usersData.pantry)
         expect(pantry.ingredients).to.deep.equal(userInfo.usersData.pantry)
-    })
+    });
 
     it('Should say if there is enough ingredients to cook our recipe', () => {
         const recipe = {
@@ -140,7 +140,7 @@ describe('Pantry', () => {
         const pantry = new Pantry(userInfo.usersData.pantry);
         const canMakeRecipe = pantry.checkIfCanMakeRecipe(recipe)
         expect(canMakeRecipe).to.equal(false)
-    })
+    });
 
     it('Should determine the amount of missing ingredients needed', () => {
         const recipe = {
@@ -276,14 +276,14 @@ describe('Pantry', () => {
                 "amount": 0.5,
                 "unit": "c"
             }
-        }, 
+        },
         {
             "id": 1012047,
             "quantity": {
                 "amount": 24,
                 "unit": "servings"
             }
-        }, 
+        },
         {
             "id": 10019903,
             "quantity": {
@@ -293,4 +293,3 @@ describe('Pantry', () => {
         }])
     });
 });
-
