@@ -29,6 +29,7 @@ let ourUser;
 let thisRecipe;
 let thisIngredient;
 let recipeRepo;
+let pantry;
 let recipes = [];
 let ingredients = [];
 let cookbookIsActive = false;
@@ -43,6 +44,8 @@ Promise.all([userPromise, ingredientPromise, recipePromise])
         thisRecipe = setRecipeData(value[2].recipeData[recipeID], thisIngredient)
         recipes = value[2].recipeData;
         ingredients = value[1].ingredientsData;
+        pantry = new Pantry(ourUser.pantry)
+        pantry.attachNameToId(ingredients)
         showAllRecipes();
     })
 
@@ -67,7 +70,6 @@ const pantryWrapper = document.querySelector('.pantry-wrapper');
 
 
 const addToCookbookButtonEventHandler = (buttons) => {
-    recipeRepo = new RecipeRepository(recipes, ingredients);
     buttons.forEach((button) => {
         button.addEventListener('click', (event) => {
             let recipeToAdd = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(event.target.id))
@@ -83,16 +85,20 @@ cookbookButton.addEventListener('click', showCookbookRecipes)
 searchButton.addEventListener('click', searchRecipe)
 pantryButton.addEventListener('click', showPantry)
 
+
 function showAllHelper() {
-    let letsMakeIt = document.querySelectorAll(".lets-make-it-button")
-    letsMakeIt.forEach((button) => {
+    // pantry = new Pantry(ourUser.pantry)
+    console.log('pantry in showAll', pantry)
+    let viewRecipe = document.querySelectorAll(".view-recipe-button")
+    viewRecipe.forEach((button) => {
         button.addEventListener('click', (event) => {
-            showAllRecipeDetails(event.target.id)
+                showAllRecipeDetails(event.target.id)
         })
     })
 }
+
 function showAllRecipes() {
-    recipeRepo = new RecipeRepository(recipes, ingredients);
+    recipeRepo = new RecipeRepository(recipes, ingredients)
     const allRecipes = recipeRepo.createAllRecipes(thisIngredient)
     recipeCardWrapper.innerHTML = '';
     allRecipes.forEach((recipe) => {
@@ -113,11 +119,16 @@ function showAllRecipeDetails(id) {
     recipeRepo = new RecipeRepository(recipes, ingredients)
     thisRecipe = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(id));
     thisRecipe.makeIngredientData(thisIngredient);
+    pantry.missingIngredients = []
+    pantry.checkUserIngredients(thisRecipe)
     window.currentRecipe = thisRecipe;
+    console.log('thisrecipe', thisRecipe)
     ingredientCard.innerHTML = `<div>
     <button id="add-to-cookbook" class="add-to-cookbook-button"> Add to cookbook! </button>
+    <button id="lets-make-it" class="lets-make-it-button"> Let's Make It! </button>
 <ul>
 <h2> RECIPE INFORMATION </h2>
+<p class="enjoy-meal-message"> </p>
 <p> NAME: ${thisRecipe.name}</p>
 <p> TOTAL COST: ${thisRecipe.getCostToDollar()}</p>
 </ul>
@@ -126,9 +137,16 @@ function showAllRecipeDetails(id) {
 `
     thisRecipe.requiredIngredients.forEach(ingredient => {
         ingredientCard.innerHTML += `  <div class="recipe-information">
-  <li>${ingredient.name}</li>
+  <li>${ingredient.name}, ${ingredient.amount} ${ingredient.unit}</li>
   </div>
   `
+    })
+    ingredientCard.innerHTML += `<h3> YOU NEED TO ADD THESE INGREDIENTS! </h3>`
+    pantry.missingIngredients.forEach(missing => {
+        ingredientCard.innerHTML += `  <div class="recipe-information">
+        <li>${missing.name}, ${missing.amount} ${missing.unit}</li>
+        </div>
+        `
     })
     ingredientCard.innerHTML += `<h3>
 INSTRUCTIONS
@@ -140,10 +158,22 @@ INSTRUCTIONS
     });
     const addToCookbookButton = document.querySelector('.add-to-cookbook-button')
     addToCookbookButton.addEventListener('click', addSingleRecipeToCookbook)
+    const letsMakeItButton = document.querySelector('.lets-make-it-button')
+    letsMakeItButton.addEventListener('click', letsMakeItTrafficCop)
     hide(recipeCardWrapper)
     show(ingredientCardWrapper)
     show(ingredientCard)
     show(goHomeButton)
+    hide(pantryWrapper)
+}
+
+const letsMakeItTrafficCop = () => {
+    if (pantry.missingIngredients.length) {
+        showPantry()
+    } else {
+    const enjoyMealMessage = document.querySelector('.enjoy-meal-message')
+    enjoyMealMessage.innerText = 'Enjoy Your Meal!'
+    }
 }
 
 const addSingleRecipeToCookbook = () => {
@@ -180,7 +210,6 @@ function searchRecipe(event) {
     if (cookbookIsActive) {
         searchUserRecipes(event);
     } else {
-        recipeRepo = new RecipeRepository(recipes, ingredients)
         event.preventDefault();
         if (!searchBox.value) {
             showAllRecipes();
@@ -194,12 +223,14 @@ function searchRecipe(event) {
             showAllRecipes();
         }
         show(goHomeButton)
+        hide(pantryWrapper)
     }
 }
 
 function showCookbookRecipes(event) {
     displayRecipeBySearchResults(ourUser.recipesToCook);
     show(goHomeButton)
+    hide(pantryWrapper)
     cookbookIsActive = true;
 }
 
@@ -228,7 +259,7 @@ function displayRecipeBySearchResults(recipes) {
       <img src="${recipe.image}" class="recipe-image" alt="">
       <h3>${recipe.name}</h3>
       <div class="button-wrapper">
-      <button class="lets-make-it-button button-styling" id="${recipe.id}">Let's Make It!</button>
+      <button class="view-recipe-button button-styling" id="${recipe.id}">View Recipe</button>
       <button class="remove-recipe button-styling" data-recipeId=${recipe.id} > Remove from cookbook! </button>
       <div>
       <button id="${recipe.id}" class="add-to-cook-button button-styling"> Add To Cookbook! </button>
@@ -243,11 +274,7 @@ function displayRecipeBySearchResults(recipes) {
     showAllHelper()
 }
 
-
-
 function showPantry() {
-    let pantry = new Pantry(ourUser.pantry)
-    pantry.attachNameToId(ingredientsData)
     pantryWrapper.innerHTML = `<h2> ${ourUser.name.split(" ")[0]}'s Pantry </h2>`
     pantry.ingredients.forEach((item) => {
         pantryWrapper.innerHTML += `<div class="ingredients">
@@ -258,7 +285,57 @@ function showPantry() {
         </div>`
     })
     hide(recipeCardWrapper)
+    hide(ingredientCardWrapper)
+    show(pantryWrapper)
 };
+
+// User Story: As a user, I should not be able to cook a recipe if I don’t have the ingredients required.
+// Need to add View Recipe button to recipeDetails page
+// Has something to do with error handling
+// When the user clicks the View Recipe button a method needs to check the user's pantry against the ingredients needed for the recipe to determine if the user has enough ingredients to make the recipe
+// If the user does NOT have enough ingredients in their pantry, they should get a notification to go add more ingredients so they can make said recipe
+// HOW?: Can use alot of the logic in checkUserIngredients 
+    // --> iterate over user's pantry to match ingredient id's
+    // --> match recipeIngredient.id against userPantryIngredient.id
+    // --> iterate over user's pantry to check amount against recipeIngredient.amount
+
+function cannotMakeRecipe(recipe) {
+    pantry.checkUserIngredients(recipe)
+    console.log('missing Ingredients: ', pantry.missingIngredients)
+    recipeCard.innerHTML += `<h2 class="error-message">You Need More Ingredients! Go To Your Pantry & Add: ${pantry.missingIngredients.name} ${pantry.missingIngredients.amount}</h2>`
+    console.log('missing.amount: ', pantry.missingIngredients.amount)
+}
+
+    // recipe.requiredIngredients.forEach(ingredient => {
+    //     const findIngredient = pantry.ingredients.find(userIngredient => userIngredient.ingredient === ingredient.id)
+    //     if (!userIngredient.ingredient || userIngredient.amount < ingredient.amount) {
+    //        // return alert(`You don't have enough ingredients! Go add more!`)
+    //        // I don't just want to let them know they need to add ingredients in general, I want to implement the second half of checkUserIngredients to ALSO let them know what ingredients they need to add and how much of each
+
+    //     }
+    // })
+
+
+    // checkUserIngredients(recipe) {      
+    //     recipe.requiredIngredients.forEach(ingredient => {
+    //         const found = this.ingredients.find(foundIngredient => foundIngredient.ingredient === ingredient.id)
+    //         if (!found) {
+    //             this.missingIngredients.push({
+    //                 name: ingredient.name,
+    //                 id: ingredient.id,
+    //                 amount: ingredient.amount
+    //             })
+    //         } else {
+    //             if (found.amount < ingredient.amount) {
+    //                 this.missingIngredients.push({
+    //                     name: ingredient.name,
+    //                     id: ingredient.id,
+    //                     amount: ingredient.amount - found.amount
+    //                 })
+    //             }
+    //         }
+    //     })
+    // }
 
 function show(element) {
     element.classList.remove('hidden');

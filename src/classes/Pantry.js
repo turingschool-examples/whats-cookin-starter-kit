@@ -1,24 +1,25 @@
-
 export default class Pantry {
-    constructor(pantryIngredients, recipeData) {
+    constructor(pantryIngredients) {
         this.ingredients = pantryIngredients
         this.missingIngredients = []
     }
     checkUserIngredients(recipe) {      
         recipe.requiredIngredients.forEach(ingredient => {
-            const found = this.ingredients.find(foundIngredient => foundIngredient.ingredient === ingredient.id)
+            const found = this.ingredients.find(foundIngredient => foundIngredient.id === ingredient.id)
             if (!found) {
                 this.missingIngredients.push({
                     name: ingredient.name,
                     id: ingredient.id,
-                    amount: ingredient.amount
+                    amount: ingredient.amount,
+                    unit: ingredient.unit
                 })
             } else {
                 if (found.amount < ingredient.amount) {
                     this.missingIngredients.push({
                         name: ingredient.name,
                         id: ingredient.id,
-                        amount: ingredient.amount - found.amount
+                        amount: ingredient.amount - found.amount,
+                        unit: ingredient.unit
                     })
                 }
             }
@@ -35,4 +36,3 @@ export default class Pantry {
         })
     }
 }
-
