@@ -5,7 +5,6 @@ import { usersData } from "../src/data/users"
 import { recipeData } from "../src/data/recipes"
 import Recipe from '../src/classes/Recipe';
 import Users from '../src/classes/Users'
-import Ingredient from '../src/classes/Ingredient'
 
 describe('Pantry Test', () => {
 
@@ -31,7 +30,6 @@ describe('Pantry Test', () => {
     it('Should be able to check a users pantry has enough of the ingredients', () => {
         recipe.makeIngredientData()
         pantry.checkUserIngredients(recipe)
-        console.log(pantry.missingIngredients)
         expect(pantry.missingIngredients.length).to.equal(4)
     })
 })
