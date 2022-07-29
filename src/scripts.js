@@ -24,8 +24,8 @@ const searchInput = document.querySelector('.search-input');
 const searchInput2 = document.querySelector('.search-input2');
 const homeViewContainer = document.querySelector('.home-view-container');
 const recipeViewContainer = document.querySelector('.recipe-view-container');
-
 const savedRecipesContainer = document.querySelector('.saved-recipes-view');
+const smallPantryWindow = document.querySelector('.small-pantry-window')
 const recipeName = document.querySelector('.recipe-name');
 const ingredientDetails = document.querySelector('.ingredient-details');
 const recipeViewPicBox = document.querySelector('.recipe-view-pic-box');
@@ -77,7 +77,7 @@ saveRecipeButton.addEventListener('click', saveChosenRecipe);
 deleteRecipeButton.addEventListener('click', deleteChosenRecipe);
 savedRecipesContainer.addEventListener('click', deleteRecipe);
 savedRecipesContainer.addEventListener('click', populateChosenRecipe);
-
+savedRecipesContainer.addEventListener('click', fireIngredientEvaluation);
 
 // ###########  On-Load Functions  ###########
 
@@ -146,12 +146,16 @@ function populateSavedRecipesView() {
   displaySavedRecipesView()
   savedRecipesContainer.innerHTML = '';
   user.recipesToCook.forEach((recipe) => {
-    savedRecipesContainer.innerHTML += `<div class='trash-this-one'>
-    <img class='saved-recipes-pic-box'
-    id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
-    <p class='recipe-label'>${recipe.name}</p>
-    <img class='trash-can' src='./trash.png' alt='click this trash can to throw away ${recipe.name}'>
-    </div>`;
+    savedRecipesContainer.innerHTML += 
+    `<section class='trash-this-one'>
+      <img class='saved-recipes-pic-box'
+      id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
+      <div class='saved-recipe-info-bar'>
+        <p class='recipe-label'>${recipe.name}</p>
+        <img class='recipe-check-button' src='./check.svg.png' id='${recipe}'>
+        <img class='trash-can' src='./trash.png' alt='click this trash can to throw away ${recipe.name}'>
+      </div>
+    </section>`;
   })
 
 }
@@ -313,6 +317,8 @@ function displayHomeView(){
         allRecipesContainer,
         filteredContainer,
         userSearchContainer2,
+        smallPantryWindow
+        
   ])
   show([allRecipesButton,
         savedRecipesButton,
@@ -340,7 +346,8 @@ function displaySavedRecipesView(){
         allRecipesButton,
         savedRecipesContainer,
         userSearchContainer2,
-        pantryButton
+        pantryButton,
+        smallPantryWindow
   ])
 }
 
@@ -351,7 +358,8 @@ function displayAllRecipesView() {
         savedRecipesContainer,
         filteredContainer,
         userSearchContainer2,
-        pantryContainer
+        pantryContainer,
+        smallPantryWindow
       ])
   show([homeButton,
         savedRecipesButton,
@@ -369,7 +377,8 @@ function displayChosenRecipeView() {
         allRecipesContainer,
         filteredContainer,
         userSearchContainer2,
-        pantryContainer
+        pantryContainer,
+        smallPantryWindow
   ])
   show([homeButton,
       savedRecipesButton,
@@ -388,7 +397,8 @@ function displayFilteredView() {
         allRecipesContainer,
         recipeViewContainer,
         userSearchContainer2,
-        pantryContainer
+        pantryContainer,
+        smallPantryWindow
   ])
   show([homeButton,
       savedRecipesButton,
@@ -408,7 +418,8 @@ function displayPantryView(){
       savedRecipesContainer,
       allRecipesContainer,
       filteredContainer,
-      userSearchContainer2
+      userSearchContainer2,
+      smallPantryWindow
   ])
   
   show([pantryContainer,
@@ -451,11 +462,19 @@ function deleteChosenRecipe(){
 function deleteRecipe(event) {
   let alt = event.target.alt;
   if (event.target.classList.contains("trash-can")) {
-    event.target.closest('div').remove();
+    event.target.closest('section').remove();
   }
   user.recipesToCook.forEach((recipe, index) => {
     if (alt === `click this trash can to throw away ${recipe.name}`) {
       user.recipesToCook.splice(index, 1);
     }
   })
+}
+
+function fireIngredientEvaluation(event) {
+  if (event.target.classList.contains('recipe-check-button')) {
+    let recipeToCheck = event.target.id
+    console.log(recipeToCheck)
+    // returnIfRecipeIsCookable(recipeToCheck);
+  }
 }
