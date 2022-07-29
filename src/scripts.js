@@ -9,6 +9,7 @@ const recipeDisplay = document.querySelector('#recipeDisplay');
 const recipeHeading = document.querySelector('#recipeHeading');
 const homeButton = document.querySelector('#homeButton');
 const favoriteButton = document.querySelector('#favoriteButton');
+const pantryButton = document.querySelector('#pantryButton');
 const recipeNameInput = document.querySelector('#recipeNameInput');
 const recipeTagInput = document.querySelector('#recipeTagInput');
 const filterForm = document.querySelector('#filterForm');
@@ -42,6 +43,7 @@ homeButton.addEventListener('click', goHome);
 filterForm.addEventListener('submit', filterRecipeTag);
 searchForm.addEventListener('submit', searchRecipeName);
 favoriteButton.addEventListener('click', showFavorites);
+pantryButton.addEventListener('click', showMyPantry);
 filterFavoriteForm.addEventListener('submit', filterFavoriteRecipesByTag);
 favSearchForm.addEventListener('submit', searchFavRecipeListByName);
 
@@ -62,6 +64,36 @@ function createUser() {
     const randomNumber = Math.floor(Math.random() * userInfo.length);
     const user = userInfo[randomNumber];
     return new User(user);
+}
+
+function showMyPantry() {
+    const pantryWithNames = findExistingPantryIngredients();
+    recipeHeading.innerText = 'My Pantry';
+    recipeDisplay.innerHTML = ""
+    pantryWithNames.forEach((ingredient) => {
+    recipeDisplay.innerHTML += (`
+        <div class="ingredient-card" id=${ingredient.id}>
+            <p>Name: ${ingredient.name}</p>
+            <p>Amount: ${ingredient.amount}</p>
+        </div>
+      `)
+    }
+    )
+}
+
+function findExistingPantryIngredients() {
+    const pantryIngredients = user.pantry.ingredients.map(ingredient => {
+        ingredientsInfo.forEach(ingredientInfo => {
+            if (ingredientInfo.id === ingredient.ingredient) {
+                ingredientInfo.amount = ingredient.amount
+                ingredient = ingredientInfo;
+            }
+        });
+
+        return ingredient;
+    });
+
+    return pantryIngredients;
 }
 
 

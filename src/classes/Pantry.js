@@ -1,6 +1,6 @@
 class Pantry {
     constructor(ingredients) {
-      this.ingredients = ingredients;
+        this.ingredients = ingredients
     }
 
     checkIfCanMakeRecipe(recipe) {
