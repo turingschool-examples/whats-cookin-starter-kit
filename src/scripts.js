@@ -67,6 +67,7 @@ function createUser() {
 }
 
 function showMyPantry() {
+    hideOff([homeButton]);
     const pantryWithNames = findExistingPantryIngredients();
     recipeHeading.innerText = 'My Pantry';
     recipeDisplay.innerHTML = ""
