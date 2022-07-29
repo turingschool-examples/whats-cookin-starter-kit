@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import User from "../src/classes/User";
 import {usersData} from '../src/data/users-test-data';
 const userInfo = {usersData};
-console.log(userInfo)
+
 
 describe('User', () => {
   let user;
