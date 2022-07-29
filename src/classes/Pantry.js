@@ -54,9 +54,21 @@ class Pantry {
             getMissingIngredients.push(item);
           }
       })
-      console.log(getMissingIngredients);
     return getMissingIngredients;
   };
+
+  getIngredientAmountsNeeded(recipe) {
+    let requiredIngredients = this.findRequiredIngredients(recipe);
+    let amountNeeded = [];
+    requiredIngredients.forEach(ingredient => {
+      this.ingredientsInPantry.forEach(ing => {
+        if ((ing.ingredient === ingredient.id) && (ing.amount < ingredient.amount)) {
+          amountNeeded.push({id : ingredient.id, amount: (ingredient.amount - ing.amount)})
+        }
+      })
+    })
+    return amountNeeded
+  }
 };
 
 

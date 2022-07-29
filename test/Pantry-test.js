@@ -13,18 +13,22 @@ const testUserData = userData.testUserData;
 describe('Pantry', () => {
     let recipe1;
     let recipe2;
+    let recipe3;
     let user1;
     let user2;
     let pantry1; 
+    let pantry2;
     let emptyPantry;
 
     beforeEach(() => {
      user1 = new User(testUserData[0]);
-     user2 = new User(testUserData[1]);
+     user2 = new User(testUserData[2]);
      emptyPantry = new Pantry();
      pantry1 = new Pantry(user1.pantry);
+     pantry2 = new Pantry(user2.pantry);
      recipe1 = new Recipe(testRecipeData[0], testIngData);
      recipe2 = new Recipe(testRecipeData[1], testIngData);
+     recipe3 = new Recipe(testRecipeData[3], testIngData);
     });
 
     it('should create a new instance of Pantry', () => {
@@ -91,8 +95,23 @@ describe('Pantry', () => {
       ]);
     });
 
-    it('should have a method to determine the amounts of ingredients that the user is missing', () => {
+    it('should return no ingredients if user pantry has all ingredients needed', () => {
+      expect(pantry1.getMissingIngredients(recipe1)).to.deep.equal([]);
+    });  
 
+    it('should have a method to determine the amounts of ingredients that the user is missing', () => {
+      expect(pantry2.getIngredientAmountsNeeded(recipe1)).to.deep.equal([
+        {id: 20081, amount: 0.5 }
+      ]);
+      expect(pantry2.getIngredientAmountsNeeded(recipe3)).to.deep.equal([
+        {id: 20081, amount: 5.5 },
+        {id: 18372, amount: 2 },
+        {id: 1123, amount: 2 }
+      ]);
+    });
+
+    it('should return no missing amounts if user has all required ingredients', () => {
+      expect(pantry1.getIngredientAmountsNeeded(recipe1)).to.deep.equal([]);
     });
 
 });
