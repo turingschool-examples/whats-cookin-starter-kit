@@ -24,8 +24,6 @@ class Pantry {
   }
 
   returnIfRecipeIsCookable(recipe) {
-    const neededIngredients = [];
-    const neededIngredientNames = [];
 
     const isCookable = recipe.ingredients.reduce((arr, ingredient) => {
       this.pantry.forEach(item => {
@@ -37,11 +35,7 @@ class Pantry {
       return arr
     }, [])
 
-    recipe.ingredients.forEach(ingredient => {
-      if (!isCookable.includes(ingredient)) {
-        neededIngredients.push(ingredient)
-      }
-    })
+    const neededIngredients = recipe.ingredients.filter(ingredient => !isCookable.includes(ingredient));
 
     const sumNeededIngredients = neededIngredients.reduce((arr, ingredient) => {
       let sumNeeded = 0
@@ -57,13 +51,14 @@ class Pantry {
       return arr
     }, [])
 
-    neededIngredients.forEach(ingredient => {
+    const neededIngredientNames = neededIngredients.reduce((arr,ingredient) => {
       ingredientsData.forEach(item => {
         if (item.id === ingredient.id) {
-          neededIngredientNames.push(item.name)
+          arr.push(item.name)
         }
       })
-    })
+      return arr
+    }, [])
 
     let formattedNameAndSum = neededIngredientNames.map((name, index) => {
       return `${name}: ${sumNeededIngredients[index]}`

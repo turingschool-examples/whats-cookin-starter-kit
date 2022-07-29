@@ -398,7 +398,6 @@ describe('Pantry', () => {
       })
 
       it('should be able to show a user what ingredients and amounts exist inside their pantry', function() {
-          console.log(pantry.returnIngredientNamesAndAmounts())
         const values = `
         flat leaf parsley leaves: 4,
         kosher salt: 10`
