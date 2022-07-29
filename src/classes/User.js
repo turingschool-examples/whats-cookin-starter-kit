@@ -159,31 +159,26 @@ class User {
     return gatherAllIngredients;
   }
 
-  updatePantryAmount(ingredientId, quantity, recipeData) {
-  
-    this.pantry.forEach((ingredient) => {
-      if (this.pantry.includes(ingredientId)) {
-        ingredient.amount += quantity;
-      } else {
-        this.addIngredientsToPantry(ingredientId, quantity, recipeData);
-      }
-    });
-  }
   addIngredientsToPantry(ingredientId, quantity, recipeData) {
     let allIngredients = this.gatherAllIngredients(recipeData);
     let ingredientToAdd = allIngredients.reduce((acc, cur) => {
       if (ingredientId === cur.ingredientId) {
-        acc["ingredient"] = ingredientId;
+        acc["ingredient"] = cur.ingredientId;
         acc["amount"] = quantity;
         acc["name"] = cur.name;
       }
       return acc;
     }, {});
-     this.pantry.forEach(ingredient => {
-      console.log(11, ingredient)
-    //   if (ingredient) {
-  })
-    this.pantry.push(ingredientToAdd);
+    
+    let found = this.pantry.find((item) => {
+      return item.ingredient === ingredientId;
+    });
+
+    if (found === undefined) {
+      this.pantry.push(ingredientToAdd);
+    } else {
+      found.amount += quantity;
+    }
   }
 
   //We will have to cross reference the id with the recipe repository portion IDs

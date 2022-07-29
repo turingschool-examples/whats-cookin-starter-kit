@@ -85,7 +85,6 @@ describe("User", () => {
         { ingredient: 16124, amount: 2, name: "soy sauce" },
         { ingredient: 19335, amount: 4, name: "sucrose" },
         { ingredient: 9019, amount: 3, name: "unsweetened apple sauce" },
-        { ingredient: 2050, amount: 2, name: "vanilla" },
         { ingredient: 20081, amount: 3, name: "wheat flour" },
         { ingredient: 1054, amount: 2, name: "whipped cream" },
         { ingredient: 14106, amount: 2, name: "white wine" },
@@ -354,20 +353,15 @@ describe("User", () => {
   });
 
   it("should be able to add ingredients to their pantry", () => {
-    // completeUser1.addRecipeToCook(completeRecipe);
-    // expect(completeUser1.pantry.length).to.equal(15);
     allIngredients.addRecipe(completeRecipe);
     completeUser1.gatherAllIngredients(allIngredients);
-    completeUser1.updatePantryAmount(1001, 10, allIngredients);
-    // console.log('butter = 10', completeUser1)
-    completeUser1.updatePantryAmount(1001, 100, allIngredients);
-    // console.log('butter = 100', completeUser1)
-    // completeUser1.addIngredientsToPantry(1001, 11, allIngredients);
-    // expect(completeUser1.pantry).to.include({
-    //   ingredient: 1001,
-    //   amount: 11,
-    //   name: "butter",
-    // });
-    // expect(completeUser1.pantry.length).to.equal(16);
+    expect(completeUser1.pantry.length).to.equal(15);
+    completeUser1.addIngredientsToPantry(1001, 11, allIngredients);
+    expect(completeUser1.pantry.length).to.equal(16);
+    expect(completeUser1.pantry).to.deep.include(
+      { ingredient: 1001, amount: 11, name: "butter" }
+    );
   });
+
+  
 });
