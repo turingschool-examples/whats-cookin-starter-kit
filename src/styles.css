@@ -65,7 +65,7 @@ h2 {
   display: flex;
   flex-direction: column;
   font-family: 'Raleway', sans-serif;
-  text-align: left;
+  text-align: center;
   color: white;
   font-size: 80%;
   padding-left: 1em;
@@ -96,10 +96,21 @@ li {
 }
 
 .recipes-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
   cursor: pointer;
   margin: 2%;
   padding: 0;
   font-size: 1.2em;
+  border: 1px groove rgb(93, 93, 93);
+  border-radius: 10px;
+  transition: .5s;
+}
+
+.recipes-list:hover {
+  background-color: grey;
 }
 
 /* ~~~~~~~~~~~~~~~~~~images~~~~~~~~~~~~~~~~~~~~~~ */
@@ -113,11 +124,22 @@ li {
 .home-img,
 .fav-img {
   display: flex;
-  height: 50%;
-  width: 5;
-  border-radius: 8px;
-  padding-right: 1em;
+  height: 60%;
+  margin-right: 5px;
+  padding: 5px;
   cursor: pointer;
+  border: 1px solid black;
+  border-radius: 10px;
+  transition: .3s;
+}
+
+.fav-img:hover {
+  background-color: rgb(255, 84, 84);
+}
+
+.home-img:hover {
+  filter: invert(100);
+  background-color: white;
 }
 
 .icon-1-img,
@@ -129,15 +151,15 @@ li {
   flex: 1 0 auto;
   height: auto;
   width: 100%;
+  border: 1px solid rgb(63, 62, 62);
   border-radius: 8px;
 }
 
-.random-feature-image {
-  flex: 1 0 auto;
-  flex-shrink: 1;
-  height: auto;
-  width: 100%;
-  border-radius: 8px;
+.random-feature-img {
+  height: 120%;
+  border: 1px solid rgb(63, 62, 62);
+  border-radius: 10px;
+  filter: drop-shadow(5px 10px 3px black);
 }
 
 /* ~~~~~~~~~~~~~~~home page~~~~~~~~~~~~~~~~~~~ */
@@ -210,7 +232,8 @@ li {
   justify-content: center;
   height: 60%;
   width: 70%;
-  border-radius: 8px;
+  border-radius: 10px;
+  margin-bottom: 50px;
 }
 
 .meal-box {
@@ -223,16 +246,6 @@ li {
   background-image: linear-gradient(black, rgb(63, 62, 62), black);
   filter: drop-shadow(5px 10px 3px black);
   border-radius: 8px;
-}
-
-.feature-image-box {
-  display: flex;
-  height: 100%;
-  width: 60%;
-  margin-left: 5%;
-  background: rgb(8, 2, 1, .5);
-  border-radius: 8px;
-  filter: drop-shadow(5px 10px 3px black);
 }
 
 .recipe-icon-container {
@@ -267,6 +280,7 @@ li {
   width: 100%;
   color: white;
   box-sizing: border-box;
+  text-decoration: 2px underline;
 }
 
 /* ~~~~~~~~~~~~~~~~~~view recipe user story~~~~~~~~~~~~~~~~~~~~~~ */
