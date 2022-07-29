@@ -99,8 +99,8 @@ getAllData().then(responses => {
   recipeData = responses[0];
   ingredientData = responses[1];
   userData = responses[2];
-  user = new User(userData.usersData[getRandomIndex(userData.usersData)]);
-  allRecipes = recipeData.recipeData.map(recipe => new Recipe(recipe, ingredientData.ingredientsData));
+  user = new User(userData[getRandomIndex(userData)]);
+  allRecipes = recipeData.map(recipe => new Recipe(recipe, ingredientData));
   recipeRepository =  new RecipeRepository(allRecipes);
   updateMainPageRecipeIcons();
   displayAllNames();
