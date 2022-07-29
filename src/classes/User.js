@@ -108,7 +108,6 @@ class User {
         this.notMatchingIngredients.push(portion);
       }
     });
-
     if (this.notMatchingIngredients.length === 0) {
       return this.matchingIngredients;
     } else {
@@ -132,29 +131,24 @@ class User {
         wrongAmount.push(item);
       }
     });
+    return wrongAmount;
+  }
 
-    let testing = recipe.portions.reduce((acc, portion) => {
-      let newObj = {};
+  returnDifferences(recipe) {
+    let wrongAmount = this.compareIngredientAmounts(recipe);
+    let differences = recipe.portions.reduce((acc, portion) => {
       wrongAmount.forEach((item) => {
         if (item.ingredient === portion.ingredientId) {
-          newObj = {
+          acc.push({
             name: item.name,
-            difference: (portion.amount - item.amount),
-          };
-          acc.push(newObj);
+            difference: portion.amount - item.amount,
+          });
         }
-        return newObj;
       });
       return acc;
     }, []);
-    return testing
-
- 
+    return differences;
   }
-
-  
-
-
 
   clearData() {
     this.selectedInput = [];

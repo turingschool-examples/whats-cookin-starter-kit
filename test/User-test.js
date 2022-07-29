@@ -92,33 +92,33 @@ describe("User", () => {
       selectedInput: [],
     });
 
-     completeUser2 = new User({
-       filteredResults: [],
-       id: 35,
-       name: "Chadis",
-       pantry: [
-         { ingredient: 18371, amount: 2, name: "baking powder" },
-         { ingredient: 1001, amount: 1, name: "butter" },
-         { ingredient: 11124, amount: 5, name: "carrots" },
-         { ingredient: 1123, amount: 3, name: "eggs" },
-         { ingredient: 1082047, amount: 2, name: "kosher salt" },
-         { ingredient: 4025, amount: 2, name: "mayonnaise" },
-         { ingredient: 2027, amount: 3, name: "oregano" },
-         { ingredient: 2021, amount: 2, name: "powdered ginger" },
-         { ingredient: 1102047, amount: 3, name: "s&p" },
-         { ingredient: 16124, amount: 2, name: "soy sauce" },
-         { ingredient: 19335, amount: 4, name: "sucrose" },
-         { ingredient: 9019, amount: 3, name: "unsweetened apple sauce" },
-         { ingredient: 2050, amount: 2, name: "vanilla" },
-         { ingredient: 20081, amount: 3, name: "wheat flour" },
-         { ingredient: 1054, amount: 2, name: "whipped cream" },
-         { ingredient: 1077, amount: 2, name: "full-fat milk" },
-         { ingredient: 20027, amount: 0.25, name: "corn starch" },
-          { ingredient: 1125, amount: 2, name: "egg yolks" },
-       ],
-       recipesToCook: [],
-       selectedInput: [],
-     });
+    completeUser2 = new User({
+      filteredResults: [],
+      id: 35,
+      name: "Chadis",
+      pantry: [
+        { ingredient: 18371, amount: 2, name: "baking powder" },
+        { ingredient: 1001, amount: 1, name: "butter" },
+        { ingredient: 11124, amount: 5, name: "carrots" },
+        { ingredient: 1123, amount: 3, name: "eggs" },
+        { ingredient: 1082047, amount: 2, name: "kosher salt" },
+        { ingredient: 4025, amount: 2, name: "mayonnaise" },
+        { ingredient: 2027, amount: 3, name: "oregano" },
+        { ingredient: 2021, amount: 2, name: "powdered ginger" },
+        { ingredient: 1102047, amount: 3, name: "s&p" },
+        { ingredient: 16124, amount: 2, name: "soy sauce" },
+        { ingredient: 19335, amount: 4, name: "sucrose" },
+        { ingredient: 9019, amount: 3, name: "unsweetened apple sauce" },
+        { ingredient: 2050, amount: 2, name: "vanilla" },
+        { ingredient: 20081, amount: 3, name: "wheat flour" },
+        { ingredient: 1054, amount: 2, name: "whipped cream" },
+        { ingredient: 1077, amount: 2, name: "full-fat milk" },
+        { ingredient: 20027, amount: 0.25, name: "corn starch" },
+        { ingredient: 1125, amount: 3, name: "egg yolks" },
+      ],
+      recipesToCook: [],
+      selectedInput: [],
+    });
 
     completeRecipe = new Recipe({
       id: 605132,
@@ -130,7 +130,7 @@ describe("User", () => {
           ingredientId: 1001,
           name: "butter",
           cost: 618,
-          amount: 2,
+          amount: 12,
           unit: "tablespoons",
         },
         {
@@ -145,7 +145,7 @@ describe("User", () => {
           ingredientId: 1125,
           name: "egg yolks",
           cost: 889,
-          amount: 2,
+          amount: 20,
           unit: "",
         },
         {
@@ -314,16 +314,42 @@ describe("User", () => {
     expect(completeUser1.notMatchingIngredients.length).to.be.greaterThan(0);
   });
 
+  it("should check that the users pantry includes all of the matching ingredients required in the recipe", () => {
+    completeUser2.addRecipeToCook(completeRecipe);
+    completeUser2.compareIngredientsNeeded(completeUser2.recipesToCook[0]);
+    expect(completeUser2.matchingIngredients.length).to.equal(
+      completeRecipe.portions.length
+    );
+  });
+
   it("should not be able to cook a recipe if the users pantry is missing the required amount of ingredients", () => {
+    completeUser2.addRecipeToCook(completeRecipe);
+    completeUser2.compareIngredientsNeeded(completeUser2.recipesToCook[0]);
+    expect(completeUser2.notMatchingIngredients).to.deep.equal([]);
+    expect(completeUser2.matchingIngredients.length).to.equal(
+      completeRecipe.portions.length
+    );
+    expect(
+      completeUser2.compareIngredientAmounts(completeUser2.recipesToCook[0])
+    ).to.deep.equal([
+      { ingredient: 1001, amount: 1, name: "butter" },
+      { ingredient: 1125, amount: 3, name: "egg yolks" },
+    ]);
+  });
+
+  it('should return the ingredients with the amounts required to finish a recipe', () => {
   completeUser2.addRecipeToCook(completeRecipe);
   completeUser2.compareIngredientsNeeded(completeUser2.recipesToCook[0]);
- expect(completeUser2.notMatchingIngredients).to.deep.equal([]);
- expect(completeUser2.matchingIngredients.length).to.equal(completeRecipe.portions.length);
-completeUser2.compareIngredientAmounts(completeUser2.recipesToCook[0]);
+  completeUser2.compareIngredientAmounts(completeUser2.recipesToCook[0]);
+  completeUser2.returnDifferences(completeUser2.recipesToCook[0]);
+   expect(completeUser2.returnDifferences(completeUser2.recipesToCook[0])).to.deep.equal([
+     { name: "butter", difference: 11},
+     {name: "egg yolks", difference: 17},
+   ]);
 
-//  expect().to.equal();
+
+  })
 
 
-
-  });
+  // completeUser2.returnDifferences(completeUser2.recipesToCook[0]);
 });
