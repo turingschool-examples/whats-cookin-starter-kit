@@ -39,6 +39,7 @@ const filterByName2 = document.getElementById('filterByName2');
 const userSearchContainer1 = document.querySelector('.user-search-container');
 const userSearchContainer2 = document.querySelector('.user-search-container2');
 const form = document.querySelector('.form')
+const pantryRecipeCheckInstructions = document.querySelector('.pantry-recipe-check-instruction')
 
 // ###########  Global Variables  ###########
 
@@ -144,15 +145,25 @@ function populateAllRecipesView() {
 
 function populateSavedRecipesView() {
   displaySavedRecipesView()
+  smallPantryWindow.innerHTML = ''
+  if (user.recipesToCook.length > 0) {
+    smallPantryWindow.innerHTML += `<p class="pantry-recipe-check-instructions">Click the green
+      checkmark to check if you have enough ingredients in your
+      pantry to cook a recipe! Click the trashcan to remove the
+      recipe from your saved recipes!
+      </p>`
+    } else {
+      smallPantryWindow.innerHTML +=  `<p class="pantry-recipe-check-instructions">You have no saved recipes at this time. Please go to the all recipes page to save one.</p>`
+    }
   savedRecipesContainer.innerHTML = '';
   user.recipesToCook.forEach((recipe) => {
-    savedRecipesContainer.innerHTML += 
+    savedRecipesContainer.innerHTML +=
     `<section class='trash-this-one'>
       <img class='saved-recipes-pic-box'
       id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
       <div class='saved-recipe-info-bar'>
         <p class='recipe-label'>${recipe.name}</p>
-        <img class='recipe-check-button' src='./check.svg.png' id='${recipe}'>
+        <img class='recipe-check-button' src='./check.svg.png' id='${recipe.name}'>
         <img class='trash-can' src='./trash.png' alt='click this trash can to throw away ${recipe.name}'>
       </div>
     </section>`;
@@ -214,7 +225,7 @@ function returnRecipeIngredientsAndQuantities(recipe) {
 function filterSaved() {
   if (filterByName2.checked) {
     showFilteredSavedNames(searchInput2.value)
-  } 
+  }
   else {
     showFilteredSavedTags(searchInput2.value);
   }
@@ -257,7 +268,7 @@ function showFilteredSavedNames(name) {
 function searchButtonAction() {
   if (filterByName.checked) {
     showFilteredNames(searchInput.value);
-  } 
+  }
   else {
     showFilteredTags(searchInput.value);
   }
@@ -318,7 +329,7 @@ function displayHomeView(){
         filteredContainer,
         userSearchContainer2,
         smallPantryWindow
-        
+
   ])
   show([allRecipesButton,
         savedRecipesButton,
@@ -421,7 +432,7 @@ function displayPantryView(){
       userSearchContainer2,
       smallPantryWindow
   ])
-  
+
   show([pantryContainer,
         homeButton,
         savedRecipesButton,
@@ -466,7 +477,12 @@ function deleteRecipe(event) {
   }
   user.recipesToCook.forEach((recipe, index) => {
     if (alt === `click this trash can to throw away ${recipe.name}`) {
-      user.recipesToCook.splice(index, 1);
+      user.recipesToCook.splice(index, 1)
+    }
+    if (user.recipesToCook.length === 0) {
+      smallPantryWindow.innerHTML = '';
+      smallPantryWindow.innerHTML = '<p class="pantry-recipe-check-instructions">You have no saved recipes at this time. Please go to the all recipes page to save one.</p>'
+
     }
   })
 }
@@ -474,7 +490,16 @@ function deleteRecipe(event) {
 function fireIngredientEvaluation(event) {
   if (event.target.classList.contains('recipe-check-button')) {
     let recipeToCheck = event.target.id
-    console.log(recipeToCheck)
-    // returnIfRecipeIsCookable(recipeToCheck);
+    recipeData.forEach(recipe => {
+      if (recipeToCheck === recipe.name) {
+        smallPantryWindow.innerHTML = ''
+        smallPantryWindow.innerHTML += `<p class="pantry-recipe-check-instructions">Click the green
+          checkmark to check if you have enough ingredients in your
+           pantry to cook a recipe! Click the trashcan to remove the
+           recipe from your saved recipes!
+        </p>
+        <p class="pantry-recipe-check-instructions">\n \n${pantry.returnIfRecipeIsCookable(recipe)}</p>`
+      }
+    })
   }
 }
