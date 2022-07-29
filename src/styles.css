@@ -247,7 +247,7 @@ button:hover {
   overflow-y: scroll;
 }
 
-.recipe-label {
+.recipe-label, .pantry-recipe-check-instructions {
   color: black;
   width: 15vw;
   font-family:fantasy;
@@ -321,13 +321,13 @@ button:hover {
   width: 20vw;
 }
 
-.trash-can {
+.trash-can, .recipe-check-button{
   display: flex;
   height: 30px;
   width: 30px;
 }
 
-.trash-can:hover {
+.trash-can:hover, .recipe-check-button:hover {
   height: 40px;
   width: 40px;
   cursor:pointer;
