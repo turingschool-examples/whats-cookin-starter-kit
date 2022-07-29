@@ -268,8 +268,8 @@ li {
   cursor: pointer;
 }
 
-.recipe-icon-container div:hover {
-  filter: drop-shadow(5px 10px 3px black);
+.recipe-icons:hover {
+  box-shadow: 4px 4px 4px black;
 }
 
 .side-bar-title-wrapper {
@@ -279,7 +279,6 @@ li {
   height: 100px;
   width: 100%;
   color: white;
-  box-sizing: border-box;
   text-decoration: 2px underline;
 }
 
@@ -338,9 +337,9 @@ li {
 
 .selected-recipe-img {
   display: flex;
+  border: 1px solid rgb(63, 62, 62);
   border-radius: 10px;
-  height: 90%;
-  width: 75%;
+  height: 100%;
 }
 
 .recipe-container-lower-wrapper {
