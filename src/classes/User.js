@@ -169,7 +169,7 @@ class User {
       }
       return acc;
     }, {});
-    
+
     let found = this.pantry.find((item) => {
       return item.ingredient === ingredientId;
     });
@@ -179,6 +179,13 @@ class User {
     } else {
       found.amount += quantity;
     }
+  }
+  
+  deleteFromPantry(ingredientId) {
+    let deleteItem = this.pantry.findIndex((item) => {
+      return item.ingredient === ingredientId;
+    });
+    this.pantry.splice(deleteItem, 1);
   }
 
   //We will have to cross reference the id with the recipe repository portion IDs

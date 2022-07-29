@@ -358,10 +358,24 @@ describe("User", () => {
     expect(completeUser1.pantry.length).to.equal(15);
     completeUser1.addIngredientsToPantry(1001, 11, allIngredients);
     expect(completeUser1.pantry.length).to.equal(16);
-    expect(completeUser1.pantry).to.deep.include(
-      { ingredient: 1001, amount: 11, name: "butter" }
-    );
+    expect(completeUser1.pantry).to.deep.include({
+      ingredient: 1001,
+      amount: 11,
+      name: "butter",
+    });
   });
 
-  
+  it("should be able to delete existing pantry items", () => {
+    expect(completeUser1.pantry).to.deep.include({
+      ingredient: 2027,
+      amount: 3,
+      name: "oregano",
+    });
+    completeUser1.deleteFromPantry(2027);
+      expect(completeUser1.pantry).to.not.deep.include({
+        ingredient: 2027,
+        amount: 3,
+        name: "oregano",
+      });
+  });
 });
