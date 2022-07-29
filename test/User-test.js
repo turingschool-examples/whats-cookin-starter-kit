@@ -1,6 +1,7 @@
 import { expect } from "chai";
 import Recipe from "../src/classes/Recipe";
 import User from "../src/classes/User";
+import RecipeRepository from "../src/classes/RecipeRepository";
 
 describe("User", () => {
   it("Should be a function", () => {
@@ -17,8 +18,11 @@ describe("User", () => {
   let recipe1;
   let recipe2;
   let recipe3;
+  let allIngredients;
 
   beforeEach(() => {
+    allIngredients = new RecipeRepository();
+
     user1 = new User({
       name: "Josh",
       id: 28,
@@ -71,7 +75,6 @@ describe("User", () => {
       name: "Gladis",
       pantry: [
         { ingredient: 18371, amount: 2, name: "baking powder" },
-        { ingredient: 1001, amount: 1, name: "butter" },
         { ingredient: 11124, amount: 5, name: "carrots" },
         { ingredient: 1123, amount: 3, name: "eggs" },
         { ingredient: 1082047, amount: 2, name: "kosher salt" },
@@ -337,19 +340,34 @@ describe("User", () => {
     ]);
   });
 
-  it('should return the ingredients with the amounts required to finish a recipe', () => {
-  completeUser2.addRecipeToCook(completeRecipe);
-  completeUser2.compareIngredientsNeeded(completeUser2.recipesToCook[0]);
-  completeUser2.compareIngredientAmounts(completeUser2.recipesToCook[0]);
-  completeUser2.returnDifferences(completeUser2.recipesToCook[0]);
-   expect(completeUser2.returnDifferences(completeUser2.recipesToCook[0])).to.deep.equal([
-     { name: "butter", difference: 11},
-     {name: "egg yolks", difference: 17},
-   ]);
+  it("should return the ingredients with the amounts required to finish a recipe", () => {
+    completeUser2.addRecipeToCook(completeRecipe);
+    completeUser2.compareIngredientsNeeded(completeUser2.recipesToCook[0]);
+    completeUser2.compareIngredientAmounts(completeUser2.recipesToCook[0]);
+    completeUser2.returnDifferences(completeUser2.recipesToCook[0]);
+    expect(
+      completeUser2.returnDifferences(completeUser2.recipesToCook[0])
+    ).to.deep.equal([
+      { name: "butter", difference: 11 },
+      { name: "egg yolks", difference: 17 },
+    ]);
+  });
 
-
-  })
-
-
-  // completeUser2.returnDifferences(completeUser2.recipesToCook[0]);
+  it("should be able to add ingredients to their pantry", () => {
+    // completeUser1.addRecipeToCook(completeRecipe);
+    // expect(completeUser1.pantry.length).to.equal(15);
+    allIngredients.addRecipe(completeRecipe);
+    completeUser1.gatherAllIngredients(allIngredients);
+    completeUser1.updatePantryAmount(1001, 10, allIngredients);
+    // console.log('butter = 10', completeUser1)
+    completeUser1.updatePantryAmount(1001, 100, allIngredients);
+    // console.log('butter = 100', completeUser1)
+    // completeUser1.addIngredientsToPantry(1001, 11, allIngredients);
+    // expect(completeUser1.pantry).to.include({
+    //   ingredient: 1001,
+    //   amount: 11,
+    //   name: "butter",
+    // });
+    // expect(completeUser1.pantry.length).to.equal(16);
+  });
 });

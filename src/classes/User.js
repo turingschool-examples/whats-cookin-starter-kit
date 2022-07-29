@@ -8,6 +8,7 @@ class User {
     this.filteredResults = [];
     this.matchingIngredients = [];
     this.notMatchingIngredients = [];
+    this.allIngredients = [];
   }
 
   addRecipeToCook(recipe) {
@@ -149,6 +150,51 @@ class User {
     }, []);
     return differences;
   }
+
+  gatherAllIngredients(recipeData) {
+    let gatherAllIngredients = recipeData.recipes.reduce((acc, cur) => {
+      cur.portions.forEach((portion) => acc.push(portion));
+      return acc;
+    }, []);
+    return gatherAllIngredients;
+  }
+
+  updatePantryAmount(ingredientId, quantity, recipeData) {
+  
+    this.pantry.forEach((ingredient) => {
+      if (this.pantry.includes(ingredientId)) {
+        ingredient.amount += quantity;
+      } else {
+        this.addIngredientsToPantry(ingredientId, quantity, recipeData);
+      }
+    });
+  }
+  addIngredientsToPantry(ingredientId, quantity, recipeData) {
+    let allIngredients = this.gatherAllIngredients(recipeData);
+    let ingredientToAdd = allIngredients.reduce((acc, cur) => {
+      if (ingredientId === cur.ingredientId) {
+        acc["ingredient"] = ingredientId;
+        acc["amount"] = quantity;
+        acc["name"] = cur.name;
+      }
+      return acc;
+    }, {});
+     this.pantry.forEach(ingredient => {
+      console.log(11, ingredient)
+    //   if (ingredient) {
+  })
+    this.pantry.push(ingredientToAdd);
+  }
+
+  //We will have to cross reference the id with the recipe repository portion IDs
+
+  // Once we find() the ID --> This may need to be a stand alone function that takes in an ID and returns the ingredient that matches.
+
+  // We will push that ingredient to the users pantry
+  // We will need to interpolate the amount based on what the 2nd param is passed.
+  // We will need a conditional
+  // if( this ingredient does exist in pantry)
+  // then we will have to add ONLY the 2nd params amount to that users existing amount for that ingredient
 
   clearData() {
     this.selectedInput = [];
