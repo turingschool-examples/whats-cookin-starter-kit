@@ -21,23 +21,23 @@ describe('Pantry', () => {
     beforeEach(() => {
      user1 = new User(testUserData[0]);
      user2 = new User(testUserData[1]);
-     emptyPantry = new Pantry()
-     pantry1 = new Pantry(user1.pantry)
+     emptyPantry = new Pantry();
+     pantry1 = new Pantry(user1.pantry);
      recipe1 = new Recipe(testRecipeData[0], testIngData);
      recipe2 = new Recipe(testRecipeData[1], testIngData);
-    })
+    });
 
     it('should create a new instance of Pantry', () => {
-        expect(pantry1).to.be.an.instanceOf(Pantry)
-    })
+        expect(pantry1).to.be.an.instanceOf(Pantry);
+    });
 
     it('should start empty', () => {
-        expect(emptyPantry.ingredientsInPantry).to.deep.equal([])
-    })
+        expect(emptyPantry.ingredientsInPantry).to.deep.equal([]);
+    });
 
     it('should take in a user pantry', () => {
-        expect(pantry1.ingredientsInPantry).to.deep.equal(user1.pantry)
-    })
+        expect(pantry1.ingredientsInPantry).to.deep.equal(user1.pantry);
+    });
 
     it('should get the details of all the ingredients in the pantry', () => {
       expect(pantry1.getIngredientDetails(userIngData)).to.deep.equal([
@@ -83,29 +83,16 @@ describe('Pantry', () => {
     });
 
     it('should be told what ingredients are still needed for a recipe', () => {
-      // pantry1.getMissingIngredients(recipe1)
-      pantry1.getMissingIngredients(recipe2)
-    //     expect(user1.pantry.getMissingIngredients(recipe1, userIngData)).to.deep.equal([
-    //     {
-    //         "id": 11297,
-    //         "name": "flat leaf parsley leaves",
-    //         "amount": 4,
-    //         "recipeAmount": ,
-    //         "amountNeeded": ,
-    //       },
-    //       {
-    //         "id": 1082047,
-    //         "name": "kosher salt",
-    //         "amount": 10,
-    //         "recipeAmount": ,
-    //         "amountNeeded": ,
-    //       }
-    //     ])
-    })
+      expect(pantry1.getMissingIngredients(recipe1)).to.deep.equal([]);
+      expect(pantry1.getMissingIngredients(recipe2)).to.deep.equal([
+        { id: 1009016, amount: 1.5 },
+        { id: 9003, amount: 2 },
+        { id: 20027, amount: 1 }
+      ]);
+    });
 
+    it('should have a method to determine the amounts of ingredients that the user is missing', () => {
 
-    // it.skip('should check list of recipes to see if pantry has ingredients to cook recipe', () => {
-    //     expect(user1.pantry.canCookAnyRecipe(user1.recipesToCook, userIngData)).to.equal(true)
-    // })
+    });
 
-})
+});
