@@ -1,6 +1,6 @@
 body {
   background-color: rgb(210, 208, 192);
-  font-family: sans-serif;
+  font-family: 'Questrial', sans-serif;
   margin: 0;
 }
 
@@ -15,6 +15,7 @@ body {
 }
 
 .heading {
+  font-family: 'Dancing Script', cursive;
   background-color: rgb(106, 105, 96);
   margin-top: 30px;
   padding: 8px 40px;
@@ -50,8 +51,8 @@ img {
   font-size: 14pt;
   padding: 10px;
   border-radius: 3px;
-  color: #fff;
-  background-color: rgb(31, 57, 31);
+  color: #000;
+  background-color: #fff;
 }
 
 .favorite-button {
@@ -111,6 +112,11 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.ingredients-feedback {
+  font-size: large;
+  font-weight: bold;
 }
 
 .recipe-image-wrapper {
