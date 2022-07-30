@@ -2,6 +2,7 @@ import './styles.css';
 import {apiCalls} from './apiCalls';
 import User from './classes/User'
 import RecipeRepository from './classes/RecipeRepository';
+import { use } from 'chai';
 
 const {fetchData} = apiCalls;
 
@@ -120,32 +121,35 @@ function addToFavorite(event) {
     user.addRecipesToCook(selectedRecipe);
 
     if (event.target.getAttribute("data-instructionDisplay")) {
-        if (user.recipesToCook.includes(selectedRecipe)) {
-            let answer = user.pantry.checkIfCanMakeRecipe(selectedRecipe)
+        showIngredientsNeeded(selectedRecipe);
+    }
+    event.target.classList.add('hidden');
+}
+
+function showIngredientsNeeded(selectedRecipe) {
+    if (user.recipesToCook.includes(selectedRecipe)) {
+            const answer = user.pantry.checkIfCanMakeRecipe(selectedRecipe);
             if (answer) {
-                document.querySelector("#pantryFeedback").innerHTML += `<p> You have enough ingredients!</p>`
+                document.querySelector("#pantryFeedback").innerHTML += `<p> You have enough ingredients!</p>`;
             } else {
-                let usersNeededIngredients = user.pantry.getNeededIngredients(selectedRecipe)
-                let neededIngredients = usersNeededIngredients.map((pantryIngredient) => {
+                const usersNeededIngredients = user.pantry.getNeededIngredients(selectedRecipe);
+                const neededIngredients = usersNeededIngredients.map((pantryIngredient) => {
                     ingredientsInfo.forEach((ingredient) => {
                         if (pantryIngredient.id === ingredient.id) {
-                            pantryIngredient.name = ingredient.name
+                            pantryIngredient.name = ingredient.name;
                            
                         }
                     })
-                    return pantryIngredient
-                })
-                document.querySelector("#pantryFeedback").innerHTML += `<p> You don't have enough ingredients! This is what you need. Read below:</p>
+                return pantryIngredient;
+            })
+            document.querySelector("#pantryFeedback").innerHTML += `<p> You don't have enough ingredients! This is what you need. Read below:</p>
                                                                         <ul id="neededIngredients"></ul>`
-                neededIngredients.forEach((neededIngredient) => {
-                document.querySelector("#neededIngredients").innerHTML += `<li>${neededIngredient.name}, ${neededIngredient.quantity.amount} ${neededIngredient.quantity.unit}</li>`
-                })
-                console.log(neededIngredients)
-            }
-
-        }   
+            neededIngredients.forEach((neededIngredient) => {
+                document.querySelector("#neededIngredients").innerHTML +=  
+                    `<li>${neededIngredient.name}, ${neededIngredient.quantity.amount} ${neededIngredient.quantity.unit}</li>`
+            })
+        }
     }
-    event.target.classList.add('hidden');
 }
 
 function showFavorites() {
@@ -247,7 +251,11 @@ function showRecipeInstructions(event) {
     }
     if (!user.recipesToCook.includes(selectedRecipe)) {
         document.getElementById(selectedRecipe.id).innerHTML += `<button class="favorite-button" id="favoriteButton" data-favoriteRecipe=${selectedRecipe.id} data-instructionDisplay="instructionDisplay">Favorite</button>`
-        }
+    }
+
+    if (user.recipesToCook.includes(selectedRecipe)) {
+        showIngredientsNeeded(selectedRecipe);
+    }
 
     selectedRecipe.instructions.forEach((instruction) => {
         document.querySelector("#recipeInstructions").innerHTML += (`
