@@ -1,9 +1,6 @@
-
 /* Global */
 * {
-
   font-family:'Times New Roman', Times, serif
-
 }
 
 body {
@@ -35,7 +32,6 @@ button {
   text-transform:uppercase;
   border-radius: 4px;
 }
-
 button:hover {
   cursor:pointer;
 }
