@@ -20,10 +20,10 @@ export default class Recipe {
                 unit: ingredient.quantity.unit,
             });
         });
-    }
+    };
     returnNeeded() {
         return this.requiredIngredients.map(ing => ing.name)
-    }
+    };
     getCostToDollar() {
         return this.requiredIngredients.reduce((cost, ingredient) => {
             let numOfUnits;
@@ -39,5 +39,5 @@ export default class Recipe {
 
     getInstructions() {
         return this.instructions
-    }
+    };
 };

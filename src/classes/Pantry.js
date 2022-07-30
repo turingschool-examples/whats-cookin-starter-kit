@@ -3,7 +3,8 @@ export default class Pantry {
         this.ingredients = pantryIngredients
         this.missingIngredients = []
     }
-    checkUserIngredients(recipe) {      
+    checkUserIngredients(recipe) {    
+        
         recipe.requiredIngredients.forEach(ingredient => {
             const found = this.ingredients.find(foundIngredient => foundIngredient.id === ingredient.id)
             if (!found) {
@@ -25,6 +26,17 @@ export default class Pantry {
             }
         })
     }
+
+removeIngredients(recipe) {
+    console.log(recipe)
+    return recipe.requiredIngredients.map(recipeIngredient => {
+        const pantryIngredient = this.ingredients.filter(pantryIng => recipeIngredient.id === pantryIng.ingredient)
+        if (pantryIngredient && pantryIngredient.amount >= recipeIngredient.amount){
+            pantryIngredient = recipeIngredient.amount - pantryIngredient.amount
+        }
+        return pantryIngredient
+    })
+}
     attachNameToId(ingredientsData) {
         this.ingredients = this.ingredients.map(ingredient => {
             let foundIngredient = ingredientsData.find(ing => ingredient.ingredient === ing.id)

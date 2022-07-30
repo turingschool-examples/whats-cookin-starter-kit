@@ -30,6 +30,10 @@ describe('Pantry Test', () => {
     it('Should be able to check a users pantry has enough of the ingredients', () => {
         recipe.makeIngredientData()
         pantry.checkUserIngredients(recipe)
-        expect(pantry.missingIngredients.length).to.equal(4)
+        expect(pantry.missingIngredients.length).to.equal(11)
+    })
+    it('Should be able to check a users pantry has enough of the ingredients', () => {
+        recipe.makeIngredientData()
+        expect(pantry.removeIngredients(recipe)).to.equal()
     })
 })
