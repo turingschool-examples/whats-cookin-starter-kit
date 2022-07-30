@@ -382,18 +382,19 @@ describe("User", () => {
   it("should deduct the quantity of ingredients from the pantry if the quantity is greater than the needed amount neeed to cook the recipe", () => {
     allIngredients.addRecipe(completeRecipe);
     completeUser2.gatherAllIngredients(allIngredients);
-    completeUser2.recipesToCook(completeRecipe);
+    completeUser2.addRecipeToCook(completeRecipe);
     completeUser2.addIngredientsToPantry(1001, 49, allIngredients);
     completeUser2.addIngredientsToPantry(1125, 47, allIngredients);
     completeUser2.compareIngredientsNeeded(completeUser2.recipesToCook[0]);
     completeUser2.compareIngredientAmounts(completeUser2.recipesToCook[0]);
     completeUser2.cookRecipe(completeUser2.recipesToCook[0]);
-    expect(completeUser1.pantry).to.deep.include({
+
+    expect(completeUser2.pantry).to.deep.include({
       ingredient: 1001,
       amount: 38,
       name: "butter",
     });
-    expect(completeUser1.pantry).to.deep.include({
+    expect(completeUser2.pantry).to.deep.include({
       ingredient: 1125,
       amount: 30,
       name: "egg yolks",
@@ -403,30 +404,47 @@ describe("User", () => {
   it("should remove the entire ingredient from the pantry if the quantity is equal to the needed amount neeed to cook the recipe", () => {
     allIngredients.addRecipe(completeRecipe);
     completeUser2.gatherAllIngredients(allIngredients);
+    completeUser2.addRecipeToCook(completeRecipe);
     completeUser2.addIngredientsToPantry(1001, 49, allIngredients);
     completeUser2.addIngredientsToPantry(1125, 47, allIngredients);
     completeUser2.compareIngredientsNeeded(completeUser2.recipesToCook[0]);
     completeUser2.compareIngredientAmounts(completeUser2.recipesToCook[0]);
-    expect(completeUser1.pantry).to.deep.include({
-      ingredient: 1001,
-      amount: 2,
-      name: "vanilla",
-    });
-    expect(completeUser1.pantry).to.deep.include({
-      ingredient: 19335,
-      amount: 4,
-      name: "sucrose",
-    });
+    expect(completeUser2.pantry).to.deep.equal([
+    { ingredient: 18371, amount: 2, name: 'baking powder' },
+    { ingredient: 1001, amount: 50, name: 'butter' },
+    { ingredient: 11124, amount: 5, name: 'carrots' },
+    { ingredient: 1123, amount: 3, name: 'eggs' },
+    { ingredient: 1082047, amount: 2, name: 'kosher salt' },
+    { ingredient: 4025, amount: 2, name: 'mayonnaise' },
+    { ingredient: 2027, amount: 3, name: 'oregano' },
+    { ingredient: 2021, amount: 2, name: 'powdered ginger' },
+    { ingredient: 1102047, amount: 3, name: 's&p' },
+    { ingredient: 16124, amount: 2, name: 'soy sauce' },
+    { ingredient: 19335, amount: 4, name: 'sucrose' },
+    { ingredient: 9019, amount: 3, name: 'unsweetened apple sauce' },
+    { ingredient: 2050, amount: 2, name: 'vanilla' },
+    { ingredient: 20081, amount: 3, name: 'wheat flour' },
+    { ingredient: 1054, amount: 2, name: 'whipped cream' },
+    { ingredient: 1077, amount: 2, name: 'full-fat milk' },
+    { ingredient: 20027, amount: 0.25, name: 'corn starch' },
+    { ingredient: 1125, amount: 50, name: 'egg yolks' }]);
     completeUser2.cookRecipe(completeUser2.recipesToCook[0]);
-    expect(completeUser1.pantry).to.not.deep.include({
-      ingredient: 2050,
-      amount: 2,
-      name: "vanilla",
-    });
-    expect(completeUser1.pantry).to.not.deep.include({
-      ingredient: 19335,
-      amount: 4,
-      name: "sucrose",
-    });
+    expect(completeUser2.pantry).to.deep.equal([
+    { ingredient: 18371, amount: 2, name: 'baking powder' },
+    { ingredient: 1001, amount: 38, name: 'butter' },
+    { ingredient: 11124, amount: 5, name: 'carrots' },
+    { ingredient: 1123, amount: 2, name: 'eggs' },
+    { ingredient: 1082047, amount: 2, name: 'kosher salt' },
+    { ingredient: 4025, amount: 2, name: 'mayonnaise' },
+    { ingredient: 2027, amount: 3, name: 'oregano' },
+    { ingredient: 2021, amount: 2, name: 'powdered ginger' },
+    { ingredient: 1102047, amount: 3, name: 's&p' },
+    { ingredient: 16124, amount: 2, name: 'soy sauce' },
+    { ingredient: 19335, amount: 3.6666666666666665, name: 'sucrose' },
+    { ingredient: 9019, amount: 3, name: 'unsweetened apple sauce' },
+    { ingredient: 2050, amount: 1, name: 'vanilla' },
+    { ingredient: 20081, amount: 3, name: 'wheat flour' },
+    { ingredient: 1054, amount: 2, name: 'whipped cream' },
+    { ingredient: 1125, amount: 30, name: 'egg yolks' }])
   });
 });
