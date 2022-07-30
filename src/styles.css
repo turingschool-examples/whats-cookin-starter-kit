@@ -1,6 +1,6 @@
 body {
   background-color: rgb(210, 208, 192);
-  font-family: sans-serif;
+  font-family: 'Questrial', sans-serif;
   margin: 0;
 }
 
@@ -15,6 +15,7 @@ body {
 }
 
 .heading {
+  font-family: 'Dancing Script', cursive;
   background-color: rgb(106, 105, 96);
   margin-top: 30px;
   padding: 8px 40px;
@@ -37,6 +38,7 @@ img {
 }
 
 .recipe-image:hover{
+  cursor: pointer;
   box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, .8);
   }
 
@@ -45,23 +47,41 @@ img {
   background: none;
 }
 
-.favorite-button{
-    background-image: linear-gradient(92.88deg, #376387 9.16%, #5643CC 43.89%, #673FD7 64.72%);
-    border-radius: 8px;
-    border-style: none;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    flex-shrink: 0;
-    height: 2rem;
-    padding: 0 1.6rem;
-    text-align: center;
-    text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
-    margin-bottom: 8px;
+.recipe-name {
+  font-size: 14pt;
+  padding: 10px;
+  border-radius: 3px;
+  color: #000;
+  background-color: #fff;
+}
+
+.favorite-button {
+    background: none; 
+    border: 2px solid black;
+    box-shadow: none;
+    font-size: large;
+    padding: 5px;
+    margin-bottom: 12px;
+    border-radius: 5px;
   }
+
+.nav-button {
+  background: none;
+  border: 1px solid black;
+  box-shadow: none;
+  border-radius: 3px;
+}
+
+.nav-button:hover {
+  cursor: pointer;
+  border: 1px solid rgb(87, 141, 87);
+  background-color: rgb(87, 141, 87);
+}
 
 .favorite-button:hover {
   cursor: pointer;
-  box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+  border: 2px solid rgb(87, 141, 87);
+  background-color: rgb(87, 141, 87);
 }
 
 .ingredient-card {
@@ -84,12 +104,19 @@ img {
 .recipe-heading-wrapper {
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
+  background-color: #fff;
 }
 
 .selected-recipe-display {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.ingredients-feedback {
+  font-size: large;
+  font-weight: bold;
 }
 
 .recipe-image-wrapper {
@@ -110,8 +137,10 @@ img {
   background-color: white;
   display: flex;
   flex-direction: column;
+  padding: 10px;
+  line-height: 2;
   height: auto;
-  width: 1000px;
+  width: 800px;
   text-align:left;
   border-radius: 15px;
 }
@@ -127,19 +156,6 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.nav-button {
-  background-color: #673FD7;
-  border: none;
-  color: #fff;
-  padding: 3px 5px;
-  border-radius: 3px;
-}
-
-.nav-button:hover {
-  cursor: pointer;
-  background-color: #376387;
 }
 
 .input {
