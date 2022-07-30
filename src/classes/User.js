@@ -39,15 +39,6 @@ class User {
     });
   }
 
-  removeRecipeToCook(recipe) {
-    let indexOfRecipeToRemove = this.recipesToCook.indexOf(recipe);
-    if (indexOfRecipeToRemove < 0) {
-      return `There are no recipes to remove!`;
-    }
-    this.recipesToCook.splice(indexOfRecipeToRemove, 1);
-    return this.recipesToCook;
-  }
-
   filterByMultipleTags() {
     this.filteredResults = this.recipesToCook.filter((recipe) => {
       let containsOr = false;
@@ -188,7 +179,29 @@ class User {
     this.pantry.splice(deleteItem, 1);
   }
 
-  cookRecipe(recipe) {}
+  removeRecipeToCook(recipe) {
+    let indexOfRecipeToRemove = this.recipesToCook.indexOf(recipe);
+    if (indexOfRecipeToRemove < 0) {
+      return `There are no recipes to remove!`;
+    }
+    this.recipesToCook.splice(indexOfRecipeToRemove, 1);
+    return this.recipesToCook;
+  }
+
+  cookRecipe(recipe) {
+    let myRecipe = recipe;
+    let myPantry = this.pantry;
+    myRecipe.portions.forEach((ingredient) => {
+      let updateAmount = myPantry.find((item) => {
+        return item.ingredient === ingredient.ingredientId;
+      });
+      updateAmount.amount -= ingredient.amount;
+      if (updateAmount.amount === 0) {
+        this.deleteFromPantry(updateAmount.ingredient);
+      }
+    });
+    this.removeRecipeToCook(myRecipe);
+  }
 
   clearData() {
     this.selectedInput = [];
