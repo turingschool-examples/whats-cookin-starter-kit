@@ -273,6 +273,8 @@ function showRecipeInstructions(event) {
 function filterRecipeTag(event) {
     event.preventDefault();
 
+    hideOff([homeButton]);
+
     const inputValue = recipeTagInput.value.toLowerCase();
     const requestedRecipes = recipeRepository.findRecipeByTag(inputValue);
 
@@ -296,6 +298,8 @@ function filterRecipeTag(event) {
 
 function searchRecipeName(event) {
     event.preventDefault();
+
+    hideOff([homeButton]);
 
     const inputValue = recipeNameInput.value.split(' ').map(word => {
     return word.split('').map((letter, index) => {
@@ -333,6 +337,8 @@ function searchRecipeName(event) {
  function filterFavoriteRecipesByTag(event) {
     event.preventDefault();
 
+    hideOff([homeButton]);
+
     const inputValue = recipeFavoriteTagInput.value.toLowerCase();
     const requestedRecipes = user.filterRecipesToCookByTag(inputValue);
 
@@ -355,6 +361,8 @@ function searchRecipeName(event) {
 
  function searchFavRecipeListByName(event) {
    event.preventDefault();
+
+   hideOff([homeButton]);
 
    const inputValue = recipeFavNameInput.value.split(' ').map(word => {
     return word.split('').map((letter, index) => {
