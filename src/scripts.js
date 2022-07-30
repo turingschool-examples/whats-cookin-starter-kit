@@ -2,6 +2,7 @@ import './styles.css';
 import {apiCalls} from './apiCalls';
 import User from './classes/User'
 import RecipeRepository from './classes/RecipeRepository';
+import { use } from 'chai';
 
 const {fetchData} = apiCalls;
 const {addToPantry} = apiCalls;
@@ -21,7 +22,11 @@ const searchForm = document.querySelector('#searchForm');
 const filterFavoriteForm = document.querySelector('#filterFavoriteForm');
 const recipeFavoriteTagInput = document.querySelector('#recipeFavoriteTagInput');
 const favSearchForm = document.querySelector('#favSearchForm');
-const recipeFavNameInput = document.querySelector('#favRecipeNameInput')
+const recipeFavNameInput = document.querySelector('#favRecipeNameInput');
+const favSearchLabel = document.querySelector('#favSearchLabel');
+const filterFavoriteLabel = document.querySelector('#filterFavoriteLabel');
+const searchLabel = document.querySelector('#searchLabel');
+const filterLabel = document.querySelector('#filterLabel');
 
 
 let user;
@@ -79,6 +84,7 @@ function createUser() {
 
 function showMyPantry() {
     hideOff([homeButton]);
+    hideOn([searchForm, filterForm, filterFavoriteForm, favSearchForm, favSearchLabel, filterFavoriteLabel,  searchLabel, filterLabel, pantryButton]);
     const pantryWithNames = findExistingPantryIngredients();
     recipeHeading.innerText = 'My Pantry';
     recipeDisplay.innerHTML = ""
@@ -261,38 +267,42 @@ function addToFavorite(event) {
     user.addRecipesToCook(selectedRecipe);
 
     if (event.target.getAttribute("data-instructionDisplay")) {
-        if (user.recipesToCook.includes(selectedRecipe)) {
-            let answer = user.pantry.checkIfCanMakeRecipe(selectedRecipe)
-            if (answer) {
-                document.querySelector("#pantryFeedback").innerHTML += `<p> You have enough ingredients!</p>`
-
-            } else {
-                let usersNeededIngredients = user.pantry.getNeededIngredients(selectedRecipe)
-                let neededIngredients = usersNeededIngredients.map((pantryIngredient) => {
-                    ingredientsInfo.forEach((ingredient) => {
-                        if (pantryIngredient.id === ingredient.id) {
-                            pantryIngredient.name = ingredient.name
-
-                        }
-                    })
-                    return pantryIngredient
-                })
-                document.querySelector("#pantryFeedback").innerHTML += `<p> You don't have enough ingredients! This is what you need. Read below:</p>
-                                                                        <ul id="neededIngredients"></ul>`
-                neededIngredients.forEach((neededIngredient) => {
-                document.querySelector("#neededIngredients").innerHTML += `<li>${neededIngredient.name}, ${neededIngredient.quantity.amount} ${neededIngredient.quantity.unit}</li>`
-                })
-                console.log(neededIngredients)
-            }
-
-        }
+        showIngredientsNeeded(selectedRecipe);
     }
     event.target.classList.add('hidden');
 }
 
+function showIngredientsNeeded(selectedRecipe) {
+    if (user.recipesToCook.includes(selectedRecipe)) {
+            const answer = user.pantry.checkIfCanMakeRecipe(selectedRecipe);
+            if (answer) {
+                document.querySelector("#pantryFeedback").innerHTML += `<p> You have enough ingredients!</p>`;
+            } else {
+                const usersNeededIngredients = user.pantry.getNeededIngredients(selectedRecipe);
+                const neededIngredients = usersNeededIngredients.map((pantryIngredient) => {
+                    ingredientsInfo.forEach((ingredient) => {
+                        if (pantryIngredient.id === ingredient.id) {
+
+                            pantryIngredient.name = ingredient.name;
+                      
+                        }
+                    })
+                return pantryIngredient;
+            })
+            document.querySelector("#pantryFeedback").innerHTML += `<p class="ingredients-feedback"> You don't have enough ingredients! This is what you need. Read below:</p>
+                                                                        <ul id="neededIngredients"></ul>`
+
+            neededIngredients.forEach((neededIngredient) => {
+                document.querySelector("#neededIngredients").innerHTML +=  
+                    `<li>${neededIngredient.name}, ${neededIngredient.quantity.amount} ${neededIngredient.quantity.unit}</li>`
+            })
+        }
+    }
+}
+
 function showFavorites() {
-    hideOn([searchForm, filterForm, favoriteButton]);
-    hideOff([filterFavoriteForm, favSearchForm, homeButton]);
+    hideOn([searchForm, filterForm, favoriteButton, searchLabel, filterLabel]);
+    hideOff([filterFavoriteForm, favSearchForm, homeButton, favSearchLabel, filterFavoriteLabel]);
 
 
     homeButton.classList.remove('hidden');
@@ -306,15 +316,15 @@ function showFavorites() {
                 <img class="recipe-image" data-recipeId=${recipe.id} src=${recipe.image} alt="View ${recipe.name} instructions">
             </button>
                 <p class="recipe-name">${recipe.name}</p>
-                <button class="favorite-button" data-favoriteRecipe=${recipe.id} id="favoriteButton">Remove</button>
+                <button class="favorite-button" data-favoriteRecipe=${recipe.id}>Remove</button>
             </div>
         `)
     });
 };
 
 function displayRecipeList() {
-    hideOff([searchForm, filterForm, favoriteButton]);
-    hideOn([homeButton, filterFavoriteForm, favSearchForm]);
+    hideOff([searchForm, filterForm, favoriteButton, searchLabel, filterLabel]);
+    hideOn([homeButton, filterFavoriteForm, favSearchForm, favSearchLabel, filterFavoriteLabel]);
 
 
     recipeDisplay.innerHTML = "";
@@ -329,7 +339,7 @@ function displayRecipeList() {
       `)
 
       if (!user.recipesToCook.includes(recipe)) {
-            document.getElementById(recipe.id).innerHTML += `<button class="favorite-button" data-favoriteRecipe=${recipe.id} id="favoriteButton">Favorite</button>`;
+            document.getElementById(recipe.id).innerHTML += `<button class="favorite-button" data-favoriteRecipe=${recipe.id}>Favorite</button>`;
         }
 
    });
@@ -346,7 +356,7 @@ function goHome() {
 }
 
 function showRecipeInstructions(event) {
-    hideOn([searchForm, filterForm, filterFavoriteForm, favSearchForm]);
+    hideOn([searchForm, filterForm, filterFavoriteForm, favSearchForm, favSearchLabel, filterFavoriteLabel,  searchLabel, filterLabel]);
     hideOff([favoriteButton, homeButton]);
 
 
@@ -361,9 +371,8 @@ function showRecipeInstructions(event) {
     recipeHeading.innerText = `${selectedRecipe.name}`;
     recipeDisplay.innerHTML = (`
         <div class="selected-recipe-display">
-         <section class="pantry-feedback" id="pantryFeedback">
-         </section>
-            <img class="selected-recipe-image" src=${selectedRecipe.image} alt=${selectedRecipe.name}>
+        <img class="selected-recipe-image" src=${selectedRecipe.image} alt=${selectedRecipe.name}>
+        <section class="pantry-feedback" id="pantryFeedback"></section>
             <div id=${selectedRecipe.id}></div>
             <div class="instruction-design-div">
                 <div class="instructions-display">
@@ -377,19 +386,14 @@ function showRecipeInstructions(event) {
             </div>
         </div>
     `);
-    if (user.recipesToCook.includes(selectedRecipe)) {
-        let answer = user.pantry.checkIfCanMakeRecipe(selectedRecipe)
-        if(answer) {
-            document.querySelector("#pantryFeedback").innerHTML += `<p> You have enough ingredients!</p>`
-        } else {
-            document.querySelector("#pantryFeedback").innerHTML += `<p> You don't have enough ingredients!</p>`
-            console.log(user.pantry.getNeededIngredients(selectedRecipe))
-        }
 
-    }
     if (!user.recipesToCook.includes(selectedRecipe)) {
-        document.getElementById(selectedRecipe.id).innerHTML += `<button class="favorite-button" id="favoriteButton" data-favoriteRecipe=${selectedRecipe.id} data-instructionDisplay="instructionDisplay">Favorite</button>`
-        }
+        document.getElementById(selectedRecipe.id).innerHTML += `<button class="favorite-button" data-favoriteRecipe=${selectedRecipe.id} data-instructionDisplay="instructionDisplay">Favorite</button>`
+    }
+
+    if (user.recipesToCook.includes(selectedRecipe)) {
+        showIngredientsNeeded(selectedRecipe);
+    }
 
     selectedRecipe.instructions.forEach((instruction) => {
         document.querySelector("#recipeInstructions").innerHTML += (`
@@ -407,6 +411,8 @@ function showRecipeInstructions(event) {
 function filterRecipeTag(event) {
     event.preventDefault();
 
+    hideOff([homeButton]);
+
     const inputValue = recipeTagInput.value.toLowerCase();
     const requestedRecipes = recipeRepository.findRecipeByTag(inputValue);
 
@@ -422,7 +428,7 @@ function filterRecipeTag(event) {
         <div class="recipe-image-wrapper">
           <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
           <p class="recipe-name">${recipe.name}</p>
-          <button class="favorite-button" id="favoriteBtn" data-favoriteRecipe=${recipe.id}>Favorite</button>
+          <button class="favorite-button" data-favoriteRecipe=${recipe.id}>Favorite</button>
         </div>
       `)
    });
@@ -430,6 +436,8 @@ function filterRecipeTag(event) {
 
 function searchRecipeName(event) {
     event.preventDefault();
+
+    hideOff([homeButton]);
 
     const inputValue = recipeNameInput.value.split(' ').map(word => {
     return word.split('').map((letter, index) => {
@@ -458,7 +466,7 @@ function searchRecipeName(event) {
         <div class="recipe-image-wrapper">
           <img class="recipe-image" data-recipeId=${recipe.id} data-recipeDisplay="filtered" src=${recipe.image} alt=${recipe.name}>
           <p class="recipe-name">${recipe.name}</p>
-          <button class="favorite-button" id="favoriteButton" data-favoriteRecipe=${recipe.id}>Favorite</button>
+          <button class="favorite-button" data-favoriteRecipe=${recipe.id}>Favorite</button>
         </div>
       `)
    });
@@ -466,6 +474,8 @@ function searchRecipeName(event) {
 
  function filterFavoriteRecipesByTag(event) {
     event.preventDefault();
+
+    hideOff([homeButton]);
 
     const inputValue = recipeFavoriteTagInput.value.toLowerCase();
     const requestedRecipes = user.filterRecipesToCookByTag(inputValue);
@@ -489,6 +499,8 @@ function searchRecipeName(event) {
 
  function searchFavRecipeListByName(event) {
    event.preventDefault();
+
+   hideOff([homeButton]);
 
    const inputValue = recipeFavNameInput.value.split(' ').map(word => {
     return word.split('').map((letter, index) => {

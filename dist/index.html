@@ -1,33 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="nav-wrapper">
       <h1 class="heading">Whats Cookin</h1>
       <nav class="nav-bar" id="navBar">
-        <form id="searchForm">
-          <label for="Search Recipe by Name" class="nav-label" id="searchLabel">Search Recipe by Name:</label>
-          <input name="Search Recipe by Name" class="input" type="text" id="recipeNameInput">
-          <input class="nav-button" id="searchButton" type="submit" value="Search">
-        </form>
-        <form id="filterForm">
-          <label for="Filter Recipe by Tag" class="nav-label" id="filterLabel">Filter Recipe by Tag:</label>
-          <input name="Filter Recipe by Tag" class="input" type="text" id="recipeTagInput">
-          <input class="nav-button" id="filterButton" type="submit" value="Filter">
-        </form>
-        <form id="filterFavoriteForm">
-          <label for="Filter Favorite Recipe by Tag" class="nav-label" id="filterFavoriteLabel">Filter Favorite Recipe by Tag</label>
-          <input name="Filter Favorite Recipe by Tag" class="input" type="text" id="recipeFavoriteTagInput">
-          <input class="nav-button" id="filterFavoriteButton" type="submit" value="Filter">
-        </form>
-        <form id="favSearchForm">
-          <label for="Search favorite Recipes by Name" class="nav-label" id="searchLabel">Search favorite Recipes by Name</label>
-          <input name="Search favorite Recipes by Name" class="input" type="text" id="favRecipeNameInput">
-          <input class="nav-button" id="favSearchButton" type="submit" value="Search">
-        </form>
+        <label for="Search Recipe by Name" class="nav-label" id="searchLabel">Search Recipe by Name:
+          <form id="searchForm">
+            <input name="Search Recipe by Name" class="input" type="text" id="recipeNameInput">
+            <input class="nav-button" id="searchButton" type="submit" value="Search">
+          </form>
+        </label>
+        <label for="Filter Recipe by Tag" class="nav-label" id="filterLabel">Filter Recipe by Tag:
+          <form id="filterForm">
+            <input name="Filter Recipe by Tag" class="input" type="text" id="recipeTagInput">
+            <input class="nav-button" id="filterButton" type="submit" value="Filter">
+          </form>
+        </label>
+        <label for="Filter Favorite Recipe by Tag" class="nav-label" id="filterFavoriteLabel">Filter Favorite Recipe by Tag:
+          <form id="filterFavoriteForm">
+            <input name="Filter Favorite Recipe by Tag" class="input" type="text" id="recipeFavoriteTagInput">
+            <input class="nav-button" id="filterFavoriteButton" type="submit" value="Filter">
+          </form>
+        </label>
+        <label for="Search favorite Recipes by Name" class="nav-label" id="favSearchLabel">Search favorite Recipes by Name:
+          <form id="favSearchForm">
+            <input name="Search favorite Recipes by Name" class="input" type="text" id="favRecipeNameInput">
+            <input class="nav-button" id="favSearchButton" type="submit" value="Search">
+          </form>
+        </label>
         <button class="nav-button" id="favoriteButton">Favorite Recipes</button>
         <button class="nav-button" id="pantryButton">My Pantry</button>
         <button class="nav-button hidden" id="homeButton">Go Back Home</button>
