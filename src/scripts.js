@@ -4,7 +4,6 @@ import './styles.css';
 import {fetchData} from './apiCalls';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
-import Pantry from './classes/Pantry';
 
 // ###########  Query Selectors ###########
 
@@ -13,19 +12,17 @@ const userWelcome = document.querySelector('.user-welcome');
 const homeButton = document.getElementById('homeButton');
 const allRecipesButton = document.getElementById('allRecipesButton');
 const savedRecipesButton = document.getElementById('savedRecipesButton');
-const pantryButton = document.getElementById('pantryButton');
 const searchButton = document.getElementById('searchButton')
 const searchButton2 = document.getElementById('searchButton2');
 const saveRecipeButton = document.getElementById('saveRecipeButton');
 const deleteRecipeButton = document.getElementById('deleteRecipeButton');
-const savedConfirmation = document.querySelector('.big-box-saved-confirmation');
-const buttonInstructions = document.querySelector('.big-box-button-instructions');
+const savedConfirmation = document.querySelector('big-box-saved-confirmation');
+const buttonInstructions = document.querySelector('big-box-button-instructions');
 const searchInput = document.querySelector('.search-input');
 const searchInput2 = document.querySelector('.search-input2');
 const homeViewContainer = document.querySelector('.home-view-container');
 const recipeViewContainer = document.querySelector('.recipe-view-container');
 const savedRecipesContainer = document.querySelector('.saved-recipes-view');
-const smallPantryWindow = document.querySelector('.small-pantry-window')
 const recipeName = document.querySelector('.recipe-name');
 const ingredientDetails = document.querySelector('.ingredient-details');
 const recipeViewPicBox = document.querySelector('.recipe-view-pic-box');
@@ -33,13 +30,11 @@ const cookingInstructions = document.querySelector('.cooking-instructions');
 const allRecipesContainer = document.querySelector('.all-recipes-view');
 const ingredientCost = document.querySelector('.ingredient-cost');
 const filteredContainer = document.querySelector('.filtered-recipes-view')
-const pantryContainer = document.querySelector('.pantry-view')
 const filterByName = document.getElementById('filterByName');
 const filterByName2 = document.getElementById('filterByName2');
 const userSearchContainer1 = document.querySelector('.user-search-container');
 const userSearchContainer2 = document.querySelector('.user-search-container2');
 const form = document.querySelector('.form')
-const pantryRecipeCheckInstructions = document.querySelector('.pantry-recipe-check-instruction')
 
 // ###########  Global Variables  ###########
 
@@ -47,7 +42,6 @@ let recipeRepo;
 let user;
 let usersData;
 let recipeData;
-let pantry
 
 // ###########  Promises  ###########
 function getPromiseData() {
@@ -56,7 +50,6 @@ function getPromiseData() {
     recipeData = data[1].recipeData;
     user = new User(usersData[randomIndex(usersData)]);
     recipeRepo = new RecipeRepository(recipeData);
-    pantry = new Pantry(user)
     welcomeUser();
     populateRecipesInHomeView();
   })
@@ -68,17 +61,15 @@ window.addEventListener('load', getPromiseData);
 homeButton.addEventListener('click', displayHomeView);
 allRecipesButton.addEventListener('click', populateAllRecipesView);
 savedRecipesButton.addEventListener('click', populateSavedRecipesView);
-pantryButton.addEventListener('click', firePantryView)
 homeViewContainer.addEventListener('click', populateChosenRecipe);
 filteredContainer.addEventListener('click', populateChosenRecipe);
 searchButton.addEventListener('click', searchButtonAction);
 searchButton2.addEventListener('click', filterSaved);
 allRecipesContainer.addEventListener('click', populateChosenRecipe);
 saveRecipeButton.addEventListener('click', saveChosenRecipe);
-deleteRecipeButton.addEventListener('click', deleteChosenRecipe);
+// deleteRecipeButton.addEventListener('click', deleteChosenRecipe);
 savedRecipesContainer.addEventListener('click', deleteRecipe);
 savedRecipesContainer.addEventListener('click', populateChosenRecipe);
-savedRecipesContainer.addEventListener('click', fireIngredientEvaluation);
 
 // ###########  On-Load Functions  ###########
 
@@ -145,41 +136,16 @@ function populateAllRecipesView() {
 
 function populateSavedRecipesView() {
   displaySavedRecipesView()
-  smallPantryWindow.innerHTML = ''
-  if (user.recipesToCook.length > 0) {
-    smallPantryWindow.innerHTML += `<p class="pantry-recipe-check-instructions">Click the green
-      checkmark to check if you have enough ingredients in your
-      pantry to cook a recipe! Click the trashcan to remove the
-      recipe from your saved recipes!
-      </p>`
-    } else {
-      smallPantryWindow.innerHTML +=  `<p class="pantry-recipe-check-instructions">You have no saved recipes at this time. Please go to the all recipes page to save one.</p>`
-    }
   savedRecipesContainer.innerHTML = '';
   user.recipesToCook.forEach((recipe) => {
-    savedRecipesContainer.innerHTML +=
-    `<section class='trash-this-one'>
-      <img class='saved-recipes-pic-box'
-      id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
-      <div class='saved-recipe-info-bar'>
-        <p class='recipe-label'>${recipe.name}</p>
-        <img class='recipe-check-button' src='./check.svg.png' id='${recipe.name}'>
-        <img class='trash-can' src='./trash.png' alt='click this trash can to throw away ${recipe.name}'>
-      </div>
-    </section>`;
+    savedRecipesContainer.innerHTML += `<div class='trash-this-one'>
+    <img class='saved-recipes-pic-box'
+    id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
+    <p class='recipe-label'>${recipe.name}</p>
+    <img class='trash-can' src='./trash.png' alt='click this trash can to throw away ${recipe.name}'>
+    </div>`;
   })
 
-}
-
-function firePantryView(){
-  populatePantryView()
-  displayPantryView()
-}
-
-function populatePantryView() {
-  let pantryInfo = pantry.returnIngredientNamesAndAmounts()
-  pantryContainer.innerHTML = ''
-  pantryContainer.innerHTML = `<h2 class='pantryText'>${pantryInfo}</h2>`
 }
 
 // ###########  Chosen Recipe View Functions  ###########
@@ -328,17 +294,13 @@ function displayHomeView(){
         allRecipesContainer,
         filteredContainer,
         userSearchContainer2,
-        smallPantryWindow
-
   ])
   show([allRecipesButton,
         savedRecipesButton,
         homeViewContainer,
         userSearchContainer1,
         form,
-        searchButton,
-        pantryButton,
-        pantryContainer
+        searchButton
   ])
 }
 
@@ -350,15 +312,12 @@ function displaySavedRecipesView(){
         filteredContainer,
         userSearchContainer1,
         form,
-        searchButton,
-        pantryContainer
+        searchButton
   ])
   show([homeButton,
         allRecipesButton,
         savedRecipesContainer,
-        userSearchContainer2,
-        pantryButton,
-        smallPantryWindow
+        userSearchContainer2
   ])
 }
 
@@ -368,17 +327,14 @@ function displayAllRecipesView() {
         recipeViewContainer,
         savedRecipesContainer,
         filteredContainer,
-        userSearchContainer2,
-        pantryContainer,
-        smallPantryWindow
+        userSearchContainer2
       ])
   show([homeButton,
         savedRecipesButton,
         allRecipesContainer,
         userSearchContainer1,
         form,
-        searchButton,
-        pantryButton
+        searchButton
       ])
 }
 
@@ -387,9 +343,7 @@ function displayChosenRecipeView() {
         homeViewContainer,
         allRecipesContainer,
         filteredContainer,
-        userSearchContainer2,
-        pantryContainer,
-        smallPantryWindow
+        userSearchContainer2
   ])
   show([homeButton,
       savedRecipesButton,
@@ -397,8 +351,7 @@ function displayChosenRecipeView() {
       recipeViewContainer,
       userSearchContainer1,
       form,
-      searchButton,
-      pantryButton
+      searchButton
   ])
 }
 
@@ -407,9 +360,7 @@ function displayFilteredView() {
         homeViewContainer,
         allRecipesContainer,
         recipeViewContainer,
-        userSearchContainer2,
-        pantryContainer,
-        smallPantryWindow
+        userSearchContainer2
   ])
   show([homeButton,
       savedRecipesButton,
@@ -417,89 +368,37 @@ function displayFilteredView() {
       filteredContainer,
       userSearchContainer1,
       form,
-      searchButton,
-      pantryButton
+      searchButton
   ])
 }
-
-function displayPantryView(){
-  hide([pantryButton,
-      homeViewContainer,
-      recipeViewContainer,
-      savedRecipesContainer,
-      allRecipesContainer,
-      filteredContainer,
-      userSearchContainer2,
-      smallPantryWindow
-  ])
-
-  show([pantryContainer,
-        homeButton,
-        savedRecipesButton,
-        allRecipesButton,
-        userSearchContainer1,
-        form,
-        searchButton,
-  ])
-}
-
 
 // ###########  Save/Remove Recipe Functions  ###########
 
 
 function saveChosenRecipe() {
-  savedConfirmation.innerText = 'RECIPE SAVED!'
-  buttonInstructions.innerText = 'Click this button to remove this recipe from your saved recipes page'
-  show([savedConfirmation, deleteRecipeButton])
-  hide([saveRecipeButton])
+  saveRecipeButton.innerText = 'RECIPE SAVED!'
+  // savedConfirmation.innerText = 'RECIPE SAVED!'
+  // buttonInstructions.innerText = 'Click this button to remove this recipe from your saved recipes page'
   recipeData.forEach((recipe) => {
     if (recipeName.innerText === recipe.name && !user.recipesToCook.includes(recipe)) {
       user.addRecipeToCook(recipe)}
   })
 }
 
-function deleteChosenRecipe(){
-  savedConfirmation.innerText = 'RECIPE DELETED!'
-  buttonInstructions.innerText = 'Click this button to add this recipe to your saved recipes page'
-  show([saveRecipeButton])
-  hide([deleteRecipeButton])
-  user.recipesToCook.forEach((recipe, index) => {
-    if (recipe.name === recipeName.innerText){
-      user.recipesToCook.splice(index, 1)
-    }
-  })
+// deleteRecipeButton.addEventListener('click', deleteChosenRecipe);
+
+function deleteChosenRecipe() {
+  //captur
 }
 
 function deleteRecipe(event) {
   let alt = event.target.alt;
   if (event.target.classList.contains("trash-can")) {
-    event.target.closest('section').remove();
+    event.target.closest('div').remove();
   }
   user.recipesToCook.forEach((recipe, index) => {
     if (alt === `click this trash can to throw away ${recipe.name}`) {
-      user.recipesToCook.splice(index, 1)
-    }
-    if (user.recipesToCook.length === 0) {
-      smallPantryWindow.innerHTML = '';
-      smallPantryWindow.innerHTML = '<p class="pantry-recipe-check-instructions">You have no saved recipes at this time. Please go to the all recipes page to save one.</p>'
-
+      user.recipesToCook.splice(index, 1);
     }
   })
-}
-
-function fireIngredientEvaluation(event) {
-  if (event.target.classList.contains('recipe-check-button')) {
-    let recipeToCheck = event.target.id
-    recipeData.forEach(recipe => {
-      if (recipeToCheck === recipe.name) {
-        smallPantryWindow.innerHTML = ''
-        smallPantryWindow.innerHTML += `<p class="pantry-recipe-check-instructions">Click the green
-          checkmark to check if you have enough ingredients in your
-           pantry to cook a recipe! Click the trashcan to remove the
-           recipe from your saved recipes!
-        </p>
-        <p class="pantry-recipe-check-instructions">\n \n${pantry.returnIfRecipeIsCookable(recipe)}</p>`
-      }
-    })
-  }
 }
