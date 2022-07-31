@@ -119,34 +119,34 @@ function addIngredientsToPantry(id) {
     const postObjs = ingredientIdsAndAmounts.map(ingredientIdAndAmount => {
         return makePostObj(user.id, ingredientIdAndAmount.ingredientId, ingredientIdAndAmount.ingredientAmount)
     })  
-
-    Promise.all([addToPantry(postObjs)])
-    .then(() => {
-        getAllData('users')
-        .then(data => { 
-            userInfo = data
-            const newUser = new User(userInfo.find(freshUser => freshUser.id === user.id));
-            user.pantry = newUser.pantry;
-            document.querySelector("#pantryFeedback").innerHTML = '';
-            showIngredientsNeeded(selectedRecipe);
-        })
-    })
     
-    document.querySelector('#addToPantry').classList.add('hidden');
+    // Using our array of formated object for the POST request, we make a post reqquest as a call back function so 
+    // can include a .then() that only runs when we are at the last POST request. We do this by creating a conditon
+    // that will only run when we get to the iteration index that is equal to the length of the array minus one.
+    postObjs.forEach((post, index) => {
+        fetch('http://localhost:3001/api/v1/users', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(post)
+        })
+        .then(response => console.log(response))
+        .then(() => {
+            if (index === (postObjs.length - 1)) {
+                getAllData('users')
+                    .then(data => { 
+                        console.log('hello');
+                        userInfo = data
+                        const newUser = new User(userInfo.find(freshUser => freshUser.id === user.id));
+                        user.pantry = newUser.pantry;
+                        document.querySelector("#pantryFeedback").innerHTML = '';
+                        showIngredientsNeeded(selectedRecipe);
+                        document.querySelector('#addToPantry').classList.add('hidden');
+                    })
+            }
+        })
+})
     
 };
-
-function addToPantry(arrObj) {
-    arrObj.forEach(obj => {
-       fetch('http://localhost:3001/api/v1/users', {
-       method: 'POST',
-       headers: {'Content-Type': 'application/json'},
-       // We need to define newIngredient object in a function?
-       body: JSON.stringify(obj)
-     })
-     .then(response => console.log(response))
-    })
-}
 
 function makePostObj(userID, ingredientID, ingredientMod) {
   return {
