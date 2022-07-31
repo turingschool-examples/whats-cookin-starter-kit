@@ -126,16 +126,24 @@
             </section>
           </section>
         <section class="user-info-pantry-container" id="userInfoPantryContainer">
-          <section class="user-pantry-title-wrapper">
+          <section class="user-pantry-title-wrapper hidden">
             <p class="user-pantry-title">User's Pantry Ingredients</p>
           </section>
-         <section class="pantry-ingredient-wrapper" id="pantryIngredientWrapper3">
+         <section class="pantry-ingredient-wrapper hidden" id="pantryIngredientWrapper3">
           <section class="pantry-ingredients">
             <section class="user-item-quantities">1</section>
             <section class="pantry-item-name">2</section>
             <section class="can-cook-image">3</section>
           </section>
         </section>
+        <form class="add-pantry-ingredient-form" id="addIngredientForm"  method="post">
+            <!-- <h2> Add Ingredient</h2> -->
+          <label for="ingredient name">Ingredient Name:</label>
+          <input type="text" id="IngredientName" name="ingredient_name">
+          <label for="ingredient quantity">Ingredient Qty:</label>
+          <input type="text" id="IngredientQuantity" name="ingredient_quantity">
+          <button class="add-ingredient-btn" id="addIngBtn">Add to Pantry</button>
+        </form>
          </section>
         </section>
       </Section>
