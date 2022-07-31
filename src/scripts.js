@@ -129,9 +129,9 @@ const addNewIngredient = (dataType, newIngredient) => {
    .catch(err => err  (alert(`MUST FILL OUT ALL BOXES!!!`)))// What can be done better here?
  }
 
- getAllIngredients();
+ getAllData(); //from fetch all data function 
  const addIngredientToPage = ingredients => {
-   ingredients.forEach(ingredient => {
+  selectedRecipe.getIngredientNames().forEach(ingredient => {
     addIngredientsToPage(ingredient);
    });
  }
@@ -155,9 +155,6 @@ ingredientForm.addEventListener('addIngBtn', (e) => {
 });
 
 // ~~~~~~~~~~~~~~~~~~Add Ingredient to Page END ~~~~~~~~~~~~~~~~~
-
-
-
 
 
 

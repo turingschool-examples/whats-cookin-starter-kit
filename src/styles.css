@@ -468,6 +468,7 @@ li {
 }
 
 .remove-filters-button-fav,
+.remove-filters-button,
 .add-ingredient-btn {
   background-color: black;
   color: white;
