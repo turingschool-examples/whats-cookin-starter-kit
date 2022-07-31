@@ -118,17 +118,14 @@ function addIngredientsToPantry(id) {
 
     const postObjs = ingredientIdsAndAmounts.map(ingredientIdAndAmount => {
         return makePostObj(user.id, ingredientIdAndAmount.ingredientId, ingredientIdAndAmount.ingredientAmount)
-    })
+    })  
 
-    postObjs.forEach(obj => addToPantry(obj))
-
-    document.querySelector("#pantryFeedback").innerHTML = '';
+    postObjs.forEach(obj => addToPantry(obj, selectedRecipe));
     document.querySelector('#addToPantry').classList.add('hidden');
-    refreshUser(user.id);
-    showIngredientsNeeded(selectedRecipe);
+    
 };
 
-function addToPantry(newIngredient) {
+function addToPantry(newIngredient, selectedRecipe) {
      const url = 'http://localhost:3001/api/v1/users'
      fetch( url, {
        method: 'POST',
@@ -141,21 +138,12 @@ function addToPantry(newIngredient) {
         getAllData('users')
         .then(data => { 
             userInfo = data
-            const newUser = new User(userInfo.find(freshUser => freshUser.id === id));
+            const newUser = new User(userInfo.find(freshUser => freshUser.id === user.id));
             user.pantry = newUser.pantry;
-            console.log(user.pantry);
+            document.querySelector("#pantryFeedback").innerHTML = '';
+            showIngredientsNeeded(selectedRecipe);
         })
     })
-}
-
-function refreshUser(id) {
-    getAllData('users')
-        .then(data => { 
-            userInfo = data
-            const newUser = new User(userInfo.find(freshUser => freshUser.id === id));
-            user.pantry = newUser.pantry;
-            console.log(user.pantry);
-        })
 }
 
 
