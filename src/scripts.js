@@ -27,12 +27,15 @@ const keywordList = document.getElementById("keyword-list");
 const keywordSection = document.querySelector(".keyword-section");
 const closeIcon = document.querySelector(".close-icon");
 const saveIcon = document.querySelector(".save-recipe-icon");
-const defaultSearch = document.querySelector('.default-search');
-const pantrySearch = document.querySelector('.pantry-ingredient-datalist');
-const ingredientList = document.querySelector('#ingredient-list');
-const pantryItemTemplate = document.querySelector('.pantry-item-card-template');
-const pantry = document.querySelector('.pantry');
-
+const defaultSearch = document.querySelector(".default-search");
+const pantrySearch = document.querySelector(".pantry-ingredient-datalist");
+const ingredientList = document.querySelector("#ingredient-list");
+const pantryItemTemplate = document.querySelector(".pantry-item-card-template");
+const pantry = document.querySelector(".pantry");
+const datalistString = document.querySelector(".input-value");
+const datalistQty = document.querySelector(".choose-ingredient-amount");
+const datalistButton = document.querySelector(".add-ingredient-quantity");
+datalistButton.addEventListener("click", updatePantryFromDatalist);
 window.addEventListener("load", loadData);
 toggleSeachOption.addEventListener("click", showKeywords);
 keywordList.addEventListener("click", keywordClicked);
@@ -44,26 +47,21 @@ closeIcon.addEventListener("click", closeSpecificRecipe);
 saveIcon.addEventListener("click", specificRecipeClicked);
 resultCardsContainer.addEventListener("click", specificRecipeClicked);
 
+function updatePantryFromDatalist() {
+  user.addIngredientsToPantry(datalistString.value,parseInt(datalistQty.value),recipeRepo);
+  pantry.innerHTML = "";
+  makeIngredientCard();
+}
 
 function convertPantryItemNames() {
   user.pantry.forEach((pantryItem) => {
     ingredientsData.forEach((ingredient) => {
       if (pantryItem.ingredient === ingredient.id) {
-        pantryItem.name = ingredient.name
+        pantryItem.name = ingredient.name;
       }
     });
-  })
-  return user.pantry;
-}
-
-function displayUserPantry() {
-  convertPantryItemNames();
-  resultCardsContainer.replaceChildren();
-  user.pantry.forEach((item) => {
-    let foodItem = document.createElement("div");
-    foodItem.innerText = item.ingredient
-    resultCardsContainer.appendChild(foodItem);
   });
+  return user.pantry;
 }
 
 function loadData() {
@@ -76,7 +74,7 @@ function loadData() {
     recipeRepo.importRecipesFromFile(recipeData, ingredientsData);
     convertPantryItemNames();
     makeIngredientCard();
-    addPantrySearchItems()
+    addPantrySearchItems();
     displayAllRecipesView();
   });
 }
@@ -86,7 +84,7 @@ function listKeywords() {
   recipeRepo.allTags.forEach((tag) => {
     let keyword = document.createElement("button");
     keyword.classList.add("keyword");
-    keyword.type = "button"
+    keyword.type = "button";
     keyword.innerText = tag;
     keywordList.appendChild(keyword);
   });
@@ -217,23 +215,25 @@ function makeRecipeCard(recipe) {
 }
 
 function makeIngredientCard() {
-  let alphabetizedPantry = alphabetize(user.pantry)
-  alphabetizedPantry.forEach(item => {
+  let alphabetizedPantry = alphabetize(user.pantry);
+  alphabetizedPantry.forEach((item) => {
     let newItemCard = pantryItemTemplate.cloneNode(true);
-    newItemCard.querySelector('.pantry-item-name').innerText = item.name;
-    newItemCard.querySelector('.quantity').placeholder = item.amount;
+    newItemCard.querySelector(".pantry-item-name").innerText = item.name;
+    newItemCard.querySelector(".quantity").placeholder = item.amount;
     pantry.appendChild(newItemCard);
     show(newItemCard);
-  })
+  });
 }
 
 function addPantrySearchItems() {
-let alphabetizedIngredients =alphabetize(ingredientsData)  
-  alphabetizedIngredients.forEach(ingredient => {
-    let ingredientOption = document.createElement('option');
+  let alphabetizedIngredients = alphabetize(ingredientsData);
+  alphabetizedIngredients.forEach((ingredient) => {
+    let ingredientOption = document.createElement("option");
     ingredientOption.value = ingredient.name;
+    ingredientOption.id = ingredient.id;
+
     ingredientList.appendChild(ingredientOption);
-  })
+  });
 }
 
 function showPantry() {
@@ -299,11 +299,11 @@ function alphabetize(data) {
     } else if (a.name.toLowerCase() > b.name.toLowerCase()) {
       return 1;
     } else {
-      return 0
+      return 0;
     }
   });
   return alphabetizedData;
-  }
+}
 
 function removeUserRecipe(recipe) {
   user.removeRecipeToCook(recipe);

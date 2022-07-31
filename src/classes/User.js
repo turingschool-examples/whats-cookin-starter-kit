@@ -150,10 +150,10 @@ class User {
     return gatherAllIngredients;
   }
 
-  addIngredientsToPantry(ingredientId, quantity, recipeData) {
+  addIngredientsToPantry(ingredientName, quantity, recipeData) {
     let allIngredients = this.gatherAllIngredients(recipeData);
     let ingredientToAdd = allIngredients.reduce((acc, cur) => {
-      if (ingredientId === cur.ingredientId) {
+      if (ingredientName=== cur.name) {
         acc["ingredient"] = cur.ingredientId;
         acc["amount"] = quantity;
         acc["name"] = cur.name;
@@ -162,7 +162,7 @@ class User {
     }, {});
 
     let found = this.pantry.find((item) => {
-      return item.ingredient === ingredientId;
+      return item.name === ingredientName;
     });
 
     if (found === undefined) {
