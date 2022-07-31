@@ -120,21 +120,8 @@ function addIngredientsToPantry(id) {
         return makePostObj(user.id, ingredientIdAndAmount.ingredientId, ingredientIdAndAmount.ingredientAmount)
     })  
 
-    postObjs.forEach(obj => addToPantry(obj, selectedRecipe));
-    document.querySelector('#addToPantry').classList.add('hidden');
-    
-};
-
-function addToPantry(newIngredient, selectedRecipe) {
-     const url = 'http://localhost:3001/api/v1/users'
-     fetch( url, {
-       method: 'POST',
-       headers: {'Content-Type': 'application/json'},
-       // We need to define newIngredient object in a function?
-       body: JSON.stringify(newIngredient)
-     })
-     .then(response => {
-        console.log(response)
+    Promise.all([addToPantry(postObjs)])
+    .then(() => {
         getAllData('users')
         .then(data => { 
             userInfo = data
@@ -144,8 +131,22 @@ function addToPantry(newIngredient, selectedRecipe) {
             showIngredientsNeeded(selectedRecipe);
         })
     })
-}
+    
+    document.querySelector('#addToPantry').classList.add('hidden');
+    
+};
 
+function addToPantry(arrObj) {
+    arrObj.forEach(obj => {
+       fetch('http://localhost:3001/api/v1/users', {
+       method: 'POST',
+       headers: {'Content-Type': 'application/json'},
+       // We need to define newIngredient object in a function?
+       body: JSON.stringify(obj)
+     })
+     .then(response => console.log(response))
+    })
+}
 
 function makePostObj(userID, ingredientID, ingredientMod) {
   return {
