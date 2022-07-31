@@ -21,10 +21,9 @@ const getRandomIngredient = () => {
 }
 
 // Global Variables
-const recipePromise = fetchApiData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
-const userPromise = fetchApiData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users');
-const ingredientPromise = fetchApiData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients');
-// let pantry;
+const recipePromise = fetchApiData('http://localhost:3001/api/v1/recipes')
+const userPromise = fetchApiData('http://localhost:3001/api/v1/users');
+const ingredientPromise = fetchApiData('http://localhost:3001/api/v1/ingredients');
 let ourUser;
 let thisRecipe;
 let thisIngredient;
@@ -38,12 +37,16 @@ const recipeID = getRandomRecipe();
 const ingredientId = getRandomIngredient();
 Promise.all([userPromise, ingredientPromise, recipePromise])
     .then((value) => {
-        ourUser = setUserData(value[0].usersData[userId])
+        const users = value[0]
+        const ingredientsCall = value[1]
+        const recipeCall = value[2]
+        console.log(users[0])
+        ourUser = setUserData(users[getRandomUserId()])
         userAttribute(ourUser)
-        thisIngredient = setIngredientData(value[1].ingredientsData[ingredientId])
-        thisRecipe = setRecipeData(value[2].recipeData[recipeID], thisIngredient)
-        recipes = value[2].recipeData;
-        ingredients = value[1].ingredientsData;
+        thisIngredient = setIngredientData(ingredientsCall[getRandomIngredient()])
+        thisRecipe = setRecipeData(recipeCall[getRandomRecipe()], thisIngredient)
+        recipes = recipeCall;
+        ingredients = ingredientsCall;
         pantry = new Pantry(ourUser.pantry)
         pantry.attachNameToId(ingredients)
         showAllRecipes();
@@ -122,7 +125,6 @@ function showAllRecipeDetails(id) {
     pantry.missingIngredients = []
     pantry.checkUserIngredients(thisRecipe)
     window.currentRecipe = thisRecipe;
-    console.log('thisrecipe', thisRecipe)
     ingredientCard.innerHTML = `<div>
     <button id="add-to-cookbook" class="add-to-cookbook-button"> Add to cookbook! </button>
     <button id="lets-make-it" class="lets-make-it-button"> Let's Make It! </button>
@@ -171,8 +173,9 @@ const letsMakeItTrafficCop = () => {
     if (pantry.missingIngredients.length) {
         showPantry()
     } else {
-    const enjoyMealMessage = document.querySelector('.enjoy-meal-message')
-    enjoyMealMessage.innerText = 'Enjoy Your Meal!'
+        pantry.removeIngredients()
+      const enjoyMealMessage = document.querySelector('.enjoy-meal-message')
+      enjoyMealMessage.innerText = 'Enjoy Your Meal!'
     }
 }
 
@@ -274,14 +277,32 @@ function displayRecipeBySearchResults(recipes) {
     showAllHelper()
 }
 
-function showPantry() {
-    pantryWrapper.innerHTML = `<h2> ${ourUser.name.split(" ")[0]}'s Pantry </h2>`
+function showPantry(thisRecipe) {
+    // we're definitely going to have to match ingredient id's so that it knows which ingredient in the pantry to update
+    console.log(pantry.missingIngredients)
+    // thisRecipe.requiredIngredients = []
+    // console.log('required: ', thisRecipe.requiredIngredients);
+    let options = pantry.missingIngredients.map((option) =>{
+       return `<option value=${ option.name }> ${ option.name } </option>`
+    })
+    pantryWrapper.innerHTML = `<h2> ${ourUser.name.split(" ")[0]}'s Pantry </h2>
+    <form>
+        <label for="pantry"> Add new ingredient </label>
+        <select id="pantry" name="pantry" class="input-ingredient">
+           ${options}
+        </select>
+        <label for="addIngredient"> Add ingredient amount: </label>
+        <input class="amount-input" id="addIngredient" type="number" value="1"> </input>
+        <br><br>
+        <button class="submit-button" type="submit"> Submit </button> 
+    </form>
+    `
     pantry.ingredients.forEach((item) => {
         pantryWrapper.innerHTML += `<div class="ingredients">
-        <ul> 
-        <p> name: ${item.name} </p>
-        <p> amount: ${item.amount} </p>
-        </ul>
+        <div class="amount-wrapper">
+        <p> ${item.name}: </p>
+        <p> ${item.amount} </p>
+        </div>
         </div>`
     })
     hide(recipeCardWrapper)
@@ -289,21 +310,16 @@ function showPantry() {
     show(pantryWrapper)
 };
 
-// User Story: As a user, I should not be able to cook a recipe if I don’t have the ingredients required.
-// Need to add View Recipe button to recipeDetails page
-// Has something to do with error handling
-// When the user clicks the View Recipe button a method needs to check the user's pantry against the ingredients needed for the recipe to determine if the user has enough ingredients to make the recipe
-// If the user does NOT have enough ingredients in their pantry, they should get a notification to go add more ingredients so they can make said recipe
-// HOW?: Can use alot of the logic in checkUserIngredients 
-    // --> iterate over user's pantry to match ingredient id's
-    // --> match recipeIngredient.id against userPantryIngredient.id
-    // --> iterate over user's pantry to check amount against recipeIngredient.amount
+function addIngredientToPantry(event) {
+    event.preventDefault()
+    let newIngredient = inputIngredient.value;
+    let newAmount = inputAmount.value
 
-function cannotMakeRecipe(recipe) {
-    pantry.checkUserIngredients(recipe)
-    console.log('missing Ingredients: ', pantry.missingIngredients)
-    recipeCard.innerHTML += `<h2 class="error-message">You Need More Ingredients! Go To Your Pantry & Add: ${pantry.missingIngredients.name} ${pantry.missingIngredients.amount}</h2>`
-    console.log('missing.amount: ', pantry.missingIngredients.amount)
+/*
+called when submit form is clicked.
+we need to know what ingredient and how much
+
+*/
 }
 
     // recipe.requiredIngredients.forEach(ingredient => {
