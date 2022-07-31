@@ -2,18 +2,14 @@ import './styles.css';
 import {apiCalls} from './apiCalls';
 import User from './classes/User'
 import RecipeRepository from './classes/RecipeRepository';
-import { use } from 'chai';
 
 const {fetchData} = apiCalls;
-const {addToPantry} = apiCalls;
-//console.log({addToPantry});
+const {getAllData} = apiCalls;
 
 const recipeDisplay = document.querySelector('#recipeDisplay');
 const recipeHeading = document.querySelector('#recipeHeading');
 const homeButton = document.querySelector('#homeButton');
 const favoriteButton = document.querySelector('#favoriteButton');
-const cookRecipeButton = document.querySelector('#recipeToCook');
-const addToPantryButton = document.querySelector('#addToPantryButton');
 const pantryButton = document.querySelector('#pantryButton');
 const recipeNameInput = document.querySelector('#recipeNameInput');
 const recipeTagInput = document.querySelector('#recipeTagInput');
@@ -42,6 +38,7 @@ fetchData().then(responses => {
 
     recipeRepository.listRecipes();
     user = createUser();
+    console.log(user.pantry);
 
     displayRecipeList();
 
@@ -57,8 +54,6 @@ homeButton.addEventListener('click', goHome);
 filterForm.addEventListener('submit', filterRecipeTag);
 searchForm.addEventListener('submit', searchRecipeName);
 favoriteButton.addEventListener('click', showFavorites);
-//cookRecipeButton.addEventListener('click', canCookRecipe);
-addToPantryButton.addEventListener('click', addIngredientsToPantry);
 pantryButton.addEventListener('click', showMyPantry);
 filterFavoriteForm.addEventListener('submit', filterFavoriteRecipesByTag);
 favSearchForm.addEventListener('submit', searchFavRecipeListByName);
@@ -114,129 +109,56 @@ function findExistingPantryIngredients() {
     return pantryIngredients;
 }
 
-function addIngredientsToPantry() {
-  //const newIngredient = {};
-  console.log(user.pantry.getNeededIngredients({
-    "id": 595736,
-    "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
-    "ingredients": [
-      {
-        "id": 20081,
-        "quantity": {
-          "amount": 1.5,
-          "unit": "c"
-        }
-      },
-      {
-        "id": 18372,
-        "quantity": {
-          "amount": 0.5,
-          "unit": "tsp"
-        }
-      },
-      {
-        "id": 1123,
-        "quantity": {
-          "amount": 1,
-          "unit": "large"
-        }
-      },
-      {
-        "id": 19335,
-        "quantity": {
-          "amount": 0.5,
-          "unit": "c"
-        }
-      },
-      {
-        "id": 19206,
-        "quantity": {
-          "amount": 3,
-          "unit": "Tbsp"
-        }
-      },
-      {
-        "id": 19334,
-        "quantity": {
-          "amount": 0.5,
-          "unit": "c"
-        }
-      },
-      {
-        "id": 2047,
-        "quantity": {
-          "amount": 0.5,
-          "unit": "tsp"
-        }
-      },
-      {
-        "id": 1012047,
-        "quantity": {
-          "amount": 24,
-          "unit": "servings"
-        }
-      },
-      {
-        "id": 10019903,
-        "quantity": {
-          "amount": 2,
-          "unit": "c"
-        }
-      },
-      {
-        "id": 1145,
-        "quantity": {
-          "amount": 0.5,
-          "unit": "c"
-        }
-      },
-      {
-        "id": 2050,
-        "quantity": {
-          "amount": 0.5,
-          "unit": "tsp"
-        }
-      }
-    ],
-    "instructions": [
-      {
-        "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
-        "number": 1
-      },
-      {
-        "instruction": "Add egg and vanilla and mix until combined.",
-        "number": 2
-      },
-      {
-        "instruction": "Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.",
-        "number": 3
-      },
-      {
-        "instruction": "Place the cookie dough balls into ungreased muffin pan. Sprinkle with sea salt.",
-        "number": 4
-      },
-      {
-        "instruction": "Bake for 9 to 10 minutes, or until you see the edges start to brown.",
-        "number": 5
-      },
-      {
-        "instruction": "Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice cream and a drizzle of chocolate sauce.",
-        "number": 6
-      }
-    ],
-    "name": "Loaded Chocolate Chip Pudding Cookie Cups",
-    "tags": [
-      "antipasti",
-      "starter",
-      "snack",
-      "appetizer",
-      "antipasto",
-      "hor d'oeuvre"
-    ]
-  }))
+function addIngredientsToPantry(id) {
+    const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === parseInt(id));
+    const neededIngredients = user.pantry.getNeededIngredients(selectedRecipe);
+    const ingredientIdsAndAmounts = neededIngredients.map(ingredient => {
+        return {ingredientId: ingredient.id, ingredientAmount: ingredient.quantity.amount}
+    }) 
+
+    const postObjs = ingredientIdsAndAmounts.map(ingredientIdAndAmount => {
+        return makePostObj(user.id, ingredientIdAndAmount.ingredientId, ingredientIdAndAmount.ingredientAmount)
+    })
+
+    postObjs.forEach(obj => addToPantry(obj))
+
+    document.querySelector("#pantryFeedback").innerHTML = '';
+    document.querySelector('#addToPantry').classList.add('hidden');
+    refreshUser(user.id);
+    showIngredientsNeeded(selectedRecipe);
 };
 
-//Iterate over the user class and set the function parameters as keys in a new object
+function addToPantry(newIngredient) {
+     const url = 'http://localhost:3001/api/v1/users'
+     fetch( url, {
+       method: 'POST',
+       headers: {'Content-Type': 'application/json'},
+       // We need to define newIngredient object in a function?
+       body: JSON.stringify(newIngredient)
+     })
+     .then(response => {
+        console.log(response)
+        getAllData('users')
+        .then(data => { 
+            userInfo = data
+            const newUser = new User(userInfo.find(freshUser => freshUser.id === id));
+            user.pantry = newUser.pantry;
+            console.log(user.pantry);
+        })
+    })
+}
+
+function refreshUser(id) {
+    getAllData('users')
+        .then(data => { 
+            userInfo = data
+            const newUser = new User(userInfo.find(freshUser => freshUser.id === id));
+            user.pantry = newUser.pantry;
+            console.log(user.pantry);
+        })
+}
+
+
 function makePostObj(userID, ingredientID, ingredientMod) {
   return {
     "userID": userID,
@@ -253,6 +175,8 @@ function recipeDisplayHandler(event) {
     } else if (parseInt(event.target.getAttribute('data-favoriteRecipe')) && event.target.innerHTML === 'Remove') {
         removeFromFavorite(event);
         showFavorites();
+    } else if (event.target.getAttribute("data-selectedRecipe")) {
+        addIngredientsToPantry(event.target.getAttribute("data-selectedRecipe"));
     }
 }
 
@@ -262,14 +186,14 @@ function removeFromFavorite(event) {
 }
 
 function addToFavorite(event) {
+    event.target.classList.add('hidden');
     const recipeId = parseInt(event.target.getAttribute('data-favoriteRecipe'))
     const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === recipeId);
     user.addRecipesToCook(selectedRecipe);
 
     if (event.target.getAttribute("data-instructionDisplay")) {
-        showIngredientsNeeded(selectedRecipe);
+        showIngredientsNeeded(selectedRecipe); 
     }
-    event.target.classList.add('hidden');
 }
 
 function showIngredientsNeeded(selectedRecipe) {
@@ -289,6 +213,8 @@ function showIngredientsNeeded(selectedRecipe) {
                     })
                 return pantryIngredient;
             })
+
+            document.getElementById(selectedRecipe.id).innerHTML += `<button class="favorite-button" id="addToPantry" data-selectedRecipe=${selectedRecipe.id}>Add to Pantry</button>`
             document.querySelector("#pantryFeedback").innerHTML += `<p class="ingredients-feedback"> You don't have enough ingredients! This is what you need. Read below:</p>
                                                                         <ul id="neededIngredients"></ul>`
 
@@ -392,7 +318,7 @@ function showRecipeInstructions(event) {
     }
 
     if (user.recipesToCook.includes(selectedRecipe)) {
-        showIngredientsNeeded(selectedRecipe);
+        showIngredientsNeeded(selectedRecipe); 
     }
 
     selectedRecipe.instructions.forEach((instruction) => {
