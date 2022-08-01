@@ -119,6 +119,8 @@ function addIngredientsToPantry(id) {
     const postObjs = ingredientIdsAndAmounts.map(ingredientIdAndAmount => {
         return makePostObj(user.id, ingredientIdAndAmount.ingredientId, ingredientIdAndAmount.ingredientAmount)
     })  
+
+    console.log(postObjs);
     
     // Using our array of formated object for the POST request, we make a post reqquest as a call back function so 
     // can include a .then() that only runs when we are at the last POST request. We do this by creating a conditon
