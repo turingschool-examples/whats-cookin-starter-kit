@@ -162,6 +162,42 @@ function makePostObj(userID, ingredientID, ingredientMod) {
   }
 };
 
+function removeIngredientsFromPantry(id) {
+    const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === parseInt(id));
+    
+    // Use the selected recipe to make an array of objects that have the id and amount of ingredient
+    
+    const ingredientIdsAndAmounts = selectedRecipe.ingredients.map(ingredient => {
+        return {ingredientId: ingredient.id, ingredientAmount: ingredient.quantity.amount * -1}
+    }) 
+    // Make the POST objects
+    const postObjs = ingredientIdsAndAmounts.map(ingredientIdAndAmount => {
+        return makePostObj(user.id, ingredientIdAndAmount.ingredientId, ingredientIdAndAmount.ingredientAmount)
+    })
+
+    postObjs.forEach((post, index) => {
+        fetch('http://localhost:3001/api/v1/users', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(post)
+        })
+        .then(response => console.log(response))
+        .then(() => {
+            if (index === (postObjs.length - 1)) {
+                getAllData('users')
+                    .then(data => { 
+                        userInfo = data
+                        const newUser = new User(userInfo.find(freshUser => freshUser.id === user.id));
+                        user.pantry = newUser.pantry;
+                        document.querySelector("#pantryFeedback").innerHTML = '';
+                        showIngredientsNeeded(selectedRecipe);
+                    })
+            }
+        })
+    })
+
+}
+
 function recipeDisplayHandler(event) {
     if (event.target.getAttribute("data-recipeId")) {
         showRecipeInstructions(event);
@@ -172,6 +208,9 @@ function recipeDisplayHandler(event) {
         showFavorites();
     } else if (event.target.getAttribute("data-selectedRecipe")) {
         addIngredientsToPantry(event.target.getAttribute("data-selectedRecipe"));
+    } else if (event.target.getAttribute("data-cookRecipe")) {
+        // Add another condition for the cook button 
+        removeIngredientsFromPantry(event.target.getAttribute("data-cookRecipe"));
     }
 }
 
@@ -195,7 +234,8 @@ function showIngredientsNeeded(selectedRecipe) {
     if (user.recipesToCook.includes(selectedRecipe)) {
             const answer = user.pantry.checkIfCanMakeRecipe(selectedRecipe);
             if (answer) {
-                document.querySelector("#pantryFeedback").innerHTML += `<p> You have enough ingredients!</p>`;
+                // Add button for cooking a recipie, needs new data atribute with selected recipe ID
+                document.querySelector("#pantryFeedback").innerHTML += `<p> You have enough ingredients! <button class="favorite-button" id="cookRecipe" data-cookRecipe="${selectedRecipe.id}">Cook Recipe</button></p>`;
             } else {
                 const usersNeededIngredients = user.pantry.getNeededIngredients(selectedRecipe);
                 const neededIngredients = usersNeededIngredients.map((pantryIngredient) => {
