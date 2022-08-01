@@ -2,9 +2,9 @@ import './styles.css';
 import {apiCalls} from './apiCalls';
 import User from './classes/User'
 import RecipeRepository from './classes/RecipeRepository';
-import { use } from 'chai';
 
 const {fetchData} = apiCalls;
+const {getAllData} = apiCalls;
 
 const recipeDisplay = document.querySelector('#recipeDisplay');
 const recipeHeading = document.querySelector('#recipeHeading');
@@ -38,6 +38,7 @@ fetchData().then(responses => {
 
     recipeRepository.listRecipes();
     user = createUser();
+    console.log(user.pantry);
 
     displayRecipeList();
 
@@ -103,6 +104,63 @@ function findExistingPantryIngredients() {
     return pantryIngredients;
 }
 
+function addIngredientsToPantry(id) {
+  const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === parseInt(id));
+  const neededIngredients = user.pantry.getNeededIngredients(selectedRecipe);
+  const ingredientIdsAndAmounts = neededIngredients.map(ingredient => {
+    return {ingredientId: ingredient.id, ingredientAmount: ingredient.quantity.amount}
+  })
+  const postObjs = ingredientIdsAndAmounts.map(ingredientIdAndAmount => {
+    return makePostObj(user.id, ingredientIdAndAmount.ingredientId, ingredientIdAndAmount.ingredientAmount)
+  })
+  // Using our array of formated object for the POST request, we make a post reqquest as a call back function so
+  // can include a .then() that only runs when we are at the last POST request. We do this by creating a conditon
+  // that will only run when we get to the iteration index that is equal to the length of the array minus one.
+  postObjs.forEach((post, index) => {
+    fetch('http://localhost:3001/api/v1/users', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(post)
+    })
+    .then(response => {
+      console.log("POST response:", response)
+      if (!response.ok) {
+        //throw an error to trigger my catch
+        throw new Error('did i do it? is this an error??')
+      } else {
+        // Means the response is good.
+        return response.json()
+      }
+    })
+    .then(() => {
+      if (index === (postObjs.length - 1)) {
+        getAllData('users')
+        .then(data => {
+          console.log('hello');
+          userInfo = data
+          const newUser = new User(userInfo.find(freshUser => freshUser.id === user.id));
+          user.pantry.ingredients = newUser.pantry.ingredients;
+          console.log("Pantry", user.pantry);
+          document.querySelector("#pantryFeedback").innerHTML = '';
+          showIngredientsNeeded(selectedRecipe);
+          document.querySelector('#addToPantry').classList.add('hidden');
+        })
+      }
+    })
+    .catch(error => {
+      console.log('i got into the catch!');
+      console.log('Error label: ', error.message)
+    })
+  })
+};
+
+function makePostObj(userID, ingredientID, ingredientMod) {
+  return {
+    "userID": userID,
+    "ingredientID": ingredientID,
+    "ingredientModification": ingredientMod
+  }
+};
 
 function recipeDisplayHandler(event) {
     if (event.target.getAttribute("data-recipeId")) {
@@ -112,6 +170,8 @@ function recipeDisplayHandler(event) {
     } else if (parseInt(event.target.getAttribute('data-favoriteRecipe')) && event.target.innerHTML === 'Remove') {
         removeFromFavorite(event);
         showFavorites();
+    } else if (event.target.getAttribute("data-selectedRecipe")) {
+        addIngredientsToPantry(event.target.getAttribute("data-selectedRecipe"));
     }
 }
 
@@ -121,6 +181,7 @@ function removeFromFavorite(event) {
 }
 
 function addToFavorite(event) {
+    event.target.classList.add('hidden');
     const recipeId = parseInt(event.target.getAttribute('data-favoriteRecipe'))
     const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === recipeId);
     user.addRecipesToCook(selectedRecipe);
@@ -128,7 +189,6 @@ function addToFavorite(event) {
     if (event.target.getAttribute("data-instructionDisplay")) {
         showIngredientsNeeded(selectedRecipe);
     }
-    event.target.classList.add('hidden');
 }
 
 function showIngredientsNeeded(selectedRecipe) {
@@ -141,16 +201,20 @@ function showIngredientsNeeded(selectedRecipe) {
                 const neededIngredients = usersNeededIngredients.map((pantryIngredient) => {
                     ingredientsInfo.forEach((ingredient) => {
                         if (pantryIngredient.id === ingredient.id) {
+
                             pantryIngredient.name = ingredient.name;
-                           
+
                         }
                     })
                 return pantryIngredient;
             })
+
+            document.getElementById(selectedRecipe.id).innerHTML += `<button class="favorite-button" id="addToPantry" data-selectedRecipe=${selectedRecipe.id}>Add to Pantry</button>`
             document.querySelector("#pantryFeedback").innerHTML += `<p class="ingredients-feedback"> You don't have enough ingredients! This is what you need. Read below:</p>
                                                                         <ul id="neededIngredients"></ul>`
+
             neededIngredients.forEach((neededIngredient) => {
-                document.querySelector("#neededIngredients").innerHTML +=  
+                document.querySelector("#neededIngredients").innerHTML +=
                     `<li>${neededIngredient.name}, ${neededIngredient.quantity.amount} ${neededIngredient.quantity.unit}</li>`
             })
         }
