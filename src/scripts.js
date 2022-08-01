@@ -44,11 +44,6 @@ fetchData().then(responses => {
 
 }).catch(err => recipeDisplay.innerHTML = (`<h1>${err}</h1>`));
 
-//addToPantry();
-
-// Create a function to fire an event listener once it is clicked.
-// The function should iterate over userInfo and get the userID and get the ingredientInfo.id
-
 recipeDisplay.addEventListener('click', recipeDisplayHandler);
 homeButton.addEventListener('click', goHome);
 filterForm.addEventListener('submit', filterRecipeTag);
@@ -110,79 +105,54 @@ function findExistingPantryIngredients() {
 }
 
 function addIngredientsToPantry(id) {
-    const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === parseInt(id));
-    const neededIngredients = user.pantry.getNeededIngredients(selectedRecipe);
-    const ingredientIdsAndAmounts = neededIngredients.map(ingredient => {
-        return {ingredientId: ingredient.id, ingredientAmount: ingredient.quantity.amount}
-    }) 
-
-    const postObjs = ingredientIdsAndAmounts.map(ingredientIdAndAmount => {
-        return makePostObj(user.id, ingredientIdAndAmount.ingredientId, ingredientIdAndAmount.ingredientAmount)
-    })  
-    
-    // Using our array of formated object for the POST request, we make a post reqquest as a call back function so 
-    // can include a .then() that only runs when we are at the last POST request. We do this by creating a conditon
-    // that will only run when we get to the iteration index that is equal to the length of the array minus one.
-    postObjs.forEach((post, index) => {
-        fetch('http://localhost:3001/api/v1/users', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(post)
+  const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === parseInt(id));
+  const neededIngredients = user.pantry.getNeededIngredients(selectedRecipe);
+  const ingredientIdsAndAmounts = neededIngredients.map(ingredient => {
+    return {ingredientId: ingredient.id, ingredientAmount: ingredient.quantity.amount}
+  })
+  const postObjs = ingredientIdsAndAmounts.map(ingredientIdAndAmount => {
+    return makePostObj(user.id, ingredientIdAndAmount.ingredientId, ingredientIdAndAmount.ingredientAmount)
+  })
+  // Using our array of formated object for the POST request, we make a post reqquest as a call back function so
+  // can include a .then() that only runs when we are at the last POST request. We do this by creating a conditon
+  // that will only run when we get to the iteration index that is equal to the length of the array minus one.
+  postObjs.forEach((post, index) => {
+    fetch('http://localhost:3001/api/v1/users', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(post)
+    })
+    .then(response => {
+      console.log("POST response:", response)
+      if (!response.ok) {
+        //throw an error to trigger my catch
+        throw new Error('did i do it? is this an error??')
+      } else {
+        // Means the response is good.
+        return response.json()
+      }
+    })
+    .then(() => {
+      if (index === (postObjs.length - 1)) {
+        getAllData('users')
+        .then(data => {
+          console.log('hello');
+          userInfo = data
+          const newUser = new User(userInfo.find(freshUser => freshUser.id === user.id));
+          user.pantry.ingredients = newUser.pantry.ingredients;
+          console.log("Pantry", user.pantry);
+          document.querySelector("#pantryFeedback").innerHTML = '';
+          showIngredientsNeeded(selectedRecipe);
+          document.querySelector('#addToPantry').classList.add('hidden');
         })
-        .then(response => console.log(response))
-        .then(() => {
-            if (index === (postObjs.length - 1)) {
-                getAllData('users')
-                    .then(data => { 
-                        userInfo = data
-                        const newUser = new User(userInfo.find(freshUser => freshUser.id === user.id));
-                        user.pantry = newUser.pantry;
-                        document.querySelector("#pantryFeedback").innerHTML = '';
-                        document.querySelector('#addToPantry').remove();
-                        showIngredientsNeeded(selectedRecipe);
-                    })
-            }
-        })
-})
-
-
+      }
+    })
+    .catch(error => {
+      console.log('i got into the catch!');
+      console.log('Error label: ', error.message)
+    })
+  })
 };
-
-function removeIngredientsFromPantry(id) {
-    const selectedRecipe = recipeRepository.recipeList.find(recipe => recipe.id === parseInt(id));
-    
-    // Use the selected recipe to make an array of objects that have the id and amount of ingredient
-    
-    const ingredientIdsAndAmounts = selectedRecipe.ingredients.map(ingredient => {
-        return {ingredientId: ingredient.id, ingredientAmount: ingredient.quantity.amount * -1}
-    }) 
-    // Make the POST objects
-    const postObjs = ingredientIdsAndAmounts.map(ingredientIdAndAmount => {
-        return makePostObj(user.id, ingredientIdAndAmount.ingredientId, ingredientIdAndAmount.ingredientAmount)
-    })
-
-    postObjs.forEach((post, index) => {
-        fetch('http://localhost:3001/api/v1/users', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(post)
-        })
-        .then(response => console.log(response))
-        .then(() => {
-            if (index === (postObjs.length - 1)) {
-                getAllData('users')
-                    .then(data => { 
-                        userInfo = data
-                        const newUser = new User(userInfo.find(freshUser => freshUser.id === user.id));
-                        user.pantry = newUser.pantry;
-                        document.querySelector("#pantryFeedback").innerHTML = '';
-                        showIngredientsNeeded(selectedRecipe);
-                    })
-            }
-        })
-    })
-
-}
 
 function makePostObj(userID, ingredientID, ingredientMod) {
   return {
@@ -220,7 +190,7 @@ function addToFavorite(event) {
     user.addRecipesToCook(selectedRecipe);
 
     if (event.target.getAttribute("data-instructionDisplay")) {
-        showIngredientsNeeded(selectedRecipe); 
+        showIngredientsNeeded(selectedRecipe);
     }
 }
 
@@ -237,7 +207,7 @@ function showIngredientsNeeded(selectedRecipe) {
                         if (pantryIngredient.id === ingredient.id) {
 
                             pantryIngredient.name = ingredient.name;
-                      
+
                         }
                     })
                 return pantryIngredient;
@@ -248,7 +218,7 @@ function showIngredientsNeeded(selectedRecipe) {
                                                                         <ul id="neededIngredients"></ul>`
 
             neededIngredients.forEach((neededIngredient) => {
-                document.querySelector("#neededIngredients").innerHTML +=  
+                document.querySelector("#neededIngredients").innerHTML +=
                     `<li>${neededIngredient.name}, ${neededIngredient.quantity.amount} ${neededIngredient.quantity.unit}</li>`
             })
         }
@@ -347,7 +317,7 @@ function showRecipeInstructions(event) {
     }
 
     if (user.recipesToCook.includes(selectedRecipe)) {
-        showIngredientsNeeded(selectedRecipe); 
+        showIngredientsNeeded(selectedRecipe);
     }
 
     selectedRecipe.instructions.forEach((instruction) => {
