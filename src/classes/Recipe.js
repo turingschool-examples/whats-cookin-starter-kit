@@ -21,8 +21,6 @@ class Recipe {
     });
   }
 
-
-
   getPortionCosts() {
     const ingredientsCost = this.portions.map((portion) => {
       return (portion.amount * portion.cost).toFixed(2) / 100;

@@ -1,40 +1,24 @@
-const ingredients = fetch(
-  "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients"
-)
-  .then((response) => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw Error(response.statusText);
-    }
-  })
-  .then((data) => data)
-  .catch((err) => console.log(err));
+function fetchData(dataType) {
+  return fetch(`http://localhost:3001/api/v1/${dataType}`)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw Error(response.statusText);
+      }
+    })
+    .catch((error) => console.log(error));
+}
 
-const recipe = fetch(
-  "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes"
-)
-  .then((response) => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw Error(response.statusText);
-    }
-  })
-  .then((data) => data)
-  .catch((err) => console.log(err));
+function getData() {
+  const result = Promise.all([
+    fetchData("recipes"),
+    fetchData("ingredients"),
+    fetchData("users"),
+  ]).then((responses) => {
+    return responses;
+  });
+  return result;
+}
 
-const users = fetch(
-  "	https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users"
-)
-  .then((response) => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw Error(response.statusText);
-    }
-  })
-  .then((data) => data)
-  .catch((err) => console.log(err));
-
-export { ingredients, recipe, users };
+export { getData };
