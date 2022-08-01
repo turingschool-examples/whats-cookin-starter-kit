@@ -14,6 +14,7 @@ const resultCardsContainer = document.querySelector(".results-grid-container");
 const specificRecipeSection = document.getElementById(
   "specific-recipe-section"
 );
+const ingredientsListUl = document.querySelector(".ingredients ul");
 const modalCurtain = document.querySelector(".grey-out-bg");
 const greeting = document.querySelector(".greeting");
 const header = document.querySelector(".results-header");
@@ -35,6 +36,9 @@ const pantry = document.querySelector(".pantry");
 const datalistString = document.querySelector(".input-value");
 const datalistQty = document.querySelector(".choose-ingredient-amount");
 const datalistButton = document.querySelector(".add-ingredient-quantity");
+const cookButton = document.querySelector(".cook-button");
+const ingredientsNeeded = document.querySelector(".ingredients-needed");
+
 datalistButton.addEventListener("click", updatePantryFromDatalist);
 window.addEventListener("load", loadData);
 toggleSeachOption.addEventListener("click", showKeywords);
@@ -42,16 +46,50 @@ keywordList.addEventListener("click", keywordClicked);
 homeButton.addEventListener("click", displayAllRecipesView);
 searchButton.addEventListener("click", executeSearch);
 myPantryButton.addEventListener("click", showPantry);
+cookButton.addEventListener("click", cookRecipe);
 myRecipesButton.addEventListener("click", displayUserRecipes);
 closeIcon.addEventListener("click", closeSpecificRecipe);
 saveIcon.addEventListener("click", specificRecipeClicked);
 resultCardsContainer.addEventListener("click", specificRecipeClicked);
 
 function updatePantryFromDatalist() {
-  user.addIngredientsToPantry(datalistString.value,parseInt(datalistQty.value),recipeRepo);
+  user.evaluatePantry(
+    datalistString.value,
+    parseInt(datalistQty.value),
+    recipeRepo
+  );
   pantry.innerHTML = "";
+  user.removeFromPantryView();
   makeIngredientCard();
 }
+
+function cookRecipe() {
+  let recipeToCook = recipeRepo.recipes.find((recipe) => {
+    return recipe.id === parseInt(saveIcon.dataset.id);
+  });
+  user.compareIngredientsNeeded(recipeToCook);
+  if (user.notMatchingIngredients.length >= 1) {
+    user.compareIngredientAmounts(recipeToCook);
+    displayMissingIngredients();
+    user.notMatchingIngredients = []
+  } else {
+    ingredientsNeeded.innerHTML = `You Made it!!!`;
+    user.cookRecipe(recipeToCook);
+  }
+}
+
+function displayMissingIngredients() {
+  ingredientsListUl.innerHTML = ``
+  ingredientsListUl.replaceChildren();
+  ingredientsNeeded.innerHTML = `Head to the pantry you still need:`;
+  user.notMatchingIngredients.forEach((ing) => {
+    let listItem = document.createElement("li");
+    listItem.innerHTML = `${ing.amount} ${capitalize(ing.name)}`;
+    ingredientsListUl.append(listItem);
+  });
+}
+
+
 
 function convertPantryItemNames() {
   user.pantry.forEach((pantryItem) => {
@@ -162,6 +200,7 @@ function displaySpecificRecipe(recipe) {
 }
 
 function updateSpecificRecipeCard(recipe) {
+  ingredientsNeeded.innerHTML = `Ingredients:`;
   specificRecipeSection.querySelector(".title").innerText = recipe.name;
   if (user.recipesToCook.includes(recipe)) {
     specificRecipeSection
@@ -179,13 +218,14 @@ function updateSpecificRecipeCard(recipe) {
 }
 
 function updateSpecificRecipeIngredients(recipe) {
-  let ingredientsList = specificRecipeSection.querySelector(".ingredients ol");
-  ingredientsList.replaceChildren();
-  let portionNames = recipe.getPortionNames();
-  portionNames.forEach((portionName) => {
+  ingredientsListUl.replaceChildren();
+  let portions = recipe.getPortionInfo();
+  portions.forEach((portion) => {
     let listItem = document.createElement("li");
-    listItem.innerText = capitalize(portionName);
-    ingredientsList.append(listItem);
+    listItem.innerHTML = `<strong> ${portion.amount} </strong> ${
+      portion.unit
+    } of ${capitalize(portion.name)}`;
+    ingredientsListUl.append(listItem);
   });
 }
 
@@ -219,7 +259,7 @@ function makeIngredientCard() {
   alphabetizedPantry.forEach((item) => {
     let newItemCard = pantryItemTemplate.cloneNode(true);
     newItemCard.querySelector(".pantry-item-name").innerText = item.name;
-    newItemCard.querySelector(".quantity").placeholder = item.amount;
+    newItemCard.querySelector(".pantry-quantity").innerText = item.amount;
     pantry.appendChild(newItemCard);
     show(newItemCard);
   });

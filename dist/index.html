@@ -44,7 +44,7 @@
         <section class="pantry-ingredient-datalist hidden">
           <section  class="ingredient-datalist-box update-pantry">
             <label>Find Ingredients:</label>
-            <input  class= 'input-value 'list="ingredient-list" id="" name="" />
+            <input  class= 'input-value 'list="ingredient-list" id="" placeholder="Search here..." />
             <datalist id="ingredient-list" list="ingredients">
             <option value="">
             </datalist>
@@ -104,8 +104,8 @@
             </section>
 
             <section class="ingredients">
-              <h3>Ingredients Needed</h3>
-              <ol></ol>
+              <h3 class="ingredients-needed">Ingredients Needed</h3>
+              <ul></ul>
             </section>
             <section class="instructions">
               <h3>Instructions</h3>
@@ -131,14 +131,11 @@
     Ingredient
   </section>
   <section class="pantry-quantity size">
-    <input class="quantity" type="number" placeholder="0">
   </section>
   <section class="pantry-unit-type size">
     Unit(s)
   </section>
-  <section class="update-user-pantry size">
-    <button class="update-pantry-button" type="button">Submit</button>
-  </section>
+
 </section>
 
 <script src="bundle.js"></script>

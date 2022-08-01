@@ -100,11 +100,6 @@ class User {
         this.notMatchingIngredients.push(portion);
       }
     });
-    if (this.notMatchingIngredients.length === 0) {
-      return this.matchingIngredients;
-    } else {
-      return this.notMatchingIngredients;
-    }
   }
 
   compareIngredientAmounts(recipe) {
@@ -120,26 +115,38 @@ class User {
         }
       });
       if (isCorrectAmount === false) {
-        wrongAmount.push(item);
+        this.notMatchingIngredients.push(item);
       }
     });
-    return wrongAmount;
+    this.returnDifferences(recipe, wrongAmount);
   }
 
   returnDifferences(recipe) {
-    let wrongAmount = this.compareIngredientAmounts(recipe);
-    let differences = recipe.portions.reduce((acc, portion) => {
-      wrongAmount.forEach((item) => {
-        if (item.ingredient === portion.ingredientId) {
-          acc.push({
-            name: item.name,
-            difference: portion.amount - item.amount,
-          });
+    recipe.portions.forEach((portion) => {
+      this.notMatchingIngredients.forEach((item) => {
+        if (item.ingredientId === portion.ingredientId) {
+          item.amount = portion.amount - item.amount || portion.amount;
         }
       });
-      return acc;
-    }, []);
-    return differences;
+    });
+  
+  }
+
+  cookRecipe(recipe) {
+    let myRecipe = recipe;
+    let myPantry = this.pantry;
+    myRecipe.portions.forEach((ingredient) => {
+      let updateAmount = myPantry.find((item) => {
+        return item.name === ingredient.name;
+      });
+      updateAmount.amount -= ingredient.amount;
+      if (updateAmount.amount < 1) {
+        this.deleteFromPantry(updateAmount.ingredient);
+      }
+       myPantry.push(updateAmount);
+    });
+    this.removeRecipeToCook(myRecipe);
+    this.matchingIngredients = [];
   }
 
   gatherAllIngredients(recipeData) {
@@ -150,13 +157,14 @@ class User {
     return gatherAllIngredients;
   }
 
-  addIngredientsToPantry(ingredientName, quantity, recipeData) {
+  evaluatePantry(ingredientName, quantity, recipeData) {
     let allIngredients = this.gatherAllIngredients(recipeData);
     let ingredientToAdd = allIngredients.reduce((acc, cur) => {
-      if (ingredientName=== cur.name) {
-        acc["ingredient"] = cur.ingredientId;
+      if (ingredientName === cur.name) {
+        acc["ingredientId"] = cur.ingredientId;
         acc["amount"] = quantity;
         acc["name"] = cur.name;
+        acc["ingredient"] = cur.ingredientId;
       }
       return acc;
     }, {});
@@ -170,6 +178,14 @@ class User {
     } else {
       found.amount += quantity;
     }
+  }
+
+  removeFromPantryView() {
+    this.pantry.forEach((item) => {
+      if (item.amount < 1) {
+        this.deleteFromPantry(item.ingredient);
+      }
+    });
   }
 
   deleteFromPantry(ingredientId) {
@@ -186,21 +202,6 @@ class User {
     }
     this.recipesToCook.splice(indexOfRecipeToRemove, 1);
     return this.recipesToCook;
-  }
-
-  cookRecipe(recipe) {
-    let myRecipe = recipe;
-    let myPantry = this.pantry;
-    myRecipe.portions.forEach((ingredient) => {
-      let updateAmount = myPantry.find((item) => {
-        return item.ingredient === ingredient.ingredientId;
-      });
-      updateAmount.amount -= ingredient.amount;
-      if (updateAmount.amount === 0) {
-        this.deleteFromPantry(updateAmount.ingredient);
-      }
-    });
-    this.removeRecipeToCook(myRecipe);
   }
 
   clearData() {

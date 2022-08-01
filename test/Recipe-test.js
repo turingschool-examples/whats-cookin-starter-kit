@@ -177,11 +177,15 @@ describe("Recipe", () => {
     expect(recipe2.tags).to.deep.equal(["snack", "lunch"]);
   });
 
-  it("should be able to show the names of ingredients needed", () => {
-    expect(recipe1.getPortionNames().length).to.equal(1);
-    expect(recipe4.getPortionNames().length).to.equal(2);
-    expect(recipe1.getPortionNames()[0]).to.equal("Flour");
-    expect(recipe2.getPortionNames()[0]).to.equal("Bread");
+  it("should be able to show the information for the ingredients needed", () => {
+    expect(recipe1.getPortionInfo().length).to.equal(1);
+    expect(recipe4.getPortionInfo().length).to.equal(2);
+    expect(recipe1.getPortionInfo()[0]).to.deep.equal({name:"Flour", amount: 2, unit: 'C'});
+    expect(recipe2.getPortionInfo()[0]).to.deep.equal({
+      name: "Bread",
+      amount: 5,
+      unit: "loaf"
+    });
   });
 
   it("should be able to calculate the total cost of ingredients", () => {

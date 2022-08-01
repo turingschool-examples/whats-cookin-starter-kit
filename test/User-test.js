@@ -356,7 +356,7 @@ describe("User", () => {
     allIngredients.addRecipe(completeRecipe);
     completeUser1.gatherAllIngredients(allIngredients);
     expect(completeUser1.pantry.length).to.equal(15);
-    completeUser1.addIngredientsToPantry("butter", 11, allIngredients);
+    completeUser1.evaluatePantry("butter", 11, allIngredients);
     expect(completeUser1.pantry.length).to.equal(16);
    
     expect(completeUser1.pantry).to.deep.include({
@@ -384,8 +384,8 @@ describe("User", () => {
     allIngredients.addRecipe(completeRecipe);
     completeUser2.gatherAllIngredients(allIngredients);
     completeUser2.addRecipeToCook(completeRecipe);
-    completeUser2.addIngredientsToPantry("butter", 49, allIngredients);
-    completeUser2.addIngredientsToPantry("egg yolks", 47, allIngredients);
+    completeUser2.evaluatePantry("butter", 49, allIngredients);
+    completeUser2.evaluatePantry("egg yolks", 47, allIngredients);
     completeUser2.compareIngredientsNeeded(completeUser2.recipesToCook[0]);
     completeUser2.compareIngredientAmounts(completeUser2.recipesToCook[0]);
     completeUser2.cookRecipe(completeUser2.recipesToCook[0]);
@@ -406,8 +406,8 @@ describe("User", () => {
     allIngredients.addRecipe(completeRecipe);
     completeUser2.gatherAllIngredients(allIngredients);
     completeUser2.addRecipeToCook(completeRecipe);
-    completeUser2.addIngredientsToPantry('butter', 49, allIngredients);
-    completeUser2.addIngredientsToPantry('egg yolks', 47, allIngredients);
+    completeUser2.evaluatePantry("butter", 49, allIngredients);
+    completeUser2.evaluatePantry("egg yolks", 47, allIngredients);
     completeUser2.compareIngredientsNeeded(completeUser2.recipesToCook[0]);
     completeUser2.compareIngredientAmounts(completeUser2.recipesToCook[0]);
     expect(completeUser2.pantry).to.deep.equal([
