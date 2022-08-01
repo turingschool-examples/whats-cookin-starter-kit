@@ -142,8 +142,8 @@ function addIngredientsToPantry(id) {
           user.pantry.ingredients = newUser.pantry.ingredients;
           console.log("Pantry", user.pantry);
           document.querySelector("#pantryFeedback").innerHTML = '';
+          document.querySelector('#addToPantry').remove();
           showIngredientsNeeded(selectedRecipe);
-          document.querySelector('#addToPantry').classList.add('hidden');
         })
       }
     })
@@ -263,7 +263,7 @@ function showIngredientsNeeded(selectedRecipe) {
 
 function showFavorites() {
     hideOn([searchForm, filterForm, favoriteButton, searchLabel, filterLabel]);
-    hideOff([filterFavoriteForm, favSearchForm, homeButton, favSearchLabel, filterFavoriteLabel]);
+    hideOff([filterFavoriteForm, favSearchForm, homeButton, favSearchLabel, filterFavoriteLabel, pantryButton]);
 
 
     homeButton.classList.remove('hidden');
@@ -284,7 +284,7 @@ function showFavorites() {
 };
 
 function displayRecipeList() {
-    hideOff([searchForm, filterForm, favoriteButton, searchLabel, filterLabel]);
+    hideOff([searchForm, filterForm, favoriteButton, searchLabel, filterLabel, pantryButton]);
     hideOn([homeButton, filterFavoriteForm, favSearchForm, favSearchLabel, filterFavoriteLabel]);
 
 
@@ -308,7 +308,7 @@ function displayRecipeList() {
 
 function goHome() {
     hideOn([homeButton]);
-
+    hideOff([pantryButton]);
     recipeHeading.innerText = 'All Recipes';
     recipeDisplay.innerHTML = "";
 
@@ -318,7 +318,7 @@ function goHome() {
 
 function showRecipeInstructions(event) {
     hideOn([searchForm, filterForm, filterFavoriteForm, favSearchForm, favSearchLabel, filterFavoriteLabel,  searchLabel, filterLabel]);
-    hideOff([favoriteButton, homeButton]);
+    hideOff([favoriteButton, homeButton, pantryButton]);
 
 
     const recipeId = parseInt(event.target.getAttribute("data-recipeId"));
@@ -372,7 +372,7 @@ function showRecipeInstructions(event) {
 function filterRecipeTag(event) {
     event.preventDefault();
 
-    hideOff([homeButton]);
+    hideOff([homeButton, pantryButton]);
 
     const inputValue = recipeTagInput.value.toLowerCase();
     const requestedRecipes = recipeRepository.findRecipeByTag(inputValue);
@@ -398,7 +398,7 @@ function filterRecipeTag(event) {
 function searchRecipeName(event) {
     event.preventDefault();
 
-    hideOff([homeButton]);
+    hideOff([homeButton, pantryButton]);
 
     const inputValue = recipeNameInput.value.split(' ').map(word => {
     return word.split('').map((letter, index) => {
@@ -436,7 +436,7 @@ function searchRecipeName(event) {
  function filterFavoriteRecipesByTag(event) {
     event.preventDefault();
 
-    hideOff([homeButton]);
+    hideOff([homeButton, pantryButton]);
 
     const inputValue = recipeFavoriteTagInput.value.toLowerCase();
     const requestedRecipes = user.filterRecipesToCookByTag(inputValue);
@@ -461,7 +461,7 @@ function searchRecipeName(event) {
  function searchFavRecipeListByName(event) {
    event.preventDefault();
 
-   hideOff([homeButton]);
+   hideOff([homeButton, pantryButton]);
 
    const inputValue = recipeFavNameInput.value.split(' ').map(word => {
     return word.split('').map((letter, index) => {

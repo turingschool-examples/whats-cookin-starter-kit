@@ -3,7 +3,7 @@ A web app for discovering and organizing all your favorite recipes in one place.
 
 ### Introduction
 
-What's Cookin is our second project in Mod2 of Turing School of Software and Design (it is a group project). The goal was to create a web app that uses multiple data sets including users, recipes, and ingredients. Upon load, the app logs in a random user along with their specific information including name and personal pantry items.<br>
+What's Cookin is our group project in Mod2 of Turing School of Software and Design (it is a group project). Students were instructed to work in small groups with two 10 day windows to accomplish the goal. The goal was to create a web app that uses multiple data sets including users, recipes, ingredients and pantry. Upon load, a user is able to view a repository of recipes, favoriting and unfavoriting them as they like, as well as adding them to a list of recipes they intend to cook in the future.<br>
 
 ### How to Run Locally
 *Be sure you are not currently running a local server*
@@ -24,13 +24,18 @@ On load, the user will see a home screen which includes all the recipes availabl
 
 **Back To Home**<br>When a user navigates away from the home page, they can easily get back to the home page by clicking the "Go Back Home" button in the nav bar
 
+**My Pantry**<br>When a user clicks the "My Pantry" button, a new page appears revealing a list of the user's available ingredients and the amount of each ingredient. 
+
+**Cook Recipe**<br>When a user clicks the "Cook Recipe" button, a message indicating whether or not a user has all the needed ingredients to cook that selected recipe will appear. If the user does not have enough ingredients, there will be an additional message indicating what ingredients the user needs and how much is needed by each ingredient.
+
+
 ### Gif
 
 ![What's Cookin App Gif](./src/images/whats-cookin.gif)
 
 ### Technologies Used
 
-HTML, CSS, Vanilla JavaScript, WebPack, Mocha, Chai
+HTML, CSS, Vanilla JavaScript, WebPack, Mocha, Chai, Fetch API, NPM, Lighthouse(accessibility), Wave (accessibility)
 
 ### Contributors
 
@@ -39,3 +44,12 @@ HTML, CSS, Vanilla JavaScript, WebPack, Mocha, Chai
 * [Anna Spitz](https://github.com/aspitz1)
 
 * [Jeffrey Cook](https://github.com/JCookDev)
+
+
+### Given more time these are the things we would have done:
+* We want to spend more time DRYing up the code. 
+* We want to be able to add and remove individual ingredients as opposed to chunks of ingredients. 
+* We want to incorporate a DELETE request. 
+* We want to allow users that ability to search using multiple tags. Right now we only allow one. 
+* We want the user to be able to see the total price of the amount of ingredients that they have in their pantry. 
+* We want the user to be able to rate their own recipes and post their own recipes.
