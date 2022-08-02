@@ -26,21 +26,18 @@ const userPromise = fetchApiData('http://localhost:3001/api/v1/users');
 const ingredientPromise = fetchApiData('http://localhost:3001/api/v1/ingredients');
 let ourUser;
 let thisRecipe;
+let thisRecipeId;
 let thisIngredient;
 let recipeRepo;
 let pantry;
 let recipes = [];
 let ingredients = [];
 let cookbookIsActive = false;
-const userId = getRandomUserId();
-const recipeID = getRandomRecipe();
-const ingredientId = getRandomIngredient();
 Promise.all([userPromise, ingredientPromise, recipePromise])
     .then((value) => {
         const users = value[0]
         const ingredientsCall = value[1]
         const recipeCall = value[2]
-        console.log(users[0])
         ourUser = setUserData(users[getRandomUserId()])
         userAttribute(ourUser)
         thisIngredient = setIngredientData(ingredientsCall[getRandomIngredient()])
@@ -56,27 +53,28 @@ Promise.all([userPromise, ingredientPromise, recipePromise])
 
 // QuerySelectors
 const favoriteButton = document.querySelector('#favorite-button');
-const cookbookButton = document.querySelector('#cookbook-button')
+const cookbookButton = document.querySelector('#cookbook-button');
 const userGreeting = document.querySelector("#userName");
-const recipeImage = document.querySelector('.card-image')
-const mainBox = document.querySelector('.main-box')
-const goHomeButton = document.getElementById('home-button')
-const pantryButton = document.querySelector('#pantry-button')
-const recipeCard = document.querySelector('.recipe-card')
-const ingredientCard = document.querySelector('.ingredient-card')
-let viewRecipeButtons = document.querySelectorAll('.view-recipe-button')
-const recipeCardWrapper = document.querySelector('.recipe-card-wrapper')
-const ingredientCardWrapper = document.querySelector('.ingredient-card-wrapper')
+const recipeImage = document.querySelector('.card-image');
+const mainBox = document.querySelector('.main-box');
+const goHomeButton = document.getElementById('home-button');
+const pantryButton = document.querySelector('#pantry-button');
+const recipeCard = document.querySelector('.recipe-card');
+const ingredientCard = document.querySelector('.ingredient-card');
+let viewRecipeButtons = document.querySelectorAll('.view-recipe-button');
+const recipeCardWrapper = document.querySelector('.recipe-card-wrapper');
+const ingredientCardWrapper = document.querySelector('.ingredient-card-wrapper');
 const searchBox = document.querySelector('.search-box');
 const searchButton = document.querySelector('.search-submit');
 const pantryWrapper = document.querySelector('.pantry-wrapper');
+let inputIngredient = document.querySelector('.input-ingredient')
+let inputAmount = document.querySelector('.amount-input')
 
 
 const addToCookbookButtonEventHandler = (buttons) => {
     buttons.forEach((button) => {
         button.addEventListener('click', (event) => {
             let recipeToAdd = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(event.target.id))
-            console.log(recipeToAdd)
             ourUser.addRecipesToCook(recipeToAdd);
         })
     })
@@ -90,8 +88,6 @@ pantryButton.addEventListener('click', showPantry)
 
 
 function showAllHelper() {
-    // pantry = new Pantry(ourUser.pantry)
-    console.log('pantry in showAll', pantry)
     let viewRecipe = document.querySelectorAll(".view-recipe-button")
     viewRecipe.forEach((button) => {
         button.addEventListener('click', (event) => {
@@ -120,6 +116,7 @@ function showAllRecipes() {
 
 function showAllRecipeDetails(id) {
     recipeRepo = new RecipeRepository(recipes, ingredients)
+    thisRecipeId = id;
     thisRecipe = recipeRepo.allRecipes.find(recipe => recipe.id === parseInt(id));
     thisRecipe.makeIngredientData(thisIngredient);
     pantry.missingIngredients = []
@@ -173,7 +170,7 @@ const letsMakeItTrafficCop = () => {
     if (pantry.missingIngredients.length) {
         showPantry()
     } else {
-        pantry.removeIngredients()
+        pantry.removeIngredients(thisRecipe)
       const enjoyMealMessage = document.querySelector('.enjoy-meal-message')
       enjoyMealMessage.innerText = 'Enjoy Your Meal!'
     }
@@ -239,7 +236,6 @@ function showCookbookRecipes(event) {
 
 function removeClickHandler(event) {
     const idToRemove = parseInt(event.target.getAttribute('data-recipeId'), 10);
-    // if (NaN) just return --> instead of 10 at end of 202
     const recipe = ourUser.recipesToCook.find(recipe => recipe.id === idToRemove);
     ourUser.removeRecipesToCook(recipe);
     displayRecipeBySearchResults(ourUser.recipesToCook);
@@ -277,13 +273,9 @@ function displayRecipeBySearchResults(recipes) {
     showAllHelper()
 }
 
-function showPantry(thisRecipe) {
-    // we're definitely going to have to match ingredient id's so that it knows which ingredient in the pantry to update
-    console.log(pantry.missingIngredients)
-    // thisRecipe.requiredIngredients = []
-    // console.log('required: ', thisRecipe.requiredIngredients);
+function showPantry() {
     let options = pantry.missingIngredients.map((option) =>{
-       return `<option value=${ option.name }> ${ option.name } </option>`
+       return `<option> ${ option.name } </option>`
     })
     pantryWrapper.innerHTML = `<h2> ${ourUser.name.split(" ")[0]}'s Pantry </h2>
     <form>
@@ -308,50 +300,33 @@ function showPantry(thisRecipe) {
     hide(recipeCardWrapper)
     hide(ingredientCardWrapper)
     show(pantryWrapper)
+    inputIngredient = document.querySelector('.input-ingredient')
+    inputAmount = document.querySelector('.amount-input')
+    const pantrySubmitButton = document.querySelector('.submit-button')
+    pantrySubmitButton.addEventListener('click', postApiHelper)
 };
 
-function addIngredientToPantry(event) {
+function postApiHelper(event) {
     event.preventDefault()
-    let newIngredient = inputIngredient.value;
-    let newAmount = inputAmount.value
-
-/*
-called when submit form is clicked.
-we need to know what ingredient and how much
-
-*/
+    let newIngredientName = inputIngredient.value;
+    const findIngredient = ingredientsData.find(ingredient => ingredient.name === newIngredientName)
+    let newAmount = parseInt(inputAmount.value)
+    let increasedPantry = { userID: ourUser.id, ingredientID: findIngredient.id, ingredientModification: newAmount }
+    postApiData(increasedPantry, newIngredientName)
 }
 
-    // recipe.requiredIngredients.forEach(ingredient => {
-    //     const findIngredient = pantry.ingredients.find(userIngredient => userIngredient.ingredient === ingredient.id)
-    //     if (!userIngredient.ingredient || userIngredient.amount < ingredient.amount) {
-    //        // return alert(`You don't have enough ingredients! Go add more!`)
-    //        // I don't just want to let them know they need to add ingredients in general, I want to implement the second half of checkUserIngredients to ALSO let them know what ingredients they need to add and how much of each
-
-    //     }
-    // })
-
-
-    // checkUserIngredients(recipe) {      
-    //     recipe.requiredIngredients.forEach(ingredient => {
-    //         const found = this.ingredients.find(foundIngredient => foundIngredient.ingredient === ingredient.id)
-    //         if (!found) {
-    //             this.missingIngredients.push({
-    //                 name: ingredient.name,
-    //                 id: ingredient.id,
-    //                 amount: ingredient.amount
-    //             })
-    //         } else {
-    //             if (found.amount < ingredient.amount) {
-    //                 this.missingIngredients.push({
-    //                     name: ingredient.name,
-    //                     id: ingredient.id,
-    //                     amount: ingredient.amount - found.amount
-    //                 })
-    //             }
-    //         }
-    //     })
-    // }
+function postApiData(increasedPantry, newIngredientName) {
+    fetch('http://localhost:3001/api/v1/users', {
+        method: 'POST', 
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(increasedPantry)
+    }).then(data => data.json()).then(data => {
+        console.log(data)
+        pantry.addIngredients(increasedPantry, newIngredientName)
+        showAllRecipeDetails(parseInt(thisRecipeId))
+    })
+    .catch(error => console.log(error));
+}
 
 function show(element) {
     element.classList.remove('hidden');

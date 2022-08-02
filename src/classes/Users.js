@@ -6,7 +6,6 @@ class Users {
         this.id = data.id;
         this.pantry = data.pantry;
         this.recipesToCook = [];
-        // console.log(this.pantry);
     }
     addRecipesToCook(recipe) {
         if (!this.recipesToCook.includes(recipe)) {

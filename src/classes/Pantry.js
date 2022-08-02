@@ -4,7 +4,6 @@ export default class Pantry {
         this.missingIngredients = []
     }
     checkUserIngredients(recipe) {    
-        
         recipe.requiredIngredients.forEach(ingredient => {
             const found = this.ingredients.find(foundIngredient => foundIngredient.id === ingredient.id)
             if (!found) {
@@ -27,16 +26,42 @@ export default class Pantry {
         })
     }
 
-removeIngredients(recipe) {
-    console.log(recipe)
-    return recipe.requiredIngredients.map(recipeIngredient => {
-        const pantryIngredient = this.ingredients.filter(pantryIng => recipeIngredient.id === pantryIng.ingredient)
-        if (pantryIngredient && pantryIngredient.amount >= recipeIngredient.amount){
-            pantryIngredient = recipeIngredient.amount - pantryIngredient.amount
+    removeIngredients(recipe) {
+        let foundIndex = 0;
+        recipe.requiredIngredients.forEach(recipeIngredient => {
+            const pantryIngredient = this.ingredients.find((pantryIng, index) => {
+               if (recipeIngredient.id === pantryIng.id) {
+                foundIndex = index
+               return pantryIng
+               }
+            })
+            if (pantryIngredient.amount > recipeIngredient.amount){
+                this.ingredients[foundIndex].amount -= recipeIngredient.amount
+            } else {
+                this.ingredients.splice(foundIndex, 1)
+            }
+        })
+    }
+
+    addIngredients(newIngredient, newIngredientName) {
+        let foundIndex = 0;
+        let foundIngredient = this.ingredients.find((ingredient, index) => {
+            if (ingredient.id === newIngredient.ingredientID) {
+                foundIndex = index
+                return ingredient
+            }
+        })
+        if (!foundIngredient) {
+            this.ingredients.push({
+                name: newIngredientName,
+                id: newIngredient.ingredientID,
+                amount: newIngredient.ingredientModification
+            })
+        } else {
+            this.ingredients[foundIndex].amount += newIngredient.ingredientModification
         }
-        return pantryIngredient
-    })
-}
+    }
+
     attachNameToId(ingredientsData) {
         this.ingredients = this.ingredients.map(ingredient => {
             let foundIngredient = ingredientsData.find(ing => ingredient.ingredient === ing.id)
