@@ -331,9 +331,8 @@ describe("User", () => {
     expect(completeUser2.matchingIngredients.length).to.equal(
       completeRecipe.portions.length
     );
-    expect(
-      completeUser2.compareIngredientAmounts(completeUser2.recipesToCook[0])
-    ).to.deep.equal([
+    completeUser2.compareIngredientAmounts(completeUser2.recipesToCook[0]);
+    expect(completeUser2.notMatchingIngredients).to.deep.equal([
       { ingredient: 1001, amount: 1, name: "butter" },
       { ingredient: 1125, amount: 3, name: "egg yolks" },
     ]);
@@ -344,11 +343,9 @@ describe("User", () => {
     completeUser2.compareIngredientsNeeded(completeUser2.recipesToCook[0]);
     completeUser2.compareIngredientAmounts(completeUser2.recipesToCook[0]);
     completeUser2.returnDifferences(completeUser2.recipesToCook[0]);
-    expect(
-      completeUser2.returnDifferences(completeUser2.recipesToCook[0])
-    ).to.deep.equal([
-      { name: "butter", difference: 11 },
-      { name: "egg yolks", difference: 17 },
+    expect(completeUser2.notMatchingIngredients).to.deep.equal([
+      { ingredient: 1001, amount: 1, name: "butter" },
+      { ingredient: 1125, amount: 3, name: "egg yolks" },
     ]);
   });
 
@@ -358,11 +355,11 @@ describe("User", () => {
     expect(completeUser1.pantry.length).to.equal(15);
     completeUser1.evaluatePantry("butter", 11, allIngredients);
     expect(completeUser1.pantry.length).to.equal(16);
-   
     expect(completeUser1.pantry).to.deep.include({
-      ingredient: 1001,
+      ingredientId: 1001,
       amount: 11,
       name: "butter",
+      ingredient: 1001,
     });
   });
 
@@ -448,6 +445,13 @@ describe("User", () => {
       { ingredient: 20081, amount: 3, name: "wheat flour" },
       { ingredient: 1054, amount: 2, name: "whipped cream" },
       { ingredient: 1125, amount: 30, name: "egg yolks" },
+      { ingredient: 1001, amount: 38, name: "butter" },
+      { ingredient: 20027, amount: 0, name: "corn starch" },
+      { ingredient: 1123, amount: 2, name: "eggs" },
+      { ingredient: 1125, amount: 30, name: "egg yolks" },
+      { ingredient: 1077, amount: 0, name: "full-fat milk" },
+      { ingredient: 2050, amount: 1, name: "vanilla" },
+      { ingredient: 19335, amount: 3.6666666666666665, name: "sucrose" },
     ]);
   });
 });

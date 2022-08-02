@@ -103,7 +103,7 @@ class User {
   }
 
   compareIngredientAmounts(recipe) {
-    let wrongAmount = [];
+   
     this.matchingIngredients.forEach((item) => {
       let isCorrectAmount = false;
       recipe.portions.forEach((portion) => {
@@ -118,7 +118,7 @@ class User {
         this.notMatchingIngredients.push(item);
       }
     });
-    this.returnDifferences(recipe, wrongAmount);
+    this.returnDifferences(recipe);
   }
 
   returnDifferences(recipe) {
@@ -129,7 +129,6 @@ class User {
         }
       });
     });
-  
   }
 
   cookRecipe(recipe) {
@@ -143,7 +142,7 @@ class User {
       if (updateAmount.amount < 1) {
         this.deleteFromPantry(updateAmount.ingredient);
       }
-       myPantry.push(updateAmount);
+      myPantry.push(updateAmount);
     });
     this.removeRecipeToCook(myRecipe);
     this.matchingIngredients = [];

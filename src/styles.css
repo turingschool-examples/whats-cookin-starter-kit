@@ -2,17 +2,17 @@
 * {
   margin: 0px;
   padding: 0px;
-  border: solid red 1px;
-}
+  }
 
 body {
-  font-family: 'Barlow', sans-serif;
-  font-family: 'Raleway', sans-serif;
+font-family: 'Fascinate Inline', cursive;
+  font-family: 'Righteous', cursive;
   height: max-content;
   position: relative;
-  background: url(https://img.freepik.com/premium-photo/raw-pasta-it-s-ingredients-arranged-row-white-wooden-table_23-2148195071.jpg?w=826);
+  background-image: url("../assets/bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  overflow-x: hidden;
 }
 
 div.grey-out-bg {
@@ -32,7 +32,6 @@ div.grey-out-bg {
   justify-content: space-around;
 }
 
-
 .nav button {
   background-color: seashell;
   border-style: solid;
@@ -44,17 +43,27 @@ div.grey-out-bg {
 
 .nav button:hover {
   cursor: pointer;
-  background-color: palegoldenrod;
+  background-color: #5abc00;
 }
 
-.toggle-search-option:hover {
+.search-option {
   cursor: pointer;
-  background-color: palegoldenrod;
+  background-color: seashell;
+  border-radius: 5px;
+  height: 25px;
+ 
+}
+
+.keyword-option {
+  margin-top: 5px;
+  cursor: pointer;
+  background-color: seashell;
+  border-radius: 5px;
+  height: 25px;
 }
 
 .search-bar:hover {
   cursor: pointer;
-  background-color: palegoldenrod;
 }
 
 .search-bar {
@@ -65,21 +74,29 @@ div.grey-out-bg {
   text-align: center;
 }
 
-.toggle-search-option {
-  display: flex;
-  justify-content: center;
-  width: 20%;
-  margin-top: 10px;
-  border-color: black;
+.add-ingredient-quantity:hover {
+  cursor: pointer;
+}
+
+.add-ingredient-quantity{
+  background-color: seashell;
   border-style: solid;
   border-width: 1px;
   border-radius: 20px;
-  background-color: seashell;
+  height: 25px;
+  width: 100px;
+  margin-top: 10px;
+}
+
+.search-section {
+  display: flex;
+  justify-content: center;
+  
 }
 
 .submit-search:hover {
   cursor: pointer;
-  background-color: palegoldenrod;
+  background-color: #5abc00;
 }
 
 .submit-search {
@@ -87,8 +104,9 @@ div.grey-out-bg {
   border-style: solid;
   border-width: 1px;
   border-radius: 20px;
-  height: 50px;
-  width: 120px;
+  height: 40px;
+  width: 110px;
+  margin-top: 10px;
 }
 
 .keyword-section {
@@ -124,17 +142,19 @@ div.grey-out-bg {
 }
 
 .keyword:hover {
-  background-color: palegoldenrod;
+  background-color:#5abc00;
+  transform: scale(1.2);
 }
 
 .keyword:hover {
   cursor: pointer;
-  color: blue;
+  color: white
 }
 
 .clicked {
   font-weight: bolder;
-  color: darkblue;
+  color: white;
+  background-color: #5abc00;
 }
 
 .body-container {
@@ -142,13 +162,13 @@ div.grey-out-bg {
   position: relative;
 }
 
-
 .greeting {
   font-size: 40px;
   font-weight: bold;
+  padding-left: 20px;
 }
 
-.search-section {
+.default-search {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -161,7 +181,7 @@ div.grey-out-bg {
 }
 
 .left-side {
-  width: 20%;
+  width: 40%;
 }
 
 .center {
@@ -169,7 +189,7 @@ div.grey-out-bg {
 }
 
 .right-side {
-  width: 20%;
+  width: 40%;
 }
 
 .results {
@@ -178,15 +198,26 @@ div.grey-out-bg {
   height: max-content;
 }
 
+.close-icon {
+  background: none;
+  border: none;
+}
+
 .results-header {
   display: flex;
   flex-direction: row;
   align-self: center;
-  margin-top: 25px;
+  justify-content: center;
+  margin: 20px;
+  height: 100%;
+  width: 100%;
+}
+
+.header {
+  font-size: 40px;
 }
 
 .results-grid-container {
-
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -203,18 +234,20 @@ div.grey-out-bg {
 .mini-card {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  height: 200px;
-  width: 160px;
+  height: 225px;
+  width: 170px;
   margin: 5px;
 }
+.mini-card:hover{
+  transform: scale(1.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1.8);
 
+}
 .mini-card img {
   height: 120px;
 }
 
 .mini-card .favorite-button {
-  position: absolute;
   cursor: pointer;
   filter: grayscale(100) opacity(0.75);
 }
@@ -228,7 +261,23 @@ div.grey-out-bg {
 }
 
 .favorite-button {
+  display: flex;
+  justify-self: flex-end;
   align-self: flex-end;
+  padding-right: 5px;
+  background-color: transparent;
+  border: none;
+}
+
+.recipe-name {
+  height: 75px;
+}
+
+.favorite-container {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 10px;
+  width: 100%;
 }
 
 .mega-card {
@@ -241,7 +290,7 @@ div.grey-out-bg {
   right: 10vw;
   display: flex;
   z-index: 1000;
-  max-width: 50vw;
+  max-width: 40vw;
   flex-direction: column;
   align-items: center;
 }
@@ -258,16 +307,48 @@ div.grey-out-bg {
 }
 
 .mega-card img {
-  width: 100%;
-  margin: 8px;
+  width: 70%;
+  margin-left: 10%;
   border-radius: 5px;
   display: flex;
   align-items: center;
-  height: 350px;
+  height: 330px;
+  justify-self: center;
 }
 
 .mega-card .mega-body {
   width: 80%;
+}
+
+.ingredients-needed{
+  margin: 5px;
+}
+
+.instructions h2{
+  margin: 5px;
+}
+
+.recipe-cost{
+  width: 100%;
+}
+
+.cook-button {
+  margin-top: 10px;
+  background-color: seashell;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 20px;
+  height: 25px;
+  width: 100px;
+  text-align: center;
+}
+
+.cook-button:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  font-weight: bolder;
+  color: white;
+  background-color: #5abc00;
 }
 
 /* ~~~PANTRY SECTION ~~~~~ */
@@ -276,34 +357,41 @@ div.grey-out-bg {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  
-
 }
+
 .pantry-item-card-template {
   margin-top: 5px;
   margin-bottom: 5px;
-  width: 50%;
+  width: 70%;
   height: 30%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  border: 1px black solid;
+  background:#ffffff;
+  border-radius: 20px;
+  opacity: 0.7;
+}
+
+.pantry-item-card-template:hover{
+  transform: scale(1.5);
 }
 
 .size {
   width: 25%;
   display: flex;
   justify-content: center;
+  
 }
 
 .pantry-ingredient-datalist {
-  width: 50%;
+  width: 40%;
   height: 75%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .update-pantry {
-  width: 50%;
   height:50px;
   display: flex;
   align-items: center;
@@ -319,6 +407,10 @@ div.grey-out-bg {
 .pantry-ingredient-datalist label {
   font-size: x-large;
   font-weight: bolder;
+}
+
+.input-value {
+  margin-left: 10px;
 }
 
 .hidden {
