@@ -1,12 +1,46 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-  </head>
-  <body>
-    <h1>Whats Cookin</h1>
-  </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
+<html lang="en">
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title> WHATS COOKIN </title>
+</head>
+
+<body>
+  <div class="top-bar">
+    <h1 class='project-title'>What's Cookin?</h1>
+    <div class="user-card card">
+      <div class="card-box" id="userCardProperties">
+        <h3 id="userName"></h3>
+      </div>
+    </div>
+    <button id="home-button"> HOME </button>
+    <button id="cookbook-button"> COOKBOOK </button>
+    <button id="pantry-button"> PANTRY </button>
+    <div class="search-container">
+      <form>
+        <input class="search-box" type="text" placeholder="Search..." name="search">
+        <button class="search-submit" type="submit">Search!</button>
+      </form>
+    </div>
+  </div>
+  <div class="main">
+    <div class="main-box">
+      <div class="recipe-card-wrapper">
+        <div class="recipe-card"></div>
+      </div>
+      <div class="ingredient-card-wrapper">
+        <div class="ingredient-card">
+        </div>
+      </div>
+      <div class="pantry-wrapper">
+        <div class="pantry"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script type="text/javascript" src="bundle.js"></script>
+</body>
+
 </html>
