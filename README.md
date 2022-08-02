@@ -5,12 +5,13 @@ The objective of this project is to create a recipe tracking / meal planning app
 
 
 ## Set Up
-1. Fork [this](https://github.com/dstavis/whats-cookin) repository
-2. Clone the repository to your local machine
+1. Fork [this](https://github.com/dstavis/whats-cookin) repository and [this](https://github.com/turingschool-examples/whats-cookin-api)
+2. Clone both of the repositories to your local machine
 3. `cd` into the repository
 5.  Once in the repository, run `npm install`
 6.  After installation, run `npm start`
-7.  A live server should now be available at `http://localhost:8080/`, paste this address into your browser
+7. Repeat steps 5 & 6 for the other repository
+8.  A live server should now be available at `http://localhost:8080/`, paste this address into your browser
 
 (If you see the error message prompting you to run "npm audit fix --force" do NOT run this.)
 
@@ -20,13 +21,14 @@ The objective of this project is to create a recipe tracking / meal planning app
 - [LinkedIn](https://www.linkedin.com/in/joshua-medina/)
 - [Github](https://github.com/jrmedina)
 
+**Shane Way**
+- [LinkedIn](https://www.linkedin.com/in/shane-way-js-css-html-40abb923b/)
+- [Github](https://github.com/sway3406)
+
 **David Stavis**
 - [LinkedIn](https://www.linkedin.com/in/dstavis/)
 - [Github](https://github.com/dstavis)
 
-**Shane Way**
-- [LinkedIn](https://www.linkedin.com/in/shane-way-js-css-html-40abb923b/)
-- [Github](https://github.com/sway3406)
 
 ## Walkthrough
 
@@ -54,11 +56,14 @@ https://user-images.githubusercontent.com/102757890/179659571-30aa8c50-5791-4934
     - Add recipes to their "Recipes To Cook" section
     - Remove recipes from their "Recipes To Cook" section
     - Search recipes based on ingredients, names, or keywords
+    - Add ingredients to their pantry
+    - Remove ingredients from their pantry
+    - "Cook A Recipe" once they obtain the right ingredients and amounts
 - Access data using the fetch API
 - Testing to ensure stability for all `Classes`
 
 ## Possible Future Extensions
-- Allow user to create their own profile and "stock" their pantry
+- Allow user to create their own profile
 - Create a shopping list for required recipe ingredients
 - Give the user an option so search recipes with "And" or "Or" logic
 - Sort recipes based upon cheapest, most popular, highly rated, etc.
@@ -66,3 +71,5 @@ https://user-images.githubusercontent.com/102757890/179659571-30aa8c50-5791-4934
 
 ## Project Specs
 [Turing - What's Cookin'](https://frontend.turing.edu/projects/whats-cookin-part-one.html)
+[Turing - What's Cookin' part.2](https://frontend.turing.edu/projects/whats-cookin-part-two.html)
+
