@@ -16,22 +16,24 @@ class Recipe {
       }
     });
   }
+  //RETURNS AN ARRAY OF STRINGS OF THE INGREDIENT NAMES
+
   getDirections() {
     return this.instructions.map((item) => item.instruction);
   }
+  //RETURNS INSTRUCTION STEPS IN AN ARRAY OF STRINGS
+
   getCosts(dataSet) {
     return this.ingredients.map((ingredient) => {
       for (let i = 0; i < dataSet.length; i++) {
         if (ingredient.id === dataSet[i].id) {
           let ingredientObj = new Object();
-          let cost = dataSet[i].estimatedCostInCents;
-          let name = dataSet[i].name;
-          ingredientObj[name] = cost;
-          return ingredientObj;
+          return dataSet[i].estimatedCostInCents;
         }
       }
     });
   }
+  //RETURNS AN ARRAY OF NUMBERS THAT ARE THE ESTIMATED COST IN CENTS
 }
 
 module.exports = Recipe;

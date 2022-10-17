@@ -86,11 +86,7 @@ describe("Recipe", function () {
   });
   it("Should get the cost of the ingredients", function () {
     expect(recipe1.getCosts(ingredientsData)).to.deep.equal([
-      { "wheat flour": 142 },
-      { "bicarbonate of soda": 582 },
-      { eggs: 472 },
-      { salt: 280 },
-      { "fine sea salt": 528 },
+      142, 582, 472, 280, 528,
     ]);
   });
 });
