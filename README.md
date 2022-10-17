@@ -14,3 +14,7 @@ The details of this project are outlined in the <a href="https://frontend.turing
 ## Testing
 
 Mocha and chai are already set up, with a boilerplate test for you.
+
+## Blueprint
+
+![whats-cookin-blueprint](https://user-images.githubusercontent.com/22826695/196270252-20d39b38-fe36-43f7-af97-f26fb03e566c.svg)
