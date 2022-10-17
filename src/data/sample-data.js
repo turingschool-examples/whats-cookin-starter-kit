@@ -642,3 +642,5 @@ const sampleRecipeData = [
       ]
     }
 ];
+
+export default {sampleIngredientsData, sampleUsersData, sampleRecipeData}
