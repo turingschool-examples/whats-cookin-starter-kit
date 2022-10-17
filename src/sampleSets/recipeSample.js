@@ -65,38 +65,24 @@ const recipeSampleData = [
     image: "https://spoonacular.com/recipeImages/595736-556x370.jpg",
     ingredients: [
       {
-        id: 20083,
+        id: 20081,
         quantity: {
           amount: 1.5,
           unit: "c",
         },
       },
       {
-        id: 18876,
-        quantity: {
-          amount: 0.5,
-          unit: "tsp",
-        },
-      },
-      {
-        id: 93847,
+        id: 1123,
         quantity: {
           amount: 1,
           unit: "large",
         },
       },
       {
-        id: 23897,
+        id: 19206,
         quantity: {
-          amount: 0.5,
-          unit: "tsp",
-        },
-      },
-      {
-        id: 10120,
-        quantity: {
-          amount: 24,
-          unit: "servings",
+          amount: 3,
+          unit: "Tbsp",
         },
       },
     ],
@@ -126,38 +112,38 @@ const recipeSampleData = [
     image: "https://spoonacular.com/recipeImages/595736-556x370.jpg",
     ingredients: [
       {
-        id: 98749,
+        id: 20081,
         quantity: {
           amount: 1.5,
           unit: "c",
         },
       },
       {
-        id: 34980,
+        id: 18372,
         quantity: {
           amount: 0.5,
           unit: "tsp",
         },
       },
       {
-        id: 23948,
+        id: 1123,
         quantity: {
           amount: 1,
           unit: "large",
         },
       },
       {
-        id: 203942,
+        id: 19335,
         quantity: {
           amount: 0.5,
-          unit: "tsp",
+          unit: "c",
         },
       },
       {
-        id: 243982,
+        id: 19206,
         quantity: {
-          amount: 24,
-          unit: "servings",
+          amount: 3,
+          unit: "Tbsp",
         },
       },
     ],
@@ -179,7 +165,9 @@ const recipeSampleData = [
         number: 4,
       },
     ],
-    name: "Chocolate Chip Cookies",
-    tags: ["antipasti", "starter", "snack", "appetizer"],
+    name: "Chocolate Cake",
+    tags: ["antipasti", "appetizer"],
   },
 ];
+
+module.exports = recipeSampleData;
