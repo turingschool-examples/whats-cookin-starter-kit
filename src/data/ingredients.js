@@ -1,3 +1,4 @@
+// 247 recipes
 const ingredientsData = [
     {
       "id": 20081,

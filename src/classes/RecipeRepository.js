@@ -1,7 +1,16 @@
 class RecipeRepository {
-  constructor() {
+  constructor(recipeData) {
+    this.recipeData = recipeData;
+  }
 
-    // One class to get you started!
+  filteredByName(name) {
+    // Recipe array > recipe object > name > string
+      const justNames = this.recipeData.filter((recipe) => {
+      console.log('Recipe dot name: ', recipe.name)
+      return recipe.name === name;
+    })
+
+    return justNames;
   }
 }
 
