@@ -7,11 +7,17 @@ describe('User', function() {
 
   beforeEach('define variables for test suite', function() {
     //define variables in here
-
+    
   });
 
   it('Should be a function', function() {
     expect(User).to.be.a('function');
+  });
+
+  it('User should have a name', function() {
+
+    expect().to.have.any.keys('name');
+    expect().to.be.('');
   });
 
 })
