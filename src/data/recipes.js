@@ -1,4 +1,14 @@
-const recipeData = [
+// 50 recipes
+// recipeData is an array
+// each recipe is an object with 6 props: id, image, ingredients, instructions, name, tags
+// id is a number
+// image is a URL
+// ingredients property is an array of objects, each with 4 props: id, quantity, amount, unit.
+// instructions prop is an array of objects, each with 2 props: instruction and number
+// name is a string
+// tags is an array of strings
+
+const recipeData = [ // 117 lines long
     {
       "id": 595736,
       "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
