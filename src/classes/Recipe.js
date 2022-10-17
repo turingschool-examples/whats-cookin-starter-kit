@@ -28,7 +28,9 @@ class Recipe {
       for (let i = 0; i < dataSet.length; i++) {
         if (ingredient.id === dataSet[i].id) {
           let ingredientObj = new Object();
-          return dataSet[i].estimatedCostInCents;
+          let totalCost =
+            dataSet[i].estimatedCostInCents * ingredient.quantity.amount;
+          return totalCost;
         }
       }
     });
