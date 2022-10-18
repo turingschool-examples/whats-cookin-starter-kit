@@ -1,5 +1,5 @@
 class User {
-  constructor(name, id, pantry) {
+  constructor(name, id, pantry) { //may need to refactor parameter to be object, will be determined by DOM needs (TBD)
     this.name = name;
     this.id = id;
     this.pantry = pantry;
