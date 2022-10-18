@@ -51,22 +51,27 @@ describe('User', function() {
     expect(user1).to.be.an.instanceOf(User);
   });
 
-  it('User should have a name', function() {
+  it('Should have a name', function() {
     
-    expect(user1).to.have.any.keys('name');
-    expect(user1.name).to.be('Saige O\'Kon');
+    expect(user1.name).to.equal('Russell Wilson');
+    expect(user2).to.have.any.keys('name');
   });
 
-  it('User should have an ID', function() {
+  it('Should have an ID', function() {
     
-    expect(user1).to.have.any.keys('id');
-    expect(user1.id).to.be(1);
+    expect(user1.id).to.equal(1);
+    expect(user2).to.have.any.keys('id');
   });
 
-  // it('User should have a pantry', function() {
+  it('Should have a pantry', function() {
     
-  //   expect(user1).to.have.any.keys('id');
-  //   expect(user1.id).to.be(1);
-  // });
+    expect(user1.pantry).to.equal(testUserData[0]["pantry"]);
+    expect(user2).to.have.any.keys('pantry');
+  });
 
+  it('Should have a place to store recipes', function() {
+    
+    expect(user1.recipesToCook).to.deep.equal([]);
+    expect(user2.recipesToCook).to.deep.equal([]);
+  });
 })
