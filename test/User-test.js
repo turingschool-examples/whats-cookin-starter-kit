@@ -4,7 +4,7 @@ import usersData from '../src/data/users';
 
 describe('User', function() {
 
-  let user1, user2, testUserData;
+  let user1, user2, testUserData, recipe1, recipe2;
 
   beforeEach('define variables for test suite', function() {
    
@@ -40,6 +40,70 @@ describe('User', function() {
     ]
     user1 = new User('Melvin Gordon', 3, [{"ingredient": 11297, "amount": 7}]);
     user2 = new User();
+    recipe1 = {
+      "id": 234523452345,
+      "image": "",
+      "ingredients": [
+        {
+          "id": 20081,
+          "quantity": {
+            "amount": 1.5,
+            "unit": "c"
+          }
+        },
+        {
+          "id": 18372,
+          "quantity": {
+            "amount": 0.5,
+            "unit": "tsp"
+          }
+        }
+      ],
+      "instructions": [
+        {
+          "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
+          "number": 1
+        },
+        {
+          "instruction": "Add egg and vanilla and mix until combined.",
+          "number": 2
+        },
+      ],
+      "name": "Loaded Chocolate Chip Pudding Cookie Cups",
+      "tags": [
+        "antipasti"
+      ]
+    };
+    recipe2 = {
+      "id": 4325345235,
+      "image": "",
+      "ingredients": [
+        {
+          "id": 1002030,
+          "quantity": {
+            "amount": 4,
+            "unit": "teaspoons"
+          }
+        },
+        {
+          "id": 19334,
+          "quantity": {
+            "amount": 8,
+            "unit": "tablespoons"
+          }
+        }
+      ],
+      "instructions": [
+        {
+          "instruction": "Mix the hot sauce, butter, mango habanero sauce, brown sugar, chili powder, garlic powder, onion powder, black pepper, cayenne pepper and seasoning salt in a bowl. Stir vigorously until completely combined.",
+          "number": 1
+        }
+      ],
+      "name": "Dirty Steve's Original Wing Sauce",
+      "tags": [
+        "sauce"
+      ]
+    };
 
   });
 
@@ -69,7 +133,7 @@ describe('User', function() {
     expect(user2).to.have.any.keys('pantry');
   });
 
-  it('Should have a place to store recipes', function() {
+  it('Should have a place to keep recipes', function() {
     
     expect(user1.recipesToCook).to.deep.equal([]);
     expect(user2.recipesToCook).to.deep.equal([]);
@@ -81,5 +145,17 @@ describe('User', function() {
 
     // expect(user1.recipesToCook).to.deep.equal([]);
     // expect(user2.recipesToCook).to.deep.equal([]);
+  });
+
+  it('Should be able to add recipes', function() {
+    
+    user1.addRecipe(recipe1);
+
+    expect(user1.recipesToCook).to.deep.equal([recipe1]);
+
+    user1.addRecipe(recipe2);
+
+    expect(user1.recipesToCook).to.deep.equal([recipe1, recipe2]);
+    expect(user1.recipesToCook.length).to.equal(2);
   });
 })
