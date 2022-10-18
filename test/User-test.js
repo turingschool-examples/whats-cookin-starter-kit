@@ -38,7 +38,7 @@ describe('User', function() {
         ]
       }
     ]
-    user1 = new User(testUserData[0]);
+    user1 = new User('Melvin Gordon', 3, [{"ingredient": 11297, "amount": 7}]);
     user2 = new User();
 
   });
@@ -53,19 +53,19 @@ describe('User', function() {
 
   it('Should have a name', function() {
     
-    expect(user1.name).to.equal('Russell Wilson');
+    expect(user1.name).to.equal('Melvin Gordon');
     expect(user2).to.have.any.keys('name');
   });
 
   it('Should have an ID', function() {
     
-    expect(user1.id).to.equal(1);
+    expect(user1.id).to.equal(3);
     expect(user2).to.have.any.keys('id');
   });
 
   it('Should have a pantry', function() {
     
-    expect(user1.pantry).to.equal(testUserData[0]["pantry"]);
+    expect(user1.pantry).to.deep.equal([{"ingredient": 11297, "amount": 7}]);
     expect(user2).to.have.any.keys('pantry');
   });
 
