@@ -1,11 +1,12 @@
+import ingredientsData from '../data/ingredients';
 class Recipe{
-    constructor(id,image,ingerdients,instructions,name,tags) {
-        this.id = id
-        this.image = image
-        this.ingerdients = ingerdients
-        this.instructions = instructions
-        this.name = name
-        this.tags = tags 
+    constructor(recipeData) {
+        this.id = recipeData.id
+        this.image = recipeData.image
+        this.ingredients = recipeData.ingredients
+        this.instructions = recipeData.instructions
+        this.name = recipeData.name
+        this.tags = recipeData.tags
     }
 }
 
