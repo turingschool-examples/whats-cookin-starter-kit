@@ -114,7 +114,8 @@ const recipeRepositorySampleData = [
       "snack",
       "appetizer",
       "antipasto",
-      "hor d'oeuvre"
+      "hor d'oeuvre",
+      "lunch"
     ]
   },
   {
