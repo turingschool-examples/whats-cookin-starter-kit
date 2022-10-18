@@ -4,32 +4,35 @@ import recipeSampleData from "../src/sampleSets/recipeSample";
 import Recipe from "../src/classes/Recipe";
 
 describe("Recipe", function () {
-  const recipe1 = new Recipe(recipeSampleData[0]);
-  const recipe2 = new Recipe(recipeSampleData[1]);
-  const recipe3 = new Recipe(recipeSampleData[2]);
-  const recipesList = [recipe1, recipe2, recipe3];
+  let recipe1, recipe2, recipe3;
+
+  beforeEach(function () {
+    recipe1 = new Recipe(recipeSampleData[0]);
+    recipe2 = new Recipe(recipeSampleData[1]);
+    recipe3 = new Recipe(recipeSampleData[2]);
+  });
 
   it("Should be a function", function () {
     expect(Recipe).to.be.a("function");
   });
   it("Should have an id", function () {
-    expect(recipesList[0].id).to.equal(12345);
-    expect(recipesList[1].id).to.equal(23456);
+    expect(recipe1.id).to.equal(12345);
+    expect(recipe2.id).to.equal(23456);
   });
   it("Should have an image", function () {
-    expect(recipesList[0].image).to.not.equal(null);
-    expect(recipesList[2].image).to.not.equal(null);
+    expect(recipe1.image).to.not.equal(null);
+    expect(recipe3.image).to.not.equal(null);
   });
   it("Should have an array for ingredients that holds objects", function () {
-    expect(recipesList[0].ingredients).to.be.an.instanceOf(Array);
-    expect(recipesList[0].ingredients[0]).to.deep.equal({
+    expect(recipe1.ingredients).to.be.an.instanceOf(Array);
+    expect(recipe1.ingredients[0]).to.deep.equal({
       id: 20081,
       quantity: {
         amount: 1.5,
         unit: "c",
       },
     });
-    expect(recipesList[1].ingredients[1]).to.deep.equal({
+    expect(recipe2.ingredients[1]).to.deep.equal({
       id: 1123,
       quantity: {
         amount: 1,
@@ -38,39 +41,39 @@ describe("Recipe", function () {
     });
   });
   it("Should have an instructions array that holds objects", function () {
-    expect(recipesList[0].instructions).to.be.an.instanceOf(Array);
-    expect(recipesList[0].instructions[2]).to.deep.equal({
+    expect(recipe1.instructions).to.be.an.instanceOf(Array);
+    expect(recipe1.instructions[2]).to.deep.equal({
       instruction: "Step 3",
       number: 3,
     });
-    expect(recipesList[1].instructions[0]).to.deep.equal({
+    expect(recipe2.instructions[0]).to.deep.equal({
       instruction: "Step 1",
       number: 1,
     });
   });
   it("Should have a name", function () {
-    expect(recipesList[0].name).to.equal("Chocolate Chip Cookies");
-    expect(recipesList[2].name).to.equal("Chocolate Cake");
+    expect(recipe1.name).to.equal("Chocolate Chip Cookies");
+    expect(recipe3.name).to.equal("Chocolate Cake");
   });
   it("Should have an array of tags", function () {
-    expect(recipesList[0].tags).to.be.an.instanceOf(Array);
-    expect(recipesList[0].tags).to.deep.equal([
+    expect(recipe1.tags).to.be.an.instanceOf(Array);
+    expect(recipe1.tags).to.deep.equal([
       "antipasti",
       "starter",
       "snack",
       "appetizer",
     ]);
-    expect(recipesList[2].tags).to.deep.equal(["antipasti", "appetizer"]);
+    expect(recipe3.tags).to.deep.equal(["antipasti", "appetizer"]);
   });
   it("Should give the names of the ingredients needed", function () {
-    expect(recipesList[0].getIngredientNames(ingredientsData)).to.deep.equal([
+    expect(recipe1.getIngredientNames(ingredientsData)).to.deep.equal([
       "wheat flour",
       "bicarbonate of soda",
       "eggs",
       "salt",
       "fine sea salt",
     ]);
-    expect(recipesList[1].getIngredientNames(ingredientsData)).to.deep.equal([
+    expect(recipe2.getIngredientNames(ingredientsData)).to.deep.equal([
       "wheat flour",
       "eggs",
       "instant vanilla pudding",

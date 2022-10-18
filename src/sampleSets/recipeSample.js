@@ -170,4 +170,4 @@ const recipeSampleData = [
   },
 ];
 
-module.exports = recipeSampleData;
+export default recipeSampleData;
