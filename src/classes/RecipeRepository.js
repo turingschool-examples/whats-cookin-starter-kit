@@ -1,17 +1,17 @@
 class RecipeRepository {
   constructor(recipeData) {
-      this.listOfRecipes = recipeData
+      this.listOfAllRecipes = recipeData
   };
 
   filterByTag(tag) {
-
-return this.listOfRecipes.filter(recipe => recipe.tags.find(aTag => aTag === tag));
-
+return this.listOfAllRecipes.filter(recipe => recipe['tags'].includes(tag));
   };
 
   filterByName(name) {
-return this.listOfRecipes.filter(recipe => recipe.name === name);
+return this.listOfAllRecipes.filter(recipe => recipe.name === name);
   };
 };
 
 export default RecipeRepository;
+
+//when instantiating recipeRepository talked with Brett and will be a global variable named allRecipes
