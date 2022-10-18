@@ -13,9 +13,15 @@ class Recipe {
   instantiateIngredients(recipeData, ingredientsData) {
     return recipeData.ingredients.map(recipeObject => {
       let targetDatasetObject = ingredientsData.find(datasetObj => recipeObject.id === datasetObj.id);
-      return new Ingredient(targetDatasetObject, recipeObject)}) 
-    }
+      return new Ingredient(targetDatasetObject, recipeObject)}); 
+    };
 
+  totalCost() {
+    let total = this.ingredients.reduce((acc, ingredient) => {
+      return acc = acc += ingredient.estimatedCostInCents * ingredient.amount;
+    }, 0) / 100;
+    return `$${total.toString()}`
+  };
 };
 
 module.exports = Recipe;

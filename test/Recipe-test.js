@@ -114,10 +114,10 @@ let recipeData, testIngredients, recipe;
     expect(recipe.ingredients).to.eql(testIngredients);
   })
 
-  it.skip('should be able to calculate total cost to make', () => {
+  it('should be able to calculate total cost to make', () => {
     let totalCost = recipe.totalCost();
 
-    expect(totalCost).to.equal("$11.96")
+    expect(totalCost).to.equal("$9.76")
   })
 })
 
