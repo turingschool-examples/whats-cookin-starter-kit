@@ -5,7 +5,19 @@ class User {
     this.pantry = pantry;
     this.recipesToCook = [];
   }
+  generateRandomUser(usersList) {
+    const totalUsers = usersList.length
 
+    function createRandomIndex(totalUsers) {
+      return Math.floor(Math.random() * totalUsers);
+    }
+    
+    let randomIndex = createRandomIndex(totalUsers);
+
+    this.name = usersList[randomIndex]["name"];
+    this.id = usersList[randomIndex]["id"];
+    this.pantry = usersList[randomIndex]["pantry"];
+  }
 
 }
 
