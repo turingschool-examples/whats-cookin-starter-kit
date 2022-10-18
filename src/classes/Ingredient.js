@@ -3,8 +3,8 @@ class Ingredient {
     this.id = ingredientInfo.id
     this.name = ingredientInfo.name
     this.estimatedCostInCents = ingredientInfo.estimatedCostInCents
-    this.amount = recipeInfo.amount
-    this.unit = recipeInfo.unit
+    this.amount = recipeInfo.quantity.amount
+    this.unit = recipeInfo.quantity.unit
 
   }
 }
