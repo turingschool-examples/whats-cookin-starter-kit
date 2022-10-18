@@ -10,16 +10,36 @@ class Recipe {
         this.name = data.name;
         this.tags = data.tags;
         this.ingredientsList = [];
+        this.totalCost;
     }
-    determineIngredients() {
-        this.ingredientsList = sampleIngredientsData.reduce((acc, ingredient) => {
-            this.ingredients.forEach((id) => {
-                if (id.id === ingredient.id)
+    determineIngredients(ingredientInfo) {
+        this.ingredientsList = ingredientInfo.reduce((acc, ingredient) => {
+            this.ingredients.forEach((item) => {
+                if (item.id === ingredient.id)
                   {acc.push(ingredient.name)};
               });
               return this.ingredientsList = acc;
           }, []);
             return this.ingredientsList;
-          }
-        }
+    }
+    calculateCost(ingredientInfo) {
+        this.totalCost = ingredientInfo.reduce((acc, ingredient) => {
+            this.ingredients.forEach((item) => {
+                if (item.id === ingredient.id)
+                  {let cost = (item.quantity.amount * ingredient.estimatedCostInCents)/100
+                    return acc += cost
+                };
+              });
+            return acc
+          }, 0);
+            return this.totalCost;
+    }
+}
+
 export default Recipe;
+
+//let amount = this.ingredients.quantity.amount 
+//let cost = ingredientsData.estimatedCostInCents
+//cost * amount
+//multiply recipeData.quanity.amount * ingredientsData.estimatedCostInCents
+//reduce => totalCost

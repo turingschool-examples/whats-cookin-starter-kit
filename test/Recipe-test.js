@@ -42,13 +42,12 @@ describe('Recipe', () => {
       })
 
     it("determine the names of ingredients needed", () => {
-      expect(recipe.determineIngredients()).to.deep.equal([ 'wheat flour', 'bicarbonate of soda', 'eggs', 'sucrose' ])
+      expect(recipe.determineIngredients(sampleIngredientsData)).to.deep.equal([ 'wheat flour', 'bicarbonate of soda', 'eggs', 'sucrose' ])
     })
   });
 
   //information (provided in the data file). -- id, image, ingredients array, instructions array, name, tags array
 // It should have methods to:
-// Determine the names of ingredients needed
 // Get the cost of its ingredients
 // Return its directions / instructions 
 
