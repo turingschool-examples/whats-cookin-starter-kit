@@ -14,18 +14,17 @@ describe('Recipe', () => {
 
   it('Should have a parameter to take in recipe data', () => {
     const allRecipes = new RecipeRepository(recipeRepositorySampleData);
-
     expect(allRecipes.listOfRecipes).to.equal(recipeRepositorySampleData);
   });
 
   it('Should have a method that creates a filtered list of recipies based on a tag', () => {
-
-    expect(filterByTag('snack')).to.equal(recipeRepositorySampleData[0]);
+    const allRecipes = new RecipeRepository(recipeRepositorySampleData);
+    expect(allRecipes.filterByTag('snack')).to.deep.equal([recipeRepositorySampleData[0]]);
   });
 
   it('Should have a method that creates a filtered list of recipies based on its name', () => {
-
-    expect(filterByName('Maple Dijon Apple Cider Grilled Pork Chops')).to.equal(recipeRepositorySampleData[1]);
+    const allRecipes = new RecipeRepository(recipeRepositorySampleData)
+    expect(allRecipes.filterByName('Maple Dijon Apple Cider Grilled Pork Chops')).to.deep.equal([recipeRepositorySampleData[1]]);
   });
 
 });
