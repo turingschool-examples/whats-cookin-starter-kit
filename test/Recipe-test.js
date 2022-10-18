@@ -89,7 +89,7 @@ describe("Recipe", function () {
   });
   it("Should get the cost of the ingredients", function () {
     expect(recipe1.getCosts(ingredientsData)).to.deep.equal([
-      213, 291, 472, 140, 12672,
+      2.13, 2.91, 4.72, 1.4, 126.72,
     ]);
   });
 });

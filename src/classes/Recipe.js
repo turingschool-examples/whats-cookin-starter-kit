@@ -30,7 +30,9 @@ class Recipe {
           let ingredientObj = new Object();
           let totalCost =
             dataSet[i].estimatedCostInCents * ingredient.quantity.amount;
-          return totalCost;
+          let dollars = totalCost / 100;
+          dollars = dollars.toFixed(2);
+          return parseFloat(dollars);
         }
       }
     });
