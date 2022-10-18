@@ -52,10 +52,13 @@ describe('Recipe', () => {
     it('should calculate the cost of its ingredients', () => {
         expect(recipe.calculateCost(sampleIngredientsData)).to.equal(14.27)
     })
+    it('should calculate the cost of its ingredients', () => {
+        expect(recipe.directMeGurlll(sampleRecipeData)).to.equal({1: "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.", 2: 'Add egg and vanilla and mix until combined.'})
+      })
   });
+
 
   //information (provided in the data file). -- id, image, ingredients array, instructions array, name, tags array
 // It should have methods to:
-// Get the cost of its ingredients
 // Return its directions / instructions 
 
