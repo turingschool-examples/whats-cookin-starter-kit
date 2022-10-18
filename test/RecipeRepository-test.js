@@ -15,7 +15,7 @@ describe('Recipe', () => {
 
   it('Should have a parameter to take in recipe data', () => {
 
-    expect(allRecipes.listOfRecipes).to.equal(recipeRepositorySampleData);
+    expect(allRecipes.listOfAllRecipes).to.equal(recipeRepositorySampleData);
   });
 
   it('Should have a method that creates a filtered list of recipes based on a tag', () => {
@@ -31,5 +31,4 @@ describe('Recipe', () => {
     expect(allRecipes.filterByName('Hello')).to.deep.equal([]);
     expect(allRecipes.filterByName('Maple Dijon Apple Cider Grilled Pork Chops')).to.deep.equal([recipeRepositorySampleData[1]]);
   });
-
 });
