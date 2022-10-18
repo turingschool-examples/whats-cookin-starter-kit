@@ -1,4 +1,4 @@
-const sampleIngredientsData = [
+export const sampleIngredientsData = [
     {
       "id": 20081,
       "name": "wheat flour",
@@ -20,7 +20,7 @@ const sampleIngredientsData = [
       "estimatedCostInCents": 902
     }];
 
-    const sampleUsersData = [
+  export const sampleUsersData = [
         {
           "name": "Saige O'Kon",
           "id": 1,
@@ -419,7 +419,7 @@ const sampleIngredientsData = [
     }
 ];
 
-const sampleRecipeData = [
+export const sampleRecipeData = [
     {
       "id": 595736,
       "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -643,4 +643,3 @@ const sampleRecipeData = [
     }
 ];
 
-export default {sampleIngredientsData, sampleUsersData, sampleRecipeData}
