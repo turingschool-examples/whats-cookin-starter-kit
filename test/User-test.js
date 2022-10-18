@@ -144,8 +144,19 @@ describe('User', function() {
   });
 
   it('Should be able to generate a random user', function() { //how test its random lol
-    // const user3 = new User()
-    // user3.generateRandomUser(usersData)
+    expect(user2.name).to.equal(undefined)
+    expect(user2.id).to.equal(undefined)
+    expect(user2.pantry).to.equal(undefined)
+
+    user2.generateRandomUser(usersData);
+   
+    expect(user2.name).to.be.a('string')
+    expect(user2.id).to.be.a('number')
+    expect(user2.pantry).to.be.an('array')
+
+    const testUser = usersData.find(user => user["name"] === user2.name)
+
+    expect(testUser["name"]).to.equal(user2.name)
   });
 
   it('Should be able to add recipes', function() {
