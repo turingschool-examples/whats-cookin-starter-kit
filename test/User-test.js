@@ -157,7 +157,7 @@ describe('User', function() {
     expect(user1.recipesToCook).to.deep.equal([recipe1]);
 
     user1.addRecipe(333, recipeRepository);
-
+    
     expect(user1.recipesToCook).to.deep.equal([recipe1, recipe2]);
     expect(user1.recipesToCook.length).to.equal(2);
   });

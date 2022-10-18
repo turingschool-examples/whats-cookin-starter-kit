@@ -23,6 +23,10 @@ class User {
     // what is the actual key name in the repo, "recipes"? below...
     this.recipesToCook.push(recipeRepo.recipes.find(recipe => recipe["id"] === recipeID));
   }
+  removeRecipe(recipeID) {
+    const index = this.recipesToCook.findIndex(recipe => recipe["id"] === recipeID)
+    this.recipesToCook.splice(index, 1)
+  }
 
 }
 
