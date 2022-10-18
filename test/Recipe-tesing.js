@@ -266,4 +266,7 @@ describe('Recipe', function() {
             ]);
     });
 
+    it('should have a method that gives a list of the names of ingredients needed', function() {
+        expect(recipe.ingredientsNeeded()).to.equal(["wheat flour","bicarbonate of soda","eggs","sucrose","instant vanilla pudding","brown sugar","salt","fine sea salt","semi sweet chips","unsalted butter","vanilla"]);
+    });
   });
