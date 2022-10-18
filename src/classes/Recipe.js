@@ -27,7 +27,6 @@ class Recipe {
     return this.ingredients.map((ingredient) => {
       for (let i = 0; i < dataSet.length; i++) {
         if (ingredient.id === dataSet[i].id) {
-          let ingredientObj = new Object();
           let totalCost =
             dataSet[i].estimatedCostInCents * ingredient.quantity.amount;
           let dollars = totalCost / 100;
