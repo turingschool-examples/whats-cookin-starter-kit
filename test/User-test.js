@@ -146,9 +146,6 @@ describe('User', function() {
   it('Should be able to generate a random user', function() { //how test its random lol
     // const user3 = new User()
     // user3.generateRandomUser(usersData)
-
-    // expect(user1.recipesToCook).to.deep.equal([]);
-    // expect(user2.recipesToCook).to.deep.equal([]);
   });
 
   it('Should be able to add recipes', function() {
