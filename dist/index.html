@@ -1,11 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
+    <link href="styles.css" type="text/css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--MIGHT NEED TO ADD HEIGHT TO VIEWPORT-->
     <title>Whats Cookin</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <header>
+      <h1>Whats Cookin</h1>
+      <nav class="section--nav">
+        <button type="button" class="hidden" id="button--home">Home</button>
+        <button type="button" id="button--my-recipes">My Recipes</button>
+        <button type="button" id="button--all-recipes">All Recipes</button>
+        <input type="search" placeholder="search">
+      </nav>
+      <div class="section--list-filter">
+        <button class="button--recipe-list" id="button--recipe-list">Recipe List</button>
+        <!--ADD DROPDOWN DIV HERE AND BUTTON TYPES-->
+        <input type="search" placeholder="filter" class="input--filter" id="input--filter">
+        <!--ASSUMING WE WILL INVOKE BOTH THE FILTER BY NAME & FILTER BY TAG METHODS-->
+      </div>
+      <section class="section--main-body" id="section--main-body">
+        <section class="section--cards-container" id="section--cards-container">
+          <container class="card--recipe" id="card--recipe1">
+            <p id="text--recipe-title1">PB&J</p>
+            <img id="image--recipe-image1" src="../src/images/turing-logo.png" alt="placeholder text">
+          </container>
+          <container class="card--recipe" id="card--recipe2">
+            <p id="text--recipe-title2">PB&J</p>
+            <img id="image--recipe-image2" src="../src/images/turing-logo.png" alt="placeholder text">
+          </container>
+          <container class="card--recipe" id="card--recipe3">
+            <p id="text--recipe-title3">PB&J</p>
+            <img id="image--recipe-image3" src="../src/images/turing-logo.png" alt="placeholder text">
+          </container>
+          <container class="card--recipe" id="card--recipe4">
+            <p id="text--recipe-title4">PB&J</p>
+            <img id="image--recipe-image4" src="../src/images/turing-logo.png" alt="placeholder text">
+          </container>
+          <container class="card--recipe" id="card--recipe5">
+            <p id="text--recipe-title5">PB&J</p>
+            <img id="image--recipe-image5" src="../src/images/turing-logo.png" alt="placeholder text">
+          </container>
+          <container class="card--recipe" id="card--recipe6">
+            <p id="text--recipe-title6">PB&J</p>
+            <img id="image--recipe-image6" src="../src/images/turing-logo.png" alt="placeholder text">
+          </container>
+          <container class="card--recipe" id="card--recipe7">
+            <p id="text--recipe-title7">PB&J</p>
+            <img id="image--recipe-image7" src="../src/images/turing-logo.png" alt="placeholder text">
+          </container>
+          <container class="card--recipe" id="card--recipe8">
+            <p id="text--recipe-title8">PB&J</p>
+            <img id="image--recipe-image8" src="../src/images/turing-logo.png" alt="placeholder text">
+          </container>
+          <container class="card--recipe" id="card--recipe9">
+            <p id="text--recipe-title9">PB&J</p>
+            <img id="image--recipe-image9" src="../src/images/turing-logo.png" alt="placeholder text">
+          </container>
+        </section>
+        <section class="section--saved-cards" id="section--saved-cards">
+          <!-- WILL ADD CARDS FROM JS -->
+        </section>
+        <section class="section--recipe-details" id="section--recipe-details">
+          <h2>PB&J</h2>
+          <section class="section--ingredients-instructions" id="section--ingredients-instructions">
+            <container class="card--ingredients" id="card--ingredients">Ingredients</container>
+            <container class="card--instructions" id="card--instructions">
+              <p>Instructions</p>
+            </container>
+          </section>
+          <button type="button" class="hidden" id="button--save-recipe">Save Recipes</button>
+        </section>
+      </section>
+    </header>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
