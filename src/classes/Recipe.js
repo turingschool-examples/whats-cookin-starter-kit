@@ -1,5 +1,5 @@
-import recipeData from '../data/recipes';
-import {sampleIngredientsData} from '../data/sample-data';
+// import recipeData from '../data/recipes';
+// import {sampleIngredientsData} from '../data/sample-data';
 
 class Recipe {
     constructor(data) {
@@ -7,7 +7,6 @@ class Recipe {
         this.image = data.image;
         this.ingredients = data.ingredients;
         this.instructions = data.instructions;
-        console.log('in', this.instructions)
         this.name = data.name;
         this.tags = data.tags;
         this.ingredientsList = [];
@@ -35,14 +34,11 @@ class Recipe {
           }, 0);
             return this.totalCost;
     }
-    directMeGurlll(ingredientInfo) {
-      return this.instructions.reduce((acc, directions) => {
-            let number = directions.number
-            let roadMap = {[number]: directions.instruction}
-            console.log('hiiiii', roadMap)
-            console.log('whattt', acc)
-            return roadMap
-        }, {})
+    getInstructions() {
+      return this.instructions.reduce((instructionArray, direction) => {
+       instructionArray.push(`${direction.number}. ${direction.instruction}`)
+       return instructionArray
+        }, [])
     }
 }
 
