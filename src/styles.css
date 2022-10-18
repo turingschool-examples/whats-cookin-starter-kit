@@ -31,7 +31,7 @@ nav {
   padding-right: 2vw;
 }
 
-div {
+.bottom-section {
   display: flex;
   height: 100%;
   width: 100vw;
@@ -41,6 +41,14 @@ div {
   width: 25vw;
   margin-right: 15px;
   background: #E3D3D3;
+  padding-top: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filter {
+  padding-top: 12px;
 }
 
 .main {
