@@ -157,7 +157,7 @@ describe('User', function() {
     expect(user1.recipesToCook).to.deep.equal([recipe1]);
 
     user1.addRecipe(333, recipeRepository);
-    
+
     expect(user1.recipesToCook).to.deep.equal([recipe1, recipe2]);
     expect(user1.recipesToCook.length).to.equal(2);
   });
@@ -168,7 +168,7 @@ describe('User', function() {
     user1.addRecipe(333, recipeRepository);
 
     user1.removeRecipe(222)
-
+    
     expect(user1.recipesToCook).to.deep.equal([recipe2]);
     expect(user1.recipesToCook.length).to.equal(1);
 
@@ -176,5 +176,19 @@ describe('User', function() {
 
     expect(user1.recipesToCook).to.deep.equal([]);
     expect(user1.recipesToCook.length).to.equal(0);
+  });
+
+  it('Should be able to filter recipes by tag', function() {
+    
+    user1.addRecipe(222, recipeRepository);
+    user1.addRecipe(333, recipeRepository);
+
+    const filteredList = user1.filterByTag('antipasti')
+   
+    expect(filteredList).to.deep.equal([recipe1]);
+
+    const filteredList2 = user1.filterByTag('sauce');
+
+    expect(filteredList2).to.deep.equal([recipe2]);
   });
 })
