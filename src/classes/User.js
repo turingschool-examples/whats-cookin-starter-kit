@@ -30,8 +30,12 @@ class User {
   filterByTag(tag) {
     return this.recipesToCook.filter(recipe => recipe["tags"].includes(tag));
   }
+  filterByName(name) {
+    return this.recipesToCook.filter(recipe => recipe["name"] === name);
+  }
 }
 
-//fxn to generate random user, add name, add/create/update pantry ?, add recipes to cook/remove
+//Question - do we need something that can create or manipulate the pantry
+//          property? Should this be based on the recipesToCook in some way?
 
 module.exports = User;
