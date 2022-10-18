@@ -36,20 +36,15 @@ describe('Recipe', () => {
 
 
   it('Should be a function', () => {
-    expect(RecipeRepository).to.be.a('function');
-  });
+    expect(RecipeRepository).to.be.a('function')
+  })
 
   it('should instatiate a new Recipe', () => {
     expect(recipe1).to.equal(new RecipeRepository)
   })
 
-  it('should have an id', () => {
-    expect(recipe1).to.equal(RecipeRepository.id,'[{"id": 595736}]')
+  it('should ', () => {
+    expect(recipe1).to.equal()
   })
-
-  it('should have an image', () => {
-    expect(recipe1).to.equak(RecipeRepository.image, '[{"image": "https://spoonacular.com/recipeImages/595736-556x370.jpg"}]')
-  })
-
 
 })
