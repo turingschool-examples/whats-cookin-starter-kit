@@ -8,6 +8,10 @@ class Recipe {
         this.instructions = data.instructions;
         this.name = data.name;
         this.tags = data.tags
+        this.ingredientsList 
+    }
+    determineIngredients() {
+        
     }
 }
 

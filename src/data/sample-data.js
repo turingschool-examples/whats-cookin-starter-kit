@@ -452,55 +452,6 @@ export const sampleRecipeData = [
             "unit": "c"
           }
         },
-        {
-          "id": 19206,
-          "quantity": {
-            "amount": 3,
-            "unit": "Tbsp"
-          }
-        },
-        {
-          "id": 19334,
-          "quantity": {
-            "amount": 0.5,
-            "unit": "c"
-          }
-        },
-        {
-          "id": 2047,
-          "quantity": {
-            "amount": 0.5,
-            "unit": "tsp"
-          }
-        },
-        {
-          "id": 1012047,
-          "quantity": {
-            "amount": 24,
-            "unit": "servings"
-          }
-        },
-        {
-          "id": 10019903,
-          "quantity": {
-            "amount": 2,
-            "unit": "c"
-          }
-        },
-        {
-          "id": 1145,
-          "quantity": {
-            "amount": 0.5,
-            "unit": "c"
-          }
-        },
-        {
-          "id": 2050,
-          "quantity": {
-            "amount": 0.5,
-            "unit": "tsp"
-          }
-        }
       ],
       "instructions": [
         {
