@@ -37,7 +37,7 @@ nav {
   width: 100vw;
 }
 
-.left-section {
+.tag-section, .ingredient-section {
   width: 25vw;
   margin-right: 15px;
   background: #E3D3D3;
@@ -47,17 +47,32 @@ nav {
   align-items: center;
 }
 
+li {
+  padding-top:2vh;
+}
+
+ul {
+  margin-top:0;
+}
+
 .filter {
   padding-top: 12px;
 }
 
-.main {
+.main, .favorite {
   width: 75vw;
+  min-height: 100vh;
   background: #E3D3D3;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
 
+.recipe {
+  width: 75vw;
+  min-height: 100vh;
+  background: #E3D3D3;
+  display: flex;
 }
 
 img{
@@ -95,4 +110,8 @@ button {
 .fullwrap:hover, .fullcap:hover {
   visibility: visible; 
   opacity: 1;
+}
+
+.hidden {
+  display: none;
 }
