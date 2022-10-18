@@ -143,16 +143,48 @@ it('should have an id', () => {
     expect(recipeInfo.id).to.equal(singleRecipe.id)
 });
 
+it('should have an id that is a number', () => {
+    expect(recipeInfo.id).to.be.a('number')
+});
+
 it('should have an image', () => {
     expect(recipeInfo.image).to.equal(singleRecipe.image)
+});
+
+it('should have an image url as a string', () => {
+    expect(recipeInfo.image).to.be.a('string')
 });
 
 it('should have an ingredients array', () => {
     expect(recipeInfo.ingredients).to.equal(singleRecipe.ingredients)
 });
 
+it('should have an ingredients array made of objects', () => {
+    expect(recipeInfo.ingredients[0]).to.deep.equal(singleRecipe.ingredients[0])
+});
+
+it('should have an ingredients array made of objects', () => {
+    expect(recipeInfo.ingredients[0]).to.be.an('object')
+ });
+
 it('should have an instructions array', () => {
     expect(recipeInfo.instructions).to.equal(singleRecipe.instructions)
+});
+
+it('should have an instructions array', () => {
+    expect(recipeInfo.instructions).to.be.an('array')
+});
+
+it('should have an instructions array of objects', () => {
+    expect(recipeInfo.instructions[0]).to.be.an('object')
+});
+
+it('should have an instructions array of objects', () => {
+    expect(recipeInfo.instructions[1]).to.be.an('object')
+});
+
+it('should have a name that is a string', () => {
+    expect(recipeInfo.name).to.be.a("string")
 });
 
 it('should have a name', () => {
@@ -161,6 +193,14 @@ it('should have a name', () => {
 
 it('should have an tags array', () => {
     expect(recipeInfo.tags).to.equal(singleRecipe.tags)
+});
+
+it('should have an tags array made of strings', () => {
+     expect(recipeInfo.tags[0]).to.equal(singleRecipe.tags[0])
+});
+
+it('should have an tags array made of strings', () => {
+    expect(recipeInfo.tags[0]).to.equal(singleRecipe.tags[0])
 });
 
 
