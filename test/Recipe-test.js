@@ -114,7 +114,7 @@ let recipeData, testIngredients, recipe;
   })
 
   it('should be able to make its ingredients', () => {
-    recipe.instantiateIngredients();
+    recipe.instantiateIngredients(recipeData, ingredientsData);
 
     expect(recipe.ingredients).to.eql(testIngredients);
   })
