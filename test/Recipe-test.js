@@ -1,14 +1,16 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
-import sampleIngredientsData from '../src/data/sample-data';
-import sampleUsersData from '../src/data/sample-data';
-import samplesRecipeData from '../src/data/sample-data';
+import {sampleIngredientsData, sampleUsersData, sampleRecipeData} from '../src/data/sample-data';
 
 describe('Recipe', () => {
-    let sampleIngredientsData, sampleUsersData, sampleRecipeData, recipe;
+     sampleIngredientsData
+     sampleUsersData
+     sampleRecipeData
+     let recipe
+
 
     beforeEach(() => {
-        recipe = new Recipe();
+        recipe = new Recipe(sampleRecipeData[0]);
         sampleIngredientsData; 
         sampleUsersData;
         sampleRecipeData;
@@ -19,7 +21,7 @@ describe('Recipe', () => {
     });
 
     it('should hold properties of id', () => {
-        expect(recipe.id).to.be(sampleRecipeData.id)
+        expect(recipe.id).to.equal(sampleRecipeData[0].id)
     });
   });
 
