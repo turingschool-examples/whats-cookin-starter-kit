@@ -5,13 +5,13 @@ class RecipeRepository {
 
   filterByTag(tag) {
 
-return this.listOfRecipes.filter(recipe => recipe.tags.find(aTag => aTag === tag))
+return this.listOfRecipes.filter(recipe => recipe.tags.find(aTag => aTag === tag));
 
   };
 
   filterByName(name) {
-return this.listOfRecipes.filter(recipe => recipe.name === name)
+return this.listOfRecipes.filter(recipe => recipe.name === name);
   };
-}
+};
 
 export default RecipeRepository;
