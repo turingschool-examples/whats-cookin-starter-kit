@@ -37,8 +37,12 @@ describe('Recipe', () => {
     it("should hold property of tags", () => {
       expect(recipe.tags).to.deep.equal(sampleRecipeData[0].tags)
     })
+    it("should hold property of ingredient list", () => {
+        expect(recipe.ingredientsList).to.deep.equal([])
+      })
+
     it("determine the names of ingredients needed", () => {
-      expect(recipe.determineIngredients()).to.deep.equal(sampleRecipeData[0].ingredientsList)
+      expect(recipe.determineIngredients()).to.deep.equal([ 'wheat flour', 'bicarbonate of soda', 'eggs', 'sucrose' ])
     })
   });
 
