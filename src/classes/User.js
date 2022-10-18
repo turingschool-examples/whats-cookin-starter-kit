@@ -19,6 +19,7 @@ class User {
     this.pantry = usersList[randomIndex]["pantry"];
   }
   addRecipe(recipeID, recipeRepo) { //important to set up dom/HTML/CSS to have IDs so we can use to match here below
+    // is the recipe repository a global var/object? Need to be a parameter here?
     // what is the actual key name in the repo, "recipes"? below...
     this.recipesToCook.push(recipeRepo.recipes.find(recipe => recipe["id"] === recipeID));
   }
