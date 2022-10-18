@@ -19,10 +19,24 @@ describe('Recipe', () => {
     it('Should be a function', () => {
       expect(Recipe).to.be.a('function');
     });
-
-    it('should hold properties of id', () => {
-        expect(recipe.id).to.equal(sampleRecipeData[0].id)
+    it('should hold property of id', () => {
+      expect(recipe.id).to.equal(sampleRecipeData[0].id)
     });
+    it("should hold property of image", () => {
+      expect(recipe.image).to.equal(sampleRecipeData[0].image)
+    })
+    it("should hold property of ingredients", () => {
+      expect(recipe.ingredients).to.deep.equal(sampleRecipeData[0].ingredients)
+    })
+    it("should hold property of instructions", () => {
+      expect(recipe.instructions).to.deep.equal(sampleRecipeData[0].instructions)
+    })
+    it("should hold property of name", () => {
+      expect(recipe.name).to.equal(sampleRecipeData[0].name)
+    })
+    it("should hold property of tags", () => {
+      expect(recipe.tags).to.deep.equal(sampleRecipeData[0].tags)
+    })
   });
 
   //information (provided in the data file). -- id, image, ingredients array, instructions array, name, tags array
