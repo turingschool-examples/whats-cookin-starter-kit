@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import User from '../src/classes/User';
+import usersData from '../src/data/users';
 
 describe('User', function() {
 
@@ -15,9 +16,10 @@ describe('User', function() {
   });
 
   it('User should have a name', function() {
-
-    expect().to.have.any.keys('name');
-    expect().to.be.('');
+    const user1 = new User(usersData[0]);
+    
+    expect(user1).to.have.any.keys('name');
+    expect(user1.name).to.be.('Saige O\'Kon');
   });
 
 })
