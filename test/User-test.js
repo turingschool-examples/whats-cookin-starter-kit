@@ -8,7 +8,6 @@ describe('User', function() {
   let user1, user2, testUserData, recipe1, recipe2, recipeRepository;
 
   beforeEach('define variables for test suite', function() {
-   
     testUserData = [
       {
         "name": "Russell Wilson",
@@ -194,5 +193,17 @@ describe('User', function() {
     const filteredList3 = user1.filterByTag('dessert');
     expect(filteredList3).to.deep.equal([recipe1, recipe2]);
 
+  });
+
+  it('Should be able to filter recipes by their name', function() {
+    
+    user1.addRecipe(222, recipeRepository);
+    user1.addRecipe(333, recipeRepository);
+
+    const filteredList = user1.filterByName("Loaded Chocolate Chip Pudding Cookie Cups")
+    expect(filteredList).to.deep.equal([recipe1]);
+
+    const filteredList2 = user1.filterByName("Dirty Steve's Original Wing Sauce");
+    expect(filteredList2).to.deep.equal([recipe2]);
   });
 })
