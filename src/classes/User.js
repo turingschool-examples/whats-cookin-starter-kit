@@ -27,7 +27,9 @@ class User {
     const index = this.recipesToCook.findIndex(recipe => recipe["id"] === recipeID)
     this.recipesToCook.splice(index, 1)
   }
-
+  filterByTag(tag) {
+    return this.recipesToCook.filter(recipe => recipe["tags"].includes(tag));
+  }
 }
 
 //fxn to generate random user, add name, add/create/update pantry ?, add recipes to cook/remove

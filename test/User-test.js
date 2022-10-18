@@ -72,7 +72,8 @@ describe('User', function() {
       ],
       "name": "Loaded Chocolate Chip Pudding Cookie Cups",
       "tags": [
-        "antipasti"
+        "antipasti",
+        "dessert"
       ]
     };
     recipe2 = {
@@ -102,7 +103,8 @@ describe('User', function() {
       ],
       "name": "Dirty Steve's Original Wing Sauce",
       "tags": [
-        "sauce"
+        "sauce",
+        "dessert"
       ]
     };
     recipeRepository = {
@@ -184,11 +186,13 @@ describe('User', function() {
     user1.addRecipe(333, recipeRepository);
 
     const filteredList = user1.filterByTag('antipasti')
-   
     expect(filteredList).to.deep.equal([recipe1]);
 
     const filteredList2 = user1.filterByTag('sauce');
-
     expect(filteredList2).to.deep.equal([recipe2]);
+
+    const filteredList3 = user1.filterByTag('dessert');
+    expect(filteredList3).to.deep.equal([recipe1, recipe2]);
+
   });
 })
