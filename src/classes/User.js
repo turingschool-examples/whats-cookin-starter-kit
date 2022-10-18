@@ -1,5 +1,6 @@
 class User {
-  constructor(name, id, pantry) { //may need to refactor parameter to be object, will be determined by DOM needs (TBD)
+  constructor(name, id, pantry) { 
+    // 🚨 May need to refactor parameter to be object, will be determined by DOM needs (TBD)
     this.name = name;
     this.id = id;
     this.pantry = pantry;
@@ -18,10 +19,11 @@ class User {
     this.id = usersList[randomIndex]["id"];
     this.pantry = usersList[randomIndex]["pantry"];
   }
-  addRecipe(recipeID, recipeRepo) { //important to set up dom/HTML/CSS to have IDs so we can use to match here below
-    // is the recipe repository a global var/object? Need to be a parameter here?
-    // what is the actual key name in the repo, "recipes"? below...
-    this.recipesToCook.push(recipeRepo.recipes.find(recipe => recipe["id"] === recipeID));
+  addRecipe(recipeID, recipeRepo) { 
+    // 1️⃣ Important to set up dom/HTML/CSS to have IDs so we can use to match here below
+    // 2️⃣ Is the recipe repository going to be a global var/object? Need to be a parameter here?
+    // 3️⃣ Confirm the actual key name in the RecipeRepository
+    this.recipesToCook.push(recipeRepo.listOfRecipes.find(recipe => recipe["id"] === recipeID));
   }
   removeRecipe(recipeID) {
     const index = this.recipesToCook.findIndex(recipe => recipe["id"] === recipeID)
@@ -35,7 +37,8 @@ class User {
   }
 }
 
-//Question - do we need something that can create or manipulate the pantry
-//          property? Should this be based on the recipesToCook in some way?
 
 module.exports = User;
+
+// ❓Do we need something that can create or manipulate the pantry
+//   property? Should this be based on the recipesToCook in some way?

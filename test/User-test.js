@@ -107,7 +107,7 @@ describe('User', function() {
       ]
     };
     recipeRepository = {
-      "recipes": [recipe1, recipe2]
+      listOfRecipes: [recipe1, recipe2]
     }
   });
 
