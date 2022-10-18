@@ -1,6 +1,6 @@
 class User {
   constructor(name, id, pantry) { 
-    // 🚨 May need to refactor parameter to be object, will be determined by DOM needs (TBD)
+    // May need to refactor parameter to be object, will be determined by DOM needs (TBD)
     this.name = name;
     this.id = id;
     this.pantry = pantry;
@@ -20,7 +20,7 @@ class User {
     this.pantry = usersList[randomIndex]["pantry"];
   }
   addRecipe(recipeID, recipeRepo) { 
-    // 1️⃣ Important to set up dom/HTML/CSS to have IDs so we can use to match here below
+    // 1️⃣ Important to set up dom/HTML/CSS to have IDs so we can use that data to match here below
     // 2️⃣ Is the recipe repository going to be a global var/object? Need to be a parameter here?
     // 3️⃣ Confirm the actual key name in the RecipeRepository
     this.recipesToCook.push(recipeRepo.listOfRecipes.find(recipe => recipe["id"] === recipeID));
@@ -39,6 +39,8 @@ class User {
 
 
 module.exports = User;
+
+
 
 // ❓Do we need something that can create or manipulate the pantry
 //   property? Should this be based on the recipesToCook in some way?
