@@ -44,6 +44,14 @@ describe('Recipe', () => {
     it("determine the names of ingredients needed", () => {
       expect(recipe.determineIngredients(sampleIngredientsData)).to.deep.equal([ 'wheat flour', 'bicarbonate of soda', 'eggs', 'sucrose' ])
     })
+
+    it("should hold property of total cost", () => {
+        expect(recipe.totalCost).to.equal()
+      })
+
+    it('should calculate the cost of its ingredients', () => {
+        expect(recipe.calculateCost(sampleIngredientsData)).to.equal(14.27)
+    })
   });
 
   //information (provided in the data file). -- id, image, ingredients array, instructions array, name, tags array
