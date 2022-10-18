@@ -37,6 +37,9 @@ describe('Recipe', () => {
     it("should hold property of tags", () => {
       expect(recipe.tags).to.deep.equal(sampleRecipeData[0].tags)
     })
+    it("determine the names of ingredients needed", () => {
+      expect(recipe.determineIngredients()).to.deep.equal(sampleRecipeData[0].ingredientsList)
+    })
   });
 
   //information (provided in the data file). -- id, image, ingredients array, instructions array, name, tags array
