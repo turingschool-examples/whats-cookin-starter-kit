@@ -1,10 +1,11 @@
 import { expect } from 'chai';
+import RecipeRepository from '../src/classes/RecipeRepository';
 import User from '../src/classes/User';
 import usersData from '../src/data/users';
 
 describe('User', function() {
 
-  let user1, user2, testUserData, recipe1, recipe2;
+  let user1, user2, testUserData, recipe1, recipe2, recipeRepository;
 
   beforeEach('define variables for test suite', function() {
    
@@ -41,7 +42,7 @@ describe('User', function() {
     user1 = new User('Melvin Gordon', 3, [{"ingredient": 11297, "amount": 7}]);
     user2 = new User();
     recipe1 = {
-      "id": 234523452345,
+      "id": 222,
       "image": "",
       "ingredients": [
         {
@@ -75,7 +76,7 @@ describe('User', function() {
       ]
     };
     recipe2 = {
-      "id": 4325345235,
+      "id": 333,
       "image": "",
       "ingredients": [
         {
@@ -104,7 +105,9 @@ describe('User', function() {
         "sauce"
       ]
     };
-
+    recipeRepository = {
+      "recipes": [recipe1, recipe2]
+    }
   });
 
   it('Should be a function', function() {
@@ -149,11 +152,11 @@ describe('User', function() {
 
   it('Should be able to add recipes', function() {
     
-    user1.addRecipe(recipe1);
+    user1.addRecipe(222, recipeRepository);
 
     expect(user1.recipesToCook).to.deep.equal([recipe1]);
 
-    user1.addRecipe(recipe2);
+    user1.addRecipe(333, recipeRepository);
 
     expect(user1.recipesToCook).to.deep.equal([recipe1, recipe2]);
     expect(user1.recipesToCook.length).to.equal(2);
