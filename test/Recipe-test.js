@@ -6,8 +6,9 @@ import Recipe from '../src/classes/Recipe';
 // const Recipe = require('../src/Recipe');
 
 describe('Recipe', function() {
+  let recipe1, recipe2, recipeData
   beforeEach(() => {
-    let recipe1 = new Recipe({
+    recipe1 = new Recipe({
         "id": 595736,
         "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
         "ingredients": [
@@ -125,9 +126,7 @@ describe('Recipe', function() {
           "hor d'oeuvre"
         ]
       })
-
-      let recipe2 = new Recipe(
-        {
+    recipe2 = new Recipe({
           "id": 678353,
           "image": "https://spoonacular.com/recipeImages/678353-556x370.jpg",
           "ingredients": [
@@ -230,16 +229,19 @@ describe('Recipe', function() {
             "dinner"
           ]
         })
-
-  })
+        recipeData = [recipe1, recipe2]
+      })
 
   it('should return true', function() {
 
     expect(true).to.equal(true)
   })
 
-  it.skip('should hold onto all its information', function() {
+  it('should hold onto all its information', function() {
 
+    expect(recipe1.id).to.equal(595736)
+    expect(recipe2.id).to.equal(678353)
+    expect(recipe1.name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups")
   })
 
   it.skip('should determine the names of ingredients needed',
@@ -251,7 +253,11 @@ describe('Recipe', function() {
 
   })
 
-  it.skip('should return its instructions', function() {
+  it('should return its instructions', function() {
+    recipe1.getInstructions()
+    recipe2.getInstructions()
+    expect(recipe1.instructions[0].number).to.equal(1)
+    expect(recipe2.instructions[0].number).to.equal(1)
 
   })
 
