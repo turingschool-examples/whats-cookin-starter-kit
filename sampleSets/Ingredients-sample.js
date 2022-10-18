@@ -1,4 +1,4 @@
-const ingredientsData = [
+const sampleIngredientData = [
     {
         "id": 20081,
         "name": "wheat flour",
@@ -26,4 +26,4 @@ const ingredientsData = [
     }
 ]
 
-module.exports = ingredientsData;
+export default sampleIngredientData
