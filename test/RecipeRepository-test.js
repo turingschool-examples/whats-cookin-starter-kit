@@ -474,4 +474,8 @@ describe('Recipe', () => {
   it('should have a method that searches recipes by name', () => {
     expect(recipeRepo.filteredByName('Elvis Pancakes')[0]).to.deep.equal(recipeData[3])
   });
+
+  it('should have a method that searches recipes by tag ', () => {
+    expect(recipeRepo.filteredByTag('side dish')).to.deep.equal([recipeData[3]])
+  });
 })
