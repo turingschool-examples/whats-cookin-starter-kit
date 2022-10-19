@@ -1,25 +1,29 @@
+import Recipe from '../classes/Recipe'
+
 class RecipeRepository {
   constructor(data) {
-    this.recipeArray = this.createNewRecipe()
+    this.recipesList = this.createRecipesClassArray()
     this.data = data
+    
   }
 
-  createNewRecipe() {
-    var newArray = []
-    var newRecipe = this.data.forEach((recipe) => {
-      new Recipe (recipe)
+  createRecipesClassArray() {
+    console.log('LABEL', this)
+    let recipesClassArray = []
+    this.data.forEach((recipe) => {
+      let modifiedRecipeClass = new Recipe(recipe)
+      recipesClassArray.push(modifiedRecipeClass)
     })
-    newArray.push(newRecipe)
-    return newArray
+    console.log(recipesClassArray)
+    return recipesClassArray
   }
+  
 
-  filterByName() {
-    console.log('LABEL', dataPiece)
-    var byName = this.data.filter((dataPiece) => {
-      console.log('LABEL', dataPiece)
-      name === 'Loaded Chocolate Chip Pudding Cookie Cups'
+  filterByTag() {
+    this.recipesList.filter(() => {
+
     })
-    return byName
+
   }
 
 }
