@@ -1,3 +1,5 @@
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+
 *{
   border: 1px solid rgb(201, 201, 201);
 }
@@ -35,13 +37,13 @@
   margin-bottom: 2%
 }
 
-.section--cards-container {
+/* .section--cards-container {
   display: grid;
   grid-template-areas: 
     'a b c' 
     'd e f'
     'g h i';
-}
+} */
 
 .section--ingredients-instructions {
   display: flex;
