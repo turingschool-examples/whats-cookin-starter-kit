@@ -23,14 +23,14 @@ class Recipe {
             return this.ingredientsList;
     }
     calculateCost(ingredientInfo) {
-        this.totalCost = ingredientInfo.reduce((acc, ingredient) => {
+        this.totalCost = ingredientInfo.reduce((total, ingredient) => {
             this.ingredients.forEach((item) => {
                 if (item.id === ingredient.id)
                   {let cost = (item.quantity.amount * ingredient.estimatedCostInCents)/100
-                    return acc += cost
+                    return total += cost
                 };
               });
-            return acc
+            return total
           }, 0);
             return this.totalCost;
     }
