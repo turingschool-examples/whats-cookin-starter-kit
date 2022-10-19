@@ -6,7 +6,7 @@ import Recipe from '../src/classes/Recipe';
 // const Recipe = require('../src/Recipe');
 
 describe('Recipe', function() {
-  let recipe1, recipe2, recipeData
+  let recipe1, recipe2, recipeData, ingredientsData
   beforeEach(() => {
     recipe1 = new Recipe({
         "id": 595736,
@@ -229,7 +229,123 @@ describe('Recipe', function() {
             "dinner"
           ]
         })
+
         recipeData = [recipe1, recipe2]
+        ingredientsData = [{
+            "id": 20081,
+            "name": "wheat flour",
+            "estimatedCostInCents": 142
+          },
+          {
+            "id": 18372,
+            "name": "bicarbonate of soda",
+            "estimatedCostInCents": 582
+          },
+          {
+            "id": 1123,
+            "name": "eggs",
+            "estimatedCostInCents": 472
+          },
+          {
+            "id": 19335,
+            "name": "sucrose",
+            "estimatedCostInCents": 902
+          },
+          {
+            "id": 19206,
+            "name": "instant vanilla pudding",
+            "estimatedCostInCents": 660
+          },
+          {
+            "id": 19334,
+            "name": "brown sugar",
+            "estimatedCostInCents": 559
+          },
+          {
+            "id": 2047,
+            "name": "salt",
+            "estimatedCostInCents": 280
+          },
+          {
+            "id": 1012047,
+            "name": "fine sea salt",
+            "estimatedCostInCents": 528
+          },
+          {
+            "id": 10019903,
+            "name": "semi sweet chips",
+            "estimatedCostInCents": 253
+          },
+          {
+            "id": 1145,
+            "name": "unsalted butter",
+            "estimatedCostInCents": 617
+          },
+          {
+            "id": 2050,
+            "name": "vanilla",
+            "estimatedCostInCents": 926
+          },
+          {
+              "id": 1009016,
+              "name": "apple cider",
+              "estimatedCostInCents": 468
+            },
+            {
+              "id": 9003,
+              "name": "apple",
+              "estimatedCostInCents": 207
+            },
+            {
+              "id": 20027,
+              "name": "corn starch",
+              "estimatedCostInCents": 236
+            },
+            {
+              "id": 1002046,
+              "name": "dijon style mustard",
+              "estimatedCostInCents": 619
+            },
+            {
+              "id": 11215,
+              "name": "whole garlic clove",
+              "estimatedCostInCents": 220
+            },
+            {
+              "id": 1012046,
+              "name": "whole grain dijon mustard",
+              "estimatedCostInCents": 867
+            },
+            {
+              "id": 19911,
+              "name": "maple",
+              "estimatedCostInCents": 349
+            },
+            {
+              "id": 16112,
+              "name": "miso",
+              "estimatedCostInCents": 978
+            },
+            {
+              "id": 10010062,
+              "name": "pork chop",
+              "estimatedCostInCents": 834
+            },
+            {
+              "id": 1102047,
+              "name": "s&p",
+              "estimatedCostInCents": 524
+            },
+            {
+              "id": 16124,
+              "name": "soy sauce",
+              "estimatedCostInCents": 486
+            },
+            {
+              "id": 1016168,
+              "name": "sriracha sauce",
+              "estimatedCostInCents": 576
+            }]
       })
 
   it('should return true', function() {
@@ -244,20 +360,29 @@ describe('Recipe', function() {
     expect(recipe1.name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups")
   })
 
-  it.skip('should determine the names of ingredients needed',
+  it('should determine the names of ingredients needed',
   function() {
+    let recipe1Ingredients = recipe1.getIngredientNames()
+    let recipe2Ingredients = recipe2.getIngredientNames()
+    expect(recipe1Ingredients).to.deep.equal([])
+    expect(recipe2Ingredients).to.deep.equal([])
+ // console.log('ingredient', recipe1.ingredients[0].id);
+ // console.log('ingredients', recipe1.ingredients);
 
   })
 
-  it.skip('should get the cost of its ingredients', function() {
-
-  })
+  // method in ingredient class instead
+  // it.skip('should get the cost of its ingredients', function() {
+  //   recipe1.estimatedCostInCents()
+  //   recipe2.estimatedCostInCents()
+  // })
 
   it('should return its instructions', function() {
-    recipe1.getInstructions()
-    recipe2.getInstructions()
-    expect(recipe1.instructions[0].number).to.equal(1)
-    expect(recipe2.instructions[0].number).to.equal(1)
+    let recipe1Instructions = recipe1.getInstructions()
+    let recipe2Instructions = recipe2.getInstructions()
+    expect(recipe1Instructions).to.deep.equal(recipe1.instructions)
+    expect(recipe2Instructions).to.deep.equal(recipe2.instructions)
+
 
   })
 
