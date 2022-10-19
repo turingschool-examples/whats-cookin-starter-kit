@@ -6,6 +6,10 @@ body {
   margin: 0;
 }
 
+.user-info{
+  padding-left: 2vw;
+}
+
 h1 {
   display: flex;
   background: #EDBEBE;
@@ -73,6 +77,32 @@ ul {
   min-height: 100vh;
   background: #E3D3D3;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.instructions{
+  width:35vw;
+  height: fit-content;
+  background: white;
+  text-align: center;
+}
+
+h2 {
+  padding-left: 0;
+}
+
+.total-cost {
+  width:20vw;
+  height: fit-content;
+  background: white;
+  text-align: center;
+}
+
+.recipe-info {
+  display: flex;
+  justify-content: space-evenly;
+  width: 70vw;
 }
 
 img{
