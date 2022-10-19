@@ -3,8 +3,12 @@ import { recipeData } from "../data/recipes";
 
 class RecipeRepository {
   constructor(recipes) {
-    this.recipes = new Recipe(recipes)
-    //console.log(this.recipes)
+    this.recipes = this.createRecipes(recipes)
+  }
+  createRecipes(data) {
+    return data.map((recipeInfo)=>{
+      return new Recipe(recipeInfo)
+    })
   }
   filterTag(tag) {
     return this.recipes.filter((recipe) => {
@@ -17,8 +21,8 @@ class RecipeRepository {
     })
   }
 }
-
-// let recRep = new RecipeRepository(recipeData)
-// console.log(recRep)
+//let recRep = new RecipeRepository(recipeData)
+//console.log("PREMETHOD", recRep)
+//console.log(recRep.createRecipes())
 
 export default RecipeRepository;
