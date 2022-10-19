@@ -1,8 +1,9 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
+import { Ingredients } from '../src/classes/IngredientsClass';
 
 describe('Recipie', () => {
-let recipeInfo, singleRecipe,ingredientData;
+let recipeInfo, singleRecipe, ingredient;
 
 beforeEach(() => {
     singleRecipe = {
@@ -124,7 +125,11 @@ beforeEach(() => {
         ]
     }, 
     recipeInfo = new Recipe(singleRecipe)
-
+    ingredient = {
+        "id": 20081,
+        "name": "wheat flour",
+        "estimatedCostInCents": 142
+    }
 });
 
 it('Should be a function', () => {
@@ -203,12 +208,20 @@ it('should have an tags array made of strings', () => {
     expect(recipeInfo.tags[1]).to.equal(singleRecipe.tags[1])
 });
 
-it('should have a method that returns an array of ingredient ids', () => {
-    expect(recipeInfo.returnIngredientsIds()).to.be.an('array')
+it('should have a method that returns an array of ingredient ids for the recipe', () => {
+    expect(recipeInfo.returnRecipeIngredientsIds()).to.be.an('array')
+});
+
+it('should have a method that returns a single ingrident object', () => {
+    expect(recipeInfo.returnIngredientById(20081)).to.be.an('object')
+});
+
+it('should have a method that returns a single Ingrident class object', () => {
+    expect(recipeInfo.returnIngredientById(20081)).to.be.deep.equal(ingredient)
 });
 
 it('should have a method that returns an array of ingredient ids', () => {
-    expect(recipeInfo.returnIngredientsIds()).to.be.an('array').with.a.lengthOf(11)
+    expect(recipeInfo.returnRecipeIngredientsIds()).to.be.an('array').with.a.lengthOf(11)
 });
 
 it('should have a method that returns instructions', () => {
@@ -219,27 +232,31 @@ it('should have a method that returns instructions', () => {
 })
 
 it('should have a method that returns an array of ingrident class objects', () => {
-    expect(recipeInfo.returnRecipeIngredientsArray()).to.be.an('array')
+    expect(recipeInfo.returnAllIngredientsArray()).to.be.an('array')
 });
 
-it('should have a method that returns an array of ingredient objects with a length of 247', () => {
-    expect(recipeInfo.returnRecipeIngredientsArray().length).to.equal(247)
+it('should have a method that returns an array of all ingredient objects with a length of 247', () => {
+    expect(recipeInfo.returnAllIngredientsArray().length).to.equal(247)
 });
 
-it('should have a method that returns an array of ingredient objects with a length of 244', () => {
+it('should have a method that returns an array of all ingredient objects with a length of 244', () => {
     //trying sad path
-    expect(recipeInfo.returnRecipeIngredientsArray().length === 246).to.equal(false)
+    expect(recipeInfo.returnAllIngredientsArray().length === 246).to.equal(false)
 });
 
-it('should have a method that returns an array of ingrident names', () => {
-    expect(recipeInfo.returnRecipeIngredientsNames()).to.be.an('array')
+it('should have a method that returns an array of all ingrident names', () => {
+    expect(recipeInfo.returnAllIngredientsNames()).to.be.an('array')
 });
     
-it('should have a method that returns an array of ingrident names', () => {
+it('should have a method that returns an array of all ingrident names', () => {
+    expect(recipeInfo.returnAllIngredientsNames()).to.include('eggs')
+});
+
+it('should have a method that returns an array of recipe ingrident names', () => {
     expect(recipeInfo.returnRecipeIngredientsNames()).to.include('wheat flour')
 });
 
-it('should have a method that returns an array of ingrident names', () => {
+it('should have a method that returns the total cost of a recipe', () => {
     expect(recipeInfo.returnCostOfIngredients()).to.equal(`$ 177.76`)
 });
 
