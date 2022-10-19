@@ -20,4 +20,4 @@ return this.listOfAllRecipes.filter(recipe => recipe.name === name);
   };
 };
 
-export default RecipeRepository;
+module.exports = RecipeRepository;

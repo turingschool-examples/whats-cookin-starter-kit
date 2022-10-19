@@ -41,7 +41,7 @@ class User {
   };
 };
 
-export default User;
+module.exports = User;
 
 // ❓Do we need something that can create or manipulate the pantry
 //   property? Should this be based on the recipesToCook in some way?
