@@ -1,6 +1,6 @@
-import ingredientsData from '../data/ingredients';
-import ingredientsClass from '../classes/ingredientsClass'
-class Recipe{
+import  ingredientsData  from '../data/ingredients';
+import Ingredients from '../classes/ingredientsClass'
+class Recipe {
     constructor(recipeData) {
         this.id = recipeData.id
         this.image = recipeData.image
@@ -12,11 +12,27 @@ class Recipe{
 
 returnRecipeInstructions() {
     let instructionsParagraph = this.instructions.reduce((string, instruction) => {
-        console.log('hey', string)
         return string += `${instruction.number}) ${instruction.instruction}`
     }, '')
     return instructionsParagraph;
   }
+
+returnRecipeIngredientsArray() {     
+  let ingredientsArray = ingredientsData.map((ingredient) => {
+        return  new Ingredients(ingredient)
+   });
+  return ingredientsArray;
+}
+
+returnRecipeIngredientsNames() {
+  let ingredientsNamesArray = ingredientsData.map((ingredient) => {
+      return ingredient.name
+    });
+  return ingredientsNamesArray;
+}
+
+
+
 
 
 };
