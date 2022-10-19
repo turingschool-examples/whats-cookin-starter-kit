@@ -10,10 +10,15 @@ body {
   padding-left: 2vw;
 }
 
+.home-button, .saved-recipe-button{
+  margin-left: 10px;
+}
+
 .button-container{
+  padding-right:0;
   display: flex;
-  width: 16vw;
-  justify-content: space-between;
+  justify-content: flex-end;
+  width: 20vw;
 }
 
 h1 {
