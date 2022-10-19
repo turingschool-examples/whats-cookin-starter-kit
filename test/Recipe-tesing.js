@@ -141,85 +141,74 @@ describe('Recipe', function() {
     });
 
     it('should store an ingredients array of objects', function() {
-        expect(recipe.ingredients).to.deep.equal([
+        expect(recipe.modifiedIngredients).to.deep.equal([
             {
-                "id": 20081,
-                "quantity": {
-                "amount": 1.5,
-                "unit": "c"
-                }
+              id: 20081,
+              name: 'wheat flour',
+              estimatedCostInCents: 142,
+              quantity: { amount: 1.5, unit: 'c' }
             },
             {
-                "id": 18372,
-                "quantity": {
-                "amount": 0.5,
-                "unit": "tsp"
-                }
+              id: 18372,
+              name: 'bicarbonate of soda',
+              estimatedCostInCents: 582,
+              quantity: { amount: 0.5, unit: 'tsp' }
             },
             {
-                "id": 1123,
-                "quantity": {
-                "amount": 1,
-                "unit": "large"
-                }
+              id: 1123,
+              name: 'eggs',
+              estimatedCostInCents: 472,
+              quantity: { amount: 1, unit: 'large' }
             },
             {
-                "id": 19335,
-                "quantity": {
-                "amount": 0.5,
-                "unit": "c"
-                }
+              id: 19335,
+              name: 'sucrose',
+              estimatedCostInCents: 902,
+              quantity: { amount: 0.5, unit: 'c' }
             },
             {
-                "id": 19206,
-                "quantity": {
-                "amount": 3,
-                "unit": "Tbsp"
-                }
+              id: 19206,
+              name: 'instant vanilla pudding',
+              estimatedCostInCents: 660,
+              quantity: { amount: 3, unit: 'Tbsp' }
             },
             {
-                "id": 19334,
-                "quantity": {
-                "amount": 0.5,
-                "unit": "c"
-                }
+              id: 19334,
+              name: 'brown sugar',
+              estimatedCostInCents: 559,
+              quantity: { amount: 0.5, unit: 'c' }
             },
             {
-                "id": 2047,
-                "quantity": {
-                "amount": 0.5,
-                "unit": "tsp"
-                }
+              id: 2047,
+              name: 'salt',
+              estimatedCostInCents: 280,
+              quantity: { amount: 0.5, unit: 'tsp' }
             },
             {
-                "id": 1012047,
-                "quantity": {
-                "amount": 24,
-                "unit": "servings"
-                }
+              id: 1012047,
+              name: 'fine sea salt',
+              estimatedCostInCents: 528,
+              quantity: { amount: 24, unit: 'servings' }
             },
             {
-                "id": 10019903,
-                "quantity": {
-                "amount": 2,
-                "unit": "c"
-                }
+              id: 10019903,
+              name: 'semi sweet chips',
+              estimatedCostInCents: 253,
+              quantity: { amount: 2, unit: 'c' }
             },
             {
-                "id": 1145,
-                "quantity": {
-                "amount": 0.5,
-                "unit": "c"
-                }
+              id: 1145,
+              name: 'unsalted butter',
+              estimatedCostInCents: 617,
+              quantity: { amount: 0.5, unit: 'c' }
             },
             {
-                "id": 2050,
-                "quantity": {
-                "amount": 0.5,
-                "unit": "tsp"
-                }
+              id: 2050,
+              name: 'vanilla',
+              estimatedCostInCents: 926,
+              quantity: { amount: 0.5, unit: 'tsp' }
             }
-            ]);
+          ]);
     });
 
     it('should store an instructions array storing objects', function() {

@@ -1,32 +1,25 @@
-import ingredientsData from '../data/ingredients';
+import Ingredients from '../classes/Ingredients'
 
 class Recipe {
     constructor(recipe) {
         this.id = recipe.id;
         this.image = recipe.image;
-        this.ingredients = recipe.ingredients;
+        this.ingredients = new Ingredients(recipe.ingredients)
         this.instructions = recipe.instructions;
         this.name = recipe.name;
         this.tags = recipe.tags;
-
+        this.modifiedIngredients = this.ingredients.modifiedData
     }
-    
     ingredientsNeeded() {
         let ingredientsNeeded = [];
-        this.ingredients.forEach((ingredient) => {
-            let ingredientFound = ingredientsData.find( ing => ingredient.id === ing.id)
-            ingredientsNeeded.push(ingredientFound.name)
-        })
+        this.modifiedIngredients.forEach((ingredient) => {
+                ingredientsNeeded.push(ingredient.name)
+        })       
         return ingredientsNeeded
     }
 
     getIngredientsCost() {
-        let ingredientsNeededInfo = [];
-        this.ingredients.forEach((ingredient) => {
-            var info = ingredientsData.find( ing => ingredient.id === ing.id)
-            ingredientsNeededInfo.push({...info,...ingredient})
-        })
-        var totalIngredientCost = ingredientsNeededInfo.reduce(function(acc,item){
+        var totalIngredientCost = this.modifiedIngredients.reduce(function(acc,item){
             let ingredientCost = item.estimatedCostInCents * item.quantity.amount
             return acc + ingredientCost
         }, 0)
