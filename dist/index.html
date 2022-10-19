@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
   <!-- <link href="..src/styles.css" type="text/css" rel="stylesheet"> -->
   <!-- Add the Font API stuff here -->
   <!-- At 5:08 in the Carousel video -->
@@ -10,59 +12,71 @@
   <!--MIGHT NEED TO ADD HEIGHT TO VIEWPORT-->
   <title>Whats Cookin</title>
 </head>
+
 <body>
   <header>
     <h1>What's Cookin'</h1>
+    <div id="button--home" class="text-box">
+      <a href="#" class="btn btn-grey btn-animate">Home</a>
+    </div>
+    <div id="button--my-recipes" class="text-box">
+      <a href="#" class="btn btn-grey btn-animate">My Recipes</a>
+  </div>
+
     <nav class="section--nav">
-      <button type="button" class="" id="button--home">Home</button>
+      <!-- <button type="button" class="" id="button--home">Home</button> -->
       <div class="section--buttons-bar">
-        <button type="button" id="button--my-recipes">My Recipes</button>
+        <!-- <button type="button" id="button--my-recipes">My Recipes</button> -->
         <input type="search" placeholder="search">
       </div>
     </nav>
-    <div class="section--list-filter">
-      <button class="button--recipe-list" id="button--recipe-list">Recipe List</button>
-      <!--ADD DROPDOWN DIV HERE AND BUTTON TYPES-->
-      <input type="search" placeholder="filter" class="input--filter" id="input--filter">
-      <!--ASSUMING WE WILL INVOKE BOTH THE FILTER BY NAME & FILTER BY TAG METHODS-->
-    </div>
-    <section class="section--main-body" id="section--main-body">
-      <section class="section--cards-container" id="section--cards-container">
-        
+  </header>
+  <div class="section--list-filter">
+    <div id= "button--recipe-list" class="text-box">
+      <a href="#" class="btn btn-grey btn-animate">Recipe List</a>
+  </div>
+    <!-- <button class="button--recipe-list" id="button--recipe-list">Recipe List</button> -->
+    <!--ADD DROPDOWN DIV HERE AND BUTTON TYPES-->
+    <input type="search" placeholder="filter" class="input--filter" id="input--filter">
+    <!--ASSUMING WE WILL INVOKE BOTH THE FILTER BY NAME & FILTER BY TAG METHODS-->
+  </div>
+  <section class="section--main-body" id="section--main-body">
+    <section class="section--cards-container" id="section--cards-container">
 
 
-        
-        <!-- Carousel Stuff Here -->
-        <div class="glide">
-          <div class="glide__track" data-glide-el="track">
-            <ul class="glide__slides">
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/595736-556x370.jpg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/678353-556x370.jpg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/741603-556x370.jpeg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/543687-556x370.jpg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/516904-556x370.jpg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/988243-556x370.jpg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/724018-556x370.jpg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/623855-556x370.jpg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/793584-556x370.jpg"></li>
-            </ul>
-          </div>
 
 
-          <div class="glide__arrows" data-glide-el="controls">
-            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
-            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
-          </div>
-
-
+      <!-- Carousel Stuff Here -->
+      <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/595736-556x370.jpg"></li>
+            <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/678353-556x370.jpg"></li>
+            <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"></li>
+            <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/741603-556x370.jpeg"></li>
+            <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/543687-556x370.jpg"></li>
+            <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/516904-556x370.jpg"></li>
+            <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/988243-556x370.jpg"></li>
+            <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/724018-556x370.jpg"></li>
+            <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/623855-556x370.jpg"></li>
+            <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/793584-556x370.jpggit statu"></li>
+          </ul>
         </div>
 
 
+        <div class="glide__arrows" data-glide-el="controls">
+          <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+          <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+        </div>
 
 
-         <!-- Grid Stuff Here -->
-        <!-- <container class="card--recipe" id="card--recipe1">
+      </div>
+
+
+
+
+      <!-- Grid Stuff Here -->
+      <!-- <container class="card--recipe" id="card--recipe1">
           <p id="text--recipe-title1">PB&J</p>
           <img id="image--recipe-image1" src="images/turing-logo.png" alt="placeholder text">
         </container>
@@ -98,26 +112,28 @@
           <p id="text--recipe-title9">PB&J</p>
           <img id="image--recipe-image9" src="images/turing-logo.png" alt="placeholder text">
         </container> -->
-      </section>
-      <section class="section--saved-cards hidden" id="section--saved-cards">
-        <!-- WILL ADD CARDS FROM JS -->
-      </section>
-      <section class="section--recipe-details hidden" id="section--recipe-details">
-        <h2>PB&J</h2>
-        <section class="section--ingredients-instructions" id="section--ingredients-instructions">
-          <container class="card--ingredients" id="card--ingredients">
-            <p>Ingredients</p>
-            <p> Placeholder ingredients </p>
-          </container>
-          <container class="card--instructions" id="card--instructions">
-            <p>Instructions</p>
-            <p> Placeholder instructions </p>
-          </container>
-        </section>
-        <button type="button" class="button--save-recipe" id="button--save-recipe">Save Recipe</button>
-      </section>
     </section>
-  </header>
+    <section class="section--saved-cards hidden" id="section--saved-cards">
+      <!-- WILL ADD CARDS FROM JS -->
+    </section>
+    <section class="section--recipe-details hidden" id="section--recipe-details">
+      <h2>PB&J</h2>
+      <section class="section--ingredients-instructions" id="section--ingredients-instructions">
+        <container class="card--ingredients" id="card--ingredients">
+          <p>Ingredients</p>
+          <p> Placeholder ingredients </p>
+        </container>
+        <container class="card--instructions" id="card--instructions">
+          <p>Instructions</p>
+          <p> Placeholder instructions </p>
+        </container>
+      </section>
+      <div class="text-box">
+        <a href="#" class="btn btn-grey btn-animate">Save Recipe</a>
+    </div>
+      <!-- <button type="button" class="button--save-recipe" id="button--save-recipe">Save Recipe</button> -->
+    </section>
+  </section>
   <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
   <script>
     const config = {
@@ -129,4 +145,5 @@
 </body>
 <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
 <script src="bundle.js"></script>
+
 </html>

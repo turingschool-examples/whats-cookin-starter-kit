@@ -1,5 +1,6 @@
 @import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
 @import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
+@import url('https://fonts.googleapis.com/css?family=Lato:100&display=swap');
 
 *{
   border: 1px solid rgb(201, 201, 201);
@@ -57,11 +58,12 @@ body {
 
 h1, h2 {
   text-align: center;
+  font-family: 'Oswald';
 }
 
-.hidden {
+/* .hidden {
   display: none;
-}
+} */
 
 /* USE THIS TO DO RECIPE LIST DROPDOWN */
 /* 
@@ -82,3 +84,78 @@ summary {
   cursor: pointer;
   padding: 15px;
 } */
+
+/* ------ ALL OF THIS IS FOR BUTTON ANIMATION AND STYLING ------ */
+body {
+  font-family: sans-serif;
+}
+
+.text-box {
+ margin-left: 0vw;
+ margin-top: 0vh;
+}
+
+.btn:link,
+.btn:visited {
+  text-decoration: none;
+  padding: 3px 30px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all .2s;
+  position: relative;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-grey {
+  background-color: #f0f0f0;
+  color: #0f0f0f;
+  font-family: sans-serif;
+}
+
+.btn::after {
+  content: "";
+  /* display: inline-block; */
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s;
+}
+
+.btn-grey::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+  animation: moveInBottom 5s ease-out;
+  animation-fill-mode: backwards;
+}
+
+@keyframes moveInBottom {
+  0% {
+      opacity: 0;
+      transform: translateY(30px);
+  }
+
+  100% {
+      opacity: 1;
+      transform: translateY(0px);
+  }
+}
