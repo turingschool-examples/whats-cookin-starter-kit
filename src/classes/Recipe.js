@@ -1,20 +1,24 @@
 class Recipe {
-  constructor(recipeData) {
-    this.id = recipeData.id
-    this.image = recipeData.image
-    this.ingredients = recipeData.ingredients
-    this.instructions = recipeData.instructions
-    this.name = recipeData.name
-    this.tags = recipeData.tags
-    //this.ingredientNames = []
+  constructor(recipeList) {
+    this.recipeList = recipeList
+  }
+
+  getInfoById(currentId){
+    let recipeObject = this.recipeList.find((recipe) => {
+      return recipe.id === currentId
+    })
+    return recipeObject
+    //console.log('test', this.recipeList)
+//take in id, return recipe object
+//if currentId matches recipeList
   }
 
   getIngredientNames() {
-    let ingredientIds = this.ingredients.map(ingredient => {
-      console.log(ingredient.id)
-      return ingredient.id
-    })
-    let 
+    // let ingredientIds = this.ingredients.map(ingredient => {
+    //   console.log(ingredient.id)
+    //   return ingredient.id
+    // })
+
     //create a list(array) of ingredient
     //names for a recipe.
     //if(ingredient.id === ingredientsData[i].id)
@@ -28,18 +32,20 @@ class Recipe {
 //  }
 
   getInstructions() {
-    return this.instructions
+    //return this.instructions
   }
 }
 
 // It should have methods to:
-// Determine the names of ingredients needed
+// 1. Determine the names of ingredients needed
 // if id #s match, return name
 // ==>use ingredients id to access ingredient names
 //  and costs
 // ==>use recipe.ingredients.quantity to access
 //  amounts and units
-// Get the cost of its ingredients
+// 2.Get the cost of its ingredients
+//3.Get instructions
+//?findById helper function?
 
 
 export default Recipe
