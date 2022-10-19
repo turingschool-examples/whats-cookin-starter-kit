@@ -14,7 +14,12 @@ class RecipeRepository {
   }
 
   filterByName() {
-    this.data.filter((data) => {})
+    console.log('LABEL', dataPiece)
+    var byName = this.data.filter((dataPiece) => {
+      console.log('LABEL', dataPiece)
+      name === 'Loaded Chocolate Chip Pudding Cookie Cups'
+    })
+    return byName
   }
 
   filterByTag() {

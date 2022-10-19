@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { beforeEach } from 'mocha';
 import RecipeRepository from '../src/classes/RecipeRepository';
 
 
@@ -64,7 +63,7 @@ describe('Recipe', () => {
   })
 
   it('should filter recipe by name ', () => {
-    expect(recipe1).to.equal('Loaded Chocolate Chip Pudding Cookie Cups')
+    expect(recipe1.filterByName()).to.equal('Loaded Chocolate Chip Pudding Cookie Cups')
   })
 
 })
