@@ -3,16 +3,15 @@ import ingredientsData from '../data/ingredients'
 class Ingredients {
     constructor(data) {
         this.data = data
+        this.modifiedData = this.combinedIngredients()
     }
     combinedIngredients() {
-        let currentIngredients = []
+        let ingredientsNeededInfo = [];
         this.data.forEach((ingredient) => {
-            const ing = ingredientsData.find(element => ingredient.id === element.id)
-            currentIngredients.push(ing)
+            var info = ingredientsData.find( ing => ingredient.id === ing.id)
+            ingredientsNeededInfo.push({...info,...ingredient})
         })
-        console.log(currentIngredients)
-        return currentIngredients
-
+        return ingredientsNeededInfo
     }
 }
 
