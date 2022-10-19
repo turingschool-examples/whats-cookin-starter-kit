@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="UTF-8">
   <!-- <link href="..src/styles.css" type="text/css" rel="stylesheet"> -->
   <!-- Add the Font API stuff here -->
   <!-- At 5:08 in the Carousel video -->
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--MIGHT NEED TO ADD HEIGHT TO VIEWPORT-->
   <title>Whats Cookin</title>
 </head>
+
 <body>
   <header>
     <h1>What's Cookin'</h1>
+    <section class="section--user-welcome" id="section-user-section">Welcome, User!</section>
     <nav class="section--nav">
       <button type="button" class="" id="button--home">Home</button>
       <div class="section--buttons-bar">
@@ -20,104 +23,151 @@
         <input type="search" placeholder="search">
       </div>
     </nav>
-    <div class="section--list-filter">
-      <button class="button--recipe-list" id="button--recipe-list">Recipe List</button>
-      <!--ADD DROPDOWN DIV HERE AND BUTTON TYPES-->
-      <input type="search" placeholder="filter" class="input--filter" id="input--filter">
-      <!--ASSUMING WE WILL INVOKE BOTH THE FILTER BY NAME & FILTER BY TAG METHODS-->
-    </div>
-    <section class="section--main-body" id="section--main-body">
-      <section class="section--cards-container" id="section--cards-container">
-        
+  </header>
+  <div class="section--list-filter">
+    <button class="button--recipe-list" id="button--recipe-list">Recipe List</button>
+    <!--ADD DROPDOWN DIV HERE AND BUTTON TYPES-->
+    <input type="search" placeholder="filter" class="input--filter" id="input--filter">
+    <!--ASSUMING WE WILL INVOKE BOTH THE FILTER BY NAME & FILTER BY TAG METHODS-->
+  </div>
+  <section class="section--main-body" id="section--main-body">
+    <section class="section--cards-container hidden" id="section--cards-container">
 
 
-        
-        <!-- Carousel Stuff Here -->
-        <div class="glide">
-          <div class="glide__track" data-glide-el="track">
-            <ul class="glide__slides">
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/595736-556x370.jpg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/678353-556x370.jpg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/741603-556x370.jpeg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/543687-556x370.jpg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/516904-556x370.jpg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/988243-556x370.jpg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/724018-556x370.jpg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/623855-556x370.jpg"></li>
-              <li class="glide__slide"><img src="https://spoonacular.com/recipeImages/793584-556x370.jpg"></li>
-            </ul>
-          </div>
-
-
-          <div class="glide__arrows" data-glide-el="controls">
-            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
-            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
-          </div>
-
-
+      <!-- Carousel Stuff Here -->
+      <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe1">
+                <p id="text--recipe-title1">PB&J</p>
+                <img id="image--recipe-image1" src="https://spoonacular.com/recipeImages/595736-556x370.jpg"
+                  alt="placeholder text">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe2">
+                <p id="text--recipe-title2">PB&J</p>
+                <img id="image--recipe-image2" src="https://spoonacular.com/recipeImages/678353-556x370.jpg"
+                  alt="placeholder text">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe3">
+                <p id="text--recipe-title3">PB&J</p>
+                <img id="image--recipe-image3" src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
+                  alt="placeholder text">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe4">
+                <p id="text--recipe-title4">PB&J</p>
+                <img id="image--recipe-image4" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg"
+                  alt="placeholder text">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe5">
+                <p id="text--recipe-title5">PB&J</p>
+                <img id="image--recipe-image5" src="https://spoonacular.com/recipeImages/543687-556x370.jpg"
+                  alt="placeholder text">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe6">
+                <p id="text--recipe-title6">PB&J</p>
+                <img id="image--recipe-image6" src="https://spoonacular.com/recipeImages/516904-556x370.jpg"
+                  alt="placeholder text">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe7">
+                <p id="text--recipe-title7">PB&J</p>
+                <img id="image--recipe-image7" src="https://spoonacular.com/recipeImages/988243-556x370.jpg"
+                  alt="placeholder text">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe8">
+                <p id="text--recipe-title8">PB&J</p>
+                <img id="image--recipe-image8" src="https://spoonacular.com/recipeImages/724018-556x370.jpg"
+                  alt="placeholder text">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe9">
+                <p id="text--recipe-title9">PB&J</p>
+                <img id="image--recipe-image9" src="https://spoonacular.com/recipeImages/623855-556x370.jpg"
+                  alt="placeholder text">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe10">
+                <p id="text--recipe-title10">PB&J</p>
+                <img id="image--recipe-image10" src="https://spoonacular.com/recipeImages/793584-556x370.jpg"
+                  alt="placeholder text">
+              </container>
+            </li>
+          </ul>
         </div>
 
 
 
+        <div class="glide__arrows" data-glide-el="controls">
+          <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+          <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+        </div>
 
-         <!-- Grid Stuff Here -->
-        <!-- <container class="card--recipe" id="card--recipe1">
-          <p id="text--recipe-title1">PB&J</p>
-          <img id="image--recipe-image1" src="images/turing-logo.png" alt="placeholder text">
-        </container>
-        <container class="card--recipe" id="card--recipe2">
-          <p id="text--recipe-title2">PB&J</p>
-          <img id="image--recipe-image2" src="images/turing-logo.png" alt="placeholder text">
-        </container>
-        <container class="card--recipe" id="card--recipe3">
-          <p id="text--recipe-title3">PB&J</p>
-          <img id="image--recipe-image3" src="images/turing-logo.png" alt="placeholder text">
-        </container>
-        <container class="card--recipe" id="card--recipe4">
-          <p id="text--recipe-title4">PB&J</p>
-          <img id="image--recipe-image4" src="images/turing-logo.png" alt="placeholder text">
-        </container>
-        <container class="card--recipe" id="card--recipe5">
-          <p id="text--recipe-title5">PB&J</p>
-          <img id="image--recipe-image5" src="images/turing-logo.png" alt="placeholder text">
-        </container>
-        <container class="card--recipe" id="card--recipe6">
-          <p id="text--recipe-title6">PB&J</p>
-          <img id="image--recipe-image6" src="images/turing-logo.png" alt="placeholder text">
-        </container>
-        <container class="card--recipe" id="card--recipe7">
-          <p id="text--recipe-title7">PB&J</p>
-          <img id="image--recipe-image7" src="images/turing-logo.png" alt="placeholder text">
-        </container>
-        <container class="card--recipe" id="card--recipe8">
-          <p id="text--recipe-title8">PB&J</p>
-          <img id="image--recipe-image8" src="images/turing-logo.png" alt="placeholder text">
-        </container>
-        <container class="card--recipe" id="card--recipe9">
-          <p id="text--recipe-title9">PB&J</p>
-          <img id="image--recipe-image9" src="images/turing-logo.png" alt="placeholder text">
-        </container> -->
-      </section>
-      <section class="section--saved-cards hidden" id="section--saved-cards">
-        <!-- WILL ADD CARDS FROM JS -->
-      </section>
-      <section class="section--recipe-details hidden" id="section--recipe-details">
-        <h2>PB&J</h2>
-        <section class="section--ingredients-instructions" id="section--ingredients-instructions">
-          <container class="card--ingredients" id="card--ingredients">
-            <p>Ingredients</p>
-            <p> Placeholder ingredients </p>
-          </container>
-          <container class="card--instructions" id="card--instructions">
-            <p>Instructions</p>
-            <p> Placeholder instructions </p>
-          </container>
-        </section>
-        <button type="button" class="button--save-recipe" id="button--save-recipe">Save Recipe</button>
-      </section>
+
+      </div>
+
+
+
+
+      <!-- Grid Stuff Here -->
     </section>
-  </header>
+    <section class="section--saved-cards hidden" id="section--saved-cards">
+      <!-- WILL ADD CARDS FROM JS -->
+    </section>
+    <section class="section--recipe-details" id="section--recipe-details">
+      <h2>PB&J</h2>
+      <section class="section--ingredients-instructions" id="section--ingredients-instructions">
+        <container class="card--ingredients" id="card--ingredients">
+          <h3>Ingredients</h3>
+          <ul class="ul--ingredient-list" id="ul--ingredient-list">
+            <li class="li--ingredient" id="li--ingredient">wheat flour: $1.42</li>
+            <li class="li--ingredient" id="li--ingredient">wheat flour: $1.42</li>
+            <li class="li--ingredient" id="li--ingredient">wheat flour: $1.42</li>
+            <li class="li--ingredient" id="li--ingredient">wheat flour: $1.42</li>
+            <li class="li--ingredient" id="li--ingredient">wheat flour: $1.42</li>
+            <li class="li--ingredient" id="li--ingredient">wheat flour: $1.42</li>
+            <li class="li--ingredient" id="li--ingredient">wheat flour: $1.42</li>
+            <li class="li--ingredient" id="li--ingredient">wheat flour: $1.42</li>
+            <li class="li--ingredient" id="li--ingredient">wheat flour: $1.42</li>
+            <li class="li--ingredient" id="li--ingredient">wheat flour: $1.42</li>
+            <li class="li--total-cost" id="li--total-cost">Total Cost: $25.00</li>
+          </ul>
+        </container>
+        <container class="card--instructions" id="card--instructions">
+          <h4>Instructions</h4>
+          <ul class="ul--instructions" id="ul--instructions">
+            <li>In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set
+              aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar
+              and brown sugar and cream until light and fluffy.</li>
+            <li>Add egg and vanilla and mix until combined.</li>
+            <li>"Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough
+              into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2
+              hours or overnight.When ready to bake, preheat oven to 350 degrees."</li>
+            <li>Place the cookie dough balls into ungreased muffin pan. Sprinkle with sea salt.</li>
+            <li>Bake for 9 to 10 minutes, or until you see the edges start to brown.</li>
+            <li>Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice
+              cream and a drizzle of chocolate sauce.</li>
+          </ul>
+        </container>
+      </section>
+      <button type="button" class="button--save-recipe" id="button--save-recipe">Save Recipe</button>
+    </section>
+  </section>
   <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
   <script>
     const config = {
@@ -129,4 +179,5 @@
 </body>
 <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
 <script src="bundle.js"></script>
+
 </html>
