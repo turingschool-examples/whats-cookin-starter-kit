@@ -1,7 +1,6 @@
 import { expect } from 'chai'
 import RecipeRepository from '../src/classes/RecipeRepository'
 import Recipe from '../src/classes/Recipe'
-import ingredientsData from '../src/data/ingredients'
 import recipeData from '../src/data/recipes'
 
 
@@ -22,11 +21,16 @@ describe('RecipeRepository', () => {
   })
 
   it('should should be able to return a list of recipes filtered by tag', () => {
-    // expect(recipeRepository.filterByTag('antipasti'))
+    expect(recipeRepository.filterByTag('antipasti')[0].id).to.equal(595736)
+    expect(recipeRepository.filterByTag('antipasti')[2].id).to.equal(724018)
   })
 
   it('should should be able to return a list of recipes filtered by name', () => {
-    
+    expect(recipeRepository.filterByName('Pork Chops')[0].id).to.equal(678353)
+    expect(recipeRepository.filterByName('Pancakes')[0].id).to.equal(741603)
   })
 
+  it('should should be able to return a random recipe of the day', () => {
+    expect(recipeRepository.recipeOfTheDay()).to.be.an.instanceOf(Recipe)
+  })
 })
