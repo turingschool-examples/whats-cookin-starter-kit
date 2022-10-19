@@ -220,12 +220,23 @@ it('should have a method that returns an array of ingredient objects with a leng
 
 it('should have a method that returns an array of ingredient objects with a length of 244', () => {
     //trying sad path
-    expect(recipeInfo.returnRecipeIngredientsArray().length).to.equal(244)
+    expect(recipeInfo.returnRecipeIngredientsArray().length === 246).to.equal(false)
 });
 
-it('should have a method that returns an array of ingrident class objects', () => {
-    expect(recipeInfo.returnRecipeIngredientsArray()).to.be.an('array')
+it('should have a method that returns an array of ingrident names', () => {
+    expect(recipeInfo.returnRecipeIngredientsNames()).to.be.an('array')
 });
+    
+it('should have a method that returns an array of ingrident names', () => {
+    expect(recipeInfo.returnRecipeIngredientsNames()).to.include('wheat flour')
+});
+
+it('should have a method that returns an array of ingrident names', () => {
+    expect(recipeInfo.returnCostOfIngredients()).to.equal(5)
+});
+
+
+
 
 
 

@@ -31,6 +31,21 @@ returnRecipeIngredientsNames() {
   return ingredientsNamesArray;
 }
 
+returnCostOfIngredients() {
+    
+  let ingredCosts = newRecipeIngredients.map(ingredient => ingredient.estimatedCostInCents);
+  let ingredQuantitiesNeeded = this.ingredients.map(ingredient => ingredient.quantity.amount);
+  let multiplyCostByAmmount = ingredCosts.map((cost, index) => {
+        let quantity = ingredQuantitiesNeeded[index];
+        return cost * quantity
+    })
+    let total = multiplyCostByAmmount.reduce((sum, cost) => {
+          return sum + cost;
+    }, 0)
+    let finalTotal = parseFloat((sumTotalCost / 100).toFixed(2));
+    return finalTotal
+}
+
 
 
 
