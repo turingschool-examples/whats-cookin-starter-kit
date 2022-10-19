@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import Ingredient from '../src/classes/Ingredient'
 
 describe('Ingredient', () => {
-  let ingredientInfo, recipeInfo, pudding;
+  let ingredientInfo, recipeInfo, pudding
 
   beforeEach(() => {
     ingredientInfo = { "id": 19206, "name": "instant vanilla pudding", "estimatedCostInCents": 660 }
