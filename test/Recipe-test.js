@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import ingredientsData from "../src/data/ingredients";
-import recipeSampleData from "../src/sampleSets/recipeSample";
+import recipeSampleData from "../sampleSets/recipeSample";
 import Recipe from "../src/classes/Recipe";
 
 describe("Recipe", function () {

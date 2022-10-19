@@ -3,8 +3,6 @@ import User from '../src/classes/User';
 import usersData from '../src/data/users';
 import allRecipes from '../src/data/User-test-data';
 
-console.log(allRecipes)
-
 describe('User', function() {
 
   let user1, user2, recipe1, recipe2;
@@ -14,8 +12,7 @@ describe('User', function() {
     user2 = new User();
     recipe1 = allRecipes.listOfRecipes[0];
     recipe2 = allRecipes.listOfRecipes[1];
-    }
-  );
+    });
 
   it('Should be a function', function() {
     expect(User).to.be.a('function');
@@ -37,7 +34,7 @@ describe('User', function() {
   it('Should be able to have an ID', function() {
     expect(user1.id).to.equal(3);
     expect(user1).to.have.any.keys('id');
-    expect(user1.id).to.be.a('number')
+    expect(user1.id).to.be.a('number');
 
     expect(user2.id).to.equal(undefined);
     expect(user2).to.have.any.keys('id');
@@ -135,4 +132,4 @@ describe('User', function() {
     expect(filteredList2).to.deep.equal([recipe2]);
     expect(filteredList3).to.deep.equal([]);
   });
-})
+});
