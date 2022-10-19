@@ -10,6 +10,12 @@ body {
   padding-left: 2vw;
 }
 
+.button-container{
+  display: flex;
+  width: 16vw;
+  justify-content: space-between;
+}
+
 h1 {
   display: flex;
   background: #EDBEBE;
