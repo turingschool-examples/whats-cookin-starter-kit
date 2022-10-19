@@ -16,6 +16,23 @@ class User {
             this.recipesToCook.splice(index, 1)
         }
     }
+    filterByTag(recipe) {
+        let filteredTag = recipe.tags.filter(recipe.tags => recipe.tags === recipe.tags)
+        return filteredTag
+    }
 }
 
 export default User;
+
+"tags": [
+    "antipasti",
+    "starter",
+    "snack",
+    "appetizer",
+    "antipasto",
+    "hor d'oeuvre",
+    "lunch",
+    "main course",
+    "main dish",
+    "dinner",
+  ]
