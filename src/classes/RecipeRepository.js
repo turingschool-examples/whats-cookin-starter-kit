@@ -5,7 +5,7 @@ class RecipeRepository {
   filterByTag = (tag) => {
     const filteredList = this.recipes.filter(recipe => {
       let tags = Object.values(recipe.tags)
-      if (tags.includes(tag)) {
+      if (tags.includes(tag.toLowerCase())) {
         return recipe
       }
     })
@@ -21,7 +21,7 @@ class RecipeRepository {
     // return the array in the outer scope
     const filteredList = this.recipes.filter(recipe => {
       let lowerCaseRecipeName = recipe.name.toLowerCase()
-      if(lowerCaseRecipeName.includes(name)) {
+      if(lowerCaseRecipeName.includes(name.toLowerCase())) {
         return recipe
       }
     })
