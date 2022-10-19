@@ -12,17 +12,27 @@ class Recipe {
         const currentId = this.ingredients.map(ingredient => {
             return ingredient.id
         });
-        //iterate over ingredientData... filter maybe? 
+        const relevantIngredients = ingredientData.filter(ingredient => currentId.includes(ingredient.id));
+      const names = []
+        relevantIngredients.forEach(ingredient => names.push(ingredient.name))
+      return names;
     };
 
-    returnIngredientCost() {
-        this.ingredients[i].estimatedCostInCents
-        //probably use reduce? Also yes everyone laugh at my for-loop syntax
+    returnIngredientCost(ingredientData) {
+        const currentId = this.ingredients.map(ingredient => {
+            return ingredient.id
+        });
+        const relevantIngredients = ingredientData.filter(ingredient => currentId.includes(ingredient.id));
+        const cost = relevantIngredients.reduce((acc, ingredient) => {
+            return acc + ingredient.estimatedCostInCents
+        }, 0);
+        return cost;
     };
 
     returnInstructions() {
-        //forEach return the instructions array? 
-        //(`step ${this.instructions.number}: ${this.instructions.instruction}`)
+        this.instructions.forEach(currentInstruction => {
+            return `Step ${currentInstruction.number}: ${currentInstruction.instruction}`;
+        })
     };
 };
 
