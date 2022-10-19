@@ -1,3 +1,4 @@
+
 import { expect } from 'chai';
 import recipeRepositorySampleData from '../sampleSets/recipeRepositorySample';
 import RecipeRepository from '../src/classes/RecipeRepository';
@@ -32,3 +33,4 @@ describe('Recipe', () => {
     expect(allRecipes.filterByName('Maple Dijon Apple Cider Grilled Pork Chops')).to.deep.equal([recipeRepositorySampleData[1]]);
   });
 });
+

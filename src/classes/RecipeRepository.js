@@ -1,6 +1,6 @@
 class RecipeRepository {
   constructor(recipeData) {
-      this.listOfAllRecipes = recipeData
+    this.listOfAllRecipes = recipeData
   };
 
   filterByTag(tag) {
@@ -11,6 +11,7 @@ return this.listOfAllRecipes.filter(recipe => recipe['tags'].includes(tag));
 return this.listOfAllRecipes.filter(recipe => recipe.name === name);
   };
 };
+
 
 export default RecipeRepository;
 
