@@ -4,6 +4,6 @@ class Ingredients {
         this.name = ingredientObject.name
         this.estimatedCostInCents = ingredientObject.estimatedCostInCents
     }
-}
 
+}
 export default Ingredients
