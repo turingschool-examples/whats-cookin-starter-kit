@@ -7,22 +7,19 @@ class RecipeRepository {
   }
   createRecipes(data) {
     return data.map((recipeInfo)=>{
-      return new Recipe(recipeInfo)
+      return new Recipe(recipeInfo);
     })
   }
   filterTag(tag) {
     return this.recipes.filter((recipe) => {
-      return recipe.tags.includes(tag)
+      return recipe.tags.includes(tag);
     })
   }
   filterName(name) {
     return this.recipes.filter((recipe) => {
-      return recipe.name === name
+      return recipe.name === name;
     })
   }
 }
-//let recRep = new RecipeRepository(recipeData)
-//console.log("PREMETHOD", recRep)
-//console.log(recRep.createRecipes())
 
 export default RecipeRepository;
