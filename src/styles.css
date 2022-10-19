@@ -32,7 +32,7 @@ h1 {
 }
 
 h2 {
-  color: black;
+  color: #4b4040;
   padding-left: 2vw;
 }
 
@@ -64,6 +64,7 @@ nav {
 
 li {
   padding-top:2vh;
+  color: #4b4040;
 }
 
 ul {
@@ -155,4 +156,9 @@ button {
 
 .hidden {
   display: none;
+}
+
+.recipe-image {
+  margin-top: 5vh;
+  margin-bottom: 5vh;
 }
