@@ -58,7 +58,7 @@ describe('Recipe', () => {
     expect(RecipeRepository).to.be.a('function')
   })
 
-  it('should instatiate a new Recipe', () => {
+  it('should instatiate a new RecipeRepository', () => {
     expect(recipe1).to.equal(new RecipeRepository)
   })
 

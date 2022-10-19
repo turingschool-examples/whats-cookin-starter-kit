@@ -22,9 +22,6 @@ class RecipeRepository {
     return byName
   }
 
-  filterByTag() {
-  }
-
 }
 
 export default RecipeRepository;
