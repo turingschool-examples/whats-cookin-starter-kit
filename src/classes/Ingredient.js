@@ -1,13 +1,17 @@
 class Ingredient {
-  constructor(ingredientRow, quantity) {
-    this.id = ingredientRow.id;
-    this.name = ingredientRow.name;
-    this.estCost = ingredientRow.estimatedCostInCents;
-    this.quantity = quantity;
+  constructor(ingredientRow) {
+    this.ingredientRow = ingredientRow;
   }
-  countEstCost() {
-    return this.quantity.amount * this.estCost;
+  returnIngredient(newId) {
+    var name = this.ingredientRow.find((ingredient) => {
+      return newId === ingredient.id;
+    });
+    return name;
   }
+
+  // countEstCost() {
+  //   return this.quantity.amount * this.estCost;
+  // }
 }
 
 module.exports = Ingredient;
