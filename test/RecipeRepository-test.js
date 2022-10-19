@@ -27,6 +27,9 @@ describe('RecipeRepo', () => {
     //expect(recipeRepository.recipes).to.be.an.instanceOf(Recipe);
     expect(recipeRepository.recipes).to.deep.equal([recipe1, recipe2]);
   });
+  // it('Should create recipe instances.', () => {
+  //need a test for createRecipes method
+  // })
   it('Should filter a list of recipes based on a tag.', () => {
     expect(recipeRepository.filterTag("lunch")).to.deep.equal([recipe2]);
     expect(recipeRepository.filterTag("hor d'oeuvre")).to.deep.equal([recipe1]);
@@ -36,11 +39,4 @@ describe('RecipeRepo', () => {
     expect(recipeRepository.filterName("Loaded Chocolate Chip Pudding Cookie Cups")).to.deep.equal([recipe1]);
   })
 })
-
-
-// A RecipeRepository should hold onto all Recipe objects.
-
-// It should have methods to determine:
-// A filtered list of recipes based on a tag.
-// A filtered list of recipes based on its name.
 
