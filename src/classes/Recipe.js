@@ -39,4 +39,4 @@ class Recipe {
   //RETURNS AN ARRAY OF NUMBERS THAT ARE THE ESTIMATED COST IN CENTS
 };
 
-export default Recipe;
+module.exports = Recipe;
