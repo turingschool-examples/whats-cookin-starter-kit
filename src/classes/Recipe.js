@@ -46,14 +46,17 @@ returnAllIngredientsArray() {
   return ingredientsArray;
 }
 
-returnRecipeIngredientsNames() {
-    console.log('yayaya', this.ingredients)
-    let emptyArray = []
-   let recipeIngred = this.ingredients.forEach((ingred) => {
-       emptyArray.push(this.returnIngredientById(ingred))
-   })
-    return emptyArray 
-}
+returnRecipeIngredientsNames() {   
+    let allIngredients = this.returnAllIngredientsArray()
+    let recipeIngredientIDs = this.returnRecipeIngredientsIds();
+    let newRecipeIngredients = allIngredients.filter((ingredient) => {
+        return recipeIngredientIDs.includes(ingredient.id)
+    });
+    let names = newRecipeIngredients.map((ingredient) => {
+       return  ingredient.name
+    });
+        return names;
+}   
 
 returnAllIngredientsNames() {
   let ingredientsNamesArray = ingredientsData.map((ingredient) => {
