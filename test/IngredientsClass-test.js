@@ -2,9 +2,8 @@ import { expect } from 'chai';
 import Ingredients from '../src/classes/IngredientsClass';
 
 describe('Ingredients', () => {
-    let newIngredients, ingredientsInfo;
+    let newIngredients, ingredientsInfo, singleIngredientObject;
     beforeEach(() => {
-        newIngredients = new Ingredients(20081, "wheat flour", 142)
         ingredientsInfo = [
             {
                 "id": 20081,
@@ -27,20 +26,26 @@ describe('Ingredients', () => {
                 "estimatedCostInCents": 902
               }
         ]
+        singleIngredientObject = {
+          "id": 20081,
+          "name": "wheat flour",
+          "estimatedCostInCents": 142
+        },
+        newIngredients = new Ingredients(singleIngredientObject)
     })
     it('Should be a function', () => {
         expect(Ingredients).to.be.a('function')
     })
 
     it('Should have an id', () => {
-        expect(newIngredients.id).to.be.a('number')
+        expect(newIngredients.id).to.equal(20081)
     })
 
     it('Should have a name', () => {
-        expect(newIngredients.name).to.be.a('string')
+        expect(newIngredients.name).to.equal('wheat flour')
     })
 
     it("Should have an estimated cost in cents", () => {
-        expect(newIngredients.estimatedCostInCents).to.be.a('number')
+        expect(newIngredients.estimatedCostInCents).to.equal(142)
     })
 })
