@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
 
+
 describe('RecipeRepository', function () {
   let recipe1, recipe2, recipeRepository, allRecipes;
   beforeEach(() => {
@@ -245,3 +246,4 @@ describe('RecipeRepository', function () {
     expect(recipeRepository.filterByName('Loaded Chocolate Chip Pudding Cookie Cups')).to.deep.equal([recipe1])
   })
 });
+
