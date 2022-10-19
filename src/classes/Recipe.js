@@ -10,6 +10,11 @@ class Recipe {
         this.tags = recipeData.tags
     }
 
+returnIngredientsIds() {
+   let ingredientIDs = this.ingredients.map(ingredient => ingredient.id);
+     return ingredientIDs  
+}
+
 returnRecipeInstructions() {
     let instructionsParagraph = this.instructions.reduce((string, instruction) => {
         return string += `${instruction.number}) ${instruction.instruction}`
@@ -32,7 +37,9 @@ returnRecipeIngredientsNames() {
 }
 
 returnCostOfIngredients() {
-    
+  let allIngredients = this.returnRecipeIngredientsArray()
+  let recipeIngredientIDs = this.returnIngredientsIds();
+  let newRecipeIngredients = allIngredients.filter(ingredient => (recipeIngredientIDs.includes(ingredient.id)));  
   let ingredCosts = newRecipeIngredients.map(ingredient => ingredient.estimatedCostInCents);
   let ingredQuantitiesNeeded = this.ingredients.map(ingredient => ingredient.quantity.amount);
   let multiplyCostByAmmount = ingredCosts.map((cost, index) => {
@@ -42,8 +49,12 @@ returnCostOfIngredients() {
     let total = multiplyCostByAmmount.reduce((sum, cost) => {
           return sum + cost;
     }, 0)
-    let finalTotal = parseFloat((sumTotalCost / 100).toFixed(2));
-    return finalTotal
+    let finalTotal = parseFloat(( total / 100).toFixed(2));
+        if(finalTotal >= 1) {
+            return `$ ${finalTotal}`
+        } else {
+            return finalTotal
+        }
 }
 
 
