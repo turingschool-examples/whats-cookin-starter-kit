@@ -2,29 +2,31 @@ import Recipe from '../classes/Recipe'
 
 class RecipeRepository {
   constructor(data) {
-    this.recipesList = this.createRecipesClassArray()
     this.data = data
+    this.recipesList = this.createRecipesClassArray()
     
   }
 
   createRecipesClassArray() {
-    console.log('LABEL', this)
     let recipesClassArray = []
     this.data.forEach((recipe) => {
       let modifiedRecipeClass = new Recipe(recipe)
       recipesClassArray.push(modifiedRecipeClass)
     })
-    console.log(recipesClassArray)
     return recipesClassArray
   }
   
-
-  filterByTag() {
-    this.recipesList.filter(() => {
-
-    })
-
+  filterByTag(tag) {
+    let tagFilterResults = this.recipesList.filter(recipe => recipe.tags.includes(tag))
+    return tagFilterResults
   }
+
+  filterByName(name) {
+    let nameFilterResults = this.recipesList.filter(recipe => recipe.name.includes(name))
+    return nameFilterResults
+  }
+
+
 
 }
 

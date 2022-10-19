@@ -1,7 +1,8 @@
 import { expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
+import Recipe from '../src/classes/Recipe';
 
-describe('Recipe', () => {
+describe('RecipeRepository', () => {
   let repo1 
   beforeEach(() => {
     let data =   [ {
@@ -344,8 +345,16 @@ describe('Recipe', () => {
     expect(repo1).to.be.an.instanceof(RecipeRepository);
   });
 
+  it('Should be a new instance of Recipe ', () => {
+    expect(repo1.recipesList[0]).to.be.an.instanceof(Recipe);
+  });
+
   it('Should have a recipe array', () => {
-    expect(repo1.recipesList).to.deep.equal([]);
+    expect(repo1.recipesList).to.deep.equal(repo1.createRecipesClassArray());
+  });
+
+  it('Should have access to Recipe methods', () => {
+    expect(repo1.recipesList[0].ingredientsNeeded()).to.deep.equal(["wheat flour","bicarbonate of soda","eggs","sucrose","instant vanilla pudding","brown sugar","salt","fine sea salt","semi sweet chips","unsalted butter","vanilla"]);
   });
 
   it('Should store data', () => {
@@ -683,8 +692,16 @@ describe('Recipe', () => {
     expect(repo1.filterByTag).to.be.a('function');
   });
 
-  it('Should return the "id" of all the recipes that match the filter tag', () => {
-    expect(repo1.filterByTag('snack')).to.equal(595736);
+  it('Should return all the recipes that match the filter tag', () => {
+    expect(repo1.filterByTag('snack')).to.deep.equal([repo1.recipesList[0]]);
+  });
+
+  it('Should have a method that filters by name', () => {
+    expect(repo1.filterByName).to.be.a('function');
+  });
+
+  it('Should return all the recipes that match the filter tag', () => {
+    expect(repo1.filterByName("Loaded Chocolate Chip Pudding Cookie Cups")).to.deep.equal([repo1.recipesList[0]]);
   });
 
   
