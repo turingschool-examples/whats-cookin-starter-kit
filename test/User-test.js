@@ -1,115 +1,21 @@
 import { expect } from 'chai';
 import User from '../src/classes/User';
 import usersData from '../src/data/users';
+import allRecipes from '../src/data/User-test-data';
+
+console.log(allRecipes)
 
 describe('User', function() {
 
-  let user1, user2, testUserData, recipe1, recipe2, recipeRepository;
+  let user1, user2, recipe1, recipe2;
 
   beforeEach('define variables for test suite', function() {
-    // Should we make a separate file for this sample test data (from Flashcards project feedback)?
-    testUserData = [
-      {
-        "name": "Russell Wilson",
-        "id": 1,
-        "pantry": [
-          {
-          "ingredient": 11297,
-          "amount": 4
-          },
-          {
-          "ingredient": 1082047,
-          "amount": 10
-          }
-        ]
-      }, 
-      {
-        "name": "Josh Allen",
-        "id": 2,
-        "pantry": [
-          {
-          "ingredient": 11297,
-          "amount": 2
-          },
-          {
-          "ingredient": 1082047,
-          "amount": 15
-          }
-        ]
-      }
-    ]
     user1 = new User('Melvin Gordon', 3, [{"ingredient": 11297, "amount": 7}]);
     user2 = new User();
-    recipe1 = {
-      "id": 222,
-      "image": "",
-      "ingredients": [
-        {
-          "id": 20081,
-          "quantity": {
-            "amount": 1.5,
-            "unit": "c"
-          }
-        },
-        {
-          "id": 18372,
-          "quantity": {
-            "amount": 0.5,
-            "unit": "tsp"
-          }
-        }
-      ],
-      "instructions": [
-        {
-          "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
-          "number": 1
-        },
-        {
-          "instruction": "Add egg and vanilla and mix until combined.",
-          "number": 2
-        },
-      ],
-      "name": "Loaded Chocolate Chip Pudding Cookie Cups",
-      "tags": [
-        "antipasti",
-        "dessert"
-      ]
-    };
-    recipe2 = {
-      "id": 333,
-      "image": "",
-      "ingredients": [
-        {
-          "id": 1002030,
-          "quantity": {
-            "amount": 4,
-            "unit": "teaspoons"
-          }
-        },
-        {
-          "id": 19334,
-          "quantity": {
-            "amount": 8,
-            "unit": "tablespoons"
-          }
-        }
-      ],
-      "instructions": [
-        {
-          "instruction": "Mix the hot sauce, butter, mango habanero sauce, brown sugar, chili powder, garlic powder, onion powder, black pepper, cayenne pepper and seasoning salt in a bowl. Stir vigorously until completely combined.",
-          "number": 1
-        }
-      ],
-      "name": "Dirty Steve's Original Wing Sauce",
-      "tags": [
-        "sauce",
-        "dessert"
-      ]
-    };
-    recipeRepository = {
-      listOfRecipes: [recipe1, recipe2]
+    recipe1 = allRecipes.listOfRecipes[0];
+    recipe2 = allRecipes.listOfRecipes[1];
     }
-  });
+  );
 
   it('Should be a function', function() {
     expect(User).to.be.a('function');
@@ -174,21 +80,21 @@ describe('User', function() {
   it('Should be able to add recipes', function() {
     expect(user1.recipesToCook).to.deep.equal([]);
     expect(user1.recipesToCook.length).to.equal(0);
-
-    user1.addRecipe(222, recipeRepository);
+    
+    user1.addRecipe(222, allRecipes);
 
     expect(user1.recipesToCook).to.deep.equal([recipe1]);
     expect(user1.recipesToCook.length).to.equal(1);
 
-    user1.addRecipe(333, recipeRepository);
+    user1.addRecipe(333, allRecipes);
 
     expect(user1.recipesToCook).to.deep.equal([recipe1, recipe2]);
     expect(user1.recipesToCook.length).to.equal(2);
   });
 
   it('Should be able to remove recipes', function() {
-    user1.addRecipe(222, recipeRepository);
-    user1.addRecipe(333, recipeRepository);
+    user1.addRecipe(222, allRecipes);
+    user1.addRecipe(333, allRecipes);
 
     expect(user1.recipesToCook).to.deep.equal([recipe1, recipe2]);
     expect(user1.recipesToCook.length).to.equal(2);
@@ -205,8 +111,8 @@ describe('User', function() {
   });
 
   it('Should be able to filter recipes by tag', function() {
-    user1.addRecipe(222, recipeRepository);
-    user1.addRecipe(333, recipeRepository);
+    user1.addRecipe(222, allRecipes);
+    user1.addRecipe(333, allRecipes);
     const filteredList1 = user1.filterByTag('antipasti');
     const filteredList2 = user1.filterByTag('sauce');
     const filteredList3 = user1.filterByTag('dessert');
@@ -219,8 +125,8 @@ describe('User', function() {
   });
 
   it('Should be able to filter recipes by their name', function() {
-    user1.addRecipe(222, recipeRepository);
-    user1.addRecipe(333, recipeRepository);
+    user1.addRecipe(222, allRecipes);
+    user1.addRecipe(333, allRecipes);
     const filteredList = user1.filterByName("Loaded Chocolate Chip Pudding Cookie Cups");
     const filteredList2 = user1.filterByName("Dirty Steve's Original Wing Sauce");
     const filteredList3 = user1.filterByName("Microwaved Dinner");

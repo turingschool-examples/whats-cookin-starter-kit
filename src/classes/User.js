@@ -7,6 +7,7 @@ class User {
     this.recipesToCook = [];
   }
   generateRandomUser(usersList) {
+    // Takes argument of the array of users data from either users.js or the fetch() request
     const totalUsers = usersList.length
 
     function createRandomIndex(totalUsers) {
@@ -19,11 +20,9 @@ class User {
     this.id = usersList[randomIndex]["id"];
     this.pantry = usersList[randomIndex]["pantry"];
   }
-  addRecipe(recipeID, recipeRepo) { 
-    // 1️⃣ Important to set up dom/HTML/CSS to have IDs so we can use that data to match here below
-    // 2️⃣ Is the recipe repository going to be a global var/object? Need to be a parameter here?
-    // 3️⃣ Confirm the actual key name in the RecipeRepository
-    this.recipesToCook.push(recipeRepo.listOfRecipes.find(recipe => recipe["id"] === recipeID));
+  addRecipe(recipeID, allRecipes) { 
+    // 🚨 Important to set up dom/HTML/CSS to have IDs so we can use that data to match here below
+    this.recipesToCook.push(allRecipes.listOfRecipes.find(recipe => recipe["id"] === recipeID));
   }
   removeRecipe(recipeID) {
     const index = this.recipesToCook.findIndex(recipe => recipe["id"] === recipeID)
@@ -38,7 +37,7 @@ class User {
 }
 
 
-module.exports = User;
+export default User;
 
 
 
