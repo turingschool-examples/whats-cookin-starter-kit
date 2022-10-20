@@ -6,13 +6,12 @@
  forest green = 156,126, 68
  */
 
-/* 
-font-family: 'Abril Fatface', cursive;
-font-family: 'Playball', cursive; */
+/* font-family: 'Abril Fatface', cursive;
+ font-family: 'Playball', cursive;
+ font-family: 'Playfair Display', serif; */
 
 body {
-  font-family: "Playball", cursive;
-  background-color: rgb(230, 205, 141);
+  font-family: "Playfair Display", serif;
 }
 
 .hide {
@@ -22,17 +21,22 @@ body {
 .about-page {
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
+  margin: 50px;
+  border: 10px;
 }
 
 .about-paragraph {
   display: flex;
   justify-content: center;
+  border: 2px solid rgb(1, 1, 1);
 }
 
 #about {
-  width: 800px;
+  width: 1200px;
+  text-align: center;
   font-size: 15pt;
+  padding: 10px;
+  color: rgb(54, 54, 54);
 }
 
 .authors {
@@ -45,11 +49,12 @@ body {
 .profile {
   display: flex;
   flex-direction: row;
+  margin-left: 20px;
 }
 
 .profile-picture {
-  height: 75px;
-  width: 75px;
+  height: 80px;
+  width: 80px;
   background-color: #bbb;
   border-radius: 50%;
 }
@@ -58,4 +63,5 @@ body {
   margin: 10px;
   margin-top: 25px;
   font-size: 15pt;
+  color: rgb(54, 54, 54);
 }
