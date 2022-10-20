@@ -10,7 +10,10 @@ describe("Ingredient", () => {
       name: "wheat flour",
       estimatedCostInCents: 142,
     };
-    ingredient = new Ingredient(ingredientRow);
+    ingredient = new Ingredient(ingredientRow, {
+      amount: 1.5,
+      unit: "c",
+    });
   });
   it("should be a function", () => {
     expect(Ingredient).to.be.a("function");
@@ -24,8 +27,18 @@ describe("Ingredient", () => {
     expect(ingredient.name).to.equal("wheat flour");
   });
 
-  it("should have an estimated cost", () => {
-    const result = ingredient.countEstCost(3);
-    expect(result).to.equal(426);
+  it("should have a cost", () => {
+    expect(ingredient.estCost).to.equal(142);
+  });
+
+  it("should have quantity", () => {
+    expect(ingredient.quantity).to.deep.equal({
+      amount: 1.5,
+      unit: "c",
+    });
+  });
+
+  it("should count an estimated cost", () => {
+    expect(ingredient.countEstCost()).to.equal(213);
   });
 });

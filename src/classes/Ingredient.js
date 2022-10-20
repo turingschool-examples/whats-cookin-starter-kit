@@ -1,11 +1,12 @@
 class Ingredient {
-  constructor(ingredientRow) {
+  constructor(ingredientRow, quantity) {
     this.id = ingredientRow.id;
     this.name = ingredientRow.name;
     this.estCost = ingredientRow.estimatedCostInCents;
+    this.quantity = quantity;
   }
-  countEstCost(amount) {
-    return amount * this.estCost;
+  countEstCost() {
+    return this.quantity.amount * this.estCost;
   }
 }
 

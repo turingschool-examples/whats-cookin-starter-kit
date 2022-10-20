@@ -1,389 +1,117 @@
-import { expect } from 'chai';
-import Recipe from '../src/classes/Recipe';
-// const chai = require('chai');
-// const expect = chai.expect;
-//
-// const Recipe = require('../src/Recipe');
+import { expect } from "chai";
+import Ingredient from "../src/classes/Ingredient";
+import Recipe from "../src/classes/Recipe";
+import {
+  rawCookieRecipe,
+  rawPorkChopsRecipe,
+  mockIngredientsData,
+} from "./mock-data";
 
-describe('Recipe', function() {
-  let recipe1, recipe2, recipeData, ingredientsData
+describe("Recipe", function () {
+  let cookieRecipe, porkChopsRecipe;
   beforeEach(() => {
-    recipe1 = new Recipe({
-        "id": 595736,
-        "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
-        "ingredients": [
-          {
-            "id": 20081,
-            "quantity": {
-              "amount": 1.5,
-              "unit": "c"
-            }
-          },
-          {
-            "id": 18372,
-            "quantity": {
-              "amount": 0.5,
-              "unit": "tsp"
-            }
-          },
-          {
-            "id": 1123,
-            "quantity": {
-              "amount": 1,
-              "unit": "large"
-            }
-          },
-          {
-            "id": 19335,
-            "quantity": {
-              "amount": 0.5,
-              "unit": "c"
-            }
-          },
-          {
-            "id": 19206,
-            "quantity": {
-              "amount": 3,
-              "unit": "Tbsp"
-            }
-          },
-          {
-            "id": 19334,
-            "quantity": {
-              "amount": 0.5,
-              "unit": "c"
-            }
-          },
-          {
-            "id": 2047,
-            "quantity": {
-              "amount": 0.5,
-              "unit": "tsp"
-            }
-          },
-          {
-            "id": 1012047,
-            "quantity": {
-              "amount": 24,
-              "unit": "servings"
-            }
-          },
-          {
-            "id": 10019903,
-            "quantity": {
-              "amount": 2,
-              "unit": "c"
-            }
-          },
-          {
-            "id": 1145,
-            "quantity": {
-              "amount": 0.5,
-              "unit": "c"
-            }
-          },
-          {
-            "id": 2050,
-            "quantity": {
-              "amount": 0.5,
-              "unit": "tsp"
-            }
-          }
-        ],
-        "instructions": [
-          {
-            "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
-            "number": 1
-          },
-          {
-            "instruction": "Add egg and vanilla and mix until combined.",
-            "number": 2
-          },
-          {
-            "instruction": "Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.",
-            "number": 3
-          },
-          {
-            "instruction": "Place the cookie dough balls into ungreased muffin pan. Sprinkle with sea salt.",
-            "number": 4
-          },
-          {
-            "instruction": "Bake for 9 to 10 minutes, or until you see the edges start to brown.",
-            "number": 5
-          },
-          {
-            "instruction": "Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice cream and a drizzle of chocolate sauce.",
-            "number": 6
-          }
-        ],
-        "name": "Loaded Chocolate Chip Pudding Cookie Cups",
-        "tags": [
-          "antipasti",
-          "starter",
-          "snack",
-          "appetizer",
-          "antipasto",
-          "hor d'oeuvre"
-        ]
-      })
-    recipe2 = new Recipe({
-          "id": 678353,
-          "image": "https://spoonacular.com/recipeImages/678353-556x370.jpg",
-          "ingredients": [
-            {
-              "id": 1009016,
-              "quantity": {
-                "amount": 1.5,
-                "unit": "cups"
-              }
-            },
-            {
-              "id": 9003,
-              "quantity": {
-                "amount": 2,
-                "unit": ""
-              }
-            },
-            {
-              "id": 20027,
-              "quantity": {
-                "amount": 1,
-                "unit": "tablespoon"
-              }
-            },
-            {
-              "id": 1002046,
-              "quantity": {
-                "amount": 1,
-                "unit": "tablespoon"
-              }
-            },
-            {
-              "id": 11215,
-              "quantity": {
-                "amount": 1,
-                "unit": "clove"
-              }
-            },
-            {
-              "id": 1012046,
-              "quantity": {
-                "amount": 1,
-                "unit": "tablespoon"
-              }
-            },
-            {
-              "id": 19911,
-              "quantity": {
-                "amount": 0.25,
-                "unit": "cup"
-              }
-            },
-            {
-              "id": 16112,
-              "quantity": {
-                "amount": 1,
-                "unit": "tablespoon"
-              }
-            },
-            {
-              "id": 10010062,
-              "quantity": {
-                "amount": 24,
-                "unit": "ounce"
-              }
-            },
-            {
-              "id": 1102047,
-              "quantity": {
-                "amount": 4,
-                "unit": "servings"
-              }
-            },
-            {
-              "id": 16124,
-              "quantity": {
-                "amount": 1,
-                "unit": "tablespoon"
-              }
-            },
-            {
-              "id": 1016168,
-              "quantity": {
-                "amount": 1,
-                "unit": "tablespoon"
-              }
-            }
-          ],
-          "instructions": [
-            {
-              "instruction": "Season the pork chops with salt and pepper and grill or pan fry over medium high heat until cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook until the sauce thickens, about 2-5 minutes.Grill or saute the apple slices until just tender but still crisp.Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!",
-              "number": 1
-            }
-          ],
-          "name": "Maple Dijon Apple Cider Grilled Pork Chops",
-          "tags": [
-            "lunch",
-            "main course",
-            "main dish",
-            "dinner"
-          ]
-        })
+    cookieRecipe = new Recipe(rawCookieRecipe);
+    porkChopsRecipe = new Recipe(rawPorkChopsRecipe);
+  });
 
-        recipeData = [recipe1, recipe2]
-        ingredientsData = [{
-            "id": 20081,
-            "name": "wheat flour",
-            "estimatedCostInCents": 142
-          },
-          {
-            "id": 18372,
-            "name": "bicarbonate of soda",
-            "estimatedCostInCents": 582
-          },
-          {
-            "id": 1123,
-            "name": "eggs",
-            "estimatedCostInCents": 472
-          },
-          {
-            "id": 19335,
-            "name": "sucrose",
-            "estimatedCostInCents": 902
-          },
-          {
-            "id": 19206,
-            "name": "instant vanilla pudding",
-            "estimatedCostInCents": 660
-          },
-          {
-            "id": 19334,
-            "name": "brown sugar",
-            "estimatedCostInCents": 559
-          },
-          {
-            "id": 2047,
-            "name": "salt",
-            "estimatedCostInCents": 280
-          },
-          {
-            "id": 1012047,
-            "name": "fine sea salt",
-            "estimatedCostInCents": 528
-          },
-          {
-            "id": 10019903,
-            "name": "semi sweet chips",
-            "estimatedCostInCents": 253
-          },
-          {
-            "id": 1145,
-            "name": "unsalted butter",
-            "estimatedCostInCents": 617
-          },
-          {
-            "id": 2050,
-            "name": "vanilla",
-            "estimatedCostInCents": 926
-          },
-          {
-              "id": 1009016,
-              "name": "apple cider",
-              "estimatedCostInCents": 468
-            },
-            {
-              "id": 9003,
-              "name": "apple",
-              "estimatedCostInCents": 207
-            },
-            {
-              "id": 20027,
-              "name": "corn starch",
-              "estimatedCostInCents": 236
-            },
-            {
-              "id": 1002046,
-              "name": "dijon style mustard",
-              "estimatedCostInCents": 619
-            },
-            {
-              "id": 11215,
-              "name": "whole garlic clove",
-              "estimatedCostInCents": 220
-            },
-            {
-              "id": 1012046,
-              "name": "whole grain dijon mustard",
-              "estimatedCostInCents": 867
-            },
-            {
-              "id": 19911,
-              "name": "maple",
-              "estimatedCostInCents": 349
-            },
-            {
-              "id": 16112,
-              "name": "miso",
-              "estimatedCostInCents": 978
-            },
-            {
-              "id": 10010062,
-              "name": "pork chop",
-              "estimatedCostInCents": 834
-            },
-            {
-              "id": 1102047,
-              "name": "s&p",
-              "estimatedCostInCents": 524
-            },
-            {
-              "id": 16124,
-              "name": "soy sauce",
-              "estimatedCostInCents": 486
-            },
-            {
-              "id": 1016168,
-              "name": "sriracha sauce",
-              "estimatedCostInCents": 576
-            }]
-      })
+  it("should have an id", () => {
+    expect(cookieRecipe.id).to.equal(595736);
+    expect(rawPorkChopsRecipe.id).to.equal(678353);
+  });
 
-  it('should return true', function() {
+  it("should have a name", () => {
+    expect(rawCookieRecipe.name).to.equal(
+      "Loaded Chocolate Chip Pudding Cookie Cups"
+    );
+    expect(porkChopsRecipe.name).to.equal(
+      "Maple Dijon Apple Cider Grilled Pork Chops"
+    );
+  });
 
-    expect(true).to.equal(true)
-  })
+  it("should have an image", () => {
+    expect(cookieRecipe.image).to.equal(
+      "https://spoonacular.com/recipeImages/595736-556x370.jpg"
+    );
+    expect(rawPorkChopsRecipe.image).to.equal(
+      "https://spoonacular.com/recipeImages/678353-556x370.jpg"
+    );
+  });
 
-  it('should hold onto all its information', function() {
+  it("should have ingredients", () => {
+    expect(cookieRecipe.ingredients).to.deep.equal([
+      { id: 20081, quantity: { amount: 1.5, unit: "c" } },
+      { id: 18372, quantity: { amount: 0.5, unit: "tsp" } },
+    ]);
+    expect(porkChopsRecipe.ingredients).to.deep.equal([
+      { id: 1009016, quantity: { amount: 1.5, unit: "cups" } },
+      { id: 9003, quantity: { amount: 2, unit: "" } },
+    ]);
+  });
 
-    expect(recipe1.id).to.equal(595736)
-    expect(recipe2.id).to.equal(678353)
-    expect(recipe1.name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups")
-  })
+  it("should have instructions", () => {
+    expect(cookieRecipe.instructions).to.deep.equal([
+      { instruction: "Instruction for step 1 for Cookie Cups", number: 1 },
+      { instruction: "Instruction for step 2 for Cookie Cups", number: 2 },
+    ]);
+  });
 
-  it('should determine the names of ingredients needed',
-  function() {
-    let recipe1Ingredients = recipe1.getIngredientNames()
-    let recipe2Ingredients = recipe2.getIngredientNames()
-    expect(recipe1Ingredients).to.deep.equal([])
-    expect(recipe2Ingredients).to.deep.equal([])
- // console.log('ingredient', recipe1.ingredients[0].id);
- // console.log('ingredients', recipe1.ingredients);
+  it("should have tags", () => {
+    expect(cookieRecipe.tags).to.deep.equal([
+      "antipasti",
+      "starter",
+      "snack",
+      "appetizer",
+      "antipasto",
+      "hor d'oeuvre",
+    ]);
+    expect(porkChopsRecipe.tags).to.deep.equal([
+      "lunch",
+      "main course",
+      "main dish",
+      "dinner",
+    ]);
+  });
 
-  })
+  it("should retrieve ingredient", () => {
+    cookieRecipe.retrieveIngredients(mockIngredientsData);
+    expect(cookieRecipe.ingredients[0]).instanceOf(Ingredient);
+    expect(cookieRecipe.ingredients[0].name).to.equal("wheat flour");
 
-  // method in ingredient class instead
-  // it.skip('should get the cost of its ingredients', function() {
-  //   recipe1.estimatedCostInCents()
-  //   recipe2.estimatedCostInCents()
-  // })
+    porkChopsRecipe.retrieveIngredients(mockIngredientsData);
+    expect(porkChopsRecipe.ingredients[0]).instanceOf(Ingredient);
+    expect(porkChopsRecipe.ingredients[0].name).to.equal("apple cider");
+  });
 
-  it('should return its instructions', function() {
-    let recipe1Instructions = recipe1.getInstructions()
-    let recipe2Instructions = recipe2.getInstructions()
-    expect(recipe1Instructions).to.deep.equal(recipe1.instructions)
-    expect(recipe2Instructions).to.deep.equal(recipe2.instructions)
+  it("should determine ingredient names", () => {
+    cookieRecipe.retrieveIngredients(mockIngredientsData);
+    const cookieRecipeIngredients = cookieRecipe.determineNames();
+    expect(cookieRecipeIngredients).to.deep.equal([
+      "wheat flour",
+      "bicarbonate of soda",
+    ]);
 
+    porkChopsRecipe.retrieveIngredients(mockIngredientsData);
+    const porkChopsRecipeIngredients = porkChopsRecipe.determineNames();
+    expect(porkChopsRecipeIngredients).to.deep.equal(["apple cider", "apple"]);
+  });
 
-  })
+  it("should get cost of its ingredients", () => {
+    cookieRecipe.retrieveIngredients(mockIngredientsData);
+    const cookieRecipeCost = cookieRecipe.getCost();
+    expect(cookieRecipeCost).to.equal(504);
 
-})
+    porkChopsRecipe.retrieveIngredients(mockIngredientsData);
+    const porkChopsRecipeCost = porkChopsRecipe.getCost();
+    expect(porkChopsRecipeCost).to.equal(1116);
+  });
+
+  it("should return its instructions", () => {
+    expect(cookieRecipe.getInstructions()).to.deep.equal(
+      cookieRecipe.instructions
+    );
+
+    expect(porkChopsRecipe.getInstructions()).to.deep.equal(
+      porkChopsRecipe.instructions
+    );
+  });
+});
