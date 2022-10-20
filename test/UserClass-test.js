@@ -185,7 +185,6 @@ describe('User', () => {
             "antipasto",
             "hor d'oeuvre",
           ]
-          newUser.filteredTagsArray
           newUser.filterByTag("starter")
           expect(newUser.filteredTagsArray[1]).to.deep.equal('starter')
     })

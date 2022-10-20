@@ -4,7 +4,6 @@ class User {
         this.id = userData.id
         this.pantry = userData.pantry
         this.recipesToCook = []
-        this.filteredTagsArray = []
     }
     addRecipe(recipe) {
         if(this.recipesToCook.includes(recipe)) {
@@ -19,12 +18,13 @@ class User {
             this.recipesToCook.splice(index, 1)
         }
     }
-    filterByTag() {
-        console.log(this.filteredTagsArray)
-        this.recipe.forEach(recipe => {
-            if(recipe.tags.includes(tag)) {
-                this.filteredTagsArray.push(recipe)
-                console.log(this.filteredTagsArray)
+    filterByTag(word) {
+        let filteredTagsArray = []
+        console.log(filteredTagsArray)
+        this.recipesToCook.forEach(recipe => {
+            if(recipe.tags.includes(word)) {
+                filteredTagsArray.push(recipe)
+                console.log(filteredTagsArray)
             }
         })
         return this.filteredTagsArray
