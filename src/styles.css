@@ -1,20 +1,12 @@
 * {
   margin: 0;
   padding: 0;
-  /* border: 2px solid black; */
 }
-
-/* h1 {
-  display: inline-block;
-  width: 20%;
-  background-color: blueviolet;
-} */
 
 body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  /* background-color: transparent; */
 }
 
 header {
@@ -24,7 +16,6 @@ header {
   height: 50px;
   background-color: white;
   border-bottom: 2px solid gray;
-  /* border-bottom: 2px solid blue; */
 }
 
 .nav-bar-container {
@@ -57,7 +48,6 @@ header {
   align-items: center;
   width: 50%;
   gap: 65px;
-  /* border-right: 2px solid red; */
 }
 
 .header-right-align {
@@ -71,7 +61,6 @@ header {
 
 .featured-recipe {
   display: flex;
-  /* margin-top: 100; */
   background-color: yellow;
   align-items: center;
   justify-content: space-around;
@@ -93,7 +82,6 @@ header {
   margin-top: 50px;
   height: auto;
   width: 100%;
-  /* border: 2px solid red; */
   background-color: aqua;
 }
 
