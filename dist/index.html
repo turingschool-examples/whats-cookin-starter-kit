@@ -2,16 +2,17 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../src/styles.css">
     <title> Whats Cookin' </title>
   </head>
-  <body>
+  <body class="home-page">
     <header>
       <section class="mini-menu-bar-container">
-        <button class="all-recipes-button menu-button"> All Recipes </button>
-        <button class="entrees-button menu-button"> Entrees </button>
-        <button class="side-dishes-button menu-button"> Side Dishes </button>
-        <button class="desserts-button menu-button"> Desserts </button>
-        <button class="my-recipes-button menu-button"> My Recipes </button>
+        <button class="all-recipes-button" id="menu-button"> All Recipes </button>
+        <button class="entrees-button" id="menu-button"> Entrees </button>
+        <button class="side-dishes-button" id="menu-button"> Side Dishes </button>
+        <button class="desserts-button" id="menu-button"> Desserts </button>
+        <button class="my-recipes-button" id="menu-button"> My Recipes </button>
       </section>
       <h1> Whats Cookin', Good Lookin'? </h1>
       <div class="search-bar">
@@ -125,6 +126,22 @@
       <!-- links and contact info here -->
     </footer>
   </body>
+  <section class="all-recipes-page hidden">
+    <header>
+      <section class="mini-menu-bar-container">
+        <button class="all-recipes-button" id="menu-button"> All Recipes </button>
+        <button class="entrees-button" id="menu-button"> Entrees </button>
+        <button class="side-dishes-button" id="menu-button"> Side Dishes </button>
+        <button class="desserts-button" id="menu-button"> Desserts </button>
+        <button class="my-recipes-button" id="menu-button"> My Recipes </button>
+      </section>
+      <h1> Whats Cookin', Good Lookin'? </h1>
+      <div class="search-bar">
+        <input type="text" placeholder="Search">
+        <button class="search-button"> Search </button>
+      </div>
+    </header>
+  </section>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>

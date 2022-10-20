@@ -14,7 +14,6 @@ class Recipe {
       console.log(ingredient.id)
       return ingredient.id
     })
-    let 
     //create a list(array) of ingredient
     //names for a recipe.
     //if(ingredient.id === ingredientsData[i].id)

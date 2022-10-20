@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 body {
   background-color: beige; 
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -15,7 +19,7 @@ header, footer {
   width: 100vw;
 }
 
-.menu-button {
+#menu-button {
   background-color: aliceblue;
 }
 
@@ -25,7 +29,7 @@ header, footer {
 }
 
 .featured-container {
-  background-image: url(https://tse1.mm.bing.net/th?id=OIP.XN1S-j-cyW-zS3fuY5TkugHaE8&pid=Api&P=0);
+  background-image: url("https://tse1.mm.bing.net/th?id=OIP.XN1S-j-cyW-zS3fuY5TkugHaE8&pid=Api&P=0");
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -44,22 +48,23 @@ header, footer {
 }
 
 .halloween-favorites-container {
-  background-image: url(src/images/assets/halloween.jpg);
+  background-image: url("./images/assets/halloween.jpg");
   background-size: cover;
 }
 
 .meatless-entrees-container {
-  background-image: url(src/images/assets/veggies.jpg);
+  background-image: url("./images/assets/veggies.jpg");
   background-size: cover;
 }
 
 .delicious-dessert-container {
-  background-image: url(src/images/assets/desserts.jpg);
+  background-image: url("./images/assets/desserts.jpg");
   background-size: cover;
 } 
 
 .savory-soups-container {
-  background-image: url(src/images/assets/soups.jpg);
+  background-image: url("./images/assets/soups.jpg");
   background-size: cover;
 }
+
 
