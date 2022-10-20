@@ -79,6 +79,7 @@ header {
 .practice-tile {
   height: 200px;
   width: 200px;
+  margin: 10px;
   border: 5px solid black
 }
 
@@ -93,7 +94,8 @@ header {
 }
 
 .all-recipes-container {
-  
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   height: auto;
   width: auto;
 }
