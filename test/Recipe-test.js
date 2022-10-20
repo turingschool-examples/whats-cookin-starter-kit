@@ -1,14 +1,12 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
-// const chai = require('chai');
-// const expect = chai.expect;
-//
-// const Recipe = require('../src/Recipe');
+
 
 describe('Recipe', function() {
-  let recipe1, recipe2, recipeData, ingredientsData
+    let recipe1, recipe2, ingredientList, recipeList, recipe
   beforeEach(() => {
-    recipe1 = new Recipe({
+
+    recipe1 = {
         "id": 595736,
         "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
         "ingredients": [
@@ -125,8 +123,8 @@ describe('Recipe', function() {
           "antipasto",
           "hor d'oeuvre"
         ]
-      })
-    recipe2 = new Recipe({
+      }
+    recipe2 = {
           "id": 678353,
           "image": "https://spoonacular.com/recipeImages/678353-556x370.jpg",
           "ingredients": [
@@ -228,10 +226,10 @@ describe('Recipe', function() {
             "main dish",
             "dinner"
           ]
-        })
+        }
 
-        recipeData = [recipe1, recipe2]
-        ingredientsData = [{
+        ingredientList = [
+        {
             "id": 20081,
             "name": "wheat flour",
             "estimatedCostInCents": 142
@@ -346,6 +344,10 @@ describe('Recipe', function() {
               "name": "sriracha sauce",
               "estimatedCostInCents": 576
             }]
+
+            recipeList = [recipe1, recipe2]
+
+            recipe = new Recipe(recipeList)
       })
 
   it('should return true', function() {
@@ -353,33 +355,73 @@ describe('Recipe', function() {
     expect(true).to.equal(true)
   })
 
-  it('should hold onto all its information', function() {
+  it('should contain all data for single recipe', function() {
 
-    expect(recipe1.id).to.equal(595736)
-    expect(recipe2.id).to.equal(678353)
-    expect(recipe1.name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups")
+
   })
 
-  it('should determine the names of ingredients needed',
-  function() {
-    let recipe1Ingredients = recipe1.getIngredientNames()
-    let recipe2Ingredients = recipe2.getIngredientNames()
-    expect(recipe1Ingredients).to.deep.equal([])
-    expect(recipe2Ingredients).to.deep.equal([])
- // console.log('ingredient', recipe1.ingredients[0].id);
- // console.log('ingredients', recipe1.ingredients);
+  it('should hold onto all its information', function() {
 
+    expect(recipe.recipeList).to.equal(recipeList)
+  })
+
+  it('should find information by Id', function() {
+    let info1 = recipe.getRecipeById(595736)
+    let info2 = recipe.getRecipeById(678353)
+
+    expect(info1).to.deep.equal(recipe1)
+    expect(info2).to.deep.equal(recipe2)
+  })
+
+
+  it('should determine the ids of ingredients needed',
+  function() {
+  //let ingredientName1 = recipe.getIngredientIds(595736)
+  let ingredientName2 = recipe.getIngredientIds(678353)
+//console.log(recipe1.ingredients)
+  let ingredientIdList2 = [
+   1009016,
+   9003,
+   20027,
+   1002046,
+   11215,
+   1012046,
+   19911,
+   16112,
+   10010062,
+   1102047,
+   16124,
+   1016168,
+  ]
+
+    //expect(ingredientName1).to.deep.equal(ingredientIdList1)
+    expect(ingredientName2).to.deep.equal(ingredientIdList2)
   })
 
   // method in ingredient class instead
   // it.skip('should get the cost of its ingredients', function() {
+  // let ingredientIdList1 = [
+  // { id: 1009016, quantity: { amount: 1.5, unit: 'cups' } },
+  // { id: 9003, quantity: { amount: 2, unit: '' } },
+  // { id: 20027, quantity: { amount: 1, unit: 'tablespoon' } },
+  // { id: 1002046, quantity: { amount: 1, unit: 'tablespoon' } },
+  // { id: 11215, quantity: { amount: 1, unit: 'clove' } },
+  // { id: 1012046, quantity: { amount: 1, unit: 'tablespoon' } },
+  // { id: 19911, quantity: { amount: 0.25, unit: 'cup' } },
+  // { id: 16112, quantity: { amount: 1, unit: 'tablespoon' } },
+  // { id: 10010062, quantity: { amount: 24, unit: 'ounce' } },
+  // { id: 1102047, quantity: { amount: 4, unit: 'servings' } },
+  // { id: 16124, quantity: { amount: 1, unit: 'tablespoon' } },
+  // { id: 1016168, quantity: { amount: 1, unit: 'tablespoon' } }
+  //]
   //   recipe1.estimatedCostInCents()
   //   recipe2.estimatedCostInCents()
   // })
 
   it('should return its instructions', function() {
-    let recipe1Instructions = recipe1.getInstructions()
-    let recipe2Instructions = recipe2.getInstructions()
+    console.log(recipe1.instructions)
+    let recipe1Instructions = recipe.getInstructions(595736)
+    let recipe2Instructions = recipe.getInstructions(678353)
     expect(recipe1Instructions).to.deep.equal(recipe1.instructions)
     expect(recipe2Instructions).to.deep.equal(recipe2.instructions)
 

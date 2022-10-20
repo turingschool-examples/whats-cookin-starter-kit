@@ -1,24 +1,25 @@
 class Recipe {
-  constructor(recipeData) {
-    this.id = recipeData.id
-    this.image = recipeData.image
-    this.ingredients = recipeData.ingredients
-    this.instructions = recipeData.instructions
-    this.name = recipeData.name
-    this.tags = recipeData.tags
-    //this.ingredientNames = []
+  constructor(recipeList) {
+    this.recipeList = recipeList
+
   }
 
-  getIngredientNames() {
-    let ingredientIds = this.ingredients.map(ingredient => {
-      console.log(ingredient.id)
+  getRecipeById(currentId){
+    let singleRecipe = this.recipeList.find((recipe) => {
+      return recipe.id === currentId
+    })
+    return singleRecipe
+  }
+
+  getIngredientIds(currentId) {
+    let singleRecipe = this.recipeList.find((recipe) => {
+      return recipe.id === currentId
+    })
+    console.log('singleRecipe', singleRecipe.ingredients);
+    return singleRecipe.ingredients.map(ingredient => {
       return ingredient.id
     })
-    let 
-    //create a list(array) of ingredient
-    //names for a recipe.
-    //if(ingredient.id === ingredientsData[i].id)
-  }
+    }
 
 // estimatedCostInCents(id) {
 //     The price (estimatedCostInCents) of an ingredient is per unit.
@@ -27,19 +28,12 @@ class Recipe {
 // Similarly, if a tomato is $2, and the recipe requires 2 tomatoes, then the cost would be $4.
 //  }
 
-  getInstructions() {
-    return this.instructions
+  getInstructions(currentId) {
+    let singleRecipe = this.recipeList.find((recipe) => {
+      return recipe.id === currentId
+    })
+    return singleRecipe.instructions
   }
 }
-
-// It should have methods to:
-// Determine the names of ingredients needed
-// if id #s match, return name
-// ==>use ingredients id to access ingredient names
-//  and costs
-// ==>use recipe.ingredients.quantity to access
-//  amounts and units
-// Get the cost of its ingredients
-
 
 export default Recipe
