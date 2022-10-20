@@ -9,17 +9,30 @@
 
 <body>
   <header>
-    <div class="nav-bar-container">
+    <nav class="nav-bar-container">
       <div class="header-left-align">
-        <h1>Whats Cookin</h1>
+        <h1>What's Cookin'</h1>
         <input type="search">
       </div>
       <div class="header-right-align">
-        <button>My recipes<button>
-        <button>All recipes<button>
+        <button>My recipes</button>
+            <button>All recipes</button>
       </div>
-    </div>
+    </nav>
   </header>
+  <section class="below-header-container">
+    <section class="featured-recipe">
+      <!-- recipe of the day goes here -->
+    </section>
+
+    <section class="filter-bar">
+      <!-- filter by tag goes here -->
+    </section>
+
+    <section class="all-recipes-container">
+      <div class="practice-tile">practice tile</div>
+    </section>
+  </section>
 </body>
 <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
 <script src="bundle.js"></script>
