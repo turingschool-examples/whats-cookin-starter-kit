@@ -21,7 +21,6 @@ body {
 .about-page {
   display: flex;
   flex-direction: column;
-  border: 10px;
   margin: 30px;
 }
 
@@ -56,13 +55,11 @@ body {
 .profile-picture {
   height: 100px;
   width: 100px;
-  background-color: #bbb;
   border-radius: 50%;
   border: 2px solid black;
 }
 
 .github {
-  margin: 10px;
   margin-left: 20px;
   margin-top: 30px;
   font-size: 15pt;
