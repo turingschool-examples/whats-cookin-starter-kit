@@ -1,12 +1,55 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-  </head>
-  <body>
-    <h1>Whats Cookin</h1>
-  </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="src/styles.css" />
+  <title>Whats Cookin</title>
+</head>
+
+<body>
+  <header>
+    <nav class="nav-bar-container">
+      <div class="header-left-align">
+        <h1>What's Cookin'</h1>
+        <input type="search">
+      </div>
+      <div class="header-right-align">
+        <button>My recipes</button>
+            <button>All recipes</button>
+      </div>
+    </nav>
+  </header>
+  <section class="below-header-container">
+    <section class="featured-recipe">
+      <img src="https://www.cuisinart.com/globalassets/recipes/breads.jpg">
+      <!-- recipe of the day goes here -->
+    </section>
+
+    <section class="filter-bar">
+      <select>
+        <option>Click here to filter</option>
+        <option>Option</option>
+        <option>Option</option>
+        <option>Option</option>
+        <option>Option</option>
+      </select>
+      <!-- filter by tag goes here -->
+    </section>
+
+    <section class="all-recipes-container">
+      <div class="practice-tile">practice tile</div>
+      <div class="practice-tile">practice tile</div>
+      <div class="practice-tile">practice tile</div>
+      <div class="practice-tile">practice tile</div>
+      <div class="practice-tile">practice tile</div>
+      <div class="practice-tile">practice tile</div>
+      <div class="practice-tile">practice tile</div>
+      <div class="practice-tile">practice tile</div>
+    </section>
+  </section>
+</body>
+<!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+<script src="bundle.js"></script>
+
 </html>
