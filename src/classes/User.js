@@ -13,12 +13,18 @@ class User {
     return this.favorites
   }
 
-  filterFavsByTag() {
-
+  filterFavsByTag(tag) {
+    let favByTagResult = this.favorites.filter((tag) => {
+     this.favorites
+    })
+    return
   }
 
-  filterFavsByName() {
+  filterFavsByName(name) {
+     let favByNameResult = this.favorites.filter((name) => {
 
+    })
+    return
   }
 }
 
