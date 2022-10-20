@@ -1,21 +1,11 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
-// const chai = require('chai');
-// const expect = chai.expect;
-//
-// const Recipe = require('../src/Recipe');
+
 
 describe('Recipe', function() {
     let recipe1, recipe2, ingredientList, recipeList, recipe
-    // let recipe1, recipe2, recipeData, ingredientsData
   beforeEach(() => {
-    /*
-    -Recipe Class is taking in actual data
-    from recipe dataset file BUT should be taking
-    in sample data from the test.
-    -Recipe Test is calling Recipe Class with a single
-    recipe object, rather than an array of recipe objects
-    */
+
     recipe1 = {
         "id": 595736,
         "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -354,10 +344,9 @@ describe('Recipe', function() {
               "name": "sriracha sauce",
               "estimatedCostInCents": 576
             }]
-            //recipe list represents the data file
+
             recipeList = [recipe1, recipe2]
-            //recipe is the object instance that takes in
-            //  the data file
+
             recipe = new Recipe(recipeList)
       })
 
@@ -367,9 +356,8 @@ describe('Recipe', function() {
   })
 
   it('should contain all data for single recipe', function() {
-console.log(recipe.recipeList)
-//console.log(recipe)
-    //expect()
+
+
   })
 
   it('should hold onto all its information', function() {
@@ -386,7 +374,7 @@ console.log(recipe.recipeList)
   })
 
 
-  it.only('should determine the ids of ingredients needed',
+  it('should determine the ids of ingredients needed',
   function() {
   //let ingredientName1 = recipe.getIngredientIds(595736)
   let ingredientName2 = recipe.getIngredientIds(678353)

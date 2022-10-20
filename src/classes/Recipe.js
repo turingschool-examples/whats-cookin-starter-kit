@@ -19,14 +19,7 @@ class Recipe {
     return singleRecipe.ingredients.map(ingredient => {
       return ingredient.id
     })
-    // let ingredientIds = this.recipeList.map(recipe => {
-    //   console.log('recipe', recipe)
-    //   // console.log('recipe ingredients', recipe.ingredients)
-    //   return recipe.ingredients
-    // })
-    // //console.log('ingredientIds', ingredientIds)
-    // return ingredientIds
-      }
+    }
 
 // estimatedCostInCents(id) {
 //     The price (estimatedCostInCents) of an ingredient is per unit.
@@ -40,20 +33,7 @@ class Recipe {
       return recipe.id === currentId
     })
     return singleRecipe.instructions
-    //return this.instructions
   }
 }
-
-// It should have methods to:
-// 1. Determine the names of ingredients needed
-// if id #s match, return name
-// ==>use ingredients id to access ingredient names
-//  and costs
-// ==>use recipe.ingredients.quantity to access
-//  amounts and units
-// 2.Get the cost of its ingredients
-//3.Get instructions
-
-
 
 export default Recipe
