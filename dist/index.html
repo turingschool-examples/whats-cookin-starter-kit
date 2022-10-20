@@ -1,65 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
-    <link rel="stylesheet" type="text/css" href="../src/styles.css">
-  </head>
-  <body>
-    <header class="main-header">
-      <img class ="logo-item" img src="../src/images/turing-logo.png" height:5px>
-      <input id="searchBar" placeholder="Search"></input>
-      <button class="add-your-own-recipe">Add your own recipe</button>
-      <button class="login-button">Login</button>
-    </header>
-    <section class="main-center-boxes">
-      <section class="main-left-side">
-        <div class="left-side-first-recipe">
-          <div class="left-side-featured-recipe-box">
-            <h1 class="left-side-recipe-name">Recipe Name:
-              <p>Cooked Chicken Breast</p>
-            </h1>
-            <h1 class="left-side-recipe-ingredients">List of Ingredients:
-              <p>Chicken breast</p>
-              <p>Butter</p>
-              <p>Seasoning</p>
-            </h1>
-          </div>
-            <img class="first-recipe-image" img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPhM7EUGODdBbalQrSDd1kt4TtQTYmYwiZkg&usqp=CAU">
+
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
+  <link rel="stylesheet" type="text/css" href="../src/styles.css">
+</head>
+
+<body>
+  <header class="main-header">
+    <img class="logo-item" img src="../src/images/turing-logo.png" height:5px>
+    <input id="searchBar" placeholder="Search"></input>
+    <button class="add-your-own-recipe">Add your own recipe</button>
+    <button class="login-button">Login</button>
+  </header>
+  <section class="main-center-boxes">
+    <section class="main-left-side">
+      <div class="left-side-first-recipe">
+        <div class="left-side-featured-recipe-box">
+          <h1 class="left-side-recipe-name">Recipe Name:
+            <p class='current-recipe-name'>Cooked Chicken Breast</p>
+          </h1>
+          <h1 class="current-recipe-ingredients">List of Ingredients:
+            <p>Chicken breast</p>
+            <p>Butter</p>
+            <p>Seasoning</p>
+          </h1>
         </div>
-          <section class="three-images-bottom-left-main">
-            <div class="image-left">
-              <header class="image-left-header"></header>
-              <h1 class="ingredients-for-left-header">Ingredients:
-                <p>Cookie Dough</p>
-                <p>Butter</p>
-                <p>chocolate chips</p>
-              </h1>
+        <img class="current-recipe-image" img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPhM7EUGODdBbalQrSDd1kt4TtQTYmYwiZkg&usqp=CAU">
+      </div>
+      <section class="three-images-bottom-left-main">
+        <div class="left-random-card">
+          <header class="image-left-header"></header>
+        </div>
+        <div class="middle-random-card">
+          <header class="image-middle-header"></header>
+        </div>
+        <div class="right-random-card">
+          <header class="image-right-header"></header>
+        </div>
 
-            </div>
-            <div class="image-middle">
-              <header class="image-middle-header"></header>
-              <h1 class="ingredients-for-middle-header">Ingredients:
-                <p>Chicken</p>
-                <p>Butter</p>
-                <p>Peppers</p>
-              </h1>
-            </div>
-            <div class="image-right">
-              <header class="image-right-header"></header>
-              <h1 class="ingredients-for-right-header">Ingredients:
-                <p>Honey</p>
-                <p>Syrup</p>
-                <p>Sugar</p>
-              </h1>
-            </div>
-
-        </section> 
       </section>
+    </section>
 
-      <section class="main-right-saved-section">
-        <div class="main-right-side-title">Saved</div>
-        <!-- <div class="main-right-side-first-box">
+    <section class="main-right-saved-section">
+      <div class="main-right-side-title">Saved</div>
+      <!-- <div class="main-right-side-first-box">
           <header class="main-right-side-first-header">First</header>
         </div>
         <div class="main-right-side-second-box">
@@ -71,31 +58,32 @@
         <div class="main-right-side-fourth-box">
           <header class="main-right-side-fourth-header">Fourth</header>
         </div> -->
-      </section>
     </section>
-    <footer class="main-footer">
-      <div class="subscribe-title">Subscribe
-        <input placeholder="Enter Email Here!">
+  </section>
+  <footer class="main-footer">
+    <div class="subscribe-title">Subscribe
+      <input placeholder="Enter Email Here!">
+    </div>
+    <div class="contact-information">
+      <div class="connect-with-us">Connect with us now</div>
+      <div class="all-the-connect-buttons">
+        <button class="facebook-button">FB</button>
+        <button class="twitter-button">TW</button>
+        <button class="instagram-button">IG</button>
+        <button class="youtube-button">YT</button>
       </div>
-      <div class="contact-information">
-        <div class="connect-with-us">Connect with us</div>
-        <div class="all-the-connect-buttons">
-          <button class="facebook-button">FB</button>
-          <button class="twitter-button">TW</button>
-          <button class="instagram-button">IG</button>
-          <button class="youtube-button">YT</button>
-        </div>
-      </div>
-      <div class="learn-more">
-        <div class="learn-more-title">Learn More</div>
-        <div class="all-the-learn-more-links">
+    </div>
+    <div class="learn-more">
+      <div class="learn-more-title">Learn More</div>
+      <div class="all-the-learn-more-links">
         <button class="contact-us-button">Contact Us</button>
         <button class="about-us-button">About Us</button>
         <button class="privacy-policy">Privacy Policy</button>
-        </div>
       </div>
-    </footer>
-  </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
+    </div>
+  </footer>
+</body>
+<!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+<script src="bundle.js"></script>
+
 </html>
