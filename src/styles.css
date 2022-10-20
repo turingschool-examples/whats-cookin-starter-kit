@@ -48,10 +48,14 @@
   height: 100%;
 }
 
+.section--buttons-bar {
+  display: flex;
+}
+
 .section--nav, .section--list-filter {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 2%;
+  padding-bottom: 1%;
 }
 
 .section--list-filter {
@@ -92,6 +96,7 @@ body {
 h1, h2 {
   text-align: center;
   font-family: 'Oswald';
+  margin: auto;
 }
 
 h3, h4 {
