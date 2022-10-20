@@ -43,7 +43,7 @@ function clickHandler(){
 }
 
 function onLoadRecipe(){
-    currentRecipe = new Recipe(recipeData[0])
+    currentRecipe = new Recipe(recipeData[getRandomIndex(recipeData)])
     console.log(currentRecipe)
     updateMainRecipeName()
     updateMainRecipeImage()
@@ -73,11 +73,11 @@ function updateMainRecipeImage(){
 }
 
 function updateMainRandomRecipes(){
-    leftRandomImageCard.innerHTML = `<img class="left-random-image" img src=${randomRecipes[0].image}/>
+    leftRandomImageCard.innerHTML = `<img class="left-random-image" img src=${randomRecipes[0].image}>
     <h1 class="left-random-name">${randomRecipes[0].name}</h1>`
-    middleRandomImageCard.innerHTML = `<img class="middle-random-image" img src=${randomRecipes[1].image}/>
+    middleRandomImageCard.innerHTML = `<img class="middle-random-image" img src=${randomRecipes[1].image}>
     <h1 class="middle-random-name">${randomRecipes[1].name}</h1>`
-    rightRandomImageCard.innerHTML = `<img class="right-random-image" img src=${randomRecipes[2].image}/>
+    rightRandomImageCard.innerHTML = `<img class="right-random-image" img src=${randomRecipes[2].image}>
     <h1 class="right-random-name">${randomRecipes[2].name}</h1>`
 
 }
