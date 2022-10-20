@@ -1,17 +1,17 @@
 const Ingredient = require("./Ingredient")
 
 class Recipe {
-  constructor(recipeData, ingredientsData) {
-    this.id = recipeData.id
-    this.name = recipeData.name
-    this.image = recipeData.image
-    this.instructions = recipeData.instructions
-    this.tags = recipeData.tags
-    this.ingredients = this.instantiateIngredients(recipeData, ingredientsData)
+  constructor(recipe, ingredientsData) {
+    this.id = recipe.id
+    this.name = recipe.name
+    this.image = recipe.image
+    this.instructions = recipe.instructions
+    this.tags = recipe.tags
+    this.ingredients = this.instantiateIngredients(recipe, ingredientsData)
   }
 
-  instantiateIngredients(recipeData, ingredientsData) {
-    return recipeData.ingredients.map(recipeObject => {
+  instantiateIngredients(recipe, ingredientsData) {
+    return recipe.ingredients.map(recipeObject => {
       let targetDatasetObject = ingredientsData.find(datasetObj => recipeObject.id === datasetObj.id)
       return new Ingredient(targetDatasetObject, recipeObject)
     })

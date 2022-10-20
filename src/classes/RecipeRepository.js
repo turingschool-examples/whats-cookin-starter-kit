@@ -4,7 +4,7 @@ import Recipe from "./Recipe"
 
 class RecipeRepository {
   constructor(recipeData, ingredientsData) {
-    this.recipeList = this.makeRecipes(recipeData, ingredientsData);
+    this.recipeList = this.instantiateRecipes(recipeData, ingredientsData);
   }
 
   instantiateRecipes(recipeData) {
