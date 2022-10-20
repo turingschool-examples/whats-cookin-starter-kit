@@ -29,4 +29,4 @@ class RecipeRepository {
   }
 }
 
-export default RecipeRepository;
+export default RecipeRepository
