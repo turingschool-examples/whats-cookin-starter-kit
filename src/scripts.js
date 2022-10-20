@@ -2,6 +2,7 @@ import "./styles.css";
 import loadData from "./apiCalls";
 import RecipeRepository from "./classes/RecipeRepository";
 import Recipe from "./classes/Recipe";
+import Ingredient from "./classes/Ingredient-class";
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import "./images/turing-logo.png";
 import "./images/AndrewProfile.png";
@@ -31,28 +32,30 @@ Promise.all([
   ingredientsData = data[1];
   recipeData = data[2];
 
-  const newRecipeData = cleanUpData(recipeData);
+  createInstances(recipeData, ingredientsData);
 
-  let allRecipes = new RecipeRepository(newRecipeData);
+  let allRecipes = new RecipeRepository(recipeData);
 
   console.log("USER DAAAATA", userData);
   console.log("INGREEEEEDIENT", ingredientsData);
   console.log("RECIPEEEE", recipeData);
   console.log(currentUser);
   console.log(allRecipes);
-  console.log(newRecipeData);
 });
 
 function createInstances(dataSet1, dataSet2) {
-  makeRecipesList(dataSet1)
+  makeRecipesList(dataSet1);
+  makeIngredientsList(dataSet2);
 }
 
 function makeRecipesList(dataSet) {
-  return dataSet.recipeData.map((element) => {
+  recipeData = dataSet.recipeData.map((element) => {
     return new Recipe(element);
   });
 }
 
 function makeIngredientsList(dataSet) {
-  dataSet.
+  ingredientsData = dataSet.ingredientsData.map((element) => {
+    return new Ingredient(element);
+  });
 }
