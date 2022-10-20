@@ -16,11 +16,13 @@ class Recipe {
     });
   }
 
+
   determineNames() {
     const ingredientNames = this.ingredients.map((item) => {
       return item.name;
     });
     return ingredientNames;
+
   }
 
   getCost() {
