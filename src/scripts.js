@@ -1,27 +1,28 @@
+//IMPORTS
+
 import "./styles.css";
 import loadData from "./apiCalls";
 import RecipeRepository from "./classes/RecipeRepository";
 import Recipe from "./classes/Recipe";
 import Ingredient from "./classes/Ingredient-class";
 import User from "./classes/User";
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import "./images/turing-logo.png";
 import "./images/AndrewProfile.png";
 import "./images/BrettProfile.png";
 import "./images/CourtneyProfile.png";
 import "./images/DaniProfile.png";
 
-console.log("Hello world");
-
-const allRecipes = new RecipeRepository();
-console.log(allRecipes);
+//VARIABLES
 
 let userData;
 let ingredientsData;
 let recipeData;
 let currentUser;
 
-// const allRecipes = new RecipeRepository(allRecipesList);
+//QUERY SELECTORS
+
+//FETCH/CALL FUNCTIONS
+
 Promise.all([
   loadData("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users"),
   loadData(
@@ -36,13 +37,11 @@ Promise.all([
   createInstances(recipeData, ingredientsData, userData);
 
   let allRecipes = new RecipeRepository(recipeData);
-
-  console.log("USER DAAAATA", userData);
-  console.log("INGREEEEEDIENT", ingredientsData);
-  console.log("RECIPEEEE", recipeData);
-  console.log("USSSSEEER", currentUser);
-  console.log(allRecipes);
 });
+
+//EVENT LISTENERS
+
+//FUNCTIONS
 
 function createInstances(dataSet1, dataSet2, dataSet3) {
   makeRecipesList(dataSet1);
