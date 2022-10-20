@@ -334,7 +334,7 @@ var ___CSS_LOADER_URL_REPLACEMENT_1___ = _node_modules_css_loader_dist_runtime_g
 var ___CSS_LOADER_URL_REPLACEMENT_2___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(_images_assets_desserts_jpg__WEBPACK_IMPORTED_MODULE_5__["default"]);
 var ___CSS_LOADER_URL_REPLACEMENT_3___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(_images_assets_soups_jpg__WEBPACK_IMPORTED_MODULE_6__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".hidden {\n  display: none;\n}\n\nbody {\n  background-color: beige;\n  font-family: \"Trebuchet MS\", \"Lucida Sans Unicode\", \"Lucida Grande\", \"Lucida Sans\", Arial, sans-serif;\n  display: flex;\n  flex-direction: column;\n}\n\nheader, footer {\n  display: flex;\n  flex-direction: row;\n}\n\n.image {\n  height: 100vh;\n  width: 100vw;\n}\n\n#menu-button {\n  background-color: aliceblue;\n}\n\n.see-more {\n  display: flex;\n  justify-content: center;\n}\n\n.featured-container {\n  background-image: url(\"https://tse1.mm.bing.net/th?id=OIP.XN1S-j-cyW-zS3fuY5TkugHaE8&pid=Api&P=0\");\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n}\n\n.recipe-card-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n}\n\n.main-container {\n  background-color: bisque;\n  display: flex;\n  flex-direction: row;\n}\n\n.halloween-favorites-container {\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-size: cover;\n}\n\n.meatless-entrees-container {\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\n  background-size: cover;\n}\n\n.delicious-dessert-container {\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ");\n  background-size: cover;\n}\n\n.savory-soups-container {\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_3___ + ");\n  background-size: cover;\n}", "",{"version":3,"sources":["webpack://./src/styles.css"],"names":[],"mappings":"AAAA;EACE,aAAA;AACF;;AAEA;EACE,uBAAA;EACA,qGAAA;EACA,aAAA;EACA,sBAAA;AACF;;AAEA;EACE,aAAA;EACA,mBAAA;AACF;;AAEA;EACE,aAAA;EACA,YAAA;AACF;;AAEA;EACE,2BAAA;AACF;;AAEA;EACE,aAAA;EACA,uBAAA;AACF;;AAEA;EACE,kGAAA;EACA,aAAA;EACA,mBAAA;EACA,6BAAA;AACF;;AAEA;EACE,aAAA;EACA,eAAA;EACA,6BAAA;AACF;;AAEA;EACE,wBAAA;EACA,aAAA;EACA,mBAAA;AACF;;AAEA;EACE,yDAAA;EACA,sBAAA;AACF;;AAEA;EACE,yDAAA;EACA,sBAAA;AACF;;AAEA;EACE,yDAAA;EACA,sBAAA;AACF;;AAEA;EACE,yDAAA;EACA,sBAAA;AACF","sourcesContent":[".hidden {\n  display: none;\n}\n\nbody {\n  background-color: beige; \n  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;\n  display: flex;\n  flex-direction: column;\n}\n\nheader, footer {\n  display: flex;\n  flex-direction: row;\n}\n\n.image {\n  height: 100vh;\n  width: 100vw;\n}\n\n#menu-button {\n  background-color: aliceblue;\n}\n\n.see-more {\n  display: flex;\n  justify-content: center;\n}\n\n.featured-container {\n  background-image: url(\"https://tse1.mm.bing.net/th?id=OIP.XN1S-j-cyW-zS3fuY5TkugHaE8&pid=Api&P=0\");\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n}\n\n.recipe-card-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n}\n\n.main-container {\n  background-color: bisque;\n  display: flex;\n  flex-direction: row;\n}\n\n.halloween-favorites-container {\n  background-image: url(\"./images/assets/halloween.jpg\");\n  background-size: cover;\n}\n\n.meatless-entrees-container {\n  background-image: url(\"./images/assets/veggies.jpg\");\n  background-size: cover;\n}\n\n.delicious-dessert-container {\n  background-image: url(\"./images/assets/desserts.jpg\");\n  background-size: cover;\n} \n\n.savory-soups-container {\n  background-image: url(\"./images/assets/soups.jpg\");\n  background-size: cover;\n}\n\n\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".hidden {\n  display: none;\n}\n\nbody {\n  background-color: beige;\n  font-family: \"Trebuchet MS\", \"Lucida Sans Unicode\", \"Lucida Grande\", \"Lucida Sans\", Arial, sans-serif;\n  display: flex;\n  flex-direction: column;\n}\n\n.all-recipes-page {\n  height: 100vh;\n  width: 100vw;\n  background-color: beige;\n  font-family: \"Trebuchet MS\", \"Lucida Sans Unicode\", \"Lucida Grande\", \"Lucida Sans\", Arial, sans-serif;\n  display: flex;\n  flex-direction: column;\n}\n\nheader, footer {\n  display: flex;\n  flex-direction: row;\n}\n\n.image {\n  height: 100vh;\n  width: 100vw;\n}\n\n#menu-button {\n  background-color: aliceblue;\n}\n\n.see-more {\n  display: flex;\n  justify-content: center;\n}\n\n.featured-container {\n  background-image: url(\"https://tse1.mm.bing.net/th?id=OIP.XN1S-j-cyW-zS3fuY5TkugHaE8&pid=Api&P=0\");\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n}\n\n.recipe-card-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n}\n\n.main-container {\n  background-color: bisque;\n  display: flex;\n  flex-direction: row;\n}\n\n.halloween-favorites-container {\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-size: cover;\n}\n\n.meatless-entrees-container {\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\n  background-size: cover;\n}\n\n.delicious-dessert-container {\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ");\n  background-size: cover;\n}\n\n.savory-soups-container {\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_3___ + ");\n  background-size: cover;\n}", "",{"version":3,"sources":["webpack://./src/styles.css"],"names":[],"mappings":"AAAA;EACE,aAAA;AACF;;AAEA;EACE,uBAAA;EACA,qGAAA;EACA,aAAA;EACA,sBAAA;AACF;;AAEA;EACE,aAAA;EACA,YAAA;EACA,uBAAA;EACA,qGAAA;EACA,aAAA;EACA,sBAAA;AACF;;AAEA;EACE,aAAA;EACA,mBAAA;AACF;;AAEA;EACE,aAAA;EACA,YAAA;AACF;;AAEA;EACE,2BAAA;AACF;;AAEA;EACE,aAAA;EACA,uBAAA;AACF;;AAEA;EACE,kGAAA;EACA,aAAA;EACA,mBAAA;EACA,6BAAA;AACF;;AAEA;EACE,aAAA;EACA,eAAA;EACA,6BAAA;AACF;;AAEA;EACE,wBAAA;EACA,aAAA;EACA,mBAAA;AACF;;AAEA;EACE,yDAAA;EACA,sBAAA;AACF;;AAEA;EACE,yDAAA;EACA,sBAAA;AACF;;AAEA;EACE,yDAAA;EACA,sBAAA;AACF;;AAEA;EACE,yDAAA;EACA,sBAAA;AACF","sourcesContent":[".hidden {\n  display: none;\n}\n\nbody {\n  background-color: beige; \n  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;\n  display: flex;\n  flex-direction: column;\n}\n\n.all-recipes-page {\n  height: 100vh;\n  width: 100vw;\n  background-color: beige; \n  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;\n  display: flex;\n  flex-direction: column;\n}\n\nheader, footer {\n  display: flex;\n  flex-direction: row;\n}\n\n.image {\n  height: 100vh;\n  width: 100vw;\n}\n\n#menu-button {\n  background-color: aliceblue;\n}\n\n.see-more {\n  display: flex;\n  justify-content: center;\n}\n\n.featured-container {\n  background-image: url(\"https://tse1.mm.bing.net/th?id=OIP.XN1S-j-cyW-zS3fuY5TkugHaE8&pid=Api&P=0\");\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n}\n\n.recipe-card-container {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n}\n\n.main-container {\n  background-color: bisque;\n  display: flex;\n  flex-direction: row;\n}\n\n.halloween-favorites-container {\n  background-image: url(\"./images/assets/halloween.jpg\");\n  background-size: cover;\n}\n\n.meatless-entrees-container {\n  background-image: url(\"./images/assets/veggies.jpg\");\n  background-size: cover;\n}\n\n.delicious-dessert-container {\n  background-image: url(\"./images/assets/desserts.jpg\");\n  background-size: cover;\n} \n\n.savory-soups-container {\n  background-image: url(\"./images/assets/soups.jpg\");\n  background-size: cover;\n}\n\n\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -557,6 +557,115 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/turing-logo.png");
 
+/***/ }),
+/* 13 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+class Recipe {
+  constructor(recipeData) {
+    this.id = recipeData.id
+    this.image = recipeData.image
+    this.ingredients = recipeData.ingredients
+    this.instructions = recipeData.instructions
+    this.name = recipeData.name
+    this.tags = recipeData.tags
+    //this.ingredientNames = []
+  }
+
+  getIngredientNames() {
+    let ingredientIds = this.ingredients.map(ingredient => {
+      console.log(ingredient.id)
+      return ingredient.id
+    })
+    //create a list(array) of ingredient
+    //names for a recipe.
+    //if(ingredient.id === ingredientsData[i].id)
+  }
+
+// estimatedCostInCents(id) {
+//     The price (estimatedCostInCents) of an ingredient is per unit.
+// For example, if flour is marked as 100 cents, and the recipe
+// calls for 1.5 cups, then it would cost 150 cents.
+// Similarly, if a tomato is $2, and the recipe requires 2 tomatoes, then the cost would be $4.
+//  }
+
+  getInstructions() {
+    return this.instructions
+  }
+}
+
+// It should have methods to:
+// Determine the names of ingredients needed
+// if id #s match, return name
+// ==>use ingredients id to access ingredient names
+//  and costs
+// ==>use recipe.ingredients.quantity to access
+//  amounts and units
+// Get the cost of its ingredients
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Recipe);
+
+
+/***/ }),
+/* 14 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+class RecipeRepository {
+  constructor(newRecipes) {
+    this.newRecipes = newRecipes
+    
+  }
+  filterByTag(tagName) {
+    const tagFilter = this.newRecipes.filter((recipe) => {
+      if (recipe.tags.includes(tagName)){
+        console.log('hi there');
+        return recipe
+      }
+    })
+    return tagFilter
+  }
+  filterByName(recipeName) {
+    const nameFilter = this.newRecipes.filter((recipe) => {
+      if(recipe.name === recipeName){
+        return recipe
+      }
+    })
+    return nameFilter
+  }
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RecipeRepository);
+
+
+/***/ }),
+/* 15 */
+/***/ ((module) => {
+
+class Ingredient {
+  constructor(ingredientRow) {
+    this.id = ingredientRow.id;
+    this.name = ingredientRow.name;
+    this.estCost = ingredientRow.estimatedCostInCents;
+  }
+  countEstCost(amount) {
+    return amount * this.estCost;
+  }
+}
+
+module.exports = Ingredient;
+
+
 /***/ })
 /******/ 	]);
 /************************************************************************/
@@ -640,12 +749,266 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _apiCalls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(11);
 /* harmony import */ var _apiCalls__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_apiCalls__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _images_turing_logo_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(12);
-console.log('Hello world');
+/* harmony import */ var _classes_Recipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(13);
+/* harmony import */ var _classes_RecipeRepository__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(14);
+/* harmony import */ var _classes_Ingredient__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(15);
+/* harmony import */ var _classes_Ingredient__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_classes_Ingredient__WEBPACK_IMPORTED_MODULE_5__);
 
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 
 
+
+
+
+let recipe1 = {
+    "id": 595736,
+    "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
+    "ingredients": [
+      {
+        "id": 20081,
+        "quantity": {
+          "amount": 1.5,
+          "unit": "c"
+        }
+      },
+      {
+        "id": 18372,
+        "quantity": {
+          "amount": 0.5,
+          "unit": "tsp"
+        }
+      },
+      {
+        "id": 1123,
+        "quantity": {
+          "amount": 1,
+          "unit": "large"
+        }
+      },
+      {
+        "id": 19335,
+        "quantity": {
+          "amount": 0.5,
+          "unit": "c"
+        }
+      },
+      {
+        "id": 19206,
+        "quantity": {
+          "amount": 3,
+          "unit": "Tbsp"
+        }
+      },
+      {
+        "id": 19334,
+        "quantity": {
+          "amount": 0.5,
+          "unit": "c"
+        }
+      },
+      {
+        "id": 2047,
+        "quantity": {
+          "amount": 0.5,
+          "unit": "tsp"
+        }
+      },
+      {
+        "id": 1012047,
+        "quantity": {
+          "amount": 24,
+          "unit": "servings"
+        }
+      },
+      {
+        "id": 10019903,
+        "quantity": {
+          "amount": 2,
+          "unit": "c"
+        }
+      },
+      {
+        "id": 1145,
+        "quantity": {
+          "amount": 0.5,
+          "unit": "c"
+        }
+      },
+      {
+        "id": 2050,
+        "quantity": {
+          "amount": 0.5,
+          "unit": "tsp"
+        }
+      }
+    ],
+    "instructions": [
+      {
+        "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
+        "number": 1
+      },
+      {
+        "instruction": "Add egg and vanilla and mix until combined.",
+        "number": 2
+      },
+      {
+        "instruction": "Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.",
+        "number": 3
+      },
+      {
+        "instruction": "Place the cookie dough balls into ungreased muffin pan. Sprinkle with sea salt.",
+        "number": 4
+      },
+      {
+        "instruction": "Bake for 9 to 10 minutes, or until you see the edges start to brown.",
+        "number": 5
+      },
+      {
+        "instruction": "Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice cream and a drizzle of chocolate sauce.",
+        "number": 6
+      }
+    ],
+    "name": "Loaded Chocolate Chip Pudding Cookie Cups",
+    "tags": [
+      "antipasti",
+      "starter",
+      "snack",
+      "appetizer",
+      "antipasto",
+      "hor d'oeuvre"
+    ]
+  }
+  let recipe2 = {
+    "id": 678353,
+    "image": "https://spoonacular.com/recipeImages/678353-556x370.jpg",
+    "ingredients": [
+      {
+        "id": 1009016,
+        "quantity": {
+          "amount": 1.5,
+          "unit": "cups"
+        }
+      },
+      {
+        "id": 9003,
+        "quantity": {
+          "amount": 2,
+          "unit": ""
+        }
+      },
+      {
+        "id": 20027,
+        "quantity": {
+          "amount": 1,
+          "unit": "tablespoon"
+        }
+      },
+      {
+        "id": 1002046,
+        "quantity": {
+          "amount": 1,
+          "unit": "tablespoon"
+        }
+      },
+      {
+        "id": 11215,
+        "quantity": {
+          "amount": 1,
+          "unit": "clove"
+        }
+      },
+      {
+        "id": 1012046,
+        "quantity": {
+          "amount": 1,
+          "unit": "tablespoon"
+        }
+      },
+      {
+        "id": 19911,
+        "quantity": {
+          "amount": 0.25,
+          "unit": "cup"
+        }
+      },
+      {
+        "id": 16112,
+        "quantity": {
+          "amount": 1,
+          "unit": "tablespoon"
+        }
+      },
+      {
+        "id": 10010062,
+        "quantity": {
+          "amount": 24,
+          "unit": "ounce"
+        }
+      },
+      {
+        "id": 1102047,
+        "quantity": {
+          "amount": 4,
+          "unit": "servings"
+        }
+      },
+      {
+        "id": 16124,
+        "quantity": {
+          "amount": 1,
+          "unit": "tablespoon"
+        }
+      },
+      {
+        "id": 1016168,
+        "quantity": {
+          "amount": 1,
+          "unit": "tablespoon"
+        }
+      }
+    ],
+    "instructions": [
+      {
+        "instruction": "Season the pork chops with salt and pepper and grill or pan fry over medium high heat until cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook until the sauce thickens, about 2-5 minutes.Grill or saute the apple slices until just tender but still crisp.Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!",
+        "number": 1
+      }
+    ],
+    "name": "Maple Dijon Apple Cider Grilled Pork Chops",
+    "tags": [
+      "lunch",
+      "main course",
+      "main dish",
+      "dinner"
+    ]
+  }
+  let ingredient1 = {
+    "id": 20081,
+    "name": "wheat flour",
+    "estimatedCostInCents": 142
+  }
+  let ingredient2 = {
+    "id": 18372,
+    "name": "bicarbonate of soda",
+    "estimatedCostInCents": 582
+  }
+  let ingredient3 = {
+    "id": 1123,
+    "name": "eggs",
+    "estimatedCostInCents": 472
+  }
+  let ingredient4 = {
+    "id": 19335,
+    "name": "sucrose",
+    "estimatedCostInCents": 902
+  }
+
+let allIngredients = [ingredient1, ingredient2, ingredient3, ingredient4]
+let allRecipes = [recipe1, recipe2]
+let recipeRepository = new _classes_RecipeRepository__WEBPACK_IMPORTED_MODULE_4__["default"](allRecipes)
+let newRecipe = new _classes_Recipe__WEBPACK_IMPORTED_MODULE_3__["default"](recipe1)
+let newIngredient = new (_classes_Ingredient__WEBPACK_IMPORTED_MODULE_5___default())(ingredient1)
+console.log(recipeRepository);
 
 let allRecipesButton = document.querySelector(".all-recipes-button");
 let allRecipesPage = document.querySelector(".all-recipes-page");
@@ -659,6 +1022,25 @@ allRecipesButton.addEventListener("click", viewAllRecipes)
 function viewAllRecipes() {
     addHidden(homePage)
     removeHidden(allRecipesPage)
+   let recipeImages = recipeRepository.newRecipes.map(recipe => {
+    allRecipesPage.innerHTML = `<section class="recipe-card-container">
+    <img class="image" src="${recipe.image}">
+    <p class="recipe-1-name"> ${recipe.name} </p>
+  </section>`
+    // return recipe.image
+   })
+//    let recipeNames = recipeRepository.newRecipes.map(recipe => {
+//     return recipe.name
+//    })
+//    allRecipesPage.innerHTML = `<section class="recipe-card-container">
+//    <img class="image" src="${recipeImages[0]}">
+//    <p class="recipe-1-name"> ${recipeNames[0]} </p>
+//  </section>
+//  <section class="recipe-card-container">
+//    <img class="image" src="${recipeImages[1]}">
+//    <p class="recipe-2-name"> ${recipeNames[1]} </p>
+//  </section>`
+   
 }
 
 
