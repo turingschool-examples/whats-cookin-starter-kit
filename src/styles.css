@@ -1,3 +1,67 @@
+/* colors:
+ red = 149, 54, 35  
+ brown = 87,36, 41
+ green = 145,147,109
+ beige = 230, 205, 141
+ forest green = 156,126, 68
+ */
+
+/* font-family: 'Abril Fatface', cursive;
+ font-family: 'Playball', cursive;
+ font-family: 'Playfair Display', serif; */
+
 body {
-  background-color: blueviolet;
+  font-family: "Playfair Display", serif;
+}
+
+.hide {
+  display: none;
+}
+
+.about-page {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+}
+
+.about-paragraph {
+  display: flex;
+  justify-content: center;
+  border: 2px solid rgb(1, 1, 1);
+}
+
+#about {
+  width: 1200px;
+  text-align: center;
+  font-size: 15pt;
+  padding: 10px;
+  color: rgb(54, 54, 54);
+}
+
+.authors {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  justify-content: space-evenly;
+  margin-top: 5px;
+}
+
+.profile {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+}
+
+.profile-picture {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+.github {
+  margin-left: 20px;
+  margin-top: 30px;
+  font-size: 15pt;
+  color: rgb(54, 54, 54);
 }
