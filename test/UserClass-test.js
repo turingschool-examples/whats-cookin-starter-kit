@@ -5,7 +5,7 @@ import Recipe from '../src/classes/Recipe';
 describe('User', () => {
     let userInfo, recipeData1, recipeData2, newUser, newRecipe
     beforeEach(() => {
-        userInfo = [
+        userInfo =
             {
             "name": "Saige O'Kon",
             "id": 1,
@@ -152,11 +152,10 @@ describe('User', () => {
               }
             ]
           },
-        ]
         recipeData1 = "This is a recipe. Get some ingredients, mix them together, put them in the oven, and bake them. Make sure they taste good."
         recipeData2 = "This is another recipe. Get more ingredients. Combine them. Apply heat. Enjoy!"
-        newUser = new User(recipeData1, recipeData2)
-        newRecipe = new Recipe(recipeData1, recipeData2)
+        newUser = new User(userInfo)
+        newRecipe = new Recipe(recipeData1)
     })
     it('Should be a function', () => {
         expect(User).to.be.a('function')
@@ -185,7 +184,8 @@ describe('User', () => {
             "antipasto",
             "hor d'oeuvre",
           ]
-          newUser.filterByTag("starter")
-          expect(newUser.filteredTagsArray[1]).to.deep.equal('starter')
+          newUser = new User(userInfo)
+          newUser.recipesToCook.push("starter")
+          expect(newUser.filterByTag("starter")).to.deep.equal(['starter'])
     })
 })

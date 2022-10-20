@@ -20,14 +20,16 @@ class User {
     }
     filterByTag(word) {
         let filteredTagsArray = []
+        console.log(word)
         console.log(filteredTagsArray)
         this.recipesToCook.forEach(recipe => {
             if(recipe.tags.includes(word)) {
+                console.log(word)
                 filteredTagsArray.push(recipe)
                 console.log(filteredTagsArray)
             }
         })
-        return this.filteredTagsArray
+        return filteredTagsArray
     }
 }
 
