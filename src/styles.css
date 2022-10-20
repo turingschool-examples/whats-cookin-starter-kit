@@ -59,6 +59,12 @@ body {
   border-radius: 50%;
 }
 
+#andrew {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+}
+
 .github {
   margin: 10px;
   margin-top: 25px;
