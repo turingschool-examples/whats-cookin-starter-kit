@@ -8,7 +8,7 @@ import './images/turing-logo.png'
 import Recipe from '../src/classes/Recipe';
 import Ingredients from '../src/classes/Ingredients';
 import RecipeRepository from '../src/classes/RecipeRepository';
-
+import recipeData from '../src/data/recipes';
 
 //QuerySelector
 const currentRecipeName = document.querySelector(".current-recipe-name")
@@ -20,20 +20,55 @@ const rightRandomImageCard = document.querySelector(".right-random-card")
 
 
 
-let currentRecipe = 
 
+//Instances
+let currentRecipe
+let randomRecipes
+
+
+
+
+//Functions
+const getRandomIndex = array => {
+    return Math.floor(Math.random() * array.length + 1);
+  };
 
 function loadHandler(){
-
+    onLoadRecipe()
+    generateRandomRecipes()
 }
 
 function clickHandler(){
     
 }
 
+function onLoadRecipe(){
+    currentRecipe = new Recipe(recipeData[0])
+    console.log(currentRecipe)
+    updateMainRecipeName()
+    updateMainRecipeImage()
+}
+
+function generateRandomRecipes(){
+    randomRecipes = []
+    let randomRecipe1 = new Recipe(recipeData[getRandomIndex(recipeData)])
+    randomRecipes.push(randomRecipe1)
+    let randomRecipe2 = new Recipe(recipeData[getRandomIndex(recipeData)])
+    randomRecipes.push(randomRecipe2)
+    let randomRecipe3 = new Recipe(recipeData[getRandomIndex(recipeData)])
+    randomRecipes.push(randomRecipe3)
+
+    console.log(randomRecipes)
+}
+
+function updateMainRecipeName(){
+    currentRecipeName.innerHTML = `${currentRecipe.name}`
+}
 
 
 
 
 
 console.log('Hello world');
+//EventListener
+window.addEventListener("load", loadHandler())
