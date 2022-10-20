@@ -1,3 +1,63 @@
+/* colors:
+ red = 149, 54, 35  
+ brown = 87,36, 41
+ green = 145,147,109
+ beige = 230, 205, 141
+ forest green = 156,126, 68
+ */
+
+/* font
+ https://fonts.google.com/specimen/Abril+Fatface?sort=popularity 
+ Abril fat face 
+ 
+ https://fonts.google.com/specimen/Playball?sort=popularity
+ playball*/
+
 body {
-  background-color: blueviolet;
+  background-color: rgb(230, 205, 141);
+}
+
+.hide {
+  display: none;
+}
+
+.about-page {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.about-paragraph {
+  display: flex;
+  justify-content: center;
+}
+
+#about {
+  width: 800px;
+  font-size: 15pt;
+}
+
+.authors {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  justify-content: space-around;
+}
+
+.profile {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-picture {
+  height: 75px;
+  width: 75px;
+  background-color: #bbb;
+  border-radius: 50%;
+}
+
+.github {
+  margin: 10px;
+  margin-top: 25px;
+  font-size: 15pt;
 }
