@@ -12,15 +12,3 @@ console.log("Hello world");
 
 const allRecipes = new RecipeRepository();
 console.log(allRecipes);
-
-var andrew = document.querySelector("#andrew");
-andrew.src = "./images/AndrewProfile.png";
-
-var brett = document.querySelector("#brett");
-brett.src = "./images/BrettProfile.png";
-
-var courtney = document.querySelector("#courtney");
-courtney.src = "./images/CourtneyProfile.png";
-
-var dani = document.querySelector("#dani");
-dani.src = "./images/DaniProfile.png";
