@@ -1,7 +1,10 @@
 class User {
     constructor(userData) {
+        this.name = userData.name
+        this.id = userData.id
+        this.pantry = userData.pantry
         this.recipesToCook = []
-
+        this.filteredTagsArray = []
     }
     addRecipe(recipe) {
         if(this.recipesToCook.includes(recipe)) {
@@ -16,23 +19,16 @@ class User {
             this.recipesToCook.splice(index, 1)
         }
     }
-    filterByTag(recipe) {
-        let filteredTag = recipe.tags.filter(recipe.tags => recipe.tags === recipe.tags)
-        return filteredTag
+    filterByTag() {
+        console.log(this.filteredTagsArray)
+        this.recipe.forEach(recipe => {
+            if(recipe.tags.includes(tag)) {
+                this.filteredTagsArray.push(recipe)
+                console.log(this.filteredTagsArray)
+            }
+        })
+        return this.filteredTagsArray
     }
 }
 
 export default User;
-
-"tags": [
-    "antipasti",
-    "starter",
-    "snack",
-    "appetizer",
-    "antipasto",
-    "hor d'oeuvre",
-    "lunch",
-    "main course",
-    "main dish",
-    "dinner",
-  ]
