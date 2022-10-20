@@ -3,8 +3,14 @@ class User {
    this.favorites = [] 
   }
 
-  addToFavorites() {
+  addToFavorites(recipe) {
+    this.favorites.push(recipe)
+    return this.favorites
+  }
 
+  removeFromFavorites(recipe) {
+    this.favorites.splice(recipe)
+    return this.favorites
   }
 
   filterFavsByTag() {
@@ -12,7 +18,7 @@ class User {
   }
 
   filterFavsByName() {
-    
+
   }
 }
 
