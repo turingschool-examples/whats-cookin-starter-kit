@@ -19,14 +19,18 @@ class Recipe {
     };
 
     returnIngredientCost(ingredientData) {
-        const currentId = this.ingredients.map(ingredient => {
-            return ingredient.id
-        });
-        const relevantIngredients = ingredientData.filter(ingredient => currentId.includes(ingredient.id));
-        const cost = relevantIngredients.reduce((acc, ingredient) => {
-            return acc + ingredient.estimatedCostInCents
-        }, 0);
-        return cost;
+        const cost = () => {
+          const reduced = this.ingredients.reduce((acc, ing) => {
+            ingredientsData.forEach(data => {
+              if(ing.id === data.id) {
+                acc += ing.quantity.amount * data.estimatedCostInCents
+              };
+            });
+            return acc;
+          }, 0);
+          return reduced;
+        };
+    console.log(cost());
     };
 
     returnInstructions() {
