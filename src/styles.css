@@ -21,8 +21,8 @@ body {
 .about-page {
   display: flex;
   flex-direction: column;
-  margin: 50px;
   border: 10px;
+  margin: 30px;
 }
 
 .about-paragraph {
@@ -43,7 +43,8 @@ body {
   display: flex;
   flex-direction: column;
   height: 500px;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  margin-top: 5px;
 }
 
 .profile {
@@ -53,21 +54,17 @@ body {
 }
 
 .profile-picture {
-  height: 80px;
-  width: 80px;
+  height: 100px;
+  width: 100px;
   background-color: #bbb;
   border-radius: 50%;
-}
-
-#andrew {
-  height: 80px;
-  width: 80px;
-  border-radius: 50%;
+  border: 2px solid black;
 }
 
 .github {
   margin: 10px;
-  margin-top: 25px;
+  margin-left: 20px;
+  margin-top: 30px;
   font-size: 15pt;
   color: rgb(54, 54, 54);
 }
