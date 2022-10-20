@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="src/styles.css" />
-  <title>Whats Cookin</title>
+  <title>What's Cookin'</title>
 </head>
 
 <body>
@@ -25,7 +25,6 @@
       <img src="https://www.cuisinart.com/globalassets/recipes/breads.jpg">
       <!-- recipe of the day goes here -->
     </section>
-
     <section class="filter-bar">
       <select>
         <option>Click here to filter</option>
@@ -34,9 +33,9 @@
         <option>Option</option>
         <option>Option</option>
       </select>
-      <!-- filter by tag goes here -->
+        <!-- filter by tag goes here -->
     </section>
-
+  
     <section class="all-recipes-container">
       <div class="practice-tile">practice tile</div>
       <div class="practice-tile">practice tile</div>
@@ -48,6 +47,29 @@
       <div class="practice-tile">practice tile</div>
     </section>
   </section>
+  <button id="open-modal-btn" data-micromodal-trigger="modal-1">Open Modal</button>
+  
+
+
+
+
+  <div class="modal" id="modal-1" aria-hidden="true">
+    <div class="modal-grandparent" tabindex="-1" data-custom-close="modal-1">
+      <div class="modal-parent" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+        <img class ="modal-image" src="https://spoonacular.com/recipeImages/562334-556x370.jpg" alt="mock Udi's bread">
+        <div class="test">
+          <br>
+          <span class="modal-recipe-panel">
+            <button class="close-modal-btn" aria-label="Close modal" data-custom-close="modal-1">close</button>
+            <h2 id="modal-1-title">Recipe Name</h2>
+            <div id="modal-1-content">
+              Recipe Directions and Body
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
 <script src="bundle.js"></script>
