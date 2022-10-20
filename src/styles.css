@@ -98,3 +98,15 @@ header {
   padding: 5px;
   justify-content: space-around;
 }
+
+.header-buttons  {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  }
+
+.header-buttons:hover {
+  border-bottom: 2px solid #c84b31;
+}
