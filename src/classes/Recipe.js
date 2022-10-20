@@ -21,7 +21,7 @@ class Recipe {
     returnIngredientCost(ingredientData) {
         const cost = () => {
           const reduced = this.ingredients.reduce((acc, ing) => {
-            ingredientsData.forEach(data => {
+            ingredientData.forEach(data => {
               if(ing.id === data.id) {
                 acc += ing.quantity.amount * data.estimatedCostInCents
               };
