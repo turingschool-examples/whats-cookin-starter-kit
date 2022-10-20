@@ -1,28 +1,32 @@
 class Recipe {
   constructor(recipeList) {
     this.recipeList = recipeList
+
   }
 
-  getInfoById(currentId){
-    let recipeObject = this.recipeList.find((recipe) => {
+  getRecipeById(currentId){
+    let singleRecipe = this.recipeList.find((recipe) => {
       return recipe.id === currentId
     })
-    return recipeObject
-    //console.log('test', this.recipeList)
-//take in id, return recipe object
-//if currentId matches recipeList
+    return singleRecipe
   }
 
-  getIngredientNames() {
-    // let ingredientIds = this.ingredients.map(ingredient => {
-    //   console.log(ingredient.id)
-    //   return ingredient.id
+  getIngredientIds(currentId) {
+    let singleRecipe = this.recipeList.find((recipe) => {
+      return recipe.id === currentId
+    })
+    console.log('singleRecipe', singleRecipe.ingredients);
+    return singleRecipe.ingredients.map(ingredient => {
+      return ingredient.id
+    })
+    // let ingredientIds = this.recipeList.map(recipe => {
+    //   console.log('recipe', recipe)
+    //   // console.log('recipe ingredients', recipe.ingredients)
+    //   return recipe.ingredients
     // })
-
-    //create a list(array) of ingredient
-    //names for a recipe.
-    //if(ingredient.id === ingredientsData[i].id)
-  }
+    // //console.log('ingredientIds', ingredientIds)
+    // return ingredientIds
+      }
 
 // estimatedCostInCents(id) {
 //     The price (estimatedCostInCents) of an ingredient is per unit.
@@ -31,7 +35,11 @@ class Recipe {
 // Similarly, if a tomato is $2, and the recipe requires 2 tomatoes, then the cost would be $4.
 //  }
 
-  getInstructions() {
+  getInstructions(currentId) {
+    let singleRecipe = this.recipeList.find((recipe) => {
+      return recipe.id === currentId
+    })
+    return singleRecipe.instructions
     //return this.instructions
   }
 }
@@ -45,7 +53,7 @@ class Recipe {
 //  amounts and units
 // 2.Get the cost of its ingredients
 //3.Get instructions
-//?findById helper function?
+
 
 
 export default Recipe
