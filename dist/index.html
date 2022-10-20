@@ -2,15 +2,53 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="
+    https://fonts.google.com/specimen/Abril+Fatface?sort=popularity"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.google.com/specimen/Playball?sort=popularity
+    playball"
+    />
     <title>Whats Cookin</title>
   </head>
   <body>
     <!-- <h1>Whats Cookin</h1> -->
-    <nav></nav>
-    <main>HOME PAGE GOES HERE</main>
-    <main>ABOUT PAGE GOES HERE</main>
-    <main>ALL RECIPES/SAVED RECIPES</main>
-    <main>VIEW SPECIFIC RECIPE PAGE</main>
+    <nav>NAV GOES HERE</nav>
+    <main class="hide">HOME PAGE GOES HERE</main>
+    <main class="about-page">
+      <div class="about-paragraph">
+        <p id="about">
+          This is a web application created by Turing School of Software
+          Development Mod 2 students! In this project, we created a recipe
+          tracking / meal planning application that allows users to view recipes
+          they want to cook and plan shopping trips around them. Users should be
+          able to view a list of recipes and choose recipes to cook! Enjoy!
+        </p>
+      </div>
+      <section class="authors">
+        <div class="profile" id="andrew-profile">
+          <div class="profile-picture"><!-- ANDREW IMAGE --></div>
+          <p class="github">github link</p>
+        </div>
+        <div class="profile" id="brett-profile">
+          <div class="profile-picture"><!-- BRETT IMAGE --></div>
+          <p class="github">github link</p>
+        </div>
+        <div class="profile" id="courtney-profile">
+          <div class="profile-picture"><!-- COURTNEY IMAGE --></div>
+          <p class="github">github link</p>
+        </div>
+        <div class="profile" id="dani-profile">
+          <div class="profile-picture"><!-- DANI IMAGE --></div>
+          <p class="github">github link</p>
+        </div>
+      </section>
+    </main>
+    <main class="hide">ALL RECIPES/SAVED RECIPES</main>
+    <main class="hide">VIEW SPECIFIC RECIPE PAGE</main>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
