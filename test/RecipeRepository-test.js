@@ -2,12 +2,13 @@ import { expect } from 'chai'
 import RecipeRepository from '../src/classes/RecipeRepository'
 import Recipe from '../src/classes/Recipe'
 import recipeData from '../src/data/recipes'
+import ingredientsData from "../src/data/ingredients"
 
 
 describe('RecipeRepository', () => {
   let recipeRepository
   beforeEach(() => {
-    recipeRepository = new RecipeRepository(recipeData)
+    recipeRepository = new RecipeRepository(recipeData, ingredientsData)
   })
   
   it('should be an instance of RecipeRepository', () => {
