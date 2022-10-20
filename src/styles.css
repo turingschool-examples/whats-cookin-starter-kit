@@ -6,14 +6,12 @@
  forest green = 156,126, 68
  */
 
-/* font
- https://fonts.google.com/specimen/Abril+Fatface?sort=popularity 
- Abril fat face 
- 
- https://fonts.google.com/specimen/Playball?sort=popularity
- playball*/
+/* 
+font-family: 'Abril Fatface', cursive;
+font-family: 'Playball', cursive; */
 
 body {
+  font-family: "Playball", cursive;
   background-color: rgb(230, 205, 141);
 }
 
