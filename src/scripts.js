@@ -66,7 +66,12 @@ function renderAllRecipes(data) {
 // As a user, I should be able to click on a recipe to view more information including directions, ingredients needed, and total cost.
 // render page view/ unhide form of grid containing selected recipe card object for Specific Recipes Page display
 // invoke with handler on click
-
+function showRecipe() {
+  greeting.classList.add('hidden')
+  allRecipesGrid.classList.add('hidden');
+  savedRecipesGrid.classList.add('hidden');
+  singleRecipe.classList.remove('hidden');
+}
 
 
 // As a user, I should be able to filter recipes by a tag. (Extension option: by multiple tags)
