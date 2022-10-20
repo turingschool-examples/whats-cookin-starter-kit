@@ -26,7 +26,7 @@ header {
   margin: auto;
  } 
 
-@media(max-width:768px){
+/* @media(max-width:768px){
   .nav-bar-container {
     width: 100%;
     flex-direction: column;
@@ -38,7 +38,10 @@ header {
     justify-content: flex-start;
     margin: 15px;
   }
-}
+  .header-left-align {
+    flex-direction: column;
+  }
+} */
 
 
 .header-left-align {
@@ -48,6 +51,7 @@ header {
   align-items: center;
   width: 50%;
   gap: 65px;
+  margin-left: 10px;
 }
 
 .header-right-align {
@@ -57,6 +61,7 @@ header {
   justify-content: flex-end;
   align-items: center;
   gap: 25px;
+  margin-right: 10px;
 }
 
 .featured-recipe {
@@ -105,8 +110,30 @@ header {
   align-items: center;
   padding: 0;
   margin: 0;
+  cursor: pointer;
   }
 
 .header-buttons:hover {
   border-bottom: 2px solid #c84b31;
+}
+
+
+@media(max-width:768px){
+  .nav-bar-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  header {
+    height:auto;
+  }
+  .header-right-align {
+    justify-content: flex-start;
+    margin: 15px;
+    justify-content: center;
+  }
+  .header-left-align {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
