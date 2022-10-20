@@ -1,3 +1,324 @@
 body {
-  background-color: blueviolet;
+  background-color: #EDCFA9;
+}
+
+.main-header {
+  background-color: #E89F71;
+  display: flex;
+  justify-content: space-around;
+  height: 10vh;
+  width: 100%;
+}
+
+#searchBar{
+  height: 5vh;
+  width: 20vw;
+  border-radius: 5px;
+  margin-top: 13px;
+}
+
+.add-your-own-recipe{
+  height: 5vh;
+  width: 20vw;
+  border-radius: 5px;
+  margin-top: 13px;
+  cursor: pointer;
+}
+
+.login-button{
+  height: 5vh;
+  width: 10vw;
+  border-radius: 5px;
+  margin-top: 13px;
+  cursor: pointer;
+}
+.main-center-boxes{
+  background-color: #EDCFA9;
+  display: flex;
+  height: 75vh;
+  width: 100%;
+
+}
+
+.main-left-side{
+  background-color: #EDCFA9;
+  display: flex;
+  height: 75vh;
+  width: 70%;
+  flex-wrap: wrap;
+}
+
+
+.left-side-first-recipe{
+  background-color: #E89F71;
+  height: 30vh;
+  width: 100%;
+  display: flex;
+}
+.left-side-featured-recipe-box{
+  background-color: #EDCFA9;
+  display: flex;
+  height: 30vh;
+  width: 50%;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 1.5vh;
+}
+.first-recipe-image{
+  height: 30vh;
+  width: 50%;
+  display: flex;
+}
+
+.left-side-recipe-name{
+  font-size: 3vh;
+}
+
+.left-side-recipe-ingredients{
+  font-size: 2.5vh;
+}
+
+p{
+  font-size: 2vh;
+}
+
+.left-main-bottom-three-images{
+  display: flex;
+}
+.three-img-botttom-left{
+  display: flex;
+}
+
+.main-right-saved-section{
+  display: flex;
+  flex-direction: column;
+  margin-left: 5vh;
+}
+
+.main-right-side-title{
+  background-color: #E89F71;
+  display: flex;
+  justify-content: center;
+  height: 4vh;
+  width: 20vw;
+  margin-top: 2vh;
+}
+
+.main-right-side-first-box{
+  background-color: #E89F71;
+  display: flex;
+  justify-content: center;
+  height: 15vh;
+  width: 20vw;
+  margin-top: 4.5vh;
+  border-style: solid;
+}
+.main-right-side-second-box{
+  background-color: #E89F71;
+  display: flex;
+  justify-content: center;
+  height: 15vh;
+  width: 20vw;
+  margin-top: 3vh;
+  border-style: solid;
+}
+
+.main-right-side-third-box{
+  background-color: #E89F71;
+  display: flex;
+  justify-content: center;
+  height: 15vh;
+  width: 20vw;
+  margin-top: 3vh;
+  border-style: solid;
+}
+
+.main-right-side-fourth-box{
+  background-color: #E89F71;
+  display: flex;
+  justify-content: center;
+  height: 15vh;
+  width: 20vw;
+  margin-top: 3vh;
+  margin-bottom: 2vh;
+  border-style: solid;
+}
+
+
+.main-footer{
+  background-color: #E89F71;
+  display: flex;
+  justify-content: space-around;
+  border-style: solid;
+}
+
+.subscribe-title{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+}
+
+.contact-information{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.connect-with-us{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.all-the-connect-buttons{
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.facebook-button{
+  height: 5vh;
+  width: 5vw;
+  border-radius: 120px;
+  display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.twitter-button{
+  height: 5vh;
+  width: 5vw;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.instagram-button{
+  height: 5vh;
+  width: 5vw;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.youtube-button{
+  height: 5vh;
+  width: 5vw;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.learn-more-title{
+  display: flex;
+  justify-content: center;
+}
+
+.all-the-learn-more-links{
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-us-button{
+  cursor: pointer;
+}
+
+.about-us-button{
+  cursor: pointer;
+}
+
+.privacy-policy{
+  cursor: pointer;
+}
+
+.three-images-bottom-left-main{
+  background-color: #EDCFA9;
+  height: 25vh;
+  width: 65vw;
+  margin-top: 10px;
+  /* margin-right: 10vw; */
+  display: flex;
+  justify-content: space-around;
+}
+
+.image-left{
+  background-color: #E89F71;
+  height: 25vh;
+  width: 15vw;
+  border-style: solid;
+}
+
+.image-middle{
+  background-color: #E89F71;
+  height: 25vh;
+  width: 15vw;
+  border-style: solid;
+}
+
+.image-right{
+  background-color: #E89F71;
+  height: 25vh;
+  width: 15vw;
+  border-style: solid;
+}
+
+.image-left-header{
+  height: 8vh;
+  width: 15vw;
+  background-image: url("https://spoonacular.com/recipeImages/595736-556x370.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  background-size: cover;
+  
+}
+
+.image-middle-header{
+  height: 8vh;
+  width: 15vw;
+  background-image: url("https://spoonacular.com/recipeImages/678353-556x370.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  background-size: cover;
+}
+
+.image-right-header{
+  height: 8vh;
+  width: 15vw;
+  background-image: url("https://spoonacular.com/recipeImages/412309-556x370.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  background-size: cover;
+}
+
+.ingredients-for-left-header{
+  margin-top: 5px;
+  
+}
+
+.ingredients-for-middle-header{
+  margin-top: 5px;
+}
+
+.ingredients-for-right-header{
+  margin-top: 5px;
+}
+
+.main-right-side-first-header{
+  border-style: solid;
+  display: flex;
+  
 }
