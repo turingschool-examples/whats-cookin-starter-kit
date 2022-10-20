@@ -1,5 +1,8 @@
 class User {
-    constructor() {
+    constructor(user) {
+        this.name = user.name;
+        this.id = user.id;
+        this.pantry = user.pantry;
         this.recipesToCook = [];
     };
 
@@ -8,11 +11,11 @@ class User {
     };
 
     filterByTag(tag) {
-        //do an iterator 'if this.recipesToCook[i].tags has 'tag', return those recipesToCook 
+        return this.recipesToCook.filter(recipe => recipe.tags.includes(tag));
     };
 
     filterByName(name) {
-        //do an iterator 'if this.recipesToCook[i].name has 'name', return those recipesToCook 
+        return this.recipesToCook.filter(recipe => recipe.name === name);
     };
 
 };
