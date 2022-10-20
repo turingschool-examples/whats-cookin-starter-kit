@@ -50,6 +50,17 @@ import './images/turing-logo.png'
 // As a user, I should be able to view a list of all recipes.
 // render page view/ unhide form of grid containing all recipe card objects for All Recipes Page display
 // invoke w/ handler either on load or click
+function renderAllRecipes(data) {
+  (QS4allRecipesGrid).innerHTML = "";
+  (QS4allRecipesGrid).innerHTML = 
+  `<section class="recipe-card">
+    <h3 class="" id="recipe-title">Recipe Title</h3>
+    <img url="">
+    <div class="">
+      ${recipeTags}
+    </div>
+  </section>`;
+}
 
 
 // As a user, I should be able to click on a recipe to view more information including directions, ingredients needed, and total cost.
