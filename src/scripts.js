@@ -1,5 +1,8 @@
 import './styles.css';
 import apiCalls from './apiCalls';
+//import functionName from './apiCalls';
+const varName = require('../src/apiCalls');
+const functionName2 = varName.testFetch;
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 // Import Fetch calls
@@ -84,5 +87,5 @@ function showRecipe() {
 // searchbar should have a handler to search all recipes and filter by entered/ selected name OR tag
 
 
-
 console.log('Hello world');
+
