@@ -7,12 +7,17 @@ import './images/turing-logo.png'
 import RecipeRepository from '../src/classes/RecipeRepository'
 import recipeData from './data/recipes'
 import ingredientsData from "./data/ingredients"
+import usersData from "./data/users"
+import User from '../src/classes/User'
 
 const allRecipesContainer = document.querySelector('.all-recipes-container')
 
 const recipeRepository = new RecipeRepository(recipeData, ingredientsData)
 
-displayAllRecipeTiles()
+window.onload = function(){
+    displayAllRecipeTiles()
+    var newUser = new User(usersData[0])
+}
 
 MicroModal.init({
   onShow: modal => console.info(`${modal.id} is shown. Callback ftn to poppulate modal called here?`),
@@ -43,12 +48,3 @@ function displayAllRecipeTiles() {
         createRecipeTile(recipeRepository.recipeList[i])
     }
 }
-
-window.onload = function(){
-  var newRecipeRepo = new RecipeRepository(recipeData, ingredientsData)
-  // var newUser = new User()
-  console.log("newRecipeRepo", newRecipeRepo)
-  // console.log("newUser", newUser)
-}
-
-console.log('Hello world');
