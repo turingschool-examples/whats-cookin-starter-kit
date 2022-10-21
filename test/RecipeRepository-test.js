@@ -345,10 +345,6 @@ describe('RecipeRepository', () => {
     expect(repo1).to.be.an.instanceof(RecipeRepository);
   });
 
-  it('Should be a new instance of Recipe ', () => {
-    expect(repo1.recipesList[0]).to.be.an.instanceof(Recipe);
-  });
-
   it('Should have a recipe array', () => {
     expect(repo1.recipesList).to.deep.equal(repo1.createRecipesClassArray());
   });
