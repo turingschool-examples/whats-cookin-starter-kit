@@ -1,26 +1,39 @@
-*{
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
+@import url('https://fonts.googleapis.com/css?family=Lato:100&display=swap');
+
+/* *{
   border: 1px solid rgb(201, 201, 201);
-}
+} */
 
 .button--save-recipe {
-  display: block;
+  display: flex;
+  align-content: center;
+  justify-content: center;
   margin: 1vh auto;
+  margin-top: 5vh;
 }
 
 .card--ingredients {
   display: flex;
   width: 30vw;
+  margin: 0;
   align-items: flex-start;
   justify-content: space-evenly;
   flex-direction: column;
+  box-shadow: 10px 10px 5px #888888;
+  background-color: white;
 }
 
 .card--instructions {
   display: flex;
   width: 60vw;
+  margin: 0;
   align-items: flex-start;
   justify-content: space-evenly;
   flex-direction: column;
+  box-shadow: 10px 10px 5px #888888;
+  background-color: white;
 }
 
 .card--recipe {
@@ -29,31 +42,74 @@
   align-items: center;
 }
 
+.li--total-cost {
+ font-weight: bold;
+}
+
+.section--user-welcome {
+  font-size: 20px;
+  margin-bottom:10px;
+}
+
+.section--main-body {
+  height: 100%;
+}
+
+.section--buttons-bar {
+  display: flex;
+}
+
 .section--nav, .section--list-filter {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2%
+  padding-bottom: 1%;
 }
 
-.section--cards-container {
+.section--list-filter {
+  margin-top: 12px;
+}
+
+
+/* .section--cards-container {
   display: grid;
   grid-template-areas: 
     'a b c' 
     'd e f'
     'g h i';
-}
+} */
 
 .section--ingredients-instructions {
   display: flex;
   justify-content: space-evenly;
+  margin-top: 5%;
+}
+
+.ul--ingredient-list {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: linear-gradient(0deg, rgba(237,234,216,1) 45%, rgba(224,219,105,1) 100%);
 }
 
 body {
-  background-color: white;
+  background-color:rgba(237,234,216,1);
+  height: 100vh;
+  width: 100vw;
+  margin: 0px;
 }
 
 h1, h2 {
   text-align: center;
+  font-family: 'Oswald';
+  margin: auto;
+}
+
+h3, h4 {
+  margin-left: 4%;
+  font-size: 20px;
+  text-decoration: underline;
 }
 
 .hidden {
@@ -79,3 +135,78 @@ summary {
   cursor: pointer;
   padding: 15px;
 } */
+
+/* ------ ALL OF THIS IS FOR BUTTON ANIMATION AND STYLING ------ */
+body {
+  font-family: sans-serif;
+}
+
+.text-box {
+ margin-left: 0vw;
+ margin-top: 0vh;
+}
+
+.btn:link,
+.btn:visited {
+  text-decoration: none;
+  padding: 3px 30px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all .2s;
+  position: relative;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-grey {
+  background-color: #f0f0f0;
+  color: #0f0f0f;
+  font-family: sans-serif;
+}
+
+.btn::after {
+  content: "";
+  /* display: inline-block; */
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s;
+}
+
+.btn-grey::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+  animation: moveInBottom 5s ease-out;
+  animation-fill-mode: backwards;
+}
+
+@keyframes moveInBottom {
+  0% {
+      opacity: 0;
+      transform: translateY(30px);
+  }
+
+  100% {
+      opacity: 1;
+      transform: translateY(0px);
+  }
+}
