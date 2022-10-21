@@ -48,6 +48,7 @@ function createInstances(dataSet1, dataSet2, dataSet3) {
   makeIngredientsList(dataSet2);
   currentUser = new User();
   currentUser.generateRandomUser(dataSet3.usersData);
+  
 }
 
 function makeRecipesList(dataSet) {
