@@ -136,8 +136,10 @@
 }
 
 .right-side-title {
-  background-color: #E89F71;
+  background-color: #EE6983;
+  color: white;
   display: flex;
+  font-size: 1.3rem;
   justify-content: center;
   height: 4vh;
   width: 20vw;
@@ -145,13 +147,14 @@
 }
 
 .saved-box {
-  background-color: #E89F71;
+  background-color: #EE6983;
+  color: white;
   display: flex;
+  font-size: .8rem;
   justify-content: center;
   height: 15vh;
   width: 20vw;
   margin-top: 5%;
-  border-style: solid;
 }
 
 /* FOOTER */
