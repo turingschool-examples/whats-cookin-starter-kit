@@ -221,7 +221,7 @@ select:focus {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 45px 43px 50px 50px;
+  padding: 90px 130px 137px 137px;
 }
 
 .modal-content-parent > * {
