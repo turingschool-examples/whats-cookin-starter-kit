@@ -1,8 +1,11 @@
 // import Recipe from '../classes/Recipe'
 
 class User {
-  constructor() {
-   this.favorites = []
+  constructor(data) {
+    this.name = data.name
+    this.id = data.id
+    this.pantry = data.pantry
+    this.favorites = []
   }
 
 
@@ -12,21 +15,21 @@ class User {
   }
 
   removeFromFavorites(recipe) {
-    this.favorites.splice(recipe)
+    let indexFound = this.favorites.find((favRecipes) => {
+      favRecipes === recipe
+    })
+    this.favorites.splice(indexFound, 1)
     return this.favorites
   }
 
   filterFavsByTag(tag) {
-    let favByTagResult = this.favorites.filter((favorites) => {
-     favorites.tags.includes(tag)
-    })
+    let favByTagResult = this.favorites.filter(favorites => favorites.tags.includes(tag))
+    console.log('RESULT', favByTagResult)
     return favByTagResult
   }
 
   filterFavsByName(name) {
-     let favByNameResult = this.favorites.filter((favorites) => {
-      favorites.name.includes(name)
-    })
+     let favByNameResult = this.favorites.filter(favorites => favorites.name.includes(name))
     return favByNameResult
   }
 }
