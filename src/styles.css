@@ -13,9 +13,6 @@
    font-family: "Playfair Display", serif;
  }
 
- .hide {
-   display: none;
- }
 
  /* Navagation display */
 nav {
@@ -200,5 +197,7 @@ nav {
   margin-bottom: 1vh;
 
 }
-
 /* ~~End All/Saved Recipes CSS ~~ */
+ .hide {
+   display: none;
+ }
