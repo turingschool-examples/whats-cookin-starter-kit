@@ -41,6 +41,17 @@ homeButton.addEventListener('click', () => {
     hide(savedRecipesContainer);
 });
 
+myRecipesButton.addEventListener('click', () => {
+    hide(cardsContainer);
+    hide(recipeContainer);
+    show(savedRecipesContainer);
+});
+
+cardsContainer.addEventListener('click', () => {
+    hide(cardsContainer);
+    show(recipeContainer);
+    hide(savedRecipesContainer);
+});
 
 
 
