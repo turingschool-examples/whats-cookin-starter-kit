@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="src/styles.css" />
+  <link rel="stylesheet" href="../src/styles.css" />
   <title>What's Cookin'</title>
 </head>
 
@@ -11,7 +11,7 @@
   <header>
     <nav class="nav-bar-container">
       <div class="header-left-align">
-        <h1>What's Cookin'</h1>
+        <!-- <h1>What's Cookin'</h1> -->
         <!-- <img class="logo" alt="logo" src="/src/images/logo.png"> -->
         <!-- <img src={require('/src/images/logo.png')} /> -->
         <!-- <img src="https://i.imgur.com/oINYU65.jpeg" class="logo"> -->
@@ -25,12 +25,34 @@
   </header>
   <section class="below-header-container">
     <section class="featured-recipe">
-      <img src="https://www.cuisinart.com/globalassets/recipes/breads.jpg" class="banner-image">
-      <!-- recipe of the day goes here -->
+      <img src="../src/images/What's Cookin'.png" id="logo">
+      <div id="recipe-of-the-day">
+        <h1>Loaded Chocolate Chip Cookie Cups</h1>
+        <div id="recipe-details">
+          <ul id="list">
+            <h3>Ingredients</h3>
+            <li>Wheat Flour</li>
+            <li>Bicarbonate of Soda</li>
+            <li>Eggs</li>
+            <li>Sucrose</li>
+            <li>Instant Vanilla Pudding</li>
+            <li>Brown Sugar</li>
+            <li>Salt</li>
+            <li>Fine Sea Salt</li>
+            <li>Semi-Sweet Chips</li>
+            <li>Unsalted Butter</li>
+            <li>Vanilla</li>
+          </ul>
+          <div id="special-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"/></svg>
+            Recipe of the Day
+          </div>
+        </div>
+      </div>
     </section>
     <section class="filter-bar">
       <select>
-        <option>Filter by...</option>
+        <option>Filter recipes by...</option>
         <option>Option</option>
         <option>Option</option>
         <option>Option</option>
