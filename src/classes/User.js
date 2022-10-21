@@ -1,19 +1,10 @@
-import Recipe from '../classes/Recipe'
+// import Recipe from '../classes/Recipe'
 
 class User {
-  constructor(recipeData) {
-   this.favorites = this.createFavoritesArray() 
-   this.recipeData = recipeData
+  constructor() {
+   this.favorites = []
   }
 
-  // createFavoritesArray() {
-  //   let favoritesArray = []
-  //   this.recipeData.forEach((recipe) => {
-  //     let modifiedRecipes = new Recipe(recipe)
-  //     favoritesArray.push(modifiedRecipes)
-  //   })
-  //   return favoritesArray
-  // }
 
   addToFavorites(recipe) {
     this.favorites.push(recipe)
