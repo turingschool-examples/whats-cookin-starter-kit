@@ -1,4 +1,4 @@
-//IMPORTS
+//IMPORTS--------------------------------------------------------
 
 import "./styles.css";
 import loadData from "./apiCalls";
@@ -12,16 +12,29 @@ import "./images/BrettProfile.png";
 import "./images/CourtneyProfile.png";
 import "./images/DaniProfile.png";
 
-//VARIABLES
-
+//VARIABLES-----------------------------------------------------
+//Global VARIABLES ---------
 let userData;
 let ingredientsData;
 let recipeData;
 let currentUser;
 
-//QUERY SELECTORS
+//Navbar VARIABLES ---------
+//Home Page VARIABLES --------
+//All Recipes Page VARIABLES --------
+//Saved Recipes Page VARIABLES --------
+//Specific Recipe Page VARIABLES --------
 
-//FETCH/CALL FUNCTIONS
+
+//QUERY SELECTORS-----------------------------------------------
+//Navbar QUERY SELECTORS ---------
+//Home Page QUERY SELECTORS--------
+//All Recipes Page QUERY SELECTORS--------
+//Saved Recipes Page QUERY SELECTORS--------
+//Specific Recipe Page QUERY SELECTORS--------
+
+
+//FETCH/CALL FUNCTIONS-------------------------------------------
 
 Promise.all([
   loadData("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users"),
@@ -38,10 +51,6 @@ Promise.all([
 
   let allRecipes = new RecipeRepository(recipeData);
 });
-
-//EVENT LISTENERS
-
-//FUNCTIONS
 
 function createInstances(dataSet1, dataSet2, dataSet3) {
   makeRecipesList(dataSet1);
@@ -62,3 +71,19 @@ function makeIngredientsList(dataSet) {
     return new Ingredient(element);
   });
 }
+
+//EVENT LISTENERS-------------------------------------------------
+//Navbar EVENT LISTENERS ---------
+//Home Page EVENT LISTENERS --------
+//All Recipes Page EVENT LISTENERS --------
+//Saved Recipes Page EVENT LISTENERS --------
+//Specific Recipe Page EVENT LISTENERS --------
+
+
+//FUNCTIONS------------------------------------------------------
+//Global FUNCTIONS -------------
+//Navbar FUNCTIONS ---------
+//Home Page FUNCTIONS --------
+//All Recipes Page FUNCTIONS --------
+//Saved Recipes Page FUNCTIONS --------
+//Specific Recipe Page FUNCTIONS --------
