@@ -1,5 +1,5 @@
 import  ingredientsData  from '../data/ingredients';
-import Ingredients from '../classes/ingredientsClass'
+import Ingredient from '../classes/Ingredient'
 class Recipe {
     constructor(recipeData) {
         this.id = recipeData.id
@@ -41,7 +41,7 @@ returnRecipieIngredientsArray() {
 
 returnAllIngredientsArray() {     
   let ingredientsArray = ingredientsData.map((ingredient) => {
-        return  new Ingredients(ingredient)
+        return  new Ingredient(ingredient)
    });
   return ingredientsArray;
 }

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import Ingredients from '../src/classes/IngredientsClass';
+import Ingredients from '../src/classes/Ingredient';
 
 describe('Ingredients', () => {
     let newIngredients, ingredientsInfo, singleIngredientObject;
