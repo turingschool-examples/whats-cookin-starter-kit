@@ -227,6 +227,14 @@ describe('Recipe', () => {
           ]
         }
     ];
+    const steps = [
+        'Step 1: In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.',
+        'Step 2: Add egg and vanilla and mix until combined.',
+        'Step 3: Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.',
+        'Step 4: Place the cookie dough balls into ungreased muffin pan. Sprinkle with sea salt.',
+        'Step 5: Bake for 9 to 10 minutes, or until you see the edges start to brown.',
+        'Step 6: Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice cream and a drizzle of chocolate sauce.'
+      ];
     const ingredientSample = [
         {
             "id": 20081,
@@ -312,5 +320,17 @@ describe('Recipe', () => {
 
     it('should return ingredient names', () => {
         expect(recipe1.returnIngredientNames(ingredientSample)).to.deep.equal(expectedNames);
+    });
+
+    it('should return total ingredient cost', () => {
+        expect(recipe1.returnIngredientCost(ingredientSample)).to.equal(17776);
+    });
+
+    it('should return the instructions', () => {
+        expect(recipe1.returnInstructions()).to.deep.equal(steps)
+    });
+
+    it.skip('should ...', () => {
+        expect().to.equal();
     });
 });

@@ -30,13 +30,16 @@ class Recipe {
           }, 0);
           return reduced;
         };
-    console.log(cost());
+        return cost();
     };
 
     returnInstructions() {
+      let steps = [];
         this.instructions.forEach(currentInstruction => {
-            return `Step ${currentInstruction.number}: ${currentInstruction.instruction}`;
+            steps.push(`Step ${currentInstruction.number}: ${currentInstruction.instruction}`);
         })
+        console.log(steps);
+        return steps;
     };
 };
 
