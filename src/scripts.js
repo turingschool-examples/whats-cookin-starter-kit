@@ -267,14 +267,14 @@ function viewAllRecipes() {
     addHidden(homePage)
     removeHidden(allRecipesPage)
     recipeRepository.newRecipes.forEach((recipe) => {
-      const newImage = document.createElement('section')
-      newImage.className = 'recipe-card-container'
-      newImage.innerHTML = `
+      const newSection = document.createElement('section')
+      newSection.className = 'recipe-card-container'
+      newSection.innerHTML = `
         <img class="image" id="${recipe.id}" src="${recipe.image}">
         <p class="recipe-name"> ${recipe.name} </p>`
 
-      allRecipesPage.appendChild(newImage)
-      newImage.addEventListener('click', seeRecipe)
+      allRecipesPage.appendChild(newSection)
+      newSection.addEventListener('click', seeRecipe)
    });
 };
 
@@ -285,11 +285,11 @@ function seeRecipe(event) {
   let visibleRecipe = recipeRepository.newRecipes.find(recipe => {
     return parseInt(event.target.id) === recipe.id
   }); 
-  let recipeInstructions = new Recipe(visibleRecipe);
+  let fullRecipe = new Recipe(visibleRecipe);
   // let totalCost = recipeInstructions.getCost()
-  console.log(recipeInstructions.instructions);
+  console.log(fullRecipe.instructions);
   console.log(allIngredients)
-  renderRecipe(recipeInstructions);
+  renderRecipe(fullRecipe);
 };
 
 function renderRecipe(recipe) {
@@ -297,18 +297,18 @@ function renderRecipe(recipe) {
   removeHidden(currentRecipePage)
   recipe.retrieveIngredients(allIngredients)
  
-  const newImage = document.createElement('section')
-    newImage.className = 'recipe-details'
-    newImage.innerHTML = `
+  const newSection = document.createElement('section')
+    newSection.className = 'recipe-details'
+    newSection.innerHTML = `
       <img class="image" src="${recipe.image}">
-      <ul>
-        <li> ${recipe.instructions} </li>
-        <li> ${recipe.ingredients} </li>
-        <li> ${recipe.getCost()} </li>
+      <ul>`
+    newSection.innerHTML = `<li> ${recipe.instructions} </li>`
+    newSection.innerHTML = `<li> ${recipe.ingredients} </li>`   
+    newSection.innerHTML = `<li> ${recipe.getCost()} </li>
       </ul>`
 
-    allRecipesPage.appendChild(newImage)
-    newImage.addEventListener('click', seeRecipe)
+    allRecipesPage.appendChild(newSection)
+    newSection.addEventListener('click', seeRecipe)
 }
 
 function addHidden(element) {
