@@ -17,8 +17,15 @@ const filterField = document.getElementById('input--filter');
 const cardsContainer = document.getElementById('section--cards-container');
 const recipeContainer = document.getElementById('section--recipe-details');
 const savedRecipesContainer = document.getElementById('section--saved-cards');
+const allRecipesContainer = document.getElementById('section--all-recipes');
 const ingredientContainer = document.getElementById('ul--ingredient-list');
 const instructionsContainer = document.getElementById('ul--instructions');
+const allRecipes0to9 = document.getElementById('list--recipes-0-9');
+const allRecipes10to29 = document.getElementById('list--recipes-10-19');
+const allRecipes20to99 = document.getElementById('list--recipes-20-29');
+const allRecipes30to39 = document.getElementById('list--recipes-30-39');
+const allRecipes40to49 = document.getElementById('list--recipes-40-49');
+
 const recipeCard1 = document.getElementById('card--recipe1');
 const recipeCard2 = document.getElementById('card--recipe2');
 const recipeCard3 = document.getElementById('card--recipe3');
