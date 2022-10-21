@@ -33,7 +33,6 @@ const recipeTitle = document.getElementById('title--recipe');
 
 
 
-
 //  EVENT LISTENERS LIVE HERE
 homeButton.addEventListener('click', () => {
     show(cardsContainer);
@@ -47,12 +46,13 @@ myRecipesButton.addEventListener('click', () => {
     show(savedRecipesContainer);
 });
 
-cardsContainer.addEventListener('click', () => {
-    hide(cardsContainer);
-    show(recipeContainer);
-    hide(savedRecipesContainer);
+cardsContainer.addEventListener('click', (event) => {
+    if (!event.target.classList.contains('glide__arrow')) {
+        hide(cardsContainer);
+        show(recipeContainer);
+        hide(savedRecipesContainer);
+    }
 });
-
 
 
 
