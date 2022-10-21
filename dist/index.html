@@ -8,28 +8,32 @@
   </head>
   <body>
     <h1>Whats Cookin</h1>
-    <nav>Site Name</nav>
-      <button>Recipes</button>
-      <button>Favorites</button>
-      <input type="text" placeholder="Search...">
+      <nav>Site Name
+        <button>Recipes</button>
+        <button>Favorites</button>
+        <input type="text" placeholder="Search...">
+      </nav>
+    </h1>
     <main>
       <section>Greeting/ Welcome Area</section>
-<!-- THOUGHT - Each 'Page' is a hidden area like mod 1 projects? -->
-      <table>All Recipes display grid</table>
+      <!-- THOUGHT - Each 'Page' is a hidden area like mod 1 projects? -->
+      <table class="all-recipe-grid">All Recipes display grid
         <tbody>grid area 1
           <td>Recipe Card</td>
           <td>Recipe Card</td>
           <td>Recipe Card</td>
         </tbody>
         <br>
-<!-- THOUGHT - possibly do not need a dedicated 'All Recipes page'? they will technically be loaded onto the home page view (still need the section either way)-->
-      <table>Saved Recipes display grid</table>
+      </table>
+      <!-- THOUGHT - possibly do not need a dedicated 'All Recipes page'? they will technically be loaded onto the home page view (still need the section either way)-->
+      <table class="'saved-recipe-grid hidden">Saved Recipes display grid
         <tbody>grid area 2
           <td>Recipe Card</td>
           <td>Recipe Card</td>
           <td>Recipe Card</td>
         </tbody>
-      <section>Single Recipe</section>
+      </table>
+      <section class="single-recipe hidden">Single Recipe
         <img>Recipe IMG
         <h2>Recipe Name</h2>
         <section>flexbox for below 2 divs??
@@ -64,6 +68,7 @@
             <li>Step 5</li>
           </div>
         </section>
+      </section>
     </main>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
