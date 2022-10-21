@@ -1,5 +1,5 @@
 import  ingredientsData  from '../data/ingredients';
-import Ingredients from '../classes/ingredientsClass'
+import Ingredient from '../classes/Ingredient'
 class Recipe {
     constructor(recipeData) {
         this.id = recipeData.id
