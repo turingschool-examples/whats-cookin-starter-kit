@@ -11,9 +11,11 @@
   <header>
     <nav class="nav-bar-container">
       <div class="header-left-align">
-        <!-- <h1>What's Cookin'</h1> -->
-        <img class="logo" src="/src/images/logo.png">
-        <input type="search" class="search-bar">
+        <h1>What's Cookin'</h1>
+        <!-- <img class="logo" alt="logo" src="/src/images/logo.png"> -->
+        <!-- <img src={require('/src/images/logo.png')} /> -->
+        <!-- <img src="https://i.imgur.com/oINYU65.jpeg" class="logo"> -->
+        <input type="search" placeholder="Search..." class="search-bar">
       </div>
       <div class="header-right-align">
         <div class="header-buttons">My recipes</div>
@@ -23,13 +25,13 @@
   </header>
   <section class="below-header-container">
     <section class="featured-recipe">
-      <img src="https://www.cuisinart.com/globalassets/recipes/breads.jpg">
+      <img src="https://www.cuisinart.com/globalassets/recipes/breads.jpg" class="banner-image">
       <!-- recipe of the day goes here -->
     </section>
 
     <section class="filter-bar">
       <select>
-        <option>Click here to filter</option>
+        <option>Filter by...</option>
         <option>Option</option>
         <option>Option</option>
         <option>Option</option>
