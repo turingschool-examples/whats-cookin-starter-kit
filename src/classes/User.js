@@ -30,6 +30,14 @@ class User {
             })
             return filteredTagsArray
     }
+
+    displayUserName() {
+        return this.name
+    }
+
+    displayUserId() {
+        return this.id
+    }
 }
 
 export default User;
