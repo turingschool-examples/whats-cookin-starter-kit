@@ -15,39 +15,38 @@ describe('Recipe', () => {
   })
 
   it('should be an instance of User', () => {
-    console.log(recipe)
     expect(user).to.be.an.instanceOf(User)
   })
 
-  it.skip('should have a name', () => {
+  it('should have a name', () => {
     expect(user.name).to.equal("Saige O'Kon")
   })
 
-  it.skip('should have an ID', () => {
+  it('should have an ID', () => {
 
     expect(user.id).to.equal(1)
   })
 
-  it.skip('should have a pantry of ingredients', () => {
+  it('should have a pantry of ingredients', () => {
 
     expect(user.pantry).to.be.an('array')
     expect(user.pantry).to.eql(usersData[0].pantry)
   })
 
-  it.skip('should have a list of favorite recipes', () => {
+  it('should have a list of favorite recipes', () => {
     user.addRecipeToFavorites(recipe)
 
     expect(user.favoriteRecipes[0].id).to.equal(595736)
   })
 
-  it.skip('should have a list of recipes to cook', () => {
+  it('should have a list of recipes to cook', () => {
     user.addToRecipesToCook(recipe)
 
     expect(user.recipesToCook).to.be.an('array')
     expect(user.recipesToCook[0].id).to.equal(595736)
   })
 
-  it.skip('should be able to filter favorite recipes by tag', () => {
+  it('should be able to filter favorite recipes by tag', () => {
     user.addRecipeToFavorites(recipe)
     user.addRecipeToFavorites(recipe2)
     let filtered = user.filterByTag('antipasti')
@@ -57,7 +56,7 @@ describe('Recipe', () => {
     expect(filtered2[0]).to.eql(user.favoriteRecipes[1])
   })
 
-  it.skip('should be bale to filter favorite recipes by name', () => {
+  it('should be bale to filter favorite recipes by name', () => {
     user.addRecipeToFavorites(recipe)
     user.addRecipeToFavorites(recipe2)
     let filtered = user.filterByName('Cookie')
