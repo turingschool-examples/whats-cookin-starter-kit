@@ -233,24 +233,17 @@ select:focus {
 }
 
 .modal-bookmark-div {
+  display: flex;
   padding: 0px 0px 0px 10px;
 }
 
-.modal-bookmark-circle {
-  padding: 5px;
-  position: relative;
-  border: 3px solid rgb(142, 142, 142);
-  min-height: 29px;
-  max-width: 30px;
-  border-radius: 100%;
+.modal-bookmark-icon {
+max-height: 40px;
 }
 
-.modal-bookmark-icon {
-  filter: invert(36%) sepia(53%) saturate(1400%) hue-rotate(340deg) brightness(94%) contrast(83%);
-  max-height: 26px;
-  position: absolute;
-  left: 10px;
-  top: 7px;
+.modal-icon-label {
+  font-size: 0.7em;
+  padding: 7px;
 }
 
 .modal-image-ingr-parent {
