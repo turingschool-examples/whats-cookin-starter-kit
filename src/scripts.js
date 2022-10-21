@@ -3,6 +3,7 @@ import apiCalls from './apiCalls';
 import MicroModal from 'micromodal';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
+
 import RecipeRepository from '../src/classes/RecipeRepository'
 import recipeData from './data/recipes'
 import ingredientsData from "./data/ingredients"
@@ -26,7 +27,6 @@ MicroModal.init({
   debugMode: true 
 });
 
-
 function createRecipeTile(recipe) {
     allRecipesContainer.innerHTML += 
         `<div class="recipe-tile">
@@ -44,4 +44,11 @@ function displayAllRecipeTiles() {
     }
 }
 
+window.onload = function(){
+  var newRecipeRepo = new RecipeRepository(recipeData, ingredientsData)
+  // var newUser = new User()
+  console.log("newRecipeRepo", newRecipeRepo)
+  // console.log("newUser", newUser)
+}
 
+console.log('Hello world');
