@@ -1,70 +1,95 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
-    <link rel="stylesheet" type="text/css" href="../src/styles.css">
-    <title>What's Cookin</title>
-  </head>
-  <body>
-    <header class="main-header">
-      <img class ="logo-item" img src="../src/images/turing-logo.png" height:5px>
-      <input id="searchBar" placeholder="Search"></input>
-      <button class="add-your-own-recipe">Add your own recipe</button>
-      <button class="login-button">Login</button>
-    </header>
-    <section class="main-container">
-      <section class="main-left-side">
-        <div class="featured-recipe">
-            <h1 class="feat recipe-name">Cinnamon Raisin French Toast</h1>
-          </div>
-            <!-- <img class="first-recipe image" img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPhM7EUGODdBbalQrSDd1kt4TtQTYmYwiZkg&usqp=CAU"> -->
+
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
+  <link rel="stylesheet" type="text/css" href="../src/styles.css">
+</head>
+
+<body>
+  <header class="main-header">
+    <img class="logo-item" img src="../src/images/turing-logo.png" height:5px>
+    <input id="searchBar" placeholder="Search"></input>
+    <button class="add-your-own-recipe">Add your own recipe</button>
+    <button class="login-button">Login</button>
+  </header>
+  <section class="main-center-boxes">
+    <section class="main-left-side">
+      <div class="left-side-first-recipe">
+        <div class="left-side-featured-recipe-box">
+          <h1 class="left-side-recipe-name">Recipe Name:
+            <p class='current-recipe-name'>Cooked Chicken Breast</p>
+          </h1>
+          <h1 class="current-recipe-ingredients">List of Ingredients:
+            <p>Chicken breast</p>
+            <p>Butter</p>
+            <p>Seasoning</p>
+          </h1>
         </div>
-          <section class="main-card-container">
-            <div class="left-image left-card card">
-              <h1 class="left recipe-name">Chocolate Chip Cookies</h1>
-            </div>
-            <div class="middle-image middle-card card">
-              <h1 class="middle recipe-name">Cupcakes</h1>
-            </div>
-            <div class="right-image right-card card">
-              <h1 class="right recipe-name">Pancakes</h1>
-            </div>
-          <section class="'breathing-room"></section>
-        </section> 
-      </section>
-      <section class="right-side saved-section">
-        <div class="right-side-title">Favorite Recipes</div>
-        <div class="saved-box">
-          <h1 class="saved-box"></h1>
-          <div class='card-footer'>Sesame Cookies</div>
+        <div class="image-parent-main">
+          <img class="current-recipe-image" img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPhM7EUGODdBbalQrSDd1kt4TtQTYmYwiZkg&usqp=CAU">
         </div>
-        <!-- Insert more 'boxes' in in scriptsJS -->
+      </div>
+      <section class="three-images-bottom-left-main">
+        <div class="left-random-card">
+          <img class="left-random-image" img src="https://spoonacular.com/recipeImages/595736-556x370.jpg"/>
+          <h1 class="left-random-name"></h1>
+        </div>
+        <div class="middle-random-card">
+          <img class="middle-random-image" img src="https://spoonacular.com/recipeImages/678353-556x370.jpg"/>
+          <h1 class="middle-random-name"></h1>
+        </div>
+        <div class="right-random-card">
+          <img class="right-random-image" img src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"/>
+          <h1 class="right-random-name"></h1>
+
+        </div>
+
       </section>
     </section>
-      <footer class="main-footer">
-        <div class="subscribe-title">Subscribe
-        <input placeholder="Enter Email Here!">
+
+    <section class="main-right-saved-section">
+      <div class="main-right-side-title">Saved</div>
+      <!-- <div class="main-right-side-first-box">
+          <header class="main-right-side-first-header">First</header>
         </div>
-        <div class="contact-information">
-          <div class="connect-with-us">Connect with us</div>
-          <div class="all-the-connect-buttons">
-            <button class="facebook button">FB</button>
-            <button class="twitter button">TW</button>
-            <button class="instagram button">IG</button>
-            <button class="youtube button">YT</button>
-          </div>
+        <div class="main-right-side-second-box">
+          <header class="main-right-side-second-header">Second</header>
         </div>
-        <div class="learn-more">
-          <div class="learn-more-title">Learn More</div>
-          <div class="all-the-learn-more-links">
-          <button class="learn-more-button">Contact Us</button>
-          <button class="learn-more-button">About Us</button>
-          <button class="learn-more-button">Privacy Policy</button>
-          </div>
+        <div class="main-right-side-third-box">
+          <header class="main-right-side-third-header">Third</header>
         </div>
-      </footer>
-  </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
+        <div class="main-right-side-fourth-box">
+          <header class="main-right-side-fourth-header">Fourth</header>
+        </div> -->
+    </section>
+  </section>
+  <footer class="main-footer">
+    <div class="subscribe-title">Subscribe
+      <input placeholder="Enter Email Here!">
+    </div>
+    <div class="contact-information">
+      <div class="connect-with-us">Connect with us now</div>
+      <div class="all-the-connect-buttons">
+        <button class="facebook-button">FB</button>
+        <button class="twitter-button">TW</button>
+        <button class="instagram-button">IG</button>
+        <button class="youtube-button">YT</button>
+      </div>
+    </div>
+    <div class="learn-more">
+      <div class="learn-more-title">Learn More</div>
+      <div class="all-the-learn-more-links">
+        <button class="contact-us-button">Contact Us</button>
+        <button class="about-us-button">About Us</button>
+        <button class="privacy-policy">Privacy Policy</button>
+      </div>
+    </div>
+  </footer>
+</body>
+<!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+<script src="bundle.js"></script>
+
 </html>
