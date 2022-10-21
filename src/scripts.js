@@ -17,6 +17,7 @@ const currentRecipeIngredients = document.querySelector(".current-recipe-ingredi
 const leftRandomImageCard = document.querySelector(".left-random-card")
 const middleRandomImageCard = document.querySelector(".middle-random-card")
 const rightRandomImageCard = document.querySelector(".right-random-card")
+const viewAllRecipesButton = document.querySelector(".view-all-recipes")
 
 
 
@@ -24,7 +25,7 @@ const rightRandomImageCard = document.querySelector(".right-random-card")
 //Instances
 let currentRecipe
 let randomRecipes
-
+let allRecipes
 
 
 
@@ -36,10 +37,16 @@ const getRandomIndex = array => {
 function loadHandler(){
     onLoadRecipe()
     generateRandomRecipes()
+    generateAllRecipes()
 }
 
 function clickHandler(){
     
+}
+
+function generateAllRecipes () {
+    allRecipes = new RecipeRepository(recipeData)
+    console.log("all recipes array", allRecipes)
 }
 
 function onLoadRecipe(){
@@ -47,7 +54,6 @@ function onLoadRecipe(){
     console.log(currentRecipe)
     updateMainRecipeName()
     updateMainRecipeImage()
-    
 }
 
 function generateRandomRecipes(){
@@ -83,6 +89,10 @@ function updateMainRandomRecipes(){
 }
 
 
-console.log('Hello world');
+function viewAllRecipes () {
+    
+}
+
 //EventListener
 window.addEventListener("load", loadHandler())
+viewAllRecipesButton.addEventListener("click", viewAllRecipes())
