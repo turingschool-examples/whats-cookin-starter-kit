@@ -138,23 +138,31 @@ header {
 }
 
 .modal-parent {
+  background-color: rgb(247, 243, 233);
+  height: 70%;
+  width: 75%;
+  overflow: auto;
+}
+
+.modal-content-parent {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  overflow: auto;
-  background-color: rgb(236, 219, 186);
-  height: 73%;
-  width: 80%;
   padding: 50px;
+  padding-right: 3px;
 }
 
-.close-btn-div {
-  width: 100%;
+.modal-content-parent > * {
+  padding: 10px;
+}
+
+.modal-content-parent > h1 {
+  font-size: 2.5em;
 }
 
 .modal-image-ingr-parent {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -165,6 +173,13 @@ header {
 
 .close-modal-btn {
   float: right;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0px;
+  padding: 7px;
+}
+
+.close-modal-btn:hover {
+  transform: scale(1.05);
 }
 
 .modal.is-open {
