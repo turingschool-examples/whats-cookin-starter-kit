@@ -404,9 +404,11 @@ describe('User', () => {
         expect(newUser.recipesToCook).to.deep.equal([])
     })
   
-  it('Should be able to filterthe recipiesToCook array by tag', () => {
- 
-    expect().to.deep.equal()
+  it('Should be able to filter the recipiesToCook array by tag', () => {
+    newUser.filteredTagsArray.push(recipeObject1)
+    newUser.filterRecipesToCookByTag('snack')
+    console.log(newUser.recipesToCook)
+    expect(newUser.filteredTagsArray[0]).to.deep.equal(recipeObject1)
   })
     
 });
