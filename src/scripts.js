@@ -54,6 +54,8 @@ cardsContainer.addEventListener('click', (event) => {
     }
 });
 
+// saveRecipeButton.addEventListener('click', );
+// myRecipesButton.addEventListener('click', );
 
 
 // GLOBAL VARIABLES LIVE HERE
