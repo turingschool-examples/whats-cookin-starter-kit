@@ -65,3 +65,25 @@ body {
   font-size: 15pt;
   color: rgb(54, 54, 54);
 }
+/*  Specific Recipe  section  */
+.specific-recipe-img {
+  width: 380px;
+  padding: 30px;
+  margin-top: -7px;
+}
+
+.specific-recipe-heading {
+  margin-left: 30px;
+  margin-bottom: 4px;
+}
+
+.save-button {
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+
+.specific-recipe-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
