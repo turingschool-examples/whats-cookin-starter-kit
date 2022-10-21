@@ -45,7 +45,41 @@ nav {
    align-items: center;
    justify-content: space-around;
  }
+ /* HomePage */
+.homepage-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border: 1px solid black;
+  height: 5in;
+ }
 
+.featured-recipe-wrapper {
+  border: 1px solid black;
+  height: 2.5in;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 1.5rem;
+}
+
+.filter-ingr-wrapper {
+  display: flex;
+  border: .5px solid black;
+  height: 3cm;
+  margin-left: 16px;
+  margin-right: 16px;
+  align-content: center;
+  justify-content: space-around;
+}
+
+ .ing {
+  border: .75px solid black;
+  border-radius: 100%;
+  width: 65px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+/* About Page section */
 .about-page {
   display: flex;
   flex-direction: column;
