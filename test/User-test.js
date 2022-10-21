@@ -5,7 +5,7 @@ import Recipe from '../src/classes/Recipe';
 describe('User', () => {
     let userInfo, recipeObject1, recipeObject2, newUser, singleRecipe1,singleRecipe2;
     beforeEach(() => {
-      userInfo = [
+        userInfo = 
             {
             "name": "Saige O'Kon",
             "id": 1,
@@ -152,7 +152,6 @@ describe('User', () => {
               }
             ]
           },
-        ]
       singleRecipe1 = {
         "id": 595736,
         "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -405,10 +404,17 @@ describe('User', () => {
     })
   
   it('Should be able to filter the recipiesToCook array by tag', () => {
-    newUser.filteredTagsArray.push(recipeObject1)
+    newUser.recipesToCook.push(recipeObject1)
     newUser.filterRecipesToCookByTag('snack')
-    console.log(newUser.recipesToCook)
-    expect(newUser.filteredTagsArray[0]).to.deep.equal(recipeObject1)
+    expect(newUser.filterRecipesToCookByTag('snack')).to.deep.equal([recipeObject1])
+  })  
+
+  it('Should have a name', () => {
+    expect(newUser.returnUserName()).to.equal("Saige O'Kon")
+  })
+
+  it('Should have an ID', () => {
+    expect(newUser.returnUserId()).to.equal(1)
   })
     
 });

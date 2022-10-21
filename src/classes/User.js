@@ -4,7 +4,6 @@ class User {
         this.id = userData.id
         this.pantry = userData.pantry
         this.recipesToCook = []
-        this.filteredTagsArray = []
     }
     addRecipeToRecipesToCook(recipe) {
         if (this.recipesToCook.includes(recipe)) {
@@ -23,16 +22,17 @@ class User {
     }
     
     filterRecipesToCookByTag(tag) {
+        let filteredTagsArray = []
         this.recipesToCook.forEach(recipe => {
                 if (recipe.tags.includes(tag)) {
                     filteredTagsArray.push(recipe)
-                    console.log(filteredTagsArray)
                 }
             })
             return filteredTagsArray
     }
 
     returnUserName() {
+        console.log(this.name)
         return this.name
     }
 
