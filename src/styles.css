@@ -42,8 +42,19 @@
   align-items: center;
 }
 
-.li--total-cost {
+.list--total-cost {
  font-weight: bold;
+}
+
+.list--all-recipes {
+  box-shadow: 10px 10px 5px #888888;
+  background-color: white;
+  padding: 5px 10px 10px 20px;
+}
+
+.section--all-recipes {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .section--user-welcome {
@@ -112,9 +123,9 @@ h3, h4 {
   text-decoration: underline;
 }
 
-.hidden {
+/* .hidden {
   display: none;
-}
+} */
 
 /* USE THIS TO DO RECIPE LIST DROPDOWN */
 /* 
