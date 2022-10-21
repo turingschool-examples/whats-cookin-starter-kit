@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import User from '../src/classes/User';
+import Recipe from '../src/classes/Recipe';
 
 
 describe('User', () => {
@@ -241,13 +242,13 @@ describe('User', () => {
     expect(user1).to.be.an.instanceof(User);
   });
 
-  it('Should have a favorites array', () => {
-    expect(user1.favorites).to.deep.equal([]);
-  });
+  // it('Should have a favorites array', () => {
+  //   expect(user1.favorites).to.deep.equal(user1.createFavoritesArray());
+  // });
 
-  it('Should have a method to add recipe favorites array', () => {
-    expect(user1.addToFavorites).to.be.a('function');
-  });
+  // it('Should have a method to add recipe favorites array', () => {
+  //   expect(user1.addToFavorites).to.be.a('function');
+  // });
 
   it('Should return the array with added recipe', () => {
     expect(user1.addToFavorites(recipe1)).to.be.deep.equal([{
@@ -493,7 +494,7 @@ describe('User', () => {
   });
 
   it('Should return all the recipes that match the filter tag', () => {
-    expect(user1.filterFavsByName('Maple Dijon Apple Cider Grilled Pork Chops')).to.deep.equal([user.favorites[0]]);
+    expect(user1.filterFavsByName('Maple Dijon Apple Cider Grilled Pork Chops')).to.deep.equal([user1.favorites[0]]);
   });
 
 })

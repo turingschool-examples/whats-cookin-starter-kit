@@ -1,7 +1,19 @@
+import Recipe from '../classes/Recipe'
+
 class User {
-  constructor() {
-   this.favorites = [] 
+  constructor(recipeData) {
+   this.favorites = this.createFavoritesArray() 
+   this.recipeData = recipeData
   }
+
+  // createFavoritesArray() {
+  //   let favoritesArray = []
+  //   this.recipeData.forEach((recipe) => {
+  //     let modifiedRecipes = new Recipe(recipe)
+  //     favoritesArray.push(modifiedRecipes)
+  //   })
+  //   return favoritesArray
+  // }
 
   addToFavorites(recipe) {
     this.favorites.push(recipe)
@@ -14,17 +26,17 @@ class User {
   }
 
   filterFavsByTag(tag) {
-    let favByTagResult = this.favorites.filter((tag) => {
-     this.favorites
+    let favByTagResult = this.favorites.filter((favorites) => {
+     favorites.tags.includes(tag)
     })
-    return
+    return favByTagResult
   }
 
   filterFavsByName(name) {
-     let favByNameResult = this.favorites.filter((name) => {
-
+     let favByNameResult = this.favorites.filter((favorites) => {
+      favorites.name.includes(name)
     })
-    return
+    return favByNameResult
   }
 }
 
