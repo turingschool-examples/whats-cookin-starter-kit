@@ -62,7 +62,7 @@
   width: 100%;
 }
 
-.left-side-featured-recipe-box {
+/* .left-side-featured-recipe-box {
   align-items: flex-start;
   background:;
   display: flex;
@@ -71,30 +71,27 @@
   height: 30vh;
   justify-content: flex-start;
   width: 50%;
+} */
 
-}
-.first-recipe-image {
+/* .first-recipe-image {
   display: flex;
   height: 30vh;
   width: 50%;
-}
+} */
 
-.left-side-recipe-name {
+.feat-recipe-name {
   font-size: 3vh;
-}
-
-.left-side-recipe-ingredients {
-  font-size: 2.5vh;
 }
 
 p {
   font-size: 2vh;
 }
 
-.left-main-bottom-three-images {
+.main-bottom {
   display: flex;
 }
-.three-img-botttom-left {
+
+.left-card {
   display: flex;
 }
 
