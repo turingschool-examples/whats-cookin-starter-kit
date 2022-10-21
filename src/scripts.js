@@ -16,6 +16,7 @@ const searchField = document.getElementById('input--search');
 const filterField = document.getElementById('input--filter');
 const cardsContainer = document.getElementById('section--cards-container');
 const recipeContainer = document.getElementById('section--recipe-details');
+const savedRecipesContainer = document.getElementById('section--saved-cards');
 const ingredientContainer = document.getElementById('ul--ingredient-list');
 const instructionsContainer = document.getElementById('ul--instructions');
 const recipeCard1 = document.getElementById('card--recipe1');
@@ -34,7 +35,13 @@ const recipeTitle = document.getElementById('title--recipe');
 
 
 //  EVENT LISTENERS LIVE HERE
-homeButton.addEventListener('click', testFunction)
+homeButton.addEventListener('click', () => {
+    show(cardsContainer);
+    hide(recipeContainer);
+    hide(savedRecipesContainer);
+});
+
+
 
 
 
@@ -46,9 +53,9 @@ homeButton.addEventListener('click', testFunction)
 
 
 // HELPER FUNCTIONS LIVE HERE
-function testFunction() {
-    console.log('HELLO')
-}
+const show = element => element.classList.remove('hidden');
+const hide = element => element.classList.add('hidden');
+
 
 
 
