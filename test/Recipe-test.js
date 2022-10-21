@@ -329,8 +329,4 @@ describe('Recipe', () => {
     it('should return the instructions', () => {
         expect(recipe1.returnInstructions()).to.deep.equal(steps)
     });
-
-    it.skip('should ...', () => {
-        expect().to.equal();
-    });
 });

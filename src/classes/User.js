@@ -2,7 +2,7 @@ class User {
     constructor(user) {
         this.name = user.name;
         this.id = user.id;
-        this.pantry = user.pantry;
+        this.pantry = user.pantry || [];
         this.recipesToCook = [];
     };
 
@@ -15,7 +15,7 @@ class User {
     };
 
     filterByName(name) {
-        return this.recipesToCook.filter(recipe => recipe.name === name);
+        return this.recipesToCook.filter(recipe => recipe.name.includes(name));
     };
 
 };
