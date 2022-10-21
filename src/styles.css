@@ -139,42 +139,34 @@ header {
 
 .modal-parent {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  /* change back to relative? ^ */
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: auto;
   background-color: rgb(236, 219, 186);
   height: 73%;
   width: 80%;
+  padding: 50px;
 }
 
-.modal.is-open {
-  display: block;
-}
-
-/* .modal-image {
-  width: 80%;
-  position: absolute;
-  object-fit:contain;
-} */
-
-/* .test {
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  align-items: center;
-  height: 100%;
+.close-btn-div {
   width: 100%;
-} */
+}
 
-.modal-recipe-panel {
-  background-color: rgb(236, 219, 186);
-  width: 40%;
-  height: 90%;
-  margin-right: 20px;
-  justify-content: right;
+.modal-image-ingr-parent {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.ingr-span {
+  display: block;
+  text-align: right;
 }
 
 .close-modal-btn {
   float: right;
+}
+
+.modal.is-open {
+  display: block;
 }
