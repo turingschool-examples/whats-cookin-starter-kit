@@ -1,3 +1,12 @@
+/* WIREFRAME COLORS:
+
+BLACK: rbg(22, 22, 22)
+GREEN: rgb(52, 103, 81)
+RUST: rbg(200, 75, 49)
+BEIGE: rgb(236, 219, 186)
+LIGHT BEIGE: rgb(247, 243, 233) */
+ 
+
 * {
   margin: 0;
   padding: 0;
@@ -109,4 +118,105 @@ header {
   background-color: purple;
   padding: 5px;
   justify-content: space-around;
+}
+
+/* ---------------------- MODAL ---------------------- */
+
+.modal {
+  display: none;
+  position: fixed;
+  background-color: #000000ab;
+  height: 100%;
+  width: 100%;
+}
+
+.modal-grandparent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+}
+
+.modal-parent {
+  background-color: rgb(247, 243, 233);
+  height: 70%;
+  width: 75%;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.close-modal-btn {
+  float: right;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0px;
+  padding: 7px;
+  padding-right: 20px;
+}
+
+.close-modal-btn-container {
+  position: fixed;
+  width: inherit;
+}
+
+.close-modal-btn:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.modal-content-parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 45px 43px 50px 50px;
+}
+
+.modal-content-parent > * {
+  padding: 10px;
+}
+
+.modal-content-parent > h1 {
+  font-size: 2.5em;
+}
+
+.modal-image-ingr-parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.modal-image {
+  max-height: 322px;
+}
+
+.ingr-span {
+  display: block;
+  text-align: right;
+  background-color: white;
+  width: 35%;
+  padding: 23px;
+}
+
+.ingr-span > * {
+  padding: 5px;
+}
+
+.directions-parent {
+  background-color: white;
+  padding: 23px;
+}
+
+.directions-parent > h2 {
+  padding: 7px;
+  padding-bottom: 10px;
+}
+
+.directions-parent > p {
+  line-height: 1.3;
+  padding: 7px;
+}
+
+.modal.is-open {
+  display: block;
 }
