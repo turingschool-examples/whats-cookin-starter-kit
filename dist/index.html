@@ -68,7 +68,52 @@
       </section>
     </main>
     <main class="hide">ALL RECIPES/SAVED RECIPES</main>
-    <main class="hide">VIEW SPECIFIC RECIPE PAGE</main>
+    <main class="hide">
+      <header>
+        <h1 class="specific-recipe-heading">RECIPE NAME</h1>
+        <button type="button" class="save-button" id="">save to my recipes</button>
+        <!-- 👆 note: when a recipe on the recipes page is clicked, the ID of this button should change to that recipe's ID -->
+      </header>
+      <div class="specific-recipe-display">
+        <section>
+          <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="" class="specific-recipe-img">
+        </section>
+        <section>
+          <div>
+            <h3>INGREDIENTS</h3>
+            <ul class="specific-recipe-ingredients-list">
+              <li>wheat flour</li>
+              <li>bicarbonate of soda</li>
+              <li>eggs</li>
+              <li>brown sugar</li>
+              <li>can of beans</li>
+              <li>chicken scraps</li>
+              <li>cat food</li>
+              <li>sriracha sauce</li>
+              <li>ketchup</li>
+              <li>onions</li>
+              <!-- delete these <li>s as they will be created dynamically -->
+            </ul>
+          </div>
+          <div>
+            <h3>INSTRUCTIONS</h3>
+            <ol class="specific-recipe-instructions">
+              <li>Watch how to make this recipe.</li>
+              <li>In a large bowl, whisk together buttermilk, eggs, baking powder, sugar, salt and butter.</li>
+              <li>In another large bowl mix together all-purpose flour and buckwheat flour.</li>
+              <li>Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice
+                cream and a drizzle of chocolate sauce.</li>
+              <!-- delete these <li>s as they will be created dynamically -->
+            </ol>
+          </div>
+          <div>
+            <h3>COST</h3>
+            <p class="specific-recipe-cost">$6.00</p>
+          </div>
+        </section>
+      </div>
+    </main>
+
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
