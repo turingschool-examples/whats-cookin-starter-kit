@@ -41,7 +41,7 @@ returnRecipieIngredientsArray() {
 
 returnAllIngredientsArray() {     
   let ingredientsArray = ingredientsData.map((ingredient) => {
-        return  new Ingredients(ingredient)
+        return  new Ingredient(ingredient)
    });
   return ingredientsArray;
 }
