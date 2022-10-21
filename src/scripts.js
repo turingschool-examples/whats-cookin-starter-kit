@@ -3,6 +3,8 @@ import apiCalls from './apiCalls';
 import MicroModal from 'micromodal';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
+import "./images/bookmark-unsaved.svg"
+import "./images/bookmark-saved.svg"
 
 MicroModal.init({
   onShow: modal => console.info(`${modal.id} is shown. Callback ftn to poppulate modal called here?`),
