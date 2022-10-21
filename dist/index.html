@@ -1,30 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
   <meta charset="UTF-8">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
   <link rel="stylesheet" type="text/css" href="../src/styles.css">
 </head>
-
 <body>
   <header class="main-header">
     <img class="logo-item" img src="../src/images/turing-logo.png" height:5px>
     <input id="searchBar" placeholder="Search"></input>
-    <button class="add-your-own-recipe">Add your own recipe</button>
-    <button class="login-button">Login</button>
+    <button class="view-all-recipes header-button">View all recipes</button>
+    <button class="login-button header-button">Login</button>
   </header>
-  <section class="main-center-boxes">
+  <section class="main-center-boxes onload-view">
     <section class="main-left-side">
       <div class="left-side-first-recipe">
         <div class="left-side-featured-recipe-box">
           <h1 class="left-side-recipe-name">Recipe Name:
             <p class='current-recipe-name'>Cooked Chicken Breast</p>
-          </h1>
-          <h1 class="current-recipe-ingredients">List of Ingredients:
-            <p>Chicken breast</p>
-            <p>Butter</p>
-            <p>Seasoning</p>
           </h1>
         </div>
         <div class="image-parent-main">
@@ -44,28 +37,15 @@
         <div class="right-random-card">
           <img class="right-random-image" img src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"/>
           <h1 class="right-random-name"></h1>
-
         </div>
-
       </section>
     </section>
-
     <section class="main-right-saved-section">
       <div class="main-right-side-title">Saved</div>
-      <!-- <div class="main-right-side-first-box">
-          <header class="main-right-side-first-header">First</header>
-        </div>
-        <div class="main-right-side-second-box">
-          <header class="main-right-side-second-header">Second</header>
-        </div>
-        <div class="main-right-side-third-box">
-          <header class="main-right-side-third-header">Third</header>
-        </div>
-        <div class="main-right-side-fourth-box">
-          <header class="main-right-side-fourth-header">Fourth</header>
-        </div> -->
-    </section>
   </section>
+  <section class="all-recipes-view"></section>
+  <section class="selected-recipe-view"></section>
+  <section class="searched-recipe-view"></section>
   <footer class="main-footer">
     <div class="subscribe-title">Subscribe
       <input placeholder="Enter Email Here!">
@@ -73,23 +53,22 @@
     <div class="contact-information">
       <div class="connect-with-us">Connect with us now</div>
       <div class="all-the-connect-buttons">
-        <button class="facebook-button">FB</button>
-        <button class="twitter-button">TW</button>
-        <button class="instagram-button">IG</button>
-        <button class="youtube-button">YT</button>
+        <button class="facebook-button button">FB</button>
+        <button class="twitter-button button">TW</button>
+        <button class="instagram-button button">IG</button>
+        <button class="youtube-button button">YT</button>
       </div>
     </div>
     <div class="learn-more">
       <div class="learn-more-title">Learn More</div>
       <div class="all-the-learn-more-links">
-        <button class="contact-us-button">Contact Us</button>
-        <button class="about-us-button">About Us</button>
-        <button class="privacy-policy">Privacy Policy</button>
+        <button class="contact-us-button underline">Contact Us</button>
+        <button class="about-us-button underline">About Us</button>
+        <button class="privacy-policy underline">Privacy Policy</button>
       </div>
     </div>
   </footer>
 </body>
 <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
 <script src="bundle.js"></script>
-
 </html>
