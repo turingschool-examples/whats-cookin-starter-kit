@@ -18,6 +18,7 @@ const leftRandomImageCard = document.querySelector(".left-random-card")
 const middleRandomImageCard = document.querySelector(".middle-random-card")
 const rightRandomImageCard = document.querySelector(".right-random-card")
 const viewAllRecipesButton = document.querySelector(".view-all-recipes")
+const allRecipesView = document.querySelector(".all-recipes-view")
 
 
 
@@ -90,7 +91,10 @@ function updateMainRandomRecipes(){
 
 
 function viewAllRecipes () {
-    
+    console.log("all recipes", allRecipes)
+    allRecipes.recipesList.forEach(element => 
+        allRecipesView.innerHTML+= `<h1>${element.name}</h1>`
+        )
 }
 
 //EventListener
