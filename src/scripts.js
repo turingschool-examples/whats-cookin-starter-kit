@@ -136,9 +136,10 @@ const displayRecipeDetails = (event) => {
     hide(savedRecipesContainer);
     hide(allRecipesContainer);
     recipeTitle.innerText = currentRecipe.name;
+    instructionsContainer.innerHTML = '';
     currentRecipe.returnRecipeInstructions().map(element => instructionsContainer.innerHTML += `<li>${element}</li>`);
     ingredientContainer.innerHTML = '';
-    currentRecipe.returnRecipeIngredientsNames()
+    currentRecipe.returnRecipeIngredientsInfo()
         .map(ingredientInfo => ingredientContainer.innerHTML += `<li>${ingredientInfo}</li>`);
     ingredientContainer.innerHTML += `<div class="text--total-cost">Total cost: ${currentRecipe.returnCostOfIngredients()}</div>`;
 };
