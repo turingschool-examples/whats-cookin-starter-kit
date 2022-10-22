@@ -6,6 +6,8 @@ import "./images/bookmark-tiles-unsaved.png"
 import "./images/bookmark-tiles-saved.png"
 import "./images/bookmark-unsaved.png"
 import "./images/bookmark-saved.png"
+import './images/turing-logo.png'
+// import '../src/images'
 import RecipeRepository from '../src/classes/RecipeRepository'
 import recipeData from './data/recipes'
 import ingredientsData from "./data/ingredients"

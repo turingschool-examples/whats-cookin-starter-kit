@@ -133,13 +133,22 @@ svg:hover {
   transform: scale(.4);
 }
 
+.recipe-tile:hover {
+  border: 2px solid #c84b31;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
 .recipe-tile {
   display: flex;
   flex-direction: column;
   height: 200px;
   width: 200px;
   margin: 10px;
-  border: 5px solid black
+  border: 2px solid #161616;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  border-radius: 5px;
+  background-color: rgb(247, 243, 233)
 }
 
 .recipe-tile > .tile-image {
