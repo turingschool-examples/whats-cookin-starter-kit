@@ -29,10 +29,11 @@ let allRecipes;
 
 //QUERY SELECTORS-----------------------------------------------
 //Navbar QUERY SELECTORS ---------
-const allReipesPageButton = document.querySelector('.all-recipes-button') //connect with NAVBAR
-const savedReipesPageButton = document.querySelector('.saved-recipes-button') //connect with NAVBAR
+const allReipesPageButton = document.querySelector('.all-recipes-button')
+const savedReipesPageButton = document.querySelector('.saved-recipes-button')
 //Home Page QUERY SELECTORS--------
 //All Recipes Page QUERY SELECTORS--------
+const allRecipesMain = document.querySelector('.all-recipes-main')
 const allRecipesPageTitle = document.querySelector('.page-title')
 const allRecipeThumbnailsSection = document.querySelector('.all-recipe-thumbnails')
 const allRecipeFilterTagOptions = document.querySelector('.list-of-tag-options')
@@ -83,11 +84,10 @@ function makeIngredientsList(dataSet) {
 //Navbar EVENT LISTENERS ---------
 //Home Page EVENT LISTENERS --------
 //All Recipes Page EVENT LISTENERS --------
-allReipesPageButton.addEventListener('click', displayAllRecipesPage); //connect with NAVBAR
-allRecipeThumbnailsSection.addEventListener('click', showSelectedRecipe);
+allReipesPageButton.addEventListener('click', displayAllRecipesPage);
 allRecipeFilterTagOptions.addEventListener('click', displayRecipesOfSameTag)
 //Saved Recipes Page EVENT LISTENERS --------
-savedReipesPageButton.addEventListener('click', displaySavedRecipesPage) //connect with NAVBAR
+savedReipesPageButton.addEventListener('click', displaySavedRecipesPage)
 //Specific Recipe Page EVENT LISTENERS --------
 
 
@@ -97,7 +97,8 @@ savedReipesPageButton.addEventListener('click', displaySavedRecipesPage) //conne
 //Home Page FUNCTIONS --------
 //All Recipes Page FUNCTIONS --------
 function displayAllRecipesPage() {
-  console.log(allRecipes)
+
+  console.log('I am listening!')
   createPageTitle('ALL RECIPES');
   displayRecipeThumbnails(allRecipes.listOfAllRecipes, '');
   createListOfTags(allRecipes.listOfAllRecipes);
@@ -134,6 +135,7 @@ function displayRecipesOfSameTag() {
 
 //Saved Recipes Page FUNCTIONS --------
 function displaySavedRecipesPage() {
+  console.log('Save page listening')
   createPageTitle('SAVED RECIPES');
   displayRecipeThumbnails(currentUser.recipesToCook, '🗑');
   createListOfTags(currentUser.recipesToCook);
