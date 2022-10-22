@@ -404,9 +404,10 @@ describe('User', () => {
     })
 
   it('Should be able to filter the recipiesToCook array by name', () => {
-    newUser.recipiesToCook.push(recipeObject1)
-    newUser.filterRecipiesToCookByName('Loaded Chocolate Chip Pudding Cookie Cups')
-    expect(newUser.filterRecipiesToCookByName('Loaded Chocolate Chip Pudding Cookie Cups').to.deep.equal([recipeObject1]))
+    newUser.recipesToCook.push(recipeObject1)
+    newUser.filterRecipesToCookByName('Loaded Chocolate Chip Pudding Cookie Cups')
+    console.log(newUser.recipesToCook)
+    expect(newUser.filterRecipesToCookByName('Loaded Chocolate Chip Pudding Cookie Cups')).to.deep.equal([recipeObject1])
   })
   
   it('Should be able to filter the recipiesToCook array by tag', () => {
