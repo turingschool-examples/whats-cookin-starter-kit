@@ -16,10 +16,12 @@ const currentRecipeImage = document.querySelector(".image-parent-main")
 const leftRandomImageCard = document.querySelector(".left-random-card")
 const middleRandomImageCard = document.querySelector(".middle-random-card")
 const rightRandomImageCard = document.querySelector(".right-random-card")
+
 const viewAllRecipesButton = document.querySelector(".view-all-recipes")
+const homeButton = document.querySelector(".home-button")
+
 const allRecipesView = document.querySelector(".all-recipes-view")
 const homeView = document.querySelector(".home-view")
-const homeButton = document.querySelector(".home-button")
 const selectedRecipeView = document.querySelector(".selected-recipe-view")
 const searchedRecipeView = document.querySelector(".searched-recipe-view")
 
@@ -28,6 +30,7 @@ const searchedRecipeView = document.querySelector(".searched-recipe-view")
 let currentRecipe
 let randomRecipes
 let allRecipes
+let selectedRecipe
 // let hiddenElements = [allRecipesView,homeButton,selectedRecipeView,searchedRecipeView]
 
 
@@ -106,41 +109,58 @@ function showMainRandomRecipes(){
     <h1 class="right-random-name">${randomRecipes[2].name}</h1>`
 }
 
-
-// function viewAllRecipes () {
-//     event.preventDefault()
-//     console.log("all recipes", allRecipes)
-//     allRecipes.recipesList.forEach(element => 
-//         allRecipesView.innerHTML+= `<h1>${element.name}</h1>`
-//     )
-
-//     showElement(allRecipesView)
-//     showElement(homeButton)
-// }
-
-// function viewHome () {
-//     hideElement(homeButton)
-//     hideElement(allRecipesView)
-// }
-
-//EventListener
-window.addEventListener("load", loadHandler())
-homeButton.addEventListener("click", function(event) {
-    event.preventDefault()
-    showElement(homeView)
-    showElement(viewAllRecipesButton)
-    hideElement(homeButton)
+function viewSelectedRecipe () {
+    hideElement(homeView)
+    hideElement(searchedRecipeView)
     hideElement(allRecipesView)
-})
+    showElement(selectedRecipeView)
+    showElement(homeButton)
+    showElement(viewAllRecipesButton)
+    showSelectedRecipe()
+}
 
-viewAllRecipesButton.addEventListener("click", function (event){
-    event.preventDefault()
-    console.log("all recipes", allRecipes)
+function showSelectedRecipe() {
+    selectedRecipeView.innerHTML = `
+    <section class="selected-recipe-container">
+    <img class="selected-recipe-image" img src=${selectedRecipe.image}>
+    <h1 class="name">${selectedRecipe.name}</h1>
+    <h2 class="cost">Cost: ${selectedRecipe.getIngredientsCost()} cent</h2>
+    <h3 class="ingredients-list">${selectedRecipe.ingredientsNeeded()}</h3>
+    <h4 class="instructions-list">${selectedRecipe.getInstructions()}</h4>
+  </section>`
+}
+
+function viewAllRecipes () {
     allRecipes.recipesList.forEach(element => 
-        allRecipesView.innerHTML+= `<h1>${element.name}</h1>`
+        allRecipesView.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`
     )
     hideElement(viewAllRecipesButton)
     hideElement(homeView)
     showElement(allRecipesView)
     showElement(homeButton)
+}
+
+function viewHome () {
+    showElement(homeView)
+    showElement(viewAllRecipesButton)
+    hideElement(homeButton)
+    hideElement(allRecipesView)
+}
+
+//EventListener
+window.addEventListener("load", loadHandler())
+homeButton.addEventListener("click", function(event) {
+    event.preventDefault()
+    viewHome()
+})
+
+viewAllRecipesButton.addEventListener("click", function (event){
+    event.preventDefault()
+    viewAllRecipes()
+})
+
+allRecipesView.addEventListener("click", function (event) {
+    selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
+    console.log("selected Recipe", selectedRecipe)
+    viewSelectedRecipe()
 })
