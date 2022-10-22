@@ -4,22 +4,15 @@ class UserRepo {
 
   }
 
-/*
-get single user by id
-if single user id matches user id in user array
-  then return user pantry
-*/
-
   getUserInfo(userId) {
     let userInfo = this.userCatalog.find(user => {
       userId === user.id
       return user
     })
-  return  userInfo//let userPantry =
+  return  userInfo
   }
 
   getPantry(userId) {
-    //return this.userCatalog.find(user => userId === user.id)
     let userInfo = this.userCatalog.find(user => userId === user.id)
     return userInfo.pantry
    }
