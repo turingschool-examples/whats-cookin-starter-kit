@@ -24,25 +24,31 @@ let allRecipes = recipesData
 let recipeRepository = new RecipeRepository(allRecipes);
 let currentUser;
 let userRepo = new UserRepo(allUsersData);
+const myRecipes = []
 
 
 //query selectors go here
-let allRecipesButton = document.querySelector(".all-recipes-button");
+const allRecipesButtons = document.querySelectorAll(".all-recipes-button");
 let allRecipesPage = document.querySelector(".all-recipes-page");
 let homePage = document.querySelector(".home-page");
 let currentRecipePage = document.querySelector(".current-recipe");
+const currentRecipeContainer = document.querySelector("#current-recipe-id")
 let searchButton = document.querySelector(".search-button");
 let inputBar = document.querySelector(".search-bar > input");
 let tagSelect = document.querySelector("#tag-select");
 let saveRecipeButton = document.querySelector(".save-recipe-button");
 let savedRecipePage = document.querySelector(".saved-recipes-page");
+const savedRecipeContainer = document.querySelector("#saved-recipe-card-container");
+const allRecipesContainer = document.querySelector("#all-recipes-container")
 
 //event listeners go here
-allRecipesButton.addEventListener("click", viewAllRecipes);allRecipesButton.addEventListener("click", renderAllRecipesPage);
+allRecipesButtons.forEach((button) => {
+  button.addEventListener("click", renderAllRecipesPage)
+});
 searchButton.addEventListener("click", searchForRecipes);
 tagSelect.addEventListener("change", searchByTag);
 window.addEventListener("load", selectRandomUser);
-// saveRecipeButton.addEventListener("click", addToSavedRecipe)
+
 
 //event handlers go here
 function searchByTag(event) {
@@ -52,8 +58,8 @@ function searchByTag(event) {
 }
 
 function selectRandomUser() {
-  console.log("Can I see this??? Please say yes.")
-  console.log("userRepo: ", userRepo)
+//   console.log("Can I see this??? Please say yes.")
+//   console.log("userRepo: ", userRepo)
   let randomIndex = Math.floor(Math.random() * userRepo.userCatalog.length)
   let randomUser = userRepo.userCatalog[randomIndex]
   return currentUser = new User(randomUser)
@@ -66,6 +72,8 @@ function renderAllRecipesPage() {
 function viewAllRecipes(recipes) {
   addHidden(homePage);
   removeHidden(allRecipesPage);
+  addHidden(savedRecipePage)
+  allRecipesContainer.innerHTML = ""
   recipes.forEach((recipe) => {
     const newSection = document.createElement("section");
     newSection.className = "recipe-card-container";
@@ -74,21 +82,24 @@ function viewAllRecipes(recipes) {
         <p class="recipe-name"> ${recipe.name} </p>`;
        
 
-    allRecipesPage.appendChild(newSection);
-    newSection.addEventListener("click", seeRecipe);
+    allRecipesContainer.appendChild(newSection);
+    const recipeImage = newSection.querySelector(".image")
+    recipeImage.addEventListener("click", seeRecipe);
   });
 }
 
-function searchForRecipes() {
+function searchForRecipes(event) {
+  event.preventDefault()
   const inputValue = inputBar.value;
   const filteredElements = recipeRepository.filterByName(inputValue);
+  console.log(filteredElements);
   viewAllRecipes(filteredElements);
 }
 
 //other functions go here
 
 function seeRecipe(event) {
-  let visibleRecipe = recipeRepository.newRecipes.find((recipe) => {
+  const visibleRecipe = recipeRepository.newRecipes.find((recipe) => {
     return parseInt(event.target.id) === recipe.id;
   });
   renderRecipe(visibleRecipe);
@@ -97,19 +108,20 @@ function seeRecipe(event) {
 function renderRecipe(recipe) {
   addHidden(allRecipesPage);
   removeHidden(currentRecipePage);
-
+  addHidden(savedRecipePage);
+  currentRecipeContainer.innerHTML = ""
   const newSection = document.createElement("section");
   newSection.className = "recipe-details"; 
-//   newSection.id = `"${recipe.id}"`
   newSection.innerHTML += `<h2>${recipe.name}</h2>`;
-  newSection.innerHTML += `<img class="image" src="${recipe.image}">`;
+  newSection.innerHTML += `<img class="image" id="${recipe.id}" src="${recipe.image}">`;
   newSection.innerHTML += renderIngredients(recipe.ingredients);
   newSection.innerHTML += renderInstructions(recipe.instructions);
   newSection.innerHTML += `<p>Estimated cost: ${recipe.getCost()} cents</p>
   <button class="save-recipe-button" id="${recipe.id}"> Save Recipe </button>`;
 
-  currentRecipePage.appendChild(newSection);
-  newSection.addEventListener("click", addToSavedRecipe)
+  currentRecipeContainer.appendChild(newSection);
+  const recipeImage = newSection.querySelector(".image")
+  recipeImage.addEventListener("click", addToSavedRecipe)
 }
 
 function renderInstructions(instructions) {
@@ -135,23 +147,37 @@ function renderIngredients(ingredients) {
   </ul>`;
 }
 
-
 function addToSavedRecipe(event) {
-    let myRecipes = []
-    let newSavedRecipe = recipeRepository.newRecipes.find((recipe) => {
-        console.log(recipe);
-        return parseInt(event.target.id) === recipe.id;
-      });
-    //   console.log(newSavedRecipe);
-      myRecipes.push(newSavedRecipe)
-    //   console.log("This is here")
-      savedRecipes(newSavedRecipe)
+  const newSavedRecipe = recipeRepository.newRecipes.find((recipe) => {
+    return parseInt(event.target.id) === recipe.id;
+  });
+  const existingData = myRecipes.find((recipe) => {
+    return newSavedRecipe.id === recipe.id
+  })
+  if(!existingData){
+    myRecipes.push(newSavedRecipe)
+  }
+  console.log(myRecipes);
+  savedRecipes()
 }
 
-function savedRecipes(recipe) {
-    addHidden(currentRecipePage)
-    removeHidden(savedRecipePage)
-       
+
+
+function savedRecipes() {
+  addHidden(currentRecipePage)
+  removeHidden(savedRecipePage)
+  savedRecipeContainer.innerHTML = ""
+  myRecipes.forEach((recipe) => {
+    const newSection = document.createElement("section");
+    newSection.className = "recipe-card-container";
+    newSection.innerHTML = `
+        <img class="image" id="${recipe.id}" src="${recipe.image}">
+        <p class="recipe-name"> ${recipe.name} </p>`;
+        
+
+    savedRecipeContainer.appendChild(newSection);
+    newSection.addEventListener("click", seeRecipe);
+  }); 
 }
 
 function addHidden(element) {

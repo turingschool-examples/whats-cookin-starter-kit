@@ -119,10 +119,58 @@
       </div>
     </section>
     <section class="all-recipes-page hidden">
+      <header>
+        <section class="mini-menu-bar-container">
+          <select name="tags" id="tag-select">
+            <option value="all">All tags</option>
+          </select>
+          <button class="my-recipes-button" id="menu-button">My Recipes</button>
+        </section>
+        <h1>All Recipes</h1>
+        <div class="search-bar">
+          <input type="text" placeholder="Search" />
+          <button class="search-button">Search</button>
+        </div>
+      </header>
+      <div id="all-recipes-container"></div>
     </section>
-    <section class="current-recipe hidden"></section>
+    <section class="current-recipe hidden">
+      <header>
+        <section class="mini-menu-bar-container">
+          <button class="all-recipes-button" id="menu-button">
+            All Recipes
+          </button>
+          <select name="tags" id="tag-select">
+            <option value="all">All tags</option>
+          </select>
+          <button class="my-recipes-button" id="menu-button">My Recipes</button>
+        </section>
+        <h1>Whats Cookin', Good Lookin'?</h1>
+        <div class="search-bar">
+          <input type="text" placeholder="Search" />
+          <button class="search-button">Search</button>
+        </div>
+      </header>
+      <div id="current-recipe-id"></div>
+    </section>
     <section class="saved-recipes-page hidden">
-      <div class="saved-recipe-card-container">
+      <header>
+        <section class="mini-menu-bar-container">
+          <button class="all-recipes-button" id="menu-button">
+            All Recipes
+          </button>
+          <select name="tags" id="tag-select">
+            <option value="all">All tags</option>
+          </select>
+          <button class="my-recipes-button" id="menu-button">My Recipes</button>
+        </section>
+        <h1>Whats Cookin', Good Lookin'?</h1>
+        <div class="search-bar">
+          <input type="text" placeholder="Search" />
+          <button class="search-button">Search</button>
+        </div>
+      </header>
+      <div id="saved-recipe-card-container">
       </div>
     </section>
   </body>
