@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--MIGHT NEED TO ADD HEIGHT TO VIEWPORT-->
   <title>Whats Cookin</title>
@@ -21,23 +21,18 @@
       <div id="button--home" class="text-box">
         <a href="#" class="btn btn-grey btn-animate">Home</a>
       </div>
-      <!-- <button type="button" class="" id="button--home">Home</button> -->
-
       <div id="button--all-recipes" class="text-box">
         <a href="#" class="btn btn-grey btn-animate">All Recipes</a>
       </div>
       <div id="button--my-recipes" class="text-box">
         <a href="#" class="btn btn-grey btn-animate">My Recipes</a>
       </div>
-
-
     </nav>
   </header>
-   <!--ADD DROPDOWN DIV HERE AND BUTTON TYPES-->
+  <!--ADD DROPDOWN DIV HERE AND BUTTON TYPES-->
   <!--ASSUMING WE WILL INVOKE BOTH THE FILTER BY NAME & FILTER BY TAG METHODS-->
   <section class="section--main-body" id="section--main-body">
     <section class="section--cards-container" id="section--cards-container">
-
 
       <!-- Carousel Stuff Here -->
       <div class="glide">
@@ -122,7 +117,7 @@
       </div>
     </section>
 
-    
+
     <section class="section--all-recipes hidden" id="section--all-recipes">
       <div class="section--filter-bar">
         <input type="search" placeholder="     filter" class="input--filter" id="input--filter">
@@ -135,8 +130,8 @@
         <ul class="list--all-recipes" id="list--recipes-40-49"></ul>
       </section>
     </section>
-    
-    
+
+
     <section class="section--recipe-details hidden" id="section--recipe-details">
       <h2 id="title--recipe">PB&J</h2>
       <section class="section--ingredients-instructions" id="section--ingredients-instructions">
@@ -150,39 +145,38 @@
             <li>In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set
               aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar
               and brown sugar and cream until light and fluffy.</li>
-              <li>Add egg and vanilla and mix until combined.</li>
-              <li>"Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough
-                into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2
-                hours or overnight.When ready to bake, preheat oven to 350 degrees."</li>
-                <li>Place the cookie dough balls into ungreased muffin pan. Sprinkle with sea salt.</li>
-                <li>Bake for 9 to 10 minutes, or until you see the edges start to brown.</li>
-                <li>Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice
-                  cream and a drizzle of chocolate sauce.</li>
-                </ul>
-              </container>
-            </section>
-            
-            <div class="button--save-recipe">
-              <a href="#" class="btn btn-grey btn-animate" id="button--save-recipe">Save Recipe</a>
-            </div>
-          </section>
-          
-          <section class="section--saved-recipes hidden" id="section--saved-recipes">
-              <ul class="list--saved-recipes" id="list--saved-recipes-0-9"></ul>
-              <ul class="list--saved-recipes" id="list--saved-recipes-10-19"></ul>
-              <ul class="list--saved-recipes" id="list--saved-recipes-20-29"></ul>
-          </section>
-          
-          <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
-          <script>
-            const config = {
-              type: 'carousel',
+            <li>Add egg and vanilla and mix until combined.</li>
+            <li>"Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough
+              into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2
+              hours or overnight.When ready to bake, preheat oven to 350 degrees."</li>
+            <li>Place the cookie dough balls into ungreased muffin pan. Sprinkle with sea salt.</li>
+            <li>Bake for 9 to 10 minutes, or until you see the edges start to brown.</li>
+            <li>Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice
+              cream and a drizzle of chocolate sauce.</li>
+          </ul>
+        </container>
+      </section>
+      <div class="button--save-recipe">
+        <a href="#" class="btn btn-grey btn-animate" id="button--save-recipe">Save Recipe</a>
+      </div>
+    </section>
+
+
+    <section class="section--saved-recipes hidden" id="section--saved-recipes">
+      <ul class="list--saved-recipes" id="list--saved-recipes-0-9"></ul>
+      <ul class="list--saved-recipes" id="list--saved-recipes-10-19"></ul>
+      <ul class="list--saved-recipes" id="list--saved-recipes-20-29"></ul>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+    <script>
+      const config = {
+        type: 'carousel',
         perView: 3,
       }
       new Glide('.glide', config).mount()
-      </script>
+    </script>
 </body>
-<!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
 <script src="bundle.js"></script>
 
 </html>

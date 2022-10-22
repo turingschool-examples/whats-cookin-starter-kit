@@ -61,10 +61,11 @@
 }
 
 .list--total-cost {
- font-weight: bold;
+  font-weight: bold;
 }
 
-.list--all-recipes, .list--saved-recipes {
+.list--all-recipes,
+.list--saved-recipes {
   box-shadow: 10px 10px 5px #888888;
   background-color: white;
   padding: 5px 10px 10px 20px;
@@ -96,19 +97,20 @@
 
 .section--user-welcome {
   font-size: 4vh;
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
 
 .section--main-body {
   height: 100%;
-  margin-top:5%;
+  margin-top: 5%;
 }
 
 .section--buttons-bar {
   display: flex;
 }
 
-.section--nav, .section--list-filter {
+.section--nav,
+.section--list-filter {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -120,7 +122,8 @@
   margin-top: 12px;
 }
 
-.section--recipe-lists, .section--saved-recipes {
+.section--recipe-lists,
+.section--saved-recipes {
   display: flex;
   justify-content: space-evenly;
   font-size: 14px;
@@ -135,7 +138,7 @@
     'g h i';
 } */
 
-.text-box{
+.text-box {
   margin: 0px 10px 0px 10px;
 }
 
@@ -163,13 +166,15 @@ body {
   padding: 10px;
 }
 
-h1, h2 {
+h1,
+h2 {
   text-align: center;
   font-family: 'Oswald';
   margin: auto;
 }
 
-h3, h4 {
+h3,
+h4 {
   margin-left: 4%;
   font-size: 20px;
   text-decoration: underline;
@@ -205,8 +210,8 @@ body {
 }
 
 .text-box {
- margin-left: 0vw;
- margin-top: 0vh;
+  margin-left: 0vw;
+  margin-top: 0vh;
 }
 
 .btn:link,
@@ -264,12 +269,12 @@ body {
 
 @keyframes moveInBottom {
   0% {
-      opacity: 0;
-      transform: translateY(30px);
+    opacity: 0;
+    transform: translateY(30px);
   }
 
   100% {
-      opacity: 1;
-      transform: translateY(0px);
+    opacity: 1;
+    transform: translateY(0px);
   }
 }
