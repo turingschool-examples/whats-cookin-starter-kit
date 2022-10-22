@@ -106,7 +106,7 @@ function loadSpecificRecipe(event) { //will put this in event listener on Cournt
     currentRecipe = allRecipes.find(recipe => recipe.id === event.target.parentElement.id);
   }
   if (event.target.className === 'recipe-title-text') {
-    currentRecipe = allRecipes.find(recipe => recipe.id === event.target.parentElement.parentElement.id);
+    currentRecipe = allRecipes.listOfAllRecipes.find(recipe => recipe.id === event.target.parentElement.parentElement.id);
   }
   if (event.target.className === 'single-recipe-img' || 'recipe-title-text') {
     
@@ -129,8 +129,15 @@ function loadSpecificRecipe(event) { //will put this in event listener on Cournt
 }
 
 function generateIngredientList(recipe) {
+  
+  
+  
   specificRecipeIngredients.innerHTML = '';
-
+  currentRecipe.ingredients.forEach(ingredient => {
+    specificRecipeIngredients.innerHTML =+ `
+    <li>${ingredient}</li>
+    `
+  })
 }
 
 function generateInstructions(recipe) {
@@ -145,5 +152,7 @@ function generateCost(recipe) {
 // TEST : DELETE THIS
 
 window.addEventListener('click', function(event) {
-  console.log(event.target.parentElement.parentElement.className)
+  console.log('test: ', currentUser)
+  console.log('test recipes: ', allRecipes.listOfAllRecipes[0])
+
 })
