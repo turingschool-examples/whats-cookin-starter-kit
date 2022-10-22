@@ -28,8 +28,13 @@ let currentUser;
 
 //QUERY SELECTORS-----------------------------------------------
 //Navbar QUERY SELECTORS ---------
+const allReipesPageButton = document.querySelector('.all-recipes-button') //connect with NAVBAR
+const savedReipesPageButton = document.querySelector('.saved-recipes-button') //connect with NAVBAR
 //Home Page QUERY SELECTORS--------
 //All Recipes Page QUERY SELECTORS--------
+const allRecipesPageTitle = document.querySelector('.page-title')
+const allRecipeThumbnailsSection = document.querySelector('.all-recipe-thumbnails')
+const allRecipeFilterTagOptions = document.querySelector('.list-of-tag-options')
 //Saved Recipes Page QUERY SELECTORS--------
 //Specific Recipe Page QUERY SELECTORS--------
 
@@ -76,14 +81,36 @@ function makeIngredientsList(dataSet) {
 //Navbar EVENT LISTENERS ---------
 //Home Page EVENT LISTENERS --------
 //All Recipes Page EVENT LISTENERS --------
+allReipesPageButton.addEventListener('click', displayAllRecipesPage); //connect with NAVBAR
+allRecipeThumbnailsSection.addEventListener('click', showSelectedRecipe);
+allRecipeFilterTagOptions.addEventListener('click',)
 //Saved Recipes Page EVENT LISTENERS --------
+savedReipesPageButton.addEventListener('click', displaySavedRecipesPage) //connect with NAVBAR
 //Specific Recipe Page EVENT LISTENERS --------
 
 
 //FUNCTIONS------------------------------------------------------
 //Global FUNCTIONS -------------
 //Navbar FUNCTIONS ---------
+function displayAllRecipesPage() {
+  createPageTitle('ALL RECIPES');
+  displayAllRecipeThumbnails();
+};
 //Home Page FUNCTIONS --------
 //All Recipes Page FUNCTIONS --------
+function createPageTitle(title) {
+  allRecipesPageTitle.innerText = title; 
+};
+
+function displayAllRecipeThumbnails() {
+let allRecipeThumbnailsSection = '';
+
+};
 //Saved Recipes Page FUNCTIONS --------
+function displaySavedRecipesPage() {
+  createPageTitle('SAVED RECIPES');
+};
 //Specific Recipe Page FUNCTIONS --------
+function showSelectedRecipe() {
+
+};
