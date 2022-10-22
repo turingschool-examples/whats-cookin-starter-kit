@@ -46,9 +46,9 @@ nav {
 .homepage-body {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
   border: 1px solid black;
-  height: 5in;
+  height: 100vh;
  }
 
 .featured-recipe-wrapper {
@@ -56,7 +56,6 @@ nav {
   height: 2.5in;
   margin-left: 1rem;
   margin-right: 1rem;
-  margin-top: 1.5rem;
 }
 
 .filter-ingr-wrapper {
