@@ -20,6 +20,10 @@ class User {
             this.recipesToCook.splice(index, 1)
         } 
     }
+
+    filterRecipesToCookByName(name) {
+        this.recipesToCook.filter((recipe) => recipe["name"] === name)
+    }
     
     filterRecipesToCookByTag(tag) {
         let filteredTagsArray = []
@@ -30,9 +34,11 @@ class User {
             })
             return filteredTagsArray
     }
+    // Expected output is an array of recipes with the sepecific tag. Perhaps use .filter in refactor
+
+    // Add method to filter by name. 
 
     returnUserName() {
-        console.log(this.name)
         return this.name
     }
 

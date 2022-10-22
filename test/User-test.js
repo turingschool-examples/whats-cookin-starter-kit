@@ -402,6 +402,12 @@ describe('User', () => {
         newUser.removeRecipeFromRecipesToCook(recipeObject1)
         expect(newUser.recipesToCook).to.deep.equal([])
     })
+
+  it('Should be able to filter the recipiesToCook array by name', () => {
+    newUser.recipiesToCook.push(recipeObject1)
+    newUser.filterRecipiesToCookByName('Loaded Chocolate Chip Pudding Cookie Cups')
+    expect(newUser.filterRecipiesToCookByName('Loaded Chocolate Chip Pudding Cookie Cups').to.deep.equal([recipeObject1]))
+  })
   
   it('Should be able to filter the recipiesToCook array by tag', () => {
     newUser.recipesToCook.push(recipeObject1)
