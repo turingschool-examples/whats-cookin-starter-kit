@@ -68,9 +68,10 @@
   box-shadow: 10px 10px 5px #888888;
   background-color: white;
   padding: 5px 10px 10px 20px;
+  width: 15%;
 }
 
-.section--all-recipes, .section--saved-recipes {
+.section--all-recipes {
   /* display: flex; */
   flex-direction: column;
   align-items: center;
@@ -174,11 +175,9 @@ h3, h4 {
   text-decoration: underline;
 }
 
-
-/* 
 .hidden {
   display: none;
-} */
+}
 
 /* USE THIS TO DO RECIPE LIST DROPDOWN */
 /* 
