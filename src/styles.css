@@ -64,13 +64,13 @@
  font-weight: bold;
 }
 
-.list--all-recipes {
+.list--all-recipes, .list--saved-recipes {
   box-shadow: 10px 10px 5px #888888;
   background-color: white;
   padding: 5px 10px 10px 20px;
 }
 
-.section--all-recipes {
+.section--all-recipes, .section--saved-recipes {
   /* display: flex; */
   flex-direction: column;
   align-items: center;
@@ -119,7 +119,7 @@
   margin-top: 12px;
 }
 
-.section--recipe-lists {
+.section--recipe-lists, .section--saved-recipes {
   display: flex;
   justify-content: space-evenly;
   font-size: 14px;
@@ -175,10 +175,10 @@ h3, h4 {
 }
 
 
-
+/* 
 .hidden {
   display: none;
-}
+} */
 
 /* USE THIS TO DO RECIPE LIST DROPDOWN */
 /* 

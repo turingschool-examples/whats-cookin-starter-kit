@@ -18,7 +18,7 @@ const filterField = document.getElementById('input--filter');
 const cardsContainer = document.getElementById('section--cards-container');
 const recipeContainer = document.getElementById('section--recipe-details');
 const recipeListsContainer = document.getElementById('section--recipe-lists');
-const savedRecipesContainer = document.getElementById('section--saved-cards');
+const savedRecipesContainer = document.getElementById('section--saved-recipes');
 const allRecipesContainer = document.getElementById('section--all-recipes');
 const ingredientContainer = document.getElementById('ul--ingredient-list');
 const instructionsContainer = document.getElementById('ul--instructions');
@@ -54,6 +54,7 @@ homeButton.addEventListener('click', () => {
 });
 
 myRecipesButton.addEventListener('click', () => {
+    console.log('Hello')
     hide(cardsContainer);
     hide(recipeContainer);
     show(savedRecipesContainer);
