@@ -43,7 +43,7 @@ const specificRecipeIngredients = document.querySelector('.specific-recipe-ingre
 const specificRecipeInstructions = document.querySelector('.specific-recipe-instructions');
 const specificRecipeCost = document.querySelector('.specific-recipe-cost');
 
-const allRecipesMain = document.querySelector('.all-recipes-main') /* 🚨 Brett duplicate, use Courtney's */
+
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
 
@@ -102,7 +102,7 @@ specificRecipeSaveButton.addEventListener('click', addToRecipesToCook);
 //Saved Recipes Page FUNCTIONS --------
 //Specific Recipe Page FUNCTIONS --------
 
-function loadSpecificRecipe(event) { //will put this in event listener on Cournty's all recipes page
+function loadSpecificRecipe(event) {
   if (event.target.className === 'single-recipe-img') {
     currentRecipe = allRecipes.listOfAllRecipes.find(recipe => recipe.id === +event.target.parentElement.id);
   }
@@ -116,9 +116,6 @@ function loadSpecificRecipe(event) { //will put this in event listener on Cournt
 
     specificRecipeHeading.innerText = '',
     specificRecipeHeading.innerText = currentRecipe.name;
-
-    // specificRecipeSaveButton.id = '',
-    // specificRecipeSaveButton.id = currentRecipe.id; no: use the current Recipe
 
     specificRecipeImage.src = '';
     specificRecipeImage.src = currentRecipe.image;
@@ -169,12 +166,7 @@ function generateCost(recipe) {
 
 function addToRecipesToCook () {
   if (!currentUser.recipesToCook.some(recipe => recipe.id === currentRecipe.id)) {
-    
-  }
+    currentUser.addRecipe(currentRecipe.id, allRecipes)
+    console.log('current user: ', currentUser);
+  } else {console.log('NO');}
 }
-
-// TEST : DELETE THIS
-
-window.addEventListener('click', function(event) {
-  console.log(!currentUser.recipesToCook.some(recipe => recipe.id === currentRecipe.id));
-})

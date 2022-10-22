@@ -25,7 +25,7 @@ class User {
   addRecipe(recipeID, allRecipes) {
     // 🚨 Important to set up dom/HTML/CSS to have IDs so we can use that data to match here below
     this.recipesToCook.push(
-      allRecipes.listOfRecipes.find((recipe) => recipe["id"] === recipeID)
+      allRecipes.listOfAllRecipes.find((recipe) => recipe["id"] === recipeID)
     );
   }
 
