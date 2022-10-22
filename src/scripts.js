@@ -27,7 +27,7 @@ const allRecipes10to19 = document.getElementById('list--recipes-10-19');
 const allRecipes20to29 = document.getElementById('list--recipes-20-29');
 const allRecipes30to39 = document.getElementById('list--recipes-30-39');
 const allRecipes40to49 = document.getElementById('list--recipes-40-49');
-
+const allRecipesLists = [allRecipes0to9, allRecipes10to19, allRecipes20to29, allRecipes30to39, allRecipes40to49]
 const recipeCard1 = document.getElementById('card--recipe1');
 const recipeCard2 = document.getElementById('card--recipe2');
 const recipeCard3 = document.getElementById('card--recipe3');
@@ -86,6 +86,9 @@ recipeListsContainer.addEventListener('click', (event) => {
     displayRecipeDetails(event);
 });
 
+filterField.addEventListener('input', (event) => {
+    displayFilteredRecipes(event);
+})
 
 
 // saveRecipeButton.addEventListener('click', );
@@ -100,12 +103,14 @@ const allRecipesClassObjects = allRecipes.returnAllRecipesObjectsArray();
 // HELPER FUNCTIONS LIVE HERE
 const show = element => element.classList.remove('hidden');
 const hide = element => element.classList.add('hidden');
+const clearRecipesList = () => {
+    allRecipesLists.forEach(list => {
+        list.innerHTML = '';
+    });
+};
+
 const displayAllRecipes = () => {
-    allRecipes0to9.innerHTML = '';
-    allRecipes10to19.innerHTML = '';
-    allRecipes20to29.innerHTML = '';
-    allRecipes30to39.innerHTML = '';
-    allRecipes40to49.innerHTML = '';
+    clearRecipesList();
     allRecipes.recipeData.sort((a, b) => {
         if (a.name > b.name) {
             return 1;
@@ -127,6 +132,40 @@ const displayAllRecipes = () => {
         };
     });
 };
+
+const displayFilteredRecipes = (event) => {
+    if (!event.target.value) {
+        allRecipesLists.forEach(list => {
+            show(list)
+        });
+        displayAllRecipes();
+        return;
+    }
+    const filteredRecipes = allRecipes.filteredByTag(event.target.value);
+    allRecipesLists.forEach(list => {
+        hide(list)
+    });
+    clearRecipesList();
+    filteredRecipes.forEach((recipe, index) => {
+        if (index < 10) {
+            allRecipes0to9.classList.remove('hidden');
+            allRecipes0to9.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        } else if (index < 20) {
+            allRecipes10to19.classList.remove('hidden');
+            allRecipes10to19.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        } else if (index < 30) {
+            allRecipes20to29.classList.remove('hidden');
+            allRecipes20to29.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        } else if (index < 40) {
+            allRecipes30to39.classList.remove('hidden');
+            allRecipes30to39.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        } else {
+            allRecipes40to49.classList.remove('hidden');
+            allRecipes40to49.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        };
+    });
+};
+
 const displayRecipeDetails = (event) => {
     const currentRecipe = allRecipesClassObjects.find(recipe => {
         return recipe.id.toString() === event.target.getAttribute('data-id');
