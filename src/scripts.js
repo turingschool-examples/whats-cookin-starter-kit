@@ -28,6 +28,19 @@ let currentRecipePage = document.querySelector(".current-recipe");
 let searchButton = document.querySelector(".search-button");
 
 
+//let currentUser;
+//keep me
+//window.addEventListener("load", selectRandomUser)
+allRecipesButton.addEventListener("click", viewAllRecipes)
+
+// function selectRandomUser() {
+//   let randomIndex = Math.floor(Math.random() * userRepo.userCatalog.length)
+//   let randomUser = userRepo.userCatalog[randomIndex]
+//   currenUser = new User(randomUser)
+//   console.log(currentUser)
+// }
+
+
 //event listeners go here
 allRecipesButton.addEventListener("click", viewAllRecipes);
 searchButton.addEventListener("click", searchForRecipes)
