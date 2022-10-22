@@ -47,6 +47,7 @@ homeButton.addEventListener('click', () => {
     hide(recipeContainer);
     hide(savedRecipesContainer);
     hide(allRecipesContainer);
+    show(allRecipesButton);
 });
 
 myRecipesButton.addEventListener('click', () => {
@@ -54,6 +55,7 @@ myRecipesButton.addEventListener('click', () => {
     hide(recipeContainer);
     show(savedRecipesContainer);
     hide(allRecipesContainer);
+    show(allRecipesButton);
 });
 
 cardsContainer.addEventListener('click', (event) => {
@@ -70,6 +72,7 @@ allRecipesButton.addEventListener('click', () => {
     hide(recipeContainer);
     hide(savedRecipesContainer);
     show(allRecipesContainer);
+    hide(allRecipesButton);
     displayAllRecipes();
 });
 
