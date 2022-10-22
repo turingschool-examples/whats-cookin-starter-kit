@@ -262,7 +262,7 @@ let homePage = document.querySelector(".home-page");
 let currentRecipePage = document.querySelector(".current-recipe")
 
 //let currentUser;
-
+//keep me
 //window.addEventListener("load", selectRandomUser)
 allRecipesButton.addEventListener("click", viewAllRecipes)
 
