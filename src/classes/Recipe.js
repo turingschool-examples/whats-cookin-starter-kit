@@ -31,10 +31,12 @@ class Recipe {
     }
 
     returnRecipeInstructions() {
-        let instructionsParagraph = this.instructions.reduce((string, instruction) => {
-            return string += `${instruction.number}) ${instruction.instruction}`
-        }, '')
-        return instructionsParagraph;
+        let array = this.instructions.reduce((acc, element) => {
+            let format = `${element.number}) ${element.instruction}`
+            acc.push(format)
+            return acc;
+        }, [])
+        return array;
     }
 
     returnRecipieIngredientsArray() {
@@ -58,7 +60,7 @@ class Recipe {
                 return ingredient.quantity.amount + ' ' + ingredient.quantity.unit + ' ' + ingredientDetails.name;
             }
         })
-     
+
         return ingredientInfoForDOM;
     }
 
