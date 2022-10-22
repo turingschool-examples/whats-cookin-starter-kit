@@ -136,11 +136,11 @@ function generateIngredientList(recipe) {
   //iterate thru currentRecipe.ingredients
   // 1. for each ID, search the allIngredients array and 
 
-    currentRecipe.ingredients.reduce((list, ingredient) => {
+    const ingredientsListDisplay = currentRecipe.ingredients.reduce((list, ingredient) => {
       let ingredObj = {};
-      ingredObj.name = 
-      ingredObj.unit = 
-      indredObj.amount =
+      ingredObj.name = ingredientsData.find(ingData => ingData["id"] === ingredient.id).name;
+      ingredObj.unit = ingredient["quantity"]["unit"];
+      indredObj.amount = ingredient["quantity"]["amount"];
       list.push(ingredObj)
       return list;
     }, [])
@@ -166,8 +166,17 @@ function generateCost(recipe) {
 // TEST : DELETE THIS
 
 window.addEventListener('click', function(event) {
-  console.log('ingredientsData: ', ingredientsData)
-  console.log('ingredients in recipes: ', allRecipes.listOfAllRecipes[0].ingredients)
+  console.log('OMGGGGGG: ', allRecipes.listOfAllRecipes.reduce((list, ingredient) => {
+    let ingredObj = {};
+    ingredObj.name = 'ingredientsData.find(ing => ing.id === ingredient.id)'
+
+    // ingredObj.name = ingredientsData.find(ingData => ingData["id"] === ingredient.id);
+    // ingredObj.unit = ingredient["quantity"]["unit"];
+    // indredObj.amount = ingredient["quantity"]["amount"];
+    list.push(ingredObj)
+    return list;
+  }, []))
+  // console.log('ingredients in recipes: ', allRecipes.listOfAllRecipes[0].ingredients)
 
 
 })
