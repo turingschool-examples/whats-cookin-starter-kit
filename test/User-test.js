@@ -406,7 +406,6 @@ describe('User', () => {
   it('Should be able to filter the recipiesToCook array by name', () => {
     newUser.recipesToCook.push(recipeObject1)
     newUser.filterRecipesToCookByName('Loaded Chocolate Chip Pudding Cookie Cups')
-    console.log(newUser.recipesToCook)
     expect(newUser.filterRecipesToCookByName('Loaded Chocolate Chip Pudding Cookie Cups')).to.deep.equal([recipeObject1])
   })
   

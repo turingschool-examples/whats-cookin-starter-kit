@@ -23,7 +23,10 @@ class User {
     }
     //This method filters the user's favorites by recipe name. Expect an array of recipes with the specific name. 
     filterRecipesToCookByName(name) {
-        this.recipesToCook.filter((recipe) => recipe["name"] === name)
+       let filteredRecipe = this.recipesToCook.filter((recipe) => {
+            return recipe["name"] === name
+        })
+        return filteredRecipe
     }
     //This method filters the user's favorites by tag. Expected output is an array of recipes with the specific tag. 
     filterRecipesToCookByTag(tag) {
