@@ -1,24 +1,20 @@
 class RecipeRepository {
   constructor(newRecipes) {
-    this.newRecipes = newRecipes
-    
+    this.newRecipes = newRecipes;
   }
   filterByTag(tagName) {
     const tagFilter = this.newRecipes.filter((recipe) => {
-      if (recipe.tags.includes(tagName)){
-        console.log('hi there');
-        return recipe
+      if (recipe.tags.includes(tagName)) {
+        return recipe;
       }
-    })
-    return tagFilter
+    });
+    return tagFilter;
   }
   filterByName(recipeName) {
     const nameFilter = this.newRecipes.filter((recipe) => {
-      if(recipe.name === recipeName){
-        return recipe
-      }
-    })
-    return nameFilter
+      return recipe.name.toLowerCase().includes(recipeName.toLowerCase());
+    });
+    return nameFilter;
   }
 }
 
