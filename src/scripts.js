@@ -108,7 +108,7 @@ function loadSpecificRecipe(event) { //will put this in event listener on Cournt
   if (event.target.className === 'recipe-title-text') {
     currentRecipe = allRecipes.listOfAllRecipes.find(recipe => recipe.id === +event.target.parentElement.parentElement.id);
   }
-  if (event.target.className === 'single-recipe-img' || 'recipe-title-text') {
+  if (event.target.className === 'single-recipe-img' || event.target.className === 'recipe-title-text') {
     
     allRecipesMain.classList.add('hide');
     specificRecipePage.classList.remove('hide');
