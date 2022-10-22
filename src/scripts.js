@@ -25,6 +25,7 @@ let recipeRepository = new RecipeRepository(allRecipes);
 let currentUser;
 let userRepo = new UserRepo(allUsersData);
 
+let myRecipes = []
 
 //query selectors go here
 let allRecipesButton = document.querySelector(".all-recipes-button");
@@ -34,12 +35,14 @@ let currentRecipePage = document.querySelector(".current-recipe");
 let searchButton = document.querySelector(".search-button");
 let inputBar = document.querySelector(".search-bar > input");
 let tagSelect = document.querySelector("#tag-select");
+let saveRecipeButton = document.querySelector(".save-recipe")
 
 //event listeners go here
 allRecipesButton.addEventListener("click", viewAllRecipes);allRecipesButton.addEventListener("click", renderAllRecipesPage);
 searchButton.addEventListener("click", searchForRecipes);
 tagSelect.addEventListener("change", searchByTag);
 window.addEventListener("load", selectRandomUser);
+saveRecipeButton.addEventListener("click", savedRecipes)
 
 //event handlers go here
 function searchByTag(event) {
@@ -69,6 +72,7 @@ function viewAllRecipes(recipes) {
     newSection.innerHTML = `
         <img class="image" id="${recipe.id}" src="${recipe.image}">
         <p class="recipe-name"> ${recipe.name} </p>`;
+       
 
     allRecipesPage.appendChild(newSection);
     newSection.addEventListener("click", seeRecipe);
@@ -100,7 +104,8 @@ function renderRecipe(recipe) {
   newSection.innerHTML += `<img class="image" src="${recipe.image}">`;
   newSection.innerHTML += renderIngredients(recipe.ingredients);
   newSection.innerHTML += renderInstructions(recipe.instructions);
-  newSection.innerHTML += `<p>Estimated cost: ${recipe.getCost()} cents</p>`;
+  newSection.innerHTML += `<p>Estimated cost: ${recipe.getCost()} cents</p>
+  <button class="save-recipe"> Save Recipe </button>`;
 
   currentRecipePage.appendChild(newSection);
 }
@@ -126,6 +131,11 @@ function renderIngredients(ingredients) {
   <p>Ingredients</p>
   ${html}
   </ul>`;
+}
+
+function savedRecipes() {
+    addHidden(currentRecipePage)
+    removeHidden(savedRecipePage)
 }
 
 function addHidden(element) {
