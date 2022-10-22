@@ -10,7 +10,7 @@ class RecipeRepository {
     // Recipe array > recipe object > name > string
       const justNames = this.recipeData.filter((recipe) => {
       // console.log('Recipe dot name: ', recipe.name)
-      return recipe.name === name;
+      return recipe.name.includes(name);
     })
     return justNames;
   }
