@@ -24,6 +24,14 @@ let currentUser;
 //All Recipes Page VARIABLES --------
 //Saved Recipes Page VARIABLES --------
 //Specific Recipe Page VARIABLES --------
+const specificRecipePage = document.querySelector('.specific-recipe-page');
+const specificRecipeHeading = document.querySelector('.specific-recipe-heading');
+const specificRecipeSaveButton = document.querySelector('.save-button');
+const specificRecipeImage = document.querySelector('.specific-recipe-img');
+const specificRecipeIngredients = document.querySelector('.specific-recipe-ingredients-list');
+const specificRecipeInstructions = document.querySelector('.specific-recipe-instructions');
+const specificRecipeCost = document.querySelector('.specific-recipe-cost');
+
 
 
 //QUERY SELECTORS-----------------------------------------------
