@@ -32,8 +32,8 @@ console.log(allUsersData)
     expect(userRepo.getUserInfo(1)).to.deep.equal(allUsersData[0])
   })
 
-  it.skip('Should return pantry of single user', function() {
-    expect(userRepo.getPantry(1)).to.equal(allUsersData[1].pantry)
+  it('Should return pantry of single user', function() {
+    expect(userRepo.getPantry(2)).to.deep.equal(allUsersData[1].pantry)
   })
 
 })

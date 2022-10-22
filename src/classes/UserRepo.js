@@ -14,15 +14,15 @@ if single user id matches user id in user array
     let userInfo = this.userCatalog.find(user => {
       userId === user.id
       return user
-      //console.log('user pantry:' , user.pantry)
-
-      //return user.pantry
-      //if(user.id === this.userCatalog)
-      //return user.pantry
     })
-
   return  userInfo//let userPantry =
   }
+
+  getPantry(userId) {
+    //return this.userCatalog.find(user => userId === user.id)
+    let userInfo = this.userCatalog.find(user => userId === user.id)
+    return userInfo.pantry
+   }
 
 }
 
