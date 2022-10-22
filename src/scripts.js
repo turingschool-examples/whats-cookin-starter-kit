@@ -18,6 +18,7 @@ let userData;
 let ingredientsData;
 let recipeData;
 let currentUser;
+let allRecipes;
 
 //Navbar VARIABLES ---------
 //Home Page VARIABLES --------
@@ -57,7 +58,7 @@ Promise.all([
 
   createInstances(recipeData, ingredientsData, userData);
 
-  let allRecipes = new RecipeRepository(recipeData);
+  allRecipes = new RecipeRepository(recipeData);
 });
 
 function createInstances(dataSet1, dataSet2, dataSet3) {
