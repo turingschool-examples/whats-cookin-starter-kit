@@ -32,17 +32,11 @@ describe('UserRepo', function() {
 
   it('Should get single user', function() {
     expect(userRepo.getUserInfo(1)).to.deep.equal(allUsersData[0])
-    //assertions on getUserInfo below don't behave as anticipated
-    //expect(userRepo.getUserInfo(3)).to.deep.equal(allUsersData[2])
-    //expect(userRepo.getUserInfo(2)).to.deep.equal(allUsersData[1])
-
+    expect(userRepo.getUserInfo(3)).to.deep.equal(allUsersData[2])
   })
 
   it('Should return pantry of single user', function() {
     expect(userRepo.getPantry(2)).to.deep.equal(allUsersData[1].pantry)
     expect(userRepo.getPantry(3)).to.deep.equal(allUsersData[2].pantry)
-
   })
-
-
 })
