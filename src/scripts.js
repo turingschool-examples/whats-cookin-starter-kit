@@ -1,8 +1,6 @@
 import './styles.css';
 import apiCalls from './apiCalls';
-//import functionName from './apiCalls';
-const varName = require('../src/apiCalls');
-const functionName2 = varName.testFetch;
+import gatherData from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 // Import Fetch calls
@@ -14,9 +12,9 @@ import './images/turing-logo.png'
 // import Needed from './Needed';
 
 // declare variables for linked methods compatibility
-// let declare;
-// let each;
-// let thing;
+let usersData
+let ingredientsData;
+let recipeData;
 // let you;
 // let need;
 // let then;
@@ -31,7 +29,10 @@ import './images/turing-logo.png'
 // Declare a function to update dashboard's data state after invoking other methods to alter DOM values
 
 // Query Selectors!!!
-// const
+const allRecipesGrid = document.querySelector('#all-card-grid');
+const testApi = document.querySelector('.greeting')
+const favoriteRecipesGrid = document.querySelector('#favorite-grid');
+// constv
 // const
 
 // Event Listeners
@@ -45,7 +46,35 @@ import './images/turing-logo.png'
 // function renderThing() {};
 // function renderOtherThing() {};
 
+Promise.all([
+  gatherData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users'),
+  gatherData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients'),
+  gatherData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
+]).then(data => {
+    usersData = data[0].usersData
+    ingredientsData = data[1].ingredientsData
+    recipeData = data[2].recipeData
 
+
+    console.log(recipeData)
+
+    recipeData.forEach(recipe => {
+      favoriteRecipesGrid.innerHTML += 
+      `<li class="recipe-card">
+    <span class="" id="recipe-title">${recipe.name}</h3>
+    <img url="${recipe.image}">
+    <div class="">
+      ${recipe.tags}
+    </div>
+  </li>`;
+    })
+
+})
+
+
+console.log('Hello world');
+
+renderAllRecipes(recipeData)
 
 
 // Iteration 1 User Stories (dashboard)
@@ -54,15 +83,15 @@ import './images/turing-logo.png'
 // render page view/ unhide form of grid containing all recipe card objects for All Recipes Page display
 // invoke w/ handler either on load or click
 function renderAllRecipes(data) {
-  (QS4allRecipesGrid).innerHTML = "";
-  (QS4allRecipesGrid).innerHTML = 
-  `<section class="recipe-card">
-    <h3 class="" id="recipe-title">Recipe Title</h3>
-    <img url="">
+  (allRecipesGrid).innerHTML = "";
+  (allRecipesGrid).innerHTML = 
+  `<li class="recipe-card">
+    <span class="" id="recipe-title">${data.name}</h3>
+    <img url="${data.image}">
     <div class="">
-      ${recipeTags}
+      ${data.tags}
     </div>
-  </section>`;
+  </li>`;
 }
 
 
