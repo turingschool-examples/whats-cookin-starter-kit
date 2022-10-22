@@ -67,19 +67,20 @@
     </section>
   </section>
   <button id="open-modal-btn" data-micromodal-trigger="modal-1">Open Modal</button>
+
+
+  
   <div class="modal" id="modal-1" aria-hidden="true">
     <div class="modal-grandparent" tabindex="-1">
       <div class="modal-parent" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
         <div class="close-modal-btn-container">
-          <button class="close-modal-btn" aria-label="Close modal" data-custom-close="modal-1">close</button>
+          <button class="close-modal-btn" id="close-modal-button" aria-label="Close modal">close</button>
         </div>
         <div class="modal-content-parent">
           <div class="modal-tag-div">
             <p>tags: </p>
-            <button>starters</button>
-            <button>savory</button>
-            <button>Italian</button>
-            <button>entrées</button>
+            <div class="modal-tag-button-parent" id="modal-tag-button-parent">
+            </div>
           </div>
           <h1>Slow-Cooker Italian-Stuffed Peppers</h1>
           <div class="modal-bookmark-div">

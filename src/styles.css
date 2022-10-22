@@ -156,6 +156,11 @@ svg:hover {
   font-size: 1.7vh;
 }
 
+.recipe-tile > h1:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .recipe-tile > h2 {
   flex-basis: 20%;
   margin: 2%;
@@ -336,7 +341,7 @@ select:focus {
   margin-bottom: 2px;
 }
 
-.modal-tag-div > button {
+.modal-tag-button-parent > button {
   font-family: 'Bitter', serif;
   color: rgb(200, 75, 49);
   background-color: rgba(0, 0, 0, 0);
@@ -402,7 +407,7 @@ max-height: 50px;
 
 .directions-parent {
   background-color: white;
-  padding: 87px;
+  padding: 70px 87px;
 }
 
 .directions-parent > h2 {
