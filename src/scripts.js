@@ -46,7 +46,6 @@ allRecipesButton.addEventListener("click", viewAllRecipes);
 searchButton.addEventListener("click", searchForRecipes)
 
 //event handlers go here
-
 function viewAllRecipes() {
   console.log(recipeRepository)
     addHidden(homePage)
@@ -63,20 +62,6 @@ function viewAllRecipes() {
    });
 };
 
-
-//click on image, grab the recipe and display the whole recipe
-//section in html called current recipe
-//render recipe will allow a recipe to be displayed in innerHTML of current-recipe
-function seeRecipe(event) {
-  let visibleRecipe = recipeRepository.newRecipes.find(recipe => {
-    return parseInt(event.target.id) === recipe.id
-  });
-  let fullRecipe = new Recipe(visibleRecipe);
-  // let totalCost = recipeInstructions.getCost()
-  console.log(fullRecipe.instructions);
-  console.log(allIngredients)
-  renderRecipe(fullRecipe);
-
 function searchForRecipes() {
 
 }
@@ -88,32 +73,20 @@ function seeRecipe(event) {
     return parseInt(event.target.id) === recipe.id
   }); 
   renderRecipe(visibleRecipe);
-
 };
 
 function renderRecipe(recipe) {
   addHidden(allRecipesPage)
   removeHidden(currentRecipePage)
-
-  recipe.retrieveIngredients(allIngredients)
-
-
  
-
   const newSection = document.createElement('section')
     newSection.className = 'recipe-details'
     newSection.innerHTML += `
       <img class="image" src="${recipe.image}">
       <ul>`
-
-    newSection.innerHTML = `<li> ${recipe.instructions} </li>`
-    newSection.innerHTML = `<li> ${recipe.ingredients} </li>`
-    newSection.innerHTML = `<li> ${recipe.getCost()} </li>
-
     newSection.innerHTML += renderIngredients(recipe.ingredients)
     newSection.innerHTML += renderInstructions(recipe.instructions)
     newSection.innerHTML += `<li> ${recipe.getCost()} </li>
-
       </ul>`
 
     currentRecipePage.appendChild(newSection)
@@ -150,3 +123,6 @@ function addHidden(element) {
 function removeHidden(element) {
     element.classList.remove("hidden")
 };
+
+
+
