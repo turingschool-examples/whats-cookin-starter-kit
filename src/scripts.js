@@ -134,7 +134,7 @@ const displayRecipeDetails = (event) => {
     hide(savedRecipesContainer);
     hide(allRecipesContainer);
     recipeTitle.innerText = currentRecipe.name;
-    // instructionsContainer.innerText = currentRecipe.returnRecipeInstructions()
+    currentRecipe.returnRecipeInstructions().map(element => instructionsContainer.innerHTML += `<li>${element}</li>`);
     ingredientContainer.innerHTML = '';
     currentRecipe.returnRecipeIngredientsNames()
         .map(ingredientInfo => ingredientContainer.innerHTML += `<li>${ingredientInfo}</li>`);
