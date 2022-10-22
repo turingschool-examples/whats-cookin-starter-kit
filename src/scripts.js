@@ -42,8 +42,9 @@ const recipeTitle = document.getElementById('title--recipe');
 const totalCost = document.getElementById('text--total-cost');
 
 
-
 //  EVENT LISTENERS LIVE HERE
+
+
 homeButton.addEventListener('click', () => {
     show(cardsContainer);
     hide(recipeContainer);
@@ -66,6 +67,7 @@ cardsContainer.addEventListener('click', (event) => {
         show(recipeContainer);
         hide(savedRecipesContainer);
         hide(allRecipesContainer);
+        displayRecipeDetails(event);
     }
 });
 
@@ -111,7 +113,7 @@ const displayAllRecipes = () => {
             return -1;
         };
     });
-    allRecipes.recipeData.filter((recipe, index) => {
+    allRecipes.recipeData.forEach((recipe, index) => {
         if (index < 10) {
             allRecipes0to9.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
         } else if (index < 20) {
