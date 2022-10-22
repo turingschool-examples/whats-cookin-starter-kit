@@ -4,12 +4,16 @@ class UserRepo {
 
   }
 
+  // getUserInfo(userId) {
+  //   let userInfo = this.userCatalog.find(user => {
+  //     userId === user.id
+  //     return user
+  //   })
+  // return  userInfo
+  // }
   getUserInfo(userId) {
-    let userInfo = this.userCatalog.find(user => {
-      userId === user.id
-      return user
-    })
-  return  userInfo
+    let userInfo = this.userCatalog.find(user => userId === user.id)
+    return userInfo
   }
 
   getPantry(userId) {
