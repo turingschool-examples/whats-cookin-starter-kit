@@ -25,7 +25,6 @@ let recipeRepository = new RecipeRepository(allRecipes);
 let currentUser;
 let userRepo = new UserRepo(allUsersData);
 
-let myRecipes = []
 
 //query selectors go here
 let allRecipesButton = document.querySelector(".all-recipes-button");
@@ -35,14 +34,15 @@ let currentRecipePage = document.querySelector(".current-recipe");
 let searchButton = document.querySelector(".search-button");
 let inputBar = document.querySelector(".search-bar > input");
 let tagSelect = document.querySelector("#tag-select");
-let saveRecipeButton = document.querySelector(".save-recipe")
+let saveRecipeButton = document.querySelector(".save-recipe-button");
+let savedRecipePage = document.querySelector(".saved-recipes-page");
 
 //event listeners go here
 allRecipesButton.addEventListener("click", viewAllRecipes);allRecipesButton.addEventListener("click", renderAllRecipesPage);
 searchButton.addEventListener("click", searchForRecipes);
 tagSelect.addEventListener("change", searchByTag);
 window.addEventListener("load", selectRandomUser);
-saveRecipeButton.addEventListener("click", savedRecipes)
+// saveRecipeButton.addEventListener("click", addToSavedRecipe)
 
 //event handlers go here
 function searchByTag(event) {
@@ -99,15 +99,17 @@ function renderRecipe(recipe) {
   removeHidden(currentRecipePage);
 
   const newSection = document.createElement("section");
-  newSection.className = "recipe-details";
+  newSection.className = "recipe-details"; 
+//   newSection.id = `"${recipe.id}"`
   newSection.innerHTML += `<h2>${recipe.name}</h2>`;
   newSection.innerHTML += `<img class="image" src="${recipe.image}">`;
   newSection.innerHTML += renderIngredients(recipe.ingredients);
   newSection.innerHTML += renderInstructions(recipe.instructions);
   newSection.innerHTML += `<p>Estimated cost: ${recipe.getCost()} cents</p>
-  <button class="save-recipe"> Save Recipe </button>`;
+  <button class="save-recipe-button" id="${recipe.id}"> Save Recipe </button>`;
 
   currentRecipePage.appendChild(newSection);
+  newSection.addEventListener("click", addToSavedRecipe)
 }
 
 function renderInstructions(instructions) {
@@ -133,9 +135,23 @@ function renderIngredients(ingredients) {
   </ul>`;
 }
 
-function savedRecipes() {
+
+function addToSavedRecipe(event) {
+    let myRecipes = []
+    let newSavedRecipe = recipeRepository.newRecipes.find((recipe) => {
+        console.log(recipe);
+        return parseInt(event.target.id) === recipe.id;
+      });
+    //   console.log(newSavedRecipe);
+      myRecipes.push(newSavedRecipe)
+    //   console.log("This is here")
+      savedRecipes(newSavedRecipe)
+}
+
+function savedRecipes(recipe) {
     addHidden(currentRecipePage)
     removeHidden(savedRecipePage)
+       
 }
 
 function addHidden(element) {
