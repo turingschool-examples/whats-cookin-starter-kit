@@ -136,15 +136,14 @@ function generateIngredientList(recipe) {
   //iterate thru currentRecipe.ingredients
   // 1. for each ID, search the allIngredients array and 
 
-    const ingredientsListDisplay = currentRecipe.ingredients.reduce((list, ingredient) => {
-      let ingredObj = {};
-      ingredObj.name = ingredientsData.find(ingData => ingData["id"] === ingredient.id).name;
-      ingredObj.unit = ingredient["quantity"]["unit"];
-      indredObj.amount = ingredient["quantity"]["amount"];
-      list.push(ingredObj)
-      return list;
-    }, [])
- 
+  const ingredientsListDisplay = recipe.ingredients.reduce((list, currIng) => {
+    let ingredObj = {};
+    ingredObj.name = ingredientsData.find(ing => ing.id === currIng.id).name //iterates over all ingredients to find name
+    ingredObj.unit = currIng["quantity"]["unit"];
+    ingredObj.amount = currIng["quantity"]["amount"];
+    list.push(ingredObj)
+    return list;
+  }, []);
   
   specificRecipeIngredients.innerHTML = '';
   currentRecipe.ingredients.forEach(ingredient => {
@@ -166,17 +165,13 @@ function generateCost(recipe) {
 // TEST : DELETE THIS
 
 window.addEventListener('click', function(event) {
-  console.log('OMGGGGGG: ', allRecipes.listOfAllRecipes.reduce((list, ingredient) => {
-    let ingredObj = {};
-    ingredObj.name = 'ingredientsData.find(ing => ing.id === ingredient.id)'
-
-    // ingredObj.name = ingredientsData.find(ingData => ingData["id"] === ingredient.id);
-    // ingredObj.unit = ingredient["quantity"]["unit"];
-    // indredObj.amount = ingredient["quantity"]["amount"];
-    list.push(ingredObj)
-    return list;
-  }, []))
-  // console.log('ingredients in recipes: ', allRecipes.listOfAllRecipes[0].ingredients)
-
-
+  // console.log('OMGGGGGG: ', 
+  // allRecipes.listOfAllRecipes[1].ingredients.reduce((list, currIng) => {
+  //   let ingredObj = {};
+  //   ingredObj.name = ingredientsData.find(ing => ing.id === currIng.id).name //iterates over all ingredients to find name
+  //   ingredObj.unit = currIng["quantity"]["unit"];
+  //   ingredObj.amount = currIng["quantity"]["amount"];
+  //   list.push(ingredObj)
+  //   return list;
+  // }, []))
 })
