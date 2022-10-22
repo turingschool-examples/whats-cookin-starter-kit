@@ -1,5 +1,5 @@
-import recipeData from "../data/recipes"
-import ingredientsData from "../data/ingredients"
+// import recipeData from "../data/recipes"
+import ingredientsData from "../scripts.js"
 import Recipe from "./Recipe"
 
 class RecipeRepository {
