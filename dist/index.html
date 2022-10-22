@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="../src/styles.css" />
   <title>What's Cookin'</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bitter&family=Roboto:wght@100&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -64,46 +66,33 @@
     <section class="all-recipes-container">
     </section>
   </section>
-  <button id="open-modal-btn" data-micromodal-trigger="modal-1">Open Modal</button>
   <div class="modal" id="modal-1" aria-hidden="true">
     <div class="modal-grandparent" tabindex="-1">
       <div class="modal-parent" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
         <div class="close-modal-btn-container">
-          <button class="close-modal-btn" aria-label="Close modal" data-custom-close="modal-1">close</button>
+          <button class="close-modal-btn" id="close-modal-button" aria-label="Close modal">close</button>
         </div>
         <div class="modal-content-parent">
-          <div class="modal-tag-div">recipe tags here</div>
-          <h1>Slow-Cooker Italian-Stuffed Peppers</h1>
-          <div class="modal-bookmark-div">bookmark icon here</div>
+          <div class="modal-tag-div">
+            <p>tags: </p>
+            <div class="modal-tag-button-parent" id="modal-tag-button-parent">
+            </div>
+          </div>
+          <h1 id="modal-title"></h1>
+          <div class="modal-bookmark-div">
+            <img class="modal-bookmark-icon" id="modal-save-recipe" src="./images/bookmark-unsaved.png" alt="save recipe">
+            <p class="modal-icon-label">add to<br>
+            My Recipes</p>
+          </div>
           <div class="modal-image-ingr-parent">
-            <img class ="modal-image" src="https://spoonacular.com/recipeImages/607805-556x370.jpg" alt="stuffed peppers">
-            <span class="ingr-span">
-              <ul>2 servings red bell pepper</ul>
-              <ul>1/2 pound ground beef</ul>
-              <ul>2 tsp tumeric</ul>
-              <ul>1 cup diced tomatoes</ul>
-              <ul>2 cloves garlic</ul>
-              <ul>2 servings red bell pepper</ul>
-              <ul>1/2 pound ground beef</ul>
-              <ul>2 tsp tumeric</ul>
-              <ul>1 cup diced tomatoes</ul>
-              <ul>2 cloves garlic</ul>
+            <img class ="modal-image" id="modal-image" src="" alt="">
+            <span id="ingr-parent" class="ingr-span">
             </span>
           </div>
-          <span class="directions-parent">
-            <h2>Directions</h2>
-            <p>
-              1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut porttitor leo a diam sollicitudin tempor id eu nisl. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Cursus risus at ultrices mi tempus imperdiet nulla malesuada. Varius duis at consectetur lorem donec massa. In cursus turpis massa tincidunt dui. Potenti nullam ac tortor vitae purus.
-            </p>
-            <p>
-              2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut porttitor leo a diam sollicitudin tempor id eu nisl. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Cursus risus at ultrices mi tempus imperdiet nulla malesuada. Varius duis at consectetur lorem donec massa. In cursus turpis massa tincidunt dui. Potenti nullam ac tortor vitae purus.
-            </p>
-            <p>
-              3. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut porttitor leo a diam sollicitudin tempor id eu nisl. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Cursus risus at ultrices mi tempus imperdiet nulla malesuada. Varius duis at consectetur lorem donec massa. In cursus turpis massa tincidunt dui. Potenti nullam ac tortor vitae purus.
-            </p>
-            <p>
-              4. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut porttitor leo a diam sollicitudin tempor id eu nisl. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Cursus risus at ultrices mi tempus imperdiet nulla malesuada. Varius duis at consectetur lorem donec massa. In cursus turpis massa tincidunt dui. Potenti nullam ac tortor vitae purus.
-            </p>
+          <span class="instructions-grandparent">
+            <h2>Instructions</h2>
+            <div id="instructions-parent" class="instructions-parent">
+            </div>
           </span>
         </div>
       </div>
