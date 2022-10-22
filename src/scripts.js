@@ -43,7 +43,7 @@ const specificRecipeIngredients = document.querySelector('.specific-recipe-ingre
 const specificRecipeInstructions = document.querySelector('.specific-recipe-instructions');
 const specificRecipeCost = document.querySelector('.specific-recipe-cost');
 
-const allRecipesMain = document.querySelector('.all-recipes-main') /* 🚨 Delete before pushing */
+const allRecipesMain = document.querySelector('.all-recipes-main') /* 🚨 Brett duplicate, use Courtney's */
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
 
@@ -87,10 +87,11 @@ function makeIngredientsList(dataSet) {
 //Navbar EVENT LISTENERS ---------
 //Home Page EVENT LISTENERS --------
 //All Recipes Page EVENT LISTENERS --------
-allRecipesMain.addEventListener('click', loadSpecificRecipe); //BRETT ADDITION ✅
+allRecipesMain.addEventListener('click', loadSpecificRecipe); //BRETT ADDITION, KEEP ✅
 
 //Saved Recipes Page EVENT LISTENERS --------
 //Specific Recipe Page EVENT LISTENERS --------
+specificRecipeSaveButton.addEventListener('click', addToRecipesToCook);
 
 
 //FUNCTIONS------------------------------------------------------
@@ -166,9 +167,14 @@ function generateCost(recipe) {
   console.log('total cost display: ', totalCostDisplay);
 }
 
+function addToRecipesToCook () {
+  if (!currentUser.recipesToCook.some(recipe => recipe.id === currentRecipe.id)) {
+    
+  }
+}
 
 // TEST : DELETE THIS
 
 window.addEventListener('click', function(event) {
-
+  console.log(!currentUser.recipesToCook.some(recipe => recipe.id === currentRecipe.id));
 })
