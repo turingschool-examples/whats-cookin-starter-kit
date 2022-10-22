@@ -350,15 +350,15 @@ select:focus {
   padding: 3px 10px;
 }
 
-.modal-tag-div > button:hover {
+.modal-tag-button-parent > button:hover {
   transform: scale(1.02);
   cursor: pointer;
 }
 
 .modal-content-parent > h1 {
   font-family: 'Bitter', serif;
-  font-size: 3em;
-  padding: 20px 20px 20px 0px;
+  font-size: 2.7vw;
+  padding: 20px 0px;
 }
 
 .modal-bookmark-div {
@@ -405,18 +405,18 @@ max-height: 50px;
   padding: 5px;
 }
 
-.directions-parent {
+.instructions-grandparent {
   background-color: white;
   padding: 70px 87px;
 }
 
-.directions-parent > h2 {
+.instructions-grandparent > h2 {
   font-family: 'Bitter', serif;
   padding: 7px;
   padding-bottom: 20px;
 }
 
-.directions-parent > p {
+.instructions-parent > p {
   font-family: 'Bitter', serif;
   line-height: 1.9;
   padding: 7px;
