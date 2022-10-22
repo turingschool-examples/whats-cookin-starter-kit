@@ -39,6 +39,7 @@ const recipeCard8 = document.getElementById('card--recipe8');
 const recipeCard9 = document.getElementById('card--recipe9');
 const recipeCard10 = document.getElementById('card--recipe10');
 const recipeTitle = document.getElementById('title--recipe');
+const totalCost = document.getElementById('text--total-cost');
 
 
 
@@ -134,10 +135,11 @@ const displayRecipeDetails = (event) => {
     hide(allRecipesContainer);
     recipeTitle.innerText = currentRecipe.name;
     // instructionsContainer.innerText = currentRecipe.returnRecipeInstructions()
+    ingredientContainer.innerHTML = '';
     currentRecipe.returnRecipeIngredientsNames()
         .map(ingredientInfo => ingredientContainer.innerHTML += `<li>${ingredientInfo}</li>`);
-    
-}
+    ingredientContainer.innerHTML += `<div class="text--total-cost">Total cost: ${currentRecipe.returnCostOfIngredients()}</div>`;
+};
 
 
 
