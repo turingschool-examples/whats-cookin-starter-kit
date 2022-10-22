@@ -1,12 +1,9 @@
-.hidden {
-  display: none;
-}
-
 body {
   background-color: beige; 
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   display: flex;
   flex-direction: column;
+  border: 1em, black;
 }
 
 .all-recipes-page {
@@ -17,30 +14,36 @@ body {
   border: 4px, black;
 }
 
-header, footer {
+header {
   display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 20vh;
   flex-direction: row;
+  border: solid 1px black;
 }
 
 .image {
-  height: 100vh;
-  width: 100vw;
+  height: 30vh;
+  width: 20vw;
+  padding-top: 5%;
+  cursor: pointer;
+  
 }
 
 #menu-button {
   background-color: aliceblue;
-}
-
-.see-more {
-  display: flex;
-  justify-content: center;
+  border: 1em, black;
 }
 
 .featured-container {
-  background-image: url("https://tse1.mm.bing.net/th?id=OIP.XN1S-j-cyW-zS3fuY5TkugHaE8&pid=Api&P=0");
+  background-color: azure;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  height: 40vh;
+  width: 98vw;
+  border-radius: 10px;
 }
 
 .recipe-card-container {
@@ -53,26 +56,49 @@ header, footer {
   background-color: bisque;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.halloween-favorites-container {
-  background-image: url("./images/assets/halloween.jpg");
+.popular-favorites-container {
+  background-color: azure;
   background-size: cover;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-content: space-around;
+  padding-bottom: 5%;
+  height: 60vh;
+  width: 50vw;
 }
 
-.meatless-entrees-container {
-  background-image: url("./images/assets/veggies.jpg");
-  background-size: cover;
+.mini-recipe-card-container {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+  align-items: center;
+	justify-content: space-around;
+	align-content: space-around;
+  background-color: azure;
+  height: 50vh;
+  width: 40vw;
 }
 
-.delicious-dessert-container {
-  background-image: url("./images/assets/desserts.jpg");
-  background-size: cover;
-} 
-
-.savory-soups-container {
-  background-image: url("./images/assets/soups.jpg");
-  background-size: cover;
+.mini-image {
+  height: 15vh;
+  width: 15vw;
+  cursor: pointer;
 }
 
+.mini-image:hover {
+  transform: scale(1.1);
+}
 
+.image:hover {
+  transform: scale(1.1);
+}
+
+.hidden {
+  display: none;
+}
