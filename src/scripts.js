@@ -33,19 +33,29 @@ let allRecipesPage = document.querySelector(".all-recipes-page");
 let homePage = document.querySelector(".home-page");
 let currentRecipePage = document.querySelector(".current-recipe");
 const currentRecipeContainer = document.querySelector("#current-recipe-id")
-let searchButton = document.querySelector(".search-button");
+let allSearchButtons = document.querySelectorAll(".search-button");
 let inputBar = document.querySelector(".search-bar > input");
 let tagSelect = document.querySelector("#tag-select");
 let saveRecipeButton = document.querySelector(".save-recipe-button");
 let savedRecipePage = document.querySelector(".saved-recipes-page");
 const savedRecipeContainer = document.querySelector("#saved-recipe-card-container");
-const allRecipesContainer = document.querySelector("#all-recipes-container")
+const allRecipesContainer = document.querySelector("#all-recipes-container");
+const allImages = document.querySelectorAll(".image");
+const allMiniImages = document.querySelectorAll(".mini-image")
 
 //event listeners go here
 allRecipesButtons.forEach((button) => {
   button.addEventListener("click", renderAllRecipesPage)
 });
-searchButton.addEventListener("click", searchForRecipes);
+allSearchButtons.forEach((button) => {
+  button.addEventListener("click", searchForRecipes)
+});
+allImages.forEach((image) => {
+  image.addEventListener("click", seeRecipe)
+});
+allMiniImages.forEach((image) => {
+  image.addEventListener("click", seeRecipe)
+});
 tagSelect.addEventListener("change", searchByTag);
 window.addEventListener("load", selectRandomUser);
 
@@ -71,6 +81,7 @@ function renderAllRecipesPage() {
 
 function viewAllRecipes(recipes) {
   addHidden(homePage);
+  addHidden(currentRecipePage)
   removeHidden(allRecipesPage);
   addHidden(savedRecipePage)
   allRecipesContainer.innerHTML = ""
@@ -109,6 +120,7 @@ function renderRecipe(recipe) {
   addHidden(allRecipesPage);
   removeHidden(currentRecipePage);
   addHidden(savedRecipePage);
+  addHidden(homePage)
   currentRecipeContainer.innerHTML = ""
   const newSection = document.createElement("section");
   newSection.className = "recipe-details"; 
@@ -121,7 +133,8 @@ function renderRecipe(recipe) {
 
   currentRecipeContainer.appendChild(newSection);
   const recipeImage = newSection.querySelector(".image")
-  recipeImage.addEventListener("click", addToSavedRecipe)
+  recipeImage.addEventListener("click", seeRecipe);
+  // saveRecipeButton.addEventListener("click", addToSavedRecipe)
 }
 
 function renderInstructions(instructions) {
