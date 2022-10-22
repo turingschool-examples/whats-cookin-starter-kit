@@ -27,8 +27,8 @@
           <div class="nav-btns-wrapper">
             <button class="nav-btns">Home</button>
             <button class="nav-btns">About</button>
-            <button class="nav-btns">All Recipes</button>
-            <button class="nav-btns">Saved Recipes</button>
+            <button class="nav-btns all-recipes-button">All Recipes</button>
+            <button class="nav-btns saved-recipes-button">Saved Recipes</button>
             <div class="search-bar-wrapper">
               <input type="text" placeholder="search All Recipes" />
               <button type="submit">Search</button>
@@ -214,7 +214,7 @@
         </section>
         <section class="filter-by-tag-display">
           <label class="label-for-select-a-tag" for="tag-select">Select a tag:</label>
-          <select name="tags">
+          <select class = "list-of-tag-options" name="tags">
             <option class="tag-options-text" value="default">Please choose a tag</option>
             <!-- the html inbetween the comments will need to be dynamic. -->
             <option class="tag-options-text" value="demo1">Demo1</option>
