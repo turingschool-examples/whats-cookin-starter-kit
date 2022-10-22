@@ -1,4 +1,4 @@
-const allUsers = [
+const allUsersData = [
     {
       "name": "Saige O'Kon",
       "id": 1,
@@ -603,4 +603,4 @@ const allUsers = [
     }
   ]
 
-export default allUsers
+export default allUsersData
