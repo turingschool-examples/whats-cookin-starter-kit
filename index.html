@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link href='styles.css' type='text/css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whats Cookin</title>
+  </head>
+  <body>
+    <header>
+      <div class="title-area">
+        <img class='turing-logo' src="./src/images/turing-logo.png" alt="Turing Logo"> 
+      <h1 class="site-title">What's Cookin'</h1>
+      </div>
+      <nav>
+        <button>Saved Recipes</button>
+        <button>Favorites</button>
+        <input class="search-bar" type="text" placeholder="Search...">
+      </nav>
+    </h1>
+    </header>
+    <main>
+      <section class='view home-view'>
+        <section class='home-container'>
+          <div class='greeting-area'>
+            <h1 class="greeting">Welcome to What's Cookin'!</h1>
+          </div>
+          <table class="all-recipe-grid">
+            <div class="recipe-header-container">
+              <h2 class="all-recipes-header">All Recipes:</h2>
+            </div>
+            <ul>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+            </ul>
+            <br>
+          </table>
+        </section>
+      </section>
+      <section class='view save-view hidden'>
+        <section class='saved-container'>
+          <div class='saved-title-area'>
+            <h1 class="saved-title">Saved Recipes</h1>
+          </div>
+          <table class="saved-recipe-grid">
+            <div class="saved-recipe-header-container">
+              <h2 class="saved-recipes-header">Saved Recipes:</h2>
+            </div>
+            <ul>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+            </ul>
+            <br>
+          </table>
+        </section>
+      </section>
+      <section class="single-recipe hidden">Single Recipe
+        <img>Recipe IMG
+        <h2>Recipe Name</h2>
+        <section>flexbox for below 2 divs??
+          <div>Ingredients list
+            <li>Ingredient Name
+              <div>Quantity</div>
+              <div>Cost</div>
+            </li>
+            <li>Ingredient Name
+              <div>Quantity</div>
+              <div>Cost</div>
+            </li>
+            <li>Ingredient Name
+              <div>Quantity</div>
+              <div>Cost</div>
+            </li>
+            <li>Ingredient Name
+              <div>Quantity</div>
+              <div>Cost</div>
+            </li>
+          <li>Ingredient Name
+            <div>Quantity</div>
+            <div>Cost</div>
+          </li>
+            <div>Total Cost</div>
+          </div>
+          <div>Instructions
+            <li>Step 1</li>
+            <li>Step 2</li>
+            <li>Step 3</li>
+            <li>Step 4</li>
+            <li>Step 5</li>
+          </div>
+        </section>
+      </section>
+    </main>
+  </body>
+  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+  <script src="bundle.js"></script>
+</html>
