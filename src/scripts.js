@@ -87,7 +87,7 @@ function makeIngredientsList(dataSet) {
 //Navbar EVENT LISTENERS ---------
 //Home Page EVENT LISTENERS --------
 //All Recipes Page EVENT LISTENERS --------
-allRecipesMain.addEventListener('click', loadSpecificRecipe)
+allRecipesMain.addEventListener('click', loadSpecificRecipe); //BRETT ADDITION ✅
 
 //Saved Recipes Page EVENT LISTENERS --------
 //Specific Recipe Page EVENT LISTENERS --------
@@ -103,10 +103,10 @@ allRecipesMain.addEventListener('click', loadSpecificRecipe)
 
 function loadSpecificRecipe(event) { //will put this in event listener on Cournty's all recipes page
   if (event.target.className === 'single-recipe-img') {
-    currentRecipe = allRecipes.find(recipe => recipe.id === event.target.parentElement.id);
+    currentRecipe = allRecipes.listOfAllRecipes.find(recipe => recipe.id === +event.target.parentElement.id);
   }
   if (event.target.className === 'recipe-title-text') {
-    currentRecipe = allRecipes.listOfAllRecipes.find(recipe => recipe.id === event.target.parentElement.parentElement.id);
+    currentRecipe = allRecipes.listOfAllRecipes.find(recipe => recipe.id === +event.target.parentElement.parentElement.id);
   }
   if (event.target.className === 'single-recipe-img' || 'recipe-title-text') {
     
