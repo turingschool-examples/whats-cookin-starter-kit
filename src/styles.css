@@ -166,6 +166,7 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin-left: 2vw;
   margin-right: 2vw;
   margin-top: 2vh;
@@ -173,7 +174,7 @@ nav {
 }
 
 .single-recipe-img {
-  width: 15vw;
+  width: 17vw;
   height: 15vw;
 }
 
@@ -184,7 +185,7 @@ nav {
 }
 
 .recipe-title-text {
-  font-size: 2vw;
+  font-size: 1vw;
 }
 
 .filter-by-tag-display {
