@@ -73,7 +73,7 @@ fetchData([usersURL, recipesURL, ingredientsURL])
 
 function startPage() {
   console.log("startPage is working!")
-  console.log("Look here ++++", recipesData)
+  // console.log("Look here ++++", recipesData)
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
   displayAllRecipeTiles()
   user = new User(usersData[0])

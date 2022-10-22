@@ -1,5 +1,5 @@
 // import recipeData from "../data/recipes"
-import ingredientsData from "../scripts.js"
+// import ingredientsData from "../scripts.js"
 import Recipe from "./Recipe"
 
 class RecipeRepository {
@@ -7,8 +7,10 @@ class RecipeRepository {
     this.recipeList = this.instantiateRecipes(recipeData, ingredientsData);
   }
 
-  instantiateRecipes(recipeData) {
-    return recipeData.map(recipe => new Recipe(recipe, ingredientsData))
+  instantiateRecipes(recipeData, ingredientsData) {
+    console.log("recipesData is working!", recipeData.recipeData)
+    console.log("ingredientsData is working!", ingredientsData.ingredientsData)
+    return recipeData.recipeData.map(recipe => new Recipe(recipe, ingredientsData.ingredientsData))
   }
 
   filterByTag(tag) {
