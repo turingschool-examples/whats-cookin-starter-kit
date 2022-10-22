@@ -109,6 +109,8 @@ specificRecipeSaveButton.addEventListener('click', addToRecipesToCook);
 //Home Page FUNCTIONS --------
 //All Recipes Page FUNCTIONS --------
 function displayAllRecipesPage() {
+  specificRecipePage.classList.add('hide')
+  allRecipesMain.classList.remove('hide')
   console.log('I am listening!')
   createPageTitle('ALL RECIPES');
   displayRecipeThumbnails(allRecipes.listOfAllRecipes, '');
@@ -146,6 +148,8 @@ function displayRecipesOfSameTag() {
 
 //Saved Recipes Page FUNCTIONS --------
 function displaySavedRecipesPage() {
+  specificRecipePage.classList.add('hide')
+  allRecipesMain.classList.remove('hide')
   console.log('Save page listening')
   createPageTitle('SAVED RECIPES');
   displayRecipeThumbnails(currentUser.recipesToCook, '🗑');
