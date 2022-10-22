@@ -36,7 +36,7 @@ const currentRecipeContainer = document.querySelector("#current-recipe-id")
 let allSearchButtons = document.querySelectorAll(".search-button");
 let inputBar = document.querySelector(".search-bar > input");
 let tagSelect = document.querySelector("#tag-select");
-let saveRecipeButton = document.querySelector(".save-recipe-button");
+// let saveRecipeButton = document.querySelector(".save-recipe-button");
 let savedRecipePage = document.querySelector(".saved-recipes-page");
 const savedRecipeContainer = document.querySelector("#saved-recipe-card-container");
 const allRecipesContainer = document.querySelector("#all-recipes-container");
@@ -68,8 +68,6 @@ function searchByTag(event) {
 }
 
 function selectRandomUser() {
-//   console.log("Can I see this??? Please say yes.")
-//   console.log("userRepo: ", userRepo)
   let randomIndex = Math.floor(Math.random() * userRepo.userCatalog.length)
   let randomUser = userRepo.userCatalog[randomIndex]
   return currentUser = new User(randomUser)
@@ -132,9 +130,10 @@ function renderRecipe(recipe) {
   <button class="save-recipe-button" id="${recipe.id}"> Save Recipe </button>`;
 
   currentRecipeContainer.appendChild(newSection);
-  const recipeImage = newSection.querySelector(".image")
+  const recipeImage = newSection.querySelector(".image");
   recipeImage.addEventListener("click", seeRecipe);
-  // saveRecipeButton.addEventListener("click", addToSavedRecipe)
+  const saveRecipeButton = newSection.querySelector(".save-recipe-button")
+  saveRecipeButton.addEventListener("click", addToSavedRecipe);
 }
 
 function renderInstructions(instructions) {
