@@ -25,6 +25,8 @@ let allRecipes;
 //All Recipes Page VARIABLES --------
 //Saved Recipes Page VARIABLES --------
 //Specific Recipe Page VARIABLES --------
+let currentRecipe;
+
 
 
 //QUERY SELECTORS-----------------------------------------------
@@ -39,6 +41,14 @@ const allRecipeThumbnailsSection = document.querySelector('.all-recipe-thumbnail
 const allRecipeFilterTagOptions = document.querySelector('.list-of-tag-options')
 //Saved Recipes Page QUERY SELECTORS--------
 //Specific Recipe Page QUERY SELECTORS--------
+const specificRecipePage = document.querySelector('.specific-recipe-page');
+const specificRecipeHeading = document.querySelector('.specific-recipe-heading');
+const specificRecipeSaveButton = document.querySelector('.save-button');
+const specificRecipeImage = document.querySelector('.specific-recipe-img');
+const specificRecipeIngredients = document.querySelector('.specific-recipe-ingredients-list');
+const specificRecipeInstructions = document.querySelector('.specific-recipe-instructions');
+const specificRecipeCost = document.querySelector('.specific-recipe-cost');
+
 
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
@@ -84,11 +94,13 @@ function makeIngredientsList(dataSet) {
 //Navbar EVENT LISTENERS ---------
 //Home Page EVENT LISTENERS --------
 //All Recipes Page EVENT LISTENERS --------
+allRecipesMain.addEventListener('click', loadSpecificRecipe); //BRETT ADDITION, KEEP ✅
 allReipesPageButton.addEventListener('click', displayAllRecipesPage);
 allRecipeFilterTagOptions.addEventListener('click', displayRecipesOfSameTag)
 //Saved Recipes Page EVENT LISTENERS --------
 savedReipesPageButton.addEventListener('click', displaySavedRecipesPage)
 //Specific Recipe Page EVENT LISTENERS --------
+specificRecipeSaveButton.addEventListener('click', addToRecipesToCook);
 
 
 //FUNCTIONS------------------------------------------------------
@@ -97,7 +109,6 @@ savedReipesPageButton.addEventListener('click', displaySavedRecipesPage)
 //Home Page FUNCTIONS --------
 //All Recipes Page FUNCTIONS --------
 function displayAllRecipesPage() {
-
   console.log('I am listening!')
   createPageTitle('ALL RECIPES');
   displayRecipeThumbnails(allRecipes.listOfAllRecipes, '');
@@ -142,3 +153,72 @@ function displaySavedRecipesPage() {
 };
 
 //Specific Recipe Page FUNCTIONS --------
+
+function loadSpecificRecipe(event) {
+  if (event.target.className === 'single-recipe-img') {
+    currentRecipe = allRecipes.listOfAllRecipes.find(recipe => recipe.id === +event.target.parentElement.id);
+  }
+  if (event.target.className === 'recipe-title-text') {
+    currentRecipe = allRecipes.listOfAllRecipes.find(recipe => recipe.id === +event.target.parentElement.parentElement.id);
+  }
+  if (event.target.className === 'single-recipe-img' || event.target.className === 'recipe-title-text') {
+    
+    allRecipesMain.classList.add('hide');
+    specificRecipePage.classList.remove('hide');
+
+    specificRecipeHeading.innerText = '',
+    specificRecipeHeading.innerText = currentRecipe.name;
+
+    specificRecipeImage.src = '';
+    specificRecipeImage.src = currentRecipe.image;
+
+    generateIngredientList(currentRecipe);
+    generateInstructions(currentRecipe);
+    generateCost(currentRecipe);
+  }
+}
+
+function generateIngredientList(recipe) {
+  const ingredientsListDisplay = recipe.ingredients.reduce((list, currIng) => {
+    let ingredObj = {};
+    ingredObj.name = ingredientsData.find(ing => ing.id === currIng.id).name //iterates over all ingredients to find name
+    ingredObj.unit = currIng["quantity"]["unit"];
+    ingredObj.amount = currIng["quantity"]["amount"];
+    list.push(ingredObj)
+    return list;
+  }, []);
+  
+  specificRecipeIngredients.innerHTML = '';
+  ingredientsListDisplay.forEach(ingredient => {
+    specificRecipeIngredients.innerHTML += `
+    <li>${ingredient.amount} ${ingredient.unit} ${ingredient.name}</li>
+    `
+  });
+}
+
+function generateInstructions(recipe) {
+  specificRecipeInstructions.innerHTML = '';
+  recipe.instructions.forEach(step => {
+    specificRecipeInstructions.innerHTML += `
+    <li>${step["instruction"]}</li>
+    `
+  });
+}
+
+function generateCost(recipe) {
+  let totalCostDisplay = 0;
+  recipe.getCosts(ingredientsData).forEach(cost => {
+    totalCostDisplay += cost
+  });
+  
+  specificRecipeCost.innerText = ''; 
+  specificRecipeCost.innerText = totalCostDisplay;
+  console.log('total cost display: ', totalCostDisplay);
+}
+
+function addToRecipesToCook () {
+  if (!currentUser.recipesToCook.some(recipe => recipe.id === currentRecipe.id)) {
+    currentUser.addRecipe(currentRecipe.id, allRecipes)
+    console.log('current user: ', currentUser);
+  } else {console.log('NO');}
+}
