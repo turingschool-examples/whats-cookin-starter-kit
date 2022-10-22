@@ -261,14 +261,17 @@ let allRecipesPage = document.querySelector(".all-recipes-page");
 let homePage = document.querySelector(".home-page");
 let currentRecipePage = document.querySelector(".current-recipe")
 
-let currentUser;
+//let currentUser;
 
-window.addEventListener("load", selectRandomUser)
+//window.addEventListener("load", selectRandomUser)
 allRecipesButton.addEventListener("click", viewAllRecipes)
 
-function selectRandomUser() {
-  let randomIndex = Math.floor(Math.random() * )
-}
+// function selectRandomUser() {
+//   let randomIndex = Math.floor(Math.random() * userRepo.userCatalog.length)
+//   let randomUser = userRepo.userCatalog[randomIndex]
+//   currenUser = new User(randomUser)
+//   console.log(currentUser)
+// }
 
 function viewAllRecipes() {
     addHidden(homePage)
