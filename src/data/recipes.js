@@ -5391,3 +5391,5 @@ const recipeData = [ // 117 lines long
       ]
     }
   ]
+
+  export default recipeData;
