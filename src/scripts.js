@@ -156,20 +156,19 @@ function generateInstructions(recipe) {
 }
 
 function generateCost(recipe) {
+  let totalCostDisplay = 0;
+  recipe.getCosts(ingredientsData).forEach(cost => {
+    totalCostDisplay += cost
+  });
   
+  specificRecipeCost.innerText = ''; 
+  specificRecipeCost.innerText = totalCostDisplay;
+  console.log('total cost display: ', totalCostDisplay);
 }
 
 
 // TEST : DELETE THIS
 
 window.addEventListener('click', function(event) {
-  // console.log('OMGGGGGG: ', 
-  // allRecipes.listOfAllRecipes[1].ingredients.reduce((list, currIng) => {
-  //   let ingredObj = {};
-  //   ingredObj.name = ingredientsData.find(ing => ing.id === currIng.id).name //iterates over all ingredients to find name
-  //   ingredObj.unit = currIng["quantity"]["unit"];
-  //   ingredObj.amount = currIng["quantity"]["amount"];
-  //   list.push(ingredObj)
-  //   return list;
-  // }, []))
+
 })
