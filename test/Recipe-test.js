@@ -3,7 +3,7 @@ import Recipe from '../src/classes/Recipe';
 import { Ingredient } from '../src/classes/Ingredient';
 
 
-describe('Recipie', () => {
+describe('Recipe', () => {
 let recipeInfo, singleRecipe, ingredient;
 
 beforeEach(() => {
@@ -130,7 +130,7 @@ beforeEach(() => {
     ingredient = {
         "id": 20081,
         "name": "wheat flour",
-        "estimatedCostInCents": 142
+        "estimatedCostInCents": 142,
     }
 
 });
@@ -216,12 +216,12 @@ it('should have a method that returns an array of ingredient ids for the recipe'
     expect(recipeInfo.returnRecipeIngredientsIds()).to.be.an('array')
 });
 
-it('should have a method that returns a single ingrident object', () => {
+it('should have a method that returns a single ingredient object', () => {
     expect(recipeInfo.returnIngredientById(20081)).to.be.an('object')
 });
 
-it('should have a method that returns a single Ingrident class object', () => {
-    expect(recipeInfo.returnIngredientById(20081)).to.be.deep.equal(ingredient)
+it('should have a method that returns a single ingredient class object', () => {
+    expect(recipeInfo.returnIngredientById(20081)).to.deep.equal(ingredient)
 });
 
 it('should have a method that returns an array of ingredient ids', () => {
@@ -234,7 +234,7 @@ it('should have a method that returns instructions', () => {
     expect(methodUsed).to.equal(expectedResults)     
 });
 
-it('should have a method that returns an array of ingrident class objects', () => {
+it('should have a method that returns an array of ingredient class objects', () => {
     expect(recipeInfo.returnAllIngredientsArray()).to.be.an('array')
 });
 
@@ -247,17 +247,37 @@ it('should have a method that returns an array of all ingredient objects with a 
     expect(recipeInfo.returnAllIngredientsArray().length === 246).to.equal(false)
 });
 
-it('should have a method that returns an array of all ingrident names', () => {
+it('should have a method that returns an array of all ingredient names', () => {
     expect(recipeInfo.returnAllIngredientsNames()).to.be.an('array')
 });
     
-it('should have a method that returns an array of all ingrident names', () => {
+it('should have a method that returns an array of all ingredient names', () => {
     expect(recipeInfo.returnAllIngredientsNames()).to.include('eggs')
 });
 
-it('should have a method that returns an array of recipe ingrident names', () => {
-    expect(recipeInfo.returnRecipeIngredientsNames()).to.include('wheat flour')
+it('should have a method that returns an array of recipe ingredient names', () => {
+    expect(recipeInfo.returnRecipeIngredientsInfo()).to.deep.equal([
+        '1.5 c wheat flour',
+        '0.50 tsp bicarbonate of soda',
+        '1 large eggs',
+        '0.50 c sucrose',
+        '3 Tbsp instant vanilla pudding',
+        '0.50 c brown sugar',
+        '0.50 tsp salt',
+        '24 servings fine sea salt',
+        '2 c semi sweet chips',
+        '0.50 c unsalted butter',
+        '0.50 tsp vanilla'
+      ])
 });
+
+
+
+
+
+
+
+
 
 it('should have a method that returns the total cost of a recipe', () => {
     expect(recipeInfo.returnCostOfIngredients()).to.equal(`$ 177.76`)
@@ -275,4 +295,7 @@ it('should have a method that returns the total cost of a recipe', () => {
 
 
 });
+
+
+
 

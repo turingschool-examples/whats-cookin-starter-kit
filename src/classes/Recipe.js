@@ -25,6 +25,7 @@ returnIngredientById(id) {
   let singleIngred = allIngred.find((element) => {
             return element.id === id
         })
+        console.log('singleIngred: ', singleIngred)
         return singleIngred
     }
 
@@ -46,7 +47,7 @@ returnAllIngredientsArray() {
   return ingredientsArray;
 }
 
-returnRecipeIngredientsNames() {   
+returnRecipeIngredientsInfo() {   
     let allIngredients = this.returnAllIngredientsArray()
     let ingredientInfoForDOM = this.ingredients.map(ingredient => {
         let ingredientDetails = allIngredients.find(element => element.id === ingredient.id)
@@ -56,6 +57,7 @@ returnRecipeIngredientsNames() {
         return ingredient.quantity.amount + ' ' + ingredient.quantity.unit + ' ' + ingredientDetails.name;
         }
     })
+    // console.log('ingredientinfoforDom: ', ingredientInfoForDOM)
     return ingredientInfoForDOM;
 }   
 
