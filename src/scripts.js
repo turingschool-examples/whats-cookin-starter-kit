@@ -43,6 +43,7 @@ const specificRecipeIngredients = document.querySelector('.specific-recipe-ingre
 const specificRecipeInstructions = document.querySelector('.specific-recipe-instructions');
 const specificRecipeCost = document.querySelector('.specific-recipe-cost');
 
+const allRecipesMain = document.querySelector('.all-recipes-main') /* 🚨 Delete before pushing */
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
 
@@ -86,6 +87,8 @@ function makeIngredientsList(dataSet) {
 //Navbar EVENT LISTENERS ---------
 //Home Page EVENT LISTENERS --------
 //All Recipes Page EVENT LISTENERS --------
+allRecipesMain.addEventListener('click', loadSpecificRecipe)
+
 //Saved Recipes Page EVENT LISTENERS --------
 //Specific Recipe Page EVENT LISTENERS --------
 
@@ -99,18 +102,25 @@ function makeIngredientsList(dataSet) {
 //Specific Recipe Page FUNCTIONS --------
 
 function loadSpecificRecipe(event) { //will put this in event listener on Cournty's all recipes page
-  if (/*event.target.??? === the recipe */) {
+  if (event.target.className === 'single-recipe-img') {
+    currentRecipe = allRecipes.find(recipe => recipe.id === event.target.parentElement.id);
+  }
+  if (event.target.className === 'recipe-title-text') {
+    currentRecipe = allRecipes.find(recipe => recipe.id === event.target.parentElement.parentElement.id);
+  }
+  if (event.target.className === 'single-recipe-img' || 'recipe-title-text') {
     
-    /*recipespageelement*/.classList.add('hide');
+    allRecipesMain.classList.add('hide');
     specificRecipePage.classList.remove('hide');
-
-    currentRecipe = allRecipes.find(recipe => recipe.id === event.target.id);
 
     specificRecipeHeading.innerText = '',
     specificRecipeHeading.innerText = currentRecipe.name;
 
-    specificRecipeSaveButton.id = '',
-    specificRecipeSaveButton.id = currentRecipe.id;
+    // specificRecipeSaveButton.id = '',
+    // specificRecipeSaveButton.id = currentRecipe.id; no: use the current Recipe
+
+    specificRecipeImage.src = '';
+    specificRecipeImage.src = currentRecipe.image;
 
     generateIngredientList(currentRecipe);
     generateInstructions(currentRecipe);
@@ -119,6 +129,7 @@ function loadSpecificRecipe(event) { //will put this in event listener on Cournt
 }
 
 function generateIngredientList(recipe) {
+  specificRecipeIngredients.innerHTML = '';
 
 }
 
@@ -129,3 +140,10 @@ function generateInstructions(recipe) {
 function generateCost(recipe) {
   
 }
+
+
+// TEST : DELETE THIS
+
+window.addEventListener('click', function(event) {
+  console.log(event.target.parentElement.parentElement.className)
+})
