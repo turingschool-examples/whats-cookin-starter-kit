@@ -29,19 +29,21 @@ const myRecipes = []
 
 //query selectors go here
 const allRecipesButtons = document.querySelectorAll(".all-recipes-button");
-let allRecipesPage = document.querySelector(".all-recipes-page");
-let homePage = document.querySelector(".home-page");
-let currentRecipePage = document.querySelector(".current-recipe");
+const allRecipesPage = document.querySelector(".all-recipes-page");
+const homePage = document.querySelector(".home-page");
+const currentRecipePage = document.querySelector(".current-recipe");
 const currentRecipeContainer = document.querySelector("#current-recipe-id")
-let allSearchButtons = document.querySelectorAll(".search-button");
-let inputBar = document.querySelector(".search-bar > input");
-let tagSelect = document.querySelector("#tag-select");
+const allSearchButtons = document.querySelectorAll(".search-button");
+const allHomeButtons = document.querySelectorAll(".return-home")
+const inputBar = document.querySelector(".search-bar > input");
+const tagSelect = document.querySelector("#tag-select");
 // let saveRecipeButton = document.querySelector(".save-recipe-button");
-let savedRecipePage = document.querySelector(".saved-recipes-page");
+const savedRecipePage = document.querySelector(".saved-recipes-page");
 const savedRecipeContainer = document.querySelector("#saved-recipe-card-container");
 const allRecipesContainer = document.querySelector("#all-recipes-container");
 const allImages = document.querySelectorAll(".image");
-const allMiniImages = document.querySelectorAll(".mini-image")
+const allMiniImages = document.querySelectorAll(".mini-image");
+const myRecipesButtons = document.querySelectorAll(".my-recipes-button");
 
 //event listeners go here
 allRecipesButtons.forEach((button) => {
@@ -56,6 +58,12 @@ allImages.forEach((image) => {
 allMiniImages.forEach((image) => {
   image.addEventListener("click", seeRecipe)
 });
+allHomeButtons.forEach((button) => {
+  button.addEventListener("click", returnHome)
+})
+myRecipesButtons.forEach((button) => {
+  button.addEventListener("click", viewMyRecipes)
+})
 tagSelect.addEventListener("change", searchByTag);
 window.addEventListener("load", selectRandomUser);
 
@@ -190,6 +198,20 @@ function savedRecipes() {
     savedRecipeContainer.appendChild(newSection);
     newSection.addEventListener("click", seeRecipe);
   }); 
+}
+
+function returnHome() {
+  addHidden(allRecipesPage)
+  addHidden(currentRecipePage)
+  addHidden(savedRecipePage)
+  removeHidden(homePage)
+}
+
+function viewMyRecipes() {
+  addHidden(allRecipesPage)
+  addHidden(currentRecipePage)
+  addHidden(homePage)
+  removeHidden(savedRecipePage)
 }
 
 function addHidden(element) {
