@@ -16,6 +16,7 @@ const currentRecipeImage = document.querySelector(".image-parent-main")
 const leftRandomImageCard = document.querySelector(".left-random-card")
 const middleRandomImageCard = document.querySelector(".middle-random-card")
 const rightRandomImageCard = document.querySelector(".right-random-card")
+// const selectedRecipeInstructions = document.querySelector(".instructions-list")
 
 const viewAllRecipesButton = document.querySelector(".view-all-recipes")
 const homeButton = document.querySelector(".home-button")
@@ -25,14 +26,11 @@ const homeView = document.querySelector(".home-view")
 const selectedRecipeView = document.querySelector(".selected-recipe-view")
 const searchedRecipeView = document.querySelector(".searched-recipe-view")
 
-
 //Instances
 let currentRecipe
 let randomRecipes
 let allRecipes
 let selectedRecipe
-// let hiddenElements = [allRecipesView,homeButton,selectedRecipeView,searchedRecipeView]
-
 
 //Functions
 const getRandomIndex = array => {
@@ -40,18 +38,10 @@ const getRandomIndex = array => {
 };
 
 function hideElement (hideThis) {
-    // if (!hiddenElements.includes(hideThis)) {
-    //     hiddenElements.push(hideThis)
-    // }
-    // hiddenElements.forEach(element => element.classList.add('hidden'))
     hideThis.classList.add("hidden")
 }
 
 function showElement (showThis) {
-    // if (hiddenElements.includes(showThis)) {
-    //     showThis.classList.remove('hidden')
-    //     hiddenElements.splice(showThis,1)
-    // }
     showThis.classList.remove("hidden")
 }
 
@@ -86,7 +76,6 @@ function generateRandomRecipes(){
     randomRecipes.push(randomRecipe3)
 
     showMainRandomRecipes()
-    console.log(randomRecipes)
 }
 
 function showMainRecipe(){
@@ -94,11 +83,6 @@ function showMainRecipe(){
     currentRecipeImage.innerHTML = `<img class="current-recipe-image" img
     src=${currentRecipe.image}>`
 }
-
-// function updateMainRecipeImage(){
-//     currentRecipeImage.innerHTML = `<img class="current-recipe-image" img
-//     src=${currentRecipe.image}>`
-// }
 
 function showMainRandomRecipes(){
     leftRandomImageCard.innerHTML = `<img class="left-random-image" img src=${randomRecipes[0].image}>
@@ -120,14 +104,37 @@ function viewSelectedRecipe () {
 }
 
 function showSelectedRecipe() {
+    console.log("get instructions method return",selectedRecipe.getInstructions())
     selectedRecipeView.innerHTML = `
     <section class="selected-recipe-container">
     <img class="selected-recipe-image" img src=${selectedRecipe.image}>
     <h1 class="name">${selectedRecipe.name}</h1>
     <h2 class="cost">Cost: ${selectedRecipe.getIngredientsCost()} cent</h2>
-    <h3 class="ingredients-list">${selectedRecipe.ingredientsNeeded()}</h3>
-    <h4 class="instructions-list">${selectedRecipe.getInstructions()}</h4>
-  </section>`
+    <h3 class="ingredients-list"> Ingredients </h3>
+    <h4 class="instructions-list"> Instructions </h4>
+    </section>`
+    showInstructions()
+    showIngredients()
+}
+
+function showIngredients() {
+    const selectedRecipeIngredients = document.querySelector(".ingredients-list")
+    console.log("selectedRecipe",selectedRecipe)
+    selectedRecipe.ingredients.modifiedData.forEach(element =>
+        
+        selectedRecipeIngredients.innerHTML += 
+        `<h3 class="ingredient-item">${element.quantity.amount} ${element.quantity.unit} ${element.name} <br></h3>`
+        
+    )
+}
+
+function showInstructions() {
+    const selectedRecipeInstructions = document.querySelector(".instructions-list")
+
+    selectedRecipe.instructions.forEach(element =>
+        selectedRecipeInstructions.innerHTML += 
+        `<h3 class="instruction-item"> Step: ${element.number} <br>${element.instruction}</h3>`
+    )
 }
 
 function viewAllRecipes () {
