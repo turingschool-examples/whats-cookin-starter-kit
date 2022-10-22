@@ -50,7 +50,11 @@ returnRecipeIngredientsNames() {
     let allIngredients = this.returnAllIngredientsArray()
     let ingredientInfoForDOM = this.ingredients.map(ingredient => {
         let ingredientDetails = allIngredients.find(element => element.id === ingredient.id)
+        if (ingredient.quantity.amount < 1) {
+            return ingredient.quantity.amount.toFixed(2) + ' ' + ingredient.quantity.unit + ' ' + ingredientDetails.name;
+        } else {
         return ingredient.quantity.amount + ' ' + ingredient.quantity.unit + ' ' + ingredientDetails.name;
+        }
     })
     return ingredientInfoForDOM;
 }   
