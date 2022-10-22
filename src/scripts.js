@@ -25,13 +25,7 @@ let allRecipes;
 //All Recipes Page VARIABLES --------
 //Saved Recipes Page VARIABLES --------
 //Specific Recipe Page VARIABLES --------
-const specificRecipePage = document.querySelector('.specific-recipe-page');
-const specificRecipeHeading = document.querySelector('.specific-recipe-heading');
-const specificRecipeSaveButton = document.querySelector('.save-button');
-const specificRecipeImage = document.querySelector('.specific-recipe-img');
-const specificRecipeIngredients = document.querySelector('.specific-recipe-ingredients-list');
-const specificRecipeInstructions = document.querySelector('.specific-recipe-instructions');
-const specificRecipeCost = document.querySelector('.specific-recipe-cost');
+
 
 
 
@@ -41,6 +35,13 @@ const specificRecipeCost = document.querySelector('.specific-recipe-cost');
 //All Recipes Page QUERY SELECTORS--------
 //Saved Recipes Page QUERY SELECTORS--------
 //Specific Recipe Page QUERY SELECTORS--------
+const specificRecipePage = document.querySelector('.specific-recipe-page');
+const specificRecipeHeading = document.querySelector('.specific-recipe-heading');
+const specificRecipeSaveButton = document.querySelector('.save-button');
+const specificRecipeImage = document.querySelector('.specific-recipe-img');
+const specificRecipeIngredients = document.querySelector('.specific-recipe-ingredients-list');
+const specificRecipeInstructions = document.querySelector('.specific-recipe-instructions');
+const specificRecipeCost = document.querySelector('.specific-recipe-cost');
 
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
@@ -96,3 +97,20 @@ function makeIngredientsList(dataSet) {
 //All Recipes Page FUNCTIONS --------
 //Saved Recipes Page FUNCTIONS --------
 //Specific Recipe Page FUNCTIONS --------
+
+function loadSpecificRecipe(event) { //will put this in event listener on Cournty's all recipes page
+  if (/*event.target.??? === the recipe */) {
+    
+    /*recipespageelement*/.classList.add('hide');
+    specificRecipePage.classList.remove('hide');
+
+    const currentRecipe = allRecipes.find(recipe => recipe.id === event.target.id)
+
+    specificRecipeHeading.innerText = currentRecipe.name;
+    specificRecipeSaveButton.id = currentRecipe.id;
+    
+
+
+
+  }
+}
