@@ -120,15 +120,15 @@ function displayRecipeThumbnails(recipesList, trashbin) {
 };
 
 function createListOfTags(recipesList) {
-  recipesList.map(recipe.tags)
-  //Want an array of all tags from all the recipes in the recipes list provided (either all or saved recipe list). The array of tags should not have a repeated tag.
-  //recipeList === array of the recipes for either all or saved
-  //
-  //
-};
+  let allTags = recipesList.reduce((prev, current) => {
+    return prev.concat(current.tags);
+  }, []);
+  return allTags.filter((recipe, index) => allTags.indexOf(recipe) === index);
+}
 
-function createRecipesOfTag(tag) {
-};
+function createRecipesOfTag(tag, recipeList) {
+  return recipeList.filter((recipe) => recipe.tags.includes(tag));
+}
 
 function displayRecipesOfSameTag() {
 };
