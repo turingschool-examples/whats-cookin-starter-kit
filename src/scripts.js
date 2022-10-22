@@ -7,7 +7,9 @@ import RecipeRepository from "./classes/RecipeRepository";
 import Ingredient from "./classes/Ingredient";
 import ingredientsData from "./data/ingredients";
 import recipesData from "./data/recipes";
-// import UserRepo from "./classes/UserRepo";
+import UserRepo from "./classes/UserRepo";
+import allUsersData from "./data/users-sample";
+import User from "./classes/User";
 
 let allIngredients = ingredientsData;
 let allRecipes = recipesData
@@ -21,6 +23,8 @@ let allRecipes = recipesData
   });
 let recipeRepository = new RecipeRepository(allRecipes);
 let currentUser;
+let userRepo = new UserRepo(allUsersData);
+
 
 //query selectors go here
 let allRecipesButton = document.querySelector(".all-recipes-button");
@@ -45,11 +49,11 @@ function searchByTag(event) {
 }
 
 function selectRandomUser() {
+  console.log("Can I see this??? Please say yes.")
+  console.log("userRepo: ", userRepo)
   let randomIndex = Math.floor(Math.random() * userRepo.userCatalog.length)
   let randomUser = userRepo.userCatalog[randomIndex]
-  console.log(currentUser)
   return currentUser = new User(randomUser)
-  
 }
 
 function renderAllRecipesPage() {
