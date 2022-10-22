@@ -49,6 +49,7 @@ nav {
   justify-content: space-around;
   border: 1px solid black;
   height: 100vh;
+  
  }
 
 .featured-recipe-wrapper {
@@ -69,9 +70,12 @@ nav {
 }
 
  .ing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: .75px solid black;
   border-radius: 100%;
-  width: 65px;
+  width: 115px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
