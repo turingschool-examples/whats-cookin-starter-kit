@@ -130,7 +130,21 @@ function loadSpecificRecipe(event) { //will put this in event listener on Cournt
 
 function generateIngredientList(recipe) {
   
-  
+  // need to make an array of single string sentences that have the names, amount and unit
+  // 
+  // and array of objects with name, amount and unit
+  //iterate thru currentRecipe.ingredients
+  // 1. for each ID, search the allIngredients array and 
+
+    currentRecipe.ingredients.reduce((list, ingredient) => {
+      let ingredObj = {};
+      ingredObj.name = 
+      ingredObj.unit = 
+      indredObj.amount =
+      list.push(ingredObj)
+      return list;
+    }, [])
+ 
   
   specificRecipeIngredients.innerHTML = '';
   currentRecipe.ingredients.forEach(ingredient => {
@@ -152,7 +166,8 @@ function generateCost(recipe) {
 // TEST : DELETE THIS
 
 window.addEventListener('click', function(event) {
-  console.log('test: ', currentUser)
-  console.log('test recipes: ', allRecipes.listOfAllRecipes[0])
+  console.log('ingredientsData: ', ingredientsData)
+  console.log('ingredients in recipes: ', allRecipes.listOfAllRecipes[0].ingredients)
+
 
 })
