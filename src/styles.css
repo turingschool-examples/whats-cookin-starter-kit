@@ -323,5 +323,8 @@ p{
 .main-right-side-first-header{
   border-style: solid;
   display: flex;
-  
+}
+
+.hidden {
+  display:none
 }
