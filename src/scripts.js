@@ -35,16 +35,12 @@ const instructionsParent = document.getElementById("instructions-parent")
 window.onload = function () {
   displayAllRecipeTiles()
   MicroModal.init({
-    // onShow: modal => console.info(`${modal.id} is shown. Callback ftn to poppulate modal called here?`),
-    // onClose: modal => console.info(`${modal.id} is hidden`),
-    // openTrigger: 'data-micromodal-trigger',
-    // closeTrigger: 'data-custom-close',
     openClass: 'is-open',
     disableScroll: true,
     disableFocus: true,
     awaitOpenAnimation: false,
     awaitCloseAnimation: false,
-    debugMode: true
+    debugMode: false
   })
 }
 
@@ -65,7 +61,7 @@ function createRecipeTile(recipe) {
   allRecipesContainer.innerHTML +=
     `<div class="recipe-tile" id=${recipe.id}>
             <div class= "tile-image" style="background-image: url(${recipe.image})">
-            <img class="modal-bookmark-icon" src="./images/bookmark-unsaved.png" alt="save recipe">
+            <img class="modal-bookmark-icon" src="./images/bookmark-tiles-unsaved.png" alt="save recipe">
             </div>
             <h1>${recipe.name}</h1>
             <h2>${recipe.tags.join(', ')}</h2>
