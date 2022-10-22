@@ -25,7 +25,7 @@ let allRecipes;
 //All Recipes Page VARIABLES --------
 //Saved Recipes Page VARIABLES --------
 //Specific Recipe Page VARIABLES --------
-
+let currentRecipe;
 
 
 
@@ -104,13 +104,28 @@ function loadSpecificRecipe(event) { //will put this in event listener on Cournt
     /*recipespageelement*/.classList.add('hide');
     specificRecipePage.classList.remove('hide');
 
-    const currentRecipe = allRecipes.find(recipe => recipe.id === event.target.id)
+    currentRecipe = allRecipes.find(recipe => recipe.id === event.target.id);
 
+    specificRecipeHeading.innerText = '',
     specificRecipeHeading.innerText = currentRecipe.name;
+
+    specificRecipeSaveButton.id = '',
     specificRecipeSaveButton.id = currentRecipe.id;
-    
 
-
-
+    generateIngredientList(currentRecipe);
+    generateInstructions(currentRecipe);
+    generateCost(currentRecipe);
   }
+}
+
+function generateIngredientList(recipe) {
+
+}
+
+function generateInstructions(recipe) {
+  
+}
+
+function generateCost(recipe) {
+  
 }
