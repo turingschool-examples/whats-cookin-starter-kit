@@ -48,14 +48,15 @@ returnAllIngredientsArray() {
 
 returnRecipeIngredientsNames() {   
     let allIngredients = this.returnAllIngredientsArray()
-    let recipeIngredientIDs = this.returnRecipeIngredientsIds();
-    let newRecipeIngredients = allIngredients.filter((ingredient) => {
-        return recipeIngredientIDs.includes(ingredient.id)
-    });
-    let names = newRecipeIngredients.map((ingredient) => {
-       return  ingredient.name
-    });
-        return names;
+    let ingredientInfoForDOM = this.ingredients.map(ingredient => {
+        let ingredientDetails = allIngredients.find(element => element.id === ingredient.id)
+        if (ingredient.quantity.amount < 1) {
+            return ingredient.quantity.amount.toFixed(2) + ' ' + ingredient.quantity.unit + ' ' + ingredientDetails.name;
+        } else {
+        return ingredient.quantity.amount + ' ' + ingredient.quantity.unit + ' ' + ingredientDetails.name;
+        }
+    })
+    return ingredientInfoForDOM;
 }   
 
 returnAllIngredientsNames() {

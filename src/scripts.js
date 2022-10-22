@@ -17,6 +17,7 @@ const searchField = document.getElementById('input--search');
 const filterField = document.getElementById('input--filter');
 const cardsContainer = document.getElementById('section--cards-container');
 const recipeContainer = document.getElementById('section--recipe-details');
+const recipeListsContainer = document.getElementById('section--recipe-lists');
 const savedRecipesContainer = document.getElementById('section--saved-cards');
 const allRecipesContainer = document.getElementById('section--all-recipes');
 const ingredientContainer = document.getElementById('ul--ingredient-list');
@@ -38,6 +39,7 @@ const recipeCard8 = document.getElementById('card--recipe8');
 const recipeCard9 = document.getElementById('card--recipe9');
 const recipeCard10 = document.getElementById('card--recipe10');
 const recipeTitle = document.getElementById('title--recipe');
+const totalCost = document.getElementById('text--total-cost');
 
 
 
@@ -76,20 +78,32 @@ allRecipesButton.addEventListener('click', () => {
     displayAllRecipes();
 });
 
+recipeListsContainer.addEventListener('click', (event) => {
+    hide(allRecipesContainer);
+    show(allRecipesButton);
+    displayRecipeDetails(event);
+});
+
+
+
 // saveRecipeButton.addEventListener('click', );
 // myRecipesButton.addEventListener('click', );
 
 
 // GLOBAL VARIABLES LIVE HERE
 const allRecipes = new RecipeRepository(recipeData);
-
-
+const allRecipesClassObjects = allRecipes.returnAllRecipesObjectsArray();
 
 
 // HELPER FUNCTIONS LIVE HERE
 const show = element => element.classList.remove('hidden');
 const hide = element => element.classList.add('hidden');
 const displayAllRecipes = () => {
+    allRecipes0to9.innerHTML = '';
+    allRecipes10to19.innerHTML = '';
+    allRecipes20to29.innerHTML = '';
+    allRecipes30to39.innerHTML = '';
+    allRecipes40to49.innerHTML = '';
     allRecipes.recipeData.sort((a, b) => {
         if (a.name > b.name) {
             return 1;
@@ -110,6 +124,21 @@ const displayAllRecipes = () => {
             allRecipes40to49.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
         };
     });
+};
+const displayRecipeDetails = (event) => {
+    const currentRecipe = allRecipesClassObjects.find(recipe => {
+        return recipe.id.toString() === event.target.getAttribute('data-id');
+    });
+    hide(cardsContainer);
+    show(recipeContainer);
+    hide(savedRecipesContainer);
+    hide(allRecipesContainer);
+    recipeTitle.innerText = currentRecipe.name;
+    // instructionsContainer.innerText = currentRecipe.returnRecipeInstructions()
+    ingredientContainer.innerHTML = '';
+    currentRecipe.returnRecipeIngredientsNames()
+        .map(ingredientInfo => ingredientContainer.innerHTML += `<li>${ingredientInfo}</li>`);
+    ingredientContainer.innerHTML += `<div class="text--total-cost">Total cost: ${currentRecipe.returnCostOfIngredients()}</div>`;
 };
 
 

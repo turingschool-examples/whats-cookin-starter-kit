@@ -138,6 +138,11 @@
   margin: 0px 10px 0px 10px;
 }
 
+.text--total-cost {
+  font-weight: bold;
+  margin-top: 4%;
+}
+
 .ul--ingredient-list {
   display: flex;
   flex-direction: column;

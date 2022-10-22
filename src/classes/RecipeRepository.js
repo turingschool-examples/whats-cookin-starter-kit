@@ -1,3 +1,5 @@
+import Recipe from './Recipe';
+
 class RecipeRepository {
   constructor(recipeData) {
     this.recipeData = recipeData;
@@ -17,6 +19,12 @@ class RecipeRepository {
        return  recipe.tags.includes(tag)  
      })
     return justTags
+  }
+  returnAllRecipesObjectsArray () {
+    let recipeArray = this.recipeData.map((recipe) => {
+      return new Recipe(recipe);
+    })
+    return recipeArray;
   }
 }
 
