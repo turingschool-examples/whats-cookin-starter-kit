@@ -8,8 +8,7 @@ class RecipeRepository {
   }
 
   instantiateRecipes(recipeData, ingredientsData) {
-    console.log("recipesData is working!", recipeData.recipeData)
-    console.log("ingredientsData is working!", ingredientsData.ingredientsData)
+    //Note: we used dot notation below to access the correct array in recipeData.recipeData and ingredientsData.ingredientsData. Refactor this in the second part of the project to use locally hosted data.
     return recipeData.recipeData.map(recipe => new Recipe(recipe, ingredientsData.ingredientsData))
   }
 

@@ -45,23 +45,9 @@ const instructionsParent = document.getElementById("instructions-parent")
 
 // ---------------------------EVENT LISTENERS---------------------------
 
-// window.onload = function () {
-//   displayAllRecipeTiles()
-//   MicroModal.init({
-//     openClass: 'is-open',
-//     disableScroll: true,
-//     disableFocus: true,
-//     awaitOpenAnimation: false,
-//     awaitCloseAnimation: false,
-//     debugMode: false
-//   })
-// }
-
 function fetchData(urls) {
-  console.log("fetchData() is working!")
   Promise.all([getData(urls[0]), getData(urls[1]), getData(urls[2])])
     .then(data => {
-      console.log(".then is working!")
       usersData = data[0]
       recipesData = data[1]
       ingredientsData = data[2]
@@ -71,12 +57,12 @@ function fetchData(urls) {
 
 fetchData([usersURL, recipesURL, ingredientsURL])
 
+
+
 function startPage() {
-  console.log("startPage is working!")
-  // console.log("Look here ++++", recipesData)
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
   displayAllRecipeTiles()
-  user = new User(usersData[0])
+  user = new User(usersData.usersData[0])
   MicroModal.init({
     openClass: 'is-open',
     disableScroll: true,
