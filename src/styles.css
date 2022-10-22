@@ -18,8 +18,10 @@ body {
   border: 4px, black;
 }
 
-header, footer {
+header {
   display: flex;
+  align-items: center;
+  justify-content: space-around;
   height: 20vh;
   flex-direction: row;
   border: solid 1px black;
@@ -28,7 +30,9 @@ header, footer {
 .image {
   height: 30vh;
   width: 20vw;
-  border: 1px, black;
+  padding-top: 5%;
+  cursor: pointer;
+  
 }
 
 #menu-button {
@@ -42,8 +46,7 @@ header, footer {
   flex-direction: row;
   justify-content: space-between;
   height: 40vh;
-  width: 95vw;
-  border: solid 3px black;
+  width: 98vw;
   border-radius: 10px;
 }
 
@@ -51,7 +54,6 @@ header, footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  border: solid 3px blue;
 }
 
 .main-container {
@@ -60,46 +62,46 @@ header, footer {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border: solid 4px black;
 }
 
 .popular-favorites-container {
   background-color: azure;
   background-size: cover;
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-content: space-around;
   padding-bottom: 5%;
   height: 60vh;
   width: 50vw;
 }
 
 .mini-recipe-card-container {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+  align-items: center;
+	justify-content: space-around;
+	align-content: space-around;
   background-color: azure;
   height: 50vh;
   width: 40vw;
-  border: solid 3px blue;
 }
 
 .mini-image {
-  height: 10vh;
-  width: 10vw;
+  height: 15vh;
+  width: 15vw;
+  cursor: pointer;
 }
 
-/* .meatless-entrees-container {
-  background-image: url("./images/assets/veggies.jpg");
-  background-size: cover;
-} */
+.mini-image:hover {
+  transform: scale(1.1);
+}
 
-/* .delicious-dessert-container {
-  background-image: url("./images/assets/desserts.jpg");
-  background-size: cover;
-}  */
+.image:hover {
+  transform: scale(1.1);
+}
 
-/* .savory-soups-container {
-  background-image: url("./images/assets/soups.jpg");
-  background-size: cover;
-} */
 
 
