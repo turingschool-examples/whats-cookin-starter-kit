@@ -7,6 +7,7 @@ import RecipeRepository from "./classes/RecipeRepository";
 import Ingredient from "./classes/Ingredient";
 import ingredientsData from "./data/ingredients";
 import recipesData from "./data/recipes";
+// import UserRepo from "./classes/UserRepo";
 
 let allIngredients = ingredientsData;
 let allRecipes = recipesData
@@ -19,6 +20,7 @@ let allRecipes = recipesData
     return a.name > b.name ? 1 : -1;
   });
 let recipeRepository = new RecipeRepository(allRecipes);
+let currentUser;
 
 //query selectors go here
 let allRecipesButton = document.querySelector(".all-recipes-button");
@@ -29,29 +31,25 @@ let searchButton = document.querySelector(".search-button");
 let inputBar = document.querySelector(".search-bar > input");
 let tagSelect = document.querySelector("#tag-select");
 
-//let currentUser;
-//keep me
-//window.addEventListener("load", selectRandomUser)
-allRecipesButton.addEventListener("click", viewAllRecipes)
-
-// function selectRandomUser() {
-//   let randomIndex = Math.floor(Math.random() * userRepo.userCatalog.length)
-//   let randomUser = userRepo.userCatalog[randomIndex]
-//   currenUser = new User(randomUser)
-//   console.log(currentUser)
-// }
-
-
 //event listeners go here
-allRecipesButton.addEventListener("click", renderAllRecipesPage);
+allRecipesButton.addEventListener("click", viewAllRecipes);allRecipesButton.addEventListener("click", renderAllRecipesPage);
 searchButton.addEventListener("click", searchForRecipes);
 tagSelect.addEventListener("change", searchByTag);
+window.addEventListener("load", selectRandomUser);
 
 //event handlers go here
 function searchByTag(event) {
   const tagValue = event.target.value;
   const filteredRecipes = recipeRepository.filterByTag(tagValue);
   viewAllRecipes(filteredRecipes);
+}
+
+function selectRandomUser() {
+  let randomIndex = Math.floor(Math.random() * userRepo.userCatalog.length)
+  let randomUser = userRepo.userCatalog[randomIndex]
+  console.log(currentUser)
+  return currentUser = new User(randomUser)
+  
 }
 
 function renderAllRecipesPage() {
