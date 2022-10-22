@@ -18,6 +18,7 @@ let userData;
 let ingredientsData;
 let recipeData;
 let currentUser;
+let allRecipes;
 
 //Navbar VARIABLES ---------
 //Home Page VARIABLES --------
@@ -54,7 +55,9 @@ Promise.all([
 
   createInstances(recipeData, ingredientsData, userData);
 
-  let allRecipes = new RecipeRepository(recipeData);
+   allRecipes = new RecipeRepository(recipeData);
+      console.log(allRecipes)
+      console.log(currentUser)
 });
 
 function createInstances(dataSet1, dataSet2, dataSet3) {
@@ -62,7 +65,6 @@ function createInstances(dataSet1, dataSet2, dataSet3) {
   makeIngredientsList(dataSet2);
   currentUser = new User();
   currentUser.generateRandomUser(dataSet3.usersData);
-  
 }
 
 function makeRecipesList(dataSet) {
@@ -83,7 +85,7 @@ function makeIngredientsList(dataSet) {
 //All Recipes Page EVENT LISTENERS --------
 allReipesPageButton.addEventListener('click', displayAllRecipesPage); //connect with NAVBAR
 allRecipeThumbnailsSection.addEventListener('click', showSelectedRecipe);
-allRecipeFilterTagOptions.addEventListener('click',)
+allRecipeFilterTagOptions.addEventListener('click', displayRecipesOfSameTag)
 //Saved Recipes Page EVENT LISTENERS --------
 savedReipesPageButton.addEventListener('click', displaySavedRecipesPage) //connect with NAVBAR
 //Specific Recipe Page EVENT LISTENERS --------
@@ -92,25 +94,49 @@ savedReipesPageButton.addEventListener('click', displaySavedRecipesPage) //conne
 //FUNCTIONS------------------------------------------------------
 //Global FUNCTIONS -------------
 //Navbar FUNCTIONS ---------
-function displayAllRecipesPage() {
-  createPageTitle('ALL RECIPES');
-  displayAllRecipeThumbnails();
-};
 //Home Page FUNCTIONS --------
 //All Recipes Page FUNCTIONS --------
+function displayAllRecipesPage() {
+  console.log(allRecipes)
+  createPageTitle('ALL RECIPES');
+  displayRecipeThumbnails(allRecipes.listOfAllRecipes, '');
+  createListOfTags(allRecipes.listOfAllRecipes);
+};
+
 function createPageTitle(title) {
   allRecipesPageTitle.innerText = title; 
 };
 
-function displayAllRecipeThumbnails() {
-let allRecipeThumbnailsSection = '';
-
+//Both ALL and Saved Recipe Pages
+function displayRecipeThumbnails(recipesList, trashbin) {
+  let recipesThumbnailsSection = '';
+  recipesList.forEach(recipe => {
+    return recipesThumbnailsSection += `<section    class="single-recipe-thumbnail" id = "${recipe.id}"> <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> <div class="single-recipe-text"> <p class="recipe-title-text">${recipe.name}</p> <p>${trashbin}</p> </div> </section>`
+  });
+  /* recipe.id is a number and we need to convert it to a string, I think what I have above should work....*/
+  /* Potentially, i can put trashbin text in as an an argument and if it is saved page then when displayRecipeThumbnails is invoke, we pass in a trashbin icon as the argument and if not then we pass in an empty string- we will need to make sure that the css still works with this approach*/
+  allRecipeThumbnailsSection.innerHTML = recipesThumbnailsSection;
 };
+
+function createListOfTags(recipesList) {
+  recipesList.map(recipe.tags)
+  //Want an array of all tags from all the recipes in the recipes list provided (either all or saved recipe list). The array of tags should not have a repeated tag.
+  //recipeList === array of the recipes for either all or saved
+  //
+  //
+};
+
+function createRecipesOfTag(tag) {
+};
+
+function displayRecipesOfSameTag() {
+};
+
 //Saved Recipes Page FUNCTIONS --------
 function displaySavedRecipesPage() {
   createPageTitle('SAVED RECIPES');
+  displayRecipeThumbnails(currentUser.recipesToCook, '🗑');
+  createListOfTags(currentUser.recipesToCook);
 };
-//Specific Recipe Page FUNCTIONS --------
-function showSelectedRecipe() {
 
-};
+//Specific Recipe Page FUNCTIONS --------
