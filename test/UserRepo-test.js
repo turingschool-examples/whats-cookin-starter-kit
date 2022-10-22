@@ -2,10 +2,10 @@ import { expect } from 'chai';
 import UserRepo from '../src/classes/UserRepo';
 import allUsersData from '../src/data/users-sample.js';
 //let allUsers
-console.log(allUsersData)
+//console.log(allUsersData)
 
 describe('UserRepo', function() {
-  let userRepo, user1, user2, user3, allUsers
+  let userRepo, user1, user2, user3
 
   beforeEach(() => {
 console.log(allUsersData)
@@ -23,14 +23,17 @@ console.log(allUsersData)
   })
 
   it('Should be able to access pantry items', function() {
-  //  console.log('pantry:', userRepo.userCatalog[1].pantry)
     expect(userRepo.userCatalog[1].pantry).to.deep.equal(
       allUsersData[1].pantry
     )
   })
 
-  it.skip('Should make pantry items easier to access', function() {
-     userRepo.getPantry()
+  it('Should get single user', function() {
+    expect(userRepo.getUserInfo(1)).to.deep.equal(allUsersData[0])
+  })
+
+  it.skip('Should return pantry of single user', function() {
+    expect(userRepo.getPantry(1)).to.equal(allUsersData[1].pantry)
   })
 
 })
