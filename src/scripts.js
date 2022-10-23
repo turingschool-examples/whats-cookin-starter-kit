@@ -106,6 +106,25 @@ searchBar.addEventListener('keyup', (event) => {
     displaySearchedRecipeTiles(recipes)
   }
 })
+
+// create a button to match design doc for clear
+// disable clear button when there is no input value and make it grayed out when not usable. css property called disabled.
+// Remove disabled class when input vlue is not null
+// Make button clickable and not grayed out when input value is not null
+
+filter.addEventListener('input', (event) => {
+  console.log("filter listener works", filter.value)
+  let input = event.target.value
+  console.log(filter.classList.contains('my-recipes'))
+  if (filter.classList.contains('my-recipes')) {
+    let recipes = user.filterByTag(input)
+    displaySearchedRecipeTiles(recipes)
+    
+  } else {
+    let recipes = recipeRepository.filterByTag(input)
+    displaySearchedRecipeTiles(recipes)
+  }
+})
 // ---------------------------DOM UPDATING---------------------------
 
 function createRecipeTile(recipe) {
@@ -180,7 +199,6 @@ function populateTags() {
   })
 
   allTags.sort()
-  console.log(allTags)
 
   allTags.forEach(tag => {
     filter.innerHTML += `<option id=${tag}>${tag}</option>`
