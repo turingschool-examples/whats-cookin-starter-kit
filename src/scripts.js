@@ -191,7 +191,7 @@ function displaySearchRecipes() {
     console.log('test',recipeFilterName)
    displayRecipeThumbnails(recipeFilterName,'','')
   }else {
-    allRecipeThumbnailsSection.innerHTML = '';
+    allRecipeThumbnailsSection.innerHTML = "<h3> Sorry your dish can't be found ... order out!</h3>"; 
     console.log( ' no recipes found! ')
   }
 }
