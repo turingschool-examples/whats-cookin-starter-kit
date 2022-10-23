@@ -25,32 +25,32 @@
       </header>
       <div class="featured-container">
         <h2 class="featured-recipes">Featured</h2>
-        <section class="recipe-card-container" id="595736">
+        <section class="recipe-card-container">
           <img
-            class="image"
+            class="image" id="595736"
             src="https://spoonacular.com/recipeImages/595736-556x370.jpg"
           />
           <p class="recipe-1-name">Loaded Chocolate Chip Pudding Cookie Cups</p>
         </section>
-        <section class="recipe-card-container" id="678353">
+        <section class="recipe-card-container" >
           <img
-            class="image"
+            class="image" id="678353"
             src="https://spoonacular.com/recipeImages/678353-556x370.jpg"
           />
           <p class="recipe-2-name">
             Maple Dijon Apple Cider Grilled Pork Chops
           </p>
         </section>
-        <section class="recipe-card-container" id="412309">
+        <section class="recipe-card-container" >
           <img
-            class="image"
+            class="image" id="412309"
             src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
           />
           <p class="recipe-3-name">Dirty Steve's Original Wing Sauce</p>
         </section>
-        <section class="recipe-card-container" id="741603">
+        <section class="recipe-card-container">
           <img
-            class="image"
+            class="image" id="741603"
             src="https://spoonacular.com/recipeImages/741603-556x370.jpeg"
           />
           <p class="recipe-4-name">Elvis Pancakes</p>
@@ -116,63 +116,72 @@
             <p class="recipe-4-name"></p>
           </section>
         </div>
-        <!-- <div class="popular-favorites-container">
-        <h2 class="popular-recipes"> Fun Creations </h2>
-        <section class="mini-recipe-card-container" id="562334">
-          <img class="mini-image" src="https://spoonacular.com/recipeImages/562334-556x370.jpg">
-          <p class="recipe-1-name"> Mock Udi's Gluten Free Whole Grain Bread </p>
-        </section>
-        <section class="mini-recipe-card-container" id="507921">
-          <img class="mini-image" src="https://spoonacular.com/recipeImages/507921-556x370.jpg">
-          <p class="recipe-2-name"> Ambrosia Cupcakes </p>
-        </section>
-        <section class="mini-recipe-card-container" id="721146">
-          <img class="mini-image" src="https://spoonacular.com/recipeImages/721146-556x370.jpg">
-          <p class="recipe-3-name"> Creamy Coconut Yogurt Bowl with Chocolate Granola (Video) </p>
-        </section>
-        <section class="mini-recipe-card-container" id="541288">
-          <img class="mini-image" src="https://spoonacular.com/recipeImages/541288-556x370.jpg">
-          <p class="recipe-4-name"> Sesame Cookie </p>
-        </section>
-      </div>
-      <div class="popular-favorites-container">
-        <h2 class="popular-recipes"> Fun Creations </h2>
-        <section class="mini-recipe-card-container" id="562334">
-          <img class="mini-image" src="https://spoonacular.com/recipeImages/562334-556x370.jpg">
-          <p class="recipe-1-name"> Mock Udi's Gluten Free Whole Grain Bread </p>
-        </section>
-        <section class="mini-recipe-card-container" id="507921">
-          <img class="mini-image" src="https://spoonacular.com/recipeImages/507921-556x370.jpg">
-          <p class="recipe-2-name"> Ambrosia Cupcakes </p>
-        </section>
-        <section class="mini-recipe-card-container" id="721146">
-          <img class="mini-image" src="https://spoonacular.com/recipeImages/721146-556x370.jpg">
-          <p class="recipe-3-name"> Creamy Coconut Yogurt Bowl with Chocolate Granola (Video) </p>
-        </section>
-        <section class="mini-recipe-card-container" id="541288">
-          <img class="mini-image" src="https://spoonacular.com/recipeImages/541288-556x370.jpg">
-          <p class="recipe-4-name"> Sesame Cookie </p>
-        </section>
-      </div> -->
       </div>
     </section>
     <section class="all-recipes-page hidden">
-      <!-- <header>
-      <section class="mini-menu-bar-container">
-        <button class="all-recipes-button" id="menu-button"> All Recipes </button>
-        <button class="entrees-button" id="menu-button"> Entrees </button>
-        <button class="side-dishes-button" id="menu-button"> Side Dishes </button>
-        <button class="desserts-button" id="menu-button"> Desserts </button>
-        <button class="my-recipes-button" id="menu-button"> My Recipes </button>
-      </section>
-      <h1> Whats Cookin', Good Lookin'? </h1>
-      <div class="search-bar">
-        <input type="text" placeholder="Search">
-        <button class="search-button"> Search </button>
-      </div>
-    </header> -->
+      <header>
+        <section class="mini-menu-bar-container">
+          <select name="tags" id="tag-select">
+            <option value="all">All tags</option>
+          </select>
+          <button class="my-recipes-button" id="menu-button">My Recipes</button>
+          <button class="return-home" id="menu-button">
+            Home
+          </button>
+        </section>
+        <h1>All Recipes</h1>
+        <div class="search-bar">
+          <input type="text" placeholder="Search" />
+          <button class="search-button">Search</button>
+        </div>
+      </header>
+      <div id="all-recipes-container"></div>
     </section>
-    <section class="current-recipe hidden"></section>
+    <section class="current-recipe hidden">
+      <header>
+        <section class="mini-menu-bar-container">
+          <button class="all-recipes-button" id="menu-button">
+            All Recipes
+          </button>
+          <button class="return-home" id="menu-button">
+            Home
+          </button>
+          <select name="tags" id="tag-select">
+            <option value="all">All tags</option>
+          </select>
+          <button class="my-recipes-button" id="menu-button">My Recipes</button>
+        </section>
+        <h1>More Info</h1>
+        <div class="search-bar">
+          <input type="text" placeholder="Search" />
+          <button class="search-button">Search</button>
+        </div>
+      </header>
+      <div id="current-recipe-id"></div>
+    </section>
+    <section class="saved-recipes-page hidden">
+      <header>
+        <section class="mini-menu-bar-container">
+          <button class="all-recipes-button" id="menu-button">
+            All Recipes
+          </button>
+          <button class="return-home" id="menu-button">
+            Home
+          </button>
+          <select name="tags" id="tag-select">
+            <option value="all">All tags</option>
+          </select>
+          <button class="my-recipes-button" id="menu-button">My Recipes</button>
+        </section>
+        <h1>Recipes to Cook</h1>
+        <div class="search-bar">
+          <input type="text" placeholder="Search" />
+          <button class="search-my-recipes-button">Search My Recipes</button>
+        </div>
+      </header>
+      <div id="saved-recipe-card-container">
+      </div>
+    </section>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
