@@ -1,5 +1,3 @@
-// import Recipe from '../classes/Recipe'
-
 class User {
   constructor(data) {
     this.name = data.name
@@ -7,7 +5,6 @@ class User {
     this.pantry = data.pantry
     this.favorites = []
   }
-
 
   addToFavorites(recipe) {
     this.favorites.push(recipe)
@@ -24,7 +21,6 @@ class User {
 
   filterFavsByTag(tag) {
     let favByTagResult = this.favorites.filter(favorites => favorites.tags.includes(tag))
-    console.log('RESULT', favByTagResult)
     return favByTagResult
   }
 

@@ -28,8 +28,9 @@ COLORS::after
   width: 20vw;
 }
 
-.header-button {
-  background-color: #BB2253;
+.view-all-recipes{
+  height: 5vh;
+  width: 20vw;
   border-radius: 5px;
   color: #E89F71;
   cursor: pointer;
