@@ -37,7 +37,7 @@ const currentRecipeContainer = document.querySelector("#current-recipe-id");
 const allSearchButtons = document.querySelectorAll(".search-button");
 const allHomeButtons = document.querySelectorAll(".return-home");
 const inputBar = document.querySelector(".search-bar > input");
-const tagSelect = document.querySelector("#tag-select");
+const tagSelect = document.querySelectorAll(".tag-select-class");
 // let saveRecipeButton = document.querySelector(".save-recipe-button");
 const savedRecipePage = document.querySelector(".saved-recipes-page");
 const savedRecipeContainer = document.querySelector(
@@ -72,7 +72,9 @@ myRecipeSearch.addEventListener("click", searchMyRecipeNames);
 searchButtons.forEach((button) => {
   button.addEventListener("click", searchForRecipes);
 });
-tagSelect.addEventListener("change", searchByTag);
+tagSelect.forEach((tag) => {
+  tag.addEventListener("change", searchByTag);
+});
 window.addEventListener("load", loadPage);
 
 //event handlers go here
@@ -83,8 +85,10 @@ function loadPage() {
 
 function renderTags() {
   const tags = recipeRepository.getAllTags();
-  tags.forEach((item) => {
-    tagSelect.innerHTML += `<option value = "${item}">${item}</option>`;
+  tags.forEach((tag) => {
+    tagSelect.forEach((item) => {
+      item.innerHTML += `<option value = "${tag}">${tag}</option>`;
+    });
   });
 }
 

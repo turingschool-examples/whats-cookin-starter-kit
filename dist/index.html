@@ -12,7 +12,7 @@
           <button class="all-recipes-button" id="menu-button">
             All Recipes
           </button>
-          <select name="tags" id="tag-select">
+          <select name="tags" class="tag-select-class" id="tag-select">
             <option value="all" disabled selected>Search by tag</option>
           </select>
           <button class="my-recipes-button" id="menu-button">My Recipes</button>
@@ -27,30 +27,34 @@
         <h2 class="featured-recipes">Featured</h2>
         <section class="recipe-card-container">
           <img
-            class="image" id="595736"
+            class="image"
+            id="595736"
             src="https://spoonacular.com/recipeImages/595736-556x370.jpg"
           />
           <p class="recipe-1-name">Loaded Chocolate Chip Pudding Cookie Cups</p>
         </section>
-        <section class="recipe-card-container" >
+        <section class="recipe-card-container">
           <img
-            class="image" id="678353"
+            class="image"
+            id="678353"
             src="https://spoonacular.com/recipeImages/678353-556x370.jpg"
           />
           <p class="recipe-2-name">
             Maple Dijon Apple Cider Grilled Pork Chops
           </p>
         </section>
-        <section class="recipe-card-container" >
+        <section class="recipe-card-container">
           <img
-            class="image" id="412309"
+            class="image"
+            id="412309"
             src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
           />
           <p class="recipe-3-name">Dirty Steve's Original Wing Sauce</p>
         </section>
         <section class="recipe-card-container">
           <img
-            class="image" id="741603"
+            class="image"
+            id="741603"
             src="https://spoonacular.com/recipeImages/741603-556x370.jpeg"
           />
           <p class="recipe-4-name">Elvis Pancakes</p>
@@ -121,13 +125,11 @@
     <section class="all-recipes-page hidden">
       <header>
         <section class="mini-menu-bar-container">
-          <select name="tags" id="tag-select">
+          <select name="tags" class="tag-select-class" id="tag-select">
             <option value="all">All tags</option>
           </select>
           <button class="my-recipes-button" id="menu-button">My Recipes</button>
-          <button class="return-home" id="menu-button">
-            Home
-          </button>
+          <button class="return-home" id="menu-button">Home</button>
         </section>
         <h1>All Recipes</h1>
         <div class="search-bar">
@@ -143,10 +145,8 @@
           <button class="all-recipes-button" id="menu-button">
             All Recipes
           </button>
-          <button class="return-home" id="menu-button">
-            Home
-          </button>
-          <select name="tags" id="tag-select">
+          <button class="return-home" id="menu-button">Home</button>
+          <select name="tags" class="tag-select-class" id="tag-select">
             <option value="all">All tags</option>
           </select>
           <button class="my-recipes-button" id="menu-button">My Recipes</button>
@@ -165,10 +165,8 @@
           <button class="all-recipes-button" id="menu-button">
             All Recipes
           </button>
-          <button class="return-home" id="menu-button">
-            Home
-          </button>
-          <select name="tags" id="tag-select">
+          <button class="return-home" id="menu-button">Home</button>
+          <select name="tags" class="tag-select-class" id="tag-select">
             <option value="all">All tags</option>
           </select>
           <button class="my-recipes-button" id="menu-button">My Recipes</button>
@@ -179,8 +177,7 @@
           <button class="search-my-recipes-button">Search My Recipes</button>
         </div>
       </header>
-      <div id="saved-recipe-card-container">
-      </div>
+      <div id="saved-recipe-card-container"></div>
     </section>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
