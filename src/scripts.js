@@ -76,6 +76,9 @@ function startPage() {
 
 allRecipesContainer.addEventListener("click", (event) => {
   if (event.target.nodeName === "SECTION") { return }
+  if (event.target.nodeName === "IMG") {
+    event.target.src = './images/bookmark-tiles-saved.png'
+  }
   let targetObject = recipeRepository.recipeList.find(recipe => recipe.id == event.target.parentNode.id)
   currentlyViewedRecipe = targetObject
   updateModal(targetObject)
