@@ -182,7 +182,6 @@ function displaySearchRecipes() {
   }
   
   const recipeFilterName = foodOptions.filter(recipe => recipe.name.toLowerCase() === userInput )
-  // console.log('recipename', recipeFilterName)
   const recipeFilterByTag = createRecipesOfTag(userInput,foodOptions)
     
   if(recipeFilterName.length === 0 && recipeFilterByTag.length !== 0 ) {
