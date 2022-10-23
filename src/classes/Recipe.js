@@ -39,6 +39,16 @@ class Recipe {
         return array;
     }
 
+    returnRecipeImage() {
+        // let array = this.images.reduce((acc, element) => {
+        //     let format = `${element.number}) ${element.image}`
+        //     acc.push(format)
+        //     return acc;
+        // }, [])
+        console.log("this.image: ", this.image)
+        return this.image;
+    }
+
     returnRecipieIngredientsArray() {
         let recipeIngredients = this.ingredients;
     }
