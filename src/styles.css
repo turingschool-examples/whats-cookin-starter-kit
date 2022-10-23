@@ -27,12 +27,6 @@ header {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2)
 }
 
-/* .logo {
-  object-fit: cover;
-  height: 40px;
-  width: 40px;
-} */
-
 .nav-bar-container {
   display: flex;
   flex-direction: row;
@@ -389,7 +383,13 @@ max-height: 50px;
 
 .ingr-span > * {
   font-family: 'Roboto', sans-serif;
+  font-weight: 100;
   padding: 5px;
+}
+
+.total-price {
+  font-weight: 400;
+  padding-top: 31px;
 }
 
 .instructions-grandparent {
@@ -448,14 +448,16 @@ max-height: 50px;
   .modal-image-ingr-parent {
     align-items: flex-start;
     flex-direction: column;
+    padding-bottom: 4vw;
   }
 
   .ingr-span {
+    text-align: left;
     width: 92%;
   }
 
   .modal-image {
-    width: 50vw;
+    width: 70vw;
+    padding-bottom: 4vw;
   }
-
 }

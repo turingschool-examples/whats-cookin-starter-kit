@@ -1,5 +1,5 @@
 // import recipeData from "../data/recipes"
-import ingredientsData from "../data/ingredients"
+// import ingredientsData from "../scripts.js"
 import Recipe from "./Recipe"
 
 class RecipeRepository {
@@ -7,16 +7,34 @@ class RecipeRepository {
     this.recipeList = this.instantiateRecipes(recipeData, ingredientsData);
   }
 
-  instantiateRecipes(recipeData) {
-    return recipeData.map(recipe => new Recipe(recipe, ingredientsData))
+  instantiateRecipes(recipeData, ingredientsData) {
+    //Note: we used dot notation below to access the correct array in recipeData.recipeData and ingredientsData.ingredientsData. Refactor this in the second part of the project to use locally hosted data.
+    return recipeData.recipeData.map(recipe => new Recipe(recipe, ingredientsData.ingredientsData))
   }
 
   filterByTag(tag) {
     return this.recipeList.filter(recipe => recipe.tags.includes(tag));
   }
 
-  filterByName(name) {
-    return this.recipeList.filter(recipe => recipe.name.includes(name))
+  filterByNameOrIngredient(input) {
+    let filteredRecipes = [];
+    input = input.toLowerCase();
+    
+    this.recipeList.forEach(recipe => {
+      if (recipe.name.toLowerCase().includes(input)) {
+        filteredRecipes.push(recipe)
+      } else {
+        recipe.ingredients.forEach(ingredient => {
+          if (ingredient.name.toLowerCase().includes(input)) {
+            if (!filteredRecipes.includes(recipe)) {
+              filteredRecipes.push(recipe)
+            }
+          }
+        })
+      }
+    })
+
+    return filteredRecipes;
   }
 
   recipeOfTheDay() {

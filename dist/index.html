@@ -1,24 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <link rel="stylesheet" href="../src/styles.css" />
   <title>What's Cookin'</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bitter&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Bitter&family=Roboto:wght@100&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
 </head>
-
 <body>
   <header>
     <nav class="nav-bar-container">
       <div class="header-left-align">
-        <!-- <h1>What's Cookin'</h1> -->
-        <!-- <img class="logo" alt="logo" src="/src/images/logo.png"> -->
-        <!-- <img src={require('/src/images/logo.png')} /> -->
-        <!-- <img src="https://i.imgur.com/oINYU65.jpeg" class="logo"> -->
-        <input type="search" placeholder="Search..." class="search-bar">
+        <input type="search" placeholder="Search..." class="search-bar" id="search-bar">
       </div>
       <div class="header-right-align">
         <div class="header-buttons">My recipes</div>
@@ -28,7 +23,7 @@
   </header>
   <section class="below-header-container">
     <section class="featured-recipe">
-      <img src="../src/images/What's Cookin'.png" id="logo">
+      <img src="./images/whats-cookin-logo.png" id="logo">
       <div id="recipe-of-the-day">
         <h1>Loaded Chocolate Chip Cookie Cups</h1>
         <div id="recipe-details">
@@ -63,7 +58,6 @@
       </select>
         <!-- filter by tag goes here -->
     </section>
-  
     <section class="all-recipes-container">
     </section>
   </section>
