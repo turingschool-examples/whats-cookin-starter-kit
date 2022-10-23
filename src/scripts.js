@@ -52,6 +52,7 @@ homeButton.addEventListener('click', () => {
     hide(savedRecipesContainer);
     hide(allRecipesContainer);
     show(allRecipesButton);
+    show(myRecipesButton)
 });
 
 myRecipesButton.addEventListener('click', () => {
@@ -60,6 +61,7 @@ myRecipesButton.addEventListener('click', () => {
     show(savedRecipesContainer);
     hide(allRecipesContainer);
     show(allRecipesButton);
+    hide(myRecipesButton)
     displaySavedRecipes();
 });
 
@@ -69,6 +71,7 @@ cardsContainer.addEventListener('click', (event) => {
         show(recipeContainer);
         hide(savedRecipesContainer);
         hide(allRecipesContainer);
+        show(myRecipesButton)
         displayRecipeDetails(event);
     }
 });
@@ -79,12 +82,14 @@ allRecipesButton.addEventListener('click', () => {
     hide(savedRecipesContainer);
     show(allRecipesContainer);
     hide(allRecipesButton);
+    show(myRecipesButton)
     displayAllRecipes();
 });
 
 recipeListsContainer.addEventListener('click', (event) => {
     hide(allRecipesContainer);
     show(allRecipesButton);
+    show(myRecipesButton)
     displayRecipeDetails(event);
 });
 
@@ -94,6 +99,7 @@ filterField.addEventListener('input', (event) => {
 
 searchField.addEventListener('input', (event) => {
     displaySearchedRecipes(event);
+
 })
 
 // GLOBAL VARIABLES LIVE HERE
@@ -312,8 +318,8 @@ const displaySavedRecipes = () => {
             ${user.recipesToCook[index].name}</li>`;
         };
     });
-};  
-          
+};
+
 const displayFilteredRecipes = (event) => {
     if (!event.target.value) {
         allRecipesLists.forEach(list => {
