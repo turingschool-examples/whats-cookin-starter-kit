@@ -100,6 +100,12 @@
   border-radius: 20px;
 }
 
+.glide__arrow--right, .glide__arrow--left {
+  font-weight: bold;
+  background: rgba(00, 00, 00, .5)
+  
+}
+
 .list--total-cost {
   font-weight: bold;
 }
@@ -201,6 +207,9 @@ body {
 
 img {
   cursor: pointer;
+  box-shadow: 0 0 200px rgba(0,0,0,0.9) inset;
+  border: 2px solid #fefefe;
+  border-radius: 3%;
 }
 
 h1,
