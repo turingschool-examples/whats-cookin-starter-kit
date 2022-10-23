@@ -61,7 +61,7 @@ fetchData([usersURL, recipesURL, ingredientsURL])
 
 function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
-  displayAllRecipeTiles()
+  displayRecipeTiles(recipeRepository.recipeList)
   user = new User(usersData.usersData[0])
   MicroModal.init({
     openClass: 'is-open',
@@ -97,11 +97,12 @@ function createRecipeTile(recipe) {
         </div>`
 }
 
-function displayAllRecipeTiles() {
-  for (var i = 0; i < recipeRepository.recipeList.length; i++) {
-    createRecipeTile(recipeRepository.recipeList[i])
+function displayRecipeTiles(recipeArray) {
+  for (var i = 0; i < recipeArray.length; i++) {
+    createRecipeTile(recipeArray[i])
   }
 }
+
 
 let updateModal = targetObject => {
   modalTagParent.innerHTML = ``
