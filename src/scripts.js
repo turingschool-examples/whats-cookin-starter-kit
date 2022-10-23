@@ -983,7 +983,7 @@ const displayRecipeDetails = (event) => {
 
 
 function displayUserName() {
-    userWelcome.innerHTML = `<p>Welcome: ${user.name}!</p>`
+    userWelcome.innerHTML = `<p>Welcome, ${user.name}!</p>`
 }
 
 
