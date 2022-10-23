@@ -6,23 +6,33 @@
     <title>Whats Cookin'</title>
   </head>
   <body>
+    <header>
+      <section class="mini-menu-bar-container">
+        <button class="return-home hidden" id="menu-button">Home</button>
+        <button class="all-recipes-button" id="menu-button">All Recipes</button>
+        <select name="all-tags" class="tag-select-class" id="all-tag-select">
+          <option value="all" disabled selected>Search by tag</option>
+        </select>
+        <select
+          name="user-tags"
+          class="tag-select-class hidden"
+          id="user-tag-select"
+        >
+          <option value="all" disabled selected>Search by tag</option>
+        </select>
+        <button class="my-recipes-button" id="menu-button">My Recipes</button>
+      </section>
+      <h1 class="header-title">Whats Cookin', Good Lookin'?</h1>
+      <form class="all-search-bar">
+        <input type="text" name="search" placeholder="Search" />
+        <button id="all-search-btn" class="search-button">Search</button>
+      </form>
+      <form class="user-search-bar hidden">
+        <input type="text" name="search" placeholder="Search" />
+        <button name="user-search-btn" class="search-button">Search</button>
+      </form>
+    </header>
     <section class="home-page">
-      <header>
-        <section class="mini-menu-bar-container">
-          <button class="all-recipes-button" id="menu-button">
-            All Recipes
-          </button>
-          <select name="tags" class="tag-select-class" id="tag-select">
-            <option value="all" disabled selected>Search by tag</option>
-          </select>
-          <button class="my-recipes-button" id="menu-button">My Recipes</button>
-        </section>
-        <h1>Whats Cookin', Good Lookin'?</h1>
-        <div class="search-bar">
-          <input type="text" placeholder="Search" />
-          <button class="search-button">Search</button>
-        </div>
-      </header>
       <div class="featured-container">
         <h2 class="featured-recipes">Featured</h2>
         <section class="recipe-card-container">
@@ -123,60 +133,12 @@
       </div>
     </section>
     <section class="all-recipes-page hidden">
-      <header>
-        <section class="mini-menu-bar-container">
-          <select name="tags" class="tag-select-class" id="tag-select">
-            <option value="all">All tags</option>
-          </select>
-          <button class="my-recipes-button" id="menu-button">My Recipes</button>
-          <button class="return-home" id="menu-button">Home</button>
-        </section>
-        <h1>All Recipes</h1>
-        <div class="search-bar">
-          <input type="text" placeholder="Search" />
-          <button class="search-button">Search</button>
-        </div>
-      </header>
       <div id="all-recipes-container"></div>
     </section>
     <section class="current-recipe hidden">
-      <header>
-        <section class="mini-menu-bar-container">
-          <button class="all-recipes-button" id="menu-button">
-            All Recipes
-          </button>
-          <button class="return-home" id="menu-button">Home</button>
-          <select name="tags" class="tag-select-class" id="tag-select">
-            <option value="all">All tags</option>
-          </select>
-          <button class="my-recipes-button" id="menu-button">My Recipes</button>
-        </section>
-        <h1>More Info</h1>
-        <div class="search-bar">
-          <input type="text" placeholder="Search" />
-          <button class="search-button">Search</button>
-        </div>
-      </header>
       <div id="current-recipe-id"></div>
     </section>
     <section class="saved-recipes-page hidden">
-      <header>
-        <section class="mini-menu-bar-container">
-          <button class="all-recipes-button" id="menu-button">
-            All Recipes
-          </button>
-          <button class="return-home" id="menu-button">Home</button>
-          <select name="tags" class="tag-select-class" id="tag-select">
-            <option value="all">All tags</option>
-          </select>
-          <button class="my-recipes-button" id="menu-button">My Recipes</button>
-        </section>
-        <h1>Recipes to Cook</h1>
-        <div class="search-bar">
-          <input type="text" placeholder="Search" />
-          <button class="search-my-recipes-button">Search My Recipes</button>
-        </div>
-      </header>
       <div id="saved-recipe-card-container"></div>
     </section>
   </body>
