@@ -83,6 +83,7 @@ allRecipesContainer.addEventListener("click", (event) => {
       addRecipeToFavorites(event)
     } else {
       event.target.src = './images/bookmark-tiles-unsaved.png'
+      removeRecipeFromFavorites(event)
     }
   }
   let targetObject = recipeRepository.recipeList.find(recipe => recipe.id == event.target.parentNode.id)
@@ -157,5 +158,12 @@ function addRecipeToFavorites(e) {
     if (recipe.id === Number(e.path[2].id)) {
       user.addRecipeToFavorites(recipe);
     }
-})
+  })
+  console.log(user.favoriteRecipes)
+} 
+
+function removeRecipeFromFavorites(e) {
+  let id = Number(e.path[2].id)
+  user.removeRecipeFromFavorites(id)
+  console.log(user.favoriteRecipes)
 }
