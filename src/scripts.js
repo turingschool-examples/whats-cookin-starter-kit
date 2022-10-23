@@ -168,11 +168,11 @@ let updateModal = targetObject => {
 function addRecipeToFavorites(e) {
   recipeRepository.recipeList.forEach(recipe => {
     if (recipe.id === Number(e.path[2].id)) {
-      user.addRecipeToFavorites(recipe);
+      user.addRecipeToFavorites(recipe)
     }
   })
   console.log(user.favoriteRecipes)
-} 
+}
 
 function removeRecipeFromFavorites(e) {
   let id = Number(e.path[2].id)
