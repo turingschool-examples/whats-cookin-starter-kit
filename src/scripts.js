@@ -89,9 +89,11 @@ searchBar.addEventListener('keyup', (event) => {
   let input = event.target.value;
   //utilize toggle to switch search criteria between all recipes and favorites?
   if (searchBar.classList.contains('my-recipes')) {
-    user.filterByNameOrIngredient(input);
+    let recipes = user.filterByNameOrIngredient(input);
+    displaySearchedRecipeTiles(recipes)
   } else {
-    recipeRepository.filterByNameOrIngredient(input);
+    let recipes = recipeRepository.filterByNameOrIngredient(input);
+    displaySearchedRecipeTiles(recipes)
   }
 })
 // ---------------------------DOM UPDATING---------------------------
@@ -107,9 +109,18 @@ function createRecipeTile(recipe) {
         </div>`
 }
 
+//this function will need to be refactored to take in arrays dynamically
+//currently displayAllRecipeTiles & displaySearchedRecipeTiles are doing the same thing
 function displayAllRecipeTiles() {
   for (var i = 0; i < recipeRepository.recipeList.length; i++) {
     createRecipeTile(recipeRepository.recipeList[i])
+  }
+}
+
+function displaySearchedRecipeTiles(searchedRecipes) {
+  allRecipesContainer.innerHTML = '';
+  for (var i = 0; i < searchedRecipes.length; i++) {
+    createRecipeTile(searchedRecipes[i])
   }
 }
 
