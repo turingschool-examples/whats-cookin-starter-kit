@@ -42,6 +42,7 @@ const modalImage = document.getElementById("modal-image")
 const ingredientsParent = document.getElementById("ingr-parent")
 const instructionsParent = document.getElementById("instructions-parent")
 const searchBar = document.getElementById('search-bar')
+let filter = document.getElementById('filter')
 
 // ---------------------------EVENT LISTENERS---------------------------
 
@@ -62,6 +63,7 @@ fetchData([usersURL, recipesURL, ingredientsURL])
 function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
   displayAllRecipeTiles()
+  populateTags()
   user = new User(usersData.usersData[0])
   MicroModal.init({
     openClass: 'is-open',
@@ -155,14 +157,34 @@ let updateModal = targetObject => {
 function addRecipeToFavorites(e) {
   recipeRepository.recipeList.forEach(recipe => {
     if (recipe.id === Number(e.path[2].id)) {
-      user.addRecipeToFavorites(recipe);
+      user.addRecipeToFavorites(recipe)
     }
   })
   console.log(user.favoriteRecipes)
-} 
+}
 
 function removeRecipeFromFavorites(e) {
   let id = Number(e.path[2].id)
   user.removeRecipeFromFavorites(id)
   console.log(user.favoriteRecipes)
+}
+
+function populateTags() {
+  let allTags = []
+
+  recipeRepository.recipeList.forEach(recipe => {
+    recipe.tags.forEach(tag => {
+      if (!allTags.includes(tag)) {
+        allTags.push(tag)
+      }
+    })
+  })
+
+  allTags.sort()
+  console.log(allTags)
+
+  allTags.forEach(tag => {
+    filter.innerHTML += `<option id=${tag}>${tag}</option>`
+
+  })
 }
