@@ -118,7 +118,8 @@ homeButton.addEventListener("click", displayHomePage);
 aboutButton.addEventListener("click", displayAboutPage);
 allRecipesButton.addEventListener("click", displayAllRecipes);
 savedRecipeButton.addEventListener("click", displaySavedRecipes);
-searchButton.addEventListener("click", displayARecipe);
+searchButton.addEventListener("click", displaySearchRecipes);
+
 //Home Page EVENT LISTENERS --------
 //All Recipes Page EVENT LISTENERS --------
 allRecipesMain.addEventListener("click", loadSpecificRecipe);
@@ -164,6 +165,31 @@ function displaySavedRecipes() {
 
 function displayARecipe() {
   displayAPage(specificRecipePage, allRecipesMain, homePage, aboutPage);
+  currentPage = "specific";
+}
+function displaySearchRecipes() {
+  let foodOptions;
+  let userInput = searchButtonInput.value;
+  
+  if(currentPage === 'saved') {
+    foodOptions = currentUser.recipesToCook// take the saved button input value and compare it to the saved foods array 
+  }
+  else { 
+    foodOptions = allRecipes.listOfAllRecipes 
+
+  }
+  if(recipeFilterName.length === 0 && recipeFilterByTag.length !== 0 ) {
+    displayRecipeThumbnails(recipeFilterByTag,'','')
+  }else if (recipeFilterName.length !== 0 && recipeFilterByTag === 0) {
+   displayRecipeThumbnails(recipeFilterName,'','')
+  }else {
+    console.log( ' no recipes found! ')
+  }
+  const recipeFilterName = foodOptions.filter((recipe) => {
+    recipe.name === userInput 
+  })
+  const recipeFilterByTag = createRecipesOfTag(userInput,foodOptions)
+  
 }
 //Home Page FUNCTIONS --------
 //All Recipes Page FUNCTIONS --------
