@@ -46,6 +46,10 @@ header {
   margin-left: 20px;
 }
 
+.header-left-align>input {
+    font-family: 'Libre Baskerville', serif;
+  }
+
 .header-right-align {
   display: flex;
   flex-direction: row;
@@ -53,13 +57,18 @@ header {
   justify-content: flex-end;
   align-items: center;
   gap: 25px;
-  margin-right: 20px;
+  margin-right: 30px;
+}
+
+.header-right-align>div {
+  font-family: 'Libre Baskerville', serif;
+  font-size: .95em;
 }
 
 .featured-recipe {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   height: 600px;
   width: auto;
   background-image: url('../src/images/countertop.jpg');
@@ -71,7 +80,7 @@ header {
   flex-direction: column;
   width: 600px;
   height: 300px;
-  margin-right: 150px;
+  /* margin-right: 150px; */
   padding: 20px;
   border: #C84B31 2px solid;
   background-color: #ECDBBA;
@@ -80,14 +89,13 @@ header {
   text-align: center;
 }
 
-#recipe-of-the-day h1 {
+#recipe-of-the-day>h1 {
   font-size: 25px;
   color: #ECDBBA;
 }
 
 #logo {
-  height: 600px;
-  width: auto;
+  height: 80%;
 }
 
 #recipe-details {
@@ -231,7 +239,8 @@ select:focus {
 
 .header-buttons:hover {
   border-bottom: 3px solid #c84b31;
-  color: #c84b31
+  color: #c84b31;
+  transition-duration: 200ms;
 }
 
 .search-bar {
@@ -245,8 +254,8 @@ select:focus {
 }
 
 .search-bar:hover {
-  border: 2px solid #c84b31;
-  background-color: white;
+  border: 1px solid #c84a3186;
+  transition-duration: 400ms;
 }
 
 .search-bar:focus {
