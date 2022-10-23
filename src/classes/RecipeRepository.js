@@ -16,6 +16,21 @@ class RecipeRepository {
     });
     return nameFilter;
   }
+
+  getAllTags() {
+    const tags = this.newRecipes
+      .map((item) => {
+        return item.tags;
+      })
+      .flat();
+    const uniqueTags = tags.reduce((acc, item) => {
+      if (!acc.includes(item)) {
+        acc.push(item);
+      }
+      return acc;
+    }, []);
+    return uniqueTags;
+  }
 }
 
 export default RecipeRepository;
