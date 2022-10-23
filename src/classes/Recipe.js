@@ -8,13 +8,17 @@ class Recipe {
     this.tags = dataSetObject.tags;
   }
   getIngredientNames(dataSet) {
-    return this.ingredients.map((ingredient) => {
+   return this.ingredients.map(ingredient => {
+    return dataSet.find(element => element.id === ingredient.id).name;
+   })
+   
+    /*return this.ingredients.map((ingredient) => {
       for (let i = 0; i < dataSet.length; i++) {
         if (ingredient.id === dataSet[i].id) {
           return dataSet[i].name;
         }
       }
-    });
+    });*/
   }
   //RETURNS AN ARRAY OF STRINGS OF THE INGREDIENT NAMES
 
@@ -24,17 +28,25 @@ class Recipe {
   //RETURNS INSTRUCTION STEPS IN AN ARRAY OF STRINGS
 
   getCosts(dataSet) {
-    return this.ingredients.map((ingredient) => {
+   return this.ingredients.reduce((allCosts, ingred) => {
+    let currentIngredient = dataSet.find(element => element.id === ingred.id);
+    let totalCost = currentIngredient.costInCents * ingred.quantity.amount;
+    let dollars = totalCost / 100;
+    dollars = dollars.toFixed(2)
+    allCosts.push(+dollars)
+    return allCosts
+    }, []);
+
+    /*return this.ingredients.map((ingredient) => {
       for (let i = 0; i < dataSet.length; i++) {
         if (ingredient.id === dataSet[i].id) {
-          let totalCost =
-          dataSet[i].costInCents * ingredient.quantity.amount;
+          let totalCost = dataSet[i].costInCents * ingredient.quantity.amount;
           let dollars = totalCost / 100;
           dollars = dollars.toFixed(2);
           return parseFloat(dollars);
         }
       }
-    });
+    });*/
   }
   //RETURNS AN ARRAY OF NUMBERS THAT ARE THE ESTIMATED COST IN CENTS
 }
