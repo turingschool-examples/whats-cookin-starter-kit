@@ -58,6 +58,7 @@ const allRecipeFilterTagOptions = document.querySelector(
   ".list-of-tag-options"
 );
 const searchFilterButton = document.querySelector(".filter-button");
+const inputForTags = document.querySelector(".list-of-tag-options");
 
 //Saved Recipes Page QUERY SELECTORS--------
 //Specific Recipe Page QUERY SELECTORS--------
@@ -216,12 +217,17 @@ function createRecipesOfTag(tag, recipeList) {
 }
 
 function displayRecipesOfSameTag() {
-  //take input from drop down
   let recipesToTag;
   if (currentPage === "saved") {
-    recipesToTag = createRecipesOfTag("lunch", currentUser.recipesToCook);
+    recipesToTag = createRecipesOfTag(
+      inputForTags.value,
+      currentUser.recipesToCook
+    );
   } else {
-    recipesToTag = createRecipesOfTag("lunch", allRecipes.listOfAllRecipes);
+    recipesToTag = createRecipesOfTag(
+      inputForTags.value,
+      allRecipes.listOfAllRecipes
+    );
   }
   displayRecipeThumbnails(recipesToTag, "", "");
 }
