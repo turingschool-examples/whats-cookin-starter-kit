@@ -55,7 +55,8 @@
   position: relative;
 }
 
-.button--save-recipe {
+.button--save-recipe,
+.button--remove-recipe {
   display: flex;
   align-content: center;
   justify-content: center;
