@@ -96,9 +96,10 @@ function makeIngredientsList(dataSet) {
 //All Recipes Page EVENT LISTENERS --------
 allRecipesMain.addEventListener('click', loadSpecificRecipe); //BRETT ADDITION, KEEP ✅
 allReipesPageButton.addEventListener('click', displayAllRecipesPage);
-allRecipeFilterTagOptions.addEventListener('click', displayRecipesOfSameTag)
+allRecipeFilterTagOptions.addEventListener('click', displayRecipesOfSameTag);
 //Saved Recipes Page EVENT LISTENERS --------
-savedReipesPageButton.addEventListener('click', displaySavedRecipesPage)
+savedReipesPageButton.addEventListener('click',displaySavedRecipesPage);
+allRecipeThumbnailsSection.addEventListener('click', deleteSavedRecipe);
 //Specific Recipe Page EVENT LISTENERS --------
 specificRecipeSaveButton.addEventListener('click', addToRecipesToCook);
 
@@ -122,13 +123,12 @@ function createPageTitle(title) {
 };
 
 //Both ALL and Saved Recipe Pages
-function displayRecipeThumbnails(recipesList, trashbin, trashbinID) {
+
+function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
   let recipesThumbnailsSection = '';
   recipesList.forEach(recipe => {
-    return recipesThumbnailsSection += `<section    class="single-recipe-thumbnail" id = "${recipe.id}"> <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> <div class="single-recipe-text"> <p class="recipe-title-text">${recipe.name}</p> <p class=${trashbinID}>${trashbin}</p> </div> </section>`
+    return recipesThumbnailsSection += `<section    class="single-recipe-thumbnail" id = "${recipe.id}"> <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> <div class="single-recipe-text"> <p class="recipe-title-text">${recipe.name}</p> <p class=${trashbinClass}>${trashbin}</p> </div> </section>`
   });
-  /* recipe.id is a number and we need to convert it to a string, I think what I have above should work....*/
-  /* Potentially, i can put trashbin text in as an an argument and if it is saved page then when displayRecipeThumbnails is invoke, we pass in a trashbin icon as the argument and if not then we pass in an empty string- we will need to make sure that the css still works with this approach*/
   allRecipeThumbnailsSection.innerHTML = recipesThumbnailsSection;
 };
 
@@ -147,6 +147,7 @@ function displayRecipesOfSameTag() {
 };
 
 //Saved Recipes Page FUNCTIONS --------
+
 function displaySavedRecipesPage() {
   specificRecipePage.classList.add('hide')
   allRecipesMain.classList.remove('hide')
@@ -157,14 +158,14 @@ function displaySavedRecipesPage() {
 };
 
 function deleteSavedRecipe(event) {
-  currentUser.recipesToCook.map( recipe => {
+  currentUser.recipesToCook.map(recipe => {
     if (
       event.target.classList.contains('delete-recipe') &&
-        recipe.id === parseInt(event.target.id)
+        recipe.id === parseInt(event.target.parentElement.parentElement.id)
     ) {
       currentUser.recipesToCook.splice(currentUser.recipesToCook.indexOf(recipe), 1)
     }
-  })
+   })
   displayRecipeThumbnails(currentUser.recipesToCook, '🗑', 'delete-recipe')
 }
 
