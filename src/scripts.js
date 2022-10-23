@@ -88,6 +88,17 @@ recipeListsContainer.addEventListener('click', (event) => {
     displayRecipeDetails(event);
 });
 
+saveRecipeButton.addEventListener('click', () => {
+    hide(cardsContainer);
+    hide(recipeContainer);
+    show(savedRecipesContainer);
+    hide(allRecipesContainer);
+    show(allRecipesButton);
+    hide(myRecipesButton);
+    displaySavedRecipes();
+    user.addRecipeToRecipesToCook()
+});
+
 filterField.addEventListener('input', (event) => {
     displayFilteredRecipes(event);
 })
@@ -135,7 +146,6 @@ const displayAllRecipes = () => {
         };
     });
 };
-
 const userData = {
     "name": "Saige O'Kon",
     "id": 1,
@@ -297,7 +307,6 @@ const displaySavedRecipes = () => {
             return -1;
         };
     });
-};
 
     user.recipesToCook.forEach((recipe, index) => {
         if (index < 10) {
@@ -313,6 +322,7 @@ const displaySavedRecipes = () => {
             ${user.recipesToCook[index].name}</li>`;
         };
     });
+};
             
 const displayFilteredRecipes = (event) => {
     if (!event.target.value) {
@@ -413,4 +423,3 @@ const displayRecipeDetails = (event) => {
 
 //  ON LOAD FUNCTIONS LIVE HERE
 
-console.log('Hello world');
