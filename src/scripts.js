@@ -19,13 +19,13 @@ import getData from './apiCalls'
 // const recipeRepository = new RecipeRepository(recipeData, ingredientsData)
 // const user = new User(usersData[0])
 
+let recipeRepository
+let user
 let currentlyViewedRecipe
 
-let user
 let usersData
 let ingredientsData
 let recipesData
-let recipeRepository
 
 const usersURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users'
 const recipesURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes'
@@ -56,8 +56,6 @@ function fetchData(urls) {
 }
 
 fetchData([usersURL, recipesURL, ingredientsURL])
-
-
 
 function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
@@ -105,6 +103,7 @@ searchBar.addEventListener('keyup', (event) => {
     displaySearchedRecipeTiles(recipes)
   }
 })
+
 // ---------------------------DOM UPDATING---------------------------
 
 function createRecipeTile(recipe) {
@@ -134,6 +133,7 @@ function displaySearchedRecipeTiles(searchedRecipes) {
 }
 
 let updateModal = targetObject => {
+  console.log(targetObject)
   modalTagParent.innerHTML = ``
   targetObject.tags.forEach(tag => {
     modalTagParent.innerHTML += `<button>${tag}</button>`
@@ -143,8 +143,21 @@ let updateModal = targetObject => {
   modalImage.alt = targetObject.name
   ingredientsParent.innerHTML = ``
   targetObject.ingredients.forEach(ingredient => {
-    ingredientsParent.innerHTML += `<ul>${ingredient.amount} ${ingredient.unit} ${ingredient.name}</ul>`
+    let amount = ingredient.amount
+    if (amount === 0.25) {
+      amount = "1/4"
+    } else if (amount === 0.3333333333333333) {
+      amount = "1/3"
+    } else if (amount === 0.5) {
+      amount = "1/2"
+    } else if (amount === 0.6666666666666666) {
+      amount = "2/3"
+    } else if (amount === 0.75) {
+      amount = "3/4"
+    }
+    ingredientsParent.innerHTML += `<ul>${amount} ${ingredient.unit} ${ingredient.name}</ul>`
   })
+  ingredientsParent.innerHTML += `<p class="total-price">Total estimated cost to make: ${targetObject.getTotalCost()}</p>`
   instructionsParent.innerHTML = ``
   targetObject.instructions.forEach(item => {
     instructionsParent.innerHTML += `<p>${item.number}. ${item.instruction}`
@@ -155,11 +168,11 @@ let updateModal = targetObject => {
 function addRecipeToFavorites(e) {
   recipeRepository.recipeList.forEach(recipe => {
     if (recipe.id === Number(e.path[2].id)) {
-      user.addRecipeToFavorites(recipe);
+      user.addRecipeToFavorites(recipe)
     }
   })
   console.log(user.favoriteRecipes)
-} 
+}
 
 function removeRecipeFromFavorites(e) {
   let id = Number(e.path[2].id)
