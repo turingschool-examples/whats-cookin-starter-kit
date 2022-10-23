@@ -737,7 +737,7 @@ const testUsersArray = [{
                 "ingredient": 4047,
                 "amount": 2
             }
-        ]]
+        ]}]
 // HELPER FUNCTIONS LIVE HERE
 const show = element => element.classList.remove('hidden');
 const hide = element => element.classList.add('hidden');
@@ -777,7 +777,7 @@ const displayAllRecipes = () => {
 };
 
 
-user.recipesToCook = allRecipes.recipeData;
+// user.recipesToCook = allRecipes.recipeData;
 
 const displaySavedRecipes = () => {
     savedRecipesList1.innerHTML = '';
