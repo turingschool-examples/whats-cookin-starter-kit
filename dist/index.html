@@ -17,7 +17,7 @@
       </div>
       <div class="header-right-align">
         <div class="header-buttons">My recipes</div>
-            <div class="header-buttons">All recipes</div>
+        <div class="header-buttons">All recipes</div>
       </div>
     </nav>
   </header>
@@ -42,7 +42,11 @@
             <li>Vanilla</li>
           </ul>
           <div id="special-tag">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+              <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+              <path
+                d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z" />
+            </svg>
             Recipe of the Day
           </div>
         </div>
@@ -52,8 +56,9 @@
       <select class="filter" id="filter">
         <option>Filter recipes by type...</option>
       </select>
+      <div class="header-buttons disabled" id="filter-clear-button" disabled>Clear filter</div>
     </section>
-  
+
     <section class="all-recipes-container">
     </section>
   </section>
@@ -71,12 +76,13 @@
           </div>
           <h1 id="modal-title"></h1>
           <div class="modal-bookmark-div">
-            <img class="modal-bookmark-icon" id="modal-save-recipe" src="./images/bookmark-unsaved.png" alt="save recipe">
+            <img class="modal-bookmark-icon" id="modal-save-recipe" src="./images/bookmark-unsaved.png"
+              alt="save recipe">
             <p class="modal-icon-label">add to<br>
-            My Recipes</p>
+              My Recipes</p>
           </div>
           <div class="modal-image-ingr-parent">
-            <img class ="modal-image" id="modal-image" src="" alt="">
+            <img class="modal-image" id="modal-image" src="" alt="">
             <span id="ingr-parent" class="ingr-span">
             </span>
           </div>

@@ -43,6 +43,7 @@ const ingredientsParent = document.getElementById("ingr-parent")
 const instructionsParent = document.getElementById("instructions-parent")
 const searchBar = document.getElementById('search-bar')
 let filter = document.getElementById('filter')
+const filterClearButton = document.querySelector('#filter-clear-button')
 
 // ---------------------------EVENT LISTENERS---------------------------
 
@@ -113,17 +114,27 @@ searchBar.addEventListener('keyup', (event) => {
 // Make button clickable and not grayed out when input value is not null
 
 filter.addEventListener('input', (event) => {
-  console.log("filter listener works", filter.value)
+  filterClearButton.disabled = false
+  console.log("LOOK HERE", filterClearButton.classList)
   let input = event.target.value
-  console.log(filter.classList.contains('my-recipes'))
+  filterClearButton.classList.remove('disabled')
+
   if (filter.classList.contains('my-recipes')) {
     let recipes = user.filterByTag(input)
     displaySearchedRecipeTiles(recipes)
-    
   } else {
     let recipes = recipeRepository.filterByTag(input)
     displaySearchedRecipeTiles(recipes)
   }
+})
+
+filterClearButton.addEventListener('click', () => {
+  filter.value = 'Filter recipes by type...'
+  filterClearButton.disabled = true
+  filterClearButton.classList.add('disabled')
+  allRecipesContainer.innerHTML = ''
+  displayAllRecipeTiles()
+ 
 })
 // ---------------------------DOM UPDATING---------------------------
 
@@ -178,13 +189,11 @@ function addRecipeToFavorites(e) {
       user.addRecipeToFavorites(recipe)
     }
   })
-  console.log(user.favoriteRecipes)
 }
 
 function removeRecipeFromFavorites(e) {
   let id = Number(e.path[2].id)
   user.removeRecipeFromFavorites(id)
-  console.log(user.favoriteRecipes)
 }
 
 function populateTags() {

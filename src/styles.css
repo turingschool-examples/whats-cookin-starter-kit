@@ -196,9 +196,10 @@ svg:hover {
 .filter-bar {
   display: flex;
   padding: 5px;
-  justify-content: space-around;
+  justify-content: center;
   background-color: rgb(247, 243, 233,0.75);
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2)
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  gap: 10px
 }
 
 select {
@@ -252,6 +253,12 @@ select:focus {
 
 .search-bar:focus {
   border: 2px solid #c84b31;
+}
+
+.disabled {
+  color: gray;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 /* NOTE: keep media query at the bottom */
