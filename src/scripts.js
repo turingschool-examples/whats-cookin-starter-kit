@@ -30,13 +30,15 @@ let allRecipesButton = document.querySelector(".all-recipes-button");
 let allRecipesPage = document.querySelector(".all-recipes-page");
 let homePage = document.querySelector(".home-page");
 let currentRecipePage = document.querySelector(".current-recipe");
-let searchButton = document.querySelector(".search-button");
+let searchButtons = document.querySelectorAll(".search-button");
 let inputBar = document.querySelector(".search-bar > input");
 let tagSelect = document.querySelector("#tag-select");
 
 //event listeners go here
 allRecipesButton.addEventListener("click", renderAllRecipesPage);
-searchButton.addEventListener("click", searchForRecipes);
+searchButtons.forEach((button) => {
+  button.addEventListener("click", searchForRecipes);
+});
 tagSelect.addEventListener("change", searchByTag);
 window.addEventListener("load", loadPage);
 
