@@ -168,28 +168,32 @@ function displayARecipe() {
   currentPage = "specific";
 }
 function displaySearchRecipes() {
+  
   let foodOptions;
-  let userInput = searchButtonInput.value;
+  let userInput = searchButtonInput.value.toLowerCase();
   
   if(currentPage === 'saved') {
-    foodOptions = currentUser.recipesToCook// take the saved button input value and compare it to the saved foods array 
+    foodOptions = currentUser.recipesToCook;
+    console.log('TEST if WORKS', foodOptions)
   }
   else { 
+    displayAllRecipes()
     foodOptions = allRecipes.listOfAllRecipes 
-
   }
+  
+  const recipeFilterName = foodOptions.filter(recipe => recipe.name.toLowerCase() === userInput )
+  // console.log('recipename', recipeFilterName)
+  const recipeFilterByTag = createRecipesOfTag(userInput,foodOptions)
+    
   if(recipeFilterName.length === 0 && recipeFilterByTag.length !== 0 ) {
     displayRecipeThumbnails(recipeFilterByTag,'','')
-  }else if (recipeFilterName.length !== 0 && recipeFilterByTag === 0) {
+  }else if (recipeFilterName.length !== 0 && recipeFilterByTag.length === 0) {
+    console.log('test',recipeFilterName)
    displayRecipeThumbnails(recipeFilterName,'','')
   }else {
+    allRecipeThumbnailsSection.innerHTML = '';
     console.log( ' no recipes found! ')
   }
-  const recipeFilterName = foodOptions.filter((recipe) => {
-    recipe.name === userInput 
-  })
-  const recipeFilterByTag = createRecipesOfTag(userInput,foodOptions)
-  
 }
 //Home Page FUNCTIONS --------
 //All Recipes Page FUNCTIONS --------
