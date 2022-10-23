@@ -180,18 +180,18 @@ function displaySearchRecipes() {
     displayAllRecipes()
     foodOptions = allRecipes.listOfAllRecipes 
   }
-  
   const recipeFilterName = foodOptions.filter(recipe => recipe.name.toLowerCase() === userInput )
   const recipeFilterByTag = createRecipesOfTag(userInput,foodOptions)
     
   if(recipeFilterName.length === 0 && recipeFilterByTag.length !== 0 ) {
     displayRecipeThumbnails(recipeFilterByTag,'','')
-  }else if (recipeFilterName.length !== 0 && recipeFilterByTag.length === 0) {
-    console.log('test',recipeFilterName)
+  } 
+  else if (recipeFilterName.length !== 0 && recipeFilterByTag.length === 0) {
+    
    displayRecipeThumbnails(recipeFilterName,'','')
-  }else {
+  } else {
     allRecipeThumbnailsSection.innerHTML = "<h3> Sorry your dish can't be found ... order out!</h3>"; 
-    console.log( ' no recipes found! ')
+    
   }
 }
 //Home Page FUNCTIONS --------
