@@ -1,4 +1,4 @@
-import recipeData from "../data/recipes"
+// import recipeData from "../data/recipes"
 import ingredientsData from "../data/ingredients"
 import Recipe from "./Recipe"
 

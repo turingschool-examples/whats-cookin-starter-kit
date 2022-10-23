@@ -309,7 +309,8 @@ select:focus {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 80px 130px 80px 137px;
+  padding: 6% 9%;
+  /* padding: 80px 130px 80px 137px; */
 }
 
 .modal-content-parent > * {
@@ -332,7 +333,7 @@ select:focus {
   color: rgb(200, 75, 49);
   background-color: rgba(0, 0, 0, 0);
   border: 5px solid rgb(200, 75, 49);
-  margin: 0px 10px;
+  margin: 5px 10px;
   padding: 3px 10px;
 }
 
@@ -442,9 +443,19 @@ max-height: 50px;
     gap: 10px;
   }
 
-  .modal-content-parent {
-    padding: 37px 60px 55px 53px;
-    display: none;
+  /* MODAL */
+
+  .modal-image-ingr-parent {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ingr-span {
+    width: 92%;
+  }
+
+  .modal-image {
+    width: 50vw;
   }
 
 }
