@@ -42,6 +42,7 @@ const modalRecipeTitle = document.getElementById("modal-title")
 const modalImage = document.getElementById("modal-image")
 const ingredientsParent = document.getElementById("ingr-parent")
 const instructionsParent = document.getElementById("instructions-parent")
+const searchBar = document.getElementById('search-bar')
 
 // ---------------------------EVENT LISTENERS---------------------------
 
@@ -84,6 +85,15 @@ closeModalButton.addEventListener("click", () => MicroModal.close("modal-1"))
 
 modalSaveRecipeButton.addEventListener("click", () => user.storedFavoriteRecipes.push(currentlyViewedRecipe))
 
+searchBar.addEventListener('keyup', (event) => {
+  let input = event.target.value;
+  //utilize toggle to switch search criteria between all recipes and favorites?
+  if (searchBar.classList.contains('my-recipes')) {
+    user.filterByNameOrIngredient(input);
+  } else {
+    recipeRepository.filterByNameOrIngredient(input);
+  }
+})
 // ---------------------------DOM UPDATING---------------------------
 
 function createRecipeTile(recipe) {

@@ -16,8 +16,21 @@ class RecipeRepository {
     return this.recipeList.filter(recipe => recipe.tags.includes(tag));
   }
 
-  filterByName(name) {
-    return this.recipeList.filter(recipe => recipe.name.includes(name))
+  filterByNameOrIngredient(input) {
+    let filteredRecipes = [];
+    
+    this.recipeList.forEach(recipe => {
+      if (recipe.name.includes(input)) {
+        filteredRecipes.push(recipe)
+      } else {
+        recipe.ingredients.forEach(ingredient => {
+          if (ingredient.includes(input)) {
+            filteredRecipes.push(recipe)
+          }
+        })
+      }
+    })
+    return filteredRecipes;
   }
 
   recipeOfTheDay() {

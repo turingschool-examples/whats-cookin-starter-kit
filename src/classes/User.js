@@ -23,8 +23,21 @@ class User {
     return this.favoriteRecipes.filter(recipe => recipe.tags.includes(tag))
   }
 
-  filterByName(name) {
-    return this.favoriteRecipes.filter(recipe => recipe.name.includes(name))
+  filterByNameOrIngredient(input) {
+    let filteredRecipes = [];
+    
+    this.favoriteRecipes.forEach(recipe => {
+      if (recipe.name.includes(input)) {
+        filteredRecipes.push(recipe)
+      } else {
+        recipe.ingredients.forEach(ingredient => {
+          if (ingredient.includes(input)) {
+            filteredRecipes.push(recipe)
+          }
+        })
+      }
+    })
+    return filteredRecipes;
   }
 
   clearFilters() {
