@@ -14,22 +14,14 @@ import allUsersData from "./data/users-sample";
 import User from "./classes/User";
 import UserList from "./classes/UserList";
 
-let allIngredients = ingredientsData;
-let allRecipes = recipesData
-  .map((recipe) => {
-    const newRecipe = new Recipe(recipe);
-    newRecipe.retrieveIngredients(allIngredients);
-    return newRecipe;
-  })
-  .sort((a, b) => {
-    return a.name > b.name ? 1 : -1;
-  });
-let recipeRepository = new RecipeRepository(allRecipes);
-let currentUser;
 let usersAPIData;
 let recipesAPIData;
 let ingredientsAPIData;
-let userRepo = new UserRepo(allUsersData);
+let allIngredients = ingredientsData;
+let allRecipes;
+let recipeRepository;
+let currentUser;
+let userRepo = new UserRepo(usersAPIData);
 const newUserList = new UserList();
 
 //query selectors go here
@@ -84,11 +76,21 @@ userTagSelect.addEventListener("change", searchUserRecipesByTag);
 function getData() {
   Promise.all([getUsersAPIData, getRecipesAPIData, getIngredientsAPIData])
     .then(data => {
-      // usersAPIData = getUsersAPIData 
-      // recipesAPIData = getRecipesAPIData  
-      // ingredientsAPIData = getIngredientsAPIData
-      console.log(data)
+      usersAPIData = data[0].usersData; 
+      recipesAPIData = data[1].recipeData; 
+      ingredientsAPIData = data[2].ingredientsData;
+
+      allRecipes = recipesAPIData
+  .map((recipe) => {
+    const newRecipe = new Recipe(recipe);
+    newRecipe.retrieveIngredients(ingredientsAPIData);
+    return newRecipe;
   })
+  .sort((a, b) => {
+    return a.name > b.name ? 1 : -1;
+  });
+  recipeRepository = new RecipeRepository(allRecipes)
+})
   .catch(err => console.log(err))
 };
 
@@ -115,7 +117,6 @@ function searchAllRecipesByTag(event) {
 function searchUserRecipesByTag(event) {
   const tagValue = event.target.value;
   const filteredRecipes = newUserList.filterByTag(tagValue);
-  console.log(filteredRecipes);
   viewAllRecipes(filteredRecipes);
 }
 
