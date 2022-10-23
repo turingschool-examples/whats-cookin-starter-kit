@@ -55,8 +55,9 @@ fetchData([usersURL, recipesURL, ingredientsURL])
 
 function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
-  displayAllRecipeTiles()
   user = new User(usersData.usersData[0])
+  displayAllRecipeTiles()
+  displayFeaturedRecipe()
   MicroModal.init({
     openClass: 'is-open',
     disableScroll: true,
@@ -129,7 +130,6 @@ function displaySearchedRecipeTiles(searchedRecipes) {
 }
 
 let updateModal = targetObject => {
-  console.log(targetObject)
   modalTagParent.innerHTML = ``
   targetObject.tags.forEach(tag => {
     modalTagParent.innerHTML += `<button>${tag}</button>`
@@ -159,6 +159,10 @@ let updateModal = targetObject => {
     instructionsList.innerHTML += `<li>${item.instruction}</li>`
   })
   MicroModal.show("modal-1")
+}
+
+let displayFeaturedRecipe = () => {
+
 }
 
 function addRecipeToFavorites(e) {

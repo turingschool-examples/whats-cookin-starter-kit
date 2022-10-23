@@ -65,7 +65,7 @@ header {
   font-size: .95em;
 }
 
-.featured-recipe {
+.banner {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -75,12 +75,11 @@ header {
   background-size: cover;
 }
 
-#recipe-of-the-day {
+.featured-recipe-parent {
   display: flex;
   flex-direction: column;
   width: 600px;
   height: 300px;
-  /* margin-right: 150px; */
   padding: 20px;
   border: #C84B31 2px solid;
   background-color: #ECDBBA;
