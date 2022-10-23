@@ -38,6 +38,8 @@ const modalImage = document.getElementById("modal-image")
 const ingredientsParent = document.getElementById("ingr-parent")
 const instructionsList = document.getElementById("instructions-list")
 const searchBar = document.getElementById('search-bar')
+const featuredRecipeParent = document.getElementById('featured-recipe-parent')
+const featuredRecipeTitle = document.getElementById('featured-recipe-title')
 
 // ---------------------------EVENT LISTENERS---------------------------
 
@@ -162,7 +164,8 @@ let updateModal = targetObject => {
 }
 
 let displayFeaturedRecipe = () => {
-
+  featuredRecipeParent.style.backgroundImage = `url(${recipeRepository.featuredRecipe.image})`
+  featuredRecipeTitle.innerText = `${recipeRepository.featuredRecipe.name}`
 }
 
 function addRecipeToFavorites(e) {
