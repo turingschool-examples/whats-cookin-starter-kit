@@ -118,7 +118,8 @@ homeButton.addEventListener("click", displayHomePage);
 aboutButton.addEventListener("click", displayAboutPage);
 allRecipesButton.addEventListener("click", displayAllRecipes);
 savedRecipeButton.addEventListener("click", displaySavedRecipes);
-searchButton.addEventListener("click", displayARecipe);
+searchButton.addEventListener("click", displaySearchRecipes);
+
 //Home Page EVENT LISTENERS --------
 //All Recipes Page EVENT LISTENERS --------
 allRecipesMain.addEventListener("click", loadSpecificRecipe);
@@ -164,6 +165,34 @@ function displaySavedRecipes() {
 
 function displayARecipe() {
   displayAPage(specificRecipePage, allRecipesMain, homePage, aboutPage);
+  currentPage = "specific";
+}
+function displaySearchRecipes() {
+  
+  let foodOptions;
+  let userInput = searchButtonInput.value.toLowerCase();
+  
+  if(currentPage === 'saved') {
+    foodOptions = currentUser.recipesToCook;
+    console.log('TEST if WORKS', foodOptions)
+  }
+  else { 
+    displayAllRecipes()
+    foodOptions = allRecipes.listOfAllRecipes 
+  }
+  const recipeFilterName = foodOptions.filter(recipe => recipe.name.toLowerCase() === userInput )
+  const recipeFilterByTag = createRecipesOfTag(userInput,foodOptions)
+    
+  if(recipeFilterName.length === 0 && recipeFilterByTag.length !== 0 ) {
+    displayRecipeThumbnails(recipeFilterByTag,'','')
+  } 
+  else if (recipeFilterName.length !== 0 && recipeFilterByTag.length === 0) {
+    
+   displayRecipeThumbnails(recipeFilterName,'','')
+  } else {
+    allRecipeThumbnailsSection.innerHTML = "<h3> Sorry your dish can't be found ... order out!</h3>"; 
+    
+  }
 }
 //Home Page FUNCTIONS --------
 //All Recipes Page FUNCTIONS --------
