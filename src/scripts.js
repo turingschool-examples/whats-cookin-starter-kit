@@ -10,6 +10,7 @@ import recipesData from "./data/recipes";
 import UserRepo from "./classes/UserRepo";
 import allUsersData from "./data/users-sample";
 import User from "./classes/User";
+import UserList from "./classes/UserList";
 
 let allIngredients = ingredientsData;
 let allRecipes = recipesData
@@ -24,7 +25,7 @@ let allRecipes = recipesData
 let recipeRepository = new RecipeRepository(allRecipes);
 let currentUser;
 let userRepo = new UserRepo(allUsersData);
-const myRecipes = []
+const newUserList = new UserList()
 
 
 //query selectors go here
@@ -44,6 +45,7 @@ const allRecipesContainer = document.querySelector("#all-recipes-container");
 const allImages = document.querySelectorAll(".image");
 const allMiniImages = document.querySelectorAll(".mini-image");
 const myRecipesButtons = document.querySelectorAll(".my-recipes-button");
+const myRecipeSearch = document.querySelector(".search-my-recipes-button");
 
 //event listeners go here
 allRecipesButtons.forEach((button) => {
@@ -64,6 +66,7 @@ allHomeButtons.forEach((button) => {
 myRecipesButtons.forEach((button) => {
   button.addEventListener("click", viewMyRecipes)
 })
+myRecipeSearch.addEventListener("click", searchMyRecipes);
 tagSelect.addEventListener("change", searchByTag);
 window.addEventListener("load", selectRandomUser);
 
@@ -87,9 +90,9 @@ function renderAllRecipesPage() {
 
 function viewAllRecipes(recipes) {
   addHidden(homePage);
-  addHidden(currentRecipePage)
+  addHidden(currentRecipePage);
   removeHidden(allRecipesPage);
-  addHidden(savedRecipePage)
+  addHidden(savedRecipePage);
   allRecipesContainer.innerHTML = ""
   recipes.forEach((recipe) => {
     const newSection = document.createElement("section");
@@ -109,7 +112,6 @@ function searchForRecipes(event) {
   event.preventDefault()
   const inputValue = inputBar.value;
   const filteredElements = recipeRepository.filterByName(inputValue);
-  console.log(filteredElements);
   viewAllRecipes(filteredElements);
 }
 
@@ -171,23 +173,21 @@ function addToSavedRecipe(event) {
   const newSavedRecipe = recipeRepository.newRecipes.find((recipe) => {
     return parseInt(event.target.id) === recipe.id;
   });
-  const existingData = myRecipes.find((recipe) => {
+  const existingData = newUserList.recipesToCook.find((recipe) => {
     return newSavedRecipe.id === recipe.id
   })
   if(!existingData){
-    myRecipes.push(newSavedRecipe)
+    newUserList.recipesToCook.push(newSavedRecipe)
   }
-  console.log(myRecipes);
+  console.log(newUserList.recipesToCook);
   savedRecipes()
 }
-
-
 
 function savedRecipes() {
   addHidden(currentRecipePage)
   removeHidden(savedRecipePage)
   savedRecipeContainer.innerHTML = ""
-  myRecipes.forEach((recipe) => {
+  newUserList.recipesToCook.forEach((recipe) => {
     const newSection = document.createElement("section");
     newSection.className = "recipe-card-container";
     newSection.innerHTML = `
@@ -196,8 +196,16 @@ function savedRecipes() {
         
 
     savedRecipeContainer.appendChild(newSection);
-    newSection.addEventListener("click", seeRecipe);
+    const recipeImage = newSection.querySelector(".image");
+    recipeImage.addEventListener("click", seeRecipe);
   }); 
+}
+
+function searchMyRecipes(event) {
+  event.preventDefault()
+  const inputValue = inputBar.value;
+  const filteredElements = newUserList.filterByName(inputValue);
+  viewAllRecipes(filteredElements);
 }
 
 function returnHome() {
