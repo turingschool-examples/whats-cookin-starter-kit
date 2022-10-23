@@ -18,6 +18,7 @@ let ingredientsData;
 let recipeData;
 let currentUser;
 let allRecipes;
+let currentPage;
 
 //Navbar VARIABLES ---------
 
@@ -56,6 +57,7 @@ const allRecipeThumbnailsSection = document.querySelector(
 const allRecipeFilterTagOptions = document.querySelector(
   ".list-of-tag-options"
 );
+const searchFilterButton = document.querySelector(".filter-button");
 
 //Saved Recipes Page QUERY SELECTORS--------
 //Specific Recipe Page QUERY SELECTORS--------
@@ -121,6 +123,7 @@ searchButton.addEventListener("click", displayARecipe);
 allRecipesMain.addEventListener("click", loadSpecificRecipe);
 allRecipesButton.addEventListener("click", displayAllRecipesPage);
 allRecipeFilterTagOptions.addEventListener("click", displayRecipesOfSameTag);
+searchFilterButton.addEventListener("click", displayRecipesOfSameTag);
 
 //Saved Recipes Page EVENT LISTENERS --------
 savedRecipeButton.addEventListener("click", displaySavedRecipesPage);
@@ -140,18 +143,22 @@ function displayAPage(appear, goAway1, goAway2, goAway3) {
 }
 function displayHomePage() {
   displayAPage(homePage, aboutPage, allRecipesMain, specificRecipePage);
+  currentPage = "home";
 }
 
 function displayAboutPage() {
   displayAPage(aboutPage, homePage, allRecipesMain, specificRecipePage);
+  currentPage = "about";
 }
 
 function displayAllRecipes() {
   displayAPage(allRecipesMain, homePage, aboutPage, specificRecipePage);
+  currentPage = "all";
 }
 
 function displaySavedRecipes() {
   displayAPage(allRecipesMain, homePage, aboutPage, specificRecipePage);
+  currentPage = "saved";
 }
 
 function displayARecipe() {
@@ -199,7 +206,7 @@ function populateTagFilter(recipeList) {
   tagsList.forEach((tag) => {
     demoCount++;
     allRecipeFilterTagOptions.innerHTML += `
-    <option class="tag-options-text" value="${demoCount}">${tag}</option>
+    <option class="tag-options-text" value="${tag}">${tag}</option>
   `;
   });
 }
@@ -208,7 +215,16 @@ function createRecipesOfTag(tag, recipeList) {
   return recipeList.filter((recipe) => recipe.tags.includes(tag));
 }
 
-function displayRecipesOfSameTag() {}
+function displayRecipesOfSameTag() {
+  //take input from drop down
+  let recipesToTag;
+  if (currentPage === "saved") {
+    recipesToTag = createRecipesOfTag("lunch", currentUser.recipesToCook);
+  } else {
+    recipesToTag = createRecipesOfTag("lunch", allRecipes.listOfAllRecipes);
+  }
+  displayRecipeThumbnails(recipesToTag, "", "");
+}
 
 //Saved Recipes Page FUNCTIONS --------
 
