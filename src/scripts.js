@@ -16,7 +16,6 @@ const currentRecipeImage = document.querySelector(".image-parent-main")
 const leftRandomImageCard = document.querySelector(".left-random-card")
 const middleRandomImageCard = document.querySelector(".middle-random-card")
 const rightRandomImageCard = document.querySelector(".right-random-card")
-// const selectedRecipeInstructions = document.querySelector(".instructions-list")
 
 const viewAllRecipesButton = document.querySelector(".view-all-recipes")
 const homeButton = document.querySelector(".home-button")
@@ -80,16 +79,16 @@ function generateRandomRecipes(){
 
 function showMainRecipe(){
     currentRecipeName.innerHTML = `${currentRecipe.name}`
-    currentRecipeImage.innerHTML = `<img class="current-recipe-image" img
+    currentRecipeImage.innerHTML = `<img class="current-recipe-image" id="${currentRecipe.id}" img
     src=${currentRecipe.image}>`
 }
 
 function showMainRandomRecipes(){
-    leftRandomImageCard.innerHTML = `<img class="left-random-image" img src=${randomRecipes[0].image}>
+    leftRandomImageCard.innerHTML = `<img class="left-random-image" id="${randomRecipes[0].id}" img src=${randomRecipes[0].image}>
     <h1 class="left-random-name">${randomRecipes[0].name}</h1>`
-    middleRandomImageCard.innerHTML = `<img class="middle-random-image" img src=${randomRecipes[1].image}>
+    middleRandomImageCard.innerHTML = `<img class="middle-random-image" id="${randomRecipes[1].id}" img src=${randomRecipes[1].image}>
     <h1 class="middle-random-name">${randomRecipes[1].name}</h1>`
-    rightRandomImageCard.innerHTML = `<img class="right-random-image" img src=${randomRecipes[2].image}>
+    rightRandomImageCard.innerHTML = `<img class="right-random-image" id="${randomRecipes[2].id}" img src=${randomRecipes[2].image}>
     <h1 class="right-random-name">${randomRecipes[2].name}</h1>`
 }
 
@@ -119,12 +118,10 @@ function showSelectedRecipe() {
 
 function showIngredients() {
     const selectedRecipeIngredients = document.querySelector(".ingredients-list")
-    console.log("selectedRecipe",selectedRecipe)
+
     selectedRecipe.ingredients.modifiedData.forEach(element =>
-        
         selectedRecipeIngredients.innerHTML += 
         `<h3 class="ingredient-item">${element.quantity.amount} ${element.quantity.unit} ${element.name} <br></h3>`
-        
     )
 }
 
@@ -167,7 +164,33 @@ viewAllRecipesButton.addEventListener("click", function (event){
 })
 
 allRecipesView.addEventListener("click", function (event) {
+    event.preventDefault()
     selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
     console.log("selected Recipe", selectedRecipe)
     viewSelectedRecipe()
 })
+
+currentRecipeImage.addEventListener("click", function (event) {
+    event.preventDefault()
+    selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
+    viewSelectedRecipe()
+})
+
+leftRandomImageCard.addEventListener("click", function (event) {
+    event.preventDefault()
+    selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
+    viewSelectedRecipe()
+})
+
+middleRandomImageCard.addEventListener("click", function (event) {
+    event.preventDefault()
+    selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
+    viewSelectedRecipe()
+})
+
+rightRandomImageCard.addEventListener("click", function (event) {
+    event.preventDefault()
+    selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
+    viewSelectedRecipe()
+})
+
