@@ -57,9 +57,9 @@ function fetchData(urls) {
     })
 }
 
-fetchData([usersURL, recipesURL, ingredientsURL])
-
-
+(function () {
+  fetchData([usersURL, recipesURL, ingredientsURL])
+})()
 
 function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
