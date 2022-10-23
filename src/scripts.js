@@ -297,6 +297,7 @@ const displaySavedRecipes = () => {
             return -1;
         };
     });
+};
 
     user.recipesToCook.forEach((recipe, index) => {
         if (index < 10) {
@@ -310,7 +311,9 @@ const displaySavedRecipes = () => {
         } else if (index <= 30) {
             savedRecipesList3.innerHTML += `<li data-id="${recipe.id}">
             ${user.recipesToCook[index].name}</li>`;
-
+        };
+    });
+            
 const displayFilteredRecipes = (event) => {
     if (!event.target.value) {
         allRecipesLists.forEach(list => {
