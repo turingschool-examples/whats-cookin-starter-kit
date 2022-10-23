@@ -42,6 +42,7 @@ const featuredRecipeParent = document.getElementById('featured-recipe-parent')
 const featuredRecipeTitle = document.getElementById('featured-recipe-title')
 let filter = document.getElementById('filter')
 const filterClearButton = document.querySelector('#filter-clear-button')
+const featuredIcon = document.querySelector('.featured-bookmark-icon')
 
 // ---------------------------EVENT LISTENERS---------------------------
 
@@ -78,7 +79,7 @@ function startPage() {
   })
 }
 
-allRecipesContainer.addEventListener("click", (event) => {
+allRecipesContainer.addEventListener("click", event => {
   if (event.target.nodeName === "SECTION") { return }
 
   if (event.target.nodeName === "IMG" && (event.target.src.includes('unsaved'))) {
@@ -98,7 +99,7 @@ closeModalButton.addEventListener("click", () => MicroModal.close("modal-1"))
 
 modalSaveRecipeButton.addEventListener("click", () => user.storedFavoriteRecipes.push(currentlyViewedRecipe))
 
-searchBar.addEventListener('keyup', (event) => {
+searchBar.addEventListener('keyup', event => {
   let input = event.target.value
   //utilize toggle to switch search criteria between all recipes and favorites?
   if (searchBar.classList.contains('my-recipes')) {
@@ -110,7 +111,7 @@ searchBar.addEventListener('keyup', (event) => {
   }
 })
 
-filter.addEventListener('input', (event) => {
+filter.addEventListener('input', event => {
   filterClearButton.disabled = false
   console.log("LOOK HERE", filterClearButton.classList)
   let input = event.target.value
@@ -133,13 +134,24 @@ filterClearButton.addEventListener('click', () => {
   displayAllRecipeTiles()
 })
 
+featuredRecipeParent.addEventListener("click", event => {
+  if (event.target.nodeName === "IMG" && (event.target.src.includes('unsaved'))) {
+    event.target.src = './images/bookmark-tiles-saved.png'
+    addRecipeToFavorites(event)
+    console.log("LOOK HERE +++", user.favoriteRecipes)
+  } else if (event.target.nodeName === "IMG") {
+    event.target.src = './images/bookmark-tiles-unsaved.png'
+    removeRecipeFromFavorites(event)
+  }
+})
+
 // ---------------------------DOM UPDATING---------------------------
 
 function createRecipeTile(recipe) {
   allRecipesContainer.innerHTML +=
     `<div class="recipe-tile" id=${recipe.id}>
             <div class= "tile-image" style="background-image: url(${recipe.image})">
-            <img class="modal-bookmark-icon" src="./images/bookmark-tiles-unsaved.png" alt="save recipe">
+            <img class="modal-bookmark-icon" id=${recipe.id} src="./images/bookmark-tiles-unsaved.png" alt="save recipe">
             </div>
             <h1>${recipe.name}</h1>
             <h2>${recipe.tags.join(', ')}</h2>
@@ -196,18 +208,20 @@ let updateModal = targetObject => {
 let displayFeaturedRecipe = () => {
   featuredRecipeParent.style.backgroundImage = `url(${recipeRepository.featuredRecipe.image})`
   featuredRecipeTitle.innerText = `${recipeRepository.featuredRecipe.name}`
+  featuredIcon.id = recipeRepository.featuredRecipe.id
 }
 
 function addRecipeToFavorites(e) {
   recipeRepository.recipeList.forEach(recipe => {
-    if (recipe.id === Number(e.path[2].id)) {
+    if (recipe.id === Number(e.target.id)) {
       user.addRecipeToFavorites(recipe)
+      console.log(user.favoriteRecipes)
     }
   })
 }
 
 function removeRecipeFromFavorites(e) {
-  let id = Number(e.path[2].id)
+  let id = Number(e.target.id)
   user.removeRecipeFromFavorites(id)
 }
 
