@@ -1,5 +1,8 @@
 import "./styles.css";
-import apiCalls from "./apiCalls";
+import {getUsersAPIData, getRecipesAPIData, getIngredientsAPIData} from "./apiCalls";
+// import getRecipesAPIData from "./apiCalls";
+// import getIngredientsAPIData from "./apiCalls";
+// import apiCalls from "./apiCalls";
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import "./images/turing-logo.png";
 import Recipe from "./classes/Recipe";
@@ -11,19 +14,14 @@ import allUsersData from "./data/users-sample";
 import User from "./classes/User";
 import UserList from "./classes/UserList";
 
+let usersAPIData;
+let recipesAPIData;
+let ingredientsAPIData;
 let allIngredients = ingredientsData;
-let allRecipes = recipesData
-  .map((recipe) => {
-    const newRecipe = new Recipe(recipe);
-    newRecipe.retrieveIngredients(allIngredients);
-    return newRecipe;
-  })
-  .sort((a, b) => {
-    return a.name > b.name ? 1 : -1;
-  });
-let recipeRepository = new RecipeRepository(allRecipes);
+let allRecipes;
+let recipeRepository;
 let currentUser;
-let userRepo = new UserRepo(allUsersData);
+let userRepo = new UserRepo(usersAPIData);
 const newUserList = new UserList();
 
 //query selectors go here
@@ -75,7 +73,29 @@ allTagSelect.addEventListener("change", searchAllRecipesByTag);
 userTagSelect.addEventListener("change", searchUserRecipesByTag);
 
 //event handlers go here
+function getData() {
+  Promise.all([getUsersAPIData, getRecipesAPIData, getIngredientsAPIData])
+    .then(data => {
+      usersAPIData = data[0].usersData; 
+      recipesAPIData = data[1].recipeData; 
+      ingredientsAPIData = data[2].ingredientsData;
+
+      allRecipes = recipesAPIData
+  .map((recipe) => {
+    const newRecipe = new Recipe(recipe);
+    newRecipe.retrieveIngredients(ingredientsAPIData);
+    return newRecipe;
+  })
+  .sort((a, b) => {
+    return a.name > b.name ? 1 : -1;
+  });
+  recipeRepository = new RecipeRepository(allRecipes)
+})
+  .catch(err => console.log(err))
+};
+
 function loadPage() {
+  getData();
   renderTags();
   selectRandomUser();
 }
@@ -97,7 +117,6 @@ function searchAllRecipesByTag(event) {
 function searchUserRecipesByTag(event) {
   const tagValue = event.target.value;
   const filteredRecipes = newUserList.filterByTag(tagValue);
-  console.log(filteredRecipes);
   viewAllRecipes(filteredRecipes);
 }
 
