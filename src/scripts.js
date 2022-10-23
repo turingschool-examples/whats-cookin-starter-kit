@@ -113,7 +113,7 @@ function displayAllRecipesPage() {
   allRecipesMain.classList.remove('hide')
   console.log('I am listening!')
   createPageTitle('ALL RECIPES');
-  displayRecipeThumbnails(allRecipes.listOfAllRecipes, '');
+  displayRecipeThumbnails(allRecipes.listOfAllRecipes, '', 'all-recipe-thumbnail' );
   createListOfTags(allRecipes.listOfAllRecipes);
 };
 
@@ -122,10 +122,10 @@ function createPageTitle(title) {
 };
 
 //Both ALL and Saved Recipe Pages
-function displayRecipeThumbnails(recipesList, trashbin) {
+function displayRecipeThumbnails(recipesList, trashbin, trashbinID) {
   let recipesThumbnailsSection = '';
   recipesList.forEach(recipe => {
-    return recipesThumbnailsSection += `<section    class="single-recipe-thumbnail" id = "${recipe.id}"> <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> <div class="single-recipe-text"> <p class="recipe-title-text">${recipe.name}</p> <p>${trashbin}</p> </div> </section>`
+    return recipesThumbnailsSection += `<section    class="single-recipe-thumbnail" id = "${recipe.id}"> <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> <div class="single-recipe-text"> <p class="recipe-title-text">${recipe.name}</p> <p class=${trashbinID}>${trashbin}</p> </div> </section>`
   });
   /* recipe.id is a number and we need to convert it to a string, I think what I have above should work....*/
   /* Potentially, i can put trashbin text in as an an argument and if it is saved page then when displayRecipeThumbnails is invoke, we pass in a trashbin icon as the argument and if not then we pass in an empty string- we will need to make sure that the css still works with this approach*/
@@ -152,9 +152,21 @@ function displaySavedRecipesPage() {
   allRecipesMain.classList.remove('hide')
   console.log('Save page listening')
   createPageTitle('SAVED RECIPES');
-  displayRecipeThumbnails(currentUser.recipesToCook, '🗑');
+  displayRecipeThumbnails(currentUser.recipesToCook, '🗑', 'delete-recipe');
   createListOfTags(currentUser.recipesToCook);
 };
+
+function deleteSavedRecipe(event) {
+  currentUser.recipesToCook.map( recipe => {
+    if (
+      event.target.classList.contains('delete-recipe') &&
+        recipe.id === parseInt(event.target.id)
+    ) {
+      currentUser.recipesToCook.splice(currentUser.recipesToCook.indexOf(recipe), 1)
+    }
+  })
+  displayRecipeThumbnails(currentUser.recipesToCook, '🗑', 'delete-recipe')
+}
 
 //Specific Recipe Page FUNCTIONS --------
 
