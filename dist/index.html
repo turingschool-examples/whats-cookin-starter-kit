@@ -19,13 +19,13 @@
       </section>
     <nav class="section--nav">
       <div id="button--home" class="text-box">
-        <a href="#" class="btn btn-grey btn-animate">Home</a>
+        <a href="#" class="button button--grey button--animate">Home</a>
       </div>
       <div id="button--all-recipes" class="text-box">
-        <a href="#" class="btn btn-grey btn-animate">All Recipes</a>
+        <a href="#" class="button button--grey button--animate">All Recipes</a>
       </div>
       <div id="button--my-recipes" class="text-box">
-        <a href="#" class="btn btn-grey btn-animate">My Recipes</a>
+        <a href="#" class="button button--grey button--animate">My Recipes</a>
       </div>
     </nav>
   </header>
@@ -35,6 +35,7 @@
     <section class="section--cards-container" id="section--cards-container">
 
       <!-- Carousel Stuff Here -->
+      <h2>Eat With Your Eyes</h2>
       <div class="glide">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
@@ -158,15 +159,22 @@
         </container>
       </section>
       <div class="button--save-recipe">
-        <a href="#" class="btn btn-grey btn-animate" id="button--save-recipe">Save Recipe</a>
+        <a href="#" class="button button--grey button--animate" id="button--save-recipe">Save Recipe</a>
       </div>
     </section>
 
 
     <section class="section--saved-recipes hidden" id="section--saved-recipes">
-      <ul class="list--saved-recipes" id="list--saved-recipes-0-9"></ul>
-      <ul class="list--saved-recipes" id="list--saved-recipes-10-19"></ul>
-      <ul class="list--saved-recipes" id="list--saved-recipes-20-29"></ul>
+      <h1>My Saved Recipes</h1>
+      <div class="section--filter-bar">
+        <input type="search" placeholder="     filter by tag" class="input--filter" id="input--filter-saved-recipes">
+        <input type="search" placeholder="     search by name" class="input--search" id="input--search-saved-recipes">
+      </div>
+      <section class="section--recipe-lists" id="section--saved-recipe-lists">
+        <ul class="list--saved-recipes" id="list--saved-recipes-0-9"></ul>
+        <ul class="list--saved-recipes" id="list--saved-recipes-10-19"></ul>
+        <ul class="list--saved-recipes" id="list--saved-recipes-20-29"></ul>
+      </section>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
