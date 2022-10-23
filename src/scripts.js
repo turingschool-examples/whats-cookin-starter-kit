@@ -40,6 +40,8 @@ const instructionsList = document.getElementById("instructions-list")
 const searchBar = document.getElementById('search-bar')
 const featuredRecipeParent = document.getElementById('featured-recipe-parent')
 const featuredRecipeTitle = document.getElementById('featured-recipe-title')
+let filter = document.getElementById('filter')
+const filterClearButton = document.querySelector('#filter-clear-button')
 
 // ---------------------------EVENT LISTENERS---------------------------
 
@@ -53,10 +55,16 @@ function fetchData(urls) {
     })
 }
 
-fetchData([usersURL, recipesURL, ingredientsURL])
+
+(function () {
+  fetchData([usersURL, recipesURL, ingredientsURL])
+})()
+
 
 function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
+  displayAllRecipeTiles()
+  populateTags()
   user = new User(usersData.usersData[0])
   displayAllRecipeTiles()
   displayFeaturedRecipe()
@@ -73,14 +81,13 @@ function startPage() {
 allRecipesContainer.addEventListener("click", (event) => {
   if (event.target.nodeName === "SECTION") { return }
 
-  if (event.target.nodeName === "IMG") {
-    if (event.target.src.includes('unsaved')) {
-      event.target.src = './images/bookmark-tiles-saved.png'
-      addRecipeToFavorites(event)
-    } else {
-      event.target.src = './images/bookmark-tiles-unsaved.png'
-      removeRecipeFromFavorites(event)
-    }
+  if (event.target.nodeName === "IMG" && (event.target.src.includes('unsaved'))) {
+    event.target.src = './images/bookmark-tiles-saved.png'
+    addRecipeToFavorites(event)
+    console.log("LOOK HERE +++", user.favoriteRecipes)
+  } else {
+    event.target.src = './images/bookmark-tiles-unsaved.png'
+    removeRecipeFromFavorites(event)
   }
   let targetObject = recipeRepository.recipeList.find(recipe => recipe.id == event.target.parentNode.id)
   currentlyViewedRecipe = targetObject
@@ -101,6 +108,29 @@ searchBar.addEventListener('keyup', (event) => {
     let recipes = recipeRepository.filterByNameOrIngredient(input)
     displaySearchedRecipeTiles(recipes)
   }
+})
+
+filter.addEventListener('input', (event) => {
+  filterClearButton.disabled = false
+  console.log("LOOK HERE", filterClearButton.classList)
+  let input = event.target.value
+  filterClearButton.classList.remove('disabled')
+
+  if (filter.classList.contains('my-recipes')) {
+    let recipes = user.filterByTag(input)
+    displaySearchedRecipeTiles(recipes)
+  } else {
+    let recipes = recipeRepository.filterByTag(input)
+    displaySearchedRecipeTiles(recipes)
+  }
+})
+
+filterClearButton.addEventListener('click', () => {
+  filter.value = 'Filter recipes by type...'
+  filterClearButton.disabled = true
+  filterClearButton.classList.add('disabled')
+  allRecipesContainer.innerHTML = ''
+  displayAllRecipeTiles()
 })
 
 // ---------------------------DOM UPDATING---------------------------
@@ -174,11 +204,28 @@ function addRecipeToFavorites(e) {
       user.addRecipeToFavorites(recipe)
     }
   })
-  console.log(user.favoriteRecipes)
 }
 
 function removeRecipeFromFavorites(e) {
   let id = Number(e.path[2].id)
   user.removeRecipeFromFavorites(id)
-  console.log(user.favoriteRecipes)
+}
+
+function populateTags() {
+  let allTags = []
+
+  recipeRepository.recipeList.forEach(recipe => {
+    recipe.tags.forEach(tag => {
+      if (!allTags.includes(tag)) {
+        allTags.push(tag)
+      }
+    })
+  })
+
+  allTags.sort()
+
+  allTags.forEach(tag => {
+    filter.innerHTML += `<option id=${tag}>${tag}</option>`
+
+  })
 }

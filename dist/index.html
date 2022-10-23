@@ -17,7 +17,7 @@
       </div>
       <div class="header-right-align">
         <div class="header-buttons">My Recipes</div>
-            <div class="header-buttons">All Recipes</div>
+        <div class="header-buttons">All Recipes</div>
       </div>
     </nav>
   </header>
@@ -37,14 +37,10 @@
       </div>
     </section>
     <section class="filter-bar">
-      <select>
-        <option>Filter recipes by...</option>
-        <option>Option</option>
-        <option>Option</option>
-        <option>Option</option>
-        <option>Option</option>
+      <select class="filter" id="filter">
+        <option>Filter recipes by type...</option>
       </select>
-        <!-- filter by tag goes here -->
+      <div class="header-buttons disabled" id="filter-clear-button" disabled>Clear filter</div>
     </section>
     <section class="all-recipes-container">
     </section>
@@ -63,12 +59,13 @@
           </div>
           <h1 id="modal-title"></h1>
           <div class="modal-bookmark-div">
-            <img class="modal-bookmark-icon" id="modal-save-recipe" src="./images/bookmark-unsaved.png" alt="save recipe">
+            <img class="modal-bookmark-icon" id="modal-save-recipe" src="./images/bookmark-unsaved.png"
+              alt="save recipe">
             <p class="modal-icon-label">add to<br>
-            My Recipes</p>
+              My Recipes</p>
           </div>
           <div class="modal-image-ingr-parent">
-            <img class ="modal-image" id="modal-image" src="" alt="">
+            <img class="modal-image" id="modal-image" src="" alt="">
             <span id="ingr-parent" class="ingr-span">
             </span>
           </div>

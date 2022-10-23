@@ -202,9 +202,12 @@ header {
 .filter-bar {
   display: flex;
   padding: 5px;
-  justify-content: space-around;
-  background-color: rgb(247, 243, 233, 0.75);
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2)
+
+  justify-content: center;
+  background-color: rgb(247, 243, 233,0.75);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  gap: 10px
+
 }
 
 select {
@@ -258,6 +261,35 @@ select:focus {
 
 .search-bar:focus {
   border: 2px solid #c84b31;
+}
+
+.disabled {
+  color: gray;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* NOTE: keep media query at the bottom */
+
+@media(max-width:768px){
+  .nav-bar-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  header {
+    height:auto;
+  }
+  .header-right-align {
+    justify-content: flex-start;
+    margin: 15px;
+    justify-content: center;
+  }
+  .header-left-align {
+    flex-direction: column;
+    gap: 10px;
+  }
+
 }
 
 /* ---------------------- MODAL ---------------------- */
