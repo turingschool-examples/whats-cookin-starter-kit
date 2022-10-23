@@ -17,7 +17,7 @@ body {
   margin-top: 13px;
 }
 
-.add-your-own-recipe{
+.view-all-recipes{
   height: 5vh;
   width: 20vw;
   border-radius: 5px;
@@ -323,5 +323,8 @@ p{
 .main-right-side-first-header{
   border-style: solid;
   display: flex;
-  
+}
+
+.hidden {
+  display:none
 }
