@@ -149,6 +149,7 @@ function viewHome () {
     showElement(viewAllRecipesButton)
     hideElement(homeButton)
     hideElement(allRecipesView)
+    hideElement(selectedRecipeView)
 }
 
 //EventListener
