@@ -1,10 +1,59 @@
 @import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
 @import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
 @import url('https://fonts.googleapis.com/css?family=Lato:100&display=swap');
-/* 
-*{
-  border: 1px solid rgb(201, 201, 201);
-} */
+
+/* ----CLASS SELECTORS------ */
+.button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s;
+}
+
+.button--animated {
+  animation: moveInBottom 5s ease-out;
+  animation-fill-mode: backwards;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.button--grey {
+  background-color: #fefefe;
+  color: #0f0f0f;
+  font-family: sans-serif;
+}
+
+.button--grey::after {
+  background-color: #fff;
+}
+
+.button:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.button:link,
+.button:visited {
+  text-decoration: none;
+  padding: 3px 30px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all .2s;
+  position: relative;
+}
 
 .button--save-recipe {
   display: flex;
@@ -64,7 +113,6 @@
 }
 
 .section--all-recipes {
-  /* display: flex; */
   flex-direction: column;
   align-items: center;
 }
@@ -117,24 +165,11 @@
   display: flex;
   justify-content: space-evenly;
   font-size: 14px;
+  cursor: pointer;
 }
-
-
-/* .section--cards-container {
-  display: grid;
-  grid-template-areas: 
-    'a b c' 
-    'd e f'
-    'g h i';
-} */
 
 .text-box {
   margin: 0px 10px 0px 10px;
-}
-
-.text--total-cost {
-  font-weight: bold;
-  margin-top: 4%;
 }
 
 .ul--ingredient-list {
@@ -142,10 +177,17 @@
   flex-direction: column;
 }
 
-/* header {
-  background: linear-gradient(0deg, rgba(237,234,216,1) 45%, rgba(224,219,105,1) 100%);
-} */
+.text-box {
+  margin-left: 0vw;
+  margin-top: 0vh;
+}
 
+.text--total-cost {
+  font-weight: bold;
+  margin-top: 4%;
+}
+
+/* ---- ELEMENT SELECTORS------- */
 body {
   background: linear-gradient(0deg, rgb(216, 237, 235) 45%, rgb(147, 217, 234) 100%);
   background-repeat: no-repeat;
@@ -154,6 +196,11 @@ body {
   max-width: 100vw;
   margin: 0px;
   padding: 10px;
+  font-family: sans-serif;
+}
+
+img {
+  cursor: pointer;
 }
 
 h1,
@@ -172,6 +219,21 @@ h4 {
 
 .hidden {
   display: none;
+}
+
+/* ------ ALL OF THIS IS FOR BUTTON ANIMATION AND STYLING ------ */
+
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }
 
 /* USE THIS TO DO RECIPE LIST DROPDOWN */
@@ -193,78 +255,3 @@ summary {
   cursor: pointer;
   padding: 15px;
 } */
-
-/* ------ ALL OF THIS IS FOR BUTTON ANIMATION AND STYLING ------ */
-body {
-  font-family: sans-serif;
-}
-
-.text-box {
-  margin-left: 0vw;
-  margin-top: 0vh;
-}
-
-.btn:link,
-.btn:visited {
-  text-decoration: none;
-  padding: 3px 30px;
-  display: inline-block;
-  border-radius: 100px;
-  transition: all .2s;
-  position: relative;
-}
-
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.btn:active {
-  transform: translateY(-1px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
-
-.btn-grey {
-  background-color: #f0f0f0;
-  color: #0f0f0f;
-  font-family: sans-serif;
-}
-
-.btn::after {
-  content: "";
-  /* display: inline-block; */
-  height: 100%;
-  width: 100%;
-  border-radius: 100px;
-  position: relative;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  transition: all .4s;
-}
-
-.btn-grey::after {
-  background-color: #fff;
-}
-
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
-}
-
-.btn-animated {
-  animation: moveInBottom 5s ease-out;
-  animation-fill-mode: backwards;
-}
-
-@keyframes moveInBottom {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}

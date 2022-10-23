@@ -56,6 +56,7 @@ homeButton.addEventListener('click', () => {
     hide(savedRecipesContainer);
     hide(allRecipesContainer);
     show(allRecipesButton);
+    show(myRecipesButton)
 });
 
 myRecipesButton.addEventListener('click', () => {
@@ -64,6 +65,7 @@ myRecipesButton.addEventListener('click', () => {
     show(savedRecipesContainer);
     hide(allRecipesContainer);
     show(allRecipesButton);
+    hide(myRecipesButton)
     displaySavedRecipes();
 });
 
@@ -73,6 +75,7 @@ cardsContainer.addEventListener('click', (event) => {
         show(recipeContainer);
         hide(savedRecipesContainer);
         hide(allRecipesContainer);
+        show(myRecipesButton)
         displayRecipeDetails(event);
     }
 });
@@ -83,12 +86,14 @@ allRecipesButton.addEventListener('click', () => {
     hide(savedRecipesContainer);
     show(allRecipesContainer);
     hide(allRecipesButton);
+    show(myRecipesButton)
     displayAllRecipes();
 });
 
 recipeListsContainer.addEventListener('click', (event) => {
     hide(allRecipesContainer);
     show(allRecipesButton);
+    show(myRecipesButton)
     displayRecipeDetails(event);
 });
 
@@ -96,6 +101,17 @@ savedRecipesListsContainer.addEventListener('click', (event) => {
     hide(allRecipesContainer);
     show(allRecipesButton);
     displayRecipeDetails(event);
+});
+
+saveRecipeButton.addEventListener('click', () => {
+    hide(cardsContainer);
+    hide(recipeContainer);
+    show(savedRecipesContainer);
+    hide(allRecipesContainer);
+    show(allRecipesButton);
+    hide(myRecipesButton);
+    displaySavedRecipes();
+    user.addRecipeToRecipesToCook()
 });
 
 filterField.addEventListener('input', (event) => {
@@ -153,7 +169,6 @@ const displayAllRecipes = () => {
         };
     });
 };
-
 const userData = {
     "name": "Saige O'Kon",
     "id": 1,
@@ -360,7 +375,6 @@ const displayFilteredRecipesSaved = (event) => {
     });
 };
 
-            
 const displayFilteredRecipes = (event) => {
     if (!event.target.value) {
         allRecipesLists.forEach(list => {
@@ -486,4 +500,3 @@ const displayRecipeDetails = (event) => {
 
 //  ON LOAD FUNCTIONS LIVE HERE
 
-console.log('Hello world');
