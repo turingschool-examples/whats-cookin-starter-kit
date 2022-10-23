@@ -260,29 +260,6 @@ select:focus {
   border: 2px solid #c84b31;
 }
 
-/* NOTE: keep media query at the bottom */
-
-@media(max-width:768px){
-  .nav-bar-container {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-  }
-  header {
-    height:auto;
-  }
-  .header-right-align {
-    justify-content: flex-start;
-    margin: 15px;
-    justify-content: center;
-  }
-  .header-left-align {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-}
-
 /* ---------------------- MODAL ---------------------- */
 
 .modal {
@@ -398,7 +375,7 @@ max-height: 50px;
 }
 
 .modal-image {
-  max-height: 322px;
+  width: 28vw;
 }
 
 .ingr-span {
@@ -425,6 +402,10 @@ max-height: 50px;
   padding-bottom: 20px;
 }
 
+.instructions-parent {
+  padding: 15px 30px 0px;
+}
+
 .instructions-parent > p {
   font-family: 'Bitter', serif;
   line-height: 1.9;
@@ -433,4 +414,37 @@ max-height: 50px;
 
 .modal.is-open {
   display: block;
+}
+
+/* ---------------------- MEDIA QUERIES ---------------------- */
+/* NOTE: keep media queries at the bottom */
+
+@media(max-width:768px) {
+
+  .nav-bar-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header {
+    height:auto;
+  }
+
+  .header-right-align {
+    justify-content: flex-start;
+    margin: 15px;
+    justify-content: center;
+  }
+
+  .header-left-align {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .modal-content-parent {
+    padding: 37px 60px 55px 53px;
+    display: none;
+  }
+
 }
