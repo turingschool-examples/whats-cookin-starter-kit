@@ -1,5 +1,8 @@
 import "./styles.css";
-import apiCalls from "./apiCalls";
+import {getUsersAPIData, getRecipesAPIData, getIngredientsAPIData} from "./apiCalls";
+// import getRecipesAPIData from "./apiCalls";
+// import getIngredientsAPIData from "./apiCalls";
+// import apiCalls from "./apiCalls";
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import "./images/turing-logo.png";
 import Recipe from "./classes/Recipe";
@@ -23,6 +26,9 @@ let allRecipes = recipesData
   });
 let recipeRepository = new RecipeRepository(allRecipes);
 let currentUser;
+let usersAPIData;
+let recipesAPIData;
+let ingredientsAPIData;
 let userRepo = new UserRepo(allUsersData);
 const newUserList = new UserList();
 
@@ -75,7 +81,19 @@ allTagSelect.addEventListener("change", searchAllRecipesByTag);
 userTagSelect.addEventListener("change", searchUserRecipesByTag);
 
 //event handlers go here
+function getData() {
+  Promise.all([getUsersAPIData, getRecipesAPIData, getIngredientsAPIData])
+    .then(data => {
+      // usersAPIData = getUsersAPIData 
+      // recipesAPIData = getRecipesAPIData  
+      // ingredientsAPIData = getIngredientsAPIData
+      console.log(data)
+  })
+  .catch(err => console.log(err))
+};
+
 function loadPage() {
+  getData();
   renderTags();
   selectRandomUser();
 }
