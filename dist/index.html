@@ -164,9 +164,15 @@
 
 
     <section class="section--saved-recipes hidden" id="section--saved-recipes">
-      <ul class="list--saved-recipes" id="list--saved-recipes-0-9"></ul>
-      <ul class="list--saved-recipes" id="list--saved-recipes-10-19"></ul>
-      <ul class="list--saved-recipes" id="list--saved-recipes-20-29"></ul>
+      <div class="section--filter-bar">
+        <input type="search" placeholder="     filter by tag" class="input--filter" id="input--filter-saved-recipes">
+        <input type="search" placeholder="     search by name" class="input--search" id="input--search-saved-recipes">
+      </div>
+      <section class="section--recipe-lists" id="section--saved-recipe-lists">
+        <ul class="list--saved-recipes" id="list--saved-recipes-0-9"></ul>
+        <ul class="list--saved-recipes" id="list--saved-recipes-10-19"></ul>
+        <ul class="list--saved-recipes" id="list--saved-recipes-20-29"></ul>
+      </section>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
