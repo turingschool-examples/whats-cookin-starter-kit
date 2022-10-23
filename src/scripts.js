@@ -12,8 +12,9 @@ import User from './classes/User';
 const userWelcome = document.getElementById('section--user-welcome');
 const homeButton = document.getElementById('button--home');
 const myRecipesButton = document.getElementById('button--my-recipes');
-const saveRecipeButton = document.getElementById('button--save-recipe')
-const allRecipesButton = document.getElementById('button--all-recipes')
+const saveRecipeButton = document.getElementById('button--save-recipe');
+const removeRecipeButton = document.getElementById('button--remove-recipe');
+const allRecipesButton = document.getElementById('button--all-recipes');
 const myRecipeList = document.getElementById('button--recipe-list');
 const searchField = document.getElementById('input--search');
 const filterField = document.getElementById('input--filter');
@@ -25,6 +26,7 @@ const recipeListsContainer = document.getElementById('section--recipe-lists');
 const savedRecipesContainer = document.getElementById('section--saved-recipes');
 const savedRecipesListsContainer = document.getElementById('section--saved-recipe-lists');
 const allRecipesContainer = document.getElementById('section--all-recipes');
+const recipeImageContainer = document.getElementById('section--recipe-image')
 const ingredientContainer = document.getElementById('ul--ingredient-list');
 const instructionsContainer = document.getElementById('ul--instructions');
 const allRecipes0to9 = document.getElementById('list--recipes-0-9');
@@ -112,9 +114,19 @@ saveRecipeButton.addEventListener('click', () => {
     hide(allRecipesContainer);
     show(allRecipesButton);
     hide(myRecipesButton);
+    user.addRecipeToRecipesToCook(currentRecipe);
     displaySavedRecipes();
-    user.addRecipeToRecipesToCook()
-    //needs an object
+});
+
+removeRecipeButton.addEventListener('click', () => {
+    hide(cardsContainer);
+    hide(recipeContainer);
+    show(savedRecipesContainer);
+    hide(allRecipesContainer);
+    show(allRecipesButton);
+    hide(myRecipesButton);
+    user.removeRecipeFromRecipesToCook(currentRecipe);
+    displaySavedRecipes();
 });
 
 filterField.addEventListener('input', (event) => {
@@ -137,6 +149,7 @@ searchFieldSaved.addEventListener('input', (event) => {
 const allRecipes = new RecipeRepository(recipeData);
 const allRecipesClassObjects = allRecipes.returnAllRecipesObjectsArray();
 let user;
+var currentRecipe;
 //user is declared but not assigned which allows it to be assigned during the on load 
 const testUsersArray = [{
     "name": "Saige O'Kon",
@@ -781,6 +794,9 @@ const displayAllRecipes = () => {
 // user.recipesToCook = allRecipes.recipeData;
 
 const displaySavedRecipes = () => {
+    savedRecipesLists.forEach(list => {
+        hide(list)
+    });
     savedRecipesList1.innerHTML = '';
     savedRecipesList2.innerHTML = '';
     savedRecipesList3.innerHTML = '';
@@ -797,12 +813,15 @@ const displaySavedRecipes = () => {
         if (index < 10) {
             // first hide all the boxes
             // show the boxes one at at time, based on the value of index 0-10, 10-20, 20-30.
+            show(savedRecipesList1);
             savedRecipesList1.innerHTML += `<li data-id="${recipe.id}">
             ${user.recipesToCook[index].name}</li>`;
         } else if (index < 20) {
+            show(savedRecipesList2);
             savedRecipesList2.innerHTML += `<li data-id="${recipe.id}">
             ${user.recipesToCook[index].name}</li>`;
         } else if (index <= 30) {
+            show(savedRecipesList3);
             savedRecipesList3.innerHTML += `<li data-id="${recipe.id}">
             ${user.recipesToCook[index].name}</li>`;
         };
@@ -810,14 +829,14 @@ const displaySavedRecipes = () => {
 };
 
 const displayFilteredRecipesSaved = (event) => {
-   if (!event.target.value) {
-    savedRecipesLists.forEach(list => {
+    if (!event.target.value) {
+        savedRecipesLists.forEach(list => {
             show(list)
         });
         displaySavedRecipes();
         return;
     };
-    const filteredRecipes = allRecipes.filteredByTag(event.target.value);
+    const filteredRecipes = user.filterRecipesToCookByTag(event.target.value);
     savedRecipesLists.forEach(list => {
         hide(list)
     });
@@ -878,10 +897,11 @@ const displaySearchedRecipesSaved = (event) => {
         displaySavedRecipes();
         return;
     }
-    const filteredRecipes = allRecipes.filteredByName(event.target.value);
+    const filteredRecipes = user.filterRecipesToCookByName(event.target.value);
     savedRecipesLists.forEach(list => {
         hide(list)
     });
+    console.log(event.target.value)
     clearRecipesList(savedRecipesLists);
     filteredRecipes.forEach((recipe, index) => {
         if (index < 10) {
@@ -931,19 +951,33 @@ const displaySearchedRecipes = (event) => {
 };
 
 const displayRecipeDetails = (event) => {
-    const currentRecipe = allRecipesClassObjects.find(recipe => {
+    currentRecipe = allRecipesClassObjects.find(recipe => {
         return recipe.id.toString() === event.target.getAttribute('data-id');
     });
+    if (user.recipesToCook.includes(currentRecipe)) {
+        show(removeRecipeButton);
+        hide(saveRecipeButton);
+    } else {
+        show(saveRecipeButton);
+        hide(removeRecipeButton);
+    };
     hide(cardsContainer);
     show(recipeContainer);
     hide(savedRecipesContainer);
     hide(allRecipesContainer);
     recipeTitle.innerText = currentRecipe.name;
+
+    recipeImageContainer.innerHTML = '';
+    // NOTE - Will need to add alt text to this image--------------//
+    recipeImageContainer.innerHTML += `<p><img src="${currentRecipe.returnRecipeImage()}"></p>`;
+
     instructionsContainer.innerHTML = '';
     currentRecipe.returnRecipeInstructions().map(element => instructionsContainer.innerHTML += `<li>${element}</li>`);
+
     ingredientContainer.innerHTML = '';
     currentRecipe.returnRecipeIngredientsInfo()
         .map(ingredientInfo => ingredientContainer.innerHTML += `<li>${ingredientInfo}</li>`);
+
     ingredientContainer.innerHTML += `<div class="text--total-cost">Total cost: ${currentRecipe.returnCostOfIngredients()}</div>`;
 };
 
