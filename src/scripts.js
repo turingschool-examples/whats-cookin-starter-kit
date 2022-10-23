@@ -1,13 +1,12 @@
 import './styles.css'
 import apiCalls from './apiCalls'
 import MicroModal from 'micromodal'
-// import '../src/images'
 import "./images/bookmark-tiles-unsaved.png"
 import "./images/bookmark-tiles-saved.png"
 import "./images/bookmark-unsaved.png"
 import "./images/bookmark-saved.png"
 import './images/turing-logo.png'
-// import '../src/images'
+import './images/whats-cookin-logo.png'
 import RecipeRepository from '../src/classes/RecipeRepository'
 // import recipeData from './data/recipes'
 // import ingredientsData from "./data/ingredients"
@@ -22,11 +21,11 @@ import getData from './apiCalls'
 
 let currentlyViewedRecipe
 
-let user 
+let user
 let usersData
 let ingredientsData
 let recipesData
-let recipeRepository 
+let recipeRepository
 
 const usersURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users'
 const recipesURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes'
@@ -42,6 +41,7 @@ const modalRecipeTitle = document.getElementById("modal-title")
 const modalImage = document.getElementById("modal-image")
 const ingredientsParent = document.getElementById("ingr-parent")
 const instructionsParent = document.getElementById("instructions-parent")
+const searchBar = document.getElementById('search-bar')
 const myRecipesButton = document.getElementById("my-recipes")
 const allRecipesButton = document.getElementById("all-recipes")
 
@@ -77,6 +77,16 @@ function startPage() {
 
 allRecipesContainer.addEventListener("click", (event) => {
   if (event.target.nodeName === "SECTION") { return }
+
+  if (event.target.nodeName === "IMG") {
+    if (event.target.src.includes('unsaved')) {
+      event.target.src = './images/bookmark-tiles-saved.png'
+      addRecipeToFavorites(event)
+    } else {
+      event.target.src = './images/bookmark-tiles-unsaved.png'
+      removeRecipeFromFavorites(event)
+    }
+  }
   let targetObject = recipeRepository.recipeList.find(recipe => recipe.id == event.target.parentNode.id)
   currentlyViewedRecipe = targetObject
   updateModal(targetObject)
@@ -85,6 +95,18 @@ allRecipesContainer.addEventListener("click", (event) => {
 closeModalButton.addEventListener("click", () => MicroModal.close("modal-1"))
 
 modalSaveRecipeButton.addEventListener("click", () => user.storedFavoriteRecipes.push(currentlyViewedRecipe))
+
+searchBar.addEventListener('keyup', (event) => {
+  let input = event.target.value
+  //utilize toggle to switch search criteria between all recipes and favorites?
+  if (searchBar.classList.contains('my-recipes')) {
+    let recipes = user.filterByNameOrIngredient(input)
+    displaySearchedRecipeTiles(recipes)
+  } else {
+    let recipes = recipeRepository.filterByNameOrIngredient(input)
+    displaySearchedRecipeTiles(recipes)
+  }
+})
 
 myRecipesButton.addEventListener("click", displayMyRecipes)
 allRecipesButton.addEventListener("click", displayAllRecipes)
@@ -102,6 +124,8 @@ function createRecipeTile(recipe) {
         </div>`
 }
 
+//this function will need to be refactored to take in arrays dynamically
+//currently displayAllRecipeTiles & displaySearchedRecipeTiles are doing the same thing
 function displayRecipeTiles(recipeArray) {
     allRecipesContainer.innerHTML = ''
   for (var i = 0; i < recipeArray.length; i++) {
@@ -115,6 +139,13 @@ function displayAllRecipes() {
 
 function displayMyRecipes() {
     displayRecipeTiles(user.favoriteRecipes)
+}
+
+function displaySearchedRecipeTiles(searchedRecipes) {
+  allRecipesContainer.innerHTML = ''
+  for (var i = 0; i < searchedRecipes.length; i++) {
+    createRecipeTile(searchedRecipes[i])
+  }
 }
 
 let updateModal = targetObject => {
@@ -134,4 +165,19 @@ let updateModal = targetObject => {
     instructionsParent.innerHTML += `<p>${item.number}. ${item.instruction}`
   })
   MicroModal.show("modal-1")
+}
+
+function addRecipeToFavorites(e) {
+  recipeRepository.recipeList.forEach(recipe => {
+    if (recipe.id === Number(e.path[2].id)) {
+      user.addRecipeToFavorites(recipe);
+    }
+  })
+  console.log(user.favoriteRecipes)
+} 
+
+function removeRecipeFromFavorites(e) {
+  let id = Number(e.path[2].id)
+  user.removeRecipeFromFavorites(id)
+  console.log(user.favoriteRecipes)
 }
