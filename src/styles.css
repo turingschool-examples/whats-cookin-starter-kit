@@ -27,12 +27,6 @@ header {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2)
 }
 
-/* .logo {
-  object-fit: cover;
-  height: 40px;
-  width: 40px;
-} */
-
 .nav-bar-container {
   display: flex;
   flex-direction: row;

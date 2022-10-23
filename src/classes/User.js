@@ -5,7 +5,7 @@ class User {
     this.id = user.id
     this.pantry = user.pantry
     this.favoriteRecipes = []
-    this.storedFavoriteRecipes = []
+    //this.storedFavoriteRecipes = []
     this.recipesToCook = []
   }
 
@@ -13,6 +13,14 @@ class User {
     if(!this.favoriteRecipes.includes(recipe)) {
       this.favoriteRecipes.push(recipe)
     }
+  }
+
+  removeRecipeFromFavorites(id) {
+    this.favoriteRecipes.forEach((currentValue, i) => {
+      if (id === currentValue.id) {
+        this.favoriteRecipes.splice(i, 1);
+      }
+    })
   }
 
   addToRecipesToCook(recipe) {
