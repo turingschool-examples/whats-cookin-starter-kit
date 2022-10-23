@@ -25,7 +25,6 @@ let recipeRepository = new RecipeRepository(allRecipes);
 let currentUser;
 let userRepo = new UserRepo(allUsersData);
 
-
 //query selectors go here
 let allRecipesButton = document.querySelector(".all-recipes-button");
 let allRecipesPage = document.querySelector(".all-recipes-page");
@@ -36,12 +35,24 @@ let inputBar = document.querySelector(".search-bar > input");
 let tagSelect = document.querySelector("#tag-select");
 
 //event listeners go here
-allRecipesButton.addEventListener("click", viewAllRecipes);allRecipesButton.addEventListener("click", renderAllRecipesPage);
+allRecipesButton.addEventListener("click", renderAllRecipesPage);
 searchButton.addEventListener("click", searchForRecipes);
 tagSelect.addEventListener("change", searchByTag);
-window.addEventListener("load", selectRandomUser);
+window.addEventListener("load", loadPage);
 
 //event handlers go here
+function loadPage() {
+  renderTags();
+  selectRandomUser();
+}
+
+function renderTags() {
+  const tags = recipeRepository.getAllTags();
+  tags.forEach((item) => {
+    tagSelect.innerHTML += `<option value = "${item}">${item}</option>`;
+  });
+}
+
 function searchByTag(event) {
   const tagValue = event.target.value;
   const filteredRecipes = recipeRepository.filterByTag(tagValue);
@@ -49,11 +60,11 @@ function searchByTag(event) {
 }
 
 function selectRandomUser() {
-  console.log("Can I see this??? Please say yes.")
-  console.log("userRepo: ", userRepo)
-  let randomIndex = Math.floor(Math.random() * userRepo.userCatalog.length)
-  let randomUser = userRepo.userCatalog[randomIndex]
-  return currentUser = new User(randomUser)
+  console.log("Can I see this??? Please say yes.");
+  console.log("userRepo: ", userRepo);
+  let randomIndex = Math.floor(Math.random() * userRepo.userCatalog.length);
+  let randomUser = userRepo.userCatalog[randomIndex];
+  return (currentUser = new User(randomUser));
 }
 
 function renderAllRecipesPage() {
