@@ -2,6 +2,7 @@
 import './styles.css';
 import apiCalls from './apiCalls';
 import './images/turing-logo.png';
+import './images/cooking.png';
 import RecipeRepository from './classes/RecipeRepository';
 import recipeData from './data/recipes';
 import User from './classes/User';
@@ -297,7 +298,7 @@ const displaySavedRecipes = () => {
             return -1;
         };
     });
-};
+
 
     user.recipesToCook.forEach((recipe, index) => {
         if (index < 10) {
@@ -313,7 +314,7 @@ const displaySavedRecipes = () => {
             ${user.recipesToCook[index].name}</li>`;
         };
     });
-            
+};         
 const displayFilteredRecipes = (event) => {
     if (!event.target.value) {
         allRecipesLists.forEach(list => {
