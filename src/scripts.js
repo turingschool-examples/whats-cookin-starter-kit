@@ -16,9 +16,13 @@ const currentRecipeImage = document.querySelector(".image-parent-main")
 const leftRandomImageCard = document.querySelector(".left-random-card")
 const middleRandomImageCard = document.querySelector(".middle-random-card")
 const rightRandomImageCard = document.querySelector(".right-random-card")
+const tagSearchResults = document.querySelector(".tag-search-results")
+const nameSearchResults = document.querySelector(".name-search-results")
 
 const viewAllRecipesButton = document.querySelector(".view-all-recipes")
 const homeButton = document.querySelector(".home-button")
+const searchButton = document.querySelector(".submit-search-button")
+const searchInput = document.querySelector("#searchBar")
 
 const allRecipesView = document.querySelector(".all-recipes-view")
 const homeView = document.querySelector(".home-view")
@@ -134,12 +138,34 @@ function showInstructions() {
     )
 }
 
+function viewSearchedRecipes() {
+    nameSearchResults.innerHTML = ""
+    tagSearchResults.innerHTML = ""
+    let searchTerm = searchInput.value 
+    let tagResults = []
+    let nameResults = []
+    tagResults = allRecipes.filterByTag(searchTerm)
+    nameResults = allRecipes.filterByName(searchTerm)
+    if (nameResults.length === 0 && tagResults.length === 0) {
+        tagSearchResults.innerHTML = `<h1>There are no results for your search, please try a different search</h1>`
+    }
+    nameResults.forEach(element => 
+        nameSearchResults.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`)
+    tagResults.forEach(element => 
+        tagSearchResults.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`)
+    hideElement(selectedRecipeView)
+    hideElement(homeView)
+    showElement(searchedRecipeView)
+    showElement(homeButton)
+}
+
 function viewAllRecipes () {
     allRecipes.recipesList.forEach(element => 
         allRecipesView.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`
     )
     hideElement(viewAllRecipesButton)
     hideElement(homeView)
+    hideElement(selectedRecipeView)
     showElement(allRecipesView)
     showElement(homeButton)
 }
@@ -167,7 +193,12 @@ viewAllRecipesButton.addEventListener("click", function (event){
 allRecipesView.addEventListener("click", function (event) {
     event.preventDefault()
     selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
-    console.log("selected Recipe", selectedRecipe)
+    viewSelectedRecipe()
+})
+
+searchedRecipeView.addEventListener("click", function (event) {
+    event.preventDefault()
+    selectedRecipe = allRecipes.recipesList.find(recipe => recipe.id == event.target.id)
     viewSelectedRecipe()
 })
 
@@ -195,3 +226,7 @@ rightRandomImageCard.addEventListener("click", function (event) {
     viewSelectedRecipe()
 })
 
+searchButton.addEventListener("click", function(event){
+    event.preventDefault()
+    viewSearchedRecipes()
+})
