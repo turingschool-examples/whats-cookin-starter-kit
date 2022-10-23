@@ -1,6 +1,17 @@
-# What's Cookin'? Starter Kit
+# What's Cookin'?
 
-The details of this project are outlined in the <a href="https://frontend.turing.edu/projects/What%27sCookin-PartOne.html" target="\__blank">project spec</a>.
+## Abstract
+
+We have created a recipe tracking / meal planning application that allows users to view recipes they want to cook and plan shopping trips around them. The idea is similar to sites like All Recipes or New York Times Cooking. Users are able to view a list of recipes and choose recipes to cook, as well as view the total cost of ingredients for each recipe they select! Users can also add recipes to and remove recipes from their personal saved list. 
+
+## Project Goals and Objectives
+
+- Implement ES6 classes that communicate to each other as needed
+- Use object and array prototype methods to perform data manipulation
+- Create a user interface that is easy to use and clearly displays information.
+- Write modular, reusable code that follows SRP (Single Responsibility Principle)
+- Implement a robust testing suite using TDD
+- Make network requests to retrieve data
 
 ## Set Up
 
@@ -11,6 +22,34 @@ The details of this project are outlined in the <a href="https://frontend.turing
 5. Make sure both members of your team are collaborators on the forked repo.
 6. Do not run `npm audit fix --force`. This will update to the latest version of packages. We need to be using `webpack-dev-server@3.11.2` which is not the latest version. If you start to run into Webpack errors, first check that all group members are using the correct version.
 
-## Testing
+## Preview
 
-Mocha and chai are already set up, with a boilerplate test for you.
+
+
+## Collaborators
+
+- [Anna](https://github.com/AnnaPete)
+- [Lauren](https://github.com/LaurenBlack5280)
+- [Dmitrii](https://github.com/dgubko)
+- [Josh](https://github.com/JPierce28)
+
+## Technologies Used
+
+- JavaScript
+- HTML
+- CSS
+- TDD Testing: Mocha / Chai
+- 
+
+## Reflections
+
+### Wins
+- 
+- 
+- 
+
+### Challenges
+- 
+- 
+- 
+ 
