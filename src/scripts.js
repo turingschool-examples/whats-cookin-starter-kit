@@ -60,12 +60,10 @@ function clickHandler(){
 
 function generateAllRecipes () {
     allRecipes = new RecipeRepository(recipeData)
-    console.log("all recipes array", allRecipes)
 }
 
 function onLoadRecipe(){
     currentRecipe = new Recipe(recipeData[getRandomIndex(recipeData)])
-    console.log(currentRecipe)
     showMainRecipe()
 }
 
@@ -107,7 +105,6 @@ function viewSelectedRecipe () {
 }
 
 function showSelectedRecipe() {
-    console.log("get instructions method return",selectedRecipe.getInstructions())
     selectedRecipeView.innerHTML = `
     <section class="selected-recipe-container">
     <img class="selected-recipe-image" img src=${selectedRecipe.image}>
