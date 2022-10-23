@@ -4,9 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
-  <!-- <link href="..src/styles.css" type="text/css" rel="stylesheet"> -->
-  <!-- Add the Font API stuff here -->
-  <!-- At 5:08 in the Carousel video -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--MIGHT NEED TO ADD HEIGHT TO VIEWPORT-->
@@ -23,27 +20,18 @@
       <div id="button--home" class="text-box">
         <a href="#" class="btn btn-grey btn-animate">Home</a>
       </div>
-      <!-- <button type="button" class="" id="button--home">Home</button> -->
-     
-        <div id="button--all-recipes" class="text-box">
-          <a href="#" class="btn btn-grey btn-animate">All Recipes</a>
-        </div>
-        <div id="button--my-recipes" class="text-box">
-          <a href="#" class="btn btn-grey btn-animate">My Recipes</a>
-        </div>
-       
-      
+      <div id="button--all-recipes" class="text-box">
+        <a href="#" class="btn btn-grey btn-animate">All Recipes</a>
+      </div>
+      <div id="button--my-recipes" class="text-box">
+        <a href="#" class="btn btn-grey btn-animate">My Recipes</a>
+      </div>
     </nav>
   </header>
-  <!-- <div class="section--list-filter"> -->
-   
-    <!-- <button class="button--all-recipes" id="button--all-recipes">Recipe List</button> -->
-    <!--ADD DROPDOWN DIV HERE AND BUTTON TYPES-->
-    <!--ASSUMING WE WILL INVOKE BOTH THE FILTER BY NAME & FILTER BY TAG METHODS-->
-  <!-- </div> -->
+  <!--ADD DROPDOWN DIV HERE AND BUTTON TYPES-->
+  <!--ASSUMING WE WILL INVOKE BOTH THE FILTER BY NAME & FILTER BY TAG METHODS-->
   <section class="section--main-body" id="section--main-body">
     <section class="section--cards-container" id="section--cards-container">
-
 
       <!-- Carousel Stuff Here -->
       <div class="glide">
@@ -58,9 +46,9 @@
             </li>
             <li class="glide__slide">
               <container class="card--recipe" id="card--recipe2">
-                  <p id="text--recipe-title2">Maple Dijon Apple Cider Grilled Pork Chops</p>
-                  <img id="image--recipe-image2" src="https://spoonacular.com/recipeImages/678353-556x370.jpg"
-                    alt="Maple Dijon Apple Cider Grilled Pork Chops" data-id="678353">
+                <p id="text--recipe-title2">Maple Dijon Apple Cider Grilled Pork Chops</p>
+                <img id="image--recipe-image2" src="https://spoonacular.com/recipeImages/678353-556x370.jpg"
+                  alt="Maple Dijon Apple Cider Grilled Pork Chops" data-id="678353">
               </container>
             </li>
             <li class="glide__slide">
@@ -121,24 +109,12 @@
             </li>
           </ul>
         </div>
-
-
-
         <div class="glide__arrows" data-glide-el="controls">
           <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
           <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
         </div>
       </div>
-
-
     </section>
-    <section class="section--saved-cards hidden" id="section--saved-cards">
-      <!-- WILL ADD CARDS FROM JS, MAYBE JUST MAKE A SIMPLE LIST -->
-    </section>
-
-
-
-
 
 
     <section class="section--all-recipes hidden" id="section--all-recipes">
@@ -154,10 +130,6 @@
         <ul class="list--all-recipes" id="list--recipes-40-49"></ul>
       </section>
     </section>
-
-
-
-
 
 
     <section class="section--recipe-details hidden" id="section--recipe-details">
@@ -183,15 +155,19 @@
               cream and a drizzle of chocolate sauce.</li>
           </ul>
         </container>
-
-
-        <!-- <button type="button" class="button--save-recipe" id="button--save-recipe">Save Recipe</button> -->
-
       </section>
       <div class="button--save-recipe">
         <a href="#" class="btn btn-grey btn-animate" id="button--save-recipe">Save Recipe</a>
       </div>
     </section>
+
+
+    <section class="section--saved-recipes hidden" id="section--saved-recipes">
+      <ul class="list--saved-recipes" id="list--saved-recipes-0-9"></ul>
+      <ul class="list--saved-recipes" id="list--saved-recipes-10-19"></ul>
+      <ul class="list--saved-recipes" id="list--saved-recipes-20-29"></ul>
+    </section>
+
     <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
     <script>
       const config = {
@@ -201,7 +177,6 @@
       new Glide('.glide', config).mount()
     </script>
 </body>
-<!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
 <script src="bundle.js"></script>
 
 </html>
