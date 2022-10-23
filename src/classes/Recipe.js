@@ -39,6 +39,7 @@ class Recipe {
         return array;
     }
 
+    // We might be able to refactor and eliminate this method.//
     returnRecipeImage() {
         return this.image;
     }

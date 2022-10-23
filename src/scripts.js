@@ -349,8 +349,8 @@ const displaySavedRecipes = () => {
 };
 
 const displayFilteredRecipesSaved = (event) => {
-   if (!event.target.value) {
-    savedRecipesLists.forEach(list => {
+    if (!event.target.value) {
+        savedRecipesLists.forEach(list => {
             show(list)
         });
         displaySavedRecipes();
@@ -478,7 +478,7 @@ const displayRecipeDetails = (event) => {
     hide(savedRecipesContainer);
     hide(allRecipesContainer);
     recipeTitle.innerText = currentRecipe.name;
-    
+
     recipeImageContainer.innerHTML = '';
     // NOTE - Will need to add alt text to this image--------------//
     recipeImageContainer.innerHTML += `<p><img src="${currentRecipe.returnRecipeImage()}"></p>`;
