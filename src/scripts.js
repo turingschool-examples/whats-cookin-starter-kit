@@ -42,6 +42,7 @@ const modalRecipeTitle = document.getElementById("modal-title")
 const modalImage = document.getElementById("modal-image")
 const ingredientsParent = document.getElementById("ingr-parent")
 const instructionsParent = document.getElementById("instructions-parent")
+const searchBar = document.getElementById('search-bar')
 
 // ---------------------------EVENT LISTENERS---------------------------
 
@@ -84,6 +85,17 @@ closeModalButton.addEventListener("click", () => MicroModal.close("modal-1"))
 
 modalSaveRecipeButton.addEventListener("click", () => user.storedFavoriteRecipes.push(currentlyViewedRecipe))
 
+searchBar.addEventListener('keyup', (event) => {
+  let input = event.target.value;
+  //utilize toggle to switch search criteria between all recipes and favorites?
+  if (searchBar.classList.contains('my-recipes')) {
+    let recipes = user.filterByNameOrIngredient(input);
+    displaySearchedRecipeTiles(recipes)
+  } else {
+    let recipes = recipeRepository.filterByNameOrIngredient(input);
+    displaySearchedRecipeTiles(recipes)
+  }
+})
 // ---------------------------DOM UPDATING---------------------------
 
 function createRecipeTile(recipe) {
@@ -97,9 +109,18 @@ function createRecipeTile(recipe) {
         </div>`
 }
 
+//this function will need to be refactored to take in arrays dynamically
+//currently displayAllRecipeTiles & displaySearchedRecipeTiles are doing the same thing
 function displayAllRecipeTiles() {
   for (var i = 0; i < recipeRepository.recipeList.length; i++) {
     createRecipeTile(recipeRepository.recipeList[i])
+  }
+}
+
+function displaySearchedRecipeTiles(searchedRecipes) {
+  allRecipesContainer.innerHTML = '';
+  for (var i = 0; i < searchedRecipes.length; i++) {
+    createRecipeTile(searchedRecipes[i])
   }
 }
 

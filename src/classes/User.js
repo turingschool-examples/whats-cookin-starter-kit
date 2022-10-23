@@ -23,8 +23,25 @@ class User {
     return this.favoriteRecipes.filter(recipe => recipe.tags.includes(tag))
   }
 
-  filterByName(name) {
-    return this.favoriteRecipes.filter(recipe => recipe.name.includes(name))
+  filterByNameOrIngredient(input) {
+    let filteredRecipes = [];
+    input = input.toLowerCase();
+    
+    this.favoriteRecipes.forEach(recipe => {
+      if (recipe.name.toLowerCase().includes(input)) {
+        filteredRecipes.push(recipe)
+      } else {
+        recipe.ingredients.forEach(ingredient => {
+          if (ingredient.name.toLowerCase().includes(input)) {
+            if (!filteredRecipes.includes(recipe)) {
+              filteredRecipes.push(recipe)
+            }
+          }
+        })
+      }
+    })
+
+    return filteredRecipes;
   }
 
   clearFilters() {
