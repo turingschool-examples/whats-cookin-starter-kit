@@ -66,7 +66,7 @@ allHomeButtons.forEach((button) => {
 myRecipesButtons.forEach((button) => {
   button.addEventListener("click", viewMyRecipes)
 })
-myRecipeSearch.addEventListener("click", searchMyRecipes);
+myRecipeSearch.addEventListener("click", searchMyRecipeNames);
 tagSelect.addEventListener("change", searchByTag);
 window.addEventListener("load", selectRandomUser);
 
@@ -192,40 +192,54 @@ function savedRecipes() {
     newSection.className = "recipe-card-container";
     newSection.innerHTML = `
         <img class="image" id="${recipe.id}" src="${recipe.image}">
+        <button class="delete-recipe" id="${recipe.id}">Delete Recipe</button>
         <p class="recipe-name"> ${recipe.name} </p>`;
         
 
     savedRecipeContainer.appendChild(newSection);
     const recipeImage = newSection.querySelector(".image");
     recipeImage.addEventListener("click", seeRecipe);
-  }); 
+    const deleteRecipeButtons = newSection.querySelectorAll(".delete-recipe");
+    deleteRecipeButtons.forEach((button) => {button.addEventListener("click", deleteRecipe)
+    });
+  });
+};
+
+function deleteRecipe(event) {
+  const removeRecipe = newUserList.recipesToCook.find((recipe) => {
+    return parseInt(event.target.id) === recipe.id;
+  });
+  const indexNumber = newUserList.recipesToCook.indexOf(removeRecipe)
+  console.log(indexNumber);
+  newUserList.recipesToCook.splice(indexNumber, 1)
+  savedRecipes()
 }
 
-function searchMyRecipes(event) {
+function searchMyRecipeNames(event) {
   event.preventDefault()
   const inputValue = inputBar.value;
   const filteredElements = newUserList.filterByName(inputValue);
   viewAllRecipes(filteredElements);
-}
+};
 
 function returnHome() {
-  addHidden(allRecipesPage)
-  addHidden(currentRecipePage)
-  addHidden(savedRecipePage)
-  removeHidden(homePage)
-}
+  addHidden(allRecipesPage);
+  addHidden(currentRecipePage);
+  addHidden(savedRecipePage);
+  removeHidden(homePage);
+};
 
 function viewMyRecipes() {
-  addHidden(allRecipesPage)
-  addHidden(currentRecipePage)
-  addHidden(homePage)
-  removeHidden(savedRecipePage)
-}
+  addHidden(allRecipesPage);
+  addHidden(currentRecipePage);
+  addHidden(homePage);
+  removeHidden(savedRecipePage);
+};
 
 function addHidden(element) {
   element.classList.add("hidden");
-}
+};
 
 function removeHidden(element) {
   element.classList.remove("hidden");
-}
+};
