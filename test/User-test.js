@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import User from '../src/classes/User';
-import usersData from '../src/data/users';
-import allRecipes from '../src/data/User-test-data';
+import { allRecipes, testUsersData } from '../sampleSets/User-test-data';
 
 describe('User', function() {
 
@@ -58,20 +57,27 @@ describe('User', function() {
   });
 
   it('Should be able to generate a random user', function() { 
-    // 🚨❓ How test that it's random?
     expect(user2.name).to.equal(undefined);
     expect(user2.id).to.equal(undefined);
     expect(user2.pantry).to.equal(undefined);
 
-    user2.generateRandomUser(usersData);
+    user2.generateRandomUser(testUsersData);
    
     expect(user2.name).to.be.a('string');
     expect(user2.id).to.be.a('number');
     expect(user2.pantry).to.be.an('array');
 
-    const testUser = usersData.find(user => user["name"] === user2.name);
+    const possibleNames = testUsersData.map(user => user['name']);
 
-    expect(testUser["name"]).to.equal(user2.name);
+    expect(possibleNames.includes(user2.name)).to.equal(true);
+
+    const user3 = new User();
+    user3.generateRandomUser(testUsersData);
+    const user4 = new User();
+    user4.generateRandomUser(testUsersData);
+    
+    expect(possibleNames.includes(user3.name)).to.equal(true);
+    expect(possibleNames.includes(user4.name)).to.equal(true);
   });
 
   it('Should be able to add recipes', function() {
