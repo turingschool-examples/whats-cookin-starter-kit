@@ -212,7 +212,7 @@ img {
   border-radius: 3%;
 }
 
-h1,
+h1
  {
   text-align: center;
   font-family: 'Oswald';
@@ -223,7 +223,7 @@ h1,
 }
 
 h3,
-h4, {
+h4 {
   margin-left: 4%;
   font-size: 2vh;
   text-decoration: underline;
