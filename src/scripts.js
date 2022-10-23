@@ -5,12 +5,8 @@ import "./images/bookmark-tiles-unsaved.png"
 import "./images/bookmark-tiles-saved.png"
 import "./images/bookmark-unsaved.png"
 import "./images/bookmark-saved.png"
-import './images/turing-logo.png'
 import './images/whats-cookin-logo.png'
 import RecipeRepository from '../src/classes/RecipeRepository'
-// import recipeData from './data/recipes'
-// import ingredientsData from "./data/ingredients"
-// import usersData from "./data/users"
 import User from '../src/classes/User'
 import getData from './apiCalls'
 
@@ -40,7 +36,7 @@ const modalTagParent = document.getElementById("modal-tag-button-parent")
 const modalRecipeTitle = document.getElementById("modal-title")
 const modalImage = document.getElementById("modal-image")
 const ingredientsParent = document.getElementById("ingr-parent")
-const instructionsParent = document.getElementById("instructions-parent")
+const instructionsList = document.getElementById("instructions-list")
 const searchBar = document.getElementById('search-bar')
 
 // ---------------------------EVENT LISTENERS---------------------------
@@ -158,9 +154,9 @@ let updateModal = targetObject => {
     ingredientsParent.innerHTML += `<ul>${amount} ${ingredient.unit} ${ingredient.name}</ul>`
   })
   ingredientsParent.innerHTML += `<p class="total-price">Total estimated cost to make: ${targetObject.getTotalCost()}</p>`
-  instructionsParent.innerHTML = ``
+  instructionsList.innerHTML = ``
   targetObject.instructions.forEach(item => {
-    instructionsParent.innerHTML += `<p>${item.number}. ${item.instruction}`
+    instructionsList.innerHTML += `<li>${item.instruction}</li>`
   })
   MicroModal.show("modal-1")
 }
