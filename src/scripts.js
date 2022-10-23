@@ -2,12 +2,14 @@
 import './styles.css';
 import apiCalls from './apiCalls';
 import './images/turing-logo.png';
+import './images/cooking.png';
 import RecipeRepository from './classes/RecipeRepository';
 import recipeData from './data/recipes';
 import User from './classes/User';
+import usersData from './data/users';
 
 //  QUERYSELECTORS LIVE HERE
-const userWelcome = document.getElementById('section-user-section');
+const userWelcome = document.getElementById('section--user-welcome');
 const homeButton = document.getElementById('button--home');
 const myRecipesButton = document.getElementById('button--my-recipes');
 const saveRecipeButton = document.getElementById('button--save-recipe')
@@ -50,6 +52,7 @@ const totalCost = document.getElementById('text--total-cost');
 
 
 //  EVENT LISTENERS LIVE HERE
+
 homeButton.addEventListener('click', () => {
     show(cardsContainer);
     hide(recipeContainer);
@@ -134,6 +137,9 @@ searchFieldSaved.addEventListener('input', (event) => {
 const allRecipes = new RecipeRepository(recipeData);
 const allRecipesClassObjects = allRecipes.returnAllRecipesObjectsArray();
 
+const testUsersArray = [{
+
+
 
 // HELPER FUNCTIONS LIVE HERE
 const show = element => element.classList.remove('hidden');
@@ -170,6 +176,7 @@ const displayAllRecipes = () => {
     });
 };
 const userData = {
+
     "name": "Saige O'Kon",
     "id": 1,
     "pantry": [
@@ -314,9 +321,659 @@ const userData = {
             "amount": 2
         }
     ]
+},
+{
+    "name": "Ephraim Goyette",
+    "id": 2,
+    "pantry": [
+        {
+            "ingredient": 6150,
+            "amount": 3
+        },
+        {
+            "ingredient": 1032009,
+            "amount": 7
+        },
+        {
+            "ingredient": 1082047,
+            "amount": 8
+        },
+        {
+            "ingredient": 1034053,
+            "amount": 6
+        },
+        {
+            "ingredient": 2050,
+            "amount": 10
+        },
+        {
+            "ingredient": 19335,
+            "amount": 13
+        },
+        {
+            "ingredient": 1145,
+            "amount": 5
+        },
+        {
+            "ingredient": 18371,
+            "amount": 8
+        },
+        {
+            "ingredient": 19336,
+            "amount": 4
+        },
+        {
+            "ingredient": 11215,
+            "amount": 12
+        },
+        {
+            "ingredient": 9152,
+            "amount": 3
+        },
+        {
+            "ingredient": 11297,
+            "amount": 4
+        },
+        {
+            "ingredient": 1123,
+            "amount": 17
+        },
+        {
+            "ingredient": 16112,
+            "amount": 2
+        },
+        {
+            "ingredient": 4053,
+            "amount": 11
+        },
+        {
+            "ingredient": 10011693,
+            "amount": 4
+        },
+        {
+            "ingredient": 5114,
+            "amount": 2
+        },
+        {
+            "ingredient": 11529,
+            "amount": 5
+        },
+        {
+            "ingredient": 1001,
+            "amount": 14
+        },
+        {
+            "ingredient": 2027,
+            "amount": 6
+        },
+        {
+            "ingredient": 1002030,
+            "amount": 9
+        },
+        {
+            "ingredient": 20081,
+            "amount": 10
+        },
+        {
+            "ingredient": 1077,
+            "amount": 5
+        },
+        {
+            "ingredient": 14106,
+            "amount": 7
+        },
+        {
+            "ingredient": 2009,
+            "amount": 5
+        },
+        {
+            "ingredient": 16124,
+            "amount": 4
+        },
+        {
+            "ingredient": 2031,
+            "amount": 3
+        },
+        {
+            "ingredient": 2025,
+            "amount": 5
+        },
+        {
+            "ingredient": 11282,
+            "amount": 8
+        },
+        {
+            "ingredient": 20027,
+            "amount": 2
+        },
+        {
+            "ingredient": 11333,
+            "amount": 3
+        },
+        {
+            "ingredient": 19177,
+            "amount": 2
+        },
+        {
+            "ingredient": 11821,
+            "amount": 3
+        },
+        {
+            "ingredient": 18372,
+            "amount": 9
+        },
+        {
+            "ingredient": 1012047,
+            "amount": 2
+        },
+        {
+            "ingredient": 11291,
+            "amount": 2
+        },
+        {
+            "ingredient": 1102047,
+            "amount": 4
+        },
+        {
+            "ingredient": 6194,
+            "amount": 5
+        },
+        {
+            "ingredient": 19296,
+            "amount": 5
+        },
+        {
+            "ingredient": 11477,
+            "amount": 3
+        },
+        {
+            "ingredient": 2047,
+            "amount": 12
+        },
+        {
+            "ingredient": 93607,
+            "amount": 6
+        },
+        {
+            "ingredient": 12061,
+            "amount": 8
+        },
+        {
+            "ingredient": 11353,
+            "amount": 3
+        },
+        {
+            "ingredient": 6615,
+            "amount": 2
+        },
+        {
+            "ingredient": 9003,
+            "amount": 2
+        },
+        {
+            "ingredient": 19911,
+            "amount": 2
+        },
+        {
+            "ingredient": 1124,
+            "amount": 3
+        },
+        {
+            "ingredient": 11165,
+            "amount": 2
+        },
+        {
+            "ingredient": 1125,
+            "amount": 3
+        },
+        {
+            "ingredient": 1089003,
+            "amount": 2
+        },
+        {
+            "ingredient": 12120,
+            "amount": 2
+        },
+        {
+            "ingredient": 10511282,
+            "amount": 2
+        },
+        {
+            "ingredient": 1019,
+            "amount": 2
+        },
+        {
+            "ingredient": 9302,
+            "amount": 2
+        },
+        {
+            "ingredient": 1011256,
+            "amount": 2
+        },
+        {
+            "ingredient": 9019,
+            "amount": 4
+        },
+        {
+            "ingredient": 11206,
+            "amount": 2
+        },
+        {
+            "ingredient": 19350,
+            "amount": 2
+        },
+        {
+            "ingredient": 9099,
+            "amount": 18
+        },
+        {
+            "ingredient": 14412,
+            "amount": 3
+        }
+    ]
+},
+{
+    "name": "Nelda Bosco",
+    "id": 3,
+    "pantry": [
+        {
+            "ingredient": 1009159,
+            "amount": 3
+        },
+        {
+            "ingredient": 19335,
+            "amount": 10
+        },
+        {
+            "ingredient": 10123,
+            "amount": 4
+        },
+        {
+            "ingredient": 1001,
+            "amount": 12
+        },
+        {
+            "ingredient": 11529,
+            "amount": 5
+        },
+        {
+            "ingredient": 1082047,
+            "amount": 4
+        },
+        {
+            "ingredient": 4582,
+            "amount": 2
+        },
+        {
+            "ingredient": 2021,
+            "amount": 3
+        },
+        {
+            "ingredient": 19336,
+            "amount": 3
+        },
+        {
+            "ingredient": 20027,
+            "amount": 2
+        },
+        {
+            "ingredient": 1123,
+            "amount": 7
+        },
+        {
+            "ingredient": 14412,
+            "amount": 3
+        },
+        {
+            "ingredient": 1011256,
+            "amount": 2
+        },
+        {
+            "ingredient": 11215,
+            "amount": 10
+        },
+        {
+            "ingredient": 6615,
+            "amount": 3
+        },
+        {
+            "ingredient": 11477,
+            "amount": 2
+        },
+        {
+            "ingredient": 10011693,
+            "amount": 4
+        },
+        {
+            "ingredient": 14106,
+            "amount": 4
+        },
+        {
+            "ingredient": 16124,
+            "amount": 4
+        },
+        {
+            "ingredient": 20081,
+            "amount": 10
+        },
+        {
+            "ingredient": 1034053,
+            "amount": 2
+        },
+        {
+            "ingredient": 11124,
+            "amount": 4
+        },
+        {
+            "ingredient": 2047,
+            "amount": 8
+        },
+        {
+            "ingredient": 1124,
+            "amount": 3
+        },
+        {
+            "ingredient": 9156,
+            "amount": 4
+        },
+        {
+            "ingredient": 2050,
+            "amount": 3
+        },
+        {
+            "ingredient": 18372,
+            "amount": 3
+        },
+        {
+            "ingredient": 6150,
+            "amount": 2
+        },
+        {
+            "ingredient": 4053,
+            "amount": 10
+        },
+        {
+            "ingredient": 1012010,
+            "amount": 3
+        },
+        {
+            "ingredient": 19296,
+            "amount": 3
+        },
+        {
+            "ingredient": 18371,
+            "amount": 6
+        },
+        {
+            "ingredient": 1145,
+            "amount": 5
+        },
+        {
+            "ingredient": 10862,
+            "amount": 2
+        },
+        {
+            "ingredient": 1019,
+            "amount": 2
+        },
+        {
+            "ingredient": 11291,
+            "amount": 4
+        },
+        {
+            "ingredient": 9152,
+            "amount": 10
+        },
+        {
+            "ingredient": 99223,
+            "amount": 2
+        },
+        {
+            "ingredient": 2009,
+            "amount": 2
+        },
+        {
+            "ingredient": 1077,
+            "amount": 3
+        },
+        {
+            "ingredient": 2049,
+            "amount": 3
+        },
+        {
+            "ingredient": 11282,
+            "amount": 3
+        },
+        {
+            "ingredient": 19334,
+            "amount": 3
+        },
+        {
+            "ingredient": 2031,
+            "amount": 2
+        },
+        {
+            "ingredient": 9302,
+            "amount": 2
+        },
+        {
+            "ingredient": 11463,
+            "amount": 2
+        },
+        {
+            "ingredient": 2025,
+            "amount": 2
+        },
+        {
+            "ingredient": 1002014,
+            "amount": 2
+        },
+        {
+            "ingredient": 2028,
+            "amount": 3
+        },
+        {
+            "ingredient": 4047,
+            "amount": 2
+        }
+    ]
+},]
+//Test users array will be deleted when the fetch gets implemented
+let user; 
+//user is declared but not assigned which allows it to be assigned during the on load 
+
+
+
+// HELPER FUNCTIONS LIVE HERE
+const show = element => element.classList.remove('hidden');
+const hide = element => element.classList.add('hidden');
+function randomIndex(array) {
+    return Math.floor(Math.random() * array.length);
 }
-const user = new User(userData);
-user.recipesToCook = allRecipes.recipeData;
+
+
+
+
+
+const clearRecipesList = () => {
+    allRecipesLists.forEach(list => {
+        list.innerHTML = '';
+    });
+};
+
+const displayAllRecipes = () => {
+    clearRecipesList();
+    allRecipes.recipeData.sort((a, b) => {
+        // ---------------- Can this be refactored????
+        if (a.name > b.name) {
+            return 1;
+        } else {
+            return -1;
+        };
+    });
+    allRecipes.recipeData.forEach((recipe, index) => {
+        if (index < 10) {
+            allRecipes0to9.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        } else if (index < 20) {
+            allRecipes10to19.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        } else if (index < 30) {
+            allRecipes20to29.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        } else if (index < 40) {
+            allRecipes30to39.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        } else {
+            allRecipes40to49.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        };
+    });
+};
+
+// const userData = {
+//     "name": "Saige O'Kon",
+//     "id": 1,
+//     "pantry": [
+//         {
+//             "ingredient": 11297,
+//             "amount": 4
+//         },
+//         {
+//             "ingredient": 1082047,
+//             "amount": 10
+//         },
+//         {
+//             "ingredient": 20081,
+//             "amount": 5
+//         },
+//         {
+//             "ingredient": 11215,
+//             "amount": 5
+//         },
+//         {
+//             "ingredient": 2047,
+//             "amount": 6
+//         },
+//         {
+//             "ingredient": 1123,
+//             "amount": 8
+//         },
+//         {
+//             "ingredient": 11282,
+//             "amount": 4
+//         },
+//         {
+//             "ingredient": 6172,
+//             "amount": 2
+//         },
+//         {
+//             "ingredient": 2044,
+//             "amount": 2
+//         },
+//         {
+//             "ingredient": 2050,
+//             "amount": 4
+//         },
+//         {
+//             "ingredient": 1032009,
+//             "amount": 3
+//         },
+//         {
+//             "ingredient": 5114,
+//             "amount": 3
+//         },
+//         {
+//             "ingredient": 1017,
+//             "amount": 2
+//         },
+//         {
+//             "ingredient": 18371,
+//             "amount": 7
+//         },
+//         {
+//             "ingredient": 1001,
+//             "amount": 6
+//         },
+//         {
+//             "ingredient": 99223,
+//             "amount": 2
+//         },
+//         {
+//             "ingredient": 1230,
+//             "amount": 2
+//         },
+//         {
+//             "ingredient": 9152,
+//             "amount": 4
+//         },
+//         {
+//             "ingredient": 10611282,
+//             "amount": 2
+//         },
+//         {
+//             "ingredient": 93607,
+//             "amount": 2
+//         },
+//         {
+//             "ingredient": 14106,
+//             "amount": 4
+//         },
+//         {
+//             "ingredient": 1077,
+//             "amount": 4
+//         },
+//         {
+//             "ingredient": 6150,
+//             "amount": 2
+//         },
+//         {
+//             "ingredient": 1124,
+//             "amount": 2
+//         },
+//         {
+//             "ingredient": 10011693,
+//             "amount": 4
+//         },
+//         {
+//             "ingredient": 1102047,
+//             "amount": 2
+//         },
+//         {
+//             "ingredient": 19206,
+//             "amount": 2
+//         },
+//         {
+//             "ingredient": 1145,
+//             "amount": 4
+//         },
+//         {
+//             "ingredient": 1002030,
+//             "amount": 4
+//         },
+//         {
+//             "ingredient": 12061,
+//             "amount": 2
+//         },
+//         {
+//             "ingredient": 19335,
+//             "amount": 4
+//         },
+//         {
+//             "ingredient": 15152,
+//             "amount": 3
+//         },
+//         {
+//             "ingredient": 9003,
+//             "amount": 2
+//         },
+//         {
+//             "ingredient": 18372,
+//             "amount": 3
+//         },
+//         {
+//             "ingredient": 2027,
+//             "amount": 2
+//         }
+//     ]
+// }
+// const user = new User(userData);
+// user.recipesToCook = allRecipes.recipeData;
 
 const displaySavedRecipes = () => {
     savedRecipesList1.innerHTML = '';
@@ -345,6 +1002,7 @@ const displaySavedRecipes = () => {
             ${user.recipesToCook[index].name}</li>`;
         };
     });
+
 };
 
 const displayFilteredRecipesSaved = (event) => {
@@ -374,6 +1032,7 @@ const displayFilteredRecipesSaved = (event) => {
         };
     });
 };
+
 
 const displayFilteredRecipes = (event) => {
     if (!event.target.value) {
@@ -484,7 +1143,9 @@ const displayRecipeDetails = (event) => {
         .map(ingredientInfo => ingredientContainer.innerHTML += `<li>${ingredientInfo}</li>`);
     ingredientContainer.innerHTML += `<div class="text--total-cost">Total cost: ${currentRecipe.returnCostOfIngredients()}</div>`;
 };
-
+function displayUserName() {
+    userWelcome.innerHTML = `<p>Welcome: ${user.name}!</p>`
+}
 
 
 
@@ -499,4 +1160,13 @@ const displayRecipeDetails = (event) => {
 
 
 //  ON LOAD FUNCTIONS LIVE HERE
+function loadUser() {
+  let rI = randomIndex(testUsersArray)
+  let result = testUsersArray[rI]
+  user = new User(result)
+  displayUserName()
+}
+
+
+window.addEventListener('load', loadUser)
 
