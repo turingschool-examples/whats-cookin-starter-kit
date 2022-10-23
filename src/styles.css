@@ -135,6 +135,14 @@
   margin-top: 5%;
 }
 
+.section--recipe-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: -5%;
+  margin-top: -1%;
+}
+
 .section--user-bar {
   display: flex;
   justify-content: space-between;
@@ -212,11 +220,16 @@ img {
   border-radius: 3%;
 }
 
-h1,
-h2 {
+h1 {
   text-align: center;
   font-family: 'Oswald';
   margin: auto;
+}
+
+h2 {
+  text-align: center;
+  font-family: 'Oswald';
+  margin-top: -3%
 }
 
 h3,
