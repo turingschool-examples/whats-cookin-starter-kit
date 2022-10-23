@@ -2,7 +2,7 @@ import Recipe from "../classes/Recipe";
 
 class RecipeRepository {
   constructor(dataSet) {
-    this.listOfAllRecipes = dataSet;
+    this.listOfAllRecipes = dataSet || [];
   }
 
   filterByTag(tag) {
