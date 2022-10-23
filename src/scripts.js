@@ -78,14 +78,13 @@ function startPage() {
 allRecipesContainer.addEventListener("click", (event) => {
   if (event.target.nodeName === "SECTION") { return }
 
-  if (event.target.nodeName === "IMG") {
-    if (event.target.src.includes('unsaved')) {
-      event.target.src = './images/bookmark-tiles-saved.png'
-      addRecipeToFavorites(event)
-    } else {
-      event.target.src = './images/bookmark-tiles-unsaved.png'
-      removeRecipeFromFavorites(event)
-    }
+  if (event.target.nodeName === "IMG" && (event.target.src.includes('unsaved'))) {
+    event.target.src = './images/bookmark-tiles-saved.png'
+    addRecipeToFavorites(event)
+    console.log("LOOK HERE +++", user.favoriteRecipes)
+  } else {
+    event.target.src = './images/bookmark-tiles-unsaved.png'
+    removeRecipeFromFavorites(event)
   }
   let targetObject = recipeRepository.recipeList.find(recipe => recipe.id == event.target.parentNode.id)
   currentlyViewedRecipe = targetObject
