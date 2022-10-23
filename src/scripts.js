@@ -9,17 +9,28 @@ import "./images/bookmark-saved.png"
 import './images/turing-logo.png'
 // import '../src/images'
 import RecipeRepository from '../src/classes/RecipeRepository'
-import recipeData from './data/recipes'
-import ingredientsData from "./data/ingredients"
-import usersData from "./data/users"
+// import recipeData from './data/recipes'
+// import ingredientsData from "./data/ingredients"
+// import usersData from "./data/users"
 import User from '../src/classes/User'
+import getData from './apiCalls'
 
 // ---------------------------DATA MODEL---------------------------
 
-const recipeRepository = new RecipeRepository(recipeData, ingredientsData)
-const user = new User(usersData[0])
+// const recipeRepository = new RecipeRepository(recipeData, ingredientsData)
+// const user = new User(usersData[0])
 
 let currentlyViewedRecipe
+
+let user 
+let usersData
+let ingredientsData
+let recipesData
+let recipeRepository 
+
+const usersURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users'
+const recipesURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes'
+const ingredientsURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients'
 
 // ---------------------------QUERY SELECTORS---------------------------
 
@@ -34,8 +45,24 @@ const instructionsParent = document.getElementById("instructions-parent")
 
 // ---------------------------EVENT LISTENERS---------------------------
 
-window.onload = function () {
+function fetchData(urls) {
+  Promise.all([getData(urls[0]), getData(urls[1]), getData(urls[2])])
+    .then(data => {
+      usersData = data[0]
+      recipesData = data[1]
+      ingredientsData = data[2]
+      startPage()
+    })
+}
+
+fetchData([usersURL, recipesURL, ingredientsURL])
+
+
+
+function startPage() {
+  recipeRepository = new RecipeRepository(recipesData, ingredientsData)
   displayAllRecipeTiles()
+  user = new User(usersData.usersData[0])
   MicroModal.init({
     openClass: 'is-open',
     disableScroll: true,
