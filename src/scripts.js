@@ -1,5 +1,4 @@
 //IMPORTS--------------------------------------------------------
-
 import "./styles.css";
 import loadData from "./apiCalls";
 import RecipeRepository from "./classes/RecipeRepository";
@@ -31,14 +30,16 @@ let currentRecipe;
 
 //QUERY SELECTORS-----------------------------------------------
 //Navbar QUERY SELECTORS ---------
-const allReipesPageButton = document.querySelector('.all-recipes-button')
-const savedReipesPageButton = document.querySelector('.saved-recipes-button')
+const allReipesPageButton = document.querySelector('.all-recipes-button');
+const savedReipesPageButton = document.querySelector('.saved-recipes-button');
+
 //Home Page QUERY SELECTORS--------
 //All Recipes Page QUERY SELECTORS--------
-const allRecipesMain = document.querySelector('.all-recipes-main')
-const allRecipesPageTitle = document.querySelector('.page-title')
-const allRecipeThumbnailsSection = document.querySelector('.all-recipe-thumbnails')
+const allRecipesMain = document.querySelector('.all-recipes-main');
+const allRecipesPageTitle = document.querySelector('.page-title');
+const allRecipeThumbnailsSection = document.querySelector('.all-recipe-thumbnails');
 const allRecipeFilterTagOptions = document.querySelector('.list-of-tag-options')
+
 //Saved Recipes Page QUERY SELECTORS--------
 //Specific Recipe Page QUERY SELECTORS--------
 const specificRecipePage = document.querySelector('.specific-recipe-page');
@@ -52,7 +53,6 @@ const specificRecipeCost = document.querySelector('.specific-recipe-cost');
 
 
 //FETCH/CALL FUNCTIONS-------------------------------------------
-
 Promise.all([
   loadData("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users"),
   loadData(
@@ -65,10 +65,7 @@ Promise.all([
   recipeData = data[2];
 
   createInstances(recipeData, ingredientsData, userData);
-
    allRecipes = new RecipeRepository(recipeData);
-      console.log(allRecipes)
-      console.log(currentUser)
 });
 
 function createInstances(dataSet1, dataSet2, dataSet3) {
@@ -76,32 +73,35 @@ function createInstances(dataSet1, dataSet2, dataSet3) {
   makeIngredientsList(dataSet2);
   currentUser = new User();
   currentUser.generateRandomUser(dataSet3.usersData);
-}
+};
 
 function makeRecipesList(dataSet) {
   recipeData = dataSet.recipeData.map((element) => {
     return new Recipe(element);
   });
-}
+};
 
 function makeIngredientsList(dataSet) {
   ingredientsData = dataSet.ingredientsData.map((element) => {
     return new Ingredient(element);
   });
-}
+};
 
 //EVENT LISTENERS-------------------------------------------------
 //Navbar EVENT LISTENERS ---------
 //Home Page EVENT LISTENERS --------
 //All Recipes Page EVENT LISTENERS --------
-allRecipesMain.addEventListener('click', loadSpecificRecipe); //BRETT ADDITION, KEEP ✅
+allRecipesMain.addEventListener('click', loadSpecificRecipe);
 allReipesPageButton.addEventListener('click', displayAllRecipesPage);
 allRecipeFilterTagOptions.addEventListener('click', displayRecipesOfSameTag);
+
 //Saved Recipes Page EVENT LISTENERS --------
 savedReipesPageButton.addEventListener('click',displaySavedRecipesPage);
 allRecipeThumbnailsSection.addEventListener('click', deleteSavedRecipe);
+
 //Specific Recipe Page EVENT LISTENERS --------
 specificRecipeSaveButton.addEventListener('click', addToRecipesToCook);
+
 
 
 //FUNCTIONS------------------------------------------------------
@@ -110,11 +110,10 @@ specificRecipeSaveButton.addEventListener('click', addToRecipesToCook);
 //Home Page FUNCTIONS --------
 //All Recipes Page FUNCTIONS --------
 function displayAllRecipesPage() {
-  specificRecipePage.classList.add('hide')
-  allRecipesMain.classList.remove('hide')
-  console.log('I am listening!')
+  // specificRecipePage.classList.add('hide');
+  // allRecipesMain.classList.remove('hide');
   createPageTitle('ALL RECIPES');
-  displayRecipeThumbnails(allRecipes.listOfAllRecipes, '', 'all-recipe-thumbnail' );
+  displayRecipeThumbnails(allRecipes.listOfAllRecipes, '', 'all-recipe-thumbnail');
   createListOfTags(allRecipes.listOfAllRecipes);
 };
 
@@ -123,7 +122,6 @@ function createPageTitle(title) {
 };
 
 //Both ALL and Saved Recipe Pages
-
 function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
   let recipesThumbnailsSection = '';
   recipesList.forEach(recipe => {
