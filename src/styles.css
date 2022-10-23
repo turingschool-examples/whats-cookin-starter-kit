@@ -42,19 +42,10 @@
   align-items: center;
 }
 
-.input--filter {
-  width: 20%;
-  height: 5%;
-  margin: 10px;
-  font-size: 3vh;
-  border: 2px white solid;
-  border-radius: 20px;
-}
-
-.input--search {
+.input--filter, .input--search {
   width: 20%;
   height: 50%;
-  margin: 0px;
+  margin: 10px;
   font-size: 3vh;
   border: 2px white solid;
   border-radius: 20px;

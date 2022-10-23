@@ -30,6 +30,7 @@ const allRecipes40to49 = document.getElementById('list--recipes-40-49');
 const savedRecipesList1 = document.getElementById('list--saved-recipes-0-9');
 const savedRecipesList2 = document.getElementById('list--saved-recipes-10-19');
 const savedRecipesList3 = document.getElementById('list--saved-recipes-20-29');
+const allRecipesLists = [allRecipes0to9, allRecipes10to19, allRecipes20to29, allRecipes30to39, allRecipes40to49]
 const recipeCard1 = document.getElementById('card--recipe1');
 const recipeCard2 = document.getElementById('card--recipe2');
 const recipeCard3 = document.getElementById('card--recipe3');
@@ -87,6 +88,13 @@ recipeListsContainer.addEventListener('click', (event) => {
     displayRecipeDetails(event);
 });
 
+filterField.addEventListener('input', (event) => {
+    displayFilteredRecipes(event);
+})
+
+searchField.addEventListener('input', (event) => {
+    displaySearchedRecipes(event);
+})
 
 // GLOBAL VARIABLES LIVE HERE
 const allRecipes = new RecipeRepository(recipeData);
@@ -97,12 +105,14 @@ const allRecipesClassObjects = allRecipes.returnAllRecipesObjectsArray();
 const show = element => element.classList.remove('hidden');
 const hide = element => element.classList.add('hidden');
 
+const clearRecipesList = () => {
+    allRecipesLists.forEach(list => {
+        list.innerHTML = '';
+    });
+};
+
 const displayAllRecipes = () => {
-    allRecipes0to9.innerHTML = '';
-    allRecipes10to19.innerHTML = '';
-    allRecipes20to29.innerHTML = '';
-    allRecipes30to39.innerHTML = '';
-    allRecipes40to49.innerHTML = '';
+    clearRecipesList();
     allRecipes.recipeData.sort((a, b) => {
         // ---------------- Can this be refactored????
         if (a.name > b.name) {
@@ -125,7 +135,6 @@ const displayAllRecipes = () => {
         };
     });
 };
-
 
 const userData = {
     "name": "Saige O'Kon",
@@ -301,13 +310,72 @@ const displaySavedRecipes = () => {
         } else if (index <= 30) {
             savedRecipesList3.innerHTML += `<li data-id="${recipe.id}">
             ${user.recipesToCook[index].name}</li>`;
+
+const displayFilteredRecipes = (event) => {
+    if (!event.target.value) {
+        allRecipesLists.forEach(list => {
+            show(list)
+        });
+        displayAllRecipes();
+        return;
+    }
+    const filteredRecipes = allRecipes.filteredByTag(event.target.value);
+    allRecipesLists.forEach(list => {
+        hide(list)
+    });
+    clearRecipesList();
+    filteredRecipes.forEach((recipe, index) => {
+        if (index < 10) {
+            allRecipes0to9.classList.remove('hidden');
+            allRecipes0to9.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        } else if (index < 20) {
+            allRecipes10to19.classList.remove('hidden');
+            allRecipes10to19.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        } else if (index < 30) {
+            allRecipes20to29.classList.remove('hidden');
+            allRecipes20to29.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        } else if (index < 40) {
+            allRecipes30to39.classList.remove('hidden');
+            allRecipes30to39.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        } else {
+            allRecipes40to49.classList.remove('hidden');
+            allRecipes40to49.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
         };
     });
 };
 
-
-
-
+const displaySearchedRecipes = (event) => {
+    if (!event.target.value) {
+        allRecipesLists.forEach(list => {
+            show(list)
+        });
+        displayAllRecipes();
+        return;
+    }
+    const filteredRecipes = allRecipes.filteredByName(event.target.value);
+    allRecipesLists.forEach(list => {
+        hide(list)
+    });
+    clearRecipesList();
+    filteredRecipes.forEach((recipe, index) => {
+        if (index < 10) {
+            allRecipes0to9.classList.remove('hidden');
+            allRecipes0to9.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        } else if (index < 20) {
+            allRecipes10to19.classList.remove('hidden');
+            allRecipes10to19.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        } else if (index < 30) {
+            allRecipes20to29.classList.remove('hidden');
+            allRecipes20to29.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        } else if (index < 40) {
+            allRecipes30to39.classList.remove('hidden');
+            allRecipes30to39.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        } else {
+            allRecipes40to49.classList.remove('hidden');
+            allRecipes40to49.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+        };
+    });
+};
 
 
 const displayRecipeDetails = (event) => {
