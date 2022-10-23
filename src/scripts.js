@@ -87,6 +87,7 @@ Promise.all([
 
   createInstances(recipeData, ingredientsData, userData);
   allRecipes = new RecipeRepository(recipeData);
+  populateTagFilter(allRecipes.listOfAllRecipes);
 });
 
 function createInstances(dataSet1, dataSet2, dataSet3) {
@@ -187,7 +188,9 @@ function createListOfTags(recipesList) {
   let allTags = recipesList.reduce((prev, current) => {
     return prev.concat(current.tags);
   }, []);
-  return allTags.filter((recipe, index) => allTags.indexOf(recipe) === index);
+  return allTags
+    .filter((recipe, index) => allTags.indexOf(recipe) === index)
+    .sort();
 }
 
 function populateTagFilter(recipeList) {
