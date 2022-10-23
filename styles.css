@@ -94,6 +94,7 @@ nav {
   background-image: url("https://i2.wp.com/michellescotttucker.com/wp-content/uploads/2014/10/getty-cockatoo-still-life.jpg");
   background-repeat: no-repeat;
   background-size: 80vw 22vw;
+  border-radius: 5vw;
 }
 
 .all-recipes-header {
