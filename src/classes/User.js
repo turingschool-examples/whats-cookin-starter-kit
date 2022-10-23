@@ -25,18 +25,22 @@ class User {
 
   filterByNameOrIngredient(input) {
     let filteredRecipes = [];
+    input = input.toLowerCase();
     
     this.favoriteRecipes.forEach(recipe => {
-      if (recipe.name.includes(input)) {
+      if (recipe.name.toLowerCase().includes(input)) {
         filteredRecipes.push(recipe)
       } else {
         recipe.ingredients.forEach(ingredient => {
-          if (ingredient.includes(input)) {
-            filteredRecipes.push(recipe)
+          if (ingredient.name.toLowerCase().includes(input)) {
+            if (!filteredRecipes.includes(recipe)) {
+              filteredRecipes.push(recipe)
+            }
           }
         })
       }
     })
+
     return filteredRecipes;
   }
 
