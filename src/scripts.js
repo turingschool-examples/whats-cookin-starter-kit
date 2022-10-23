@@ -86,7 +86,19 @@ let updateModal = targetObject => {
   modalImage.alt = targetObject.name
   ingredientsParent.innerHTML = ``
   targetObject.ingredients.forEach(ingredient => {
-    ingredientsParent.innerHTML += `<ul>${ingredient.amount} ${ingredient.unit} ${ingredient.name}</ul>`
+    let amount = ingredient.amount
+    if (amount === 0.25) {
+      amount = "1/4"
+    } else if (amount === 0.3333333333333333) {
+      amount = "1/3"
+    } else if (amount === 0.5) {
+      amount = "1/2"
+    } else if (amount === 0.6666666666666666) {
+      amount = "2/3"
+    } else if (amount === 0.75) {
+      amount = "3/4"
+    }
+    ingredientsParent.innerHTML += `<ul>${amount} ${ingredient.unit} ${ingredient.name}</ul>`
   })
   instructionsParent.innerHTML = ``
   targetObject.instructions.forEach(item => {
