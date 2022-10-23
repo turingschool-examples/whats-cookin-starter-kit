@@ -25,6 +25,7 @@ const recipeListsContainer = document.getElementById('section--recipe-lists');
 const savedRecipesContainer = document.getElementById('section--saved-recipes');
 const savedRecipesListsContainer = document.getElementById('section--saved-recipe-lists');
 const allRecipesContainer = document.getElementById('section--all-recipes');
+const recipeImageContainer = document.getElementById('section--recipe-image')
 const ingredientContainer = document.getElementById('ul--ingredient-list');
 const instructionsContainer = document.getElementById('ul--instructions');
 const allRecipes0to9 = document.getElementById('list--recipes-0-9');
@@ -809,8 +810,8 @@ const displaySavedRecipes = () => {
 };
 
 const displayFilteredRecipesSaved = (event) => {
-   if (!event.target.value) {
-    savedRecipesLists.forEach(list => {
+    if (!event.target.value) {
+        savedRecipesLists.forEach(list => {
             show(list)
         });
         displaySavedRecipes();
@@ -938,11 +939,18 @@ const displayRecipeDetails = (event) => {
     hide(savedRecipesContainer);
     hide(allRecipesContainer);
     recipeTitle.innerText = currentRecipe.name;
+
+    recipeImageContainer.innerHTML = '';
+    // NOTE - Will need to add alt text to this image--------------//
+    recipeImageContainer.innerHTML += `<p><img src="${currentRecipe.returnRecipeImage()}"></p>`;
+
     instructionsContainer.innerHTML = '';
     currentRecipe.returnRecipeInstructions().map(element => instructionsContainer.innerHTML += `<li>${element}</li>`);
+
     ingredientContainer.innerHTML = '';
     currentRecipe.returnRecipeIngredientsInfo()
         .map(ingredientInfo => ingredientContainer.innerHTML += `<li>${ingredientInfo}</li>`);
+
     ingredientContainer.innerHTML += `<div class="text--total-cost">Total cost: ${currentRecipe.returnCostOfIngredients()}</div>`;
 };
 
