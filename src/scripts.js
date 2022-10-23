@@ -42,6 +42,8 @@ const modalRecipeTitle = document.getElementById("modal-title")
 const modalImage = document.getElementById("modal-image")
 const ingredientsParent = document.getElementById("ingr-parent")
 const instructionsParent = document.getElementById("instructions-parent")
+const myRecipesButton = document.getElementById("my-recipes")
+const allRecipesButton = document.getElementById("all-recipes")
 
 // ---------------------------EVENT LISTENERS---------------------------
 
@@ -84,6 +86,9 @@ closeModalButton.addEventListener("click", () => MicroModal.close("modal-1"))
 
 modalSaveRecipeButton.addEventListener("click", () => user.storedFavoriteRecipes.push(currentlyViewedRecipe))
 
+myRecipesButton.addEventListener("click", displayMyRecipes)
+allRecipesButton.addEventListener("click", displayAllRecipes)
+
 // ---------------------------DOM UPDATING---------------------------
 
 function createRecipeTile(recipe) {
@@ -98,11 +103,19 @@ function createRecipeTile(recipe) {
 }
 
 function displayRecipeTiles(recipeArray) {
+    allRecipesContainer.innerHTML = ''
   for (var i = 0; i < recipeArray.length; i++) {
     createRecipeTile(recipeArray[i])
   }
 }
 
+function displayAllRecipes() {
+    displayRecipeTiles(recipeRepository.recipeList)
+}
+
+function displayMyRecipes() {
+    displayRecipeTiles(user.favoriteRecipes)
+}
 
 let updateModal = targetObject => {
   modalTagParent.innerHTML = ``
