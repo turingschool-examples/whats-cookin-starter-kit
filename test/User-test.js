@@ -10,8 +10,8 @@ describe('User', function() {
   beforeEach('define variables for test suite', function() {
     user1 = new User('Melvin Gordon', 3, [{"ingredient": 11297, "amount": 7}]);
     user2 = new User();
-    recipe1 = allRecipes.listOfRecipes[0];
-    recipe2 = allRecipes.listOfRecipes[1];
+    recipe1 = allRecipes.listOfAllRecipes[0];
+    recipe2 = allRecipes.listOfAllRecipes[1];
     });
 
   it('Should be a function', function() {

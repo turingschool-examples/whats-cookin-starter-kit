@@ -66,7 +66,7 @@ let recipe2 = {
   ]
 };
 let allRecipes = {
-  listOfRecipes: [recipe1, recipe2]
+  listOfAllRecipes: [recipe1, recipe2]
 }
 
 export default allRecipes
