@@ -20,7 +20,9 @@ let currentUser;
 let allRecipes;
 
 //Navbar VARIABLES ---------
+
 //Home Page VARIABLES --------
+
 //All Recipes Page VARIABLES --------
 //Saved Recipes Page VARIABLES --------
 //Specific Recipe Page VARIABLES --------
@@ -30,10 +32,23 @@ let currentRecipe;
 
 //QUERY SELECTORS-----------------------------------------------
 //Navbar QUERY SELECTORS ---------
-const allReipesPageButton = document.querySelector('.all-recipes-button');
-const savedReipesPageButton = document.querySelector('.saved-recipes-button');
+const userName = document.querySelector('#userName');
+const homeButton = document.querySelector('#homeButton');
+const aboutButton = document.querySelector('#aboutButton');
+const allRecipesButton = document.querySelector('#allRecipesButton');
+const savedRecipeButton = document.querySelector('#savedRecipesButton');
+const searchButton = document.querySelector('#searchButton');
+const searchButtonInput = document.querySelector('#searchInput');
+const homePage = document.querySelector('#homePage');
+const aboutPage = document.querySelector('#aboutPage');
 
 //Home Page QUERY SELECTORS--------
+const recipeDisplay = document.querySelector('#featuredRecipeDisplay')
+const featuredRecipeName = document.querySelector('#featuredRecipeName')
+const appetizerFilter = document.querySelector('#appetizerFilter')
+const mainCourseFilter = document.querySelector('#mainCourseFilter')
+const snackFilter = document.querySelector('#snackFilter')
+
 //All Recipes Page QUERY SELECTORS--------
 const allRecipesMain = document.querySelector('.all-recipes-main');
 const allRecipesPageTitle = document.querySelector('.page-title');
@@ -89,14 +104,19 @@ function makeIngredientsList(dataSet) {
 
 //EVENT LISTENERS-------------------------------------------------
 //Navbar EVENT LISTENERS ---------
+homeButton.addEventListener('click', displayHomePage)
+aboutButton.addEventListener('click', displayAboutPage)
+allRecipesButton.addEventListener('click', displayAllRecipes)
+savedRecipeButton.addEventListener('click', displaySavedRecipes)
+searchButton.addEventListener('click', displayARecipe)
 //Home Page EVENT LISTENERS --------
 //All Recipes Page EVENT LISTENERS --------
 allRecipesMain.addEventListener('click', loadSpecificRecipe);
-allReipesPageButton.addEventListener('click', displayAllRecipesPage);
+allRecipesButton.addEventListener('click', displayAllRecipesPage);
 allRecipeFilterTagOptions.addEventListener('click', displayRecipesOfSameTag);
 
 //Saved Recipes Page EVENT LISTENERS --------
-savedReipesPageButton.addEventListener('click',displaySavedRecipesPage);
+savedRecipeButton.addEventListener('click',displaySavedRecipesPage);
 allRecipeThumbnailsSection.addEventListener('click', deleteSavedRecipe);
 
 //Specific Recipe Page EVENT LISTENERS --------
@@ -107,6 +127,32 @@ specificRecipeSaveButton.addEventListener('click', addToRecipesToCook);
 //FUNCTIONS------------------------------------------------------
 //Global FUNCTIONS -------------
 //Navbar FUNCTIONS ---------
+function displayAPage(appear, goAway1, goAway2, goAway3) {
+  appear.classList.remove('hide')
+  goAway1.classList.add('hide')
+  goAway2.classList.add('hide')
+  goAway3.classList.add('hide')
+}
+function displayHomePage() {
+  displayAPage(homePage, aboutPage, allRecipesMain, specificRecipePage)
+}
+
+function displayAboutPage() {
+  displayAPage(aboutPage, homePage, allRecipesMain, specificRecipePage)
+
+}
+
+function displayAllRecipes() {
+  displayAPage(allRecipesMain, homePage, aboutPage, specificRecipePage)
+}
+
+function displaySavedRecipes() {
+  displayAPage(allRecipesMain, homePage, aboutPage, specificRecipePage)
+}
+
+function displayARecipe() {
+  displayAPage(specificRecipePage, allRecipesMain, homePage, aboutPage)
+}
 //Home Page FUNCTIONS --------
 //All Recipes Page FUNCTIONS --------
 function displayAllRecipesPage() {
