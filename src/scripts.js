@@ -195,6 +195,7 @@ function displaySearchedRecipeTiles(searchedRecipes) {
   for (var i = 0; i < searchedRecipes.length; i++) {
     createRecipeTile(searchedRecipes[i])
   }
+  updateBookmarks()
 }
 
 let updateModal = targetObject => {
