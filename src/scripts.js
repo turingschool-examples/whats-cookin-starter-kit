@@ -58,6 +58,7 @@ const allRecipeFilterTagOptions = document.querySelector(
   ".list-of-tag-options"
 );
 const searchFilterButton = document.querySelector(".filter-button");
+
 const inputForTags = document.querySelector(".list-of-tag-options");
 
 //Saved Recipes Page QUERY SELECTORS--------
@@ -195,6 +196,9 @@ function displaySearchRecipes() {
   searchButtonInput.innerText = '';
 }
 //Home Page FUNCTIONS --------
+function clearSearchbar(inputArea) {
+  return inputArea.innerHTML = ''
+}
 //All Recipes Page FUNCTIONS --------
 function displayAllRecipesPage() {
   // specificRecipePage.classList.add('hide');
@@ -257,6 +261,7 @@ function displayRecipesOfSameTag() {
       inputForTags.value,
       allRecipes.listOfAllRecipes
     );
+    
   }
   displayRecipeThumbnails(recipesToTag, "", "");
 }
