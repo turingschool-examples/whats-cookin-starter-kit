@@ -24,6 +24,8 @@ button {
   border: solid rgb(150, 53, 35);
   border-radius: 5%;
   color: rgb(87, 36, 31);
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 
 input,
@@ -38,7 +40,8 @@ nav {
   flex-direction: row;
   align-items: stretch;
   justify-content: space-between;
-  border: solid rgb(87, 36, 31);
+  border: solid rgb(150, 53, 35);
+  background-color: rgb(156, 126, 68);
 }
 
 /* .welcome-wrapper {
@@ -105,7 +108,8 @@ nav {
 .about-paragraph {
   display: flex;
   justify-content: center;
-  border: 2px solid rgb(87, 36, 31);
+  border: 2px solid rgb(150, 53, 35);
+  background-color: rgb(255, 227, 171);
 }
 
 #about {
@@ -176,17 +180,16 @@ nav {
   justify-content: space-around;
 }
 /* ~~~ All Recipe/Saved Pages CSS ~~~ */
-.all-recipes-main,
-.saved-recipes-main {
+.all-recipes-main {
   background-image: url(/src/images/Asset9.png);
 }
 
 .page-title {
   font-family: "Playball", cursive;
   font-size: 5vw;
-  color: rgb(150, 53, 35);
-  text-shadow: -1px 1px 0 rgb(87, 36, 31), 1px 1px 0 rgb(87, 36, 31),
-    1px -1px 0 rgb(87, 36, 31), -1px -1px 0 rgb(87, 36, 31);
+  color: rgb(87, 36, 31);
+  text-shadow: -1px 1px 0 rgb(150, 53, 35), 1px 1px 0 rgb(150, 53, 35),
+    1px -1px 0 rgb(150, 53, 35), -1px -1px 0 rgb(150, 53, 35);
   margin-left: 2%;
 }
 
@@ -208,7 +211,10 @@ nav {
   margin-left: 2vw;
   margin-right: 2vw;
   margin-top: 2vh;
-  margin-bottom: 2vh;
+  margin-bottom: 1vh;
+  background-color: rgb(255, 227, 171);
+  color: rgb(87, 36, 31);
+  border: solid 2px rgb(156, 126, 68);
 }
 
 .single-recipe-img {
@@ -221,10 +227,22 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 14vw;
+  text-align: center;
 }
 
 .delete-recipe {
   cursor: pointer;
+}
+
+.error-message {
+  font-size: 150%;
+  margin-left: 5%;
+  margin-top: -2%;
+  width: 30vw;
+  background-color: rgb(255, 227, 171);
+  border: solid 2px rgb(150, 53, 35);
+  padding: 5%;
 }
 
 .recipe-title-text {

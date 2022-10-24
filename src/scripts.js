@@ -188,7 +188,7 @@ function displaySearchRecipes() {
     displayRecipeThumbnails(recipeFilterName, "", "");
   } else {
     allRecipeThumbnailsSection.innerHTML =
-      "<h3> Sorry your dish can't be found ... order out!</h3>";
+      "<h3 class='error-message'> Sorry, no dish with that name or tag can be be found ... order out!</h3>";
   }
   searchButtonInput.innerText = "";
 }
