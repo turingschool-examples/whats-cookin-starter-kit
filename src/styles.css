@@ -1,9 +1,9 @@
 /* colors:
- red = 150, 53, 35  
- brown = 88,46, 31
- green = 156,126,68
- beige = 233, 203, 144
- light green = 146,146, 112
+ red = rgb(150, 53, 35) 
+ brown =  rgb(87, 36, 31);
+ green = rgb(156,126,68)
+ beige = rgb(255, 227, 171)
+ light green = rgb(146,146, 112)
  */
 
 /* font-family: 'Abril Fatface', cursive;
@@ -17,15 +17,28 @@ body {
 
 button {
   cursor: pointer;
+  height: 5vh;
+  width: 10vw;
+  font-size: 12pt;
+  background-color: rgb(255, 227, 171);
+  border: solid rgb(150, 53, 35);
+  border-radius: 5%;
+  color: rgb(87, 36, 31);
 }
 
+input,
+select {
+  height: 4vh;
+  width: 20vw;
+  font-size: 12pt;
+}
 /* Navagation display */
 nav {
   display: flex;
   flex-direction: row;
-  border: solid;
   align-items: stretch;
   justify-content: space-between;
+  border: solid rgb(87, 36, 31);
 }
 
 /* .welcome-wrapper {
@@ -42,9 +55,8 @@ nav {
 /* .welcome-wrapper and .user-wrapper are commented out because Courtney commented out those two associated HTML elements for now. We can add this back in if we decide to use the Welcome: User on our homepage. */
 
 .nav-btns-wrapper {
-  width: 35rem;
-  margin-top: 5px;
-  margin-right: 20px;
+  width: 70rem;
+  margin: 15px;
   height: 3rem;
   display: flex;
   align-items: center;
@@ -55,30 +67,26 @@ nav {
 
 #title {
   align-self: flex-start;
-  flex-wrap: wrap;
-  font-size: 90pt;
+  font-size: 95pt;
   font-family: "Abril Fatface", cursive;
-  width: 900px;
-  margin-top: 30px;
-  margin-left: 65px;
-  color: rgb(150, 53, 35);
-}
-
-#logo {
-  height: 300px;
-  width: 400px;
+  width: 1000px;
+  margin-top: 10px;
+  margin-left: 30px;
+  color: rgb(87, 36, 31);
+  letter-spacing: 7px;
+  text-shadow: -1px 1px 0 rgb(150, 53, 35), 1px 1px 0 rgb(150, 53, 35),
+    1px -1px 0 rgb(150, 53, 35), -1px -1px 0 rgb(150, 53, 35);
 }
 
 .homepage-area {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-evenly; */
-  height: 90vh;
+  height: 88vh;
   background-image: url("./images/Asset1.png");
   background-repeat: no-repeat;
-  background-position-x: 90%;
+  background-position-x: 97%;
   background-position-y: bottom;
-  background-size: 37%;
+  background-size: 38%;
 }
 
 /* About Page section */
