@@ -174,10 +174,12 @@ function displayRecipeTiles(recipeArray) {
 
 function displayAllRecipes() {
   displayRecipeTiles(recipeRepository.recipeList)
+  updateBookmarks()
 }
 
 function displayMyRecipes() {
   displayRecipeTiles(user.favoriteRecipes)
+  updateBookmarks()
 }
 
 function displaySearchedRecipeTiles(searchedRecipes) {
