@@ -13,14 +13,17 @@ We have created a recipe tracking / meal planning application that allows users 
 - Implement a robust testing suite using TDD
 - Make network requests to retrieve data
 
-## Set Up
+## Project Install
 
-1. Within your group, decide on one person to have the project repository on their Github account. This person will *fork* this repository - on the top right corner of the page, click the fork button.
-2. All group members should then clone down the forked repository (make sure that everyone is added as a collaborator as well). Since you don't want your project to be named "whats-cookin-starter-kit", add an optional argument after the repo url when cloning. The command should look like this: `git clone [remote-address] [what you want to name the repo]`.
-3. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` or `npm i` to install project dependencies.
-4. Run npm start in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page). `Control + C` is the command to stop running the local server. Closing the terminal without stopping the server first could allow the server to continue to run in the background and cause problems. This command is not specific to Webpack; make note of it for future use.
-5. Make sure both members of your team are collaborators on the forked repo.
-6. Do not run `npm audit fix --force`. This will update to the latest version of packages. We need to be using `webpack-dev-server@3.11.2` which is not the latest version. If you start to run into Webpack errors, first check that all group members are using the correct version.
+1. Go to [this repository](https://github.com/dgubko/whats-cookin) on Github
+2. Click "Fork", then "Create New Fork"
+3. Click "Code"
+4. Copy the SSH url provided by GitHub
+5. In the terminal, navigate to the new project repository
+6. Type "git clone" and paste the URL
+7. Open the repo in your text editor
+8. Type open index.html in the terminal
+9. Manipulate the application in the browser window
 
 ## Preview
 
@@ -39,17 +42,17 @@ We have created a recipe tracking / meal planning application that allows users 
 - HTML
 - CSS
 - TDD Testing: Mocha / Chai
-- 
+- APIs
 
 ## Reflections
 
 ### Wins
-- 
-- 
-- 
+- We were able to divide the workload pretty evenly
+- Fetching the APIs gave us some trouble at first, but we were able to figure it out quickly
+- We created a detailed DTR at the start of our project, which greatly improved our ability to work together
 
 ### Challenges
-- 
-- 
-- 
+- It was challenging to write six classes and get them to interact with each other
+- We had to do some research to find technical solutions 
+- We had some scheduling conflicts, which made meeting everyone together difficult at times
  
