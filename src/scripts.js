@@ -41,6 +41,7 @@ const featuredRecipeTitle = document.querySelector('.featured-recipe-title')
 let filter = document.getElementById('filter')
 const filterClearButton = document.querySelector('#filter-clear-button')
 const featuredIcon = document.querySelector('.featured-bookmark-icon')
+const welcomeMessage = document.querySelector('.welcome-message')
 
 // ---------------------------EVENT LISTENERS---------------------------
 
@@ -65,6 +66,7 @@ function startPage() {
   populateTags()
   let randomNum = Math.floor(Math.random() * usersData.length)
   user = new User(usersData[randomNum])
+  welcomeMessage.innerText = `Welcome, ${user.name.split(" ")[0]}!`
   displayFeaturedRecipe()
   MicroModal.init({
     openClass: 'is-open',
