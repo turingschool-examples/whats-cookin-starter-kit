@@ -6,17 +6,11 @@ import ingredientsData from "../src/data/ingredients"
 
 describe('RecipeRepository', () => {
   let recipeRepository
-  // let recipeData
-  // let ingredientsData
   
-  beforeEach(() => {
-    // recipeData = recipeData.recipeData
-    // ingredientsData = ingredientsData.ingredientsData
-  
-    
+  beforeEach(() => {  
     recipeRepository = new RecipeRepository(recipeData, ingredientsData)
   })
-  // test
+  
   it('should be an instance of RecipeRepository', () => {
     expect(recipeRepository).to.be.an.instanceOf(RecipeRepository)
   })
