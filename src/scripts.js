@@ -121,11 +121,10 @@ allRecipesButton.addEventListener("click", displayAllRecipes)
 
 filter.addEventListener('input', event => {
   filterClearButton.disabled = false
-  
-  let input = event.target.value
   filterClearButton.classList.remove('disabled')
-
-  if (filter.classList.contains('my-recipes')) {
+  let input = event.target.value
+  
+  if (myRecipesButton.classList.contains('selected-view')) {
     let recipes = user.filterByTag(input)
     displaySearchedRecipeTiles(recipes)
   } else {
