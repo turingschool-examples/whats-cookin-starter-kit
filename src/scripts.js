@@ -34,6 +34,8 @@ const modalImage = document.getElementById("modal-image")
 const ingredientsParent = document.getElementById("ingr-parent")
 const instructionsList = document.getElementById("instructions-list")
 const searchBar = document.getElementById('search-bar')
+const myRecipesButton = document.getElementById("my-recipes")
+const allRecipesButton = document.getElementById("all-recipes")
 const featuredRecipeParent = document.getElementById('featured-recipe-parent')
 const featuredRecipeTitle = document.querySelector('.featured-recipe-title')
 let filter = document.getElementById('filter')
@@ -58,9 +60,9 @@ function fetchData(urls) {
 
 function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
-  user = new User(usersData.usersData[0])
-  displayAllRecipeTiles()
+  displayAllRecipeTiles(recipeRepository.recipeList)
   populateTags()
+  user = new User(usersData.usersData[0])
   displayFeaturedRecipe()
   MicroModal.init({
     openClass: 'is-open',
@@ -109,6 +111,10 @@ searchBar.addEventListener('keyup', event => {
     displaySearchedRecipeTiles(recipes)
   }
 })
+
+
+myRecipesButton.addEventListener("click", displayMyRecipes)
+allRecipesButton.addEventListener("click", displayAllRecipes)
 
 filter.addEventListener('input', event => {
   filterClearButton.disabled = false
@@ -159,10 +165,19 @@ function createRecipeTile(recipe) {
 
 //this function will need to be refactored to take in arrays dynamically
 //currently displayAllRecipeTiles & displaySearchedRecipeTiles are doing the same thing
-function displayAllRecipeTiles() {
-  for (var i = 0; i < recipeRepository.recipeList.length; i++) {
-    createRecipeTile(recipeRepository.recipeList[i])
+function displayRecipeTiles(recipeArray) {
+  allRecipesContainer.innerHTML = ''
+  for (var i = 0; i < recipeArray.length; i++) {
+    createRecipeTile(recipeArray[i])
   }
+}
+
+function displayAllRecipes() {
+  displayRecipeTiles(recipeRepository.recipeList)
+}
+
+function displayMyRecipes() {
+  displayRecipeTiles(user.favoriteRecipes)
 }
 
 function displaySearchedRecipeTiles(searchedRecipes) {
@@ -220,6 +235,7 @@ let displayFeaturedRecipe = () => {
 
 function addRecipeToFavorites(e) {
   recipeRepository.recipeList.forEach(recipe => {
+
     if (recipe.id === Number(e.target.id)) {
       user.addRecipeToFavorites(recipe)
       console.log(user.favoriteRecipes)
