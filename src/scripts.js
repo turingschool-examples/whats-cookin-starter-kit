@@ -197,7 +197,7 @@ function displaySearchRecipes() {
 }
 //Home Page FUNCTIONS --------
 function clearSearchbar(inputArea) {
-  return inputArea.innerHTML = ''
+  return inputArea.innerHTML ='          '
 }
 //All Recipes Page FUNCTIONS --------
 function displayAllRecipesPage() {
@@ -261,7 +261,7 @@ function displayRecipesOfSameTag() {
       inputForTags.value,
       allRecipes.listOfAllRecipes
     );
-    
+   allRecipeFilterTagOptions.selectedIndex = 0;
   }
   displayRecipeThumbnails(recipesToTag, "", "");
 }
