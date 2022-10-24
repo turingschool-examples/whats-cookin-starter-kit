@@ -55,9 +55,9 @@ function fetchData(urls) {
     })
 }
 
-(function () {
+window.addEventListener('load', () => {
   fetchData([usersURL, recipesURL, ingredientsURL])
-})()
+})
 
 function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
@@ -114,7 +114,6 @@ searchBar.addEventListener('keyup', event => {
   }
 })
 
-
 myRecipesButton.addEventListener("click", displayMyRecipes)
 allRecipesButton.addEventListener("click", displayAllRecipes)
 
@@ -165,9 +164,6 @@ function createRecipeTile(recipe) {
             <h2>${recipe.tags.join(', ')}</h2>
         </div>`
 }
-
-//this function will need to be refactored to take in arrays dynamically
-//currently displayAllRecipeTiles & displaySearchedRecipeTiles are doing the same thing
 
 function displayRecipeTiles(recipeArray) {
   allRecipesContainer.innerHTML = ''
@@ -255,7 +251,6 @@ function addRecipeToFavorites(e) {
 
     if (recipe.id === Number(e.target.id)) {
       user.addRecipeToFavorites(recipe)
-      console.log(user.favoriteRecipes)
     }
   })
   updateBookmarks()
