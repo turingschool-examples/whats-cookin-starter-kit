@@ -86,25 +86,12 @@ COLORS::after
   position: relative;
 }
 
-.left-random-card {
-  background-color: #E89F71;
-  height: 25vh;
-  width: 15vw;
-  border-style: solid;
-}
-
-.middle-random-card {
-  background-color: #E89F71;
-  height: 25vh;
-  width: 15vw;
-  border-style: solid;
-}
-
-.right-random-card {
-  background-color: #E89F71;
-  height: 25vh;
-  width: 15vw;
-  border-style: solid;
+.card {
+  background: none;
+  border: none;
+  height: 20vh;
+  Width: 10vh;
+  
 }
 
 /* .image-left-header {
