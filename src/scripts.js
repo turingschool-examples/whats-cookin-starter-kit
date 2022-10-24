@@ -274,18 +274,10 @@ function displaySavedRecipesPage() {
 }
 
 function deleteSavedRecipe(event) {
-  currentUser.recipesToCook.map((recipe) => {
-    if (
-      event.target.classList.contains("delete-recipe") &&
-      recipe.id === parseInt(event.target.parentElement.parentElement.id)
-    ) {
-      currentUser.recipesToCook.splice(
-        currentUser.recipesToCook.indexOf(recipe),
-        1
-      );
-    }
-  });
-  displayRecipeThumbnails(currentUser.recipesToCook, "🗑", "delete-recipe");
+  if (event.target.classList.contains('delete-recipe')) {
+    currentUser.removeRecipe(+event.target.parentElement.parentElement.id)
+    displayRecipeThumbnails(currentUser.recipesToCook, '🗑', 'delete-recipe')
+  }
 }
 
 //Specific Recipe Page FUNCTIONS --------
@@ -325,7 +317,11 @@ function generateIngredientList(recipe) {
     let ingredObj = {};
     ingredObj.name = ingredientsData.find((ing) => ing.id === currIng.id).name; //iterates over all ingredients to find name
     ingredObj.unit = currIng["quantity"]["unit"];
-    ingredObj.amount = currIng["quantity"]["amount"];
+    if (currIng["quantity"]["amount"] % 1 === 0) {
+      ingredObj.amount = currIng["quantity"]["amount"];
+    } else {
+      ingredObj.amount = currIng["quantity"]["amount"].toFixed(2);
+    }
     list.push(ingredObj);
     return list;
   }, []);
@@ -340,9 +336,9 @@ function generateIngredientList(recipe) {
 
 function generateInstructions(recipe) {
   specificRecipeInstructions.innerHTML = "";
-  recipe.instructions.forEach((step) => {
+  recipe.getDirections().forEach((step) => {
     specificRecipeInstructions.innerHTML += `
-    <li>${step["instruction"]}</li>
+    <li>${step}</li>
     `;
   });
 }
@@ -354,7 +350,7 @@ function generateCost(recipe) {
   });
 
   specificRecipeCost.innerText = "";
-  specificRecipeCost.innerText = `$${totalCostDisplay}`;
+  specificRecipeCost.innerText = `$${totalCostDisplay.toFixed(2)}`;
   console.log("total cost display: ", totalCostDisplay);
 }
 

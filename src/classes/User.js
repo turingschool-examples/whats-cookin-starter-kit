@@ -1,6 +1,6 @@
 class User {
   constructor(name, id, pantry) {
-    // May need to refactor parameter to be object, will be determined by DOM needs (TBD)
+    // May need to refactor parameter(s) based on whether we make a user login page in the future
     this.name = name;
     this.id = id;
     this.pantry = pantry;
@@ -8,7 +8,6 @@ class User {
   }
 
   generateRandomUser(usersList) {
-    // Takes argument of the array of users data from either users.js or the fetch() request
     const totalUsers = usersList.length;
 
     function createRandomIndex(totalUsers) {
@@ -23,7 +22,6 @@ class User {
   }
 
   addRecipe(recipeID, allRecipes) {
-    // 🚨 Important to set up dom/HTML/CSS to have IDs so we can use that data to match here below
     this.recipesToCook.push(
       allRecipes.listOfAllRecipes.find((recipe) => recipe["id"] === recipeID)
     );
