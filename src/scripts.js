@@ -42,6 +42,7 @@ let filter = document.getElementById('filter')
 const filterClearButton = document.querySelector('#filter-clear-button')
 const featuredIcon = document.querySelector('.featured-bookmark-icon')
 const welcomeMessage = document.querySelector('.welcome-message')
+const searchError = document.getElementById('error')
 
 // ---------------------------EVENT LISTENERS---------------------------
 
@@ -126,8 +127,9 @@ filter.addEventListener('input', event => {
   
   if (myRecipesButton.classList.contains('selected-view')) {
     let recipes = user.filterByTag(input)
-    displaySearchedRecipeTiles(recipes)
-    
+    if (!!recipes) {
+      searchError.classList.remove('hidden')
+    } else { displaySearchedRecipeTiles(recipes) }
   } else {
     let recipes = recipeRepository.filterByTag(input)
     displaySearchedRecipeTiles(recipes)
@@ -146,7 +148,7 @@ filterClearButton.addEventListener('click', () => {
   } else {
       allRecipesContainer.innerHTML = ''
       displayRecipeTiles(recipeRepository.recipeList)
-      updateBookmarks();
+      updateBookmarks()
     }
 })
 
@@ -179,6 +181,12 @@ function displayRecipeTiles(recipeArray) {
   allRecipesContainer.innerHTML = ''
   for (var i = 0; i < recipeArray.length; i++) {
     createRecipeTile(recipeArray[i])
+  }
+}
+
+function showError() {
+  if (!!result) {
+    searchError.remove()
   }
 }
 
