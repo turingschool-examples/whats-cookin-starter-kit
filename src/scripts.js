@@ -60,7 +60,7 @@ function fetchData(urls) {
 
 function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
-  displayAllRecipeTiles(recipeRepository.recipeList)
+  displayRecipeTiles(recipeRepository.recipeList)
   populateTags()
   user = new User(usersData.usersData[0])
   displayFeaturedRecipe()
