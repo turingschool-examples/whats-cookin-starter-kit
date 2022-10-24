@@ -13,7 +13,9 @@ COLORS::after
 /* HEADER */
 
 .main-header {
-  background-color: #EE6983;
+  align-items: center;
+  background: none;
+  border: solid 2px #CD104D;
   display: flex;
   justify-content: space-between;
   height: 10vh;
@@ -22,37 +24,32 @@ COLORS::after
 
 #searchBar {
   border-radius: 10px;
-  height: 5vh;
+  height: 3vh;
+  justify-items: center;
   margin-top: 13px;
   margin-right: 20%;
   width: 20vw;
 }
 
-.view-all-recipes{
+.header-button {
   height: 5vh;
   width: 20vw;
   border-radius: 5px;
   color: #E89F71;
   cursor: pointer;
-  height: 5vh;
+  height: 4vh;
   margin-top: 13px;
   margin-right: 5%;
-  width: 8vw;
+  width: 9vw;
 }
 
 /* MAIN */
 
-.whole-page-container {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-
-.onload-view {
+.home-view {
   display: flex;
   height: 100%;
   justify-content: space-between;
-  overflow: scroll;
+  /* overflow: scroll; */
   width: 100%;
 }
 
@@ -68,7 +65,7 @@ COLORS::after
 .left-side-first-recipe {
   display: flex;
   flex-wrap: wrap;
-  height: 75vh;
+  height: 30vh;
   width: 70%;
 }
 
@@ -110,7 +107,7 @@ COLORS::after
   border-style: solid;
 }
 
-.image-left-header {
+/* .image-left-header {
   height: 8vh;
   width: 15vw;
   background-image: url("https://spoonacular.com/recipeImages/595736-556x370.jpg");
@@ -118,27 +115,7 @@ COLORS::after
   background-repeat: no-repeat;
   position: relative;
   background-size: cover;
-}
-
-.image-middle-header {
-  height: 8vh;
-  width: 15vw;
-  background-image: url("https://spoonacular.com/recipeImages/678353-556x370.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  background-size: cover;
-}
-
-.image-right-header {
-  height: 8vh;
-  width: 15vw;
-  background-image: url("https://spoonacular.com/recipeImages/412309-556x370.jpeg");
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  background-size: cover;
-}
+} */
 
 .main-right-side-title {
   border-style: solid;
