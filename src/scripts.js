@@ -5,23 +5,15 @@ import "./images/bookmark-tiles-unsaved.png"
 import "./images/bookmark-tiles-saved.png"
 import "./images/bookmark-unsaved.png"
 import "./images/bookmark-saved.png"
-import './images/turing-logo.png'
 import './images/whats-cookin-logo.png'
 import RecipeRepository from '../src/classes/RecipeRepository'
-// import recipeData from './data/recipes'
-// import ingredientsData from "./data/ingredients"
-// import usersData from "./data/users"
 import User from '../src/classes/User'
 import getData from './apiCalls'
 
 // ---------------------------DATA MODEL---------------------------
 
-// const recipeRepository = new RecipeRepository(recipeData, ingredientsData)
-// const user = new User(usersData[0])
-
 let recipeRepository
 let user
-let currentlyViewedRecipe
 
 let usersData
 let ingredientsData
@@ -35,15 +27,18 @@ const ingredientsURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/i
 
 const allRecipesContainer = document.querySelector('.all-recipes-container')
 const closeModalButton = document.getElementById("close-modal-button")
-const modalSaveRecipeButton = document.getElementById("modal-save-recipe")
+const modalSaveRecipeButton = document.querySelector(".modal-bookmark-icon")
 const modalTagParent = document.getElementById("modal-tag-button-parent")
 const modalRecipeTitle = document.getElementById("modal-title")
 const modalImage = document.getElementById("modal-image")
 const ingredientsParent = document.getElementById("ingr-parent")
-const instructionsParent = document.getElementById("instructions-parent")
+const instructionsList = document.getElementById("instructions-list")
 const searchBar = document.getElementById('search-bar')
+const featuredRecipeParent = document.getElementById('featured-recipe-parent')
+const featuredRecipeTitle = document.querySelector('.featured-recipe-title')
 let filter = document.getElementById('filter')
 const filterClearButton = document.querySelector('#filter-clear-button')
+const featuredIcon = document.querySelector('.featured-bookmark-icon')
 
 // ---------------------------EVENT LISTENERS---------------------------
 
@@ -57,17 +52,16 @@ function fetchData(urls) {
     })
 }
 
-
 (function () {
   fetchData([usersURL, recipesURL, ingredientsURL])
 })()
 
-
 function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
+  user = new User(usersData.usersData[0])
   displayAllRecipeTiles()
   populateTags()
-  user = new User(usersData.usersData[0])
+  displayFeaturedRecipe()
   MicroModal.init({
     openClass: 'is-open',
     disableScroll: true,
@@ -78,27 +72,33 @@ function startPage() {
   })
 }
 
-allRecipesContainer.addEventListener("click", (event) => {
+allRecipesContainer.addEventListener("click", event => {
   if (event.target.nodeName === "SECTION") { return }
 
   if (event.target.nodeName === "IMG" && (event.target.src.includes('unsaved'))) {
-    event.target.src = './images/bookmark-tiles-saved.png'
     addRecipeToFavorites(event)
     console.log("LOOK HERE +++", user.favoriteRecipes)
   } else {
-    event.target.src = './images/bookmark-tiles-unsaved.png'
     removeRecipeFromFavorites(event)
   }
   let targetObject = recipeRepository.recipeList.find(recipe => recipe.id == event.target.parentNode.id)
-  currentlyViewedRecipe = targetObject
   updateModal(targetObject)
 })
 
 closeModalButton.addEventListener("click", () => MicroModal.close("modal-1"))
 
-modalSaveRecipeButton.addEventListener("click", () => user.storedFavoriteRecipes.push(currentlyViewedRecipe))
+modalSaveRecipeButton.addEventListener("click", event => {
+  if (event.target.src.includes('unsaved')) {
+    event.target.src = './images/bookmark-saved.png'
+    addRecipeToFavorites(event)
+    console.log("LOOK HERE +++", user.favoriteRecipes)
+  } else {
+    event.target.src = './images/bookmark-unsaved.png'
+    removeRecipeFromFavorites(event)
+  }
+})
 
-searchBar.addEventListener('keyup', (event) => {
+searchBar.addEventListener('keyup', event => {
   let input = event.target.value
   //utilize toggle to switch search criteria between all recipes and favorites?
   if (searchBar.classList.contains('my-recipes')) {
@@ -110,7 +110,7 @@ searchBar.addEventListener('keyup', (event) => {
   }
 })
 
-filter.addEventListener('input', (event) => {
+filter.addEventListener('input', event => {
   filterClearButton.disabled = false
   console.log("LOOK HERE", filterClearButton.classList)
   let input = event.target.value
@@ -133,13 +133,24 @@ filterClearButton.addEventListener('click', () => {
   displayAllRecipeTiles()
 })
 
+featuredRecipeParent.addEventListener("click", event => {
+  if (event.target.nodeName === "IMG" && (event.target.src.includes('unsaved'))) {
+    addRecipeToFavorites(event)
+    console.log("LOOK HERE +++", user.favoriteRecipes)
+  } else if (event.target.nodeName === "IMG") {
+    removeRecipeFromFavorites(event)
+  } else if (event.target.nodeName === "H1") {
+    updateModal(recipeRepository.featuredRecipe)
+  }
+})
+
 // ---------------------------DOM UPDATING---------------------------
 
 function createRecipeTile(recipe) {
   allRecipesContainer.innerHTML +=
     `<div class="recipe-tile" id=${recipe.id}>
             <div class= "tile-image" style="background-image: url(${recipe.image})">
-            <img class="modal-bookmark-icon" src="./images/bookmark-tiles-unsaved.png" alt="save recipe">
+            <img class="modal-bookmark-icon bookmark-nodes" id=${recipe.id} src="./images/bookmark-tiles-unsaved.png" alt="save recipe">
             </div>
             <h1>${recipe.name}</h1>
             <h2>${recipe.tags.join(', ')}</h2>
@@ -162,11 +173,17 @@ function displaySearchedRecipeTiles(searchedRecipes) {
 }
 
 let updateModal = targetObject => {
-  console.log(targetObject)
+  if (!targetObject) { return }
   modalTagParent.innerHTML = ``
   targetObject.tags.forEach(tag => {
     modalTagParent.innerHTML += `<button>${tag}</button>`
   })
+  modalSaveRecipeButton.id = targetObject.id
+  if (user.favoriteRecipes.includes(targetObject)) {
+    modalSaveRecipeButton.src = './images/bookmark-saved.png'
+  } else if (!user.favoriteRecipes.includes(targetObject)) {
+    modalSaveRecipeButton.src = './images/bookmark-unsaved.png'
+  }
   modalRecipeTitle.innerHTML = targetObject.name
   modalImage.src = targetObject.image
   modalImage.alt = targetObject.name
@@ -187,24 +204,34 @@ let updateModal = targetObject => {
     ingredientsParent.innerHTML += `<ul>${amount} ${ingredient.unit} ${ingredient.name}</ul>`
   })
   ingredientsParent.innerHTML += `<p class="total-price">Total estimated cost to make: ${targetObject.getTotalCost()}</p>`
-  instructionsParent.innerHTML = ``
+  instructionsList.innerHTML = ``
   targetObject.instructions.forEach(item => {
-    instructionsParent.innerHTML += `<p>${item.number}. ${item.instruction}`
+    instructionsList.innerHTML += `<li>${item.instruction}</li>`
   })
   MicroModal.show("modal-1")
 }
 
+let displayFeaturedRecipe = () => {
+  featuredRecipeParent.style.backgroundImage = `url(${recipeRepository.featuredRecipe.image})`
+  featuredRecipeTitle.innerText = `${recipeRepository.featuredRecipe.name}`
+  featuredRecipeTitle.id = recipeRepository.featuredRecipe.id
+  featuredIcon.id = recipeRepository.featuredRecipe.id
+}
+
 function addRecipeToFavorites(e) {
   recipeRepository.recipeList.forEach(recipe => {
-    if (recipe.id === Number(e.path[2].id)) {
+    if (recipe.id === Number(e.target.id)) {
       user.addRecipeToFavorites(recipe)
+      console.log(user.favoriteRecipes)
     }
   })
+  updateBookmarks()
 }
 
 function removeRecipeFromFavorites(e) {
-  let id = Number(e.path[2].id)
+  let id = Number(e.target.id)
   user.removeRecipeFromFavorites(id)
+  updateBookmarks()
 }
 
 function populateTags() {
@@ -222,6 +249,16 @@ function populateTags() {
 
   allTags.forEach(tag => {
     filter.innerHTML += `<option id=${tag}>${tag}</option>`
+  })
+}
 
+let updateBookmarks = () => {
+  let allBookmarks = document.querySelectorAll('.bookmark-nodes')
+  allBookmarks.forEach(bookmark => {
+    if (user.favoriteRecipes.find(recipe => recipe.id == bookmark.id)) {
+      bookmark.src = './images/bookmark-tiles-saved.png'
+    } else {
+      bookmark.src = './images/bookmark-tiles-unsaved.png'
+    }
   })
 }

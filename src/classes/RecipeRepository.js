@@ -1,10 +1,9 @@
-// import recipeData from "../data/recipes"
-// import ingredientsData from "../scripts.js"
 import Recipe from "./Recipe"
 
 class RecipeRepository {
   constructor(recipeData, ingredientsData) {
-    this.recipeList = this.instantiateRecipes(recipeData, ingredientsData);
+    this.recipeList = this.instantiateRecipes(recipeData, ingredientsData)
+    this.featuredRecipe = this.getFeaturedRecipe()
   }
 
   instantiateRecipes(recipeData, ingredientsData) {
@@ -18,7 +17,7 @@ class RecipeRepository {
 
   filterByNameOrIngredient(input) {
     let filteredRecipes = [];
-    input = input.toLowerCase();
+    input = input.toLowerCase()
     
     this.recipeList.forEach(recipe => {
       if (recipe.name.toLowerCase().includes(input)) {
@@ -34,13 +33,13 @@ class RecipeRepository {
       }
     })
 
-    return filteredRecipes;
+    return filteredRecipes
   }
 
-  recipeOfTheDay() {
-    let randomNum = Math.floor(Math.random() * this.recipeList.length);
-    return this.recipeList[randomNum];
+  getFeaturedRecipe = () => {
+    let randomNum = Math.floor(Math.random() * this.recipeList.length)
+    return this.recipeList[randomNum]
   }
 }
 
-export default RecipeRepository;
+export default RecipeRepository
