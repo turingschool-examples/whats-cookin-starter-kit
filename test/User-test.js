@@ -1,5 +1,4 @@
 import Recipe from '../src/classes/Recipe'
-import User from '../src/classes/User'
 import ingredientsData from '../src/data/ingredients'
 import recipeData from '../src/data/recipes'
 import usersData from '../src/data/users'

@@ -1,11 +1,3 @@
-/* WIREFRAME COLORS:
-
-BLACK: #161616
-GREEN: rgb(52, 103, 81)
-RUST: rgb(200, 75, 49)
-BEIGE: rgb(236, 219, 186)
-LIGHT BEIGE: rgb(247, 243, 233) */
-
 * {
   margin: 0;
   padding: 0;
@@ -104,7 +96,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 600px;
+  height: 41vw;
   width: auto;
   background-image: url('../src/images/countertop.jpg');
   background-size: cover;
@@ -115,8 +107,8 @@ header {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  width: 600px;
-  height: 300px;
+  width: 44%;
+  aspect-ratio: 2 / 1;
   padding: 20px;
   background-color: #ECDBBA;
   background-size: cover;
@@ -124,7 +116,7 @@ header {
 }
 
 #logo {
-  height: 80%;
+  width: 38%;
 }
 
 .recipe-details {
@@ -136,19 +128,26 @@ header {
   background-color: rgb(247, 243, 233, 0.75);
   width: 75%;
   height: 75%;
-  transition-duration: 400ms;
 }
 
 .recipe-details:hover {
   transform: scale(1.05);
-  color: rgb(200, 75, 49)
+
+  transition-duration: 400ms;
+}
+
+.featured-recipe-title:hover {
+  transform: scale(1.05);
+  transition-duration: 400ms;
+  color:rgb(200, 75, 49);
+  cursor: pointer;
+
 }
 
 .featured-recipe-title-parent {
   font-family: 'Libre Baskerville', serif;
-  font-size: 1.2em;
-  width: 40%;
-
+  font-size: 1.2vw;
+  width: 40%; 
 }
 
 .special-tag {
@@ -160,18 +159,20 @@ header {
   font-size: 1em;
   background-color: #C84B31;
   color: rgb(247, 243, 233);
-  width: 15vh;
-  height: 15vh;
+  width: 30%;
+  aspect-ratio: 1;
   border-radius: 50%;
   padding: 2vh;
 }
 
 .special-tag p {
-  margin: 5px;
+  margin: 2px;
+  font-size: 1.2vw;
 }
 
 .featured-bookmark-icon {
-  height: 29%;
+  height: 4vw;
+  margin-top: 9px;
 }
 
 .featured-bookmark-icon:hover {
@@ -211,8 +212,8 @@ header {
 }
 
 .recipe-tile>h1 {
-  padding: 5px;
-  font-size: 1vw;
+  padding: 5px 5px 0px;
+  font-size: .9vw;
 }
 
 .recipe-tile>h1:hover {
@@ -223,19 +224,27 @@ header {
 
 .recipe-tile>h2 {
   flex-basis: 20%;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Work Sans', sans-serif;
+  color:#16161679;
   font-size: 1.2vh;
   font-weight: 300;
   padding: 5px;
 }
 
-.bookmark-button {
+.tile-bookmarks {
+  max-height: 55px;
+  position: relative;
+  right: 8px;
+  top: 7px;
+}
+
+/* .bookmark-button {
   margin: 7%;
   width: 5vh;
   height: 5vh;
   border-radius: 5vh;
   background-color: aliceblue;
-}
+} */
 
 .below-header-container {
   display: flex;
@@ -251,6 +260,12 @@ header {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   height: auto;
   width: auto;
+}
+
+.filter {
+  font-family: 'Libre Baskerville', serif;
+  font-size: .7em;
+  height: 27px;
 }
 
 .filter-bar {
@@ -278,12 +293,6 @@ header {
   border-bottom: 2px solid #c84b31;
 }
 
-.filter {
-  font-family: 'Libre Baskerville', serif;
-  font-size: .7em;
-  height: 27px;
-}
-
 select {
   border: 1px solid rgb(22 22 22 / 11%);
   width: 25%;
@@ -303,33 +312,9 @@ select:focus {
   border: 2px solid #c84b31;
 }
 
-.header-buttons {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-  font-size: 20px;
-}
-
 .selected-view {
   border-bottom: 3px solid #c84b31;
   color: #c84b31
-}
-
-.header-buttons:hover {
-  color: #c84b31
-}
-
-.search-bar {
-  border-radius: 5px;
-  outline: 0;
-  border: 2px solid #161616;
-  width: 40%;
-  height: 60%;
-  padding: 2px 23px 2px 30px;
-  font-size: 15px;
 }
 
 .disabled {
@@ -337,32 +322,6 @@ select:focus {
   background-color: #16161600;
   opacity: 0.5;
   pointer-events: none;
-}
-
-/* NOTE: keep media query at the bottom */
-
-@media(max-width:768px) {
-  .nav-bar-container {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  header {
-    height: auto;
-  }
-
-  .header-right-align {
-    justify-content: flex-start;
-    margin: 15px;
-    justify-content: center;
-  }
-
-  .header-left-align {
-    flex-direction: column;
-    gap: 10px;
-  }
-
 }
 
 /* ---------------------- MODAL ---------------------- */
@@ -387,6 +346,7 @@ select:focus {
   background-color: rgb(247, 243, 233);
   height: 75%;
   width: 75%;
+  border-radius: 5px;
   overflow: auto;
   overflow-x: hidden;
 }
@@ -408,6 +368,7 @@ select:focus {
 .close-modal-btn:hover {
   transform: scale(1.05);
   cursor: pointer;
+  color:rgb(200, 75, 49)
 }
 
 .close-modal-btn:focus {
@@ -451,11 +412,10 @@ select:focus {
 
 .modal-bookmark-div {
   display: flex;
-  padding: 0px 0px 0px 10px;
 }
 
 .modal-bookmark-icon {
-  max-height: 50px;
+  max-height: 55px;
 }
 
 .modal-bookmark-icon:hover {
@@ -467,7 +427,7 @@ select:focus {
 .modal-icon-label {
   font-family: 'Libre Baskerville', serif;
   font-size: 0.6em;
-  padding: 12px 12px 12px 10px;
+  padding: 15px 12px 12px 10px;
 }
 
 .modal-image-ingr-parent {
@@ -475,9 +435,11 @@ select:focus {
   justify-content: space-between;
   align-items: center;
   padding-bottom: 50px;
+  border-radius: 5px;
 }
 
 .modal-image {
+  border-radius: 5px;
   width: 28vw;
 }
 
@@ -485,6 +447,7 @@ select:focus {
   display: block;
   text-align: right;
   background-color: white;
+  border-radius: 5px;
   width: 35%;
   padding: 23px;
 }
@@ -503,6 +466,7 @@ select:focus {
 .instructions-grandparent {
   background-color: white;
   padding: 70px 87px;
+  border-radius: 5px;
 }
 
 .instructions-grandparent>h2 {
@@ -547,6 +511,11 @@ select:focus {
     align-items: center;
   }
 
+  .search-bar {
+    margin: 10px 0px 0px;
+    padding: 13px 26px 10px;
+  }
+
   header {
     height: auto;
   }
@@ -562,6 +531,22 @@ select:focus {
     gap: 10px;
   }
 
+  .featured-bookmark-icon {
+    height: 5vw;
+  }
+
+  .below-header-container {
+    margin-top: 106px;
+  }
+
+  .filter {
+    padding: 2px 10px 2px 18px;
+  }
+
+  .recipe-tile>h1 {
+    font-size: 2vw;
+  }
+
   /* MODAL */
 
   .modal-image-ingr-parent {
@@ -572,11 +557,17 @@ select:focus {
 
   .ingr-span {
     text-align: left;
-    width: 92%;
+    padding: 40px;
+    width: 84%;
   }
 
   .modal-image {
-    width: 70vw;
+    width: 64vw;
     padding-bottom: 4vw;
+  }
+
+  .instructions-grandparent {
+    width: 84%;
+    padding: 40px;
   }
 }

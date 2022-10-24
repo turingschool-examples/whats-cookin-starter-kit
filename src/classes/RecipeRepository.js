@@ -3,7 +3,7 @@ import Recipe from "./Recipe"
 class RecipeRepository {
   constructor(recipeData, ingredientsData) {
     this.recipeList = this.instantiateRecipes(recipeData, ingredientsData)
-    this.featuredRecipe = this.getFeaturedRecipe()  
+    this.featuredRecipe = this.getFeaturedRecipe()
   }
 
   filterByNameOrIngredient(input) {
