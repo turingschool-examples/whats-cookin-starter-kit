@@ -1,7 +1,7 @@
 ##Abstract:
 Many people have routine eating pallets and  what's cooking good looking offers many unique recipes as well as cooking instructions to advance a persons culinary experience. 
 
-What's Cooking Good Looking: is a web application that provides a user the abilities of:  being able to search a recipe, save a recipe, delete a saved recipe,filter all recipes,filter all saved recipes, search by tags, and see specifications on any app compiled recipe. 
+WHAT'S COOKING GOOD LOOKING! : is a web application that provides a user the abilities of:  being able to search a recipe, save a recipe, delete a saved recipe,filter all recipes,filter all saved recipes, search by tags, and see specifications on any app compiled recipe. 
 
 ##Installation Instructions:
 1. start at https://github.com/daniabee/whats-cookin-good-lookin
@@ -66,11 +66,12 @@ The greatest challenges were...
 2. The ability for functions to be on page load and how that interacts with Api retrieval. 
 3. Group scheduling across time zones.
 4. Making sure commits seemed balanced. 
-Future Features:
+##Future Features:
+
 1. more user friendly interface.
 2. featured recipe on home page load
 3. welcome user on home page or a page prior to welcome a user to the site
-4. 
+ 
 ##Possible additions.
 more functionality to the search bar, type partial words and the recipes containing string overlap will render. 
 additional filter options as part of the front page spec. 
