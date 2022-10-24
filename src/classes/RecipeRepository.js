@@ -12,7 +12,23 @@ class RecipeRepository {
   }
 
   filterByName(name) {
-    return this.listOfAllRecipes.filter((recipe) => recipe.name.toLowerCase() === name.toLowerCase());
+    let recipeMatch = this.listOfAllRecipes.find(recipe => recipe.name.toLowerCase() === name.toLowerCase());
+    console.log(recipeMatch);
+    if (recipeMatch !== undefined) {
+      return this.listOfAllRecipes.filter(recipe => recipe.name.toLowerCase() === name.toLowerCase());
+    } else {
+      const nameComponents = name.toLowerCase().split(' ').filter(element => element !== '');
+      const recipesThatMatch = nameComponents.reduce((acc, element) => {
+        let matchingRecipes = this.listOfAllRecipes.filter(recipe => recipe.name.toLowerCase().includes(element))
+        matchingRecipes.forEach(element => {
+         if (!acc.includes(element)) {
+          acc.push(element)
+         }
+       });
+        return acc;
+      }, []);
+      return recipesThatMatch
+    }
   }
 }
 

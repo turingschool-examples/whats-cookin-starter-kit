@@ -170,23 +170,15 @@ function displaySearchRecipes() {
   
   let userInput = searchButtonInput.value;
   let recipesFilteredName;
-  let recipesFilteredTag;
 
   if (currentPage === 'saved') {
     recipesFilteredName = currentUser.filterByName(userInput)
-    recipesFilteredTag = currentUser.filterByTag(userInput)
-    console.log('user: ', recipesFilteredName);
   } else {
     displayAllRecipes()
     recipesFilteredName = allRecipes.filterByName(userInput)
-    recipesFilteredTag = allRecipes.filterByTag(userInput)
-    console.log('all: ', recipesFilteredName);
   }
 
-  if(recipesFilteredName.length === 0 && recipesFilteredTag.length !== 0 ) {
-    displayRecipeThumbnails(recipesFilteredTag,'','')
-  } 
-  else if (recipesFilteredName.length !== 0 && recipesFilteredTag.length === 0) {
+  if (recipesFilteredName.length !== 0) {
     displayRecipeThumbnails(recipesFilteredName,'','')
   } else {
     allRecipeThumbnailsSection.innerHTML = "<h3> Sorry your dish can't be found ... order out!</h3>";
