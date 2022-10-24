@@ -2,7 +2,6 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <!-- <link rel="stylesheet" href="../src/styles.css"> -->
     <title>Whats Cookin'</title>
   </head>
   <body>
@@ -24,17 +23,17 @@
       </section>
       <h1 class="header-title">Whats Cookin', Good Lookin'?</h1>
       <form class="all-search-bar">
-        <input type="text" name="search" placeholder="Search" />
-        <button id="all-search-btn" class="search-button">Search</button>
+        <input type="text" name="search" placeholder="Search Recipe Name" />
+        <button id="all-search-btn" class="search-button">Search All Recipes</button>
       </form>
       <form class="user-search-bar hidden">
-        <input type="text" name="search" placeholder="Search" />
-        <button name="user-search-btn" class="search-button">Search</button>
+        <input type="text" name="search" placeholder="Search Recipe Name" />
+        <button name="user-search-btn" class="search-button">Search My Recipes</button>
       </form>
     </header>
     <section class="home-page">
-      <div class="featured-container">
-        <h2 class="featured-recipes">Featured</h2>
+      <h2 class="featured-recipes">Featured</h2>
+      <div class="featured-container">     
         <section class="recipe-card-container">
           <img
             class="image"
@@ -69,7 +68,6 @@
           />
           <p class="recipe-4-name">Elvis Pancakes</p>
         </section>
-        <!-- <button class="see-more"> See More > </button> -->
       </div>
       <div class="main-container">
         <div class="popular-favorites-container">
@@ -106,26 +104,26 @@
           <section class="mini-recipe-card-container">
             <img
               class="mini-image"
-              id="562334"
-              src="https://spoonacular.com/recipeImages/562334-556x370.jpg"
+              id="618332"
+              src="https://spoonacular.com/recipeImages/618332-556x370.jpg"
             />
             <p class="recipe-1-name"></p>
             <img
               class="mini-image"
-              id="507921"
-              src="https://spoonacular.com/recipeImages/507921-556x370.jpg"
+              id="231951"
+              src="https://spoonacular.com/recipeImages/231951-556x370.jpg"
             />
             <p class="recipe-2-name"></p>
             <img
               class="mini-image"
-              id="721146"
-              src="https://spoonacular.com/recipeImages/721146-556x370.jpg"
+              id="880108"
+              src="https://spoonacular.com/recipeImages/880108-556x370.jpg"
             />
             <p class="recipe-3-name"></p>
             <img
               class="mini-image"
-              id="541288"
-              src="https://spoonacular.com/recipeImages/541288-556x370.jpg"
+              id="602311"
+              src="https://spoonacular.com/recipeImages/602311-556x370.jpg"
             />
             <p class="recipe-4-name"></p>
           </section>
@@ -142,6 +140,5 @@
       <div id="saved-recipe-card-container"></div>
     </section>
   </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>

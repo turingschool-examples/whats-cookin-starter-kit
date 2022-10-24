@@ -1,5 +1,5 @@
 body {
-  background-color: beige; 
+  background-color: lightgray; 
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   display: flex;
   flex-direction: column;
@@ -7,20 +7,74 @@ body {
 }
 
 .all-recipes-page {
-  background-color: beige; 
+  background-color: lightgray; 
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   display: flex;
   flex-direction: column;
-  border: 4px, black;
+}
+
+.saved-recipes-page {
+  background-color: lightgray; 
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+#all-recipes-container {
+  background-color: azure;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: stretch;
+	align-content: center;
+  border: solid, 4px, black;
+}
+
+#saved-recipe-card-container {
+  background-color: azure;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: stretch;
+	align-content: center;
+  border: solid, 4px, black;
+}
+
+.delete-recipe {
+  width: 12vw;
+  border-radius: 4%;
+  margin-top: 4%;
+}
+
+.tag-select-class {
+  width: 10vw;
+  border-radius: 8%;
+}
+
+#all-search-btn {
+  border-radius: 8%;
+}
+
+.all-search-bar {
+  border-radius: 8%;
+}
+
+#menu-button {
+  width: 8vw;
+  border-radius: 10%;
 }
 
 header {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 20vh;
   flex-direction: row;
   border: solid 1px black;
+  padding-left: 2em;
+  padding-right: 2em;
 }
 
 .image {
@@ -28,7 +82,7 @@ header {
   width: 20vw;
   padding-top: 5%;
   cursor: pointer;
-  
+  border-radius: 30px;
 }
 
 #menu-button {
@@ -40,16 +94,40 @@ header {
   background-color: azure;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  height: 40vh;
-  width: 98vw;
+  justify-content: space-around;
+  height: 50vh;
+  width: 100vw;
   border-radius: 10px;
+}
+
+#current-recipe-id {
+  background-color: azure;
+}
+
+.recipe-details {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.featured-recipes {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-color: azure;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 .recipe-card-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  flex-direction: column;
+  align-content: center;
 }
 
 .main-container {
@@ -89,6 +167,7 @@ header {
   height: 15vh;
   width: 15vw;
   cursor: pointer;
+  border-radius: 25px;
 }
 
 .mini-image:hover {
