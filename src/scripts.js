@@ -7,91 +7,77 @@ import './images/turing-logo.png'
 // import {fetchCalls.method1, fetchCalls.method2,  fetchCalls.method3, fetchCalls.method4} from {"./apiCalls"};
 // Import classes
 // import Each from './Each'; {ex - RecipeRepository, Recipe, Ingredient, User}
-// import Other from './Other';
-// import Class from './Class';
-// import Needed from './Needed';
+import Ingredient from './classes/Ingredient.js';
+import Recipe from './classes/Recipe.js';
+import RecipeRepository from './classes/RecipeRepository.js';
+import User from './classes/User.js';
+
+
 
 // declare variables for linked methods compatibility
-let usersData
+let usersData;
 let ingredientsData;
 let recipeData;
-// let you;
-// let need;
-// let then;
-// let change;
-// let below;
+let currentUser;
+let newRecipeRepo;
+let recipeCards;
+
 
 // Declare function to instantiate all of our data to dashboard on load/ refresh.
-// function catalogAllData() {
-  // Promise.all()
-// }
-
-// Declare a function to update dashboard's data state after invoking other methods to alter DOM values
+function instantiateData() {
+  Promise.all([
+    gatherData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users'),
+    gatherData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients'),
+    gatherData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
+  ]).then(data => {
+      usersData = data[0].usersData;
+      ingredientsData = data[1].ingredientsData;
+      recipeData = data[2].recipeData;
+      currentUser = new User(
+        usersData[Math.floor(Math.random() * usersData.length)]
+      );
+      recipeCards = recipeData.map(recipe => {
+        const newCard = new Recipe (recipe);
+        return newCard
+      });
+      newRecipeRepo = new RecipeRepository (recipeCards);
+      loadUser()
+  })
+}
 
 // Query Selectors!!!
 const allRecipesGrid = document.querySelector('#all-card-grid');
-const testApi = document.querySelector('.greeting')
 const favoriteRecipesGrid = document.querySelector('#favorite-grid');
-// constv
-// const
+const greeting = document.querySelector('#greeting');
 
 // Event Listeners
-// window.addEventListener('load', catalogAllData);
+window.addEventListener('load', instantiateData());
 
 // Functions
-// function loadUser() {
-  // render everything to DOM by invoking all helper functions declared for rendering below
-// };
-
-// function renderThing() {};
-// function renderOtherThing() {};
-
-Promise.all([
-  gatherData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users'),
-  gatherData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients'),
-  gatherData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
-]).then(data => {
-    usersData = data[0].usersData
-    ingredientsData = data[1].ingredientsData
-    recipeData = data[2].recipeData
-
-
-    console.log(recipeData)
-
-    recipeData.forEach(recipe => {
-      favoriteRecipesGrid.innerHTML += 
-      `<li class="recipe-card">
-    <span class="" id="recipe-title">${recipe.name}</h3>
-    <img url="${recipe.image}">
-    <div class="">
-      ${recipe.tags}
-    </div>
-  </li>`;
-    })
-
-})
-
-
-console.log('Hello world');
-
-renderAllRecipes(recipeData)
-
+function loadUser() {
+  renderUser(currentUser);
+  // renderIngredientsData();
+  renderAllRecipes(recipeCards);
+}
 
 // Iteration 1 User Stories (dashboard)
-
+function renderUser(user) {
+  greeting.innerHTML = '';
+  greeting.innerHTML = `Welcome to What\'s Cookin\' ${user.name}`;
+}
 // As a user, I should be able to view a list of all recipes.
 // render page view/ unhide form of grid containing all recipe card objects for All Recipes Page display
 // invoke w/ handler either on load or click
 function renderAllRecipes(data) {
-  (allRecipesGrid).innerHTML = "";
+  (allRecipesGrid).innerHTML = '';
   (allRecipesGrid).innerHTML = 
-  `<li class="recipe-card">
-    <span class="" id="recipe-title">${data.name}</h3>
-    <img url="${data.image}">
-    <div class="">
-      ${data.tags}
-    </div>
-  </li>`;
+    data.map(recipe => `<li class="recipe-card">
+      <span class="" id="recipe-title">${recipe.name}</h3>
+      <img url="${recipe.image}">
+      <div class="">
+        ${recipe.tags}
+      </div>
+    </li>`);
 }
 
 
@@ -114,7 +100,3 @@ function showRecipe() {
 
 // As a user, I should be able to search recipes by their name. (Extension option: by name or ingredients)
 // searchbar should have a handler to search all recipes and filter by entered/ selected name OR tag
-
-
-console.log('Hello world');
-
