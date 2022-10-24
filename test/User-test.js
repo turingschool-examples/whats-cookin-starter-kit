@@ -1,9 +1,8 @@
-import { expect } from 'chai'
-import User from '../src/classes/User'
 import Recipe from '../src/classes/Recipe'
 import ingredientsData from '../src/data/ingredients'
 import recipeData from '../src/data/recipes'
 import usersData from '../src/data/users'
+import { expect } from 'chai'
 
 describe('User', () => {
   let user, recipe, recipe2

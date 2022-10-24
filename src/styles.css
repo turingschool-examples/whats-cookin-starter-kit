@@ -51,12 +51,12 @@ header {
   padding: 4px 23px 0px;
   font-size: 15px;
 }
-  
+
 .search-bar:hover {
   border: 1px solid #c84a3186;
   transition-duration: 400ms;
 }
-  
+
 .search-bar:focus {
   border: 2px solid #c84b31;
 }
@@ -132,6 +132,7 @@ header {
 
 .recipe-details:hover {
   transform: scale(1.05);
+
   transition-duration: 400ms;
 }
 
@@ -140,12 +141,13 @@ header {
   transition-duration: 400ms;
   color:rgb(200, 75, 49);
   cursor: pointer;
+
 }
 
 .featured-recipe-title-parent {
   font-family: 'Libre Baskerville', serif;
   font-size: 1.2vw;
-  width: 40%;
+  width: 40%; 
 }
 
 .special-tag {

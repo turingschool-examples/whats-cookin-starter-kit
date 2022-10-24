@@ -1,28 +1,16 @@
 class User {
   constructor(user) {
-    this.pantry = []
-    this.name = user.name
-    this.id = user.id
-    this.pantry = user.pantry
     this.favoriteRecipes = []
+    this.id = user.id
+    this.name = user.name
+    this.pantry = []
+    this.pantry = user.pantry
   }
 
   addRecipeToFavorites(recipe) {
     if(!this.favoriteRecipes.includes(recipe)) {
       this.favoriteRecipes.push(recipe)
     }
-  }
-
-  removeRecipeFromFavorites(id) {
-    this.favoriteRecipes.forEach((currentValue, i) => {
-      if (id === currentValue.id) {
-        this.favoriteRecipes.splice(i, 1)
-      }
-    })
-  }
-
-  filterByTag(tag) {
-    return this.favoriteRecipes.filter(recipe => recipe.tags.includes(tag))
   }
 
   filterByNameOrIngredient(input) {
@@ -46,8 +34,16 @@ class User {
     return filteredRecipes;
   }
 
-  clearFilters() {
-    this.filteredFavorites = []
+  filterByTag(tag) {
+    return this.favoriteRecipes.filter(recipe => recipe.tags.includes(tag))
+  }
+
+  removeRecipeFromFavorites(id) {
+    this.favoriteRecipes.forEach((currentValue, i) => {
+      if (id === currentValue.id) {
+        this.favoriteRecipes.splice(i, 1)
+      }
+    })
   }
 }
 
