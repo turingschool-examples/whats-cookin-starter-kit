@@ -151,6 +151,10 @@ featuredRecipeParent.addEventListener("click", event => {
   } else if (event.target.nodeName === "H1") {
     updateModal(recipeRepository.featuredRecipe)
   }
+
+  if (allRecipesButton.classList.contains('selected-view')) {
+    displayAllRecipes();
+  } else { displayMyRecipes() }
 })
 
 // ---------------------------DOM UPDATING---------------------------
