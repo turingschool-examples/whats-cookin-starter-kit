@@ -4,7 +4,7 @@
 ### Abstract
 Our fully remote team created a recipe site that presents users with an array of recipe cards which they can filter and search through by the type of recipe they are looking for while saving recipes to their favorites view. Users will find the site to be thoughtfully-designed, intuitive, and snappy. 
 
-This team project took place in the second term of the Turing software design program and required students to synthesize all the technical and project management skills we have honed over the past weeks to create a fully functioning site from the design phase to production in two weeks. This project required extensive research to determine and implement new technologies to make the product surpass expectations. 
+This team project took place in the second term of the Turing software engineering program and required students to synthesize all the technical and project management skills we have honed over the past weeks to create a fully functioning site from the design phase to production in two weeks. This project required extensive research to determine and implement new technologies to make the product surpass expectations. 
 
 ### Feature Spotlight
 In order to provide users with an expanded view of any recipe we researched and determined Micromodal.js to be the best solution. We successfully implemented the micromodal as seen in the above gif. 
