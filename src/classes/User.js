@@ -22,7 +22,7 @@ class User {
   }
 
   filterByTag(tag) {
-    return this.favoriteRecipes.filter(recipe => recipe.tags.includes(tag));
+    return this.favoriteRecipes.filter(recipe => recipe.tags.includes(tag))
   }
 
   filterByNameOrIngredient(input) {
