@@ -63,7 +63,8 @@ function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
   displayRecipeTiles(recipeRepository.recipeList)
   populateTags()
-  user = new User(usersData.usersData[0])
+  let randomNum = Math.floor(Math.random() * usersData.length)
+  user = new User(usersData[randomNum])
   displayFeaturedRecipe()
   MicroModal.init({
     openClass: 'is-open',
@@ -135,13 +136,12 @@ filterClearButton.addEventListener('click', () => {
   filterClearButton.disabled = true
   filterClearButton.classList.add('disabled')
   allRecipesContainer.innerHTML = ''
-  displayAllRecipeTiles()
+  displayRecipeTiles(recipeRepository.recipeList)
 })
 
 featuredRecipeParent.addEventListener("click", event => {
   if (event.target.nodeName === "IMG" && (event.target.src.includes('unsaved'))) {
     addRecipeToFavorites(event)
-    console.log("LOOK HERE +++", user.favoriteRecipes)
   } else if (event.target.nodeName === "IMG") {
     removeRecipeFromFavorites(event)
   } else if (event.target.nodeName === "H1") {
@@ -166,13 +166,6 @@ function createRecipeTile(recipe) {
 //currently displayAllRecipeTiles & displaySearchedRecipeTiles are doing the same thing
 
 function displayRecipeTiles(recipeArray) {
-  if (recipeArray === user.favoriteRecipes) {
-  myRecipesButton.classList.add('selected-view')
-  allRecipesButton.classList.remove('selected-view')
-  } else {
-  myRecipesButton.classList.remove('selected-view')
-  allRecipesButton.classList.add('selected-view')
-  }
   allRecipesContainer.innerHTML = ''
   for (var i = 0; i < recipeArray.length; i++) {
     createRecipeTile(recipeArray[i])
@@ -180,10 +173,14 @@ function displayRecipeTiles(recipeArray) {
 }
 
 function displayAllRecipes() {
+  myRecipesButton.classList.remove('selected-view')
+  allRecipesButton.classList.add('selected-view')
   displayRecipeTiles(recipeRepository.recipeList)
 }
 
 function displayMyRecipes() {
+  myRecipesButton.classList.add('selected-view')
+  allRecipesButton.classList.remove('selected-view')
   displayRecipeTiles(user.favoriteRecipes)
 }
 
