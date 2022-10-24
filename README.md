@@ -1,44 +1,38 @@
 # What's Cookin' Group Project
-Be sure to include:
-Abstract:
-Installation Instructions:
-Preview of App:
-Context:
-Contributors:
-Learning Goals:
-Wins + Challenges:
-Working with collapsed code blocks to better navigate longer code bases.
-
-
 ## Abstract:
-This is a flashcards game that will be run in the command line interface (CLI). It cycles through 30 multiple-choice questions that the user can answer, then a final score of correct answers is offered at the end. 
+This application is the first of a 2-part project. This part is a recipe tracking and meal planning application that allows users to browse, search, and filter recipes and save selected recipes to their profile. Recipe, ingredient, and user data are fetched from an API. 
 
-![Flashcards animated gif](https://user-images.githubusercontent.com/104015966/195744304-69703fa2-0e67-4b21-9698-67c57ab8c440.gif)
+<!-- ADD GIF (GIFS) OF APPLICATION IN USE -->
 
 ## Installation Instructions:
-1. Go to [this repo](https://github.com/justenanderson-commits/cli-flashcards) on Github
+1. Go to [this repo](https://github.com/justenanderson-commits/whats-cookin) on Github
 2. Click Fork > Create New Fork
 3. Click Code
 4. Copy the SSH url provided by GitHub
 5. In the terminal, navigate to the new project repository
 6. Type git clone and paste the URL
-7. `cd` into the it
-8. Run `npm install`
-9. Run `node index.js`
-10. Play the game by typing the number of your guess and pressing `enter`. A score will print to the CLI when all 30 questions have been answered.
+7. Run `cd whats-cookin`
+8. Run `npm install`. Note: Do not run `npm audit fix --force`. This will update to the latest version of packages, which are not wanted. 
+9. Run `npm start` to start the program. (`Ctrl + C` will stop it.)
+10. In a browser window, navigate to `http://localhost:8080/`.
+11. The app should now ready to browse and search for recipes.  
 
 ## Context:
-Working independently in the 1st weeks of Mod2 classes at Turing, I invested at least 25 - 30 hours to create this application's functionality from scratch using  Javascript. The Mocha framework and chai Library were used for testing.
+The team followed a kanban-like workflow using a Trello board and held daily standups. Meetings started by checking in with group mates as humans. Then accomplishments from the day prior were discussed, what needed to be done that day and by whom, and then collaborative debugging help was provided (as needed). Some tasks were completed indivdually, others in pairs, and others as a whole group. The collective estimate is about 100 hours of work time invested over 9 days to create this application's functionality and test suite from scratch using Javascript, html, and css. The Mocha framework and Chai library were used for testing.
 
-## Contributor:
+## Contributors:
+- [Angie Staffieri](https://github.com/arstaffieri) 
+- [Ryan Nagel](https://github.com/Nagel29)
+- [Thomas Peterson](https://github.com/thomedpete)
 - [Justen Anderson](https://github.com/justenanderson-commits)
 
 ## Learning Goals:
-- Contribute code to an partially constructed object-oriented application
-- Follow spec/prompts to make a working application
-- Implement ES6 classes
+- Implement ES6 classes that communicate to each other as needed
+- Use object and array prototype methods to perform data manipulation
+- Create a user interface that is easy to use and clearly displays information.
 - Write modular, reusable code that follows SRP (Single Responsibility Principle)
 - Implement a robust testing suite using TDD
+- Make network requests to retrieve data
 
 ## Tech Used:
 - GitHub
@@ -50,14 +44,26 @@ Working independently in the 1st weeks of Mod2 classes at Turing, I invested at 
 - Slack
 - Mocha
 - Chai
+- Webpack
+- CodePen
+- Google Font API
+- GlideJS
+
+## Wins and Challenges
+- The group's willingness to support each member's learning was stellar. Any time there was confusion among one or more group members, the collective group would stop to help everyone understand. Pull request reviews became teachable moments to walk through the code, find opportunities for improvement, and plan next steps.
+
+- The GitHub workflow was very successful. The group collectively made enormous strides in fluency with the GitHub workflow and communication tools. One example was when 2 group members worked on different parts of the same file at the same time. Then their branches were merged after resolving the conflicts. The merge branch was then able to be merged into main. 
+
+- Win 3
+
+- Challenge 1
+
+- Challenge 2
 
 ### Additional Notes:
-- Trying to interpret the project spec was very difficult. Trying to figure out how to write a test for a function that wasn't yet written and whose description was hard to interpret was extremely challenging. I attempted to maintain fidelity of the testing first, writing the implementation code second throughout the entire project, but definitely hit a wall at the game.start() method.
+- The group opted to embed test data rather than importing it from a module because none of us had experience working with the text editor's ability to collapse code blocks amd wanted to practice using them. 
 
-
-
-
-
+- GitHub Projects will be used (instead of Trello) to manage the workflow during part 2 of this project.
 
 
 
