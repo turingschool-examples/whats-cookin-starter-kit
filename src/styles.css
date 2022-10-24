@@ -310,6 +310,7 @@ select:focus {
   height: 60%;
   padding: 2px 23px 2px 30px;
   font-size: 15px;
+}
 
 .disabled {
   color: gray;
