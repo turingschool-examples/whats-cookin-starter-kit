@@ -335,9 +335,9 @@ function generateIngredientList(recipe) {
 
 function generateInstructions(recipe) {
   specificRecipeInstructions.innerHTML = "";
-  recipe.instructions.forEach((step) => {
+  recipe.getDirections().forEach((step) => {
     specificRecipeInstructions.innerHTML += `
-    <li>${step["instruction"]}</li>
+    <li>${step}</li>
     `;
   });
 }
