@@ -9,10 +9,14 @@
 /* font-family: 'Abril Fatface', cursive;
  font-family: 'Playball', cursive;
  font-family: 'Playfair Display', serif; */
+
  body {
    font-family: "Playfair Display", serif;
  }
 
+ button {
+  cursor: pointer;
+ }
 
  /* Navagation display */
 nav {
@@ -148,6 +152,7 @@ nav {
 .single-recipe-img {
   width: 17vw;
   height: 15vw;
+  cursor: pointer;
 }
 
 .single-recipe-text {
@@ -156,21 +161,31 @@ nav {
   align-items: center;
 }
 
+.delete-recipe {
+  cursor: pointer;
+}
+
 .recipe-title-text {
   font-size: 1vw;
+  cursor: pointer;
 }
 
 .filter-by-tag-display {
   margin-left: 5vw;
   margin-right: 5vw;
+  cursor: pointer;
 }
 
 .label-for-select-a-tag {
   white-space: nowrap;
   font-size: 1.5vw;
   margin-bottom: 1vh;
-
 }
+
+.list-of-tag-options {
+  cursor: pointer;
+}
+
 /* ~~End All/Saved Recipes CSS ~~ */
  .hide {
    display: none;
