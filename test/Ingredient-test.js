@@ -1,16 +1,13 @@
-import { expect } from 'chai'
 import Ingredient from '../src/classes/Ingredient'
+import { expect } from 'chai'
 
 describe('Ingredient', () => {
-  let ingredientInfo, recipeInfo, pudding
+  let ingredientInfo, pudding, recipeInfo
 
   beforeEach(() => {
     ingredientInfo = { "id": 19206, "name": "instant vanilla pudding", "estimatedCostInCents": 660 }
     recipeInfo = { 
-      "quantity" : {
-        "amount": 3, 
-        "unit": "Tbsp" 
-      }
+      "quantity" : { "amount": 3, "unit": "Tbsp" }
     }
     pudding = new Ingredient(ingredientInfo, recipeInfo)
   })

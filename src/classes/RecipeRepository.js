@@ -6,16 +6,6 @@ class RecipeRepository {
     this.featuredRecipe = this.getFeaturedRecipe()
   }
 
-  instantiateRecipes(recipeData, ingredientsData) {
-    //Note: we used dot notation below to access the correct array in recipeData.recipeData and ingredientsData.ingredientsData. Refactor this in the second part of the project to use locally hosted data.
-
-    return recipeData.map(recipe => new Recipe(recipe, ingredientsData))
-  }
-
-  filterByTag(tag) {
-    return this.recipeList.filter(recipe => recipe.tags.includes(tag))
-  }
-
   filterByNameOrIngredient(input) {
     let filteredRecipes = []
     input = input.toLowerCase()
@@ -37,9 +27,19 @@ class RecipeRepository {
     return filteredRecipes
   }
 
+  filterByTag(tag) {
+    return this.recipeList.filter(recipe => recipe.tags.includes(tag))
+  }
+
   getFeaturedRecipe = () => {
     let randomNum = Math.floor(Math.random() * this.recipeList.length)
     return this.recipeList[randomNum]
+  }
+
+  instantiateRecipes(recipeData, ingredientsData) {
+    //Note: we used dot notation below to access the correct array in recipeData.recipeData and ingredientsData.ingredientsData. Refactor this in the second part of the project to use locally hosted data.
+
+    return recipeData.map(recipe => new Recipe(recipe, ingredientsData))
   }
 }
 
