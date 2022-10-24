@@ -55,9 +55,13 @@ function fetchData(urls) {
     })
 }
 
-(function () {
+// (function () {
+  
+// })()
+
+window.addEventListener('load', () => {
   fetchData([usersURL, recipesURL, ingredientsURL])
-})()
+})
 
 function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
