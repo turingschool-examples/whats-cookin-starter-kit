@@ -124,7 +124,6 @@ searchButton.addEventListener("click", displaySearchRecipes);
 //All Recipes Page EVENT LISTENERS --------
 allRecipesMain.addEventListener("click", loadSpecificRecipe);
 allRecipesButton.addEventListener("click", displayAllRecipesPage);
-allRecipeFilterTagOptions.addEventListener("click", displayRecipesOfSameTag);
 searchFilterButton.addEventListener("click", displayRecipesOfSameTag);
 
 //Saved Recipes Page EVENT LISTENERS --------
