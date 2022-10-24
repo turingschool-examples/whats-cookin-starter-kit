@@ -66,7 +66,7 @@ function startPage() {
   populateTags()
   let randomNum = Math.floor(Math.random() * usersData.length)
   user = new User(usersData[randomNum])
-  welcomeMessage.innerText = `Welcome, ${user.name.split(" ")[0]}!`
+  welcomeMessage.innerText = `Welcome, ${user.name.split(' ')[0]}!`
   displayFeaturedRecipe()
   MicroModal.init({
     openClass: 'is-open',
