@@ -5,8 +5,6 @@ class User {
     this.id = user.id
     this.pantry = user.pantry
     this.favoriteRecipes = []
-    //this.storedFavoriteRecipes = []
-    this.recipesToCook = []
   }
 
   addRecipeToFavorites(recipe) {
@@ -18,13 +16,9 @@ class User {
   removeRecipeFromFavorites(id) {
     this.favoriteRecipes.forEach((currentValue, i) => {
       if (id === currentValue.id) {
-        this.favoriteRecipes.splice(i, 1);
+        this.favoriteRecipes.splice(i, 1)
       }
     })
-  }
-
-  addToRecipesToCook(recipe) {
-    this.recipesToCook.push(recipe)
   }
 
   filterByTag(tag) {
@@ -32,8 +26,8 @@ class User {
   }
 
   filterByNameOrIngredient(input) {
-    let filteredRecipes = [];
-    input = input.toLowerCase();
+    let filteredRecipes = []
+    input = input.toLowerCase()
     
     this.favoriteRecipes.forEach(recipe => {
       if (recipe.name.toLowerCase().includes(input)) {
