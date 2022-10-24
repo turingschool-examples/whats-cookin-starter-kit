@@ -122,7 +122,7 @@ filter.addEventListener('input', event => {
   filterClearButton.disabled = false
   filterClearButton.classList.remove('disabled')
   let input = event.target.value
-  
+
   if (myRecipesButton.classList.contains('selected-view')) {
     let recipes = user.filterByTag(input)
     displaySearchedRecipeTiles(recipes)
@@ -136,8 +136,16 @@ filterClearButton.addEventListener('click', () => {
   filter.value = 'Filter recipes by type...'
   filterClearButton.disabled = true
   filterClearButton.classList.add('disabled')
-  allRecipesContainer.innerHTML = ''
-  displayRecipeTiles(recipeRepository.recipeList)
+
+  if (myRecipesButton.classList.contains('selected-view')) {
+    allRecipesContainer.innerHTML = ''
+    displayRecipeTiles(user.favoriteRecipes)
+    updateBookmarks()
+  } else {
+    allRecipesContainer.innerHTML = ''
+    displayRecipeTiles(recipeRepository.recipeList)
+    updateBookmarks()
+  }
 })
 
 featuredRecipeParent.addEventListener("click", event => {
@@ -180,6 +188,9 @@ function displayAllRecipes() {
 }
 
 function displayMyRecipes() {
+  filter.value = 'Filter recipes by type...'
+  filterClearButton.disabled = true
+  filterClearButton.classList.add('disabled')
   myRecipesButton.classList.add('selected-view')
   allRecipesButton.classList.remove('selected-view')
   displayRecipeTiles(user.favoriteRecipes)
@@ -187,9 +198,9 @@ function displayMyRecipes() {
 }
 
 function displayCurrentMode() {
-    if (allRecipesButton.classList.contains('selected-view')) {
-        displayAllRecipes();
-      } else { displayMyRecipes() }
+  if (allRecipesButton.classList.contains('selected-view')) {
+    displayAllRecipes()
+  } else { displayMyRecipes() }
 }
 
 function displaySearchedRecipeTiles(searchedRecipes) {
@@ -248,7 +259,6 @@ let displayFeaturedRecipe = () => {
 
 function addRecipeToFavorites(e) {
   recipeRepository.recipeList.forEach(recipe => {
-
     if (recipe.id === Number(e.target.id)) {
       user.addRecipeToFavorites(recipe)
     }

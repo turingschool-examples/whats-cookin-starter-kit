@@ -13,6 +13,18 @@ class User {
     }
   }
 
+  removeRecipeFromFavorites(id) {
+    this.favoriteRecipes.forEach((currentValue, i) => {
+      if (id === currentValue.id) {
+        this.favoriteRecipes.splice(i, 1)
+      }
+    })
+  }
+
+  filterByTag(tag) {
+    return this.favoriteRecipes.filter(recipe => recipe.tags.includes(tag))
+  }
+
   filterByNameOrIngredient(input) {
     let filteredRecipes = []
     input = input.toLowerCase()
