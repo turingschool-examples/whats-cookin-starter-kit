@@ -41,6 +41,12 @@ COLORS::after
   margin-right: 5%;
 }
 
+.header-button:hover {
+  text-decoration: underline;
+  background-color: #CD104D;
+  color: white
+}
+
 /* MAIN */
 /* .whole-page-container {
   display: flex;
