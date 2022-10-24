@@ -175,9 +175,7 @@ function createRecipeTile(recipe) {
 
 function displayRecipeTiles(recipeArray) {
   allRecipesContainer.innerHTML = ''
-  for (var i = 0; i < recipeArray.length; i++) {
-    createRecipeTile(recipeArray[i])
-  }
+    recipeArray.forEach(recipe => createRecipeTile(recipe))
 }
 
 function displayAllRecipes() {
@@ -205,9 +203,7 @@ function displayCurrentMode() {
 
 function displaySearchedRecipeTiles(searchedRecipes) {
   allRecipesContainer.innerHTML = ''
-  for (var i = 0; i < searchedRecipes.length; i++) {
-    createRecipeTile(searchedRecipes[i])
-  }
+  searchedRecipes.forEach(recipe => createRecipeTile(recipe))
   updateBookmarks()
 }
 
