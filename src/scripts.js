@@ -43,6 +43,8 @@ const ingredientsParent = document.getElementById("ingr-parent")
 const instructionsParent = document.getElementById("instructions-parent")
 const searchBar = document.getElementById('search-bar')
 let filter = document.getElementById('filter')
+const myRecipesButton = document.getElementById("my-recipes")
+const allRecipesButton = document.getElementById("all-recipes")
 
 // ---------------------------EVENT LISTENERS---------------------------
 
@@ -62,7 +64,7 @@ fetchData([usersURL, recipesURL, ingredientsURL])
 
 function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
-  displayAllRecipeTiles()
+  displayAllRecipeTiles(recipeRepository.recipeList)
   populateTags()
   user = new User(usersData.usersData[0])
   MicroModal.init({
@@ -107,6 +109,10 @@ searchBar.addEventListener('keyup', (event) => {
     displaySearchedRecipeTiles(recipes)
   }
 })
+
+myRecipesButton.addEventListener("click", displayMyRecipes)
+allRecipesButton.addEventListener("click", displayAllRecipes)
+
 // ---------------------------DOM UPDATING---------------------------
 
 function createRecipeTile(recipe) {
@@ -122,10 +128,19 @@ function createRecipeTile(recipe) {
 
 //this function will need to be refactored to take in arrays dynamically
 //currently displayAllRecipeTiles & displaySearchedRecipeTiles are doing the same thing
-function displayAllRecipeTiles() {
-  for (var i = 0; i < recipeRepository.recipeList.length; i++) {
-    createRecipeTile(recipeRepository.recipeList[i])
+function displayRecipeTiles(recipeArray) {
+  allRecipesContainer.innerHTML = ''
+  for (var i = 0; i < recipeArray.length; i++) {
+    createRecipeTile(recipeArray[i])
   }
+}
+
+function displayAllRecipes() {
+  displayRecipeTiles(recipeRepository.recipeList)
+}
+
+function displayMyRecipes() {
+  displayRecipeTiles(user.favoriteRecipes)
 }
 
 function displaySearchedRecipeTiles(searchedRecipes) {
