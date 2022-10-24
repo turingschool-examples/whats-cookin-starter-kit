@@ -39,8 +39,8 @@ header {
 }
 
 .header-left-align>input {
-    font-family: 'Libre Baskerville', serif;
-  }
+  font-family: 'Libre Baskerville', serif;
+}
 
 .search-bar {
   border-radius: 1px;
@@ -270,7 +270,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(247, 243, 233,0.75);
+  background-color: rgb(247, 243, 233, 0.75);
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   padding: 5px;
   gap: 10px;
@@ -487,6 +487,15 @@ select:focus {
 
 .modal.is-open {
   display: block;
+}
+
+.welcome-message {
+  display: flex;
+  align-items: center;
+  padding-right: 27px;
+  border-right: 2px solid rgb(22, 22, 22, 0.15);
+  height: 100%;
+  margin-right: 0;
 }
 
 /* ---------------------- MEDIA QUERIES ---------------------- */

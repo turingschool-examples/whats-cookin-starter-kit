@@ -41,6 +41,7 @@ const featuredRecipeTitle = document.querySelector('.featured-recipe-title')
 let filter = document.getElementById('filter')
 const filterClearButton = document.querySelector('#filter-clear-button')
 const featuredIcon = document.querySelector('.featured-bookmark-icon')
+const welcomeMessage = document.querySelector('.welcome-message')
 
 // ---------------------------EVENT LISTENERS---------------------------
 
@@ -55,9 +56,9 @@ function fetchData(urls) {
     })
 }
 
-(function () {
+window.addEventListener('load', () => {
   fetchData([usersURL, recipesURL, ingredientsURL])
-})()
+})
 
 function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
@@ -65,6 +66,7 @@ function startPage() {
   populateTags()
   let randomNum = Math.floor(Math.random() * usersData.length)
   user = new User(usersData[randomNum])
+  welcomeMessage.innerText = `Welcome, ${user.name.split(' ')[0]}!`
   displayFeaturedRecipe()
   MicroModal.init({
     openClass: 'is-open',
@@ -84,10 +86,8 @@ allRecipesContainer.addEventListener("click", event => {
   } else {
     removeRecipeFromFavorites(event)
   }
-  
-  if (allRecipesButton.classList.contains('selected-view')) {
-    displayAllRecipes();
-  } else { displayMyRecipes() }
+
+  displayCurrentMode()
 
   let targetObject = recipeRepository.recipeList.find(recipe => recipe.id == event.target.parentNode.id)
   updateModal(targetObject)
@@ -116,17 +116,15 @@ searchBar.addEventListener('keyup', event => {
   }
 })
 
-
 myRecipesButton.addEventListener("click", displayMyRecipes)
 allRecipesButton.addEventListener("click", displayAllRecipes)
 
 filter.addEventListener('input', event => {
   filterClearButton.disabled = false
-  console.log("LOOK HERE", filterClearButton.classList)
-  let input = event.target.value
   filterClearButton.classList.remove('disabled')
-
-  if (filter.classList.contains('my-recipes')) {
+  let input = event.target.value
+  
+  if (myRecipesButton.classList.contains('selected-view')) {
     let recipes = user.filterByTag(input)
     displaySearchedRecipeTiles(recipes)
   } else {
@@ -151,6 +149,8 @@ featuredRecipeParent.addEventListener("click", event => {
   } else if (event.target.nodeName === "H1") {
     updateModal(recipeRepository.featuredRecipe)
   }
+
+  displayCurrentMode()
 })
 
 // ---------------------------DOM UPDATING---------------------------
@@ -165,9 +165,6 @@ function createRecipeTile(recipe) {
             <h2>${recipe.tags.join(', ')}</h2>
         </div>`
 }
-
-//this function will need to be refactored to take in arrays dynamically
-//currently displayAllRecipeTiles & displaySearchedRecipeTiles are doing the same thing
 
 function displayRecipeTiles(recipeArray) {
   allRecipesContainer.innerHTML = ''
@@ -190,11 +187,18 @@ function displayMyRecipes() {
   updateBookmarks()
 }
 
+function displayCurrentMode() {
+    if (allRecipesButton.classList.contains('selected-view')) {
+        displayAllRecipes();
+      } else { displayMyRecipes() }
+}
+
 function displaySearchedRecipeTiles(searchedRecipes) {
   allRecipesContainer.innerHTML = ''
   for (var i = 0; i < searchedRecipes.length; i++) {
     createRecipeTile(searchedRecipes[i])
   }
+  updateBookmarks()
 }
 
 let updateModal = targetObject => {
@@ -248,7 +252,6 @@ function addRecipeToFavorites(e) {
 
     if (recipe.id === Number(e.target.id)) {
       user.addRecipeToFavorites(recipe)
-      console.log(user.favoriteRecipes)
     }
   })
   updateBookmarks()
