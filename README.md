@@ -60,7 +60,7 @@ Wins
 Challenges
 - We have our mid-mod exams tomorrow and needed to balance studying for those with working on the project. 
 
-- Challenge 2
+- We put a lot of work into finding a color scheme that was pleasing to the eye and provided enough contrast to be readable. We worked especially hard on the "save" and "remove" buttons.
 
 ### Additional Notes:
 - The group opted to embed test data rather than importing it from a module because none of us had experience working with the text editor's ability to collapse code blocks amd wanted to practice using them. 
