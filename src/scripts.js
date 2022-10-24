@@ -127,6 +127,7 @@ filter.addEventListener('input', event => {
   if (myRecipesButton.classList.contains('selected-view')) {
     let recipes = user.filterByTag(input)
     displaySearchedRecipeTiles(recipes)
+    
   } else {
     let recipes = recipeRepository.filterByTag(input)
     displaySearchedRecipeTiles(recipes)
@@ -135,10 +136,18 @@ filter.addEventListener('input', event => {
 
 filterClearButton.addEventListener('click', () => {
   filter.value = 'Filter recipes by type...'
-  filterClearButton.disabled = true
+  filterClearButton.disabled = true;
   filterClearButton.classList.add('disabled')
-  allRecipesContainer.innerHTML = ''
-  displayRecipeTiles(recipeRepository.recipeList)
+
+  if (myRecipesButton.classList.contains('selected-view')) {
+    allRecipesContainer.innerHTML = ''
+    displayRecipeTiles(user.favoriteRecipes)
+    updateBookmarks()
+  } else {
+      allRecipesContainer.innerHTML = ''
+      displayRecipeTiles(recipeRepository.recipeList)
+      updateBookmarks()
+    }
 })
 
 featuredRecipeParent.addEventListener("click", event => {
