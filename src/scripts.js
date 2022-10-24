@@ -136,7 +136,7 @@ filterClearButton.addEventListener('click', () => {
   filterClearButton.disabled = true
   filterClearButton.classList.add('disabled')
   allRecipesContainer.innerHTML = ''
-  displayAllRecipeTiles()
+  displayRecipeTiles(recipeRepository.recipeList)
 })
 
 featuredRecipeParent.addEventListener("click", event => {

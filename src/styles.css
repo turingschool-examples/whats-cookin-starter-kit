@@ -9,6 +9,7 @@ LIGHT BEIGE: rgb(247, 243, 233) */
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Libre Baskerville', serif;
 }
 
 body {
@@ -113,6 +114,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 5px;
   width: 600px;
   height: 300px;
   padding: 20px;
@@ -129,37 +131,43 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  border-radius: 5px;
   color: #161616;
   background-color: rgb(247, 243, 233, 0.75);
   width: 75%;
   height: 75%;
+  transition-duration: 400ms;
+}
+
+.recipe-details:hover {
+  transform: scale(1.05);
+  color:rgb(200, 75, 49)
 }
 
 .featured-recipe-title-parent {
   font-family: 'Libre Baskerville', serif;
   font-size: 1.2em;
   width: 40%;
-}
-
-.featured-recipe-title:hover {
-  transform: scale(1.05);
-  transition-duration: 200ms;
-  cursor: pointer;
+  
 }
 
 .special-tag {
   display: flex;
+  flex-direction: column-reverse;
   align-items: center;
   justify-content: center;
   font-family: 'Libre Baskerville', serif;
-  font-size: .8em;
+  font-size: 1em;
   background-color: #C84B31;
-  color: #161616;
+  color: rgb(247, 243, 233);
   width: 15vh;
   height: 15vh;
   border-radius: 50%;
   padding: 2vh;
-  
+}
+
+.special-tag p {
+  margin: 5px;
 }
 
 .featured-bookmark-icon {
@@ -253,11 +261,18 @@ header {
 }
 
 .filter-clear-button {
-  font-family: 'Libre Baskerville', serif;
-  font-size: .5em;
-  background-color: #16161608;
-  border: 1px solid #16161694;
-  padding: 0px 10px;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.filter-clear-button:hover {
+  color: #c84b31;
+  border-bottom: 2px solid #c84b31;
 }
 
 .filter {
@@ -271,6 +286,7 @@ select {
   width: 25%;
   padding: 2px 23px 2px 30px;
   font-size: 15px;
+  border-radius: 5px;
 }
 
 select:hover {
@@ -280,6 +296,7 @@ select:hover {
 }
 
 select:focus {
+  outline: none;
   border: 2px solid #c84b31;
 }
 
