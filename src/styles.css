@@ -40,7 +40,7 @@ nav {
   flex-direction: row;
   align-items: stretch;
   justify-content: space-between;
-  border: solid rgb(150, 53, 35);
+  border: solid rgb(146, 146, 112);
   background-color: rgb(156, 126, 68);
 }
 
@@ -79,6 +79,12 @@ nav {
   letter-spacing: 8px;
   text-shadow: -3px 3px 0 rgb(87, 36, 31), 3px 3px 0 rgb(87, 36, 31),
     3px -3px 0 rgb(87, 36, 31), -3px -3px 0 rgb(87, 36, 31);
+}
+
+.home-background {
+  background-image: url("/src/images/Asset12.png");
+  background-position-x: left;
+  background-size: 180%;
 }
 
 .homepage-area {
