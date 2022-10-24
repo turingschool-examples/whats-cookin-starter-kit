@@ -168,27 +168,26 @@ function displayARecipe() {
 }
 function displaySearchRecipes() {
   
-  let foodOptions;
-  let userInput = searchButtonInput.value.toLowerCase();
-  
-  if(currentPage === 'saved') {
-    foodOptions = currentUser.recipesToCook;
-    
-  }
-  else { 
+  let userInput = searchButtonInput.value;
+  let recipesFilteredName;
+  let recipesFilteredTag;
+
+  if (currentPage === 'saved') {
+    recipesFilteredName = currentUser.filterByName(userInput)
+    recipesFilteredTag = currentUser.filterByTag(userInput)
+    console.log('user: ', recipesFilteredName);
+  } else {
     displayAllRecipes()
-    foodOptions = allRecipes.listOfAllRecipes 
+    recipesFilteredName = allRecipes.filterByName(userInput)
+    recipesFilteredTag = allRecipes.filterByTag(userInput)
+    console.log('all: ', recipesFilteredName);
   }
-  const recipeFilterName = foodOptions.filter(recipe => recipe.name.toLowerCase() === userInput )
-  const recipeFilterByTag = createRecipesOfTag(userInput,foodOptions)
-    
-  if(recipeFilterName.length === 0 && recipeFilterByTag.length !== 0 ) {
-    displayRecipeThumbnails(recipeFilterByTag,'','')
-    
+
+  if(recipesFilteredName.length === 0 && recipesFilteredTag.length !== 0 ) {
+    displayRecipeThumbnails(recipesFilteredTag,'','')
   } 
-  else if (recipeFilterName.length !== 0 && recipeFilterByTag.length === 0) {
-    displayRecipeThumbnails(recipeFilterName,'','')
-    
+  else if (recipesFilteredName.length !== 0 && recipesFilteredTag.length === 0) {
+    displayRecipeThumbnails(recipesFilteredName,'','')
   } else {
     allRecipeThumbnailsSection.innerHTML = "<h3> Sorry your dish can't be found ... order out!</h3>";
   }
@@ -241,22 +240,12 @@ function populateTagFilter(recipeList) {
   });
 }
 
-function createRecipesOfTag(tag, recipeList) {
-  return recipeList.filter((recipe) => recipe.tags.includes(tag));
-}
-
 function displayRecipesOfSameTag() {
   let recipesToTag;
   if (currentPage === "saved") {
-    recipesToTag = createRecipesOfTag(
-      inputForTags.value,
-      currentUser.recipesToCook
-    );
+    recipesToTag = currentUser.filterByTag(inputForTags.value)
   } else {
-    recipesToTag = createRecipesOfTag(
-      inputForTags.value,
-      allRecipes.listOfAllRecipes
-    );
+    recipesToTag = allRecipes.filterByTag(inputForTags.value)
   }
   displayRecipeThumbnails(recipesToTag, "", "");
 }
@@ -292,15 +281,12 @@ function loadSpecificRecipe(event) {
       (recipe) => recipe.id === +event.target.parentElement.parentElement.id
     );
   }
-  if (
-    event.target.className === "single-recipe-img" ||
-    event.target.className === "recipe-title-text"
-  ) {
+  if (event.target.className === "single-recipe-img" || event.target.className === "recipe-title-text") {
     allRecipesMain.classList.add("hide");
     specificRecipePage.classList.remove("hide");
 
-    (specificRecipeHeading.innerText = ""),
-      (specificRecipeHeading.innerText = currentRecipe.name);
+    specificRecipeHeading.innerText = "",
+    specificRecipeHeading.innerText = currentRecipe.name;
 
     specificRecipeImage.src = "";
     specificRecipeImage.src = currentRecipe.image;
@@ -314,7 +300,7 @@ function loadSpecificRecipe(event) {
 function generateIngredientList(recipe) {
   const ingredientsListDisplay = recipe.ingredients.reduce((list, currIng) => {
     let ingredObj = {};
-    ingredObj.name = ingredientsData.find((ing) => ing.id === currIng.id).name; //iterates over all ingredients to find name
+    ingredObj.name = ingredientsData.find((ing) => ing.id === currIng.id).name;
     ingredObj.unit = currIng["quantity"]["unit"];
     if (currIng["quantity"]["amount"] % 1 === 0) {
       ingredObj.amount = currIng["quantity"]["amount"];
@@ -354,12 +340,7 @@ function generateCost(recipe) {
 }
 
 function addToRecipesToCook() {
-  if (
-    !currentUser.recipesToCook.some((recipe) => recipe.id === currentRecipe.id)
-  ) {
+  if (!currentUser.recipesToCook.some((recipe) => recipe.id === currentRecipe.id)) {
     currentUser.addRecipe(currentRecipe.id, allRecipes);
-    console.log("current user: ", currentUser);
-  } else {
-    console.log("NO");
   }
 }

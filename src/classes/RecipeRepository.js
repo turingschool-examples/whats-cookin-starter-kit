@@ -12,7 +12,7 @@ class RecipeRepository {
   }
 
   filterByName(name) {
-    return this.listOfAllRecipes.filter((recipe) => recipe.name === name);
+    return this.listOfAllRecipes.filter((recipe) => recipe.name.toLowerCase() === name.toLowerCase());
   }
 }
 

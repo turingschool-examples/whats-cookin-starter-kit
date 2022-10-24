@@ -39,7 +39,7 @@ class User {
   }
 
   filterByName(name) {
-    return this.recipesToCook.filter((recipe) => recipe["name"] === name);
+    return this.recipesToCook.filter((recipe) => recipe["name"].toLowerCase() === name.toLowerCase());
   }
 }
 
