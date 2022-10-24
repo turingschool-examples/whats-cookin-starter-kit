@@ -196,9 +196,7 @@ function displaySearchRecipes() {
   searchButtonInput.innerText = '';
 }
 //Home Page FUNCTIONS --------
-function clearSearchbar(inputArea) {
-  return inputArea.innerHTML ='          '
-}
+
 //All Recipes Page FUNCTIONS --------
 function displayAllRecipesPage() {
   // specificRecipePage.classList.add('hide');
