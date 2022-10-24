@@ -47,27 +47,27 @@ header {
 }
 
 .header-left-align>input {
-    font-family: 'Libre Baskerville', serif;
-  }
+  font-family: 'Libre Baskerville', serif;
+}
 
-  .search-bar {
-    border-radius: 1px;
-    outline: 0;
-    border: 1px solid rgb(22 22 22 / 11%);
-    width: 74%;
-    height: 60%;
-    padding: 4px 23px 0px;
-    font-size: 15px;
-  }
-  
-  .search-bar:hover {
-    border: 1px solid #c84a3186;
-    transition-duration: 400ms;
-  }
-  
-  .search-bar:focus {
-    border: 2px solid #c84b31;
-  }
+.search-bar {
+  border-radius: 1px;
+  outline: 0;
+  border: 1px solid rgb(22 22 22 / 11%);
+  width: 74%;
+  height: 60%;
+  padding: 4px 23px 0px;
+  font-size: 15px;
+}
+
+.search-bar:hover {
+  border: 1px solid #c84a3186;
+  transition-duration: 400ms;
+}
+
+.search-bar:focus {
+  border: 2px solid #c84b31;
+}
 
 .header-right-align {
   display: flex;
@@ -141,14 +141,14 @@ header {
 
 .recipe-details:hover {
   transform: scale(1.05);
-  color:rgb(200, 75, 49)
+  color: rgb(200, 75, 49)
 }
 
 .featured-recipe-title-parent {
   font-family: 'Libre Baskerville', serif;
   font-size: 1.2em;
   width: 40%;
-  
+
 }
 
 .special-tag {
@@ -257,7 +257,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(247, 243, 233,0.75);
+  background-color: rgb(247, 243, 233, 0.75);
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   padding: 5px;
   gap: 10px;
@@ -341,20 +341,23 @@ select:focus {
 
 /* NOTE: keep media query at the bottom */
 
-@media(max-width:768px){
+@media(max-width:768px) {
   .nav-bar-container {
     width: 100%;
     flex-direction: column;
     align-items: center;
   }
+
   header {
-    height:auto;
+    height: auto;
   }
+
   .header-right-align {
     justify-content: flex-start;
     margin: 15px;
     justify-content: center;
   }
+
   .header-left-align {
     flex-direction: column;
     gap: 10px;
@@ -522,6 +525,15 @@ select:focus {
 
 .modal.is-open {
   display: block;
+}
+
+.welcome-message {
+  display: flex;
+  align-items: center;
+  padding-right: 27px;
+  border-right: 2px solid rgb(22, 22, 22, 0.15);
+  height: 100%;
+  margin-right: 0;
 }
 
 /* ---------------------- MEDIA QUERIES ---------------------- */

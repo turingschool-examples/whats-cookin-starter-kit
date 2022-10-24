@@ -86,9 +86,9 @@ allRecipesContainer.addEventListener("click", event => {
   } else {
     removeRecipeFromFavorites(event)
   }
-  
+
   if (allRecipesButton.classList.contains('selected-view')) {
-    displayAllRecipes();
+    displayAllRecipes()
   } else { displayMyRecipes() }
 
   let targetObject = recipeRepository.recipeList.find(recipe => recipe.id == event.target.parentNode.id)
