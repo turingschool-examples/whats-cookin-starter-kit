@@ -62,6 +62,8 @@ Challenges
 
 - We put a lot of work into finding a color scheme that was pleasing to the eye and provided enough contrast to be readable. We worked especially hard on the "save" and "remove" buttons.
 
+- This is the first time the four of us have split up work rather than done paired programming. We really learned the git workflow doing it this way and got to resolve many merge conflicts. 
+
 ### Additional Notes:
 - The group opted to embed test data rather than importing it from a module because none of us had experience working with the text editor's ability to collapse code blocks amd wanted to practice using them. 
 
