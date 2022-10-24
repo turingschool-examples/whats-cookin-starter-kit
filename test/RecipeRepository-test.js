@@ -4,13 +4,19 @@ import Recipe from '../src/classes/Recipe'
 import recipeData from '../src/data/recipes'
 import ingredientsData from "../src/data/ingredients"
 
-
 describe('RecipeRepository', () => {
   let recipeRepository
+  // let recipeData
+  // let ingredientsData
+  
   beforeEach(() => {
+    // recipeData = recipeData.recipeData
+    // ingredientsData = ingredientsData.ingredientsData
+  
+    
     recipeRepository = new RecipeRepository(recipeData, ingredientsData)
   })
-  
+  // test
   it('should be an instance of RecipeRepository', () => {
     expect(recipeRepository).to.be.an.instanceOf(RecipeRepository)
   })
@@ -27,8 +33,8 @@ describe('RecipeRepository', () => {
   })
 
   it('should should be able to return a list of recipes filtered by name', () => {
-    expect(recipeRepository.filterByName('Pork Chops')[0].id).to.equal(678353)
-    expect(recipeRepository.filterByName('Pancakes')[0].id).to.equal(741603)
+    expect(recipeRepository.filterByNameOrIngredient('Pork Chops')[0].id).to.equal(678353)
+    expect(recipeRepository.filterByNameOrIngredient('Pancakes')[0].id).to.equal(741603)
   })
 
   it('should should be able to return a random recipe of the day', () => {

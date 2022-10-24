@@ -11,6 +11,7 @@ class Recipe {
   }
 
   instantiateIngredients(recipe, ingredientsData) {
+    // console.log(ingredientsData)
     return recipe.ingredients.map(recipeObject => {
       let targetDatasetObject = ingredientsData.find(datasetObj => recipeObject.id === datasetObj.id)
       return new Ingredient(targetDatasetObject, recipeObject)

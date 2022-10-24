@@ -8,7 +8,8 @@ class RecipeRepository {
 
   instantiateRecipes(recipeData, ingredientsData) {
     //Note: we used dot notation below to access the correct array in recipeData.recipeData and ingredientsData.ingredientsData. Refactor this in the second part of the project to use locally hosted data.
-    return recipeData.recipeData.map(recipe => new Recipe(recipe, ingredientsData.ingredientsData))
+  // console.log(recipeData.recipeData)
+    return recipeData.map(recipe => new Recipe(recipe, ingredientsData))
   }
 
   filterByTag(tag) {

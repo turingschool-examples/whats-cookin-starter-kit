@@ -45,11 +45,12 @@ const featuredIcon = document.querySelector('.featured-bookmark-icon')
 // ---------------------------EVENT LISTENERS---------------------------
 
 function fetchData(urls) {
-  Promise.all([getData(urls[0]), getData(urls[1]), getData(urls[2])])
+  Promise.all([getData(urls[0]), getData(urls[1]),
+  getData(urls[2])])
     .then(data => {
-      usersData = data[0]
-      recipesData = data[1]
-      ingredientsData = data[2]
+      usersData = data[0].usersData
+      recipesData = data[1].recipeData
+      ingredientsData = data[2].ingredientsData
       startPage()
     })
 }
@@ -79,7 +80,6 @@ allRecipesContainer.addEventListener("click", event => {
 
   if (event.target.nodeName === "IMG" && (event.target.src.includes('unsaved'))) {
     addRecipeToFavorites(event)
-    console.log("LOOK HERE +++", user.favoriteRecipes)
   } else {
     removeRecipeFromFavorites(event)
   }
@@ -93,7 +93,6 @@ modalSaveRecipeButton.addEventListener("click", event => {
   if (event.target.src.includes('unsaved')) {
     event.target.src = './images/bookmark-saved.png'
     addRecipeToFavorites(event)
-    console.log("LOOK HERE +++", user.favoriteRecipes)
   } else {
     event.target.src = './images/bookmark-unsaved.png'
     removeRecipeFromFavorites(event)
@@ -165,7 +164,15 @@ function createRecipeTile(recipe) {
 
 //this function will need to be refactored to take in arrays dynamically
 //currently displayAllRecipeTiles & displaySearchedRecipeTiles are doing the same thing
+
 function displayRecipeTiles(recipeArray) {
+  if (recipeArray === user.favoriteRecipes) {
+  myRecipesButton.classList.add('selected-view')
+  allRecipesButton.classList.remove('selected-view')
+  } else {
+  myRecipesButton.classList.remove('selected-view')
+  allRecipesButton.classList.add('selected-view')
+  }
   allRecipesContainer.innerHTML = ''
   for (var i = 0; i < recipeArray.length; i++) {
     createRecipeTile(recipeArray[i])

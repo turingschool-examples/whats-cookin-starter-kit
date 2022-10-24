@@ -114,8 +114,8 @@ describe('Recipe', () => {
     expect(recipe.ingredients).to.eql(testIngredients)
   })
 
-  it('should be able to calculate total cost to make', () => {
-    let totalCost = recipe.totalCost()
+  it('should be able to calculate total cost to make recipe', () => {
+    let totalCost = recipe.getTotalCost()
 
     expect(totalCost).to.equal("$9.76")
   })
