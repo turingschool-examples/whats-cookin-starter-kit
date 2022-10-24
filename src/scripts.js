@@ -85,9 +85,7 @@ allRecipesContainer.addEventListener("click", event => {
     removeRecipeFromFavorites(event)
   }
   
-  if (allRecipesButton.classList.contains('selected-view')) {
-    displayAllRecipes();
-  } else { displayMyRecipes() }
+  displayCurrentMode()
 
   let targetObject = recipeRepository.recipeList.find(recipe => recipe.id == event.target.parentNode.id)
   updateModal(targetObject)
@@ -152,9 +150,7 @@ featuredRecipeParent.addEventListener("click", event => {
     updateModal(recipeRepository.featuredRecipe)
   }
 
-  if (allRecipesButton.classList.contains('selected-view')) {
-    displayAllRecipes();
-  } else { displayMyRecipes() }
+  displayCurrentMode()
 })
 
 // ---------------------------DOM UPDATING---------------------------
@@ -192,6 +188,12 @@ function displayMyRecipes() {
   allRecipesButton.classList.remove('selected-view')
   displayRecipeTiles(user.favoriteRecipes)
   updateBookmarks()
+}
+
+function displayCurrentMode() {
+    if (allRecipesButton.classList.contains('selected-view')) {
+        displayAllRecipes();
+      } else { displayMyRecipes() }
 }
 
 function displaySearchedRecipeTiles(searchedRecipes) {
