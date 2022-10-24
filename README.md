@@ -2,7 +2,7 @@
 ![modal](https://user-images.githubusercontent.com/110144802/197455509-5086aca0-8a9e-40ac-ab16-6dad360deee1.gif)
 
 ### Abstract
-Our fully remote team created an eye-catching recipe site that presents users with an array of recipe cards which they can filter and search through by the type of recipe they are looking for while saving recipes to their favorites view. Users will find the site to be thoughtfully-designed, intuitive, and snappy. 
+Our fully remote team created a recipe site that presents users with an array of recipe cards which they can filter and search through by the type of recipe they are looking for while saving recipes to their favorites view. Users will find the site to be thoughtfully-designed, intuitive, and snappy. 
 
 This team project took place in the second term of the Turing software design program and required students to synthesize all the technical and project management skills we have honed over the past weeks to create a fully functioning site from the design phase to production in two weeks. This project required extensive research to determine and implement new technologies to make the product surpass expectations. 
 
