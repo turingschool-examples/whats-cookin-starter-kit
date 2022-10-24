@@ -35,7 +35,7 @@ const ingredientsParent = document.getElementById("ingr-parent")
 const instructionsList = document.getElementById("instructions-list")
 const searchBar = document.getElementById('search-bar')
 const featuredRecipeParent = document.getElementById('featured-recipe-parent')
-const featuredRecipeTitle = document.getElementById('featured-recipe-title')
+const featuredRecipeTitle = document.querySelector('.featured-recipe-title')
 let filter = document.getElementById('filter')
 const filterClearButton = document.querySelector('#filter-clear-button')
 const featuredIcon = document.querySelector('.featured-bookmark-icon')
@@ -52,11 +52,9 @@ function fetchData(urls) {
     })
 }
 
-
 (function () {
   fetchData([usersURL, recipesURL, ingredientsURL])
 })()
-
 
 function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
@@ -141,6 +139,8 @@ featuredRecipeParent.addEventListener("click", event => {
     console.log("LOOK HERE +++", user.favoriteRecipes)
   } else if (event.target.nodeName === "IMG") {
     removeRecipeFromFavorites(event)
+  } else if (event.target.nodeName === "H1") {
+    updateModal(recipeRepository.featuredRecipe)
   }
 })
 
@@ -150,7 +150,7 @@ function createRecipeTile(recipe) {
   allRecipesContainer.innerHTML +=
     `<div class="recipe-tile" id=${recipe.id}>
             <div class= "tile-image" style="background-image: url(${recipe.image})">
-            <img class="modal-bookmark-icon grabber" id=${recipe.id} src="./images/bookmark-tiles-unsaved.png" alt="save recipe">
+            <img class="modal-bookmark-icon bookmark-nodes" id=${recipe.id} src="./images/bookmark-tiles-unsaved.png" alt="save recipe">
             </div>
             <h1>${recipe.name}</h1>
             <h2>${recipe.tags.join(', ')}</h2>
@@ -173,6 +173,7 @@ function displaySearchedRecipeTiles(searchedRecipes) {
 }
 
 let updateModal = targetObject => {
+  if (!targetObject) { return }
   modalTagParent.innerHTML = ``
   targetObject.tags.forEach(tag => {
     modalTagParent.innerHTML += `<button>${tag}</button>`
@@ -213,6 +214,7 @@ let updateModal = targetObject => {
 let displayFeaturedRecipe = () => {
   featuredRecipeParent.style.backgroundImage = `url(${recipeRepository.featuredRecipe.image})`
   featuredRecipeTitle.innerText = `${recipeRepository.featuredRecipe.name}`
+  featuredRecipeTitle.id = recipeRepository.featuredRecipe.id
   featuredIcon.id = recipeRepository.featuredRecipe.id
 }
 
@@ -251,7 +253,7 @@ function populateTags() {
 }
 
 let updateBookmarks = () => {
-  let allBookmarks = document.querySelectorAll('.grabber')
+  let allBookmarks = document.querySelectorAll('.bookmark-nodes')
   allBookmarks.forEach(bookmark => {
     if (user.favoriteRecipes.find(recipe => recipe.id == bookmark.id)) {
       bookmark.src = './images/bookmark-tiles-saved.png'

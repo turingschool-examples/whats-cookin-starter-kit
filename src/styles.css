@@ -6,7 +6,6 @@ RUST: rgb(200, 75, 49)
 BEIGE: rgb(236, 219, 186)
 LIGHT BEIGE: rgb(247, 243, 233) */
 
-
 * {
   margin: 0;
   padding: 0;
@@ -140,6 +139,12 @@ header {
   font-family: 'Libre Baskerville', serif;
   font-size: 1.2em;
   width: 40%;
+}
+
+.featured-recipe-title:hover {
+  transform: scale(1.05);
+  transition-duration: 200ms;
+  cursor: pointer;
 }
 
 .special-tag {
@@ -353,6 +358,10 @@ select:focus {
   cursor: pointer;
 }
 
+.close-modal-btn:focus {
+  outline: none;
+}
+
 .modal-content-parent {
   display: flex;
   flex-direction: column;
@@ -380,11 +389,6 @@ select:focus {
   border: 5px solid rgb(200, 75, 49);
   margin: 5px 10px;
   padding: 3px 10px;
-}
-
-.modal-tag-button-parent>button:hover {
-  transform: scale(1.02);
-  cursor: pointer;
 }
 
 .modal-content-parent>h1 {
