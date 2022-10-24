@@ -1,4 +1,5 @@
 # What's Cookin'? Project
+![modal](https://user-images.githubusercontent.com/110144802/197455509-5086aca0-8a9e-40ac-ab16-6dad360deee1.gif)
 
 ### Abstract
 Our fully remote team created an eye-catching recipe site that presents users with an array of recipe cards which they can filter and search through by the type of recipe they are looking for while saving recipes to their favorites view. Users will find the site to be thoughtfully-designed, intuitive, and snappy. 
@@ -6,9 +7,7 @@ Our fully remote team created an eye-catching recipe site that presents users wi
 This team project took place in the second term of the Turing software design program and required students to synthesize all the technical and project management skills we have honed over the past weeks to create a fully functioning site from the design phase to production in two weeks. This project required extensive research to determine and implement new technologies to make the product surpass expectations. 
 
 ### Feature Spotlight
-In order to provide users with an expanded view of any recipe we researched and determined Micromodal.js to be the best solution. We successfully implemented the micromodal as seen below with an elegant interface where users can view expanded information and favorite the expanded recipe.
-
-<!-- Insert preview gif here -->
+In order to provide users with an expanded view of any recipe we researched and determined Micromodal.js to be the best solution. We successfully implemented the micromodal as seen in the above gif. 
 
 ### Contributors
 [Spencer Haka](https://github.com/Speekins)\
@@ -17,17 +16,18 @@ In order to provide users with an expanded view of any recipe we researched and 
 [Zac Walters](https://github.com/zacwalters4)
 
 ### Research and documentation 
-Guiding design document we developed with Excalidraw: 
-<!-- Insert preview image here -->
-<!-- Insert link here -->
+Design document we developed with Excalidraw: 
+
+<img width="721" alt="design-document" src="https://user-images.githubusercontent.com/110144802/197453877-d2a7e9bf-8101-469c-a3d1-78357162ab3c.png">
 
 Our data model and DOM flowchart:
-<!-- Insert preview image here -->
-<!-- Insert link here -->
+
+<img width="721" alt="datamodel-dom-flowchart" src="https://user-images.githubusercontent.com/110144802/197453843-48b590fb-aa9b-49c7-b5c8-ca69880ec131.png">
 
 Agile/Scrum project board we created and managed in Github:
-<!-- Insert preview image here -->
-<!-- Insert link here -->
+
+<img width="721" alt="project-board" src="https://user-images.githubusercontent.com/110144802/197453829-63de494b-d4f5-4438-9d22-38b9bccbe7b8.png">
+
 
 ### Technologies
 - MicroModal.js 3rd party library
