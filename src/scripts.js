@@ -42,7 +42,7 @@ const welcomeMessage = document.querySelector('.welcome-message')
 
 let filter = document.getElementById('filter')
 
-// ---------------------------EVENT LISTENERS---------------------------
+// ---------------------------UTILITY FUNCTIONS---------------------------
 
 function fetchData(urls) {
   Promise.all([getData(urls[0]), getData(urls[1]),
@@ -54,10 +54,6 @@ function fetchData(urls) {
       startPage()
     })
 }
-
-window.addEventListener('load', () => {
-  fetchData([usersURL, recipesURL, ingredientsURL])
-})
 
 function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
@@ -76,6 +72,12 @@ function startPage() {
     debugMode: false
   })
 }
+
+// ---------------------------EVENT LISTENERS---------------------------
+
+window.addEventListener('load', () => {
+  fetchData([usersURL, recipesURL, ingredientsURL])
+})
 
 allRecipesContainer.addEventListener("click", event => {
   if (event.target.nodeName === "SECTION") { return }
@@ -116,6 +118,7 @@ searchBar.addEventListener('keyup', event => {
 })
 
 myRecipesButton.addEventListener("click", displayMyRecipes)
+
 allRecipesButton.addEventListener("click", displayAllRecipes)
 
 filter.addEventListener('input', event => {
@@ -156,7 +159,6 @@ featuredRecipeParent.addEventListener("click", event => {
   } else if (event.target.nodeName === "H1") {
     updateModal(recipeRepository.featuredRecipe)
   }
-
   displayCurrentMode()
 })
 
@@ -165,12 +167,12 @@ featuredRecipeParent.addEventListener("click", event => {
 function createRecipeTile(recipe) {
   allRecipesContainer.innerHTML +=
     `<div class="recipe-tile" id=${recipe.id}>
-            <div class= "tile-image" style="background-image: url(${recipe.image})">
-            <img class="tile-bookmarks bookmark-nodes" id=${recipe.id} src="./images/bookmark-tiles-unsaved.png" alt="save recipe">
-            </div>
-            <h1>${recipe.name}</h1>
-            <h2>${recipe.tags.join(', ')}</h2>
-        </div>`
+      <div class= "tile-image" style="background-image: url(${recipe.image})">
+        <img class="tile-bookmarks bookmark-nodes" id=${recipe.id} src="./images/bookmark-tiles-unsaved.png" alt="save recipe">
+      </div>
+      <h1>${recipe.name}</h1>
+      <h2>${recipe.tags.join(', ')}</h2>
+    </div>`
 }
 
 function displayRecipeTiles(recipeArray) {
@@ -179,6 +181,9 @@ function displayRecipeTiles(recipeArray) {
 }
 
 function displayAllRecipes() {
+  filter.value = 'Filter recipes by type...'
+  filterClearButton.disabled = true
+  filterClearButton.classList.add('disabled')
   myRecipesButton.classList.remove('selected-view')
   allRecipesButton.classList.add('selected-view')
   displayRecipeTiles(recipeRepository.recipeList)
@@ -207,7 +212,7 @@ function displaySearchedRecipeTiles(searchedRecipes) {
   updateBookmarks()
 }
 
-let updateModal = targetObject => {
+function updateModal(targetObject) {
   if (!targetObject) { return }
   modalTagParent.innerHTML = ``
   targetObject.tags.forEach(tag => {
@@ -246,7 +251,7 @@ let updateModal = targetObject => {
   MicroModal.show("modal-1")
 }
 
-let displayFeaturedRecipe = () => {
+function displayFeaturedRecipe() {
   featuredRecipeParent.style.backgroundImage = `url(${recipeRepository.featuredRecipe.image})`
   featuredRecipeTitle.innerText = `${recipeRepository.featuredRecipe.name}`
   featuredRecipeTitle.id = recipeRepository.featuredRecipe.id
@@ -270,7 +275,6 @@ function removeRecipeFromFavorites(e) {
 
 function populateTags() {
   let allTags = []
-
   recipeRepository.recipeList.forEach(recipe => {
     recipe.tags.forEach(tag => {
       if (!allTags.includes(tag)) {
@@ -278,15 +282,13 @@ function populateTags() {
       }
     })
   })
-
   allTags.sort()
-
   allTags.forEach(tag => {
     filter.innerHTML += `<option id=${tag}>${tag}</option>`
   })
 }
 
-let updateBookmarks = () => {
+function updateBookmarks() {
   let allBookmarks = document.querySelectorAll('.bookmark-nodes')
   allBookmarks.forEach(bookmark => {
     if (user.favoriteRecipes.find(recipe => recipe.id == bookmark.id)) {

@@ -28,7 +28,6 @@ class User {
   filterByNameOrIngredient(input) {
     let filteredRecipes = []
     input = input.toLowerCase()
-    
     this.favoriteRecipes.forEach(recipe => {
       if (recipe.name.toLowerCase().includes(input)) {
         filteredRecipes.push(recipe)
@@ -42,8 +41,7 @@ class User {
         })
       }
     })
-
-    return filteredRecipes;
+    return filteredRecipes
   }
 
   filterByTag(tag) {
