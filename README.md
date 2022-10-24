@@ -2,7 +2,7 @@
 ## Abstract:
 This application is the first of a 2-part project. This part is a recipe tracking and meal planning application that allows users to browse, search, and filter recipes and save selected recipes to their profile. Recipe, ingredient, and user data are fetched from an API. 
 
-<!-- ADD GIF (GIFS) OF APPLICATION IN USE -->
+https://user-images.githubusercontent.com/106895319/197644069-15b1fcb1-9b4e-447a-8c82-3d6fc5b19554.mp4
 
 ## Installation Instructions:
 1. Go to [this repo](https://github.com/justenanderson-commits/whats-cookin) on Github
