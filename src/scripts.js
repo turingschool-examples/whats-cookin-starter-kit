@@ -63,7 +63,8 @@ function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
   displayRecipeTiles(recipeRepository.recipeList)
   populateTags()
-  user = new User(usersData[0])
+  let randomNum = Math.floor(Math.random() * usersData.length)
+  user = new User(usersData[randomNum])
   displayFeaturedRecipe()
   MicroModal.init({
     openClass: 'is-open',

@@ -38,6 +38,6 @@ describe('RecipeRepository', () => {
   })
 
   it('should should be able to return a random recipe of the day', () => {
-    expect(recipeRepository.recipeOfTheDay()).to.be.an.instanceOf(Recipe)
+    expect(recipeRepository.getFeaturedRecipe()).to.be.an.instanceOf(Recipe)
   })
 })
