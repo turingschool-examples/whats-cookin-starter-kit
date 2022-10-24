@@ -17,11 +17,11 @@ class Recipe {
     })
   }
 
-  totalCost() {
+  getTotalCost() {
     let total = this.ingredients.reduce((acc, ingredient) => {
       return acc = acc += ingredient.estimatedCostInCents * ingredient.amount
     }, 0) / 100
-    return `$${total.toString()}`
+    return `$${total.toFixed(2).toString()}`
   }
 }
 
