@@ -130,6 +130,7 @@ nav {
 
 .display-thumbnails-filter-dropdown {
   display: flex;
+  justify-content: space-between;
 }
 
 .all-recipe-thumbnails {
@@ -174,6 +175,7 @@ nav {
   margin-left: 5vw;
   margin-right: 5vw;
   cursor: pointer;
+  width: max-content;
 }
 
 .label-for-select-a-tag {
