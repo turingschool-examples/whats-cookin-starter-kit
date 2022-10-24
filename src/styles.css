@@ -177,6 +177,7 @@ nav {
   color: rgb(150, 53, 35);
   text-shadow: -1px 1px 0 rgb(87, 36, 31), 1px 1px 0 rgb(87, 36, 31),
     1px -1px 0 rgb(87, 36, 31), -1px -1px 0 rgb(87, 36, 31);
+  margin-left: 2%;
 }
 
 .display-thumbnails-filter-dropdown {
