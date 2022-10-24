@@ -132,6 +132,10 @@ function viewAllRecipes(recipes) {
   removeHidden(myRecipesButton);
 
   allRecipesContainer.innerHTML = "";
+  if (!recipes.length) {
+    allRecipesContainer.innerHTML = "<p>Nothing to show!😕</p>";
+    return;
+  }
   recipes.forEach((recipe) => {
     const newSection = document.createElement("section");
     newSection.className = "recipe-card-container";
@@ -262,6 +266,10 @@ function deleteRecipe(event) {
   const indexNumber = newUserList.recipesToCook.indexOf(removeRecipe);
   newUserList.recipesToCook.splice(indexNumber, 1);
   savedRecipes();
+  if (!newUserList.recipesToCook.length) {
+    savedRecipeContainer.innerHTML = "<p>Nothing to show!😕</p>";
+    return;
+  }
 }
 
 function returnHome() {
@@ -283,6 +291,10 @@ function viewMyRecipes() {
   removeHidden(savedRecipePage);
   changeToUserInputs();
   headerTitle.innerText = "Recipes to Cook";
+  if (!newUserList.recipesToCook.length) {
+    savedRecipeContainer.innerHTML = "<p>Nothing to show!😕</p>";
+    return;
+  }
 }
 
 function changeToAllInputs() {
