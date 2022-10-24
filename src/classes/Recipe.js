@@ -3,11 +3,11 @@ const Ingredient = require("./Ingredient")
 class Recipe {
   constructor(recipe, ingredientsData) {
     this.id = recipe.id
-    this.name = recipe.name
     this.image = recipe.image
-    this.instructions = recipe.instructions
-    this.tags = recipe.tags
     this.ingredients = this.instantiateIngredients(recipe, ingredientsData)
+    this.instructions = recipe.instructions
+    this.name = recipe.name
+    this.tags = recipe.tags
   }
 
   instantiateIngredients(recipe, ingredientsData) {
