@@ -1,5 +1,5 @@
 # What's Cookin'? Project
-![modal](https://user-images.githubusercontent.com/110144802/197455509-5086aca0-8a9e-40ac-ab16-6dad360deee1.gif)
+![modal-gif-example](https://user-images.githubusercontent.com/22826695/197589235-4db998f6-b9b4-4593-ba9c-03a084a2eda6.gif)
 
 ### Abstract
 Our fully remote team created a recipe site that presents users with an array of recipe cards which they can filter and search through by the type of recipe they are looking for while saving recipes to their favorites view. Users will find the site to be thoughtfully-designed, intuitive, and snappy. 
