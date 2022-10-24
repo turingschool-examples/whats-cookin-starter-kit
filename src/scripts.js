@@ -55,10 +55,6 @@ function fetchData(urls) {
     })
 }
 
-// (function () {
-  
-// })()
-
 window.addEventListener('load', () => {
   fetchData([usersURL, recipesURL, ingredientsURL])
 })
@@ -252,7 +248,6 @@ function addRecipeToFavorites(e) {
 
     if (recipe.id === Number(e.target.id)) {
       user.addRecipeToFavorites(recipe)
-      console.log(user.favoriteRecipes)
     }
   })
   updateBookmarks()
