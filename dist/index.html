@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- test -->
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -8,8 +9,10 @@
   <title>What's Cookin'</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Roboto:wght@100;300;400&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
   <header>
     <nav class="nav-bar-container">
@@ -17,9 +20,10 @@
         <input type="search" placeholder="Search..." class="search-bar" id="search-bar">
       </div>
       <div class="header-right-align">
+        <div class="welcome-message"></div>
         <div class="header-buttons my-recipes-button" id="my-recipes">My recipes</div>
-            <div class="header-buttons all-recipes-button selected-view" id="all-recipes">All recipes</div>
-        </div>
+        <div class="header-buttons all-recipes-button selected-view" id="all-recipes">All recipes</div>
+      </div>
     </nav>
   </header>
   <section class="below-header-container">
@@ -31,7 +35,8 @@
             <h1 class="featured-recipe-title" id=""></h1>
           </div>
           <div class="special-tag" id="special-tag">
-            <img class="featured-bookmark-icon bookmark-nodes" src="./images/bookmark-tiles-unsaved.png" alt="save featured recipe">
+            <img class="featured-bookmark-icon bookmark-nodes" src="./images/bookmark-tiles-unsaved.png"
+              alt="save featured recipe">
             <p>Recipe</p>
             <p>Featured</p>
           </div>
@@ -85,4 +90,5 @@
 </body>
 <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
 <script src="bundle.js"></script>
+
 </html>
