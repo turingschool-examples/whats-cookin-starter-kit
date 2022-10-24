@@ -176,12 +176,14 @@ function displayAllRecipes() {
   myRecipesButton.classList.remove('selected-view')
   allRecipesButton.classList.add('selected-view')
   displayRecipeTiles(recipeRepository.recipeList)
+  updateBookmarks()
 }
 
 function displayMyRecipes() {
   myRecipesButton.classList.add('selected-view')
   allRecipesButton.classList.remove('selected-view')
   displayRecipeTiles(user.favoriteRecipes)
+  updateBookmarks()
 }
 
 function displaySearchedRecipeTiles(searchedRecipes) {
