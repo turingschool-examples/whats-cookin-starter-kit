@@ -1,47 +1,45 @@
-import './styles.css'
-import apiCalls from './apiCalls'
-import MicroModal from 'micromodal'
-import "./images/bookmark-tiles-unsaved.png"
-import "./images/bookmark-tiles-saved.png"
-import "./images/bookmark-unsaved.png"
 import "./images/bookmark-saved.png"
+import "./images/bookmark-tiles-saved.png"
+import "./images/bookmark-tiles-unsaved.png"
+import "./images/bookmark-unsaved.png"
 import './images/whats-cookin-logo.png'
+import './styles.css'
+import MicroModal from 'micromodal'
 import RecipeRepository from '../src/classes/RecipeRepository'
 import User from '../src/classes/User'
 import getData from './apiCalls'
 
 // ---------------------------DATA MODEL---------------------------
 
-let recipeRepository
-let user
-
-let usersData
 let ingredientsData
+let recipeRepository
 let recipesData
+let user
+let usersData
 
-const usersURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users'
-const recipesURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes'
 const ingredientsURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients'
+const recipesURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes'
+const usersURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users'
 
 // ---------------------------QUERY SELECTORS---------------------------
 
+const allRecipesButton = document.getElementById("all-recipes")
 const allRecipesContainer = document.querySelector('.all-recipes-container')
 const closeModalButton = document.getElementById("close-modal-button")
-const modalSaveRecipeButton = document.querySelector(".modal-bookmark-icon")
-const modalTagParent = document.getElementById("modal-tag-button-parent")
-const modalRecipeTitle = document.getElementById("modal-title")
-const modalImage = document.getElementById("modal-image")
-const ingredientsParent = document.getElementById("ingr-parent")
-const instructionsList = document.getElementById("instructions-list")
-const searchBar = document.getElementById('search-bar')
-const myRecipesButton = document.getElementById("my-recipes")
-const allRecipesButton = document.getElementById("all-recipes")
+const featuredIcon = document.querySelector('.featured-bookmark-icon')
 const featuredRecipeParent = document.getElementById('featured-recipe-parent')
 const featuredRecipeTitle = document.querySelector('.featured-recipe-title')
-let filter = document.getElementById('filter')
 const filterClearButton = document.querySelector('#filter-clear-button')
-const featuredIcon = document.querySelector('.featured-bookmark-icon')
+const ingredientsParent = document.getElementById("ingr-parent")
+const instructionsList = document.getElementById("instructions-list")
+const modalImage = document.getElementById("modal-image")
+const modalRecipeTitle = document.getElementById("modal-title")
+const modalSaveRecipeButton = document.querySelector(".modal-bookmark-icon")
+const modalTagParent = document.getElementById("modal-tag-button-parent")
+const myRecipesButton = document.getElementById("my-recipes")
+const searchBar = document.getElementById('search-bar')
 const welcomeMessage = document.querySelector('.welcome-message')
+let filter = document.getElementById('filter')
 
 // ---------------------------EVENT LISTENERS---------------------------
 
