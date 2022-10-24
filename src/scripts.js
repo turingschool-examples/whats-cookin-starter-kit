@@ -29,6 +29,7 @@ const closeModalButton = document.getElementById("close-modal-button")
 const featuredIcon = document.querySelector('.featured-bookmark-icon')
 const featuredRecipeParent = document.getElementById('featured-recipe-parent')
 const featuredRecipeTitle = document.querySelector('.featured-recipe-title')
+const filter = document.getElementById('filter')
 const filterClearButton = document.querySelector('#filter-clear-button')
 const ingredientsParent = document.getElementById("ingr-parent")
 const instructionsList = document.getElementById("instructions-list")
@@ -39,7 +40,6 @@ const modalTagParent = document.getElementById("modal-tag-button-parent")
 const myRecipesButton = document.getElementById("my-recipes")
 const searchBar = document.getElementById('search-bar')
 const welcomeMessage = document.querySelector('.welcome-message')
-let filter = document.getElementById('filter')
 
 // ---------------------------EVENT LISTENERS---------------------------
 
