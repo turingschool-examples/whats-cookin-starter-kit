@@ -1,7 +1,6 @@
 import { expect } from 'chai'
 import User from '../src/classes/User'
 import Recipe from '../src/classes/Recipe'
-import RecipeRepository from '../src/classes/RecipeRepository'
 import ingredientsData from '../src/data/ingredients'
 import recipeData from '../src/data/recipes'
 import usersData from '../src/data/users'
@@ -23,27 +22,18 @@ describe('User', () => {
   })
 
   it('should have an ID', () => {
-
     expect(user.id).to.equal(1)
   })
 
   it('should have a pantry of ingredients', () => {
-
     expect(user.pantry).to.be.an('array')
     expect(user.pantry).to.eql(usersData[0].pantry)
   })
 
   it('should have a list of favorite recipes', () => {
     user.addRecipeToFavorites(recipe)
-
+    
     expect(user.favoriteRecipes[0].id).to.equal(595736)
-  })
-
-  it('should have a list of recipes to cook', () => {
-    user.addToRecipesToCook(recipe)
-
-    expect(user.recipesToCook).to.be.an('array')
-    expect(user.recipesToCook[0].id).to.equal(595736)
   })
 
   it('should be able to filter favorite recipes by tag', () => {
