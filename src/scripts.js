@@ -197,7 +197,7 @@ function displaySearchRecipes() {
 function displayAllRecipesPage() {
   // specificRecipePage.classList.add('hide');
   // allRecipesMain.classList.remove('hide');
-  createPageTitle("ALL RECIPES");
+  createPageTitle("All Recipes");
   displayRecipeThumbnails(
     allRecipes.listOfAllRecipes,
     "",
@@ -265,7 +265,7 @@ function displaySavedRecipesPage() {
   specificRecipePage.classList.add("hide");
   allRecipesMain.classList.remove("hide");
   console.log("Save page listening");
-  createPageTitle("SAVED RECIPES");
+  createPageTitle("Saved Recipes");
   displayRecipeThumbnails(currentUser.recipesToCook, "🗑", "delete-recipe");
   createListOfTags(currentUser.recipesToCook);
 }
