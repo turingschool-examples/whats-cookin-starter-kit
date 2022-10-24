@@ -1,4 +1,11 @@
 /******/ (() => { // webpackBootstrap
+<<<<<<< HEAD
+  var __webpack_exports__ = {};
+  // alert('hello')
+  /******/
+})()
+  ;
+=======
 /******/ 	var __webpack_modules__ = ([
 /* 0 */,
 /* 1 */
@@ -7480,3 +7487,4 @@ allRecipesView.addEventListener("click", function (event) {
 /******/ })()
 ;
 //# sourceMappingURL=bundle.js.map
+>>>>>>> 9838243dcb7fbbd2ce54300512642aa667c04ee3
