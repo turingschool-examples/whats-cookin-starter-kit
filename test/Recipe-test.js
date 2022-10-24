@@ -240,7 +240,6 @@ describe('Recipe', () => {
     });
 
     it('should have a method that returns an array of all ingredient objects with a length of 244', () => {
-        //trying sad path
         expect(recipeInfo.returnAllIngredientsArray().length === 246).to.equal(false)
     });
 

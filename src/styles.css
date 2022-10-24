@@ -92,7 +92,8 @@
   align-items: center;
 }
 
-.input--filter, .input--search {
+.input--filter,
+.input--search {
   width: 20%;
   height: 50%;
   margin: 10px;
@@ -101,10 +102,10 @@
   border-radius: 20px;
 }
 
-.glide__arrow--right, .glide__arrow--left {
+.glide__arrow--right,
+.glide__arrow--left {
   font-weight: bold;
   background: rgba(00, 00, 00, .5)
-  
 }
 
 .list--total-cost {
@@ -219,23 +220,23 @@ body {
 
 img {
   cursor: pointer;
-  box-shadow: 0 0 200px rgba(0,0,0,0.9) inset;
+  box-shadow: 0 0 200px rgba(0, 0, 0, 0.9) inset;
   border: 2px solid #fefefe;
   border-radius: 3%;
 }
 
 h1 {
   text-align: center;
-  /* font-family: 'Oswald'; */
+  /* font-family: 'Oswald'; - KEEPING FOR PART 2 */
   font-size: 5vh;
   margin: auto;
   margin-bottom: 2%;
-  margin-top:2%;
+  margin-top: 2%;
 }
 
 h2 {
   text-align: center;
-  /* font-family: 'Oswald'; */
+  /* font-family: 'Oswald'; - KEEPING FOR PART 2 */
   margin-top: -3%
 }
 
@@ -250,7 +251,7 @@ h2,
 h5,
 h6 {
   text-align: center;
-  /* font-family: 'Oswald'; */
+  /* font-family: 'Oswald'; - KEEPING FOR PART 2 */
   margin: auto;
   font-size: 3vh;
   margin-bottom: 2%;
@@ -276,7 +277,7 @@ h6 {
   }
 }
 
-/* USE THIS TO DO RECIPE LIST DROPDOWN */
+/* USE THIS TO DO RECIPE LIST DROPDOWN - KEEPING FOR PART 2 */
 /* 
 
 .wrapper {
