@@ -460,33 +460,6 @@ const fetchApiUrl = (path) => {
   
   /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({ fetchData });
 
-
-// const fetchApiUrl = (path) => {
-//     return fetch(`https://what-s-cookin-starter-kit.herokuapp.com/api/v1/${path}`)
-//         .then(response => response.json())
-//         .then(data => data)
-//         .catch(error => console.log(`${path} API Error! ${error}`))
-// }
-
-// const fetchData = () => {
-//     return Promise.all([
-//         fetchApiUrl("ingredients"),
-//         fetchApiUrl("recipes"),
-//         fetchApiUrl("users"),
-//     ])
-//         .then((data) => {
-//             console.log('data', data)
-//             return {
-//                 ingredientsData: data[0].ingredientsData,
-//                 recipeData: data[1].recipeData,
-//                 usersData: data[2].usersData
-//             }
-//         })
-// }
-
-
-// export default { fetchData }
-
 /***/ }),
 /* 7 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -505,11 +478,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-// import Ingredients from '../classes/Ingredients'
-
 class Recipe {
     constructor(data,recipe) {
-        this.data = data
+        this.ingData = data
+        this.recipeIngredients = recipe.ingredients
         this.modifiedData = this.combinedIngredients()
         this.id = recipe.id;
         this.image = recipe.image;
@@ -521,8 +493,8 @@ class Recipe {
 
     combinedIngredients() {
         let ingredientsNeededInfo = [];
-        this.data.forEach((ingredient) => {
-            var info = this.data.find( ing => ingredient.id === ing.id)
+        this.recipeIngredients.forEach((ingredient) => {
+            var info = this.ingData.find( ing => ingredient.id === ing.id)
             ingredientsNeededInfo.push({...info,...ingredient})
         })
         return ingredientsNeededInfo
@@ -530,14 +502,14 @@ class Recipe {
 
     ingredientsNeeded() {
         let ingredientsNeeded = [];
-        this.modifiedIngredients.forEach((ingredient) => {
+        this.modifiedData.forEach((ingredient) => {
                 ingredientsNeeded.push(ingredient.name)
         })       
         return ingredientsNeeded
     }
 
     getIngredientsCost() {
-        var totalIngredientCost = this.modifiedIngredients.reduce(function(acc,item){
+        var totalIngredientCost = this.modifiedData.reduce(function(acc,item){
             let ingredientCost = item.estimatedCostInCents * item.quantity.amount
             return acc + ingredientCost
         }, 0)
@@ -563,16 +535,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class RecipeRepository {
-  constructor(data) {
+  constructor(ingredientData,data) {
+    this.ingredientData = ingredientData
     this.data = data
     this.recipesList = this.createRecipesClassArray()
-    
   }
 
   createRecipesClassArray() {
     let recipesClassArray = []
     this.data.forEach((recipe) => {
-      let modifiedRecipeClass = new _classes_Recipe__WEBPACK_IMPORTED_MODULE_0__["default"](recipe)
+      let modifiedRecipeClass = new _classes_Recipe__WEBPACK_IMPORTED_MODULE_0__["default"](this.ingredientData, recipe)
       recipesClassArray.push(modifiedRecipeClass)
     })
     return recipesClassArray
@@ -587,9 +559,6 @@ class RecipeRepository {
     let nameFilterResults = this.recipesList.filter(recipe => recipe.name.includes(name))
     return nameFilterResults
   }
-
-
-
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RecipeRepository);
@@ -678,7 +647,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _images_turing_logo_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
 /* harmony import */ var _src_classes_Recipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8);
 /* harmony import */ var _src_classes_RecipeRepository__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9);
-
 //Imports
 
 
@@ -686,9 +654,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// import Ingredients from '../src/classes/Ingredients';
 
-// import recipeData from '../src/data/recipes';
 
 //QuerySelector
 const currentRecipeName = document.querySelector(".current-recipe-name")
@@ -718,41 +684,16 @@ let ingredientsData
 let recipeData
 let usersData
 
-
 //Functions
-
 const fetchApiCalls = () => {
     _apiCalls__WEBPACK_IMPORTED_MODULE_1__["default"].fetchData().then(data => {
-      //
       ingredientsData = data[0].ingredientsData;
       recipeData = data[1].recipeData;
       usersData = data[2].usersData;
-    //   let id;
-  
-    //   if (userID === "load") {
-    //     id = getRandomIndex(userData);
-    //   } else {
-    //     id = userID;
-    //   }
-  
-    //   userRepo = new UserRepository(userData);
-    //   user = new User(userRepo.findUsersData(id));
-    //   hydration = new Hydration(user.id, hydrationData);
-    //   sleep = new Sleep(user.id, sleepData);
-      
+
       loadHandler();
     });
   };
-
-// function getApiData() {
-//     fetchData.fetchData()
-//     .then(data => {
-//         console.log('data', data)
-//         apiReturnData = data
-//         console.log('apiReturn', apiReturnData)
-//     })
-//     loadHandler()
-// }
 
 const getRandomIndex = array => {
     return Math.floor(Math.random() * array.length + 1);
@@ -770,7 +711,7 @@ function loadHandler(){
     onLoadRecipe()
     generateRandomRecipes()
     generateAllRecipes()
-    console.log("ingredients api data", ingredientsData)
+    console.log("usersData", usersData)
 }
 
 function clickHandler(){
@@ -784,6 +725,7 @@ function generateAllRecipes () {
 function onLoadRecipe(){
     currentRecipe = new _src_classes_Recipe__WEBPACK_IMPORTED_MODULE_3__["default"](ingredientsData, recipeData[getRandomIndex(recipeData)])
     showMainRecipe()
+    console.log("currentRecipe",currentRecipe)
 }
 
 function generateRandomRecipes(){
@@ -839,7 +781,7 @@ function showSelectedRecipe() {
 function showIngredients() {
     const selectedRecipeIngredients = document.querySelector(".ingredients-list")
 
-    selectedRecipe.ingredients.modifiedData.forEach(element =>
+    selectedRecipe.modifiedData.forEach(element =>
         selectedRecipeIngredients.innerHTML += 
         `<h3 class="ingredient-item">${element.quantity.amount} ${element.quantity.unit} ${element.name} <br></h3>`
     )
