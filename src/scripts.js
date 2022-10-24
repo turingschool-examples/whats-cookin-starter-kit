@@ -166,9 +166,6 @@ function createRecipeTile(recipe) {
         </div>`
 }
 
-//this function will need to be refactored to take in arrays dynamically
-//currently displayAllRecipeTiles & displaySearchedRecipeTiles are doing the same thing
-
 function displayRecipeTiles(recipeArray) {
   allRecipesContainer.innerHTML = ''
   for (var i = 0; i < recipeArray.length; i++) {
