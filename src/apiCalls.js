@@ -5,8 +5,4 @@ let gatherData = (url) => {
     .catch(err => console.log(err))
 }
 
-
-console.log('I will be a fetch request!');
-
-
 export default gatherData
