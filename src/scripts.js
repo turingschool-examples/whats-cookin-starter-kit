@@ -56,9 +56,9 @@ function fetchData(urls) {
     })
 }
 
-(function () {
+window.addEventListener('load', () => {
   fetchData([usersURL, recipesURL, ingredientsURL])
-})()
+})
 
 function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
@@ -87,9 +87,7 @@ allRecipesContainer.addEventListener("click", event => {
     removeRecipeFromFavorites(event)
   }
 
-  if (allRecipesButton.classList.contains('selected-view')) {
-    displayAllRecipes()
-  } else { displayMyRecipes() }
+  displayCurrentMode()
 
   let targetObject = recipeRepository.recipeList.find(recipe => recipe.id == event.target.parentNode.id)
   updateModal(targetObject)
@@ -117,7 +115,6 @@ searchBar.addEventListener('keyup', event => {
     displaySearchedRecipeTiles(recipes)
   }
 })
-
 
 myRecipesButton.addEventListener("click", displayMyRecipes)
 allRecipesButton.addEventListener("click", displayAllRecipes)
@@ -153,6 +150,8 @@ featuredRecipeParent.addEventListener("click", event => {
   } else if (event.target.nodeName === "H1") {
     updateModal(recipeRepository.featuredRecipe)
   }
+
+  displayCurrentMode()
 })
 
 // ---------------------------DOM UPDATING---------------------------
@@ -167,9 +166,6 @@ function createRecipeTile(recipe) {
             <h2>${recipe.tags.join(', ')}</h2>
         </div>`
 }
-
-//this function will need to be refactored to take in arrays dynamically
-//currently displayAllRecipeTiles & displaySearchedRecipeTiles are doing the same thing
 
 function displayRecipeTiles(recipeArray) {
   allRecipesContainer.innerHTML = ''
@@ -192,11 +188,18 @@ function displayMyRecipes() {
   updateBookmarks()
 }
 
+function displayCurrentMode() {
+    if (allRecipesButton.classList.contains('selected-view')) {
+        displayAllRecipes();
+      } else { displayMyRecipes() }
+}
+
 function displaySearchedRecipeTiles(searchedRecipes) {
   allRecipesContainer.innerHTML = ''
   for (var i = 0; i < searchedRecipes.length; i++) {
     createRecipeTile(searchedRecipes[i])
   }
+  updateBookmarks()
 }
 
 let updateModal = targetObject => {
@@ -250,7 +253,6 @@ function addRecipeToFavorites(e) {
 
     if (recipe.id === Number(e.target.id)) {
       user.addRecipeToFavorites(recipe)
-      console.log(user.favoriteRecipes)
     }
   })
   updateBookmarks()
