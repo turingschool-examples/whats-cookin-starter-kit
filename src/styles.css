@@ -34,6 +34,7 @@ COLORS::after
 .header-button {
   height: 5vh;
   width: 9vw;
+  background-color: #ffeef2;
   border-radius: 5px;
   color: #FF6363;
   cursor: pointer;
@@ -172,6 +173,7 @@ COLORS::after
 /* FOOTER */
 
 .main-footer {
+  align-items: flex-start;
   background-color: #FFF;
   border: 2px solid #CD104D;
   bottom: 0;
@@ -186,22 +188,29 @@ COLORS::after
 }
 
 .subscribe-title {
+  border-left: black;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  font-size: 10px;
+  align-items: flex start;
   justify-content: space-evenly;
+  padding-left: 1%;
 }
 
 .contact-information {
+  border-left: solid 2px #CD104D;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  padding-left: 60px;
+  width: 30%;
 }
 
 .connect-with-us {
   display: flex;
   align-items: center;
   flex-direction: column;
+  
 }
 
 .all-the-connect-buttons {
@@ -211,23 +220,31 @@ COLORS::after
 
 .button {
   align-items: center;
+  background-color: #ffeef2;
   border-radius: 45%;
   color: black;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  height: 5vh;
-  justify-content: center;
-  margin-left: 10%;
-  width: 5vh;
-}
-
-.connect-button {
   height: 4vh;
+  justify-content: center;
+  margin-left: 15%;
   width: 4vh;
 }
 
+.connect-button {
+  height: 3vh;
+  width: 3vh;
+}
+
+.connect-button:hover{
+  background-color: #CD104D;
+  color: #FFF;
+}
+
 .learn-more {
+  padding-left: 30px;
+  border-left: solid 2px #CD104D;
   display: flex;
   flex-direction: column;
 }
@@ -238,6 +255,13 @@ COLORS::after
   margin-top: 3%;
   margin-bottom: 4%;
 }
+
+.underline:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+/* scripts rules*/
 
 .view {
   display: flex;
