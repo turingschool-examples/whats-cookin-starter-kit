@@ -31,7 +31,7 @@ const ingredientsURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/i
 
 const allRecipesContainer = document.querySelector('.all-recipes-container')
 const closeModalButton = document.getElementById("close-modal-button")
-const modalSaveRecipeButton = document.getElementById("modal-save-recipe")
+const modalSaveRecipeButton = document.querySelector(".modal-bookmark-icon")
 const modalTagParent = document.getElementById("modal-tag-button-parent")
 const modalRecipeTitle = document.getElementById("modal-title")
 const modalImage = document.getElementById("modal-image")
@@ -83,21 +83,30 @@ allRecipesContainer.addEventListener("click", event => {
   if (event.target.nodeName === "SECTION") { return }
 
   if (event.target.nodeName === "IMG" && (event.target.src.includes('unsaved'))) {
-    event.target.src = './images/bookmark-tiles-saved.png'
+    // event.target.src = './images/bookmark-tiles-saved.png'
     addRecipeToFavorites(event)
     console.log("LOOK HERE +++", user.favoriteRecipes)
   } else {
-    event.target.src = './images/bookmark-tiles-unsaved.png'
+    // event.target.src = './images/bookmark-tiles-unsaved.png'
     removeRecipeFromFavorites(event)
   }
   let targetObject = recipeRepository.recipeList.find(recipe => recipe.id == event.target.parentNode.id)
-  currentlyViewedRecipe = targetObject
+  // currentlyViewedRecipe = targetObject
   updateModal(targetObject)
 })
 
 closeModalButton.addEventListener("click", () => MicroModal.close("modal-1"))
 
-modalSaveRecipeButton.addEventListener("click", () => user.storedFavoriteRecipes.push(currentlyViewedRecipe))
+modalSaveRecipeButton.addEventListener("click", event => {
+  if (event.target.src.includes('unsaved')) {
+    event.target.src = './images/bookmark-saved.png'
+    addRecipeToFavorites(event)
+    console.log("LOOK HERE +++", user.favoriteRecipes)
+  } else {
+    event.target.src = './images/bookmark-unsaved.png'
+    removeRecipeFromFavorites(event)
+  }
+})
 
 searchBar.addEventListener('keyup', event => {
   let input = event.target.value
@@ -136,11 +145,11 @@ filterClearButton.addEventListener('click', () => {
 
 featuredRecipeParent.addEventListener("click", event => {
   if (event.target.nodeName === "IMG" && (event.target.src.includes('unsaved'))) {
-    event.target.src = './images/bookmark-tiles-saved.png'
+    // event.target.src = './images/bookmark-tiles-saved.png'
     addRecipeToFavorites(event)
     console.log("LOOK HERE +++", user.favoriteRecipes)
   } else if (event.target.nodeName === "IMG") {
-    event.target.src = './images/bookmark-tiles-unsaved.png'
+    // event.target.src = './images/bookmark-tiles-unsaved.png'
     removeRecipeFromFavorites(event)
   }
 })
@@ -151,7 +160,7 @@ function createRecipeTile(recipe) {
   allRecipesContainer.innerHTML +=
     `<div class="recipe-tile" id=${recipe.id}>
             <div class= "tile-image" style="background-image: url(${recipe.image})">
-            <img class="modal-bookmark-icon" id=${recipe.id} src="./images/bookmark-tiles-unsaved.png" alt="save recipe">
+            <img class="modal-bookmark-icon grabber" id=${recipe.id} src="./images/bookmark-tiles-unsaved.png" alt="save recipe">
             </div>
             <h1>${recipe.name}</h1>
             <h2>${recipe.tags.join(', ')}</h2>
@@ -178,6 +187,12 @@ let updateModal = targetObject => {
   targetObject.tags.forEach(tag => {
     modalTagParent.innerHTML += `<button>${tag}</button>`
   })
+  modalSaveRecipeButton.id = targetObject.id
+  if (user.favoriteRecipes.includes(targetObject)) {
+    modalSaveRecipeButton.src = './images/bookmark-saved.png'
+  } else if (!user.favoriteRecipes.includes(targetObject)) {
+    modalSaveRecipeButton.src = './images/bookmark-unsaved.png'
+  }
   modalRecipeTitle.innerHTML = targetObject.name
   modalImage.src = targetObject.image
   modalImage.alt = targetObject.name
@@ -218,11 +233,13 @@ function addRecipeToFavorites(e) {
       console.log(user.favoriteRecipes)
     }
   })
+  updateBookmarks()
 }
 
 function removeRecipeFromFavorites(e) {
   let id = Number(e.target.id)
   user.removeRecipeFromFavorites(id)
+  updateBookmarks()
 }
 
 function populateTags() {
@@ -240,6 +257,16 @@ function populateTags() {
 
   allTags.forEach(tag => {
     filter.innerHTML += `<option id=${tag}>${tag}</option>`
+  })
+}
 
+let updateBookmarks = () => {
+  let allBookmarks = document.querySelectorAll('.grabber')
+  allBookmarks.forEach(bookmark => {
+    if (user.favoriteRecipes.find(recipe => recipe.id == bookmark.id)) {
+      bookmark.src = './images/bookmark-tiles-saved.png'
+    } else {
+      bookmark.src = './images/bookmark-tiles-unsaved.png'
+    }
   })
 }
