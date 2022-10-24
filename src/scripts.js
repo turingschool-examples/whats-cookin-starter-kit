@@ -51,7 +51,7 @@ function fetchData(urls) {
       usersData = data[0].usersData
       recipesData = data[1].recipeData
       ingredientsData = data[2].ingredientsData
-      startPage();
+      startPage()
     })
 }
 
