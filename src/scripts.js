@@ -1,10 +1,10 @@
-import './styles.css';
-import apiCalls from './apiCalls';
+import '../styles.css';
+import apiCalls from '../apiCalls';
 //import functionName from './apiCalls';
 const varName = require('../src/apiCalls');
 const functionName2 = varName.testFetch;
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+import '../images/turing-logo.png';
 // Import Fetch calls
 // import {fetchCalls.method1, fetchCalls.method2,  fetchCalls.method3, fetchCalls.method4} from {"./apiCalls"};
 // Import classes
@@ -12,7 +12,9 @@ import './images/turing-logo.png'
 // import Other from './Other';
 // import Class from './Class';
 // import Needed from './Needed';
-
+const recipeGrid = document.querySelector('.all-recipe-grid');
+const allRecipes = document.querySelectorAll('.recipe-card');
+const savedButton = document.querySelector('.saved-button');
 // declare variables for linked methods compatibility
 // let declare;
 // let each;
@@ -23,6 +25,15 @@ import './images/turing-logo.png'
 // let change;
 // let below;
 
+// for (var i = 0; i < allRecipes.length; i++) {
+//   allRecipes[i].addEventListener('click', makeAllHidden());
+// };
+
+savedButton.addEventListener('click', makeAllHidden());
+
+function makeAllHidden() {
+  recipeGrid.classList.toggle('hidden');
+}
 // Declare function to instantiate all of our data to dashboard on load/ refresh.
 // function catalogAllData() {
   // Promise.all()
