@@ -84,6 +84,11 @@ allRecipesContainer.addEventListener("click", event => {
   } else {
     removeRecipeFromFavorites(event)
   }
+  
+  if (allRecipesButton.classList.contains('selected-view')) {
+    displayAllRecipes();
+  } else { displayMyRecipes() }
+
   let targetObject = recipeRepository.recipeList.find(recipe => recipe.id == event.target.parentNode.id)
   updateModal(targetObject)
 })
@@ -102,7 +107,6 @@ modalSaveRecipeButton.addEventListener("click", event => {
 
 searchBar.addEventListener('keyup', event => {
   let input = event.target.value
-  //utilize toggle to switch search criteria between all recipes and favorites?
   if (searchBar.classList.contains('my-recipes')) {
     let recipes = user.filterByNameOrIngredient(input)
     displaySearchedRecipeTiles(recipes)
