@@ -106,7 +106,7 @@ modalSaveRecipeButton.addEventListener("click", event => {
 
 searchBar.addEventListener('keyup', event => {
   let input = event.target.value
-  if (searchBar.classList.contains('my-recipes')) {
+  if (myRecipesButton.classList.contains('selected-view')) {
     let recipes = user.filterByNameOrIngredient(input)
     displaySearchedRecipeTiles(recipes)
   } else {
