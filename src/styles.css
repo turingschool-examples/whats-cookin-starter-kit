@@ -1,31 +1,32 @@
 /* colors:
- red = 149, 54, 35  
- brown = 87,36, 41
- green = 145,147,109
- beige = 230, 205, 141
- forest green = 156,126, 68
+ red = 150, 53, 35  
+ brown = 88,46, 31
+ green = 156,126,68
+ beige = 233, 203, 144
+ light green = 146,146, 112
  */
 
 /* font-family: 'Abril Fatface', cursive;
  font-family: 'Playball', cursive;
  font-family: 'Playfair Display', serif; */
 
- body {
-   font-family: "Playfair Display", serif;
- }
+body {
+  font-family: "Playfair Display", serif;
+  background-image: url("./images/paper.png");
+}
 
- button {
+button {
   cursor: pointer;
- }
+}
 
- /* Navagation display */
+/* Navagation display */
 nav {
-   display: flex;
-    flex-direction: row;
-    border: solid;
-    align-items: stretch;
-    justify-content: space-between;
-   }
+  display: flex;
+  flex-direction: row;
+  border: solid;
+  align-items: stretch;
+  justify-content: space-between;
+}
 
 /* .welcome-wrapper {
    margin-left: 30px;
@@ -38,19 +39,47 @@ nav {
    margin-left: 8px;
  } */
 
- /* .welcome-wrapper and .user-wrapper are commented out because Courtney commented out those two associated HTML elements for now. We can add this back in if we decide to use the Welcome: User on our homepage. */
+/* .welcome-wrapper and .user-wrapper are commented out because Courtney commented out those two associated HTML elements for now. We can add this back in if we decide to use the Welcome: User on our homepage. */
 
 .nav-btns-wrapper {
-   width: 35rem;
-   margin-top: 5px;
-   margin-right: 20px;
-   height: 3rem;
-   display: flex;
-   align-items: center;
-   justify-content: space-around;
- }
+  width: 35rem;
+  margin-top: 5px;
+  margin-right: 20px;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
 
- /* HomePage */
+/* HomePage */
+
+#title {
+  align-self: flex-start;
+  flex-wrap: wrap;
+  font-size: 90pt;
+  font-family: "Abril Fatface", cursive;
+  width: 900px;
+  margin-top: 30px;
+  margin-left: 65px;
+  color: rgb(150, 53, 35);
+}
+
+#logo {
+  height: 300px;
+  width: 400px;
+}
+
+.homepage-area {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+  height: 90vh;
+  background-image: url("./images/Asset1.png");
+  background-repeat: no-repeat;
+  background-position-x: 90%;
+  background-position-y: bottom;
+  background-size: 37%;
+}
 
 /* About Page section */
 
@@ -187,6 +216,6 @@ nav {
 }
 
 /* ~~End All/Saved Recipes CSS ~~ */
- .hide {
-   display: none;
- }
+.hide {
+  display: none;
+}
