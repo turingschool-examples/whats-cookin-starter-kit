@@ -72,10 +72,10 @@ nav {
   width: 1000px;
   margin-top: 10px;
   margin-left: 30px;
-  color: rgb(87, 36, 31);
-  letter-spacing: 7px;
-  text-shadow: -1px 1px 0 rgb(150, 53, 35), 1px 1px 0 rgb(150, 53, 35),
-    1px -1px 0 rgb(150, 53, 35), -1px -1px 0 rgb(150, 53, 35);
+  color: rgb(255, 227, 171);
+  letter-spacing: 8px;
+  text-shadow: -3px 3px 0 rgb(87, 36, 31), 3px 3px 0 rgb(87, 36, 31),
+    3px -3px 0 rgb(87, 36, 31), -3px -3px 0 rgb(87, 36, 31);
 }
 
 .homepage-area {
@@ -95,12 +95,17 @@ nav {
   display: flex;
   flex-direction: column;
   margin: 30px;
+  background-image: url(/src/images/turing-logo.png);
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
+  background-size: 10%;
 }
 
 .about-paragraph {
   display: flex;
   justify-content: center;
-  border: 2px solid rgb(1, 1, 1);
+  border: 2px solid rgb(87, 36, 31);
 }
 
 #about {
@@ -108,7 +113,7 @@ nav {
   text-align: center;
   font-size: 15pt;
   padding: 10px;
-  color: rgb(54, 54, 54);
+  color: rgb(87, 36, 31);
 }
 
 .authors {
@@ -136,7 +141,7 @@ nav {
   margin-left: 20px;
   margin-top: 30px;
   font-size: 15pt;
-  color: rgb(54, 54, 54);
+  color: rgb(87, 36, 31);
 }
 /*  Specific Recipe  section  */
 .specific-recipe-img {
