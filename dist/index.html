@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <link href='styles.css' type='text/css' rel='stylesheet'>
+    <!-- <link href='styles.css' type='text/css' rel='stylesheet'> -->
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,8 @@
   <body>
     <header>
       <div class="title-area">
-        <img class='turing-logo' src="../src/images/turing-logo.png" alt="Turing Logo"> 
+        <!-- /Users/mattwalter/turing/mod2/whats-cookin-project/src/images/turing-logo.png -->
+        <img class='turing-logo' src="./images/turing-logo.png" alt="Turing Logo"> 
       <h1 class="site-title">What's Cookin'</h1>
       </div>
       <nav>
@@ -25,23 +26,23 @@
       <section class='view home-view'>
         <section class='home-container'>
           <div class='greeting-area'>
-            <h1 class="greeting"><span>Welcome to What's Cookin'!</span></h1>
+            <h1 class="greeting" id="greeting">Welcome to What's Cookin'!</h1>
           </div>
           <section class="all-recipe-grid">
             <div class="recipe-header-container">
               <h2 class="all-recipes-header">All Recipes:</h2>
             </div>
-            <ul>
-              <li class="recipe-card">Recipe Card</li>
-              <li class="recipe-card">Recipe Card</li>
-              <li class="recipe-card">Recipe Card</li>
-              <li class="recipe-card">Recipe Card</li>
-              <li class="recipe-card">Recipe Card</li>
-              <li class="recipe-card">Recipe Card</li>
-              <li class="recipe-card">Recipe Card</li>
-              <li class="recipe-card">Recipe Card</li>
-              <li class="recipe-card">Recipe Card</li>
-              <li class="recipe-card">Recipe Card</li>
+            <ul id="all-card-grid">
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
+              <li>Recipe Card</li>
             </ul>
             <br>
           </section>
