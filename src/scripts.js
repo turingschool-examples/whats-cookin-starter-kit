@@ -42,7 +42,6 @@ let filter = document.getElementById('filter')
 const filterClearButton = document.querySelector('#filter-clear-button')
 const featuredIcon = document.querySelector('.featured-bookmark-icon')
 const welcomeMessage = document.querySelector('.welcome-message')
-const searchError = document.getElementById('error')
 
 // ---------------------------EVENT LISTENERS---------------------------
 
@@ -124,12 +123,10 @@ filter.addEventListener('input', event => {
   filterClearButton.disabled = false
   filterClearButton.classList.remove('disabled')
   let input = event.target.value
-  
+
   if (myRecipesButton.classList.contains('selected-view')) {
     let recipes = user.filterByTag(input)
-    if (!!recipes) {
-      searchError.classList.remove('hidden')
-    } else { displaySearchedRecipeTiles(recipes) }
+    displaySearchedRecipeTiles(recipes)
   } else {
     let recipes = recipeRepository.filterByTag(input)
     displaySearchedRecipeTiles(recipes)
@@ -138,7 +135,7 @@ filter.addEventListener('input', event => {
 
 filterClearButton.addEventListener('click', () => {
   filter.value = 'Filter recipes by type...'
-  filterClearButton.disabled = true;
+  filterClearButton.disabled = true
   filterClearButton.classList.add('disabled')
 
   if (myRecipesButton.classList.contains('selected-view')) {
@@ -146,10 +143,10 @@ filterClearButton.addEventListener('click', () => {
     displayRecipeTiles(user.favoriteRecipes)
     updateBookmarks()
   } else {
-      allRecipesContainer.innerHTML = ''
-      displayRecipeTiles(recipeRepository.recipeList)
-      updateBookmarks()
-    }
+    allRecipesContainer.innerHTML = ''
+    displayRecipeTiles(recipeRepository.recipeList)
+    updateBookmarks()
+  }
 })
 
 featuredRecipeParent.addEventListener("click", event => {
@@ -184,12 +181,6 @@ function displayRecipeTiles(recipeArray) {
   }
 }
 
-function showError() {
-  if (!!result) {
-    searchError.remove()
-  }
-}
-
 function displayAllRecipes() {
   myRecipesButton.classList.remove('selected-view')
   allRecipesButton.classList.add('selected-view')
@@ -198,6 +189,9 @@ function displayAllRecipes() {
 }
 
 function displayMyRecipes() {
+  filter.value = 'Filter recipes by type...'
+  filterClearButton.disabled = true
+  filterClearButton.classList.add('disabled')
   myRecipesButton.classList.add('selected-view')
   allRecipesButton.classList.remove('selected-view')
   displayRecipeTiles(user.favoriteRecipes)
@@ -205,9 +199,9 @@ function displayMyRecipes() {
 }
 
 function displayCurrentMode() {
-    if (allRecipesButton.classList.contains('selected-view')) {
-        displayAllRecipes();
-      } else { displayMyRecipes() }
+  if (allRecipesButton.classList.contains('selected-view')) {
+    displayAllRecipes()
+  } else { displayMyRecipes() }
 }
 
 function displaySearchedRecipeTiles(searchedRecipes) {
@@ -266,7 +260,6 @@ let displayFeaturedRecipe = () => {
 
 function addRecipeToFavorites(e) {
   recipeRepository.recipeList.forEach(recipe => {
-
     if (recipe.id === Number(e.target.id)) {
       user.addRecipeToFavorites(recipe)
     }
