@@ -116,7 +116,6 @@ searchBar.addEventListener('keyup', event => {
   }
 })
 
-
 myRecipesButton.addEventListener("click", displayMyRecipes)
 allRecipesButton.addEventListener("click", displayAllRecipes)
 
