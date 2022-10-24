@@ -22,9 +22,7 @@ class User {
   }
 
   filterByTag(tag) {
-    let filteredRecipes = this.favoriteRecipes.filter(recipe => recipe.tags.includes(tag));
-    if (filteredRecipes.length === 0) { return null}
-    return filteredRecipes;
+    return this.favoriteRecipes.filter(recipe => recipe.tags.includes(tag));
   }
 
   filterByNameOrIngredient(input) {
