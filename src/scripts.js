@@ -1,28 +1,12 @@
-<<<<<<< HEAD
-import '../styles.css';
-import apiCalls from '../apiCalls';
-//import functionName from './apiCalls';
-const varName = require('../src/apiCalls');
-const functionName2 = varName.testFetch;
-=======
 import './styles.css';
 import apiCalls from './apiCalls';
 import gatherData from './apiCalls';
->>>>>>> 0e8951997e9168241b035ffd83ff4804eb7ab54f
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import '../images/turing-logo.png';
 // Import Fetch calls
 // import {fetchCalls.method1, fetchCalls.method2,  fetchCalls.method3, fetchCalls.method4} from {"./apiCalls"};
 // Import classes
 // import Each from './Each'; {ex - RecipeRepository, Recipe, Ingredient, User}
-<<<<<<< HEAD
-// import Other from './Other';
-// import Class from './Class';
-// import Needed from './Needed';
-const recipeGrid = document.querySelector('.all-recipe-grid');
-const allRecipes = document.querySelectorAll('.recipe-card');
-const savedButton = document.querySelector('.saved-button');
-=======
 import Ingredient from './classes/Ingredient.js';
 import Recipe from './classes/Recipe.js';
 import RecipeRepository from './classes/RecipeRepository.js';
@@ -30,7 +14,6 @@ import User from './classes/User.js';
 
 
 
->>>>>>> 0e8951997e9168241b035ffd83ff4804eb7ab54f
 // declare variables for linked methods compatibility
 let usersData;
 let ingredientsData;
