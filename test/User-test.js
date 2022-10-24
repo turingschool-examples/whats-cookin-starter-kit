@@ -2,6 +2,7 @@ import Recipe from '../src/classes/Recipe'
 import ingredientsData from '../src/data/ingredients'
 import recipeData from '../src/data/recipes'
 import usersData from '../src/data/users'
+import User from '../src/classes/User'
 import { expect } from 'chai'
 
 describe('User', () => {
@@ -45,7 +46,7 @@ describe('User', () => {
     expect(filtered2[0]).to.eql(user.favoriteRecipes[1])
   })
 
-  it('should be bale to filter favorite recipes by name', () => {
+  it('should be able to filter favorite recipes by name', () => {
     user.addRecipeToFavorites(recipe)
     user.addRecipeToFavorites(recipe2)
     let filtered = user.filterByNameOrIngredient('Cookie')

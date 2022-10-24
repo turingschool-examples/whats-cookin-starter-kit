@@ -43,7 +43,7 @@ header {
 }
 
 .search-bar {
-  border-radius: 1px;
+  border-radius: 5px;
   outline: 0;
   border: 1px solid rgb(22 22 22 / 11%);
   width: 74%;
@@ -238,14 +238,6 @@ header {
   top: 7px;
 }
 
-/* .bookmark-button {
-  margin: 7%;
-  width: 5vh;
-  height: 5vh;
-  border-radius: 5vh;
-  background-color: aliceblue;
-} */
-
 .below-header-container {
   display: flex;
   flex-direction: column;
@@ -418,7 +410,8 @@ select:focus {
   max-height: 55px;
 }
 
-.modal-bookmark-icon:hover {
+.modal-bookmark-icon:hover, 
+.tile-bookmarks:hover {
   transform: scale(1.05);
   cursor: pointer;
   transition-duration: 200ms;
