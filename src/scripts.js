@@ -14,7 +14,6 @@ const myRecipesButton = document.getElementById('button--my-recipes');
 const saveRecipeButton = document.getElementById('button--save-recipe');
 const removeRecipeButton = document.getElementById('button--remove-recipe');
 const allRecipesButton = document.getElementById('button--all-recipes');
-const myRecipeList = document.getElementById('button--recipe-list');
 const searchField = document.getElementById('input--search');
 const filterField = document.getElementById('input--filter');
 const searchFieldSaved = document.getElementById('input--search-saved-recipes');
@@ -25,7 +24,7 @@ const recipeListsContainer = document.getElementById('section--recipe-lists');
 const savedRecipesContainer = document.getElementById('section--saved-recipes');
 const savedRecipesListsContainer = document.getElementById('section--saved-recipe-lists');
 const allRecipesContainer = document.getElementById('section--all-recipes');
-const recipeImageContainer = document.getElementById('section--recipe-image')
+const recipeImageContainer = document.getElementById('section--recipe-image');
 const ingredientContainer = document.getElementById('ul--ingredient-list');
 const instructionsContainer = document.getElementById('ul--instructions');
 const allRecipes0to9 = document.getElementById('list--recipes-0-9');
@@ -38,18 +37,7 @@ const savedRecipesList2 = document.getElementById('list--saved-recipes-10-19');
 const savedRecipesList3 = document.getElementById('list--saved-recipes-20-29');
 const allRecipesLists = [allRecipes0to9, allRecipes10to19, allRecipes20to29, allRecipes30to39, allRecipes40to49];
 const savedRecipesLists = [savedRecipesList1, savedRecipesList2, savedRecipesList3];
-const recipeCard1 = document.getElementById('card--recipe1');
-const recipeCard2 = document.getElementById('card--recipe2');
-const recipeCard3 = document.getElementById('card--recipe3');
-const recipeCard4 = document.getElementById('card--recipe4');
-const recipeCard5 = document.getElementById('card--recipe5');
-const recipeCard6 = document.getElementById('card--recipe6');
-const recipeCard7 = document.getElementById('card--recipe7');
-const recipeCard8 = document.getElementById('card--recipe8');
-const recipeCard9 = document.getElementById('card--recipe9');
-const recipeCard10 = document.getElementById('card--recipe10');
 const recipeTitle = document.getElementById('title--recipe');
-const totalCost = document.getElementById('text--total-cost');
 
 // GLOBAL VARIABLES LIVE HERE
 let user;
@@ -66,16 +54,16 @@ let recipeRepoClass;
 //  PROMISES LIVE HERE
 function promises() {
     Promise.all([fetchData('users'), fetchData('recipes'), fetchData('ingredients')]).then(data => {
-    usersArray = data[0];
-    recipeArray = data[1];
-    recipeRepo = recipeArray.recipeData
-    ingredientsArray = data[2];
-    arrayForUser = usersArray.usersData;
-    recipeRepoClass = new RecipeRepository(recipeRepo);
-    allRecipes = recipeRepoClass.returnAllRecipesObjectsArray()
-    user = new User(arrayForUser[randomIndex(arrayForUser)]);
-    loadUser();
- })
+        usersArray = data[0];
+        recipeArray = data[1];
+        recipeRepo = recipeArray.recipeData
+        ingredientsArray = data[2];
+        arrayForUser = usersArray.usersData;
+        recipeRepoClass = new RecipeRepository(recipeRepo);
+        allRecipes = recipeRepoClass.returnAllRecipesObjectsArray()
+        user = new User(arrayForUser[randomIndex(arrayForUser)]);
+        loadUser();
+    })
 }
 
 
@@ -193,7 +181,6 @@ const clearRecipesList = (lists) => {
 const displayAllRecipes = () => {
     clearRecipesList(allRecipesLists);
     allRecipes.sort((a, b) => {
-        // ---------------- Can this be refactored????
         if (a.name > b.name) {
             return 1;
         } else {
@@ -225,7 +212,6 @@ const displaySavedRecipes = () => {
     savedRecipesList1.innerHTML = '';
     savedRecipesList2.innerHTML = '';
     savedRecipesList3.innerHTML = '';
-    // ---------------- Can this be refactored????
     user.recipesToCook.sort((a, b) => {
         if (a.name > b.name) {
             return 1;
@@ -287,7 +273,6 @@ const displayFilteredRecipes = (event) => {
         displayAllRecipes();
         return;
     }
-    console.log()
     const filteredRecipes = recipeRepoClass.filteredByTag(event.target.value);
     allRecipesLists.forEach(list => {
         hide(list)
@@ -325,7 +310,6 @@ const displaySearchedRecipesSaved = (event) => {
     savedRecipesLists.forEach(list => {
         hide(list)
     });
-    console.log(event.target.value)
     clearRecipesList(savedRecipesLists);
     filteredRecipes.forEach((recipe, index) => {
         if (index < 10) {
@@ -390,36 +374,16 @@ const displayRecipeDetails = (event) => {
     hide(savedRecipesContainer);
     hide(allRecipesContainer);
     recipeTitle.innerText = currentRecipe.name;
-
     recipeImageContainer.innerHTML = '';
-    
     recipeImageContainer.innerHTML += `<p><img src="${currentRecipe.returnRecipeImage()}"></p>`;
-
     instructionsContainer.innerHTML = '';
     currentRecipe.returnRecipeInstructions().map(element => instructionsContainer.innerHTML += `<li>${element}</li>`);
-
     ingredientContainer.innerHTML = '';
     currentRecipe.returnRecipeIngredientsInfo()
         .map(ingredientInfo => ingredientContainer.innerHTML += `<li>${ingredientInfo}</li>`);
 
     ingredientContainer.innerHTML += `<div class="text--total-cost">Total cost: ${currentRecipe.returnCostOfIngredients()}</div>`;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 window.addEventListener('load', promises)

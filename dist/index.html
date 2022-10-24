@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel='icon' href='./images/cooking.png'>
-  <!--MIGHT NEED TO ADD HEIGHT TO VIEWPORT-->
   <title>Whats Cookin</title>
 </head>
-
 <body>
   <header>
     <h1>What's Cookin'</h1>
@@ -29,12 +26,8 @@
       </div>
     </nav>
   </header>
-  <!--ADD DROPDOWN DIV HERE AND BUTTON TYPES-->
-  <!--ASSUMING WE WILL INVOKE BOTH THE FILTER BY NAME & FILTER BY TAG METHODS-->
   <section class="section--main-body" id="section--main-body">
     <section class="section--cards-container" id="section--cards-container">
-
-      <!-- Carousel Stuff Here -->
       <h2>Eat With Your Eyes</h2>
       <div class="glide">
         <div class="glide__track" data-glide-el="track">
@@ -117,8 +110,6 @@
         </div>
       </div>
     </section>
-
-
     <section class="section--all-recipes hidden" id="section--all-recipes">
       <h5>All Recipes</h5>
       <div class="section--filter-bar">
@@ -133,15 +124,9 @@
         <ul class="list--all-recipes" id="list--recipes-40-49"></ul>
       </section>
     </section>
-
-
     <section class="section--recipe-details hidden" id="section--recipe-details">
       <h2 id="title--recipe">PB&J</h2>
-      <section class="section--recipe-image" id="section--recipe-image">
-        <!-- The innerHTML from this element will come from the Recipe.returnRecipeImage() method. -->
-      </section>
-
-
+      <section class="section--recipe-image" id="section--recipe-image"></section>
       <section class="section--ingredients-instructions" id="section--ingredients-instructions">
         <container class="card--ingredients" id="card--ingredients">
           <h3>Ingredients</h3>
@@ -149,19 +134,7 @@
         </container>
         <container class="card--instructions" id="card--instructions">
           <h4>Instructions</h4>
-          <ul class="ul--instructions" id="ul--instructions">
-            <li>In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set
-              aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar
-              and brown sugar and cream until light and fluffy.</li>
-            <li>Add egg and vanilla and mix until combined.</li>
-            <li>"Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough
-              into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2
-              hours or overnight.When ready to bake, preheat oven to 350 degrees."</li>
-            <li>Place the cookie dough balls into ungreased muffin pan. Sprinkle with sea salt.</li>
-            <li>Bake for 9 to 10 minutes, or until you see the edges start to brown.</li>
-            <li>Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice
-              cream and a drizzle of chocolate sauce.</li>
-          </ul>
+          <ul class="ul--instructions" id="ul--instructions"></ul>
         </container>
       </section>
       <div class="button--save-recipe" id="button--save-recipe">
@@ -171,8 +144,6 @@
         <a href="#" class="button button--grey button--animate">Remove Recipe</a>
       </div>
     </section>
-
-
     <section class="section--saved-recipes hidden" id="section--saved-recipes">
       <h6>My Saved Recipes</h6>
       <div class="section--filter-bar">
@@ -185,7 +156,6 @@
         <ul class="list--saved-recipes" id="list--saved-recipes-20-29"></ul>
       </section>
     </section>
-
     <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
     <script>
       const config = {
@@ -196,5 +166,4 @@
     </script>
 </body>
 <script src="bundle.js"></script>
-
 </html>
