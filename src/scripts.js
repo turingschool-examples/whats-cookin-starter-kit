@@ -216,7 +216,7 @@ function createPageTitle(title) {
 function displayRecipeThumbnails(recipesList, trashbin, trashbinClass) {
   let recipesThumbnailsSection = "";
   recipesList.forEach((recipe) => {
-    return (recipesThumbnailsSection += `<section    class="single-recipe-thumbnail" id = "${recipe.id}"> <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> <div class="single-recipe-text"> <p class="recipe-title-text">${recipe.name}</p> <p class=${trashbinClass}>${trashbin}</p> </div> </section>`);
+    return (recipesThumbnailsSection += `<section class="single-recipe-thumbnail" id = "${recipe.id}"> <img class="single-recipe-img" src=${recipe.image} alt=${recipe.name}> <div class="single-recipe-text"> <p class="recipe-title-text">${recipe.name}</p> <p class=${trashbinClass}>${trashbin}</p> </div> </section>`);
   });
   allRecipeThumbnailsSection.innerHTML = recipesThumbnailsSection;
 }
@@ -236,7 +236,7 @@ function populateTagFilter(recipeList) {
   tagsList.forEach((tag) => {
     demoCount++;
     allRecipeFilterTagOptions.innerHTML += `
-    <option class="tag-options-text" value="${tag}">${tag}</option>
+    <option class="tag-options-text hover" value="${tag}">${tag}</option>
   `;
   });
 }
