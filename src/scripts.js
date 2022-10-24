@@ -12,12 +12,8 @@ import getData from './apiCalls'
 
 // ---------------------------DATA MODEL---------------------------
 
-// const recipeRepository = new RecipeRepository(recipeData, ingredientsData)
-// const user = new User(usersData[0])
-
 let recipeRepository
 let user
-let currentlyViewedRecipe
 
 let usersData
 let ingredientsData
@@ -64,10 +60,9 @@ function fetchData(urls) {
 
 function startPage() {
   recipeRepository = new RecipeRepository(recipesData, ingredientsData)
-  displayAllRecipeTiles()
-  populateTags()
   user = new User(usersData.usersData[0])
   displayAllRecipeTiles()
+  populateTags()
   displayFeaturedRecipe()
   MicroModal.init({
     openClass: 'is-open',
@@ -83,15 +78,12 @@ allRecipesContainer.addEventListener("click", event => {
   if (event.target.nodeName === "SECTION") { return }
 
   if (event.target.nodeName === "IMG" && (event.target.src.includes('unsaved'))) {
-    // event.target.src = './images/bookmark-tiles-saved.png'
     addRecipeToFavorites(event)
     console.log("LOOK HERE +++", user.favoriteRecipes)
   } else {
-    // event.target.src = './images/bookmark-tiles-unsaved.png'
     removeRecipeFromFavorites(event)
   }
   let targetObject = recipeRepository.recipeList.find(recipe => recipe.id == event.target.parentNode.id)
-  // currentlyViewedRecipe = targetObject
   updateModal(targetObject)
 })
 
@@ -145,11 +137,9 @@ filterClearButton.addEventListener('click', () => {
 
 featuredRecipeParent.addEventListener("click", event => {
   if (event.target.nodeName === "IMG" && (event.target.src.includes('unsaved'))) {
-    // event.target.src = './images/bookmark-tiles-saved.png'
     addRecipeToFavorites(event)
     console.log("LOOK HERE +++", user.favoriteRecipes)
   } else if (event.target.nodeName === "IMG") {
-    // event.target.src = './images/bookmark-tiles-unsaved.png'
     removeRecipeFromFavorites(event)
   }
 })
