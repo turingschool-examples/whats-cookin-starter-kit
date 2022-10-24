@@ -47,56 +47,60 @@
 } */
 
 .home-view {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 1.5rem;
   height: 100%;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   /* overflow: scroll; */
   width: 100%;
 }
 
 .main-left-side {
   display: flex;
-  height: 25vh;
-  justify-content: space-around;
-  margin-top: 10%;
-  width: 65vw;
-  margin-bottom: 10%;
+  flex-wrap: wrap;
+  grid-column: span 3;
+  height: 100%;
+  justify-content: flex-start;
+  /* margin-top: 10%; */
+  /* width: 80%; */
+  /* margin-bottom: 10%; */
 }
 
-.left-side-first-recipe {
+.featured-recipe-box {
+  background-repeat:no-repeat;
+  border: solid 3px #CD104D;
   display: flex;
   flex-wrap: wrap;
   height: 30vh;
-  width: 70%;
-}
-
-.left-side-featured-recipe-box {
-  background-image: url("https://spoonacular.com/recipeImages/516904-556x370.jpg");
-  display: flex;
-  height: 50vh;
-  background-repeat:no-repeat;
   object-fit: fill;
-  width: 80%;
+  width: 100%;
 }
 
-.left-side-recipe-name {
-  background: none;
-  height: 30vh;
-  width: 50%;
+.three-images {
   display: flex;
-  position: relative;
+  flex-direction: row;
+  flex-wrap: wrap;
+  grid-column: span 3;
+  height: 100%;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .card {
+  align-items: flex-start;
   background: none;
-  border: none;
-  height: 20vh;
-  Width: 8vh;
   background-position: center;
   background-repeat: no-repeat;
-  position: relative;
   background-size: cover;
-  
+  border: none;
+  height: 28vh;
+  justify-items: flex-start;
+  justify-content: flex-start;
+  margin: 2%;
+  position: relative;
+  width: 24vh;
+
 }
 
 .main-right-side-title {
@@ -113,20 +117,29 @@
   position: relative;
 }
 
-.current-recipe-ingredients{
+.current-recipe-name{
+  background: none;
   font-size: 2.5vh;
+}
+
+.random-image {
+  margin: 2%, 2%;
+  height: 100%;
+  width: 100%;
+
 }
 
 /* SAVED SECTION */
 
 .saved-section {
   align-items: center;
-  background-color: #CD104D;
+  border: solid 3px #CD104D;
   display: flex;
   flex-direction: column;
-  height: auto;
-  margin-left: 5vh;
-  margin-right: 0;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  height: 100%;
+  width: 100%;
 }
 
 .right-side-title {
