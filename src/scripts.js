@@ -174,7 +174,7 @@ function displaySearchRecipes() {
   
   if(currentPage === 'saved') {
     foodOptions = currentUser.recipesToCook;
-    console.log('TEST if WORKS', foodOptions)
+    
   }
   else { 
     displayAllRecipes()
@@ -185,14 +185,15 @@ function displaySearchRecipes() {
     
   if(recipeFilterName.length === 0 && recipeFilterByTag.length !== 0 ) {
     displayRecipeThumbnails(recipeFilterByTag,'','')
+    
   } 
   else if (recipeFilterName.length !== 0 && recipeFilterByTag.length === 0) {
+    displayRecipeThumbnails(recipeFilterName,'','')
     
-   displayRecipeThumbnails(recipeFilterName,'','')
   } else {
-    allRecipeThumbnailsSection.innerHTML = "<h3> Sorry your dish can't be found ... order out!</h3>"; 
-    
+    allRecipeThumbnailsSection.innerHTML = "<h3> Sorry your dish can't be found ... order out!</h3>";
   }
+  searchButtonInput.innerText = '';
 }
 //Home Page FUNCTIONS --------
 //All Recipes Page FUNCTIONS --------
