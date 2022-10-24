@@ -42,6 +42,9 @@ const modalImage = document.getElementById("modal-image")
 const ingredientsParent = document.getElementById("ingr-parent")
 const instructionsParent = document.getElementById("instructions-parent")
 const searchBar = document.getElementById('search-bar')
+const myRecipesButton = document.querySelector('.my-recipes-button')
+const allRecipesButton = document.querySelector('.all-recipes-button')
+
 
 // ---------------------------EVENT LISTENERS---------------------------
 
@@ -120,6 +123,8 @@ function createRecipeTile(recipe) {
 //this function will need to be refactored to take in arrays dynamically
 //currently displayAllRecipeTiles & displaySearchedRecipeTiles are doing the same thing
 function displayAllRecipeTiles() {
+  myRecipesButton.classList.add('selected-view')
+  allRecipesButton.classList.remove('selected-view')
   for (var i = 0; i < recipeRepository.recipeList.length; i++) {
     createRecipeTile(recipeRepository.recipeList[i])
   }

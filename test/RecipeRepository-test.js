@@ -4,10 +4,16 @@ import Recipe from '../src/classes/Recipe'
 import recipeData from '../src/data/recipes'
 import ingredientsData from "../src/data/ingredients"
 
-
 describe('RecipeRepository', () => {
   let recipeRepository
+  // let recipeData
+  // let ingredientsData
+  
   beforeEach(() => {
+    // recipeData = recipeData.recipeData
+    // ingredientsData = ingredientsData.ingredientsData
+  
+    
     recipeRepository = new RecipeRepository(recipeData, ingredientsData)
   })
   

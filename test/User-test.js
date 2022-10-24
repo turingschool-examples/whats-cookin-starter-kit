@@ -6,7 +6,7 @@ import ingredientsData from '../src/data/ingredients'
 import recipeData from '../src/data/recipes'
 import usersData from '../src/data/users'
 
-describe('Recipe', () => {
+describe('User', () => {
   let user, recipe, recipe2
   beforeEach(() => {
     recipe = new Recipe(recipeData[0], ingredientsData)
@@ -59,8 +59,8 @@ describe('Recipe', () => {
   it('should be bale to filter favorite recipes by name', () => {
     user.addRecipeToFavorites(recipe)
     user.addRecipeToFavorites(recipe2)
-    let filtered = user.filterByName('Cookie')
-    let filtered2 = user.filterByName('Maple')
+    let filtered = user.filterByNameOrIngredient('Cookie')
+    let filtered2 = user.filterByNameOrIngredient('Maple')
 
     expect(filtered[0]).to.eql(user.favoriteRecipes[0])
     expect(filtered2[0]).to.eql(user.favoriteRecipes[1])

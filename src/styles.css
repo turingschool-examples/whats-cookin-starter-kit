@@ -229,8 +229,12 @@ select:focus {
   font-size: 20px;
 }
 
-.header-buttons:hover {
+.selected-view {
   border-bottom: 3px solid #c84b31;
+  color: #c84b31
+}
+
+.header-buttons:hover {
   color: #c84b31
 }
 
