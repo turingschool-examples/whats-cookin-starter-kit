@@ -1,14 +1,11 @@
-
 //Imports
 import './styles.css';
-import apiCalls from './apiCalls';
+import apiCalls from './apiCalls'
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 
 import Recipe from '../src/classes/Recipe';
-import Ingredients from '../src/classes/Ingredients';
 import RecipeRepository from '../src/classes/RecipeRepository';
-import recipeData from '../src/data/recipes';
 
 //QuerySelector
 const currentRecipeName = document.querySelector(".current-recipe-name")
@@ -34,8 +31,22 @@ let currentRecipe
 let randomRecipes
 let allRecipes
 let selectedRecipe
+let ingredientsData
+let recipeData
+let usersData
+
 
 //Functions
+const fetchApiCalls = () => {
+    apiCalls.fetchData().then(data => {
+      ingredientsData = data[0].ingredientsData;
+      recipeData = data[1].recipeData;
+      usersData = data[2].usersData;
+
+      loadHandler();
+    });
+  };
+
 const getRandomIndex = array => {
     return Math.floor(Math.random() * array.length + 1);
 };
@@ -59,21 +70,22 @@ function clickHandler(){
 }
 
 function generateAllRecipes () {
-    allRecipes = new RecipeRepository(recipeData)
+    allRecipes = new RecipeRepository(ingredientsData,recipeData)
 }
 
 function onLoadRecipe(){
-    currentRecipe = new Recipe(recipeData[getRandomIndex(recipeData)])
+    currentRecipe = new Recipe(ingredientsData, recipeData[getRandomIndex(recipeData)])
     showMainRecipe()
+    console.log("currentRecipe",currentRecipe)
 }
 
 function generateRandomRecipes(){
     randomRecipes = []
-    let randomRecipe1 = new Recipe(recipeData[getRandomIndex(recipeData)])
+    let randomRecipe1 = new Recipe(ingredientsData, recipeData[getRandomIndex(recipeData)])
     randomRecipes.push(randomRecipe1)
-    let randomRecipe2 = new Recipe(recipeData[getRandomIndex(recipeData)])
+    let randomRecipe2 = new Recipe(ingredientsData, recipeData[getRandomIndex(recipeData)])
     randomRecipes.push(randomRecipe2)
-    let randomRecipe3 = new Recipe(recipeData[getRandomIndex(recipeData)])
+    let randomRecipe3 = new Recipe(ingredientsData, recipeData[getRandomIndex(recipeData)])
     randomRecipes.push(randomRecipe3)
 
     showMainRandomRecipes()
@@ -120,7 +132,7 @@ function showSelectedRecipe() {
 function showIngredients() {
     const selectedRecipeIngredients = document.querySelector(".ingredients-list")
 
-    selectedRecipe.ingredients.modifiedData.forEach(element =>
+    selectedRecipe.modifiedData.forEach(element =>
         selectedRecipeIngredients.innerHTML += 
         `<h3 class="ingredient-item">${element.quantity.amount} ${element.quantity.unit} ${element.name} <br></h3>`
     )
@@ -176,7 +188,7 @@ function viewHome () {
 }
 
 //EventListener
-window.addEventListener("load", loadHandler())
+window.addEventListener("load", fetchApiCalls())
 homeButton.addEventListener("click", function(event) {
     event.preventDefault()
     viewHome()
