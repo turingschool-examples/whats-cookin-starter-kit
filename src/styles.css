@@ -1,330 +1,279 @@
-body {
-  background-color: #EDCFA9;
+* {
+  background-color: #FFF;
 }
 
+/* HEADER */
+
 .main-header {
-  background-color: #E89F71;
+  align-items: center;
+  background: none;
+  border: solid 2px #CD104D;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 10vh;
   width: 100%;
 }
 
-#searchBar{
+#searchBar {
+  border-radius: 10px;
   height: 5vh;
+  justify-items: center;
+  margin-top: 13px;
+  margin-right: 20%;
   width: 20vw;
-  border-radius: 5px;
-  margin-top: 13px;
 }
 
-.view-all-recipes{
+.header-button {
   height: 5vh;
-  width: 20vw;
+  width: 9vw;
+  background-color: #ffeef2;
   border-radius: 5px;
-  margin-top: 13px;
+  color: #FF6363;
   cursor: pointer;
-}
-
-.login-button{
-  height: 5vh;
-  width: 10vw;
-  border-radius: 5px;
   margin-top: 13px;
-  cursor: pointer;
-}
-.main-center-boxes{
-  background-color: #EDCFA9;
-  display: flex;
-  height: 75vh;
-  width: 100%;
-
+  margin-right: 5%;
 }
 
-.main-left-side{
-  background-color: #EDCFA9;
-  display: flex;
-  height: 75vh;
-  width: 70%;
-  flex-wrap: wrap;
+.header-button:hover {
+  text-decoration: underline;
+  background-color: #CD104D;
+  color: white
 }
 
-
-.left-side-first-recipe{
-  background-color: #E89F71;
-  height: 30vh;
-  width: 100%;
+/* MAIN */
+/* .whole-page-container {
   display: flex;
-}
-.left-side-featured-recipe-box{
-  background-color: #EDCFA9;
-  display: flex;
-  height: 30vh;
-  width: 50%;
-  justify-content: flex-start;
   flex-direction: column;
-  align-items: flex-start;
-  font-size: 1.5vh;
+} */
+
+.home-view {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 1.5rem;
+  height: 100%;
+  /* justify-content: space-between; */
+  /* overflow: scroll; */
+  width: 100%;
 }
-.current-recipe-image{
-  height: 30vh;
-  width: 50%;
+
+.main-left-side {
   display: flex;
+  flex-wrap: wrap;
+  grid-column: span 3;
+  height: 100%;
+  justify-content: flex-start;
+  /* margin-top: 10%; */
+  /* width: 80%; */
+  /* margin-bottom: 10%; */
 }
 
-.left-side-recipe-name{
-  font-size: 3vh;
+.featured-recipe-box {
+  background-repeat:no-repeat;
+  border: solid 3px #CD104D;
+  display: flex;
+  flex-wrap: wrap;
+  height: 30vh;
+  object-fit: fill;
+  width: 100%;
 }
 
-.current-recipe-ingredients{
-  font-size: 2.5vh;
+.three-images {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  grid-column: span 3;
+  height: 100%;
+  justify-content: flex-start;
+  width: 100%;
 }
 
-p{
-  font-size: 2vh;
+.card {
+  align-items: flex-start;
+  background: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+  height: 28vh;
+  justify-items: flex-start;
+  justify-content: flex-start;
+  margin: 2%;
+  position: relative;
+  width: 24vh;
+
+}
+
+.main-right-side-title {
+  border-style: solid;
+  display: flex;  
+}
+
+.middle-card {
+  background-image: url("https://spoonacular.com/recipeImages/507921-556x370.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+  position: relative;
 }
 
 .current-recipe-name{
-  font-size: 2vh;
-}
-.left-main-bottom-three-images{
-  display: flex;
-}
-.three-img-botttom-left{
-  display: flex;
+  background: none;
+  font-size: 2.5vh;
 }
 
-.main-right-saved-section{
+.random-image {
+  margin: 2%, 2%;
+  height: 100%;
+  width: 100%;
+
+}
+
+/* SAVED SECTION */
+
+.saved-section {
+  align-items: center;
+  border: solid 3px #CD104D;
   display: flex;
   flex-direction: column;
-  margin-left: 5vh;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  height: 100%;
+  width: 100%;
 }
 
-.main-right-side-title{
-  background-color: #E89F71;
+.right-side-title {
+  background-color: #EE6983;
+  color: white;
   display: flex;
+  font-size: 1.3rem;
   justify-content: center;
   height: 4vh;
   width: 20vw;
   margin-top: 2vh;
 }
 
-.main-right-side-first-box{
-  background-color: #E89F71;
-  display: flex;
-  justify-content: center;
-  height: 15vh;
-  width: 20vw;
-  margin-top: 4.5vh;
-  border-style: solid;
-}
-.main-right-side-second-box{
-  background-color: #E89F71;
-  display: flex;
-  justify-content: center;
-  height: 15vh;
-  width: 20vw;
-  margin-top: 3vh;
-  border-style: solid;
-}
-
-.main-right-side-third-box{
-  background-color: #E89F71;
-  display: flex;
-  justify-content: center;
-  height: 15vh;
-  width: 20vw;
-  margin-top: 3vh;
-  border-style: solid;
-}
-
-.main-right-side-fourth-box{
-  background-color: #E89F71;
-  display: flex;
-  justify-content: center;
-  height: 15vh;
-  width: 20vw;
-  margin-top: 3vh;
-  margin-bottom: 2vh;
-  border-style: solid;
-}
-
-
-.main-footer{
-  background-color: #E89F71;
-  display: flex;
-  justify-content: space-around;
-  border-style: solid;
-}
-
-.subscribe-title{
+.saved-box {
+  background-image:url("https://spoonacular.com/recipeImages/541288-556x370.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+  color: black;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+  font-size: .8rem;
+  height: 15vh;
+  justify-content: flex-end; 
+  margin-top: 5%;
+  position: relative;
+  width: 20vw;
+}
+
+.card-footer:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+/* FOOTER */
+
+.main-footer {
+  align-items: flex-start;
+  background-color: #FFF;
+  border: 2px solid #CD104D;
+  bottom: 0;
+  display: flex;
+  height: 70px;
+  justify-content: space-around;
+  left: 0;
+  overflow-x: hidden;
+  position: fixed;
+  width: 100%;
 
 }
 
-.contact-information{
+.subscribe-title {
+  border-left: black;
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  align-items: flex start;
+  justify-content: space-evenly;
+  padding-left: 1%;
+}
+
+.contact-information {
+  border-left: solid 2px #CD104D;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  padding-left: 60px;
+  width: 30%;
 }
 
-.connect-with-us{
+.connect-with-us {
   display: flex;
   align-items: center;
   flex-direction: column;
+
 }
 
-.all-the-connect-buttons{
+.all-the-connect-buttons {
   display: flex;
-  flex-direction: row;
-  
+  flex-direction: row; 
 }
 
-.facebook-button{
-  height: 5vh;
-  width: 5vw;
-  border-radius: 120px;
-  display: flex;
-  display: flex;
-  justify-content: center;
+.button {
   align-items: center;
+  background-color: #ffeef2;
+  border-radius: 45%;
+  color: black;
   cursor: pointer;
-}
-
-.twitter-button{
-  height: 5vh;
-  width: 5vw;
-  border-radius: 20px;
   display: flex;
+  flex-direction: column;
+  height: 4vh;
   justify-content: center;
-  align-items: center;
-  cursor: pointer;
+  margin-left: 15%;
+  width: 4vh;
 }
 
-.instagram-button{
-  height: 5vh;
-  width: 5vw;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+.connect-button {
+  height: 3vh;
+  width: 3vh;
 }
 
-.youtube-button{
-  height: 5vh;
-  width: 5vw;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+.connect-button:hover{
+  background-color: #CD104D;
+  color: #FFF;
 }
 
-.learn-more-title{
-  display: flex;
-  justify-content: center;
-}
-
-.all-the-learn-more-links{
+.learn-more {
+  padding-left: 30px;
+  border-left: solid 2px #CD104D;
   display: flex;
   flex-direction: column;
 }
 
-.contact-us-button{
-  cursor: pointer;
-}
-
-.about-us-button{
-  cursor: pointer;
-}
-
-.privacy-policy{
-  cursor: pointer;
-}
-
-.three-images-bottom-left-main{
-  background-color: #EDCFA9;
-  height: 25vh;
-  width: 65vw;
-  margin-top: 10px;
-  /* margin-right: 10vw; */
+.learn-more-title {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  margin-top: 3%;
+  margin-bottom: 4%;
 }
 
-.left-random-card{
-  background-color: #E89F71;
-  height: 25vh;
-  width: 15vw;
-  border-style: solid;
+.underline:hover {
+  text-decoration: underline;
+  color: blue;
 }
 
-.middle-random-card{
-  background-color: #E89F71;
-  height: 25vh;
-  width: 15vw;
-  border-style: solid;
-}
+/* scripts rules*/
 
-.right-random-card{
-  background-color: #E89F71;
-  height: 25vh;
-  width: 15vw;
-  border-style: solid;
-}
-
-.image-left-header{
-  height: 8vh;
-  width: 15vw;
-  background-image: url("https://spoonacular.com/recipeImages/595736-556x370.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  background-size: cover;
-  
-}
-
-.image-middle-header{
-  height: 8vh;
-  width: 15vw;
-  background-image: url("https://spoonacular.com/recipeImages/678353-556x370.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  background-size: cover;
-}
-
-.image-right-header{
-  height: 8vh;
-  width: 15vw;
-  background-image: url("https://spoonacular.com/recipeImages/412309-556x370.jpeg");
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  background-size: cover;
-}
-
-.ingredients-for-left-header{
-  margin-top: 5px;
-  
-}
-
-.ingredients-for-middle-header{
-  margin-top: 5px;
-}
-
-.ingredients-for-right-header{
-  margin-top: 5px;
-}
-
-.main-right-side-first-header{
-  border-style: solid;
+.view {
   display: flex;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .hidden {
-  display:none
+  display: none;
 }

@@ -1,9 +1,3 @@
-/******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ([
-/* 0 */,
-/* 1 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -952,3 +946,4 @@ searchButton.addEventListener("click", function(event){
 /******/ })()
 ;
 //# sourceMappingURL=bundle.js.map
+

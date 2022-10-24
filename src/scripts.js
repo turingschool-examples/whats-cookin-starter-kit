@@ -65,10 +65,6 @@ function loadHandler(){
     generateAllRecipes()
 }
 
-function clickHandler(){
-    
-}
-
 function generateAllRecipes () {
     allRecipes = new RecipeRepository(ingredientsData,recipeData)
 }
@@ -169,13 +165,13 @@ function viewSearchedRecipes() {
 }
 
 function viewAllRecipes () {
+    showElement(allRecipesView)
     allRecipes.recipesList.forEach(element => 
         allRecipesView.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`
     )
     hideElement(viewAllRecipesButton)
     hideElement(homeView)
     hideElement(selectedRecipeView)
-    showElement(allRecipesView)
     showElement(homeButton)
 }
 
