@@ -1,12 +1,86 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-  </head>
-  <body>
-    <h1>Whats Cookin</h1>
-  </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <link rel="stylesheet" href="../src/styles.css" />
+  <title>What's Cookin'</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav class="nav-bar-container">
+      <div class="header-left-align">
+        <input type="search" placeholder="Search..." class="search-bar" id="search-bar">
+      </div>
+      <div class="header-right-align">
+        <div class="header-buttons" id="my-recipes">My recipes</div>
+        <div class="header-buttons" id="all-recipes">All recipes</div>
+      </div>
+    </nav>
+  </header>
+  <section class="below-header-container">
+    <section class="banner">
+      <img src="./images/whats-cookin-logo.png" id="logo">
+      <div id="featured-recipe-parent" class="featured-recipe-parent">
+        <div class="recipe-details" id="recipe-details">
+          <div class="featured-recipe-title-parent">
+            <h1 class="featured-recipe-title" id=""></h1>
+          </div>
+          <div class="special-tag" id="special-tag">
+            <img class="featured-bookmark-icon bookmark-nodes" src="./images/bookmark-tiles-unsaved.png" alt="save featured recipe">
+            Recipe of the Day
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="filter-bar">
+      <select class="filter" id="filter">
+        <option>Filter recipes by type...</option>
+      </select>
+      <div class="header-buttons filter-clear-button disabled" id="filter-clear-button" disabled>clear filter</div>
+    </section>
+    <section class="all-recipes-container">
+    </section>
+  </section>
+  <div class="modal" id="modal-1" aria-hidden="true">
+    <div class="modal-grandparent" tabindex="-1">
+      <div class="modal-parent" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+        <div class="close-modal-btn-container">
+          <button class="close-modal-btn" id="close-modal-button" aria-label="Close modal">close</button>
+        </div>
+        <div class="modal-content-parent">
+          <div class="modal-tag-div">
+            <p>tags: </p>
+            <div class="modal-tag-button-parent" id="modal-tag-button-parent">
+            </div>
+          </div>
+          <h1 id="modal-title"></h1>
+          <div class="modal-bookmark-div">
+            <img class="modal-bookmark-icon" id="modal-save-recipe" src="./images/bookmark-unsaved.png"
+              alt="save recipe">
+            <p class="modal-icon-label">add to<br>
+              My Recipes</p>
+          </div>
+          <div class="modal-image-ingr-parent">
+            <img class="modal-image" id="modal-image" src="" alt="">
+            <span id="ingr-parent" class="ingr-span">
+            </span>
+          </div>
+          <span class="instructions-grandparent">
+            <h2>Instructions</h2>
+            <div class="instructions-parent">
+              <ol class="instructions-list" id="instructions-list">
+              </ol>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+<script src="bundle.js"></script>
 </html>

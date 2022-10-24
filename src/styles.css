@@ -1,3 +1,521 @@
+/* WIREFRAME COLORS:
+
+BLACK: #161616
+GREEN: rgb(52, 103, 81)
+RUST: rgb(200, 75, 49)
+BEIGE: rgb(236, 219, 186)
+LIGHT BEIGE: rgb(247, 243, 233) */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background-color: blueviolet;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 75px;
+  background-color: rgb(247, 243, 233, 0.75);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2)
+}
+
+.nav-bar-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  color: #161616;
+}
+
+.header-left-align {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50%;
+  gap: 65px;
+  margin-left: 20px;
+}
+
+.header-left-align>input {
+    font-family: 'Libre Baskerville', serif;
+  }
+
+  .search-bar {
+    border-radius: 1px;
+    outline: 0;
+    border: 1px solid rgb(22 22 22 / 11%);
+    width: 74%;
+    height: 60%;
+    padding: 4px 23px 0px;
+    font-size: 15px;
+  }
+  
+  .search-bar:hover {
+    border: 1px solid #c84a3186;
+    transition-duration: 400ms;
+  }
+  
+  .search-bar:focus {
+    border: 2px solid #c84b31;
+  }
+
+.header-right-align {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 25px;
+  margin-right: 30px;
+}
+
+.header-buttons {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.header-buttons:hover {
+  border-bottom: 3px solid #c84b31;
+  color: #c84b31;
+  transition-duration: 200ms;
+}
+
+.header-right-align>div {
+  font-family: 'Libre Baskerville', serif;
+  font-size: .95em;
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 600px;
+  width: auto;
+  background-image: url('../src/images/countertop.jpg');
+  background-size: cover;
+}
+
+.featured-recipe-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  height: 300px;
+  padding: 20px;
+  background-color: #ECDBBA;
+  background-size: cover;
+  text-align: center;
+}
+
+#logo {
+  height: 80%;
+}
+
+.recipe-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #161616;
+  background-color: rgb(247, 243, 233, 0.75);
+  width: 75%;
+  height: 75%;
+}
+
+.featured-recipe-title-parent {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.2em;
+  width: 40%;
+}
+
+.featured-recipe-title:hover {
+  transform: scale(1.05);
+  transition-duration: 200ms;
+  cursor: pointer;
+}
+
+.special-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Libre Baskerville', serif;
+  font-size: .8em;
+  background-color: #C84B31;
+  color: #161616;
+  width: 15vh;
+  height: 15vh;
+  border-radius: 50%;
+  padding: 2vh;
+  
+}
+
+.featured-bookmark-icon {
+  height: 29%;
+}
+
+.featured-bookmark-icon:hover {
+  transform: scale(1.05);
+  transition-duration: 200ms;
+  cursor: pointer;
+}
+
+.recipe-tile {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Libre Baskerville', serif;
+  height: 270px;
+  width: 270px;
+  margin: 10px;
+  border: 1px solid #16161650;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  background-color: rgb(247, 243, 233);
+}
+
+.recipe-tile:hover {
+  border: 1px solid #c84b31;
+  cursor: pointer;
+  transform: scale(1.01);
+  transition-duration: 100ms;
+}
+
+.recipe-tile>.tile-image {
+  flex-basis: 65%;
+  display: flex;
+  flex-direction: row-reverse;
+  background-size: 100%;
+  min-height: 65%;
+}
+
+.recipe-tile>h1 {
+  padding: 5px;
+  font-size: 1vw;
+}
+
+.recipe-tile>h1:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  transition-duration: 200ms;
+}
+
+.recipe-tile>h2 {
+  flex-basis: 20%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2vh;
+  font-weight: 300;
+  padding: 5px;
+}
+
+.bookmark-button {
+  margin: 7%;
+  width: 5vh;
+  height: 5vh;
+  border-radius: 5vh;
+  background-color: aliceblue;
+}
+
+.below-header-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 74px;
+  height: auto;
+  width: 100%;
+}
+
+.all-recipes-container {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  height: auto;
+  width: auto;
+}
+
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(247, 243, 233,0.75);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  padding: 5px;
+  gap: 10px;
+}
+
+.filter-clear-button {
+  font-family: 'Libre Baskerville', serif;
+  font-size: .5em;
+  background-color: #16161608;
+  border: 1px solid #16161694;
+  padding: 0px 10px;
+}
+
+.filter {
+  font-family: 'Libre Baskerville', serif;
+  font-size: .7em;
+  height: 27px;
+}
+
+select {
+  border: 1px solid rgb(22 22 22 / 11%);
+  width: 25%;
+  padding: 2px 23px 2px 30px;
+  font-size: 15px;
+}
+
+select:hover {
+  border: 1px solid #c84b31;
+  background-color: white;
+  transition-duration: 200ms;
+}
+
+select:focus {
+  border: 2px solid #c84b31;
+}
+
+.disabled {
+  color: gray;
+  background-color: #16161600;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* NOTE: keep media query at the bottom */
+
+@media(max-width:768px){
+  .nav-bar-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  header {
+    height:auto;
+  }
+  .header-right-align {
+    justify-content: flex-start;
+    margin: 15px;
+    justify-content: center;
+  }
+  .header-left-align {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+}
+
+/* ---------------------- MODAL ---------------------- */
+
+.modal {
+  display: none;
+  position: fixed;
+  background-color: #000000ab;
+  height: 100%;
+  width: 100%;
+}
+
+.modal-grandparent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+}
+
+.modal-parent {
+  background-color: rgb(247, 243, 233);
+  height: 75%;
+  width: 75%;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.close-modal-btn-container {
+  position: fixed;
+  width: inherit;
+}
+
+.close-modal-btn {
+  font-family: 'Roboto', sans-serif;
+  float: right;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0px;
+  padding: 7px;
+  padding-right: 20px;
+}
+
+.close-modal-btn:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.close-modal-btn:focus {
+  outline: none;
+}
+
+.modal-content-parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 6% 9%;
+}
+
+.modal-tag-div {
+  display: flex;
+  align-items: center;
+  font-family: 'Libre Baskerville', serif;
+}
+
+.modal-tag-div>p {
+  font-size: .8em;
+  margin-right: 10px;
+  margin-bottom: 2px;
+}
+
+.modal-tag-button-parent>button {
+  font-family: 'Libre Baskerville', serif;
+  font-size: .8em;
+  color: rgb(200, 75, 49);
+  background-color: rgba(0, 0, 0, 0);
+  border: 5px solid rgb(200, 75, 49);
+  margin: 5px 10px;
+  padding: 3px 10px;
+}
+
+.modal-content-parent>h1 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 2.5vw;
+  padding: 32px 0px 20px;
+}
+
+.modal-bookmark-div {
+  display: flex;
+  padding: 0px 0px 0px 10px;
+}
+
+.modal-bookmark-icon {
+  max-height: 50px;
+}
+
+.modal-bookmark-icon:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  transition-duration: 200ms;
+}
+
+.modal-icon-label {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.6em;
+  padding: 12px 12px 12px 10px;
+}
+
+.modal-image-ingr-parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.modal-image {
+  width: 28vw;
+}
+
+.ingr-span {
+  display: block;
+  text-align: right;
+  background-color: white;
+  width: 35%;
+  padding: 23px;
+}
+
+.ingr-span>* {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  padding: 2px;
+}
+
+.total-price {
+  font-weight: 400;
+  padding-top: 31px;
+}
+
+.instructions-grandparent {
+  background-color: white;
+  padding: 70px 87px;
+}
+
+.instructions-grandparent>h2 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.5em;
+  padding: 7px;
+  padding-bottom: 20px;
+}
+
+.instructions-parent {
+  padding: 15px 30px 0px;
+}
+
+.instructions-list>li {
+  font-family: 'Libre Baskerville', serif;
+  font-size: .8em;
+  line-height: 1.9;
+  padding: 7px;
+}
+
+.modal.is-open {
+  display: block;
+}
+
+/* ---------------------- MEDIA QUERIES ---------------------- */
+/* NOTE: keep media queries at the bottom */
+
+@media(max-width:768px) {
+
+  .nav-bar-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header {
+    height: auto;
+  }
+
+  .header-right-align {
+    justify-content: flex-start;
+    margin: 15px;
+    justify-content: center;
+  }
+
+  .header-left-align {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* MODAL */
+
+  .modal-image-ingr-parent {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-bottom: 4vw;
+  }
+
+  .ingr-span {
+    text-align: left;
+    width: 92%;
+  }
+
+  .modal-image {
+    width: 70vw;
+    padding-bottom: 4vw;
+  }
 }
