@@ -49,11 +49,12 @@ const allRecipesButton = document.querySelector('.all-recipes-button')
 // ---------------------------EVENT LISTENERS---------------------------
 
 function fetchData(urls) {
-  Promise.all([getData(urls[0]), getData(urls[1]), getData(urls[2])])
+  Promise.all([getData(urls[0]), getData(urls[1]),
+  getData(urls[2])])
     .then(data => {
-      usersData = data[0]
-      recipesData = data[1]
-      ingredientsData = data[2]
+      usersData = data[0].usersData
+      recipesData = data[1].recipeData
+      ingredientsData = data[2].ingredientsData
       startPage()
     })
 }
