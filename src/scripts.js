@@ -254,12 +254,13 @@ function displayRecipesOfSameTag() {
       inputForTags.value,
       currentUser.recipesToCook
     );
+    allRecipeFilterTagOptions.selectedIndex = 0
   } else {
     recipesToTag = createRecipesOfTag(
       inputForTags.value,
-      allRecipes.listOfAllRecipes
+      allRecipes.listOfAllRecipes  
     );
-   allRecipeFilterTagOptions.selectedIndex = 0;
+    allRecipeFilterTagOptions.selectedIndex = 0;
   }
   displayRecipeThumbnails(recipesToTag, "", "");
 }
