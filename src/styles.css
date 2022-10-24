@@ -1,11 +1,10 @@
 /* WIREFRAME COLORS:
 
-BLACK: rbg(22, 22, 22)
+BLACK: #161616
 GREEN: rgb(52, 103, 81)
 RUST: rgb(200, 75, 49)
 BEIGE: rgb(236, 219, 186)
 LIGHT BEIGE: rgb(247, 243, 233) */
-
 
 * {
   margin: 0;
@@ -22,7 +21,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 50px;
+  height: 75px;
   background-color: rgb(247, 243, 233, 0.75);
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2)
 }
@@ -33,7 +32,7 @@ header {
   width: 100%;
   height: 100%;
   margin: auto;
-  color: #161616
+  color: #161616;
 }
 
 .header-left-align {
@@ -46,6 +45,29 @@ header {
   margin-left: 20px;
 }
 
+.header-left-align>input {
+    font-family: 'Libre Baskerville', serif;
+  }
+
+  .search-bar {
+    border-radius: 1px;
+    outline: 0;
+    border: 1px solid rgb(22 22 22 / 11%);
+    width: 74%;
+    height: 60%;
+    padding: 4px 23px 0px;
+    font-size: 15px;
+  }
+  
+  .search-bar:hover {
+    border: 1px solid #c84a3186;
+    transition-duration: 400ms;
+  }
+  
+  .search-bar:focus {
+    border: 2px solid #c84b31;
+  }
+
 .header-right-align {
   display: flex;
   flex-direction: row;
@@ -53,96 +75,120 @@ header {
   justify-content: flex-end;
   align-items: center;
   gap: 25px;
-  margin-right: 20px;
+  margin-right: 30px;
 }
 
-.featured-recipe {
+.header-buttons {
   display: flex;
+  height: 100%;
   align-items: center;
-  justify-content: space-between;
-  height: 600px;
-  width: auto;
-  background-image: url('../src/images/food_background_1.jpg');
-  background-size: cover;
-}
-
-#recipe-of-the-day {
-  display: flex;
-  flex-direction: column;
-  width: 600px;
-  height: 300px;
-  margin-right: 150px;
-  padding: 20px;
-  border: #C84B31 2px solid;
-  background-color: #ECDBBA;
-  background-image: url('https://spoonacular.com/recipeImages/595736-556x370.jpg');
-  background-size: cover;
-  text-align: center;
-}
-
-#recipe-of-the-day h1 {
-  font-size: 25px;
-  color: #ECDBBA;
-}
-
-#logo {
-  height: 600px;
-  width: auto;
-}
-
-#recipe-details {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-top: 15px;
-}
-
-#list {
-  list-style: none;
-  color: #161616;
-  background-color: #ECDBBA;
-  text-align: center;
-  padding: 10px;
-}
-
-#special-tag {
-  display: flex;
-  background-color: #C84B31;
-  color: #161616;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
   font-size: 20px;
 }
 
-svg {
-  transform: scale(.3);
-  fill: #120966;
-  transition-duration: 400ms;
+.header-buttons:hover {
+  border-bottom: 3px solid #c84b31;
+  color: #c84b31;
+  transition-duration: 200ms;
 }
 
-svg:hover {
-  transform: scale(.4);
+.header-right-align>div {
+  font-family: 'Libre Baskerville', serif;
+  font-size: .95em;
 }
 
-.recipe-tile:hover {
-  border: 2px solid #c84b31;
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 600px;
+  width: auto;
+  background-image: url('../src/images/countertop.jpg');
+  background-size: cover;
+}
+
+.featured-recipe-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  height: 300px;
+  padding: 20px;
+  background-color: #ECDBBA;
+  background-size: cover;
+  text-align: center;
+}
+
+#logo {
+  height: 80%;
+}
+
+.recipe-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #161616;
+  background-color: rgb(247, 243, 233, 0.75);
+  width: 75%;
+  height: 75%;
+}
+
+.featured-recipe-title-parent {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.2em;
+  width: 40%;
+}
+
+.featured-recipe-title:hover {
+  transform: scale(1.05);
+  transition-duration: 200ms;
   cursor: pointer;
-  transform: scale(1.1);
+}
+
+.special-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Libre Baskerville', serif;
+  font-size: .8em;
+  background-color: #C84B31;
+  color: #161616;
+  width: 15vh;
+  height: 15vh;
+  border-radius: 50%;
+  padding: 2vh;
+  
+}
+
+.featured-bookmark-icon {
+  height: 29%;
+}
+
+.featured-bookmark-icon:hover {
+  transform: scale(1.05);
+  transition-duration: 200ms;
+  cursor: pointer;
 }
 
 .recipe-tile {
   display: flex;
   flex-direction: column;
-  height: 200px;
-  width: 200px;
+  font-family: 'Libre Baskerville', serif;
+  height: 270px;
+  width: 270px;
   margin: 10px;
-  border: 2px solid #161616;
+  border: 1px solid #16161650;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  border-radius: 5px;
-  background-color: rgb(247, 243, 233)
+  background-color: rgb(247, 243, 233);
+}
+
+.recipe-tile:hover {
+  border: 1px solid #c84b31;
+  cursor: pointer;
+  transform: scale(1.01);
+  transition-duration: 100ms;
 }
 
 .recipe-tile>.tile-image {
@@ -154,20 +200,22 @@ svg:hover {
 }
 
 .recipe-tile>h1 {
-  margin-top: 1%;
-  margin-left: 1%;
-  font-size: 1.7vh;
+  padding: 5px;
+  font-size: 1vw;
 }
 
 .recipe-tile>h1:hover {
   cursor: pointer;
   text-decoration: underline;
+  transition-duration: 200ms;
 }
 
 .recipe-tile>h2 {
   flex-basis: 20%;
-  margin: 2%;
-  font-size: 1.1vh;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2vh;
+  font-weight: 300;
+  padding: 5px;
 }
 
 .bookmark-button {
@@ -181,38 +229,54 @@ svg:hover {
 .below-header-container {
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
+  margin-top: 74px;
   height: auto;
   width: 100%;
 }
 
 .all-recipes-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   height: auto;
   width: auto;
 }
 
 .filter-bar {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(247, 243, 233,0.75);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   padding: 5px;
-  justify-content: space-around;
-  background-color: rgb(247, 243, 233, 0.75);
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2)
+  gap: 10px;
+}
+
+.filter-clear-button {
+  font-family: 'Libre Baskerville', serif;
+  font-size: .5em;
+  background-color: #16161608;
+  border: 1px solid #16161694;
+  padding: 0px 10px;
+}
+
+.filter {
+  font-family: 'Libre Baskerville', serif;
+  font-size: .7em;
+  height: 27px;
 }
 
 select {
-  border-radius: 5px;
-  outline: 0;
-  border: 2px solid #161616;
+  border: 1px solid rgb(22 22 22 / 11%);
   width: 25%;
   padding: 2px 23px 2px 30px;
   font-size: 15px;
 }
 
 select:hover {
-  border: 2px solid #c84b31;
+  border: 1px solid #c84b31;
   background-color: white;
+  transition-duration: 200ms;
 }
 
 select:focus {
@@ -246,16 +310,35 @@ select:focus {
   height: 60%;
   padding: 2px 23px 2px 30px;
   font-size: 15px;
+
+.disabled {
+  color: gray;
+  background-color: #16161600;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
+/* NOTE: keep media query at the bottom */
 
-.search-bar:hover {
-  border: 2px solid #c84b31;
-  background-color: white;
-}
+@media(max-width:768px){
+  .nav-bar-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  header {
+    height:auto;
+  }
+  .header-right-align {
+    justify-content: flex-start;
+    margin: 15px;
+    justify-content: center;
+  }
+  .header-left-align {
+    flex-direction: column;
+    gap: 10px;
+  }
 
-.search-bar:focus {
-  border: 2px solid #c84b31;
 }
 
 /* ---------------------- MODAL ---------------------- */
@@ -303,31 +386,32 @@ select:focus {
   cursor: pointer;
 }
 
+.close-modal-btn:focus {
+  outline: none;
+}
+
 .modal-content-parent {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 6% 9%;
-  /* padding: 80px 130px 80px 137px; */
-}
-
-.modal-content-parent>* {
-  padding: 10px;
 }
 
 .modal-tag-div {
   display: flex;
   align-items: center;
-  font-family: 'Bitter', serif;
+  font-family: 'Libre Baskerville', serif;
 }
 
 .modal-tag-div>p {
+  font-size: .8em;
   margin-right: 10px;
   margin-bottom: 2px;
 }
 
 .modal-tag-button-parent>button {
-  font-family: 'Bitter', serif;
+  font-family: 'Libre Baskerville', serif;
+  font-size: .8em;
   color: rgb(200, 75, 49);
   background-color: rgba(0, 0, 0, 0);
   border: 5px solid rgb(200, 75, 49);
@@ -335,15 +419,10 @@ select:focus {
   padding: 3px 10px;
 }
 
-.modal-tag-button-parent>button:hover {
-  transform: scale(1.02);
-  cursor: pointer;
-}
-
 .modal-content-parent>h1 {
-  font-family: 'Bitter', serif;
-  font-size: 2.7vw;
-  padding: 20px 0px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 2.5vw;
+  padding: 32px 0px 20px;
 }
 
 .modal-bookmark-div {
@@ -358,11 +437,12 @@ select:focus {
 .modal-bookmark-icon:hover {
   transform: scale(1.05);
   cursor: pointer;
+  transition-duration: 200ms;
 }
 
 .modal-icon-label {
-  font-family: 'Bitter', serif;
-  font-size: 0.7em;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.6em;
   padding: 12px 12px 12px 10px;
 }
 
@@ -388,7 +468,7 @@ select:focus {
 .ingr-span>* {
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
-  padding: 5px;
+  padding: 2px;
 }
 
 .total-price {
@@ -402,7 +482,8 @@ select:focus {
 }
 
 .instructions-grandparent>h2 {
-  font-family: 'Bitter', serif;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.5em;
   padding: 7px;
   padding-bottom: 20px;
 }
@@ -411,8 +492,9 @@ select:focus {
   padding: 15px 30px 0px;
 }
 
-.instructions-parent>p {
-  font-family: 'Bitter', serif;
+.instructions-list>li {
+  font-family: 'Libre Baskerville', serif;
+  font-size: .8em;
   line-height: 1.9;
   padding: 7px;
 }
