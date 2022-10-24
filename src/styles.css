@@ -166,8 +166,17 @@ nav {
   justify-content: space-around;
 }
 /* ~~~ All Recipe/Saved Pages CSS ~~~ */
+.all-recipes-main,
+.saved-recipes-main {
+  background-image: url(/src/images/Asset9.png);
+}
+
 .page-title {
-  font-size: 4vw;
+  font-family: "Playball", cursive;
+  font-size: 5vw;
+  color: rgb(150, 53, 35);
+  text-shadow: -1px 1px 0 rgb(87, 36, 31), 1px 1px 0 rgb(87, 36, 31),
+    1px -1px 0 rgb(87, 36, 31), -1px -1px 0 rgb(87, 36, 31);
 }
 
 .display-thumbnails-filter-dropdown {
