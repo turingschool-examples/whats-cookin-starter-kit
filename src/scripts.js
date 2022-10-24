@@ -1,28 +1,17 @@
 import "./styles.css";
-import {getUsersAPIData, getRecipesAPIData, getIngredientsAPIData} from "./apiCalls";
-// import getRecipesAPIData from "./apiCalls";
-// import getIngredientsAPIData from "./apiCalls";
-// import apiCalls from "./apiCalls";
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
+import {
+  getUsersAPIData,
+  getRecipesAPIData,
+  getIngredientsAPIData,
+} from "./apiCalls";
 import "./images/turing-logo.png";
 import Recipe from "./classes/Recipe";
 import RecipeRepository from "./classes/RecipeRepository";
-import ingredientsData from "./data/ingredients";
-import recipesData from "./data/recipes";
 import UserRepo from "./classes/UserRepo";
-import allUsersData from "./data/users-sample";
 import User from "./classes/User";
 import UserList from "./classes/UserList";
 
-let usersAPIData;
-let recipesAPIData;
-let ingredientsAPIData;
-let allIngredients = ingredientsData;
-let allRecipes;
-let recipeRepository;
-let currentUser;
-let userRepo = new UserRepo(usersAPIData);
-const newUserList = new UserList();
+let allRecipes, recipeRepository, currentUser, userRepo, newUserList;
 
 //query selectors go here
 //pages
@@ -75,29 +64,31 @@ userTagSelect.addEventListener("change", searchUserRecipesByTag);
 //event handlers go here
 function getData() {
   Promise.all([getUsersAPIData, getRecipesAPIData, getIngredientsAPIData])
-    .then(data => {
-      usersAPIData = data[0].usersData; 
-      recipesAPIData = data[1].recipeData; 
-      ingredientsAPIData = data[2].ingredientsData;
+    .then((data) => {
+      const usersAPIData = data[0].usersData;
+      const recipesAPIData = data[1].recipeData;
+      const ingredientsAPIData = data[2].ingredientsData;
 
       allRecipes = recipesAPIData
-  .map((recipe) => {
-    const newRecipe = new Recipe(recipe);
-    newRecipe.retrieveIngredients(ingredientsAPIData);
-    return newRecipe;
-  })
-  .sort((a, b) => {
-    return a.name > b.name ? 1 : -1;
-  });
-  recipeRepository = new RecipeRepository(allRecipes)
-})
-  .catch(err => console.log(err))
-};
+        .map((recipe) => {
+          const newRecipe = new Recipe(recipe);
+          newRecipe.retrieveIngredients(ingredientsAPIData);
+          return newRecipe;
+        })
+        .sort((a, b) => {
+          return a.name > b.name ? 1 : -1;
+        });
+      recipeRepository = new RecipeRepository(allRecipes);
+      userRepo = new UserRepo(usersAPIData);
+      newUserList = new UserList();
+      renderTags();
+      selectRandomUser();
+    })
+    .catch((err) => console.log(err));
+}
 
 function loadPage() {
   getData();
-  renderTags();
-  selectRandomUser();
 }
 
 function renderTags() {
@@ -123,7 +114,7 @@ function searchUserRecipesByTag(event) {
 function selectRandomUser() {
   let randomIndex = Math.floor(Math.random() * userRepo.userCatalog.length);
   let randomUser = userRepo.userCatalog[randomIndex];
-  return (currentUser = new User(randomUser));
+  currentUser = new User(randomUser);
 }
 
 function renderAllRecipesPage() {
