@@ -24,7 +24,7 @@ COLORS::after
 
 #searchBar {
   border-radius: 10px;
-  height: 3vh;
+  height: 5vh;
   justify-items: center;
   margin-top: 13px;
   margin-right: 20%;
@@ -33,17 +33,19 @@ COLORS::after
 
 .header-button {
   height: 5vh;
-  width: 20vw;
+  width: 9vw;
   border-radius: 5px;
-  color: #E89F71;
+  color: #FF6363;
   cursor: pointer;
-  height: 4vh;
   margin-top: 13px;
   margin-right: 5%;
-  width: 9vw;
 }
 
 /* MAIN */
+/* .whole-page-container {
+  display: flex;
+  flex-direction: column;
+} */
 
 .home-view {
   display: flex;
@@ -90,19 +92,13 @@ COLORS::after
   background: none;
   border: none;
   height: 20vh;
-  Width: 10vh;
-  
-}
-
-/* .image-left-header {
-  height: 8vh;
-  width: 15vw;
-  background-image: url("https://spoonacular.com/recipeImages/595736-556x370.jpg");
+  Width: 8vh;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
   background-size: cover;
-} */
+  
+}
 
 .main-right-side-title {
   border-style: solid;
