@@ -146,7 +146,7 @@ filterClearButton.addEventListener('click', () => {
   } else {
       allRecipesContainer.innerHTML = ''
       displayRecipeTiles(recipeRepository.recipeList)
-      updateBookmarks()
+      updateBookmarks();
     }
 })
 
