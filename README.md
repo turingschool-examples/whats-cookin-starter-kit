@@ -1,16 +1,78 @@
-# What's Cookin'? Starter Kit
+## Abstract:
+Many people have diverse culinary tastes, WHATS COOKIN' GOOD LOOKIN offers users unique recipes, as well as cooking instructions, to advance a persons palette. In our application, a user has the abilitiy to search a recipe, save a recipe, delete a saved recipe, filter all recipes, filter all saved recipes, search by tags, and see specifications of a selected recipe. 
 
-The details of this project are outlined in the <a href="https://frontend.turing.edu/projects/What%27sCookin-PartOne.html" target="\__blank">project spec</a>.
+## Installation Instructions:
+1. Start at https://github.com/daniabee/whats-cookin-good-lookin
+2. Click code
+3. Copy SSH 
+4. Go to computer terminal type: git clone <'filename'>
+5. Cd into directory 
+6. Run 'npm install'
+7. Run 'npm start
+8. Should be given a server page 'http://localhost:8080/'
+9. Open server in browser  
 
-## Set Up
 
-1. Within your group, decide on one person to have the project repository on their Github account. This person will *fork* this repository - on the top right corner of the page, click the fork button.
-2. All group members should then clone down the forked repository (make sure that everyone is added as a collaborator as well). Since you don't want your project to be named "whats-cookin-starter-kit", add an optional argument after the repo url when cloning. The command should look like this: `git clone [remote-address] [what you want to name the repo]`.
-3. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` or `npm i` to install project dependencies.
-4. Run npm start in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page). `Control + C` is the command to stop running the local server. Closing the terminal without stopping the server first could allow the server to continue to run in the background and cause problems. This command is not specific to Webpack; make note of it for future use.
-5. Make sure both members of your team are collaborators on the forked repo.
-6. Do not run `npm audit fix --force`. This will update to the latest version of packages. We need to be using `webpack-dev-server@3.11.2` which is not the latest version. If you start to run into Webpack errors, first check that all group members are using the correct version.
+## Preview of App:
+<img width="1440" alt="Screen Shot 2022-10-24 at 8 13 30 PM" src="https://user-images.githubusercontent.com/104169837/197666775-c296a35d-3ca9-49ce-bdcd-e143570218cf.png">
 
-## Testing
+![Screen Shot 2022-10-24 at 8 17 31 PM](https://user-images.githubusercontent.com/104169837/197667211-50e61a41-8a52-40fa-b88f-2cb569acf62d.png)
+![Screen Shot 2022-10-24 at 8 15 51 PM](https://user-images.githubusercontent.com/104169837/197667308-2cf09813-f89f-4eee-b103-5ae1e2b8332a.png)
 
-Mocha and chai are already set up, with a boilerplate test for you.
+
+
+
+## Context:
+Each member of our group has been in Turing for 3 months. (Mod2, week 3)
+
+## Where you can find the spec:
+https://frontend.turing.edu/projects/whats-cookin-part-one.html
+
+## Contributors:
+Andrew Cerveny : https://github.com/AndrewCerveny
+Brett Kuhn: https://github.com/bkuhn2
+Courtney Lippman : https://github.com/Courtney-Lippman
+Dani Bagley: https://github.com/daniabee
+
+## Learning Goals:
+1. Collaboration with others 
+2. API fetching
+3. Using array iterators in functions 
+4. Creating a wire frame
+5. Use TDD testing to build data model
+6. WebPack 
+7. Practice import and exports
+8. Practice git work flow 
+9. Practice a uniform project management system
+
+## Technology Used:
+VS Code
+JavaScript
+Mocha
+Chai
+Github
+Terminal
+WebPack
+HTML
+CSS
+## Wins:
+A consistent win would be overcoming the limitation of merge conflicts. Each member created their own test, their own class, and their own webpage section. Using daily standup's our group was able to communicate effectively and minimize possibilities of major merge conflicts. As a group, our second major win was the retrieval of our api data, once data became accessible outside of the fetch call our website gained practical functionality. 
+
+## Challenges:
+The greatest challenges were...
+
+1. The ability to access api data after the promise was resolved 
+2. The ability for functions to be on page load  
+3. Group scheduling across time zones
+4. Making sure commits seemed balanced 
+
+## Future Features:
+1. More user friendly interface
+2. Featured recipe on window page load
+3. Welcome user on home page
+4. A page introducing our website for entry
+
+ 
+## Possible additions:
+1. More functionality to the search bar:  type partial words and filter possible recipes 
+2. Additional filter options as part of the front page spec 
