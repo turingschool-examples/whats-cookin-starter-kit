@@ -19,7 +19,7 @@ button {
   cursor: pointer;
   height: 5vh;
   width: 10vw;
-  font-size: 12pt;
+  font-size: 1.0vw;
   background-color: rgb(255, 227, 171);
   border: solid rgb(150, 53, 35);
   border-radius: 5%;
