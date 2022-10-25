@@ -1,11 +1,14 @@
 import { expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
 import Recipe from '../src/classes/Recipe';
+import ingredientsData from '../src/data/ingredients';
+
 
 describe('RecipeRepository', () => {
   let repo1 
+  let data
   beforeEach(() => {
-    let data =   [ {
+    data =   [ {
       "id": 595736,
       "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
       "ingredients": [
@@ -334,7 +337,7 @@ describe('RecipeRepository', () => {
       ]
     }
     ]
-    repo1 = new RecipeRepository(data)
+    repo1 = new RecipeRepository(ingredientsData ,data)
   })
 
   it('Should be a function', () => {
@@ -345,8 +348,20 @@ describe('RecipeRepository', () => {
     expect(repo1).to.be.an.instanceof(RecipeRepository);
   });
 
-  it('Should have a recipe array', () => {
+  it('Should store a masterlist of the ingredients', () => {
+    expect(repo1.ingredientData).to.deep.equal(ingredientsData);
+  });
+
+  it('Should store a list of all the recipes before they are converted into instances of recipes', () => {
+    expect(repo1.data).to.deep.equal(data);
+  });
+
+  it('Should convert a list of recipe data into a list of new recipe class instances', () => {
     expect(repo1.recipesList).to.deep.equal(repo1.createRecipesClassArray());
+  });
+
+  it('elements in recipesList should be instances of recipe', () => {
+    expect(repo1.recipesList[0]).to.be.an.instanceof(Recipe);
   });
 
   it('Should have access to Recipe methods', () => {
@@ -699,6 +714,4 @@ describe('RecipeRepository', () => {
   it('Should return all the recipes that match the filter tag', () => {
     expect(repo1.filterByName("Loaded Chocolate Chip Pudding Cookie Cups")).to.deep.equal([repo1.recipesList[0]]);
   });
-
-  
 })

@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
+import ingredientsData from '../src/data/ingredients'
 
 describe('Recipe', function() {
     var recipe;
@@ -122,7 +123,7 @@ describe('Recipe', function() {
         "hor d'oeuvre"
         ]
     }
-    recipe = new Recipe(recipeInfo)
+    recipe = new Recipe(ingredientsData,recipeInfo)
 })
     it('should be a function', function() {
       expect(Recipe).to.be.a('function');
@@ -132,16 +133,32 @@ describe('Recipe', function() {
       expect(recipe).to.be.an.instanceof(Recipe);
     }); 
     
-    it('should store an id', function() {
-        expect(recipe.id).to.equal(595736);
-    });  
-
-    it('should store an image url', function() {
-        expect(recipe.image).to.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg");
+    it('should store a master list of ingredients', function() {
+      expect(recipe.ingredientsMasterList).to.equal(ingredientsData);
+    });
+    
+    it('should store a list of the ingredients needed for the specific recipe', function() {
+      expect(recipe.recipeIngredients).to.deep.equal([
+        { id: 20081, quantity: { amount: 1.5, unit: 'c' } },
+        { id: 18372, quantity: { amount: 0.5, unit: 'tsp' } },
+        { id: 1123, quantity: { amount: 1, unit: 'large' } },
+        { id: 19335, quantity: { amount: 0.5, unit: 'c' } },
+        { id: 19206, quantity: { amount: 3, unit: 'Tbsp' } },
+        { id: 19334, quantity: { amount: 0.5, unit: 'c' } },
+        { id: 2047, quantity: { amount: 0.5, unit: 'tsp' } },
+        { id: 1012047, quantity: { amount: 24, unit: 'servings' } },
+        { id: 10019903, quantity: { amount: 2, unit: 'c' } },
+        { id: 1145, quantity: { amount: 0.5, unit: 'c' } },
+        { id: 2050, quantity: { amount: 0.5, unit: 'tsp' } }
+      ]);
     });
 
-    it('should store an ingredients array of objects', function() {
-        expect(recipe.modifiedIngredients).to.deep.equal([
+    it('should store a master list of ingredients', function() {
+      expect(recipe.ingredientsMasterList).to.equal(ingredientsData);
+    });
+
+    it('should store a list of the combined ingredients for the recipe', function() {
+        expect(recipe.modifiedData).to.deep.equal([
             {
               id: 20081,
               name: 'wheat flour',
@@ -211,6 +228,14 @@ describe('Recipe', function() {
           ]);
     });
 
+    it('should store an id for the recipe', function() {
+      expect(recipe.id).to.equal(595736);
+    });
+
+    it('should store an image url', function() {
+        expect(recipe.image).to.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg");
+    });
+
     it('should store an instructions array storing objects', function() {
         expect(recipe.instructions).to.deep.equal([
             {
@@ -253,6 +278,26 @@ describe('Recipe', function() {
             "antipasto",
             "hor d'oeuvre"
             ]);
+    });
+
+    it('should store a list of the ingredient names needed for the recipe', function() {
+      expect(recipe.modifiedIngredients).to.deep.equal([
+        'wheat flour',
+        'bicarbonate of soda',
+        'eggs',
+        'sucrose',
+        'instant vanilla pudding',
+        'brown sugar',
+        'salt',
+        'fine sea salt',
+        'semi sweet chips',
+        'unsalted butter',
+        'vanilla'
+      ]);
+    });
+
+    it('should have a method that returns a list of the combined ingredients from the master list and the recipe', function() {
+      expect(recipe.combinedIngredients()).to.deep.equal(recipe.modifiedData);
     });
 
     it('should have a method that gives a list of the names of ingredients needed', function() {

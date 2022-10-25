@@ -1,6 +1,6 @@
 class Recipe {
     constructor(data,recipe) {
-        this.ingData = data
+        this.ingredientsMasterList = data
         this.recipeIngredients = recipe.ingredients
         this.modifiedData = this.combinedIngredients()
         this.id = recipe.id;
@@ -14,7 +14,7 @@ class Recipe {
     combinedIngredients() {
         let ingredientsNeededInfo = [];
         this.recipeIngredients.forEach((ingredient) => {
-            var info = this.ingData.find( ing => ingredient.id === ing.id)
+            var info = this.ingredientsMasterList.find( ing => ingredient.id === ing.id)
             ingredientsNeededInfo.push({...info,...ingredient})
         })
         return ingredientsNeededInfo
