@@ -115,7 +115,7 @@ ul {
   height: 100vw;
 }
 
-li {
+.recipe-card {
   list-style: none;
   flex-basis: 30.1%;
   height: 20vw;
@@ -124,4 +124,12 @@ li {
 
 .hidden {
   display: none!important;
+}
+
+.single-recipe-contents {
+  display: flex;
+}
+
+.single-recipe-contents>section {
+  width: 50%;
 }
