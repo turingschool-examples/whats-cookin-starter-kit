@@ -1,7 +1,7 @@
 ## Abstract:
 Many people have routine eating palates and WHATS COOKING GOOD LOOKIN! offers many unique recipes as well as cooking instructions to advance a persons culinary experience. 
 
-WHAT'S COOKING GOOD LOOKIN!: is a web application that provides a user the abilities of: being able to search a recipe, save a recipe, delete a saved recipe,filter all recipes,filter all saved recipes, search by tags, and see specifications on any app compiled recipe. 
+WHAT'S COOKIN' GOOD LOOKIN' is a web application that provides a user the abilities of: being able to search a recipe, save a recipe, delete a saved recipe,filter all recipes,filter all saved recipes, search by tags, and see specifications on any app compiled recipe. 
 
 ## Installation Instructions:
 1. Start at https://github.com/daniabee/whats-cookin-good-lookin
