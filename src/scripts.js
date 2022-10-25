@@ -58,6 +58,7 @@ const savedRecipesGrid = document.querySelector('.save-view')
 window.addEventListener('load', instantiateData());
 allRecipesGrid.addEventListener('click', showRecipe)
 
+
 // Functions
 function loadUser() {
   renderUser(currentUser);
