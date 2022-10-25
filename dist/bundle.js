@@ -564,6 +564,48 @@ class RecipeRepository {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RecipeRepository);
 
 
+/***/ }),
+/* 10 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+class User {
+  constructor(data) {
+    this.name = data.name
+    this.id = data.id
+    this.pantry = data.pantry
+    this.favorites = []
+  }
+
+  addToFavorites(recipe) {
+    this.favorites.push(recipe)
+    return this.favorites
+  }
+
+  removeFromFavorites(recipe) {
+    let indexFound = this.favorites.find((favRecipes) => {
+      favRecipes === recipe
+    })
+    this.favorites.splice(indexFound, 1)
+    return this.favorites
+  }
+
+  filterFavsByTag(tag) {
+    let favByTagResult = this.favorites.filter(favorites => favorites.tags.includes(tag))
+    return favByTagResult
+  }
+
+  filterFavsByName(name) {
+     let favByNameResult = this.favorites.filter(favorites => favorites.name.includes(name))
+    return favByNameResult
+  }
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (User);
+
 /***/ })
 /******/ 	]);
 /************************************************************************/
@@ -647,10 +689,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _images_turing_logo_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
 /* harmony import */ var _src_classes_Recipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8);
 /* harmony import */ var _src_classes_RecipeRepository__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9);
+/* harmony import */ var _src_classes_User__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(10);
 //Imports
 
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
+
 
 
 
@@ -664,18 +708,22 @@ const middleRandomImageCard = document.querySelector(".middle-random-card")
 const rightRandomImageCard = document.querySelector(".right-random-card")
 const tagSearchResults = document.querySelector(".tag-search-results")
 const nameSearchResults = document.querySelector(".name-search-results")
+const selectedRecipeInfo = document.querySelector(".selected-recipe-info")
+const savedRecipes = document.querySelector(".saved-recipes")
 
 const viewAllRecipesButton = document.querySelector(".view-all-recipes")
 const homeButton = document.querySelector(".home-button")
 const searchButton = document.querySelector(".submit-search-button")
 const searchInput = document.querySelector("#searchBar")
+const addFavoriteButton = document.querySelector(".add-to-favorites-button")
 
 const allRecipesView = document.querySelector(".all-recipes-view")
 const homeView = document.querySelector(".home-view")
 const selectedRecipeView = document.querySelector(".selected-recipe-view")
 const searchedRecipeView = document.querySelector(".searched-recipe-view")
 
-//Instances
+
+//Global Variables
 let currentRecipe
 let randomRecipes
 let allRecipes
@@ -683,6 +731,8 @@ let selectedRecipe
 let ingredientsData
 let recipeData
 let usersData
+let usersList = []
+let currentUser
 
 //Functions
 const fetchApiCalls = () => {
@@ -696,7 +746,7 @@ const fetchApiCalls = () => {
   };
 
 const getRandomIndex = array => {
-    return Math.floor(Math.random() * array.length + 1);
+    return Math.floor(Math.random() * array.length);
 };
 
 function hideElement (hideThis) {
@@ -711,11 +761,21 @@ function loadHandler(){
     onLoadRecipe()
     generateRandomRecipes()
     generateAllRecipes()
-    console.log("usersData", usersData)
+    generateUsersList()
+    generateCurrentUser()
 }
 
-function clickHandler(){
-    
+function generateCurrentUser() {
+    currentUser = new _src_classes_User__WEBPACK_IMPORTED_MODULE_5__["default"] (usersList[getRandomIndex(usersList)]) 
+    console.log("currentUser",currentUser)
+}
+
+function generateUsersList () {
+    usersData.forEach((user) => {
+      let userClass = new _src_classes_User__WEBPACK_IMPORTED_MODULE_5__["default"] (user)
+      usersList.push(userClass)
+    })
+    console.log("usersList full of user class instances",usersList)
 }
 
 function generateAllRecipes () {
@@ -725,7 +785,6 @@ function generateAllRecipes () {
 function onLoadRecipe(){
     currentRecipe = new _src_classes_Recipe__WEBPACK_IMPORTED_MODULE_3__["default"](ingredientsData, recipeData[getRandomIndex(recipeData)])
     showMainRecipe()
-    console.log("currentRecipe",currentRecipe)
 }
 
 function generateRandomRecipes(){
@@ -766,7 +825,7 @@ function viewSelectedRecipe () {
 }
 
 function showSelectedRecipe() {
-    selectedRecipeView.innerHTML = `
+    selectedRecipeInfo.innerHTML = `
     <section class="selected-recipe-container">
     <img class="selected-recipe-image" img src=${selectedRecipe.image}>
     <h1 class="name">${selectedRecipe.name}</h1>
@@ -815,6 +874,13 @@ function viewSearchedRecipes() {
     hideElement(homeView)
     showElement(searchedRecipeView)
     showElement(homeButton)
+}
+
+function addRecipeToFavorites() {
+    currentUser.favorites.forEach( element =>
+        savedRecipes.innerHTML += `<h1 id=${element.id}>${element.name}</h1>`
+
+    )
 }
 
 function viewAllRecipes () {
@@ -887,6 +953,13 @@ rightRandomImageCard.addEventListener("click", function (event) {
 searchButton.addEventListener("click", function(event){
     event.preventDefault()
     viewSearchedRecipes()
+})
+
+addFavoriteButton.addEventListener("click", function (event) {
+    event.preventDefault()
+    currentUser.addToFavorites(selectedRecipe)
+    console.log("currentUser.favorites", currentUser.favorites)
+    addRecipeToFavorites()
 })
 
 })();
