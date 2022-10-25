@@ -16,20 +16,19 @@ class Recipe {
     });
   }
 
-
   determineNames() {
     const ingredientNames = this.ingredients.map((item) => {
       return item.name;
     });
     return ingredientNames;
-
   }
 
   getCost() {
-    return this.ingredients.reduce((acc, currentItem) => {
+    const estCostCents = this.ingredients.reduce((acc, currentItem) => {
       const totalCost = acc + currentItem.countEstCost();
       return totalCost;
     }, 0);
+    return (estCostCents / 100).toFixed(2);
   }
 
   getInstructions() {

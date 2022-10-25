@@ -98,11 +98,11 @@ describe("Recipe", function () {
   it("should get cost of its ingredients", () => {
     cookieRecipe.retrieveIngredients(mockIngredientsData);
     const cookieRecipeCost = cookieRecipe.getCost();
-    expect(cookieRecipeCost).to.equal(504);
+    expect(cookieRecipeCost).to.equal("5.04");
 
     porkChopsRecipe.retrieveIngredients(mockIngredientsData);
     const porkChopsRecipeCost = porkChopsRecipe.getCost();
-    expect(porkChopsRecipeCost).to.equal(1116);
+    expect(porkChopsRecipeCost).to.equal("11.16");
   });
 
   it("should return its instructions", () => {
