@@ -1,16 +1,73 @@
-# What's Cookin'? Starter Kit
+## Abstract:
+Many people have routine eating palates and WHATS COOKING GOOD LOOKIN! offers many unique recipes as well as cooking instructions to advance a persons culinary experience. 
 
-The details of this project are outlined in the <a href="https://frontend.turing.edu/projects/What%27sCookin-PartOne.html" target="\__blank">project spec</a>.
+WHAT'S COOKING GOOD LOOKIN!: is a web application that provides a user the abilities of: being able to search a recipe, save a recipe, delete a saved recipe,filter all recipes,filter all saved recipes, search by tags, and see specifications on any app compiled recipe. 
 
-## Set Up
+## Installation Instructions:
+1. Start at https://github.com/daniabee/whats-cookin-good-lookin
+2. Click code
+3. Copy SSH 
+4. Go to computer terminal type: git clone <'filename'>
+5. Cd into directory 
+6. Run 'npm install'
+7. Run 'npm start
+8. Should be given a server page 'http://localhost:8080/'
+9. Open server in browser  
 
-1. Within your group, decide on one person to have the project repository on their Github account. This person will *fork* this repository - on the top right corner of the page, click the fork button.
-2. All group members should then clone down the forked repository (make sure that everyone is added as a collaborator as well). Since you don't want your project to be named "whats-cookin-starter-kit", add an optional argument after the repo url when cloning. The command should look like this: `git clone [remote-address] [what you want to name the repo]`.
-3. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` or `npm i` to install project dependencies.
-4. Run npm start in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page). `Control + C` is the command to stop running the local server. Closing the terminal without stopping the server first could allow the server to continue to run in the background and cause problems. This command is not specific to Webpack; make note of it for future use.
-5. Make sure both members of your team are collaborators on the forked repo.
-6. Do not run `npm audit fix --force`. This will update to the latest version of packages. We need to be using `webpack-dev-server@3.11.2` which is not the latest version. If you start to run into Webpack errors, first check that all group members are using the correct version.
 
-## Testing
+## Preview of App:
 
-Mocha and chai are already set up, with a boilerplate test for you.
+## Context:
+Each member of our group has been in Turing for 3 months. 
+
+## Where you can find the spec:
+https://frontend.turing.edu/projects/whats-cookin-part-one.html
+
+## Contributors:
+Andrew Cerveny : https://github.com/AndrewCerveny
+Brett Kuhn: https://github.com/bkuhn2
+Courtney Lippman : https://github.com/Courtney-Lippman
+Dani Bagley: https://github.com/daniabee
+
+## Learning Goals:
+1. Collaboration with others 
+2. API fetching
+3. Using array iterators in functions 
+4. Creating a wire frame
+5. Use TDD testing to build data model
+6. WebPack 
+7. Practice import and exports
+8. Practice git work flow 
+9. Practice a uniform project management system
+
+## Technology Used
+VS Code
+JavaScript
+Mocha
+Chai
+Github
+Terminal
+WebPack
+HTML
+CSS
+## Wins:
+A consistent win would be the limitation of merge conflicts. Each member created their own test, their own class, and their own webpage section. Using daily standup's our group was able to communicate effectively and minimize possibilities of major merge conflicts. As a group our second major win regarded the retrieval of our api data, once data became accessible outside of the fetch call our website gained practical functionality. 
+
+## Challenges:
+The greatest challenges were...
+
+1. The ability to access api data after the promise was resolved 
+2. The ability for functions to be on page load  
+3. Group scheduling across time zones
+4. Making sure commits seemed balanced 
+
+## Future Features:
+1. More user friendly interface
+2. Featured recipe on window page load
+3. Welcome user on home page
+4. A page introducing our website for entry
+
+ 
+## Possible additions.
+1. More functionality to the search bar:  type partial words and filter possible recipes 
+2. Additional filter options as part of the front page spec 
