@@ -188,7 +188,7 @@ nav {
 /* ~~~ All Recipe/Saved Pages CSS ~~~ */
 .all-recipes-main {
   background-image: url(/src/images/Asset9.png);
-  overflow-y: scroll;
+  height: 100vh;
 }
 
 .page-title {
