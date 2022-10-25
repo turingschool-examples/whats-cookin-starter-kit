@@ -1,7 +1,5 @@
 ## Abstract:
-Many people have routine eating palates and WHATS COOKING GOOD LOOKIN! offers many unique recipes as well as cooking instructions to advance a persons culinary experience. 
-
-WHAT'S COOKIN' GOOD LOOKIN' is a web application that provides a user the abilities of: being able to search a recipe, save a recipe, delete a saved recipe,filter all recipes,filter all saved recipes, search by tags, and see specifications on any app compiled recipe. 
+Many people have diverse culinary tastes, WHATS COOKIN' GOOD LOOKIN offers users unique recipes, as well as cooking instructions, to advance a persons palette. In our application, a user has the abilitiy to search a recipe, save a recipe, delete a saved recipe, filter all recipes, filter all saved recipes, search by tags, and see specifications of a selected recipe. 
 
 ## Installation Instructions:
 1. Start at https://github.com/daniabee/whats-cookin-good-lookin
@@ -25,7 +23,7 @@ WHAT'S COOKIN' GOOD LOOKIN' is a web application that provides a user the abilit
 
 
 ## Context:
-Each member of our group has been in Turing for 3 months. 
+Each member of our group has been in Turing for 3 months. (Mod2, week 3)
 
 ## Where you can find the spec:
 https://frontend.turing.edu/projects/whats-cookin-part-one.html
@@ -58,7 +56,7 @@ WebPack
 HTML
 CSS
 ## Wins:
-A consistent win would be the limitation of merge conflicts. Each member created their own test, their own class, and their own webpage section. Using daily standup's our group was able to communicate effectively and minimize possibilities of major merge conflicts. As a group our second major win regarded the retrieval of our api data, once data became accessible outside of the fetch call our website gained practical functionality. 
+A consistent win would be overcoming the limitation of merge conflicts. Each member created their own test, their own class, and their own webpage section. Using daily standup's our group was able to communicate effectively and minimize possibilities of major merge conflicts. As a group, our second major win was the retrieval of our api data, once data became accessible outside of the fetch call our website gained practical functionality. 
 
 ## Challenges:
 The greatest challenges were...
