@@ -339,7 +339,6 @@ function generateCost(recipe) {
 
   specificRecipeCost.innerText = "";
   specificRecipeCost.innerText = `$${totalCostDisplay.toFixed(2)}`;
-  console.log("total cost display: ", totalCostDisplay);
 }
 
 function addToRecipesToCook() {

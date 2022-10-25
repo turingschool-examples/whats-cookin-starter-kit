@@ -13,7 +13,7 @@ class RecipeRepository {
 
   filterByName(name) {
     let recipeMatch = this.listOfAllRecipes.find(recipe => recipe.name.toLowerCase() === name.toLowerCase());
-    console.log(recipeMatch);
+    
     if (recipeMatch !== undefined) {
       return this.listOfAllRecipes.filter(recipe => recipe.name.toLowerCase() === name.toLowerCase());
     } else {

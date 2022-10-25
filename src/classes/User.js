@@ -40,7 +40,7 @@ class User {
 
   filterByName(name) {
     let recipeMatch = this.recipesToCook.find(recipe => recipe.name.toLowerCase() === name.toLowerCase());
-    console.log(recipeMatch);
+    
     if (recipeMatch !== undefined) {
       return this.recipesToCook.filter(recipe => recipe.name.toLowerCase() === name.toLowerCase());
     } else {
@@ -60,6 +60,3 @@ class User {
 }
 
 export default User;
-
-// ❓Do we need something that can create or manipulate the pantry
-//   property? Should this be based on the recipesToCook in some way?
