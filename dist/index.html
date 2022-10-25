@@ -38,19 +38,26 @@
       </section>
     </section>
     <section class="saved-section">
-      <div class="saved-title">Saved</div>
-      <div class = "saved-recipes"></div>
+      <div class="saved-box">
+        <div class="saved-title">Saved</div>
+        <input id="searchFavorites" placeholder="Search"></input>
+        <button class="submit-search-favorites-button header-button">Submit</button>
+        <div class = "saved-recipes"></div>
+      </div>
     </section>
   </section>
   <section class="all-recipes-view hidden"></section>
   <section class="selected-recipe-view hidden">
-    <button class="add-to-favorites-button">Add to favorites</button>
+    <button class="add-to-favorites-button">Add/Remove as favorite</button>
     <section class="selected-recipe-info"></section>
   </section>
   <section class="searched-recipe-view hidden">
     <section class="tag-search-results"></section>
     <section class="name-search-results"></section>
-
+  </section>
+  <section class ="view-searched-favorites-recipes hidden">
+    <section class="favorites-tag-search-results"></section>
+    <section class="favorites-name-search-results"></section>
   </section>
   <footer class="main-footer">
     <div class="subscribe-title">
