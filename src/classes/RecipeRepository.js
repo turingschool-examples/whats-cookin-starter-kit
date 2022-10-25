@@ -28,5 +28,4 @@ class RecipeRepository {
     return filteredList
   }
 }
-
 export default RecipeRepository

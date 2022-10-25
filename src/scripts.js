@@ -2,7 +2,7 @@ import './styles.css';
 import apiCalls from './apiCalls';
 import gatherData from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import '../images/turing-logo.png';
+import './images/turing-logo.png';
 // Import Fetch calls
 // import {fetchCalls.method1, fetchCalls.method2,  fetchCalls.method3, fetchCalls.method4} from {"./apiCalls"};
 // Import classes
@@ -21,13 +21,6 @@ let recipeData;
 let currentUser;
 let newRecipeRepo;
 let recipeCards;
-
-
-// for (var i = 0; i < allRecipes.length; i++) {
-//   allRecipes[i].addEventListener('click', makeAllHidden());
-// };
-
-savedButton.addEventListener('click', makeAllHidden());
 
 function makeAllHidden() {
   recipeGrid.classList.toggle('hidden');

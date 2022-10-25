@@ -108,11 +108,11 @@ nav {
   font-size: 1.8vw;
 }
 
-.all-recipe-grid {
+/* .all-recipe-grid {
   display: flex;
   justify-content: center;
   height: 100%;
-}
+} */
 
 .recipe-header-container {
   display: flex;
@@ -121,6 +121,7 @@ nav {
 
 ul {
   display: flex;
+  justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
   
@@ -133,7 +134,11 @@ li {
   flex-basis: 30.1%;
   height: 20vw;
   margin: 1.5vw;
-  font-size: 1.5vw;
+  font-size: 2vw;
+  max-width: 26vw;
+  border-style: solid;
+  border-color: #E99B3D;
+  border-width: 2px;
 }
 
 .hidden {
