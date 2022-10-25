@@ -19,7 +19,7 @@ button {
   cursor: pointer;
   height: 5vh;
   width: 10vw;
-  font-size: 100%;
+  font-size: 1.0vw;
   background-color: rgb(255, 227, 171);
   border: solid rgb(150, 53, 35);
   border-radius: 5%;
@@ -32,7 +32,7 @@ input,
 select {
   height: 4vh;
   width: 20vw;
-  font-size: 100%;
+  font-size: 1.5vw;
 }
 /* Navagation display */
 nav {
@@ -58,9 +58,9 @@ nav {
 /* .welcome-wrapper and .user-wrapper are commented out because Courtney commented out those two associated HTML elements for now. We can add this back in if we decide to use the Welcome: User on our homepage. */
 
 .nav-btns-wrapper {
-  width: 70rem;
-  margin: 1.5%;
-  height: 3rem;
+  width: 100vw;
+  margin: 1vw;
+  height: 3vh;
   display: flex;
   align-items: center;
   justify-content: space-around;
