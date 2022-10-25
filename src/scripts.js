@@ -21,6 +21,7 @@ let recipeData;
 let currentUser;
 let newRecipeRepo;
 let recipeCards;
+let ingredient;
 
 function makeAllHidden() {
   recipeGrid.classList.toggle('hidden');
@@ -54,7 +55,10 @@ const greeting = document.querySelector('#greeting');
 const homeView = document.querySelector('.home-view');
 const card = document.querySelector('.recipe-card');
 const singleRecipe = document.querySelector('.single-recipe');
+const singleRecipeImage = document.querySelector('.single-recipe-image')
+const singleRecipeName = document.querySelector('.single-recipe-name')
 const savedRecipesGrid = document.querySelector('.save-view')
+
 
 // Event Listeners
 window.addEventListener('load', instantiateData());
@@ -79,34 +83,57 @@ function renderUser(user) {
 function renderAllRecipes(data) {
   allRecipesGrid.innerHTML = '';
   allRecipesGrid.innerHTML = 
-    data.map(recipe => `
-    <li class="recipe-card">
-    <h3 class="recipe-title">${recipe.name}</h3>
-    <img class="recipe-image-all" src="${recipe.image}">
-    </li>`);
-    // <div class="tags">
-    //     ${recipe.tags}
-    //   </div>
+    data.map(recipe => `<li class="recipe-card">
+      <h3> class="" id="recipe-title">${recipe.name}</h3>
+      <img id="${recipe.id}" src="${recipe.image}">
+      <div class="">
+        ${recipe.tags}
+      </div>
+    </li>`).join('');
 }
 
 
 // As a user, I should be able to click on a recipe to view more information including directions, ingredients needed, and total cost.
 // render page view/ unhide form of grid containing selected recipe card object for Specific Recipes Page display
 // invoke with handler on click
-function showRecipe(recipe) {
+function showRecipe(event) {
   greeting.classList.add('hidden')
   homeView.classList.add('hidden');
   savedRecipesGrid.classList.add('hidden');
   singleRecipe.classList.remove('hidden');
-  singleRecipe.innerHTML = '';
+
+  const recipe = newRecipeRepo.recipes.find(recipe => {
+    return recipe.id === parseInt(event.target.id)
+  })
+  const ingredients = recipe.ingredients.map(ing => {
+    const foundIng = ingredientsData.find(i => i.id === ing.id);
+    return `<li>${foundIng.name}: ${ing.quantity.amount} ${ing.quantity.unit}</li>`
+  })
+  const instructions = recipe.instructions.map(inst => {
+    return `<li>${inst.instruction}</li>`
+  })
+
   singleRecipe.innerHTML = 
-    `<li class="recipe-card">
-      <span class="" id="recipe-title">${recipe.name}</h3>
-      <img src="${recipe.image}">
-      <div class="">
-        ${recipe.tags}
-      </div>
-    </li>`;
+    `<img id="${recipe.id}" src="${recipe.image}"></img>
+    <h2 class="single-recipe-name">${recipe.name}</h2>
+    <section class="single-recipe-contents">
+      <section>
+        <div>Ingredients List</div>
+        ${ingredients.join('')}
+      </section>
+      <section> 
+        <div>Instructions</div>
+        <ol>${instructions.join('')}</ol>
+      </section>
+    </section>`
+  // singleRecipe.innerHTML = 
+    // `<li class="recipe-card">
+    //   <span class="" id="recipe-title">${recipe.name}</h3>
+    //   <img src="${recipe.image}">
+    //   <div class="">
+    //     ${recipe.tags}
+    //   </div>
+    // </li>`;
 }
 
 

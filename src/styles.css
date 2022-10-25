@@ -167,3 +167,11 @@ nav {
 .hidden {
   display: none!important;
 }
+
+.single-recipe-contents {
+  display: flex;
+}
+
+.single-recipe-contents>section {
+  width: 50%;
+}
