@@ -19,6 +19,14 @@
 - We would like to expand our search option to include multiple tags and words.
 - Possible integration of a 3rd party library to allow reordering of our list of recipes.
 
+## Learning Goals
+- Implement ES6 classes that communicate to each other as needed
+- Use object and array prototype methods to perform data manipulation
+- Create a user interface that is easy to use and clearly displays information
+- Write modular, reusable code that follows SRP (Single Responsibility Principle)
+- Implement a robust testing suite using TDD
+- Make network requests to retrieve data
+
 ### Set Up
 1. Clone the repo
    ```sh
