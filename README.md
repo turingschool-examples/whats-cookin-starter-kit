@@ -1,5 +1,5 @@
 ## Abstract:
-Many people have diverse culinary tastes, WHATS COOKIN' GOOD LOOKIN' offers users unique recipes, as well as cooking instructions to advance a persons palette. In our application, a user has the abilitiy to search a recipe, save a recipe, delete a saved recipe, filter all recipes, filter all saved recipes, search by tags, and see specifications of a selected recipe. 
+Many people have diverse culinary tastes, WHATS COOKIN' GOOD LOOKIN' offers users unique recipes, as well as cooking instructions to advance the user's palette. In our application, a user has the abilitiy to search a recipe, save a recipe, delete a saved recipe, filter all recipes, filter all saved recipes, search by tags, and see specifications of a selected recipe. 
 
 ## Installation Instructions:
 1. Start at https://github.com/daniabee/whats-cookin-good-lookin
