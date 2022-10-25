@@ -1,7 +1,7 @@
-# `yourNameHere` (Project name)
+# What's Cookin'?!
 
 ## Abstract
-  - add a lil ditty about the project here
+  - What's Cookin'?! is an application interface that allows you to browse various recipes. 
 
 ## Technologies
 - ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -11,24 +11,13 @@
 - ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 - ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
 
-## Illustrations
-  `Screenshots or gifs`
-
 ## Features
--
--
+- The user is randomly generated each load and may look through the recipes, inspect an individual recipes details and serach for a recipe by name or tag.
 
 ## Possible Future Extensions
--
--
-
-## Milestones
--
--
-
-## Challenges 
--
--
+- First is the missed tech to add, remove and view recipes to cook.
+- We would like to expand our search option to include multiple tags and words.
+- Possible integration of a 3rd party library to allow reordering of our list of recipes.
 
 ### Set Up
 1. Clone the repo
