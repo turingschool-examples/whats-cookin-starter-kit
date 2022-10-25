@@ -6,6 +6,7 @@ import Recipe from "./classes/Recipe";
 import Ingredient from "./classes/Ingredient-class";
 import User from "./classes/User";
 import "./images/turing-logo.png";
+import "./images/Asset0.png";
 import "./images/AndrewProfile.png";
 import "./images/BrettProfile.png";
 import "./images/CourtneyProfile.png";
@@ -170,8 +171,7 @@ function displayARecipe() {
   displayAPage(specificRecipePage, allRecipesMain, homePage, aboutPage);
   currentPage = "specific";
 }
-function displaySearchRecipes() {
-  
+function displaySearchRecipes() {  
   let userInput = searchButtonInput.value;
   let recipesFilteredName;
 
@@ -185,7 +185,8 @@ function displaySearchRecipes() {
   if (recipesFilteredName.length !== 0) {
     displayRecipeThumbnails(recipesFilteredName,'','')
   } else {
-    allRecipeThumbnailsSection.innerHTML = "<h3> Sorry your dish can't be found ... order out!</h3>";
+    allRecipeThumbnailsSection.innerHTML =
+      "<h3 class='error-message'> Sorry, no dish with that name or tag can be be found ... order out!</h3>";
   }
   searchButtonInput.value = '';
 }
@@ -194,7 +195,7 @@ function displaySearchRecipes() {
 function displayAllRecipesPage() {
   // specificRecipePage.classList.add('hide');
   // allRecipesMain.classList.remove('hide');
-  createPageTitle("ALL RECIPES");
+  createPageTitle("All Recipes");
   displayRecipeThumbnails(
     allRecipes.listOfAllRecipes,
     "",
@@ -252,15 +253,15 @@ function displaySavedRecipesPage() {
   specificRecipePage.classList.add("hide");
   allRecipesMain.classList.remove("hide");
   console.log("Save page listening");
-  createPageTitle("SAVED RECIPES");
+  createPageTitle("Saved Recipes");
   displayRecipeThumbnails(currentUser.recipesToCook, "🗑", "delete-recipe");
   createListOfTags(currentUser.recipesToCook);
 }
 
 function deleteSavedRecipe(event) {
-  if (event.target.classList.contains('delete-recipe')) {
-    currentUser.removeRecipe(+event.target.parentElement.parentElement.id)
-    displayRecipeThumbnails(currentUser.recipesToCook, '🗑', 'delete-recipe')
+  if (event.target.classList.contains("delete-recipe")) {
+    currentUser.removeRecipe(+event.target.parentElement.parentElement.id);
+    displayRecipeThumbnails(currentUser.recipesToCook, "🗑", "delete-recipe");
   }
 }
 

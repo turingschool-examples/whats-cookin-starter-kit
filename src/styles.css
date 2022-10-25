@@ -1,31 +1,48 @@
 /* colors:
- red = 149, 54, 35  
- brown = 87,36, 41
- green = 145,147,109
- beige = 230, 205, 141
- forest green = 156,126, 68
+ red = rgb(150, 53, 35) 
+ brown =  rgb(87, 36, 31);
+ green = rgb(156,126,68)
+ beige = rgb(255, 227, 171)
+ light green = rgb(146,146, 112)
  */
 
 /* font-family: 'Abril Fatface', cursive;
  font-family: 'Playball', cursive;
  font-family: 'Playfair Display', serif; */
 
- body {
-   font-family: "Playfair Display", serif;
- }
+body {
+  font-family: "Playfair Display", serif;
+  background-image: url("./images/paper.png");
+}
 
- button {
+button {
   cursor: pointer;
- }
+  height: 5vh;
+  width: 10vw;
+  font-size: 12pt;
+  background-color: rgb(255, 227, 171);
+  border: solid rgb(150, 53, 35);
+  border-radius: 5%;
+  color: rgb(87, 36, 31);
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
 
- /* Navagation display */
+input,
+select {
+  height: 4vh;
+  width: 20vw;
+  font-size: 12pt;
+}
+/* Navagation display */
 nav {
-   display: flex;
-    flex-direction: row;
-    border: solid;
-    align-items: stretch;
-    justify-content: space-between;
-   }
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  border: solid rgb(146, 146, 112);
+  background-color: rgb(156, 126, 68);
+}
 
 /* .welcome-wrapper {
    margin-left: 30px;
@@ -38,19 +55,48 @@ nav {
    margin-left: 8px;
  } */
 
- /* .welcome-wrapper and .user-wrapper are commented out because Courtney commented out those two associated HTML elements for now. We can add this back in if we decide to use the Welcome: User on our homepage. */
+/* .welcome-wrapper and .user-wrapper are commented out because Courtney commented out those two associated HTML elements for now. We can add this back in if we decide to use the Welcome: User on our homepage. */
 
 .nav-btns-wrapper {
-   width: 35rem;
-   margin-top: 5px;
-   margin-right: 20px;
-   height: 3rem;
-   display: flex;
-   align-items: center;
-   justify-content: space-around;
- }
+  width: 70rem;
+  margin: 15px;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
 
- /* HomePage */
+/* HomePage */
+
+#title {
+  align-self: flex-start;
+  font-size: 95pt;
+  font-family: "Abril Fatface", cursive;
+  width: 1000px;
+  margin-top: 10px;
+  margin-left: 30px;
+  color: rgb(255, 227, 171);
+  letter-spacing: 8px;
+  text-shadow: -3px 3px 0 rgb(87, 36, 31), 3px 3px 0 rgb(87, 36, 31),
+    3px -3px 0 rgb(87, 36, 31), -3px -3px 0 rgb(87, 36, 31);
+}
+
+.home-background {
+  background-image: url("/src/images/Asset12.png");
+  background-position-x: left;
+  background-size: 180%;
+}
+
+.homepage-area {
+  display: flex;
+  flex-direction: column;
+  height: 88vh;
+  background-image: url("./images/Asset1.png");
+  background-repeat: no-repeat;
+  background-position-x: 97%;
+  background-position-y: bottom;
+  background-size: 38%;
+}
 
 /* About Page section */
 
@@ -58,12 +104,18 @@ nav {
   display: flex;
   flex-direction: column;
   margin: 30px;
+  background-image: url(/src/images/turing-logo.png);
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
+  background-size: 10%;
 }
 
 .about-paragraph {
   display: flex;
   justify-content: center;
-  border: 2px solid rgb(1, 1, 1);
+  border: 2px solid rgb(150, 53, 35);
+  background-color: rgb(255, 227, 171);
 }
 
 #about {
@@ -71,7 +123,7 @@ nav {
   text-align: center;
   font-size: 15pt;
   padding: 10px;
-  color: rgb(54, 54, 54);
+  color: rgb(87, 36, 31);
 }
 
 .authors {
@@ -99,23 +151,33 @@ nav {
   margin-left: 20px;
   margin-top: 30px;
   font-size: 15pt;
-  color: rgb(54, 54, 54);
+  color: rgb(87, 36, 31);
 }
 /*  Specific Recipe  section  */
 .specific-recipe-img {
-  width: 380px;
-  padding: 30px;
-  margin-top: -7px;
+  width: 20vw;
+  padding: 3%;
+  margin-top: 5%;
+  margin-left: 12%;
+  background-color: rgb(156, 126, 68);
+}
+
+.specific-recipe-info {
+  margin-left: 5%;
+  color: rgb(87, 36, 31);
 }
 
 .specific-recipe-heading {
-  margin-left: 30px;
-  margin-bottom: 4px;
+  font-family: "Abril Fatface", cursive;
+  margin-left: 3%;
+  margin-bottom: 1%;
+  color: rgb(87, 36, 31);
 }
 
 .save-button {
-  margin-left: 30px;
-  margin-bottom: 20px;
+  margin-top: 1%;
+  margin-left: 3%;
+  margin-bottom: 1%;
 }
 
 .specific-recipe-display {
@@ -124,8 +186,17 @@ nav {
   justify-content: space-around;
 }
 /* ~~~ All Recipe/Saved Pages CSS ~~~ */
+.all-recipes-main {
+  background-image: url(/src/images/Asset9.png);
+}
+
 .page-title {
-  font-size: 4vw;
+  font-family: "Playball", cursive;
+  font-size: 5vw;
+  color: rgb(87, 36, 31);
+  text-shadow: -1px 1px 0 rgb(150, 53, 35), 1px 1px 0 rgb(150, 53, 35),
+    1px -1px 0 rgb(150, 53, 35), -1px -1px 0 rgb(150, 53, 35);
+  margin-left: 2%;
 }
 
 .display-thumbnails-filter-dropdown {
@@ -146,7 +217,10 @@ nav {
   margin-left: 2vw;
   margin-right: 2vw;
   margin-top: 2vh;
-  margin-bottom: 2vh;
+  margin-bottom: 1vh;
+  background-color: rgb(255, 227, 171);
+  color: rgb(87, 36, 31);
+  border: solid 2px rgb(156, 126, 68);
 }
 
 .single-recipe-img {
@@ -159,10 +233,22 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 14vw;
+  text-align: center;
 }
 
 .delete-recipe {
   cursor: pointer;
+}
+
+.error-message {
+  font-size: 150%;
+  margin-left: 5%;
+  margin-top: -2%;
+  width: 30vw;
+  background-color: rgb(255, 227, 171);
+  border: solid 2px rgb(150, 53, 35);
+  padding: 5%;
 }
 
 .recipe-title-text {
@@ -187,6 +273,6 @@ nav {
 }
 
 /* ~~End All/Saved Recipes CSS ~~ */
- .hide {
-   display: none;
- }
+.hide {
+  display: none;
+}
