@@ -264,7 +264,7 @@ function displayRecipesOfSameTag() {
 function displaySavedRecipesPage() {
   specificRecipePage.classList.add("hide");
   allRecipesMain.classList.remove("hide");
-  createPageTitle(`${currentUser.name.toUpperCase()}'S SAVED RECIPES`);
+  createPageTitle(`${currentUser.name}'S SAVED RECIPES`);
   displayRecipeThumbnails(currentUser.recipesToCook, "🗑", "delete-recipe");
   createListOfTags(currentUser.recipesToCook);
 }
