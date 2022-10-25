@@ -36,18 +36,18 @@ header {
 }
 
 .title-area {
-  display:flex;
+  display: flex;
   align-items: center;
 }
 
-h1 span { 
-  background-color: #000000;
+h1 span, .personalized-greeting { 
+  background: rgba(0, 0, 0, .6);
   border-radius: 1vw;
-  /* border: 1, 3, 1vw; */
+  text-align: center;
   border-left: 1vw;
   border-right: 1vw;
   border-style: solid;
-  border-color: #000000;
+  border-color: rgba(0, 0, 0, .001);
 }
 
 .turing-logo {
@@ -105,6 +105,7 @@ nav {
 }
 
 .all-recipes-header {
+  margin-top: 3vw;
   font-size: 1.8vw;
 }
 
@@ -121,26 +122,46 @@ nav {
   justify-content: center;
 }
 
-ul {
+#all-card-grid {
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  
+  color: transparent;
   padding-left: 0;
   height: 100vw;
 }
 
-li {
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   list-style: none;
   flex-basis: 30.1%;
-  height: 20vw;
+  max-height: 20vw;
   margin: 1.5vw;
-  font-size: 2vw;
+  font-size: 1vw;
+  color: #000000;
+  text-align: center;
   max-width: 26vw;
   border-style: solid;
   border-color: #E99B3D;
-  border-width: 2px;
+  border-width: .5vw;
+  border-radius: 1vw;
+}
+
+.recipe-title {
+  margin-top: 1vw;
+  margin-left: .5vw;
+  margin-right: .5vw;
+}
+
+.recipe-image-all {
+  margin-bottom: 1vw;
+  height: 12vw;
+  width: 23vw;
+  border-radius: 1vw;
 }
 
 .hidden {

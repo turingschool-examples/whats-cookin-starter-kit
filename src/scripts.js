@@ -71,7 +71,7 @@ function loadUser() {
 // Iteration 1 User Stories (dashboard)
 function renderUser(user) {
   greeting.innerHTML = '';
-  greeting.innerHTML = `Welcome to What\'s Cookin\' ${user.name}`;
+  greeting.innerHTML = `<h1 class="personalized-greeting"> Welcome to What\'s Cookin\',<br>${user.name}!</h1>`;
 }
 // As a user, I should be able to view a list of all recipes.
 // render page view/ unhide form of grid containing all recipe card objects for All Recipes Page display
@@ -79,13 +79,14 @@ function renderUser(user) {
 function renderAllRecipes(data) {
   allRecipesGrid.innerHTML = '';
   allRecipesGrid.innerHTML = 
-    data.map(recipe => `<li class="recipe-card">
-      <span class="" id="recipe-title">${recipe.name}</h3>
-      <img src="${recipe.image}">
-      <div class="">
-        ${recipe.tags}
-      </div>
+    data.map(recipe => `
+    <li class="recipe-card">
+    <h3 class="recipe-title">${recipe.name}</h3>
+    <img class="recipe-image-all" src="${recipe.image}">
     </li>`);
+    // <div class="tags">
+    //     ${recipe.tags}
+    //   </div>
 }
 
 
