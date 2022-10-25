@@ -21,7 +21,6 @@ let recipeData;
 let currentUser;
 let newRecipeRepo;
 let recipeCards;
-let ingredient;
 
 
 // Declare function to instantiate all of our data to dashboard on load/ refresh.
@@ -53,12 +52,15 @@ const homeView = document.querySelector('.home-view');
 const singleRecipe = document.querySelector('.single-recipe');
 const savedRecipesGrid = document.querySelector('.save-view')
 const searchBar = document.querySelector('.search-bar')
+const favoriteRecipes = document.querySelector('#fave-card-grid')
+const favoriteButton = document.querySelector('#favorite-button')
 
 
 // Event Listeners
 window.addEventListener('load', instantiateData());
 allRecipesGrid.addEventListener('click', showRecipe)
 searchBar.addEventListener('keyup', filterRecipe)
+favoriteButton.addEventListener('click', addToFavorites)
 
 
 // Functions
@@ -120,8 +122,9 @@ function showRecipe(event) {
   })
 
   singleRecipe.innerHTML = 
-    `<img id="${recipe.id}" src="${recipe.image}"></img>
+    `<img src="${recipe.image}"></img>
     <h2 class="single-recipe-name">${recipe.name}</h2>
+    <button id="${recipe.id}">Add to Favorites</button>
     <section class="single-recipe-contents">
       <section>
         <div>Ingredients List</div>
@@ -132,14 +135,10 @@ function showRecipe(event) {
         <ol>${instructions.join('')}</ol>
       </section>
     </section>`
-  // singleRecipe.innerHTML = 
-    // `<li class="recipe-card">
-    //   <span class="" id="recipe-title">${recipe.name}</h3>
-    //   <img src="${recipe.image}">
-    //   <div class="">
-    //     ${recipe.tags}
-    //   </div>
-    // </li>`;
+}
+
+function addToFavorites() {
+
 }
 
 
