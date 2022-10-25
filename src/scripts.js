@@ -2,7 +2,7 @@ import './styles.css';
 import apiCalls from './apiCalls';
 import gatherData from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+import './images/turing-logo.png';
 // Import Fetch calls
 // import {fetchCalls.method1, fetchCalls.method2,  fetchCalls.method3, fetchCalls.method4} from {"./apiCalls"};
 // Import classes
@@ -22,7 +22,9 @@ let currentUser;
 let newRecipeRepo;
 let recipeCards;
 
-
+function makeAllHidden() {
+  recipeGrid.classList.toggle('hidden');
+}
 // Declare function to instantiate all of our data to dashboard on load/ refresh.
 function instantiateData() {
   Promise.all([
@@ -73,7 +75,7 @@ function loadUser() {
 // Iteration 1 User Stories (dashboard)
 function renderUser(user) {
   greeting.innerHTML = '';
-  greeting.innerHTML = `Welcome to What\'s Cookin\' ${user.name}`;
+  greeting.innerHTML = `<h1 class="personalized-greeting"> Welcome to What\'s Cookin\',<br>${user.name}!</h1>`;
 }
 // As a user, I should be able to view a list of all recipes.
 // render page view/ unhide form of grid containing all recipe card objects for All Recipes Page display
@@ -82,7 +84,7 @@ function renderAllRecipes(data) {
   allRecipesGrid.innerHTML = '';
   allRecipesGrid.innerHTML = 
     data.map(recipe => `<li class="recipe-card">
-      <span class="" id="recipe-title">${recipe.name}</h3>
+      <h3> class="" id="recipe-title">${recipe.name}</h3>
       <img id="${recipe.id}" src="${recipe.image}">
       <div class="">
         ${recipe.tags}

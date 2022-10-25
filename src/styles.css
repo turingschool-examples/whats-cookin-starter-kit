@@ -36,8 +36,18 @@ header {
 }
 
 .title-area {
-  display:flex;
+  display: flex;
   align-items: center;
+}
+
+h1 span, .personalized-greeting { 
+  background: rgba(0, 0, 0, .6);
+  border-radius: 1vw;
+  text-align: center;
+  border-left: 1vw;
+  border-right: 1vw;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, .001);
 }
 
 .turing-logo {
@@ -91,14 +101,20 @@ nav {
   background-image: url("https://i2.wp.com/michellescotttucker.com/wp-content/uploads/2014/10/getty-cockatoo-still-life.jpg");
   background-repeat: no-repeat;
   background-size: 80vw 22vw;
+  border-radius: 5vw;
 }
 
-.all-recipe-grid {
+.all-recipes-header {
+  margin-top: 3vw;
+  font-size: 1.8vw;
+}
+
+/* .all-recipe-grid {
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;
-}
+} */
 
 .recipe-header-container {
   display: flex;
@@ -106,20 +122,46 @@ nav {
   justify-content: center;
 }
 
-ul {
+#all-card-grid {
   display: flex;
+  justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  
+  color: transparent;
   padding-left: 0;
   height: 100vw;
 }
 
 .recipe-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   list-style: none;
   flex-basis: 30.1%;
-  height: 20vw;
+  max-height: 20vw;
   margin: 1.5vw;
+  font-size: 1vw;
+  color: #000000;
+  text-align: center;
+  max-width: 26vw;
+  border-style: solid;
+  border-color: #E99B3D;
+  border-width: .5vw;
+  border-radius: 1vw;
+}
+
+.recipe-title {
+  margin-top: 1vw;
+  margin-left: .5vw;
+  margin-right: .5vw;
+}
+
+.recipe-image-all {
+  margin-bottom: 1vw;
+  height: 12vw;
+  width: 23vw;
+  border-radius: 1vw;
 }
 
 .hidden {
