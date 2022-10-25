@@ -40,7 +40,7 @@ Dani Bagley: https://github.com/daniabee
 8. Practice git work flow 
 9. Practice a uniform project management system
 
-## Technology Used
+## Technology Used:
 VS Code
 JavaScript
 Mocha
@@ -68,6 +68,6 @@ The greatest challenges were...
 4. A page introducing our website for entry
 
  
-## Possible additions.
+## Possible additions:
 1. More functionality to the search bar:  type partial words and filter possible recipes 
 2. Additional filter options as part of the front page spec 
