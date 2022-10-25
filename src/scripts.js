@@ -48,19 +48,17 @@ function instantiateData() {
 
 // Query Selectors!!!
 const allRecipesGrid = document.querySelector('#all-card-grid');
-const favoriteRecipesGrid = document.querySelector('#favorite-grid');
 const greeting = document.querySelector('#greeting');
 const homeView = document.querySelector('.home-view');
-const card = document.querySelector('.recipe-card');
 const singleRecipe = document.querySelector('.single-recipe');
-const singleRecipeImage = document.querySelector('.single-recipe-image')
-const singleRecipeName = document.querySelector('.single-recipe-name')
 const savedRecipesGrid = document.querySelector('.save-view')
+const searchBar = document.querySelector('.search-bar')
 
 
 // Event Listeners
 window.addEventListener('load', instantiateData());
 allRecipesGrid.addEventListener('click', showRecipe)
+searchBar.addEventListener('keyup', filterRecipe)
 
 
 // Functions
@@ -90,6 +88,16 @@ function renderAllRecipes(data) {
     </li>`).join('');
 }
 
+// “if currentRecipe.name.includes(input) || currentRecipe.tags.includes(input), then return currentRecipe”
+
+function filterRecipe() {
+  const recipeSearch = searchBar.value.toLowerCase()
+  const filteredRecipes = recipeCards.filter(recipe => {
+    return recipe.name.toLowerCase().includes(recipeSearch) || recipe.tags.includes(recipeSearch)
+  })
+  console.log(filteredRecipes)
+  renderAllRecipes(filteredRecipes)
+}
 
 // As a user, I should be able to click on a recipe to view more information including directions, ingredients needed, and total cost.
 // render page view/ unhide form of grid containing selected recipe card object for Specific Recipes Page display
