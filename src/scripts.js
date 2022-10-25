@@ -49,9 +49,18 @@ function instantiateData() {
 const allRecipesGrid = document.querySelector('#all-card-grid');
 const favoriteRecipesGrid = document.querySelector('#favorite-grid');
 const greeting = document.querySelector('#greeting');
+const homeView = document.querySelector('.home-view');
+const card = document.querySelector('.recipe-card');
+const singleRecipe = document.querySelector('.single-recipe');
+const singleRecipeImage = document.querySelector('.single-recipe-image')
+const singleRecipeName = document.querySelector('.single-recipe-name')
+const savedRecipesGrid = document.querySelector('.save-view')
+
 
 // Event Listeners
 window.addEventListener('load', instantiateData());
+allRecipesGrid.addEventListener('click', showRecipe)
+
 
 // Functions
 function loadUser() {
@@ -69,11 +78,11 @@ function renderUser(user) {
 // render page view/ unhide form of grid containing all recipe card objects for All Recipes Page display
 // invoke w/ handler either on load or click
 function renderAllRecipes(data) {
-  (allRecipesGrid).innerHTML = '';
-  (allRecipesGrid).innerHTML = 
+  allRecipesGrid.innerHTML = '';
+  allRecipesGrid.innerHTML = 
     data.map(recipe => `<li class="recipe-card">
       <span class="" id="recipe-title">${recipe.name}</h3>
-      <img url="${recipe.image}">
+      <img id="${recipe.id}" src="${recipe.image}">
       <div class="">
         ${recipe.tags}
       </div>
@@ -84,11 +93,41 @@ function renderAllRecipes(data) {
 // As a user, I should be able to click on a recipe to view more information including directions, ingredients needed, and total cost.
 // render page view/ unhide form of grid containing selected recipe card object for Specific Recipes Page display
 // invoke with handler on click
-function showRecipe() {
+function showRecipe(event) {
   greeting.classList.add('hidden')
-  allRecipesGrid.classList.add('hidden');
+  homeView.classList.add('hidden');
   savedRecipesGrid.classList.add('hidden');
   singleRecipe.classList.remove('hidden');
+
+  const recipe = newRecipeRepo.recipes.find(recipe => {
+    return recipe.id === parseInt(event.target.id)
+  })
+  singleRecipe.innerHTML = 
+  `<img id="${recipe.id}" src="${recipe.image}"></img>
+  <h2 class="single-recipe-name">${recipe.name}</h2>
+  <section>
+    <div>Ingredients List</div>
+    ${recipe.ingredients.map(ingredient => {
+      return ingredient.id
+    }).forEach(ingredient => {
+      ingredientsData.find(ingredient => {
+        if (ingredient.id === )
+      })
+    })
+    
+    ingredientsData.filter(ingredient => {
+      ingredient.id === ingredientsData.id
+    })}
+  </section>`
+  console.log(ingredientsData)
+  // singleRecipe.innerHTML = 
+    // `<li class="recipe-card">
+    //   <span class="" id="recipe-title">${recipe.name}</h3>
+    //   <img src="${recipe.image}">
+    //   <div class="">
+    //     ${recipe.tags}
+    //   </div>
+    // </li>`;
 }
 
 
