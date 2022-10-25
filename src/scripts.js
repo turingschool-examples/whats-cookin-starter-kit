@@ -6,6 +6,7 @@ import './images/turing-logo.png'
 
 import Recipe from '../src/classes/Recipe';
 import RecipeRepository from '../src/classes/RecipeRepository';
+import User from '../src/classes/User'
 
 //QuerySelector
 const currentRecipeName = document.querySelector(".current-recipe-name")
@@ -15,18 +16,22 @@ const middleRandomImageCard = document.querySelector(".middle-random-card")
 const rightRandomImageCard = document.querySelector(".right-random-card")
 const tagSearchResults = document.querySelector(".tag-search-results")
 const nameSearchResults = document.querySelector(".name-search-results")
+const selectedRecipeInfo = document.querySelector(".selected-recipe-info")
+const savedRecipes = document.querySelector(".saved-recipes")
 
 const viewAllRecipesButton = document.querySelector(".view-all-recipes")
 const homeButton = document.querySelector(".home-button")
 const searchButton = document.querySelector(".submit-search-button")
 const searchInput = document.querySelector("#searchBar")
+const addFavoriteButton = document.querySelector(".add-to-favorites-button")
 
 const allRecipesView = document.querySelector(".all-recipes-view")
 const homeView = document.querySelector(".home-view")
 const selectedRecipeView = document.querySelector(".selected-recipe-view")
 const searchedRecipeView = document.querySelector(".searched-recipe-view")
 
-//Instances
+
+//Global Variables
 let currentRecipe
 let randomRecipes
 let allRecipes
@@ -34,7 +39,8 @@ let selectedRecipe
 let ingredientsData
 let recipeData
 let usersData
-
+let usersList = []
+let currentUser
 
 //Functions
 const fetchApiCalls = () => {
@@ -48,7 +54,7 @@ const fetchApiCalls = () => {
   };
 
 const getRandomIndex = array => {
-    return Math.floor(Math.random() * array.length + 1);
+    return Math.floor(Math.random() * array.length);
 };
 
 function hideElement (hideThis) {
@@ -63,7 +69,24 @@ function loadHandler(){
     onLoadRecipe()
     generateRandomRecipes()
     generateAllRecipes()
+    generateUsersList()
+    generateCurrentUser()
 }
+
+function generateCurrentUser() {
+    currentUser = new User (usersList[getRandomIndex(usersList)]) 
+    console.log("currentUser",currentUser)
+}
+
+
+function generateUsersList () {
+    usersData.forEach((user) => {
+      let userClass = new User (user)
+      usersList.push(userClass)
+    })
+    console.log("usersList full of user class instances",usersList)
+}
+
 
 function generateAllRecipes () {
     allRecipes = new RecipeRepository(ingredientsData,recipeData)
@@ -72,7 +95,6 @@ function generateAllRecipes () {
 function onLoadRecipe(){
     currentRecipe = new Recipe(ingredientsData, recipeData[getRandomIndex(recipeData)])
     showMainRecipe()
-    console.log("currentRecipe",currentRecipe)
 }
 
 function generateRandomRecipes(){
@@ -113,7 +135,7 @@ function viewSelectedRecipe () {
 }
 
 function showSelectedRecipe() {
-    selectedRecipeView.innerHTML = `
+    selectedRecipeInfo.innerHTML = `
     <section class="selected-recipe-container">
     <img class="selected-recipe-image" img src=${selectedRecipe.image}>
     <h1 class="name">${selectedRecipe.name}</h1>
@@ -162,6 +184,13 @@ function viewSearchedRecipes() {
     hideElement(homeView)
     showElement(searchedRecipeView)
     showElement(homeButton)
+}
+
+function addRecipeToFavorites() {
+    currentUser.favorites.forEach( element =>
+        savedRecipes.innerHTML += `<h1 id=${element.id}>${element.name}</h1>`
+
+    )
 }
 
 function viewAllRecipes () {
@@ -234,4 +263,11 @@ rightRandomImageCard.addEventListener("click", function (event) {
 searchButton.addEventListener("click", function(event){
     event.preventDefault()
     viewSearchedRecipes()
+})
+
+addFavoriteButton.addEventListener("click", function (event) {
+    event.preventDefault()
+    currentUser.addToFavorites(selectedRecipe)
+    console.log("currentUser.favorites", currentUser.favorites)
+    addRecipeToFavorites()
 })
