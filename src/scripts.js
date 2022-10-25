@@ -188,7 +188,7 @@ function renderRecipe(recipe) {
   newSection.innerHTML += `<img class="image" id="${recipe.id}" src="${recipe.image}">`;
   newSection.innerHTML += renderIngredients(recipe.ingredients);
   newSection.innerHTML += renderInstructions(recipe.instructions);
-  newSection.innerHTML += `<p>Estimated cost: ${recipe.getCost()} cents</p>
+  newSection.innerHTML += `<p>Estimated cost: ${recipe.getCost()} dollars</p>
   <button class="save-recipe-button" id="${recipe.id}"> Save Recipe </button>`;
 
   currentRecipeContainer.appendChild(newSection);
