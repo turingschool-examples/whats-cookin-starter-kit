@@ -18,17 +18,24 @@ const tagSearchResults = document.querySelector(".tag-search-results")
 const nameSearchResults = document.querySelector(".name-search-results")
 const selectedRecipeInfo = document.querySelector(".selected-recipe-info")
 const savedRecipes = document.querySelector(".saved-recipes")
+const favoritesTagSearchResult = document.querySelector(".favorites-tag-search-results")
+const favoritesNameSearchResult = document.querySelector(".favorites-name-search-results")
+
 
 const viewAllRecipesButton = document.querySelector(".view-all-recipes-button")
 const homeButton = document.querySelector(".home-button")
 const searchButton = document.querySelector(".submit-search-button")
 const searchInput = document.querySelector("#searchBar")
 const addFavoriteButton = document.querySelector(".add-to-favorites-button")
+const favoritesSearchInput = document.querySelector("#searchFavorites")
+const searchFavoritesButton = document.querySelector(".submit-search-favorites-button")
 
 const allRecipesView = document.querySelector(".all-recipes-view")
 const homeView = document.querySelector(".home-view")
 const selectedRecipeView = document.querySelector(".selected-recipe-view")
 const searchedRecipeView = document.querySelector(".searched-recipe-view")
+const viewSearchedFavorites = document.querySelector(".view-searched-favorites-recipes")
+const viewSavedFavorites = document.querySelector(".saved-section")
 
 
 //Global Variables
@@ -131,6 +138,8 @@ function viewSelectedRecipe () {
     showElement(selectedRecipeView)
     showElement(homeButton)
     showElement(viewAllRecipesButton)
+    hideElement(viewSavedFavorites)
+
     showSelectedRecipe()
 }
 
@@ -184,7 +193,31 @@ function viewSearchedRecipes() {
     hideElement(homeView)
     showElement(searchedRecipeView)
     showElement(homeButton)
+    hideElement(viewSavedFavorites)
 
+}
+
+function updateFavoritesBySearch() {
+    favoritesNameSearchResult.innerHTML = ""
+    favoritesTagSearchResult.innerHTML = ""
+    let searchTerm = favoritesSearchInput.value 
+    let tagResults = []
+    let nameResults = []
+    tagResults = currentUser.filterFavsByTag(searchTerm)
+    nameResults = currentUser.filterFavsByName(searchTerm)
+    if (nameResults.length === 0 && tagResults.length === 0) {
+        favoritesTagSearchResult.innerHTML = `<h1>There are no results for your search, please try a different search</h1>`
+    }
+    nameResults.forEach(element => 
+        favoritesNameSearchResult.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`)
+    tagResults.forEach(element => 
+        favoritesTagSearchResult.innerHTML+= `<h1 id=${element.id}>${element.name}</h1>`)
+    hideElement(selectedRecipeView)
+    hideElement(homeView)
+    hideElement(searchedRecipeView)
+    showElement(homeButton)
+    showElement(viewSearchedFavorites)
+    hideElement(viewSavedFavorites)
 }
 
 function addRecipeToFavorites() {
@@ -205,6 +238,7 @@ function viewAllRecipes () {
     hideElement(homeView)
     hideElement(selectedRecipeView)
     showElement(homeButton)
+    hideElement(viewSavedFavorites)
 }
 
 function viewHome () {
@@ -213,6 +247,7 @@ function viewHome () {
     hideElement(homeButton)
     hideElement(allRecipesView)
     hideElement(selectedRecipeView)
+    showElement(viewSavedFavorites)
 }
 
 //EventListener
@@ -265,7 +300,6 @@ rightRandomImageCard.addEventListener("click", function (event) {
 
 searchButton.addEventListener("click", function(event){
     event.preventDefault()
-    console.log('I fired')
     viewSearchedRecipes()
 })
 
@@ -279,7 +313,10 @@ addFavoriteButton.addEventListener("click", function (event) {
     } else {
         currentUser.addToFavorites(selectedRecipe)
     }
-
-    // console.log("currentUser.favorites", currentUser.favorites)
     addRecipeToFavorites()
+})
+
+searchFavoritesButton.addEventListener("click", function (event) {
+    event.preventDefault()
+    updateFavoritesBySearch()
 })
