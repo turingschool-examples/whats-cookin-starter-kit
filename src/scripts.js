@@ -103,21 +103,27 @@ function showRecipe(event) {
   const recipe = newRecipeRepo.recipes.find(recipe => {
     return recipe.id === parseInt(event.target.id)
   })
-  console.log(recipe.ingredients)
   const ingredients = recipe.ingredients.map(ing => {
     const foundIng = ingredientsData.find(i => i.id === ing.id);
     return `<li>${foundIng.name}: ${ing.quantity.amount} ${ing.quantity.unit}</li>`
+  })
+  const instructions = recipe.instructions.map(inst => {
+    return `<li>${inst.number}. ${inst.instruction}</li>`
   })
 
   singleRecipe.innerHTML = 
     `<img id="${recipe.id}" src="${recipe.image}"></img>
     <h2 class="single-recipe-name">${recipe.name}</h2>
-    <section>
-      <div>Ingredients List</div>
-      ${ingredients.join('')}
-     
+    <section class="single-recipe-contents">
+      <section>
+        <div>Ingredients List</div>
+        ${ingredients.join('')}
+      </section>
+      <section> 
+        <div>Instructions</div>
+        <ol>${instructions.join('')}</ol>
+      </section>
     </section>`
-  console.log(ingredientsData)
   // singleRecipe.innerHTML = 
     // `<li class="recipe-card">
     //   <span class="" id="recipe-title">${recipe.name}</h3>
