@@ -155,11 +155,15 @@ function displayAboutPage() {
 function displayAllRecipes() {
   displayAPage(allRecipesMain, homePage, aboutPage, specificRecipePage);
   currentPage = "all";
+  searchButtonInput.value = '',
+  searchButtonInput.placeholder = `search ${currentPage} recipes`;
 }
 
 function displaySavedRecipes() {
   displayAPage(allRecipesMain, homePage, aboutPage, specificRecipePage);
   currentPage = "saved";
+  searchButtonInput.value = '',
+  searchButtonInput.placeholder = `search ${currentPage} recipes`;
 }
 
 function displayARecipe() {
@@ -183,7 +187,7 @@ function displaySearchRecipes() {
   } else {
     allRecipeThumbnailsSection.innerHTML = "<h3> Sorry your dish can't be found ... order out!</h3>";
   }
-  searchButtonInput.innerText = '';
+  searchButtonInput.value = '';
 }
 //Home Page FUNCTIONS --------
 //All Recipes Page FUNCTIONS --------
