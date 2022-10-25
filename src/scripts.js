@@ -108,7 +108,7 @@ function showRecipe(event) {
     return `<li>${foundIng.name}: ${ing.quantity.amount} ${ing.quantity.unit}</li>`
   })
   const instructions = recipe.instructions.map(inst => {
-    return `<li>${inst.number}. ${inst.instruction}</li>`
+    return `<li>${inst.instruction}</li>`
   })
 
   singleRecipe.innerHTML = 
