@@ -156,39 +156,39 @@ function displayAboutPage() {
 function displayAllRecipes() {
   displayAPage(allRecipesMain, homePage, aboutPage, specificRecipePage);
   currentPage = "all";
-  searchButtonInput.value = '',
-  searchButtonInput.placeholder = `search ${currentPage} recipes`;
+  (searchButtonInput.value = ""),
+    (searchButtonInput.placeholder = `search ${currentPage} recipes`);
 }
 
 function displaySavedRecipes() {
   displayAPage(allRecipesMain, homePage, aboutPage, specificRecipePage);
   currentPage = "saved";
-  searchButtonInput.value = '',
-  searchButtonInput.placeholder = `search ${currentPage} recipes`;
+  (searchButtonInput.value = ""),
+    (searchButtonInput.placeholder = `search ${currentPage} recipes`);
 }
 
 function displayARecipe() {
   displayAPage(specificRecipePage, allRecipesMain, homePage, aboutPage);
   currentPage = "specific";
 }
-function displaySearchRecipes() {  
+function displaySearchRecipes() {
   let userInput = searchButtonInput.value;
   let recipesFilteredName;
 
-  if (currentPage === 'saved') {
-    recipesFilteredName = currentUser.filterByName(userInput)
+  if (currentPage === "saved") {
+    recipesFilteredName = currentUser.filterByName(userInput);
   } else {
-    displayAllRecipes()
-    recipesFilteredName = allRecipes.filterByName(userInput)
+    displayAllRecipes();
+    recipesFilteredName = allRecipes.filterByName(userInput);
   }
 
   if (recipesFilteredName.length !== 0) {
-    displayRecipeThumbnails(recipesFilteredName,'','')
+    displayRecipeThumbnails(recipesFilteredName, "", "");
   } else {
     allRecipeThumbnailsSection.innerHTML =
       "<h3 class='error-message'> Sorry, no dish with that name or tag can be be found ... order out!</h3>";
   }
-  searchButtonInput.value = '';
+  searchButtonInput.value = "";
 }
 //Home Page FUNCTIONS --------
 //All Recipes Page FUNCTIONS --------
@@ -240,9 +240,9 @@ function populateTagFilter(recipeList) {
 function displayRecipesOfSameTag() {
   let recipesToTag;
   if (currentPage === "saved") {
-    recipesToTag = currentUser.filterByTag(inputForTags.value)
+    recipesToTag = currentUser.filterByTag(inputForTags.value);
   } else {
-    recipesToTag = allRecipes.filterByTag(inputForTags.value)
+    recipesToTag = allRecipes.filterByTag(inputForTags.value);
   }
   displayRecipeThumbnails(recipesToTag, "", "");
 }
@@ -252,7 +252,7 @@ function displayRecipesOfSameTag() {
 function displaySavedRecipesPage() {
   specificRecipePage.classList.add("hide");
   allRecipesMain.classList.remove("hide");
-  createPageTitle(`${currentUser.name}'S SAVED RECIPES`);
+  createPageTitle(`${currentUser.name}'s Saved Recipes`);
   displayRecipeThumbnails(currentUser.recipesToCook, "🗑", "delete-recipe");
   createListOfTags(currentUser.recipesToCook);
 }
@@ -277,12 +277,15 @@ function loadSpecificRecipe(event) {
       (recipe) => recipe.id === +event.target.parentElement.parentElement.id
     );
   }
-  if (event.target.className === "single-recipe-img" || event.target.className === "recipe-title-text") {
+  if (
+    event.target.className === "single-recipe-img" ||
+    event.target.className === "recipe-title-text"
+  ) {
     allRecipesMain.classList.add("hide");
     specificRecipePage.classList.remove("hide");
 
-    specificRecipeHeading.innerText = "",
-    specificRecipeHeading.innerText = currentRecipe.name;
+    (specificRecipeHeading.innerText = ""),
+      (specificRecipeHeading.innerText = currentRecipe.name);
 
     specificRecipeImage.src = "";
     specificRecipeImage.src = currentRecipe.image;
@@ -336,7 +339,9 @@ function generateCost(recipe) {
 }
 
 function addToRecipesToCook() {
-  if (!currentUser.recipesToCook.some((recipe) => recipe.id === currentRecipe.id)) {
+  if (
+    !currentUser.recipesToCook.some((recipe) => recipe.id === currentRecipe.id)
+  ) {
     currentUser.addRecipe(currentRecipe.id, allRecipes);
   }
 }
