@@ -48,7 +48,7 @@ header {
 
 main {
   display: flex;
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
   flex-direction: column;
   height: 100vw;
 }
@@ -95,12 +95,14 @@ nav {
 
 .all-recipe-grid {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   height: 100%;
 }
 
 .recipe-header-container {
   display: flex;
+  flex-direction: row;
   justify-content: center;
 }
 
@@ -121,5 +123,5 @@ li {
 }
 
 .hidden {
-  display: none;
+  display: none!important;
 }
