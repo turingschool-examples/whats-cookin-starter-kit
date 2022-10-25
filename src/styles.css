@@ -19,7 +19,7 @@ button {
   cursor: pointer;
   height: 5vh;
   width: 10vw;
-  font-size: 12pt;
+  font-size: 100%;
   background-color: rgb(255, 227, 171);
   border: solid rgb(150, 53, 35);
   border-radius: 5%;
@@ -32,7 +32,7 @@ input,
 select {
   height: 4vh;
   width: 20vw;
-  font-size: 12pt;
+  font-size: 100%;
 }
 /* Navagation display */
 nav {
@@ -59,7 +59,7 @@ nav {
 
 .nav-btns-wrapper {
   width: 70rem;
-  margin: 15px;
+  margin: 1.5%;
   height: 3rem;
   display: flex;
   align-items: center;
@@ -70,11 +70,11 @@ nav {
 
 #title {
   align-self: flex-start;
-  font-size: 95pt;
+  font-size: 15vh;
   font-family: "Abril Fatface", cursive;
-  width: 1000px;
-  margin-top: 10px;
-  margin-left: 30px;
+  width: 80vw;
+  margin-top: 1%;
+  margin-left: 3%;
   color: rgb(255, 227, 171);
   letter-spacing: 8px;
   text-shadow: -3px 3px 0 rgb(87, 36, 31), 3px 3px 0 rgb(87, 36, 31),
@@ -95,7 +95,7 @@ nav {
   background-repeat: no-repeat;
   background-position-x: 97%;
   background-position-y: bottom;
-  background-size: 38%;
+  background-size: 65vh;
 }
 
 /* About Page section */
@@ -103,7 +103,7 @@ nav {
 .about-page {
   display: flex;
   flex-direction: column;
-  margin: 30px;
+  margin: 3%;
   background-image: url(/src/images/turing-logo.png);
   background-repeat: no-repeat;
   background-position-x: right;
@@ -119,38 +119,38 @@ nav {
 }
 
 #about {
-  width: 1200px;
+  width: 120vw;
   text-align: center;
-  font-size: 15pt;
-  padding: 10px;
+  font-size: 120%;
+  padding: 0.5%;
   color: rgb(87, 36, 31);
 }
 
 .authors {
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 60vh;
   justify-content: space-evenly;
-  margin-top: 5px;
+  margin-top: 1%;
 }
 
 .profile {
   display: flex;
   flex-direction: row;
-  margin-left: 20px;
+  margin-left: 2%;
 }
 
 .profile-picture {
-  height: 100px;
-  width: 100px;
+  height: 13vh;
+  width: 8vw;
   border-radius: 50%;
   border: 2px solid black;
 }
 
 .github {
-  margin-left: 20px;
-  margin-top: 30px;
-  font-size: 15pt;
+  margin-left: 2%;
+  margin-top: 3%;
+  font-size: 150%;
   color: rgb(87, 36, 31);
 }
 /*  Specific Recipe  section  */
@@ -188,6 +188,7 @@ nav {
 /* ~~~ All Recipe/Saved Pages CSS ~~~ */
 .all-recipes-main {
   background-image: url(/src/images/Asset9.png);
+  overflow-y: scroll;
 }
 
 .page-title {
