@@ -188,10 +188,12 @@ function viewSearchedRecipes() {
 }
 
 function addRecipeToFavorites() {
-    currentUser.favorites.forEach( element =>
-        savedRecipes.innerHTML += `<h1 id=${element.id}>${element.name}</h1>`
+    savedRecipes.innerHTML = ""
 
+    currentUser.favorites.forEach( element =>
+        savedRecipes.innerHTML += `<h1 id=${element.id}>${element.name}  </h1>`
     )
+
 }
 
 function viewAllRecipes () {
@@ -269,7 +271,15 @@ searchButton.addEventListener("click", function(event){
 
 addFavoriteButton.addEventListener("click", function (event) {
     event.preventDefault()
-    currentUser.addToFavorites(selectedRecipe)
-    console.log("currentUser.favorites", currentUser.favorites)
+
+    if (currentUser.favorites.includes(selectedRecipe))
+    {
+        let indexOfRecipe = currentUser.favorites.indexOf(selectedRecipe)
+        currentUser.favorites.splice(indexOfRecipe, 1)
+    } else {
+        currentUser.addToFavorites(selectedRecipe)
+    }
+
+    // console.log("currentUser.favorites", currentUser.favorites)
     addRecipeToFavorites()
 })

@@ -876,6 +876,7 @@ function viewSearchedRecipes() {
     hideElement(homeView)
     showElement(searchedRecipeView)
     showElement(homeButton)
+
 }
 
 function addRecipeToFavorites() {
@@ -954,6 +955,7 @@ rightRandomImageCard.addEventListener("click", function (event) {
 
 searchButton.addEventListener("click", function(event){
     event.preventDefault()
+    console.log('I fired')
     viewSearchedRecipes()
 })
 
