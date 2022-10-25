@@ -16,6 +16,13 @@ WHAT'S COOKIN' GOOD LOOKIN' is a web application that provides a user the abilit
 
 
 ## Preview of App:
+<img width="1440" alt="Screen Shot 2022-10-24 at 8 13 30 PM" src="https://user-images.githubusercontent.com/104169837/197666775-c296a35d-3ca9-49ce-bdcd-e143570218cf.png">
+
+![Screen Shot 2022-10-24 at 8 17 31 PM](https://user-images.githubusercontent.com/104169837/197667211-50e61a41-8a52-40fa-b88f-2cb569acf62d.png)
+![Screen Shot 2022-10-24 at 8 15 51 PM](https://user-images.githubusercontent.com/104169837/197667308-2cf09813-f89f-4eee-b103-5ae1e2b8332a.png)
+
+
+
 
 ## Context:
 Each member of our group has been in Turing for 3 months. 
