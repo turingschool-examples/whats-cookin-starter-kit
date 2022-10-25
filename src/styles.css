@@ -19,7 +19,7 @@ button {
   cursor: pointer;
   height: 5vh;
   width: 10vw;
-  font-size: 1.0vw;
+  font-size: 1vw;
   background-color: rgb(255, 227, 171);
   border: solid rgb(150, 53, 35);
   border-radius: 5%;
@@ -90,7 +90,7 @@ nav {
 .homepage-area {
   display: flex;
   flex-direction: column;
-  height: 88vh;
+  height: 91vh;
   background-image: url("./images/Asset1.png");
   background-repeat: no-repeat;
   background-position-x: 97%;
