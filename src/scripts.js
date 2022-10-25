@@ -10,7 +10,7 @@ import User from '../src/classes/User'
 
 //QuerySelector
 const currentRecipeName = document.querySelector(".current-recipe-name")
-const currentRecipeImage = document.querySelector(".image-parent-main")
+const currentRecipeImage = document.querySelector(".current-recipe-image")
 const leftRandomImageCard = document.querySelector(".left-random-card")
 const middleRandomImageCard = document.querySelector(".middle-random-card")
 const rightRandomImageCard = document.querySelector(".right-random-card")
@@ -19,7 +19,7 @@ const nameSearchResults = document.querySelector(".name-search-results")
 const selectedRecipeInfo = document.querySelector(".selected-recipe-info")
 const savedRecipes = document.querySelector(".saved-recipes")
 
-const viewAllRecipesButton = document.querySelector(".view-all-recipes")
+const viewAllRecipesButton = document.querySelector(".view-all-recipes-button")
 const homeButton = document.querySelector(".home-button")
 const searchButton = document.querySelector(".submit-search-button")
 const searchInput = document.querySelector("#searchBar")
@@ -184,6 +184,7 @@ function viewSearchedRecipes() {
     hideElement(homeView)
     showElement(searchedRecipeView)
     showElement(homeButton)
+
 }
 
 function addRecipeToFavorites() {
@@ -262,6 +263,7 @@ rightRandomImageCard.addEventListener("click", function (event) {
 
 searchButton.addEventListener("click", function(event){
     event.preventDefault()
+    console.log('I fired')
     viewSearchedRecipes()
 })
 
