@@ -6,6 +6,7 @@ import Recipe from "./classes/Recipe";
 import Ingredient from "./classes/Ingredient-class";
 import User from "./classes/User";
 import "./images/turing-logo.png";
+import "./images/Asset0.png";
 import "./images/AndrewProfile.png";
 import "./images/BrettProfile.png";
 import "./images/CourtneyProfile.png";
@@ -156,11 +157,15 @@ function displayAboutPage() {
 function displayAllRecipes() {
   displayAPage(allRecipesMain, homePage, aboutPage, specificRecipePage);
   currentPage = "all";
+  (searchButtonInput.value = ""),
+    (searchButtonInput.placeholder = `search ${currentPage} recipes`);
 }
 
 function displaySavedRecipes() {
   displayAPage(allRecipesMain, homePage, aboutPage, specificRecipePage);
   currentPage = "saved";
+  (searchButtonInput.value = ""),
+    (searchButtonInput.placeholder = `search ${currentPage} recipes`);
 }
 
 function displayARecipe() {
@@ -168,32 +173,23 @@ function displayARecipe() {
   currentPage = "specific";
 }
 function displaySearchRecipes() {
-  
-  let foodOptions;
-  let userInput = searchButtonInput.value.toLowerCase();
-  
-  if(currentPage === 'saved') {
-    foodOptions = currentUser.recipesToCook;
-    
-  }
-  else { 
-    displayAllRecipes()
-    foodOptions = allRecipes.listOfAllRecipes 
-  }
-  const recipeFilterName = foodOptions.filter(recipe => recipe.name.toLowerCase() === userInput )
-  const recipeFilterByTag = createRecipesOfTag(userInput,foodOptions)
-    
-  if(recipeFilterName.length === 0 && recipeFilterByTag.length !== 0 ) {
-    displayRecipeThumbnails(recipeFilterByTag,'','')
-    
-  } 
-  else if (recipeFilterName.length !== 0 && recipeFilterByTag.length === 0) {
-    displayRecipeThumbnails(recipeFilterName,'','')
-    
+  let userInput = searchButtonInput.value;
+  let recipesFilteredName;
+
+  if (currentPage === "saved") {
+    recipesFilteredName = currentUser.filterByName(userInput);
   } else {
-    allRecipeThumbnailsSection.innerHTML = "<h3> Sorry your dish can't be found ... order out!</h3>";
+    displayAllRecipes();
+    recipesFilteredName = allRecipes.filterByName(userInput);
   }
-  searchButtonInput.innerText = '';
+
+  if (recipesFilteredName.length !== 0) {
+    displayRecipeThumbnails(recipesFilteredName, "", "");
+  } else {
+    allRecipeThumbnailsSection.innerHTML =
+      "<h3 class='error-message'> Sorry, no dish with that name or tag can be be found ... order out!</h3>";
+  }
+  searchButtonInput.value = "";
 }
 //Home Page FUNCTIONS --------
 
@@ -201,7 +197,7 @@ function displaySearchRecipes() {
 function displayAllRecipesPage() {
   // specificRecipePage.classList.add('hide');
   // allRecipesMain.classList.remove('hide');
-  createPageTitle("ALL RECIPES");
+  createPageTitle("All Recipes");
   displayRecipeThumbnails(
     allRecipes.listOfAllRecipes,
     "",
@@ -243,24 +239,14 @@ function populateTagFilter(recipeList) {
   });
 }
 
-function createRecipesOfTag(tag, recipeList) {
-  return recipeList.filter((recipe) => recipe.tags.includes(tag));
-}
-
 function displayRecipesOfSameTag() {
   let recipesToTag;
   if (currentPage === "saved") {
-    recipesToTag = createRecipesOfTag(
-      inputForTags.value,
-      currentUser.recipesToCook
-    );
-    allRecipeFilterTagOptions.selectedIndex = 0
+    recipesToTag = currentUser.filterByTag(inputForTags.value);
+        allRecipeFilterTagOptions.selectedIndex = 0;
   } else {
-    recipesToTag = createRecipesOfTag(
-      inputForTags.value,
-      allRecipes.listOfAllRecipes  
-    );
-    allRecipeFilterTagOptions.selectedIndex = 0;
+    recipesToTag = allRecipes.filterByTag(inputForTags.value);
+        allRecipeFilterTagOptions.selectedIndex = 0;
   }
   displayRecipeThumbnails(recipesToTag, "", "");
 }
@@ -270,16 +256,15 @@ function displayRecipesOfSameTag() {
 function displaySavedRecipesPage() {
   specificRecipePage.classList.add("hide");
   allRecipesMain.classList.remove("hide");
-  console.log("Save page listening");
-  createPageTitle("SAVED RECIPES");
+  createPageTitle(`${currentUser.name}'s Saved Recipes`);
   displayRecipeThumbnails(currentUser.recipesToCook, "🗑", "delete-recipe");
   createListOfTags(currentUser.recipesToCook);
 }
 
 function deleteSavedRecipe(event) {
-  if (event.target.classList.contains('delete-recipe')) {
-    currentUser.removeRecipe(+event.target.parentElement.parentElement.id)
-    displayRecipeThumbnails(currentUser.recipesToCook, '🗑', 'delete-recipe')
+  if (event.target.classList.contains("delete-recipe")) {
+    currentUser.removeRecipe(+event.target.parentElement.parentElement.id);
+    displayRecipeThumbnails(currentUser.recipesToCook, "🗑", "delete-recipe");
   }
 }
 
@@ -318,7 +303,7 @@ function loadSpecificRecipe(event) {
 function generateIngredientList(recipe) {
   const ingredientsListDisplay = recipe.ingredients.reduce((list, currIng) => {
     let ingredObj = {};
-    ingredObj.name = ingredientsData.find((ing) => ing.id === currIng.id).name; //iterates over all ingredients to find name
+    ingredObj.name = ingredientsData.find((ing) => ing.id === currIng.id).name;
     ingredObj.unit = currIng["quantity"]["unit"];
     if (currIng["quantity"]["amount"] % 1 === 0) {
       ingredObj.amount = currIng["quantity"]["amount"];
@@ -362,8 +347,5 @@ function addToRecipesToCook() {
     !currentUser.recipesToCook.some((recipe) => recipe.id === currentRecipe.id)
   ) {
     currentUser.addRecipe(currentRecipe.id, allRecipes);
-    console.log("current user: ", currentUser);
-  } else {
-    console.log("NO");
   }
 }
