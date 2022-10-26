@@ -2,7 +2,7 @@
 ![updated-gif2](https://user-images.githubusercontent.com/110144802/197660748-5159af50-94ee-41e9-87cb-f0784e46272d.gif)
 
 ### Abstract
-Our fully remote team created a recipe site that presents users with an array of recipe cards which they can filter and search through by the type of recipe they are looking for while saving recipes to their favorites view. Users will find the site to be thoughtfully-designed, intuitive, and snappy. 
+Our fully remote team created a recipe site that presents users with an array of recipe cards which they can filter and search through by the type of recipe they are looking for while saving recipes to their favorites view. Users will find the site to be thoughtfully-designed, intuitive, and responsive to all screen sizes. 
 
 This team project took place in the second term of the Turing software engineering program and required students to synthesize all the technical and project management skills we have honed over the past weeks to create a fully functioning site from the design phase to production in two weeks. This project required extensive research to determine and implement new technologies to make the product surpass expectations. 
 
@@ -45,6 +45,7 @@ Agile/Scrum project board we created and managed in Github:
 - Excalidraw 
 
 ### Methodologies
+- Design the UI to adapt to various screen sizes 
 - Implement ES6 classes which support a complex data model
 - Use object and array prototype methods to perform data manipulation
 - Create a user interface that is easy to use and clearly displays information.
