@@ -66,6 +66,12 @@ nav {
   justify-content: space-around;
 }
 
+.current-page-button {
+  background-color: rgb(150, 53, 35);
+  color: rgb(255, 227, 171);
+  border-color: rgb(255, 227, 171);
+}
+
 /* HomePage */
 
 #title {
