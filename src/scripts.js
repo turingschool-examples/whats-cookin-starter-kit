@@ -139,10 +139,14 @@ specificRecipeSaveButton.addEventListener("click", addToRecipesToCook);
 //Global FUNCTIONS -------------
 //Navbar FUNCTIONS ---------
 function displayAPage(appear, goAway1, goAway2, goAway3) {
-  appear.classList.remove("hide");
-  goAway1.classList.add("hide");
-  goAway2.classList.add("hide");
-  goAway3.classList.add("hide");
+  // appear.classList.remove("hide");
+  // goAway1.classList.add("hide");
+  // goAway2.classList.add("hide");
+  // goAway3.classList.add("hide");
+  show(appear);
+  hide(goAway1);
+  hide(goAway2);
+  hide(goAway3);
 }
 function displayHomePage() {
   displayAPage(homePage, aboutPage, allRecipesMain, specificRecipePage);
@@ -243,10 +247,10 @@ function displayRecipesOfSameTag() {
   let recipesToTag;
   if (currentPage === "saved") {
     recipesToTag = currentUser.filterByTag(inputForTags.value);
-        allRecipeFilterTagOptions.selectedIndex = 0;
+    allRecipeFilterTagOptions.selectedIndex = 0;
   } else {
     recipesToTag = allRecipes.filterByTag(inputForTags.value);
-        allRecipeFilterTagOptions.selectedIndex = 0;
+    allRecipeFilterTagOptions.selectedIndex = 0;
   }
   displayRecipeThumbnails(recipesToTag, "", "");
 }
@@ -347,4 +351,12 @@ function addToRecipesToCook() {
   ) {
     currentUser.addRecipe(currentRecipe.id, allRecipes);
   }
+}
+
+function show(element) {
+  element.classList.remove("hide");
+}
+
+function hide(element) {
+  element.classList.add("hide");
 }
