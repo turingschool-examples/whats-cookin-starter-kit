@@ -286,11 +286,11 @@ function loadSpecificRecipe(event) {
   ) {
     hide(allRecipesMain);
     show(specificRecipePage);
-    changeSpecificRecipe();
+    changeSpecificRecipeSpecs();
   }
 }
 
-function changeSpecificRecipe() {
+function changeSpecificRecipeSpecs() {
   specificRecipeHeading.innerText = "";
   specificRecipeHeading.innerText = currentRecipe.name;
 
