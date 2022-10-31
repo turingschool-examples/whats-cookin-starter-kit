@@ -148,16 +148,19 @@ function displayAPage(appear, goAway1, goAway2, goAway3) {
 function displayHomePage() {
   displayAPage(homePage, aboutPage, allRecipesMain, specificRecipePage);
   currentPage = "home";
+  changeButtonColor();
 }
 
 function displayAboutPage() {
   displayAPage(aboutPage, homePage, allRecipesMain, specificRecipePage);
   currentPage = "about";
+  changeButtonColor();
 }
 
 function displayAllRecipes() {
   displayAPage(allRecipesMain, homePage, aboutPage, specificRecipePage);
   currentPage = "all";
+  changeButtonColor();
   (searchButtonInput.value = ""),
     (searchButtonInput.placeholder = `search ${currentPage} recipes`);
 }
@@ -167,12 +170,15 @@ function displaySavedRecipes() {
   currentPage = "saved";
   (searchButtonInput.value = ""),
     (searchButtonInput.placeholder = `search ${currentPage} recipes`);
+  changeButtonColor();
 }
 
 function displayARecipe() {
   displayAPage(specificRecipePage, allRecipesMain, homePage, aboutPage);
   currentPage = "specific";
+  changeButtonColor();
 }
+
 function displaySearchRecipes() {
   let userInput = searchButtonInput.value;
   let recipesFilteredName;
@@ -357,4 +363,21 @@ function show(element) {
 
 function hide(element) {
   element.classList.add("hide");
+}
+
+function changeButtonColor() {
+  homeButton.classList.remove("current-page-button");
+  aboutButton.classList.remove("current-page-button");
+  allRecipesButton.classList.remove("current-page-button");
+  savedRecipeButton.classList.remove("current-page-button");
+
+  if (currentPage === "home") {
+    homeButton.classList.add("current-page-button");
+  } else if (currentPage === "about") {
+    aboutButton.classList.add("current-page-button");
+  } else if (currentPage == "all") {
+    allRecipesButton.classList.add("current-page-button");
+  } else if (currentPage === "saved") {
+    savedRecipeButton.classList.add("current-page-button");
+  }
 }
