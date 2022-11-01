@@ -1,10 +1,9 @@
-import ingredientsData from '../src/data/testData'
-import recipeData from '../src/data/testData'
-import testIngredients from '../src/data/testData'
+import { testIngredients, ingredientsData, recipeData } from '../src/data/testData'
+import Ingredient from '../src/classes/Ingredient'
 import { expect } from 'chai'
 
 describe('Ingredient', () => {
-  let ingredientInfo, recipeInfo, wheatFlour, testIngredient;
+  let ingredientInfo, recipeInfo, wheatFlour, testIngredient
 
   beforeEach(() => {
     ingredientInfo = ingredientsData[0]
@@ -30,7 +29,7 @@ describe('Ingredient', () => {
   })
 
   it('should be able to have an amount', () => {
-    expect(pudding.amount).to.equal(1.5)
+    expect(wheatFlour.amount).to.equal(1.5)
   })
 
   it('should be able to have a unit', () => {

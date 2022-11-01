@@ -2150,3 +2150,10 @@ const usersData = [
     ]
   }
 ]
+
+module.exports = {
+  testIngredients,
+  ingredientsData,
+  recipeData,
+  usersData
+}
