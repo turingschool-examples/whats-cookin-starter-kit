@@ -22,19 +22,19 @@ We have created a recipe tracking / meal planning application that allows users 
 5. In the terminal, navigate to the new project repository
 6. Type "git clone" and paste the URL
 7. Open the repo in your text editor
-8. Type open index.html in the terminal
+8. In your terminal, run "npm install", "npm start", then go to "http://localhost:8080/" in your browser
 9. Manipulate the application in the browser window
 
 ## Preview
 
-
+![What's Cookin'?](./src/images/whats-cookin.gif)
 
 ## Collaborators
 
-- [Anna](https://github.com/AnnaPete)
-- [Lauren](https://github.com/LaurenBlack5280)
-- [Dmitrii](https://github.com/dgubko)
-- [Josh](https://github.com/JPierce28)
+- [Anna Peterson](https://github.com/AnnaPete)
+- [Lauren Black](https://github.com/LaurenBlack5280)
+- [Dmitrii Gubko](https://github.com/dgubko)
+- [Josh Pierce](https://github.com/JPierce28)
 
 ## Technologies Used
 
