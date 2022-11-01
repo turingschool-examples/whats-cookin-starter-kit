@@ -1,4 +1,4 @@
-import ingredientsData from '../data/ingredients';
+
 import Ingredient from '../classes/Ingredient';
 
 class Recipe {
