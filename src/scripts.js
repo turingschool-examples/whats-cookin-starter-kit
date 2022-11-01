@@ -277,10 +277,7 @@ const displayFilteredRecipes = (event) => {
     } 
     const filteredRecipes = recipeRepoClass.filteredByTag(event.target.value);
     if (filteredRecipes.length === 0) {
-        // Add the message here
         allRecipesTitle.innerText = 'No recipes found'
-        // setTimeout(() => allRecipesTitle.innerText = 'All Recipes')
-        console.log('The array is empty')
     } else {
         allRecipesTitle.innerText = 'All Recipes';
     }
@@ -290,12 +287,7 @@ const displayFilteredRecipes = (event) => {
     });
     clearRecipesList(allRecipesLists);
     filteredRecipes.forEach((recipe, index) => {
-        // if (filteredRecipes === []) {
-        //     console.log('The array is empty')
-        // } else 
         if (index < 10) {
-            // This is not firing
-            console.log('Filtered Recipes: ', filteredRecipes)
             show(allRecipes0to9);
             allRecipes0to9.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
         } else if (index < 20) {
@@ -350,10 +342,7 @@ const displaySearchedRecipes = (event) => {
         displayAllRecipes();
         return;
     } 
-    // else {
-    //     allRecipesTitle.innerText = 'No recipes found. Please try again. :(' 
-    // //     setTimeout(() => allRecipesTitle.innerText = 'All Recipes', 2500)
-    // }
+
     const filteredRecipes = recipeRepoClass.filteredByName(event.target.value);
     if (filteredRecipes.length === 0) {
         allRecipesTitle.innerText = 'No recipes found.'
@@ -361,14 +350,12 @@ const displaySearchedRecipes = (event) => {
         allRecipesTitle.innerText = 'All Recipes';
     }
 
-
     allRecipesLists.forEach(list => {
         hide(list)
     });
     clearRecipesList(allRecipesLists);
     filteredRecipes.forEach((recipe, index) => {
         if (filteredRecipes === []) {
-            console.log('Nothing at index 0')
         } else if (index < 10) {
             show(allRecipes0to9);
             allRecipes0to9.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
