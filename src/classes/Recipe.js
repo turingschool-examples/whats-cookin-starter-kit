@@ -21,14 +21,14 @@ class Recipe {
         return ingredientIDs;
     }
 
-    returnIngredientById(id) {
-        let allIngred = this.returnAllIngredientsArray()
-        let singleIngred = allIngred.find((element) => {
-            return element.id === id;
-        })
+    // returnIngredientById(id) {
+    //     let allIngred = this.returnAllIngredientsArray()
+    //     let singleIngred = allIngred.find((element) => {
+    //         return element.id === id;
+    //     })
 
-        return singleIngred;
-    }
+    //     return singleIngred;
+    // }
 
     returnRecipeInstructions() {
         let array = this.instructions.reduce((acc, element) => {
@@ -47,15 +47,15 @@ class Recipe {
         let recipeIngredients = this.ingredients;
     }
 
-    returnAllIngredientsArray() {
-        let ingredientsArray = ingredientsData.map((ingredient) => {
+    returnAllIngredientsArray(ingredArray) {
+        let ingredientsArray = ingredArray.map((ingredient) => {
             return new Ingredient(ingredient);
         });
         return ingredientsArray;
     }
 
-    returnRecipeIngredientsInfo() {
-        let allIngredients = this.returnAllIngredientsArray()
+    returnRecipeIngredientsInfo(ingredArray) {
+        let allIngredients = this.returnAllIngredientsArray(ingredArray)
         let ingredientInfoForDOM = this.ingredients.map(ingredient => {
             let ingredientDetails = allIngredients.find(element => element.id === ingredient.id)
             if (ingredient.quantity.amount < 1) {
@@ -68,15 +68,15 @@ class Recipe {
         return ingredientInfoForDOM;
     }
 
-    returnAllIngredientsNames() {
-        let ingredientsNamesArray = ingredientsData.map((ingredient) => {
-            return ingredient.name;
-        });
-        return ingredientsNamesArray;
-    }
+    // returnAllIngredientsNames() {
+    //     let ingredientsNamesArray = ingredientsData.map((ingredient) => {
+    //         return ingredient.name;
+    //     });
+    //     return ingredientsNamesArray;
+    // }
 
-    returnCostOfIngredients() {
-        let allIngredients = this.returnAllIngredientsArray()
+    returnCostOfIngredients(ingredArray) {
+        let allIngredients = this.returnAllIngredientsArray(ingredArray)
         let recipeIngredientIDs = this.returnRecipeIngredientsIds();
         let newRecipeIngredients = allIngredients.filter(ingredient => (recipeIngredientIDs.includes(ingredient.id)));
         let ingredCosts = newRecipeIngredients.map(ingredient => ingredient.estimatedCostInCents);
