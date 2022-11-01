@@ -161,7 +161,7 @@ describe('Recipe', () => {
     });
 
     it('should have an ingredients array', () => {
-        expect(recipeInfo.ingredients).to.equal(singleRecipe.ingredients)
+        expect(recipeInfo.ingredients).to.deep.equal(singleRecipe.ingredients)
     });
 
     it('should have an ingredients array made of objects', () => {
@@ -173,7 +173,7 @@ describe('Recipe', () => {
     });
 
     it('should have an instructions array', () => {
-        expect(recipeInfo.instructions).to.equal(singleRecipe.instructions)
+        expect(recipeInfo.instructions).to.deep.equal(singleRecipe.instructions)
     });
 
     it('should have an instructions array', () => {
@@ -201,11 +201,11 @@ describe('Recipe', () => {
     });
 
     it('should have a tags array made of strings', () => {
-        expect(recipeInfo.tags[0]).to.equal(singleRecipe.tags[0])
+        expect(recipeInfo.tags[0]).to.deep.equal(singleRecipe.tags[0])
     });
 
     it('should have a tags array made of strings', () => {
-        expect(recipeInfo.tags[1]).to.equal(singleRecipe.tags[1])
+        expect(recipeInfo.tags[1]).to.deep.equal(singleRecipe.tags[1])
     });
 
 
