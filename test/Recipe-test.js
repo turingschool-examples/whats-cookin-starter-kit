@@ -75,11 +75,21 @@ describe("Recipe", function () {
   it("should retrieve ingredient", () => {
     cookieRecipe.retrieveIngredients(mockIngredientsData);
     expect(cookieRecipe.ingredients[0]).instanceOf(Ingredient);
-    expect(cookieRecipe.ingredients[0].name).to.equal("wheat flour");
+    expect(cookieRecipe.ingredients[0]).to.deep.equal({
+      id: 20081,
+      name: "wheat flour",
+      estCost: 142,
+      quantity: { amount: 1.5, unit: "c" },
+    });
 
     porkChopsRecipe.retrieveIngredients(mockIngredientsData);
     expect(porkChopsRecipe.ingredients[0]).instanceOf(Ingredient);
-    expect(porkChopsRecipe.ingredients[0].name).to.equal("apple cider");
+    expect(porkChopsRecipe.ingredients[0]).to.deep.equal({
+      id: 1009016,
+      name: "apple cider",
+      estCost: 468,
+      quantity: { amount: 1.5, unit: "cups" },
+    });
   });
 
   it("should determine ingredient names", () => {
