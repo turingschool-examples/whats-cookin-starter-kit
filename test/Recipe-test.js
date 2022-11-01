@@ -10,7 +10,7 @@ describe('Recipe', () => {
     wheatFlour = new Ingredient(ingredientsData[0], recipeData[0].ingredients[0])
     bicarbonateOfSoda = new Ingredient(ingredientsData[1], recipeData[0].ingredients[1])
     eggs = new Ingredient(ingredientsData[2], recipeData[0].ingredients[2])
-    recipe = new Recipe(recipeData, ingredientsData)
+    recipe = new Recipe(recipeData[0], ingredientsData)
   })
 
   it('should be an instance of Recipe', () => {
@@ -31,12 +31,7 @@ describe('Recipe', () => {
   })
 
   it('should have cooking instructions', () => {
-    expect(recipe.instructions).to.eql([
-      {
-        "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
-        "number": 1
-      },
-    ])
+    expect(recipe.instructions).to.eql(recipeData[0].instructions)
   })
 
   it('should have tags', () => {
@@ -51,12 +46,14 @@ describe('Recipe', () => {
   })
 
   it('should be able to make its ingredients', () => {
-    expect(recipe.ingredients).to.eql(testIngredients)
+    expect(recipe.ingredients[0]).to.eql(wheatFlour)
+    expect(recipe.ingredients[1]).to.eql(bicarbonateOfSoda)
+    expect(recipe.ingredients[2]).to.eql(eggs)
   })
 
   it('should be able to calculate total cost to make recipe', () => {
     let totalCost = recipe.getTotalCost()
 
-    expect(totalCost).to.equal("$9.76")
+    expect(totalCost).to.equal("$177.76")
   })
 })
