@@ -139,24 +139,28 @@ specificRecipeSaveButton.addEventListener("click", addToRecipesToCook);
 //Global FUNCTIONS -------------
 //Navbar FUNCTIONS ---------
 function displayAPage(appear, goAway1, goAway2, goAway3) {
-  appear.classList.remove("hide");
-  goAway1.classList.add("hide");
-  goAway2.classList.add("hide");
-  goAway3.classList.add("hide");
+  show(appear);
+  hide(goAway1);
+  hide(goAway2);
+  hide(goAway3);
 }
+
 function displayHomePage() {
   displayAPage(homePage, aboutPage, allRecipesMain, specificRecipePage);
   currentPage = "home";
+  changeButtonColor();
 }
 
 function displayAboutPage() {
   displayAPage(aboutPage, homePage, allRecipesMain, specificRecipePage);
   currentPage = "about";
+  changeButtonColor();
 }
 
 function displayAllRecipes() {
   displayAPage(allRecipesMain, homePage, aboutPage, specificRecipePage);
   currentPage = "all";
+  changeButtonColor();
   (searchButtonInput.value = ""),
     (searchButtonInput.placeholder = `search ${currentPage} recipes`);
 }
@@ -166,12 +170,15 @@ function displaySavedRecipes() {
   currentPage = "saved";
   (searchButtonInput.value = ""),
     (searchButtonInput.placeholder = `search ${currentPage} recipes`);
+  changeButtonColor();
 }
 
 function displayARecipe() {
   displayAPage(specificRecipePage, allRecipesMain, homePage, aboutPage);
   currentPage = "specific";
+  changeButtonColor();
 }
+
 function displaySearchRecipes() {
   let userInput = searchButtonInput.value;
   let recipesFilteredName;
@@ -195,8 +202,6 @@ function displaySearchRecipes() {
 
 //All Recipes Page FUNCTIONS --------
 function displayAllRecipesPage() {
-  // specificRecipePage.classList.add('hide');
-  // allRecipesMain.classList.remove('hide');
   createPageTitle("All Recipes");
   displayRecipeThumbnails(
     allRecipes.listOfAllRecipes,
@@ -243,10 +248,10 @@ function displayRecipesOfSameTag() {
   let recipesToTag;
   if (currentPage === "saved") {
     recipesToTag = currentUser.filterByTag(inputForTags.value);
-        allRecipeFilterTagOptions.selectedIndex = 0;
+    allRecipeFilterTagOptions.selectedIndex = 0;
   } else {
     recipesToTag = allRecipes.filterByTag(inputForTags.value);
-        allRecipeFilterTagOptions.selectedIndex = 0;
+    allRecipeFilterTagOptions.selectedIndex = 0;
   }
   displayRecipeThumbnails(recipesToTag, "", "");
 }
@@ -254,8 +259,8 @@ function displayRecipesOfSameTag() {
 //Saved Recipes Page FUNCTIONS --------
 
 function displaySavedRecipesPage() {
-  specificRecipePage.classList.add("hide");
-  allRecipesMain.classList.remove("hide");
+  hide(specificRecipePage);
+  show(allRecipesMain);
   createPageTitle(`${currentUser.name}'s Saved Recipes`);
   displayRecipeThumbnails(currentUser.recipesToCook, "🗑", "delete-recipe");
   createListOfTags(currentUser.recipesToCook);
@@ -285,19 +290,22 @@ function loadSpecificRecipe(event) {
     event.target.className === "single-recipe-img" ||
     event.target.className === "recipe-title-text"
   ) {
-    allRecipesMain.classList.add("hide");
-    specificRecipePage.classList.remove("hide");
-
-    (specificRecipeHeading.innerText = ""),
-      (specificRecipeHeading.innerText = currentRecipe.name);
-
-    specificRecipeImage.src = "";
-    specificRecipeImage.src = currentRecipe.image;
-
-    generateIngredientList(currentRecipe);
-    generateInstructions(currentRecipe);
-    generateCost(currentRecipe);
+    hide(allRecipesMain);
+    show(specificRecipePage);
+    changeSpecificRecipeSpecs();
   }
+}
+
+function changeSpecificRecipeSpecs() {
+  specificRecipeHeading.innerText = "";
+  specificRecipeHeading.innerText = currentRecipe.name;
+
+  specificRecipeImage.src = "";
+  specificRecipeImage.src = currentRecipe.image;
+
+  generateIngredientList(currentRecipe);
+  generateInstructions(currentRecipe);
+  generateCost(currentRecipe);
 }
 
 function generateIngredientList(recipe) {
@@ -346,5 +354,30 @@ function addToRecipesToCook() {
     !currentUser.recipesToCook.some((recipe) => recipe.id === currentRecipe.id)
   ) {
     currentUser.addRecipe(currentRecipe.id, allRecipes);
+  }
+}
+
+function show(element) {
+  element.classList.remove("hide");
+}
+
+function hide(element) {
+  element.classList.add("hide");
+}
+
+function changeButtonColor() {
+  homeButton.classList.remove("current-page-button");
+  aboutButton.classList.remove("current-page-button");
+  allRecipesButton.classList.remove("current-page-button");
+  savedRecipeButton.classList.remove("current-page-button");
+
+  if (currentPage === "home") {
+    homeButton.classList.add("current-page-button");
+  } else if (currentPage === "about") {
+    aboutButton.classList.add("current-page-button");
+  } else if (currentPage == "all") {
+    allRecipesButton.classList.add("current-page-button");
+  } else if (currentPage === "saved") {
+    savedRecipeButton.classList.add("current-page-button");
   }
 }

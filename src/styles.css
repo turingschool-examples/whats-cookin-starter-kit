@@ -19,7 +19,7 @@ button {
   cursor: pointer;
   height: 5vh;
   width: 10vw;
-  font-size: 1.0vw;
+  font-size: 1vw;
   background-color: rgb(255, 227, 171);
   border: solid rgb(150, 53, 35);
   border-radius: 5%;
@@ -66,6 +66,12 @@ nav {
   justify-content: space-around;
 }
 
+.current-page-button {
+  background-color: rgb(150, 53, 35);
+  color: rgb(255, 227, 171);
+  border-color: rgb(255, 227, 171);
+}
+
 /* HomePage */
 
 #title {
@@ -90,7 +96,7 @@ nav {
 .homepage-area {
   display: flex;
   flex-direction: column;
-  height: 88vh;
+  height: 91vh;
   background-image: url("./images/Asset1.png");
   background-repeat: no-repeat;
   background-position-x: 97%;
@@ -142,7 +148,7 @@ nav {
 
 .profile-picture {
   height: 13vh;
-  width: 8vw;
+  width: 7vw;
   border-radius: 50%;
   border: 2px solid black;
 }
