@@ -34,7 +34,7 @@ describe('Ingredients', () => {
       newIngredients = new Ingredient(singleIngredientObject)
   })
   it('Should be a function', () => {
-    expect(Ingredients).to.be.a('function')
+    expect(Ingredient).to.be.a('function')
   })
 
   it('Should have an id', () => {
