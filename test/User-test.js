@@ -1,10 +1,9 @@
-const chai = require('chai');
-const Recipe = require('../src/classes/Recipe');
-const User = require('../src/classes/User');
-const expect = chai.expect;
+import { expect } from 'chai';
+import Recipe from '../src/classes/Recipe';
+import User from '../src/classes/User';
 
 describe('User', () => {
-    let recipe1, user1;
+    let recipe1, recipe2, user1;
     const recipeData = [
         {
           "id": 595736,

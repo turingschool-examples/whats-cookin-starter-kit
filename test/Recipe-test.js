@@ -1,6 +1,5 @@
-const chai = require('chai');
-const Recipe = require('../src/classes/Recipe');
-const expect = chai.expect;
+import { expect } from 'chai';
+import Recipe from '../src/classes/Recipe';
 
 describe('Recipe', () => {
     let recipe1
@@ -323,7 +322,7 @@ describe('Recipe', () => {
     });
 
     it('should return total ingredient cost', () => {
-        expect(recipe1.returnIngredientCost(ingredientSample)).to.equal(17776);
+        expect(recipe1.returnIngredientCost(ingredientSample)).to.equal('177.76');
     });
 
     it('should return the instructions', () => {
