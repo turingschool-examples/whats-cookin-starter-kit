@@ -1,12 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Playball&family=Playfair+Display&display=swap"
+      rel="stylesheet"
+    />
     <title>Whats Cookin</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <nav>
+      <div class="nav-btns-wrapper">
+        <button class="nav-btns current-page-button" id="homeButton">
+          Home
+        </button>
+        <button class="nav-btns" id="aboutButton">About</button>
+        <button class="nav-btns" id="allRecipesButton">All Recipes</button>
+        <button class="nav-btns" id="savedRecipesButton">Saved Recipes</button>
+        <div class="search-bar-wrapper">
+          <input
+            type="text"
+            placeholder="search All Recipes"
+            id="searchInput"
+            onfocus="this.value=''"
+          />
+          <button type="submit" id="searchButton">Search</button>
+        </div>
+      </div>
+    </nav>
+    <main class="home-background" id="homePage">
+      <section class="homepage-area">
+        <h1 id="title">What's Cookin' Good Lookin'</h1>
+      </section>
+    </main>
+    <main class="hide about-page" id="aboutPage">
+      <div class="about-paragraph">
+        <p id="about">
+          This is a web application created by Turing School of Software
+          Development Mod 2 students! In this project, we created a recipe
+          tracking / meal planning application that allows users to view recipes
+          they want to cook and plan shopping trips around them. Users should be
+          able to view a list of recipes and choose recipes to cook! Enjoy!
+        </p>
+      </div>
+      <section class="authors">
+        <div class="profile" id="andrew-profile">
+          <img
+            class="profile-picture"
+            id="andrew"
+            src="./images/AndrewProfile.png"
+          />
+          <a class="github" href="https://github.com/AndrewCerveny"
+            >Check out Andrew's github!</a
+          >
+        </div>
+        <div class="profile" id="brett-profile">
+          <img
+            class="profile-picture"
+            id="brett"
+            src="./images/BrettProfile.png"
+          />
+          <a class="github" href="https://github.com/bkuhn2"
+            >Check out Brett's github!</a
+          >
+        </div>
+        <div class="profile" id="courtney-profile">
+          <img
+            class="profile-picture"
+            id="courtney"
+            src="./images/CourtneyProfile.png"
+          />
+          <a class="github" href="https://github.com/Courtney-Lippman"
+            >Check out Courtney's github!</a
+          >
+        </div>
+        <div class="profile" id="dani-profile">
+          <img
+            class="profile-picture"
+            id="dani"
+            src="./images/DaniProfile.png"
+          />
+          <a class="github" href="https://github.com/daniabee"
+            >Check out Dani's github!</a
+          >
+        </div>
+      </section>
+    </main>
+    <main class="hide all-recipes-main saved-recipes-main" id="recipePages">
+      <h1 class="page-title">All RECIPES</h1>
+      <div class="display-thumbnails-filter-dropdown">
+        <section class="all-recipe-thumbnails">
+        </section>
+        <section class="filter-by-tag-display">
+          <label class="label-for-select-a-tag" for="tag-select">Select a tag:</label>
+          <select class="list-of-tag-options" name="tags">
+            <option class="tag-options-text" value="default">
+              Please choose a tag
+            </option>
+          </select>
+          <button class="filter-button">Search</button>
+        </section>
+      </div>
+    </main>
+    <main class="hide specific-recipe-page" id="specificRecipePage">
+      <header>
+        <h1 class="specific-recipe-heading">Recipe Name</h1>
+        <button type="button" class="save-button" id="">Save Recipe</button>
+      </header>
+      <div class="specific-recipe-display">
+        <section>
+          <img
+            src="https://spoonacular.com/recipeImages/595736-556x370.jpg"
+            alt=""
+            class="specific-recipe-img"/>
+        </section>
+        <section class="specific-recipe-info">
+          <div>
+            <h3>INGREDIENTS</h3>
+            <ul class="specific-recipe-ingredients-list">
+            </ul>
+          </div>
+          <div>
+            <h3>INSTRUCTIONS</h3>
+            <ol class="specific-recipe-instructions">
+            </ol>
+          </div>
+          <div>
+            <h3>COST</h3>
+            <p class="specific-recipe-cost">$6.00</p>
+          </div>
+        </section>
+      </div>
+    </main>
   </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>

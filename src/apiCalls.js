@@ -1,4 +1,9 @@
-// Your fetch requests will live here!
+var loadData = (url) => {
+  return fetch(url)
+    .then((response) => response.json())
+    .catch((error) =>
+      console.log("There was an error loading the data!", error)
+    );
+};
 
-
-console.log('I will be a fetch request!')
+export default loadData;
