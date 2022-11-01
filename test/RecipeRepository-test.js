@@ -26,18 +26,36 @@ describe("RecipeRepository", function () {
     expect(tagFilter).to.deep.equal([rawPorkChopsRecipe]);
   });
 
-  it("Should filter recipes by name", function () {
+  it("Should return an empty array if nothing found by tag", function () {
+    const breakfast = recipeRepository.filterByTag("breakfast");
+    expect(breakfast).to.deep.equal([]);
+
+    const sauce = recipeRepository.filterByTag("sauce");
+    expect(sauce).to.deep.equal([]);
+  });
+
+  it("Should filter recipes by full name", function () {
     expect(
       recipeRepository.filterByName("Loaded Chocolate Chip Pudding Cookie Cups")
     ).to.deep.equal([rawCookieRecipe]);
+  });
 
+  it("Should filter recipes by short name", function () {
     expect(recipeRepository.filterByName("Cookie Cups")).to.deep.equal([
       rawCookieRecipe,
     ]);
+  });
 
+  it("Should filter recipes by name in different case", function () {
     expect(recipeRepository.filterByName("CoOkIe cuPs")).to.deep.equal([
       rawCookieRecipe,
     ]);
+  });
+
+  it("Should return an empty array if nothing found by name", function () {
+    expect(recipeRepository.filterByName("Lasagne")).to.deep.equal([]);
+
+    expect(recipeRepository.filterByName("french fries")).to.deep.equal([]);
   });
 
   it("should get all tags", () => {
