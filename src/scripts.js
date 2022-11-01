@@ -150,6 +150,7 @@ function viewAllRecipes(recipes) {
   });
   allSearchForm.elements.search.value = ""
   userSearchForm.elements.search.value = ""
+  renderTags()
   // allTagSelect.value = ""
 }
 
