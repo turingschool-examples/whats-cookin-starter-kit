@@ -1,75 +1,15 @@
 import Recipe from '../src/classes/Recipe'
-import ingredientsData from '../src/data/ingredients'
+import Ingredient from '../src/classes/Ingredient'
+import { testIngredients, ingredientsData, recipeData } from '../src/data/testData'
 import { expect } from 'chai'
 
 describe('Recipe', () => {
-  let recipeData, testIngredients, recipe
+  let recipeInfo, testIngredients, recipe, wheatFlour, bicarbonateOfSoda, eggs
   beforeEach(() => {
-    recipeData = {
-      "id": 595736,
-      "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
-      "ingredients": [
-        {
-          "id": 20081,
-          "quantity": {
-            "amount": 1.5,
-            "unit": "c"
-          }
-        },
-        {
-          "id": 18372,
-          "quantity": {
-            "amount": 0.5,
-            "unit": "tsp"
-          }
-        },
-        {
-          "id": 1123,
-          "quantity": {
-            "amount": 1,
-            "unit": "large"
-          }
-        }
-      ],
-      "instructions": [
-        {
-          "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
-          "number": 1
-        },
-      ],
-      "name": "Loaded Chocolate Chip Pudding Cookie Cups",
-      "tags": [
-        "antipasti",
-        "starter",
-        "snack",
-        "appetizer",
-        "antipasto",
-        "hor d'oeuvre"
-      ]
-    }
-    testIngredients = [
-      {
-        id: 20081,
-        name: "wheat flour",
-        estimatedCostInCents: 142,
-        amount: 1.5,
-        unit: "c"
-      },
-      {
-        id: 18372,
-        name: "bicarbonate of soda",
-        estimatedCostInCents: 582,
-        amount: 0.5,
-        unit: "tsp"
-      },
-      {
-        id: 1123,
-        name: "eggs",
-        estimatedCostInCents: 472,
-        amount: 1,
-        unit: "large"
-      }
-    ]
+    recipeInfo = recipeData[0];
+    wheatFlour = new Ingredient(ingredientsData[0], recipeData[0].ingredients[0])
+    bicarbonateOfSoda = new Ingredient(ingredientsData[1], recipeData[0].ingredients[1])
+    eggs = new Ingredient(ingredientsData[2], recipeData[0].ingredients[2])
     recipe = new Recipe(recipeData, ingredientsData)
   })
 
