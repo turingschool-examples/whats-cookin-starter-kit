@@ -34,8 +34,8 @@ const myRecipesButton = document.querySelector(".my-recipes-button");
 //filters
 const allTagSelect = document.querySelector("#all-tag-select");
 const userTagSelect = document.querySelector("#user-tag-select");
-const userSeachForm = document.querySelector(".user-search-bar");
-const allSeachForm = document.querySelector(".all-search-bar");
+const userSearchForm = document.querySelector(".user-search-bar");
+const allSearchForm = document.querySelector(".all-search-bar");
 
 const allImages = document.querySelectorAll(".image");
 const allMiniImages = document.querySelectorAll(".mini-image");
@@ -130,6 +130,7 @@ function viewAllRecipes(recipes) {
   addHidden(savedRecipePage);
   removeHidden(homeButton);
   removeHidden(myRecipesButton);
+  
 
   allRecipesContainer.innerHTML = "";
   if (!recipes.length) {
@@ -147,6 +148,10 @@ function viewAllRecipes(recipes) {
     const recipeImage = newSection.querySelector(".image");
     recipeImage.addEventListener("click", seeRecipe);
   });
+  allSearchForm.elements.search.value = ""
+  userSearchForm.elements.search.value = ""
+  renderTags()
+  // allTagSelect.value = ""
 }
 
 function searchForRecipes(event) {
@@ -154,14 +159,14 @@ function searchForRecipes(event) {
   let filteredElements;
 
   if (event.target.id.includes("all")) {
-    const inputValue = allSeachForm.elements.search.value;
+    const inputValue = allSearchForm.elements.search.value;
     filteredElements = recipeRepository.filterByName(inputValue);
   } else {
-    const inputValue = userSeachForm.elements.search.value;
+    const inputValue = userSearchForm.elements.search.value;
     filteredElements = newUserList.filterByName(inputValue);
   }
-
   viewAllRecipes(filteredElements);
+
 }
 
 function seeRecipe(event) {
@@ -189,12 +194,17 @@ function renderRecipe(recipe) {
   newSection.innerHTML += renderIngredients(recipe.ingredients);
   newSection.innerHTML += renderInstructions(recipe.instructions);
   newSection.innerHTML += `<p>Estimated cost: ${recipe.getCost()} dollars</p>
-  <button class="save-recipe-button" id="${recipe.id}"> Save Recipe </button>`;
-
+  <button class="save-recipe-button" id="${recipe.id}"> Save Recipe </button>`;  
   currentRecipeContainer.appendChild(newSection);
   const recipeImage = newSection.querySelector(".image");
   recipeImage.addEventListener("click", seeRecipe);
   const saveRecipeButton = newSection.querySelector(".save-recipe-button");
+  const alreadySaved = newUserList.recipesToCook.map(thisRecipe => {
+    return thisRecipe.name
+  })
+  if(alreadySaved.includes(recipe.name)){
+    addHidden(saveRecipeButton)
+  }
   saveRecipeButton.addEventListener("click", addToSavedRecipe);
 }
 
@@ -235,10 +245,10 @@ function addToSavedRecipe(event) {
   if (!existingData) {
     newUserList.recipesToCook.push(newSavedRecipe);
   }
-  savedRecipes();
+  saveRecipe();
 }
 
-function savedRecipes() {
+function saveRecipe() {
   viewMyRecipes();
   savedRecipeContainer.innerHTML = "";
   newUserList.recipesToCook.forEach((recipe) => {
@@ -265,7 +275,7 @@ function deleteRecipe(event) {
   });
   const indexNumber = newUserList.recipesToCook.indexOf(removeRecipe);
   newUserList.recipesToCook.splice(indexNumber, 1);
-  savedRecipes();
+  saveRecipe();
   if (!newUserList.recipesToCook.length) {
     savedRecipeContainer.innerHTML = "<p>Nothing to show!😕</p>";
     return;
@@ -300,15 +310,15 @@ function viewMyRecipes() {
 function changeToAllInputs() {
   addHidden(userTagSelect);
   removeHidden(allTagSelect);
-  removeHidden(allSeachForm);
-  addHidden(userSeachForm);
+  removeHidden(allSearchForm);
+  addHidden(userSearchForm);
 }
 
 function changeToUserInputs() {
   addHidden(allTagSelect);
   removeHidden(userTagSelect);
-  addHidden(allSeachForm);
-  removeHidden(userSeachForm);
+  addHidden(allSearchForm);
+  removeHidden(userSearchForm);
 }
 
 function addHidden(element) {
