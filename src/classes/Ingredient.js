@@ -1,4 +1,4 @@
-class Ingredients {
+class Ingredient {
     constructor(ingredientObject) {
         this.id = ingredientObject.id;
         this.name = ingredientObject.name;
@@ -6,4 +6,4 @@ class Ingredients {
     }
 
 }
-export default Ingredients
+export default Ingredient

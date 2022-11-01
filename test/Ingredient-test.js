@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import Ingredients from '../src/classes/Ingredient';
+import Ingredient from '../src/classes/Ingredient';
 
 describe('Ingredients', () => {
   let newIngredients, ingredientsInfo, singleIngredientObject;
@@ -31,7 +31,7 @@ describe('Ingredients', () => {
       "name": "wheat flour",
       "estimatedCostInCents": 142
     },
-      newIngredients = new Ingredients(singleIngredientObject)
+      newIngredients = new Ingredient(singleIngredientObject)
   })
   it('Should be a function', () => {
     expect(Ingredients).to.be.a('function')
