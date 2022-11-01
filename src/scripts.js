@@ -343,17 +343,25 @@ const displaySearchedRecipesSaved = (event) => {
 
 const displaySearchedRecipes = (event) => {
     if (!event.target.value) {
+        allRecipesTitle.innerText = 'All Recipes';
         allRecipesLists.forEach(list => {
             show(list)
         });
         displayAllRecipes();
         return;
-    // } else {
-    //     allRecipesTitle.innerText = 'All Recipes';
+    } 
+    // else {
     //     allRecipesTitle.innerText = 'No recipes found. Please try again. :(' 
-    //     setTimeout(() => allRecipesTitle.innerText = 'All Recipes', 2500)
-    }
+    // //     setTimeout(() => allRecipesTitle.innerText = 'All Recipes', 2500)
+    // }
     const filteredRecipes = recipeRepoClass.filteredByName(event.target.value);
+    if (filteredRecipes.length === 0) {
+        allRecipesTitle.innerText = 'No recipes found.'
+    } else {
+        allRecipesTitle.innerText = 'All Recipes';
+    }
+
+
     allRecipesLists.forEach(list => {
         hide(list)
     });
