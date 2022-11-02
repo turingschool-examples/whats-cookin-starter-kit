@@ -7,7 +7,9 @@ import './styles.css'
 import MicroModal from 'micromodal'
 import RecipeRepository from '../src/classes/RecipeRepository'
 import User from '../src/classes/User'
-import getData from './apiCalls'
+import {getData, postData} from './apiCalls'
+// import getData from './apiCalls'
+// import postData from './apiCalls'
 
 // ---------------------------DATA MODEL---------------------------
 
@@ -39,6 +41,7 @@ const modalTagParent = document.getElementById("modal-tag-button-parent")
 const myRecipesButton = document.getElementById("my-recipes")
 const searchBar = document.getElementById('search-bar')
 const welcomeMessage = document.querySelector('.welcome-message')
+let fakePost
 
 let filter = document.getElementById('filter')
 let tileNodes = allRecipesContainer.childNodes
@@ -63,6 +66,9 @@ function initPage() {
   initUser()
   displayWelcomeMessage()
   displayFeaturedRecipe()
+  fakePost = { userID: user.id, ingredientID: 9152, ingredientModification: 2}
+  console.log(postData(fakePost))
+
   MicroModal.init({
     openClass: 'is-open',
     disableScroll: true,
