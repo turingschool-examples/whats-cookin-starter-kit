@@ -1,4 +1,3 @@
-//import { prototype } from "mocha";
 
 class User {
     constructor(user) {
@@ -40,7 +39,7 @@ class User {
                 obj['stockStatus'] = 'empty';
                 obj['recipeQ'] = rIng.quantity.amount;
                 obj['pantryQ'] = 0;
-                pantryStatus.push(obj)
+                pantryStatus.push(obj);
                 }
             return this.pantry.forEach(pIng => {
                 if(pantryIdsArray.includes(rIng.id)) {
@@ -50,7 +49,7 @@ class User {
                         obj['stockStatus'] = 'sufficient';
                         obj['recipeQ'] = rIng.quantity.amount;
                         obj['pantryQ'] = pIng.amount;
-                        pantryStatus.push(obj)
+                        pantryStatus.push(obj);
                     }
                     if(pIng.ingredient === rIng.id && pIng.amount < rIng.quantity.amount) {
                         let obj = {};
@@ -58,13 +57,13 @@ class User {
                         obj['stockStatus'] = 'not enough';
                         obj['recipeQ'] = rIng.quantity.amount;
                         obj['pantryQ'] = pIng.amount;
-                        pantryStatus.push(obj)
-                    }
-                } 
+                        pantryStatus.push(obj);
+                    };
+                } ;
             });
         });
         return pantryStatus;
-    }
+    };
 };
 
 export default User
