@@ -57,7 +57,8 @@ function promises() {
         usersArray = data[0];
         recipeArray = data[1];
         recipeRepo = recipeArray.recipeData
-        ingredientsArray = data[2];
+        ingredientsArray = data[2].ingredientsData;
+        console.log(ingredientsArray)
         arrayForUser = usersArray.usersData;
         recipeRepoClass = new RecipeRepository(recipeRepo);
         allRecipes = recipeRepoClass.returnAllRecipesObjectsArray()
@@ -377,12 +378,12 @@ const displayRecipeDetails = (event) => {
     recipeImageContainer.innerHTML = '';
     recipeImageContainer.innerHTML += `<p><img src="${currentRecipe.returnRecipeImage()}"></p>`;
     instructionsContainer.innerHTML = '';
-    currentRecipe.returnRecipeInstructions().map(element => instructionsContainer.innerHTML += `<li>${element}</li>`);
+    currentRecipe.returnRecipeInstructions(ingredientsArray).map(element => instructionsContainer.innerHTML += `<li>${element}</li>`);
     ingredientContainer.innerHTML = '';
-    currentRecipe.returnRecipeIngredientsInfo()
+    currentRecipe.returnRecipeIngredientsInfo(ingredientsArray)
         .map(ingredientInfo => ingredientContainer.innerHTML += `<li>${ingredientInfo}</li>`);
 
-    ingredientContainer.innerHTML += `<div class="text--total-cost">Total cost: ${currentRecipe.returnCostOfIngredients()}</div>`;
+    ingredientContainer.innerHTML += `<div class="text--total-cost">Total cost: ${currentRecipe.returnCostOfIngredients(ingredientsArray)}</div>`;
 };
 
 
