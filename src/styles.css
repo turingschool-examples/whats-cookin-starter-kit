@@ -146,7 +146,7 @@ header {
 
 .featured-recipe-title-parent {
   font-family: 'Libre Baskerville', serif;
-  font-size: 1.2vw;
+  font-size: max(1.2vw, 12px);
   width: 40%; 
 }
 
@@ -167,7 +167,7 @@ header {
 
 .special-tag p {
   margin: 2px;
-  font-size: 1.2vw;
+  font-size: max(1.2vw, 10px);
 }
 
 .featured-bookmark-icon {
@@ -213,7 +213,7 @@ header {
 
 .recipe-tile>h1 {
   padding: 5px 5px 0px;
-  font-size: .9vw;
+  font-size: max(1vw, 15px);
 }
 
 .recipe-tile>h1:hover {
@@ -226,7 +226,7 @@ header {
   flex-basis: 20%;
   font-family: 'Work Sans', sans-serif;
   color:#16161679;
-  font-size: 1.2vh;
+  font-size: 12px;
   font-weight: 300;
   padding: 5px;
 }
@@ -498,6 +498,11 @@ select:focus {
 
 @media(max-width:768px) {
 
+  .recipe-details {
+    width: 150%;
+    height: 150%;
+  }
+
   .nav-bar-container {
     width: 100%;
     flex-direction: column;
@@ -529,15 +534,11 @@ select:focus {
   }
 
   .below-header-container {
-    margin-top: 106px;
+    margin-top: 127px;
   }
 
   .filter {
     padding: 2px 10px 2px 18px;
-  }
-
-  .recipe-tile>h1 {
-    font-size: 2vw;
   }
 
   /* MODAL */
