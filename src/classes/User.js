@@ -1,4 +1,4 @@
-import { prototype } from "mocha";
+//import { prototype } from "mocha";
 
 class User {
     constructor(user) {
@@ -26,19 +26,39 @@ class User {
         this.pantry.push(ingredient);
     };
 
-    // checkPantry(recipe) {
-    //     //iterate thru... we need to check if each ingredient+amount for a given recipe
-    //     //is in the user's pantry
-    //     //for each RecIngredient, does the User have it? Does the User have enough of it?
-    //     recipe.ingredients.forEach(ingredient => {
-    //         if(this.pantry[i].id.includes(ingredient.id)) {
-    //             if(this.pantry[i].id === ingredient.id) {
-    //                 //check if it has enough of it. If not, report back how much is missing.
-    //             }
-    //         })
-    //     })
-    // }
+//for each RecipeIngredient, does the user.pantry have it? Does the user.pantry have enough of it?
+//if they don't have it OR don't have enough of it, we need to tell them to get a specified amount of the ingredient.
+//if they have the ingredient AND the proper amount, that ingredient gets the 'green light.'
+//this method should act as the 'gatekeeper' if they have enough of ALL the ingredients. If they do not have everything, the cooking process should NOT be allowed to start.
+//don't worry about USING the ingredients in a recipe yet; that step comes later.
 
+
+    checkPantry(recipe) {
+        const pantryIdsArray = this.pantry.reduce((acc, ing) => {
+            acc.push(ing.ingredient);
+            return acc;
+        }, []);
+
+        const yeah = recipe.ingredients.forEach(rIng => {
+            const checker = this.pantry.forEach(pIng => {
+                if(pantryIdsArray.includes(rIng.id) && pIng.ingredient === rIng.id && pIng.amount >= rIng.quantity.amount) {
+                    return 1;
+                };
+                if(pantryIdsArray.includes(rIng.id) && pIng.ingredient === rIng.id && pIng.amount < rIng.quantity.amount) {
+                    return 2;
+                };
+                if(!pantryIdsArray.includes(rIng.id)) {
+                    console.log(3)
+                    return 3;
+                };
+            })
+            console.log(checker)
+            return checker;
+        });
+        console.log(pantryIdsArray)
+        console.log(yeah)
+    };
+//If pantry includes (filter then see if it is more than one????)
 };
 
 export default User

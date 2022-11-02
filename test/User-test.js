@@ -485,4 +485,12 @@ describe('User', () => {
         expect(user1.filterByName("Maple")).to.deep.equal([recipe2]);
         expect(user1.filterByName("Cookie Cups")).to.deep.equal([recipe1]);
     });
+
+    it('should check pantry stock', () => {
+      user1.addToPantry({
+        ingredient: 22,
+        amount: 4
+        })
+      user1.checkPantry(recipeData[0])
+  });
 });

@@ -158,10 +158,14 @@ nav {
 }
 
 .recipe-image-all {
-  margin-bottom: 1vw;
+  margin-bottom: 0vw;
   height: 12vw;
   width: 23vw;
   border-radius: 1vw;
+}
+
+.recipe-tags-all {
+  font-size: .8vw;
 }
 
 .hidden {

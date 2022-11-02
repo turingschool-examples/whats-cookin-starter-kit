@@ -55,6 +55,7 @@ const singleRecipe = document.querySelector('.single-recipe');
 const savedRecipesGrid = document.querySelector('.save-view')
 const searchBar = document.querySelector('.search-bar')
 const favoriteRecipes = document.querySelector('#fave-card-grid')
+const homeButton = document.querySelector('#home-button')
 const favoriteButton = document.querySelector('#favorite-button')
 
 
@@ -62,7 +63,8 @@ const favoriteButton = document.querySelector('#favorite-button')
 window.addEventListener('load', instantiateData());
 allRecipesGrid.addEventListener('click', showRecipe)
 searchBar.addEventListener('keyup', filterRecipe)
-favoriteButton.addEventListener('click', addToFavorites)
+//favoriteButton.addEventListener('click', addToFavorites)
+homeButton.addEventListener('click', returnHome)
 
 
 // Functions
@@ -84,11 +86,11 @@ function renderAllRecipes(data) {
   allRecipesGrid.innerHTML = '';
   allRecipesGrid.innerHTML = 
     data.map(recipe => `<li class="recipe-card">
-      <h3> class="" id="recipe-title">${recipe.name}</h3>
-      <img id="${recipe.id}" src="${recipe.image}">
-      <div class="">
+      <h3 class="" id="recipe-title">${recipe.name}</h3>
+      <img class="recipe-image-all" id="${recipe.id}" src="${recipe.image}">
+      <h3 class="recipe-tags-all">
         ${recipe.tags}
-      </div>
+      </h3>
     </li>`).join('');
 }
 
@@ -142,6 +144,13 @@ function showRecipe(event) {
 function addToFavorites() {
 
 }
+
+function returnHome() {
+  greeting.classList.toggle('hidden');
+  homeView.classList.toggle('hidden');
+  savedRecipesGrid.classList.toggle('hidden');
+  singleRecipe.classList.toggle('hidden');
+};
 
 
 // As a user, I should be able to filter recipes by a tag. (Extension option: by multiple tags)
