@@ -492,5 +492,6 @@ describe('User', () => {
         amount: 4
         })
       user1.checkPantry(recipeData[0])
+      console.log('checkPantry: ', user1.checkPantry(recipeData[0]));
   });
 });
