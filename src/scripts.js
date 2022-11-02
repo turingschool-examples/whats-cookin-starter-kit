@@ -87,6 +87,8 @@ function initUser() {
 
 // ---------------------------EVENT LISTENERS---------------------------
 
+filterClearButton.addEventListener('click', clearFilterByTag)
+
 window.addEventListener('load', () => {
   fetchData([usersURL, recipesURL, ingredientsURL])
 })
@@ -106,7 +108,7 @@ allRecipesContainer.addEventListener("click", event => {
   }
 
   let targetObject = recipeRepository.recipeList.find(recipe => recipe.id == event.target.parentNode.id)
-  updateModal(targetObject)
+  displayModal(targetObject)
 })
 
 closeModalButton.addEventListener("click", () => MicroModal.close("modal-1"))
@@ -124,6 +126,7 @@ modalSaveRecipeButton.addEventListener("click", event => {
 })
 
 searchBar.addEventListener('keyup', event => {
+  clearFilterByTag()
   let input = event.target.value
   let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
 
@@ -142,6 +145,8 @@ allRecipesButton.addEventListener("click", displayAllRecipes)
 
 filter.addEventListener('input', event => {
   enableFilterClearButton(true)
+  searchBar.value = ''
+
   let input = event.target.value
   let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
 
@@ -154,7 +159,7 @@ filter.addEventListener('input', event => {
   }
 })
 
-filterClearButton.addEventListener('click', () => {
+function clearFilterByTag() {
   filter.value = 'Filter recipes by type...'
   enableFilterClearButton(false)
   let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
@@ -166,7 +171,7 @@ filterClearButton.addEventListener('click', () => {
     displayRecipeTiles(recipeRepository.recipeList)
     updateBookmarks()
   }
-})
+}
 
 featuredRecipeParent.addEventListener("click", event => {
   let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
@@ -184,7 +189,8 @@ featuredRecipeParent.addEventListener("click", event => {
       removeTileFromDisplay(event)
     }
   } else if (targetIsH1) {
-    updateModal(recipeRepository.featuredRecipe)
+    displayModal(recipeRepository.featuredRecipe)
+
   }
 })
 
@@ -257,11 +263,24 @@ function displaySearchedRecipeTiles(searchedRecipes) {
   updateBookmarks()
 }
 
+function convertDecimal(amount) {
+  if (amount === 0.25) {
+    amount = "1/4"
+  } else if (amount === 0.3333333333333333) {
+    amount = "1/3"
+  } else if (amount === 0.5) {
+    amount = "1/2"
+  } else if (amount === 0.6666666666666666) {
+    amount = "2/3"
+  } else if (amount === 0.75) {
+    amount = "3/4"
+  }
+  return amount
+}
+
 function updateModal(targetObject) {
-  if (!targetObject) { return }
   modalTagParent.innerHTML = ``
-  targetObject.tags.forEach(tag => {
-    modalTagParent.innerHTML += `<button>${tag}</button>`
+  targetObject.tags.forEach(tag => { modalTagParent.innerHTML += `<button>${tag}</button>`
   })
   modalSaveRecipeButton.id = targetObject.id
   if (user.favoriteRecipes.includes(targetObject)) {
@@ -271,28 +290,23 @@ function updateModal(targetObject) {
   }
   modalRecipeTitle.innerHTML = targetObject.name
   modalImage.src = targetObject.image
-  modalImage.alt = targetObject.name
+  modalImage.alt = targetObject.name 
   ingredientsParent.innerHTML = ``
   targetObject.ingredients.forEach(ingredient => {
-    let amount = ingredient.amount
-    if (amount === 0.25) {
-      amount = "1/4"
-    } else if (amount === 0.3333333333333333) {
-      amount = "1/3"
-    } else if (amount === 0.5) {
-      amount = "1/2"
-    } else if (amount === 0.6666666666666666) {
-      amount = "2/3"
-    } else if (amount === 0.75) {
-      amount = "3/4"
-    }
-    ingredientsParent.innerHTML += `<ul>${amount} ${ingredient.unit} ${ingredient.name}</ul>`
+    ingredientsParent.innerHTML += `<ul>${convertDecimal(ingredient.amount)} ${ingredient.unit} ${ingredient.name}</ul>`
   })
   ingredientsParent.innerHTML += `<p class="total-price">Total estimated cost to make: ${targetObject.getTotalCost()}</p>`
   instructionsList.innerHTML = ``
   targetObject.instructions.forEach(item => {
     instructionsList.innerHTML += `<li>${item.instruction}</li>`
   })
+
+  
+}
+
+function displayModal(targetObject) {
+  if (!targetObject) { return }
+  updateModal(targetObject)
   MicroModal.show("modal-1")
 }
 

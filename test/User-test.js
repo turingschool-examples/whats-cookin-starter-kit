@@ -1,8 +1,6 @@
-import Recipe from '../src/classes/Recipe'
-import ingredientsData from '../src/data/ingredients'
-import recipeData from '../src/data/recipes'
-import usersData from '../src/data/users'
 import User from '../src/classes/User'
+import Recipe from '../src/classes/Recipe'
+import { ingredientsData, recipeData, usersData } from '../src/data/testData'
 import { expect } from 'chai'
 
 describe('User', () => {
@@ -33,7 +31,7 @@ describe('User', () => {
   it('should have a list of favorite recipes', () => {
     user.addRecipeToFavorites(recipe)
     
-    expect(user.favoriteRecipes[0].id).to.equal(595736)
+    expect(user.favoriteRecipes[0]).to.eql(recipe)
   })
 
   it('should be able to filter favorite recipes by tag', () => {
