@@ -68,7 +68,7 @@ describe('Pantry describe block', () => {
           name: 'semi sweet chips'
         }
       ])
-    })
+    });
 
 
 
