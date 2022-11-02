@@ -382,6 +382,18 @@ describe('User', () => {
     expect(User).to.be.a('function')
   })
 
+  it('Should have a name', () => {
+    expect(newUser.name).to.equal(userInfo.name)
+  })
+
+  it('Should have an id', () => {
+    expect(newUser.id).to.equal(userInfo.id)
+  })
+
+  it('Should have a pantry', () => {
+    expect(newUser.pantry).to.deep.equal(userInfo.pantry)
+  })
+
   it('Should add a recipe to the recipesToCook array', () => {
     newUser.addRecipeToRecipesToCook(recipeObject1)
     newUser.addRecipeToRecipesToCook(recipeObject2)
@@ -394,7 +406,7 @@ describe('User', () => {
     newUser.recipesToCook.push(recipeObject2)
     newUser.addRecipeToRecipesToCook(recipeObject1)
     newUser.addRecipeToRecipesToCook(recipeObject2)
-    expect(newUser.recipesToCook).to.equal(newUser.recipesToCook)
+    expect(newUser.recipesToCook).to.deep.equal(newUser.recipesToCook)
   });
 
   it('Should be able to remove a recipe from the recipesToCook array', () => {
