@@ -53,6 +53,10 @@ header {
   font-size: 15px;
 }
 
+.search-bar::-webkit-search-cancel-button{
+  -webkit-appearance: none;
+}
+
 .search-bar:hover {
   border: 1px solid #c84a3186;
   transition-duration: 400ms;

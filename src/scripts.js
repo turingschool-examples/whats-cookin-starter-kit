@@ -75,6 +75,8 @@ function startPage() {
 
 // ---------------------------EVENT LISTENERS---------------------------
 
+filterClearButton.addEventListener('click', clearFilterByTag)
+
 window.addEventListener('load', () => {
   fetchData([usersURL, recipesURL, ingredientsURL])
 })
@@ -107,6 +109,7 @@ modalSaveRecipeButton.addEventListener("click", event => {
 })
 
 searchBar.addEventListener('keyup', event => {
+  clearFilterByTag()
   let input = event.target.value
   if (myRecipesButton.classList.contains('selected-view')) {
     let recipes = user.filterByNameOrIngredient(input)
@@ -122,6 +125,7 @@ myRecipesButton.addEventListener("click", displayMyRecipes)
 allRecipesButton.addEventListener("click", displayAllRecipes)
 
 filter.addEventListener('input', event => {
+  searchBar.value = ''
   filterClearButton.disabled = false
   filterClearButton.classList.remove('disabled')
   let input = event.target.value
@@ -135,7 +139,7 @@ filter.addEventListener('input', event => {
   }
 })
 
-filterClearButton.addEventListener('click', () => {
+function clearFilterByTag() {
   filter.value = 'Filter recipes by type...'
   filterClearButton.disabled = true
   filterClearButton.classList.add('disabled')
@@ -149,7 +153,7 @@ filterClearButton.addEventListener('click', () => {
     displayRecipeTiles(recipeRepository.recipeList)
     updateBookmarks()
   }
-})
+}
 
 featuredRecipeParent.addEventListener("click", event => {
   if (event.target.nodeName === "IMG" && (event.target.src.includes('unsaved'))) {
