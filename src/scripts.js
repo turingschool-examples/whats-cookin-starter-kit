@@ -23,6 +23,7 @@ const recipeContainer = document.getElementById('section--recipe-details');
 const recipeListsContainer = document.getElementById('section--recipe-lists');
 const savedRecipesContainer = document.getElementById('section--saved-recipes');
 const savedRecipesListsContainer = document.getElementById('section--saved-recipe-lists');
+const allRecipesTitle = document.getElementById('title--all-recipes');
 const allRecipesContainer = document.getElementById('section--all-recipes');
 const recipeImageContainer = document.getElementById('section--recipe-image');
 const ingredientContainer = document.getElementById('ul--ingredient-list');
@@ -268,13 +269,20 @@ const displayFilteredRecipesSaved = (event) => {
 
 const displayFilteredRecipes = (event) => {
     if (!event.target.value) {
+        allRecipesTitle.innerText = 'All Recipes';
         allRecipesLists.forEach(list => {
             show(list)
         });
         displayAllRecipes();
         return;
-    }
+    } 
     const filteredRecipes = recipeRepoClass.filteredByTag(event.target.value);
+    if (filteredRecipes.length === 0) {
+        allRecipesTitle.innerText = 'No recipes found'
+    } else {
+        allRecipesTitle.innerText = 'All Recipes';
+    }
+
     allRecipesLists.forEach(list => {
         hide(list)
     });
@@ -292,7 +300,7 @@ const displayFilteredRecipes = (event) => {
         } else if (index < 40) {
             show(allRecipes30to39);
             allRecipes30to39.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
-        } else {
+        } else if (index < 50) {
             show(allRecipes40to49);
             allRecipes40to49.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
         };
@@ -328,19 +336,28 @@ const displaySearchedRecipesSaved = (event) => {
 
 const displaySearchedRecipes = (event) => {
     if (!event.target.value) {
+        allRecipesTitle.innerText = 'All Recipes';
         allRecipesLists.forEach(list => {
             show(list)
         });
         displayAllRecipes();
         return;
-    }
+    } 
+
     const filteredRecipes = recipeRepoClass.filteredByName(event.target.value);
+    if (filteredRecipes.length === 0) {
+        allRecipesTitle.innerText = 'No recipes found.'
+    } else {
+        allRecipesTitle.innerText = 'All Recipes';
+    }
+
     allRecipesLists.forEach(list => {
         hide(list)
     });
     clearRecipesList(allRecipesLists);
     filteredRecipes.forEach((recipe, index) => {
-        if (index < 10) {
+        if (filteredRecipes === []) {
+        } else if (index < 10) {
             show(allRecipes0to9);
             allRecipes0to9.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
         } else if (index < 20) {
