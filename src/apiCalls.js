@@ -14,8 +14,5 @@ function postData(body) {
       'Content-Type': 'application/json'
     }
   })
-    .then(response => {return response.json()})
 }
-// export default {getData, postData}
 export {getData, postData} 
-// export {postData 

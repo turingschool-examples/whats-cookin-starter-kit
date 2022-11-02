@@ -66,8 +66,8 @@ function initPage() {
   initUser()
   displayWelcomeMessage()
   displayFeaturedRecipe()
-  fakePost = { userID: user.id, ingredientID: 9152, ingredientModification: 2}
-  console.log(postData(fakePost))
+  fakePost = { userID: 17, ingredientID: 9152, ingredientModification: 5}
+  postData(fakePost).then(response => {return response.json()}).then(response => console.log("HERE IS THE RESPONSE:",response))
 
   MicroModal.init({
     openClass: 'is-open',
