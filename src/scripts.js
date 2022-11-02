@@ -60,7 +60,6 @@ function promises() {
         recipeArray = data[1];
         recipeRepo = recipeArray.recipeData
         ingredientsArray = data[2].ingredientsData;
-        console.log(ingredientsArray)
         arrayForUser = usersArray.usersData;
         recipeRepoClass = new RecipeRepository(recipeRepo);
         allRecipes = recipeRepoClass.returnAllRecipesObjectsArray()
