@@ -34,31 +34,49 @@ class User {
 
 
     checkPantry(recipe) {
-        const pantryIdsArray = this.pantry.reduce((acc, ing) => {
+        let hoorayArray = [];
+        let needMoreArray = [];
+        let noneArray = [];
+        let pantryIdsArray = this.pantry.reduce((acc, ing) => {
             acc.push(ing.ingredient);
             return acc;
         }, []);
 
-        const yeah = recipe.ingredients.forEach(rIng => {
-            const checker = this.pantry.forEach(pIng => {
-                if(pantryIdsArray.includes(rIng.id) && pIng.ingredient === rIng.id && pIng.amount >= rIng.quantity.amount) {
-                    return 1;
-                };
-                if(pantryIdsArray.includes(rIng.id) && pIng.ingredient === rIng.id && pIng.amount < rIng.quantity.amount) {
-                    return 2;
-                };
-                if(!pantryIdsArray.includes(rIng.id)) {
-                    console.log(3)
-                    return 3;
-                };
-            })
-            console.log(checker)
-            return checker;
+        const checker = recipe.ingredients.forEach(rIng => {
+            if(!pantryIdsArray.includes(rIng.id)) {
+                let obj = {};
+                obj['id'] = rIng.id;
+                obj['recAmount'] = rIng.quantity.amount;
+                obj['panAmount'] = 0;
+                obj['amountNeeded'] = rIng.quantity.amount;
+                noneArray.push(obj)
+                }
+            return this.pantry.forEach(pIng => {
+                if(pantryIdsArray.includes(rIng.id)) {
+                    if(pIng.ingredient === rIng.id && pIng.amount >= rIng.quantity.amount) {
+                        let obj = {};
+                        obj['id'] = rIng.id;
+                        obj['recAmount'] = rIng.quantity.amount;
+                        obj['panAmount'] = pIng.amount;
+                        obj['amountLeft'] = pIng.amount - rIng.quantity.amount ;
+                        hoorayArray.push(obj)
+                    }
+                    if(pIng.ingredient === rIng.id && pIng.amount < rIng.quantity.amount) {
+                        let obj = {};
+                        obj['id'] = rIng.id;
+                        obj['recAmount'] = rIng.quantity.amount;
+                        obj['panAmount'] = pIng.amount;
+                        obj['amountNeeded'] = rIng.quantity.amount - pIng.amount;
+                        needMoreArray.push(obj)
+                    }
+                } 
+            });
         });
-        console.log(pantryIdsArray)
-        console.log(yeah)
-    };
-//If pantry includes (filter then see if it is more than one????)
+        console.log('hoorayArray: ', hoorayArray)
+        console.log('needMoreArray: ', needMoreArray)
+        console.log('noneArray: ', noneArray)
+        return checker;
+    }
 };
 
 export default User
