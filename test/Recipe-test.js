@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
-import  dummy  from '../src/ingredient-test-data';
+import dummy from '../src/test-data/ingredient-test-data';
 describe('Recipe', () => {
     let recipeInfo, singleRecipe,ingredient;
 

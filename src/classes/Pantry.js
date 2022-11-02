@@ -17,7 +17,26 @@ class Pantry {
                 missingIngredients.push(neededIngredient);
             }
         })
+        console.log('missingIngredients: ', missingIngredients)
         return missingIngredients;
+    }
+
+    getIngredientNames(missingIngredients, allIngredients) {
+        let result = missingIngredients.map(ingredient => {
+            let foundIngredient = allIngredients.find(foundIngredient => foundIngredient.id === ingredient.id)
+            // console.log('Found ingredient: ', foundIngredient)
+            // console.log('Does this work: ', ingredient['name'] = foundIngredient.name)
+            ingredient['name'] = foundIngredient.name; 
+            return ingredient;
+        })
+        console.log('Result: ', result)
+        return result;
+        // Have an array objects
+        // Find the ingredient (by ID) from the allIngredients array and pull the name from it
+        // Then add a name property to our missing ingredients objects
+        // Use map to do so?
+
+        // Return modified array
     }
 }
 export default Pantry
