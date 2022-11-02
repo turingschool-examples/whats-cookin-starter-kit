@@ -184,8 +184,19 @@
 .section--recipe-lists {
   display: flex;
   justify-content: space-evenly;
-  font-size: 1.50vh;
+  font-size: 3.1vh;
   cursor: pointer;
+}
+
+.list-items-all {
+  margin-bottom: - 4vh;
+}
+
+.learn-more-button {
+  margin:0;
+  padding: 0;
+  margin-bottom: 2vh;
+
 }
 
 .text-box {

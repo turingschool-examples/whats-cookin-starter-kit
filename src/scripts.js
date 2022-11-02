@@ -191,15 +191,20 @@ const displayAllRecipes = () => {
     });
     allRecipes.forEach((recipe, index) => {
         if (index < 10) {
-            allRecipes0to9.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+            allRecipes0to9.innerHTML += `<li class='list-items-all' data-id="${recipe.id}">${recipe.name}</li><br>
+            <button class='learn-more-button' type="button">Learn More!</button>`;
         } else if (index < 20) {
-            allRecipes10to19.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+            allRecipes10to19.innerHTML += `<li class='list-items-all' data-id="${recipe.id}">${recipe.name}</li><br>
+            <button class='learn-more-button' type="button">Learn More!</button>`;
         } else if (index < 30) {
-            allRecipes20to29.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+            allRecipes20to29.innerHTML += `<li class='list-items-all' data-id="${recipe.id}">${recipe.name}</li><br>
+            <button class='learn-more-button' type="button">Learn More!</button>`;
         } else if (index < 40) {
-            allRecipes30to39.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+            allRecipes30to39.innerHTML += `<li class='list-items-all' data-id="${recipe.id}">${recipe.name}</li><br>
+            <button class='learn-more-button' type="button">Learn More!</button>`;
         } else {
-            allRecipes40to49.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+            allRecipes40to49.innerHTML += `<li class='list-items-all' data-id="${recipe.id}">${recipe.name}</li><br>
+            <button class='learn-more-button' type="button">Learn More!</button>`;
         };
     });
 };
@@ -225,15 +230,15 @@ const displaySavedRecipes = () => {
     user.recipesToCook.forEach((recipe, index) => {
         if (index < 10) {
             show(savedRecipesList1);
-            savedRecipesList1.innerHTML += `<li data-id="${recipe.id}">
+            savedRecipesList1.innerHTML += `<li class='list-items-all' data-id="${recipe.id}">
             ${user.recipesToCook[index].name}</li>`;
         } else if (index < 20) {
             show(savedRecipesList2);
-            savedRecipesList2.innerHTML += `<li data-id="${recipe.id}">
+            savedRecipesList2.innerHTML += `<li class='list-items-all' data-id="${recipe.id}">
             ${user.recipesToCook[index].name}</li>`;
         } else if (index <= 30) {
             show(savedRecipesList3);
-            savedRecipesList3.innerHTML += `<li data-id="${recipe.id}">
+            savedRecipesList3.innerHTML += `<li class='list-items-all' data-id="${recipe.id}">
             ${user.recipesToCook[index].name}</li>`;
         };
     });
