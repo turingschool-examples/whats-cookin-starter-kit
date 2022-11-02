@@ -364,10 +364,6 @@ select:focus {
   color:rgb(200, 75, 49)
 }
 
-.close-modal-btn:focus {
-  outline: none;
-}
-
 .modal-content-parent {
   display: flex;
   flex-direction: column;

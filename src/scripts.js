@@ -41,6 +41,7 @@ const searchBar = document.getElementById('search-bar')
 const welcomeMessage = document.querySelector('.welcome-message')
 
 let filter = document.getElementById('filter')
+let tileNodes = allRecipesContainer.childNodes
 
 // ---------------------------UTILITY FUNCTIONS---------------------------
 
@@ -51,17 +52,16 @@ function fetchData(urls) {
       usersData = data[0].usersData
       recipesData = data[1].recipeData
       ingredientsData = data[2].ingredientsData
-      startPage()
+      initPage()
     })
 }
 
-function startPage() {
-  recipeRepository = new RecipeRepository(recipesData, ingredientsData)
+function initPage() {
+  initRecipeRepository()
   displayRecipeTiles(recipeRepository.recipeList)
   populateTags()
-  let randomNum = Math.floor(Math.random() * usersData.length)
-  user = new User(usersData[randomNum])
-  welcomeMessage.innerText = `Welcome, ${user.name.split(' ')[0]}!`
+  initUser()
+  displayWelcomeMessage()
   displayFeaturedRecipe()
   MicroModal.init({
     openClass: 'is-open',
@@ -73,6 +73,18 @@ function startPage() {
   })
 }
 
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length)
+}
+
+function initRecipeRepository() {
+  recipeRepository = new RecipeRepository(recipesData, ingredientsData)
+}
+
+function initUser() {
+  user = new User(usersData[getRandomIndex(usersData)])
+}
+
 // ---------------------------EVENT LISTENERS---------------------------
 
 window.addEventListener('load', () => {
@@ -81,14 +93,18 @@ window.addEventListener('load', () => {
 
 allRecipesContainer.addEventListener("click", event => {
   if (event.target.nodeName === "SECTION") { return }
+  console.log(event.target)
+  let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
+  let targetIsIMG = event.target.nodeName === "IMG"
 
-  if (event.target.nodeName === "IMG" && (event.target.src.includes('unsaved'))) {
+  if (targetIsIMG && (event.target.src.includes('unsaved'))) {
     addRecipeToFavorites(event)
   } else {
     removeRecipeFromFavorites(event)
+    if (viewingMyRecipes) {
+      removeTileFromDisplay(event)
+    }
   }
-
-  displayCurrentMode()
 
   let targetObject = recipeRepository.recipeList.find(recipe => recipe.id == event.target.parentNode.id)
   updateModal(targetObject)
@@ -97,7 +113,9 @@ allRecipesContainer.addEventListener("click", event => {
 closeModalButton.addEventListener("click", () => MicroModal.close("modal-1"))
 
 modalSaveRecipeButton.addEventListener("click", event => {
-  if (event.target.src.includes('unsaved')) {
+  let targetIsUnsaved = (event.target.src.includes('unsaved'))
+
+  if (targetIsUnsaved) {
     event.target.src = './images/bookmark-saved.png'
     addRecipeToFavorites(event)
   } else {
@@ -108,7 +126,9 @@ modalSaveRecipeButton.addEventListener("click", event => {
 
 searchBar.addEventListener('keyup', event => {
   let input = event.target.value
-  if (myRecipesButton.classList.contains('selected-view')) {
+  let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
+
+  if (viewingMyRecipes) {
     let recipes = user.filterByNameOrIngredient(input)
     displaySearchedRecipeTiles(recipes)
   } else {
@@ -122,11 +142,11 @@ myRecipesButton.addEventListener("click", displayMyRecipes)
 allRecipesButton.addEventListener("click", displayAllRecipes)
 
 filter.addEventListener('input', event => {
-  filterClearButton.disabled = false
-  filterClearButton.classList.remove('disabled')
+  enableFilterClearButton()
   let input = event.target.value
+  let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
 
-  if (myRecipesButton.classList.contains('selected-view')) {
+  if (viewingMyRecipes) {
     let recipes = user.filterByTag(input)
     displaySearchedRecipeTiles(recipes)
   } else {
@@ -137,32 +157,43 @@ filter.addEventListener('input', event => {
 
 filterClearButton.addEventListener('click', () => {
   filter.value = 'Filter recipes by type...'
-  filterClearButton.disabled = true
-  filterClearButton.classList.add('disabled')
+  disableFilterClearButton()
+  let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
 
-  if (myRecipesButton.classList.contains('selected-view')) {
-    allRecipesContainer.innerHTML = ''
+  if (viewingMyRecipes) {
     displayRecipeTiles(user.favoriteRecipes)
     updateBookmarks()
   } else {
-    allRecipesContainer.innerHTML = ''
     displayRecipeTiles(recipeRepository.recipeList)
     updateBookmarks()
   }
 })
 
 featuredRecipeParent.addEventListener("click", event => {
-  if (event.target.nodeName === "IMG" && (event.target.src.includes('unsaved'))) {
+  let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
+  let targetIsIMG = event.target.nodeName === "IMG"
+  let targetIsH1 = event.target.nodeName === "H1"
+
+  if (targetIsIMG && event.target.src.includes('unsaved')) {
     addRecipeToFavorites(event)
-  } else if (event.target.nodeName === "IMG") {
+    if (viewingMyRecipes) {
+      displayMyRecipes()
+    }
+  } else if (targetIsIMG) {
     removeRecipeFromFavorites(event)
-  } else if (event.target.nodeName === "H1") {
+    if (viewingMyRecipes) {
+      removeTileFromDisplay(event)
+    }
+  } else if (targetIsH1) {
     updateModal(recipeRepository.featuredRecipe)
   }
-  displayCurrentMode()
 })
 
 // ---------------------------DOM UPDATING---------------------------
+
+function displayWelcomeMessage() {
+  welcomeMessage.innerText = `Welcome, ${user.name.split(' ')[0]}!`
+}
 
 function createRecipeTile(recipe) {
   allRecipesContainer.innerHTML +=
@@ -177,33 +208,48 @@ function createRecipeTile(recipe) {
 
 function displayRecipeTiles(recipeArray) {
   allRecipesContainer.innerHTML = ''
-    recipeArray.forEach(recipe => createRecipeTile(recipe))
+  recipeArray.forEach(recipe => createRecipeTile(recipe))
+}
+
+function makeViewButtonActive(button) {
+  if (button === allRecipesButton) {
+    myRecipesButton.classList.remove('selected-view')
+    allRecipesButton.classList.add('selected-view')
+  } else {
+    myRecipesButton.classList.add('selected-view')
+    allRecipesButton.classList.remove('selected-view')
+  }
 }
 
 function displayAllRecipes() {
   filter.value = 'Filter recipes by type...'
-  filterClearButton.disabled = true
-  filterClearButton.classList.add('disabled')
-  myRecipesButton.classList.remove('selected-view')
-  allRecipesButton.classList.add('selected-view')
+  disableFilterClearButton()
+  makeViewButtonActive(allRecipesButton)
   displayRecipeTiles(recipeRepository.recipeList)
   updateBookmarks()
 }
 
 function displayMyRecipes() {
   filter.value = 'Filter recipes by type...'
-  filterClearButton.disabled = true
-  filterClearButton.classList.add('disabled')
-  myRecipesButton.classList.add('selected-view')
-  allRecipesButton.classList.remove('selected-view')
+  disableFilterClearButton()
+  makeViewButtonActive(myRecipesButton)
   displayRecipeTiles(user.favoriteRecipes)
   updateBookmarks()
 }
 
-function displayCurrentMode() {
-  if (allRecipesButton.classList.contains('selected-view')) {
-    displayAllRecipes()
-  } else { displayMyRecipes() }
+function removeTileFromDisplay(event) {
+  let targetNode = Array.from(tileNodes).find(tile => tile.id === event.target.id)
+  targetNode.remove()
+}
+
+function enableFilterClearButton() {
+  filterClearButton.disabled = false
+  filterClearButton.classList.remove('disabled')
+}
+
+function disableFilterClearButton() {
+  filterClearButton.disabled = true
+  filterClearButton.classList.add('disabled')
 }
 
 function displaySearchedRecipeTiles(searchedRecipes) {
