@@ -1,76 +1,16 @@
 import Recipe from '../src/classes/Recipe'
-import ingredientsData from '../src/data/ingredients'
+import Ingredient from '../src/classes/Ingredient'
+import { ingredientsData, recipeData } from '../src/data/testData'
 import { expect } from 'chai'
 
 describe('Recipe', () => {
-  let recipeData, testIngredients, recipe
+  let recipeInfo, testIngredients, recipe, wheatFlour, bicarbonateOfSoda, eggs
   beforeEach(() => {
-    recipeData = {
-      "id": 595736,
-      "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
-      "ingredients": [
-        {
-          "id": 20081,
-          "quantity": {
-            "amount": 1.5,
-            "unit": "c"
-          }
-        },
-        {
-          "id": 18372,
-          "quantity": {
-            "amount": 0.5,
-            "unit": "tsp"
-          }
-        },
-        {
-          "id": 1123,
-          "quantity": {
-            "amount": 1,
-            "unit": "large"
-          }
-        }
-      ],
-      "instructions": [
-        {
-          "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
-          "number": 1
-        },
-      ],
-      "name": "Loaded Chocolate Chip Pudding Cookie Cups",
-      "tags": [
-        "antipasti",
-        "starter",
-        "snack",
-        "appetizer",
-        "antipasto",
-        "hor d'oeuvre"
-      ]
-    }
-    testIngredients = [
-      {
-        id: 20081,
-        name: "wheat flour",
-        estimatedCostInCents: 142,
-        amount: 1.5,
-        unit: "c"
-      },
-      {
-        id: 18372,
-        name: "bicarbonate of soda",
-        estimatedCostInCents: 582,
-        amount: 0.5,
-        unit: "tsp"
-      },
-      {
-        id: 1123,
-        name: "eggs",
-        estimatedCostInCents: 472,
-        amount: 1,
-        unit: "large"
-      }
-    ]
-    recipe = new Recipe(recipeData, ingredientsData)
+    recipeInfo = recipeData[0];
+    wheatFlour = new Ingredient(ingredientsData[0], recipeData[0].ingredients[0])
+    bicarbonateOfSoda = new Ingredient(ingredientsData[1], recipeData[0].ingredients[1])
+    eggs = new Ingredient(ingredientsData[2], recipeData[0].ingredients[2])
+    recipe = new Recipe(recipeData[0], ingredientsData)
   })
 
   it('should be an instance of Recipe', () => {
@@ -91,12 +31,7 @@ describe('Recipe', () => {
   })
 
   it('should have cooking instructions', () => {
-    expect(recipe.instructions).to.eql([
-      {
-        "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
-        "number": 1
-      },
-    ])
+    expect(recipe.instructions).to.eql(recipeData[0].instructions)
   })
 
   it('should have tags', () => {
@@ -111,12 +46,14 @@ describe('Recipe', () => {
   })
 
   it('should be able to make its ingredients', () => {
-    expect(recipe.ingredients).to.eql(testIngredients)
+    expect(recipe.ingredients[0]).to.eql(wheatFlour)
+    expect(recipe.ingredients[1]).to.eql(bicarbonateOfSoda)
+    expect(recipe.ingredients[2]).to.eql(eggs)
   })
 
   it('should be able to calculate total cost to make recipe', () => {
     let totalCost = recipe.getTotalCost()
 
-    expect(totalCost).to.equal("$9.76")
+    expect(totalCost).to.equal("$177.76")
   })
 })

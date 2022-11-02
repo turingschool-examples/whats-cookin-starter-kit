@@ -1,38 +1,38 @@
+import { testIngredients, ingredientsData, recipeData } from '../src/data/testData'
 import Ingredient from '../src/classes/Ingredient'
 import { expect } from 'chai'
 
 describe('Ingredient', () => {
-  let ingredientInfo, pudding, recipeInfo
+  let ingredientInfo, recipeInfo, wheatFlour, testIngredient
 
   beforeEach(() => {
-    ingredientInfo = { "id": 19206, "name": "instant vanilla pudding", "estimatedCostInCents": 660 }
-    recipeInfo = { 
-      "quantity" : { "amount": 3, "unit": "Tbsp" }
-    }
-    pudding = new Ingredient(ingredientInfo, recipeInfo)
+    ingredientInfo = ingredientsData[0]
+    recipeInfo = recipeData[0].ingredients[0]
+    wheatFlour = new Ingredient(ingredientInfo, recipeInfo)
+    testIngredient = testIngredients[0]
   })
 
   it('should be an instance of Ingredient', () => {
-    expect(pudding).to.be.an.instanceof(Ingredient)
+    expect(wheatFlour).to.be.an.instanceof(Ingredient)
   })
 
   it('should have an ID', () => {
-    expect(pudding.id).to.equal(19206)
+    expect(wheatFlour.id).to.equal(20081)
   })
 
   it('should have a name', () => {
-    expect(pudding.name).to.equal("instant vanilla pudding")
+    expect(wheatFlour.name).to.equal("wheat flour")
   })
 
   it('should have an estimated cost in cents', () => {
-    expect(pudding.estimatedCostInCents).to.equal(660)
+    expect(wheatFlour.estimatedCostInCents).to.equal(142)
   })
-  
+
   it('should be able to have an amount', () => {
-    expect(pudding.amount).to.equal(3)
+    expect(wheatFlour.amount).to.equal(1.5)
   })
 
   it('should be able to have a unit', () => {
-    expect(pudding.unit).to.equal('Tbsp')
+    expect(wheatFlour.unit).to.equal('c')
   })
 })
