@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
-import dummy from '../src/test/ingredient-test-data';
+import  dummy  from '../src/ingredient-test-data';
 describe('Recipe', () => {
     let recipeInfo, singleRecipe,ingredient;
 
@@ -200,6 +200,7 @@ describe('Recipe', () => {
     // });
 
     it('should have a method that returns an array where each element is a concatenated string of ingredient quantity, unit, and name', () => {
+        console.log('yoyo',dummy)
         expect(recipeInfo.returnRecipeIngredientsInfo(dummy)).to.deep.equal([
             '1.5 c wheat flour',
             '0.50 tsp bicarbonate of soda',
@@ -216,7 +217,7 @@ describe('Recipe', () => {
     });
 
     it('should have a method that returns the total cost of a recipe', () => {
-        expect(recipeInfo.returnCostOfIngredients(singleRecipe.ingredients)).to.equal(`$ 177.76`)
+        expect(recipeInfo.returnCostOfIngredients(dummy)).to.equal(`$ 177.76`)
     });
 
 

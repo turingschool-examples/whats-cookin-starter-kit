@@ -1,4 +1,4 @@
-const dummy = [
+let dummy = [
   {
     id: 20081,
     name: "wheat flour",
@@ -1230,3 +1230,5 @@ const dummy = [
     estimatedCostInCents: 613
   }
 ];
+
+module.exports = dummy;

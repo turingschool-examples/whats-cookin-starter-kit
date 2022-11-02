@@ -51,6 +51,7 @@ class Recipe {
         let ingredientsArray = ingredArray.map((ingredient) => {
             return new Ingredient(ingredient);
         });
+        
         return ingredientsArray;
     }
 
