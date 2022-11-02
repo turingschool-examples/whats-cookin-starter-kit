@@ -28,20 +28,21 @@ function getRecipeData() {
     .catch(err => console.log('To err is human', err));
     return fetchedRecipes
 }
-// export const getUsersAPIData = fetch(
-//   "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users"
-// )
-//   .then((response) => response.json())
-//   .catch((err) => console.log(err));
-//
-// export const getRecipesAPIData = fetch(
-//   "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes"
-// )
-//   .then((response) => response.json())
-//   .catch((err) => console.log(err));
-//
-// export const getIngredientsAPIData = fetch(
-//   "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients"
-// )
-//   .then((response) => response.json())
-//   .catch((err) => console.log(err));
+
+function postData() {
+  let postedData = fetch(usersUrl, {
+    method: 'POST',
+    body: JSON.stringify(),
+    headers: { 'content-type': 'application/json'}
+  })
+  return postedData
+}
+
+function deleteData() {
+  let deletedData = fetch(usersUrl, {
+    method: 'POST',
+    body: JSON.stringify(),
+    headers: { 'content-type': 'application/json'}
+  })
+  return deletedData
+}
