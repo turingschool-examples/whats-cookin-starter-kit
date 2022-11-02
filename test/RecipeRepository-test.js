@@ -475,7 +475,15 @@ describe('RecipeRepository', () => {
     expect(recipeRepo.filteredByName('Elvis Pancakes')[0]).to.deep.equal(recipeData[3])
   });
 
+  it('should return an empty array when name search results in no match', () => {
+    expect(recipeRepo.filteredByName('Ryan\'s famouse chili')).to.deep.equal([])
+  });
+
   it('should have a method that searches recipes by tag ', () => {
     expect(recipeRepo.filteredByTag('side dish')).to.deep.equal([recipeData[3]])
+  });
+
+  it('should return an empty array when tag search results in no match', () => {
+    expect(recipeRepo.filteredByTag('Midnight Snack')).to.deep.equal([])
   });
 })

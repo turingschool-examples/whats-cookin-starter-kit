@@ -421,10 +421,20 @@ describe('User', () => {
     expect(newUser.filterRecipesToCookByName('Loaded Chocolate Chip Pudding Cookie Cups')).to.deep.equal([recipeObject1])
   })
 
+  it('Should return an empty array when name search results in no match', () => {
+    newUser.recipesToCook.push(recipeObject1)
+    expect(newUser.filterRecipesToCookByName('Ryan\'s famous chili')).to.deep.equal([])
+  })
+
   it('Should be able to filter the recipiesToCook array by tag', () => {
     newUser.recipesToCook.push(recipeObject1)
     newUser.filterRecipesToCookByTag('snack')
     expect(newUser.filterRecipesToCookByTag('snack')).to.deep.equal([recipeObject1])
+  })
+
+  it('Should return an empty array when tag search results in no match', () => {
+    newUser.recipesToCook.push(recipeObject1)
+    expect(newUser.filterRecipesToCookByTag('Midnight Snack')).to.deep.equal([])
   })
 
   it('Should have a name', () => {
