@@ -1,3 +1,5 @@
+import Pantry from "./Pantry";
+
 class User {
     constructor(userData) {
         this.name = userData.name;

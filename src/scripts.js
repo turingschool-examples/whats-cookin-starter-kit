@@ -5,6 +5,7 @@ import './images/turing-logo.png';
 import './images/cooking.png';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
+import Pantry from './classes/Pantry';
 
 
 //  QUERYSELECTORS LIVE HERE
@@ -50,7 +51,7 @@ let allRecipes;
 let ingredientsArray;
 let recipeRepo;
 let recipeRepoClass;
-
+let fancyPantry;
 
 //  PROMISES LIVE HERE
 function promises() {
@@ -64,6 +65,8 @@ function promises() {
         recipeRepoClass = new RecipeRepository(recipeRepo);
         allRecipes = recipeRepoClass.returnAllRecipesObjectsArray()
         user = new User(arrayForUser[randomIndex(arrayForUser)]);
+        fancyPantry = new Pantry(user);
+        user.pantry = fancyPantry;
         loadUser();
     })
 }
