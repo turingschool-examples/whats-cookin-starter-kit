@@ -54,7 +54,7 @@ header {
 }
 
 .search-bar::-webkit-search-cancel-button{
-  -webkit-appearance: none;
+  filter: hue-rotate(135deg);
 }
 
 .search-bar:hover {
