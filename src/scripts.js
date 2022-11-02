@@ -108,8 +108,9 @@ modalSaveRecipeButton.addEventListener("click", event => {
   }
 })
 
-searchBar.addEventListener('keyup', event => {
-  clearFilterByTag()
+const searchBarEvents = ['keyup', 'search']
+searchBarEvents.forEach(index => 
+  searchBar.addEventListener(index, event => {
   let input = event.target.value
   if (myRecipesButton.classList.contains('selected-view')) {
     let recipes = user.filterByNameOrIngredient(input)
@@ -118,7 +119,7 @@ searchBar.addEventListener('keyup', event => {
     let recipes = recipeRepository.filterByNameOrIngredient(input)
     displaySearchedRecipeTiles(recipes)
   }
-})
+}))
 
 myRecipesButton.addEventListener("click", displayMyRecipes)
 
