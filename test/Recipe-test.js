@@ -1,6 +1,6 @@
 import Recipe from '../src/classes/Recipe'
 import Ingredient from '../src/classes/Ingredient'
-import { testIngredients, ingredientsData, recipeData } from '../src/data/testData'
+import { ingredientsData, recipeData } from '../src/data/testData'
 import { expect } from 'chai'
 
 describe('Recipe', () => {
