@@ -25,6 +25,7 @@ describe('Pantry describe block', () => {
   });
 
   it('should push missing ingredients to missingIngredients array', function() {
+    recipe.ingredients[4].quantity.amount = 2;
     expect(fancyPantry.checkIngredients(recipe)).to.deep.equal([
         { id: 19334, quantity: { amount: 0.5, unit: 'c' } },
         { id: 1012047, quantity: { amount: 24, unit: 'servings' } },
@@ -33,8 +34,9 @@ describe('Pantry describe block', () => {
   });
 
   it.only('should push insufficient amount ingredients to missingIngredients array', function() {
-    // console.log(fancyPantry.checkIngredients(recipe))
+    recipe.ingredients[4].quantity.amount = 3;
     expect(fancyPantry.checkIngredients(recipe)).to.deep.equal([
+        { id: 19206, quantity: { amount: 1, unit: 'Tbsp'} },
         { id: 19334, quantity: { amount: 0.5, unit: 'c' } },
         { id: 1012047, quantity: { amount: 24, unit: 'servings' } },
         { id: 10019903, quantity: { amount: 2, unit: 'c' } }
