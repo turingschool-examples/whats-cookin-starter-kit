@@ -14,7 +14,16 @@ class Pantry {
         // maybe can use returnAllIngredientsArray to access name and update the missingIngredients array to include the ingredient names
         // return missingIngredients
         let missingIngredients = [];
+        let pantryIds = this.pantry.map(ingredient => ingredient.ingredient)
+        recipe.ingredients.forEach(ingredient => {
+            if (!pantryIds.includes(ingredient.id)) {
+                missingIngredients.push(ingredient)
+                console.log(missingIngredients)
+            } 
+            // else if {
 
+            // }
+        })
 
     }
 }
