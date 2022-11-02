@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
-
+import { ingredientArray } from '../src/test/Recipe-test-data.js';
 describe('Recipe', () => {
-    let recipeInfo, singleRecipe, ingredientArray;
+    let recipeInfo, singleRecipe;
 
     beforeEach(() => {
-        ingredientArray = 
+       
         singleRecipe = {
             "id": 595736,
             "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -215,7 +215,7 @@ describe('Recipe', () => {
     });
 
     it('should have a method that returns the total cost of a recipe', () => {
-        expect(recipeInfo.returnCostOfIngredients()).to.equal(`$ 177.76`)
+        expect(recipeInfo.returnCostOfIngredients(ingredientArray)).to.equal(`$ 177.76`)
     });
 
 
