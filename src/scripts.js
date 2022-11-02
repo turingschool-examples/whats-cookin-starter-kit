@@ -93,7 +93,6 @@ window.addEventListener('load', () => {
 
 allRecipesContainer.addEventListener("click", event => {
   if (event.target.nodeName === "SECTION") { return }
-  console.log(event.target)
   let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
   let targetIsIMG = event.target.nodeName === "IMG"
 
@@ -101,7 +100,7 @@ allRecipesContainer.addEventListener("click", event => {
     addRecipeToFavorites(event)
   } else {
     removeRecipeFromFavorites(event)
-    if (viewingMyRecipes) {
+    if (targetIsIMG && viewingMyRecipes) {
       removeTileFromDisplay(event)
     }
   }
@@ -142,7 +141,7 @@ myRecipesButton.addEventListener("click", displayMyRecipes)
 allRecipesButton.addEventListener("click", displayAllRecipes)
 
 filter.addEventListener('input', event => {
-  enableFilterClearButton()
+  enableFilterClearButton(true)
   let input = event.target.value
   let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
 
@@ -157,7 +156,7 @@ filter.addEventListener('input', event => {
 
 filterClearButton.addEventListener('click', () => {
   filter.value = 'Filter recipes by type...'
-  disableFilterClearButton()
+  enableFilterClearButton(false)
   let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
 
   if (viewingMyRecipes) {
@@ -223,7 +222,7 @@ function makeViewButtonActive(button) {
 
 function displayAllRecipes() {
   filter.value = 'Filter recipes by type...'
-  disableFilterClearButton()
+  enableFilterClearButton(false)
   makeViewButtonActive(allRecipesButton)
   displayRecipeTiles(recipeRepository.recipeList)
   updateBookmarks()
@@ -231,7 +230,7 @@ function displayAllRecipes() {
 
 function displayMyRecipes() {
   filter.value = 'Filter recipes by type...'
-  disableFilterClearButton()
+  enableFilterClearButton(false)
   makeViewButtonActive(myRecipesButton)
   displayRecipeTiles(user.favoriteRecipes)
   updateBookmarks()
@@ -242,14 +241,14 @@ function removeTileFromDisplay(event) {
   targetNode.remove()
 }
 
-function enableFilterClearButton() {
-  filterClearButton.disabled = false
-  filterClearButton.classList.remove('disabled')
-}
-
-function disableFilterClearButton() {
-  filterClearButton.disabled = true
-  filterClearButton.classList.add('disabled')
+function enableFilterClearButton(boolean) {
+  if (boolean) {
+    filterClearButton.disabled = false
+    filterClearButton.classList.remove('disabled')
+  } else {
+    filterClearButton.disabled = true
+    filterClearButton.classList.add('disabled')
+  }
 }
 
 function displaySearchedRecipeTiles(searchedRecipes) {
