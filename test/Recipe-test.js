@@ -136,10 +136,6 @@ describe('Recipe', () => {
         expect(Recipe).to.be.a('function');
     });
 
-    it('Should be a function', () => {
-        expect(recipeInfo).to.be.an('object');
-    });
-
     it('Should be a instance of Recipe', () => {
         expect(recipeInfo).to.be.an.instanceOf(Recipe);
     });
@@ -148,16 +144,8 @@ describe('Recipe', () => {
         expect(recipeInfo.id).to.equal(singleRecipe.id)
     });
 
-    it('should have an id that is a number', () => {
-        expect(recipeInfo.id).to.be.a('number')
-    });
-
     it('should have an image', () => {
         expect(recipeInfo.image).to.equal(singleRecipe.image)
-    });
-
-    it('should have an image url as a string', () => {
-        expect(recipeInfo.image).to.be.a('string')
     });
 
     it('should have an ingredients array', () => {
@@ -165,31 +153,11 @@ describe('Recipe', () => {
     });
 
     it('should have an ingredients array made of objects', () => {
-        expect(recipeInfo.ingredients[0]).to.deep.equal(singleRecipe.ingredients[0])
-    });
-
-    it('should have an ingredients array made of objects', () => {
-        expect(recipeInfo.ingredients[0]).to.be.an('object')
+        expect(recipeInfo.ingredients).to.deep.equal(singleRecipe.ingredients)
     });
 
     it('should have an instructions array', () => {
         expect(recipeInfo.instructions).to.deep.equal(singleRecipe.instructions)
-    });
-
-    it('should have an instructions array', () => {
-        expect(recipeInfo.instructions).to.be.an('array')
-    });
-
-    it('should have an instructions array of objects', () => {
-        expect(recipeInfo.instructions[0]).to.be.an('object')
-    });
-
-    it('should have an instructions array of objects', () => {
-        expect(recipeInfo.instructions[1]).to.be.an('object')
-    });
-
-    it('should have a name that is a string', () => {
-        expect(recipeInfo.name).to.be.a("string")
     });
 
     it('should have a name', () => {
@@ -208,43 +176,21 @@ describe('Recipe', () => {
         expect(recipeInfo.tags[1]).to.deep.equal(singleRecipe.tags[1])
     });
 
-
-    it('should have a method that returns an array of ingredient ids for the recipe', () => {
-        expect(recipeInfo.returnRecipeIngredientsIds()).to.be.an('array')
-    });
-
-    it('should have a method that returns a single ingredient object', () => {
-        expect(recipeInfo.returnIngredientById(20081)).to.be.an('object')
-    });
-
     it('should have a method that returns a single ingredient class object', () => {
         expect(recipeInfo.returnIngredientById(20081)).to.deep.equal(ingredient)
     });
 
     it('should have a method that returns an array of ingredient ids', () => {
-        expect(recipeInfo.returnRecipeIngredientsIds()).to.be.an('array').with.a.lengthOf(11)
+        expect(recipeInfo.returnRecipeIngredientsIds()).to.deep.equal(singleRecipe.ingredients.map(ingredient => ingredient.id))
     });
 
     it('should have a method that returns an array of instructions', () => {
-        let result = '1) In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.'
+        let result = singleRecipe.instructions.reduce((acc, instruction) => {
+            acc.push(`${instruction.number}) ${instruction.instruction}`)
+            return acc;
+        }, [])
         let returnTheInstructions = recipeInfo.returnRecipeInstructions()
-        expect(returnTheInstructions[0]).to.deep.equal(result)
-    });
-
-    it('should have a method that returns an array of ingredient class objects', () => {
-        expect(recipeInfo.returnAllIngredientsArray()).to.be.an('array')
-    });
-
-    it('should have a method that returns an array of all ingredient objects with a length of 247', () => {
-        expect(recipeInfo.returnAllIngredientsArray().length).to.equal(247)
-    });
-
-    it('should have a method that returns an array of all ingredient objects with a length of 244', () => {
-        expect(recipeInfo.returnAllIngredientsArray().length === 246).to.equal(false)
-    });
-
-    it('should have a method that returns an array of all ingredient names', () => {
-        expect(recipeInfo.returnAllIngredientsNames()).to.be.an('array')
+        expect(returnTheInstructions).to.deep.equal(result)
     });
 
     it('should have a method that returns an array of all ingredient names', () => {
