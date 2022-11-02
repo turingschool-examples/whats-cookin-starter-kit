@@ -1,4 +1,4 @@
-const ingredientArray = [
+const dummy = [
   {
     id: 20081,
     name: "wheat flour",
@@ -1230,5 +1230,3 @@ const ingredientArray = [
     estimatedCostInCents: 613
   }
 ];
-
-export default ingredientArray;
