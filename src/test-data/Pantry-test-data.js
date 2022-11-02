@@ -145,4 +145,55 @@ let userData = {
     ]
 }
 
-export default userData
+let userData2 = {
+  "name": "Saige O'Kon",
+  "id": 1,
+  "pantry": [
+    {
+      "ingredient": 20081,
+      "amount": 5
+    },
+    {
+      "ingredient": 11215,
+      "amount": 5
+    },
+    {
+      "ingredient": 2047,
+      "amount": 6
+    },
+    {
+      "ingredient": 1123,
+      "amount": 8
+    },
+    {
+      "ingredient": 2050,
+      "amount": 4
+    },
+    {
+      "ingredient": 1102047,
+      "amount": 2
+    },
+    {
+      "ingredient": 19206,
+      "amount": 2
+    },
+    {
+      "ingredient": 1145,
+      "amount": 4
+    },
+    {
+      "ingredient": 19335,
+      "amount": 4
+    },
+    {
+      "ingredient": 9003,
+      "amount": 2
+    },
+    {
+      "ingredient": 18372,
+      "amount": 3
+    },
+  ]
+}
+
+export { userData, userData2 }

@@ -22,6 +22,7 @@ const filterFieldSaved = document.getElementById('input--filter-saved-recipes');
 const cardsContainer = document.getElementById('section--cards-container');
 const recipeContainer = document.getElementById('section--recipe-details');
 const recipeListsContainer = document.getElementById('section--recipe-lists');
+const pantryContainer = document.getElementById('section--pantry');
 const savedRecipesContainer = document.getElementById('section--saved-recipes');
 const savedRecipesListsContainer = document.getElementById('section--saved-recipe-lists');
 const allRecipesTitle = document.getElementById('title--all-recipes');
@@ -29,6 +30,7 @@ const allRecipesContainer = document.getElementById('section--all-recipes');
 const recipeImageContainer = document.getElementById('section--recipe-image');
 const ingredientContainer = document.getElementById('ul--ingredient-list');
 const instructionsContainer = document.getElementById('ul--instructions');
+const pantryList = document.getElementById('list--pantry');
 const allRecipes0to9 = document.getElementById('list--recipes-0-9');
 const allRecipes10to19 = document.getElementById('list--recipes-10-19');
 const allRecipes20to29 = document.getElementById('list--recipes-20-29');
@@ -89,6 +91,7 @@ myRecipesButton.addEventListener('click', () => {
     show(allRecipesButton);
     hide(myRecipesButton)
     displaySavedRecipes();
+    displayPantry();
 });
 
 cardsContainer.addEventListener('click', (event) => {
@@ -404,6 +407,15 @@ const displayRecipeDetails = (event) => {
 
     ingredientContainer.innerHTML += `<div class="text--total-cost">Total cost: ${currentRecipe.returnCostOfIngredients(ingredientsArray)}</div>`;
 };
+
+const displayPantry = () => {
+    pantryContainer.innerText = '';
+    user.pantry.
+    user.pantry.forEach(ingredient => {
+        pantryList.innerText += `{ingredient.}`;
+    })
+
+}
 
 
 window.addEventListener('load', promises)

@@ -19,5 +19,24 @@ class Pantry {
         })
         return missingIngredients;
     }
+
+    returnAllPantryContentsWithInfo(allRecipeData, allIngredientsData) {
+        let ingredientsWithInfo = this.pantry.map(ingredient => {
+            let ingredientFromIngredients = allIngredientsData.find(dataIngredient => dataIngredient.id === ingredient.ingredient);
+            let ingredientFromRecipes;
+            allRecipeData.forEach(recipe => {
+                recipe.ingredients.find(dataIngredient => {
+                    if (dataIngredient.id === ingredient.ingredient) {
+                        ingredientFromRecipes = dataIngredient;
+                    }
+                })
+            })
+            ingredient.name = ingredientFromIngredients.name;
+            ingredient.unit = ingredientFromRecipes.quantity.unit;
+            return ingredient;
+        })
+        return ingredientsWithInfo;
+    }
 }
+
 export default Pantry
