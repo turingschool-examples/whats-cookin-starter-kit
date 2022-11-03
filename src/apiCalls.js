@@ -6,4 +6,13 @@ function getData(url) {
     .catch(error => console.log("Fetch error: ", error))
 }
 
-export default getData
+function postData(body) {
+  return fetch('http://localhost:3001/api/v1/users', {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+export {getData, postData} 
