@@ -132,18 +132,13 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 5vh;
 }
 
 .section--ingredients-instructions {
   display: flex;
   justify-content: space-evenly;
   margin-top: 5%;
-}
-
-.section--pantry {
-  width: 75%;
-  height: 50vh;
-  margin: 0px;
 }
 
 .section--saved-recipes-and-pantry {
@@ -203,11 +198,20 @@
   margin-top: 12px;
 }
 
+.section--pantry {
+  width: 75%;
+  height: 50vh;
+  margin: 0px;
+  overflow-y: auto;
+  border: solid darkslategrey .5vw;
+}
+
 .section--recipe-lists {
   display: flex;
   justify-content: space-evenly;
   font-size: 1.50vh;
   cursor: pointer;
+  margin-bottom: 10vh;
 }
 
 .table--pantry {
@@ -277,12 +281,19 @@ h4 {
 
 h2,
 h5,
-h6 {
+h6,
+h7,
+h8 {
   text-align: center;
   /* font-family: 'Oswald'; - KEEPING FOR PART 2 */
   margin: auto;
-  font-size: 3vh;
+  font-size: 3.15vh;
   margin-bottom: 2%;
+}
+
+thead {
+  font-size: 3vh;
+  text-decoration: underline;
 }
 
 tr {
@@ -291,6 +302,7 @@ tr {
 
 td {
   width: 33.33%;
+  font-size: 2.25vh;
 }
 
 .hidden {
