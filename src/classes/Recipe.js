@@ -21,15 +21,6 @@ class Recipe {
         return ingredientIDs;
     }
 
-    // returnIngredientById(id) {
-    //     let allIngred = this.returnAllIngredientsArray()
-    //     let singleIngred = allIngred.find((element) => {
-    //         return element.id === id;
-    //     })
-
-    //     return singleIngred;
-    // }
-
     returnRecipeInstructions() {
         let array = this.instructions.reduce((acc, element) => {
             let format = `${element.number}) ${element.instruction}`
@@ -37,14 +28,6 @@ class Recipe {
             return acc;
         }, [])
         return array;
-    }
-
-    returnRecipeImage() {
-        return this.image;
-    }
-
-    returnRecipieIngredientsArray() {
-        let recipeIngredients = this.ingredients;
     }
 
     returnAllIngredientsArray(ingredArray) {
@@ -68,13 +51,6 @@ class Recipe {
 
         return ingredientInfoForDOM;
     }
-
-    // returnAllIngredientsNames() {
-    //     let ingredientsNamesArray = ingredientsData.map((ingredient) => {
-    //         return ingredient.name;
-    //     });
-    //     return ingredientsNamesArray;
-    // }
 
     returnCostOfIngredients(ingredArray) {
         let allIngredients = this.returnAllIngredientsArray(ingredArray)
