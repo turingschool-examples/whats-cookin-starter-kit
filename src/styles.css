@@ -120,6 +120,56 @@ header {
   text-align: center;
 }
 
+.pantry-parent {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  width: 66%;
+  aspect-ratio: 2 / 1;
+  padding: 20px;
+  background-color: #c84b31;
+  text-align: center;
+  box-shadow: 0 0 3px 1px #161616;
+}
+
+.pantry-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #ECDBBA;
+  width: 85%;
+  aspect-ratio: 2 / 1;
+  border-color: #161616;
+  border-style: solid;
+  border-width: 5%;
+}
+
+.pantry-text-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 10%;
+  background-color: white;
+  border-style: solid;
+  border-color: #161616;
+}
+
+.pantry-text-container > h1 {
+  font-size: 100%;
+}
+
+.ingredient-container {
+  background-color: white;
+  width: 80%;
+  aspect-ratio: 2 / 1;
+  border-color: #161616;
+  border-style: solid;
+  border-width: 5%;
+}
+
 #logo {
   width: 38%;
 }
