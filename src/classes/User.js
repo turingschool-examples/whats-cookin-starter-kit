@@ -1,17 +1,16 @@
+const allData = require("../scripts")
+
 class User {
-  constructor(user, ingredientsData, recipesData) {
+  constructor(user) {
     this.favoriteRecipes = []
     this.id = user.id
     this.name = user.name
     this.pantry = user.pantry
-    // below is placeholder until later refactor (import ES6 at top of page)
-    this.ingredientsData = ingredientsData
-    this.recipesData = recipesData
   }
 
   getAllPantryIngredients() {
-    const b = this.pantry.map(pantryObj => {
-      const c = this.ingredientsData.reduce((acc, ingredientsObj) => {
+    const allPantryIngredients = this.pantry.map(pantryObj => {
+      return allData.ingredientsData.reduce((acc, ingredientsObj) => {
         if (pantryObj.ingredient === ingredientsObj.id) {
           acc['id'] = ingredientsObj.id,
           acc['name'] = ingredientsObj.name,
@@ -19,19 +18,15 @@ class User {
         }
         return acc
       }, {})
-      return c
     })
-    b.map(pantryObj => {
-      const d = this.recipesData.forEach(recipe => {
-        const e = recipe.ingredients.forEach(ingredient => {
-          if (pantryObj.id === ingredient.id) {
-            pantryObj['unit name'] = ingredient.quantity.unit
-          }
-        })
-      }
-      )
+    allPantryIngredients.map(pantryObj => {
+      const targetObject = allData.recipesData.find(recipe => {
+        return recipe.ingredients.some(ingredient => ingredient.id === pantryObj.id)
+      })
+      const targetIngredient = targetObject.ingredients.find(ingredient => ingredient.id === pantryObj.id)
+      pantryObj['unit'] = targetIngredient.quantity.unit
     })
-  return b
+    return allPantryIngredients
   }
 
   addRecipeToFavorites(recipe) {

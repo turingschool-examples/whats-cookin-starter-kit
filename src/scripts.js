@@ -7,15 +7,13 @@ import './styles.css'
 import MicroModal from 'micromodal'
 import RecipeRepository from '../src/classes/RecipeRepository'
 import User from '../src/classes/User'
-import {getData, postData} from './apiCalls'
-// import getData from './apiCalls'
-// import postData from './apiCalls'
+import { getData, postData } from './apiCalls'
 
 // ---------------------------DATA MODEL---------------------------
 
-let ingredientsData
+export let ingredientsData
 let recipeRepository
-let recipesData
+export let recipesData
 let user
 let usersData
 
@@ -66,9 +64,11 @@ function initPage() {
   initUser()
   displayWelcomeMessage()
   displayFeaturedRecipe()
+
+  //FETCH API POST TESTING DATA BELOW
   fakePost = { userID: 17, ingredientID: 9152, ingredientModification: 5}
   postData(fakePost).then(response => {return response.json()}).then(response => console.log("HERE IS THE RESPONSE:",response))
-  user.getAllPantryIngredients()
+
   MicroModal.init({
     openClass: 'is-open',
     disableScroll: true,
@@ -88,7 +88,7 @@ function initRecipeRepository() {
 }
 
 function initUser() {
-  user = new User(usersData[getRandomIndex(usersData)], ingredientsData, recipesData)
+  user = new User(usersData[getRandomIndex(usersData)])
 }
 
 // ---------------------------EVENT LISTENERS---------------------------
