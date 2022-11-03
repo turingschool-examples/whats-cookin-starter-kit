@@ -1,14 +1,41 @@
 class User {
-  constructor(user) {
+  constructor(user, ingredientsData, recipesData) {
     this.favoriteRecipes = []
     this.id = user.id
     this.name = user.name
-    this.pantry = []
     this.pantry = user.pantry
+    // below is placeholder until later refactor (import ES6 at top of page)
+    this.ingredientsData = ingredientsData
+    this.recipesData = recipesData
+  }
+
+  getAllPantryIngredients() {
+    const b = this.pantry.map(pantryObj => {
+      const c = this.ingredientsData.reduce((acc, ingredientsObj) => {
+        if (pantryObj.ingredient === ingredientsObj.id) {
+          acc['id'] = ingredientsObj.id,
+          acc['name'] = ingredientsObj.name,
+          acc['amount'] = pantryObj.amount
+        }
+        return acc
+      }, {})
+      return c
+    })
+    b.map(pantryObj => {
+      const d = this.recipesData.forEach(recipe => {
+        const e = recipe.ingredients.forEach(ingredient => {
+          if (pantryObj.id === ingredient.id) {
+            pantryObj['unit name'] = ingredient.quantity.unit
+          }
+        })
+      }
+      )
+    })
+  return b
   }
 
   addRecipeToFavorites(recipe) {
-    if(!this.favoriteRecipes.includes(recipe)) {
+    if (!this.favoriteRecipes.includes(recipe)) {
       this.favoriteRecipes.push(recipe)
     }
   }

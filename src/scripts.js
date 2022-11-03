@@ -68,7 +68,7 @@ function initPage() {
   displayFeaturedRecipe()
   fakePost = { userID: 17, ingredientID: 9152, ingredientModification: 5}
   postData(fakePost).then(response => {return response.json()}).then(response => console.log("HERE IS THE RESPONSE:",response))
-
+  user.getAllPantryIngredients()
   MicroModal.init({
     openClass: 'is-open',
     disableScroll: true,
@@ -88,7 +88,7 @@ function initRecipeRepository() {
 }
 
 function initUser() {
-  user = new User(usersData[getRandomIndex(usersData)])
+  user = new User(usersData[getRandomIndex(usersData)], ingredientsData, recipesData)
 }
 
 // ---------------------------EVENT LISTENERS---------------------------
