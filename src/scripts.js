@@ -393,7 +393,7 @@ const displayRecipeDetails = (event) => {
     hide(allRecipesContainer);
     recipeTitle.innerText = currentRecipe.name;
     recipeImageContainer.innerHTML = '';
-    recipeImageContainer.innerHTML += `<p><img src="${currentRecipe.returnRecipeImage()}"></p>`;
+    recipeImageContainer.innerHTML += `<p><img src="${currentRecipe.returnRecipeImage()}" alt ${currentRecipe.name}></p>`;
     instructionsContainer.innerHTML = '';
     currentRecipe.returnRecipeInstructions(ingredientsArray).map(element => instructionsContainer.innerHTML += `<li>${element}</li>`);
     ingredientContainer.innerHTML = '';
