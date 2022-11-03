@@ -116,8 +116,8 @@
 .list--saved-recipes {
   box-shadow: 10px 10px 5px #888888;
   background-color: white;
-  padding: 5px 10px 10px 20px;
-  width: 15%;
+  padding: 10px -6px 10px 20px;
+  width: 16vw;
 }
 
 .section--all-recipes {
