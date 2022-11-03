@@ -184,19 +184,8 @@
 .section--recipe-lists {
   display: flex;
   justify-content: space-evenly;
-  font-size: 3.1vh;
+  font-size: 2.7vh;
   cursor: pointer;
-}
-
-.list-items-all {
-  margin-bottom: - 4vh;
-}
-
-.learn-more-button {
-  margin:0;
-  padding: 0;
-  margin-bottom: 2vh;
-
 }
 
 .text-box {
@@ -206,6 +195,14 @@
 .ul--ingredient-list {
   display: flex;
   flex-direction: column;
+}
+
+.list-items-all:hover {
+  color: rgb(28, 140, 197);
+}
+
+a:active {
+  color: rgb(55, 255, 0);
 }
 
 .text-box {

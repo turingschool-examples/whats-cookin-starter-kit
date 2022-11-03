@@ -191,20 +191,15 @@ const displayAllRecipes = () => {
     });
     allRecipes.forEach((recipe, index) => {
         if (index < 10) {
-            allRecipes0to9.innerHTML += `<li class='list-items-all' data-id="${recipe.id}">${recipe.name}</li><br>
-            <button class='learn-more-button' type="button">Learn More!</button>`;
+            allRecipes0to9.innerHTML += `<li class='list-items-all' tabindex="0" data-id="${recipe.id}">${recipe.name}</li>`;
         } else if (index < 20) {
-            allRecipes10to19.innerHTML += `<li class='list-items-all' data-id="${recipe.id}">${recipe.name}</li><br>
-            <button class='learn-more-button' type="button">Learn More!</button>`;
+            allRecipes10to19.innerHTML += `<li class='list-items-all' tabindex="1" data-id="${recipe.id}">${recipe.name}</li>`;
         } else if (index < 30) {
-            allRecipes20to29.innerHTML += `<li class='list-items-all' data-id="${recipe.id}">${recipe.name}</li><br>
-            <button class='learn-more-button' type="button">Learn More!</button>`;
+            allRecipes20to29.innerHTML += `<li class='list-items-all' tabindex="2" data-id="${recipe.id}">${recipe.name}</li>`;
         } else if (index < 40) {
-            allRecipes30to39.innerHTML += `<li class='list-items-all' data-id="${recipe.id}">${recipe.name}</li><br>
-            <button class='learn-more-button' type="button">Learn More!</button>`;
+            allRecipes30to39.innerHTML += `<li class='list-items-all' tabindex='3' data-id="${recipe.id}">${recipe.name}</li>`;
         } else {
-            allRecipes40to49.innerHTML += `<li class='list-items-all' data-id="${recipe.id}">${recipe.name}</li><br>
-            <button class='learn-more-button' type="button">Learn More!</button>`;
+            allRecipes40to49.innerHTML += `<li class='list-items-all' tabindex='4' data-id="${recipe.id}">${recipe.name}</li>`;
         };
     });
 };
