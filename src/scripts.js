@@ -241,6 +241,7 @@ function displayAllRecipes() {
   makeViewButtonActive(allRecipesButton)
   displayRecipeTiles(recipeRepository.recipeList)
   updateBookmarks()
+  showFeaturedRecipe()
   displayFeaturedRecipe()
 }
 
@@ -250,7 +251,7 @@ function displayMyRecipes() {
   makeViewButtonActive(myRecipesButton)
   displayRecipeTiles(user.favoriteRecipes)
   updateBookmarks()
-  displayPantry()
+  showPantry()
 }
 
 function removeTileFromDisplay(event) {
@@ -392,10 +393,15 @@ function filterByTag(recipes, tag) {
   return recipes.filter(recipe => recipe.tags.includes(tag))
 }
 
-function displayPantry() {
+function showPantry() {
   featuredRecipeParent.style.display = 'none'
   logoImage.style.width = '10%'
-  // logoImage.style.position = 'relative'
   pantryParent.style.display = 'flex'
+}
+
+function showFeaturedRecipe() {
+  featuredRecipeParent.style.display = 'flex'
+  logoImage.style.width = '38%'
+  pantryParent.style.display = 'none'
 }
 
