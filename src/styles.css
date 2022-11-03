@@ -117,7 +117,10 @@
   box-shadow: 10px 10px 5px #888888;
   background-color: white;
   padding: 5px 10px 10px 20px;
-  width: 15%;
+}
+
+.list--saved-recipes {
+  width: 100%;
 }
 
 .section--all-recipes {
@@ -208,7 +211,9 @@
 }
 
 .table--pantry {
-  background: 
+  background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("https://www.harpgallery.com/photos/er/pan122817try10.jpg?v=1637621900");
+  width: 100%;
+  font-size: 2vh;
 }
 
 .text-box {
@@ -282,6 +287,10 @@ h6 {
 
 tr {
   text-align: center;
+}
+
+td {
+  width: 33.33%;
 }
 
 .hidden {
