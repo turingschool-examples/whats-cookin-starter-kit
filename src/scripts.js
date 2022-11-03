@@ -28,9 +28,10 @@ const savedRecipesListsContainer = document.getElementById('section--saved-recip
 const allRecipesTitle = document.getElementById('title--all-recipes');
 const allRecipesContainer = document.getElementById('section--all-recipes');
 const recipeImageContainer = document.getElementById('section--recipe-image');
+const pantryTable = document.getElementById('table--pantry');
+const pantryTableBody = document.getElementById('table--pantry-body');
 const ingredientContainer = document.getElementById('ul--ingredient-list');
 const instructionsContainer = document.getElementById('ul--instructions');
-const pantryList = document.getElementById('list--pantry');
 const allRecipes0to9 = document.getElementById('list--recipes-0-9');
 const allRecipes10to19 = document.getElementById('list--recipes-10-19');
 const allRecipes20to29 = document.getElementById('list--recipes-20-29');
@@ -409,13 +410,18 @@ const displayRecipeDetails = (event) => {
 };
 
 const displayPantry = () => {
-    pantryContainer.innerText = '';
-    user.pantry.
-    user.pantry.forEach(ingredient => {
-        pantryList.innerText += `{ingredient.}`;
-    })
-
+    pantryTableBody.innerHTML = '';
+    let pantryContents = user.pantry.returnAllPantryContentsWithInfo(allRecipes, ingredientsArray);
+    pantryContents.sort((a, b) => {
+        if (a.name > b.name) {
+            return 1;
+        } else {
+            return -1;
+        };
+    });
+    pantryContents.forEach(ingredient => {
+         pantryTableBody.innerHTML += `<tr><td>${ingredient.name}</td><td>${ingredient.amount}</td><td>${ingredient.unit}</td></tr>`
+    });
 }
-
 
 window.addEventListener('load', promises)

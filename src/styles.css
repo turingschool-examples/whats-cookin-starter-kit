@@ -137,6 +137,25 @@
   margin-top: 5%;
 }
 
+.section--pantry {
+  width: 75%;
+  height: 50vh;
+  margin: 0px;
+}
+
+.section--saved-recipes-and-pantry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.list--pantry {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
 .section--recipe-image {
   width: 100%;
   display: flex;
@@ -186,6 +205,10 @@
   justify-content: space-evenly;
   font-size: 1.50vh;
   cursor: pointer;
+}
+
+.table--pantry {
+  background: 
 }
 
 .text-box {
@@ -257,6 +280,9 @@ h6 {
   margin-bottom: 2%;
 }
 
+tr {
+  text-align: center;
+}
 
 .hidden {
   display: none;
