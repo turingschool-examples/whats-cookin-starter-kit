@@ -174,8 +174,10 @@ ingredientForm.addEventListener('click', (event) => {
         let addedIngredient = ingredientsArray.find(ingredient => ingredient.name === event.currentTarget.elements.ingredient.value)
         let amount = parseInt(event.currentTarget.elements.quantity.value)
         if (!addedIngredient || !amount) {
+            addIngredientTitle.style.color = 'red'; 
             addIngredientTitle.innerText = 'Please complete all fields!'
         } else {
+            addIngredientTitle.style.color = 'black'; 
             addIngredientTitle.innerText = "Ingredient Added!!";
             setTimeout(() => {
               addIngredientTitle.innerText = 'Add an ingredient!'
