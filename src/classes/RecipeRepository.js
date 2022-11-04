@@ -7,15 +7,24 @@ class RecipeRepository {
 
   filteredByName(name) {
     const justNames = this.recipeData.filter((recipe) => {
-      return recipe.name.includes(name);
+      let lowerCaseRecipe = recipe.name.toLowerCase()
+      let lowerCaseName = name.toLowerCase()
+      return lowerCaseRecipe.includes(lowerCaseName);
     })
     return justNames;
   }
   filteredByTag(tag) {
+    let lowerCaseFilteredTagArray = []
     const justTags = this.recipeData.filter((recipe) => {
-      return recipe.tags.includes(tag)
+      let lowerCaseRecipe = recipe.tags
+      let lowerCaseTag = tag.toLowerCase()
+      lowerCaseRecipe.forEach(element => {
+
+        lowerCaseFilteredTagArray.push(element.toLowerCase())
+      })
+      return lowerCaseRecipe.includes(lowerCaseTag)
     })
-    return justTags
+    return lowerCaseFilteredTagArray
   }
   returnAllRecipesObjectsArray() {
     let recipeArray = this.recipeData.map((recipe) => {
