@@ -169,9 +169,6 @@ searchFieldSaved.addEventListener('input', (event) => {
 
 ingredientForm.addEventListener('click', (event) => {
     event.preventDefault()
-    // if (event.target.id === 'input--ingredient') {
-    // populateIngredientList();
-    // } else 
     if (event.target.id === 'submit') {
         let addedIngredient = ingredientsArray.find(ingredient => ingredient.name === event.currentTarget.elements.ingredient.value)
         let amount = parseInt(event.currentTarget.elements.quantity.value)
