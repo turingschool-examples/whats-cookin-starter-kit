@@ -116,7 +116,10 @@
 .list--saved-recipes {
   box-shadow: 10px 10px 5px #888888;
   background-color: white;
-  padding: 5px 10px 10px 20px;
+  padding: 10px -6px 10px 20px;
+  width: 16vw;
+
+  
 }
 
 .list--saved-recipes {
@@ -209,7 +212,7 @@
 .section--recipe-lists {
   display: flex;
   justify-content: space-evenly;
-  font-size: 1.50vh;
+  font-size: 2.7vh;
   cursor: pointer;
   margin-bottom: 10vh;
 }
@@ -227,6 +230,14 @@
 .ul--ingredient-list {
   display: flex;
   flex-direction: column;
+}
+
+.list-items-all:hover {
+  color: rgb(28, 140, 197);
+}
+
+a:active {
+  color: rgb(55, 255, 0);
 }
 
 .text-box {

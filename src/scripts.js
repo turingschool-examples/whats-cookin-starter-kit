@@ -197,15 +197,15 @@ const displayAllRecipes = () => {
     });
     allRecipes.forEach((recipe, index) => {
         if (index < 10) {
-            allRecipes0to9.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+            allRecipes0to9.innerHTML += `<li class='list-items-all' tabindex="0" data-id="${recipe.id}">${recipe.name}</li>`;
         } else if (index < 20) {
-            allRecipes10to19.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+            allRecipes10to19.innerHTML += `<li class='list-items-all' tabindex="1" data-id="${recipe.id}">${recipe.name}</li>`;
         } else if (index < 30) {
-            allRecipes20to29.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+            allRecipes20to29.innerHTML += `<li class='list-items-all' tabindex="2" data-id="${recipe.id}">${recipe.name}</li>`;
         } else if (index < 40) {
-            allRecipes30to39.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+            allRecipes30to39.innerHTML += `<li class='list-items-all' tabindex='3' data-id="${recipe.id}">${recipe.name}</li>`;
         } else {
-            allRecipes40to49.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
+            allRecipes40to49.innerHTML += `<li class='list-items-all' tabindex='4' data-id="${recipe.id}">${recipe.name}</li>`;
         };
     });
 };
@@ -231,15 +231,15 @@ const displaySavedRecipes = () => {
     user.recipesToCook.forEach((recipe, index) => {
         if (index < 10) {
             show(savedRecipesList1);
-            savedRecipesList1.innerHTML += `<li data-id="${recipe.id}">
+            savedRecipesList1.innerHTML += `<li class='list-items-all' data-id="${recipe.id}">
             ${user.recipesToCook[index].name}</li>`;
         } else if (index < 20) {
             show(savedRecipesList2);
-            savedRecipesList2.innerHTML += `<li data-id="${recipe.id}">
+            savedRecipesList2.innerHTML += `<li class='list-items-all' data-id="${recipe.id}">
             ${user.recipesToCook[index].name}</li>`;
         } else if (index <= 30) {
             show(savedRecipesList3);
-            savedRecipesList3.innerHTML += `<li data-id="${recipe.id}">
+            savedRecipesList3.innerHTML += `<li class='list-items-all' data-id="${recipe.id}">
             ${user.recipesToCook[index].name}</li>`;
         };
     });
@@ -398,7 +398,9 @@ const displayRecipeDetails = (event) => {
     hide(allRecipesContainer);
     recipeTitle.innerText = currentRecipe.name;
     recipeImageContainer.innerHTML = '';
-    recipeImageContainer.innerHTML += `<p><img src="${currentRecipe.image}"></p>`;
+
+    recipeImageContainer.innerHTML += `<p><img src="${currentRecipe.returnRecipeImage()}" alt ${currentRecipe.name}></p>`;
+
     instructionsContainer.innerHTML = '';
     currentRecipe.returnRecipeInstructions(ingredientsArray).map(element => instructionsContainer.innerHTML += `<li>${element}</li>`);
     ingredientContainer.innerHTML = '';

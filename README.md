@@ -19,6 +19,7 @@ https://user-images.githubusercontent.com/106895319/197644069-15b1fcb1-9b4e-447a
 
 ## Context:
 The team followed a kanban-like workflow using a Trello board and held daily standups. Meetings started by checking in with group mates as humans. Then accomplishments from the day prior were discussed, what needed to be done that day and by whom, and then collaborative debugging help was provided (as needed). Some tasks were completed indivdually, others in pairs, and others as a whole group. The collective estimate is about 100 hours of work time invested over 9 days to create this application's functionality and test suite from scratch using Javascript, html, and css. The Mocha framework and Chai library were used for testing.
+For accessability we chose neutral, high-contrast colors (and placed borders around our buttons) to improve the readability for those with some level of visual impairment.
 
 ## Contributors:
 - [Angie Staffieri](https://github.com/arstaffieri) 
