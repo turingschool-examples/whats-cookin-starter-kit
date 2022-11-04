@@ -207,6 +207,7 @@
   margin: 0px;
   overflow-y: auto;
   border: solid darkslategrey .5vw;
+  background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("https://www.harpgallery.com/photos/er/pan122817try10.jpg?v=1637621900");
 }
 
 .section--recipe-lists {
@@ -218,7 +219,6 @@
 }
 
 .table--pantry {
-  background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("https://www.harpgallery.com/photos/er/pan122817try10.jpg?v=1637621900");
   width: 100%;
   font-size: 2vh;
 }
