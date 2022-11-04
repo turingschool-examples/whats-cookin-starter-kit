@@ -21,11 +21,11 @@ describe('RecipeRepository', () => {
     expect(recipeRepository.recipeList[0]).to.eql(recipe1)
     expect(recipeRepository.recipeList[1]).to.eql(recipe2)
     expect(recipeRepository.recipeList[2]).to.eql(recipe3)
-    expect(recipeRepository.recipeList.length).to.eql(8)
+    expect(recipeRepository.recipeList.length).to.equal(8)
   })
 
   it('should be able to return a random recipe of the day and hold it in a property', () => {
     expect(recipeRepository.featuredRecipe).to.be.an.instanceOf(Recipe)
-    expect(recipeRepository.featuredRecipe).to.not.eql(recipeRepository.getFeaturedRecipe())
+    expect(recipeRepository.getFeaturedRecipe()).to.be.an.instanceOf(Recipe)
   })
 })
