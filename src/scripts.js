@@ -176,7 +176,8 @@ ingredientForm.addEventListener('click', (event) => {
         let addedIngredient = ingredientsArray.find(ingredient => ingredient.name === event.currentTarget.elements.ingredient.value)
         let amount = parseInt(event.currentTarget.elements.quantity.value)
         let unit = event.currentTarget.elements.unit.value
-        addIngredientToPantry(addedIngredient, amount, unit);
+        user.addIngredientToPantry(addedIngredient, amount, unit);
+        displayPantry();
     }
 })
 
@@ -457,20 +458,20 @@ const displayPantry = () => {
     });
 }
 
-const addIngredientToPantry = (addedIngredient, amount, unit) => {
-    let pantryIndex;
-    let searchedIngredient = user.pantry.pantry.find((ingredient, index) => {
-        pantryIndex = index;
-        return ingredient.ingredient === addedIngredient.id;
-    });
+// const addIngredientToPantry = (addedIngredient, amount, unit) => {
+//     let pantryIndex;
+//     let searchedIngredient = user.pantry.pantry.find((ingredient, index) => {
+//         pantryIndex = index;
+//         return ingredient.ingredient === addedIngredient.id;
+//     });
 
-    if (!searchedIngredient) {
-        user.pantry.pantry.push({ingredient: addedIngredient.id, amount: amount});
-        displayPantry();
-    } else {
-        user.pantry.pantry[pantryIndex].amount += amount;
-        displayPantry();
-    };
-};
+//     if (!searchedIngredient) {
+//         user.pantry.pantry.push({ingredient: addedIngredient.id, amount: amount});
+//         displayPantry();
+//     } else {
+//         user.pantry.pantry[pantryIndex].amount += amount;
+//         displayPantry();
+//     };
+// };
 
 window.addEventListener('load', promises)
