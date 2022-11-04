@@ -17,7 +17,18 @@ class Pantry {
                 missingIngredients.push(neededIngredient);
             }
         })
+        
         return missingIngredients;
+    }
+
+    getIngredientNames(missingIngredients, allIngredients) {
+        let result = missingIngredients.map(ingredient => {
+            let foundIngredient = allIngredients.find(foundIngredient => foundIngredient.id === ingredient.id)
+            ingredient['name'] = foundIngredient.name; 
+            return ingredient;
+        })
+
+        return result;
     }
 }
 export default Pantry
