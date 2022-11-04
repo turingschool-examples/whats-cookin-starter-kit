@@ -189,7 +189,6 @@ describe('Recipe', () => {
     });
 
     it('should have a method that returns an array where each element is a concatenated string of ingredient quantity, unit, and name', () => {
-        console.log('yoyo',dummy)
         expect(recipeInfo.returnRecipeIngredientsInfo(dummy)).to.deep.equal([
             '1.5 c wheat flour',
             '0.50 tsp bicarbonate of soda',
