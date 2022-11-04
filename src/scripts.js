@@ -302,7 +302,7 @@ const displayFilteredRecipes = (event) => {
         } else if (index < 40) {
             show(allRecipes30to39);
             allRecipes30to39.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
-        } else if (index < 50) {
+        } else {
             show(allRecipes40to49);
             allRecipes40to49.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
         };
@@ -358,8 +358,7 @@ const displaySearchedRecipes = (event) => {
     });
     clearRecipesList(allRecipesLists);
     filteredRecipes.forEach((recipe, index) => {
-        if (filteredRecipes === []) {
-        } else if (index < 10) {
+        if (index < 10) {
             show(allRecipes0to9);
             allRecipes0to9.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
         } else if (index < 20) {
