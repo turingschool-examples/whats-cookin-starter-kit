@@ -39,6 +39,8 @@ const modalTagParent = document.getElementById("modal-tag-button-parent")
 const myRecipesButton = document.getElementById("my-recipes")
 const searchBar = document.getElementById('search-bar')
 const welcomeMessage = document.querySelector('.welcome-message')
+const pantryParent = document.querySelector('.pantry-parent')
+const logoImage = document.getElementById('logo')
 let fakePost
 
 let filter = document.getElementById('filter')
@@ -132,19 +134,19 @@ modalSaveRecipeButton.addEventListener("click", event => {
 })
 
 const searchBarEvents = ['keyup', 'search']
-searchBarEvents.forEach(index => 
+searchBarEvents.forEach(index =>
   searchBar.addEventListener(index, event => {
-  let input = event.target.value
-  let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
+    let input = event.target.value
+    let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
 
-  if (viewingMyRecipes) {
-    let recipes = user.filterByNameOrIngredient(input)
-    displaySearchedRecipeTiles(recipes)
-  } else {
-    let recipes = recipeRepository.filterByNameOrIngredient(input)
-    displaySearchedRecipeTiles(recipes)
-  }
-}))
+    if (viewingMyRecipes) {
+      let recipes = filterByNameOrIngredient(user.favoriteRecipes, input)
+      displaySearchedRecipeTiles(recipes)
+    } else {
+      let recipes = filterByNameOrIngredient(recipeRepository.recipeList, input)
+      displaySearchedRecipeTiles(recipes)
+    }
+  }))
 
 myRecipesButton.addEventListener("click", displayMyRecipes)
 
@@ -158,10 +160,10 @@ filter.addEventListener('input', event => {
   let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
 
   if (viewingMyRecipes) {
-    let recipes = user.filterByTag(input)
+    let recipes = filterByTag(user.favoriteRecipes, input)
     displaySearchedRecipeTiles(recipes)
   } else {
-    let recipes = recipeRepository.filterByTag(input)
+    let recipes = filterByTag(recipeRepository.recipeList, input)
     displaySearchedRecipeTiles(recipes)
   }
 })
@@ -239,6 +241,8 @@ function displayAllRecipes() {
   makeViewButtonActive(allRecipesButton)
   displayRecipeTiles(recipeRepository.recipeList)
   updateBookmarks()
+  showFeaturedRecipe()
+  displayFeaturedRecipe()
 }
 
 function displayMyRecipes() {
@@ -247,6 +251,7 @@ function displayMyRecipes() {
   makeViewButtonActive(myRecipesButton)
   displayRecipeTiles(user.favoriteRecipes)
   updateBookmarks()
+  showPantry()
 }
 
 function removeTileFromDisplay(event) {
@@ -287,7 +292,8 @@ function convertDecimal(amount) {
 
 function updateModal(targetObject) {
   modalTagParent.innerHTML = ``
-  targetObject.tags.forEach(tag => { modalTagParent.innerHTML += `<button>${tag}</button>`
+  targetObject.tags.forEach(tag => {
+    modalTagParent.innerHTML += `<button>${tag}</button>`
   })
   modalSaveRecipeButton.id = targetObject.id
   if (user.favoriteRecipes.includes(targetObject)) {
@@ -297,7 +303,7 @@ function updateModal(targetObject) {
   }
   modalRecipeTitle.innerHTML = targetObject.name
   modalImage.src = targetObject.image
-  modalImage.alt = targetObject.name 
+  modalImage.alt = targetObject.name
   ingredientsParent.innerHTML = ``
   targetObject.ingredients.forEach(ingredient => {
     ingredientsParent.innerHTML += `<ul>${convertDecimal(ingredient.amount)} ${ingredient.unit} ${ingredient.name}</ul>`
@@ -308,7 +314,6 @@ function updateModal(targetObject) {
     instructionsList.innerHTML += `<li>${item.instruction}</li>`
   })
 
-  
 }
 
 function displayModal(targetObject) {
@@ -363,4 +368,39 @@ function updateBookmarks() {
       bookmark.src = './images/bookmark-tiles-unsaved.png'
     }
   })
+}
+
+function filterByNameOrIngredient(recipes, input) {
+  let filteredRecipes = []
+  input = input.toLowerCase()
+  recipes.forEach(recipe => {
+    if (recipe.name.toLowerCase().includes(input)) {
+      filteredRecipes.push(recipe)
+    } else {
+      recipe.ingredients.forEach(ingredient => {
+        if (ingredient.name.toLowerCase().includes(input)) {
+          if (!filteredRecipes.includes(recipe)) {
+            filteredRecipes.push(recipe)
+          }
+        }
+      })
+    }
+  })
+  return filteredRecipes
+}
+
+function filterByTag(recipes, tag) {
+  return recipes.filter(recipe => recipe.tags.includes(tag))
+}
+
+function showPantry() {
+  featuredRecipeParent.classList.add('hidden')
+  logoImage.style.width = '10%'
+  pantryParent.classList.remove('hidden')
+}
+
+function showFeaturedRecipe() {
+  featuredRecipeParent.classList.remove('hidden')
+  logoImage.style.width = '38%'
+  pantryParent.classList.add('hidden')
 }
