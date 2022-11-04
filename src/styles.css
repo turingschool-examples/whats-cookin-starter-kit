@@ -117,7 +117,10 @@
   box-shadow: 10px 10px 5px #888888;
   background-color: white;
   padding: 5px 10px 10px 20px;
-  width: 15%;
+}
+
+.list--saved-recipes {
+  width: 100%;
 }
 
 .section--all-recipes {
@@ -129,12 +132,26 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 5vh;
 }
 
 .section--ingredients-instructions {
   display: flex;
   justify-content: space-evenly;
   margin-top: 5%;
+}
+
+.section--saved-recipes-and-pantry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.list--pantry {
+  text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 .section--recipe-image {
@@ -181,11 +198,26 @@
   margin-top: 12px;
 }
 
+.section--pantry {
+  width: 75%;
+  height: 50vh;
+  margin: 0px;
+  overflow-y: auto;
+  border: solid darkslategrey .5vw;
+}
+
 .section--recipe-lists {
   display: flex;
   justify-content: space-evenly;
   font-size: 1.50vh;
   cursor: pointer;
+  margin-bottom: 10vh;
+}
+
+.table--pantry {
+  background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("https://www.harpgallery.com/photos/er/pan122817try10.jpg?v=1637621900");
+  width: 100%;
+  font-size: 2vh;
 }
 
 .text-box {
@@ -249,14 +281,29 @@ h4 {
 
 h2,
 h5,
-h6 {
+h6,
+h7,
+h8 {
   text-align: center;
   /* font-family: 'Oswald'; - KEEPING FOR PART 2 */
   margin: auto;
-  font-size: 3vh;
+  font-size: 3.15vh;
   margin-bottom: 2%;
 }
 
+thead {
+  font-size: 3vh;
+  text-decoration: underline;
+}
+
+tr {
+  text-align: center;
+}
+
+td {
+  width: 33.33%;
+  font-size: 2.25vh;
+}
 
 .hidden {
   display: none;

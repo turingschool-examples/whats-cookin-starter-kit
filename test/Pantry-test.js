@@ -1,9 +1,11 @@
 import chai from 'chai';
 const expect = chai.expect;
 import Pantry from '../src/classes/Pantry';
-import userData from '../src/test-data/Pantry-test-data';
+import { userData, userData2 } from '../src/test-data/Pantry-test-data';
 import User from '../src/classes/User';
-import recipe from '../src/test-data/Recipe-data';
+
+import { recipe, multiRecipe } from '../src/test-data/Recipe-data';
+
 import dummy from '../src/test-data/ingredient-test-data';
 
 describe('Pantry describe block', () => {
@@ -44,7 +46,10 @@ describe('Pantry describe block', () => {
       ]);
   });
 
-    it.only('should add a name property to the objects in the missingIngredients array', function() {
+
+
+
+    it('should add a name property to the objects in the missingIngredients array', function() {
       let checkedIngredients = fancyPantry.checkIngredients(recipe);
       expect(fancyPantry.getIngredientNames(checkedIngredients, dummy)).to.deep.equal([
         {
@@ -71,6 +76,38 @@ describe('Pantry describe block', () => {
     });
 
 
-
+  it('should return ALL pantry contents with name and unit included', function() {
+    let user2 = new User(userData2);
+    let fancyPantry2 = new Pantry(user2);
+    user2.pantry = fancyPantry2;
+   expect(fancyPantry2.returnAllPantryContentsWithInfo(multiRecipe, dummy)).to.deep.equal([
+      { ingredient: 20081, amount: 5, name: 'wheat flour', unit: 'c' },
+      {
+        ingredient: 11215,
+        amount: 5,
+        name: 'whole garlic clove',
+        unit: 'clove'
+      },
+      { ingredient: 2047, amount: 6, name: 'salt', unit: 'tsp' },
+      { ingredient: 1123, amount: 8, name: 'eggs', unit: 'large' },
+      { ingredient: 2050, amount: 4, name: 'vanilla', unit: 'tsp' },
+      { ingredient: 1102047, amount: 2, name: 's&p', unit: 'servings' },
+      {
+        ingredient: 19206,
+        amount: 2,
+        name: 'instant vanilla pudding',
+        unit: 'Tbsp'
+      },
+      { ingredient: 1145, amount: 4, name: 'unsalted butter', unit: 'c' },
+      { ingredient: 19335, amount: 4, name: 'sucrose', unit: 'c' },
+      { ingredient: 9003, amount: 2, name: 'apple', unit: '' },
+      {
+        ingredient: 18372,
+        amount: 3,
+        name: 'bicarbonate of soda',
+        unit: 'tsp'
+      }
+    ]);
+  });
 
 });
