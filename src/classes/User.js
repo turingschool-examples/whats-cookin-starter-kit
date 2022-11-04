@@ -9,15 +9,14 @@ class User {
     this.pantry = user.pantry
   }
 
-  addToPantry(event, amountInfo, addedAmount) {
-    // add query selector for added amount using input.value
+  addToPantry(event, addedAmount) {
     restructuredPantryObj = {
       userID: this.id,
-      ingredientID: event.target.id 
+      ingredientID: event.target.id, 
       amount: addedAmount
     }
     postData(restructuredPantryObj)
-    // chain a .then that calls showPantry()
+    // chain a .then that calls showPantry() to the above line
   }
 
   getAllPantryIngredients() {
