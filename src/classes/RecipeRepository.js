@@ -14,18 +14,13 @@ class RecipeRepository {
     return justNames;
   }
   filteredByTag(tag) {
-    let lowerCaseFilteredTagArray = []
     const justTags = this.recipeData.filter((recipe) => {
-      let lowerCaseRecipe = recipe.tags
       let lowerCaseTag = tag.toLowerCase()
-      lowerCaseRecipe.forEach(element => {
-
-        lowerCaseFilteredTagArray.push(element.toLowerCase())
-      })
-      return lowerCaseRecipe.includes(lowerCaseTag)
+      return recipe.tags.includes(lowerCaseTag)
     })
-    return lowerCaseFilteredTagArray
+    return justTags
   }
+
   returnAllRecipesObjectsArray() {
     let recipeArray = this.recipeData.map((recipe) => {
       return new Recipe(recipe);
