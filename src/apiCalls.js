@@ -1,8 +1,8 @@
 let fetchData = (endPoint) => {
-    return fetch(`https://what-s-cookin-starter-kit.herokuapp.com/api/v1/${endPoint}`)
+    return fetch(`http://localhost:3001/api/v1/${endPoint}`)
         .then(response => response.json())
         .catch(error => console.log(error));
 }
 
-export default fetchData;
+ export default fetchData;
 

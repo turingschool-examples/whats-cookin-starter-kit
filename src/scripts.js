@@ -62,9 +62,9 @@ function promises() {
     Promise.all([fetchData('users'), fetchData('recipes'), fetchData('ingredients')]).then(data => {
         usersArray = data[0];
         recipeArray = data[1];
-        recipeRepo = recipeArray.recipeData
-        ingredientsArray = data[2].ingredientsData;
-        arrayForUser = usersArray.usersData;
+        recipeRepo = recipeArray;
+        ingredientsArray = data[2];
+        arrayForUser = usersArray;
         recipeRepoClass = new RecipeRepository(recipeRepo);
         allRecipes = recipeRepoClass.returnAllRecipesObjectsArray()
         user = new User(arrayForUser[randomIndex(arrayForUser)]);
