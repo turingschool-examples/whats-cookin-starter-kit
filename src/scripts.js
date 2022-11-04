@@ -25,6 +25,7 @@ const recipeContainer = document.getElementById('section--recipe-details');
 const recipeListsContainer = document.getElementById('section--recipe-lists');
 const savedRecipesContainer = document.getElementById('section--saved-recipes');
 const savedRecipesListsContainer = document.getElementById('section--saved-recipe-lists');
+const addIngredientTitle = document.getElementById('title--add-ingredient');
 const allRecipesTitle = document.getElementById('title--all-recipes');
 const allRecipesContainer = document.getElementById('section--all-recipes');
 const recipeImageContainer = document.getElementById('section--recipe-image');
@@ -172,8 +173,17 @@ ingredientForm.addEventListener('click', (event) => {
     if (event.target.id === 'submit') {
         let addedIngredient = ingredientsArray.find(ingredient => ingredient.name === event.currentTarget.elements.ingredient.value)
         let amount = parseInt(event.currentTarget.elements.quantity.value)
-        let unit = event.currentTarget.elements.unit.value
-        user.addIngredientToPantry(addedIngredient, amount, unit);
+        if (!addedIngredient || !amount) {
+            addIngredientTitle.style.color = 'red'; 
+            addIngredientTitle.innerText = 'Please complete all fields!'
+        } else {
+            addIngredientTitle.style.color = 'black'; 
+            addIngredientTitle.innerText = "Ingredient Added!!";
+            setTimeout(() => {
+              addIngredientTitle.innerText = 'Add an ingredient!'
+            }, 2500)
+            user.addIngredientToPantry(addedIngredient, amount);
+        }
         displayPantry();
     }
 })
