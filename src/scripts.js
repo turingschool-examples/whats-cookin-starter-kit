@@ -138,6 +138,7 @@ saveRecipeButton.addEventListener('click', () => {
     show(allRecipesButton);
     hide(myRecipesButton);
     user.addRecipeToRecipesToCook(currentRecipe);
+    displayPantry();
     displaySavedRecipes();
 });
 
