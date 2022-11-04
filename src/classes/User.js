@@ -47,6 +47,20 @@ class User {
     returnUserId() {
         return this.id
     }
+
+    addIngredientToPantry(addedIngredient, amount, unit) {
+        let pantryIndex;
+        let searchedIngredient = this.pantry.pantry.find((ingredient, index) => {
+            pantryIndex = index;
+            return ingredient.ingredient === addedIngredient.id;
+        });
+    
+        if (!searchedIngredient) {
+            this.pantry.pantry.push({ingredient: addedIngredient.id, amount: amount});
+        } else {
+            this.pantry.pantry[pantryIndex].amount += amount;
+        };
+    };
 }
 
 export default User;

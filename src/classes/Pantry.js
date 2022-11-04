@@ -50,6 +50,7 @@ class Pantry {
         return result;
 
     }
+    
 }
 
 export default Pantry

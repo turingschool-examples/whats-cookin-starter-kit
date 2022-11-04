@@ -15,6 +15,7 @@ const myRecipesButton = document.getElementById('button--my-recipes');
 const saveRecipeButton = document.getElementById('button--save-recipe');
 const removeRecipeButton = document.getElementById('button--remove-recipe');
 const allRecipesButton = document.getElementById('button--all-recipes');
+const ingredientForm = document.getElementById('form--ingredients');
 const searchField = document.getElementById('input--search');
 const filterField = document.getElementById('input--filter');
 const searchFieldSaved = document.getElementById('input--search-saved-recipes');
@@ -22,16 +23,15 @@ const filterFieldSaved = document.getElementById('input--filter-saved-recipes');
 const cardsContainer = document.getElementById('section--cards-container');
 const recipeContainer = document.getElementById('section--recipe-details');
 const recipeListsContainer = document.getElementById('section--recipe-lists');
-const pantryContainer = document.getElementById('section--pantry');
 const savedRecipesContainer = document.getElementById('section--saved-recipes');
 const savedRecipesListsContainer = document.getElementById('section--saved-recipe-lists');
 const allRecipesTitle = document.getElementById('title--all-recipes');
 const allRecipesContainer = document.getElementById('section--all-recipes');
 const recipeImageContainer = document.getElementById('section--recipe-image');
-const pantryTable = document.getElementById('table--pantry');
 const pantryTableBody = document.getElementById('table--pantry-body');
 const ingredientContainer = document.getElementById('ul--ingredient-list');
 const instructionsContainer = document.getElementById('ul--instructions');
+const ingredientList = document.getElementById('list--ingredients');
 const allRecipes0to9 = document.getElementById('list--recipes-0-9');
 const allRecipes10to19 = document.getElementById('list--recipes-10-19');
 const allRecipes20to29 = document.getElementById('list--recipes-20-29');
@@ -166,6 +166,17 @@ filterFieldSaved.addEventListener('input', (event) => {
 searchFieldSaved.addEventListener('input', (event) => {
     displaySearchedRecipesSaved(event);
 });
+
+ingredientForm.addEventListener('click', (event) => {
+    event.preventDefault()
+    if (event.target.id === 'submit') {
+        let addedIngredient = ingredientsArray.find(ingredient => ingredient.name === event.currentTarget.elements.ingredient.value)
+        let amount = parseInt(event.currentTarget.elements.quantity.value)
+        let unit = event.currentTarget.elements.unit.value
+        user.addIngredientToPantry(addedIngredient, amount, unit);
+        displayPantry();
+    }
+})
 
 
 // HELPER FUNCTIONS LIVE HERE
@@ -410,7 +421,26 @@ const displayRecipeDetails = (event) => {
     ingredientContainer.innerHTML += `<div class="text--total-cost">Total cost: ${currentRecipe.returnCostOfIngredients(ingredientsArray)}</div>`;
 };
 
+const populateIngredientList = () => {
+    ingredientsArray.forEach(ingredient => {
+        ingredient.name = ingredient.name.toLowerCase();
+    });
+
+    ingredientsArray.sort((a, b) => {
+        if (a.name > b.name) {
+            return 1;
+        } else {
+            return -1;
+        };
+    });
+
+    ingredientsArray.forEach(ingredient => {
+    ingredientList.innerHTML += `<option value="${ingredient.name}"></option>`
+    });
+}
+
 const displayPantry = () => {
+    populateIngredientList();
     pantryTableBody.innerHTML = '';
     let pantryContents = user.pantry.returnAllPantryContentsWithInfo(allRecipes, ingredientsArray);
     pantryContents.sort((a, b) => {
