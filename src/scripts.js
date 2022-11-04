@@ -458,20 +458,4 @@ const displayPantry = () => {
     });
 }
 
-// const addIngredientToPantry = (addedIngredient, amount, unit) => {
-//     let pantryIndex;
-//     let searchedIngredient = user.pantry.pantry.find((ingredient, index) => {
-//         pantryIndex = index;
-//         return ingredient.ingredient === addedIngredient.id;
-//     });
-
-//     if (!searchedIngredient) {
-//         user.pantry.pantry.push({ingredient: addedIngredient.id, amount: amount});
-//         displayPantry();
-//     } else {
-//         user.pantry.pantry[pantryIndex].amount += amount;
-//         displayPantry();
-//     };
-// };
-
 window.addEventListener('load', promises)
