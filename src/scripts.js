@@ -1,11 +1,11 @@
 //  IMPORTS LIVE HERE
 import './styles.css';
-import fetchData from './apiCalls';
 import './images/turing-logo.png';
 import './images/cooking.png';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 import Pantry from './classes/Pantry';
+import {fetchData, postData} from './apiCalls';
 
 
 //  QUERYSELECTORS LIVE HERE
@@ -74,6 +74,14 @@ function promises() {
     })
 }
 
+// POSTS LIVE HERE  
+function addToUserPantry() {
+
+}
+
+function removeFromUserPantry() {
+
+}
 
 //  EVENT LISTENERS LIVE HERE
 homeButton.addEventListener('click', () => {
@@ -173,20 +181,12 @@ ingredientForm.addEventListener('click', (event) => {
     event.preventDefault()
     if (event.target.id === 'submit') {
         let addedIngredient = ingredientsArray.find(ingredient => ingredient.name === event.currentTarget.elements.ingredient.value)
+        console.log(addedIngredient)
         let amount = parseInt(event.currentTarget.elements.quantity.value)
-        if (!addedIngredient || !amount) {
-            addIngredientTitle.style.color = 'red'; 
-            addIngredientTitle.innerText = 'Please complete all fields!'
-        } else {
-            addIngredientTitle.style.color = 'black'; 
-            addIngredientTitle.innerText = "Ingredient Added!!";
-            setTimeout(() => {
-              addIngredientTitle.innerText = 'Add an ingredient!'
-            }, 2500)
-            user.addIngredientToPantry(addedIngredient, amount);
-        }
-        displayPantry();
+        new Promise(postData()).then(displayIngredientResponse(event))
     }
+
+    
 })
 
 
@@ -465,5 +465,21 @@ const displayPantry = () => {
          pantryTableBody.innerHTML += `<tr><td>${ingredient.name}</td><td>${ingredient.amount}</td><td>${ingredient.unit}</td></tr>`
     });
 }
+
+function displayIngredientResponse(event) {
+        if (!addedIngredient || !amount) {
+            addIngredientTitle.style.color = 'red'; 
+            addIngredientTitle.innerText = 'Please complete all fields!'
+        } else {
+            addIngredientTitle.style.color = 'black'; 
+            addIngredientTitle.innerText = "Ingredient Added!!";
+            setTimeout(() => {
+              addIngredientTitle.innerText = 'Add an ingredient!'
+            }, 2500)
+            user.addIngredientToPantry(addedIngredient, amount);
+        }
+        displayPantry();
+    }
+
 
 window.addEventListener('load', promises)
