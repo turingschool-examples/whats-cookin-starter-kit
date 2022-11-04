@@ -90,7 +90,7 @@ function initRecipeRepository() {
 }
 
 function initUser() {
-  user = new User(usersData[getRandomIndex(usersData)])
+  user = new User(usersData[getRandomIndex(usersData)], recipeRepository.allIngredients)
 }
 
 // ---------------------------EVENT LISTENERS---------------------------
