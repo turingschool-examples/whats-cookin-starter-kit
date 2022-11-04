@@ -120,6 +120,54 @@ header {
   text-align: center;
 }
 
+.pantry-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  width: 66%;
+  aspect-ratio: 2 / 1;
+  padding: 20px;
+  background-color: #e3a597;
+  text-align: center;
+  border: 1px solid rgb(22 22 22 / 11%);
+  border-radius: 5px;
+}
+
+.pantry-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #ECDBBA;
+  width: 90%;
+  aspect-ratio: 2 / 1;
+  border: 1px solid rgb(22 22 22 / 11%);
+  border-radius: 5px;
+}
+
+.pantry-text-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 10%;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid rgb(22 22 22 / 11%);
+}
+
+.pantry-text-container > h2 {
+  font-size: 100%;
+}
+
+.ingredient-container {
+  background-color: white;
+  width: 90%;
+  aspect-ratio: 5 / 2;
+  border-radius: 5px;
+}
+
 #logo {
   width: 38%;
 }
@@ -564,4 +612,8 @@ select:focus {
     width: 84%;
     padding: 40px;
   }
+}
+
+.hidden { 
+  display: none;
 }

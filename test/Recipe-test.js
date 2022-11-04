@@ -4,7 +4,7 @@ import { ingredientsData, recipeData } from '../src/data/testData'
 import { expect } from 'chai'
 
 describe('Recipe', () => {
-  let recipeInfo, testIngredients, recipe, wheatFlour, bicarbonateOfSoda, eggs
+  let recipeInfo, recipe, wheatFlour, bicarbonateOfSoda, eggs
   beforeEach(() => {
     recipeInfo = recipeData[0];
     wheatFlour = new Ingredient(ingredientsData[0], recipeData[0].ingredients[0])
@@ -27,7 +27,7 @@ describe('Recipe', () => {
   })
 
   it('should have an image source', () => {
-    expect(recipe.image).to.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg");
+    expect(recipe.image).to.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg")
   })
 
   it('should have cooking instructions', () => {

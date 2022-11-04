@@ -39,6 +39,8 @@ const modalTagParent = document.getElementById("modal-tag-button-parent")
 const myRecipesButton = document.getElementById("my-recipes")
 const searchBar = document.getElementById('search-bar')
 const welcomeMessage = document.querySelector('.welcome-message')
+const pantryParent = document.querySelector('.pantry-parent')
+const logoImage = document.getElementById('logo')
 let fakePost
 
 let filter = document.getElementById('filter')
@@ -239,6 +241,8 @@ function displayAllRecipes() {
   makeViewButtonActive(allRecipesButton)
   displayRecipeTiles(recipeRepository.recipeList)
   updateBookmarks()
+  showFeaturedRecipe()
+  displayFeaturedRecipe()
 }
 
 function displayMyRecipes() {
@@ -247,6 +251,7 @@ function displayMyRecipes() {
   makeViewButtonActive(myRecipesButton)
   displayRecipeTiles(user.favoriteRecipes)
   updateBookmarks()
+  showPantry()
 }
 
 function removeTileFromDisplay(event) {
@@ -386,4 +391,16 @@ function filterByNameOrIngredient(recipes, input) {
 
 function filterByTag(recipes, tag) {
   return recipes.filter(recipe => recipe.tags.includes(tag))
+}
+
+function showPantry() {
+  featuredRecipeParent.classList.add('hidden')
+  logoImage.style.width = '10%'
+  pantryParent.classList.remove('hidden')
+}
+
+function showFeaturedRecipe() {
+  featuredRecipeParent.classList.remove('hidden')
+  logoImage.style.width = '38%'
+  pantryParent.classList.add('hidden')
 }
