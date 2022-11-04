@@ -302,6 +302,21 @@ h8 {
   margin-bottom: 2%;
 }
 
+h9 {
+  text-align: center;
+  /* font-family: 'Oswald'; - KEEPING FOR PART 2 */
+  margin: auto;
+  font-size: 2vh;
+  margin: 3% 0% 2% 0%;
+}
+
+form {
+  width: 75%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 3%;
+}
+
 thead {
   font-size: 3vh;
   text-decoration: underline;

@@ -158,6 +158,25 @@
           <ul class="list--saved-recipes" id="list--saved-recipes-20-29"></ul>
         </section>
         <h8>My Pantry</h8>
+        <h9>Add an ingredient to your pantry!</h9>
+        <form>
+          <div>
+            <label for="ingredient">Enter ingredient name: </label>
+            <input list="list--ingredients" name="ingredient" id="input--ingredient" selectBoxOptions="butt;stuff;and;stuff" required>
+            <datalist id="list--ingredients"></datalist>
+          </div>
+          <div>
+            <label for="quantity">Enter quantity: </label>
+            <input type="text" name="quantity" id="name" required>
+          </div>
+          <div>
+            <label for="unit">Enter unit: </label>
+            <input type="text" name="unit" id="name">
+          </div>
+          <div>
+            <input type="submit" value="Add ingredient!" class="button" id="button--submit">
+          </div>
+        </form>
         <section class="section--pantry" id="section--pantry">
           <table class="table--pantry">
             <thead>
