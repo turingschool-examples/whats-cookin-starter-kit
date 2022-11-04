@@ -179,6 +179,10 @@ describe('Recipe', () => {
         expect(recipeInfo.tags[1]).to.deep.equal(singleRecipe.tags[1])
     });
 
+    it('should have a method that returns an array of ingredient ids', () => {
+        expect(recipeInfo.returnRecipeIngredientsIds()).to.be.an('array').with.a.lengthOf(11)
+    });
+
     it('should have a method that returns an array of instructions', () => {
         let result = singleRecipe.instructions.reduce((acc, instruction) => {
             acc.push(`${instruction.number}) ${instruction.instruction}`)
@@ -189,7 +193,6 @@ describe('Recipe', () => {
     });
 
     it('should have a method that returns an array where each element is a concatenated string of ingredient quantity, unit, and name', () => {
-        console.log('yoyo',dummy)
         expect(recipeInfo.returnRecipeIngredientsInfo(dummy)).to.deep.equal([
             '1.5 c wheat flour',
             '0.50 tsp bicarbonate of soda',

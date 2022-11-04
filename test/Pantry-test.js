@@ -3,20 +3,18 @@ const expect = chai.expect;
 import Pantry from '../src/classes/Pantry';
 import { userData, userData2 } from '../src/test-data/Pantry-test-data';
 import User from '../src/classes/User';
-
 import { recipe, multiRecipe } from '../src/test-data/Recipe-data';
-
 import dummy from '../src/test-data/ingredient-test-data';
 
 describe('Pantry describe block', () => {
- let user;
- let fancyPantry;
-
+  let user,fancyPantry,user2,fancyPantry2;
   beforeEach(() => {
-  user = new User(userData);
-  fancyPantry = new Pantry(user);
-  user.pantry = fancyPantry;
-
+    user = new User(userData);
+    user2 = new User(userData2);
+    fancyPantry = new Pantry(user);
+    fancyPantry2 = new Pantry(user2);
+    user.pantry = fancyPantry;
+    user2.fancyPantry = fancyPantry2;
   });
 
   it('should be a function', function() {
@@ -52,11 +50,7 @@ describe('Pantry describe block', () => {
     it('should add a name property to the objects in the missingIngredients array', function() {
       let checkedIngredients = fancyPantry.checkIngredients(recipe);
       expect(fancyPantry.getIngredientNames(checkedIngredients, dummy)).to.deep.equal([
-        {
-          id: 19206,
-          quantity: { amount: 1, unit: 'Tbsp' },
-          name: 'instant vanilla pudding'
-        },
+     
         {
           id: 19334,
           quantity: { amount: 0.5, unit: 'c' },

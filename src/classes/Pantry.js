@@ -46,7 +46,7 @@ class Pantry {
             ingredient['name'] = foundIngredient.name; 
             return ingredient;
         })
-
+           
         return result;
 
     }
