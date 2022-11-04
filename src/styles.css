@@ -121,16 +121,17 @@ header {
 }
 
 .pantry-parent {
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
   width: 66%;
   aspect-ratio: 2 / 1;
   padding: 20px;
-  background-color: #c84b31;
+  background-color: #e3a597;
   text-align: center;
-  box-shadow: 0 0 3px 1px #161616;
+  border: 1px solid rgb(22 22 22 / 11%);
+  border-radius: 5px;
 }
 
 .pantry-container {
@@ -139,11 +140,10 @@ header {
   justify-content: space-evenly;
   align-items: center;
   background-color: #ECDBBA;
-  width: 85%;
+  width: 90%;
   aspect-ratio: 2 / 1;
-  border-color: #161616;
-  border-style: solid;
-  border-width: 5%;
+  border: 1px solid rgb(22 22 22 / 11%);
+  border-radius: 5px;
 }
 
 .pantry-text-container {
@@ -153,21 +153,19 @@ header {
   width: 50%;
   height: 10%;
   background-color: white;
-  border-style: solid;
-  border-color: #161616;
+  border-radius: 5px;
+  border: 1px solid rgb(22 22 22 / 11%);
 }
 
-.pantry-text-container > h1 {
+.pantry-text-container > h2 {
   font-size: 100%;
 }
 
 .ingredient-container {
   background-color: white;
-  width: 80%;
-  aspect-ratio: 2 / 1;
-  border-color: #161616;
-  border-style: solid;
-  border-width: 5%;
+  width: 90%;
+  aspect-ratio: 5 / 2;
+  border-radius: 5px;
 }
 
 #logo {
@@ -614,4 +612,8 @@ select:focus {
     width: 84%;
     padding: 40px;
   }
+}
+
+.hidden { 
+  display: none;
 }

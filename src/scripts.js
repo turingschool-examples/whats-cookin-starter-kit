@@ -394,14 +394,13 @@ function filterByTag(recipes, tag) {
 }
 
 function showPantry() {
-  featuredRecipeParent.style.display = 'none'
+  featuredRecipeParent.classList.add('hidden')
   logoImage.style.width = '10%'
-  pantryParent.style.display = 'flex'
+  pantryParent.classList.remove('hidden')
 }
 
 function showFeaturedRecipe() {
-  featuredRecipeParent.style.display = 'flex'
+  featuredRecipeParent.classList.remove('hidden')
   logoImage.style.width = '38%'
-  pantryParent.style.display = 'none'
+  pantryParent.classList.add('hidden')
 }
-
