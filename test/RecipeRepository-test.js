@@ -17,7 +17,7 @@ describe('RecipeRepository', () => {
     expect(recipeRepository).to.be.an.instanceOf(RecipeRepository)
   })
 
-  it('should contain an array of recipes', () => {
+  it.skip('should contain an array of recipes', () => {
     expect(recipeRepository.recipeList[0]).to.be.an.instanceOf(Recipe)
     expect(recipeRepository.recipeList[1]).to.be.an.instanceOf(Recipe)
     expect(recipeRepository.recipeList[2]).to.be.an.instanceOf(Recipe)
@@ -26,18 +26,7 @@ describe('RecipeRepository', () => {
     expect(recipeRepository.recipeList[2]).to.eql(recipe3)
   })
 
-  it('should should be able to return a list of recipes filtered by tag', () => {
-    expect(recipeRepository.filterByTag('antipasti')[0]).to.eql(recipe1)
-    expect(recipeRepository.filterByTag('lunch')[0]).to.eql(recipe2)
-    expect(recipeRepository.filterByTag('sauce')[0]).to.eql(recipe3)
-  })
-
-  it('should should be able to return a list of recipes filtered by name', () => {
-    expect(recipeRepository.filterByNameOrIngredient('Pork Chops')[0]).to.eql(recipe2)
-    expect(recipeRepository.filterByNameOrIngredient('Dirty Steve')[0]).to.eql(recipe3)
-  })
-
-  it('should should be able to return a random recipe of the day', () => {
+  it.skip('should should be able to return a random recipe of the day', () => {
     expect(recipeRepository.getFeaturedRecipe()).to.be.an.instanceOf(Recipe)
   })
 })
