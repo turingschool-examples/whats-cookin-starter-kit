@@ -19,20 +19,20 @@ describe('User', () => {
     expect(user).to.be.an.instanceOf(User)
   })
 
-  it.skip('should have a name', () => {
+  it('should have a name', () => {
     expect(user.name).to.equal("Saige O'Kon")
   })
 
-  it.skip('should have an ID', () => {
+  it('should have an ID', () => {
     expect(user.id).to.equal(1)
   })
 
-  it.skip('should have a pantry of ingredients', () => {
+  it('should have a pantry of ingredients', () => {
     expect(user.pantry).to.be.an('array')
     expect(user.pantry.slice(0, 4)).to.eql(testPantry)
   })
 
-  it.skip('should have a list of favorite recipes', () => {
+  it('should have a list of favorite recipes', () => {
     user.addRecipeToFavorites(recipe)
     
     expect(user.favoriteRecipes[0]).to.eql(recipe)
