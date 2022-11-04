@@ -1,17 +1,44 @@
+const testPantry = [
+  {
+    "id": 11297,
+    "name": "flat leaf parsley leaves",
+    "amount": 4,
+    "unit": "cups"
+  },
+  {
+    "id": 1082047,
+    "name": "kosher salt",
+    "amount": 10,
+    "unit": "teaspoons"
+  },
+  {
+    "id": 20081,
+    "name": "wheat flour",
+    "amount": 5,
+    "unit": "cups"
+  },
+  {
+    "id": 11215,
+    "name": "whole garlic clove",
+    "amount": 5,
+    "unit": "cloves"
+  }
+]
+
 const testIngredients = [
   {
     id: 20081,
     name: "wheat flour",
     estimatedCostInCents: 142,
     amount: 1.5,
-    unit: "c"
+    unit: "cups"
   },
   {
     id: 18372,
     name: "bicarbonate of soda",
     estimatedCostInCents: 582,
     amount: 0.5,
-    unit: "tsp"
+    unit: "teaspoons"
   },
   {
     id: 1123,
@@ -3265,6 +3292,7 @@ const usersData = [
 ]
 
 module.exports = {
+  testPantry,
   testIngredients,
   ingredientsData, 
   recipeData,

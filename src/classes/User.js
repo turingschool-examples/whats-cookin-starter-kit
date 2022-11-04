@@ -1,33 +1,29 @@
-// const allData = require("../scripts")
-
-// REPLACE REPLACE REPLACE
-const allData = require("../data/testData")
+//const allData = require("../scripts")
+const ingredientsData = require("../data/ingredients")
+const recipeData = require("../data/recipes")
 
 class User {
-  constructor(user) {
+  constructor(user, allIngredients) {
     this.favoriteRecipes = []
     this.id = user.id
     this.name = user.name
-    this.pantry = user.pantry
+    this.pantry = this.getAllPantryIngredients(user.pantry, allIngredients)
   }
 
-  getAllPantryIngredients() {
-    const allPantryIngredients = this.pantry.map(pantryObj => {
-      return allData.ingredientsData.reduce((acc, ingredientsObj) => {
+  getAllPantryIngredients(pantry, allIngredients) {
+    let reserved = ['small', 'large', 'pinch', '']
+    const allPantryIngredients = pantry.map(pantryObj => {
+      return allIngredients.reduce((acc, ingredientsObj) => {
         if (pantryObj.ingredient === ingredientsObj.id) {
           acc['id'] = ingredientsObj.id,
           acc['name'] = ingredientsObj.name,
           acc['amount'] = pantryObj.amount
+          if (pantryObj.amount > 1 && !reserved.includes(ingredientsObj.unit)) {
+            acc['unit'] = `${ingredientsObj.unit}s`
+          } else { acc['unit'] = ingredientsObj.unit }
         }
         return acc
       }, {})
-    })
-    allPantryIngredients.map(pantryObj => {
-      const targetObject = allData.recipesData.find(recipe => {
-        return recipe.ingredients.some(ingredient => ingredient.id === pantryObj.id)
-      })
-      const targetIngredient = targetObject.ingredients.find(ingredient => ingredient.id === pantryObj.id)
-      pantryObj['unit'] = targetIngredient.quantity.unit
     })
     return allPantryIngredients
   }
@@ -36,14 +32,6 @@ class User {
     if (!this.favoriteRecipes.includes(recipe)) {
       this.favoriteRecipes.push(recipe)
     }
-  }
-
-  removeRecipeFromFavorites(id) {
-    this.favoriteRecipes.forEach((currentValue, i) => {
-      if (id === currentValue.id) {
-        this.favoriteRecipes.splice(i, 1)
-      }
-    })
   }
 
   removeRecipeFromFavorites(id) {

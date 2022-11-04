@@ -5,14 +5,14 @@ import { expect } from 'chai'
 
 describe('RecipeRepository', () => {
   let recipeRepository, recipe1, recipe2, recipe3
-  
-  beforeEach(() => {  
+
+  beforeEach(() => {
     recipeRepository = new RecipeRepository(recipeData, ingredientsData)
     recipe1 = new Recipe(recipeData[0], ingredientsData)
     recipe2 = new Recipe(recipeData[1], ingredientsData)
     recipe3 = new Recipe(recipeData[2], ingredientsData)
   })
-  
+
   it('should be an instance of RecipeRepository', () => {
     expect(recipeRepository).to.be.an.instanceOf(RecipeRepository)
   })

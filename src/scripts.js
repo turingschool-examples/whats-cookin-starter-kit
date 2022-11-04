@@ -66,7 +66,7 @@ function initPage() {
   initUser()
   displayWelcomeMessage()
   displayFeaturedRecipe()
-
+  
   //FETCH API POST TESTING DATA BELOW
   fakePost = { userID: 17, ingredientID: 9152, ingredientModification: 5}
   postData(fakePost).then(response => {return response.json()}).then(response => console.log("HERE IS THE RESPONSE:",response))
@@ -90,7 +90,7 @@ function initRecipeRepository() {
 }
 
 function initUser() {
-  user = new User(usersData[getRandomIndex(usersData)])
+  user = new User(usersData[getRandomIndex(usersData)], recipeRepository.allIngredients)
 }
 
 // ---------------------------EVENT LISTENERS---------------------------

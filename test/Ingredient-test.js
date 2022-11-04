@@ -33,6 +33,6 @@ describe('Ingredient', () => {
   })
 
   it('should be able to have a unit', () => {
-    expect(wheatFlour.unit).to.equal('c')
+    expect(wheatFlour.unit).to.equal('cups')
   })
 })
