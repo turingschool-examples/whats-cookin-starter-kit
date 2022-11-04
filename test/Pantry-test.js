@@ -50,11 +50,7 @@ describe('Pantry describe block', () => {
     it('should add a name property to the objects in the missingIngredients array', function() {
       let checkedIngredients = fancyPantry.checkIngredients(recipe);
       expect(fancyPantry.getIngredientNames(checkedIngredients, dummy)).to.deep.equal([
-        {
-          id: 19206,
-          quantity: { amount: 1, unit: 'Tbsp' },
-          name: 'instant vanilla pudding'
-        },
+     
         {
           id: 19334,
           quantity: { amount: 0.5, unit: 'c' },
@@ -72,33 +68,6 @@ describe('Pantry describe block', () => {
         }
       ])
     });
-
-
-  it('should add a name property to the objects in the missingIngredients array', function () {
-    let checkedIngredients = fancyPantry2.checkIngredients(recipe);
-    expect(fancyPantry2.getIngredientNames(checkedIngredients, dummy)).to.deep.equal([
-      {
-        id: 19206,
-        quantity: { amount: 1, unit: 'Tbsp' },
-        name: 'instant vanilla pudding'
-      },
-      {
-        id: 19334,
-        quantity: { amount: 0.5, unit: 'c' },
-        name: 'brown sugar'
-      },
-      {
-        id: 1012047,
-        quantity: { amount: 24, unit: 'servings' },
-        name: 'fine sea salt'
-      },
-      {
-        id: 10019903,
-        quantity: { amount: 2, unit: 'c' },
-        name: 'semi sweet chips'
-      }
-    ])
-  });
 
 
   it('should return ALL pantry contents with name and unit included', function() {

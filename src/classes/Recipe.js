@@ -11,6 +11,11 @@ class Recipe {
         this.tags = recipeData.tags;
     }
 
+    returnRecipeIngredientsIds() {
+        let ingredientIDs = this.ingredients.map(ingredient => ingredient.id);
+        return ingredientIDs
+    }
+
     returnRecipeInstructions() {
         let array = this.instructions.reduce((acc, element) => {
             let format = `${element.number}) ${element.instruction}`
