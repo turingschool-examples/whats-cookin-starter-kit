@@ -1,4 +1,7 @@
-const allData = require("../scripts")
+// const allData = require("../scripts")
+
+// REPLACE REPLACE REPLACE
+const allData = require("../data/testData")
 
 class User {
   constructor(user) {

@@ -33,24 +33,4 @@ describe('User', () => {
     
     expect(user.favoriteRecipes[0]).to.eql(recipe)
   })
-
-  it('should be able to filter favorite recipes by tag', () => {
-    user.addRecipeToFavorites(recipe)
-    user.addRecipeToFavorites(recipe2)
-    let filtered = user.filterByTag('antipasti')
-    let filtered2 = user.filterByTag('lunch')
-
-    expect(filtered[0]).to.eql(user.favoriteRecipes[0])
-    expect(filtered2[0]).to.eql(user.favoriteRecipes[1])
-  })
-
-  it('should be able to filter favorite recipes by name', () => {
-    user.addRecipeToFavorites(recipe)
-    user.addRecipeToFavorites(recipe2)
-    let filtered = user.filterByNameOrIngredient('Cookie')
-    let filtered2 = user.filterByNameOrIngredient('Maple')
-
-    expect(filtered[0]).to.eql(user.favoriteRecipes[0])
-    expect(filtered2[0]).to.eql(user.favoriteRecipes[1])
-  })
 })
