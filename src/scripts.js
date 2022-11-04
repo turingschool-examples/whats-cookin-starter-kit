@@ -25,6 +25,7 @@ const recipeContainer = document.getElementById('section--recipe-details');
 const recipeListsContainer = document.getElementById('section--recipe-lists');
 const savedRecipesContainer = document.getElementById('section--saved-recipes');
 const savedRecipesListsContainer = document.getElementById('section--saved-recipe-lists');
+const addIngredientTitle = document.getElementById('title--add-ingredient');
 const allRecipesTitle = document.getElementById('title--all-recipes');
 const allRecipesContainer = document.getElementById('section--all-recipes');
 const recipeImageContainer = document.getElementById('section--recipe-image');
@@ -169,14 +170,18 @@ searchFieldSaved.addEventListener('input', (event) => {
 
 ingredientForm.addEventListener('click', (event) => {
     event.preventDefault()
-    // if (event.target.id === 'input--ingredient') {
-    // populateIngredientList();
-    // } else 
     if (event.target.id === 'submit') {
         let addedIngredient = ingredientsArray.find(ingredient => ingredient.name === event.currentTarget.elements.ingredient.value)
         let amount = parseInt(event.currentTarget.elements.quantity.value)
-        let unit = event.currentTarget.elements.unit.value
-        user.addIngredientToPantry(addedIngredient, amount, unit);
+        if (!addedIngredient || !amount) {
+            addIngredientTitle.innerText = 'Please complete all fields!'
+        } else {
+            addIngredientTitle.innerText = "Ingredient Added!!";
+            setTimeout(() => {
+              addIngredientTitle.innerText = 'Add an ingredient!'
+            }, 2500)
+            user.addIngredientToPantry(addedIngredient, amount);
+        }
         displayPantry();
     }
 })
@@ -457,21 +462,5 @@ const displayPantry = () => {
          pantryTableBody.innerHTML += `<tr><td>${ingredient.name}</td><td>${ingredient.amount}</td><td>${ingredient.unit}</td></tr>`
     });
 }
-
-// const addIngredientToPantry = (addedIngredient, amount, unit) => {
-//     let pantryIndex;
-//     let searchedIngredient = user.pantry.pantry.find((ingredient, index) => {
-//         pantryIndex = index;
-//         return ingredient.ingredient === addedIngredient.id;
-//     });
-
-//     if (!searchedIngredient) {
-//         user.pantry.pantry.push({ingredient: addedIngredient.id, amount: amount});
-//         displayPantry();
-//     } else {
-//         user.pantry.pantry[pantryIndex].amount += amount;
-//         displayPantry();
-//     };
-// };
 
 window.addEventListener('load', promises)
