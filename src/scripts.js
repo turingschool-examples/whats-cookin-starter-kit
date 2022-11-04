@@ -15,7 +15,7 @@ const myRecipesButton = document.getElementById('button--my-recipes');
 const saveRecipeButton = document.getElementById('button--save-recipe');
 const removeRecipeButton = document.getElementById('button--remove-recipe');
 const allRecipesButton = document.getElementById('button--all-recipes');
-const submitButton = document.getElementById('button--submit');
+const ingredientForm = document.getElementById('form--ingredients');
 const searchField = document.getElementById('input--search');
 const filterField = document.getElementById('input--filter');
 const searchFieldSaved = document.getElementById('input--search-saved-recipes');
@@ -166,6 +166,19 @@ filterFieldSaved.addEventListener('input', (event) => {
 searchFieldSaved.addEventListener('input', (event) => {
     displaySearchedRecipesSaved(event);
 });
+
+ingredientForm.addEventListener('click', (event) => {
+    event.preventDefault()
+    // if (event.target.id === 'input--ingredient') {
+    // populateIngredientList();
+    // } else 
+    if (event.target.id === 'submit') {
+        let addedIngredient = ingredientsArray.find(ingredient => ingredient.name === event.currentTarget.elements.ingredient.value)
+        let amount = parseInt(event.currentTarget.elements.quantity.value)
+        let unit = event.currentTarget.elements.unit.value
+        addIngredientToPantry(addedIngredient, amount, unit);
+    }
+})
 
 
 // HELPER FUNCTIONS LIVE HERE
@@ -443,5 +456,21 @@ const displayPantry = () => {
          pantryTableBody.innerHTML += `<tr><td>${ingredient.name}</td><td>${ingredient.amount}</td><td>${ingredient.unit}</td></tr>`
     });
 }
+
+const addIngredientToPantry = (addedIngredient, amount, unit) => {
+    let pantryIndex;
+    let searchedIngredient = user.pantry.pantry.find((ingredient, index) => {
+        pantryIndex = index;
+        return ingredient.ingredient === addedIngredient.id;
+    });
+
+    if (!searchedIngredient) {
+        user.pantry.pantry.push({ingredient: addedIngredient.id, amount: amount});
+        displayPantry();
+    } else {
+        user.pantry.pantry[pantryIndex].amount += amount;
+        displayPantry();
+    };
+};
 
 window.addEventListener('load', promises)
