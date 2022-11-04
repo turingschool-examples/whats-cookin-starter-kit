@@ -1,10 +1,12 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
+import dummy from '../src/test-data/ingredient-test-data';
 
 describe('Recipe', () => {
-    let recipeInfo, singleRecipe, ingredient;
+    let recipeInfo, singleRecipe,ingredient;
 
     beforeEach(() => {
+       
         singleRecipe = {
             "id": 595736,
             "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -124,7 +126,8 @@ describe('Recipe', () => {
             ]
 
         },
-            recipeInfo = new Recipe(singleRecipe)
+        recipeInfo = new Recipe(singleRecipe)
+        
         ingredient = {
             "id": 20081,
             "name": "wheat flour",
@@ -176,14 +179,6 @@ describe('Recipe', () => {
         expect(recipeInfo.tags[1]).to.deep.equal(singleRecipe.tags[1])
     });
 
-    it('should have a method that returns a single ingredient class object', () => {
-        expect(recipeInfo.returnIngredientById(20081)).to.deep.equal(ingredient)
-    });
-
-    it('should have a method that returns an array of ingredient ids', () => {
-        expect(recipeInfo.returnRecipeIngredientsIds()).to.deep.equal(singleRecipe.ingredients.map(ingredient => ingredient.id))
-    });
-
     it('should have a method that returns an array of instructions', () => {
         let result = singleRecipe.instructions.reduce((acc, instruction) => {
             acc.push(`${instruction.number}) ${instruction.instruction}`)
@@ -193,12 +188,9 @@ describe('Recipe', () => {
         expect(returnTheInstructions).to.deep.equal(result)
     });
 
-    it('should have a method that returns an array of all ingredient names', () => {
-        expect(recipeInfo.returnAllIngredientsNames()).to.include('eggs')
-    });
-
-    it('should have a method that returns an array where eeach element is a concatenated string of ingredient quantity, unit, and name', () => {
-        expect(recipeInfo.returnRecipeIngredientsInfo()).to.deep.equal([
+    it('should have a method that returns an array where each element is a concatenated string of ingredient quantity, unit, and name', () => {
+        console.log('yoyo',dummy)
+        expect(recipeInfo.returnRecipeIngredientsInfo(dummy)).to.deep.equal([
             '1.5 c wheat flour',
             '0.50 tsp bicarbonate of soda',
             '1 large eggs',
@@ -214,7 +206,7 @@ describe('Recipe', () => {
     });
 
     it('should have a method that returns the total cost of a recipe', () => {
-        expect(recipeInfo.returnCostOfIngredients()).to.equal(`$ 177.76`)
+        expect(recipeInfo.returnCostOfIngredients(dummy)).to.equal(`$ 177.76`)
     });
 
 

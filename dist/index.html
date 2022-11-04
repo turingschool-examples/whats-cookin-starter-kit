@@ -145,15 +145,32 @@
       </div>
     </section>
     <section class="section--saved-recipes hidden" id="section--saved-recipes">
-      <h6>My Saved Recipes</h6>
+      <h6>My Stuff</h6>
       <div class="section--filter-bar">
         <input type="search" placeholder="     filter by tag" class="input--filter" id="input--filter-saved-recipes">
         <input type="search" placeholder="     search by name" class="input--search" id="input--search-saved-recipes">
       </div>
-      <section class="section--recipe-lists" id="section--saved-recipe-lists">
-        <ul class="list--saved-recipes" id="list--saved-recipes-0-9"></ul>
-        <ul class="list--saved-recipes" id="list--saved-recipes-10-19"></ul>
-        <ul class="list--saved-recipes" id="list--saved-recipes-20-29"></ul>
+      <section class="section--saved-recipes-and-pantry">
+        <h7>My Recipes</h7>
+        <section class="section--recipe-lists" id="section--saved-recipe-lists">
+          <ul class="list--saved-recipes" id="list--saved-recipes-0-9"></ul>
+          <ul class="list--saved-recipes" id="list--saved-recipes-10-19"></ul>
+          <ul class="list--saved-recipes" id="list--saved-recipes-20-29"></ul>
+        </section>
+        <h8>My Pantry</h8>
+        <section class="section--pantry" id="section--pantry">
+          <table class="table--pantry">
+            <thead>
+              <tr>
+                <th>Ingredient</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+              </tr>
+            </thead>
+            <tbody id="table--pantry-body">
+            </tbody>
+          </table>
+        </section>
       </section>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>

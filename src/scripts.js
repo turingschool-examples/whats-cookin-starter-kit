@@ -5,6 +5,7 @@ import './images/turing-logo.png';
 import './images/cooking.png';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
+import Pantry from './classes/Pantry';
 
 
 //  QUERYSELECTORS LIVE HERE
@@ -21,11 +22,14 @@ const filterFieldSaved = document.getElementById('input--filter-saved-recipes');
 const cardsContainer = document.getElementById('section--cards-container');
 const recipeContainer = document.getElementById('section--recipe-details');
 const recipeListsContainer = document.getElementById('section--recipe-lists');
+const pantryContainer = document.getElementById('section--pantry');
 const savedRecipesContainer = document.getElementById('section--saved-recipes');
 const savedRecipesListsContainer = document.getElementById('section--saved-recipe-lists');
 const allRecipesTitle = document.getElementById('title--all-recipes');
 const allRecipesContainer = document.getElementById('section--all-recipes');
 const recipeImageContainer = document.getElementById('section--recipe-image');
+const pantryTable = document.getElementById('table--pantry');
+const pantryTableBody = document.getElementById('table--pantry-body');
 const ingredientContainer = document.getElementById('ul--ingredient-list');
 const instructionsContainer = document.getElementById('ul--instructions');
 const allRecipes0to9 = document.getElementById('list--recipes-0-9');
@@ -50,7 +54,7 @@ let allRecipes;
 let ingredientsArray;
 let recipeRepo;
 let recipeRepoClass;
-
+let fancyPantry;
 
 //  PROMISES LIVE HERE
 function promises() {
@@ -59,11 +63,12 @@ function promises() {
         recipeArray = data[1];
         recipeRepo = recipeArray.recipeData
         ingredientsArray = data[2].ingredientsData;
-        console.log(ingredientsArray)
         arrayForUser = usersArray.usersData;
         recipeRepoClass = new RecipeRepository(recipeRepo);
         allRecipes = recipeRepoClass.returnAllRecipesObjectsArray()
         user = new User(arrayForUser[randomIndex(arrayForUser)]);
+        fancyPantry = new Pantry(user);
+        user.pantry = fancyPantry;
         loadUser();
     })
 }
@@ -87,6 +92,7 @@ myRecipesButton.addEventListener('click', () => {
     show(allRecipesButton);
     hide(myRecipesButton)
     displaySavedRecipes();
+    displayPantry();
 });
 
 cardsContainer.addEventListener('click', (event) => {
@@ -300,7 +306,7 @@ const displayFilteredRecipes = (event) => {
         } else if (index < 40) {
             show(allRecipes30to39);
             allRecipes30to39.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
-        } else if (index < 50) {
+        } else {
             show(allRecipes40to49);
             allRecipes40to49.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
         };
@@ -356,8 +362,7 @@ const displaySearchedRecipes = (event) => {
     });
     clearRecipesList(allRecipesLists);
     filteredRecipes.forEach((recipe, index) => {
-        if (filteredRecipes === []) {
-        } else if (index < 10) {
+        if (index < 10) {
             show(allRecipes0to9);
             allRecipes0to9.innerHTML += `<li data-id="${recipe.id}">${recipe.name}</li>`;
         } else if (index < 20) {
@@ -393,7 +398,9 @@ const displayRecipeDetails = (event) => {
     hide(allRecipesContainer);
     recipeTitle.innerText = currentRecipe.name;
     recipeImageContainer.innerHTML = '';
+
     recipeImageContainer.innerHTML += `<p><img src="${currentRecipe.returnRecipeImage()}" alt ${currentRecipe.name}></p>`;
+
     instructionsContainer.innerHTML = '';
     currentRecipe.returnRecipeInstructions(ingredientsArray).map(element => instructionsContainer.innerHTML += `<li>${element}</li>`);
     ingredientContainer.innerHTML = '';
@@ -403,5 +410,19 @@ const displayRecipeDetails = (event) => {
     ingredientContainer.innerHTML += `<div class="text--total-cost">Total cost: ${currentRecipe.returnCostOfIngredients(ingredientsArray)}</div>`;
 };
 
+const displayPantry = () => {
+    pantryTableBody.innerHTML = '';
+    let pantryContents = user.pantry.returnAllPantryContentsWithInfo(allRecipes, ingredientsArray);
+    pantryContents.sort((a, b) => {
+        if (a.name > b.name) {
+            return 1;
+        } else {
+            return -1;
+        };
+    });
+    pantryContents.forEach(ingredient => {
+         pantryTableBody.innerHTML += `<tr><td>${ingredient.name}</td><td>${ingredient.amount}</td><td>${ingredient.unit}</td></tr>`
+    });
+}
 
 window.addEventListener('load', promises)
