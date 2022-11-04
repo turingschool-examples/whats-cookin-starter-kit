@@ -1,3 +1,4 @@
+const { postData } = require("../apiCalls")
 const allData = require("../scripts")
 
 class User {
@@ -6,6 +7,17 @@ class User {
     this.id = user.id
     this.name = user.name
     this.pantry = user.pantry
+  }
+
+  addToPantry(event, amountInfo, addedAmount) {
+    // add query selector for added amount using input.value
+    restructuredPantryObj = {
+      userID: this.id,
+      ingredientID: event.target.id 
+      amount: addedAmount
+    }
+    postData(restructuredPantryObj)
+    // chain a .then that calls showPantry()
   }
 
   getAllPantryIngredients() {

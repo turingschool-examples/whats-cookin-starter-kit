@@ -168,19 +168,19 @@ filter.addEventListener('input', event => {
   }
 })
 
-function clearFilterByTag() {
-  filter.value = 'Filter recipes by type...'
-  enableFilterClearButton(false)
-  let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
+// function clearFilterByTag() {
+//   filter.value = 'Filter recipes by type...'
+//   enableFilterClearButton(false)
+//   let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
 
-  if (viewingMyRecipes) {
-    displayRecipeTiles(user.favoriteRecipes)
-    updateBookmarks()
-  } else {
-    displayRecipeTiles(recipeRepository.recipeList)
-    updateBookmarks()
-  }
-}
+//   if (viewingMyRecipes) {
+//     displayRecipeTiles(user.favoriteRecipes)
+//     updateBookmarks()
+//   } else {
+//     displayRecipeTiles(recipeRepository.recipeList)
+//     updateBookmarks()
+//   }
+// }
 
 featuredRecipeParent.addEventListener("click", event => {
   let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
@@ -204,6 +204,20 @@ featuredRecipeParent.addEventListener("click", event => {
 })
 
 // ---------------------------DOM UPDATING---------------------------
+
+function clearFilterByTag() {
+  filter.value = 'Filter recipes by type...'
+  enableFilterClearButton(false)
+  let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
+
+  if (viewingMyRecipes) {
+    displayRecipeTiles(user.favoriteRecipes)
+    updateBookmarks()
+  } else {
+    displayRecipeTiles(recipeRepository.recipeList)
+    updateBookmarks()
+  }
+}
 
 function displayWelcomeMessage() {
   welcomeMessage.innerText = `Welcome, ${user.name.split(' ')[0]}!`
