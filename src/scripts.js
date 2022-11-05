@@ -17,9 +17,9 @@ export let recipesData
 let user
 let usersData
 
-const ingredientsURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients'
-const recipesURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes'
-const usersURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users'
+const ingredientsURL = 'http://localhost:3001/api/v1/ingredients'
+const recipesURL = 'http://localhost:3001/api/v1/recipes'
+const usersURL = 'http://localhost:3001/api/v1/users'
 
 // ---------------------------QUERY SELECTORS---------------------------
 
@@ -52,9 +52,10 @@ function fetchData(urls) {
   Promise.all([getData(urls[0]), getData(urls[1]),
   getData(urls[2])])
     .then(data => {
-      usersData = data[0].usersData
-      recipesData = data[1].recipeData
-      ingredientsData = data[2].ingredientsData
+      // console.log(data[0])
+      usersData = data[0]
+      recipesData = data[1]
+      ingredientsData = data[2]
       initPage()
     })
 }
@@ -66,10 +67,13 @@ function initPage() {
   initUser()
   displayWelcomeMessage()
   displayFeaturedRecipe()
-  
+  displayPantryView()
+
   //FETCH API POST TESTING DATA BELOW
+
   fakePost = { userID: 17, ingredientID: 9152, ingredientModification: 5}
   postData(fakePost).then(response => {return response.json()}).then(response => console.log("HERE IS THE RESPONSE:",response))
+
   MicroModal.init({
     openClass: 'is-open',
     disableScroll: true,
@@ -403,3 +407,79 @@ function showFeaturedRecipe() {
   logoImage.style.width = '38%'
   pantryParent.classList.add('hidden')
 }
+
+const table = document.querySelector('table')
+const tableSelect = document.querySelector('#table-select')
+const tableButtonAdd = document.querySelector('#table-button-add')
+
+table.addEventListener('click', (event) => {
+  let inputValue
+  let id
+  let restructuredPantryObj
+  if (event.target.id === 'table-button-add') {
+    inputValue = Number(event.target.parentNode.querySelector('select').value)
+    id = Number(event.target.classList.value)
+    restructuredPantryObj = {
+      userID: user.id,
+      ingredientID: id,
+      ingredientModification: inputValue
+    }
+    postData(restructuredPantryObj, 'http://localhost:3001/api/v1/users')
+        .then(data => {
+          usersData = data
+          user = new User(updateUser(), recipeRepository.allIngredients)
+          displayPantryView()
+        })
+      } else { return }
+    })
+
+function updateUser() {
+  return usersData.find((updatedUser) => {
+    return user.id === updatedUser.id
+  })
+}
+
+function displayPantryView() {
+  table.innerHTML = ''
+  table.innerHTML += `<th>Ingredient</th><th>Current quantity</th><th>Amount to add</th>`
+
+  const findMissingIngredients = recipeRepository.allIngredients.forEach((ingredient) => {
+    const missingIngredient = user.pantry.find((pantryItem) => {
+      return ingredient.id === pantryItem.id
+    })
+    if (missingIngredient == null) {
+      user.pantry.push({
+        amount: 0,
+        id: ingredient.id,
+        name: ingredient.name,
+        unit: ingredient.unit,
+      })
+    }
+  })
+
+  const sortedPantry = user.pantry.sort((a, b) => {
+    return a.amount - b.amount
+  })
+
+  return sortedPantry.forEach((pantryItem) => {
+    table.innerHTML += `
+      <tr>
+        <td id="table-col-name">${pantryItem.name}</td>
+        <td id="table-col-quantity">${pantryItem.amount}</td>
+        <td id="table-col-select">
+          <select id="table-select">
+            <option>0</option>
+            <option>1</option>
+            <option>5</option>
+            <option>10</option>
+            <option>15</option>
+          </select>
+          <button id="table-button-add" class='${pantryItem.id}'>Add</button>
+        </td>
+      </tr>
+    `
+  })
+}
+
+
+
