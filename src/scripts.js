@@ -412,7 +412,6 @@ const tableSelect = document.querySelector('#table-select')
 const tableButtonAdd = document.querySelector('#table-button-add')
 
 table.addEventListener('click', (event) => {
-  // console.log(event.target.id)
   let inputValue
   let id
   let restructuredPantryObj
@@ -424,15 +423,13 @@ table.addEventListener('click', (event) => {
       ingredientID: id,
       ingredientModification: inputValue
     }
-    postData(restructuredPantryObj)
-      .then(getData('http://localhost:3001/api/v1/users')
+    postData(restructuredPantryObj, 'http://localhost:3001/api/v1/users')
         .then(data => {
           usersData = data
           user = new User(updateUser(), recipeRepository.allIngredients)
-        }))
-      }
-      // displayPantryView()
-      // inputValue = 0
+          displayPantryView()
+        })
+      } else { return }
     })
 
 function updateUser() {
