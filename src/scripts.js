@@ -70,7 +70,6 @@ function initPage() {
   //FETCH API POST TESTING DATA BELOW
   fakePost = { userID: 17, ingredientID: 9152, ingredientModification: 5}
   postData(fakePost).then(response => {return response.json()}).then(response => console.log("HERE IS THE RESPONSE:",response))
-
   MicroModal.init({
     openClass: 'is-open',
     disableScroll: true,
