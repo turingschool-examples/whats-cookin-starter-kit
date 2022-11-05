@@ -45,6 +45,7 @@ const savedRecipesList3 = document.getElementById('list--saved-recipes-20-29');
 const allRecipesLists = [allRecipes0to9, allRecipes10to19, allRecipes20to29, allRecipes30to39, allRecipes40to49];
 const savedRecipesLists = [savedRecipesList1, savedRecipesList2, savedRecipesList3];
 const recipeTitle = document.getElementById('title--recipe');
+const articleText = document.getElementById('text--article');
 
 // GLOBAL VARIABLES LIVE HERE
 let user;
@@ -162,11 +163,39 @@ removeRecipeButton.addEventListener('click', () => {
     displaySavedRecipes();
 });
 
+
+
+
+
+
+
+
+
+
 cookRecipeButton.addEventListener('click', () => {
-
-
+    console.log('current Recipe: ', currentRecipe)
+    console.log('the method: ', user.pantry.checkIngredients(currentRecipe))
+    let missingIngredients = user.pantry.checkIngredients(currentRecipe)
     
+    if (missingIngredients.length === 0) {
+       articleText.innerText = 'Let\'s get cookin\'!'
+    //    update the pantry ingredients amounts
+    } else {
+        articleText.innerText = 'First, here\'s your shopping list: '
+        // populate missing ingredients to the dom
+    }
+
+
+
+
 })
+
+
+
+
+
+
+
 
 filterField.addEventListener('input', (event) => {
     displayFilteredRecipes(event);
@@ -229,9 +258,6 @@ ingredientForm.addEventListener('click', (event) => {
 const show = element => element.classList.remove('hidden');
 const hide = element => element.classList.add('hidden');
 const randomIndex = array => Math.floor(Math.random() * array.length);
-
-
-
 
 function loadUser() {
     userWelcome.innerHTML = `<p>Welcome, ${user.name}!</p>`
