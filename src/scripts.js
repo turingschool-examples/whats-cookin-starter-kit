@@ -407,6 +407,27 @@ function showFeaturedRecipe() {
 }
 
 const table = document.querySelector('table')
+const tableSelect = document.querySelector('#table-select')
+const tableButtonAdd = document.querySelector('#table-button-add')
+
+table.addEventListener('click', addToPantry)
+
+function addToPantry(event) {
+  let inputValue
+  let id 
+  if (event.target.id === 'table-button-add') {
+    inputValue = event.target.parentNode.querySelector('select').value
+    id = event.target.classList.value
+  }
+  restructuredPantryObj = {
+    userID: user.id,
+    ingredientID: id, 
+    amount: inputValue 
+  }
+  postData(restructuredPantryObj)
+  // add a .then here to call displayPantryView()
+
+}
 
 function displayPantryView() {
   console.log(user.pantry[0])
@@ -433,7 +454,16 @@ function displayPantryView() {
       <tr>
         <td id="table-col-name">${pantryItem.name}</td>
         <td id="table-col-quantity">${pantryItem.amount}</td>
-        <td id="table-col-select"><select class="" id="table-select"><option></option></select><button id="table-button-add">Add</button></td>
+        <td id="table-col-select">
+          <select id="table-select">
+            <option>0</option>
+            <option>1</option>
+            <option>5</option>
+            <option>10</option>
+            <option>15</option>
+          </select>
+          <button id="table-button-add" class='${pantryItem.id}'>Add</button>
+        </td>
       </tr>
     `
   })
