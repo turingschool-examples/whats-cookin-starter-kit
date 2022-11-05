@@ -17,9 +17,9 @@ export let recipesData
 let user
 let usersData
 
-const ingredientsURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients'
-const recipesURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes'
-const usersURL = 'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users'
+const ingredientsURL = 'http://localhost:3001/api/v1/ingredients'
+const recipesURL = 'http://localhost:3001/api/v1/recipes'
+const usersURL = 'http://localhost:3001/api/v1/users'
 
 // ---------------------------QUERY SELECTORS---------------------------
 
@@ -426,7 +426,11 @@ function addToPantry(event) {
   }
   postData(restructuredPantryObj)
   // add a .then here to call displayPantryView()
-
+  getData('http://localhost:3001/api/v1/users')
+      .then(data => {
+        usersData = data[0].usersData
+      })
+      .then(() => displayPantryView())
 }
 
 function displayPantryView() {
