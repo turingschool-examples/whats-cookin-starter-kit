@@ -5,7 +5,7 @@ function getData(url) {
 }
 
 function postData(body, url) {
-  return fetch('http://localhost:3001/api/v1/users', {
+  return fetch(url, {
     method: 'POST',
     body: JSON.stringify(body),
     headers: {

@@ -413,29 +413,45 @@ const tableSelect = document.querySelector('#table-select')
 const tableButtonAdd = document.querySelector('#table-button-add')
 
 table.addEventListener('click', (event) => {
-  let inputValue
-  let id
-  let restructuredPantryObj
+
   if (event.target.id === 'table-button-add') {
-    inputValue = Number(event.target.parentNode.querySelector('select').value)
-    id = Number(event.target.classList.value)
-    restructuredPantryObj = {
-      userID: user.id,
-      ingredientID: id,
-      ingredientModification: inputValue
-    }
+    let inputValue = Number(event.target.parentNode.querySelector('select').value)
+    let id = Number(event.target.classList.value)
+    let restructuredPantryObj = structurePost(user.id, id, inputValue)
+
     postData(restructuredPantryObj, 'http://localhost:3001/api/v1/users')
-        .then(data => {
-          usersData = data
-          user = new User(updateUser(), recipeRepository.allIngredients)
-          displayPantryView()
-        })
-      } else { return }
-    })
+      .then(data => {
+        usersData = data
+        user = new User(updateUser(), recipeRepository.allIngredients)
+        displayPantryView()
+      })
+  } else { return }
+})
 
 function updateUser() {
   return usersData.find((updatedUser) => {
     return user.id === updatedUser.id
+  })
+}
+
+function structurePost(userID, ingredientID, value) {
+  return {
+    userID: userID,
+    ingredientID: ingredientID,
+    ingredientModification: value
+  }
+}
+
+function cookRecipe(recipe) {
+  let data
+  recipe.ingredients.forEach(ingredient => {
+    let body = structurePost(user.id, ingredient.id, ingredient.amount)
+    data = postData(body, 'http://localhost:3001/api/v1/users')
+  })
+  .then(() => {
+    usersData = data
+    user = new User(updateUser(), recipeRepository.allIngredients)
+    displayPantryView()
   })
 }
 
