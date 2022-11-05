@@ -442,9 +442,15 @@ function structurePost(userID, ingredientID, value) {
 }
 
 function cookRecipe(recipe) {
+  let data
   recipe.ingredients.forEach(ingredient => {
     let body = structurePost(user.id, ingredient.id, ingredient.amount)
-    postData(body, 'http://localhost:3001/api/v1/users')
+    data = postData(body, 'http://localhost:3001/api/v1/users')
+  })
+  .then(() => {
+    usersData = data
+    user = new User(updateUser(), recipeRepository.allIngredients)
+    displayPantryView()
   })
 }
 
