@@ -13,6 +13,7 @@ function postData(body) {
     headers: {
       'Content-Type': 'application/json'
     }
-  })
+  })   
 }
-export {getData, postData} 
+
+export { getData, postData } 

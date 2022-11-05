@@ -52,9 +52,10 @@ function fetchData(urls) {
   Promise.all([getData(urls[0]), getData(urls[1]),
   getData(urls[2])])
     .then(data => {
-      usersData = data[0].usersData
-      recipesData = data[1].recipeData
-      ingredientsData = data[2].ingredientsData
+      // console.log(data[0])
+      usersData = data[0]
+      recipesData = data[1]
+      ingredientsData = data[2]
       initPage()
     })
 }
@@ -410,36 +411,45 @@ const table = document.querySelector('table')
 const tableSelect = document.querySelector('#table-select')
 const tableButtonAdd = document.querySelector('#table-button-add')
 
-table.addEventListener('click', addToPantry)
-
-function addToPantry(event) {
+table.addEventListener('click', (event) => {
+  // console.log(event.target.id)
   let inputValue
-  let id 
+  let id
+  let restructuredPantryObj
   if (event.target.id === 'table-button-add') {
-    inputValue = event.target.parentNode.querySelector('select').value
-    id = event.target.classList.value
-  }
-  restructuredPantryObj = {
-    userID: user.id,
-    ingredientID: id, 
-    amount: inputValue 
-  }
-  postData(restructuredPantryObj)
-  // add a .then here to call displayPantryView()
-  getData('http://localhost:3001/api/v1/users')
-      .then(data => {
-        usersData = data[0].usersData
-      })
-      .then(() => displayPantryView())
+    inputValue = Number(event.target.parentNode.querySelector('select').value)
+    id = Number(event.target.classList.value)
+    restructuredPantryObj = {
+      userID: user.id,
+      ingredientID: id,
+      ingredientModification: inputValue
+    }
+    postData(restructuredPantryObj)
+      .then(getData('http://localhost:3001/api/v1/users')
+        .then(data => {
+          usersData = data
+          user = new User(updateUser(), recipeRepository.allIngredients)
+        }))
+      }
+      // displayPantryView()
+      // inputValue = 0
+    })
+
+function updateUser() {
+  return usersData.find((updatedUser) => {
+    return user.id === updatedUser.id
+  })
 }
 
 function displayPantryView() {
-  console.log(user.pantry[0])
+  table.innerHTML = ''
+  table.innerHTML += `<th>Ingredient</th><th>Current quantity</th><th>Amount to add</th>`
+
   const findMissingIngredients = recipeRepository.allIngredients.forEach((ingredient) => {
-    const b = user.pantry.find((pantryItem) => {
+    const missingIngredient = user.pantry.find((pantryItem) => {
       return ingredient.id === pantryItem.id
     })
-    if (b == null) {
+    if (missingIngredient == null) {
       user.pantry.push({
         amount: 0,
         id: ingredient.id,
@@ -452,7 +462,7 @@ function displayPantryView() {
   const sortedPantry = user.pantry.sort((a, b) => {
     return a.amount - b.amount
   })
-  
+
   return sortedPantry.forEach((pantryItem) => {
     table.innerHTML += `
       <tr>
