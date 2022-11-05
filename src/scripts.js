@@ -15,6 +15,7 @@ const myRecipesButton = document.getElementById('button--my-recipes');
 const saveRecipeButton = document.getElementById('button--save-recipe');
 const removeRecipeButton = document.getElementById('button--remove-recipe');
 const allRecipesButton = document.getElementById('button--all-recipes');
+const cookRecipeButton = document.getElementById('button--cook-recipe');
 const ingredientForm = document.getElementById('form--ingredients');
 const searchField = document.getElementById('input--search');
 const filterField = document.getElementById('input--filter');
@@ -160,6 +161,12 @@ removeRecipeButton.addEventListener('click', () => {
     user.removeRecipeFromRecipesToCook(currentRecipe);
     displaySavedRecipes();
 });
+
+cookRecipeButton.addEventListener('click', () => {
+
+
+    
+})
 
 filterField.addEventListener('input', (event) => {
     displayFilteredRecipes(event);
