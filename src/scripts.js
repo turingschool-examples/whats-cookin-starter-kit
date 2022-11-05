@@ -66,6 +66,7 @@ function initPage() {
   initUser()
   displayWelcomeMessage()
   displayFeaturedRecipe()
+  displayPantryView()
   
   //FETCH API POST TESTING DATA BELOW
   fakePost = { userID: 17, ingredientID: 9152, ingredientModification: 5}
@@ -404,3 +405,25 @@ function showFeaturedRecipe() {
   logoImage.style.width = '38%'
   pantryParent.classList.add('hidden')
 }
+
+const table = document.querySelector('table')
+
+function displayPantryView() {
+  // console.log(user.pantry[0])
+  const sortedPantry = user.pantry.sort((a, b) => {
+    return a.amount - b.amount 
+  })
+  return sortedPantry.forEach((pantryItem) => {
+    table.innerHTML += `
+      <tr>
+        <td id="table-col-name">${pantryItem.name}</td>
+        <td id="table-col-quantity">${pantryItem.amount}</td>
+        <td id="table-col-select"><select class="" id="table-select"><option></option></select><button id="table-button-add">Add</button></td>
+      </tr>
+    `
+
+}) 
+}
+
+
+
