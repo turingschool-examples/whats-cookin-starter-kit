@@ -67,10 +67,10 @@ function initPage() {
   displayWelcomeMessage()
   displayFeaturedRecipe()
   displayPantryView()
-  
+
   //FETCH API POST TESTING DATA BELOW
-  fakePost = { userID: 17, ingredientID: 9152, ingredientModification: 5}
-  postData(fakePost).then(response => {return response.json()}).then(response => console.log("HERE IS THE RESPONSE:",response))
+  fakePost = { userID: 17, ingredientID: 9152, ingredientModification: 5 }
+  postData(fakePost).then(response => { return response.json() }).then(response => console.log("HERE IS THE RESPONSE:", response))
 
   MicroModal.init({
     openClass: 'is-open',
@@ -409,10 +409,25 @@ function showFeaturedRecipe() {
 const table = document.querySelector('table')
 
 function displayPantryView() {
-  // console.log(user.pantry[0])
-  const sortedPantry = user.pantry.sort((a, b) => {
-    return a.amount - b.amount 
+  console.log(user.pantry[0])
+  const findMissingIngredients = recipeRepository.allIngredients.forEach((ingredient) => {
+    const b = user.pantry.find((pantryItem) => {
+      return ingredient.id === pantryItem.id
+    })
+    if (b == null) {
+      user.pantry.push({
+        amount: 0,
+        id: ingredient.id,
+        name: ingredient.name,
+        unit: ingredient.unit,
+      })
+    }
   })
+
+  const sortedPantry = user.pantry.sort((a, b) => {
+    return a.amount - b.amount
+  })
+  
   return sortedPantry.forEach((pantryItem) => {
     table.innerHTML += `
       <tr>
@@ -421,8 +436,7 @@ function displayPantryView() {
         <td id="table-col-select"><select class="" id="table-select"><option></option></select><button id="table-button-add">Add</button></td>
       </tr>
     `
-
-}) 
+  })
 }
 
 

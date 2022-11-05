@@ -167,18 +167,13 @@ header {
   width: 90%;
   aspect-ratio: 5 / 2;
   border-radius: 5px;
-  /* justify-content: center; */
   overflow: scroll;
 }
 
 table {
-  /* position: relative; */
-  /* display: flex; */
-  /* justify-content: center; */
-  /* margin: 2px; */
+ 
   border-collapse: collapse;
   border-spacing: 0;
-  /* border-radius: 12px, 12px, 0, 0; */
   height: auto;
   width: 100%;
   text-align: center;
@@ -196,6 +191,10 @@ table {
 #table-col-select:hover {
   color: #c84b31;
   border-bottom: 2px solid #c84b31;
+}
+
+#table-select {
+  width: 50%;
 }
 
 #table-button-add {
