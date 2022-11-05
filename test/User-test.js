@@ -3,7 +3,7 @@ import Recipe from '../src/classes/Recipe'
 import RecipeRepository from '../src/classes/RecipeRepository'
 import ingredientsData from '../src/data/ingredients'
 import recipeData from '../src/data/recipes'
-import { testPantry, usersData } from '../src/data/testData'
+import { testComparison, testPantry, usersData } from '../src/data/testData'
 import { expect } from 'chai'
 
 describe('User', () => {
@@ -36,6 +36,11 @@ describe('User', () => {
     user.addRecipeToFavorites(recipe)
     
     expect(user.favoriteRecipes[0]).to.eql(recipe)
+  })
+
+  it('should be able to compare pantry to a recipe\'s ingredients', () => {
+    let comparison = user.compareIngredients(recipe)
+    expect(comparison).to.eql(testComparison)
   })
 
   
