@@ -1,3 +1,87 @@
+const testComparison = {
+  userHas: [
+    {
+      amount: 1.5,
+      estimatedCostInCents: 142,
+      id: 20081,
+      name: 'wheat flour',
+      unit: 'cups'
+    },
+    {
+      amount: 0.5,
+      estimatedCostInCents: 582,
+      id: 18372,
+      name: 'bicarbonate of soda',
+      unit: 'teaspoon'
+    },
+    {
+      amount: 1,
+      estimatedCostInCents: 472,
+      id: 1123,
+      name: 'eggs',
+      unit: 'large'
+    },
+    {
+      amount: 0.5,
+      estimatedCostInCents: 902,
+      id: 19335,
+      name: 'sucrose',
+      unit: 'cup'
+    },
+    {
+      amount: 0.5,
+      estimatedCostInCents: 280,
+      id: 2047,
+      name: 'salt',
+      unit: 'teaspoon'
+    },
+    {
+      amount: 0.5,
+      estimatedCostInCents: 617,
+      id: 1145,
+      name: 'unsalted butter',
+      unit: 'cup'
+    },
+    {
+      amount: 0.5,
+      estimatedCostInCents: 926,
+      id: 2050,
+      name: 'vanilla',
+      unit: 'teaspoon'
+    }
+  ],
+  userNeeds: [
+    {
+      amount: 3,
+      estimatedCostInCents: 660,
+      id: 19206,
+      name: 'instant vanilla pudding',
+      unit: 'tablespoons'
+    },
+    {
+      amount: 0.5,
+      estimatedCostInCents: 559,
+      id: 19334,
+      name: 'brown sugar',
+      unit: 'cup'
+    },
+    {
+      amount: 24,
+      estimatedCostInCents: 528,
+      id: 1012047,
+      name: 'fine sea salt',
+      unit: 'servings'
+    },
+    {
+      amount: 2,
+      estimatedCostInCents: 253,
+      id: 10019903,
+      name: 'semi sweet chips',
+      unit: 'cups'
+    }
+  ]
+}
+
 const testPantry = [
   {
     "id": 11297,
@@ -3292,6 +3376,7 @@ const usersData = [
 ]
 
 module.exports = {
+  testComparison,
   testPantry,
   testIngredients,
   ingredientsData, 
