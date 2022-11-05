@@ -182,10 +182,8 @@ ingredientForm.addEventListener('click', (event) => {
     if (event.target.id === 'submit') {
         let ingredientName = event.currentTarget.elements.ingredient.value
         let addedIngredient = ingredientsArray.find(ingredient => ingredient.name === ingredientName)
-        console.log("added ingredient: ", addedIngredient)
         //addedIngredient is an object directly from the ingredientsArray => { ingredient: 11297, amount: 4 }
         let amount = parseInt(event.currentTarget.elements.quantity.value)
-        console.log("amount: ", amount)
         if (!addedIngredient || !amount) {
             addIngredientTitle.style.color = 'red';
             addIngredientTitle.innerText = 'Please complete all fields!'
@@ -196,7 +194,6 @@ ingredientForm.addEventListener('click', (event) => {
                 body: JSON.stringify({"userID": user.id, "ingredientID": addedIngredient.id, "ingredientModification": amount})
             })
                 .then((response) => {
-                    console.log(response)
                     if (!response.ok) {
                         throw new Error('Please select a valid ingredient and/or quantity.')
                     }
@@ -207,9 +204,11 @@ ingredientForm.addEventListener('click', (event) => {
                     user.addIngredientToPantry(addedIngredient, amount);
                     addIngredientTitle.style.color = 'black';
                     addIngredientTitle.innerText = "Ingredient Added!!";
+                    displayPantry();
                     setTimeout(() => {
                         addIngredientTitle.innerText = 'Add an ingredient!'
                     }, 2500)
+
                 }) 
                 .catch(error => {
                     addIngredientTitle.style.color = 'red';
@@ -217,7 +216,6 @@ ingredientForm.addEventListener('click', (event) => {
                 })
             
         }
-        displayPantry();
     }
 })
 
