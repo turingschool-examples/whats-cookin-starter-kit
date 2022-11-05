@@ -28,4 +28,14 @@ describe('RecipeRepository', () => {
     expect(recipeRepository.featuredRecipe).to.be.an.instanceOf(Recipe)
     expect(recipeRepository.getFeaturedRecipe()).to.be.an.instanceOf(Recipe)
   })
+
+  it('should have a list of all possible ingredients', () => {
+    for (let i = 0; i < recipeRepository.allIngredients; i++) {
+      let ingredient = recipeRepository.allIngredients[i]
+      let name = recipeRepository.allIngredients[i].name;
+      let unit = recipeRepository.allIngredients[i].unit
+      expect(!!name).to.equal(true)
+      expect(ingredient.hasOwnProperty(unit)).to.equal(true)
+    }
+  })
 })
