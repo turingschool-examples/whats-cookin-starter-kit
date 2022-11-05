@@ -182,7 +182,6 @@ ingredientForm.addEventListener('click', (event) => {
     if (event.target.id === 'submit') {
         let ingredientName = event.currentTarget.elements.ingredient.value
         let addedIngredient = ingredientsArray.find(ingredient => ingredient.name === ingredientName)
-        //addedIngredient is an object directly from the ingredientsArray => { ingredient: 11297, amount: 4 }
         let amount = parseInt(event.currentTarget.elements.quantity.value)
         if (!addedIngredient || !amount) {
             addIngredientTitle.style.color = 'red';
@@ -191,7 +190,7 @@ ingredientForm.addEventListener('click', (event) => {
             fetch('http://localhost:3001/api/v1/users', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({"userID": user.id, "ingredientID": addedIngredient.id, "ingredientModification": amount})
+                body: JSON.stringify({ "userID": user.id, "ingredientID": addedIngredient.id, "ingredientModification": amount })
             })
                 .then((response) => {
                     if (!response.ok) {
@@ -200,7 +199,6 @@ ingredientForm.addEventListener('click', (event) => {
                     return response.json()
                 })
                 .then((response) => {
-                    console.log(response)
                     user.addIngredientToPantry(addedIngredient, amount);
                     addIngredientTitle.style.color = 'black';
                     addIngredientTitle.innerText = "Ingredient Added!!";
@@ -209,12 +207,12 @@ ingredientForm.addEventListener('click', (event) => {
                         addIngredientTitle.innerText = 'Add an ingredient!'
                     }, 2500)
 
-                }) 
+                })
                 .catch(error => {
                     addIngredientTitle.style.color = 'red';
                     addIngredientTitle.innerText = `${error.message}`
                 })
-            
+
         }
     }
 })
