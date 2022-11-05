@@ -3376,6 +3376,7 @@ const usersData = [
 ]
 
 module.exports = {
+  testComparison,
   testPantry,
   testIngredients,
   ingredientsData, 

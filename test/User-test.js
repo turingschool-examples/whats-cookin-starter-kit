@@ -38,10 +38,18 @@ describe('User', () => {
     expect(user.favoriteRecipes[0]).to.eql(recipe)
   })
 
+  it('should have properly formatted ingredients', () => {
+    for (let i = 0; i < user.pantry; i++) {
+      let ingredient = user.pantry[i]
+      let name = user.pantry[i].name;
+      let unit = user.pantry[i].unit
+      expect(!!name).to.equal(true)
+      expect(ingredient.hasOwnProperty(unit)).to.equal(true)
+  }
+})
+
   it('should be able to compare pantry to a recipe\'s ingredients', () => {
     let comparison = user.compareIngredients(recipe)
     expect(comparison).to.eql(testComparison)
   })
-
-  
 })
