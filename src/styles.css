@@ -162,10 +162,31 @@ header {
 }
 
 .ingredient-container {
+  display: flex;
   background-color: white;
   width: 90%;
   aspect-ratio: 5 / 2;
   border-radius: 5px;
+  /* justify-content: center; */
+  overflow: scroll;
+}
+
+table {
+  /* position: relative; */
+  /* display: flex; */
+  /* justify-content: center; */
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-radius: 12px, 12px, 0, 0;
+  height: auto;
+  width: 100%;
+  text-align: center;
+}
+
+th, td {
+  border-bottom: 2px solid black;
+  color: #161616;
+  padding: 5px;
 }
 
 #logo {
