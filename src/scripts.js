@@ -1,11 +1,11 @@
 //  IMPORTS LIVE HERE
 import './styles.css';
-import fetchData from './apiCalls';
 import './images/turing-logo.png';
 import './images/cooking.png';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 import Pantry from './classes/Pantry';
+import fetchData from './apiCalls';
 
 
 //  QUERYSELECTORS LIVE HERE
@@ -74,6 +74,14 @@ function promises() {
     })
 }
 
+// POSTS LIVE HERE  
+function addToUserPantry() {
+
+}
+
+function removeFromUserPantry() {
+
+}
 
 //  EVENT LISTENERS LIVE HERE
 homeButton.addEventListener('click', () => {
@@ -172,20 +180,40 @@ searchFieldSaved.addEventListener('input', (event) => {
 ingredientForm.addEventListener('click', (event) => {
     event.preventDefault()
     if (event.target.id === 'submit') {
-        let addedIngredient = ingredientsArray.find(ingredient => ingredient.name === event.currentTarget.elements.ingredient.value)
+        let ingredientName = event.currentTarget.elements.ingredient.value
+        let addedIngredient = ingredientsArray.find(ingredient => ingredient.name === ingredientName)
         let amount = parseInt(event.currentTarget.elements.quantity.value)
         if (!addedIngredient || !amount) {
-            addIngredientTitle.style.color = 'red'; 
+            addIngredientTitle.style.color = 'red';
             addIngredientTitle.innerText = 'Please complete all fields!'
         } else {
-            addIngredientTitle.style.color = 'black'; 
-            addIngredientTitle.innerText = "Ingredient Added!!";
-            setTimeout(() => {
-              addIngredientTitle.innerText = 'Add an ingredient!'
-            }, 2500)
-            user.addIngredientToPantry(addedIngredient, amount);
+            fetch('http://localhost:3001/api/v1/users', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ "userID": user.id, "ingredientID": addedIngredient.id, "ingredientModification": amount })
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Please select a valid ingredient and/or quantity.')
+                    }
+                    return response.json()
+                })
+                .then((response) => {
+                    user.addIngredientToPantry(addedIngredient, amount);
+                    addIngredientTitle.style.color = 'black';
+                    addIngredientTitle.innerText = "Ingredient Added!!";
+                    displayPantry();
+                    setTimeout(() => {
+                        addIngredientTitle.innerText = 'Add an ingredient!'
+                    }, 2500)
+
+                })
+                .catch(error => {
+                    addIngredientTitle.style.color = 'red';
+                    addIngredientTitle.innerText = `${error.message}`
+                })
+
         }
-        displayPantry();
     }
 })
 
@@ -303,7 +331,7 @@ const displayFilteredRecipes = (event) => {
         });
         displayAllRecipes();
         return;
-    } 
+    }
     const filteredRecipes = recipeRepoClass.filteredByTag(event.target.value);
     if (filteredRecipes.length === 0) {
         allRecipesTitle.innerText = 'No recipes found'
@@ -370,7 +398,7 @@ const displaySearchedRecipes = (event) => {
         });
         displayAllRecipes();
         return;
-    } 
+    }
 
     const filteredRecipes = recipeRepoClass.filteredByName(event.target.value);
     if (filteredRecipes.length === 0) {
@@ -446,7 +474,7 @@ const populateIngredientList = () => {
     });
 
     ingredientsArray.forEach(ingredient => {
-    ingredientList.innerHTML += `<option value="${ingredient.name}"></option>`
+        ingredientList.innerHTML += `<option value="${ingredient.name}"></option>`
     });
 }
 
@@ -462,8 +490,24 @@ const displayPantry = () => {
         };
     });
     pantryContents.forEach(ingredient => {
-         pantryTableBody.innerHTML += `<tr><td>${ingredient.name}</td><td>${ingredient.amount}</td><td>${ingredient.unit}</td></tr>`
+        pantryTableBody.innerHTML += `<tr><td>${ingredient.name}</td><td>${ingredient.amount}</td><td>${ingredient.unit}</td></tr>`
     });
 }
+
+function displayIngredientResponse(event) {
+    if (!addedIngredient || !amount) {
+        addIngredientTitle.style.color = 'red';
+        addIngredientTitle.innerText = 'Please complete all fields!'
+    } else {
+        addIngredientTitle.style.color = 'black';
+        addIngredientTitle.innerText = "Ingredient Added!!";
+        setTimeout(() => {
+            addIngredientTitle.innerText = 'Add an ingredient!'
+        }, 2500)
+        user.addIngredientToPantry(addedIngredient, amount);
+    }
+    displayPantry();
+}
+
 
 window.addEventListener('load', promises)

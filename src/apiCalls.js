@@ -6,3 +6,5 @@ let fetchData = (endPoint) => {
 
  export default fetchData;
 
+
+//{ userID: <number>, ingredientID: <number>, ingredientModification: <number> }
