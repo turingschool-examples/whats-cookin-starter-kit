@@ -5,7 +5,7 @@ import './images/cooking.png';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 import Pantry from './classes/Pantry';
-import { fetchData, postData } from './apiCalls';
+import fetchData from './apiCalls';
 
 
 //  QUERYSELECTORS LIVE HERE
