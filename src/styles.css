@@ -404,6 +404,7 @@ select:focus {
 
 .modal-bookmark-div {
   display: flex;
+  width: 100%;
 }
 
 .modal-bookmark-icon {
@@ -493,6 +494,69 @@ select:focus {
   margin-right: 0;
 }
 
+.cook-this-button {
+  background-color: #C84B31;
+  color: white;
+  border: 1px solid rgb(22 22 22 / 11%);
+  border-radius: 5px;
+  width: 20%;
+}
+
+.tooltip {
+  display:inline-block;
+  position:relative;  
+  text-align:center;
+  margin-left: auto;
+}
+
+.tooltip .left {
+  min-width:20vw; 
+  min-height: 10vh;
+  top:50%;
+  right:100%;
+  margin-right:20px;
+  transform:translate(0, -50%);
+  padding:10px 20px;
+  color:#161616;
+  text-align: left;
+  background-color:#f7f3e9;
+  font-weight:normal;
+  font-size:13px;
+  border-radius:8px;
+  position:absolute;
+  z-index:99999999;
+  box-sizing:border-box;
+  border:1px solid #16161650;box-shadow:0 1px 8px rgba(0,0,0,0.5);
+  display:none;
+}
+
+.tooltip:hover .left {
+  display:block;
+}
+
+.tooltip .left i {
+  position:absolute;
+  top:50%;
+  left:100%;
+  margin-top:-12px;
+  width:12px;
+  height:24px;
+  overflow:hidden;
+}
+
+.tooltip .left i::after {
+  content:'';
+  position:absolute;
+  width:12px;
+  height:12px;
+  left:0;
+  top:50%;
+  transform:translate(-50%,-50%) rotate(-45deg);
+  background-color:#f7f3e9;
+  border:1px solid #16161650;
+  box-shadow:0 1px 8px rgba(0,0,0,0.5);
+}
+
 /* ---------------------- MEDIA QUERIES ---------------------- */
 /* NOTE: keep media queries at the bottom */
 
@@ -564,4 +628,8 @@ select:focus {
     width: 84%;
     padding: 40px;
   }
+}
+
+.hidden { 
+  display: none;
 }
