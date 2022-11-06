@@ -5,7 +5,7 @@ import './images/cooking.png';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 import Pantry from './classes/Pantry';
-import {fetchData, reduceIngredientsFromCooking } from './apiCalls';
+import { fetchData, reduceIngredientsFromCooking } from './apiCalls';
 
 
 //  QUERYSELECTORS LIVE HERE
@@ -163,54 +163,24 @@ removeRecipeButton.addEventListener('click', () => {
     displaySavedRecipes();
 });
 
-
-
 cookRecipeButton.addEventListener('click', () => {
-    console.log('current Recipe: ', currentRecipe.ingredients)
-
     let missingIngredients = user.pantry.checkIngredients(currentRecipe)
-    console.log('Missing ingredients: ', missingIngredients)
 
     if (missingIngredients.length === 0) {
-       articleText.innerText = 'Let\'s get cookin\'!'
-       currentRecipe.ingredients.forEach(ingredient => {
-        reduceIngredientsFromCooking(user, ingredient)
-        user.pantry.pantry.forEach(userIngredient => {
-            if (userIngredient.ingredient === ingredient.id) {
-                userIngredient.amount -= ingredient.quantity.amount
-            }
+        articleText.innerText = 'Let\'s get cookin\'!'
+        currentRecipe.ingredients.forEach(ingredient => {
+            reduceIngredientsFromCooking(user, ingredient)
+            user.pantry.pantry.forEach(userIngredient => {
+                if (userIngredient.ingredient === ingredient.id) {
+                    userIngredient.amount -= ingredient.quantity.amount
+                }
+            })
         })
-    })
-    console.log('User pantry: ', user.pantry)
-    console.log('User pantry dot pantry', user.pantry.pantry)
-
-    //    update the pantry ingredients amounts
-        // currentRecipe.ingredients
-    // If the user has more of the ingredient than is needed, reduce the amount of the ingredient in the user's pantry
-    // Store the update ingredient as a variable
-    // The post the updated ingredient variable to the server (via a fetch post)
-    // The update the DOM display from that updated ingredient variable
-
-
-    // If the user has exactly the amount needed, then remove the entire ingredient object from the array (via fetch delete)
-
-
-
-
     } else {
         articleText.innerText = 'First, here\'s your shopping list: '
         // populate missing ingredients to the dom
     }
-
-
 })
-
-
-
-
-
-
-
 
 filterField.addEventListener('input', (event) => {
     displayFilteredRecipes(event);
@@ -307,9 +277,6 @@ const displayAllRecipes = () => {
         };
     });
 };
-
-
-
 
 const displaySavedRecipes = () => {
     savedRecipesLists.forEach(list => {

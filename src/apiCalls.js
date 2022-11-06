@@ -16,9 +16,8 @@ let reduceIngredientsFromCooking = (user, ingredient) => {
             }
             return response.json()
         })
+
+        // Need to finish this with a catch.
 }
 
 export { fetchData, reduceIngredientsFromCooking }
-
-
-//{ userID: <number>, ingredientID: <number>, ingredientModification: <number> }
