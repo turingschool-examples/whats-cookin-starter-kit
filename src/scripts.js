@@ -327,7 +327,7 @@ function updateModalButton() {
   let ingredientsComparisonObj = user.compareIngredients(currentlyViewedRecipe)
   modalCookButton.setAttribute('recipe-id', `${currentlyViewedRecipe.id}`)
   if (ingredientsComparisonObj.userNeeds.length) {
-    modalCookButton.classList.add('add-ingredients-button')
+    modalCookButton.className = "cook-this-button add-ingredients-button tooltip"
     modalCookButton.innerHTML = `Add Ingredients
     <div class="left">
         <p>You don't have the necessary ingredients.</p>
@@ -335,6 +335,7 @@ function updateModalButton() {
         <i></i>
     </div>`
   } else {
+    modalCookButton.className = "cook-this-button tooltip"
     modalCookButton.innerHTML = `Cook Recipe
     <div class="left">
         <p>Click to cook recipe and remove required ingredients from your pantry.</p>
