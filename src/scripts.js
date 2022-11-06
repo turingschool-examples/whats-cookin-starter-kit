@@ -165,27 +165,44 @@ removeRecipeButton.addEventListener('click', () => {
 
 
 
-
-
-
-
-
-
-
 cookRecipeButton.addEventListener('click', () => {
-    console.log('current Recipe: ', currentRecipe)
-    console.log('the method: ', user.pantry.checkIngredients(currentRecipe))
+    console.log('current Recipe: ', currentRecipe.ingredients)
+    // console.log('the method: ', user.pantry.checkIngredients(currentRecipe))
     let missingIngredients = user.pantry.checkIngredients(currentRecipe)
-    
+    console.log('Missing ingredients: ', missingIngredients)
+
     if (missingIngredients.length === 0) {
        articleText.innerText = 'Let\'s get cookin\'!'
+       currentRecipe.ingredients.forEach(ingredient => {
+        fetch('http://localhost:3001/api/v1/users', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ "userID": user.id, "ingredientID": ingredient.id, "ingredientModification": -1 * ingredient.quantity.amount })
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('This are very up messed.')
+                }
+                return response.json()
+            })
+       })
     //    update the pantry ingredients amounts
+        // currentRecipe.ingredients
+    // If the user has more of the ingredient than is needed, reduce the amount of the ingredient in the user's pantry
+    // Store the update ingredient as a variable
+    // The post the updated ingredient variable to the server (via a fetch post)
+    // The update the DOM display from that updated ingredient variable
+
+
+    // If the user has exactly the amount needed, then remove the entire ingredient object from the array (via fetch delete)
+
+
+
+
     } else {
         articleText.innerText = 'First, here\'s your shopping list: '
         // populate missing ingredients to the dom
     }
-
-
 
 
 })
