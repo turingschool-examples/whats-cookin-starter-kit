@@ -223,6 +223,20 @@ modalCookButton.addEventListener("click", (e) => {
   }
 })
 
+table.addEventListener('click', (event) => {
+  if (event.target.id === 'table-button-add') {
+    let inputValue = Number(event.target.parentNode.querySelector('select').value)
+    let id = Number(event.target.classList.value)
+    let restructuredPantryObj = structurePost(user.id, id, inputValue)
+    postData(restructuredPantryObj, 'http://localhost:3001/api/v1/users')
+      .then(data => {
+        usersData = data
+        user.pantry = user.getAllPantryIngredients(updateUser().pantry, recipeRepository.allIngredients)
+        displayPantryView()
+      })
+  } else { return }
+})
+
 // ---------------------------DOM UPDATING---------------------------
 
 function displayWelcomeMessage() {
@@ -455,22 +469,6 @@ function showFeaturedRecipe() {
   logoImage.style.width = '38%'
   pantryParent.classList.add('hidden')
 }
-
-table.addEventListener('click', (event) => {
-
-  if (event.target.id === 'table-button-add') {
-    let inputValue = Number(event.target.parentNode.querySelector('select').value)
-    let id = Number(event.target.classList.value)
-    let restructuredPantryObj = structurePost(user.id, id, inputValue)
-
-    postData(restructuredPantryObj, 'http://localhost:3001/api/v1/users')
-      .then(data => {
-        usersData = data
-        user = new User(updateUser(), recipeRepository.allIngredients)
-        displayPantryView()
-      })
-  } else { return }
-})
 
 function updateUser() {
   return usersData.find(updatedUser => {
