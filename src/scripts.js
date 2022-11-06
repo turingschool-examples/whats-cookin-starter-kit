@@ -169,9 +169,9 @@ cookRecipeButton.addEventListener('click', () => {
             })
         })
     } else {
-        articleText.innerText = 'First, here\'s your shopping list: '
-        console.log(missingIngredients[0])
-        neededIngredientList.innerHTML = `<ul>${missingIngredients}</ul>`
+        articleText.innerHTML = `First, here\'s your shopping list: ${missingIngredients}`
+        // console.log(missingIngredients[0])
+        // neededIngredientList.innerHTML = `<ul>${missingIngredients}</ul>`
     }
 })
 
