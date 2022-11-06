@@ -5,7 +5,7 @@ import './images/cooking.png';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 import Pantry from './classes/Pantry';
-import fetchData from './apiCalls';
+import {fetchData, reduceIngredientsFromCooking } from './apiCalls';
 
 
 //  QUERYSELECTORS LIVE HERE
@@ -174,17 +174,7 @@ cookRecipeButton.addEventListener('click', () => {
     if (missingIngredients.length === 0) {
        articleText.innerText = 'Let\'s get cookin\'!'
        currentRecipe.ingredients.forEach(ingredient => {
-        fetch('http://localhost:3001/api/v1/users', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "userID": user.id, "ingredientID": ingredient.id, "ingredientModification": -1 * ingredient.quantity.amount })
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('This are very up messed.')
-                }
-                return response.json()
-            })
+        reduceIngredientsFromCooking(user, ingredient)
        })
     //    update the pantry ingredients amounts
         // currentRecipe.ingredients
