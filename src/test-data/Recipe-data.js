@@ -115,7 +115,6 @@ let singleRecipe = {
         "antipasto",
         "hor d'oeuvre"
     ]
-
 }
 
 let recipe = {
@@ -359,103 +358,103 @@ let multiRecipe = [{
     "id": 678353,
     "image": "https://spoonacular.com/recipeImages/678353-556x370.jpg",
     "ingredients": [
-      {
-        "id": 1009016,
-        "quantity": {
-          "amount": 1.5,
-          "unit": "cups"
+        {
+            "id": 1009016,
+            "quantity": {
+                "amount": 1.5,
+                "unit": "cups"
+            }
+        },
+        {
+            "id": 9003,
+            "quantity": {
+                "amount": 2,
+                "unit": ""
+            }
+        },
+        {
+            "id": 20027,
+            "quantity": {
+                "amount": 1,
+                "unit": "tablespoon"
+            }
+        },
+        {
+            "id": 1002046,
+            "quantity": {
+                "amount": 1,
+                "unit": "tablespoon"
+            }
+        },
+        {
+            "id": 11215,
+            "quantity": {
+                "amount": 1,
+                "unit": "clove"
+            }
+        },
+        {
+            "id": 1012046,
+            "quantity": {
+                "amount": 1,
+                "unit": "tablespoon"
+            }
+        },
+        {
+            "id": 19911,
+            "quantity": {
+                "amount": 0.25,
+                "unit": "cup"
+            }
+        },
+        {
+            "id": 16112,
+            "quantity": {
+                "amount": 1,
+                "unit": "tablespoon"
+            }
+        },
+        {
+            "id": 10010062,
+            "quantity": {
+                "amount": 24,
+                "unit": "ounce"
+            }
+        },
+        {
+            "id": 1102047,
+            "quantity": {
+                "amount": 4,
+                "unit": "servings"
+            }
+        },
+        {
+            "id": 16124,
+            "quantity": {
+                "amount": 1,
+                "unit": "tablespoon"
+            }
+        },
+        {
+            "id": 1016168,
+            "quantity": {
+                "amount": 1,
+                "unit": "tablespoon"
+            }
         }
-      },
-      {
-        "id": 9003,
-        "quantity": {
-          "amount": 2,
-          "unit": ""
-        }
-      },
-      {
-        "id": 20027,
-        "quantity": {
-          "amount": 1,
-          "unit": "tablespoon"
-        }
-      },
-      {
-        "id": 1002046,
-        "quantity": {
-          "amount": 1,
-          "unit": "tablespoon"
-        }
-      },
-      {
-        "id": 11215,
-        "quantity": {
-          "amount": 1,
-          "unit": "clove"
-        }
-      },
-      {
-        "id": 1012046,
-        "quantity": {
-          "amount": 1,
-          "unit": "tablespoon"
-        }
-      },
-      {
-        "id": 19911,
-        "quantity": {
-          "amount": 0.25,
-          "unit": "cup"
-        }
-      },
-      {
-        "id": 16112,
-        "quantity": {
-          "amount": 1,
-          "unit": "tablespoon"
-        }
-      },
-      {
-        "id": 10010062,
-        "quantity": {
-          "amount": 24,
-          "unit": "ounce"
-        }
-      },
-      {
-        "id": 1102047,
-        "quantity": {
-          "amount": 4,
-          "unit": "servings"
-        }
-      },
-      {
-        "id": 16124,
-        "quantity": {
-          "amount": 1,
-          "unit": "tablespoon"
-        }
-      },
-      {
-        "id": 1016168,
-        "quantity": {
-          "amount": 1,
-          "unit": "tablespoon"
-        }
-      }
     ],
     "instructions": [
-      {
-        "instruction": "Season the pork chops with salt and pepper and grill or pan fry over medium high heat until cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook until the sauce thickens, about 2-5 minutes.Grill or saute the apple slices until just tender but still crisp.Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!",
-        "number": 1
-      }
+        {
+            "instruction": "Season the pork chops with salt and pepper and grill or pan fry over medium high heat until cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook until the sauce thickens, about 2-5 minutes.Grill or saute the apple slices until just tender but still crisp.Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!",
+            "number": 1
+        }
     ],
     "name": "Maple Dijon Apple Cider Grilled Pork Chops",
     "tags": [
-      "lunch",
-      "main course",
-      "main dish",
-      "dinner"
+        "lunch",
+        "main course",
+        "main dish",
+        "dinner"
     ]
 }]
 

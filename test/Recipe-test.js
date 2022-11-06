@@ -5,7 +5,6 @@ import { singleRecipe, recipe, multiRecipe } from '../src/test-data/Recipe-data'
 
 describe('Recipe', () => {
     let recipeInfo, ingredient;
-
     beforeEach(() => {
         recipeInfo = new Recipe(singleRecipe)
         ingredient = {
