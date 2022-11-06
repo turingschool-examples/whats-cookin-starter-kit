@@ -221,8 +221,7 @@ table.addEventListener('click', (event) => {
     postData(restructuredPantryObj, 'http://localhost:3001/api/v1/users')
       .then(data => {
         usersData = data
-        let userNewPantry = updateUser().pantry
-        user.pantry = user.getAllPantryIngredients(userNewPantry, recipeRepository.allIngredients)
+        user.pantry = user.getAllPantryIngredients(updateUser().pantry, recipeRepository.allIngredients)
         displayPantryView()
       })
   } else { return }
