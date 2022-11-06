@@ -205,7 +205,6 @@ modalCookButton.addEventListener("click", (e) => {
   let recipeID = e.target.getAttribute('recipe-id')
   console.log(recipeID)
   if (e.target.classList.contains("add-ingredients-button")) {
-    // MicroModal.close("modal-1")
     displayMyRecipes()
   } else {
     let recipe = recipeRepository.recipeList.find(recipe => recipe.id == recipeID)
