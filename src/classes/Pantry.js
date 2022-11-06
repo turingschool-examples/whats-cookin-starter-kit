@@ -17,10 +17,9 @@ class Pantry {
                 missingIngredients.push(neededIngredient);
             }
         })
-        
+
         return missingIngredients;
     }
-
 
     returnAllPantryContentsWithInfo(allRecipeData, allIngredientsData) {
         let ingredientsWithInfo = this.pantry.map(ingredient => {
@@ -39,18 +38,18 @@ class Pantry {
         })
         return ingredientsWithInfo;
     };
- 
+
     getIngredientNames(missingIngredients, allIngredients) {
         let result = missingIngredients.map(ingredient => {
             let foundIngredient = allIngredients.find(foundIngredient => foundIngredient.id === ingredient.id)
-            ingredient['name'] = foundIngredient.name; 
+            ingredient['name'] = foundIngredient.name;
             return ingredient;
         })
-           
+
         return result;
 
     }
-    
+
 }
 
 export default Pantry

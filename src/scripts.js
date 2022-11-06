@@ -5,7 +5,7 @@ import './images/cooking.png';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 import Pantry from './classes/Pantry';
-import fetchData from './apiCalls';
+import { fetchData, reduceIngredientsFromCooking } from './apiCalls';
 
 
 //  QUERYSELECTORS LIVE HERE
@@ -15,6 +15,7 @@ const myRecipesButton = document.getElementById('button--my-recipes');
 const saveRecipeButton = document.getElementById('button--save-recipe');
 const removeRecipeButton = document.getElementById('button--remove-recipe');
 const allRecipesButton = document.getElementById('button--all-recipes');
+const cookRecipeButton = document.getElementById('button--cook-recipe');
 const ingredientForm = document.getElementById('form--ingredients');
 const searchField = document.getElementById('input--search');
 const filterField = document.getElementById('input--filter');
@@ -44,6 +45,7 @@ const savedRecipesList3 = document.getElementById('list--saved-recipes-20-29');
 const allRecipesLists = [allRecipes0to9, allRecipes10to19, allRecipes20to29, allRecipes30to39, allRecipes40to49];
 const savedRecipesLists = [savedRecipesList1, savedRecipesList2, savedRecipesList3];
 const recipeTitle = document.getElementById('title--recipe');
+const articleText = document.getElementById('text--article');
 
 // GLOBAL VARIABLES LIVE HERE
 let user;
@@ -161,6 +163,25 @@ removeRecipeButton.addEventListener('click', () => {
     displaySavedRecipes();
 });
 
+cookRecipeButton.addEventListener('click', () => {
+    let missingIngredients = user.pantry.checkIngredients(currentRecipe)
+
+    if (missingIngredients.length === 0) {
+        articleText.innerText = 'Let\'s get cookin\'!'
+        currentRecipe.ingredients.forEach(ingredient => {
+            reduceIngredientsFromCooking(user, ingredient)
+            user.pantry.pantry.forEach(userIngredient => {
+                if (userIngredient.ingredient === ingredient.id) {
+                    userIngredient.amount -= ingredient.quantity.amount
+                }
+            })
+        })
+    } else {
+        articleText.innerText = 'First, here\'s your shopping list: '
+        // populate missing ingredients to the dom
+    }
+})
+
 filterField.addEventListener('input', (event) => {
     displayFilteredRecipes(event);
 });
@@ -223,9 +244,6 @@ const show = element => element.classList.remove('hidden');
 const hide = element => element.classList.add('hidden');
 const randomIndex = array => Math.floor(Math.random() * array.length);
 
-
-
-
 function loadUser() {
     userWelcome.innerHTML = `<p>Welcome, ${user.name}!</p>`
 }
@@ -259,9 +277,6 @@ const displayAllRecipes = () => {
         };
     });
 };
-
-
-
 
 const displaySavedRecipes = () => {
     savedRecipesLists.forEach(list => {

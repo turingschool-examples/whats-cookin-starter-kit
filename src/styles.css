@@ -56,6 +56,7 @@
 }
 
 .button--save-recipe,
+.button--cook-recipe,
 .button--remove-recipe {
   display: flex;
   align-content: center;
@@ -251,6 +252,12 @@ a:active {
 }
 
 /* ---- ELEMENT SELECTORS------- */
+article {
+  display: flex;
+  justify-content: center;
+}
+
+
 body {
   background: linear-gradient(0deg, rgb(216, 237, 235) 45%, rgb(147, 217, 234) 100%);
   background-repeat: no-repeat;

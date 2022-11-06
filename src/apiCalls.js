@@ -4,7 +4,20 @@ let fetchData = (endPoint) => {
         .catch(error => console.log(error));
 }
 
- export default fetchData;
+let reduceIngredientsFromCooking = (user, ingredient) => {
+    return fetch('http://localhost:3001/api/v1/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ "userID": user.id, "ingredientID": ingredient.id, "ingredientModification": -1 * ingredient.quantity.amount })
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('This are very up messed.')
+            }
+            return response.json()
+        })
 
+        // Need to finish this with a catch.
+}
 
-//{ userID: <number>, ingredientID: <number>, ingredientModification: <number> }
+export { fetchData, reduceIngredientsFromCooking }
