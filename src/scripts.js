@@ -172,15 +172,9 @@ cookRecipeButton.addEventListener('click', () => {
         missingIngredients.forEach(missingIngredient => {
             const currentIngredient = ingredientsArray.find(ingredient => {
                 return ingredient.id === missingIngredient.id
-            })
-            // articleText.innerText = `First, here\'s your shopping list:` 
+            }) 
             articleText.innerHTML += `<div><li>${currentIngredient.name} ${missingIngredient.quantity.amount} ${missingIngredient.quantity.unit}</li></div>`
-            // console.log(currentIngredient.name)
-            // console.log("missing ingredients:", missingIngredient.quantity.amount)
-            // console.log("array: ", missingIngredients)
         })
-        // articleText.innerHTML = `First, here\'s your shopping list: ${currentIngredient}`
-        // console.log(missingIngredients)
     }
 })
 
