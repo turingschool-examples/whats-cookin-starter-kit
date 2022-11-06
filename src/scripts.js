@@ -46,8 +46,6 @@ const modalCookButton = document.getElementById("modal-cook-button")
 const table = document.querySelector('table')
 const tableSelect = document.querySelector('#table-select')
 const tableButtonAdd = document.querySelector('#table-button-add')
-let fakePost
-
 let filter = document.getElementById('filter')
 let tileNodes = allRecipesContainer.childNodes
 
@@ -57,7 +55,6 @@ function fetchData(urls) {
   Promise.all([getData(urls[0]), getData(urls[1]),
   getData(urls[2])])
     .then(data => {
-      // console.log(data[0])
       usersData = data[0]
       recipesData = data[1]
       ingredientsData = data[2]
@@ -205,10 +202,13 @@ featuredRecipeParent.addEventListener("click", event => {
 })
 
 modalCookButton.addEventListener("click", (e) => {
+  let recipeID = e.target.getAttribute('recipe-id')
+  console.log(recipeID)
   if (e.target.classList.contains("add-ingredients-button")) {
     displayMyRecipes()
   } else {
-    // invoke cookRecipe() and give user feedback that ingredients were removed/recipe cooked
+    let recipe = recipeRepository.recipeList.find(recipe => recipe.id == recipeID)
+    cookRecipe(recipe)
   }
 })
 
@@ -464,7 +464,7 @@ table.addEventListener('click', (event) => {
 })
 
 function updateUser() {
-  return usersData.find((updatedUser) => {
+  return usersData.find(updatedUser => {
     return user.id === updatedUser.id
   })
 }
@@ -478,16 +478,30 @@ function structurePost(userID, ingredientID, value) {
 }
 
 function cookRecipe(recipe) {
-  let data
-  recipe.ingredients.forEach(ingredient => {
-    let body = structurePost(user.id, ingredient.id, ingredient.amount)
-    data = postData(body, 'http://localhost:3001/api/v1/users')
+  let bodies = recipe.ingredients.map(ingredient => {
+    let amount = ingredient.amount - (ingredient.amount * 2)
+    return structurePost(user.id, ingredient.id, amount)
   })
+  for (let i = 0; i < bodies.length; i++) {
+    fetch('http://localhost:3001/api/v1/users', {method: 'POST', body: JSON.stringify(bodies[i]),
+      headers: {'Content-Type': 'application/json'}})
+    .then(response => response.json())
+    .catch(err => console.log(err))
+  }
+  fetchUsers()
+}
+
+function fetchUsers() {
+  fetch('http://localhost:3001/api/v1/users')
+  .then(response => response.json())
+  .then(data => usersData = data)
   .then(() => {
-    usersData = data
     user = new User(updateUser(), recipeRepository.allIngredients)
+    MicroModal.close("modal-1")
     displayPantryView()
+    displayMyRecipes()
   })
+  .catch(err => console.log(err));
 }
 
 function displayPantryView() {
