@@ -145,6 +145,7 @@ modalSaveRecipeButton.addEventListener("click", event => {
 const searchBarEvents = ['keyup', 'search']
 searchBarEvents.forEach(index =>
   searchBar.addEventListener(index, event => {
+    clearFilterByTag()
     let input = event.target.value
     let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
 
@@ -503,7 +504,7 @@ function fetchUsers() {
   .then(response => response.json())
   .then(data => usersData = data)
   .then(() => {
-    user = new User(updateUser(), recipeRepository.allIngredients)
+    user.pantry = new User(updateUser().pantry, recipeRepository.allIngredients)
     MicroModal.close("modal-1")
     displayPantryView()
     displayMyRecipes()
