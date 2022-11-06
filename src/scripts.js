@@ -515,6 +515,9 @@ function displayPantryView() {
             <option>5</option>
             <option>10</option>
             <option>15</option>
+            <option>25</option>
+            <option>50</option>
+            <option>100</option>
           </select>
           <button id="table-button-add" class='${pantryItem.id}'>Add</button>
         </td>
