@@ -78,7 +78,7 @@ function initPage() {
   populateTags()
   initUser()
   displayWelcomeMessage()
-  displayFeaturedRecipe()
+  renderFeaturedRecipe()
   displayPantryView()
   MicroModal.init({
     openClass: 'is-open',
@@ -194,7 +194,7 @@ function clearFilterByTag() {
 featuredRecipeParent.addEventListener("click", event => {
   let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
   let targetIsIMG = event.target.nodeName === "IMG"
-  let targetIsH1 = event.target.nodeName === "H1"
+  let targetIsH3 = event.target.nodeName === "H3"
 
   if (targetIsIMG && event.target.src.includes('unsaved')) {
     addRecipeToFavorites(event)
@@ -206,7 +206,7 @@ featuredRecipeParent.addEventListener("click", event => {
     if (viewingMyRecipes) {
       removeTileFromDisplay(event)
     }
-  } else if (targetIsH1) {
+  } else if (targetIsH3) {
     displayModal(recipeRepository.featuredRecipe)
   }
 })
@@ -246,11 +246,11 @@ function displayWelcomeMessage() {
 function createRecipeTile(recipe) {
   allRecipesContainer.innerHTML +=
     `<div class="recipe-tile" id=${recipe.id}>
-      <div class= "tile-image" style="background-image: url(${recipe.image})">
-        <img class="tile-bookmarks bookmark-nodes" id=${recipe.id} src="./images/bookmark-tiles-unsaved.png" alt="save recipe">
+      <div class="tile-image" style="background-image: url(${recipe.image})" alt="${recipe.name}">
+        <img class="tile-bookmarks bookmark-nodes" id=${recipe.id} src="./images/bookmark-tiles-unsaved.png" aria-label="bookmark ${recipe.name}">
       </div>
-      <h1>${recipe.name}</h1>
-      <h2>${recipe.tags.join(', ')}</h2>
+      <h3>${recipe.name}</h3>
+      <h4>${recipe.tags.join(', ')}</h4>
     </div>`
 }
 
@@ -276,7 +276,7 @@ function displayAllRecipes() {
   displayRecipeTiles(recipeRepository.recipeList)
   updateBookmarks()
   showFeaturedRecipe()
-  displayFeaturedRecipe()
+  renderFeaturedRecipe()
 }
 
 function displayMyRecipes() {
@@ -387,11 +387,12 @@ function displayModal(targetObject) {
   MicroModal.show("modal-1")
 }
 
-function displayFeaturedRecipe() {
+function renderFeaturedRecipe() {
   featuredRecipeParent.style.backgroundImage = `url(${recipeRepository.featuredRecipe.image})`
   featuredRecipeTitle.innerText = `${recipeRepository.featuredRecipe.name}`
   featuredRecipeTitle.id = recipeRepository.featuredRecipe.id
   featuredIcon.id = recipeRepository.featuredRecipe.id
+  featuredIcon.ariaLabel = `bookmark ${recipeRepository.featuredRecipe.name}`
 }
 
 function addRecipeToFavorites(e) {

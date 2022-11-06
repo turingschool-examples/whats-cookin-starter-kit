@@ -234,18 +234,17 @@ th {
   transition-duration: 400ms;
 }
 
+.featured-recipe-title-parent {
+  font-family: 'Libre Baskerville', serif;
+  font-size: max(1.2vw, 12px);
+  width: 40%;
+}
+
 .featured-recipe-title:hover {
   transform: scale(1.05);
   transition-duration: 400ms;
   color: rgb(200, 75, 49);
   cursor: pointer;
-
-}
-
-.featured-recipe-title-parent {
-  font-family: 'Libre Baskerville', serif;
-  font-size: max(1.2vw, 12px);
-  width: 40%;
 }
 
 .special-tag {
@@ -309,18 +308,18 @@ th {
   min-height: 65%;
 }
 
-.recipe-tile>h1 {
+.recipe-tile>h3 {
   padding: 5px 5px 0px;
   font-size: max(1vw, 15px);
 }
 
-.recipe-tile>h1:hover {
+.recipe-tile>h3:hover {
   cursor: pointer;
   text-decoration: underline;
   transition-duration: 200ms;
 }
 
-.recipe-tile>h2 {
+.recipe-tile>h4 {
   flex-basis: 20%;
   font-family: 'Work Sans', sans-serif;
   color: #16161679;
@@ -374,13 +373,16 @@ th {
   align-items: center;
   padding: 0;
   margin: 0;
-  cursor: pointer;
+  background-color: transparent;
   font-size: 12px;
+  border: none;
 }
 
 .filter-clear-button:hover {
+  cursor: pointer;
   color: #c84b31;
   border-bottom: 2px solid #c84b31;
+  
 }
 
 select {
@@ -670,9 +672,7 @@ select:focus {
   animation: fadeIn .5s;
 }
 
-/* ASK ZAC IF BELOW STYLING IS NECCESARY FOR TOOLTIP */
-
-/* .tooltip .left i {
+.tooltip .left i {
   position: absolute;
   top: 50%;
   left: 100%;
@@ -693,7 +693,7 @@ select:focus {
   background-color: #f7f3e9;
   border: 1px solid #16161650;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
-} */
+}
 
 @keyframes fadeIn {
   0% {opacity: 0;}

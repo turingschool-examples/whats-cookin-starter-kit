@@ -22,18 +22,18 @@
       </div>
       <div class="header-right-align">
         <div class="welcome-message"></div>
-        <div class="header-buttons my-recipes-button" id="my-recipes">My recipes</div>
-        <div class="header-buttons all-recipes-button selected-view" id="all-recipes">All recipes</div>
+        <div class="header-buttons my-recipes-button" id="my-recipes" aria-label="go to my recipes">My Recipes</div>
+        <div class="header-buttons all-recipes-button selected-view" id="all-recipes" aria-label="go to all recipes">All Recipes</div>
       </div>
     </nav>
   </header>
   <section class="below-header-container">
     <section class="banner">
-      <img src="./images/whats-cookin-logo.png" id="logo">
+      <img src="./images/whats-cookin-logo.png" id="logo" alt="what's cookin' logo">
       <div id="featured-recipe-parent" class="featured-recipe-parent">
         <div class="recipe-details" id="recipe-details">
           <div class="featured-recipe-title-parent">
-            <h1 class="featured-recipe-title" id=""></h1>
+            <h3 class="featured-recipe-title" id=""></h3>
           </div>
           <div class="special-tag" id="special-tag">
             <img class="featured-bookmark-icon bookmark-nodes" src="./images/bookmark-tiles-unsaved.png"
@@ -56,13 +56,13 @@
         </div>
       </div>
     </section>
-    <section class="filter-bar">
+    <nav class="filter-bar" role="filter recipes">
       <select class="filter" id="filter">
         <option>Filter recipes by type...</option>
       </select>
-      <div class="filter-clear-button disabled" id="filter-clear-button" disabled>clear filter</div>
-    </section>
-    <section class="all-recipes-container">
+      <button class="filter-clear-button disabled" id="filter-clear-button" disabled>clear filter</button>
+    </nav>
+    <section class="all-recipes-container" role="table">
     </section>
   </section>
   <div class="modal" id="modal-1" aria-hidden="true">
