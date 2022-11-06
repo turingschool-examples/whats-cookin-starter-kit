@@ -60,6 +60,16 @@ function fetchData(urls) {
       ingredientsData = data[2]
       initPage()
     })
+    .catch(error => {
+      console.log("Fetch error: ", error)
+      if(error instanceof TypeError) {
+        alert("Sorry, there is an issue with our data server. Please try again later. 🙈")
+      } else if(error instanceof ReferenceError) {
+        alert("There's an issue on our end, we're working on it. 👷")
+      } else {
+        alert("An error occured, please try again later.")
+      }
+    })
 }
 
 function initPage() {
