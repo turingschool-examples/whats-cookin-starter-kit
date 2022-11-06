@@ -46,6 +46,7 @@ const allRecipesLists = [allRecipes0to9, allRecipes10to19, allRecipes20to29, all
 const savedRecipesLists = [savedRecipesList1, savedRecipesList2, savedRecipesList3];
 const recipeTitle = document.getElementById('title--recipe');
 const articleText = document.getElementById('text--article');
+const neededIngredientList = document.getElementById('needed--ingredients')
 
 // GLOBAL VARIABLES LIVE HERE
 let user;
@@ -156,7 +157,7 @@ removeRecipeButton.addEventListener('click', () => {
 
 cookRecipeButton.addEventListener('click', () => {
     let missingIngredients = user.pantry.checkIngredients(currentRecipe)
-
+    show(articleText)
     if (missingIngredients.length === 0) {
         articleText.innerText = 'Let\'s get cookin\'!'
         currentRecipe.ingredients.forEach(ingredient => {
@@ -169,7 +170,8 @@ cookRecipeButton.addEventListener('click', () => {
         })
     } else {
         articleText.innerText = 'First, here\'s your shopping list: '
-        // populate missing ingredients to the dom
+        console.log(missingIngredients[0])
+        neededIngredientList.innerHTML = `<ul>${missingIngredients}</ul>`
     }
 })
 
