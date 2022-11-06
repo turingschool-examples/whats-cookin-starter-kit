@@ -1,20 +1,20 @@
 function getData(url) {
   return fetch(url)
-    .then(response => response.json())
-    .then(() => {
+    .then(response => {
       console.log(response)
-      if (!response.ok) {
-
-        throw Error(response.status)
+      if(response.ok) {
+        return response.json()
+      } else if(response.status === 404) {
+        return Promise.reject(' error 404')
       }
-      return response
-    })
-    .catch(error => {
-      // console.log(error)
-      if(error instanceof TypeError) {
-        alert("Sorry, there is an issue with our data server. Please try again later. 🙈")
+      // else if(response.status ) {
+      //   return Promise.reject(' some other error: ' + response.status)
+      // } 
+      else {
+        console.log(response.status)
       }
     })
+    .catch(error => alert("There was an error, please refresh the page and try again."))
 }
 
 function postData(body, url) {
