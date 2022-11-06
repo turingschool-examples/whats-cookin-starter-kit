@@ -46,7 +46,6 @@ const allRecipesLists = [allRecipes0to9, allRecipes10to19, allRecipes20to29, all
 const savedRecipesLists = [savedRecipesList1, savedRecipesList2, savedRecipesList3];
 const recipeTitle = document.getElementById('title--recipe');
 const articleText = document.getElementById('text--article');
-const neededIngredientList = document.getElementById('needed--ingredients')
 
 // GLOBAL VARIABLES LIVE HERE
 let user;
@@ -175,7 +174,7 @@ cookRecipeButton.addEventListener('click', () => {
                 return ingredient.id === missingIngredient.id
             })
             // articleText.innerText = `First, here\'s your shopping list:` 
-            articleText.innerHTML += `<div>${currentIngredient.name}, ${missingIngredient.quantity.amount}, ${missingIngredient.quantity.unit}</div>`
+            articleText.innerHTML += `<div><li>${currentIngredient.name} ${missingIngredient.quantity.amount} ${missingIngredient.quantity.unit}</li></div>`
             // console.log(currentIngredient.name)
             // console.log("missing ingredients:", missingIngredient.quantity.amount)
             // console.log("array: ", missingIngredients)
