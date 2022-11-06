@@ -524,6 +524,3 @@ function displayPantryView() {
     `
   })
 }
-
-
-
