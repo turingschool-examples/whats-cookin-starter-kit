@@ -1,5 +1,4 @@
-let userInfo =
-{
+let userInfo = {
   "name": "Saige O'Kon",
   "id": 1,
   "pantry": [
