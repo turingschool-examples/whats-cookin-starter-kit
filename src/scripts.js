@@ -36,7 +36,7 @@ const instructionsList = document.getElementById("instructions-list")
 const modalImage = document.getElementById("modal-image")
 const modalRecipeTitle = document.getElementById("modal-title")
 const modalSaveRecipeButton = document.querySelector(".modal-bookmark-icon")
-const modalTagParent = document.getElementById("modal-tag-button-parent")
+const modalTagParent = document.getElementById("modal-tag-parent")
 const myRecipesButton = document.getElementById("my-recipes")
 const searchBar = document.getElementById('search-bar')
 const welcomeMessage = document.querySelector('.welcome-message')
@@ -205,7 +205,7 @@ featuredRecipeParent.addEventListener("click", event => {
 })
 
 modalCookButton.addEventListener("click", (e) => {
-  if (e.target.classList.includes("add-ingredients-button")) {
+  if (e.target.classList.contains("add-ingredients-button")) {
     //close modal, go to pantry view
   } else {
     // invoke cookRecipe() and give user feedback that ingredients were removed/recipe cooked
@@ -245,6 +245,7 @@ function makeViewButtonActive(button) {
 }
 
 function displayAllRecipes() {
+  MicroModal.close("modal-1")
   filter.value = 'Filter recipes by type...'
   enableFilterClearButton(false)
   makeViewButtonActive(allRecipesButton)
@@ -255,6 +256,7 @@ function displayAllRecipes() {
 }
 
 function displayMyRecipes() {
+  MicroModal.close("modal-1")
   filter.value = 'Filter recipes by type...'
   enableFilterClearButton(false)
   makeViewButtonActive(myRecipesButton)
@@ -302,7 +304,7 @@ function convertDecimal(amount) {
 function updateModal(targetObject) {
   modalTagParent.innerHTML = ``
   targetObject.tags.forEach(tag => {
-    modalTagParent.innerHTML += `<button>${tag}</button>`
+    modalTagParent.innerHTML += `<p>${tag}</p>`
   })
   modalSaveRecipeButton.id = targetObject.id
   if (user.favoriteRecipes.includes(targetObject)) {

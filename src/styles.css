@@ -481,7 +481,11 @@ select:focus {
   margin-bottom: 2px;
 }
 
-.modal-tag-button-parent>button {
+.modal-tag-parent {
+  display: flex;
+}
+
+.modal-tag-parent>p {
   font-family: 'Libre Baskerville', serif;
   font-size: .8em;
   color: rgb(200, 75, 49);
