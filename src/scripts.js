@@ -319,10 +319,10 @@ function updateModal(targetObject) {
   targetObject.instructions.forEach(item => {
     instructionsList.innerHTML += `<li>${item.instruction}</li>`
   })
-  updateModalIngredients()
+  updateModalButton()
 }
 
-function updateModalIngredients() {
+function updateModalButton() {
   modalCookButton.innerHTML = ''
   let ingredientsComparisonObj = user.compareIngredients(currentlyViewedRecipe)
   modalCookButton.setAttribute('recipe-id', `${currentlyViewedRecipe.id}`)
