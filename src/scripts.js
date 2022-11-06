@@ -315,16 +315,25 @@ function updateModal(targetObject) {
   modalRecipeTitle.innerHTML = targetObject.name
   modalImage.src = targetObject.image
   modalImage.alt = targetObject.name
-  ingredientsParent.innerHTML = ``
-  targetObject.ingredients.forEach(ingredient => {
-    ingredientsParent.innerHTML += `<ul>${convertDecimal(ingredient.amount)} ${ingredient.unit} ${ingredient.name}</ul>`
-  })
+  updateModalIngredients()
   ingredientsParent.innerHTML += `<p class="total-price">Total estimated cost to make: ${targetObject.getTotalCost()}</p>`
   instructionsList.innerHTML = ``
   targetObject.instructions.forEach(item => {
     instructionsList.innerHTML += `<li>${item.instruction}</li>`
   })
   updateModalButton()
+}
+
+function updateModalIngredients() {
+  let ingredientsComparisonObj = user.compareIngredients(currentlyViewedRecipe)
+
+  ingredientsParent.innerHTML = ``
+  ingredientsComparisonObj.userHas.forEach(ingredient => {
+    ingredientsParent.innerHTML += `<ul class="user-has">${convertDecimal(ingredient.amount)} ${ingredient.unit} ${ingredient.name} </ul>`
+  })
+  ingredientsComparisonObj.userNeeds.forEach(ingredient => {
+    ingredientsParent.innerHTML += `<ul class="user-needs">${convertDecimal(ingredient.amount)} ${ingredient.unit} ${ingredient.name} </ul>`
+  })
 }
 
 function updateModalButton() {

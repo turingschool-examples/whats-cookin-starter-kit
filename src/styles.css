@@ -551,6 +551,24 @@ select:focus {
   padding: 2px;
 }
 
+.user-has {
+  color: green;
+}
+
+.user-has::after {
+  font-family: 'Material Icons';
+  content: 'done';
+}
+
+.user-needs {
+  color: red;
+}
+
+.user-needs::after {
+  font-family: 'Material Icons';
+  content: 'close';
+}
+
 .total-price {
   font-weight: 400;
   padding-top: 31px;
