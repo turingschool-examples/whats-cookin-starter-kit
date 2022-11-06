@@ -500,7 +500,4 @@ const displayPantry = () => {
     });
 }
 
-
-
-
 window.addEventListener('load', promises)
