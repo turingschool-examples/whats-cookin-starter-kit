@@ -1,4 +1,3 @@
-
 import Ingredient from '../classes/Ingredient';
 
 class Recipe {
