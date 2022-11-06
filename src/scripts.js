@@ -500,20 +500,7 @@ const displayPantry = () => {
     });
 }
 
-function displayIngredientResponse(event) {
-    if (!addedIngredient || !amount) {
-        addIngredientTitle.style.color = 'red';
-        addIngredientTitle.innerText = 'Please complete all fields!'
-    } else {
-        addIngredientTitle.style.color = 'black';
-        addIngredientTitle.innerText = "Ingredient Added!!";
-        setTimeout(() => {
-            addIngredientTitle.innerText = 'Add an ingredient!'
-        }, 2500)
-        user.addIngredientToPantry(addedIngredient, amount);
-    }
-    displayPantry();
-}
+
 
 
 window.addEventListener('load', promises)
