@@ -53,7 +53,7 @@ header {
   font-size: 15px;
 }
 
-.search-bar::-webkit-search-cancel-button{
+.search-bar::-webkit-search-cancel-button {
   filter: hue-rotate(135deg);
 }
 
@@ -127,10 +127,7 @@ header {
   border-radius: 5px;
   width: 66%;
   aspect-ratio: 2 / 1;
-  padding: 20px;
-  background-color: #e3a597;
   text-align: center;
-  border: 1px solid rgb(22 22 22 / 11%);
   border-radius: 5px;
 }
 
@@ -139,10 +136,10 @@ header {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background-color: #ECDBBA;
-  width: 90%;
+  background-color: rgb(247, 243, 233, 0.75);
+  width: 100%;
   aspect-ratio: 2 / 1;
-  border: 1px solid rgb(22 22 22 / 11%);
+  border: none;
   border-radius: 5px;
 }
 
@@ -150,15 +147,12 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
-  height: 10%;
-  background-color: white;
+  background-color: none;
+  color: #161616;
   border-radius: 5px;
-  border: 1px solid rgb(22 22 22 / 11%);
-}
-
-.pantry-text-container > h2 {
-  font-size: 100%;
+  border: none;
+  font-family: 'Libre Baskerville', serif;
+  font-size: max(1.2vw, 25px);
 }
 
 .ingredient-container {
@@ -171,17 +165,17 @@ header {
 }
 
 table {
- 
+
   border-collapse: collapse;
   border-spacing: 0;
   height: auto;
   width: 100%;
   text-align: center;
   font-family: 'Libre Baskerville', serif;
-  font-size: max(1.2vw, 12px);
+  font-size: max(1.2vw, 10px);
 }
 
- td {
+td {
   border-bottom: 1px solid rgb(22 22 22 / 11%);
   border-collapse: collapse;
   color: #161616;
@@ -200,26 +194,25 @@ table {
 
 #table-button-add {
   background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
   margin-left: 10px;
 }
 
 th {
-    position: sticky;
-    top: 0;
-    z-index: 9;
-    /* background: #fff; */
-    height: 7%;
-    font-size: max(1.2vw, 12px);
-    font-weight: normal;
-    padding: 10px;
-    background-color: gray;
-    color: white;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  height: 7%;
+  font-size: max(1.2vw, 12px);
+  font-weight: normal;
+  padding: 10px;
+  background-color: #346751;
+  color: white;
 }
 
 #logo {
@@ -245,7 +238,7 @@ th {
 .featured-recipe-title:hover {
   transform: scale(1.05);
   transition-duration: 400ms;
-  color:rgb(200, 75, 49);
+  color: rgb(200, 75, 49);
   cursor: pointer;
 
 }
@@ -253,7 +246,7 @@ th {
 .featured-recipe-title-parent {
   font-family: 'Libre Baskerville', serif;
   font-size: max(1.2vw, 12px);
-  width: 40%; 
+  width: 40%;
 }
 
 .special-tag {
@@ -331,7 +324,7 @@ th {
 .recipe-tile>h2 {
   flex-basis: 20%;
   font-family: 'Work Sans', sans-serif;
-  color:#16161679;
+  color: #16161679;
   font-size: 12px;
   font-weight: 300;
   padding: 5px;
@@ -466,7 +459,7 @@ select:focus {
 .close-modal-btn:hover {
   transform: scale(1.05);
   cursor: pointer;
-  color:rgb(200, 75, 49)
+  color: rgb(200, 75, 49)
 }
 
 .modal-content-parent {
@@ -513,7 +506,7 @@ select:focus {
   max-height: 55px;
 }
 
-.modal-bookmark-icon:hover, 
+.modal-bookmark-icon:hover,
 .tile-bookmarks:hover {
   transform: scale(1.05);
   cursor: pointer;
@@ -609,58 +602,59 @@ select:focus {
 }
 
 .tooltip {
-  display:inline-block;
-  position:relative;  
-  text-align:center;
+  display: inline-block;
+  position: relative;
+  text-align: center;
   margin-left: auto;
 }
 
 .tooltip .left {
-  min-width:20vw; 
+  min-width: 20vw;
   min-height: 10vh;
-  top:50%;
-  right:100%;
-  margin-right:20px;
-  transform:translate(0, -50%);
-  padding:10px 20px;
-  color:#161616;
+  top: 50%;
+  right: 100%;
+  margin-right: 20px;
+  transform: translate(0, -50%);
+  padding: 10px 20px;
+  color: #161616;
   text-align: left;
-  background-color:#f7f3e9;
-  font-weight:normal;
-  font-size:13px;
-  border-radius:8px;
-  position:absolute;
-  z-index:99999999;
-  box-sizing:border-box;
-  border:1px solid #16161650;box-shadow:0 1px 8px rgba(0,0,0,0.5);
-  display:none;
+  background-color: #f7f3e9;
+  font-weight: normal;
+  font-size: 13px;
+  border-radius: 8px;
+  position: absolute;
+  z-index: 99999999;
+  box-sizing: border-box;
+  border: 1px solid #16161650;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+  display: none;
 }
 
 .tooltip:hover .left {
-  display:block;
+  display: block;
 }
 
 .tooltip .left i {
-  position:absolute;
-  top:50%;
-  left:100%;
-  margin-top:-12px;
-  width:12px;
-  height:24px;
-  overflow:hidden;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -12px;
+  width: 12px;
+  height: 24px;
+  overflow: hidden;
 }
 
 .tooltip .left i::after {
-  content:'';
-  position:absolute;
-  width:12px;
-  height:12px;
-  left:0;
-  top:50%;
-  transform:translate(-50%,-50%) rotate(-45deg);
-  background-color:#f7f3e9;
-  border:1px solid #16161650;
-  box-shadow:0 1px 8px rgba(0,0,0,0.5);
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  background-color: #f7f3e9;
+  border: 1px solid #16161650;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* ---------------------- MEDIA QUERIES ---------------------- */
@@ -736,6 +730,6 @@ select:focus {
   }
 }
 
-.hidden { 
+.hidden {
   display: none;
 }

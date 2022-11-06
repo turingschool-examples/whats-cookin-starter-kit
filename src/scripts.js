@@ -43,7 +43,10 @@ const welcomeMessage = document.querySelector('.welcome-message')
 const pantryParent = document.querySelector('.pantry-parent')
 const logoImage = document.getElementById('logo')
 const modalCookButton = document.getElementById("modal-cook-button")
-// let fakePost
+const table = document.querySelector('table')
+const tableSelect = document.querySelector('#table-select')
+const tableButtonAdd = document.querySelector('#table-button-add')
+let fakePost
 
 let filter = document.getElementById('filter')
 let tileNodes = allRecipesContainer.childNodes
@@ -424,7 +427,7 @@ function filterByTag(recipes, tag) {
 
 function showPantry() {
   featuredRecipeParent.classList.add('hidden')
-  logoImage.style.width = '10%'
+  logoImage.style.width = '25%'
   pantryParent.classList.remove('hidden')
 }
 
@@ -433,10 +436,6 @@ function showFeaturedRecipe() {
   logoImage.style.width = '38%'
   pantryParent.classList.add('hidden')
 }
-
-const table = document.querySelector('table')
-const tableSelect = document.querySelector('#table-select')
-const tableButtonAdd = document.querySelector('#table-button-add')
 
 table.addEventListener('click', (event) => {
 
