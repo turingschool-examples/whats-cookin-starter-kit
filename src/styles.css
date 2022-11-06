@@ -618,7 +618,7 @@ select:focus {
 }
 
 .cook-this-button {
-  background-color: green;
+  background-color: #479976;
   color: white;
   border: 1px solid rgb(22 22 22 / 11%);
   border-radius: 5px;
