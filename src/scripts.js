@@ -16,6 +16,7 @@ let recipeRepository
 export let recipesData
 let user
 let usersData
+let currentlyViewedRecipe
 
 const ingredientsURL = 'http://localhost:3001/api/v1/ingredients'
 const recipesURL = 'http://localhost:3001/api/v1/recipes'
@@ -41,7 +42,8 @@ const searchBar = document.getElementById('search-bar')
 const welcomeMessage = document.querySelector('.welcome-message')
 const pantryParent = document.querySelector('.pantry-parent')
 const logoImage = document.getElementById('logo')
-let fakePost
+const modalCookButton = document.getElementById("modal-cook-button")
+// let fakePost
 
 let filter = document.getElementById('filter')
 let tileNodes = allRecipesContainer.childNodes
@@ -68,12 +70,6 @@ function initPage() {
   displayWelcomeMessage()
   displayFeaturedRecipe()
   displayPantryView()
-
-  //FETCH API POST TESTING DATA BELOW
-
-  fakePost = { userID: 17, ingredientID: 9152, ingredientModification: 5}
-  postData(fakePost).then(response => {return response.json()}).then(response => console.log("HERE IS THE RESPONSE:",response))
-
   MicroModal.init({
     openClass: 'is-open',
     disableScroll: true,
@@ -202,7 +198,14 @@ featuredRecipeParent.addEventListener("click", event => {
     }
   } else if (targetIsH1) {
     displayModal(recipeRepository.featuredRecipe)
+  }
+})
 
+modalCookButton.addEventListener("click", (e) => {
+  if (e.target.classList.includes("add-ingredients-button")) {
+    //close modal, go to pantry view
+  } else {
+    // invoke cookRecipe() and give user feedback that ingredients were removed/recipe cooked
   }
 })
 
@@ -316,11 +319,33 @@ function updateModal(targetObject) {
   targetObject.instructions.forEach(item => {
     instructionsList.innerHTML += `<li>${item.instruction}</li>`
   })
+  updateModalIngredients()
+}
 
+function updateModalIngredients() {
+  modalCookButton.innerHTML = ''
+  let ingredientsComparisonObj = user.compareIngredients(currentlyViewedRecipe)
+  modalCookButton.setAttribute('recipe-id', `${currentlyViewedRecipe.id}`)
+  if (ingredientsComparisonObj.userNeeds.length) {
+    modalCookButton.classList.add('add-ingredients-button')
+    modalCookButton.innerHTML = `Add Ingredients
+    <div class="left">
+        <p>You don't have the necessary ingredients.</p>
+        <p>Click to go to your pantry and add ingredients.</p>
+        <i></i>
+    </div>`
+  } else {
+    modalCookButton.innerHTML = `Cook Recipe
+    <div class="left">
+        <p>Click to cook recipe and remove required ingredients from your pantry.</p>
+        <i></i>
+    </div>`
+  }
 }
 
 function displayModal(targetObject) {
   if (!targetObject) { return }
+  currentlyViewedRecipe = targetObject
   updateModal(targetObject)
   MicroModal.show("modal-1")
 }
