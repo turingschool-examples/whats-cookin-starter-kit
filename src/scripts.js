@@ -17,6 +17,85 @@ export let recipesData
 let user
 let usersData
 let currentlyViewedRecipe
+let ingreds = [
+  {
+    amount: 3,
+    estimatedCostInCents: 660,
+    id: 19206,
+    name: 'instant vanilla pudding',
+    unit: 'tablespoons'
+  },
+  {
+    amount: 0.5,
+    estimatedCostInCents: 559,
+    id: 19334,
+    name: 'brown sugar',
+    unit: 'cup'
+  },
+  {
+    amount: 24,
+    estimatedCostInCents: 528,
+    id: 1012047,
+    name: 'fine sea salt',
+    unit: 'servings'
+  },
+  {
+    amount: 2,
+    estimatedCostInCents: 253,
+    id: 10019903,
+    name: 'semi sweet chips',
+    unit: 'cups'
+  },
+  {
+    amount: 1.5,
+    estimatedCostInCents: 142,
+    id: 20081,
+    name: 'wheat flour',
+    unit: 'cups'
+  },
+  {
+    amount: 0.5,
+    estimatedCostInCents: 582,
+    id: 18372,
+    name: 'bicarbonate of soda',
+    unit: 'teaspoon'
+  },
+  {
+    amount: 1,
+    estimatedCostInCents: 472,
+    id: 1123,
+    name: 'eggs',
+    unit: 'large'
+  },
+  {
+    amount: 0.5,
+    estimatedCostInCents: 902,
+    id: 19335,
+    name: 'sucrose',
+    unit: 'cup'
+  },
+  {
+    amount: 0.5,
+    estimatedCostInCents: 280,
+    id: 2047,
+    name: 'salt',
+    unit: 'teaspoon'
+  },
+  {
+    amount: 0.5,
+    estimatedCostInCents: 617,
+    id: 1145,
+    name: 'unsalted butter',
+    unit: 'cup'
+  },
+  {
+    amount: 0.5,
+    estimatedCostInCents: 926,
+    id: 2050,
+    name: 'vanilla',
+    unit: 'teaspoon'
+  }
+]
 
 const ingredientsURL = 'http://localhost:3001/api/v1/ingredients'
 const recipesURL = 'http://localhost:3001/api/v1/recipes'
@@ -46,8 +125,6 @@ const modalCookButton = document.getElementById("modal-cook-button")
 const table = document.querySelector('table')
 const tableSelect = document.querySelector('#table-select')
 const tableButtonAdd = document.querySelector('#table-button-add')
-let fakePost
-
 let filter = document.getElementById('filter')
 let tileNodes = allRecipesContainer.childNodes
 
@@ -57,7 +134,6 @@ function fetchData(urls) {
   Promise.all([getData(urls[0]), getData(urls[1]),
   getData(urls[2])])
     .then(data => {
-      // console.log(data[0])
       usersData = data[0]
       recipesData = data[1]
       ingredientsData = data[2]
@@ -205,10 +281,13 @@ featuredRecipeParent.addEventListener("click", event => {
 })
 
 modalCookButton.addEventListener("click", (e) => {
-  if (e.target.classList.includes("add-ingredients-button")) {
-    //close modal, go to pantry view
+  let recipeID = e.target.getAttribute('recipe-id')
+  if (e.target.classList.contains("add-ingredients-button")) {
+    MicroModal.close("modal-1")
+    displayMyRecipes()
   } else {
-    // invoke cookRecipe() and give user feedback that ingredients were removed/recipe cooked
+    let recipe = recipeRepository.recipeList.find(recipe => recipe.id = recipeID)
+    cookRecipe(recipe)
   }
 })
 
@@ -454,7 +533,7 @@ table.addEventListener('click', (event) => {
 })
 
 function updateUser() {
-  return usersData.find((updatedUser) => {
+  return usersData.find(updatedUser => {
     return user.id === updatedUser.id
   })
 }
@@ -468,16 +547,30 @@ function structurePost(userID, ingredientID, value) {
 }
 
 function cookRecipe(recipe) {
-  let data
-  recipe.ingredients.forEach(ingredient => {
-    let body = structurePost(user.id, ingredient.id, ingredient.amount)
-    data = postData(body, 'http://localhost:3001/api/v1/users')
+  let bodies = recipe.ingredients.map(ingredient => {
+    let amount = ingredient.amount - (ingredient.amount * 2)
+    return structurePost(user.id, ingredient.id, amount)
   })
+  for (let i = 0; i < bodies.length; i++) {
+    fetch('http://localhost:3001/api/v1/users', {method: 'POST', body: JSON.stringify(bodies[i]),
+      headers: {'Content-Type': 'application/json'}})
+    .then(response => response.json())
+    .then(() => fetchUsers())
+    .catch(err => console.log(err))
+  }
+}
+
+function fetchUsers() {
+  fetch('http://localhost:3001/api/v1/users')
+  .then(response => response.json())
+  .then(data => usersData = data)
   .then(() => {
-    usersData = data
     user = new User(updateUser(), recipeRepository.allIngredients)
+    MicroModal.close("modal-1")
     displayPantryView()
+    displayMyRecipes()
   })
+  .catch(err => console.log(err));
 }
 
 function displayPantryView() {
