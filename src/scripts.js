@@ -167,7 +167,7 @@ removeRecipeButton.addEventListener('click', () => {
 
 cookRecipeButton.addEventListener('click', () => {
     console.log('current Recipe: ', currentRecipe.ingredients)
-    // console.log('the method: ', user.pantry.checkIngredients(currentRecipe))
+
     let missingIngredients = user.pantry.checkIngredients(currentRecipe)
     console.log('Missing ingredients: ', missingIngredients)
 
@@ -175,7 +175,15 @@ cookRecipeButton.addEventListener('click', () => {
        articleText.innerText = 'Let\'s get cookin\'!'
        currentRecipe.ingredients.forEach(ingredient => {
         reduceIngredientsFromCooking(user, ingredient)
-       })
+        user.pantry.pantry.forEach(userIngredient => {
+            if (userIngredient.ingredient === ingredient.id) {
+                userIngredient.amount -= ingredient.quantity.amount
+            }
+        })
+    })
+    console.log('User pantry: ', user.pantry)
+    console.log('User pantry dot pantry', user.pantry.pantry)
+
     //    update the pantry ingredients amounts
         // currentRecipe.ingredients
     // If the user has more of the ingredient than is needed, reduce the amount of the ingredient in the user's pantry
