@@ -1,7 +1,20 @@
 function getData(url) {
   return fetch(url)
     .then(response => response.json())
-    .catch(error => console.log("Fetch error: ", error))
+    .then(() => {
+      console.log(response)
+      if (!response.ok) {
+
+        throw Error(response.status)
+      }
+      return response
+    })
+    .catch(error => {
+      // console.log(error)
+      if(error instanceof TypeError) {
+        alert("Sorry, there is an issue with our data server. Please try again later. 🙈")
+      }
+    })
 }
 
 function postData(body, url) {
@@ -12,7 +25,8 @@ function postData(body, url) {
       'Content-Type': 'application/json'
     }
   })
-  .then(() => getData(url))   
+  .then(() => getData(url))
+
 }
 
 export { getData, postData } 
