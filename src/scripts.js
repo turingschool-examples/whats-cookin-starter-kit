@@ -76,14 +76,7 @@ function promises() {
     })
 }
 
-// POSTS LIVE HERE  
-function addToUserPantry() {
 
-}
-
-function removeFromUserPantry() {
-
-}
 
 //  EVENT LISTENERS LIVE HERE
 homeButton.addEventListener('click', () => {
