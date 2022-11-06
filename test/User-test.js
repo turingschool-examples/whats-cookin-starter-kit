@@ -1,10 +1,11 @@
 import { expect } from 'chai';
 import User from '../src/classes/User';
 import Recipe from '../src/classes/Recipe';
-import userInfo from '../src/test-data/User-test-data';
+import { userInfo, singleRecipe1, singleRecipe2 } from '../src/test-data/User-test-data';
 
 describe('User', () => {
-  let userInfo, recipeObject1, recipeObject2, newUser, singleRecipe1, singleRecipe2;
+  console.log('User Info: ', userInfo)
+  let recipeObject1, recipeObject2, newUser;
   beforeEach(() => {
     // userInfo =
     // {

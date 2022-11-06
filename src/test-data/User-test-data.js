@@ -366,3 +366,5 @@ let userInfo =
       "dinner"
     ]
   }
+
+export { userInfo, singleRecipe1, singleRecipe2 };
