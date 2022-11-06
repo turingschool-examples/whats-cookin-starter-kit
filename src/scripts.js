@@ -45,6 +45,7 @@ const savedRecipesList3 = document.getElementById('list--saved-recipes-20-29');
 const allRecipesLists = [allRecipes0to9, allRecipes10to19, allRecipes20to29, allRecipes30to39, allRecipes40to49];
 const savedRecipesLists = [savedRecipesList1, savedRecipesList2, savedRecipesList3];
 const recipeTitle = document.getElementById('title--recipe');
+const myRecipesTitle = document.getElementById('title--my-recipes');
 const articleText = document.getElementById('text--article');
 
 // GLOBAL VARIABLES LIVE HERE
@@ -279,6 +280,13 @@ const displayAllRecipes = () => {
 };
 
 const displaySavedRecipes = () => {
+    if (user.recipesToCook.length === 0) {
+        hide(savedRecipesListsContainer);
+        hide(myRecipesTitle);
+        return
+    }
+    show(savedRecipesListsContainer);
+    show(myRecipesTitle);
     savedRecipesLists.forEach(list => {
         hide(list)
     });
