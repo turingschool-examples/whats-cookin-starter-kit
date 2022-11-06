@@ -169,9 +169,19 @@ cookRecipeButton.addEventListener('click', () => {
             })
         })
     } else {
-        articleText.innerHTML = `First, here\'s your shopping list: ${missingIngredients}`
-        // console.log(missingIngredients[0])
-        // neededIngredientList.innerHTML = `<ul>${missingIngredients}</ul>`
+        articleText.innerText = `First, here\'s your shopping list:`
+        missingIngredients.forEach(missingIngredient => {
+            const currentIngredient = ingredientsArray.find(ingredient => {
+                return ingredient.id === missingIngredient.id
+            })
+            // articleText.innerText = `First, here\'s your shopping list:` 
+            articleText.innerHTML += `<div>${currentIngredient.name}, ${missingIngredient.quantity.amount}, ${missingIngredient.quantity.unit}</div>`
+            // console.log(currentIngredient.name)
+            // console.log("missing ingredients:", missingIngredient.quantity.amount)
+            // console.log("array: ", missingIngredients)
+        })
+        // articleText.innerHTML = `First, here\'s your shopping list: ${currentIngredient}`
+        // console.log(missingIngredients)
     }
 })
 
