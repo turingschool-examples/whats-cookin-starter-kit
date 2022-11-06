@@ -203,11 +203,12 @@ featuredRecipeParent.addEventListener("click", event => {
 
 modalCookButton.addEventListener("click", (e) => {
   let recipeID = e.target.getAttribute('recipe-id')
-  console.log(recipeID)
   if (e.target.classList.contains("add-ingredients-button")) {
+    MicroModal.close("modal-1")
     displayMyRecipes()
   } else {
     let recipe = recipeRepository.recipeList.find(recipe => recipe.id == recipeID)
+    MicroModal.close("modal-1")
     cookRecipe(recipe)
   }
 })
@@ -245,7 +246,6 @@ function makeViewButtonActive(button) {
 }
 
 function displayAllRecipes() {
-  MicroModal.close("modal-1")
   filter.value = 'Filter recipes by type...'
   enableFilterClearButton(false)
   makeViewButtonActive(allRecipesButton)
@@ -256,7 +256,6 @@ function displayAllRecipes() {
 }
 
 function displayMyRecipes() {
-  MicroModal.close("modal-1")
   filter.value = 'Filter recipes by type...'
   enableFilterClearButton(false)
   makeViewButtonActive(myRecipesButton)
