@@ -206,7 +206,7 @@ featuredRecipeParent.addEventListener("click", event => {
 
 modalCookButton.addEventListener("click", (e) => {
   if (e.target.classList.contains("add-ingredients-button")) {
-    //close modal, go to pantry view
+    displayMyRecipes()
   } else {
     // invoke cookRecipe() and give user feedback that ingredients were removed/recipe cooked
   }
@@ -315,32 +315,31 @@ function updateModal(targetObject) {
   modalRecipeTitle.innerHTML = targetObject.name
   modalImage.src = targetObject.image
   modalImage.alt = targetObject.name
-  updateModalIngredients()
   ingredientsParent.innerHTML += `<p class="total-price">Total estimated cost to make: ${targetObject.getTotalCost()}</p>`
   instructionsList.innerHTML = ``
   targetObject.instructions.forEach(item => {
     instructionsList.innerHTML += `<li>${item.instruction}</li>`
   })
+  updateModalIngredients()
   updateModalButton()
 }
 
 function updateModalIngredients() {
-  let ingredientsComparisonObj = user.compareIngredients(currentlyViewedRecipe)
-
+  let ingrCompareObj = user.compareIngredients(currentlyViewedRecipe)
   ingredientsParent.innerHTML = ``
-  ingredientsComparisonObj.userHas.forEach(ingredient => {
+  ingrCompareObj.userHas.forEach(ingredient => {
     ingredientsParent.innerHTML += `<ul class="user-has">${convertDecimal(ingredient.amount)} ${ingredient.unit} ${ingredient.name} </ul>`
   })
-  ingredientsComparisonObj.userNeeds.forEach(ingredient => {
+  ingrCompareObj.userNeeds.forEach(ingredient => {
     ingredientsParent.innerHTML += `<ul class="user-needs">${convertDecimal(ingredient.amount)} ${ingredient.unit} ${ingredient.name} </ul>`
   })
 }
 
 function updateModalButton() {
   modalCookButton.innerHTML = ''
-  let ingredientsComparisonObj = user.compareIngredients(currentlyViewedRecipe)
+  let ingrCompareObj = user.compareIngredients(currentlyViewedRecipe)
   modalCookButton.setAttribute('recipe-id', `${currentlyViewedRecipe.id}`)
-  if (ingredientsComparisonObj.userNeeds.length) {
+  if (ingrCompareObj.userNeeds.length) {
     modalCookButton.className = "cook-this-button add-ingredients-button tooltip"
     modalCookButton.innerHTML = `Add Ingredients
     <div class="left">
