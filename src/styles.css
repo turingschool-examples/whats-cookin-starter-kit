@@ -256,7 +256,7 @@ th {
   justify-content: center;
   font-family: 'Libre Baskerville', serif;
   font-size: 1em;
-  background-color: #de725a;
+  background-color: #c95f49;
   color: rgb(247, 243, 233);
   width: 30%;
   aspect-ratio: 1;
@@ -423,6 +423,7 @@ select:focus {
   background-color: #000000ab;
   height: 100%;
   width: 100%;
+  animation: fadeIn .3s;
 }
 
 .modal-grandparent {
@@ -481,7 +482,11 @@ select:focus {
   margin-bottom: 2px;
 }
 
-.modal-tag-button-parent>button {
+.modal-tag-parent {
+  display: flex;
+}
+
+.modal-tag-parent>p {
   font-family: 'Libre Baskerville', serif;
   font-size: .8em;
   color: rgb(200, 75, 49);
@@ -499,6 +504,7 @@ select:focus {
 
 .modal-bookmark-div {
   display: flex;
+  align-items: center;
   width: 100%;
 }
 
@@ -547,6 +553,28 @@ select:focus {
   padding: 2px;
 }
 
+.user-has {
+  color: #438b6c;;
+}
+
+.user-has::after {
+  font-family: 'Material Icons';
+  content: 'done';
+  position: relative;
+  top: 3px;
+}
+
+.user-needs {
+  color: rgb(200, 75, 49);;
+}
+
+.user-needs::after {
+  font-family: 'Material Icons';
+  content: 'close';
+  position: relative;
+  top: 3px;
+}
+
 .total-price {
   font-weight: 400;
   padding-top: 31px;
@@ -590,11 +618,18 @@ select:focus {
 }
 
 .cook-this-button {
-  background-color: green;
+  background-color: #479976;
   color: white;
   border: 1px solid rgb(22 22 22 / 11%);
   border-radius: 5px;
   width: 20%;
+  min-height: 45px;
+}
+
+.cook-this-button:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+  transition-duration: 200ms;
 }
 
 .add-ingredients-button {
@@ -610,31 +645,35 @@ select:focus {
 
 .tooltip .left {
   min-width: 20vw;
-  min-height: 10vh;
+  height: 4vw;
   top: 50%;
   right: 100%;
   margin-right: 20px;
   transform: translate(0, -50%);
-  padding: 10px 20px;
+  padding: 13px;
   color: #161616;
-  text-align: left;
   background-color: #f7f3e9;
-  font-weight: normal;
   font-size: 13px;
-  border-radius: 8px;
+  border-radius: 4px;
   position: absolute;
   z-index: 99999999;
   box-sizing: border-box;
-  border: 1px solid #16161650;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(22, 22, 22, 0.3137254902);
+  box-shadow: 0 1px 8px rgb(0 0 0 / 50%);
   display: none;
 }
 
 .tooltip:hover .left {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  animation: fadeIn .5s;
 }
 
-.tooltip .left i {
+/* ASK ZAC IF BELOW STYLING IS NECCESARY FOR TOOLTIP */
+
+/* .tooltip .left i {
   position: absolute;
   top: 50%;
   left: 100%;
@@ -655,6 +694,11 @@ select:focus {
   background-color: #f7f3e9;
   border: 1px solid #16161650;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+} */
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }
 
 /* ---------------------- MEDIA QUERIES ---------------------- */
