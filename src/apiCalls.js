@@ -1,7 +1,9 @@
 function getData(url) {
   return fetch(url)
     .then(response => response.json())
-    .catch(error => console.log("Fetch error: ", error))
+    .catch(error => {
+      console.log("Fetch error: ", error)
+    })
 }
 
 function postData(body, url) {
@@ -12,7 +14,7 @@ function postData(body, url) {
       'Content-Type': 'application/json'
     }
   })
-  .then(() => getData(url))   
+  .then(() => getData(url))
 }
 
 export { getData, postData } 
