@@ -225,17 +225,12 @@ modalCookButton.addEventListener("click", (e) => {
 })
 
 table.addEventListener('click', (event) => {
-  if (event.target.id === 'table-button-add') {
+  if (event.target.id !== 'table-button-add') { return }
     let inputValue = Number(event.target.parentNode.querySelector('select').value)
     let id = Number(event.target.classList.value)
     let restructuredPantryObj = structurePost(user.id, id, inputValue)
     postData(restructuredPantryObj, 'http://localhost:3001/api/v1/users')
-      .then(data => {
-        usersData = data
-        user.pantry = user.getAllPantryIngredients(updateUser().pantry, recipeRepository.allIngredients)
-        displayPantryView()
-      })
-  } else { return }
+      .then(() => fetchUsers())
 })
 
 // ---------------------------DOM UPDATING---------------------------
@@ -493,12 +488,15 @@ function cookRecipe(recipe) {
     return structurePost(user.id, ingredient.id, amount)
   })
   for (let i = 0; i < bodies.length; i++) {
-    fetch('http://localhost:3001/api/v1/users', {method: 'POST', body: JSON.stringify(bodies[i]),
-      headers: {'Content-Type': 'application/json'}})
-    .then(response => response.json())
+    postData(bodies[i], 'http://localhost:3001/api/v1/users')
+    .then(() => {
+      if (i === bodies.length - 1) {
+        MicroModal.close("modal-1")
+        fetchUsers()
+      }
+    })
     .catch(err => console.log(err))
   }
-  fetchUsers()
 }
 
 function fetchUsers() {
@@ -507,7 +505,6 @@ function fetchUsers() {
   .then(data => usersData = data)
   .then(() => {
     user.pantry = user.getAllPantryIngredients(updateUser().pantry, recipeRepository.allIngredients)
-    MicroModal.close("modal-1")
     displayPantryView()
     displayMyRecipes()
   })
