@@ -650,7 +650,7 @@ select:focus {
 
 .tooltip .left {
   min-width: 20vw;
-  height: 4vw;
+  height: auto;
   top: 50%;
   right: 100%;
   margin-right: 20px;
@@ -674,6 +674,7 @@ select:focus {
   align-items: center;
   justify-content: space-evenly;
   animation: fadeIn .5s;
+  text-align: left;
 }
 
 .tooltip .left i {
