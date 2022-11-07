@@ -85,6 +85,7 @@ homeButton.addEventListener('click', () => {
     hide(allRecipesContainer);
     show(allRecipesButton);
     show(myRecipesButton)
+    articleText.innerHTML = ""
 });
 
 myRecipesButton.addEventListener('click', () => {
@@ -96,6 +97,7 @@ myRecipesButton.addEventListener('click', () => {
     hide(myRecipesButton)
     displaySavedRecipes();
     displayPantry();
+    articleText.innerHTML = ""
 });
 
 cardsContainer.addEventListener('click', (event) => {
@@ -117,6 +119,7 @@ allRecipesButton.addEventListener('click', () => {
     hide(allRecipesButton);
     show(myRecipesButton)
     displayAllRecipes();
+    articleText.innerHTML = ""
 });
 
 recipeListsContainer.addEventListener('click', (event) => {
@@ -155,7 +158,8 @@ removeRecipeButton.addEventListener('click', () => {
     displaySavedRecipes();
 });
 
-cookRecipeButton.addEventListener('click', () => {
+cookRecipeButton.addEventListener('click', (event) => {
+    event.preventDefault()
     let missingIngredients = user.pantry.checkIngredients(currentRecipe)
     show(articleText)
     if (missingIngredients.length === 0) {
