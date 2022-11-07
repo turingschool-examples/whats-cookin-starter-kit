@@ -23,9 +23,9 @@ class Recipe {
       let targetDatasetObject = ingredientsData.find(datasetObj => recipeObject.id === datasetObj.id)
       return new Ingredient(targetDatasetObject, recipeObject)
     })
-
     return this.mergeIngredients(a)
   }
+
   mergeIngredients(ingredientsData) {
     let counter = 0
     let finalArray = []
