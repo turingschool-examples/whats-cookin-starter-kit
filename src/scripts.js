@@ -49,6 +49,10 @@ const tableButtonAdd = document.querySelector('#table-button-add')
 let filter = document.getElementById('filter')
 let tileNodes = allRecipesContainer.childNodes
 
+// ---------------------------ARIA ATTRIBUTES---------------------------
+const myRecipesAttr = myRecipesButton.getAttribute("aria-expanded")
+const allRecipesAttr = myRecipesButton.getAttribute("aria-expanded")
+
 // ---------------------------UTILITY FUNCTIONS---------------------------
 
 function fetchData(urls) {
@@ -62,9 +66,9 @@ function fetchData(urls) {
     })
     .catch(error => {
       console.log("Fetch error: ", error)
-      if(error instanceof TypeError) {
+      if (error instanceof TypeError) {
         alert("Sorry, there is an issue with our data server. Please try again later. 🙈")
-      } else if(error instanceof ReferenceError) {
+      } else if (error instanceof ReferenceError) {
         alert("There's an issue on our end, we're working on it. 👷")
       } else {
         alert("An error occured, please try again later.")
@@ -226,11 +230,11 @@ modalCookButton.addEventListener("click", (e) => {
 
 table.addEventListener('click', (event) => {
   if (event.target.id !== 'table-button-add') { return }
-    let inputValue = Number(event.target.parentNode.querySelector('select').value)
-    let id = Number(event.target.classList.value)
-    let restructuredPantryObj = structurePost(user.id, id, inputValue)
-    postData(restructuredPantryObj, 'http://localhost:3001/api/v1/users')
-      .then(() => fetchUsers())
+  let inputValue = Number(event.target.parentNode.querySelector('select').value)
+  let id = Number(event.target.classList.value)
+  let restructuredPantryObj = structurePost(user.id, id, inputValue)
+  postData(restructuredPantryObj, 'http://localhost:3001/api/v1/users')
+    .then(() => fetchUsers())
 })
 
 // ---------------------------DOM UPDATING---------------------------
@@ -257,9 +261,11 @@ function displayRecipeTiles(recipeArray) {
 
 function makeViewButtonActive(button) {
   if (button === allRecipesButton) {
+    ariaSelectedToggleAllRecipes()
     myRecipesButton.classList.remove('selected-view')
     allRecipesButton.classList.add('selected-view')
   } else {
+    ariaSelectedToggleMyRecipes()
     myRecipesButton.classList.add('selected-view')
     allRecipesButton.classList.remove('selected-view')
   }
@@ -282,6 +288,16 @@ function displayMyRecipes() {
   displayRecipeTiles(user.favoriteRecipes)
   updateBookmarks()
   showPantry()
+}
+
+function ariaSelectedToggleMyRecipes() {
+  myRecipesButton.setAttribute("aria-selected", true)
+  allRecipesButton.setAttribute("aria-selected", false)
+}
+
+function ariaSelectedToggleAllRecipes() {
+  myRecipesButton.setAttribute("aria-selected", false)
+  allRecipesButton.setAttribute("aria-selected", true)
 }
 
 function removeTileFromDisplay(event) {
@@ -489,26 +505,26 @@ function cookRecipe(recipe) {
   })
   for (let i = 0; i < bodies.length; i++) {
     postData(bodies[i], 'http://localhost:3001/api/v1/users')
-    .then(() => {
-      if (i === bodies.length - 1) {
-        MicroModal.close("modal-1")
-        fetchUsers()
-      }
-    })
-    .catch(err => console.log(err))
+      .then(() => {
+        if (i === bodies.length - 1) {
+          MicroModal.close("modal-1")
+          fetchUsers()
+        }
+      })
+      .catch(err => console.log(err))
   }
 }
 
 function fetchUsers() {
   fetch('http://localhost:3001/api/v1/users')
-  .then(response => response.json())
-  .then(data => usersData = data)
-  .then(() => {
-    user.pantry = user.getAllPantryIngredients(updateUser().pantry, recipeRepository.allIngredients)
-    displayPantryView()
-    displayMyRecipes()
-  })
-  .catch(err => console.log(err));
+    .then(response => response.json())
+    .then(data => usersData = data)
+    .then(() => {
+      user.pantry = user.getAllPantryIngredients(updateUser().pantry, recipeRepository.allIngredients)
+      displayPantryView()
+      displayMyRecipes()
+    })
+    .catch(err => console.log(err))
 }
 
 function displayPantryView() {
