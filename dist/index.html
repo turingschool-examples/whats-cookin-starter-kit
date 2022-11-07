@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+  
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -22,18 +22,18 @@
       </div>
       <div class="header-right-align">
         <div class="welcome-message"></div>
-        <div class="header-buttons my-recipes-button" id="my-recipes">My recipes</div>
-        <div class="header-buttons all-recipes-button selected-view" id="all-recipes">All recipes</div>
+        <div class="header-buttons my-recipes-button" id="my-recipes" aria-label="go to my recipes">My Recipes</div>
+        <div class="header-buttons all-recipes-button selected-view" id="all-recipes" aria-label="go to all recipes">All Recipes</div>
       </div>
     </nav>
   </header>
   <section class="below-header-container">
     <section class="banner">
-      <img src="./images/whats-cookin-logo.png" id="logo">
+      <img src="./images/whats-cookin-logo.png" id="logo" alt="what's cookin' logo">
       <div id="featured-recipe-parent" class="featured-recipe-parent">
         <div class="recipe-details" id="recipe-details">
           <div class="featured-recipe-title-parent">
-            <h1 class="featured-recipe-title" id=""></h1>
+            <h3 class="featured-recipe-title" id=""></h3>
           </div>
           <div class="special-tag" id="special-tag">
             <img class="featured-bookmark-icon bookmark-nodes" src="./images/bookmark-tiles-unsaved.png"
@@ -56,13 +56,13 @@
         </div>
       </div>
     </section>
-    <section class="filter-bar">
+    <nav class="filter-bar" role="filter recipes">
       <select class="filter" id="filter">
         <option>Filter recipes by type...</option>
       </select>
-      <div class="filter-clear-button disabled" id="filter-clear-button" disabled>clear filter</div>
-    </section>
-    <section class="all-recipes-container">
+      <button class="filter-clear-button disabled" id="filter-clear-button" disabled>clear filter</button>
+    </nav>
+    <section class="all-recipes-container" role="table">
     </section>
   </section>
   <div class="modal" id="modal-1" aria-hidden="true">
@@ -74,34 +74,35 @@
         <div class="modal-content-parent">
           <div class="modal-tag-div">
             <p>tags: </p>
-            <div class="modal-tag-parent" id="modal-tag-parent">
-            </div>
+            <ul class="modal-tag-parent" id="modal-tag-parent">
+              <!-- innerHTML for recipe tags will go here -->
+            </ul>
           </div>
           <h1 id="modal-title"></h1>
-          <div class="modal-bookmark-div">
-            <img class="modal-bookmark-icon" id="modal-save-recipe" src="./images/bookmark-unsaved.png"
-              alt="save recipe">
+          <nav class="modal-bookmark-nav">
+            <img class="modal-bookmark-icon" id="modal-save-recipe" src="./images/bookmark-unsaved.png">
             <p class="modal-icon-label">add to<br>
               My Recipes</p>
             <button id="modal-cook-button"></button>
-          </div>
+            </nav>
           <div class="modal-image-ingr-parent">
             <img class="modal-image" id="modal-image" src="" alt="">
-            <span id="ingr-parent" class="ingr-span">
-            </span>
+            <ul id="ingr-parent" class="ingr-ul">
+              <!-- innerHTML for ingredients list will go here -->
+            </ul>
           </div>
-          <span class="instructions-grandparent">
+          <section class="instructions-grandparent">
             <h2>Instructions</h2>
             <div class="instructions-parent">
               <ol class="instructions-list" id="instructions-list">
+                <!-- innerHTML for instructions list will go here -->
               </ol>
             </div>
-          </span>
+          </section>
         </div>
       </div>
     </div>
   </div>
 </body>
 <script src="bundle.js"></script>
-
 </html>

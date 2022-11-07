@@ -78,7 +78,7 @@ function initPage() {
   populateTags()
   initUser()
   displayWelcomeMessage()
-  displayFeaturedRecipe()
+  renderFeaturedRecipe()
   displayPantryView()
   MicroModal.init({
     openClass: 'is-open',
@@ -195,7 +195,7 @@ function clearFilterByTag() {
 featuredRecipeParent.addEventListener("click", event => {
   let viewingMyRecipes = myRecipesButton.classList.contains('selected-view')
   let targetIsIMG = event.target.nodeName === "IMG"
-  let targetIsH1 = event.target.nodeName === "H1"
+  let targetIsH3 = event.target.nodeName === "H3"
 
   if (targetIsIMG && event.target.src.includes('unsaved')) {
     addRecipeToFavorites(event)
@@ -207,7 +207,7 @@ featuredRecipeParent.addEventListener("click", event => {
     if (viewingMyRecipes) {
       removeTileFromDisplay(event)
     }
-  } else if (targetIsH1) {
+  } else if (targetIsH3) {
     displayModal(recipeRepository.featuredRecipe)
   }
 })
@@ -247,11 +247,11 @@ function displayWelcomeMessage() {
 function createRecipeTile(recipe) {
   allRecipesContainer.innerHTML +=
     `<div class="recipe-tile" id=${recipe.id}>
-      <div class= "tile-image" style="background-image: url(${recipe.image})">
-        <img class="tile-bookmarks bookmark-nodes" id=${recipe.id} src="./images/bookmark-tiles-unsaved.png" alt="save recipe">
+      <div class="tile-image" style="background-image: url(${recipe.image})" alt="${recipe.name}">
+        <img class="tile-bookmarks bookmark-nodes" id=${recipe.id} src="./images/bookmark-tiles-unsaved.png" aria-label="bookmark ${recipe.name}">
       </div>
-      <h1>${recipe.name}</h1>
-      <h2>${recipe.tags.join(', ')}</h2>
+      <h3>${recipe.name}</h3>
+      <h4>${recipe.tags.join(', ')}</h4>
     </div>`
 }
 
@@ -277,7 +277,7 @@ function displayAllRecipes() {
   displayRecipeTiles(recipeRepository.recipeList)
   updateBookmarks()
   showFeaturedRecipe()
-  displayFeaturedRecipe()
+  renderFeaturedRecipe()
 }
 
 function displayMyRecipes() {
@@ -328,7 +328,7 @@ function convertDecimal(amount) {
 function updateModal(targetObject) {
   modalTagParent.innerHTML = ``
   targetObject.tags.forEach(tag => {
-    modalTagParent.innerHTML += `<p>${tag}</p>`
+    modalTagParent.innerHTML += `<li>${tag}</li>`
   })
   modalSaveRecipeButton.id = targetObject.id
   if (user.favoriteRecipes.includes(targetObject)) {
@@ -336,6 +336,7 @@ function updateModal(targetObject) {
   } else if (!user.favoriteRecipes.includes(targetObject)) {
     modalSaveRecipeButton.src = './images/bookmark-unsaved.png'
   }
+  modalSaveRecipeButton.ariaLabel = `bookmark ${targetObject.name}`
   modalRecipeTitle.innerHTML = targetObject.name
   modalImage.src = targetObject.image
   modalImage.alt = targetObject.name
@@ -352,10 +353,10 @@ function updateModalIngredients() {
   let ingrCompareObj = user.compareIngredients(currentlyViewedRecipe)
   ingredientsParent.innerHTML = ``
   ingrCompareObj.userHas.forEach(ingredient => {
-    ingredientsParent.innerHTML += `<ul class="user-has">${convertDecimal(ingredient.amount)} ${ingredient.unit} ${ingredient.name} </ul>`
+    ingredientsParent.innerHTML += `<li class="user-has">${convertDecimal(ingredient.amount)} ${ingredient.unit} ${ingredient.name} </li>`
   })
   ingrCompareObj.userNeeds.forEach(ingredient => {
-    ingredientsParent.innerHTML += `<ul class="user-needs">${convertDecimal(ingredient.amount)} ${ingredient.unit} ${ingredient.name} </ul>`
+    ingredientsParent.innerHTML += `<li class="user-needs">${convertDecimal(ingredient.amount)} ${ingredient.unit} ${ingredient.name} </li>`
   })
 }
 
@@ -388,11 +389,12 @@ function displayModal(targetObject) {
   MicroModal.show("modal-1")
 }
 
-function displayFeaturedRecipe() {
+function renderFeaturedRecipe() {
   featuredRecipeParent.style.backgroundImage = `url(${recipeRepository.featuredRecipe.image})`
   featuredRecipeTitle.innerText = `${recipeRepository.featuredRecipe.name}`
   featuredRecipeTitle.id = recipeRepository.featuredRecipe.id
   featuredIcon.id = recipeRepository.featuredRecipe.id
+  featuredIcon.ariaLabel = `bookmark ${recipeRepository.featuredRecipe.name}`
 }
 
 function addRecipeToFavorites(e) {
