@@ -1,7 +1,31 @@
-class RecipeRepository {
-  constructor() {
+import Recipe from './Recipe';
 
-    // One class to get you started!
+class RecipeRepository {
+  constructor(recipeData) {
+    this.recipeData = recipeData;
+  }
+
+  filteredByName(name) {
+    const justNames = this.recipeData.filter((recipe) => {
+      let lowerCaseRecipe = recipe.name.toLowerCase()
+      let lowerCaseName = name.toLowerCase()
+      return lowerCaseRecipe.includes(lowerCaseName);
+    })
+    return justNames;
+  }
+  filteredByTag(tag) {
+    const justTags = this.recipeData.filter((recipe) => {
+      let lowerCaseTag = tag.toLowerCase()
+      return recipe.tags.includes(lowerCaseTag)
+    })
+    return justTags
+  }
+
+  returnAllRecipesObjectsArray() {
+    let recipeArray = this.recipeData.map((recipe) => {
+      return new Recipe(recipe);
+    })
+    return recipeArray;
   }
 }
 

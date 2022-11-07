@@ -1,4 +1,23 @@
-// Your fetch requests will live here!
+let fetchData = (endPoint) => {
+    return fetch(`http://localhost:3001/api/v1/${endPoint}`)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+}
 
+let reduceIngredientsFromCooking = (user, ingredient) => {
+    return fetch('http://localhost:3001/api/v1/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ "userID": user.id, "ingredientID": ingredient.id, "ingredientModification": -1 * ingredient.quantity.amount })
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('This are very up messed.')
+            }
+            return response.json()
+        })
 
-console.log('I will be a fetch request!')
+        // Need to finish this with a catch.
+}
+
+export { fetchData, reduceIngredientsFromCooking }

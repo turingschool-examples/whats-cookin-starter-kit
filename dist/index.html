@@ -1,12 +1,205 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-  </head>
-  <body>
-    <h1>Whats Cookin</h1>
-  </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='icon' href='./images/cooking.png'>
+  <title>Whats Cookin</title>
+</head>
+<body>
+  <header>
+    <h1>What's Cookin'</h1>
+    <section class="section--user-bar">
+      <section class="section--user-welcome" id="section--user-welcome">Welcome, User!</section>
+    </section>
+    <nav class="section--nav">
+      <div id="button--home" class="text-box">
+        <a href="#" class="button button--grey button--animate">Home</a>
+      </div>
+      <div id="button--all-recipes" class="text-box">
+        <a href="#" class="button button--grey button--animate">All Recipes</a>
+      </div>
+      <div id="button--my-recipes" class="text-box">
+        <a href="#" class="button button--grey button--animate">My Stuff</a>
+      </div>
+    </nav>
+  </header>
+  <section class="section--main-body" id="section--main-body">
+    <section class="section--cards-container" id="section--cards-container">
+      <h2>Eat With Your Eyes</h2>
+      <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe1">
+                <p id="text--recipe-title1">Loaded Chocolate Chip Pudding Cookie Cups</p>
+                <img id="image--recipe-image1" src="https://spoonacular.com/recipeImages/595736-556x370.jpg"
+                  alt="Loaded Chocolate Chip Pudding Cookie Cups" data-id="595736">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe2">
+                <p id="text--recipe-title2">Maple Dijon Apple Cider Grilled Pork Chops</p>
+                <img id="image--recipe-image2" src="https://spoonacular.com/recipeImages/678353-556x370.jpg"
+                  alt="Maple Dijon Apple Cider Grilled Pork Chops" data-id="678353">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe3">
+                <p id="text--recipe-title3">Dirty Steve's Original Wing Sauce</p>
+                <img id="image--recipe-image3" src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
+                  alt="Dirty Steve's Original Wing Sauce" data-id="412309">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe4">
+                <p id="text--recipe-title4">Elvis Pancakes</p>
+                <img id="image--recipe-image4" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg"
+                  alt="Elvis Pancakes" data-id="741603">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe5">
+                <p id="text--recipe-title5">Mock Udi’s Gluten Free Whole Grain Bread</p>
+                <img id="image--recipe-image5" src="https://spoonacular.com/recipeImages/562334-556x370.jpg"
+                  alt="Mock Udi’s Gluten Free Whole Grain Bread" data-id="562334">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe6">
+                <p id="text--recipe-title6">Ambrosia Cupcakes</p>
+                <img id="image--recipe-image6" src="https://spoonacular.com/recipeImages/507921-556x370.jpg"
+                  alt="Ambrosia Cupcakes" data-id="507921">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe7">
+                <p id="text--recipe-title7">Creamy Coconut Yogurt Bowl with Chocolate Granola</p>
+                <img id="image--recipe-image7" src="https://spoonacular.com/recipeImages/721146-556x370.jpg"
+                  alt="Creamy Coconut Yogurt Bowl with Chocolate Granola" data-id="721146">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe8">
+                <p id="text--recipe-title8">Sesame Cookies</p>
+                <img id="image--recipe-image8" src="https://spoonacular.com/recipeImages/541288-556x370.jpg"
+                  alt="Sesame Cookies" data-id="541288">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe9">
+                <p id="text--recipe-title9">Thai Chicken Tenders with Broiled Pineapple Slaw</p>
+                <img id="image--recipe-image9" src="https://spoonacular.com/recipeImages/779583-556x370.jpg"
+                  alt="Thai Chicken Tenders with Broiled Pineapple Slaw" data-id="779583">
+              </container>
+            </li>
+            <li class="glide__slide">
+              <container class="card--recipe" id="card--recipe10">
+                <p id="text--recipe-title10">Egg and Rapini Casserole</p>
+                <img id="image--recipe-image10" src="https://spoonacular.com/recipeImages/550940-556x370.jpg"
+                  alt="Egg and Rapini Casserole" data-id="550940">
+              </container>
+            </li>
+          </ul>
+        </div>
+        <div class="glide__arrows" data-glide-el="controls">
+          <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+          <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+        </div>
+      </div>
+    </section>
+    <section class="section--all-recipes hidden" id="section--all-recipes">
+      <h5 id="title--all-recipes">All Recipes</h5>
+      <div class="section--filter-bar">
+        <input type="search" placeholder="Try filtering by meal!" class="input--filter" id="input--filter">
+        <input type="search" placeholder="What are you hungry for?" class="input--search" id="input--search">
+      </div>
+      <section class="section--recipe-lists" id="section--recipe-lists">
+        <ul class="list--all-recipes" id="list--recipes-0-9"></ul>
+        <ul class="list--all-recipes" id="list--recipes-10-19"></ul>
+        <ul class="list--all-recipes" id="list--recipes-20-29"></ul>
+        <ul class="list--all-recipes" id="list--recipes-30-39"></ul>
+        <ul class="list--all-recipes" id="list--recipes-40-49"></ul>
+      </section>
+    </section>
+    <section class="section--recipe-details hidden" id="section--recipe-details">
+      <h2 id="title--recipe">PB&J</h2>
+      <section class="section--recipe-image" id="section--recipe-image"></section>
+      <section class="section--ingredients-instructions" id="section--ingredients-instructions">
+        <container class="card--ingredients" id="card--ingredients">
+          <h3>Ingredients</h3>
+          <ul class="ul--ingredient-list" id="ul--ingredient-list"></ul>
+        </container>
+        <container class="card--instructions" id="card--instructions">
+          <h4>Instructions</h4>
+          <ul class="ul--instructions" id="ul--instructions"></ul>
+        </container>
+      </section>
+      <div class="button--save-recipe" id="button--save-recipe">
+        <a href="#" class="button button--grey button--animate">Save Recipe</a>
+      </div>
+      <div class="button--cook-recipe" id="button--cook-recipe">
+        <a href="#" class="button button--grey button--animate">Cook This Recipe</a>
+      </div>
+      <article class="text--article" id="text--article"></article>
+      <div class="button--remove-recipe" id="button--remove-recipe">
+        <a href="#" class="button button--grey button--animate">Remove Recipe</a>
+      </div>
+    </section>
+    <section class="section--saved-recipes hidden" id="section--saved-recipes">
+      <h6>My Stuff</h6>
+      <div class="section--filter-bar">
+        <input type="search" placeholder="     filter by tag" class="input--filter" id="input--filter-saved-recipes">
+        <input type="search" placeholder="     search by name" class="input--search" id="input--search-saved-recipes">
+      </div>
+      <section class="section--saved-recipes-and-pantry">
+        <h7 id="title--my-recipes">My Recipes</h7>
+        <section class="section--recipe-lists" id="section--saved-recipe-lists">
+          <ul class="list--saved-recipes" id="list--saved-recipes-0-9"></ul>
+          <ul class="list--saved-recipes" id="list--saved-recipes-10-19"></ul>
+          <ul class="list--saved-recipes" id="list--saved-recipes-20-29"></ul>
+        </section>
+        <h8>My Pantry</h8>
+        <h9 id="title--add-ingredient">Add an ingredient to your pantry!</h9>
+        <form id="form--ingredients">
+          <div>
+            <label for="ingredient">Enter ingredient name: </label>
+            <input list="list--ingredients" name="ingredient" id="input--ingredient" required>
+            <datalist id="list--ingredients"></datalist>
+          </div>
+          <div>
+            <label for="quantity">Enter quantity: </label>
+            <input type="text" name="quantity" id="input--quantity" required>
+          </div>
+         <div id="button--all-recipes" class="text-box">
+        <a href="#" class="button button--grey button--animate">Add Ingredient!</a>
+      </div>
+        </form>
+        <section class="section--pantry" id="section--pantry">
+          <table class="table--pantry">
+            <thead>
+              <tr>
+                <th>Ingredient</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+              </tr>
+            </thead>
+            <tbody id="table--pantry-body">
+            </tbody>
+          </table>
+        </section>
+      </section>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+    <script>
+      const config = {
+        type: 'carousel',
+        perView: 3,
+      }
+      new Glide('.glide', config).mount()
+    </script>
+</body>
+<script src="bundle.js"></script>
 </html>
