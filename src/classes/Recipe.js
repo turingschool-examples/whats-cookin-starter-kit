@@ -1,4 +1,3 @@
-const { testIngredients, recipeData, ingredientsData } = require("../data/testData")
 const Ingredient = require("./Ingredient")
 
 class Recipe {
@@ -26,10 +25,10 @@ class Recipe {
     return this.mergeIngredients(a)
   }
 
-  mergeIngredients(ingredientsData) {
+  mergeIngredients(ingredientsDataWithDuplicates) {
     let counter = 0
     let finalArray = []
-    const listUniqueIds = ingredientsData.reduce((acc, curr) => {
+    const listUniqueIds = ingredientsDataWithDuplicates.reduce((acc, curr) => {
       if (!acc.includes(curr.id)) {
         acc.push(curr.id)
       }
@@ -37,7 +36,7 @@ class Recipe {
     }, [])
     for (var i = 0; i < listUniqueIds.length; i++) {
       counter = 0
-      const matches = ingredientsData.filter((originalIngredient) => {
+      const matches = ingredientsDataWithDuplicates.filter((originalIngredient) => {
         return listUniqueIds[i] === originalIngredient.id
       })
       const addedAmounts = matches.reduce((mergedIngredient, duplicate) => {
