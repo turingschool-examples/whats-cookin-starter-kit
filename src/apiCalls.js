@@ -14,7 +14,6 @@ function postData(body, url) {
       'Content-Type': 'application/json'
     }
   })
-  .then(() => getData(url))
 }
 
 export { getData, postData } 
