@@ -369,7 +369,7 @@ function updateModalButton() {
     modalCookButton.innerHTML = `Add Ingredients
     <div class="left">
         <p>You don't have the necessary ingredients.</p>
-        <p>Click to go to your pantry and add ingredients.</p>
+        <p>Click to view your pantry and add ingredients.</p>
         <i></i>
     </div>`
   } else {
