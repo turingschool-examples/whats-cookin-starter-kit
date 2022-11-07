@@ -45,6 +45,7 @@ const savedRecipesList3 = document.getElementById('list--saved-recipes-20-29');
 const allRecipesLists = [allRecipes0to9, allRecipes10to19, allRecipes20to29, allRecipes30to39, allRecipes40to49];
 const savedRecipesLists = [savedRecipesList1, savedRecipesList2, savedRecipesList3];
 const recipeTitle = document.getElementById('title--recipe');
+const myRecipesTitle = document.getElementById('title--my-recipes');
 const articleText = document.getElementById('text--article');
 
 // GLOBAL VARIABLES LIVE HERE
@@ -74,15 +75,6 @@ function promises() {
         user.pantry = fancyPantry;
         loadUser();
     })
-}
-
-// POSTS LIVE HERE  
-function addToUserPantry() {
-
-}
-
-function removeFromUserPantry() {
-
 }
 
 //  EVENT LISTENERS LIVE HERE
@@ -165,7 +157,7 @@ removeRecipeButton.addEventListener('click', () => {
 
 cookRecipeButton.addEventListener('click', () => {
     let missingIngredients = user.pantry.checkIngredients(currentRecipe)
-
+    show(articleText)
     if (missingIngredients.length === 0) {
         articleText.innerText = 'Let\'s get cookin\'!'
         currentRecipe.ingredients.forEach(ingredient => {
@@ -177,8 +169,13 @@ cookRecipeButton.addEventListener('click', () => {
             })
         })
     } else {
-        articleText.innerText = 'First, here\'s your shopping list: '
-        // populate missing ingredients to the dom
+        articleText.innerText = `First, here\'s your shopping list:`
+        missingIngredients.forEach(missingIngredient => {
+            const currentIngredient = ingredientsArray.find(ingredient => {
+                return ingredient.id === missingIngredient.id
+            }) 
+            articleText.innerHTML += `<div><li>${currentIngredient.name} ${missingIngredient.quantity.amount} ${missingIngredient.quantity.unit}</li></div>`
+        })
     }
 })
 
@@ -279,6 +276,13 @@ const displayAllRecipes = () => {
 };
 
 const displaySavedRecipes = () => {
+    if (user.recipesToCook.length === 0) {
+        hide(savedRecipesListsContainer);
+        hide(myRecipesTitle);
+        return
+    }
+    show(savedRecipesListsContainer);
+    show(myRecipesTitle);
     savedRecipesLists.forEach(list => {
         hide(list)
     });
@@ -508,21 +512,5 @@ const displayPantry = () => {
         pantryTableBody.innerHTML += `<tr><td>${ingredient.name}</td><td>${ingredient.amount}</td><td>${ingredient.unit}</td></tr>`
     });
 }
-
-function displayIngredientResponse(event) {
-    if (!addedIngredient || !amount) {
-        addIngredientTitle.style.color = 'red';
-        addIngredientTitle.innerText = 'Please complete all fields!'
-    } else {
-        addIngredientTitle.style.color = 'black';
-        addIngredientTitle.innerText = "Ingredient Added!!";
-        setTimeout(() => {
-            addIngredientTitle.innerText = 'Add an ingredient!'
-        }, 2500)
-        user.addIngredientToPantry(addedIngredient, amount);
-    }
-    displayPantry();
-}
-
 
 window.addEventListener('load', promises)

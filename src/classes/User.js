@@ -48,7 +48,7 @@ class User {
         return this.id
     }
 
-    addIngredientToPantry(addedIngredient, amount, unit) {
+    addIngredientToPantry(addedIngredient, amount) {
         let pantryIndex;
         let searchedIngredient = this.pantry.pantry.find((ingredient, index) => {
             pantryIndex = index;
