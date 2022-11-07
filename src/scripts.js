@@ -506,7 +506,7 @@ function fetchUsers() {
   .then(response => response.json())
   .then(data => usersData = data)
   .then(() => {
-    user.pantry = new User(updateUser().pantry, recipeRepository.allIngredients)
+    user.pantry = user.getAllPantryIngredients(updateUser().pantry, recipeRepository.allIngredients)
     MicroModal.close("modal-1")
     displayPantryView()
     displayMyRecipes()
