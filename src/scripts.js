@@ -327,7 +327,7 @@ function convertDecimal(amount) {
 function updateModal(targetObject) {
   modalTagParent.innerHTML = ``
   targetObject.tags.forEach(tag => {
-    modalTagParent.innerHTML += `<p>${tag}</p>`
+    modalTagParent.innerHTML += `<li>${tag}</li>`
   })
   modalSaveRecipeButton.id = targetObject.id
   if (user.favoriteRecipes.includes(targetObject)) {
@@ -335,6 +335,7 @@ function updateModal(targetObject) {
   } else if (!user.favoriteRecipes.includes(targetObject)) {
     modalSaveRecipeButton.src = './images/bookmark-unsaved.png'
   }
+  modalSaveRecipeButton.ariaLabel = `bookmark ${targetObject.name}`
   modalRecipeTitle.innerHTML = targetObject.name
   modalImage.src = targetObject.image
   modalImage.alt = targetObject.name
@@ -351,10 +352,10 @@ function updateModalIngredients() {
   let ingrCompareObj = user.compareIngredients(currentlyViewedRecipe)
   ingredientsParent.innerHTML = ``
   ingrCompareObj.userHas.forEach(ingredient => {
-    ingredientsParent.innerHTML += `<ul class="user-has">${convertDecimal(ingredient.amount)} ${ingredient.unit} ${ingredient.name} </ul>`
+    ingredientsParent.innerHTML += `<li class="user-has">${convertDecimal(ingredient.amount)} ${ingredient.unit} ${ingredient.name} </li>`
   })
   ingrCompareObj.userNeeds.forEach(ingredient => {
-    ingredientsParent.innerHTML += `<ul class="user-needs">${convertDecimal(ingredient.amount)} ${ingredient.unit} ${ingredient.name} </ul>`
+    ingredientsParent.innerHTML += `<li class="user-needs">${convertDecimal(ingredient.amount)} ${ingredient.unit} ${ingredient.name} </li>`
   })
 }
 

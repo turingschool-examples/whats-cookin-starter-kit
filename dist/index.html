@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+  
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -74,34 +74,35 @@
         <div class="modal-content-parent">
           <div class="modal-tag-div">
             <p>tags: </p>
-            <div class="modal-tag-parent" id="modal-tag-parent">
-            </div>
+            <ul class="modal-tag-parent" id="modal-tag-parent">
+              <!-- innerHTML for recipe tags will go here -->
+            </ul>
           </div>
           <h1 id="modal-title"></h1>
-          <div class="modal-bookmark-div">
-            <img class="modal-bookmark-icon" id="modal-save-recipe" src="./images/bookmark-unsaved.png"
-              alt="save recipe">
+          <nav class="modal-bookmark-nav">
+            <img class="modal-bookmark-icon" id="modal-save-recipe" src="./images/bookmark-unsaved.png">
             <p class="modal-icon-label">add to<br>
               My Recipes</p>
             <button id="modal-cook-button"></button>
-          </div>
+            </nav>
           <div class="modal-image-ingr-parent">
             <img class="modal-image" id="modal-image" src="" alt="">
-            <span id="ingr-parent" class="ingr-span">
-            </span>
+            <ul id="ingr-parent" class="ingr-ul">
+              <!-- innerHTML for ingredients list will go here -->
+            </ul>
           </div>
-          <span class="instructions-grandparent">
+          <section class="instructions-grandparent">
             <h2>Instructions</h2>
             <div class="instructions-parent">
               <ol class="instructions-list" id="instructions-list">
+                <!-- innerHTML for instructions list will go here -->
               </ol>
             </div>
-          </span>
+          </section>
         </div>
       </div>
     </div>
   </div>
 </body>
 <script src="bundle.js"></script>
-
 </html>

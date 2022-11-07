@@ -487,9 +487,10 @@ select:focus {
   display: flex;
 }
 
-.modal-tag-parent>p {
+.modal-tag-parent>li {
   font-family: 'Libre Baskerville', serif;
   font-size: .8em;
+  list-style: none;
   color: rgb(200, 75, 49);
   background-color: rgba(0, 0, 0, 0);
   border: 5px solid rgb(200, 75, 49);
@@ -503,7 +504,7 @@ select:focus {
   padding: 32px 0px 20px;
 }
 
-.modal-bookmark-div {
+.modal-bookmark-nav {
   display: flex;
   align-items: center;
   width: 100%;
@@ -539,7 +540,7 @@ select:focus {
   width: 28vw;
 }
 
-.ingr-span {
+.ingr-ul {
   display: block;
   text-align: right;
   background-color: white;
@@ -548,14 +549,16 @@ select:focus {
   padding: 23px;
 }
 
-.ingr-span>* {
+.user-has,
+.user-needs {
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
   padding: 2px;
+  list-style: none;
 }
 
 .user-has {
-  color: #438b6c;;
+  color: #438b6c;
 }
 
 .user-has::after {
@@ -566,7 +569,7 @@ select:focus {
 }
 
 .user-needs {
-  color: rgb(200, 75, 49);;
+  color: rgb(200, 75, 49);
 }
 
 .user-needs::after {
@@ -756,7 +759,7 @@ select:focus {
     padding-bottom: 4vw;
   }
 
-  .ingr-span {
+  .ingr-ul {
     text-align: left;
     padding: 40px;
     width: 84%;
