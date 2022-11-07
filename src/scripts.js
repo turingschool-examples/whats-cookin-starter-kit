@@ -423,7 +423,7 @@ function populateTags() {
   })
   allTags.sort()
   allTags.forEach(tag => {
-    filter.innerHTML += `<option id=${tag}>${tag}</option>`
+    filter.innerHTML += `<option id=${tag} role="menuitem">${tag}</option>`
   })
 }
 
