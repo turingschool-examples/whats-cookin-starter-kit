@@ -6,7 +6,7 @@ import Pantry from '../src/classes/Pantry';
 
 
 describe('User', () => {
-  let recipeObject1, recipeObject2, newUser;
+  let recipeObject1, recipeObject2, newUser, fancyPantry;
 
   beforeEach(() => {
     recipeObject1 = new Recipe(singleRecipe1)
@@ -382,6 +382,9 @@ describe('User', () => {
         "ingredient": 2027,
         "amount": 2
       },
+      { "ingredient": 6615,
+      "amount": 500
+    }
     ])
   })
 });
