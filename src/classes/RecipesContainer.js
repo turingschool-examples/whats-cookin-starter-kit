@@ -1,8 +1,8 @@
-class RecipeRepository {
+class RecipesContainer {
   constructor() {
 
     // One class to get you started!
   }
 }
 
-export default RecipeRepository;
+export default RecipesContainer;
