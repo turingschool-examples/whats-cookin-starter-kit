@@ -1,10 +1,13 @@
 import { expect } from "chai";
+import Ingredient from "../src/classes/Ingredient";
 import { Recipe } from "../src/classes/Recipe";
 
 describe("Recipe", () => {
     let recipe1;
+    let recipe1Data;
     beforeEach(function() {
-        recipe1 = {
+        recipe1 = new Recipe(recipe1Data);
+        recipe1Data = {
             "id": 595736,
             "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
             "ingredients": [
@@ -45,14 +48,14 @@ describe("Recipe", () => {
           };
     });
 
-    it('Should be a function', () => {
+    it("Should be a function", () => {
         expect(Recipe).to.be.a('function');
       });
 
-    it('Should instantiate our good friend RecipesContainer', () => {
+    it("Should instantiate our good friend RecipesContainer", () => {
         expect(recipe1).to.be.an.instanceOf(Recipe);
       });
-      
+
     it("Should have a property to store a recipe id")
 
     it("Should have a property to store the recipe image")

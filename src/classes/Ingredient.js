@@ -1,5 +1,5 @@
 class Ingredient {
-    constructor() {
+    constructor(ingredient1Data) {
 
     }
 }

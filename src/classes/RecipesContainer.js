@@ -21,7 +21,6 @@ class RecipesContainer {
     const recipeList = this.data.map(element => {
       return element.name;
     }).sort();
-    console.log(recipeList);
       return recipeList;
   }
 
