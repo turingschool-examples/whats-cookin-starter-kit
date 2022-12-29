@@ -44,10 +44,25 @@ describe("Recipe", () => {
             "hor d'oeuvre"
         ]
     };
+
+    let ingredientObjects = [{
+        "id": 2050,
+        "name": "vanilla",
+        "estimatedCostInCents": 926
+      }, 
+      {
+        "id": 1123,
+        "name": "eggs",
+        "estimatedCostInCents": 472
+      },
+      {
+        "id": 20081,
+        "name": "wheat flour",
+        "estimatedCostInCents": 142
+    }];
+
     beforeEach(function() {
-        recipe1 = new Recipe(recipe1Data);
-        // console.log("recipe1: ", recipe1);
-        // console.log("recipeData: ", recipe1Data.id);
+        recipe1 = new Recipe(recipe1Data, ingredientObjects);
     });
 
     it("Should be a function", () => {
@@ -63,8 +78,6 @@ describe("Recipe", () => {
     });
         
     it("Should have a property to store a recipe id", () => {
-        // console.log(recipe1.data.id);
-        // console.log("recipe1.data: ", recipe1.data)
         expect(recipe1.id).to.equal(595736);
     });
 
@@ -120,15 +133,34 @@ describe("Recipe", () => {
         ]);
     });
 
+    it("Should have a method to get ingredient ids from ingredients property and return the ingredient objects from the ingredient data", () => {
+        let ingredientObjects2 = [{
+        "id": 2050,
+        "name": "vanilla",
+        "estimatedCostInCents": 926
+      }, 
+      {
+        "id": 20081,
+        "name": "wheat flour",
+        "estimatedCostInCents": 142
+      }];
+        let method0 = recipe1.findIngredientObjects();
+        expect(method0).to.be.equal(ingredientObjects2);
+        //to have deep members?
+    })
+
     it("Should have a method to determine the names of ingredients needed", () => {
         let method1 = recipe1.getIngredientNames();
 
         //maybe for each ingredient, instantiate a new ingredient?
     });
+
     it("Should have a method to determine the cost of those ingredients", () => {
         let method2 = recipe1.getIngredientsTotalCost();
     });
+
     it("Should have a method to get the recipe directions", () => {
-        let method3 = recipe1.getRecipeDirections();
+        let method3 = recipe1.getRecipeInstructions();
+        expect(method3).to.be.equal(recipe1Data.instructions);
     });
 });

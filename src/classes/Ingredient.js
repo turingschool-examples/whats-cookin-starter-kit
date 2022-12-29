@@ -1,12 +1,14 @@
 class Ingredient {
-    constructor(ingredient1Data) {
-        this.id = ingredient1Data.id;
-        this.name = ingredient1Data.name;
-        this.cost = ingredient1Data.estimatedCostInCents;
+    constructor(ingredientObject) {
+        this.id = ingredientObject.id;
+        this.name = ingredientObject.name;
+        this.cost = ingredientObject.estimatedCostInCents;
     }
+    
     getIngredientName() {
         return this.name;
     }
+
     getIngredientCost() {
         return this.cost;
     }

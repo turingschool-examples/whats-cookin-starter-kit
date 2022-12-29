@@ -7,7 +7,8 @@ describe("Ingredient", () => {
         "id": 18372,
         "name": "bicarbonate of soda",
         "estimatedCostInCents": 582
-      };
+    };
+
     beforeEach(function() {
         ingredient1 = new Ingredient(ingredient1Data);
     });
@@ -36,10 +37,9 @@ describe("Ingredient", () => {
         let method2 = ingredient1.getIngredientName();
         expect(method2).to.be.equal("bicarbonate of soda");
     });
-    
+
     it("Should have a method to get the cost of an ingredient", () => {
         let method1 = ingredient1.getIngredientCost();
         expect(method1).to.be.equal(582);
     });
-
 });
