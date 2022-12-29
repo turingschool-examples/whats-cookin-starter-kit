@@ -1,7 +1,7 @@
-import { expect } from 'chai';
-import RecipesContainer from '../src/classes/RecipesContainer';
+import { expect } from "chai";
+import RecipesContainer from "../src/classes/RecipesContainer";
 
-describe('Recipe', () => {
+describe("RecipesContainer", () => {
   let recipesContainer1;
   let testData;
   beforeEach(function() {
