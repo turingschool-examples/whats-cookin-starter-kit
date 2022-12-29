@@ -137,14 +137,15 @@ describe('Recipe', () => {
     const foodName = "Maple Dijon Apple Cider Grilled Pork Chops";
     let method2 = recipesContainer1.findRecipeByName(foodName);
     // console.log("method2.name: ", method2.name);
-    //so what if there are multiple same-name recipes?
+    // so what if there are multiple same-name recipes? like if we need to do .find() twice?
     expect(method2.name).to.equal(foodName);
   });
 
   it('Should have a method to provide a recipe list, the name property from each recipe object, in sorted order', () => {
     let method3 = recipesContainer1.listRecipes();
+
     expect(method3).to.have.deep.members(["Loaded Chocolate Chip Pudding Cookie Cups", "Maple Dijon Apple Cider Grilled Pork Chops", "Dirty Steve's Original Wing Sauce"]);
-    //map all the recipes, include an alphabetical sort
+    //map all the recipes, include an alphabetical sort. Seems like testing framework doesn't mind the order since my expect assertion has a different array order than the console.log.
     //a sad path would be, are there duplicates? we could just put in a Set, or add includes() and push
   });
 })

@@ -23,8 +23,8 @@ class RecipesContainer {
   listRecipes() {
     const recipeList = this.data.map(element => {
       return element.name;
-    })
-    // console.log(recipeList);
+    }).sort();
+    console.log(recipeList);
       return recipeList;
   }
 
