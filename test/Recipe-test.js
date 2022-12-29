@@ -45,6 +45,14 @@ describe("Recipe", () => {
           };
     });
 
+    it('Should be a function', () => {
+        expect(Recipe).to.be.a('function');
+      });
+
+    it('Should instantiate our good friend RecipesContainer', () => {
+        expect(recipe1).to.be.an.instanceOf(Recipe);
+      });
+      
     it("Should have a property to store a recipe id")
 
     it("Should have a property to store the recipe image")

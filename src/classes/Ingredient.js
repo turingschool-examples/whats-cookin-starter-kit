@@ -1,2 +1,6 @@
+class Ingredient {
+    constructor() {
 
-export { default } Ingredient;
+    }
+}
+export default Ingredient;
