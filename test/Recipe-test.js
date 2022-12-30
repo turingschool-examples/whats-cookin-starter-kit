@@ -133,32 +133,36 @@ describe("Recipe", () => {
         ]);
     });
 
-    it("Should have a method to get ingredient ids from ingredients property and return the ingredient objects from the ingredient data", () => {
+    it("Should have a method to get ingredient ids from ingredients property", () => {
+        let method00 = recipe1.findIngredientIds();
+        expect(method00).to.have.deep.members([2050, 20081]);
+    }); 
+    
+    it("Should then have a method to return the ingredient objects from the ingredient Ids found by previous method00", () => {
         let ingredientObjects2 = [{
-        "id": 2050,
-        "name": "vanilla",
-        "estimatedCostInCents": 926
-      }, 
-      { 
-        "id": 20081,
-        "name": "wheat flour",
-        "estimatedCostInCents": 142
-      }];
+            "id": 2050,
+            "name": "vanilla",
+            "estimatedCostInCents": 926
+            }, 
+            {
+            "id": 20081,
+            "name": "wheat flour",
+            "estimatedCostInCents": 142
+        }];
         let method0 = recipe1.findIngredientObjects(ingredientObjects);
-        console.log("method0", method0)
+        console.log("method0, ingredients shortlist: ", method0);
         expect(method0).to.have.deep.members(ingredientObjects2);
-        //need sad paths, sort ids and no dups
-        //I shouldn't be mutating the data.
-    })
+    });
 
     it("Should have a method to determine the names of ingredients needed", () => {
-        let method1 = recipe1.getIngredientNames();
+        let method1 = recipe1.getIngredientNames(ingredientObjects);
         console.log("method 1:", method1);
         expect(method1).to.have.deep.members(["vanilla", "wheat flour"]);
     });
 
-    it.skip("Should have a method to determine the cost of those ingredients", () => {
-        let method2 = recipe1.getIngredientsTotalCost();
+    it("Should have a method to determine the cost of those ingredients", () => {
+        let method2 = recipe1.getIngredientsTotalCost(ingredientObjects);
+        expect(method2).to.be.equal(1068);
     });
 
     it("Should have a method to get the recipe instructions", () => {
