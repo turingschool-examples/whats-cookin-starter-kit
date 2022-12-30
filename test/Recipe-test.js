@@ -8,57 +8,21 @@ describe("Recipe", () => {
         "id": 595736,
         "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
         "ingredients": [
-            {
-                "id": 20081,
-                "quantity": {
-                    "amount": 1.5,
-                    "unit": "c"
-                }
-            },
-            {
-                "id": 2050,
-                "quantity": {
-                    "amount": 0.5,
-                    "unit": "tsp"
-                }
-            }
+            {"id": 20081, "quantity": {"amount": 1.5, "unit": "c"}},
+            {"id": 2050, "quantity": {"amount": 0.5, "unit": "tsp"}}
         ],
         "instructions": [
-            {
-                "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
-                "number": 1
-            },
-            {
-                "instruction": "Add egg and vanilla and mix until combined.",
-                "number": 2
-            },
+            {"instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.", "number": 1},
+            {"instruction": "Add egg and vanilla and mix until combined.", "number": 2},
         ],
         "name": "Loaded Chocolate Chip Pudding Cookie Cups",
-        "tags": [
-            "antipasti",
-            "starter",
-            "snack",
-            "appetizer",
-            "antipasto",
-            "hor d'oeuvre"
-        ]
+        "tags": ["antipasti", "starter", "snack", "appetizer", "antipasto", "hor d'oeuvre"]
     };
 
-    let ingredientObjects = [{
-        "id": 2050,
-        "name": "vanilla",
-        "estimatedCostInCents": 926
-      }, 
-      {
-        "id": 1123,
-        "name": "eggs",
-        "estimatedCostInCents": 472
-      },
-      {
-        "id": 20081,
-        "name": "wheat flour",
-        "estimatedCostInCents": 142
-    }];
+    let ingredientObjects = [
+        {"id": 2050, "name": "vanilla", "estimatedCostInCents": 926}, 
+        {"id": 1123, "name": "eggs", "estimatedCostInCents": 472},
+        {"id": 20081, "name": "wheat flour", "estimatedCostInCents": 142}];
 
     beforeEach(function() {
         recipe1 = new Recipe(recipe1Data);

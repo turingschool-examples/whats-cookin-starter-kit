@@ -3,11 +3,7 @@ import Ingredient from "../src/classes/Ingredient";
 
 describe("Ingredient", () => {
     let ingredient1;
-    let ingredient1Data = {
-        "id": 18372,
-        "name": "bicarbonate of soda",
-        "estimatedCostInCents": 582
-    };
+    let ingredient1Data = {"id": 18372, "name": "bicarbonate of soda", "estimatedCostInCents": 582};
 
     beforeEach(function() {
         ingredient1 = new Ingredient(ingredient1Data);

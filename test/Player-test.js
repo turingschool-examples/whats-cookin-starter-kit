@@ -10,101 +10,54 @@ describe("Player", () => {
         "name": "Saige O'Kon",
         "id": 1,
         "pantry": [
-          {
-            "ingredient": 11297,
-            "amount": 4
-          },
-          {
-            "ingredient": 1082047,
-            "amount": 10
-          },
-          {
-            "ingredient": 2047,
-            "amount": 6
-          },
-          {
-            "ingredient": 1123,
-            "amount": 8
-          }] 
+          {"ingredient": 11297, "amount": 4},
+          {"ingredient": 1082047, "amount": 10},
+          {"ingredient": 2047, "amount": 6},
+          {"ingredient": 1123, "amount": 8}] 
         };
-    let playerData =  [{
+    let somePlayersData =  [{
         "name": "Saige O'Kon",
         "id": 1,
         "pantry": [
-          {
-            "ingredient": 11297,
-            "amount": 4
-          },
-          {
-            "ingredient": 1082047,
-            "amount": 10
-          },
-          {
-            "ingredient": 2047,
-            "amount": 6
-          },
-          {
-            "ingredient": 1123,
-            "amount": 8
-          }] 
+            {"ingredient": 11297, "amount": 4},
+          {"ingredient": 1082047, "amount": 10},
+          {"ingredient": 2047, "amount": 6},
+          {"ingredient": 1123, "amount": 8}] 
         },
         {
         "name": "Ephraim Goyette",
         "id": 2,
         "pantry": [
-          {
-            "ingredient": 6150,
-            "amount": 3
-          },
-          {
-            "ingredient": 1032009,
-            "amount": 7
-          },
-          {
-            "ingredient": 2050,
-            "amount": 10
-          }]
+          {"ingredient": 6150, "amount": 3},
+          {"ingredient": 1032009, "amount": 7},
+          {"ingredient": 2050, "amount": 10}]
         }];
-
         let recipe1Data = {
             "id": 595736,
             "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
             "ingredients": [
-                {
-                    "id": 20081,
-                    "quantity": {
-                        "amount": 1.5,
-                        "unit": "c"
-                    }
-                },
-                {
-                    "id": 2050,
-                    "quantity": {
-                        "amount": 0.5,
-                        "unit": "tsp"
-                    }
-                }
+                {"id": 20081, "quantity": {"amount": 1.5, "unit": "c"}},
+                {"id": 2050, "quantity": {"amount": 0.5, "unit": "tsp"}}
             ],
-            "instructions": [
-                {
-                    "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
-                    "number": 1
-                },
-                {
-                    "instruction": "Add egg and vanilla and mix until combined.",
-                    "number": 2
-                },
-            ],
+            "instructions": 
+                [{"instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.", "number": 1},
+                {"instruction": "Add egg and vanilla and mix until combined.", "number": 2},],
             "name": "Loaded Chocolate Chip Pudding Cookie Cups",
-            "tags": [
-                "antipasti",
-                "starter",
-                "snack",
-                "appetizer",
-                "antipasto",
-                "hor d'oeuvre"
-            ]
+            "tags": [ "antipasti", "starter", "snack", "appetizer", "antipasto", "hor d'oeuvre" ]
         };
+
+        let recipe2Data = {
+            "id": 543687,
+            "image": "https://spoonacular.com/recipeImages/543687-556x370.jpg",
+            "ingredients": [
+                {"id": 93607, "quantity": {"amount": 1, "unit": "cup"}},
+                {"id": 9040, "quantity": {"amount": 1, "unit": "small"}},
+                {"id": 18942, "quantity": {"amount": 1, "unit": "Tbsp"}}],
+            "instructions": 
+                [{"instruction": "Add all ingredients to a blender (except graham crackers if using). Cover and blend until well pureed then serve topped with crushed graham crackers if desired.*The banana is mostly what gives this smoothie it's sweetness, so I recommend using one that is speckled (not mushy though).Recipe Source: Cooking Classy", "number": 1}],
+            "name": "Pumpkin Cheesecake Breakfast Smoothie",
+            "tags": [ "morning meal", "brunch", "breakfast"]};
+
         beforeEach(function() {
             player1 = new Player(onePlayerData);
             recipe1 = new Recipe(recipe1Data);
