@@ -1,7 +1,7 @@
-import { expect } from 'chai';
-import RecipesContainer from '../src/classes/RecipesContainer';
+import { expect } from "chai";
+import RecipesContainer from "../src/classes/RecipesContainer";
 
-describe('Recipe', () => {
+describe("RecipesContainer", () => {
   let recipesContainer1;
   let testData;
   beforeEach(function() {
@@ -111,11 +111,11 @@ describe('Recipe', () => {
     },];
   });
 
-  it('Should be a function', () => {
-    expect(RecipesContainer).to.be.a('function');
+  it("Should be a function", () => {
+    expect(RecipesContainer).to.be.a("function");
   });
   
-  it('Should instantiate our good friend RecipesContainer', () => {
+  it("Should instantiate our good friend RecipesContainer", () => {
     expect(recipesContainer1).to.be.an.instanceOf(RecipesContainer);
   });
   
