@@ -1,3 +1,529 @@
-body {
-  background-color: blueviolet;
+
+*,
+*:after,
+*:before {
+    box-sizing:border-box;
+    margin: 0;
+    padding: 0;
+    /* color: rgb(230, 159, 0);
+    color: rgb(86, 180, 233);
+    color: rgb(0, 114, 178);
+    color: rgb(213, 94, 0);
+    color: rgb(204, 121, 167); */
+    /* background-color: rgb(229, 246, 255); */
 }
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    font-family: 'Open Sans', sans-serif;
+    /* color: rgb(0, 49, 77); */
+    /* background-color: rgb(230, 159, 0);
+    ^backup color */
+    color: rgb(0, 16, 26);
+    /* ^for dark font÷ */
+}
+/* -----------------------------------------------aside--------------------- */
+.aside {
+  height: 100%;
+  width: 15%;
+  border-right-width: .1em;
+  border-right-style: solid;
+  border-right-color: rgb(0, 63, 98, .8);
+  background-color: rgb(0, 82, 128);
+}
+
+.profile-pic,
+.user-nav,
+.admin-nav,
+.categories {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(0, 82, 128);
+  
+}
+
+.profile-pic  {
+  height: 13%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.angle {
+  height: 1.2em;
+  width: 1.2em;
+  vertical-align: bottom;
+}
+
+.rogue {
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 50%;
+}
+
+.avatar {
+  height: 4em;
+  width: 4em;
+}
+
+
+.user-name {
+  font-size: .7em;
+  font-weight: 700;
+  background-color: rgb(0, 82, 128);
+}
+/* ---section  */
+.user-nav,
+.admin-nav,
+.categories {
+  height: 20%;
+  width: 100%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  border-top-width: .1em;
+  border-top-style: solid;
+  border-top-color: rgb(0, 63, 98);
+}
+
+.player-menu,
+.admin-menu,
+.community-menu {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.beer,
+.edit,
+.star,
+.ticket,
+.calendar-exclamation,
+.film,
+.add-folder,
+.chart-set-theory,
+.coins,
+.navigation,
+.marker,
+.chart-connected,
+.home-location,
+.world {
+  height: 1.2em;
+  width: 1.2em;
+  vertical-align: baseline;
+}
+
+.small-title {
+  height: 15%;
+  text-align: left;
+  font-size: .6em;
+  font-weight: 700;
+  background-color: rgb(0, 82, 128);
+  color: rgb(0, 16, 26, 0.7);
+
+}
+
+.p-aside,
+.p-categories {
+  width: 100%;
+  font-size: .6em;
+  font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: rgb(0, 82, 128); 
+}
+
+/* ---------------------------------------------------main-------------------- */
+main {
+  height: 100%;
+  width: 85%;
+  /* background-color: rgb(86, 180, 233); */
+  background-color: rgb(229, 246, 255);
+  color: rgb(129, 49, 94)
+}
+/* --------top search bar---------------------------------------------  */
+.top-search-field {
+  height: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border-bottom-width: .1em;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(86, 180, 233);
+}
+
+.pancake {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 8%;
+  border-right-width: .1em;
+  border-right-style: solid;
+  border-right-color: rgb(86, 180, 233, .6);
+  /* background-color: rgb(86, 180, 233); */
+}
+.search-container {
+  height: 100%;
+  width: 68%;
+}
+
+.search {
+  background-image: url("../src/images/search-dollar.svg");
+  background-position: 2em 1em;
+  background-size: 1.2em 1.2em;
+  background-repeat: no-repeat;
+  border: none;
+  height: 100%;
+  width: 100%;
+  color: rgb(204, 121, 167, .6)
+}
+
+.search::placeholder {
+  border: none;
+  padding-left: 3.7em;
+  font-size: 1em;
+  font-weight: 300;
+  color:rgb(239, 212, 227);
+}
+
+.add-friend,
+.calendar-notification,
+.grid-menu {
+  height: 100%;
+  width: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left-width: .1em;
+  border-left-style: solid;
+  border-left-color: rgb(86, 180, 233, .6);
+}
+
+.caret-left {
+  height: 1em;
+  width: 1em;
+}
+.menu-burger {
+  height: 1.5em;
+  width: 1.5em;
+}
+
+.following,
+.calendar-clock,
+.grid {
+  height: 1.5em;
+  width: 1.5em;
+}
+/* -------h1-----------------------------------------------------------------  */
+.header {
+  height: 12%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+}
+
+.heading{
+  padding-left: .5em;
+  width: 60%;
+}
+
+.cocktail {
+  height: 1em;
+  width: 1em;
+}
+
+.preview {
+  color:rgb(192, 89, 146);
+}
+
+.p-envelope,
+.location,
+.preview {
+  font-size: small;
+}
+
+form,
+.options {
+  height: 100%;
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.p-envelope {
+  width: 60%;
+  text-align: left;
+}
+.open-sizing {
+  width: 40%;
+}
+.form-open-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 2.8em;
+  width: 6.5em;
+  border-width: .1em;
+  border-style: solid;
+  border-radius: 4em;
+  color:rgb(192, 89, 146);
+  border-color: rgb(86, 180, 233, .6);
+  background-color: rgb(229, 246, 255);
+
+}
+
+.button-tags,
+.button-pencil,
+.button-trash {
+  height: 2.8em;
+  width: 2.8em;
+  border-width: .1em;
+  border-style: solid;
+  border-radius: 50%;
+  border-color: rgb(86, 180, 233, .6);
+  background-color: rgb(229, 246, 255);
+}
+.envelope {
+  padding-left: .3em;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.tags,
+.pencil,
+.trash {
+  height: 1.5em;
+  width: 1.5em;
+}
+/* -------------------------------------------------------------- */
+.data-nav-tabs {
+  height: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-top-style: solid;
+  border-top-width: .1em;
+  border-top-color: rgb(255, 247, 229);
+  background-color: rgb(255, 231, 179);
+}
+.summary,
+.applicants,
+.job-listings,
+.interviews,
+.activity,
+.broadcast,
+.notifications {
+  font-size: .7em;
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------------ */
+.data-graphs {
+  height: 25%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  border-top-style: solid;
+  border-top-width: .1em;
+  border-top-color: rgb(255, 247, 229);
+  border-bottom-style: solid;
+  border-bottom-width: .1em;
+  border-bottom-color: rgb(255, 247, 229);
+  background-color: rgb(255, 231, 179);
+}
+.other-chart-container,
+.bar-chart-container {
+  max-height: 100%;
+  max-width: 50%;
+  object-fit: contain;
+}
+
+.bar-chart {
+  margin-left: 1.5em;
+}
+.chart2021,
+.bar-chart {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* -------------------------------------------main details  */
+.main-details {
+  height: 53%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.character-sheet {
+  height: 100%;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  /* background-color: rgb(204, 121, 167); */
+  background-color: rgb(255, 231, 179);
+}
+
+.page {
+  height: 95%;
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: .7em;
+  font-weight: 700;
+  color: rgb(204, 121, 167, .6);
+  background-color:rgb(229, 246, 255);
+}
+
+.top-description-bar {
+  height: 8%;
+  width: 100%;
+  padding-left: 3em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgb(0, 82, 128, .8);
+  color:rgb(229, 246, 255);
+
+}
+.page-body {
+  height: 100%;
+  width: 90%;
+}
+
+.position-title2,
+.job-location2,
+.employment-type2,
+.experience-gain2,
+.job-status2,
+.job-description2,
+.hiring-lead2,
+.approved-salary2 {
+  height: 100%;
+  width: 30%;
+  padding-left: 1em;
+  display: flex;
+  align-items: center;
+}
+
+.position-title3,
+.job-location3,
+.employment-type3,
+.experience-gain3,
+.job-status3,
+.job-description3,
+.hiring-lead3,
+.approved-salary3 {
+  height: 100%;
+  width: 70%;
+  padding-right: 1em;
+  display: flex;
+  align-items: center;
+  color: rgb(204, 121, 167, .6)
+
+}
+
+.position-title,
+.job-location,
+.employment-type,
+.experience-gain,
+.job-status {
+  height: 8%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  font-size: .7em;
+  font-weight: 700;
+  border-bottom-style: solid;
+  border-bottom-width: .1em;
+  border-bottom-color:rgb(0, 82, 128, .4);
+  color: rgb(204, 121, 167)
+}
+.job-description {
+  height: 25%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  font-size: .7em;
+  font-weight: 700;
+  border-bottom-style: solid;
+  border-bottom-width: .1em;
+  border-bottom-color:rgb(0, 82, 128, .4);
+  color: rgb(204, 121, 167)
+}
+.hiring-lead {
+  height:15%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  font-size: .7em;
+  font-weight: 700;
+  border-bottom-style: solid;
+  border-bottom-width: .1em;
+  border-bottom-color:rgb(0, 82, 128, .4);
+  color: rgb(204, 121, 167)
+}
+.approved-salary {
+  height: 8%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  font-size: .7em;
+  font-weight: 700;
+  color: rgb(204, 121, 167)
+}
+
+.invisible-yellow {
+  height: 4%;
+  width: 100%;
+  background-color: rgb(255, 231, 179);
+}
+/* character sheet and sidebar share a container  */
+.sidebar {
+  height: 100%;
+  width: 30%;
+  background-color: rgb(255, 231, 179);
+}
+
+.page2{
+  height: 97%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  align-items: center;
+  font-size: .7em;
+  font-weight: 700;
+  color: rgb(204, 121, 167, .6);
+  background-color:rgb(229, 246, 255);
+}
+
+.invis-header {
+  height: 5%;
+  width: 100%;
+  background-color: rgb(255, 231, 179);
+}
+

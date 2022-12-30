@@ -1,11 +1,162 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-  </head>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <aside class="aside" id="aside">
+      <h1>Whats Cookin</h1>
+      <section class="profile-pic" id="profilePic">
+          <section class="avatar">
+          </section>
+          <h2 class="user-name">Raised By Wolves&nbsp</h2>
+      </section>
+      <section class="user-nav" id="userNav">
+          <h3 class="small-title">Player Corner</h3>
+          <section class="player-menu">
+          </section>
+      </section>
+      <section class="admin-nav" id="adminNav">
+          <h3 class="small-title">Dungeon Admin</h3>
+          <section class="admin-menu">
+          </section>
+      </section>
+      <section class="categories" id="categories">
+          <h3 class="small-title">Categories</h3>
+          <section class="community-menu">
+          </section>
+      </section>
+  </aside>
+  <main class="main" id="main">
+    <section class="top-search-field">
+        <section class="pancake">
+            <img src="../src/images/caret-left.svg" alt="caret-left" class="caret-left">
+            <img src="../src/images/menu-burger.svg" alt="menu-burger" class="menu-burger"></section>
+        <section class="search-container">
+            <input type="text" placeholder="Search for a job, guild work, or a dungeon group ..." name="search" class="search">
+        </section>
+        <section class="add-friend"><img src="../src/images/following.svg" alt="following" class="following"></section>
+        <section class="calendar-notification"><img src="../src/images/calendar-clock.svg" alt="calendar-clock" class="calendar-clock"></section>
+        <section class="grid-menu"><img src="../src/images/grid.svg" alt="grid" class="grid"></section>
+    </section>
+    <section class="header">
+        <div class="heading">
+            <h1>Pickup Local Trash</h1>
+            <h2 class="location"><img src="../src/images/cocktail-alt.svg" alt="cocktail" class="cocktail">&nbspThe One Eyed Beholder&nbsp&nbsp&#9900&nbsp&nbsp<span class="preview">Preview this post</span></h2>
+        </div>
+        <form class="options" input type="button">
+            <button class="form-open-button">
+                <section class="open-sizing">
+                    <img src="../src/images/envelope-open.svg" alt="envelope-open" class="envelope" id="open">
+                </section>
+                <label for="open" class="p-envelope">OPEN</label>
+            </button>
+            <button type="button" class="button-tags" name="tags"><img src="../src/images/tags.svg" alt="tags" class="tags"></button>
+            <button type="button" class="button-pencil" name="pencil"><img src="../src/images/pencil.svg" alt="pencil" class="pencil"></button>
+            <button type="button" class="button-trash" name="trash"><img src="../src/images/trash.svg" alt="trash" class="trash"></button>
+        </form>
+    </section>
+    <section class="data-nav-tabs">
+        <section class="summary">&nbsp&nbspSUMMARY</section>
+        <section class="applicants">&#9856&nbsp&nbspAPPLICANTS</section>
+        <section class="job-listings">&#9857&nbsp&nbspJOB&nbspLISTINGS</section>
+        <section class="interviews">&#9858&nbsp&nbspINTERVIEWS</section>
+        <section class="activity">&#9859&nbsp&nbspACTIVITY</section>
+        <section class="broadcast">&#9860&nbsp&nbspBROADCAST</section>
+        <section class="notifications">&#9861&nbsp&nbspNOTIFICATIONS</section>
+    </section>
+    <section class="data-graphs" id="data-graphs">
+        <section class="other-chart-container">
+        </section>
+        <section class="bar-chart-container" id="bar-chart-container">
+        </section>
+    </section>
+    <div class="main-details">
+        <section class="character-sheet">
+            <section class="page">
+                <section class="top-description-bar">
+                    <p>&nbsp&nbspListing&nbsp&nbsp</p>
+                </section>
+                <section class="page-body">
+                    <section class="position-title">
+                        <section class="position-title2">
+                            <p>&nbsp&nbspPosition Title&nbsp&nbsp</p>
+                        </section>
+                        <section class="position-title3">
+                            <p>&nbsp&nbspCustomer Service Representative&nbsp&nbsp</p>
+                        </section>
+                    </section>
+                    <section class="job-location">
+                        <section class="job-location2">
+                            <p>&nbsp&nbspJob Location&nbsp&nbsp</p>
+                        </section>
+                        <section class="job-location3">
+                            <p>&nbsp&nbspThe Toasty Tressym&nbsp&nbsp</p>
+                        </section>
+                    </section>
+                    <section class="employment-type">
+                        <section class="employment-type2">
+                            <p>&nbsp&nbspEmployment Type&nbsp&nbsp</p>
+                        </section>
+                        <section class="employment-type3">
+                            <p>&nbsp&nbspPart-Time&nbsp&nbsp</p>
+                        </section>
+                    </section>
+                    <section class="experience-gain">
+                        <section class="experience-gain2">
+                            <p>&nbsp&nbspExperience Gain&nbsp&nbsp</p>
+                        </section>
+                        <section class="experience-gain3">
+                            <p>&nbsp&nbspMid-level&nbsp&nbsp</p>
+                        </section>
+                    </section>
+                    <section class="job-status">
+                        <section class="job-status2">
+                            <p>&nbsp&nbspStatus&nbsp&nbsp</p>
+                        </section>
+                        <section class="job-status3">
+                            <p>&nbsp&nbspAvailable&nbsp&nbsp</p>
+                        </section>
+                    </section>
+                    <section class="job-description">
+                        <section class="job-description2">
+                            <p>&nbsp&nbspJob Description&nbsp&nbsp</p>
+                        </section>
+                        <section class="job-description3">
+                        </section>
+                    </section>
+                    <section class="hiring-lead">
+                        <section class="hiring-lead2">
+                            <p>&nbsp&nbspHiring Lead&nbsp&nbsp</p>
+                        </section>
+                        <section class="hiring-lead3">
+                        </section>
+                    </section>
+                    <section class="approved-salary">
+                        <section class="approved-salary2">
+                            <p>&nbsp&nbspApproved Salary&nbsp&nbsp</p>
+                        </section>
+                        <section class="approved-salary3">
+                            <p>&nbsp&nbsp48 gold pieces&nbsp&nbsp</p>
+                        </section>
+                    </section>
+                </section>
+                <section class="invisible-yellow"></section>
+            </section>
+        </section>
+        <article class="sidebar">
+            <section class="page2">
+                <section class="invis-header"></section>
+            </section>
+        </article>
+    </div>
+</main>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
