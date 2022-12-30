@@ -35,10 +35,6 @@ describe("Recipe", () => {
     it("Should instantiate our good friend Recipe", () => {
         expect(recipe1).to.be.an.instanceOf(Recipe);
     });
-
-    it("Should have a property to store a recipe's data passed in as an argument", () => {
-        expect(recipe1Data.id).to.equal(595736);
-    });
         
     it("Should have a property to store a recipe id", () => {
         expect(recipe1.id).to.equal(595736);
@@ -50,34 +46,15 @@ describe("Recipe", () => {
 
     it("Should have a property to store an ingredients object array", () => {
         expect(recipe1.ingredients).to.have.deep.members([
-            {
-                "id": 20081,
-                "quantity": {
-                    "amount": 1.5,
-                    "unit": "c"
-                }
-            },
-            {
-                "id": 2050,
-                "quantity": {
-                    "amount": 0.5,
-                    "unit": "tsp"
-                }
-            }
+            {"id": 20081, "quantity": {"amount": 1.5, "unit": "c"}},
+            {"id": 2050, "quantity": {"amount": 0.5, "unit": "tsp"}}
         ]);
-        //or instantiate an ingredients class?
     });
 
     it("Should have a property to store the recipe instructions", () => {
         expect(recipe1.instructions).to.have.deep.members([
-            {
-                "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
-                "number": 1
-            },
-            {
-                "instruction": "Add egg and vanilla and mix until combined.",
-                "number": 2
-            },
+            {"instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.", "number": 1},
+            {"instruction": "Add egg and vanilla and mix until combined.", "number": 2},
         ]);
     });
 
@@ -86,21 +63,14 @@ describe("Recipe", () => {
     });
 
     it("Should have a property to store the recipe tags array", () => {
-        expect(recipe1.tags).to.have.deep.members([
-            "antipasti",
-            "starter",
-            "snack",
-            "appetizer",
-            "antipasto",
-            "hor d'oeuvre"
-        ]);
+        expect(recipe1.tags).to.have.deep.members(["antipasti", "starter", "snack", "appetizer", "antipasto", "hor d'oeuvre"]);
     });
 
     it("Should have a method to get ingredient ids from ingredients property", () => {
         let method00 = recipe1.findIngredientIds();
         expect(method00).to.have.deep.members([2050, 20081]);
     }); 
-    
+//-->REWRITE use Ingredients instantiation, don't use Recipe Class to search Ingredients Data! 
     it("Should then have a method to return the ingredient objects from the ingredient Ids found by previous method00", () => {
         let ingredientObjects2 = [{
             "id": 2050,
@@ -115,12 +85,12 @@ describe("Recipe", () => {
         let method0 = recipe1.findIngredientObjects(ingredientObjects);
         expect(method0).to.have.deep.members(ingredientObjects2);
     });
-
+//-->REWRITE using Ingredients class and methods
     it("Should have a method to determine the names of ingredients needed", () => {
         let method1 = recipe1.getIngredientNames(ingredientObjects);
         expect(method1).to.have.deep.members(["vanilla", "wheat flour"]);
     });
-
+//-->REWRITE using Ingredients class and methods
     it("Should have a method to determine the cost of those ingredients", () => {
         let method2 = recipe1.getIngredientsTotalCost(ingredientObjects);
         expect(method2).to.be.equal(1068);

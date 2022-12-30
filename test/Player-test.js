@@ -69,7 +69,7 @@ describe("Player", () => {
             expect(Player).to.be.a("function");
         });
     
-        it("Should instantiate our good friend Recipe", () => {
+        it("Should instantiate our good friend Player", () => {
             expect(player1).to.be.an.instanceOf(Player);
         });
 
@@ -98,11 +98,9 @@ describe("Player", () => {
         it("Should have a method to add a recipe to the Player saved to-cook list", () => {
             //let method1 = something; returns undefined because my method updates a property and doesn't implicitly return
             player1.addToCookList(recipe1.id);
-            //but what if there's more than one thing in there, the method returns inclusively? so +=?
             expect(player1.toCookList).to.deep.equal([595736]);
             player1.addToCookList(recipe2.id);
             expect(player1.toCookList).to.deep.equal([543687, 595736]);
-            // console.log(player1.toCookList);
             //I don't think we should store recipe data here because class isn't meant to hold onto  recipe data, but Player data, so make this an array of recipe ids and not recipe data
         });
 
@@ -121,12 +119,12 @@ describe("Player", () => {
         });
         
         it("Should have a method to filter the to-cook list by tag", () => {
-
+//--> how are we getting the tag info?
             //--> method3 filter to-cook list by tag (use RecipeContainer method?)
         });
 
         it("Should have a method to filter to-cook list by name", () => {
-
+//--> how are we getting the name info?
             //--> method4 filter to-cook list by name (use other classes' methods)
         })
 
