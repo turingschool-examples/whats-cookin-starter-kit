@@ -6,6 +6,7 @@ import Player from "../src/classes/Player";
 describe("Player", () => {
     let player1;
     let recipe1;
+    let recipe2;
     let onePlayerData = {
         "name": "Saige O'Kon",
         "id": 1,
@@ -61,6 +62,7 @@ describe("Player", () => {
         beforeEach(function() {
             player1 = new Player(onePlayerData);
             recipe1 = new Recipe(recipe1Data);
+            recipe2 = new Recipe(recipe2Data);
         });
 
         it("Should be a function", () => {
@@ -98,13 +100,24 @@ describe("Player", () => {
             player1.addToCookList(recipe1.id);
             //but what if there's more than one thing in there, the method returns inclusively? so +=?
             expect(player1.toCookList).to.deep.equal([595736]);
-            //what does this method provide? a list of recipes, or should it be recipe ids? I don't think we should store recipe data here
-            //this isn't about recipes, it's about the Player, so array of ids and not recipe data
+            player1.addToCookList(recipe2.id);
+            expect(player1.toCookList).to.deep.equal([543687, 595736]);
+            // console.log(player1.toCookList);
+            //I don't think we should store recipe data here because class isn't meant to hold onto  recipe data, but Player data, so make this an array of recipe ids and not recipe data
         });
 
         it("Should have a method to remove a recipe from the Player's saved to-cook recipes", () => {
+            player1.addToCookList(recipe1.id);
+            player1.addToCookList(recipe2.id);
+            expect(player1.toCookList).to.deep.equal([543687, 595736]);
+
+            player1.removeIdFromToCookList(recipe2.id);
+            expect(player1.toCookList).to.deep.equal([595736]);
+
             player1.removeIdFromToCookList(recipe1.id);
-            //--> method2 remove recipe from to-cook list
+            expect(player1.toCookList).to.have.lengthOf(0);
+//--> sad path test:
+            player1.removeIdFromToCookList(recipe1.id);
         });
         
         it("Should have a method to filter the to-cook list by tag", () => {
