@@ -42,13 +42,13 @@ describe("Ingredient", () => {
         expect(ingredient1.object).to.deep.equal({"id": 18372, "name": "bicarbonate of soda", "estimatedCostInCents": 582});
     })
 
-    it("Should have a method to get an ingredient name", () => {
-        let method2 = ingredient1.getIngredientName();
-        expect(method2).to.be.equal("bicarbonate of soda");
-    });
-
     it("Should have a method to get the cost of an ingredient", () => {
         let method1 = ingredient1.getIngredientCost();
         expect(method1).to.be.equal(582);
+    });
+
+    it("Should have a method to get an ingredient name", () => {
+        let method2 = ingredient1.getIngredientName();
+        expect(method2).to.be.equal("bicarbonate of soda");
     });
 });
