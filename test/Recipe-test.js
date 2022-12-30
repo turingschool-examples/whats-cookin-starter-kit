@@ -139,7 +139,7 @@ describe("Recipe", () => {
         "name": "vanilla",
         "estimatedCostInCents": 926
       }, 
-      {
+      { 
         "id": 20081,
         "name": "wheat flour",
         "estimatedCostInCents": 142
