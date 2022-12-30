@@ -62,7 +62,7 @@ describe("Recipe", () => {
     }];
 
     beforeEach(function() {
-        recipe1 = new Recipe(recipe1Data, ingredientObjects);
+        recipe1 = new Recipe(recipe1Data);
     });
 
     it("Should be a function", () => {
@@ -144,22 +144,24 @@ describe("Recipe", () => {
         "name": "wheat flour",
         "estimatedCostInCents": 142
       }];
-        let method0 = recipe1.findIngredientObjects();
-        expect(method0).to.be.equal(ingredientObjects2);
-        //to have deep members?
+        let method0 = recipe1.findIngredientObjects(ingredientObjects);
+        console.log("method0", method0)
+        expect(method0).to.have.deep.members(ingredientObjects2);
+        //need sad paths, sort ids and no dups
+        //I shouldn't be mutating the data.
     })
 
     it("Should have a method to determine the names of ingredients needed", () => {
         let method1 = recipe1.getIngredientNames();
-
-        //maybe for each ingredient, instantiate a new ingredient?
+        console.log("method 1:", method1);
+        expect(method1).to.have.deep.members(["vanilla", "wheat flour"]);
     });
 
-    it("Should have a method to determine the cost of those ingredients", () => {
+    it.skip("Should have a method to determine the cost of those ingredients", () => {
         let method2 = recipe1.getIngredientsTotalCost();
     });
 
-    it("Should have a method to get the recipe directions", () => {
+    it("Should have a method to get the recipe instructions", () => {
         let method3 = recipe1.getRecipeInstructions();
         expect(method3).to.be.equal(recipe1Data.instructions);
     });
