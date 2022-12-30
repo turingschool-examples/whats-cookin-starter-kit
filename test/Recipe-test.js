@@ -4,7 +4,6 @@ import Recipe from "../src/classes/Recipe";
 
 describe("Recipe", () => {
     let recipe1;
-    // let recipe1Data;
     let recipe1Data = {
         "id": 595736,
         "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -150,13 +149,11 @@ describe("Recipe", () => {
             "estimatedCostInCents": 142
         }];
         let method0 = recipe1.findIngredientObjects(ingredientObjects);
-        console.log("method0, ingredients shortlist: ", method0);
         expect(method0).to.have.deep.members(ingredientObjects2);
     });
 
     it("Should have a method to determine the names of ingredients needed", () => {
         let method1 = recipe1.getIngredientNames(ingredientObjects);
-        console.log("method 1:", method1);
         expect(method1).to.have.deep.members(["vanilla", "wheat flour"]);
     });
 

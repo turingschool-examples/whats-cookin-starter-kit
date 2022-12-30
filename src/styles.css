@@ -185,7 +185,7 @@ main {
   border: none;
   height: 100%;
   width: 100%;
-  color: rgb(204, 121, 167, .6)
+  color: rgb(204, 121, 167, .6);
 }
 
 .search::placeholder {

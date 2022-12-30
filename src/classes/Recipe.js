@@ -25,7 +25,7 @@ class Recipe {
         }, []);
         return ingredientsShortList;
     }
-//names:
+
     getIngredientNames(ingredientObjects) {
         let currentIngredients = this.findIngredientObjects(ingredientObjects);
         let names = currentIngredients.map(element => {
@@ -33,12 +33,10 @@ class Recipe {
         });
         return names;
     }
-//cost:
+
     getIngredientsTotalCost(ingredientObjects) {
         let currentIngredients = this.findIngredientObjects(ingredientObjects);
-        console.log("currentIngredients: ", currentIngredients);
         let totalCost = currentIngredients.reduce((acc, curr) => {
-            console.log(curr.estimatedCostInCents);
             acc += curr.estimatedCostInCents;
             return acc;
         }, 0);
