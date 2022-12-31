@@ -86,7 +86,6 @@ describe("Recipe", () => {
             name: 'wheat flour',
             cost: 142
           });
-
     });
 
     it("Should have a method to determine the names of ingredients needed", () => {
@@ -103,4 +102,13 @@ describe("Recipe", () => {
         let method5 = recipe1.getRecipeInstructions();
         expect(method5).to.be.equal(recipe1Object.instructions);
     });
+
+    it("Should have a method to check for a recipe tag in the this.tags array", () => {
+        let tag = "snack";
+        let tag2 = "trailmix";
+        let method6 = recipe1.checkRecipeTags(tag);
+        let method6B = recipe1.checkRecipeTags(tag2);
+        expect(method6).to.be.equal("snack");
+        expect(method6B).to.be.equal(undefined);
+    })
 });

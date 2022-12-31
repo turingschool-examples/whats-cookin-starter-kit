@@ -42,6 +42,11 @@ class Recipe {
     getRecipeInstructions() {
         return this.instructions;
     }
+
+    checkRecipeTags(tag) {
+        let findTags = this.tags.find(element => element === tag);
+        return findTags;
+    }
 }
 
 export default Recipe;

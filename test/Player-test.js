@@ -47,7 +47,7 @@ describe("Player", () => {
                 [{"instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.", "number": 1},
                 {"instruction": "Add egg and vanilla and mix until combined.", "number": 2},],
         "name": "Loaded Chocolate Chip Pudding Cookie Cups",
-        "tags": [ "antipasti", "starter", "snack", "appetizer",     "antipasto", "hor d'oeuvre" ]
+        "tags": [ "antipasti", "starter", "snack", "appetizer", "antipasto", "hor d'oeuvre" ]
         };
 
     let recipe2Data = {
@@ -95,7 +95,7 @@ describe("Player", () => {
             {"instruction": "Add both sugars and beat for 2 minutes.", "number": 2},
         ],
         "name": "Puppy Chow Cookies",
-        "tags": ["side dish"]
+        "tags": ["side dish", "trailmix"]
         },
         {
         "id": 543687,
@@ -125,7 +125,7 @@ describe("Player", () => {
         }
     ];
 
-        beforeEach(function() {
+    beforeEach(function() {
             player1 = new Player(onePlayerData);
             recipe1 = new Recipe(recipe1Data);
             recipe2 = new Recipe(recipe2Data);
@@ -133,49 +133,48 @@ describe("Player", () => {
             player2 = new Player(onePlayerData);
             player2.addToCookList(recipe1.id);
             player2.addToCookList(recipe2.id);
-            console.log("player2.toCookList:", player2.toCookList);
-        });
+    });
 
-        it("Should be a function", () => {
+    it("Should be a function", () => {
             expect(Player).to.be.a("function");
-        });
+    });
     
-        it("Should instantiate our good friend Player", () => {
+    it("Should instantiate our good friend Player", () => {
             expect(player1).to.be.an.instanceOf(Player);
-        });
+    });
 
-        it("Should have a property that stores a Player name", () => {
+    it("Should have a property that stores a Player name", () => {
             expect(player1.name).to.equal("Saige O'Kon");
-        });
+    });
 
-        it("Should have a property that stores a Player id", () => {
+    it("Should have a property that stores a Player id", () => {
             expect(player1.id).to.equal(1);
-        });
+    });
 
-        it("Should have a property that stores a Player's pantry", () => {
+    it("Should have a property that stores a Player's pantry", () => {
             expect(player1.pantry).to.have.deep.members([
                 {"ingredient": 11297, "amount": 4},
                 {"ingredient": 1082047, "amount": 10},
                 {"ingredient": 2047, "amount": 6},
                 {"ingredient": 1123, "amount": 8}
             ]);
-        });
+    });
 
-        it("Should have a property that stores an empty array for saved to-cook recipes", () => {
+    it("Should have a property that stores an empty array for saved to-cook recipes", () => {
             expect(player1.toCookList).to.be.an("array");
             expect(player1.toCookList).to.have.lengthOf(0);
-        });
+    });
 
-        it("Should have a method to add a recipe to the Player saved to-cook list", () => {
+    it("Should have a method to add a recipe to the Player saved to-cook list", () => {
             //let method1 = something; returns undefined because my method updates a property and doesn't implicitly return
             player1.addToCookList(recipe1.id);
             expect(player1.toCookList).to.deep.equal([595736]);
             player1.addToCookList(recipe2.id);
             expect(player1.toCookList).to.deep.equal([543687, 595736]);
             //I don't think we should store recipe data here because class isn't meant to hold onto  recipe data, but Player data, so make this an array of recipe ids and not recipe data
-        });
+    });
 
-        it("Should have a method to remove a recipe from the Player's saved to-cook recipes", () => {
+    it("Should have a method to remove a recipe from the Player's saved to-cook recipes", () => {
             expect(player2.toCookList).to.deep.equal([543687, 595736]);
 
             player2.removeIdFromToCookList(recipe2.id);
@@ -185,32 +184,33 @@ describe("Player", () => {
             expect(player2.toCookList).to.have.lengthOf(0);
 //--> sad path test:
             player2.removeIdFromToCookList(recipe1.id);
-        });
+    });
 
-        it("Should have a method to locate recipes, virtually filling a recipe box, for the following filter methods", () => {
+    it("Should have a method to locate recipes, virtually filling a recipe box, for the following filter methods", () => {
             let method3 = player2.fillRecipeBox(bigRecipeData);
             expect(player2.toCookList[0]).to.be.equal(method3[0].id);
             expect(method3).to.have.deep.members([recipe2Data, recipe1Data]);
 //double  data doubel datatatatata
-//I can follow-up with another method to instantiate these objects if I end up needing them
-        });
+//If I instantiate these recipe objects in the "fill recipe box" method, then I can call recipe methods in the following methods, since probably Player shouldn't be messing with Recipe data, only moving Recipe objects
+    });
 
-        it("Should have a method to filter the to-cook list by tag", () => {
+    it("Should have a method to filter the to-cook list by tag", () => {
             let tag = "snack";
-            let recipeId
-            let method4 = player2.filterMyRecipeTags(tag, recipeId, bigRecipeData);
+            let tag2 = "trailmix";
+            let method4 = player2.filterMyRecipeTags(tag, bigRecipeData);
+            let method4B = player2.filterMyRecipeTags(tag2, bigRecipeData);
+            console.log("method4b: ", method4B);
+            expect(method4).to.have.deep.members([recipe1]);
+            expect(method4B).to.have.lengthOf(0);
+    });
 
-//--> how are we getting the tag info?
-            //--> method4 filter to-cook list by tag (use RecipeContainer method?)
-            //use map to instantiate recipes and then filter by argument passed in?
-        });
-
-        it("Should have a method to filter to-cook list by name", () => {
+    it("Should have a method to filter to-cook list by name", () => {
             let name = "Pumpkin Cheesecake Breakfast Smoothie";
             let method5 = player2.filterMyRecipeNames(name, bigRecipeData);
+            expect(method5.id).to.be.equal(543687);
+            //just check for this.name?
 //--> how are we getting the name info?
             //--> method5 filter to-cook list by name (use other classes' methods)
             //allow for partial string? Check later based on DOM display
-        })
-
+    })
 });
