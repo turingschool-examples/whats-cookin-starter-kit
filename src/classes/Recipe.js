@@ -12,19 +12,15 @@ class Recipe {
 
     findIngredientIds() {
         let ingredientIds = this.ingredients.map(element => element.id).sort((a, b) => a - b);
-        // console.log(ingredientIds);
         return ingredientIds;
     }
 
     instantiateIngredientObjects(ingredientsData) {
         let ingredientIds1 = this.findIngredientIds();
         let instances = ingredientIds1.reduce((acc, curr) => {
-            // console.log("curr: ", curr);
-            // let anIngredient = new Ingredient(curr, ingredientsData);
             acc.push(new Ingredient(curr, ingredientsData));
             return acc;
         }, []);
-        // console.log(instances);
         return instances;
     }
 
@@ -39,7 +35,7 @@ class Recipe {
     getIngredientsTotalCost(ingredientsData) {
         let ingredientInstances = this.instantiateIngredientObjects(ingredientsData);
         let totalCost = ingredientInstances.reduce((acc, curr) => {
-            acc += curr.estimatedCostInCents;
+            acc += curr.cost;
             return acc;
         }, 0);
         return totalCost;

@@ -83,27 +83,21 @@ describe("Recipe", () => {
             "estimatedCostInCents": 142
         }];
         let method2 = recipe1.instantiateIngredientObjects(ingredientObjects);
-        expect(method2).to.have.deep.members([
-            Ingredient {
-              id: 2050,
-              object: { id: 2050, name: 'vanilla', estimatedCostInCents: 926 },
-              name: 'vanilla',
-              cost: 926
-            },
-            Ingredient {
-              id: 20081,
-              object: { id: 20081, name: 'wheat flour', estimatedCostInCents: 142 },
-              name: 'wheat flour',
-              cost: 142
-            }
-          ]);
+        console.log("method2: ", method2);
+        expect(method2).to.nested.include({ id: 2050, name: 'vanilla', estimatedCostInCents: 926 });
+        expect(method2).to.have.deep.include([{
+            id: 2050,
+            object: { id: 2050, name: 'vanilla', estimatedCostInCents: 926 },
+            name: 'vanilla',
+            cost: 926
+          }]);
+
     });
-//-->REWRITE using Ingredients class and methods
+
     it("Should have a method to determine the names of ingredients needed", () => {
         let method3 = recipe1.getIngredientNames(ingredientObjects);
         expect(method3).to.have.deep.members(["vanilla", "wheat flour"]);
     });
-//-->REWRITE using Ingredients class and methods
     it("Should have a method to determine the cost of those ingredients", () => {
         let method4 = recipe1.getIngredientsTotalCost(ingredientObjects);
         expect(method4).to.be.equal(1068);
