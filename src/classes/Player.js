@@ -23,7 +23,7 @@ class Player {
 
     filterMyRecipeTags(tag) {
         let recipeInstances = this.toCookList.map(recipeId => new Recipe(recipeData))
-        //how do I make a new Recipe from all the data based on a given id? Do I need to call for the object the way I did with Ingredients
+        //how do I make a new Recipe from all the data based on a given id? Do I need to call for the the way I did with Ingredients
 
     }
 

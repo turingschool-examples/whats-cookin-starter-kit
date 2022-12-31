@@ -79,6 +79,13 @@ describe("Recipe", () => {
             name: 'vanilla',
             cost: 926
           });
+        expect(method2).to.deep.include({
+            id: 20081,
+            object: { id: 20081, name: 'wheat flour', estimatedCostInCents: 142 },
+            name: 'wheat flour',
+            cost: 142
+          });
+
     });
 
     it("Should have a method to determine the names of ingredients needed", () => {

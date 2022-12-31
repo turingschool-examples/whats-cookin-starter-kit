@@ -21,4 +21,4 @@ const fetchRecipesURL = (recipesURL) => {
 
 Promise.all([fetchUsersUrl, fetchIngredientsURL, fetchRecipesURL]).then((values) => {
     console.log(values);
-});
+);

@@ -18,6 +18,7 @@ class Recipe {
     instantiateIngredientObjects(ingredientsData) {
         let ingredientIds1 = this.findIngredientIds();
         let instances = ingredientIds1.map(element => new Ingredient(element, ingredientsData));
+        console.log(instances);
         return instances;
     }
 
