@@ -4,7 +4,8 @@ import Recipe from "../src/classes/Recipe";
 
 describe("Recipe", () => {
     let recipe1;
-    let recipe1Data = {
+    //note: recipe1Object passed into Recipe class should be the correct recipe object and not all the recipe data. Will need to provide other functionality to pass in correct recipe objects.
+    let recipe1Object = {
         "id": 595736,
         "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
         "ingredients": [
@@ -25,7 +26,7 @@ describe("Recipe", () => {
         {"id": 20081, "name": "wheat flour", "estimatedCostInCents": 142}];
 
     beforeEach(function() {
-        recipe1 = new Recipe(recipe1Data);
+        recipe1 = new Recipe(recipe1Object);
     });
 
     it("Should be a function", () => {
@@ -100,6 +101,6 @@ describe("Recipe", () => {
 
     it("Should have a method to get the recipe instructions", () => {
         let method5 = recipe1.getRecipeInstructions();
-        expect(method5).to.be.equal(recipe1Data.instructions);
+        expect(method5).to.be.equal(recipe1Object.instructions);
     });
 });

@@ -1,13 +1,13 @@
 import Ingredient from "./Ingredient";
 
 class Recipe {
-    constructor(recipe1Data) {
-        this.id = recipe1Data.id;
-        this.image = recipe1Data.image;
-        this.ingredients = recipe1Data.ingredients;
-        this.instructions = recipe1Data.instructions;
-        this.name = recipe1Data.name;
-        this.tags = recipe1Data.tags;
+    constructor(recipe1Object) {
+        this.id = recipe1Object.id;
+        this.image = recipe1Object.image;
+        this.ingredients = recipe1Object.ingredients;
+        this.instructions = recipe1Object.instructions;
+        this.name = recipe1Object.name;
+        this.tags = recipe1Object.tags;
     }
 
     findIngredientIds() {
@@ -18,7 +18,7 @@ class Recipe {
     instantiateIngredientObjects(ingredientsData) {
         let ingredientIds1 = this.findIngredientIds();
         let instances = ingredientIds1.map(element => new Ingredient(element, ingredientsData));
-        console.log(instances);
+        // console.log(instances);
         return instances;
     }
 
