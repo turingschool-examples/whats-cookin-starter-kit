@@ -1,3 +1,5 @@
+import Ingredient from "./Ingredient";
+
 class Recipe {
     constructor(recipe1Data) {
         this.id = recipe1Data.id;
@@ -10,33 +12,33 @@ class Recipe {
 
     findIngredientIds() {
         let ingredientIds = this.ingredients.map(element => element.id).sort((a, b) => a - b);
+        // console.log(ingredientIds);
         return ingredientIds;
     }
 
-    findIngredientObjects(ingredientObjects) {
+    instantiateIngredientObjects(ingredientsData) {
         let ingredientIds1 = this.findIngredientIds();
-        let ingredientsShortList = ingredientObjects.reduce((acc, curr) => {
-            ingredientIds1.forEach(element => {
-                if (element === curr.id) {
-                    acc.push(curr);
-                }
-            });
+        let instances = ingredientIds1.reduce((acc, curr) => {
+            // console.log("curr: ", curr);
+            // let anIngredient = new Ingredient(curr, ingredientsData);
+            acc.push(new Ingredient(curr, ingredientsData));
             return acc;
         }, []);
-        return ingredientsShortList;
+        // console.log(instances);
+        return instances;
     }
 
-    getIngredientNames(ingredientObjects) {
-        let currentIngredients = this.findIngredientObjects(ingredientObjects);
-        let names = currentIngredients.map(element => {
+    getIngredientNames(ingredientsData) {
+        let ingredientInstances = this.instantiateIngredientObjects(ingredientsData);
+        let names = ingredientInstances.map(element => {
             return element.name
         });
         return names;
     }
 
-    getIngredientsTotalCost(ingredientObjects) {
-        let currentIngredients = this.findIngredientObjects(ingredientObjects);
-        let totalCost = currentIngredients.reduce((acc, curr) => {
+    getIngredientsTotalCost(ingredientsData) {
+        let ingredientInstances = this.instantiateIngredientObjects(ingredientsData);
+        let totalCost = ingredientInstances.reduce((acc, curr) => {
             acc += curr.estimatedCostInCents;
             return acc;
         }, 0);

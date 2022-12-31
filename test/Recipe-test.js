@@ -67,11 +67,11 @@ describe("Recipe", () => {
     });
 
     it("Should have a method to get ingredient ids from ingredients property", () => {
-        let method00 = recipe1.findIngredientIds();
-        expect(method00).to.have.deep.members([2050, 20081]);
+        let method1 = recipe1.findIngredientIds();
+        expect(method1).to.have.deep.members([2050, 20081]);
     }); 
 //-->REWRITE use Ingredients instantiation, don't use Recipe Class to search Ingredients Data! 
-    it("Should then have a method to return the ingredient objects from the ingredient Ids found by previous method00", () => {
+    it("Should then have a method to instantiate the ingredient objects with the ingredient Ids found by previous method1", () => {
         let ingredientObjects2 = [{
             "id": 2050,
             "name": "vanilla",
@@ -82,22 +82,35 @@ describe("Recipe", () => {
             "name": "wheat flour",
             "estimatedCostInCents": 142
         }];
-        let method0 = recipe1.findIngredientObjects(ingredientObjects);
-        expect(method0).to.have.deep.members(ingredientObjects2);
+        let method2 = recipe1.instantiateIngredientObjects(ingredientObjects);
+        expect(method2).to.have.deep.members([
+            Ingredient {
+              id: 2050,
+              object: { id: 2050, name: 'vanilla', estimatedCostInCents: 926 },
+              name: 'vanilla',
+              cost: 926
+            },
+            Ingredient {
+              id: 20081,
+              object: { id: 20081, name: 'wheat flour', estimatedCostInCents: 142 },
+              name: 'wheat flour',
+              cost: 142
+            }
+          ]);
     });
 //-->REWRITE using Ingredients class and methods
     it("Should have a method to determine the names of ingredients needed", () => {
-        let method1 = recipe1.getIngredientNames(ingredientObjects);
-        expect(method1).to.have.deep.members(["vanilla", "wheat flour"]);
+        let method3 = recipe1.getIngredientNames(ingredientObjects);
+        expect(method3).to.have.deep.members(["vanilla", "wheat flour"]);
     });
 //-->REWRITE using Ingredients class and methods
     it("Should have a method to determine the cost of those ingredients", () => {
-        let method2 = recipe1.getIngredientsTotalCost(ingredientObjects);
-        expect(method2).to.be.equal(1068);
+        let method4 = recipe1.getIngredientsTotalCost(ingredientObjects);
+        expect(method4).to.be.equal(1068);
     });
 
     it("Should have a method to get the recipe instructions", () => {
-        let method3 = recipe1.getRecipeInstructions();
-        expect(method3).to.be.equal(recipe1Data.instructions);
+        let method5 = recipe1.getRecipeInstructions();
+        expect(method5).to.be.equal(recipe1Data.instructions);
     });
 });
