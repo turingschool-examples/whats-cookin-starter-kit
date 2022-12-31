@@ -16,7 +16,8 @@ describe("Player", () => {
           {"ingredient": 1082047, "amount": 10},
           {"ingredient": 2047, "amount": 6},
           {"ingredient": 1123, "amount": 8}] 
-        };
+        }
+
     let somePlayersData =  [{
         "name": "Saige O'Kon",
         "id": 1,
@@ -34,31 +35,95 @@ describe("Player", () => {
           {"ingredient": 1032009, "amount": 7},
           {"ingredient": 2050, "amount": 10}]
         }];
-        let recipe1Data = {
-            "id": 595736,
-            "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
-            "ingredients": [
-                {"id": 20081, "quantity": {"amount": 1.5, "unit": "c"}},
-                {"id": 2050, "quantity": {"amount": 0.5, "unit": "tsp"}}
+        
+    let recipe1Data = {
+        "id": 595736,
+        "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
+        "ingredients": [
+            {"id": 20081, "quantity": {"amount": 1.5, "unit": "c"}},
+            {"id": 2050, "quantity": {"amount": 0.5, "unit": "tsp"}}
             ],
-            "instructions": 
+        "instructions": 
                 [{"instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.", "number": 1},
                 {"instruction": "Add egg and vanilla and mix until combined.", "number": 2},],
-            "name": "Loaded Chocolate Chip Pudding Cookie Cups",
-            "tags": [ "antipasti", "starter", "snack", "appetizer", "antipasto", "hor d'oeuvre" ]
+        "name": "Loaded Chocolate Chip Pudding Cookie Cups",
+        "tags": [ "antipasti", "starter", "snack", "appetizer",     "antipasto", "hor d'oeuvre" ]
         };
 
-        let recipe2Data = {
-            "id": 543687,
-            "image": "https://spoonacular.com/recipeImages/543687-556x370.jpg",
-            "ingredients": [
+    let recipe2Data = {
+        "id": 543687,
+        "image": "https://spoonacular.com/recipeImages/543687-556x370.jpg",
+        "ingredients": [
                 {"id": 93607, "quantity": {"amount": 1, "unit": "cup"}},
                 {"id": 9040, "quantity": {"amount": 1, "unit": "small"}},
                 {"id": 18942, "quantity": {"amount": 1, "unit": "Tbsp"}}],
-            "instructions": 
+        "instructions": 
                 [{"instruction": "Add all ingredients to a blender (except graham crackers if using). Cover and blend until well pureed then serve topped with crushed graham crackers if desired.*The banana is mostly what gives this smoothie it's sweetness, so I recommend using one that is speckled (not mushy though).Recipe Source: Cooking Classy", "number": 1}],
-            "name": "Pumpkin Cheesecake Breakfast Smoothie",
-            "tags": [ "morning meal", "brunch", "breakfast"]};
+        "name": "Pumpkin Cheesecake Breakfast Smoothie",
+        "tags": [ "morning meal", "brunch", "breakfast"]};
+
+    let bigRecipeData = [{
+        "id": 724018,
+        "image": "https://spoonacular.com/recipeImages/724018-556x370.jpg",
+        "ingredients": [
+            {"id": 11007,"quantity": {"amount": 2, "unit": "large"}},
+            {"id": 11297,"quantity": {"amount": 0.5, "unit": "cup"}},
+            {"id": 11215, "quantity": {"amount": 6, "unit": "cloves"}},
+            {"id": 2027, "quantity": {"amount": 1, "unit": "teaspoon"}},
+            {"id": 1034053, "quantity": {"amount": 0.5, "unit": "cup"}}
+        ],
+        "instructions": [
+            {"instruction": "Cut off the crust from 6 slices of bread. Chop the centers and put into a food processor. Pulse until you have coarse breadcrumbs. You should have about 3 cups.", "number": 1},
+            { "instruction": "Make the stuffing: In a large bowl, stir together the breadcrumbs, lemon zest, Parmesan cheese, minced garlic, chopped parsley, minced oregano, 1/2 cup olive oil, and black pepper. Set aside.", "number": 2}
+        ],
+        "name": "Baked Stuffed Artichokes",
+        "tags": ["side dish", "antipasti", "starter", "snack", "appetizer", "antipasto", "hor d'oeuvre"]
+        },
+        {
+        "id": 623855,
+        "image": "https://spoonacular.com/recipeImages/623855-556x370.jpg",
+        "ingredients": [
+            {"id": 18372, "quantity": {"amount": 1, "unit": "tsp"}},
+            {"id": 10116098, "quantity": {"amount": 1, "unit": "cup"}},
+            {"id": 1123, "quantity": {"amount": 1, "unit": ""}},
+            {"id": 20081, "quantity": {"amount": 1.25, "unit": "cup"}},
+            {"id": 19335, "quantity": {"amount": 0.5, "unit": "cup"}},
+            {"id": 19334, "quantity": {"amount": 0.5, "unit": "cup"}},
+        ],
+        "instructions": [
+            {"instruction": "Preheat oven to 350FLine a baking sheet with parchment, set aside.In bowl of stand mixer cream butter and peanut butter together until smooth.", "number": 1},
+            {"instruction": "Add both sugars and beat for 2 minutes.", "number": 2},
+        ],
+        "name": "Puppy Chow Cookies",
+        "tags": ["side dish"]
+        },
+        {
+        "id": 543687,
+        "image": "https://spoonacular.com/recipeImages/543687-556x370.jpg",
+        "ingredients": [
+            {"id": 93607, "quantity": {"amount": 1, "unit": "cup"}},
+            {"id": 9040, "quantity": {"amount": 1, "unit": "small"}},
+            {"id": 18942, "quantity": {"amount": 1, "unit": "Tbsp"}}],
+        "instructions": [
+            {"instruction": "Add all ingredients to a blender (except graham crackers if using). Cover and blend until well pureed then serve topped with crushed graham crackers if desired.*The banana is mostly what gives this smoothie it's sweetness, so I recommend using one that is speckled (not mushy though).Recipe Source: Cooking Classy", "number": 1}
+        ],
+        "name": "Pumpkin Cheesecake Breakfast Smoothie",
+        "tags": [ "morning meal", "brunch", "breakfast"]
+        },
+        {
+        "id": 595736,
+        "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
+        "ingredients": [
+                {"id": 20081, "quantity": {"amount": 1.5, "unit": "c"}},
+                {"id": 2050, "quantity": {"amount": 0.5, "unit": "tsp"}}
+        ],
+        "instructions": [
+            {"instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.", "number": 1},
+            {"instruction": "Add egg and vanilla and mix until combined.", "number": 2},],
+        "name": "Loaded Chocolate Chip Pudding Cookie Cups",
+        "tags": [ "antipasti", "starter", "snack", "appetizer",     "antipasto", "hor d'oeuvre" ]
+        }
+    ];
 
         beforeEach(function() {
             player1 = new Player(onePlayerData);
@@ -122,15 +187,18 @@ describe("Player", () => {
             player2.removeIdFromToCookList(recipe1.id);
         });
 
-        it("Should have a method to instantiate recipes, virtually filling a recipe box, for the following filter methods", () => {
-            let method3 = player2.fillRecipeBox();
-
+        it("Should have a method to locate recipes, virtually filling a recipe box, for the following filter methods", () => {
+            let method3 = player2.fillRecipeBox(bigRecipeData);
+            expect(player2.toCookList[0]).to.be.equal(method3[0].id);
+            expect(method3).to.have.deep.members([recipe2Data, recipe1Data]);
+//double  data doubel datatatatata
+//I can follow-up with another method to instantiate these objects if I end up needing them
         });
 
         it("Should have a method to filter the to-cook list by tag", () => {
             let tag = "snack";
             let recipeId
-            let method4 = player2.filterMyRecipeTags(tag, recipeId, recipe1Data);
+            let method4 = player2.filterMyRecipeTags(tag, recipeId, bigRecipeData);
 
 //--> how are we getting the tag info?
             //--> method4 filter to-cook list by tag (use RecipeContainer method?)
@@ -139,7 +207,7 @@ describe("Player", () => {
 
         it("Should have a method to filter to-cook list by name", () => {
             let name = "Pumpkin Cheesecake Breakfast Smoothie";
-            let method5 = player2.filterMyRecipeNames(name);
+            let method5 = player2.filterMyRecipeNames(name, bigRecipeData);
 //--> how are we getting the name info?
             //--> method5 filter to-cook list by name (use other classes' methods)
             //allow for partial string? Check later based on DOM display

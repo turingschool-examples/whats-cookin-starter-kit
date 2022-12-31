@@ -21,15 +21,18 @@ class Player {
         }
     }
 
-    fillRecipeBox(recipeBigData) {
-        console.log(this.toCookList);
-        let recipeInstances = this.toCookList.map(element => {
-            
-            //element is the Recipe.id, we need to find the object to pass as the data for each instantiation
-            new Recipe(recipeData)
-        });
-        console.log(recipeInstances);
-        
+    fillRecipeBox(bigRecipeData) {
+        console.log(bigRecipeData);
+        let filteredObjects = bigRecipeData.reduce((acc, currObj) => {
+            this.toCookList.forEach(id => {
+                if (id === currObj.id) {
+                    acc.push(currObj);
+                }
+            });
+            return acc;
+        }, []);
+        console.log(filteredObjects);
+        return filteredObjects;
     }
 
     filterMyRecipeTags(tag, recipeId, recipeData) {
