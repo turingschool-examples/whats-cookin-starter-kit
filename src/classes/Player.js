@@ -21,8 +21,17 @@ class Player {
         }
     }
 
-    filterMyRecipeTags(tag) {
-        let recipeInstances = this.toCookList.map(recipeId => new Recipe(recipeData))
+    fillRecipeBox() {
+        console.log(this.toCookList);
+        let recipeInstances = this.toCookList.map(element => {
+            //element is the Recipe.id, we need to find the object to pass as the data for each instantiation
+            new Recipe(recipeData)
+        });
+        console.log(recipeInstances);
+        
+    }
+
+    filterMyRecipeTags(tag, recipeId, recipeData) {
         //how do I make a new Recipe from all the data based on a given id? Do I need to call for the the way I did with Ingredients
 
     }

@@ -5,6 +5,7 @@ import Player from "../src/classes/Player";
 
 describe("Player", () => {
     let player1;
+    let player2
     let recipe1;
     let recipe2;
     let onePlayerData = {
@@ -63,6 +64,11 @@ describe("Player", () => {
             player1 = new Player(onePlayerData);
             recipe1 = new Recipe(recipe1Data);
             recipe2 = new Recipe(recipe2Data);
+
+            player2 = new Player(onePlayerData);
+            player2.addToCookList(recipe1.id);
+            player2.addToCookList(recipe2.id);
+            console.log("player2.toCookList:", player2.toCookList);
         });
 
         it("Should be a function", () => {
@@ -105,37 +111,37 @@ describe("Player", () => {
         });
 
         it("Should have a method to remove a recipe from the Player's saved to-cook recipes", () => {
-            player1.addToCookList(recipe1.id);
-            player1.addToCookList(recipe2.id);
-            expect(player1.toCookList).to.deep.equal([543687, 595736]);
+            expect(player2.toCookList).to.deep.equal([543687, 595736]);
 
-            player1.removeIdFromToCookList(recipe2.id);
-            expect(player1.toCookList).to.deep.equal([595736]);
+            player2.removeIdFromToCookList(recipe2.id);
+            expect(player2.toCookList).to.deep.equal([595736]);
 
-            player1.removeIdFromToCookList(recipe1.id);
-            expect(player1.toCookList).to.have.lengthOf(0);
+            player2.removeIdFromToCookList(recipe1.id);
+            expect(player2.toCookList).to.have.lengthOf(0);
 //--> sad path test:
-            player1.removeIdFromToCookList(recipe1.id);
+            player2.removeIdFromToCookList(recipe1.id);
         });
-        
+
+        it("Should have a method to instantiate recipes, virtually filling a recipe box, for the following filter methods", () => {
+            let method3 = player2.fillRecipeBox();
+
+        });
+
         it("Should have a method to filter the to-cook list by tag", () => {
-            player1.addToCookList(recipe1.id);
-            player1.addToCookList(recipe2.id);
             let tag = "snack";
-            let method3 = player1.filterMyRecipeTags(tag);
+            let recipeId
+            let method4 = player2.filterMyRecipeTags(tag, recipeId, recipe1Data);
 
 //--> how are we getting the tag info?
-            //--> method3 filter to-cook list by tag (use RecipeContainer method?)
+            //--> method4 filter to-cook list by tag (use RecipeContainer method?)
             //use map to instantiate recipes and then filter by argument passed in?
         });
 
         it("Should have a method to filter to-cook list by name", () => {
-            player1.addToCookList(recipe1.id);
-            player1.addToCookList(recipe2.id);
             let name = "Pumpkin Cheesecake Breakfast Smoothie";
-            let method4 = player1.filterMyRecipeNames(name);
+            let method5 = player2.filterMyRecipeNames(name);
 //--> how are we getting the name info?
-            //--> method4 filter to-cook list by name (use other classes' methods)
+            //--> method5 filter to-cook list by name (use other classes' methods)
             //allow for partial string? Check later based on DOM display
         })
 
