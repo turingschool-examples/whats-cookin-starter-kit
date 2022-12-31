@@ -70,28 +70,15 @@ describe("Recipe", () => {
         let method1 = recipe1.findIngredientIds();
         expect(method1).to.have.deep.members([2050, 20081]);
     }); 
-//-->REWRITE use Ingredients instantiation, don't use Recipe Class to search Ingredients Data! 
+
     it("Should then have a method to instantiate the ingredient objects with the ingredient Ids found by previous method1", () => {
-        let ingredientObjects2 = [{
-            "id": 2050,
-            "name": "vanilla",
-            "estimatedCostInCents": 926
-            }, 
-            {
-            "id": 20081,
-            "name": "wheat flour",
-            "estimatedCostInCents": 142
-        }];
         let method2 = recipe1.instantiateIngredientObjects(ingredientObjects);
-        console.log("method2: ", method2);
-        expect(method2).to.nested.include({ id: 2050, name: 'vanilla', estimatedCostInCents: 926 });
-        expect(method2).to.have.deep.include([{
+        expect(method2).to.deep.include({
             id: 2050,
             object: { id: 2050, name: 'vanilla', estimatedCostInCents: 926 },
             name: 'vanilla',
             cost: 926
-          }]);
-
+          });
     });
 
     it("Should have a method to determine the names of ingredients needed", () => {

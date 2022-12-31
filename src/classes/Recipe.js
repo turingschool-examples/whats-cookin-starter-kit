@@ -17,10 +17,7 @@ class Recipe {
 
     instantiateIngredientObjects(ingredientsData) {
         let ingredientIds1 = this.findIngredientIds();
-        let instances = ingredientIds1.reduce((acc, curr) => {
-            acc.push(new Ingredient(curr, ingredientsData));
-            return acc;
-        }, []);
+        let instances = ingredientIds1.map(element => new Ingredient(element, ingredientsData));
         return instances;
     }
 
