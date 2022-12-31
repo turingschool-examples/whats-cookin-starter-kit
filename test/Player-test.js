@@ -21,9 +21,9 @@ describe("Player", () => {
         "id": 1,
         "pantry": [
             {"ingredient": 11297, "amount": 4},
-          {"ingredient": 1082047, "amount": 10},
-          {"ingredient": 2047, "amount": 6},
-          {"ingredient": 1123, "amount": 8}] 
+            {"ingredient": 1082047, "amount": 10},
+            {"ingredient": 2047, "amount": 6},
+            {"ingredient": 1123, "amount": 8}] 
         },
         {
         "name": "Ephraim Goyette",
@@ -119,13 +119,24 @@ describe("Player", () => {
         });
         
         it("Should have a method to filter the to-cook list by tag", () => {
+            player1.addToCookList(recipe1.id);
+            player1.addToCookList(recipe2.id);
+            let tag = "snack";
+            let method3 = player1.filterMyRecipeTags(tag);
+
 //--> how are we getting the tag info?
             //--> method3 filter to-cook list by tag (use RecipeContainer method?)
+            //use map to instantiate recipes and then filter by argument passed in?
         });
 
         it("Should have a method to filter to-cook list by name", () => {
+            player1.addToCookList(recipe1.id);
+            player1.addToCookList(recipe2.id);
+            let name = "Pumpkin Cheesecake Breakfast Smoothie";
+            let method4 = player1.filterMyRecipeNames(name);
 //--> how are we getting the name info?
             //--> method4 filter to-cook list by name (use other classes' methods)
+            //allow for partial string? Check later based on DOM display
         })
 
 });

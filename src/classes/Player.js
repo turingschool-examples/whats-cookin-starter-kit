@@ -1,3 +1,5 @@
+import Recipe from "./Recipe";
+
 class Player {
     constructor(playerData) {
         this.name = playerData.name;
@@ -17,6 +19,16 @@ class Player {
         if (idIndex > -1) {
             this.toCookList.splice(idIndex, 1);
         }
+    }
+
+    filterMyRecipeTags(tag) {
+        let recipeInstances = this.toCookList.map(recipeId => new Recipe(recipeData))
+        //how do I make a new Recipe from all the data based on a given id? Do I need to call for the object the way I did with Ingredients
+
+    }
+
+    filterMyRecipeNames(name) {
+
     }
 }
 export default Player;

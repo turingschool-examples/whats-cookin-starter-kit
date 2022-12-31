@@ -85,6 +85,7 @@ describe("Recipe", () => {
         let method3 = recipe1.getIngredientNames(ingredientObjects);
         expect(method3).to.have.deep.members(["vanilla", "wheat flour"]);
     });
+
     it("Should have a method to determine the cost of those ingredients", () => {
         let method4 = recipe1.getIngredientsTotalCost(ingredientObjects);
         expect(method4).to.be.equal(1068);

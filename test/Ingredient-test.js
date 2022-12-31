@@ -41,7 +41,8 @@ describe("Ingredient", () => {
         expect(method0).to.be.equal(ingredient1.object);
         expect(ingredient1.object).to.deep.equal({"id": 18372, "name": "bicarbonate of soda", "estimatedCostInCents": 582});
     })
-
+//--> note redundancy of these last two methods with the last two methods of Recipe class:
+//(I might just not need them?)
     it("Should have a method to get the cost of an ingredient", () => {
         let method1 = ingredient1.getIngredientCost();
         expect(method1).to.be.equal(582);
