@@ -37,9 +37,9 @@ class Player {
     }
 
     filterMyRecipeTags(tag, bigRecipeData) {
-        console.log("tag: ", tag);
+        // console.log("tag: ", tag);
         let recipeInstances = this.fillRecipeBox(bigRecipeData);
-        console.log("recipeInstances: ", recipeInstances);
+        // console.log("recipeInstances: ", recipeInstances);
         let taggedObject = recipeInstances.reduce((acc, curr) => {
             let tagCheck = curr.checkRecipeTags(tag);
             if (tagCheck !== undefined) {
@@ -47,14 +47,14 @@ class Player {
             }
             return acc;
         }, []);
-        console.log("taggedObject: ", taggedObject);
+        // console.log("taggedObject: ", taggedObject);
         return taggedObject;
     }
 
     filterMyRecipeNames(name, bigRecipeData) {
         let recipeInstances = this.fillRecipeBox(bigRecipeData);
         let foundRecipe = recipeInstances.find(element => element.name === name);
-        console.log(foundRecipe);
+        // console.log(foundRecipe);
         return foundRecipe;
     }
 }

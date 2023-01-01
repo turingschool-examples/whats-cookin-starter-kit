@@ -72,6 +72,11 @@ describe("Recipe", () => {
         expect(method1).to.have.deep.members([2050, 20081]);
     }); 
 
+    it("Should have a method to access the amount of an ingredient by its ingredient id", () => {
+        let idAmountMethod = recipe1.findIngredientAmounts();
+        expect(idAmountMethod).to.deep.equal([ { '20081': 1.5 }, { '2050': 0.5 } ]);
+    });
+
     it("Should then have a method to instantiate the ingredient objects with the ingredient Ids found by previous method1", () => {
         let method2 = recipe1.instantiateIngredientObjects(ingredientObjects);
         expect(method2).to.deep.include({

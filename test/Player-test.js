@@ -199,7 +199,7 @@ describe("Player", () => {
             let tag2 = "trailmix";
             let method4 = player2.filterMyRecipeTags(tag, bigRecipeData);
             let method4B = player2.filterMyRecipeTags(tag2, bigRecipeData);
-            console.log("method4b: ", method4B);
+            // console.log("method4b: ", method4B);
             expect(method4).to.have.deep.members([recipe1]);
             expect(method4B).to.have.lengthOf(0);
     });
