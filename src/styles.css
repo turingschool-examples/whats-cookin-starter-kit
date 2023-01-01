@@ -25,127 +25,12 @@ body {
     color: rgb(0, 16, 26);
     /* ^for dark font÷ */
 }
-/* -----------------------------------------------aside--------------------- */
-.aside {
-  height: 100%;
-  width: 15%;
-  border-right-width: .1em;
-  border-right-style: solid;
-  border-right-color: rgb(0, 63, 98, .8);
-  background-color: rgb(0, 82, 128);
-}
 
-.profile-pic,
-.user-nav,
-.admin-nav,
-.categories {
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(0, 82, 128);
-  
-}
-
-.profile-pic  {
-  height: 13%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.angle {
-  height: 1.2em;
-  width: 1.2em;
-  vertical-align: bottom;
-}
-
-.rogue {
-  max-height: 100%;
-  max-width: 100%;
-  border-radius: 50%;
-}
-
-.avatar {
-  height: 4em;
-  width: 4em;
-}
-
-
-.user-name {
-  font-size: .7em;
-  font-weight: 700;
-  background-color: rgb(0, 82, 128);
-}
-/* ---section  */
-.user-nav,
-.admin-nav,
-.categories {
-  height: 20%;
-  width: 100%;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  border-top-width: .1em;
-  border-top-style: solid;
-  border-top-color: rgb(0, 63, 98);
-}
-
-.player-menu,
-.admin-menu,
-.community-menu {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: flex-start;
-}
-
-.beer,
-.edit,
-.star,
-.ticket,
-.calendar-exclamation,
-.film,
-.add-folder,
-.chart-set-theory,
-.coins,
-.navigation,
-.marker,
-.chart-connected,
-.home-location,
-.world {
-  height: 1.2em;
-  width: 1.2em;
-  vertical-align: baseline;
-}
-
-.small-title {
-  height: 15%;
-  text-align: left;
-  font-size: .6em;
-  font-weight: 700;
-  background-color: rgb(0, 82, 128);
-  color: rgb(0, 16, 26, 0.7);
-
-}
-
-.p-aside,
-.p-categories {
-  width: 100%;
-  font-size: .6em;
-  font-weight: 700;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  background-color: rgb(0, 82, 128); 
-}
 
 /* ---------------------------------------------------main-------------------- */
 main {
   height: 100%;
-  width: 85%;
+  width: 100%;
   /* background-color: rgb(86, 180, 233); */
   background-color: rgb(229, 246, 255);
   color: rgb(129, 49, 94)

@@ -7,18 +7,17 @@ const recipesURL = "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recip
 
 
 
-const fetchUsersUrl = (usersURL) => {
-    fetch(usersURL);
+const fetchUsersUrl = usersURL => fetch(usersURL);
+
+const fetchIngredientsURL = ingredientsURL => fetch(ingredientsURL);
+
+const fetchRecipesURL = recipesURL => fetch(recipesURL);
+
+function apiCalls() {
+    Promise.all([fetchUsersUrl, fetchIngredientsURL, fetchRecipesURL])
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.log("Error!!!", err));
 }
 
-const fetchIngredientsURL = (ingredientsURL) => {
-    fetch(ingredientsURL);
-}
-
-const fetchRecipesURL = (recipesURL) => {
-    fetch(recipesURL);
-}
-
-Promise.all([fetchUsersUrl, fetchIngredientsURL, fetchRecipesURL]).then((values) => {
-    console.log(values);
-);
+export {apiCalls};
