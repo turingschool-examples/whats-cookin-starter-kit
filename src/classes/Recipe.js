@@ -16,22 +16,36 @@ class Recipe {
     }
 
     findIngredientAmounts() {
-        console.log(this.ingredients);
         let idAmounts = this.ingredients.reduce((acc, curr) => {
             let obj = {};
-            obj[curr.id] = curr.quantity.amount;
+            obj["id"] = curr.id;
+            obj["amount"] = curr.quantity.amount;
             acc.push(obj);
             return acc;
         }, []);
-        console.log(idAmounts);
         return idAmounts;
     }
 
     instantiateIngredientObjects(ingredientsData) {
         let ingredientIds1 = this.findIngredientIds();
         let instances = ingredientIds1.map(element => new Ingredient(element, ingredientsData));
-        // console.log(instances);
         return instances;
+    }
+
+    getIngredientsTotalCost(ingredientsData) {
+        let ingredientInstances = this.instantiateIngredientObjects(ingredientsData);
+        let ingredientAmounts = this.findIngredientAmounts();
+        let totalCost = ingredientInstances.reduce((acc, curr) => {
+            let amount;
+            ingredientAmounts.forEach(element => {
+                if (element.id === curr.id) {
+                    amount = element.amount;
+                }
+            })
+            acc += ((curr.cost) * (amount));
+            return acc;
+        }, 0);
+        return totalCost;
     }
 
     getIngredientNames(ingredientsData) {
@@ -42,18 +56,6 @@ class Recipe {
         return names;
     }
 
-    getIngredientsTotalCost(ingredientsData) {
-        let ingredientInstances = this.instantiateIngredientObjects(ingredientsData);
-        let totalCost = ingredientInstances.reduce((acc, curr) => {
-//--> each ingredient instance has cost of 1 unit, curr.cost            
-            acc += curr.cost;
-            return acc;
-        }, 0);
-        console.log(this.ingredients);
-
-        return totalCost;
-        //this method needs fix because it doesn't account for measurements.
-    }
 
     getRecipeInstructions() {
         return this.instructions;

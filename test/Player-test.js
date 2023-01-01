@@ -1,5 +1,4 @@
 import { expect } from "chai";
-import Ingredient from "../src/classes/Ingredient";
 import Recipe from "../src/classes/Recipe";
 import Player from "../src/classes/Player";
 
@@ -171,7 +170,6 @@ describe("Player", () => {
             expect(player1.toCookList).to.deep.equal([595736]);
             player1.addToCookList(recipe2.id);
             expect(player1.toCookList).to.deep.equal([543687, 595736]);
-            //I don't think we should store recipe data here because class isn't meant to hold onto  recipe data, but Player data, so make this an array of recipe ids and not recipe data
     });
 
     it("Should have a method to remove a recipe from the Player's saved to-cook recipes", () => {
@@ -190,8 +188,6 @@ describe("Player", () => {
             let method3 = player2.fillRecipeBox(bigRecipeData);
             expect(player2.toCookList[0]).to.be.equal(method3[0].id);
             expect(method3).to.have.deep.members([recipe2Data, recipe1Data]);
-//double  data doubel datatatatata
-//If I instantiate these recipe objects in the "fill recipe box" method, then I can call recipe methods in the following methods, since probably Player shouldn't be messing with Recipe data, only moving Recipe objects
     });
 
     it("Should have a method to filter the to-cook list by tag", () => {
@@ -199,7 +195,6 @@ describe("Player", () => {
             let tag2 = "trailmix";
             let method4 = player2.filterMyRecipeTags(tag, bigRecipeData);
             let method4B = player2.filterMyRecipeTags(tag2, bigRecipeData);
-            // console.log("method4b: ", method4B);
             expect(method4).to.have.deep.members([recipe1]);
             expect(method4B).to.have.lengthOf(0);
     });
@@ -208,9 +203,5 @@ describe("Player", () => {
             let name = "Pumpkin Cheesecake Breakfast Smoothie";
             let method5 = player2.filterMyRecipeNames(name, bigRecipeData);
             expect(method5.id).to.be.equal(543687);
-            //just check for this.name?
-//--> how are we getting the name info?
-            //--> method5 filter to-cook list by name (use other classes' methods)
-            //allow for partial string? Check later based on DOM display
     })
 });

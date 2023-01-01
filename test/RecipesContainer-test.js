@@ -67,14 +67,11 @@ describe("RecipesContainer", () => {
     let method1 = recipesContainer1.tagRecipes(tag);
     let tagIds = [ 595736, 412309 ];
     expect(method1).to.have.deep.members(tagIds);
-    //do we want the whole recipe objects returned or just a component? return the ids? (I didn't use reduce() in case i wanted to remove .map() to have access to the whole element later)
-    //the order of tagIds array should not matter for this, do we need to test for this?
   });
 
   it('Should have a method to search recipes by name property', () => {
     const foodName = "Maple Dijon Apple Cider Grilled Pork Chops";
     let method2 = recipesContainer1.findRecipeByName(foodName);
-    // console.log("method2.name: ", method2.name);
     // so what if there are multiple same-name recipes? like if we need to do .find() twice?
     expect(method2.name).to.equal(foodName);
   });

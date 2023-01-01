@@ -12,10 +12,11 @@ class Ingredient {
         });
         return ingredientObject;
     }
-
+    
     getIngredientCost() {
         return this.cost;
     }
+    //don't delete this helper function I used it in Recipe class file ^
 
     getIngredientName() {
         return this.name;

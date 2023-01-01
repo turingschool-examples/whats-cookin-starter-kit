@@ -1,10 +1,8 @@
 import { expect } from "chai";
-import Ingredient from "../src/classes/Ingredient";
 import Recipe from "../src/classes/Recipe";
 
 describe("Recipe", () => {
     let recipe1;
-    //note: recipe1Object passed into Recipe class should be the correct recipe object and not all the recipe data. Will need to provide other functionality to pass in correct recipe objects.
     let recipe1Object = {
         "id": 595736,
         "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -19,7 +17,6 @@ describe("Recipe", () => {
         "name": "Loaded Chocolate Chip Pudding Cookie Cups",
         "tags": ["antipasti", "starter", "snack", "appetizer", "antipasto", "hor d'oeuvre"]
     };
-
     let ingredientObjects = [
         {"id": 2050, "name": "vanilla", "estimatedCostInCents": 926}, 
         {"id": 1123, "name": "eggs", "estimatedCostInCents": 472},
@@ -74,7 +71,7 @@ describe("Recipe", () => {
 
     it("Should have a method to access the amount of an ingredient by its ingredient id", () => {
         let idAmountMethod = recipe1.findIngredientAmounts();
-        expect(idAmountMethod).to.deep.equal([ { '20081': 1.5 }, { '2050': 0.5 } ]);
+        expect(idAmountMethod).to.deep.equal([{id: 20081, amount: 1.5}, {id: 2050, amount: 0.5}]);
     });
 
     it("Should then have a method to instantiate the ingredient objects with the ingredient Ids found by previous method1", () => {
@@ -93,14 +90,16 @@ describe("Recipe", () => {
           });
     });
 
+    it("Should have a method to determine the cost of those ingredients", () => {
+    //id 20081 is amount 1.5 and cost 142 (213)
+    //id 2050 is amount 0.5 and cost 926 (463)    
+        let method4 = recipe1.getIngredientsTotalCost(ingredientObjects);
+        expect(method4).to.be.equal(676);
+    });
+
     it("Should have a method to determine the names of ingredients needed", () => {
         let method3 = recipe1.getIngredientNames(ingredientObjects);
         expect(method3).to.have.deep.members(["vanilla", "wheat flour"]);
-    });
-
-    it("Should have a method to determine the cost of those ingredients", () => {
-        let method4 = recipe1.getIngredientsTotalCost(ingredientObjects);
-        expect(method4).to.be.equal(1068);
     });
 
     it("Should have a method to get the recipe instructions", () => {
