@@ -1,16 +1,25 @@
 class Ingredient {
-    constructor(ingredientObject) {
-        this.id = ingredientObject.id;
-        this.name = ingredientObject.name;
-        this.cost = ingredientObject.estimatedCostInCents;
+    constructor(id, ingredientsData) {
+        this.id = id;
+        this.object = this.findIngredientObject(ingredientsData);
+        this.name = this.object.name;
+        this.cost = this.object.estimatedCostInCents;
     }
     
-    getIngredientName() {
-        return this.name;
+    findIngredientObject(ingredientsData) {
+        let ingredientObject = ingredientsData.find(element => {
+            return element.id === this.id;
+        });
+        return ingredientObject;
     }
-
+    
     getIngredientCost() {
         return this.cost;
+    }
+    //don't delete this helper function I used it in Recipe class file ^
+
+    getIngredientName() {
+        return this.name;
     }
 }
 export default Ingredient;

@@ -1,11 +1,13 @@
+import Ingredient from "./Ingredient";
+
 class Recipe {
-    constructor(recipe1Data) {
-        this.id = recipe1Data.id;
-        this.image = recipe1Data.image;
-        this.ingredients = recipe1Data.ingredients;
-        this.instructions = recipe1Data.instructions;
-        this.name = recipe1Data.name;
-        this.tags = recipe1Data.tags;
+    constructor(recipe1Object) {
+        this.id = recipe1Object.id;
+        this.image = recipe1Object.image;
+        this.ingredients = recipe1Object.ingredients;
+        this.instructions = recipe1Object.instructions;
+        this.name = recipe1Object.name;
+        this.tags = recipe1Object.tags;
     }
 
     findIngredientIds() {
@@ -13,40 +15,55 @@ class Recipe {
         return ingredientIds;
     }
 
-    findIngredientObjects(ingredientObjects) {
-        let ingredientIds1 = this.findIngredientIds();
-        let ingredientsShortList = ingredientObjects.reduce((acc, curr) => {
-            ingredientIds1.forEach(element => {
-                if (element === curr.id) {
-                    acc.push(curr);
-                }
-            });
+    findIngredientAmounts() {
+        let idAmounts = this.ingredients.reduce((acc, curr) => {
+            let obj = {};
+            obj["id"] = curr.id;
+            obj["amount"] = curr.quantity.amount;
+            acc.push(obj);
             return acc;
         }, []);
-        return ingredientsShortList;
+        return idAmounts;
     }
-//names:
-    getIngredientNames(ingredientObjects) {
-        let currentIngredients = this.findIngredientObjects(ingredientObjects);
-        let names = currentIngredients.map(element => {
-            return element.name
-        });
-        return names;
+
+    instantiateIngredientObjects(ingredientsData) {
+        let ingredientIds1 = this.findIngredientIds();
+        let instances = ingredientIds1.map(element => new Ingredient(element, ingredientsData));
+        return instances;
     }
-//cost:
-    getIngredientsTotalCost(ingredientObjects) {
-        let currentIngredients = this.findIngredientObjects(ingredientObjects);
-        console.log("currentIngredients: ", currentIngredients);
-        let totalCost = currentIngredients.reduce((acc, curr) => {
-            console.log(curr.estimatedCostInCents);
-            acc += curr.estimatedCostInCents;
+
+    getIngredientsTotalCost(ingredientsData) {
+        let ingredientInstances = this.instantiateIngredientObjects(ingredientsData);
+        let ingredientAmounts = this.findIngredientAmounts();
+        let totalCost = ingredientInstances.reduce((acc, curr) => {
+            let amount;
+            ingredientAmounts.forEach(element => {
+                if (element.id === curr.id) {
+                    amount = element.amount;
+                }
+            })
+            acc += ((curr.cost) * (amount));
             return acc;
         }, 0);
         return totalCost;
     }
 
+    getIngredientNames(ingredientsData) {
+        let ingredientInstances = this.instantiateIngredientObjects(ingredientsData);
+        let names = ingredientInstances.map(element => {
+            return element.name
+        });
+        return names;
+    }
+
+
     getRecipeInstructions() {
         return this.instructions;
+    }
+
+    checkRecipeTags(tag) {
+        let findTags = this.tags.find(element => element === tag);
+        return findTags;
     }
 }
 
