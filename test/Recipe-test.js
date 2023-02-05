@@ -7,7 +7,7 @@ describe("Recipe", () => {
     let recipe
       
     beforeEach(() => {
-        recipe = new Recipe(sampleIngredientsData[0])
+        recipe = new Recipe(sampleRecipeData[0]);
     })
 
     it("should be a function", () => {
@@ -19,25 +19,34 @@ describe("Recipe", () => {
     })
 
     it("should have an ID property", () => {
-        expect(recipe.id).to.deep.equal(sampleIngredientsData[0].id)
+        expect(recipe.id).to.deep.equal(sampleRecipeData[0].id);
     })
 
     it("should have an image property", () => {
-        expect(recipe.image).to.deep.equal(sampleIngredientsData[0].image)
+        expect(recipe.image).to.deep.equal(sampleRecipeData[0].image)
     })
 
-    it("should have an ingredients property", () => {
-        expect(recipe.ingredients).to.deep.equal(sampleIngredientsData[0].ingredients)
+    it.only("should have an ingredients property", () => {
+        // console.log(sampleRecipeData[0].ingredients);
+        expect(recipe.ingredients).to.deep.equal(sampleRecipeData[0].ingredients)
     })
     it("should have an instructions property", () => {
-        expect(recipe.instructions).to.deep.equal(sampleIngredientsData[0].instructions)
+        // console.log(sampleRecipeData[0].instructions);
+        expect(recipe.instructions).to.deep.equal(sampleRecipeData[0].instructions)
     })
     it("should have a name property", () => {
-        expect(recipe.name).to.deep.equal(sampleIngredientsData[0].name);
+        // console.log(sampleRecipeData[0].name);
+        expect(recipe.name).to.deep.equal(sampleRecipeData[0].name);
     });
-    it.only("should have a tags property", () => {
-        expect(recipe.tags).to.deep.equal(sampleIngredientsData[0].tags);
+    it("should have a tags property", () => {
+        // console.log(sampleRecipeData[0])
+        expect(recipe.tags).to.deep.equal(sampleRecipeData[0].tags);
     });
+    it.only("should return an array of ingredient ids", () => {
+        let ingredientIds = recipe.getIngredientIds()
+        console.log(ingredientIds)
+        expect(ingredientIds).to.deep.equal([20081, 18372, 1123, 19335, 19206, 19334, 2047, 1012047, 10019903, 1145, 2050])
+    })
 })
 
 // Don't want to use recipee data but make a sample data file
