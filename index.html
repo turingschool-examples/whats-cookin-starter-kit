@@ -5,19 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What's Cookin</title>
+    <link rel="stylesheet" type="text/css" href="src/styles.css"/>
 </head>
 <body>
-    <header>
+    <header class="main-header">
+        <h1 class="title">What's cookin</h1>
         <input type="search" class="search-bar" id="search-bar" >
         <img class="header-image" src="">
     </header>
+    <section class="main-elements">
+        <nav class="navigation-section">
+            <section class="buttons">
+                <button id="recipe-button" class="button">Recipees</button>
+                <button id="saved-recipees"class="button">Saved Recipees</button>
+                <button id="Filtered Search" class="button">Filtered Search</button>
+            </section>
+            <!-- <ul class="nav-bar" style="list-style: none;">
+                <li class="recipee-nav"><span>Recipees</span>
+                <li class="saved-nav"><span>Saved-Recipees</span>
+                <li class="filtered-nav"><span>Filtered search</span>
+            </ul> -->
+        </nav>
+        <section class="categories">
+            <div class="category"></div>
+            <div class="category"></div>
+            <div class="category"></div>
+            <div class="category"></div>
+            <div class="category"></div>
+            <div class="category"></div>
+            <div class="category"></div>
+            <div class="category"></div>
+            <div class="category"></div>
+            <div class="category"></div>
+        </section>
+    </section>
     <main>
-        <article>
+        <!-- <article>
             <img class="popular-recipee-image" src="">
             <h1></h1>
             <button class="bookmark-recipee" id="bookmark"></button>
-        </article>
-        <section class="recipee-article">
+        </article> -->
+        <!-- <section class="recipee-article">
             <header>Recipees</header>
             <article id="recipee-one"> </article>
             <article id="recipee-two"></article>
@@ -25,14 +53,7 @@
             <article id="recipee-four"></article>
             <article id="recipee-five"></article>
             <article id="recipee-six"></article>
-        </section>
+        </section> -->
     </main>
-    <nav class="navigation-section">
-        <ul class="nav-bar" style="list-style: none;">
-            <li class="recipee-nav"><span>Recipees</span>
-            <li class="saved-nav"><span>Saved-Recipees</span>
-            <li class="filtered-nav"><span>Filtered search</span>
-        </ul>
-    </nav>
 </body>
 </html>
