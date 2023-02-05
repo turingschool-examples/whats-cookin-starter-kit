@@ -98,6 +98,15 @@ describe('Recipe', () => {
     expect(cookies.recipesByTag).to.deep.equal([]);
   })
 
+  it('Should filter recipes into a list based on name', () => {
+    cookies.recipes.push(recipe2)
+    expect(cookies.recipes).to.deep.equal([recipe1, recipe2]);
+
+    cookies.filterByName('Maple Dijon Apple Cider Grilled Pork Chops')
+    expect(cookies.recipesByName).to.deep.equal([recipe2]);
+
+  })
+
 
 
 })
