@@ -3,7 +3,6 @@ class RecipeRepository {
     this.recipes = recipeData ? [recipeData] : [];
     this.recipesByTag = [];
     this.recipesByName = [];
-    // this.id = userID || 0
   }
 
   filterRecipesByTag(tag) {
