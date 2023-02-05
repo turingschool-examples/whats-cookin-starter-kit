@@ -82,6 +82,19 @@ describe('Recipe', () => {
     cookies.filterByTag('lunch')
     expect(cookies.recipesByTag).to.deep.equal([recipe2]);
 
-    
+    cookies.filterByTag('snack')
+    expect(cookies.recipesByTag).to.deep.equal([recipe1, recipe2]);
+
+    cookies.filterByTag('')
+    expect(cookies.recipesByTag).to.deep.equal([]);
+
+    cookies.filterByTag('jkdfafadvdj vjfv')
+    expect(cookies.recipesByTag).to.deep.equal([]);
+
+    cookies.filterByTag(23) 
+    expect(cookies.recipesByTag).to.deep.equal([]);
   })
+
+  
+
 })
