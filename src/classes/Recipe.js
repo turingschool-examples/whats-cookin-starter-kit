@@ -11,11 +11,12 @@ class Recipe {
     }
 
     getIngredientIds() {
-        let ingredientIds = this.ingredients.reduce((acc, ingredient) => {
-            if(!acc.include(ingredient.id)) {
-                acc.push(ingredient.id)
+        let ingredientIds = this.ingredients.reduce((ids, ingredient) => {
+            console.log(ids)
+            if(!ids.includes(ingredient.id)) {
+                ids.push(ingredient.id)
             }
-            return acc
+            return ids
         },[])
         return ingredientIds
     }
