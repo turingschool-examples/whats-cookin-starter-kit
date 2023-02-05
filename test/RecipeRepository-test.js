@@ -79,22 +79,22 @@ describe('Recipe', () => {
     cookies.recipes.push(recipe2)
     expect(cookies.recipes).to.deep.equal([recipe1, recipe2]);
 
-    cookies.filterByTag('lunch')
+    cookies.filterRecipesByTag('lunch')
     expect(cookies.recipesByTag).to.deep.equal([recipe2]);
 
-    cookies.filterByTag('snack')
+    cookies.filterRecipesByTag('snack')
     expect(cookies.recipesByTag).to.deep.equal([recipe1, recipe2]);
 
-    cookies.filterByTag('')
+    cookies.filterRecipesByTag('')
     expect(cookies.recipesByTag).to.deep.equal([]);
 
-    cookies.filterByTag('jkdfafadvdj vjfv')
+    cookies.filterRecipesByTag('jkdfafadvdj vjfv')
     expect(cookies.recipesByTag).to.deep.equal([]);
 
-    cookies.filterByTag(23) 
+    cookies.filterRecipesByTag(23) 
     expect(cookies.recipesByTag).to.deep.equal([]);
 
-    cookies.filterByTag(23, 'snack')
+    cookies.filterRecipesByTag(23, 'snack')
     expect(cookies.recipesByTag).to.deep.equal([]);
   })
 
@@ -102,25 +102,22 @@ describe('Recipe', () => {
     cookies.recipes.push(recipe2)
     expect(cookies.recipes).to.deep.equal([recipe1, recipe2]);
 
-    cookies.filterByName('Maple Dijon Apple Cider Grilled Pork Chops')
+    cookies.filterRecipesByName('Maple Dijon Apple Cider Grilled Pork Chops')
     expect(cookies.recipesByName).to.deep.equal([recipe2]);
     
-    cookies.filterByName('Pork Chops')
+    cookies.filterRecipesByName('Pork Chops')
     expect(cookies.recipesByName).to.deep.equal([recipe2]);
     
-    cookies.filterByName('Chocolate')
+    cookies.filterRecipesByName('Chocolate')
     expect(cookies.recipesByName).to.deep.equal([recipe1]);
 
-    cookies.filterByTag('Chocolate Maple')
+    cookies.filterRecipesByTag('Chocolate Maple')
     expect(cookies.recipesByTag).to.deep.equal([]);
 
-    cookies.filterByTag('')
+    cookies.filterRecipesByTag('')
     expect(cookies.recipesByTag).to.deep.equal([]);
 
-    cookies.filterByTag(23) 
+    cookies.filterRecipesByTag(23) 
     expect(cookies.recipesByTag).to.deep.equal([]);
   })
-
-
-
 })

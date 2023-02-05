@@ -5,14 +5,14 @@ class RecipeRepository {
     this.recipesByName = [];
   }
 
-  filterByTag(tag) {
+  filterRecipesByTag(tag) {
     const filteredList = this.recipes.filter((recipe) => {
       return recipe.tags.includes(tag);
     })
     this.recipesByTag = filteredList;
   }
 
-  filterByName(name) {
+  filterRecipesByName(name) {
     const filteredList = this.recipes.filter((recipe) => {
       return recipe.name.includes(name);
     })
