@@ -328,3 +328,5 @@ const sampleRecipeData = [
       ]
     }
 ]
+
+export default sampleRecipeData;
