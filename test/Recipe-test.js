@@ -27,25 +27,34 @@ describe("Recipe", () => {
     })
 
     it.only("should have an ingredients property", () => {
-        // console.log(sampleRecipeData[0].ingredients);
         expect(recipe.ingredients).to.deep.equal(sampleRecipeData[0].ingredients)
     })
     it("should have an instructions property", () => {
-        // console.log(sampleRecipeData[0].instructions);
         expect(recipe.instructions).to.deep.equal(sampleRecipeData[0].instructions)
     })
     it("should have a name property", () => {
-        // console.log(sampleRecipeData[0].name);
         expect(recipe.name).to.deep.equal(sampleRecipeData[0].name);
     });
     it("should have a tags property", () => {
-        // console.log(sampleRecipeData[0])
         expect(recipe.tags).to.deep.equal(sampleRecipeData[0].tags);
     });
     it.only("should return an array of ingredient ids", () => {
         let ingredientIds = recipe.getIngredientIds()
         console.log(ingredientIds)
         expect(ingredientIds).to.deep.equal([20081, 18372, 1123, 19335, 19206, 19334, 2047, 1012047, 10019903, 1145, 2050])
+    })
+    it.only("should have a function that converts id numbers to ingredient", () => {
+        let ingredientNames = recipe.determineRecipeIngredients(
+          sampleIngredientsData);
+        expect(ingredientNames).to.deep.equal(["wheat flour", "bicarbonate of soda", "eggs", "sucrose", "instant vanilla pudding"])
+    })
+    it.only("should have a function to calculate total ingredient cost", () => {
+        let ingredientCost = recipe.calculateRecipeCost(sampleIngredientsData)
+        expect(ingredientCost).to.equal(27.58)
+    })
+    it.only("should have a function recipe to return recipe instructions", () => {
+        let recipeInstructions = recipe.returnInstructions(sampleRecipeData[0]);
+        expect(recipeInstructions).to.deeply.equal(sampleRecipeData[0].instructions)
     })
 })
 
