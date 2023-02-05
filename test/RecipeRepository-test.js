@@ -58,7 +58,9 @@ describe('Recipe', () => {
           "lunch",
           "main course",
           "main dish",
-          "dinner"
+          "dinner",
+          "snack"
+          
       ]
     }
 
@@ -76,9 +78,10 @@ describe('Recipe', () => {
   it('Should filter recipes into a list based on a tag', () => {
     cookies.recipes.push(recipe2)
     expect(cookies.recipes).to.deep.equal([recipe1, recipe2]);
-    
-    cookies.filterByTag('lunch')
-    expect(cookes.recipesByTag).to.deep.equal([recipe2]);
 
+    cookies.filterByTag('lunch')
+    expect(cookies.recipesByTag).to.deep.equal([recipe2]);
+
+    
   })
 })
