@@ -1,4 +1,4 @@
-const sampledIngredientsData = [
+const sampleIngredientsData = [
     {
       "id": 20081,
       "name": "wheat flour",
@@ -25,3 +25,5 @@ const sampledIngredientsData = [
       "estimatedCostInCents": 660
     }
 ]
+
+export default sampleIngredientsData
