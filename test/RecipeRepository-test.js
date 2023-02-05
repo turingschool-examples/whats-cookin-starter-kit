@@ -4,10 +4,12 @@ import RecipeRepository from '../src/classes/RecipeRepository';
 describe('Recipe', () => {
   
   let recipe1;
+  let recipe2;
+  let cookies;
+
 
   beforeEach(() => {
-    recipe1 = 
-      {
+    recipe1 = {
         "id": 595736,
         "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
         "ingredients" : [{ 
@@ -16,7 +18,7 @@ describe('Recipe', () => {
             "amount": 1.5,
             "unit": "c"
             }
-          }], 
+        }], 
         "instructions" : [{
           "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
           "number": 1
@@ -27,7 +29,40 @@ describe('Recipe', () => {
           "starter",
           "snack",
         ]
+      };
+
+    recipe2 = {
+      "id": 678353,
+      "image": "https://spoonacular.com/recipeImages/678353-556x370.jpg",
+      "ingredients" : [{
+        "id": 1009016,
+        "quantity": {
+          "amount": 1.5,
+          "unit": "cups"
+          }
+      },
+      {
+        "id": 9003,
+        "quantity": {
+          "amount": 2,
+          "unit": ""
+        }
       }
+      ], 
+        "instructions" : [{
+          "instruction": "Season the pork chops with salt and pepper and grill or pan fry over medium high heat until cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook until the sauce thickens, about 2-5 minutes.Grill or saute the apple slices until just tender but still crisp.Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!",
+          "number": 1
+        }],
+        "name": "Maple Dijon Apple Cider Grilled Pork Chops",
+        "tags": [
+          "lunch",
+          "main course",
+          "main dish",
+          "dinner"
+      ]
+    }
+
+    cookies = new RecipeRepository(recipe1);
   })
 
   it('Should be a function', () => {
@@ -35,11 +70,15 @@ describe('Recipe', () => {
   });
 
   it('Should be able to take in data', () => {
-    const cookies = new RecipeRepository(recipe);
-    expect(cookies.recipes).to.deep.equal([recipe]);
+    expect(cookies.recipes).to.deep.equal([recipe1]);
   })
 
   it('Should filter recipes into a list based on a tag', () => {
-    //
+    cookies.recipes.push(recipe2)
+    expect(cookies.recipes).to.deep.equal([recipe1, recipe2]);
+    
+    cookies.filterByTag('lunch')
+    expect(cookes.recipesByTag).to.deep.equal([recipe2]);
+
   })
 })
