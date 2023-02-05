@@ -30,4 +30,4 @@ class Recipe {
     }
 }
 
-// export default Recipe.js;
+export default Recipe
