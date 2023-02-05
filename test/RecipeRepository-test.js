@@ -93,8 +93,11 @@ describe('Recipe', () => {
 
     cookies.filterByTag(23) 
     expect(cookies.recipesByTag).to.deep.equal([]);
+
+    cookies.filterByTag(23, 'snack')
+    expect(cookies.recipesByTag).to.deep.equal([]);
   })
 
-  
+
 
 })
