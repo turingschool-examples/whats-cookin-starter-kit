@@ -73,6 +73,11 @@ describe('Recipe', () => {
 
   it('Should be able to take in data', () => {
     expect(cookies.recipes).to.deep.equal([recipe1]);
+
+    const porkChops = new RecipeRepository();
+    expect(porkChops).to.be.an.instanceOf(RecipeRepository);
+    expect(porkChops.recipes).to.deep.equal([]);
+
   })
 
   it('Should filter recipes into a list based on a tag', () => {
@@ -120,4 +125,5 @@ describe('Recipe', () => {
     cookies.filterRecipesByTag(23) 
     expect(cookies.recipesByTag).to.deep.equal([]);
   })
+
 })
