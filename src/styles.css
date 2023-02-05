@@ -14,14 +14,24 @@ body {
 .main-header {
   border-radius: 25px;
   height: 15vh;
-  width: 100%;
+  width: 98.5%;
   background-color: #FAF6F2;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
+.title {
+  margin-top: 5vh;
+  margin-left: 2vw;
+  font-size: 50px;
+}
+
 .search-bar {
   float: right;
-  margin-top: auto;
+  size: 200%;
+}
+
+.main-elements {
+  display: flex;
 }
 
 .navigation-section {
@@ -35,7 +45,7 @@ body {
 }
 
 .buttons {
-
+  margin-top: 10px;
 }
 
 button {
@@ -57,6 +67,8 @@ button {
   padding: .1em .6em;
   font-weight: bold;  
   border: none;
+  width: 15vw;
+  height: 5vh;
 }
 button:hover {
   --_p: 100%;
@@ -66,4 +78,18 @@ button:active {
   box-shadow: 0 0 9e9q inset #0009; 
   background-color: var(--c);
   color: #fff;
+}
+
+.categories {
+  padding: 50px;
+  display: flex;
+}
+
+.category {
+  margin-left: 1.4vw;
+  height: 10em;
+  width: 10em;
+  background-color: #FAF6F2;
+  display: flex;
+  justify-content: space-between;
 }
