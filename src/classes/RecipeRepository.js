@@ -1,8 +1,9 @@
 class RecipeRepository {
   constructor(recipeData) {
-    this.recipes = [recipeData];
+    this.recipes = recipeData ? [recipeData] : [];
     this.recipesByTag = [];
     this.recipesByName = [];
+    // this.id = userID || 0
   }
 
   filterRecipesByTag(tag) {
