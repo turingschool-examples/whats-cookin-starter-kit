@@ -3,10 +3,10 @@ import RecipeRepository from '../src/classes/RecipeRepository';
 
 describe('Recipe', () => {
   
-  let recipe;
+  let recipe1;
 
   beforeEach(() => {
-    recipe = [
+    recipe1 = 
       {
         "id": 595736,
         "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -28,7 +28,6 @@ describe('Recipe', () => {
           "snack",
         ]
       }
-    ] 
   })
 
   it('Should be a function', () => {
@@ -38,5 +37,9 @@ describe('Recipe', () => {
   it('Should be able to take in data', () => {
     const cookies = new RecipeRepository(recipe);
     expect(cookies.recipes).to.deep.equal([recipe]);
+  })
+
+  it('Should filter recipes into a list based on a tag', () => {
+    //
   })
 })

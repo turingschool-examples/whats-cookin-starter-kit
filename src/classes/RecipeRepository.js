@@ -1,8 +1,8 @@
 class RecipeRepository {
-  constructor() {
-
-    // One class to get you started!
+  constructor(recipeData) {
+    this.recipes = [recipeData];
   }
 }
 
 export default RecipeRepository;
+  
