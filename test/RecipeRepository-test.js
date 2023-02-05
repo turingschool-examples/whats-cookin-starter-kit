@@ -5,7 +5,7 @@ describe('Recipe', () => {
   
   let recipe1;
   let recipe2;
-  let cookies;
+  let mealPlan;
 
 
   beforeEach(() => {
@@ -64,7 +64,7 @@ describe('Recipe', () => {
       ]
     }
 
-    cookies = new RecipeRepository(recipe1);
+    mealPlan = new RecipeRepository(recipe1);
   })
 
   it('Should be a function', () => {
@@ -72,7 +72,7 @@ describe('Recipe', () => {
   });
 
   it('Should be able to take in data', () => {
-    expect(cookies.recipes).to.deep.equal([recipe1]);
+    expect(mealPlan.recipes).to.deep.equal([recipe1]);
 
     const porkChops = new RecipeRepository();
     expect(porkChops).to.be.an.instanceOf(RecipeRepository);
@@ -81,49 +81,49 @@ describe('Recipe', () => {
   })
 
   it('Should filter recipes into a list based on a tag', () => {
-    cookies.recipes.push(recipe2)
-    expect(cookies.recipes).to.deep.equal([recipe1, recipe2]);
+    mealPlan.recipes.push(recipe2)
+    expect(mealPlan.recipes).to.deep.equal([recipe1, recipe2]);
 
-    cookies.filterRecipesByTag('lunch')
-    expect(cookies.recipesByTag).to.deep.equal([recipe2]);
+    mealPlan.filterRecipesByTag('lunch')
+    expect(mealPlan.recipesByTag).to.deep.equal([recipe2]);
 
-    cookies.filterRecipesByTag('snack')
-    expect(cookies.recipesByTag).to.deep.equal([recipe1, recipe2]);
+    mealPlan.filterRecipesByTag('snack')
+    expect(mealPlan.recipesByTag).to.deep.equal([recipe1, recipe2]);
 
-    cookies.filterRecipesByTag('')
-    expect(cookies.recipesByTag).to.deep.equal([]);
+    mealPlan.filterRecipesByTag('')
+    expect(mealPlan.recipesByTag).to.deep.equal([]);
 
-    cookies.filterRecipesByTag('jkdfafadvdj vjfv')
-    expect(cookies.recipesByTag).to.deep.equal([]);
+    mealPlan.filterRecipesByTag('jkdfafadvdj vjfv')
+    expect(mealPlan.recipesByTag).to.deep.equal([]);
 
-    cookies.filterRecipesByTag(23) 
-    expect(cookies.recipesByTag).to.deep.equal([]);
+    mealPlan.filterRecipesByTag(23) 
+    expect(mealPlan.recipesByTag).to.deep.equal([]);
 
-    cookies.filterRecipesByTag(23, 'snack')
-    expect(cookies.recipesByTag).to.deep.equal([]);
+    mealPlan.filterRecipesByTag(23, 'snack')
+    expect(mealPlan.recipesByTag).to.deep.equal([]);
   })
 
   it('Should filter recipes into a list based on name', () => {
-    cookies.recipes.push(recipe2)
-    expect(cookies.recipes).to.deep.equal([recipe1, recipe2]);
+    mealPlan.recipes.push(recipe2)
+    expect(mealPlan.recipes).to.deep.equal([recipe1, recipe2]);
 
-    cookies.filterRecipesByName('Maple Dijon Apple Cider Grilled Pork Chops')
-    expect(cookies.recipesByName).to.deep.equal([recipe2]);
+    mealPlan.filterRecipesByName('Maple Dijon Apple Cider Grilled Pork Chops')
+    expect(mealPlan.recipesByName).to.deep.equal([recipe2]);
     
-    cookies.filterRecipesByName('Pork Chops')
-    expect(cookies.recipesByName).to.deep.equal([recipe2]);
+    mealPlan.filterRecipesByName('Pork Chops')
+    expect(mealPlan.recipesByName).to.deep.equal([recipe2]);
     
-    cookies.filterRecipesByName('Chocolate')
-    expect(cookies.recipesByName).to.deep.equal([recipe1]);
+    mealPlan.filterRecipesByName('Chocolate')
+    expect(mealPlan.recipesByName).to.deep.equal([recipe1]);
 
-    cookies.filterRecipesByTag('Chocolate Maple')
-    expect(cookies.recipesByTag).to.deep.equal([]);
+    mealPlan.filterRecipesByTag('Chocolate Maple')
+    expect(mealPlan.recipesByTag).to.deep.equal([]);
 
-    cookies.filterRecipesByTag('')
-    expect(cookies.recipesByTag).to.deep.equal([]);
+    mealPlan.filterRecipesByTag('')
+    expect(mealPlan.recipesByTag).to.deep.equal([]);
 
-    cookies.filterRecipesByTag(23) 
-    expect(cookies.recipesByTag).to.deep.equal([]);
+    mealPlan.filterRecipesByTag(23) 
+    expect(mealPlan.recipesByTag).to.deep.equal([]);
   })
 
 })
