@@ -327,6 +327,5 @@ const sampleRecipeData = [
         "sauce"
       ]
     }
-]
-
+];
 export default sampleRecipeData;
