@@ -9,15 +9,14 @@
   <body>
     <header class="main-header">
       <h1 class="title">What's cookin</h1>
-      <input type="search" class="search-bar" id="search-bar">
-      <img class="header-image" src="">
+      <div class="search-container"><input type="search" class="search-bar" id="search-bar"></div>
     </header>
     <section class="main-elements">
       <nav class="navigation-section">
         <section class="buttons">
-          <button id="recipe-button" class="button">Recipes</button>
-          <button id="saved-recipes" class="button">Saved Recipes</button>
-          <button id="Filtered Search" class="button">Filtered Search</button>
+          <button id="recipe-button">Recipes</button>
+          <button id="saved-recipes">Saved Recipes</button>
+          <button id="Filtered Search">Filtered Search</button>
         </section>
         <!-- <ul class="nav-bar" style="list-style: none;">
                 <li class="recipe-nav"><span>Recipes</span>
@@ -26,19 +25,20 @@
             </ul> -->
       </nav>
       <section class="categories">
-        <div class="category"></div>
-        <div class="category"></div>
-        <div class="category"></div>
-        <div class="category"></div>
-        <div class="category"></div>
-        <div class="category"></div>
-        <div class="category"></div>
-        <div class="category"></div>
-        <div class="category"></div>
-        <div class="category"></div>
+          <!--category will be tags in this case?-->
+          <article class="category"></article>
+          <article class="category"></article>
+          <article class="category"></article>
+          <article class="category"></article>
+          <article class="category"></article>
+          <article class="category"></article>
+          <article class="category"></article>
+          <article class="category"></article>
+          <article class="category"></article>
+          <article class="category"></article>
+          <article class="category"></article>
       </section>
     </section>
-    <main>
       <!-- <article>
             <img class="popular-recipe-image" src="">
             <h1></h1>
@@ -53,7 +53,6 @@
             <article id="recipe-five"></article>
             <article id="recipe-six"></article>
         </section> -->
-    </main>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
