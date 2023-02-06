@@ -127,7 +127,7 @@ describe('Recipe', () => {
     recipe = new Recipe(recipeData);
   });
 
-  it('Should be a function', () => {
+  it('should be a function', () => {
     expect(Recipe).to.be.a('function');
   });
 
@@ -135,5 +135,52 @@ describe('Recipe', () => {
     expect(recipe).to.be.an.instanceOf(Recipe);
   });
 
-  
-})
+  it('should have an id', () => {
+    expect(recipe.id).to.equal(595736);
+    expect(recipe.id).to.equal(recipeData.id);
+  });
+
+  it('should have an image', () => {
+    expect(recipe.image).to.equal("https://spoonacular.com/recipeImages/595736-556x370.jpg");
+    expect(recipe.image).to.equal(recipeData.image);
+  });
+
+  it('should have an array of ingredients', () => {
+    expect(recipe.ingredients).to.be.an.instanceOf(Array);
+    expect(recipe.ingredients.length).to.equal(11);
+    expect(recipe.ingredients[0]).to.deep.equal({
+      "id": 20081,
+      "quantity": {
+        "amount": 1.5,
+        "unit": "c"
+      }
+    });
+  });
+
+  it('should have an array of instructions', () => {
+    expect(recipe.instructions).to.be.an.instanceOf(Array);
+    expect(recipe.instructions.length).to.equal(6);
+    expect(recipe.instructions[0]).to.deep.equal({
+      "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
+      "number": 1
+    });
+  });
+
+  it('should have a name', () => {
+    expect(recipe.name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    expect(recipe.name).to.equal(recipeData.name);
+  });
+
+  it('should have an array of tags', () => {
+    expect(recipe.tags).to.be.an.instanceOf(Array);
+    expect(recipe.tags.length).to.equal(6);
+    expect(recipe.tags).to.deep.equal([
+      "antipasti",
+      "starter",
+      "snack",
+      "appetizer",
+      "antipasto",
+      "hor d'oeuvre"
+    ]);
+  });
+});
