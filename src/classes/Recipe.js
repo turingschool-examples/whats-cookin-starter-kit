@@ -22,6 +22,10 @@ class Recipe {
     }
 
     determineRecipeIngredients() {
+        const ingredientIds = this.getIngredientIds()
+        const matchNamesWithId = ingredientIds.reduce((namesArray, currentId) => {
+
+        },[])
         //Goal: Display the NAMES of ingredients
         //Input: is an array of objects with id's, quantity, amount, unit
         //Output: Array of ingredient names
