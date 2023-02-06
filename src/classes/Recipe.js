@@ -1,5 +1,3 @@
-const recipeData = require('../data/recipes')
-
 class Recipe {
     constructor(recipe) {
         this.id = recipe.id
@@ -14,7 +12,7 @@ class Recipe {
         let ingredientIds = this.ingredients.map(ingredient => ingredient.id)
         return ingredientIds
     }
-
+    
     determineRecipeIngredients(ingredientData) {
         let ingredients = []
         this.getIngredientIds().forEach(ingredientId => {
@@ -27,4 +25,4 @@ class Recipe {
     }
 }
 
-export default Recipe
+export default Recipe;
