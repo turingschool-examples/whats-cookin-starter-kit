@@ -1,4 +1,4 @@
-const recipeData = require('../data/recipes');
+const recipeData = require('../data/recipes')
 
 class Recipe {
     constructor(recipe) {
@@ -11,23 +11,19 @@ class Recipe {
     }
 
     getIngredientIds() {
-        let ingredientIds = this.ingredients.reduce((ids, ingredient) => {
-            console.log(ids)
-            if(!ids.includes(ingredient.id)) {
-                ids.push(ingredient.id)
-            }
-            return ids
-        },[])
+        let ingredientIds = this.ingredients.map(ingredient => ingredient.id)
         return ingredientIds
     }
 
-    determineRecipeIngredients() {
-        //Goal: Display the NAMES of ingredients
-        //Input: is an array of objects with id's, quantity, amount, unit
-        //Output: Array of ingredient names
-        //Action: Iterate through the recipe array and use a method to
-        //        push the "id" property into another array
-        //        
+    determineRecipeIngredients(ingredientData) {
+        let ingredients = []
+        this.getIngredientIds().forEach(ingredientId => {
+            ingredients = [...ingredients, ...ingredientData
+            .filter((ingredient) => ingredientId === ingredient.id)]
+        });
+
+        const ingredientNames = ingredients.map(ingredient => ingredient.name)
+        return ingredientNames;
     }
 }
 
