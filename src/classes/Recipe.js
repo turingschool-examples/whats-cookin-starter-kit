@@ -23,6 +23,19 @@ class Recipe {
         const ingredientNames = ingredients.map(ingredient => ingredient.name)
         return ingredientNames;
     }
+
+
+calculateRecipeCost() {
+    let costCounter = 0
+    let names = this.determineRecipeIngredients()
+        names.forEach(name => {
+            if(name === ingredientsData.name) {
+                costCounter += ingredientsData.estimatedCostInCents
+                console.log(costCounter)
+            } 
+    })
+  }
 }
 
 export default Recipe;
+
