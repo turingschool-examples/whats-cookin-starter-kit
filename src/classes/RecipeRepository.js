@@ -1,13 +1,15 @@
+import Recipe from "./Recipe";
+
 class RecipeRepository {
   constructor(recipeData) {
-    this.recipeData = recipeData;
+    this.recipes = recipeData.map(recipe => new Recipe(recipe));
     this.filteredRecipes;
   }
   filterByTag(tag) {
     if (!tag) {
-      return
+      return;
     }
-    this.filteredRecipes = this.recipeData.filter(recipe => recipe.tags.includes(tag));
+    this.filteredRecipes = this.recipes.filter(recipe => recipe.tags.includes(tag));
 
     if (this.filteredRecipes.length === 0) {
       this.filteredRecipes = null;
@@ -16,9 +18,9 @@ class RecipeRepository {
   }
   filterByName(name) {
     if (!name) {
-      return
+      return;
     }
-    this.filteredRecipes = this.recipeData.filter(recipe => (recipe.name.toUpperCase().includes(name.toUpperCase())));
+    this.filteredRecipes = this.recipes.filter(recipe => (recipe.name.toUpperCase().includes(name.toUpperCase())));
 
     if (this.filteredRecipes.length === 0) {
       this.filteredRecipes = null;

@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import Recipe from '../src/classes/Recipe';
 import RecipeRepository from '../src/classes/RecipeRepository';
 import sampleRecipeData from '../src/data/sample-recipe-data';
 
@@ -18,8 +19,9 @@ describe('RecipeRepository', () => {
     expect(recipe).to.be.an.instanceOf(RecipeRepository);
   });
 
-  it('should have a recipe data property', () => {
-    expect(recipe.recipeData).to.have.lengthOf(3);
+  it('should have a recipes data property', () => {
+    expect(recipe.recipes).to.have.lengthOf(3);
+    expect(recipe.recipes[0]).to.be.an.instanceOf(Recipe);
   });
 
   it('should start with no filtered recipes', () => {
