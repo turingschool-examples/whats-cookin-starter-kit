@@ -16,4 +16,23 @@ body {
   justify-content: space-around;
 }
 
+.welcome-header {
+  display:flex;
+  width: 100vw;
+  height: 30vh;
+}
+
+h1 {
+  color:blue;
+  font-size: 30px;
+}
+
+main {
+  display:flex;
+  width: 100vw;
+  height: 70vh;
+}
+
+
+
 
