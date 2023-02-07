@@ -45,8 +45,15 @@ class Recipe {
     }, 0)
         return totalPrice.toFixed(2)
   }
+
+  returnInstructions() {
+    const retrieveInstr = this.instructions.reduce((acc, currentInstructions) => {
+        const instructions = `${currentInstructions.number}: ${currentInstructions.instruction}`
+        acc.push(instructions)
+        return acc
+    },[])
+    return retrieveInstr
+    }
 }
 
- 
-
-export default Recipe;
+export default Recipe
