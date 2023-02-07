@@ -1,3 +1,71 @@
-body {
-  background-color: blueviolet;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Creepster", cursive;
+}
+
+.main-page {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+}
+
+/* .filter-section {
+  border: 2px solid red;
+}
+
+.recipe-section {
+  border: 2px solid blue;
+  text-align: center;
+}
+
+.favorites-section {
+  border: 2px solid black;
+  text-align: center;
+} */
+
+/* Filter Section */
+.filter-section {
+  padding: 20px 30px;
+}
+
+.filter-tags {
+  line-height: 1.8;
+  padding: 20px 0;
+}
+
+/* Recipe Section */
+.recipe-section {
+  text-align: center;
+}
+
+.main-heading {
+  margin-top: 30px;
+  font-size: 4rem;
+}
+
+.recipe-container {
+  margin-top: 8vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.recipe-card img {
+  width: 270px;
+  height: auto;
+}
+
+.recipe-name {
+  margin-top: 10px;
+  /* font-size: 20px; */
+}
+
+/* Favorites Section */
+.favorites-section {
+  text-align: center;
+  margin-top: 20px;
 }
