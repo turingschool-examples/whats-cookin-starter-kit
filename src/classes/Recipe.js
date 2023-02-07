@@ -24,18 +24,27 @@ class Recipe {
         return ingredientNames;
     }
 
-
-calculateRecipeCost() {
+calculateRecipeCost(ingredientsData) {
     let costCounter = 0
-    let names = this.determineRecipeIngredients()
-        names.forEach(name => {
-            if(name === ingredientsData.name) {
-                costCounter += ingredientsData.estimatedCostInCents
-                console.log(costCounter)
-            } 
-    })
+    let testArray = []
+    let names = this.determineRecipeIngredients(ingredientsData)
+    console.log(names)
+        ingredientsData.forEach(ingredient => {
+            ingredient === ingredientsData.name
+            testArray.push(ingredientsData.estimatedCostInCents)
+    }) 
   }
+
+  returnInstructions() {
+    //input: an array of objects
+    //output: a string(s) of a instruction step
+    //action: use an iterator method to push string into an array
+  
+    }
 }
+
+
+
 
 export default Recipe;
 
