@@ -6,6 +6,7 @@ class Recipe {
     this.instructions = recipe.instructions;
     this.name = recipe.name;
     this.tags = recipe.tags;
+    this.totalCost;
   }
 
   getIngredientIds() {
@@ -27,17 +28,25 @@ class Recipe {
     const ingredientNames = ingredients.map((ingredient) => ingredient.name);
     return ingredientNames;
   }
-  calculateRecipeCost(ingredientData) {
-    const totalIngredietCost = ingredientData.reduce((total, currentIngredient) => {
-        
-        return total
-    },0)
-// Goal: Get the cost of its ingredients
-// Input: object with an array of objects 
-// Output: return a number for total cost
-// We need iterate over the object and use the estimated cost in cents * amount to return the total value. Method--> reduce? returning a total cost
 
- }
+  calculateRecipeCost(ingredientsData) {
+    this.determineRecipeIngredients(ingredientsData)
+    var prices = []
+    this.totalCost = ingredientsData.reduce((total, ingredient) => {
+        this.ingredients.forEach((item) => {
+            if(item.id === ingredient.id ) {
+                let cost = (item.quantity.amount * ingredient.estimatedCostInCents)/ 100
+                prices.push(cost)
+            }
+        })
+    }, 0)
+    const totalPrice = prices.reduce((sum,cost) => {
+        return sum += cost
+    }, 0)
+        return totalPrice.toFixed(2)
+  }
 }
+
+ 
 
 export default Recipe;
