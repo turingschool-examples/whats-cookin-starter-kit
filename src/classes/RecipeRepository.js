@@ -1,17 +1,19 @@
-const {recipeTestData} = require('../data/recipeTestData');
+import recipeTestData from '../data/recipeTestData';
 // import ingredient
 
 
 class RecipeRepository {
   constructor(recipeData) {
-    this.recipeList = recipeData
+    this.recipeList = recipeData;
   }
+
   filterByTag(tag) {
-    // console.log(this.recipeList)
-    // console.log(recipeTestData)
-    const food = recipeTestData.filter(recipe => recipe.tags.includes(tag));
-    // console.log(food)
-    return food
+    const food = recipeTestData.filter(recipe => {
+      if(recipe.tags.includes(tag)) {
+        return recipe;
+      }
+    });
+    return food;
   };
 };
 
