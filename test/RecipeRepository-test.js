@@ -347,5 +347,8 @@ describe('Recipe Repo', () => {
     expect(recipeRepo.recipes[1].id).to.equal(678353)
     expect(recipeRepo.recipes[2]).to.be.an.instanceOf(Recipe)
   })
+  it('Should filter recipe based on a tag', () => {
+    expect(recipeRepo.filterByTag("lunch")).to.deep.equal([new Recipe(recipes[1])])
+  })
   
 })
