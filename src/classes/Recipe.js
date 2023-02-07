@@ -36,13 +36,9 @@ calculateRecipeCost(ingredientsData) {
   }
 
   returnInstructions() {
-    //input: an array of objects
-    //output: a string(s) of a instruction step
-    //action: use an iterator method to push string into an array
     const retrieveInstr = this.instructions.reduce((acc, currentInstructions) => {
         const instructions = `${currentInstructions.number}: ${currentInstructions.instruction}`
         acc.push(instructions)
-        console.log(acc)
         return acc
     },[])
     return retrieveInstr
