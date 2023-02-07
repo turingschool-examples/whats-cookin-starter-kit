@@ -13,11 +13,15 @@
     <label for="saved-recipes">Saved Recipes</label>
         <select name="saved-recipes" class="drop-down" id="savedRecipes">  
           </select>    
+          <article class="overlay hidden recipe-card" id="recipeCard">
+            <div class="ingredients-flex" id="ingredientsFlex">
+              <h2>Recipe</h2>
+              <aside class="ingredeient-list" id="ingredientList"></aside>
+              <img class="food-pic" id="foodPic">
+              <button class="saved-recipe" id="savedRecipe">
+            </div>  
+          </article>
   </body>
-  <article class="recipe-card" id="recipeCard">
-    <h>
-    <aside class="ingredeient-list" id="ingredientList"></aside>
-  </article>
 
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
