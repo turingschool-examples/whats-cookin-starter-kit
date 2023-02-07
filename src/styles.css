@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(143, 188, 139);
+  background-color: #548c2f;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,9 +33,13 @@ nav {
 
 .navButtons {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-bottom: 10px;
   width: 100%;
+}
+
+.myFoodButton {
+  margin-left: 10px;
 }
 
 .navButtons > button,
@@ -49,8 +53,8 @@ nav {
 }
 
 button {
-  background-color: transparent;
-  color: #9a5b5b;
+  background-color: white;
+  color: #775b59;
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
@@ -94,7 +98,7 @@ main {
   width: 50px;
   height: 50px;
   border-radius: 25px;
-  background-color: #9a5b5b;
+  background-color: #f39584;
   border: none;
 }
 
@@ -106,7 +110,7 @@ main {
 }
 
 .foodTitleFront {
-  color: #9a5b5b;
+  color: #775b59;
   margin: 0;
   padding: 0;
   text-align: center;
