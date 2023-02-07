@@ -8,21 +8,43 @@ class Recipe {
     this.tags = recipeData.tags;
   }
 
-  listIngredients(ingredientData) {
+  matchIngredients(ingredientData) {
     const ingredientNames = this.ingredients.map(ingredient => {
-      const ingredientId = ingredient.id;
-      const ingredientDataNames = ingredientData.filter(ingredient => ingredient.id === ingredientId).map(ingredient => ingredient.name);
-      return ingredientDataNames
+      const ingredientDataNames = ingredientData.filter(element => element.id === ingredient.id);
+      return ingredientDataNames;
     });
     return ingredientNames.flat();
   }
+  
+  listIngredients(ingredientData) {
+    return this.matchIngredients(ingredientData).map(element => element.name);
+  }
 
-  /*
-Determine the names of ingredients needed - DONE
-Get the cost of its ingredients
-Return its directions / instructions
-  */
+  listCost(ingredientData) {
+    const ingredientCosts = this.matchIngredients(ingredientData).reduce((acc, cv) => {
+      acc[cv.id] = cv.estimatedCostInCents;
+      return acc;
+    }, {});
 
+    const ingredientAmounts= this.ingredients.reduce((acc, cv) => {
+      acc[cv.id] = cv.quantity.amount;
+      return acc;
+    }, {});
+
+    const ingredientKeys = Object.keys(ingredientAmounts);
+
+    const totalCost = ingredientKeys.reduce((acc, cv) => {
+      acc += (ingredientAmounts[cv] * ingredientCosts[cv]);
+      return acc;
+    }, 0);
+
+    return totalCost;
+  }
+
+  getInstructions() {
+    const instructions = this.instructions.map(step => `${step.number}. ${step.instruction}`)
+    return instructions;
+  }
 }
 
 export default Recipe;
