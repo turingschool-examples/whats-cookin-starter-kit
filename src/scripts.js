@@ -7,14 +7,9 @@ import Recipe from "../src/classes/Recipe";
 
 // Query Selectors
 const recipeContainer = document.querySelector(".recipe-container");
-
-const searchRecipeInput = document.querySelector(".search-recipe");
-const breakfastTag = document.querySelector(".breakfast-tag");
-const lunchTag = document.querySelector(".lunch-tag");
-const dinnerTag = document.querySelector(".dinner-tag");
-const dessertTag = document.querySelector(".dessert-tag");
-
 const filterTags = document.querySelector(".filter-tags");
+const searchRecipeInput = document.querySelector(".search-recipe");
+const searchBtn = document.querySelector(".search-btn");
 
 // Global Variables
 let recipes = testRecipeData.map((recipe) => {
@@ -33,6 +28,11 @@ recipeContainer.addEventListener("click", (e) => {
 
 filterTags.addEventListener("click", (e) => {
   filterByTag(e);
+});
+
+searchBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  filterByName();
 });
 
 // Functions
@@ -75,6 +75,21 @@ function filterByTag(e) {
   console.log(target);
   recipeContainer.innerHTML = "";
   recipeRepo.filterTag(target).forEach((recipe) => {
+    recipeContainer.innerHTML += `
+      <div id="${recipe.id}" class="recipe-card">
+        <img class="recipe-img"
+          src="${recipe.image}"/>
+          <p class="recipe-name">${recipe.name}</p>
+      </div>
+    `;
+  });
+}
+
+function filterByName() {
+  let input = searchRecipeInput.value;
+  console.log(input);
+  recipeContainer.innerHTML = "";
+  recipeRepo.filterName(input).forEach((recipe) => {
     recipeContainer.innerHTML += `
       <div id="${recipe.id}" class="recipe-card">
         <img class="recipe-img"
