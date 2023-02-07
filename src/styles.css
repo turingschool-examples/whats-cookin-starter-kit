@@ -1,10 +1,27 @@
-body {
-  background-color: blueviolet;
+* {
+  border: solid green 1px;
 }
 
+.hidden {
+  display: none;
+}
 
+.search-container{
+  overflow: hidden;
+  box-shadow: 2.5px 2.5px 15px -5px grey;
+}
 
-.shiba-toast{
+.main-toast-section{
+  background-image: url("/src/images/shiba-toast.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px;
+  margin: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 400px;
-  height: 400px;
+  height: 600px;
 }
+
