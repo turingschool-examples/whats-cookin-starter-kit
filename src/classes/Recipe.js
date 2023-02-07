@@ -45,8 +45,5 @@ calculateRecipeCost(ingredientsData) {
     }
 }
 
-
-
-
 export default Recipe;
 
