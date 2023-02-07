@@ -14,6 +14,8 @@ const lunchTag = document.querySelector(".lunch-tag");
 const dinnerTag = document.querySelector(".dinner-tag");
 const dessertTag = document.querySelector(".dessert-tag");
 
+const filterTags = document.querySelector(".filter-tags");
+
 // Global Variables
 let recipes = testRecipeData.map((recipe) => {
   return new Recipe(recipe);
@@ -27,6 +29,10 @@ window.addEventListener("load", () => {
 
 recipeContainer.addEventListener("click", (e) => {
   showFull(e);
+});
+
+filterTags.addEventListener("click", (e) => {
+  filterByTag(e);
 });
 
 // Functions
@@ -64,5 +70,17 @@ function showFull(e) {
   console.log(target);
 }
 
-// function searchRecipe() {}
-// function filterRecipe() {}
+function filterByTag(e) {
+  let target = e.target.className;
+  console.log(target);
+  recipeContainer.innerHTML = "";
+  recipeRepo.filterTag(target).forEach((recipe) => {
+    recipeContainer.innerHTML += `
+      <div id="${recipe.id}" class="recipe-card">
+        <img class="recipe-img"
+          src="${recipe.image}"/>
+          <p class="recipe-name">${recipe.name}</p>
+      </div>
+    `;
+  });
+}
