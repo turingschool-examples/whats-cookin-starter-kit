@@ -8,4 +8,13 @@ class Recipe {
         this.tags = recipeData.tags
         this.ingredientsData = ingredientsData
     }
+    calculateIngredientsName() {
+
+    }
+    calculateIngredientsCosts() {
+
+    }
+    listIngredients() {
+        
+    }
 }
