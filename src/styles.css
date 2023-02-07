@@ -38,6 +38,9 @@ body {
 }
 
 .modal-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 0;
   background-color: rgba(0 0 0 / 80%);
   height: 100%;
@@ -46,6 +49,24 @@ body {
   position: fixed;
   overflow: hidden;
 }
+
+.recipe-popup {
+  height: 80vmin;
+  width: 60vmin;
+  border: 2px black solid;
+  border-radius: 5px;
+  background-color: #E1E1E1;
+  margin: 3vmin;
+}
+
+.ingredient-list{
+  text-align: left;
+}
+
+/* .ingredient-list > li {
+  margin: 0.1vmin 0.2vmin;
+} */
+
 
 .all-recipes {
   display: flex;
