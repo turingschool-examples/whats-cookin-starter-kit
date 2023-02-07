@@ -14,8 +14,8 @@ class User {
     }
 
     removeFromRecipesToCook() {
-        
+
     }
 }
 
-export default User
+export default User;
