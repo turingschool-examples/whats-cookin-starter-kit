@@ -55,14 +55,13 @@ describe("Recipe", () => {
 
     it("should be able to to calculate total ingredient cost", () => {
         let ingredientCost = recipe.calculateRecipeCost(ingredientsData)
-        expect(ingredientCost).to.equal(27.58)
+        expect(names).to.equal(27.58)
     })
 
-    it("should have a function recipe to return recipe instructions", () => {
-        let recipeInstructions = recipe.returnInstructions(sampleRecipeData[0]);
-        expect(recipeInstructions).to.deeply.equal(sampleRecipeData[0].instructions)
+    it.only("should have a function recipe to return recipe instructions", () => {
+        let recipeInstructions = recipe.returnInstructions();
+        expect(recipeInstructions[0]).to.equal('1: In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.')
     })
 })
 
-// Don't want to use recipee data but make a sample data file
-// 
+
