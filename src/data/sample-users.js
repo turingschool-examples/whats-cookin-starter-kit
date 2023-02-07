@@ -1,4 +1,4 @@
-const sampleUsersData = [
+const sampleUserData = [
     {
       "name": "Saige O'Kon",
       "id": 1,
@@ -822,4 +822,7 @@ const sampleUsersData = [
           "amount": 2
         }
       ]
-    }]
+    }
+];
+
+export default sampleUserData;
