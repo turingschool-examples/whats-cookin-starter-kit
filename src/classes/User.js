@@ -6,6 +6,12 @@ class User {
         this.favoriteRecipes = []
         this.recipesToCook = []
     }
+
+    addRecipeToCook(recipe) {
+        if(!this.recipesToCook.includes(recipe)) {
+            this.recipesToCook.push(recipe)
+        }
+    }
 }
 
 export default User
