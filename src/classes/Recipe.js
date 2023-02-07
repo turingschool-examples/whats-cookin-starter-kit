@@ -55,5 +55,6 @@ class Recipe {
     return retrieveInstr
     }
 }
+export default Recipe;
 
-export default Recipe
+

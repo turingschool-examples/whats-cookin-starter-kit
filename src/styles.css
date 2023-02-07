@@ -82,7 +82,7 @@ button {
   padding: .1em 1.3em;
   font-weight: bold;  
   border: none;
-  min-width: 160px;
+  min-width: 200px;
   height: 5vh;
   margin-bottom: 10px;
 }
@@ -98,24 +98,24 @@ button:active {
   color: #fff;
 }
 
-.categories {
+.recipe-section {
   display: flex;
-  flex-grow: 1;
-  margin: 40px 20px;
-  flex-direction: row;
+  margin: 40px 20px 20px 20px;
+  flex-direction:row;
   justify-content: space-between;
   flex-wrap: wrap;
-  max-width: 750px;
 }
 
-.category {
-  margin-left: 20px;
-  height: 150px;
-  width: 130px;
+.recipe {
+  height: 16vh;
+  width: 16vw;
   background-color: #FAF6F2;
   border: white 2px solid;
   border-radius: 4px;
-  margin-bottom: 20px;
+}
+
+.recipe:hover {
+  transform: scale(1.04);
 }
 
 .search-container {

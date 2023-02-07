@@ -15,6 +15,7 @@ class RecipeRepository {
       this.filteredRecipes = null;
       return `Sorry, there are no recipes with ${tag}!`;
     }
+    return this.filteredRecipes
   }
   filterByName(name) {
     if (!name) {
