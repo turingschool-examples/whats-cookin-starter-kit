@@ -1,6 +1,8 @@
+import Recipe from "./Recipe";
+
 class RecipeRepository {
-  constructor() {
-    
+  constructor(recipeData) {
+    this.recipes = recipeData.map(recipe => new Recipe(recipe))
 
   }
 }
