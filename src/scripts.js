@@ -59,52 +59,19 @@ const recipeNames = [
     'Pastry Cream'
   ]
 
-const recipeSection = document.querySelector('.all-recipes')
-window.addEventListener('load', createRecipeRows)
-
-function createNestedNames() {
-    let count = 0
-    let folder = []
-    let nested = recipeNames.reduce((acc, cV) => {
-      count++
-      folder.push(cV)
-      if (count % 4 === 0) {
-        acc.push(folder)
-        folder = []
-      }
-      return acc
-    }, [])
-    nested.push(folder)
-    console.log(nested)
-    return nested
-}
-
-function createRecipeRows() {
-    recipeSection.innerHTML = ''
-    let nested = createNestedNames()
-    let count = 0
-    nested.forEach(array => {
-        count++
-        recipeSection.innerHTML += `<div class="recipe-row" id="row${count}"></div>`
-    })
-    createRecipeCards()
-}
+const recipeSection = document.getElementById('allRecipes')
+window.addEventListener('load', createRecipeCards)
 
 function createRecipeCards() {
     let count = 0
-    let currentRow
-    let nested = createNestedNames()
-    nested.forEach(array => {
+    recipeNames.forEach(recipe => {
         count++
-        currentRow = document.getElementById(`row${count}`)
-        array.forEach(recipe => {
-            let size = (2 - (recipe.length / 65)).toFixed(2)
-            currentRow.innerHTML += `
-            <article class="recipe-card">
-            <img class="recipe-img" src="src/images/cookies-placeholder.jpeg" alt="Cookies placeholder">
-            <img class="star-icon hidden" id="star-icon" src="src/images/star-icon.png" alt="This recipe is in my recipes!">
-            <h3 style="font-size: ${size}rem">${recipe}</h3>
-            </article>`
-        })
+        let size = (2 - (recipe.length / 65)).toFixed(2)
+        recipeSection.innerHTML += `
+        <article class="recipe-card">
+        <img class="recipe-img" src="../src/images/cookies-placeholder.jpeg" alt="Cookies placeholder">
+        <img class="star-icon hidden" id="star-icon" src="../src/images/star-icon.png" alt="This recipe is in my recipes!">
+        <h3 style="font-size: ${size}rem">${recipe}</h3>
+        </article>`
     })
 }

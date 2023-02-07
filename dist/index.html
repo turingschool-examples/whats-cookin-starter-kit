@@ -1,12 +1,54 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-  </head>
-  <body>
-    <h1>Whats Cookin</h1>
-  </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
+    <link rel="stylesheet" href="../src/styles.css">
+    <title>What's Cookin'</title>
+</head>
+<body>
+    <nav class="nav-bar">
+        <img class="logo" id="logo" src="../src/images/turing-logo.png" alt="Turing Logo placeholder">
+        <menu class="nav-links">
+            <li id="nav-search">Search Recipes</li>
+            <li id="nav-filter">Filter Recipes</li>
+            <li id="nav-my-recipes">My Recipes</li>
+            <li id="nav-user-info">User Info</li>
+        </menu>
+    </nav>
+    <main>
+        <header>
+            <h1 class="title">What's Cookin'</h1>
+            <!-- The following is a header feature that may be incorporated later -->
+            <!-- <section class="featured-recipe">
+                <article class="featured-card">
+                    <img class="featured-img" src="src/images/cookies-placeholder.jpeg" alt="Cookies placeholder">
+                    <img class="star-icon hidden" id="star-icon" src="src/images/star-icon.png" alt="This recipe is in my recipes!">
+                    <h3>Loaded Chocolate Chip Pudding Cookie Cups</h3>
+                </article>
+                <div class="featured-directions">
+                    <h2>Not sure what to cook? Try out this delicious [insert tag name here] tonight! Or keep scrolling to see more tantalizing recipes.</h2>
+                    <ol class="hidden">
+                        <li>In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.</li>
+                        <li>Add egg and vanilla and mix until combined.</li>
+                        <li>Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.</li>
+                        <li>Place the cookie dough balls into ungreased muffin pan. Sprinkle with sea salt.</li>
+                        <li>Bake for 9 to 10 minutes, or until you see the edges start to brown.</li>
+                        <li>Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice cream and a drizzle of chocolate sauce.</li>
+                    </ol>
+                </div>
+            </section> -->
+        </header>
+        <section id="allRecipes">
+            <!-- Recipes and cards go here -->
+        </section>
+        <section class="hidden" id="myRecipes">
+          <!-- Saved recipes and cards go here -->
+        </section>
+        <footer>
+            <h4>Not finding what you're looking for? Try using the Search or Filter features to narrow it down!</h4>
+        </footer>
+    </main>
+    <script type="text/javascript" src="../src/scripts.js"></script>
+    <!-- <script src="bundle.js"></script> -->
+</body>
 </html>
