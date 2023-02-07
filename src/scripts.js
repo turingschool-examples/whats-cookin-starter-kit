@@ -68,10 +68,10 @@ function createRecipeCards() {
         count++
         let size = (2 - (recipe.length / 65)).toFixed(2)
         recipeSection.innerHTML += `
-        <article class="recipe-card">
-        <img class="recipe-img" src="../src/images/cookies-placeholder.jpeg" alt="Cookies placeholder">
-        <img class="star-icon hidden" id="star-icon" src="../src/images/star-icon.png" alt="This recipe is in my recipes!">
-        <h3 style="font-size: ${size}rem">${recipe}</h3>
+        <article class="recipe-card" id="recipe${count}">
+            <img class="recipe-img" src="../src/images/cookies-placeholder.jpeg" alt="Cookies placeholder">
+            <img class="star-icon hidden" id="star-icon" src="../src/images/star-icon.png" alt="This recipe is in my recipes!">
+            <h3 style="font-size: ${size}rem">${recipe}</h3>
         </article>`
     })
 }
