@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <link rel="stylesheet" href="../css/styles.css"> 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ahom&display=swap" rel="stylesheet">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
@@ -12,93 +11,92 @@
   </head>
   <body>
     <nav class="navBar">
-      <input class="searchBar" type="text" placeholder="Search Here">
-      <div class="navBarCenter">
-        <h1 class="navTitle">What's Cookin?</h1>
+      <h1 class="navTitle">What's Cookin?</h1>
+      <section class="navBarCenter">
         <div class="navButtons">
           <button>Home</button>
           <button>My Food</button>
-          <button>Menu</button>
+          <button class="logInButton">Log-in</button>
         </div>
-      </div>
-      <button class="logInButton">Log-in</button>
+        <input class="searchBar" type="text" placeholder="Search Here">
+      </section>
     </nav>
     <main>
-      <section class="cardFront" id="cf1">
+      <section class="cardFront" id="cf1" tabindex="0">
         <button class="cardButton"></button>
         <h2 class="foodTitleFront">Food Title</h2>
         <img class="foodImage" src="" alt="Food Image">
         <h3>
-          <div class="prep">Prep</div>
-          <div class="ingredients"># Ingredients</div>
+          <p class="prep">Prep</p>
+          <p class="ingredients"># Ingredients</p>
         </h3>
         <!-- add front of card here-->
       </section>
-      <article class="cardBack" id="cb1" hidden>
+      <section class="cardBack hidden" id="cb1" tabindex="0">
         <h2 class="foodTitleBack">Food Title</h2>
-        <h3 class="foodText">This will be interpolated text</h3>
+        <p class="foodText">This will be interpolated text</p>
         <!-- add back of card here-->
-      </article>
-      <section class="cardFront" id="cf2">
+      </section>
+      <section class="cardFront" id="cf2" tabindex="0">
         <button button class="cardButton"></button>
         <h2 class="foodTitleFront">Food Title</h2>
         <img class="foodImage" src="" alt="Food Image">
         <h3>
-          <div class="prep">Prep</div>
-          <div class="ingredients"># Ingredients</div>
+          <p class="prep">Prep</p>
+          <p class="ingredients"># Ingredients</p>
         </h3>
         <!-- add front of card here-->
       </section>
-      <article class="cardBack" id="cb2" hidden>
+      <section class="cardBack hidden" id="cb2" tabindex="0">
         <h2 class="foodTitleBack">Food Title</h2>
-        <h3 class="foodText">This will be interpolated text</h3>
+        <p class="foodText">This will be interpolated text</p>
         <!-- add back of card here-->
-      </article>
-      <section class="cardFront" id="cf3">
+      </section>
+      <section class="cardFront" id="cf3" tabindex="0">
         <button button class="cardButton"></button>
         <h2 class="foodTitleFront">Food Title</h2>
         <img class="foodImage" src="" alt="Food Image">
         <h3>
-          <div class="prep">Prep</div>
-          <div class="ingredients"># Ingredients</div>
+          <p class="prep">Prep</p>
+          <p class="ingredients"># Ingredients</p>
         </h3>
         <!-- add front of card here-->
       </section>
-      <article class="cardBack" id="cb3" hidden>
+      <section class="cardBack hidden" id="cb3" tabindex="0">
         <h2 class="foodTitleBack">Food Title</h2>
-        <h3 class="foodText">This will be interpolated text</h3>
+        <p class="foodText">This will be interpolated text</p>
         <!-- add back of card here-->
-      </article>
-      <section class="cardFront" id="cf4">
+      </section>
+      <section class="cardFront" id="cf4" tabindex="0">
         <button button class="cardButton"></button>
         <h2 class="foodTitleFront">Food Title</h2>
         <img class="foodImage" src="" alt="Food Image">
         <h3>
-          <div class="prep">Prep</div>
-          <div class="ingredients"># Ingredients</div>
+          <p class="prep">Prep</p>
+          <p class="ingredients"># Ingredients</p>
         </h3>
         <!-- add front of card here-->
       </section>
-      <article class="cardBack" id="cb4" hidden>
+      <section class="cardBack hidden" id="cb4" tabindex="0">
         <h2 class="foodTitleBack">Food Title</h2>
-        <h3 class="foodText">This will be interpolated text</h3>
+        <p class="foodText">This will be interpolated text</p>
         <!-- add back of card here-->
-      </article>
-      <!-- <section class="cardFront" id="cf5">
+      </section>
+      <section class="cardFront" id="cf5" tabindex="0">
         <button button class="cardButton"></button>
         <h2 class="foodTitleFront">Food Title</h2>
         <img class="foodImage" src="" alt="Food Image">
         <h3>
-          <div class="prep">Prep</div>
-          <div class="ingredients"># Ingredients</div>
+          <p class="prep">Prep</p>
+          <p class="ingredients"># Ingredients</p>
         </h3>
 
-      </section> -->
-      <article class="cardBack" id="cb5" hidden>
+      </section>
+      <section class="cardBack hidden" id="cb5" tabindex="0">
         <h2 class="foodTitleBack">Food Title</h2>
-        <h3 class="foodText">This will be interpolated text</h3>
+        <p class="foodText">This will be interpolated text</p>
         <!-- add back of card here-->
-      </article>
+      </section>
     </main>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->

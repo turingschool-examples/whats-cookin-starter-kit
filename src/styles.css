@@ -5,30 +5,47 @@ body {
   align-items: center;
   margin-left: 2%;
   margin-right: 2%;
+  font-family: 'Noto Serif Ahom', serif;
 }
 
 .navTitle {
   color: rgb(0, 67, 0);
-  /* text-transform: inherit; */
   font-family: 'Lobster', Lobster;
-  font-size: 75px;
+  font-size: 6rem;
   margin: 0px;
 }
 
 nav {
   display: flex;
   width: 100%;
-  flex-direction: row;
   align-items: end;
   justify-content: space-between;
-  align-items: flex-start;
 }
 
-.navBarCenter{
+.navBarCenter {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
+  align-content: center;
+  margin-bottom: 30px;
+  width: 250px;
+}
+
+.navButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.navButtons > button,
+.searchBar {
+  font-size: 1rem;
+}
+
+.searchBar {
+  border: none;
+  border-radius: 4px;
 }
 
 button {
@@ -53,29 +70,17 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-top: 40px;
-  border: 3px solid red;
+  margin-top: 10%;
 }
 
-.cardFront .cardBack {
-  width: calc(40% - 20px);
-  height: 200px;
-  border: 10px solid black;
-  text-align: center;
-  cursor: pointer;
-  display: flex;
-}
-
-.hidden {
-  display: none;
-}
-
-section.cardFront {
+.cardFront,
+.cardBack {
   width: 300px;
   height: 400px;
+  cursor: pointer;
+  display: flex;
   background-color: #f1f1f1;
   border-radius: 15px;
-  display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -84,17 +89,13 @@ section.cardFront {
 
 .cardButton {
   position: absolute;
-  top: 20px;
-  right: 5px;
+  top: 10px;
+  right: 10px;
   width: 50px;
   height: 50px;
-  border-radius: 25px; 
-  justify-content: center;
-  align-items: center;
+  border-radius: 25px;
   background-color: #9a5b5b;
   border: none;
-  cursor: pointer;
-
 }
 
 .cardButton::before {
@@ -120,17 +121,6 @@ h3 {
   color: #7bb25b;
 }
 
-/* article.cardBack {
-  width: 300px;
-  height: 400px;
-  background-color: #f1f1f1;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-} */
-
 /* .foodTitleBack {
   margin: 0;
   padding: 0;
@@ -145,3 +135,7 @@ h3 {
   padding: 20px;
   color: #7bb25b;
 } */
+
+.hidden {
+  display: none;
+}
