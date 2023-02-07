@@ -1,17 +1,19 @@
 import { assert, expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
+import recipeTestData from '../src/data/recipeTestData';
 
 describe('Recipe', () => {
+  let recipes
   beforeEach(() => {
-    let recipes = new RecipeRepository(recipeData)
+    recipes = new RecipeRepository(recipeTestData)
   });
 
-  it.skip('Should be a function', () => {
+  it('Should be a function', () => {
     assert.isFunction(RecipeRepository);
   });
 
-  it.skip('Should contain recipe data', () => {
-    assert.equal(recipes.recipeList, recipeData);
+  it('Should contain recipe data', () => {
+    assert.equal(recipes.recipeList, recipeTestData);
   });
 
   it.skip('Should get recipes based on a tag', () => {
