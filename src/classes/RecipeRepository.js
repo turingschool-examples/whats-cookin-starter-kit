@@ -1,4 +1,4 @@
-import recipeTestData from '../data/recipeTestData';
+const {recipeTestData} = require('../data/recipeTestData');
 // import ingredient
 
 
@@ -7,9 +7,10 @@ class RecipeRepository {
     this.recipeList = recipeData
   }
   filterByTag(tag) {
-    console.log(this.recipeList)
+    // console.log(this.recipeList)
+    // console.log(recipeTestData)
     const food = recipeTestData.filter(recipe => recipe.tags.includes(tag));
-    console.log(food)
+    // console.log(food)
     return food
   };
 };

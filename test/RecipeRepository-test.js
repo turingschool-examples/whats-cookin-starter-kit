@@ -16,8 +16,10 @@ describe('Recipe', () => {
     assert.equal(recipes.recipeList, recipeTestData);
   });
 
-  it.skip('Should get recipes based on a tag', () => {
-    assert.equal(recipes.filterByTag(), 'eggs');
+  it('Should get recipes based on a tags', () => {
+    const findTag = recipes.filterByTag('snack')
+    console.log(recipes.recipeList[0])
+    assert.equal(findTag, recipes.recipeList[0]);
   });
 
   it.skip('Should get recipes based of ingredient', () => {
