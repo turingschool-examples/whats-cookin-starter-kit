@@ -23,7 +23,22 @@ class Recipe {
   };
 
   getIngredientsCost() {
+    const ingredientsListIDs = this.ingredients.map((ingredient) => {
+      return ingredient.id;
+    })
+    const ingredientCost = ingredientsData.filter((ingredient) => {
+      return ingredientsListIDs.includes(ingredient.id)
+    }).map((ingredient) => {
+      return ingredient.estimatedCostInCents
+    });
 
+    let total = 0
+
+    ingredientCost.forEach((ingredient, index) => {
+      total += (ingredient * this.ingredients[index].quantity.amount)
+    })
+
+    return total / 100
   };
 
   getInstructions() {

@@ -59,4 +59,8 @@ describe ('Recipe class', () => {
       'vanilla'
     ])
   })
+
+  it('Should give a total cost for the ingredients', () => {
+    expect(recipeClass.getIngredientsCost()).to.equal(177.76)
+  })
 })
