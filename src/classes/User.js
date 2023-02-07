@@ -12,6 +12,10 @@ class User {
             this.recipesToCook.push(recipe)
         }
     }
+
+    removeFromRecipesToCook() {
+        
+    }
 }
 
 export default User
