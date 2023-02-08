@@ -27,6 +27,7 @@ class RecipeRepository {
       this.filteredRecipes = null;
       return `Sorry, there are no recipes matching ${name}!`;
     }
+    return this.filteredRecipes
   }
 }
 export default RecipeRepository;
