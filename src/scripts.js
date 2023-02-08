@@ -5,6 +5,10 @@ import './images/turing-logo.png'
 import recipeData from './data/recipes.js';
 // import MicroModal from 'micromodal'
 import RecipeRepository from './classes/RecipeRepository';
+import usersData from `./data/users`
+import User from './classes/User'
+
+var user 
 
 const recipeRepository = new RecipeRepository(recipeData)
 
@@ -38,6 +42,7 @@ window.onload = function() {
     for(var i = 0; i < recipeData.length; i++) {
         currentRecipes.push(recipeData[i])
     }
+    generateRandUser()
     popularRecipes()
 }
 
@@ -112,3 +117,7 @@ function searchRecipeByName() {
     displayRecipes();
 }
 
+function generateRandUser() {
+    var num = Math.floor(Math.random() * usersData.length)
+    user = new User(usersData[num])
+}
