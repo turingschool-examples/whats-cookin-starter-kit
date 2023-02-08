@@ -3,31 +3,29 @@ import ingredientTestData from '../data/ingredientTestData';
 
 class Recipe {
   
-  constructor(data) {
-    this.details = data;
-  }
+  constructor(recipe) {
+    this.id = recipe.id;
+    this.image = recipe.image;
+    this.ingredients = recipe.ingredients;
+    this.instructions = recipe.instructions;
+    this.name = recipe.name;
+    this.tags = recipe.tags;
+  };
 
-  nameIngredients() {
-    console.log(this.details.ingredients[0].id)
-    let ingredientList = [];
-     ingredientList = this.details.ingredients.map(ingredient => {
-      if {ingredientTestData.id === this}
-      // ingredient.id === ingredientTestData.id;
-      return ingredientTestData[ingredient.id]
-    });
-    return ingredientList
-    };
+  nameIngredientsNeeded() {
+  
     //iterate thru recipe Data and if id there matches ingredientTestData id
     //then return ingredientTestData.name 
   };
 
-  // returnCost() {
+  // returnCostOfIngredients() {
 
   // };
 
-  // giveDirections() {
+  // giveDirectionsForRecipe() {
 
   // };
 
+};
 
 export default Recipe;
