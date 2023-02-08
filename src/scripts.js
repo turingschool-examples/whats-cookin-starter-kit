@@ -3,9 +3,9 @@ import apiCalls from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import recipeData from './data/recipes.js';
-// import MicroModal from 'micromodal'
+import MicroModal from 'micromodal'
 import RecipeRepository from './classes/RecipeRepository';
-
+MicroModal.init()
 const recipeRepository = new RecipeRepository(recipeData)
 
 const recipeSection  = document.querySelector(".recipe-section")
