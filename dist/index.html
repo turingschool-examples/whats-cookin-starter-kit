@@ -27,12 +27,51 @@
         </section>
       </nav>
       <section class="recipe-section">
-
       </section>
     </section>
   </body>
+ 
+  <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1"> 
+      <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title" >
+        <header class="modal__header">
+          <h2 class="modal__title" id="modal-1-title">
+            Smoothie Recipee
+          </h2>
+        </header>        
+        <main class="modal__content" id="modal-1-content">
+          <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
+          <h3>Ingredients</h3> 
+          <ul>
+            <li>Eggs</li>
+            <li>Spinach</li>
+            <li>Cheese</li>
+            <li>Eggs</li>
+            <li>Spinach</li>
+            <li>Cheese</li>
+            <li>Eggs</li>
+            <li>Spinach</li>
+            <li>Cheese</li>
+          </ul>
+          <h3>Recipe Instructions</h3>
+          <ol type="1">
+            <li>Crumble bacon slices when cool enough to handle.</li>
+            <li >Mix together cream cheese, Cheddar cheese, Ranch dressing mix, dried minced onion, garlic powder, and 1/2 of the crumbled bacon in a bowl until well combined. Place the other half of crumbled bacon in the refrigerator until ready to use.</li>
+            <li>Form cheese mixture into a round ball (it's helpful to use plastic wrap while shaping it). Wrap in plastic wrap and refrigerate for at least 2 hours.</li>
+            <li>Place remaining crumbled bacon on a plate and stir in minced chives. Remove plastic wrap from the cheese ball and roll it in the bacon and chive mixture, lightly pressing the topping to the cheese ball so it sticks.</li>
+            <li>Place the coated cheese ball on a serving dish and surround with crackers for dipping.</li>
+          </ol>
+          <h4>Recipe Cost:</h4>
+          <button type="button" class="modal__btn">❤️</button> 
+          <button class="modal__close" aria-label="Close modal" data-micromodal-close>CLOSE</button>
+        </main>       
+      </div>
+    </div>
+  </div>
+
+<!-- CSS for numbered list: list-style-position: inside; -->
+
+
   <script src="bundle.js"></script>
-  <script src="scripts.js"></script>
-  <script src="recipes.js"></script>
 
 </html>
