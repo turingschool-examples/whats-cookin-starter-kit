@@ -48,7 +48,7 @@ window.onscroll = function() {
         topButton.style.display = "none";
     }
     // if (document.documentElement.scrollTop > 280) {
-    //     navigationSeciton.style.position = "sticky"
+    //     navigationSeciton.style.position = "fixed"
     //     navigationSection.style.marginTop = "10px"
     // } else {
     //     navigationSeciton.style.position = "relative"
