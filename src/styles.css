@@ -53,7 +53,7 @@ body {
 .recipe-popup {
   height: 80vmin;
   width: 70vmin;
-  border: 2px black solid;
+  border: 2px white solid;
   border-radius: 5px;
   background-color: #E1E1E1;
   margin: 3vmin;
