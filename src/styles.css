@@ -69,6 +69,8 @@ main {
   align-items: center;
   height: 60%;
   width: 100%;
+  overflow: auto;
+  overflow-x: auto;
 }
 
 button:hover {
@@ -80,7 +82,7 @@ button:hover {
   height: fit-content;
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: no-wrap;
   justify-content: center;
   gap: 2%;
   border: solid red 5px;
