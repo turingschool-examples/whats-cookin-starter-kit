@@ -14,6 +14,7 @@ const filterTags = document.querySelector(".filter-tags");
 const searchRecipeInput = document.querySelector(".search-recipe");
 const searchBtn = document.querySelector(".search-btn");
 
+
 // Global Variables
 let recipes = testRecipeData.map((recipe) => {
   return new Recipe(recipe);
@@ -52,6 +53,7 @@ function displayRecipes() {
                 src="${recipe.image}"
               />
               <p class="recipe-name">${recipe.name}</p>
+              <button class="favorite-button">favorite</button>
             </div>
     `;
   });
@@ -106,4 +108,15 @@ function setUser(arr) {
   let randomUserIndex = arr[Math.floor(Math.random() * arr.length)];
   randomUser = new User(randomUserIndex);
   console.log('Random User', randomUser);
+};
+
+function saveRecipe(e) {
+  let target = e.target.parentElement.id;
+  let locateRecipe = recipeRepo.recipes
+  .find((recipe) => {
+    return recipe.id === Number(target);
+  })
+  console.log(locateRecipe);
+
+  randomUser.recipesToCook(locateRecipe);
 };
