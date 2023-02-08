@@ -33,7 +33,7 @@ class Recipe {
   }
   
   listIngredients(ingredientData) {
-    return this.matchIngredients(ingredientData).map(element => `${element.quantity.amount} ${element.quantity.unit} ${element.name}`);  
+    return this.matchIngredients(ingredientData).map(element => `${+(element.quantity.amount)} ${element.quantity.unit} ${element.name}`);  
   }
 
   listCost(ingredientData) {

@@ -17,6 +17,7 @@ const modalSection = document.getElementById('recipeModalBackground')
 //event listeners
 window.addEventListener('load', createRecipeCards)
 recipeSection.addEventListener('click', createRecipeModal)
+modalSection.addEventListener('click', collapseRecipe)
 
 
 //functions
@@ -34,10 +35,8 @@ function createRecipeCards() {
 
 function createRecipeModal(event) {
   toggleHidden(modalSection)
-  toggleHidden(recipeSection)
   let recipeID = +(event.target.dataset.parent)
   let clickedRecipe = recipeRepo.recipes.find(recipe => recipe.id === recipeID)
-  console.log(ingredientsData)
     modalSection.innerHTML = `
     <div class="recipe-popup">
       <h2>${clickedRecipe.name}</h2>
@@ -52,7 +51,7 @@ function createRecipeModal(event) {
         <h3>Directions:</h3>
         ${createList(clickedRecipe.getInstructions())}
     </ol>
-    <h4>TOTAL COST $${clickedRecipe.listCost(ingredientsData)}</h4>
+    <h4>TOTAL COST $${+(clickedRecipe.listCost(ingredientsData))}</h4>
     </div>`
 }
 
@@ -65,4 +64,10 @@ function createList(recipe) {
 
 function toggleHidden(element) {
   element.classList.toggle('hidden')
+}
+
+function collapseRecipe(event) {
+  if(event.target.id === "recipeModalBackground"){
+    toggleHidden(modalSection)
+  }
 }

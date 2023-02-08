@@ -79,6 +79,9 @@ li {
   margin: 0.1vmin 0.2vmin;
 } */
 
+.direction-list {
+  list-style: none;
+}
 
 .all-recipes {
   display: flex;
