@@ -38,6 +38,21 @@ const ingredientTestData = [
     "id": 1012047,
     "name": "fine sea salt",
     "estimatedCostInCents": 528
+  },
+  {
+    "id": 10019903,
+    "name": "semi sweet chips",
+    "estimatedCostInCents": 253
+  },
+  {
+    "id": 1145,
+    "name": "unsalted butter",
+    "estimatedCostInCents": 617
+  },
+  {
+    "id": 2050,
+    "name": "vanilla",
+    "estimatedCostInCents": 926
   }
 ]
 module.exports = ingredientTestData;
