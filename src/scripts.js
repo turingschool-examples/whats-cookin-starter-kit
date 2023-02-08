@@ -16,11 +16,14 @@ let cardSection;
 const navBar = document.querySelector('nav');
 const main = document.querySelector('main');
 
+const mainRepository = new RecipeRepository(recipeData);
+
 
 main.addEventListener('click', checkClick);
 navBar.addEventListener('click', checkNavButtons);
 
-console.log(recipeData)
+console.log(mainRepository.recipes[0])
+
 
 
 function checkClick(e) {
@@ -42,8 +45,6 @@ function flipToBack(elementIndex) {
     const backCardToFlip = document.getElementById(`cb${elementIndex}`);
     show(backCardToFlip);
     hide(frontCardToFlip);
-    
-
 }
 
 function flipToFront(elementIndex) {

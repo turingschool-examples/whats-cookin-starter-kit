@@ -4,7 +4,6 @@ import Recipe from '../src/classes/Recipe';
 describe('Recipe', () => {
     let recipe1;
     let recipe2;
-    let cookies;
 
     beforeEach(() => {
       recipe1 = new Recipe({

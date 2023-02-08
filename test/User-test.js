@@ -3,7 +3,7 @@ import RecipeRepository from '../src/classes/RecipeRepository';
 import Recipe from '../src/classes/Recipe';
 import User from '../src/classes/User';
 
-describe.only('User', () => {
+describe('User', () => {
     let user, recipe;
 
     beforeEach(() => {
