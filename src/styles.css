@@ -164,8 +164,9 @@ button:active {
 .modal__container {
   background-color: #fff;
   padding: 30px;
-  max-width: 500px;
+  max-width: 80%;
   max-height: 100vh;
+  min-width: 500px;
   border-radius: 4px;
   overflow-y: auto;
   box-sizing: border-box;
@@ -238,8 +239,6 @@ button:active {
   background-color: #00449e;
   color: #fff;
 }
-
-
 
 /**************************\
   Demo Animation Style
