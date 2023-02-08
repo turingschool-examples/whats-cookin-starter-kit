@@ -1,4 +1,4 @@
-const sampleRecipeData = [
+const sampleData = [
 {
 "id": 1123,
 "name": "Pastry Cream",
@@ -20,3 +20,5 @@ const sampleRecipeData = [
  "tags": "breakfest"  
 }
 ]
+
+export default sampleData

@@ -1,16 +1,19 @@
 class RecipeRepository {
   constructor(recipes) {
     this.recipes = recipes
-    // One class to get you started!
+    this.storedRecipes 
   }
+
   getRecipeByTag(tag) {
-    const recipeTag = this.recipes.filter(recipe => recipe === tag);
-    console.log(recipeTag)
-    }
+    this.storedRecipes = this.recipes.filter(recipe => recipe.tags.includes(tag));
+    console.log(this.storedRecipes);
+    return this.storedRecipes;
+}
 
     getRecipeByName(name){
-      const recipeName = this.recipes.filter(recipe => recipe === name);
-      console.log(recipeName)
+      this.storedRecipes += this.recipes.filter(recipe => recipe === name);
+      console.log(this.storedRecipes)
+      return this.storedRecipes
     }
 }
 
