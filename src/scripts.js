@@ -3,7 +3,7 @@ import apiCalls from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import recipeData from './data/recipes.js';
-import MicroModal from 'micromodal'
+// import MicroModal from 'micromodal'
 import RecipeRepository from './classes/RecipeRepository';
 const recipeRepository = new RecipeRepository(recipeData)
 
@@ -15,9 +15,15 @@ const breakfast = document.querySelector("#breakfast-filter")
 const mainDish = document.querySelector("#main-dish-filter")
 const allRecipes = document.querySelector("#recipe-button")
 
+const searchBar = document.querySelector("#.search-bar")
+const searchGo = document.querySelector(".search-bar-go")
+
+
 allRecipes.addEventListener('click', showAllRecipes)
 breakfast.addEventListener('click', function() {showFilteredRecipes('breakfast')})
 mainDish.addEventListener('click', function() {showFilteredRecipes('main dish')})
+searchBar.addEventListener('input', () => {searchRecipeByName()})
+searchGo.addEventListener('click', () => {} )
 
 var currentRecipes = []
 
@@ -73,4 +79,16 @@ function showFilteredRecipes(tag) {
     }
     displayRecipes()
 }
+
+// function searchRecipeByName(tag){
+//     // recipeSection.innerHTML = ''
+//     // currentRecipes = []
+//     // const filterByName = recipeRepository.
+//     // let filteredRecipeByName = recipeRepository.filterByTag(tag)
+//     //     for (var i = 0; i < filteredRecipeByName.length; i++) {
+//     //       currentRecipes.push(filteredRecipeByName[i]);
+//     //     }
+//     //     displayRecipes();
+    
+// }
 
