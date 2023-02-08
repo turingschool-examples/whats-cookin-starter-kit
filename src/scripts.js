@@ -25,6 +25,7 @@ const mainDishFilter = document.querySelector("#main-dish-filter")
 const compDishFilter = document.querySelector("#complimentary-dish-filter")
 const searchBar = document.querySelector(".search-bar")
 const searchGo = document.querySelector("#search-bar-go")
+const pantryButton = document.querySelector("#your-pantry")
 
 
 topButton.addEventListener('click', function() {document.documentElement.scrollTop = 0})
@@ -35,6 +36,7 @@ brunchFilter.addEventListener('click', function() {showFilteredRecipes('brunch')
 mainDishFilter.addEventListener('click', function() {showFilteredRecipes('main dish')})
 compDishFilter.addEventListener('click', function() {showFilteredRecipes('appetizer')})
 searchGo.addEventListener('click', function() {searchRecipeByName()})
+pantryButton.addEventListener('click', displayPantry)
 
 var currentRecipes = []
 
@@ -66,6 +68,16 @@ function displayRecipes() {
         recipeSection.innerHTML += 
         `
         <img src="${currentRecipes[i].image}" class="recipe"></img>
+        `
+    }
+}
+
+function displayPantry() {
+    recipeSection.innerHTML = ''
+    for(var i = 0; i < user.pantry.length; i++) {
+        recipeSection.innerHTML += 
+        `
+        <img src="${user[i].pantry}" class="recipe"></img>
         `
     }
 }
