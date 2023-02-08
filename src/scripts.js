@@ -49,6 +49,12 @@ let clickedRecipe = recipeRepo.recipes.find(recipe => recipe.id === recipeID)
       <h3>Directions:</h3>
       ${createList(clickedRecipe.getInstructions())}
   </ol>
-  <h2>TOTAL COST $10</h1>
+  <h2>TOTAL COST $${clickedRecipe.listCost(ingredientsData)}</h1>
   </div>`
+}
+function createList(recipe) {
+    return recipe.reduce((acc, cv) => {
+    acc += `<li>${cv}</li>`
+    return acc
+    }, "")
 }
