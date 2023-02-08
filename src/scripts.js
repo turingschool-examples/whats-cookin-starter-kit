@@ -33,28 +33,35 @@ function createRecipeCards() {
 }
 
 function createRecipeModal(event) {
-let recipeID = +(event.target.dataset.parent)
-let clickedRecipe = recipeRepo.recipes.find(recipe => recipe.id === recipeID)
-   modalSection.innerHTML = `
+  toggleHidden(modalSection)
+  toggleHidden(recipeSection)
+  let recipeID = +(event.target.dataset.parent)
+  let clickedRecipe = recipeRepo.recipes.find(recipe => recipe.id === recipeID)
+    modalSection.innerHTML = `
     <div class="recipe-popup">
-    <h2>${clickedRecipe.name}</h2>
-    <div class="image-ingredients">
-      <img class="recipe-img" src="${clickedRecipe.image}" alt="${clickedRecipe.name} image">
-      <ul class="ingredient-list">
-        <h3>Ingredients:</h3>
-        ${createList(clickedRecipe.listIngredients(ingredientsData))}
-    </ul>
-  </div>
-    <ol class="direction-list">
-      <h3>Directions:</h3>
-      ${createList(clickedRecipe.getInstructions())}
-  </ol>
-  <h2>TOTAL COST $${clickedRecipe.listCost(ingredientsData)}</h1>
-  </div>`
+      <h2>${clickedRecipe.name}</h2>
+      <div class="image-ingredients">
+        <img class="recipe-img" src="${clickedRecipe.image}" alt="${clickedRecipe.name} image">
+        <ul class="ingredient-list">
+          <h3>Ingredients:</h3>
+          ${createList(clickedRecipe.listIngredients(ingredientsData))}
+      </ul>
+    </div>
+      <ol class="direction-list">
+        <h3>Directions:</h3>
+        ${createList(clickedRecipe.getInstructions())}
+    </ol>
+    <h4>TOTAL COST $${clickedRecipe.listCost(ingredientsData)}</h4>
+    </div>`
 }
+
 function createList(recipe) {
     return recipe.reduce((acc, cv) => {
     acc += `<li>${cv}</li>`
     return acc
     }, "")
+}
+
+function toggleHidden(element) {
+  element.classList.toggle('hidden')
 }
