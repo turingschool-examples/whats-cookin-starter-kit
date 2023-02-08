@@ -1,60 +1,61 @@
-body {
-  background-color: #548c2f;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 2%;
-  margin-right: 2%;
+* {
   font-family: 'Noto Serif Ahom', serif;
 }
 
-.navTitle {
-  color: rgb(0, 67, 0);
-  font-family: 'Lobster', Lobster;
-  font-size: 6rem;
-  margin: 0px;
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: #548c2f;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin: 0;
 }
 
 nav {
+  background: rgb(0, 67, 0);
   display: flex;
   width: 100%;
-  align-items: end;
+  align-items: center;
   justify-content: space-between;
 }
 
-.navBarCenter {
+.navTitle {
+  color: white;
+  font-family: 'Lobster', Lobster;
+  font-size: 6rem;
+  margin: 0px;
+  padding-left: 1%;
+}
+
+.navBarInteractions {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-content: center;
-  margin-bottom: 30px;
-  width: 250px;
+  gap: 0.75rem;
+  width: 15%;
+  padding-right: 1%;
 }
 
 .navButtons {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 10px;
+  gap: 0.75rem;
   width: 100%;
-}
-
-.myFoodButton {
-  margin-left: 10px;
 }
 
 .navButtons > button,
 .searchBar {
   font-size: 1rem;
-}
-
-.searchBar {
   border: none;
   border-radius: 4px;
 }
 
 button {
   background-color: white;
-  color: #775b59;
+  color: #5f4a48;
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
@@ -63,35 +64,55 @@ button {
   font-weight: bold;
 }
 
+main {
+  display: flex;
+  align-items: center;
+  height: 60%;
+  width: 100%;
+}
+
 button:hover {
   background-color: #333;
   color: #fff;
 }
 
-main {
+.cardSection {
+  height: fit-content;
   width: 100%;
-  height: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  margin-top: 10%;
+  justify-content: center;
+  gap: 2%;
+  border: solid red 5px;
 }
 
-.cardFront,
-.cardBack {
+.card {
   width: 300px;
-  height: 400px;
+  height: 500px;
   cursor: pointer;
   display: flex;
   background-color: #f1f1f1;
   border-radius: 15px;
+  justify-content: space-between;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
   position: relative;
 }
 
-.cardButton {
+.cardBack {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.card > img {
+  height: 75%;
+  width: 100%;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  object-fit: cover;
+}
+
+.saveRecipeButton {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -100,45 +121,85 @@ main {
   border-radius: 25px;
   background-color: #f39584;
   border: none;
+  box-shadow: 0px 5px 15px rgb(0 0 0);
 }
 
-.cardButton::before {
+.saveRecipeButton::before {
   content: "\2764";
   font-size: 30px;
   color: #ffffff;
   align-items: center;
 }
 
-.foodTitleFront {
-  color: #775b59;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-h3 {
+.frontText {
   display: flex;
-  text-align: center;
-  font-size: 14px;
-  color: #7bb25b;
+  flex-flow: column;
+  height: stretch;
+  width: 100%;
+  align-items: center;
 }
 
-/* .foodTitleBack {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  font-size: 20px;
+.foodTitle {
+  color: #5f4a48;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
-.foodText {
-  text-align: center;
-  font-size: 14px;
-  padding: 20px;
-  color: #7bb25b;
-} */
+.frontStats {
+  display: flex;
+  width: 80%;
+  justify-content: space-evenly;
+  font-size: 0.9rem;
+  color: rgb(0, 67, 0);
+  gap: 2%;
+}
+
+.foodText,
+.ingredientsList {
+  width: fit-content;
+  margin: 0 0 0 5%;
+  padding: 5%;
+  align-self: flex-start;
+  cursor: default;
+}
+
+.ingredientsList {
+  padding-left: 10%;
+}
+
+.filter {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  height: 100%;
+  width: 15%;
+  color: white;
+}
+
+.filterHeaders {
+  font-family: 'Lobster', Lobster;
+  font-size: 2rem;
+  margin: 10% 0 10% 0;
+  padding: 0;
+}
+
+.filterItem {
+  align-self: flex-start;
+  padding-left: 20%;
+}
+
+.checkbox {
+  border-radius: 20px;
+}
+
+footer {
+  background: rgb(0, 67, 0);
+  display: flex;
+  height: 30%;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
 
 .hidden {
   display: none;
