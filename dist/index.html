@@ -11,9 +11,6 @@
   <div class="main">  
   <div class="">
     <h1>What's Cookin</h1>
-
-
-
     <section class="main-toast-section" id="toastSection">
       <div class="search-container">
         <input type="text" class="searchTerm" id="searchBar" placeholder="What sounds good?">
@@ -25,24 +22,50 @@
   </div>
 
 
-  
-    <aside>
+  <!-- side bar shenanigans -->
+    <aside>     
+      <div class="saved-and-shiba-icon">
+        <label onclick="showNav()" 
+        for="saved-recipes" class="nav-open">Saved Recipes</label> 
+        <img class="shiba-stare" src="/src/images/shiba-cool.png" alt="">
+        <!-- <span name="saved-recipes" class="nav-bar" id="savedRecipes"></span> -->
+      </div>
+    </aside>
+
+      <!-- close sidebar -->
       <div class="side-bar" id="leftNav">
-        
         <label class="close-btn" onclick="hideNav()">
           Bri is awesome
         </label>
-
-
       </div>
-    <label onclick="showNav()" for="saved-recipes" class="nav-open">Saved Recipes</label> 
-        <!-- <span name="saved-recipes" class="nav-bar" id="savedRecipes"></span> -->
-      </aside>
-
     </div> 
 
+<!-- recipe icons to click on -->
+    <section class="mini-cards-section">
+      <div>
+        <ol class="mini-card-list">
+          <!-- <li> -->
+            <img class ="mini-card" src="/src/images/pancake.webp">
+
+            <img class ="mini-card" src="/src/images/pancake.webp">
+
+            <img class ="mini-card" src="/src/images/pancake.webp">
+
+            <img class ="mini-card" src="/src/images/pancake.webp">
+
+    
+          
+          
+
+          <!-- </li> -->
+        </ol>
+      </div>
+    </section>
 
 
+
+
+<!-- hidden pop-up recipe card -->
           <article class="overlay hidden recipe-card" id="recipeCard">
             <div class="ingredients-flex" id="ingredientsFlex">
               <h2>Recipe</h2>
