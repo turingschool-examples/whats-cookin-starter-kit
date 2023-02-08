@@ -81,4 +81,11 @@ describe('Recipe', () => {
         ]}
         recipe = new Recipe(recipeDetails, ingredientDataSet)
     })
+    it('should be a function', () => {
+        expect(Recipe).to.be.a('function');
+    })
+    it('should be an instance of recipe', () => {
+        expect(recipe).to.be.an.instanceof(Recipe);
+    })
+    
 })
