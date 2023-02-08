@@ -329,6 +329,4 @@ const recipeTestData = [
     }
   ];
   
-  module.exports = {
-    recipeTestData
-  }
+  module.exports = recipeTestData
