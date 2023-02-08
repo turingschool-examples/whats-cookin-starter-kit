@@ -37,6 +37,7 @@ function createRecipeModal(event) {
   toggleHidden(recipeSection)
   let recipeID = +(event.target.dataset.parent)
   let clickedRecipe = recipeRepo.recipes.find(recipe => recipe.id === recipeID)
+  console.log(ingredientsData)
     modalSection.innerHTML = `
     <div class="recipe-popup">
       <h2>${clickedRecipe.name}</h2>
