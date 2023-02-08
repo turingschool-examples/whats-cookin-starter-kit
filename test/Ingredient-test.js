@@ -30,9 +30,17 @@ describe('Ingredient', () => {
   });
 
   it('should return ingredients by name', () => {
-    const findName = ingredient.returnIngredientByName(20081);
-    const wrongName = ingredient.returnIngredientByName(2);
+    const findName = ingredient.returnIngredientName(20081);
+    const wrongName = ingredient.returnIngredientName(2);
     assert.equal(findName, 'wheat flour');
     assert.equal(wrongName, 'Error');
+  });
+
+  it('should return an ingredients cost', () => {
+    const findCost = ingredient.returnIngredientCost(20081);
+    const wrongCost = ingredient.returnIngredientCost(3);
+  
+    assert.equal(findCost, 142);
+    assert.equal(wrongCost, 'Error');
   });
 });
