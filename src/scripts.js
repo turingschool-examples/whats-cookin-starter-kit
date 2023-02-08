@@ -47,12 +47,12 @@ window.onscroll = function() {
       } else {
         topButton.style.display = "none";
     }
-    if (document.documentElement.scrollTop > 280) {
-        navigationSeciton.style.position = "sticky"
-        navigationSection.style.marginTop = "10px"
-    } else {
-        navigationSeciton.style.position = "relative"
-    }
+    // if (document.documentElement.scrollTop > 280) {
+    //     navigationSeciton.style.position = "fixed"
+    //     navigationSection.style.marginTop = "10px"
+    // } else {
+    //     navigationSeciton.style.position = "relative"
+    // }
 }
 
 function displayRecipes() {
@@ -87,19 +87,28 @@ function showAllRecipes() {
 function showFilteredRecipes(tag) {
     currentRecipes = []
     var filteredRecipes = recipeRepository.filterByTag(tag)
-    for(var i = 0; i < filteredRecipes.length; i++) {
-        currentRecipes.push(filteredRecipes[i])
-    }
+        for(var i = 0; i < filteredRecipes.length; i++) {
+            currentRecipes.push(filteredRecipes[i])
+        }
     displayRecipes()
 }
 
-function searchRecipeByName(){
-    recipeSection.innerHTML = "";
+function searchRecipeByName() {
     currentRecipes = []
     let filterByName = recipeRepository.filterByName(searchBar.value)
-        for (var i = 0; i < filterByName.length; i++) {
-          currentRecipes.push(filterByName[i]);
+    let filteredRecipes = recipeRepository.filterByTag(searchBar.value)
+        if(filterByName !== undefined) {
+            for (var i = 0; i < filterByName.length; i++) {
+                currentRecipes.push(filterByName[i]);
+            }
+        } else if(filteredRecipes !== undefined) {
+            for(var i = 0; i < filteredRecipes.length; i++) {
+                currentRecipes.push(filteredRecipes[i])
+            }
+        } else {
+            recipeSection.innerHTML = `<p>NO RESULTS</p>`
         }
+
     displayRecipes();
 }
 
