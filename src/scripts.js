@@ -33,21 +33,21 @@ function createRecipeCards() {
 }
 
 function createRecipeModal(event) {
-let recipeID = event.target.dataset.parent
-console.log(recipeID)
+let recipeID = +(event.target.dataset.parent)
+let clickedRecipe = recipeRepo.recipes.find(recipe => recipe.id === recipeID)
    modalSection.innerHTML = `
     <div class="recipe-popup">
-    <h2></h2>
+    <h2>${clickedRecipe.name}</h2>
     <div class="image-ingredients">
-      <img class="recipe-img" src="../src/images/cookies-placeholder.jpeg" alt="Cookies placeholder">
+      <img class="recipe-img" src="${clickedRecipe.image}" alt="${clickedRecipe.name} image">
       <ul class="ingredient-list">
         <h3>Ingredients:</h3>
-        <li>1.5 cups - wheat flour</li>
+        ${createList(clickedRecipe.listIngredients(ingredientsData))}
     </ul>
   </div>
     <ol class="direction-list">
       <h3>Directions:</h3>
-      <li>In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.</li>
+      ${createList(clickedRecipe.getInstructions())}
   </ol>
   <h2>TOTAL COST $10</h1>
   </div>`
