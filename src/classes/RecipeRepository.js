@@ -14,19 +14,20 @@ class RecipeRepository {
     if (this.filteredRecipes.length === 0) {
       this.filteredRecipes = null;
       return `Sorry, there are no recipes with ${tag}!`;
+    } else {
+      return this.filteredRecipes
     }
-    return this.filteredRecipes
   }
   filterByName(name) {
     if (!name) {
       return;
-    }
+    } 
     this.filteredRecipes = this.recipes.filter(recipe => (recipe.name.toUpperCase().includes(name.toUpperCase())));
-
     if (this.filteredRecipes.length === 0) {
       this.filteredRecipes = null;
       return `Sorry, there are no recipes matching ${name}!`;
     }
+    return this.filteredRecipes
   }
 }
 export default RecipeRepository;
