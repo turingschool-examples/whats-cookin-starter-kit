@@ -30,7 +30,7 @@ class Recipe {
             return ingredient.estimatedCostInCents * ingredient.quantity.amount;
         })
         const totalCost = ingredientCost.reduce((accumulator, currentValue) => accumulator + currentValue)
-        return totalCost/100
+        return (totalCost/100).toFixed(1)
     }
 
     returnInstructions() {

@@ -18,13 +18,16 @@ const cardSection = document.querySelector('#card-section')
 const navBar = document.querySelector('nav');
 const main = document.querySelector('main');
 
-const mainRepository = new RecipeRepository(recipeData);
+convertRecipe();
+
+const mainRepository = new RecipeRepository(convertedRecipes);
 
 window.addEventListener('load', displayCards)
 main.addEventListener('click', checkClick);
 navBar.addEventListener('click', checkNavButtons);
 
-console.log(mainRepository.recipes[0])
+
+console.log('red', mainRepository.recipes)
 
 
 function displayCards() {
@@ -33,11 +36,11 @@ function displayCards() {
         cardSection.innerHTML += `
         <section class="card cardFront" id="cf${recipe.id}" tabindex="0" data-side="front" data-index="2">
           <button aria-label="Save Recipe Button" class="saveRecipeButton" id="save-btn-2"></button>
-          <img class="foodImage" src="https://images.unsplash.com/photo-1622212611568-32d624f5f0ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Food Image" data-side="front" data-index="2">
+          <img class="foodImage" src="${recipe.image}">
           <header class="frontText" data-side="front" data-index="2">
             <h2 class="foodTitle">${recipe.name}</h2>
             <div class="frontStats">
-              <p class="cost" id="cost2">$11.64</p>
+              <p class="cost" id="cost2">${'$' + recipe.calculateCost()}</p>
               <p class="ingredients" id="ingred2">5 Ingredients</p>
             </div>
           </header>
@@ -62,7 +65,7 @@ function convertRecipe() {
     })
     return convertedRecipes
 }
-convertRecipe();
+
 
 function checkClick(e) {
     if (e.target.dataset.side) {
