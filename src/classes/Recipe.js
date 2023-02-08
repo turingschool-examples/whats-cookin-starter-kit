@@ -38,7 +38,7 @@ class Recipe {
       total += (ingredient * this.ingredients[index].quantity.amount)
     })
 
-    return (total / 100).toFixed(2)
+    return Number((total / 100).toFixed(2))
   };
 
   getInstructions() {
