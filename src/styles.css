@@ -1,10 +1,13 @@
 * {
-  border: solid green 1px;
+  /* border: solid green 1px; */
 }
 
 .hidden {
   display: none;
 }
+
+
+
 
 body { min-height: 100vh; 
 }
@@ -88,7 +91,7 @@ background-color: lightblue;
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: gray;
+  background-color: #00B4CC;
   overflow-x: hidden;
   padding-top: 60px;
   transition: 0.5s;
