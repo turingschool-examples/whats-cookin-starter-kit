@@ -1,7 +1,8 @@
-// import './styles.css';
+import './styles.css';
 // import apiCalls from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
+import './images/turing-logo.png'
+import './images/star-icon.png'
 
 import Recipe from './classes/Recipe'
 import RecipeRepository from './classes/RecipeRepository'
@@ -25,8 +26,8 @@ function createRecipeCards() {
         recipeSection.innerHTML += `
         <article class="recipe-card" id="${recipe.id}">
             <img class="recipe-img" src="${recipe.image}" alt="picture of ${recipe.name}">
-            <img class="star-icon hidden" id="star-icon" src="../src/images/star-icon.png" alt="This recipe is in my recipes!">
-            <h3 style="font-size: ${size}rem">${recipe}</h3>
+            <img class="star-icon hidden" id="star-icon" src="./images/star-icon.png" alt="This recipe is in my recipes!">
+            <h3 style="font-size: ${size}rem">${recipe.name}</h3>
         </article>`
     })
 }
