@@ -54,11 +54,10 @@ describe("Recipe", () => {
     })
 
     it("should be able to to calculate total ingredient cost", () => {
-        let ingredientCost = recipe.calculateRecipeCost(ingredientsData)
-        expect(names).to.equal(27.58)
+        expect(recipe.calculateRecipeCost(ingredientsData)).to.equal('177.76')
     })
 
-    it.only("should have a function recipe to return recipe instructions", () => {
+    it("should have a function recipe to return recipe instructions", () => {
         let recipeInstructions = recipe.returnInstructions();
         expect(recipeInstructions[0]).to.equal('1: In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.')
     })
