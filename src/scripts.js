@@ -4,6 +4,9 @@ import "./images/turing-logo.png";
 import RecipeRepository from "../src/classes/RecipeRepository";
 import testRecipeData from "../src/data/testRecipes";
 import Recipe from "../src/classes/Recipe";
+import User from "../src/classes/User";
+import usersData from "./data/users";
+
 
 // Query Selectors
 const recipeContainer = document.querySelector(".recipe-container");
@@ -17,9 +20,12 @@ let recipes = testRecipeData.map((recipe) => {
 });
 let recipeRepo = new RecipeRepository(recipes);
 
+let randomUser;
+
 // Event Listeners
 window.addEventListener("load", () => {
   displayRecipes();
+  setUser(usersData);
 });
 
 recipeContainer.addEventListener("click", (e) => {
@@ -56,7 +62,6 @@ function showFull(e) {
   recipeContainer.innerHTML = "";
   recipeRepo.recipes
     .filter((recipe) => {
-      console.log(recipe.id);
       return recipe.id === Number(target);
     })
     .forEach((recipe) => {
@@ -67,12 +72,10 @@ function showFull(e) {
       <p>$${recipe.getIngredientsCost()}</p>
     `;
     });
-  console.log(target);
 }
 
 function filterByTag(e) {
   let target = e.target.className;
-  console.log(target);
   recipeContainer.innerHTML = "";
   recipeRepo.filterTag(target).forEach((recipe) => {
     recipeContainer.innerHTML += `
@@ -87,7 +90,6 @@ function filterByTag(e) {
 
 function filterByName() {
   let input = searchRecipeInput.value;
-  console.log(input);
   recipeContainer.innerHTML = "";
   recipeRepo.filterName(input).forEach((recipe) => {
     recipeContainer.innerHTML += `
@@ -99,3 +101,9 @@ function filterByName() {
     `;
   });
 }
+
+function setUser(arr) {
+  let randomUserIndex = arr[Math.floor(Math.random() * arr.length)];
+  randomUser = new User(randomUserIndex);
+  console.log('Random User', randomUser);
+};
