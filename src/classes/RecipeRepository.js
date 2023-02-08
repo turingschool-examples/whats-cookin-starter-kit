@@ -13,9 +13,7 @@ class RecipeRepository {
   }
 
   filterRecipesByName(name) {
-    const filteredList = this.recipes.filter((recipe) => {
-      return recipe.name.includes(name);
-    })
+    const filteredList = this.recipes.filter((recipe) => recipe.name.toUpperCase() === name)
     this.recipesByName = filteredList;
   }
 }

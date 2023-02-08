@@ -8,6 +8,7 @@ import Recipe from './classes/Recipe';
 import User from './classes/User';
 
 import recipeData from './data/recipes';
+import usersData from './data/users';
 
 const homeButton = document.querySelector('#home-button');
 const myFoodButton = document.querySelector('#my-food-button');
@@ -16,13 +17,20 @@ const cardSection = document.querySelector('#card-section')
 const navBar = document.querySelector('nav');
 const main = document.querySelector('main');
 
-const mainRepository = new RecipeRepository(recipeData);
+const allRecipes = recipeData.map(recipe => new Recipe(recipe));
+const mainRepository = new RecipeRepository(allRecipes);
+const user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
 
 window.addEventListener('load', displayCards)
 main.addEventListener('click', checkClick);
 navBar.addEventListener('click', checkNavButtons);
-
-console.log(mainRepository.recipes[0])
+searchBar.addEventListener('keydown', e => {
+    if (e.code === "Enter") {
+        searchRecipes(searchBar.value);
+    } else {
+        resetWarning();
+    };
+})
 
 
 function displayCards() {
@@ -84,11 +92,11 @@ function flipToFront(elementIndex) {
 }
 
 function displayHomePage() {
-    console.log('workplease')
+    cardSection.dataset.page = "home";
 }
 
 function displaySavedFoodPage() {
-    console.log('getoffmylawn')
+    cardSection.dataset.page = "saved";
 }
 
 function show(element) {
@@ -98,3 +106,21 @@ function show(element) {
 function hide(element) {
     element.classList.add('hidden')
 }
+
+function searchRecipes(searchTerm) {
+    if (cardSection.dataset.page === "home") {
+        const searchedFor = mainRepository.recipes.filter(recipe => searchTerm.toUpperCase() === recipe.name.toUpperCase());
+        searchedFor.length ? console.log(searchedFor) : warnNoResults();
+    } else if (cardSection.dataset.page === "saved") {
+        user.filterSavedByName(searchTerm.toUpperCase());
+        console.log(user.recipesByName);
+    };
+};
+
+function warnNoResults() {
+    searchBar.style.color = 'red';
+};
+
+function resetWarning() {
+    searchBar.style.color = 'black';
+};
