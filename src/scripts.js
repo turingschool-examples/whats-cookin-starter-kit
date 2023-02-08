@@ -26,7 +26,7 @@ snacksAppFilter.addEventListener('click', function() {showFilteredRecipes('snack
 brunchFilter.addEventListener('click', function() {showFilteredRecipes('brunch')})
 mainDishFilter.addEventListener('click', function() {showFilteredRecipes('main dish')})
 compDishFilter.addEventListener('click', function() {showFilteredRecipes('appetizer')})
-
+//.
 var currentRecipes = []
 
 window.onload = function() {
@@ -62,7 +62,7 @@ function displayRecipes() {
 
 function popularRecipes() {
     for(var i = 0; i < 10; i++) {
-        recipeSection.innerHTML += 
+        recipeSection.innerHTML +=
         `
         <img src="${recipeData[i].image}" class="recipe"></img>
         `
