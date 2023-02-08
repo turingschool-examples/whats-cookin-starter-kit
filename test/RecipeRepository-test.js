@@ -21,8 +21,10 @@ describe('Recipe', () => {
     assert.deepEqual(findTag, [recipes.recipeList[0]]);
   });
 
-  it.skip('Should get recipes based of ingredient', () => {
-    assert.equal(recipes.filterByName(), 'someName');
+  it('Should get recipes based of ingredient', () => {
+    const findName = recipes.filterByName('595736')
+    // console.log('test',recipes.recipeList[0])
+    assert.deepEqual(findName, [recipes.recipeList[0]]);
   });
 
   it.skip('Should contain a filtered list of returned results', () => {

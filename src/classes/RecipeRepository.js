@@ -8,13 +8,18 @@ class RecipeRepository {
   }
 
   filterByTag(tag) {
-    const food = recipeTestData.filter(recipe => {
+    const findByTag = recipeTestData.filter(recipe => {
       if(recipe.tags.includes(tag)) {
         return recipe;
       }
     });
-    return food;
+    return findByTag;
   };
+
+  filterByName(nameId) {
+    const findbyName = recipeTestData.filter(food => food.id === nameId);
+    return findbyName;
+  }
 };
 
 export default RecipeRepository;
