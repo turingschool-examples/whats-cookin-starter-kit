@@ -7,14 +7,14 @@ class User {
         this.recipesToCook = []
     }
 
-    addRecipeToCook(recipe) {
-        if(!this.recipesToCook.includes(recipe)) {
-            this.recipesToCook.push(recipe)
+    addToRecipesToCook(recipeToAdd) {
+        if(!this.recipesToCook.includes(recipeToAdd)) {
+            this.recipesToCook.push(recipeToAdd)
         }
     }
 
-    removeFromRecipesToCook() {
-
+    removeFromRecipesToCook(recipeToRemove) {
+      this.recipesToCook = this.recipesToCook.filter(recipe => !(recipeToRemove === recipe))  
     }
 }
 
