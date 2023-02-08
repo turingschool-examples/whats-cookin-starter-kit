@@ -1234,4 +1234,4 @@ const ingredientsData = [
     }
   ];
 
-  export default ingredientsData
+  export default ingredientsData;
