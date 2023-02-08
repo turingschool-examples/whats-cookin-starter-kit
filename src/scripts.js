@@ -94,21 +94,18 @@ function showFilteredRecipes(tag) {
 }
 
 function searchRecipeByName() {
-    recipeSection.innerHTML = "";
     currentRecipes = []
     let filterByName = recipeRepository.filterByName(searchBar.value)
     let filteredRecipes = recipeRepository.filterByTag(searchBar.value)
-        console.log(filterByName)
         if(filterByName !== undefined) {
             for (var i = 0; i < filterByName.length; i++) {
                 currentRecipes.push(filterByName[i]);
             }
         } else if(filteredRecipes !== undefined) {
-            for(var i = 0; i < filteredRecipes.length || 0; i++) {
+            for(var i = 0; i < filteredRecipes.length; i++) {
                 currentRecipes.push(filteredRecipes[i])
             }
         } else {
-            console.log('d')
             recipeSection.innerHTML = `<p>NO RESULTS</p>`
         }
 
