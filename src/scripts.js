@@ -19,7 +19,7 @@ const main = document.querySelector('main');
 
 const allRecipes = recipeData.map(recipe => new Recipe(recipe));
 const mainRepository = new RecipeRepository(allRecipes);
-const user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
+const user = new User(usersData[Math.floor(Math.random() * usersData.length)], mainRepository);
 
 window.addEventListener('load', displayCards)
 main.addEventListener('click', checkClick);
@@ -109,12 +109,15 @@ function hide(element) {
 
 function searchRecipes(searchTerm) {
     if (cardSection.dataset.page === "home") {
-        const searchedFor = mainRepository.recipes.filter(recipe => searchTerm.toUpperCase() === recipe.name.toUpperCase());
-        searchedFor.length ? console.log(searchedFor) : warnNoResults();
+        user.filterAllByName(searchTerm.toUpperCase()) ? updateCards() : warnNoResults();
     } else if (cardSection.dataset.page === "saved") {
         user.filterSavedByName(searchTerm.toUpperCase());
         console.log(user.recipesByName);
     };
+};
+
+function filterRecipes(tag) {
+    
 };
 
 function warnNoResults() {
@@ -123,4 +126,9 @@ function warnNoResults() {
 
 function resetWarning() {
     searchBar.style.color = 'black';
+};
+
+function updateCards() {
+    searchBar.value = '';
+    // whatever we wanna do to update the cards here
 };
