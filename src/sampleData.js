@@ -17,7 +17,7 @@ const sampleData = [
 {
  "id": 4322,
  "name": "Biscuits and Gravy",
- "tags": "breakfest"  
+ "tags": "breakfast"  
 }
 ]
 

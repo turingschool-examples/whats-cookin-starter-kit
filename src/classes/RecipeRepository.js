@@ -11,7 +11,7 @@ class RecipeRepository {
 }
 
     getRecipeByName(name){
-      this.storedRecipes += this.recipes.filter(recipe => recipe === name);
+      this.storedRecipes = this.recipes.filter(recipe => recipe.name.includes(name));
       console.log(this.storedRecipes)
       return this.storedRecipes
     }
