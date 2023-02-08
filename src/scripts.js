@@ -23,37 +23,33 @@ convertRecipe();
 const mainRepository = new RecipeRepository(convertedRecipes);
 
 window.addEventListener('load', displayCards)
-main.addEventListener('click', checkClick);
+cardSection.addEventListener('click', checkClick);
 navBar.addEventListener('click', checkNavButtons);
-
-
-console.log('red', mainRepository.recipes)
-
 
 function displayCards() {
     cardSection.innerHTML = '';
-    mainRepository.recipes.forEach((recipe) => {
+    mainRepository.recipes.forEach((recipe, index) => {
         cardSection.innerHTML += `
-        <section class="card cardFront" id="cf${recipe.id}" tabindex="0" data-side="front" data-index="2">
+        <section class="card cardFront" id="cf${recipe.id}" tabindex="0" data-side="front" data-index="${index}">
           <button aria-label="Save Recipe Button" class="saveRecipeButton" id="save-btn-2"></button>
-          <img class="foodImage" src="${recipe.image}">
-          <header class="frontText" data-side="front" data-index="2">
+          <img class="foodImage" src="${recipe.image}" data-side="front">
+          <header class="frontText" data-side="front" data-index="${index}">
             <h2 class="foodTitle">${recipe.name}</h2>
             <div class="frontStats">
               <p class="cost" id="cost2">${'$' + recipe.calculateCost()}</p>
-              <p class="ingredients" id="ingred2">5 Ingredients</p>
+              <p class="ingredients" id="ingred2"> ${recipe.ingredients.length} Ingredients</p>
             </div>
           </header>
         </section>
-        <section class="card cardBack hidden" id="cb2" tabindex="0" data-side="back" data-index="2">
-          <h2 class="foodTitle">Food Title</h2>
+        <section class="card cardBack hidden" id="cb${recipe.id}" tabindex="0" data-side="back" data-index="${index}">
+          <h2 class="foodTitle">${recipe.name}</h2>
           <ul class="ingredientsList" id="ingred-list2">
             <li>1 egg</li>
             <li>2 egg</li>
             <li>3 egg</li>
             <li>4 egg</li>
           </ul>
-          <p class="foodText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ullam voluptatum sunt illum mollitia hic deleniti, quos eos, quia omnis eius. Ducimus unde quo repellat, provident maxime ea impedit voluptates!Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet, tellus ac efficitur suscipit, magna purus aliquet tellus, et convallis libero urna quis velit. Nullam vel velit vel lacus tempor euismod. Sed semper auctor mi, vel scelerisque risus tincidunt eu.</p>
+          <p class="foodText">${recipe.instructions}</p>
         </section>
         `
     })
@@ -68,6 +64,7 @@ function convertRecipe() {
 
 
 function checkClick(e) {
+    console.log(e.target)
     if (e.target.dataset.side) {
         e.target.dataset.side === 'front' ? flipToBack(e.target.dataset.index) : flipToFront(e.target.dataset.index)
     } 
@@ -82,8 +79,10 @@ function checkNavButtons(e) {
 }
 
 function flipToBack(elementIndex) {
+    console.log('tomato')
     const frontCardToFlip = document.getElementById(`cf${elementIndex}`);
     const backCardToFlip = document.getElementById(`cb${elementIndex}`);
+    console.log(backCardToFlip)
     show(backCardToFlip);
     hide(frontCardToFlip);
 }
