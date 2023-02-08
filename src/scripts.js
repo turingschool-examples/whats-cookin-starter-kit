@@ -5,14 +5,16 @@ import './images/turing-logo.png'
 import recipeData from './data/recipes.js';
 // import MicroModal from 'micromodal'
 import RecipeRepository from './classes/RecipeRepository';
-import usersData from `./data/users`
-import User from './classes/User'
+import usersData from './data/users.js';
+import User from './classes/User.js'
+import ingredientsData from './data/ingredients.js'
 
 var user 
 
 const recipeRepository = new RecipeRepository(recipeData)
 
 const recipeSection  = document.querySelector(".recipe-section")
+const pantrySection = document.querySelector(".pantry-section")
 const navigationSeciton = document.querySelector(".navigation-section")
 const recipes = document.querySelector(".recipe")
 
@@ -75,9 +77,10 @@ function displayRecipes() {
 function displayPantry() {
     recipeSection.innerHTML = ''
     for(var i = 0; i < user.pantry.length; i++) {
-        recipeSection.innerHTML += 
+        var currentIngredient = ingredientsData.findIndex(x => x.id === user.pantry[i].ingredient)
+        pantrySection.innerHTML += 
         `
-        <img src="${user[i].pantry}" class="recipe"></img>
+        <h1 class="pantry">${ingredientsData[currentIngredient].name}</h1>
         `
     }
 }
