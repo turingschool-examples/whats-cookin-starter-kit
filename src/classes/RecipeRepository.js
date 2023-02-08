@@ -18,6 +18,8 @@ class RecipeRepository {
     })
     this.recipesByName = filteredList;
   }
+
+  
 }
 
 export default RecipeRepository;

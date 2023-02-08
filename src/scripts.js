@@ -9,6 +9,8 @@ import User from './classes/User';
 
 import recipeData from './data/recipes';
 
+let convertedRecipes;
+
 const homeButton = document.querySelector('#home-button');
 const myFoodButton = document.querySelector('#my-food-button');
 const searchBar = document.querySelector('#search-bar');
@@ -54,6 +56,13 @@ function displayCards() {
     })
 }
 
+function convertRecipe() {
+    convertedRecipes = recipeData.map((recipe) => {
+        return new Recipe(recipe)
+    })
+    return convertedRecipes
+}
+convertRecipe();
 
 function checkClick(e) {
     if (e.target.dataset.side) {
