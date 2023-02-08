@@ -12,17 +12,24 @@ const recipeSection  = document.querySelector(".recipe-section")
 const navigationSeciton = document.querySelector(".navigation-section")
 const recipes = document.querySelector(".recipe")
 
-const breakfast = document.querySelector("#breakfast-filter")
-const mainDish = document.querySelector("#main-dish-filter")
+const topButton = document.querySelector("#top-button")
 const allRecipes = document.querySelector("#recipe-button")
-
+const breakfastFilter = document.querySelector("#breakfast-filter")
+const snacksAppFilter = document.querySelector("#snack-appetizers-filter")
+const brunchFilter = document.querySelector("#brunch-filter")
+const mainDishFilter = document.querySelector("#main-dish-filter")
+const compDishFilter = document.querySelector("#complimentary-dish-filter")
 const searchBar = document.querySelector(".search-bar")
 const searchGo = document.querySelector("#search-bar-go")
 
 
+topButton.addEventListener('click', function() {document.documentElement.scrollTop = 0})
 allRecipes.addEventListener('click', showAllRecipes)
-breakfast.addEventListener('click', function() {showFilteredRecipes('breakfast')})
-mainDish.addEventListener('click', function() {showFilteredRecipes('main dish')})
+breakfastFilter.addEventListener('click', function() {showFilteredRecipes('breakfast')})
+snacksAppFilter.addEventListener('click', function() {showFilteredRecipes('snack')})
+brunchFilter.addEventListener('click', function() {showFilteredRecipes('brunch')})
+mainDishFilter.addEventListener('click', function() {showFilteredRecipes('main dish')})
+compDishFilter.addEventListener('click', function() {showFilteredRecipes('appetizer')})
 searchGo.addEventListener('click', function() {searchRecipeByName()})
 
 var currentRecipes = []
@@ -33,14 +40,20 @@ window.onload = function() {
     }
     popularRecipes()
 }
-// window.onscroll = function() {
-//     if (document.documentElement.scrollTop > 280) {
-//         navigationSeciton.style.position = "sticky"
-//         navigationSection.style.marginTop = "10px"
-//     } else {
-//         navigationSeciton.style.position = "relative"
-//     }
-// }
+
+window.onscroll = function() {
+    if (document.documentElement.scrollTop > 350) {
+        topButton.style.display = "block";
+      } else {
+        topButton.style.display = "none";
+    }
+    if (document.documentElement.scrollTop > 280) {
+        navigationSeciton.style.position = "sticky"
+        navigationSection.style.marginTop = "10px"
+    } else {
+        navigationSeciton.style.position = "relative"
+    }
+}
 
 function displayRecipes() {
     recipeSection.innerHTML = ''
