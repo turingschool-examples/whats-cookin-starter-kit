@@ -40,6 +40,7 @@ const ingredientTestData = [
     "estimatedCostInCents": 528
   }
 ]
-module.exports = {
-  ingredientTestData
-}
+module.exports = ingredientTestData;
+
+
+//REMOVE THE CURLIES
