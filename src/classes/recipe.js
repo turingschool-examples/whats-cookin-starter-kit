@@ -14,9 +14,10 @@ class Recipe {
     calculateIngredientsCosts() {
 
     }
-    listIngredients() {
-        
+    returnIngredients() {
+
     }
 }
+
 
 export default Recipe
