@@ -13,8 +13,9 @@ class RecipeRepository {
 
     if (this.filteredRecipes.length === 0) {
       this.filteredRecipes = null;
-      return `Sorry, there are no recipes with ${tag}!`;
+      return
     } else {
+      console.log(this.filteredRecipes)
       return this.filteredRecipes
     }
   }
@@ -25,7 +26,7 @@ class RecipeRepository {
     this.filteredRecipes = this.recipes.filter(recipe => (recipe.name.toUpperCase().includes(name.toUpperCase())));
     if (this.filteredRecipes.length === 0) {
       this.filteredRecipes = null;
-      return `Sorry, there are no recipes matching ${name}!`;
+      return
     }
     return this.filteredRecipes
   }
