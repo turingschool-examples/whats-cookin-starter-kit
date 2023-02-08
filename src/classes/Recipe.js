@@ -14,14 +14,12 @@ class Recipe {
     return ingredientIds;
   }
 
-  determineRecipeIngredients(ingredientData) {
+  determineRecipeIngredients(ingredientsData) {
     let ingredients = [];
     this.getIngredientIds().forEach((ingredientId) => {
       ingredients = [
         ...ingredients,
-        ...ingredientData.filter(
-          (ingredient) => ingredientId === ingredient.id
-        ),
+        ...ingredientsData.filter(ingredient => ingredientId === ingredient.id)
       ];
     });
 
@@ -30,16 +28,17 @@ class Recipe {
   }
 
   calculateRecipeCost(ingredientsData) {
-    this.determineRecipeIngredients(ingredientsData)
     var prices = []
-    this.totalCost = ingredientsData.reduce((total, ingredient) => {
+
+    ingredientsData.forEach(ingredient => {
         this.ingredients.forEach((item) => {
             if(item.id === ingredient.id ) {
                 let cost = (item.quantity.amount * ingredient.estimatedCostInCents)/ 100
                 prices.push(cost)
             }
         })
-    }, 0)
+    })
+    
     const totalPrice = prices.reduce((sum,cost) => {
         return sum += cost
     }, 0)
