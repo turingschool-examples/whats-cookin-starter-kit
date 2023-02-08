@@ -13,18 +13,11 @@ h1{
   text-align: center;
 }
 
-
-
 .main{
   display: flex;
   flex-direction: row-reverse;
   align-items: baseline;
   justify-content: space-around;
-}
-
-.search-container{
-  overflow: hidden;
-  padding-bottom: 110px;
 }
 
 .main-toast-section{
@@ -33,12 +26,42 @@ h1{
   background-position: center;
   background-size: cover;
   border-radius: 20px;
-  
   display: flex;
   align-items: center;
   justify-content: center;
   width: 600px;
   height: 350px;
+}
+
+.search-container {
+  overflow: hidden;
+  padding-bottom: 110px;
+  width: 250px;
+  border-radius: 5px;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #00B4CC;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 
@@ -67,8 +90,9 @@ background-color: lightblue;
   background-color: gray;
   overflow-x: hidden;
   padding-top: 60px;
-  
   transition: 0.5s;
+
+  
 }
 
 .close-btn{
