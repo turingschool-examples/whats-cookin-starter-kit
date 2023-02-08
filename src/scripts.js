@@ -24,19 +24,20 @@ function createRecipeCards() {
     recipeRepo.recipes.forEach(recipe => {
         let size = (2 - (recipe.length / 65)).toFixed(2)
         recipeSection.innerHTML += `
-        <article class="recipe-card" id="${recipe.id}">
-            <img class="recipe-img" src="${recipe.image}" alt="picture of ${recipe.name}">
-            <img class="star-icon hidden" id="star-icon" src="./images/star-icon.png" alt="This recipe is in my recipes!">
-            <h3 style="font-size: ${size}rem">${recipe.name}</h3>
+        <article class="recipe-card" data-parent="${recipe.id}">
+            <img class="recipe-img" src="${recipe.image}" data-parent="${recipe.id}" alt="picture of ${recipe.name}">
+            <img class="star-icon hidden" id="star-icon" data-parent="${recipe.id}" src="./images/star-icon.png" alt="This recipe is in my recipes!">
+            <h3 style="font-size: ${size}rem" data-parent="${recipe.id}">${recipe.name}</h3>
         </article>`
     })
 }
 
 function createRecipeModal(event) {
-let recipeID = event.target.c
+let recipeID = event.target.dataset.parent
+console.log(recipeID)
    modalSection.innerHTML = `
     <div class="recipe-popup">
-    <h2>${}</h2>
+    <h2></h2>
     <div class="image-ingredients">
       <img class="recipe-img" src="../src/images/cookies-placeholder.jpeg" alt="Cookies placeholder">
       <ul class="ingredient-list">
