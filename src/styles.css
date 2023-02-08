@@ -13,6 +13,38 @@ h1{
   text-align: center;
 }
 
+
+
+.main{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: baseline;
+  justify-content: space-around;
+}
+
+.search-container{
+  overflow: hidden;
+  padding-bottom: 110px;
+}
+
+.main-toast-section{
+  background-image: url("/src/images/shiba-toast.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 600px;
+  height: 350px;
+}
+
+
+
+
+
 /* .side-bar{
 height: 200px;
 width: 150px;
@@ -51,30 +83,3 @@ background-color: lightblue;
   text-align: left;
   float: left;
 }
-
-.search-container{
-  overflow: hidden;
-  padding-bottom: 110px;
-}
-
-.main-toast-section{
-  background-image: url("/src/images/shiba-toast.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  border-radius: 20px;
-  
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 600px;
-  height: 350px;
-}
-
-.main{
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: baseline;
-  justify-content: space-around;
-}
-
