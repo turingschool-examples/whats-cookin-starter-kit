@@ -7,6 +7,8 @@ import Ingredient from './classes/Ingredient';
 import Recipe from './classes/Recipe';
 import User from './classes/User';
 
+import recipeData from './data/recipes';
+
 const homeButton = document.querySelector('#home-button');
 const myFoodButton = document.querySelector('#my-food-button');
 const searchBar = document.querySelector('#search-bar');
@@ -17,6 +19,8 @@ const main = document.querySelector('main');
 
 main.addEventListener('click', checkClick);
 navBar.addEventListener('click', checkNavButtons);
+
+console.log(recipeData)
 
 
 function checkClick(e) {
