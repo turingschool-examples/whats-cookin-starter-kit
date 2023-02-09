@@ -2,12 +2,9 @@ import "./styles.css";
 import apiCalls from "./apiCalls";
 import "./images/turing-logo.png";
 import RecipeRepository from "../src/classes/RecipeRepository";
-import testRecipeData from "../src/data/testRecipes";
 import Recipe from "../src/classes/Recipe";
 import User from "../src/classes/User";
-import usersData from "./data/users";
 import fetchPromises from "./apiCalls";
-import ingredientsData from "./data/ingredients";
 
 // Query Selectors
 
@@ -20,7 +17,7 @@ const searchBtn = document.querySelector(".search-btn");
 let allUsers;
 let allRecipes;
 let allIngredients;
-let recipeRepo
+let recipeRepo;
 let randomUser;
 
 // Event Listeners
@@ -43,6 +40,20 @@ searchBtn.addEventListener("click", (e) => {
 });
 
 // Functions
+
+function resolvePromises() {
+  fetchPromises()
+    .then((data) => {
+      allUsers = data[0].usersData.map((user) => new User(user));
+      allIngredients = data[1].ingredientsData.map((ingredient) => ingredient);
+      allRecipes = data[2].recipeData.map((recipe) => new Recipe(recipe));
+    })
+    .then(() => {
+      recipeRepo = new RecipeRepository(allRecipes);
+      displayRecipes();
+      setUser(allUsers);
+    });
+}
 
 function displayRecipes() {
   recipeContainer.innerHTML = "";
@@ -126,17 +137,4 @@ function selectRecipe(e) {
   }
 }
 
-function resolvePromises() {
-  fetchPromises().then((data) => {
-    allUsers = data[0].usersData.map((user) => new User(user));
-    allIngredients = data[1].ingredientsData.map(ingredient => ingredient)
-    console.log(allIngredients)
-    allRecipes = data[2].recipeData.map((recipe) => new Recipe(recipe));
-    console.log(allRecipes);
-  }).then(() => {
-    recipeRepo = new RecipeRepository(allRecipes);
-    displayRecipes();
-    setUser(allUsers)
-  })
-}
 
