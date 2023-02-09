@@ -79,15 +79,18 @@ function assignCurrentRecipe(event) {
             currentRecipe.push(recipe)
         }
     })
-    console.log(currentRecipe)
     currentRecipe = currentRecipe.map(recipe => new Recipe(recipe))
     console.log(currentRecipe)
-    console.log(currentRecipe[0].name)
 }
 
 function renderCurrentRecipe() {
     recipeModal.innerHTML = ''
     let ingredients = currentRecipe[0].determineRecipeIngredients(Ingredients)
+    const ingredientsQuantity = currentRecipe.map(recipe => recipe.ingredients.map(ingredient => ingredient.quantity))
+
+    // let ingredientAmounts = ingredientsQuantity.map(quantity => quantity.unit)
+
+    // console.log(ingredientAmounts)
     const ingredientsHTML = ingredients.map(ingredient => {
         return '<li>' + ingredient + '</li>'
     }).join('')
@@ -105,7 +108,14 @@ function renderCurrentRecipe() {
           <ul>
             ${ingredientsHTML}
           </ul>
-          
+          <h3>Recipe Instructions</h3>
+          <ol type="1">
+            <li></li>
+          </ol>
+          <h4>Recipe Cost:$${currentRecipe[0].calculateRecipeCost(Ingredients)}</h4>
+          <button type="button" class="modal__btn">❤️</button>
+          <button class="modal__close" aria-label="Close modal" data-micromodal-close>CLOSE</button>
+        </main>
         `
         MicroModal.show('modal-1')
     //populate the modal with current recipe
