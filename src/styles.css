@@ -67,9 +67,9 @@ button {
 main {
   display: flex;
   align-items: center;
-  height: 60%;
-  width: 100%;
-  overflow: auto;
+  height: 60vh;
+  width: 100vw;
+  overflow-y: hidden;
   overflow-x: auto;
 }
 
@@ -79,18 +79,15 @@ button:hover {
 }
 
 .cardSection {
-  height: fit-content;
+  height: 95%;
   width: fit-content;
   display: flex;
-  flex-wrap: no-wrap;
   justify-content: center;
-  gap: 2rem;
-  border: solid red 5px;
+  gap: 1rem;
 }
 
 .card {
-  width: 300px;
-  height: 500px;
+  width: 20%;
   cursor: pointer;
   display: flex;
   background-color: #f1f1f1;
@@ -136,7 +133,7 @@ button:hover {
 .frontText {
   display: flex;
   flex-flow: column;
-  height: stretch;
+  flex-wrap: wrap;
   width: 100%;
   align-items: center;
 }
@@ -144,6 +141,7 @@ button:hover {
 .foodTitle {
   color: #5f4a48;
   font-size: 1.2rem;
+  margin: 0;
   font-weight: bold;
 }
 
@@ -153,7 +151,7 @@ button:hover {
   justify-content: space-evenly;
   font-size: 0.9rem;
   color: rgb(0, 67, 0);
-  gap: 2%;
+  gap: 2rem;
 }
 
 .foodText,
@@ -169,8 +167,18 @@ button:hover {
   padding-left: 10%;
 }
 
+footer {
+  background: rgb(0, 67, 0);
+  display: flex;
+  height: 30vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: space-around;
+}
+
 .filter {
   display: flex;
+  max-height: 100%;
   flex-flow: column;
   align-items: center;
   height: 100%;
@@ -180,7 +188,7 @@ button:hover {
 
 .filterHeaders {
   font-family: 'Lobster', Lobster;
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin: 10% 0 10% 0;
   padding: 0;
 }
@@ -192,15 +200,6 @@ button:hover {
 
 .checkbox {
   border-radius: 20px;
-}
-
-footer {
-  background: rgb(0, 67, 0);
-  display: flex;
-  height: 30%;
-  width: 100%;
-  align-items: center;
-  justify-content: space-around;
 }
 
 .hidden {
