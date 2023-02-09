@@ -23,17 +23,17 @@ convertRecipe();
 const mainRepository = new RecipeRepository(convertedRecipes);
 
 window.addEventListener('load', displayCards)
-cardSection.addEventListener('click', checkClick);
+main.addEventListener('click', checkClick);
 navBar.addEventListener('click', checkNavButtons);
 
 function displayCards() {
     cardSection.innerHTML = '';
     mainRepository.recipes.forEach((recipe, index) => {
         cardSection.innerHTML += `
-        <section class="card cardFront" id="cf${recipe.id}" tabindex="0" data-side="front" data-index="${index}">
+        <section class="card cardFront" id="cf${recipe.id}" tabindex="0" data-side="front" data-index="${recipe.id}">
           <button aria-label="Save Recipe Button" class="saveRecipeButton" id="save-btn-2"></button>
-          <img class="foodImage" src="${recipe.image}" data-side="front">
-          <header class="frontText" data-side="front" data-index="${index}">
+          <img class="foodImage" src="${recipe.image}" data-side="front" data-index="${recipe.id}">
+          <header class="frontText" data-side="front" data-index="${recipe.id}">
             <h2 class="foodTitle">${recipe.name}</h2>
             <div class="frontStats">
               <p class="cost" id="cost2">${'$' + recipe.calculateCost()}</p>
@@ -41,7 +41,7 @@ function displayCards() {
             </div>
           </header>
         </section>
-        <section class="card cardBack hidden" id="cb${recipe.id}" tabindex="0" data-side="back" data-index="${index}">
+        <section class="card cardBack hidden" id="cb${recipe.id}" tabindex="0" data-side="back" data-index="${recipe.id}">
           <h2 class="foodTitle">${recipe.name}</h2>
           <ul class="ingredientsList" id="ingred-list2">
             <li>1 egg</li>
@@ -64,7 +64,6 @@ function convertRecipe() {
 
 
 function checkClick(e) {
-    console.log(e.target)
     if (e.target.dataset.side) {
         e.target.dataset.side === 'front' ? flipToBack(e.target.dataset.index) : flipToFront(e.target.dataset.index)
     } 
@@ -79,10 +78,8 @@ function checkNavButtons(e) {
 }
 
 function flipToBack(elementIndex) {
-    console.log('tomato')
     const frontCardToFlip = document.getElementById(`cf${elementIndex}`);
     const backCardToFlip = document.getElementById(`cb${elementIndex}`);
-    console.log(backCardToFlip)
     show(backCardToFlip);
     hide(frontCardToFlip);
 }
