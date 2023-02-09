@@ -159,3 +159,7 @@ function generateRandUser() {
     user = new User(usersData[num])
 }
 
+function hideAll() {
+    recipeSection.innerHTML = ''
+    pantrySection.innerHTML = ''
+}
