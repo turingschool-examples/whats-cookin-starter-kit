@@ -20,7 +20,7 @@ const brunchFilter = document.querySelector("#brunch-filter")
 const mainDishFilter = document.querySelector("#main-dish-filter")
 const compDishFilter = document.querySelector("#complimentary-dish-filter")
 const searchBar = document.querySelector(".search-bar")
-const searchGo = document.querySelector("#search-bar-go")
+const searchGo = document.querySelector(".search-button")
 const recipeSection = document.querySelector('#recipe-section')
 const recipeModal = document.querySelector('#modal')
 
