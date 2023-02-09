@@ -47,5 +47,3 @@ describe('RecipeRepository', () => {
     expect(result4).to.deep.equal([]);
   });
 })
-
-yes
