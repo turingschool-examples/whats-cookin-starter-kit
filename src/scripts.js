@@ -3,11 +3,14 @@ import apiCalls from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import recipeData from './data/recipes.js';
-// import MicroModal from 'micromodal'
+import MicroModal from 'micromodal'
 import RecipeRepository from './classes/RecipeRepository';
 import usersData from './data/users.js';
 import User from './classes/User.js'
 import ingredientsData from './data/ingredients.js'
+import Recipe from './classes/Recipe'
+import Ingredients from './data/ingredients'
+MicroModal.init()
 
 var user 
 
@@ -24,8 +27,9 @@ var allTags = [
     'spread'
   ]
 
-const recipeRepository = new RecipeRepository(recipeData)
 
+const recipeRepository = new RecipeRepository(recipeData)
+const navigationSection = document.querySelector(".navigation-section")
 const recipeSection  = document.querySelector(".recipe-section")
 const pantrySection = document.querySelector(".pantry-section")
 const navigationSeciton = document.querySelector(".navigation-section")
@@ -48,6 +52,8 @@ const searchBar = document.querySelector(".search-bar")
 const searchGo = document.querySelector("#search-bar-go")
 const pantryButton = document.querySelector("#your-pantry")
 const buttons = document.querySelectorAll('button');
+const recipeSection = document.querySelector('#recipe-section')
+const recipeModal = document.querySelector('#modal')
 
 
 for(var i of buttons) {
@@ -64,12 +70,18 @@ mainDishFilter.addEventListener('click', function() {showFilteredRecipes(mainDis
 compDishFilter.addEventListener('click', function() {showFilteredRecipes(complimentaryDish)})
 searchGo.addEventListener('click', function() {searchRecipeByName()})
 pantryButton.addEventListener('click', displayPantry)
+recipeSection.addEventListener('click', (event) => {
+    assignCurrentRecipe(event)
+    renderCurrentRecipe()
+})
 
-var currentRecipes = []
+let currentDisplayedRecipes = []
+let currentRecipeId
+let currentRecipe
 
 window.onload = function() {
     for(var i = 0; i < recipeData.length; i++) {
-        currentRecipes.push(recipeData[i])
+        currentDisplayedRecipes.push(recipeData[i])
     }
     generateRandUser()
     popularRecipes()
@@ -88,12 +100,73 @@ window.onscroll = function() {
     //     navigationSeciton.style.position = "relative"
     // }
 }
+function assignCurrentRecipe(event) {
+    if (event.target.dataset.allRecipes) {
+        currentRecipeId = event.target.dataset.allRecipes
+    }
+    else {
+        currentRecipeId = event.target.parentElement.dataset.allRecipes
+    }
+    if (!currentRecipeId) {
+        return
+    }
+
+    currentRecipeId = parseInt(currentRecipeId)
+    currentRecipe = []
+    recipeRepository.recipes.forEach(recipe => {
+        if(recipe.id === currentRecipeId) {
+            currentRecipe.push(recipe)
+        }
+    })
+    currentRecipe = currentRecipe.map(recipe => new Recipe(recipe))
+    console.log(currentRecipe)
+}
+
+function renderCurrentRecipe() {
+    recipeModal.innerHTML = ''
+    let ingredients = currentRecipe[0].determineRecipeIngredients(Ingredients)
+    const ingredientsQuantity = currentRecipe.map(recipe => recipe.ingredients.map(ingredient => ingredient.quantity))
+
+    // let ingredientAmounts = ingredientsQuantity.map(quantity => quantity.unit)
+
+    // console.log(ingredientAmounts)
+    const ingredientsHTML = ingredients.map(ingredient => {
+        return '<li>' + ingredient + '</li>'
+    }).join('')
+    
+    recipeModal.innerHTML = 
+    `
+    <header class="modal__header">
+          <h2 class="modal__title" id="modal-1-title">
+            ${currentRecipe.map(recipe => recipe.name)}
+          </h2>
+        </header>
+        <main class="modal__content" id="modal-1-content">
+          <img src="${currentRecipe.map(recipe => recipe.image)}">
+          <h3>Ingredients</h3>
+          <ul>
+            ${ingredientsHTML}
+          </ul>
+          <h3>Recipe Instructions</h3>
+          <ol type="1">
+            <li></li>
+          </ol>
+          <h4>Recipe Cost:$${currentRecipe[0].calculateRecipeCost(Ingredients)}</h4>
+          <button type="button" class="modal__btn">❤️</button>
+          <button class="modal__close" aria-label="Close modal" data-micromodal-close>CLOSE</button>
+        </main>
+        `
+        MicroModal.show('modal-1')
+    //populate the modal with current recipe
+    //show the modal
+}
 
 function displayRecipes() {
-    for(var i = 0; i < currentRecipes.length; i++) {
+    recipeSection.innerHTML = ''
+    for(var i = 0; i < currentDisplayedRecipes.length; i++) {
         recipeSection.innerHTML += 
         `
-        <img src="${currentRecipes[i].image}" class="recipe"></img>
+        <img src="${currentDisplayedRecipes[i].image}" class="recipe"></img>
         `
     }
 }
@@ -118,34 +191,38 @@ function popularRecipes() {
 }
 
 function showAllRecipes() {
-    for(var i = 0; i < recipeData.length; i++) {
+    recipeSection.innerHTML = ''
+    recipeData.forEach(recipe => {
         recipeSection.innerHTML += 
         `
-        <img src="${recipeData[i].image}" class="recipe"></img>
+        <section class='recipe' data-all-recipes='${recipe.id}'>
+        <h3 id='${recipe.id}' class='small-recipe-text'>${recipe.name}</h3>
+        <img src="${recipe.image}" class="recipe-img">
+        </section>
         `
-    }
+    })
 }
 
 function showFilteredRecipes(tag) {
-    currentRecipes = []
+    currentDisplayedRecipes = []
     var filteredRecipes = recipeRepository.filterByTag(tag)
         for(var i = 0; i < filteredRecipes.length; i++) {
-            currentRecipes.push(filteredRecipes[i])
+            currentDisplayedRecipes.push(filteredRecipes[i])
         }
     displayRecipes()
 }
 
 function searchRecipeByName() {
-    currentRecipes = []
+    currentDisplayedRecipes = []
     let filterByName = recipeRepository.filterByName(searchBar.value)
     let filteredRecipes = recipeRepository.filterByTag(searchBar.value)
         if(filterByName !== undefined) {
             for (var i = 0; i < filterByName.length; i++) {
-                currentRecipes.push(filterByName[i]);
+                currentDisplayedRecipes.push(filterByName[i]);
             }
         } else if(filteredRecipes !== undefined) {
             for(var i = 0; i < filteredRecipes.length; i++) {
-                currentRecipes.push(filteredRecipes[i])
+                currentDisplayedRecipes.push(filteredRecipes[i])
             }
         } else {
             recipeSection.innerHTML = `<p>NO RESULTS</p>`
