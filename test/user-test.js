@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import user from '../src/classes/user';
+import User from '../src/classes/user';
 
 describe('user', () =>{
     let user;
@@ -15,17 +15,21 @@ describe('user', () =>{
                   "ingredient": 11297,
                   "amount": 4
                 },
-              ]
+            ]
             }
         )
     })
 
-    it('Should be a function', () => {
-        expect(user).to.be.a('function');
-      });
+    it('should be a function', () => {
+        expect(User).to.be.a('function');
+    })
 
     it('user has a name', () => {
-        expect(user.name).to.equal
+        expect(user.name).to.equal("Brexye Quysh")
+    })
+
+    it('user has am id', () => {
+        expect(user.id).to.equal(1)
     })
 
 

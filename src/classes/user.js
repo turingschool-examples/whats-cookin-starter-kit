@@ -1,8 +1,8 @@
 class User{
-    constructor(name, id, pantry){
-        this.name = name
-        this.id = id
-        this.pantry = pantry
+    constructor(userObj){
+        this.name = userObj.name
+        this.id = userObj.id
+        this.pantry = userObj.pantry
         this.recipesToCook = []
 
     }
@@ -19,3 +19,6 @@ class User{
 
     }
 };
+
+
+export default User
