@@ -147,6 +147,10 @@ button:active {
   flex-wrap: wrap;
 }
 
+.pantry-section {
+  text-align: center;
+}
+
 .search-container {
   display: flex;
   justify-content: flex-end;

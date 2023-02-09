@@ -28,18 +28,18 @@ var allTags = [
   ]
 
 
+var morningMeal = ['breakfast', 'morning meal, ']
+var snack = ['dip',  'snack',  'appetizer']
+var other = [ 'condiment', 'spread']
+var mainDish = ['main dish', 'dinner', 'lunch']
+var complimentaryDish = ['antipasti', 'hor d\'oeuvre', 'starter', 'salad', 'side dish',  'appetizer']
+
 const recipeRepository = new RecipeRepository(recipeData)
 const navigationSection = document.querySelector(".navigation-section")
 const recipeSection  = document.querySelector(".recipe-section")
 const pantrySection = document.querySelector(".pantry-section")
 const navigationSeciton = document.querySelector(".navigation-section")
 const recipes = document.querySelector(".recipe")
-
-var morningMeal = ['breakfast', 'morning meal, ']
-var snack = ['dip',  'snack',  'appetizer']
-var other = [ 'condiment', 'spread']
-var mainDish = ['main dish', 'dinner', 'lunch']
-var complimentaryDish = ['antipasti', 'hor d\'oeuvre', 'starter', 'salad', 'side dish',  'appetizer']
 
 const topButton = document.querySelector("#top-button")
 const allRecipes = document.querySelector("#recipe-button")
@@ -49,10 +49,9 @@ const brunchFilter = document.querySelector("#brunch-filter")
 const mainDishFilter = document.querySelector("#main-dish-filter")
 const compDishFilter = document.querySelector("#complimentary-dish-filter")
 const searchBar = document.querySelector(".search-bar")
-const searchGo = document.querySelector("#search-bar-go")
+const searchGo = document.querySelector("#search-button")
 const pantryButton = document.querySelector("#your-pantry")
-const buttons = document.querySelectorAll('button');
-const recipeSection = document.querySelector('#recipe-section')
+const buttons = document.querySelectorAll('button')
 const recipeModal = document.querySelector('#modal')
 
 
@@ -167,11 +166,12 @@ function displayRecipes() {
 }
 
 function displayPantry() {
+    pantrySection.innerHTML += `Hello, ${user.name}. You have these items in your pantry. `
     for(var i = 0; i < user.pantry.length; i++) {
         var currentIngredient = ingredientsData.findIndex(x => x.id === user.pantry[i].ingredient)
-        pantrySection.innerHTML = 
+        pantrySection.innerHTML += 
         `
-        <h1 class="pantry">${ingredientsData[currentIngredient].name}</h1>
+        <h1 class="pantry">• ${ingredientsData[currentIngredient].name}</h1>
         `
     }
 }
