@@ -8,14 +8,26 @@ class Recipe {
         this.tags = recipeData.tags
         this.ingredientsData = ingredientsData
     }
-    calculateIngredientsName() {
-
+    getIngredientsName(name) {
+        return this.ingredients.filter(ingredient => ingredient.name === name);
+        
     }
     calculateIngredientsCosts() {
+        const total = this.ingredients.reduce((sum, ingredient) => {
+        this.ingredientsData.forEach(element => {
+        if (ingredient.id === element.id) {
+        sum += ingredient.quantity.amount * element.estimatedCostInCents
+        }
+    })
+        return sum }, 0)
 
+        return `$${(total/100).toFixed(2)}`
     }
-    listIngredients() {
-        
+    
+    returnInstructions() {
+        return this.instructions.map(step => {
+        return `Step ${step.number}: ${step.instruction}`
+        })
     }
 }
 
