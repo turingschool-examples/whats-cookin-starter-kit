@@ -15,14 +15,14 @@ const recipeRepo = new RecipeRepository(recipeData)
 const modalSection = document.getElementById('recipeModalBackground')
 
 //event listeners
-window.addEventListener('load', createRecipeCards)
+window.addEventListener('load', () => createRecipeCards(recipeRepo.recipes))
 recipeSection.addEventListener('click', createRecipeModal)
 modalSection.addEventListener('click', collapseRecipe)
 
 
 //functions
-function createRecipeCards() {
-    recipeRepo.recipes.forEach(recipe => {
+function createRecipeCards(recipes) {
+    recipes.forEach(recipe => {
         let size = (2 - (recipe.length / 65)).toFixed(2)
         recipeSection.innerHTML += `
         <article class="recipe-card" data-parent="${recipe.id}">
