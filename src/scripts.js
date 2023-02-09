@@ -74,8 +74,7 @@ function createRecipeModal(event) {
       <h4>TOTAL COST $${+(modalRecipe.listCost(ingredientsData))}</h4>
       <button class="save-button" id="saveBtn">${buttonText}</button>
   </div>`;
-  const saveButton = document.getElementById('saveBtn')
-  saveButton.addEventListener('click', toggleSaveRecipe);
+  document.getElementById('saveBtn').addEventListener('click', toggleSaveRecipe);
 }
 
 function createList(recipe) {
