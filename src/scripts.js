@@ -76,12 +76,15 @@ function popularRecipes() {
 
 function showAllRecipes() {
     recipeSection.innerHTML = ''
-    for(var i = 0; i < recipeData.length; i++) {
+    recipeData.forEach(recipe => {
         recipeSection.innerHTML += 
         `
-        <img src="${recipeData[i].image}" class="recipe"></img>
+        <section class='recipe'>
+        <h3 id='${recipe.id}' data-all-recipes='${recipe.id}' class='small-recipe-text'>${recipe.name}</h3>
+        <img src="${recipe.image}" class="recipe-img">
+        </section>
         `
-    }
+    })
 }
 
 function showFilteredRecipes(tag) {
