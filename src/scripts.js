@@ -10,8 +10,7 @@ import User from './classes/User';
 import recipeData from './data/recipes';
 import usersData from './data/users';
 
-const homeButton = document.querySelector('#home-button');
-const myFoodButton = document.querySelector('#my-food-button');
+
 const searchBar = document.querySelector('#search-bar');
 const cardSection = document.querySelector('#card-section');
 const navBar = document.querySelector('nav');
@@ -46,18 +45,19 @@ footer.addEventListener('click', e => {
 
 
 function displayCards(recipeList) {
-    let displayRecipes;
+    searchBar.value = '';
 
+    let displayRecipes;
     recipeList.recipes ? displayRecipes = recipeList.recipes : displayRecipes = recipeList;
 
     cardSection.innerHTML = '';
-    displayRecipes.forEach((recipe) => {
+    displayRecipes.forEach((recipe, index) => {
         let instructions = recipe.instructions.map((instruction) => {
             return `<p class="foodText">${instruction.instruction}</p>`
         })
         cardSection.innerHTML += `
         <section class="card cardFront" id="cf${recipe.id}" tabindex="0" data-side="front" data-index="${recipe.id}">
-          <button aria-label="Save Recipe Button" class="saveRecipeButton" id="save-btn-2"></button>
+          <button aria-label="Save Recipe Button" class="saveRecipeButton" id="save-btn-${index}" data-index="${recipe.id}"></button>
           <img class="foodImage" src="${recipe.image}" alt="Picture of ${recipe.name}" data-side="front" data-index="${recipe.id}">
           <header class="frontText" data-side="front" data-index="${recipe.id}">
             <h2 class="foodTitle">${recipe.name}</h2>
@@ -81,9 +81,24 @@ function displayCards(recipeList) {
     })
 }
 
+function toggleRecipeSaved(element) {
+  element.classList.toggle('savedRecipe');
+  const recipe = user.recipesToCook.recipes.find(recipe => recipe.id === parseInt(element.dataset.index));
+
+  if (!recipe) {
+    user.saveRecipe(mainRepository.recipes.find(repoRecipe => repoRecipe.id === parseInt(element.dataset.index)));
+    console.log(user.recipesToCook.recipes);
+  } else {
+    user.removeSaved(recipe.id);
+    console.log(user.recipesToCook.recipes);
+  }
+}
+
 function checkClick(e) {
     if (e.target.dataset.side) {
         e.target.dataset.side === 'front' ? flipToBack(e.target.dataset.index) : flipToFront(e.target.dataset.index)
+    } else if (e.target.id.includes('save-btn')) {
+        toggleRecipeSaved(e.target);
     }
  }
 
@@ -154,10 +169,6 @@ function warnNoResults() {
 
 function resetWarning() {
     searchBar.style.color = 'black';
-};
-
-function updateCards() {
-    searchBar.value = '';
 };
 
 function resetFilters() {

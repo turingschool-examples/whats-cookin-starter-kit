@@ -12,6 +12,10 @@ class User {
         this.recipesToCook.recipes.push(recipe);
     };
 
+    removeSaved(recipeId) {
+        this.recipesToCook.recipes = this.recipesToCook.recipes.filter(recipe => recipe.id !== recipeId);
+    };
+
     filterSavedByTag(tag) {
         this.recipesToCook.filterRecipesByTag(tag);
         return this.recipesToCook.recipesByTag;
