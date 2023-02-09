@@ -14,12 +14,20 @@ const recipeRepo = new RecipeRepository(recipeData);
 const recipeSection = document.getElementById('allRecipes');
 const modalSection = document.getElementById('recipeModalBackground');
 const filterDropdown = document.getElementById('filterDropdown');
+const searchBar = document.getElementById('searchBar')
 
 //event listeners
 window.addEventListener('load', () => createRecipeCards(recipeRepo.recipes));
 recipeSection.addEventListener('click', createRecipeModal);
 modalSection.addEventListener('click', collapseRecipe);
 filterDropdown.addEventListener('click', filterRecipes);
+
+// Let's clean this up to be a proper form submission..?
+searchBar.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    searchRecipes()
+  }
+});
 
 //functions
 function createRecipeCards(recipes) {
@@ -78,4 +86,10 @@ function filterRecipes(event) {
     let tag = event.target.innerText.toLowerCase();
     let filteredRecipes = recipeRepo.filterByTag(tag);
     createRecipeCards(filteredRecipes);
+}
+
+function searchRecipes() {
+  let keyword = searchBar.value;
+  let searchedRecipes = recipeRepo.filterByName(keyword);
+  createRecipeCards(searchedRecipes);
 }
