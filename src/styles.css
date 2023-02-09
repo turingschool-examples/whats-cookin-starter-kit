@@ -142,7 +142,6 @@ h2 {
   width: 20vw;
   bottom: -3vh;
 }
-
 .searchButton {
   width: 3vw;
   height: 5vh;
@@ -154,8 +153,6 @@ h2 {
   cursor: pointer;
   font-size: 20px;
 }
-
-
 .side-bar{
   height: 100%;
   width: 0px;
@@ -192,15 +189,13 @@ h2 {
   align-items: center;
 }
 
-
 .mini-card-list{
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
-
-.mini-card{
+.mini-card {
   border: solid #00B4CC 5px;
   border-radius: 20px;
   height: auto;
