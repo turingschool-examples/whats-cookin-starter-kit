@@ -19,6 +19,7 @@ const sampleData = [
  "name": "Biscuits and Gravy",
  "tags": "breakfast"  
 }
+
 ]
 
 export default sampleData

@@ -3,20 +3,98 @@
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/src/styles.css" />
-    <title>Whats Cookin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>What's Cookin</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
-
+    
+  <div class="main">  
+  <div class="">
+    <h1>What's Cookin</h1>
     <section class="main-toast-section" id="toastSection">
       <div class="search-container">
-        <input type="search" class="search-bar" id="searchBar" placeholder="What sounds good?" maxlength="15">
+        <input type="text" class="searchTerm" id="searchBar" placeholder="What sounds good?">
+        <button type="submit" class="searchButton">
+          <i class="fa fa-search"></i>
+       </button>
       </div>
     </section>
-  
-    <label for="saved-recipes">Saved Recipes</label>
-        <select name="saved-recipes" class="drop-down" id="savedRecipes"></select>  
+  </div>
 
+
+
+  <!-- side bar shenanigans -->
+    <aside>     
+      <div class="saved-and-shiba-icon">
+        <label onclick="showNav()" 
+        for="saved-recipes" class="nav-open">Saved Recipes</label> 
+        <img class="shiba-stare" src="/src/images/shiba-cool.png" alt="">
+      </div>
+    </aside>
+
+
+      
+      <div class="side-bar" id="leftNav">
+        <div>
+        <label class="close-btn" onclick="hideNav()">
+          Bri is awesome
+        </label>
+      </div>
+
+        <!-- <ul class="navbar-out">
+          <li class="nav-item">
+
+          </li>
+        </ul> -->
+
+      </div>
+    </div> 
+
+
+
+
+    <!-- second side-bar shenanigan  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- recipe icons to click on -->
+    <section class="mini-cards-section">
+      <div>
+        <ol class="mini-card-list">
+          <!-- <li> -->
+            <img class ="mini-card" src="/src/images/pancake.webp">
+
+            <img class ="mini-card" src="/src/images/pancake.webp">
+
+            <img class ="mini-card" src="/src/images/pancake.webp">
+
+            <img class ="mini-card" src="/src/images/pancake.webp">
+
+    
+          
+          
+
+          <!-- </li> -->
+        </ol>
+      </div>
+    </section>
+
+
+
+
+<!-- hidden pop-up recipe card -->
           <article class="overlay hidden recipe-card" id="recipeCard">
             <div class="ingredients-flex" id="ingredientsFlex">
               <h2>Recipe</h2>
@@ -25,8 +103,18 @@
               <button class="saved-recipe" id="savedRecipe">
             </div>  
           </article>
+
+
   </body>
+  
 
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
+  <script>function showNav(){
+    document.getElementById("leftNav").style.width = "200px";
+  }
+  function hideNav(){
+    document.getElementById("leftNav").style.width = "0px";
+  }
+    </script>
 </html>
