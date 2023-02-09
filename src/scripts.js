@@ -18,6 +18,7 @@ const cardSection = document.querySelector('#card-section')
 const navBar = document.querySelector('nav');
 const main = document.querySelector('main');
 
+
 convertRecipe();
 
 const mainRepository = new RecipeRepository(convertedRecipes);
@@ -29,6 +30,9 @@ navBar.addEventListener('click', checkNavButtons);
 function displayCards() {
     cardSection.innerHTML = '';
     mainRepository.recipes.forEach((recipe, index) => {
+        let instructions = recipe.instructions.map((instruction) => {
+            return `<p class="foodText">${instruction.instruction}</p>`
+        })
         cardSection.innerHTML += `
         <section class="card cardFront" id="cf${recipe.id}" tabindex="0" data-side="front" data-index="${recipe.id}">
           <button aria-label="Save Recipe Button" class="saveRecipeButton" id="save-btn-2"></button>
@@ -49,9 +53,22 @@ function displayCards() {
             <li>3 egg</li>
             <li>4 egg</li>
           </ul>
-          <p class="foodText">${recipe.instructions}</p>
+          ${instructions.join(" ")}
         </section>
         `
+    })
+    
+    const backCards = document.querySelectorAll(".cardBack");
+    backCards.forEach((card, index) => {
+        let recipe = mainRepository[index]
+        card.innerHTML += `<ul class="instructionsList" id="instruct-list2">
+        <li>${recipe.instructions[index].instruction}</li>
+        <li>2 egg</li>
+        <li>3 egg</li>
+        <li>4 egg</li>
+      </ul>
+      <p class="foodText"></p>
+    </section>`
     })
 }
 
