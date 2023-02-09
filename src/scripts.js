@@ -113,8 +113,6 @@ function renderCurrentRecipe() {
         return '<li>' + ingredient.ingredient + '</li>'
     }).join('')
 
-    var sa = saved.filter(current => current.id === currentRecipe.id)
-
     if(saved.filter(current => current.id === currentRecipe.id).length !== 0) {
         var isSaved = "Saved"
     } else {
@@ -157,9 +155,19 @@ function renderCurrentRecipe() {
 }
 
 function saveRecipe(button) {
-    saved.push(currentRecipe)
-    button.innerText = 'Saved'
-    button.style.backgroundColor = "red"
+    var sa = saved.filter(current => current.id === currentRecipe.id)
+    if(sa.length === 0){
+        saved.push(currentRecipe)
+        button.innerText = 'Saved'
+        button.style.backgroundColor = "red"
+    }
+    else {
+        saved.splice(saved.indexOf(currentRecipe))
+        button.innerText = '♥️'
+        button.style.backgroundColor = "#e6e6e6"
+    }
+    //sort through the saved array
+    //locate the index of 
 }
 
 function displayRecipes() {
