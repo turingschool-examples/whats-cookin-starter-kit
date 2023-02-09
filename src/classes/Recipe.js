@@ -1,5 +1,3 @@
-import recipeTestData from '../data/recipeTestData'
-import ingredientTestData from '../data/ingredientTestData';
 import Ingredient from './Ingredient';
 
 class Recipe {
@@ -32,14 +30,16 @@ class Recipe {
       return total;
     }, 0);
     this.sum = (total / 100).toFixed(2);
-    console.log(this.sum)
     return this.sum;
   };
+
+  giveInstructionsForRecipe() {
+    const steps = this.instructions.map(instruction => {
+      return `Step ${instruction.number}: ${instruction.instruction}`
+    });
+    this.instructions = steps;
+    return this.instructions;
+  };
 };
-
-  // giveDirectionsForRecipe() {
-
-  // };
-
 
 export default Recipe;

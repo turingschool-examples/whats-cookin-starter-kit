@@ -1,5 +1,4 @@
 import { assert, expect } from 'chai';
-import Ingredient from '../src/classes/Ingredient';
 import Recipe from '../src/classes/Recipe';
 import recipeTestData from '../src/data/recipeTestData';
 
@@ -40,7 +39,7 @@ describe('Recipe1', () => {
   });
 
   it('should contain recipe tags', () => {
-    assert.equal(recipe1.tags, recipeTestData[0].tags)
+    assert.equal(recipe1.tags, recipeTestData[0].tags);
   });
 
   it('should be able to return a list of its ingredients', () => {
@@ -59,7 +58,10 @@ describe('Recipe1', () => {
     assert.equal(recipe2.sum, 272.97);
   });
 
-  it.skip('should be able to return the directions to make it', () => {
-
+  it('should be able to return the instructions to make a recipe', () => {
+    recipe1.retrieveIngredientInfo();
+    recipe1.giveInstructionsForRecipe();
+    const instruc = 'Step 2: Add egg and vanilla and mix until combined.';
+    assert.equal(recipe1.instructions[1], instruc);
   });
 });
