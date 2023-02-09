@@ -56,6 +56,3 @@ const ingredientTestData = [
   }
 ]
 module.exports = ingredientTestData;
-
-
-//REMOVE THE CURLIES
