@@ -6,17 +6,20 @@ class RecipeRepository {
     this.filteredRecipes;
   }
   filterByTag(tag) {
-    if (!tag) {
-      return;
-    }
-    this.filteredRecipes = this.recipes.filter(recipe => recipe.tags.includes(tag));
+    console.log(tag)
+    for(var i = 0; i < tag.length; i++) {
+      if (!tag[i]) {
+        return;
+      }
+      this.filteredRecipes = this.recipes.filter(recipe => recipe.tags.includes(tag[i]));
 
-    if (this.filteredRecipes.length === 0) {
-      this.filteredRecipes = null;
-      return
-    } else {
-      console.log(this.filteredRecipes)
-      return this.filteredRecipes
+      if (this.filteredRecipes.length === 0) {
+        this.filteredRecipes = null;
+        return
+      } else {
+        console.log(this.filteredRecipes)
+        return this.filteredRecipes
+      }
     }
   }
   filterByName(name) {
