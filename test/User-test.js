@@ -52,7 +52,4 @@ describe('User', () => {
     user.recipesToCook(testRecipeData[2]);
     expect(user.filterName('Loaded Chocolate Chip Pudding Cookie Cups')).to.deep.equal([testRecipeData[0]]);
   });
-
-
-
 });
