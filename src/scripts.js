@@ -15,12 +15,15 @@ const recipeSection = document.getElementById('allRecipes');
 const modalSection = document.getElementById('recipeModalBackground');
 const filterDropdown = document.getElementById('filterDropdown');
 const searchBar = document.getElementById('searchBar')
+const saveButton = document.getElementById('save-btn')
 
 //event listeners
 window.addEventListener('load', () => createRecipeCards(recipeRepo.recipes));
 recipeSection.addEventListener('click', createRecipeModal);
 modalSection.addEventListener('click', collapseRecipe);
 filterDropdown.addEventListener('click', filterRecipes);
+saveButton.addEventListener('click', toggleSavedRecipe)
+
 
 // Let's clean this up to be a proper form submission..?
 searchBar.addEventListener('keypress', function (e) {
@@ -47,6 +50,8 @@ function createRecipeModal(event) {
   toggleHidden(modalSection);
   let recipeID = +(event.target.dataset.parent);
   let clickedRecipe = recipeRepo.recipes.find(recipe => recipe.id === recipeID);
+  let buttonText
+  clickedRecipe.saved ? buttonText = "Remove from Saved Recipes" : buttonText = "Add to Saved Recipes"
   modalSection.innerHTML = `
   <div class="recipe-popup">
       <h2>${clickedRecipe.name}</h2>
@@ -62,7 +67,7 @@ function createRecipeModal(event) {
       ${createList(clickedRecipe.getInstructions())}
       </ol>
       <h4>TOTAL COST $${+(clickedRecipe.listCost(ingredientsData))}</h4>
-      <button class="save-button" id="save-btn">Save Recipe</button>
+      <button class="save-button" id="save-btn" data-recipe="${recipeID}">${buttonText}</button>
   </div>`;
 }
 
@@ -94,3 +99,4 @@ function searchRecipes() {
   let searchedRecipes = recipeRepo.filterByName(keyword);
   createRecipeCards(searchedRecipes);
 }
+
