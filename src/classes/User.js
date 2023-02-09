@@ -1,15 +1,15 @@
 import RecipeRepository from "./RecipeRepository";
 
 class User {
-    constructor(user, allRecipes) {
+    constructor(user) {
         this.name = user.name;
         this.id = user.id;
         this.pantry = user.pantry;
         this.recipesToCook = new RecipeRepository();
     };
 
-    saveRecipe(index) {
-        this.recipesToCook.recipes.push(this.allRecipes.recipes[index]);
+    saveRecipe(recipe) {
+        this.recipesToCook.recipes.push(recipe);
     };
 
     filterSavedByTag(tag) {

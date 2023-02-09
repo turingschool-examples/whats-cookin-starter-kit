@@ -88,7 +88,7 @@ describe('Recipe', () => {
   })
 
   it('should be able to calculate the total cost of the recipe', () => {
-    expect(recipe1.calculateCost()).to.equal(2.13)
+    expect(recipe1.calculateCost()).to.equal('2.13')
   })
 
   it('should have a method that returns the instructions from the recipe', () => {
