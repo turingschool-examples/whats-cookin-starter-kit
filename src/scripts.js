@@ -93,6 +93,7 @@ function toggleRecipeSaved(element) {
     user.removeSaved(recipe.id);
     console.log(user.recipesToCook.recipes);
   }
+  returnIfHome() ? displayCards(mainRepository) : displayCards(user.recipesToCook);
 }
 
 function checkClick(e) {
