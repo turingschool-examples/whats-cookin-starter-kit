@@ -5,6 +5,8 @@ import './images/turing-logo.png'
 import recipeData from './data/recipes.js';
 import MicroModal from 'micromodal'
 import RecipeRepository from './classes/RecipeRepository';
+import Recipe from './classes/Recipe'
+import Ingredients from './data/ingredients'
 MicroModal.init()
 const recipeRepository = new RecipeRepository(recipeData)
 const navigationSection = document.querySelector(".navigation-section")
@@ -71,14 +73,41 @@ function assignCurrentRecipe(event) {
     }
 
     currentRecipeId = parseInt(currentRecipeId)
-    currentRecipe = recipeRepository.recipes.find(recipe => recipe.id === currentRecipeId)
+    currentRecipe = []
+    recipeRepository.recipes.forEach(recipe => {
+        if(recipe.id === currentRecipeId) {
+            currentRecipe.push(recipe)
+        }
+    })
+    console.log(currentRecipe)
+    currentRecipe = currentRecipe.map(recipe => new Recipe(recipe))
+    console.log(currentRecipe)
+    console.log(currentRecipe[0].name)
 }
 
 function renderCurrentRecipe() {
-    console.log(currentRecipe)
     recipeModal.innerHTML = ''
-    recipeModal.innerHTML = `
+    let ingredients = currentRecipe[0].determineRecipeIngredients(Ingredients)
+    const ingredientsHTML = ingredients.map(ingredient => {
+        return '<li>' + ingredient + '</li>'
+    }).join('')
     
+    recipeModal.innerHTML = 
+    `
+    <header class="modal__header">
+          <h2 class="modal__title" id="modal-1-title">
+            ${currentRecipe.map(recipe => recipe.name)}
+          </h2>
+        </header>
+        <main class="modal__content" id="modal-1-content">
+          <img src="${currentRecipe.map(recipe => recipe.image)}">
+          <h3>Ingredients</h3>
+          <ul>
+            ${ingredientsHTML}
+          </ul>
+          
+        `
+        MicroModal.show('modal-1')
     //populate the modal with current recipe
     //show the modal
 }
