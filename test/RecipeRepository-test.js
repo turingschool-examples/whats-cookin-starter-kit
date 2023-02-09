@@ -1,9 +1,10 @@
 import { expect } from 'chai';
-import RecipeRepository from '../src/classes/RecipeRepository';
 import Recipe from '../src/classes/recipe';
 import sampleData from '../src/sampleData';
+import RecipeRepository from '../src/classes/RecipeRepository';
 
-describe('Recipe', () => {
+
+describe('RecipeRepository', () => {
   let recipe
 
   beforeEach(() => {
