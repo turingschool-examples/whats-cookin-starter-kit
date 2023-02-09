@@ -80,11 +80,11 @@ button:hover {
 
 .cardSection {
   height: fit-content;
-  width: 100%;
+  width: fit-content;
   display: flex;
   flex-wrap: no-wrap;
   justify-content: center;
-  gap: 2%;
+  gap: 2rem;
   border: solid red 5px;
 }
 

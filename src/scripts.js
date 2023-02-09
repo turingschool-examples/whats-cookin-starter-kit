@@ -9,6 +9,8 @@ import User from './classes/User';
 
 import recipeData from './data/recipes';
 
+let convertedRecipes;
+
 const homeButton = document.querySelector('#home-button');
 const myFoodButton = document.querySelector('#my-food-button');
 const searchBar = document.querySelector('#search-bar');
@@ -16,42 +18,52 @@ const cardSection = document.querySelector('#card-section')
 const navBar = document.querySelector('nav');
 const main = document.querySelector('main');
 
-const mainRepository = new RecipeRepository(recipeData);
+
+convertRecipe();
+
+const mainRepository = new RecipeRepository(convertedRecipes);
 
 window.addEventListener('load', displayCards)
 main.addEventListener('click', checkClick);
 navBar.addEventListener('click', checkNavButtons);
 
-console.log(mainRepository.recipes[0])
-
-
 function displayCards() {
     cardSection.innerHTML = '';
-    mainRepository.recipes.forEach((recipe) => {
+    mainRepository.recipes.forEach((recipe, index) => {
+        let instructions = recipe.instructions.map((instruction) => {
+            return `<p class="foodText">${instruction.instruction}</p>`
+        })
         cardSection.innerHTML += `
-        <section class="card cardFront" id="cf${recipe.id}" tabindex="0" data-side="front" data-index="2">
+        <section class="card cardFront" id="cf${recipe.id}" tabindex="0" data-side="front" data-index="${recipe.id}">
           <button aria-label="Save Recipe Button" class="saveRecipeButton" id="save-btn-2"></button>
-          <img class="foodImage" src="https://images.unsplash.com/photo-1622212611568-32d624f5f0ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Food Image" data-side="front" data-index="2">
-          <header class="frontText" data-side="front" data-index="2">
+          <img class="foodImage" src="${recipe.image}" data-side="front" data-index="${recipe.id}">
+          <header class="frontText" data-side="front" data-index="${recipe.id}">
             <h2 class="foodTitle">${recipe.name}</h2>
             <div class="frontStats">
-              <p class="cost" id="cost2">$11.64</p>
-              <p class="ingredients" id="ingred2">5 Ingredients</p>
+              <p class="cost" id="cost2">${'$' + recipe.calculateCost()}</p>
+              <p class="ingredients" id="ingred2"> ${recipe.ingredients.length} Ingredients</p>
             </div>
           </header>
         </section>
-        <section class="card cardBack hidden" id="cb2" tabindex="0" data-side="back" data-index="2">
-          <h2 class="foodTitle">Food Title</h2>
+        <section class="card cardBack hidden" id="cb${recipe.id}" tabindex="0" data-side="back" data-index="${recipe.id}">
+          <h2 class="foodTitle">${recipe.name}</h2>
           <ul class="ingredientsList" id="ingred-list2">
             <li>1 egg</li>
             <li>2 egg</li>
             <li>3 egg</li>
             <li>4 egg</li>
           </ul>
-          <p class="foodText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ullam voluptatum sunt illum mollitia hic deleniti, quos eos, quia omnis eius. Ducimus unde quo repellat, provident maxime ea impedit voluptates!Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet, tellus ac efficitur suscipit, magna purus aliquet tellus, et convallis libero urna quis velit. Nullam vel velit vel lacus tempor euismod. Sed semper auctor mi, vel scelerisque risus tincidunt eu.</p>
+          ${instructions.join(" ")}
         </section>
         `
     })
+}
+
+function convertRecipe() {
+    convertedRecipes = recipeData.map((recipe) => {
+        return new Recipe(recipe)
+    })
+    return convertedRecipes
 }
 
 
