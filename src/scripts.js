@@ -7,10 +7,8 @@ import MicroModal from 'micromodal'
 import RecipeRepository from './classes/RecipeRepository';
 MicroModal.init()
 const recipeRepository = new RecipeRepository(recipeData)
+const navigationSection = document.querySelector(".navigation-section")
 
-const recipeSection  = document.querySelector(".recipe-section")
-const navigationSeciton = document.querySelector(".navigation-section")
-const recipes = document.querySelector(".recipe")
 
 const topButton = document.querySelector("#top-button")
 const allRecipes = document.querySelector("#recipe-button")
@@ -21,7 +19,8 @@ const mainDishFilter = document.querySelector("#main-dish-filter")
 const compDishFilter = document.querySelector("#complimentary-dish-filter")
 const searchBar = document.querySelector(".search-bar")
 const searchGo = document.querySelector("#search-bar-go")
-
+const recipeSection = document.querySelector('#recipe-section')
+const recipeModal = document.querySelector('#modal')
 
 topButton.addEventListener('click', function() {document.documentElement.scrollTop = 0})
 allRecipes.addEventListener('click', showAllRecipes)
@@ -31,12 +30,18 @@ brunchFilter.addEventListener('click', function() {showFilteredRecipes('brunch')
 mainDishFilter.addEventListener('click', function() {showFilteredRecipes('main dish')})
 compDishFilter.addEventListener('click', function() {showFilteredRecipes('appetizer')})
 searchGo.addEventListener('click', function() {searchRecipeByName()})
+recipeSection.addEventListener('click', (event) => {
+    assignCurrentRecipe(event)
+    renderCurrentRecipe()
+})
 
-var currentRecipes = []
+let currentDisplayedRecipes = []
+let currentRecipeId
+let currentRecipe
 
 window.onload = function() {
     for(var i = 0; i < recipeData.length; i++) {
-        currentRecipes.push(recipeData[i])
+        currentDisplayedRecipes.push(recipeData[i])
     }
     popularRecipes()
 }
@@ -54,13 +59,36 @@ window.onscroll = function() {
     //     navigationSeciton.style.position = "relative"
     // }
 }
+function assignCurrentRecipe(event) {
+    if (event.target.dataset.allRecipes) {
+        currentRecipeId = event.target.dataset.allRecipes
+    }
+    else {
+        currentRecipeId = event.target.parentElement.dataset.allRecipes
+    }
+    if (!currentRecipeId) {
+        return
+    }
+
+    currentRecipeId = parseInt(currentRecipeId)
+    currentRecipe = recipeRepository.recipes.find(recipe => recipe.id === currentRecipeId)
+}
+
+function renderCurrentRecipe() {
+    console.log(currentRecipe)
+    recipeModal.innerHTML = ''
+    recipeModal.innerHTML = `
+    
+    //populate the modal with current recipe
+    //show the modal
+}
 
 function displayRecipes() {
     recipeSection.innerHTML = ''
-    for(var i = 0; i < currentRecipes.length; i++) {
+    for(var i = 0; i < currentDisplayedRecipes.length; i++) {
         recipeSection.innerHTML += 
         `
-        <img src="${currentRecipes[i].image}" class="recipe"></img>
+        <img src="${currentDisplayedRecipes[i].image}" class="recipe"></img>
         `
     }
 }
@@ -79,8 +107,8 @@ function showAllRecipes() {
     recipeData.forEach(recipe => {
         recipeSection.innerHTML += 
         `
-        <section class='recipe'>
-        <h3 id='${recipe.id}' data-all-recipes='${recipe.id}' class='small-recipe-text'>${recipe.name}</h3>
+        <section class='recipe' data-all-recipes='${recipe.id}'>
+        <h3 id='${recipe.id}' class='small-recipe-text'>${recipe.name}</h3>
         <img src="${recipe.image}" class="recipe-img">
         </section>
         `
@@ -88,25 +116,25 @@ function showAllRecipes() {
 }
 
 function showFilteredRecipes(tag) {
-    currentRecipes = []
+    currentDisplayedRecipes = []
     var filteredRecipes = recipeRepository.filterByTag(tag)
         for(var i = 0; i < filteredRecipes.length; i++) {
-            currentRecipes.push(filteredRecipes[i])
+            currentDisplayedRecipes.push(filteredRecipes[i])
         }
     displayRecipes()
 }
 
 function searchRecipeByName() {
-    currentRecipes = []
+    currentDisplayedRecipes = []
     let filterByName = recipeRepository.filterByName(searchBar.value)
     let filteredRecipes = recipeRepository.filterByTag(searchBar.value)
         if(filterByName !== undefined) {
             for (var i = 0; i < filterByName.length; i++) {
-                currentRecipes.push(filterByName[i]);
+                currentDisplayedRecipes.push(filterByName[i]);
             }
         } else if(filteredRecipes !== undefined) {
             for(var i = 0; i < filteredRecipes.length; i++) {
-                currentRecipes.push(filteredRecipes[i])
+                currentDisplayedRecipes.push(filteredRecipes[i])
             }
         } else {
             recipeSection.innerHTML = `<p>NO RESULTS</p>`
