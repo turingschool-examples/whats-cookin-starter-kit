@@ -8,6 +8,7 @@ class Recipe {
     this.tags = recipe.tags;
     this.ingredientsList = []
     this.totalCost;
+    this.ingredientsList = []
   }
 
   getIngredientIds() {
@@ -16,24 +17,21 @@ class Recipe {
   }
 
   determineRecipeIngredients(ingredientsData) {
- this.ingredientsList = ingredientsData.reduce((acc, ingredient) => {
-  this.ingredients.forEach((item) => {
-     if (item.id === ingredient.id) {
-       let name = ingredient.name;
-       let list = {
-         ingredient: `${item.quantity.amount.toFixed(2)} ${
-           item.quantity.unit
-         } ${name}`,
-       };
-       acc.push(list);
-     }
-   });
-   return acc;
- }, []);
- return this.ingredientsList;
-
-    const ingredientNames = ingredients.map((ingredient) => ingredient.name);
-    return ingredientNames;
+    this.ingredientsList = ingredientsData.reduce((acc, ingredient) => {
+     this.ingredients.forEach((item) => {
+        if (item.id === ingredient.id) {
+          let name = ingredient.name;
+          let list = {
+            ingredient: `${item.quantity.amount.toFixed(2)} ${
+              item.quantity.unit
+            } ${name}`,
+          };
+          acc.push(list);
+        }
+      });
+      return acc;
+    }, []);
+    return this.ingredientsList;
   }
 
   calculateRecipeCost(ingredientsData) {

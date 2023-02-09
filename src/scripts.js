@@ -112,46 +112,41 @@ function assignCurrentRecipe(event) {
     }
 
     currentRecipeId = parseInt(currentRecipeId)
-    currentRecipe = []
-    recipeRepository.recipes.forEach(recipe => {
-        if(recipe.id === currentRecipeId) {
-            currentRecipe.push(recipe)
-        }
-    })
-    currentRecipe = currentRecipe.map(recipe => new Recipe(recipe))
-    console.log(currentRecipe)
+    currentRecipe = recipeRepository.recipes.filter(recipe => recipe.id === currentRecipeId) 
+    currentRecipe = new Recipe(currentRecipe[0])
 }
 
 function renderCurrentRecipe() {
     recipeModal.innerHTML = ''
-    let ingredients = currentRecipe[0].determineRecipeIngredients(Ingredients)
-    const ingredientsQuantity = currentRecipe.map(recipe => recipe.ingredients.map(ingredient => ingredient.quantity))
+    let ingredients = currentRecipe.determineRecipeIngredients(Ingredients)
+    // const ingredientsQuantity = currentRecipe.map(recipe => recipe.ingredients.map(ingredient => ingredient.quantity))
 
-    // let ingredientAmounts = ingredientsQuantity.map(quantity => quantity.unit)
-
-    // console.log(ingredientAmounts)
     const ingredientsHTML = ingredients.map(ingredient => {
-        return '<li>' + ingredient + '</li>'
+        return '<li>' + ingredient.ingredient + '</li>'
     }).join('')
-    
+    console.log(currentRecipe.instructions)
+
+    const instructionsHTML = currentRecipe.returnInstructions().map(instruction => {
+        return '<li>' + instruction + '</li>' 
+    }).join('')
     recipeModal.innerHTML = 
     `
     <header class="modal__header">
           <h2 class="modal__title" id="modal-1-title">
-            ${currentRecipe.map(recipe => recipe.name)}
+            ${currentRecipe.name}
           </h2>
         </header>
         <main class="modal__content" id="modal-1-content">
-          <img src="${currentRecipe.map(recipe => recipe.image)}">
+          <img src="${currentRecipe.image}">
           <h3>Ingredients</h3>
           <ul>
             ${ingredientsHTML}
           </ul>
           <h3>Recipe Instructions</h3>
           <ol type="1">
-            <li></li>
+            ${instructionsHTML}
           </ol>
-          <h4>Recipe Cost:$${currentRecipe[0].calculateRecipeCost(Ingredients)}</h4>
+          <h4>Recipe Cost:$${currentRecipe.calculateRecipeCost(Ingredients)}</h4>
           <button type="button" class="modal__btn">❤️</button>
           <button class="modal__close" aria-label="Close modal" data-micromodal-close>CLOSE</button>
         </main>
