@@ -2,7 +2,7 @@ import Recipe from './recipeClass';
 
 class RecipeRepository {
   constructor(recipeData) {
-    this.recipeList = recipeData;
+    this.recipeList = recipeData || [];
     this.filteredList = null; 
     this.allRecipes = null;
   };
