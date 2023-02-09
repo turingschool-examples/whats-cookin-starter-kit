@@ -2,7 +2,7 @@ import './styles.css';
 // import apiCalls from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png';
-import './images/star-icon.png';
+import './images/heart.png';
 import Recipe from './classes/Recipe';
 import RecipeRepository from './classes/RecipeRepository';
 import ingredientsData from './data/ingredients';
@@ -37,7 +37,7 @@ function createRecipeCards(recipes) {
         recipeSection.innerHTML += `
         <article class="recipe-card" data-parent="${recipe.id}">
             <img class="recipe-img" src="${recipe.image}" data-parent="${recipe.id}" alt="picture of ${recipe.name}">
-            <img class="star-icon hidden" id="star-icon" data-parent="${recipe.id}" src="./images/star-icon.png" alt="This recipe is in my recipes!">
+            <img class="heart-icon" id="heart-icon" data-parent="${recipe.id}" src="./images/heart.png" alt="This recipe is in my recipes!">
             <h3 style="font-size: ${size}rem" data-parent="${recipe.id}">${recipe.name}</h3>
         </article>`;
     });
@@ -62,6 +62,7 @@ function createRecipeModal(event) {
       ${createList(clickedRecipe.getInstructions())}
       </ol>
       <h4>TOTAL COST $${+(clickedRecipe.listCost(ingredientsData))}</h4>
+      <button class="save-button" id="save-btn">Save Recipe</button>
   </div>`;
 }
 
