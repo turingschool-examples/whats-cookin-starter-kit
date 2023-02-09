@@ -49,8 +49,14 @@ describe('Recipe1', () => {
     assert.notEqual(recipe1.ingredients, recipeTestData[0].ingredients);
   });
 
-  it.skip('should be able to return the total cost of its own ingredients', () => {
+  it('should be able to return the total cost of its own ingredients', () => {
+    recipe1.retrieveIngredientInfo();
+    recipe1.returnCostOfIngredients();
+    assert.equal(recipe1.sum, 177.76);
 
+    recipe2.retrieveIngredientInfo();
+    recipe2.returnCostOfIngredients();
+    assert.equal(recipe2.sum, 272.97);
   });
 
   it.skip('should be able to return the directions to make it', () => {

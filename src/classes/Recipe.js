@@ -11,6 +11,7 @@ class Recipe {
     this.instructions = recipe.instructions;
     this.name = recipe.name;
     this.tags = recipe.tags;
+    this.sum = 0;
   };
 
   retrieveIngredientInfo() {
@@ -19,26 +20,26 @@ class Recipe {
       newIng.name = newIng.returnIngredientName(i.id);
       newIng.costInCents = newIng.returnIngredientCost(i.id);
       newIng.quantity = i.quantity;
-      return newIng
+      return newIng;
     });
     this.ingredients = currentIngredients;
     return this.ingredients;
-  }
-
-  nameIngredientsNeeded() {
-  
-    //iterate thru recipe Data and if id there matches ingredientTestData id
-    //then return ingredientTestData.name 
   };
 
-  // returnCostOfIngredients() {
-
-  // };
+  returnCostOfIngredients() {
+    const total = this.ingredients.reduce((total, cur) => {
+      total += (cur.costInCents * cur.quantity.amount);
+      return total;
+    }, 0);
+    this.sum = (total / 100).toFixed(2);
+    console.log(this.sum)
+    return this.sum;
+  };
+};
 
   // giveDirectionsForRecipe() {
 
   // };
 
-};
 
 export default Recipe;
