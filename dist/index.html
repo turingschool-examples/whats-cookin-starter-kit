@@ -16,21 +16,26 @@
   </head>
 
   <body>  
-      <nav class="menu">
-        <h1 class="menu-title">Menu</h1>
+      <nav class="directory">
+        <h1 class="directory-title">Directory</h1>
         <section class="button-container">
-          <button class="menu-button" id="homeButton">HOME</button>
-          <button class="menu-button" id="viewAllButton">VIEW ALL RECIPES</button>
-        </section>
+          <button class="directory-button" id="homeButton">HOME</button>
+          <button class="directory-button" id="viewAllButton">VIEW ALL RECIPES</button>
+          <button class="directory-button" id="savedRecipesButton"><img class="shiba-stare" src="/src/images/shiba-cool.png" style='vertical-align:middle;' alt="doge wearing sunglasses icon ">SAVED RECIPES</button>
       </nav>
       <div class="main">
         <section class="main-toast-section" id="toastSection">
           <h1 class="whats-cookin-title">What's Cookin'</h1>
-          <div class="search-container">
+          <div class="search-by-name-container">
+            <h2 class="search-by-name-title">Search by name:</h2>
             <input type="text" class="searchTerm" id="searchBar" placeholder="What sounds good?">
             <button type="submit" class="searchButton">
               <i class="fa fa-search"></i>
           </button>
+          </div>
+          <div></div>
+          <div class="search-by-tag-container">
+            <h2 class="search-by-tag-title">Search by tags:</h2>
           </div>
         </section>
         <div class="saved-and-shiba-icon">
