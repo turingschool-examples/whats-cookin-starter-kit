@@ -10,15 +10,6 @@ body {
   width: 100%;
 }
 
-form {
-  color: #555;
-  display: flex;
-  padding: 2px;
-  border: 1px solid currentColor;
-  border-radius: 5px;
-}
-
-
 #top-button {
   display: none;
   font-size: 18px;
@@ -53,13 +44,39 @@ form {
   font-size: 50px;
 }
 
+.search {
+  width: 100%;
+  position:relative;
+  display:flex;
+
+}
+
 .search-bar {
   size: 200%;
   margin-right: 30px;
   width: 250px;
   height: 30px;
+  padding: 5px;
   margin-bottom: 24px;
+  cursor: pointer;
+  padding-left: 20px;
+  border: 3px solid  #61567B;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  outline: none;
   background-color: rgba(255, 255, 255, 0.75);
+}
+
+.search-button {
+  width: 40px !important;
+  height: 30px;
+  border: 1px solid #61567B;
+  background: #61567B;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 .main-elements {
@@ -149,8 +166,8 @@ button:active {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  transform: translate(-50%);
 }
-
 
 .modal {
   display: none;
