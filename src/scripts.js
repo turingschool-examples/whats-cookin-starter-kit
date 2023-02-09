@@ -7,15 +7,15 @@ import Recipe from "../src/classes/Recipe";
 import User from "../src/classes/User";
 import usersData from "./data/users";
 
-
 // Query Selectors
+
 const recipeContainer = document.querySelector(".recipe-container");
 const filterTags = document.querySelector(".filter-tags");
 const searchRecipeInput = document.querySelector(".search-recipe");
 const searchBtn = document.querySelector(".search-btn");
 
-
 // Global Variables
+
 let recipes = testRecipeData.map((recipe) => {
   return new Recipe(recipe);
 });
@@ -24,13 +24,14 @@ let recipeRepo = new RecipeRepository(recipes);
 let randomUser;
 
 // Event Listeners
+
 window.addEventListener("load", () => {
   displayRecipes();
   setUser(usersData);
 });
 
 recipeContainer.addEventListener("click", (e) => {
-  showFull(e);
+  selectRecipe(e);
 });
 
 filterTags.addEventListener("click", (e) => {
@@ -43,6 +44,7 @@ searchBtn.addEventListener("click", (e) => {
 });
 
 // Functions
+
 function displayRecipes() {
   recipeContainer.innerHTML = "";
 
@@ -107,16 +109,21 @@ function filterByName() {
 function setUser(arr) {
   let randomUserIndex = arr[Math.floor(Math.random() * arr.length)];
   randomUser = new User(randomUserIndex);
-  console.log('Random User', randomUser);
-};
+}
 
 function saveRecipe(e) {
   let target = e.target.parentElement.id;
-  let locateRecipe = recipeRepo.recipes
-  .find((recipe) => {
+  let locateRecipe = recipeRepo.recipes.find((recipe) => {
     return recipe.id === Number(target);
-  })
-  console.log(locateRecipe);
+  });
 
   randomUser.recipesToCook(locateRecipe);
-};
+}
+
+function selectRecipe(e) {
+  if (e.target.className === "favorite-button") {
+    saveRecipe(e);
+  } else {
+    showFull(e);
+  }
+}
