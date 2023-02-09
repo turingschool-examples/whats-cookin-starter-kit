@@ -13,20 +13,7 @@ import Ingredients from './data/ingredients'
 MicroModal.init()
 
 var user 
-
-var allTags = [
-    'antipasti',    'starter',
-    'snack',        'appetizer',
-    'antipasto',    "hor d'oeuvre",
-    'lunch',        'main course',
-    'main dish',    'dinner',
-    'sauce',        'side dish',
-    'morning meal', 'brunch',
-    'breakfast',    'salad',
-    'condiment',    'dip',
-    'spread'
-  ]
-
+const saved = []
 
 var morningMeal = ['breakfast', 'morning meal, ']
 var snack = ['dip',  'snack',  'appetizer']
@@ -57,7 +44,7 @@ const recipeModal = document.querySelector('#modal')
 
 for(var i of buttons) {
     i.addEventListener('click', function() {
-        hideAll()
+        if(event.target.id !== "top-button") {hideAll()}
       });
 }
 topButton.addEventListener('click', function() {document.documentElement.scrollTop = 0})
@@ -123,7 +110,15 @@ function renderCurrentRecipe() {
     const ingredientsHTML = ingredients.map(ingredient => {
         return '<li>' + ingredient.ingredient + '</li>'
     }).join('')
-    console.log(currentRecipe.instructions)
+
+    var sa = saved.filter(current => current.id === currentRecipe.id)
+
+    if(saved.filter(current => current.id === currentRecipe.id).length !== 0) {
+        var isSaved = "Saved"
+        saveButton.style.backgroundColor = "red"
+    } else {
+        var isSaved = "♥️"
+    }
 
     const instructionsHTML = currentRecipe.returnInstructions().map(instruction => {
         return '<li>' + instruction + '</li>' 
@@ -146,13 +141,21 @@ function renderCurrentRecipe() {
             ${instructionsHTML}
           </ol>
           <h4>Recipe Cost:$${currentRecipe.calculateRecipeCost(Ingredients)}</h4>
-          <button type="button" class="modal__btn">❤️</button>
+          <button type="button" class="modal__btn">${isSaved}</button>
           <button class="modal__close" aria-label="Close modal" data-micromodal-close>CLOSE</button>
         </main>
         `
         MicroModal.show('modal-1')
+        var saveButton = document.querySelector('.modal__btn')
+        saveButton.addEventListener('click', function(){saveRecipe(saveButton)})
     //populate the modal with current recipe
     //show the modal
+}
+
+function saveRecipe(button) {
+    saved.push(currentRecipe)
+    button.innerText = 'Saved'
+    button.style.backgroundColor = "red"
 }
 
 function displayRecipes() {

@@ -6,7 +6,6 @@ class RecipeRepository {
     this.filteredRecipes;
   }
   filterByTag(tag) {
-    console.log(tag)
     for(var i = 0; i < tag.length; i++) {
       if (!tag[i]) {
         return;
@@ -17,7 +16,6 @@ class RecipeRepository {
         this.filteredRecipes = null;
         return
       } else {
-        console.log(this.filteredRecipes)
         return this.filteredRecipes
       }
     }
