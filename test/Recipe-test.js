@@ -4,55 +4,56 @@ import Recipe from '../src/classes/Recipe';
 import recipeTestData from '../src/data/recipeTestData';
 
 describe('Recipe1', () => {
-  let recipe;
+  let recipe1, recipe2;
 
   beforeEach(() => {
-    recipe = new Recipe(recipeTestData[0]);
-    // console.log('line 10', recipe.details);
-    // console.log('line 11', recipe.details.id)
+    recipe1 = new Recipe(recipeTestData[0]);
+    recipe2 = new Recipe(recipeTestData[1]);
   });
 
-  it.skip('should be a function', () => {
+  it('should be a function', () => {
     assert.isFunction(Recipe);
   });
 
-  it.skip('should be able to create an instance of Recipe', () => {
-    assert.instanceOf(recipe, Recipe);
+  it('should be able to create an instance of Recipe', () => {
+    assert.instanceOf(recipe1, Recipe);
   });
 
-  it.skip('should contain its own ID number', () => {
-    assert.equal(recipe.details.id, 595736);
+  it('should contain its own ID number', () => {
+    assert.equal(recipe1.id, 595736);
   });
 
-  it.skip('should contain the image path of a particular recipe preview', () => {
-    assert.equal(recipe.details.image, recipeTestData[0].image);
+  it('should contain the image path of a particular recipe preview', () =>{
+    assert.equal(recipe1.image, recipeTestData[0].image);
   });
 
-  it.skip('should contain the ingredients used to make each recipe', () => {
-    assert.equal(recipe.details.ingredients, recipeTestData[0].ingredients);
+  it('should contain the ingredients used to make each recipe', () => {
+    assert.equal(recipe1.ingredients, recipeTestData[0].ingredients);
   });
 
-  it.skip('should contain the instructions to follow to create it.skip', () => {
-    assert.equal(recipe.details.instructions, recipeTestData[0].instructions);
+  it('should contain the instructions to follow to create it', () => {
+    assert.equal(recipe1.instructions, recipeTestData[0].instructions);
   });
 
-  it.skip('should contain the name of each recipe', () => {
-    assert.equal(recipe.details.name, recipeTestData[0].name);
+  it('should have a name', () => {
+    assert.equal(recipe1.name, recipeTestData[0].name);
   });
 
-  it.skip('should contain the tags that enable each recipe to be filtered or searched', () => {
-    assert.equal(recipe.details.tags, recipeTestData[0].tags);
+  it('should contain recipe tags', () => {
+    assert.equal(recipe1.tags, recipeTestData[0].tags)
   });
 
-  it.skip('should be able to return a list of its ingredients', () => {
-    assert.equal(recipe.nameIngredients(),  ["wheat flour", "bicarbonate of soda", "eggs", "sucrose","instant vanilla pudding", "brown sugar", "salt", "fine sea salt", "semi sweet chips", "unsalted butter", "vanilla"]);
+  it('should be able to return a list of its ingredients', () => {
+    assert.equal(recipe1.ingredients, recipeTestData[0].ingredients);
+    recipe1.retrieveIngredientInfo();
+    assert.notEqual(recipe1.ingredients, recipeTestData[0].ingredients);
   });
 
   it.skip('should be able to return the total cost of its own ingredients', () => {
-    assert.equal(recipe.returnCost(), );
+
   });
 
-  it.skip('should be able to return the directions to make it.skip', () => {
-    assert.equal(recipe.giveDirections(), );
+  it.skip('should be able to return the directions to make it', () => {
+
   });
 });
