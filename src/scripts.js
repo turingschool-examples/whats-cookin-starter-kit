@@ -25,6 +25,7 @@ const recipeRepository = new RecipeRepository(recipeData)
 const navigationSection = document.querySelector(".navigation-section")
 const recipeSection  = document.querySelector(".recipe-section")
 const pantrySection = document.querySelector(".pantry-section")
+const savedRecipes = document.querySelector("#saved-recipes")
 const navigationSeciton = document.querySelector(".navigation-section")
 const recipes = document.querySelector(".recipe")
 
@@ -49,6 +50,7 @@ for(var i of buttons) {
 }
 topButton.addEventListener('click', function() {document.documentElement.scrollTop = 0})
 allRecipes.addEventListener('click', showAllRecipes)
+savedRecipes.addEventListener('click', displaySavedRecipes)
 breakfastFilter.addEventListener('click', function() {showFilteredRecipes(morningMeal)})
 snacksAppFilter.addEventListener('click', function() {showFilteredRecipes(snack)})
 brunchFilter.addEventListener('click', function() {showFilteredRecipes(other)})
@@ -115,7 +117,6 @@ function renderCurrentRecipe() {
 
     if(saved.filter(current => current.id === currentRecipe.id).length !== 0) {
         var isSaved = "Saved"
-        saveButton.style.backgroundColor = "red"
     } else {
         var isSaved = "♥️"
     }
@@ -147,6 +148,9 @@ function renderCurrentRecipe() {
         `
         MicroModal.show('modal-1')
         var saveButton = document.querySelector('.modal__btn')
+        if(saved.filter(current => current.id === currentRecipe.id).length !== 0) {
+            saveButton.style.backgroundColor = "red"
+        }
         saveButton.addEventListener('click', function(){saveRecipe(saveButton)})
     //populate the modal with current recipe
     //show the modal
@@ -167,6 +171,17 @@ function displayRecipes() {
         `
     }
 }
+
+function displaySavedRecipes() {
+    recipeSection.innerHTML = ''
+    for(var i = 0; i < saved.length; i++) {
+        recipeSection.innerHTML += 
+        `
+        <img src="${saved[i].image}" class="recipe"></img>
+        `
+    }
+}
+
 
 function displayPantry() {
     pantrySection.innerHTML += `Hello, ${user.name}. You have these items in your pantry. `
