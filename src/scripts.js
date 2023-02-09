@@ -79,6 +79,7 @@ function displayCards(recipeList) {
         </section>
         `
     })
+    fixSavedHearts();
 }
 
 function toggleRecipeSaved(element) {
@@ -126,10 +127,12 @@ function flipToFront(elementIndex) {
 
 function displayHomePage() {
     cardSection.dataset.page = "home";
+    displayCards(mainRepository);
 }
 
 function displaySavedFoodPage() {
     cardSection.dataset.page = "saved";
+    displayCards(user.recipesToCook);
 }
 
 function show(element) {
@@ -179,6 +182,16 @@ function uncheckOtherFilters(tag) {
     checkboxes.forEach(box => {
         if (box.dataset.tag !== tag) {
             box.checked = false;
+        };
+    });
+};
+
+function fixSavedHearts() {
+    const allHearts = document.querySelectorAll('.saveRecipeButton');
+
+    allHearts.forEach(heart => {
+        if (user.recipesToCook.recipes.some(recipe => recipe.id === parseInt(heart.dataset.index))) {
+            heart.classList.add('savedRecipe');
         };
     });
 };
