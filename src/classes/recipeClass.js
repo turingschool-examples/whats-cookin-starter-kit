@@ -1,7 +1,6 @@
 import Ingredient from './ingredientClass';
 
 class Recipe {
-  
   constructor(recipe) {
     this.id = recipe.id;
     this.image = recipe.image;
@@ -9,7 +8,6 @@ class Recipe {
     this.instructions = recipe.instructions;
     this.name = recipe.name;
     this.tags = recipe.tags;
-    this.sum = 0;
   };
 
   retrieveIngredientInfo() {
@@ -29,8 +27,8 @@ class Recipe {
       total += (cur.costInCents * cur.quantity.amount);
       return total;
     }, 0);
-    this.sum = (total / 100).toFixed(2);
-    return this.sum;
+    const sum = (total / 100).toFixed(2);
+    return sum;
   };
 
   giveInstructionsForRecipe() {
