@@ -1,5 +1,3 @@
-import ingredientsData from '../data/ingredients';
-
 class Recipe {
   constructor(recipe) {
     this.id = recipe.id;
@@ -10,7 +8,7 @@ class Recipe {
     this.tags = recipe.tags;
   };
 
-  getIngredients() {
+  getIngredients(ingredientsData) {
     const ingredientsListIDs = this.ingredients.map((ingredient) => {
       return ingredient.id;
     })
@@ -22,7 +20,7 @@ class Recipe {
     return ingredientNames;
   };
 
-  getIngredientsCost() {
+  getIngredientsCost(ingredientsData) {
     const ingredientsListIDs = this.ingredients.map((ingredient) => {
       return ingredient.id;
     })

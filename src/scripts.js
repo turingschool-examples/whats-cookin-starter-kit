@@ -7,7 +7,8 @@ import Recipe from "../src/classes/Recipe";
 import User from "../src/classes/User";
 import usersData from "./data/users";
 import fetchPromises from "./apiCalls";
-console.log(fetchPromises())
+import ingredientsData from "./data/ingredients";
+
 // Query Selectors
 
 const recipeContainer = document.querySelector(".recipe-container");
@@ -16,19 +17,16 @@ const searchRecipeInput = document.querySelector(".search-recipe");
 const searchBtn = document.querySelector(".search-btn");
 
 // Global Variables
-
-let recipes = testRecipeData.map((recipe) => {
-  return new Recipe(recipe);
-});
-let recipeRepo = new RecipeRepository(recipes);
-
+let allUsers;
+let allRecipes;
+let allIngredients;
+let recipeRepo
 let randomUser;
 
 // Event Listeners
 
 window.addEventListener("load", () => {
-  displayRecipes();
-  setUser(usersData);
+  resolvePromises();
 });
 
 recipeContainer.addEventListener("click", (e) => {
@@ -48,7 +46,6 @@ searchBtn.addEventListener("click", (e) => {
 
 function displayRecipes() {
   recipeContainer.innerHTML = "";
-
   recipeRepo.recipes.forEach((recipe) => {
     recipeContainer.innerHTML += `
     <div id="${recipe.id}" class="recipe-card">
@@ -72,9 +69,9 @@ function showFull(e) {
     .forEach((recipe) => {
       recipeContainer.innerHTML += `
       <p>${recipe.name}</p>
-      <p>${recipe.getIngredients()}</p>
+      <p>${recipe.getIngredients(allIngredients)}</p>
       <p>${recipe.getInstructions()}</p>
-      <p>$${recipe.getIngredientsCost()}</p>
+      <p>$${recipe.getIngredientsCost(allIngredients)}</p>
     `;
     });
 }
@@ -128,3 +125,18 @@ function selectRecipe(e) {
     showFull(e);
   }
 }
+
+function resolvePromises() {
+  fetchPromises().then((data) => {
+    allUsers = data[0].usersData.map((user) => new User(user));
+    allIngredients = data[1].ingredientsData.map(ingredient => ingredient)
+    console.log(allIngredients)
+    allRecipes = data[2].recipeData.map((recipe) => new Recipe(recipe));
+    console.log(allRecipes);
+  }).then(() => {
+    recipeRepo = new RecipeRepository(allRecipes);
+    displayRecipes();
+    setUser(allUsers)
+  })
+}
+
