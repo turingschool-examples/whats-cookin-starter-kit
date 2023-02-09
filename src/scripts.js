@@ -51,7 +51,7 @@ function displayCards(recipeList) {
     recipeList.recipes ? displayRecipes = recipeList.recipes : displayRecipes = recipeList;
 
     cardSection.innerHTML = '';
-    displayRecipes.forEach((recipe, index) => {
+    displayRecipes.forEach((recipe) => {
         let instructions = recipe.instructions.map((instruction) => {
             return `<p class="foodText">${instruction.instruction}</p>`
         })
@@ -133,7 +133,7 @@ function searchRecipes(searchTerm) {
     if (returnIfHome()) {
         mainRepository.filterRecipesByName(searchTerm.toUpperCase()) ? displayCards(mainRepository.recipesByName) : warnNoResults();
     } else {
-        user.filterSavedByName(searchTerm.toUpperCase()) ? updateCards(user.recipesToCook) : warnNoResults();
+        user.filterSavedByName(searchTerm.toUpperCase()) ? displayCards(user.recipesToCook) : warnNoResults();
     };
 };
 
