@@ -2,12 +2,13 @@ import { assert, expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
 import recipeTestData from '../src/data/recipeTestData';
 
-describe('Recipe', () => {
+describe('Recipe Repository', () => {
   let recipes
   beforeEach(() => {
     recipes = new RecipeRepository(recipeTestData);
+    recipes.createRecipeList();
   });
-
+  
   it('should be a function', () => {
     assert.isFunction(RecipeRepository);
   });
@@ -35,7 +36,7 @@ describe('Recipe', () => {
   it('should contain a filtered list of returned results', () => {
     assert.equal(recipes.filteredList, null);
     recipes.filterByTag('starter');
-    assert.include(recipes.filteredList, recipes.recipeList[0]);
+    assert.include(recipes.filteredList, recipes.allRecipes[0]);
     
     recipes.filterByTag('False Tag');
     assert.notInclude(recipes.filteredList, 'Recipe Not Found')
