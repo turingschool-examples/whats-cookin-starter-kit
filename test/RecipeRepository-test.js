@@ -153,19 +153,19 @@ describe('Recipe Repository', () => {
     }
     expect(mealPlan.recipes).to.deep.equal([recipe1, recipe2]);
 
-    mealPlan.filterRecipesByName('Maple Dijon Apple Cider Grilled Pork Chops')
+    mealPlan.filterRecipesByName('Maple Dijon Apple Cider Grilled Pork Chop'.toUpperCase())
     expect(mealPlan.recipesByName).to.deep.equal([recipe2]);
     
-    mealPlan.filterRecipesByName('Pork Chops')
+    mealPlan.filterRecipesByName('Pork Chops'.toUpperCase())
     expect(mealPlan.recipesByName).to.deep.equal([recipe2]);
     
-    mealPlan.filterRecipesByName('Chocolate')
+    mealPlan.filterRecipesByName('Chocolate'.toUpperCase())
     expect(mealPlan.recipesByName).to.deep.equal([recipe1]);
 
-    mealPlan.filterRecipesByTag('Chocolate Maple')
+    mealPlan.filterRecipesByTag('Chocolate Maple'.toUpperCase())
     expect(mealPlan.recipesByTag).to.deep.equal([]);
 
-    mealPlan.filterRecipesByTag('')
+    mealPlan.filterRecipesByTag(''.toUpperCase())
     expect(mealPlan.recipesByTag).to.deep.equal([]);
 
     mealPlan.filterRecipesByTag(23) 

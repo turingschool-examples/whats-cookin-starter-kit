@@ -4,10 +4,9 @@ import Recipe from '../src/classes/Recipe';
 import User from '../src/classes/User';
 
 describe('User', () => {
-    let user, recipe;
+    let user, recipe, recipeRepo;
 
     beforeEach(() => {
-        user = new User({"name": "Saige O'Kon", "id": 1, "pantry": [{"ingredient": 11297, "amount": 4}]});
         recipe = new Recipe({
             "id": 595736,
             "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -24,8 +23,9 @@ describe('User', () => {
               "snack",
             ]
         });
-
-        user.saveRecipe(recipe);
+        recipeRepo = new RecipeRepository([recipe]);
+        user = new User({"name": "Saige O'Kon", "id": 1, "pantry": [{"ingredient": 11297, "amount": 4}]}, recipeRepo);
+        
     });
 
     it('should be a function', () => {
@@ -51,23 +51,29 @@ describe('User', () => {
     });
 
     it('should be able to save recipes', () => {
+        user.saveRecipe(0);
         expect(user.recipesToCook.recipes).to.deep.equal([recipe]);
     });
 
     it('should be able to filter saved recipes by tag', () => {
-        
+        user.saveRecipe(0);
         expect(user.filterSavedByTag('snack')).to.deep.equal([recipe]);
     });
 
     it('should return an empty array when filtered by a tag that doesn\'t exist', () => {
+        user.saveRecipe("0");
         expect(user.filterSavedByTag('chocolate').length).to.equal(0);
     });
 
     it('should be able to filter saved recipes by name', () => {
-        expect(user.filterSavedByName("Loaded Chocolate Chip Pudding Cookie Cups")).to.deep.equal([recipe]);
+        user.saveRecipe("0");
+        user.filterSavedByName("Loaded Chocolate Chip Pudding Cookie Cups".toUpperCase());
+        expect(user.recipesToCook.recipesByName).to.deep.equal([recipe]);
     });
 
     it('should return an empty array when filtered by a name that doesn\'t exist', () => {
-        expect(user.filterSavedByName("Chicken Marsala").length).to.equal(0);
+        user.saveRecipe("0");
+        user.filterSavedByName("Chicken Marsala".toUpperCase());
+        expect(user.recipesToCook.recipesByName.length).to.equal(0);
     });
 });

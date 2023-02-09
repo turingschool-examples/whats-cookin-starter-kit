@@ -13,24 +13,38 @@ import usersData from './data/users';
 const homeButton = document.querySelector('#home-button');
 const myFoodButton = document.querySelector('#my-food-button');
 const searchBar = document.querySelector('#search-bar');
-const cardSection = document.querySelector('#card-section')
+const cardSection = document.querySelector('#card-section');
 const navBar = document.querySelector('nav');
 const main = document.querySelector('main');
+const footer = document.querySelector('footer');
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
 const allRecipes = recipeData.map(recipe => new Recipe(recipe));
 const mainRepository = new RecipeRepository(allRecipes);
 const user = new User(usersData[Math.floor(Math.random() * usersData.length)], mainRepository);
 
-window.addEventListener('load', displayCards)
+user.saveRecipe("2");
+user.saveRecipe("6");
+user.saveRecipe("4");
+user.saveRecipe("11");
+user.saveRecipe("23");
+console.log(user.recipesToCook)
+window.addEventListener('load', displayCards);
 main.addEventListener('click', checkClick);
 navBar.addEventListener('click', checkNavButtons);
+
 searchBar.addEventListener('keydown', e => {
     if (e.code === "Enter") {
         searchRecipes(searchBar.value);
     } else {
         resetWarning();
     };
-})
+});
+footer.addEventListener('click', e => {
+    if (e.target.type === "checkbox") {
+        e.target.checked ? filterRecipes(e.target.dataset.tag) : resetFilters();
+    };
+});
 
 
 function displayCards() {
@@ -66,7 +80,7 @@ function displayCards() {
 function checkClick(e) {
     if (e.target.dataset.side) {
         e.target.dataset.side === 'front' ? flipToBack(e.target.dataset.index) : flipToFront(e.target.dataset.index)
-    } 
+    }
  }
 
 function checkNavButtons(e) {
@@ -107,17 +121,27 @@ function hide(element) {
     element.classList.add('hidden')
 }
 
+function returnIfHome() {
+    return cardSection.dataset.page === "home";
+};
+
 function searchRecipes(searchTerm) {
-    if (cardSection.dataset.page === "home") {
+    if (returnIfHome()) {
         user.filterAllByName(searchTerm.toUpperCase()) ? updateCards() : warnNoResults();
-    } else if (cardSection.dataset.page === "saved") {
-        user.filterSavedByName(searchTerm.toUpperCase());
-        console.log(user.recipesByName);
+    } else {
+        user.filterSavedByName(searchTerm.toUpperCase()) ? updateCards() : warnNoResults();
     };
 };
 
 function filterRecipes(tag) {
-    
+    uncheckOtherFilters(tag);
+    if (returnIfHome()) {
+        user.filterAllByTag(tag);
+        updateCards();
+    } else {
+        user.filterSavedByTag(tag);
+        console.log(user.recipesToCook.recipesByName); //updateCards() once thats figured out
+    };
 };
 
 function warnNoResults() {
@@ -130,5 +154,19 @@ function resetWarning() {
 
 function updateCards() {
     searchBar.value = '';
-    // whatever we wanna do to update the cards here
+    // however we want to update the cards
+    // console.log(user.allRecipesByTag);
+    // console.log(user.recipesToCook.recipesByName);
+};
+
+function resetFilters() {
+    // display all recipes again - used when turning off currently selected filter instead of choosing a different one
+};
+
+function uncheckOtherFilters(tag) {
+    checkboxes.forEach(box => {
+        if (box.dataset.tag !== tag) {
+            box.checked = false;
+        };
+    });
 };
