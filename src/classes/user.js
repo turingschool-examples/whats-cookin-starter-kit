@@ -6,8 +6,8 @@ class User{
         this.recipesToCook = []
 
     }
-    addRecipeToCook(){
-       
+    addRecipeToCook(recipe){
+       this.recipesToCook.push(recipe)
     }
     removeRecipeToCook(){
 

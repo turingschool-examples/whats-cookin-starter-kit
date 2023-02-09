@@ -1,9 +1,12 @@
 import { expect } from 'chai';
 import User from '../src/classes/user';
+import Recipe from '../src/classes/recipe';
+import Ingredient from '../src/classes/ingredient';
 
 describe('user', () =>{
     let user;
     let recipe;
+    let ingredient;
 
     beforeEach(() =>{
         user = new User(
@@ -18,6 +21,21 @@ describe('user', () =>{
             ]
             }
         )
+        // recipe = new Recipe({
+        //     name: 'cookies',
+        //     ingredients: ingredient
+        // })
+
+        ingredient = new Ingredient({
+            id: 007,
+            name: 'choccy chips',
+            cost: 50
+        })
+
+        recipe = new Recipe({
+            name: 'cookies',
+            ingredients: ingredient
+        })
     })
 
     it('should be a function', () => {
@@ -28,10 +46,12 @@ describe('user', () =>{
         expect(user.name).to.equal("Brexye Quysh")
     })
 
-    it('user has am id', () => {
+    it('user has an id', () => {
         expect(user.id).to.equal(1)
     })
 
-
+    it('should add a recipe', () =>{
+        expect(user.addRecipeToCook('choccy chip')).to.equal('cookies')
+    })
 
 })
