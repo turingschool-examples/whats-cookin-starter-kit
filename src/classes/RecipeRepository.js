@@ -15,10 +15,6 @@ class RecipeRepository {
   filterRecipesByName(name) {
     this.recipesByName = this.recipes.filter((recipe) => recipe.name.toUpperCase().includes(name));
   };
-
-  filterAllByTag(tag) {
-    this.allRecipesByTag = this.allRecipes.recipes.filter(recipe => recipe.tags.includes(tag));
-  };
 }
 
 export default RecipeRepository;
