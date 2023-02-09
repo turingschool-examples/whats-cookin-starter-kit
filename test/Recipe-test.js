@@ -260,23 +260,23 @@ describe('Recipe', () => {
   it('should be able to return the names of the ingredients needed', () => {
     expect(recipe.listIngredients).to.be.a('function');
     expect(recipe.listIngredients(ingredients)).to.deep.equal([
-      "wheat flour",
-      "bicarbonate of soda",
-      "eggs",
-      "sucrose",
-      "instant vanilla pudding",
-      "brown sugar",
-      "salt",
-      "fine sea salt",
-      "semi sweet chips",
-      "unsalted butter",
-      "vanilla"
+      '1.5 c wheat flour',
+      '0.5 tsp bicarbonate of soda',
+      '1 large eggs',
+      '0.5 c sucrose',
+      '3 Tbsp instant vanilla pudding',
+      '0.5 c brown sugar',
+      '0.5 tsp salt',
+      '24 servings fine sea salt',
+      '2 c semi sweet chips',
+      '0.5 c unsalted butter',
+      '0.5 tsp vanilla'
     ]);
   });
 
   it('should return the cost of it\'s ingredients', () => {
     expect(recipe.listCost).to.be.a('function');
-    expect(recipe.listCost(ingredients)).to.equal(17776);
+    expect(recipe.listCost(ingredients)).to.equal(177.76);
   });
 
   it('should return the recipe instructions', () => {

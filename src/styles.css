@@ -18,6 +18,82 @@ body {
   z-index: 3;
 }
 
+.direction-list {
+  list-style: none;
+}
+
+.all-recipes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.recipe-card {
+  height: 40vmin;
+  width: 35vmin;
+  border: 2px black solid;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px #888888;
+  background-color: #E1E1E1;
+  margin: 3vmin;
+}
+
+h3 {
+  margin: 0.2vmin;
+  /* font-size: 2.8rem; */
+}
+
+.recipe-img {
+  height: 30vmin;
+  width: 35vmin;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar li:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content li {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content li:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 .title {
   font-size: 4rem;
 }
@@ -79,38 +155,6 @@ li {
   margin: 0.1vmin 0.2vmin;
 } */
 
-
-.all-recipes {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.recipe-card {
-  height: 40vmin;
-  width: 35vmin;
-  border: 2px black solid;
-  border-radius: 5px;
-  box-shadow: 3px 3px 10px #888888;
-  background-color: #E1E1E1;
-  margin: 3vmin;
-}
-
-h3 {
-  margin: 0.2vmin;
-  /* font-size: 2.8rem; */
-}
-
-.recipe-img {
-  height: 30vmin;
-  width: 35vmin;
-}
-
-.hidden {
-  display: none;
-}
-
-
 /* Featured CSS Starters */
 
 /* .featured-recipe {
@@ -137,3 +181,7 @@ h3 {
 .featured-directions > ol {
   text-align: left;
 } */
+
+.hidden {
+  display: none;
+}

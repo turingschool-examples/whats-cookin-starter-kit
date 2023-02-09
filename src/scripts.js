@@ -1,77 +1,95 @@
-// import './styles.css';
+import './styles.css';
 // import apiCalls from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
+import './images/turing-logo.png';
+import './images/star-icon.png';
+import Recipe from './classes/Recipe';
+import RecipeRepository from './classes/RecipeRepository';
+import ingredientsData from './data/ingredients';
+import recipeData from './data/recipes';
 
+// global variables
+const recipeRepo = new RecipeRepository(recipeData);
 
+const recipeSection = document.getElementById('allRecipes');
+const modalSection = document.getElementById('recipeModalBackground');
+const filterDropdown = document.getElementById('filterDropdown');
+const searchBar = document.getElementById('searchBar')
 
+//event listeners
+window.addEventListener('load', () => createRecipeCards(recipeRepo.recipes));
+recipeSection.addEventListener('click', createRecipeModal);
+modalSection.addEventListener('click', collapseRecipe);
+filterDropdown.addEventListener('click', filterRecipes);
 
-const recipeNames = [
-    'Loaded Chocolate Chip Pudding Cookie Cups',
-    'Maple Dijon Apple Cider Grilled Pork Chops',
-    "Dirty Steve's Original Wing Sauce",
-    'Elvis Pancakes',
-    'Mock Udi’s Gluten Free Whole Grain Bread',
-    'Ambrosia Cupcakes',
-    'Creamy Coconut Yogurt Bowl with Chocolate Granola (Video)',
-    'Sesame Cookies',
-    'Thai Chicken Tenders with Broiled Pineapple Slaw',
-    'Egg and Rapini Casserole',
-    'Pulled Pork',
-    'Pumpkin Cheesecake Breakfast Smoothie',
-    'Cinnamon Raisin Overnight French Toast w/ Apple Filling',
-    'Brown Butter Garlic Shrimp',
-    'Baked Stuffed Artichokes',
-    'Puppy Chow Cookies',
-    'Easy Creamy Potato Salad with Yogurt',
-    'Slow-Cooker Italian-Stuffed Peppers',
-    'Whole Wheat Milk and Honey Sandwich Bread',
-    'The Ultimate Healthy Soft & Chewy Pumpkin Chocolate Chip Cookies',
-    'Butterscotch Pudding',
-    'quinoa tabbouleh',
-    'Birthday Cake Jello Shots',
-    'Artichoke Spinach Dip Stuffed Mushrooms',
-    'Baked Manicotti with Sausage and Peas',
-    'Spinach Artichoke Quinoa Casserole',
-    'Double Raspberry Soufflés',
-    'A Cake To Warm Any Heart – Banana Split Cake',
-    'Avocado Chickpea Salad',
-    'Slow Cooker Peach Cobbler',
-    '4 Cheese White Pizza',
-    'Cereal Marshmallow Bars',
-    'Hummus Deviled Eggs',
-    'Creamsicle Pie',
-    'Smothered Green Beans',
-    'Pear & Walnut Salad with a Pear Vinaigrette',
-    'Mexican Vegetables on Cornbread',
-    'Barbecue Shrimp Stir-Fry',
-    'Clayudas',
-    'Farro with Shiitake Mushrooms and Baby Spinach',
-    'Bang Bang Shrimp with Napa Cabbage Slaw',
-    'Homemade Italian Meatballs',
-    'Curried Strawberry Chicken Salad',
-    'Bacon Wrapped Stuffed Pork Tenderloin',
-    'Rolo Cookie Bars',
-    'Buffalo Chicken Sliders',
-    "Reese's Pieces Peanut Butter Cookies",
-    'Farmer’s Market Flatbread Pizza',
-    'Vegan Lentil Loaf',
-    'Pastry Cream'
-  ]
+// Let's clean this up to be a proper form submission..?
+searchBar.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    searchRecipes()
+  }
+});
 
-const recipeSection = document.getElementById('allRecipes')
-window.addEventListener('load', createRecipeCards)
-
-function createRecipeCards() {
-    let count = 0
-    recipeNames.forEach(recipe => {
-        count++
-        let size = (2 - (recipe.length / 65)).toFixed(2)
+//functions
+function createRecipeCards(recipes) {
+    recipeSection.innerHTML = "";
+    recipes.forEach(recipe => {
+        let size = (2 - (recipe.length / 65)).toFixed(2);
         recipeSection.innerHTML += `
-        <article class="recipe-card" id="recipe${count}">
-            <img class="recipe-img" src="../src/images/cookies-placeholder.jpeg" alt="Cookies placeholder">
-            <img class="star-icon hidden" id="star-icon" src="../src/images/star-icon.png" alt="This recipe is in my recipes!">
-            <h3 style="font-size: ${size}rem">${recipe}</h3>
-        </article>`
-    })
+        <article class="recipe-card" data-parent="${recipe.id}">
+            <img class="recipe-img" src="${recipe.image}" data-parent="${recipe.id}" alt="picture of ${recipe.name}">
+            <img class="star-icon hidden" id="star-icon" data-parent="${recipe.id}" src="./images/star-icon.png" alt="This recipe is in my recipes!">
+            <h3 style="font-size: ${size}rem" data-parent="${recipe.id}">${recipe.name}</h3>
+        </article>`;
+    });
+}
+
+function createRecipeModal(event) {
+  toggleHidden(modalSection);
+  let recipeID = +(event.target.dataset.parent);
+  let clickedRecipe = recipeRepo.recipes.find(recipe => recipe.id === recipeID);
+  modalSection.innerHTML = `
+  <div class="recipe-popup">
+      <h2>${clickedRecipe.name}</h2>
+      <div class="image-ingredients">
+      <img class="recipe-img" src="${clickedRecipe.image}" alt="${clickedRecipe.name} image">
+      <ul class="ingredient-list">
+          <h3>Ingredients:</h3>
+          ${createList(clickedRecipe.listIngredients(ingredientsData))}
+      </ul>
+      </div>
+      <ol class="direction-list">
+      <h3>Directions:</h3>
+      ${createList(clickedRecipe.getInstructions())}
+      </ol>
+      <h4>TOTAL COST $${+(clickedRecipe.listCost(ingredientsData))}</h4>
+  </div>`;
+}
+
+function createList(recipe) {
+    return recipe.reduce((acc, cv) => {
+        acc += `<li>${cv}</li>`;
+        return acc;
+    }, "");
+}
+
+function toggleHidden(element) {
+  element.classList.toggle('hidden');
+}
+
+function collapseRecipe(event) {
+  if(event.target.id === "recipeModalBackground"){
+    toggleHidden(modalSection);
+  }
+}
+
+function filterRecipes(event) {
+    let tag = event.target.innerText.toLowerCase();
+    let filteredRecipes = recipeRepo.filterByTag(tag);
+    createRecipeCards(filteredRecipes);
+}
+
+function searchRecipes() {
+  let keyword = searchBar.value;
+  let searchedRecipes = recipeRepo.filterByName(keyword);
+  createRecipeCards(searchedRecipes);
 }
