@@ -15,6 +15,7 @@ const recipeSection = document.getElementById('allRecipes');
 const modalSection = document.getElementById('recipeModalBackground');
 const filterDropdown = document.getElementById('filterDropdown');
 const searchBar = document.getElementById('searchBar')
+let modalRecipe 
 // const saveButton = document.getElementById('saveBtn')
 
 //event listeners
@@ -40,37 +41,41 @@ function createRecipeCards(recipes) {
         recipeSection.innerHTML += `
         <article class="recipe-card" data-parent="${recipe.id}">
             <img class="recipe-img" src="${recipe.image}" data-parent="${recipe.id}" alt="picture of ${recipe.name}">
-            <img class="heart-icon" id="heart-icon" data-parent="${recipe.id}" src="./images/heart.png" alt="This recipe is in my recipes!">
+            <img class="heart-icon hidden" id="heartIcon" data-parent="${recipe.id}" src="./images/heart.png" alt="This recipe is in my recipes!">
             <h3 style="font-size: ${size}rem" data-parent="${recipe.id}">${recipe.name}</h3>
         </article>`;
+        let heart = document.getElementById('heartIcon')
+        if(recipe.saved){
+            toggleHidden(heart)
+        }
     });
 }
 
 function createRecipeModal(event) {
   toggleHidden(modalSection);
   let recipeID = +(event.target.dataset.parent);
-  let clickedRecipe = recipeRepo.recipes.find(recipe => recipe.id === recipeID);
+  modalRecipe = recipeRepo.recipes.find(recipe => recipe.id === recipeID);
   let buttonText
-  clickedRecipe.saved ? buttonText = "Remove from Saved Recipes" : buttonText = "Add to Saved Recipes"
+  modalRecipe.saved ? buttonText = "Remove from Saved Recipes" : buttonText = "Add to Saved Recipes"
   modalSection.innerHTML = `
   <div class="recipe-popup">
-      <h2>${clickedRecipe.name}</h2>
+      <h2>${modalRecipe.name}</h2>
       <div class="image-ingredients">
-      <img class="recipe-img" src="${clickedRecipe.image}" alt="${clickedRecipe.name} image">
+      <img class="recipe-img" src="${modalRecipe.image}" alt="${modalRecipe.name} image">
       <ul class="ingredient-list">
           <h3>Ingredients:</h3>
-          ${createList(clickedRecipe.listIngredients(ingredientsData))}
+          ${createList(modalRecipe.listIngredients(ingredientsData))}
       </ul>
       </div>
       <ol class="direction-list">
       <h3>Directions:</h3>
-      ${createList(clickedRecipe.getInstructions())}
+      ${createList(modalRecipe.getInstructions())}
       </ol>
-      <h4>TOTAL COST $${+(clickedRecipe.listCost(ingredientsData))}</h4>
-      <button class="save-button" id="saveBtn" data-recipe="${recipeID}">${buttonText}</button>
+      <h4>TOTAL COST $${+(modalRecipe.listCost(ingredientsData))}</h4>
+      <button class="save-button" id="saveBtn">${buttonText}</button>
   </div>`;
   const saveButton = document.getElementById('saveBtn')
-  saveButton.addEventListener('click', toggleSavedRecipe);
+  saveButton.addEventListener('click', toggleSaveRecipe);
 }
 
 function createList(recipe) {
@@ -103,8 +108,6 @@ function searchRecipes() {
 }
 
 function toggleSaveRecipe(event) {
-    let recipeID = +(event.target.dataset.recipe);
-    let currentRecipe = recipeRepo.recipes.find(recipe => recipe.id === recipeID);
-    currentUser.toggleSaveRecipe(currentRecipe)
-
+console.log(modalRecipe)
+    // currentUser.toggleSaveRecipe(modalRecipe)
 }
