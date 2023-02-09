@@ -6,10 +6,7 @@ class RecipeRepository {
   };
 
   filterRecipesByTag(tag) {
-    const filteredList = this.recipes.filter((recipe) => {
-      return recipe.tags.includes(tag);
-    })
-    this.recipesByTag = filteredList;
+    this.recipesByTag = this.recipes.filter((recipe) => recipe.tags.includes(tag))
   };
 
   filterRecipesByName(name) {

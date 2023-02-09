@@ -21,10 +21,13 @@ const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
 const allRecipes = recipeData.map(recipe => new Recipe(recipe));
 const mainRepository = new RecipeRepository(allRecipes);
-const user = new User(usersData[Math.floor(Math.random() * usersData.length)], mainRepository);
+const user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
 
 
-window.addEventListener('load', displayCards);
+window.addEventListener('load', () => {
+    displayCards(mainRepository);
+});
+
 main.addEventListener('click', checkClick);
 navBar.addEventListener('click', checkNavButtons);
 
@@ -42,9 +45,13 @@ footer.addEventListener('click', e => {
 });
 
 
-function displayCards() {
+function displayCards(recipeList) {
+    let displayRecipes;
+
+    recipeList.recipes ? displayRecipes = recipeList.recipes : displayRecipes = recipeList;
+
     cardSection.innerHTML = '';
-    mainRepository.recipes.forEach((recipe, index) => {
+    displayRecipes.forEach((recipe, index) => {
         let instructions = recipe.instructions.map((instruction) => {
             return `<p class="foodText">${instruction.instruction}</p>`
         })
@@ -124,20 +131,20 @@ function returnIfHome() {
 
 function searchRecipes(searchTerm) {
     if (returnIfHome()) {
-        user.filterAllByName(searchTerm.toUpperCase()) ? updateCards() : warnNoResults();
+        mainRepository.filterRecipesByName(searchTerm.toUpperCase()) ? displayCards(mainRepository.recipesByName) : warnNoResults();
     } else {
-        user.filterSavedByName(searchTerm.toUpperCase()) ? updateCards() : warnNoResults();
+        user.filterSavedByName(searchTerm.toUpperCase()) ? updateCards(user.recipesToCook) : warnNoResults();
     };
 };
 
 function filterRecipes(tag) {
     uncheckOtherFilters(tag);
     if (returnIfHome()) {
-        user.filterAllByTag(tag);
-        updateCards();
+        mainRepository.filterRecipesByTag(tag);
+        displayCards(mainRepository.recipesByTag);
     } else {
         user.filterSavedByTag(tag);
-        console.log(user.recipesToCook.recipesByName); //updateCards() once thats figured out
+        displayCards(user.recipesToCook);
     };
 };
 
@@ -151,13 +158,10 @@ function resetWarning() {
 
 function updateCards() {
     searchBar.value = '';
-    // however we want to update the cards
-    // console.log(user.allRecipesByTag);
-    // console.log(user.allRecipesByName);
 };
 
 function resetFilters() {
-    // display all recipes again - used when turning off currently selected filter instead of choosing a different one
+    returnIfHome() ? displayCards(mainRepository) : displayCards(user.recipesToCook);
 };
 
 function uncheckOtherFilters(tag) {
