@@ -1,10 +1,7 @@
-* {
-  border: 2px solid green;
-}
-
 html {
   height: 100vh;
   width: 100vw;
+  background-color: #a2a9bb;
 }
 
 body {
@@ -17,15 +14,18 @@ body {
 
 .welcome-header {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 30vh;
 }
 
 h1 {
-  color:blue;
-  font-size: 30px;
+  position: absolute;
+  color: white;
+  font-size: 40px;
+  text-shadow: 2px 2px black;
 }
 
 main {
@@ -34,11 +34,7 @@ main {
   width: 100vw;
 }
 
-.nav-bar {
-  height: 70vh;
-  width: 15vw;
-}
-
+/* Recipie Card Section */
 .card-tiles {
   display: flex;
   flex-direction: row;
@@ -53,12 +49,25 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 200px;
-  width: 200px;
+  height: 225px;
+  width: 225px;
   margin: 5px;
   border-radius: 5px;
+  background: linear-gradient(0.25turn, #5b6580, #3d4768, #1e2947);
 }
 
+.card:hover {
+  transform: translate(0, -5px);
+  height: 350px;
+  width: 350px;
+  box-shadow: 7px 5px 5px #384262;
+}
+  
+.card > h2, .rating {
+    color: white;
+}
+  
+/* Navigation Bar */
 .nav-bar {
   display: flex;
   flex-direction: column;
@@ -68,6 +77,24 @@ main {
   width: 15vw;
 }
 
+button {
+  background-color: #5b6580;
+  height: 40px;
+  width: 80px;
+  border-radius: 30px;
+  margin: 5px;
+}
 
+button:hover,
+.card:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
 
-
+.side-btns {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  right: 0;
+}

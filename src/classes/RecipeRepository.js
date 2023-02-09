@@ -4,13 +4,28 @@ import recipeTestData from '../data/recipeTestData';
 
 class RecipeRepository {
   constructor(recipeData) {
-    this.recipeList = recipeData
-  }
+    this.recipeList = recipeData;
+    this.filteredList = null; 
+  };
+
   filterByTag(tag) {
-    console.log(this.recipeList)
-    const food = recipeTestData.filter(recipe => recipe.tags.includes(tag));
-    console.log(food)
-    return food
+    const findByTag = recipeTestData.filter(recipe => recipe.tags.includes(tag));
+    if (findByTag === []) {
+      return 'Recipe Not Found';
+    } else {
+      this.filteredList = findByTag;
+      return findByTag;
+    }
+  };
+
+  filterByName(foodName) {
+    const findbyName = recipeTestData.filter(recipe => recipe.name === foodName);
+    if (findbyName === []) {
+      return 'Recipe Not Found';
+    } else {
+      this.filteredList = findbyName;
+      return findbyName;
+    }
   };
 };
 

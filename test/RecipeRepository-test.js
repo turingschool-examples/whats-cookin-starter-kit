@@ -5,26 +5,39 @@ import recipeTestData from '../src/data/recipeTestData';
 describe('Recipe', () => {
   let recipes
   beforeEach(() => {
-    recipes = new RecipeRepository(recipeTestData)
+    recipes = new RecipeRepository(recipeTestData);
   });
 
-  it('Should be a function', () => {
+  it('should be a function', () => {
     assert.isFunction(RecipeRepository);
   });
 
-  it('Should contain recipe data', () => {
+  it('should contain recipe data', () => {
     assert.equal(recipes.recipeList, recipeTestData);
   });
 
-  it.skip('Should get recipes based on a tag', () => {
-    assert.equal(recipes.filterByTag(), 'eggs');
+  it('should get recipes based on a tag input', () => {
+    const findTag = recipes.filterByTag('snack');
+    const tagNotFound = recipes.filterByTag('False Tag');
+
+    assert.deepEqual(findTag, [recipes.recipeList[0]]);
+    assert.notEqual(tagNotFound, 'Recipe Not Found');
   });
 
-  it.skip('Should get recipes based of ingredient', () => {
-    assert.equal(recipes.filterByName(), 'someName');
+  it('should get recipes based of ingredient input', () => {
+    const findName = recipes.filterByName("Loaded Chocolate Chip Pudding Cookie Cups");
+    const foodNotFound = recipes.filterByName('False Name');
+
+    assert.deepEqual(findName, [recipes.recipeList[0]]);
+    assert.notEqual(foodNotFound, 'Recipe Not Found');
   });
 
-  it.skip('Should contain a filtered list of returned results', () => {
-    assert.equal(recipes.filteredList, [{}]);
+  it('should contain a filtered list of returned results', () => {
+    assert.equal(recipes.filteredList, null);
+    recipes.filterByTag('starter');
+    assert.include(recipes.filteredList, recipes.recipeList[0]);
+    
+    recipes.filterByTag('False Tag');
+    assert.notInclude(recipes.filteredList, 'Recipe Not Found')
   });
-})
+});
