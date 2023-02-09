@@ -6,7 +6,8 @@ import testRecipeData from "../src/data/testRecipes";
 import Recipe from "../src/classes/Recipe";
 import User from "../src/classes/User";
 import usersData from "./data/users";
-
+import fetchPromises from "./apiCalls";
+console.log(fetchPromises())
 // Query Selectors
 
 const recipeContainer = document.querySelector(".recipe-container");
