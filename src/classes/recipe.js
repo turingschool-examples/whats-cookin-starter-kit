@@ -12,23 +12,33 @@ class Recipe {
         return this.ingredients.filter(ingredient => ingredient.name === name);
         
     }
-    calculateIngredientsCosts() {
-        const total = this.ingredients.reduce((sum, ingredient) => {
-        this.ingredientsData.forEach(element => {
-        if (ingredient.id === element.id) {
-        sum += ingredient.quantity.amount * element.estimatedCostInCents
-        }
-    })
-        return sum }, 0)
-
-        return `$${(total/100).toFixed(2)}`
+    getIngredientsName(name) {
+        return this.ingredients.filter(ingredient => ingredient.name === name);
     }
     
+      calculateIngredientsCosts() {
+        let total = 0;
+        this.ingredients.forEach(ingredient => {
+        const ingredientData = this.ingredientsData.find(
+        i => i.id === ingredient.id);
+          if (ingredientData) {
+        total += ingredient.quantity.amount * ingredientData.estimatedCostInCents;
+    }
+    });
+    
+        return `$${(total / 100).toFixed(2)}`;
+      
+    }
+
     returnInstructions() {
         return this.instructions.map(step => {
         return `Step ${step.number}: ${step.instruction}`
         })
     }
 }
+    
+
+
+
 
 export default Recipe
