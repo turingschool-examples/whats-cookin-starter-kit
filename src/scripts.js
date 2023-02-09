@@ -57,19 +57,6 @@ function displayCards() {
         </section>
         `
     })
-    
-    const backCards = document.querySelectorAll(".cardBack");
-    backCards.forEach((card, index) => {
-        let recipe = mainRepository[index]
-        card.innerHTML += `<ul class="instructionsList" id="instruct-list2">
-        <li>${recipe.instructions[index].instruction}</li>
-        <li>2 egg</li>
-        <li>3 egg</li>
-        <li>4 egg</li>
-      </ul>
-      <p class="foodText"></p>
-    </section>`
-    })
 }
 
 function convertRecipe() {
