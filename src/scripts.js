@@ -8,24 +8,39 @@ import Recipe from './classes/Recipe';
 import User from './classes/User';
 
 import recipeData from './data/recipes';
-
-let convertedRecipes;
+import usersData from './data/users';
 
 const homeButton = document.querySelector('#home-button');
 const myFoodButton = document.querySelector('#my-food-button');
 const searchBar = document.querySelector('#search-bar');
-const cardSection = document.querySelector('#card-section')
+const cardSection = document.querySelector('#card-section');
 const navBar = document.querySelector('nav');
 const main = document.querySelector('main');
+const footer = document.querySelector('footer');
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+const allRecipes = recipeData.map(recipe => new Recipe(recipe));
+const mainRepository = new RecipeRepository(allRecipes);
+const user = new User(usersData[Math.floor(Math.random() * usersData.length)], mainRepository);
 
 
-convertRecipe();
-
-const mainRepository = new RecipeRepository(convertedRecipes);
-
-window.addEventListener('load', displayCards)
+window.addEventListener('load', displayCards);
 main.addEventListener('click', checkClick);
 navBar.addEventListener('click', checkNavButtons);
+
+searchBar.addEventListener('keydown', e => {
+    if (e.code === "Enter") {
+        searchRecipes(searchBar.value);
+    } else {
+        resetWarning();
+    };
+});
+footer.addEventListener('click', e => {
+    if (e.target.type === "checkbox") {
+        e.target.checked ? filterRecipes(e.target.dataset.tag) : resetFilters();
+    };
+});
+
 
 function displayCards() {
     cardSection.innerHTML = '';
@@ -36,7 +51,7 @@ function displayCards() {
         cardSection.innerHTML += `
         <section class="card cardFront" id="cf${recipe.id}" tabindex="0" data-side="front" data-index="${recipe.id}">
           <button aria-label="Save Recipe Button" class="saveRecipeButton" id="save-btn-2"></button>
-          <img class="foodImage" src="${recipe.image}" data-side="front" data-index="${recipe.id}">
+          <img class="foodImage" src="${recipe.image}" alt="Picture of ${recipe.name}" data-side="front" data-index="${recipe.id}">
           <header class="frontText" data-side="front" data-index="${recipe.id}">
             <h2 class="foodTitle">${recipe.name}</h2>
             <div class="frontStats">
@@ -59,18 +74,10 @@ function displayCards() {
     })
 }
 
-function convertRecipe() {
-    convertedRecipes = recipeData.map((recipe) => {
-        return new Recipe(recipe)
-    })
-    return convertedRecipes
-}
-
-
 function checkClick(e) {
     if (e.target.dataset.side) {
         e.target.dataset.side === 'front' ? flipToBack(e.target.dataset.index) : flipToFront(e.target.dataset.index)
-    } 
+    }
  }
 
 function checkNavButtons(e) {
@@ -96,11 +103,11 @@ function flipToFront(elementIndex) {
 }
 
 function displayHomePage() {
-    console.log('workplease')
+    cardSection.dataset.page = "home";
 }
 
 function displaySavedFoodPage() {
-    console.log('getoffmylawn')
+    cardSection.dataset.page = "saved";
 }
 
 function show(element) {
@@ -110,3 +117,53 @@ function show(element) {
 function hide(element) {
     element.classList.add('hidden')
 }
+
+function returnIfHome() {
+    return cardSection.dataset.page === "home";
+};
+
+function searchRecipes(searchTerm) {
+    if (returnIfHome()) {
+        user.filterAllByName(searchTerm.toUpperCase()) ? updateCards() : warnNoResults();
+    } else {
+        user.filterSavedByName(searchTerm.toUpperCase()) ? updateCards() : warnNoResults();
+    };
+};
+
+function filterRecipes(tag) {
+    uncheckOtherFilters(tag);
+    if (returnIfHome()) {
+        user.filterAllByTag(tag);
+        updateCards();
+    } else {
+        user.filterSavedByTag(tag);
+        console.log(user.recipesToCook.recipesByName); //updateCards() once thats figured out
+    };
+};
+
+function warnNoResults() {
+    searchBar.style.color = 'red';
+};
+
+function resetWarning() {
+    searchBar.style.color = 'black';
+};
+
+function updateCards() {
+    searchBar.value = '';
+    // however we want to update the cards
+    // console.log(user.allRecipesByTag);
+    // console.log(user.allRecipesByName);
+};
+
+function resetFilters() {
+    // display all recipes again - used when turning off currently selected filter instead of choosing a different one
+};
+
+function uncheckOtherFilters(tag) {
+    checkboxes.forEach(box => {
+        if (box.dataset.tag !== tag) {
+            box.checked = false;
+        };
+    });
+};
