@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <title>Whats Cookin</title>
+</head>
 
-  <body>
-    <button id="top-button">Back to Top</button>
-    <header class="main-header">
-      <h1 class="title">What's cookin</h1>
-      <div class="search-container"><input type="search" class="search-bar" id="search-bar"></div>
-      <button class="search-bar" id="search-bar-go" type="submit">Go</button>
-    </header>
-    <section class="main-elements">
-      <nav class="navigation-section">
-        <section class="buttons">
-          <button id="recipe-button">Recipes</button>
-          <button id="saved-recipes">Saved Recipes</button>
-          <button id="filtered-search">Filtered Search</button>
-          <button id="breakfast-filter">Breakfast</button>
-          <button id="snack-appetizers-filter">Snack/Appetizers</button>
-          <button id="brunch-filter">Brunch</button>
-          <button id="main-dish-filter">Main Dish</button>
-          <button id="complimentary-dish-filter">Complimentary Dish</button>
-        </section>
-      </nav>
-      <section class="recipe-section">
+<body>
+  <button id="top-button">Back to Top</button>
+  <header class="main-header">
+    <h1 class="title">What's cookin</h1>
+    <div class="search-container"><input type="search" class="search-bar" id="search-bar"></div>
+    <button class="search-bar" id="search-bar-go" type="submit">Go</button>
+  </header>
+  <section class="main-elements">
+    <nav class="navigation-section">
+      <section class="buttons">
+        <button id="recipe-button">Recipes</button>
+        <button id="saved-recipes">Saved Recipes</button>
+        <button id="filtered-search">Filtered Search</button>
+        <button id="breakfast-filter">Breakfast</button>
+        <button id="snack-appetizers-filter">Snack/Appetizers</button>
+        <button id="brunch-filter">Brunch</button>
+        <button id="main-dish-filter">Main Dish</button>
+        <button id="complimentary-dish-filter">Complimentary Dish</button>
       </section>
+    </nav>
+    <section class="recipe-section" id="recipe-section">
     </section>
-  </body>
- 
-  <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
-    <div class="modal__overlay" tabindex="-1"> 
-      <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title" >
+  </section>
+</body>
+
+<div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+  <div class="modal__overlay" tabindex="-1">
+    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+      <div id="modal">
         <header class="modal__header">
           <h2 class="modal__title" id="modal-1-title">
             Smoothie Recipee
           </h2>
-        </header>        
+        </header>
         <main class="modal__content" id="modal-1-content">
           <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
-          <h3>Ingredients</h3> 
+          <h3>Ingredients</h3>
           <ul>
             <li>Eggs</li>
             <li>Spinach</li>
@@ -56,22 +57,28 @@
           <h3>Recipe Instructions</h3>
           <ol type="1">
             <li>Crumble bacon slices when cool enough to handle.</li>
-            <li >Mix together cream cheese, Cheddar cheese, Ranch dressing mix, dried minced onion, garlic powder, and 1/2 of the crumbled bacon in a bowl until well combined. Place the other half of crumbled bacon in the refrigerator until ready to use.</li>
-            <li>Form cheese mixture into a round ball (it's helpful to use plastic wrap while shaping it). Wrap in plastic wrap and refrigerate for at least 2 hours.</li>
-            <li>Place remaining crumbled bacon on a plate and stir in minced chives. Remove plastic wrap from the cheese ball and roll it in the bacon and chive mixture, lightly pressing the topping to the cheese ball so it sticks.</li>
+            <li>Mix together cream cheese, Cheddar cheese, Ranch dressing mix, dried minced onion, garlic powder, and
+              1/2 of the crumbled bacon in a bowl until well combined. Place the other half of crumbled bacon in the
+              refrigerator until ready to use.</li>
+            <li>Form cheese mixture into a round ball (it's helpful to use plastic wrap while shaping it). Wrap in
+              plastic wrap and refrigerate for at least 2 hours.</li>
+            <li>Place remaining crumbled bacon on a plate and stir in minced chives. Remove plastic wrap from the cheese
+              ball and roll it in the bacon and chive mixture, lightly pressing the topping to the cheese ball so it
+              sticks.</li>
             <li>Place the coated cheese ball on a serving dish and surround with crackers for dipping.</li>
           </ol>
           <h4>Recipe Cost:</h4>
-          <button type="button" class="modal__btn">❤️</button> 
+          <button type="button" class="modal__btn">❤️</button>
           <button class="modal__close" aria-label="Close modal" data-micromodal-close>CLOSE</button>
-        </main>       
+        </main>
       </div>
     </div>
   </div>
+</div>
 
 <!-- CSS for numbered list: list-style-position: inside; -->
 
 
-  <script src="bundle.js"></script>
+<script src="bundle.js"></script>
 
 </html>
