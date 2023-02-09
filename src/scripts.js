@@ -15,14 +15,14 @@ const recipeSection = document.getElementById('allRecipes');
 const modalSection = document.getElementById('recipeModalBackground');
 const filterDropdown = document.getElementById('filterDropdown');
 const searchBar = document.getElementById('searchBar')
-const saveButton = document.getElementById('save-btn')
+// const saveButton = document.getElementById('saveBtn')
 
 //event listeners
 window.addEventListener('load', () => createRecipeCards(recipeRepo.recipes));
 recipeSection.addEventListener('click', createRecipeModal);
 modalSection.addEventListener('click', collapseRecipe);
 filterDropdown.addEventListener('click', filterRecipes);
-saveButton.addEventListener('click', toggleSavedRecipe)
+// saveButton.addEventListener('click', toggleSavedRecipe);
 
 
 // Let's clean this up to be a proper form submission..?
@@ -67,8 +67,10 @@ function createRecipeModal(event) {
       ${createList(clickedRecipe.getInstructions())}
       </ol>
       <h4>TOTAL COST $${+(clickedRecipe.listCost(ingredientsData))}</h4>
-      <button class="save-button" id="save-btn" data-recipe="${recipeID}">${buttonText}</button>
+      <button class="save-button" id="saveBtn" data-recipe="${recipeID}">${buttonText}</button>
   </div>`;
+  const saveButton = document.getElementById('saveBtn')
+  saveButton.addEventListener('click', toggleSavedRecipe);
 }
 
 function createList(recipe) {
@@ -100,3 +102,9 @@ function searchRecipes() {
   createRecipeCards(searchedRecipes);
 }
 
+function toggleSaveRecipe(event) {
+    let recipeID = +(event.target.dataset.recipe);
+    let currentRecipe = recipeRepo.recipes.find(recipe => recipe.id === recipeID);
+    currentUser.toggleSaveRecipe(currentRecipe)
+
+}
