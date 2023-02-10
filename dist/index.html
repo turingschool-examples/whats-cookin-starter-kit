@@ -27,13 +27,28 @@
           <p class="desserts">Desserts</p>
         </div>
       </section>
-      <section class="recipe-section">
+      <section class="recipe-section" data-micromodal-trigger="modal-1">
         <h1 class="main-heading">Whats Cookin</h1>
         <div class="recipe-container"></div>
       </section>
       <section class="favorites-section">
         <h2 class="favorites-heading">Favorites</h2>
       </section>
+      <div class="modal" id="modal-1" aria-hidden="true">
+        <div class="modal-overlay" tabindex="-1" data-micromodal-close>
+          <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title" >
+            <header>
+              <h2 class="modal-title">
+                Modal Title
+              </h2>
+              <button aria-label="Close modal" data-micromodal-close>X</button>
+            </header>
+            <div class="modal-content">
+              Modal Content
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->

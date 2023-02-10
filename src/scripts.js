@@ -5,6 +5,7 @@ import RecipeRepository from "../src/classes/RecipeRepository";
 import Recipe from "../src/classes/Recipe";
 import User from "../src/classes/User";
 import fetchPromises from "./apiCalls";
+import MicroModal from "micromodal";
 
 // Query Selectors
 
@@ -12,6 +13,8 @@ const recipeContainer = document.querySelector(".recipe-container");
 const filterTags = document.querySelector(".filter-tags");
 const searchRecipeInput = document.querySelector(".search-recipe");
 const searchBtn = document.querySelector(".search-btn");
+const modalTitle = document.querySelector(".modal-title");
+const modalContent = document.querySelector(".modal-content");
 
 // Global Variables
 let allUsers;
@@ -72,19 +75,17 @@ function displayRecipes() {
 
 function showFull(e) {
   let target = e.target.parentElement.id;
-  recipeContainer.innerHTML = "";
-  recipeRepo.recipes
-    .filter((recipe) => {
-      return recipe.id === Number(target);
-    })
-    .forEach((recipe) => {
-      recipeContainer.innerHTML += `
-      <p>${recipe.name}</p>
-      <p>${recipe.getIngredients(allIngredients)}</p>
-      <p>${recipe.getInstructions()}</p>
-      <p>$${recipe.getIngredientsCost(allIngredients)}</p>
-    `;
-    });
+  MicroModal.init();
+  let targetedRecipe = recipeRepo.recipes.find((recipe) => {
+    return recipe.id === Number(target);
+  });
+  console.log(targetedRecipe)
+  modalTitle.innerText = `${targetedRecipe.name}`
+  modalContent.innerHTML = `
+  <img src="${targetedRecipe.image}"
+  <p>${targetedRecipe.getIngredients(allIngredients)}</p>
+  <p>$${targetedRecipe.getIngredientsCost(allIngredients)}</p>
+  <p>${targetedRecipe.getInstructions()}</p>`
 }
 
 function filterByTag(e) {
