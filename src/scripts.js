@@ -178,12 +178,18 @@ function saveRecipe(button) {
 
 function displayRecipes() {
     recipeSection.innerHTML = ''
-    for(var i = 0; i < currentDisplayedRecipes.length; i++) {
+    currentDisplayedRecipes.filter(recipe => {
         recipeSection.innerHTML += 
         `
-        <img src="${currentDisplayedRecipes[i].image}" class="recipe"></img>
-        `
-    }
+        <img src="${recipe.image}" class="recipe"></img>
+        `  
+    })
+    // for(var i = 0; i < currentDisplayedRecipes.length; i++) {
+    //     recipeSection.innerHTML += 
+    //     `
+    //     <img src="${currentDisplayedRecipes[i].image}" class="recipe"></img>
+    //     `
+    // }
 }
 
 function displaySavedRecipes() {
