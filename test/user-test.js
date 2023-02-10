@@ -21,17 +21,13 @@ describe('user', () =>{
             ]
             }
         )
-        // recipe = new Recipe({
-        //     name: 'cookies',
-        //     ingredients: ingredient
-        // })
-
+      
         ingredient = new Ingredient({
             id: 7,
             name: 'choccy chips',
             cost: 50
         })
-            // console.log(ingredient)
+          
         recipe = new Recipe({
             id: 4,
             name: 'cookies',
