@@ -58,5 +58,9 @@ describe('user', () =>{
         user.removeRecipeToCook(recipe.id)
         expect(user.recipesToCook).to.not.contain(recipe)
     })
+    
+    it('should filter a recipe by the tag', () => {
+        user.filterRecipe(recipe)
+    })
 
 })
