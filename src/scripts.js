@@ -75,17 +75,16 @@ function displayRecipes() {
 
 function showFull(e) {
   let target = e.target.parentElement.id;
-  MicroModal.init();
+  MicroModal.show("modal-1");
   let targetedRecipe = recipeRepo.recipes.find((recipe) => {
     return recipe.id === Number(target);
   });
-  console.log(targetedRecipe)
-  modalTitle.innerText = `${targetedRecipe.name}`
+  modalTitle.innerText = `${targetedRecipe.name}`;
   modalContent.innerHTML = `
   <img src="${targetedRecipe.image}"
   <p>${targetedRecipe.getIngredients(allIngredients)}</p>
   <p>$${targetedRecipe.getIngredientsCost(allIngredients)}</p>
-  <p>${targetedRecipe.getInstructions()}</p>`
+  <p>${targetedRecipe.getInstructions()}</p>`;
 }
 
 function filterByTag(e) {
@@ -133,9 +132,7 @@ function saveRecipe(e) {
 function selectRecipe(e) {
   if (e.target.className === "favorite-button") {
     saveRecipe(e);
-  } else {
+  } else if (e.target.className === "recipe-img" || e.target.className === "recipe-name") {
     showFull(e);
   }
 }
-
-
