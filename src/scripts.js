@@ -13,23 +13,10 @@ import './images/turing-logo.png'
 const recipeCard = new Recipe();
 const globalArray = [];
 
-
-
-const searchBtn = document.querySelector(".search-button");
-// const breakfastBtn = document.querySelector(".breakfast-bar");
-// const lunchBtn = document.querySelector(".lunch-bar");
-// const dinnerBtn = document.querySelector(".dinner-bar");
-// const dessertBtn = document.querySelector(".dessert-bar");
-// const condimentsBtn = document.querySelector(".condiments-bar");
-// const sidesBtn = document.querySelector(".sides-bar");
-// const appetizersBtn = document.querySelector(".appetizers-bar");
-// const saladsBtn = document.querySelector(".salads-bar");
-
-
-
-
-const searchBtn = document.querySelector(".search-button");
-const userNamePrompt = document.querySelector("#userName")
+const searchBtn = document.querySelector("#searchButton");
+const savedBtn = document.querySelector("#savedButton");
+const userNamePrompt = document.querySelector("#userName");
+const savedView = document.querySelector("#savedCards");
 
 searchBtn.addEventListener( 'click', function() {
     getRecipeByTag();
@@ -38,13 +25,18 @@ searchBtn.addEventListener( 'click', function() {
 
 function getRecipeByTag(userInput) {
     if ( userInput.includes(RecipeRepository.filteredList.filterByTag()))
-
-
 };
 
 function getRecipeByName() {
 
+};
 
+function show(element) {
+    element.classList.remove('hidden');
+};
+  
+function hide(element) {
+    element.classList.add('hidden');
 };
 
 function getRandomIndex(array) {
