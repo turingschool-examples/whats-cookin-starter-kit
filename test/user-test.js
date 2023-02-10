@@ -11,15 +11,15 @@ describe('user', () =>{
     beforeEach(() =>{
         user = new User(
             {
-              "name": "Brexye Quysh",
-              "id": 1,
-              "pantry": [
+              name: "Brexye Quysh",
+              id: 1,
+              pantry: [
                 {
-                  "ingredient": 11297,
-                  "amount": 4
+                  ingredient: 11297,
+                  amount: 4
                 },
             ]
-            }
+        }
         )
       
         ingredient = new Ingredient({
@@ -31,8 +31,11 @@ describe('user', () =>{
         recipe = new Recipe({
             id: 4,
             name: 'cookies',
-            ingredients: ingredient
+            ingredients: ingredient,
+            tag: "dessert"   
+              
         })
+    
     })
 
     it('should be a function', () => {
@@ -57,6 +60,11 @@ describe('user', () =>{
         expect(user.recipesToCook).to.contain(recipe)
         user.removeRecipeToCook(recipe.id)
         expect(user.recipesToCook).to.not.contain(recipe)
+    })
+    
+    it('should filter a recipe by the tag', () => {
+      const filteredRecipes = user.filterRecipeByTag('dessert')
+      expect(user.recipe).to.contain(tag)
     })
 
 })

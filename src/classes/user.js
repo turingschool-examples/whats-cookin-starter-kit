@@ -3,6 +3,9 @@ class User{
         this.name = userObj.name
         this.id = userObj.id
         this.pantry = userObj.pantry
+        this.recipe = userObj.recipe
+        console.log(userObj)
+        // console.log(userObj)
         this.recipesToCook = []
 
     }
@@ -16,11 +19,13 @@ class User{
 
         this.recipesToCook.splice(recipeIndex, 1)
     }
-    filterRecipeByTag(){
-
+    filterRecipeByTag(tag){
+        const recipeTag = this.recipe.filter((recipe) => this.recipe.tag)
+    
     }
-    filterRecipeByName(){
-
+    filterRecipeByName(name){
+    
+        const recipeTag = this.recipe.filter((recipe) => this.recipe.tag)
     }
 };
 
