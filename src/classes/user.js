@@ -9,8 +9,12 @@ class User{
     addRecipeToCook(recipe){
        this.recipesToCook.push(recipe)
     }
-    removeRecipeToCook(){
+    removeRecipeToCook(id){
+        const recipeId = this.recipesToCook.map((recipe) => recipe.id)
 
+        const recipeIndex = recipeId.indexOf(id)
+
+        this.recipesToCook.splice(recipeIndex, 1)
     }
     filterRecipeByTag(){
 
