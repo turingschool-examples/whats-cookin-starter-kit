@@ -21,18 +21,15 @@ describe('user', () =>{
             ]
             }
         )
-        // recipe = new Recipe({
-        //     name: 'cookies',
-        //     ingredients: ingredient
-        // })
-
+      
         ingredient = new Ingredient({
-            id: 007,
+            id: 7,
             name: 'choccy chips',
             cost: 50
         })
-
+          
         recipe = new Recipe({
+            id: 4,
             name: 'cookies',
             ingredients: ingredient
         })
@@ -51,7 +48,15 @@ describe('user', () =>{
     })
 
     it('should add a recipe', () =>{
-        expect(user.addRecipeToCook('choccy chip')).to.equal('cookies')
+        user.addRecipeToCook(recipe)
+        expect(user.recipesToCook).to.contain(recipe)
+    })
+
+    it('should remove a recipe', () => {
+        user.addRecipeToCook(recipe)
+        expect(user.recipesToCook).to.contain(recipe)
+        user.removeRecipeToCook(recipe.id)
+        expect(user.recipesToCook).to.not.contain(recipe)
     })
 
 })
