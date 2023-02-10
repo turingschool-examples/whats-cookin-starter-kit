@@ -1,4 +1,4 @@
-import Recipe from './recipeClass';
+import Recipe from './Recipe';
 
 class RecipeRepository {
   constructor(recipeData) {
