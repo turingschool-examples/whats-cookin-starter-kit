@@ -3,22 +3,22 @@
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
   background-color: #548c2f;
   display: flex;
   flex-flow: column;
+  height: 100vh;
   justify-content: space-between;
   margin: 0;
+  overflow: hidden;
+  width: 100vw;
 }
 
 nav {
+  align-items: center;
   background: rgb(0, 67, 0);
   display: flex;
-  width: 100%;
-  align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 
 .navTitle {
@@ -30,47 +30,47 @@ nav {
 }
 
 .navBarInteractions {
+  align-content: center;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-content: center;
   gap: 0.75rem;
-  width: 15%;
   padding-right: 1%;
+  width: 15%;
 }
 
 .navButtons {
   display: flex;
-  justify-content: flex-end;
   gap: 0.75rem;
+  justify-content: flex-end;
   width: 100%;
 }
 
 .navButtons > button,
 .searchBar {
-  font-size: 1rem;
   border: none;
   border-radius: 4px;
+  font-size: 1rem;
 }
 
 button {
   background-color: white;
-  color: #5f4a48;
-  padding: 5px 10px;
   border: none;
   border-radius: 5px;
+  color: #5f4a48;
   cursor: pointer;
-  text-transform: uppercase;
   font-weight: bold;
+  padding: 5px 10px;
+  text-transform: uppercase;
 }
 
 main {
-  display: flex;
   align-items: center;
+  display: flex;
   height: 60vh;
-  width: 100vw;
-  overflow-y: hidden;
   overflow-x: auto;
+  overflow-y: hidden;
+  width: 100vw;
 }
 
 button:hover {
@@ -80,87 +80,80 @@ button:hover {
 
 .cardSection {
   height: 95%;
-  width: fit-content;
   display: flex;
-  justify-content: center;
   gap: 1rem;
+  justify-content: center;
+  width: fit-content;
 }
 
 .card {
-  width: 20%;
-  cursor: pointer;
-  display: flex;
+  align-items: center;
   background-color: #f1f1f1;
   border-radius: 15px;
-  justify-content: space-between;
+  cursor: pointer;
+  display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 100%;
+  justify-content: space-between;
   position: relative;
+  width: 20vw;
 }
 
 .cardBack {
-  overflow-y: scroll;
   overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .card > img {
-  height: 75%;
-  width: 100%;
-  border-top-right-radius: 15px;
   border-top-left-radius: 15px;
-  object-fit: cover;
+  border-top-right-radius: 15px;
+  max-height: 100%;
+  width: 100%;
 }
 
 .saveRecipeButton {
+  background-color: #f39584;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0px 5px 15px rgb(0 0 0);
+  height: 50px;
   position: absolute;
   top: 10px;
   right: 10px;
   width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  background-color: #f39584;
-  border: none;
-  box-shadow: 0px 5px 15px rgb(0 0 0);
 }
 
 .saveRecipeButton::before {
+  align-items: center;
+  color: #ffffff;
   content: "\2764";
   font-size: 30px;
-  color: #ffffff;
-  align-items: center;
-}
-
-.frontText {
-  display: flex;
-  flex-flow: column;
-  flex-wrap: wrap;
-  width: 100%;
-  align-items: center;
 }
 
 .foodTitle {
   color: #5f4a48;
-  font-size: 1.2rem;
+  font-size: 1.2vw;
   margin: 0;
-  font-weight: bold;
+  max-width: 25ch;
+  text-align: center;
 }
 
 .frontStats {
-  display: flex;
-  width: 80%;
-  justify-content: space-evenly;
-  font-size: 0.9rem;
   color: rgb(0, 67, 0);
+  display: flex;
+  font-size: 0.9rem;
   gap: 2rem;
+  justify-content: space-evenly;
+  width: 80%;
 }
 
 .foodText,
 .ingredientsList {
-  width: fit-content;
-  margin: 0 0 0 5%;
-  padding: 5%;
   align-self: flex-start;
   cursor: default;
+  margin: 0 0 0 5%;
+  padding: 5%;
+  width: fit-content;
 }
 
 .ingredientsList {
@@ -168,22 +161,22 @@ button:hover {
 }
 
 footer {
+  align-items: center;
   background: rgb(0, 67, 0);
   display: flex;
   height: 30vh;
-  width: 100vw;
-  align-items: center;
   justify-content: space-around;
+  width: 100vw;
 }
 
 .filter {
-  display: flex;
-  max-height: 100%;
-  flex-flow: column;
   align-items: center;
-  height: 100%;
-  width: 15%;
   color: white;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  max-height: 100%;
+  width: 15%;
 }
 
 .filterHeaders {

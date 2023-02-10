@@ -1,6 +1,5 @@
 import './styles.css';
 import apiCalls from './apiCalls';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import RecipeRepository from './classes/RecipeRepository';
 import Ingredient from './classes/Ingredient';
@@ -44,10 +43,7 @@ footer.addEventListener('click', e => {
 
 function displayCards() {
     cardSection.innerHTML = '';
-    let limit = 5
-    let recipes = mainRepository.recipes.slice(0, limit)
-    //this will limit the number of cards being displayed to the DOM this may cause problems with getting new cards to be displayed next
-    recipes.forEach((recipe, index) => {
+    mainRepository.recipes.forEach((recipe, index) => {
         let instructions = recipe.instructions.map((instruction) => {
             return `<p class="foodText">${instruction.instruction}</p>`
         })
@@ -55,13 +51,11 @@ function displayCards() {
         <section class="card cardFront" id="cf${recipe.id}" tabindex="0" data-side="front" data-index="${recipe.id}">
           <button aria-label="Save Recipe Button" class="saveRecipeButton" id="save-btn-2"></button>
           <img class="foodImage" src="${recipe.image}" alt="Picture of ${recipe.name}" data-side="front" data-index="${recipe.id}">
-          <header class="frontText" data-side="front" data-index="${recipe.id}">
             <h2 class="foodTitle" data-side="front" data-index="${recipe.id}">${recipe.name}</h2>
             <div class="frontStats">
               <p class="cost" id="cost2">${'$' + recipe.calculateCost()}</p>
               <p class="ingredients" id="ingred2"> ${recipe.ingredients.length} Ingredients</p>
             </div>
-          </header>
         </section>
         <section class="card cardBack hidden" id="cb${recipe.id}" tabindex="0" data-side="back" data-index="${recipe.id}">
           <h2 class="foodTitle">${recipe.name}</h2>
