@@ -1,4 +1,16 @@
-const usersData = [
+
+
+
+console.log(e)
+
+var usersData = Promise.all(usersData).then((values) => {
+  return values[0].usersData
+});
+
+
+console.log(usersData)
+
+const userData = [
     {
       "name": "Saige O'Kon",
       "id": 1,

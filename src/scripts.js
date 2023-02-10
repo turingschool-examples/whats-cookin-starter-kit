@@ -5,11 +5,9 @@ import './images/turing-logo.png'
 import recipeData from './data/recipes.js';
 import MicroModal from 'micromodal'
 import RecipeRepository from './classes/RecipeRepository';
-import usersData from './data/users.js';
 import User from './classes/User.js'
 import ingredientsData from './data/ingredients.js'
 import Recipe from './classes/Recipe'
-import Ingredients from './data/ingredients'
 MicroModal.init()
 
 var user 
@@ -21,7 +19,12 @@ var other = [ 'condiment', 'spread']
 var mainDish = ['main dish', 'dinner', 'lunch']
 var complimentaryDish = ['antipasti', 'hor d\'oeuvre', 'starter', 'salad', 'side dish',  'appetizer']
 
-const recipeRepository = new RecipeRepository(recipeData)
+let recipeRepository
+fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
+.then((response) => response.json())
+.then((data) => {
+    recipeRepository = new RecipeRepository(data.recipeData)
+})
 const navigationSection = document.querySelector(".navigation-section")
 const recipeSection  = document.querySelector(".recipe-section")
 const pantrySection = document.querySelector(".pantry-section")
@@ -106,7 +109,10 @@ function assignCurrentRecipe(event) {
 
 function renderCurrentRecipe() {
     recipeModal.innerHTML = ''
-    let ingredients = currentRecipe.determineRecipeIngredients(Ingredients)
+    fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients')
+    .then((response) => response.json())
+    .then((data) => {
+    let ingredients = currentRecipe.determineRecipeIngredients(data.ingredientsData)
     // const ingredientsQuantity = currentRecipe.map(recipe => recipe.ingredients.map(ingredient => ingredient.quantity))
 
     const ingredientsHTML = ingredients.map(ingredient => {
@@ -139,7 +145,7 @@ function renderCurrentRecipe() {
           <ol type="1">
             ${instructionsHTML}
           </ol>
-          <h4>Recipe Cost:$${currentRecipe.calculateRecipeCost(Ingredients)}</h4>
+          <h4>Recipe Cost:$${currentRecipe.calculateRecipeCost(data.ingredientsData)}</h4>
           <button type="button" class="modal__btn">${isSaved}</button>
           <button class="modal__close" aria-label="Close modal" data-micromodal-close>CLOSE</button>
         </main>
@@ -150,8 +156,8 @@ function renderCurrentRecipe() {
             saveButton.style.backgroundColor = "red"
         }
         saveButton.addEventListener('click', function(){saveRecipe(saveButton)})
-    //populate the modal with current recipe
-    //show the modal
+
+    })
 }
 
 function saveRecipe(button) {
@@ -206,7 +212,7 @@ function popularRecipes() {
     for(var i = 0; i < 10; i++) {
         recipeSection.innerHTML += 
         `
-        <img src="${recipeData[i].image}" class="recipe"></img>
+        <img src="${recipeRepository.recipes[i].image}" class="recipe"></img>
         `
     }
 }
@@ -253,8 +259,12 @@ function searchRecipeByName() {
 }
 
 function generateRandUser() {
-    var num = Math.floor(Math.random() * usersData.length)
-    user = new User(usersData[num])
+    fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
+    .then((response) => response.json())
+    .then((data) => {
+    var num = Math.floor(Math.random() * data.usersData.length)
+    user = new User(data.usersData[num])
+    })
 }
 
 function hideAll() {
