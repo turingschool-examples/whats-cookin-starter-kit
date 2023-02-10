@@ -25,8 +25,8 @@ window.addEventListener('load', () => {
     displayCards(mainRepository);
 });
 
-main.addEventListener('click', checkClick);
-navBar.addEventListener('click', checkNavButtons);
+main.addEventListener('click', handleCardEvents);
+navBar.addEventListener('click', toggleView);
 
 searchBar.addEventListener('keydown', e => {
     if (e.code === "Enter") {
@@ -54,7 +54,6 @@ function displayCards(recipeList) {
             return `<p class="foodText">${instruction.instruction}</p>`
         })
         let ingredients = recipe.ingredients.map((ingredient) => {
-            console.log(ingredient)
             return `<li>${ingredient.name}</li>`
         })
         cardSection.innerHTML += `
@@ -82,19 +81,16 @@ function displayCards(recipeList) {
 function toggleRecipeSaved(element) {
   element.classList.toggle('savedRecipe');
   const recipe = user.recipesToCook.recipes.find(recipe => recipe.id === parseInt(element.dataset.index));
-  //resolve to be the recipe that is saved (or not), boolean
 
   if (!recipe) {
     user.saveRecipe(mainRepository.recipes.find(repoRecipe => repoRecipe.id === parseInt(element.dataset.index)));
-    console.log(user.recipesToCook.recipes);
   } else {
     user.removeSaved(recipe.id);
-    console.log(user.recipesToCook.recipes);
   }
   returnIfHome() ? displayCards(mainRepository) : displayCards(user.recipesToCook);
 }
 
-function checkClick(e) {
+function handleCardEvents(e) {
     if (e.target.dataset.side) {
         e.target.dataset.side === 'front' ? flipToBack(e.target.dataset.index) : flipToFront(e.target.dataset.index)
     } else if (e.target.id.includes('save-btn')) {
@@ -102,7 +98,7 @@ function checkClick(e) {
     }
  }
 
-function checkNavButtons(event) {
+function toggleView(event) {
     if (event.target.id === 'home-button') {
         displayHomePage()
     } else if (event.target.id === 'my-food-button') {
