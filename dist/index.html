@@ -1,11 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ahom&display=swap" rel="stylesheet">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>What's Cookin?</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <nav class="navBar">
+      <h1 class="navTitle">🍽️ What's Cookin?</h1>
+      <section class="navBarInteractions">
+        <div class="navButtons">
+          <button id="home-button" data-current="true">Home</button>
+          <button id="my-food-button" data-current="false">My Food</button>
+        </div>
+        <input class="searchBar" id="search-bar" type="text" placeholder="Search Here">
+      </section>
+    </nav>
+    <main>
+      <section class="cardSection" id="card-section" data-page="home">
+        <!-- Cards get added here -->
+      </section>
+    </main>
+    <footer class="filters">
+      <section class="filter appsFilters">
+        <p class="filterHeaders">Appetizers</p>
+        <div class="filterItem">
+          <input type="checkbox" class="checkbox appetizer" id="starter" data-tag="starter">
+          <label for="starter">Starters</label>
+        </div>
+        <div class="filterItem">
+          <input type="checkbox" class="checkbox appetizer" id="snack" data-tag="snack">
+          <label for="snack">Snacks</label>
+        </div>
+      </section>
+      <section class="filter breakfastFilters">
+          <p class="filterHeaders">Breakfast</p>
+          <div class="filterItem">
+            <input type="checkbox" class="checkbox breakfast" id="breakfast-filter" data-tag="breakfast">
+            <label for="breakfast-filter">Breakfasts</label>
+          </div>
+          <div class="filterItem">
+            <input type="checkbox" class="checkbox breakfast" id="brunch-breakfast" data-tag="brunch">
+            <label for="brunch-breakfast">Brunches</label>
+          </div>
+      </section>
+      <section class="filter lunchFilters">
+        <p class="filterHeaders">Lunch</p>
+        <div class="filterItem">
+          <input type="checkbox" class="checkbox lunch" id="lunch-filter" data-tag="lunch">
+          <label for="lunch-filter">Lunches</label>
+        </div>
+        <div class="filterItem">
+          <input type="checkbox" class="checkbox lunch" id="salad" data-tag="salad">
+          <label for="salad">Salads</label>
+        </div>
+      </section>
+      <section class="filter dinnerFilters">
+        <p class="filterHeaders">Dinner</p>
+        <div class="filterItem">
+          <input type="checkbox" class="checkbox dinner" id="main-course" data-tag="main course">
+          <label for="main-course">Main Courses</label>
+        </div>
+        <div class="filterItem">
+          <input type="checkbox" class="checkbox dinner" id="side" data-tag="side dish">
+          <label for="side">Sides</label>
+        </div>
+      </section>
+      <section class="filter condimentsFilters">
+        <p class="filterHeaders">Condiments</p>
+        <div class="filterItem">
+          <input type="checkbox" class="checkbox condiments" id="dip" data-tag="dip">
+          <label for="dip">Dips</label>
+        </div>
+        <div class="filterItem">
+          <input type="checkbox" class="checkbox condiments" id="sauce" data-tag="sauce">
+          <label for="sauce">Sauces</label>
+        </div>
+      </section>
+    </footer>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
