@@ -1,64 +1,159 @@
 * {
   /* border: solid green 1px; */
 }
-
-.hidden {
-  display: none;
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-
-
-
-
-body { min-height: 100vh; 
-}
-
-h1{
-  text-align: center;
-}
-
-.main{
+html,
+body,
+main {
+  background-color: #b7eaf1;
+  height: 100vh;
+  width: 100vw;
   display: flex;
-  flex-direction: row-reverse;
-  align-items: baseline;
-  justify-content: space-around;
+  font-family: 'Poppins', sans-serif;
 }
 
-.main-toast-section{
+body { 
+  min-height: 100vh; 
+}
+
+h2 {
+  color: #FFFFFF;
+  font-size: 1.5vw;
+  -webkit-text-stroke-width: 0.04em;
+  -webkit-text-stroke-color: rgb(81, 54, 0);
+}
+
+.directory {
+  background-color: #35aebe;
+  border-right: 0.2vw solid #FFFFFF;
+  flex: 1;
+  margin-right: 5vw;
+}
+.directory-title {
+  background-color: rgb(0, 120, 139);
+  color: #FFFFFF;
+  font-size: 2vw;
+  margin-bottom: 1em;
+  text-align: center;
+  -webkit-text-stroke-width: 0.04em;
+  -webkit-text-stroke-color: rgb(81, 54, 0);
+}
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.directory-button {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 0.2em 0.2em 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 1vw;
+  line-height: 2em;
+  margin: 0.1vh;
+  min-width: 80%;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.directory-button:hover {
+  background-color: #fff;
+}
+
+.directory-button:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .directory-button {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 5;
+}
+
+.main-toast-section {
   background-image: url("/src/images/shiba-toast.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  border-radius: 20px;
+  border-radius: 2vw;
   border: solid #00B4CC 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 600px;
-  height: 350px;
+  width: 75vw;
+  height: 50vh;
+  min-height: 50%
 }
 
-.search-container {
+.whats-cookin-title {
+  background-color: #fbeee0ca;
+  border: 0.2vw solid rgb(98, 64, 0);
+  border-radius: 0.2em;
+  color: rgb(232, 178, 28);
+  font-family: 'Leckerli One', sans-serif;
+  padding: 1vw;
+  position: absolute;
+  font-size: 5vw;
+  top: 0.3em;
+  -webkit-text-stroke-width: 0.03em;
+  -webkit-text-stroke-color: rgb(144, 96, 0);
+}
+
+.search-by-name-title {
+  bottom: -0.5em;
+  color: #FFFFFF;
+  display: flex;
+  font-size: 1em;
+  position: relative;
+  -webkit-text-stroke-width: 0.04em;
+  -webkit-text-stroke-color: rgb(81, 54, 0);
+}
+/*.search-container {
   overflow: hidden;
-  padding-bottom: 110px;
-  width: 250px;
   border-radius: 5px;
   position: relative;
   display: flex;
+  bottom: -5em;
+} */
+.search-bar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
 }
-
 .searchTerm {
-  width: 100%;
   border: 3px solid #00B4CC;
   border-right: none;
   padding: 5px;
-  height: 20px;
+  height: 5vh;
   border-radius: 5px 0 0 5px;
   outline: none;
+  size: 10em;
 }
-
 .searchButton {
-  width: 40px;
-  height: 36px;
+  width: 3vw;
+  height: 5vh;
   border: 1px solid #00B4CC;
   background: #00B4CC;
   text-align: center;
@@ -67,23 +162,10 @@ h1{
   cursor: pointer;
   font-size: 20px;
 }
-
-
-
-
-
-/* .side-bar{
-height: 200px;
-width: 150px;
-position: fixed;
-top: 1;
-left: 0;
-padding-top: 40px;
-padding-left: 20px;
-background-color: lightblue;
-
-} */
-
+.fa {
+  align-items: center;
+  size: 2em;
+}
 .side-bar{
   height: 100%;
   width: 0px;
@@ -97,43 +179,79 @@ background-color: lightblue;
   transition: 0.5s;
 }
 
-.close-btn{
+.close-btn {
   margin-left: 60px;
   display: block;
   padding: 8px 8px 8px 32px;
   position: absolute;
-
 }
 
-.nav-open{
+.nav-open {
   text-align: left;
   float: left;
 }
 
-.shiba-stare{
-    height: auto;
-    width: 30px;
+.shiba-stare {
+    height: 3.5vh;
+    width: 2vw;
 }
 
-.saved-and-shiba-icon{
+.saved-and-shiba-icon {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
 }
 
-
-.mini-card-list{
+.mini-card-list {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
-
-.mini-card{
+.mini-card {
   border: solid #00B4CC 5px;
   border-radius: 20px;
   height: auto;
   width: 100px;
+}
+
+.single-mini-card {
+  border: solid #00B4CC 5px;
+  border-radius: 20px;
+  height: auto;
+  width: 100px;
+}
+
+.mini-recipe-card {
+  background-color: #fbeee0;
+  border-radius: 2vh;
+  height: auto;
+  padding: 2vh;
+  border: 2px solid #422800;
+  border-radius: 2em;
+  box-shadow: #00B4CC 0.2em 0.2em 0em 0em;
+}
+
+.all-card-icons {
+  display: flex;
+  justify-content: space-between;
+  width: 12vw;
+  height: 2vh;
+  margin-bottom: 0.5em;
+}
+.card-icon {
+  height: 2vh;
+  width: 2vw;
+}
+.card-image {
+  border: 0.1em solid #422800;
+  border-radius: 20px;
+  height: auto;
+  width: 12vw;
+}
+.recipe-name {
+  background-color: rgb(144, 96, 0);
+  color: #fbeee0;
 }
 
 
@@ -152,7 +270,7 @@ background-color: lightblue;
     left: 0;
 } */
 
-.recipe-card{
+.recipe-card {
   /* display: flex; */
   /* flex-direction: column; */
   /* align-items: center; */
