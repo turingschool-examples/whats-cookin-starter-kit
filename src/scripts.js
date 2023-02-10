@@ -85,6 +85,7 @@ function displayCards(recipeList) {
 function toggleRecipeSaved(element) {
   element.classList.toggle('savedRecipe');
   const recipe = user.recipesToCook.recipes.find(recipe => recipe.id === parseInt(element.dataset.index));
+  //resolve to be the recipe that is saved (or not), boolean
 
   if (!recipe) {
     user.saveRecipe(mainRepository.recipes.find(repoRecipe => repoRecipe.id === parseInt(element.dataset.index)));
@@ -104,10 +105,10 @@ function checkClick(e) {
     }
  }
 
-function checkNavButtons(e) {
-    if (e.target.id === 'home-button') {
+function checkNavButtons(event) {
+    if (event.target.id === 'home-button') {
         displayHomePage()
-    } else if (e.target.id === 'my-food-button') {
+    } else if (event.target.id === 'my-food-button') {
         displaySavedFoodPage()
     }
 }
@@ -126,9 +127,10 @@ function flipToFront(elementIndex) {
     hide(backCardToFlip);
 }
 
-function displayHomePage() {
+function displayHomePage(tag) {
     cardSection.dataset.page = "home";
     displayCards(mainRepository);
+    uncheckOtherFilters(tag);
 }
 
 function displaySavedFoodPage() {
@@ -152,7 +154,7 @@ function searchRecipes(searchTerm) {
     if (returnIfHome()) {
         mainRepository.filterRecipesByName(searchTerm.toUpperCase()) ? displayCards(mainRepository.recipesByName) : warnNoResults();
     } else {
-        user.filterSavedByName(searchTerm.toUpperCase()) ? displayCards(user.recipesToCook) : warnNoResults();
+        user.filterSavedByName(searchTerm.toUpperCase()) ? displayCards(user.recipesToCook.recipesByName) : warnNoResults();
     };
 };
 
@@ -163,7 +165,7 @@ function filterRecipes(tag) {
         displayCards(mainRepository.recipesByTag);
     } else {
         user.filterSavedByTag(tag);
-        displayCards(user.recipesToCook);
+        displayCards(user.recipesToCook.recipesByTag);
     };
 };
 
