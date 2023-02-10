@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Creepster", cursive;
+  /* font-family: "Creepster", cursive; */
 }
 
 .main-page {
@@ -86,7 +86,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,4 +100,25 @@
   border-radius: 4px;
   overflow-y: auto;
   box-sizing: border-box;
+}
+
+.favorites-heading {
+  font-size: 2rem;
+  color: greenyellow;
+  background: gray;
+  border-radius: 10px;
+  padding: 10px 25px;
+  cursor: pointer;
+}
+.favorites-heading:hover {
+  background-color: aqua;
+  scale: 1.2;
+}
+
+.home-button {
+  padding: 10px;
+}
+
+.home-button:hover {
+  scale: 1.2;
 }
