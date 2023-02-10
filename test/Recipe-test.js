@@ -1,8 +1,8 @@
 import { assert, expect } from 'chai';
-import Recipe from '../src/classes/Recipe';
+import Recipe from '../src/classes/recipeClass';
 import recipeTestData from '../src/data/recipeTestData';
 
-describe('Recipe1', () => {
+describe('Recipe', () => {
   let recipe1, recipe2;
 
   beforeEach(() => {
@@ -50,12 +50,12 @@ describe('Recipe1', () => {
 
   it('should be able to return the total cost of its own ingredients', () => {
     recipe1.retrieveIngredientInfo();
-    recipe1.returnCostOfIngredients();
-    assert.equal(recipe1.sum, 177.76);
+    const getSum1 = recipe1.returnCostOfIngredients();
+    assert.equal(getSum1, 177.76);
 
     recipe2.retrieveIngredientInfo();
-    recipe2.returnCostOfIngredients();
-    assert.equal(recipe2.sum, 272.97);
+    const getSum2 = recipe2.returnCostOfIngredients();
+    assert.equal(getSum2, 272.97);
   });
 
   it('should be able to return the instructions to make a recipe', () => {
