@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Creepster", cursive;
+  /* font-family: "Creepster", cursive; */
 }
 
 .main-page {
@@ -112,4 +112,13 @@
 }
 .favorites-heading:hover {
   background-color: aqua;
+  scale: 1.2;
+}
+
+.home-button {
+  padding: 10px;
+}
+
+.home-button:hover {
+  scale: 1.2;
 }

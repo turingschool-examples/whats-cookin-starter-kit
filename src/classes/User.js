@@ -16,16 +16,16 @@ class User {
     this.favorites.splice(recipe, 1);
   }
 
-  filterTag(tag) {
+  filterFavTag(tag) {
     const filteredRecipe = this.favorites.filter((recipe) => {
       return recipe.tags.includes(tag);
     });
     return filteredRecipe;
   }
 
-  filterName(name) {
+  filterFavName(name) {
     const filteredName = this.favorites.filter((recipe) => {
-      return recipe.name.includes(name);
+      return recipe.name.toLowerCase().includes(name);
     });
     return filteredName;
   }

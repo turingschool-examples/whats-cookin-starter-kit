@@ -15,7 +15,8 @@ const searchRecipeInput = document.querySelector(".search-recipe");
 const searchBtn = document.querySelector(".search-btn");
 const modalTitle = document.querySelector(".modal-title");
 const modalContent = document.querySelector(".modal-content");
-const favoriteHeading = document.querySelector(".favorites-heading")
+const favoriteHeading = document.querySelector(".favorites-heading");
+const homeBtn = document.querySelector(".home-button");
 
 // Global Variables
 let allUsers;
@@ -43,9 +44,13 @@ searchBtn.addEventListener("click", (e) => {
   filterByName();
 });
 
-favoriteHeading.addEventListener('click', () => {
-  showFavorites()
-})
+favoriteHeading.addEventListener("click", () => {
+  showFavorites();
+});
+
+homeBtn.addEventListener("click", () => {
+  goHome();
+});
 
 // Functions
 
@@ -95,15 +100,26 @@ function showFull(e) {
 function filterByTag(e) {
   let target = e.target.className;
   recipeContainer.innerHTML = "";
-  let filteredRecipes = recipeRepo.filterTag(target)
-  displayRecipes(filteredRecipes)
+  let filteredRecipes;
+  console.log(recipeContainer.classList.contains("favorites"));
+  if (recipeContainer.classList.contains("favorites")) {
+    filteredRecipes = randomUser.filterFavTag(target);
+  } else {
+    filteredRecipes = recipeRepo.filterTag(target);
+  }
+  displayRecipes(filteredRecipes);
 }
 
 function filterByName() {
-  let input = searchRecipeInput.value;
+  let input = searchRecipeInput.value.toLowerCase();
+  let filteredRecipes;
   recipeContainer.innerHTML = "";
-  let filteredRecipes = recipeRepo.filterName(input)
-  displayRecipes(filteredRecipes)
+  if (recipeContainer.classList.contains("favorites")) {
+    filteredRecipes = randomUser.filterFavName(input);
+  } else {
+    filteredRecipes = recipeRepo.filterName(input);
+  }
+  displayRecipes(filteredRecipes);
 }
 
 function setUser(arr) {
@@ -123,11 +139,19 @@ function saveRecipe(e) {
 function selectRecipe(e) {
   if (e.target.className === "favorite-button") {
     saveRecipe(e);
-  } else if (e.target.className === "recipe-img" || e.target.className === "recipe-name") {
+  } else if (
+    e.target.className === "recipe-img" ||
+    e.target.className === "recipe-name"
+  ) {
     showFull(e);
   }
 }
 
 function showFavorites() {
-  displayRecipes(randomUser.favorites)
+  recipeContainer.classList.add("favorites");
+  displayRecipes(randomUser.favorites);
+}
+
+function goHome() {
+  displayRecipes(recipeRepo.recipes);
 }
