@@ -34,11 +34,6 @@ window.addEventListener('load', function() {
     getRandomUser();
 });
 
-
-allImages.forEach((image) => {
-    image.addEventListener("click", seeRecipe);
-  });
-
 searchBarBtn.addEventListener( 'click', function() {
   getRecipeByTag();
   getRecipeByName();
@@ -47,9 +42,9 @@ searchBarBtn.addEventListener( 'click', function() {
 // Event handlers 
 function getRandomUser() {
     let randomIndex = Math.floor(Math.random() * usersData.length);
-    currentUser = new User(usersData);
+    currentUser = new User(usersData[randomIndex]);
     welcomeUser();
-    return randomIndex
+    return currenUser
 };
 
 function welcomeUser() {
