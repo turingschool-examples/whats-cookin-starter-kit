@@ -11,15 +11,15 @@ describe('user', () =>{
     beforeEach(() =>{
         user = new User(
             {
-              "name": "Brexye Quysh",
-              "id": 1,
-              "pantry": [
+              name: "Brexye Quysh",
+              id: 1,
+              pantry: [
                 {
-                  "ingredient": 11297,
-                  "amount": 4
+                  ingredient: 11297,
+                  amount: 4
                 },
             ]
-            }
+        }
         )
       
         ingredient = new Ingredient({
@@ -31,8 +31,11 @@ describe('user', () =>{
         recipe = new Recipe({
             id: 4,
             name: 'cookies',
-            ingredients: ingredient
+            ingredients: ingredient,
+            tag: "dessert"   
+              
         })
+    
     })
 
     it('should be a function', () => {
@@ -60,7 +63,8 @@ describe('user', () =>{
     })
     
     it('should filter a recipe by the tag', () => {
-        user.filterRecipe(recipe)
+      const filteredRecipes = user.filterRecipeByTag('dessert')
+      expect(user.recipe).to.contain(tag)
     })
 
 })
