@@ -1,4 +1,4 @@
-import Ingredient from './ingredientClass';
+import Ingredient from './Ingredient';
 
 class Recipe {
   constructor(recipe) {

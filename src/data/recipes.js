@@ -5381,5 +5381,4 @@ const recipeData = [
       ]
     }
   ]
-
-  module.exports = recipeData;
+ export default recipeData;
