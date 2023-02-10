@@ -9,8 +9,7 @@ import User from './classes/User';
 import recipeData from './data/recipes';
 import usersData from './data/users';
 
-const homeButton = document.querySelector('#home-button');
-const myFoodButton = document.querySelector('#my-food-button');
+
 const searchBar = document.querySelector('#search-bar');
 const cardSection = document.querySelector('#card-section');
 const navBar = document.querySelector('nav');
@@ -18,12 +17,14 @@ const main = document.querySelector('main');
 const footer = document.querySelector('footer');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-const allRecipes = recipeData.map(recipe => new Recipe(recipe));
-const mainRepository = new RecipeRepository(allRecipes);
-const user = new User(usersData[Math.floor(Math.random() * usersData.length)], mainRepository);
+const mainRepository = new RecipeRepository(recipeData);
+const user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
 
 
-window.addEventListener('load', displayCards);
+window.addEventListener('load', () => {
+    displayCards(mainRepository);
+});
+
 main.addEventListener('click', checkClick);
 navBar.addEventListener('click', checkNavButtons);
 
@@ -41,15 +42,24 @@ footer.addEventListener('click', e => {
 });
 
 
-function displayCards() {
+function displayCards(recipeList) {
+    searchBar.value = '';
+
+    let displayRecipes;
+    recipeList.recipes ? displayRecipes = recipeList.recipes : displayRecipes = recipeList;
+
     cardSection.innerHTML = '';
-    mainRepository.recipes.forEach((recipe, index) => {
+    displayRecipes.forEach((recipe, index) => {
         let instructions = recipe.instructions.map((instruction) => {
             return `<p class="foodText">${instruction.instruction}</p>`
         })
+        let ingredients = recipe.ingredients.map((ingredient) => {
+            console.log(ingredient)
+            return `<li>${ingredient.name}</li>`
+        })
         cardSection.innerHTML += `
         <section class="card cardFront" id="cf${recipe.id}" tabindex="0" data-side="front" data-index="${recipe.id}">
-          <button aria-label="Save Recipe Button" class="saveRecipeButton" id="save-btn-2"></button>
+          <button aria-label="Save Recipe Button" class="saveRecipeButton" id="save-btn-${index}" data-index="${recipe.id}"></button>
           <img class="foodImage" src="${recipe.image}" alt="Picture of ${recipe.name}" data-side="front" data-index="${recipe.id}">
             <h2 class="foodTitle" data-side="front" data-index="${recipe.id}">${recipe.name}</h2>
             <div class="frontStats">
@@ -60,20 +70,34 @@ function displayCards() {
         <section class="card cardBack hidden" id="cb${recipe.id}" tabindex="0" data-side="back" data-index="${recipe.id}">
           <h2 class="foodTitle">${recipe.name}</h2>
           <ul class="ingredientsList" id="ingred-list2">
-            <li>1 egg</li>
-            <li>2 egg</li>
-            <li>3 egg</li>
-            <li>4 egg</li>
+            ${ingredients.join("")}
           </ul>
-          ${instructions.join(" ")}
+          ${instructions.join("")}
         </section>
         `
     })
+    fixSavedHearts();
+}
+
+function toggleRecipeSaved(element) {
+  element.classList.toggle('savedRecipe');
+  const recipe = user.recipesToCook.recipes.find(recipe => recipe.id === parseInt(element.dataset.index));
+
+  if (!recipe) {
+    user.saveRecipe(mainRepository.recipes.find(repoRecipe => repoRecipe.id === parseInt(element.dataset.index)));
+    console.log(user.recipesToCook.recipes);
+  } else {
+    user.removeSaved(recipe.id);
+    console.log(user.recipesToCook.recipes);
+  }
+  returnIfHome() ? displayCards(mainRepository) : displayCards(user.recipesToCook);
 }
 
 function checkClick(e) {
     if (e.target.dataset.side) {
         e.target.dataset.side === 'front' ? flipToBack(e.target.dataset.index) : flipToFront(e.target.dataset.index)
+    } else if (e.target.id.includes('save-btn')) {
+        toggleRecipeSaved(e.target);
     }
  }
 
@@ -101,10 +125,12 @@ function flipToFront(elementIndex) {
 
 function displayHomePage() {
     cardSection.dataset.page = "home";
+    displayCards(mainRepository);
 }
 
 function displaySavedFoodPage() {
     cardSection.dataset.page = "saved";
+    displayCards(user.recipesToCook);
 }
 
 function show(element) {
@@ -121,20 +147,20 @@ function returnIfHome() {
 
 function searchRecipes(searchTerm) {
     if (returnIfHome()) {
-        user.filterAllByName(searchTerm.toUpperCase()) ? updateCards() : warnNoResults();
+        mainRepository.filterRecipesByName(searchTerm.toUpperCase()) ? displayCards(mainRepository.recipesByName) : warnNoResults();
     } else {
-        user.filterSavedByName(searchTerm.toUpperCase()) ? updateCards() : warnNoResults();
+        user.filterSavedByName(searchTerm.toUpperCase()) ? displayCards(user.recipesToCook) : warnNoResults();
     };
 };
 
 function filterRecipes(tag) {
     uncheckOtherFilters(tag);
     if (returnIfHome()) {
-        user.filterAllByTag(tag);
-        updateCards();
+        mainRepository.filterRecipesByTag(tag);
+        displayCards(mainRepository.recipesByTag);
     } else {
         user.filterSavedByTag(tag);
-        console.log(user.recipesToCook.recipesByName); //updateCards() once thats figured out
+        displayCards(user.recipesToCook);
     };
 };
 
@@ -146,21 +172,24 @@ function resetWarning() {
     searchBar.style.color = 'black';
 };
 
-function updateCards() {
-    searchBar.value = '';
-    // however we want to update the cards
-    // console.log(user.allRecipesByTag);
-    // console.log(user.allRecipesByName);
-};
-
 function resetFilters() {
-    // display all recipes again - used when turning off currently selected filter instead of choosing a different one
+    returnIfHome() ? displayCards(mainRepository) : displayCards(user.recipesToCook);
 };
 
 function uncheckOtherFilters(tag) {
     checkboxes.forEach(box => {
         if (box.dataset.tag !== tag) {
             box.checked = false;
+        };
+    });
+};
+
+function fixSavedHearts() {
+    const allHearts = document.querySelectorAll('.saveRecipeButton');
+
+    allHearts.forEach(heart => {
+        if (user.recipesToCook.recipes.some(recipe => recipe.id === parseInt(heart.dataset.index))) {
+            heart.classList.add('savedRecipe');
         };
     });
 };

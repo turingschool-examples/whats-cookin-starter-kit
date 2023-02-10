@@ -165,7 +165,7 @@ describe('Recipe Repository', () => {
     mealPlan.filterRecipesByTag('Chocolate Maple'.toUpperCase())
     expect(mealPlan.recipesByTag).to.deep.equal([]);
 
-    mealPlan.filterRecipesByTag(''.toUpperCase())
+    mealPlan.filterRecipesByTag('')
     expect(mealPlan.recipesByTag).to.deep.equal([]);
 
     mealPlan.filterRecipesByTag(23) 
