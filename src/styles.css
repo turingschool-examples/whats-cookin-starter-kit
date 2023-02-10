@@ -31,7 +31,7 @@ h1 {
 main {
   display:flex;
   height: 80vh;
-  width: 80vw;
+  width: 100vw;
 }
 
 /* Recipie Card Section */
@@ -115,3 +115,49 @@ button:hover,
   height: 20px;
   width: 200px;
 }
+
+.single-recipe > h2 {
+  font-color: white;
+}
+
+.single-recipe > img {
+  height: 200px;
+  width: 200px;
+}
+
+/* Star Rating */
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > label {
+  position: relative;
+  width: 1.1em;
+  font-size: 45px;
+  color: #FFD700;
+}
+
+.rating > label::before {
+  content: "\2605";
+  position: absolute;
+  opacity: 0;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before {
+opacity: 1 !important;
+}
+.rating > input:checked ~ label:before{
+opacity:1;
+
+}
+.rating:hover > input:checked ~ label:before{
+opacity: 0.4;
+ }
