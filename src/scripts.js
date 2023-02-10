@@ -253,8 +253,12 @@ function searchRecipeByName() {
 }
 
 function generateRandUser() {
-    var num = Math.floor(Math.random() * usersData.length)
-    user = new User(usersData[num])
+    fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
+    .then((response) => response.json())
+    .then((data) => {
+    var num = Math.floor(Math.random() * data.usersData.length)
+    user = new User(data.usersData[num])
+    })
 }
 
 function hideAll() {
