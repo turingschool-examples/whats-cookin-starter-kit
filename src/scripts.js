@@ -18,8 +18,7 @@ const main = document.querySelector('main');
 const footer = document.querySelector('footer');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-const allRecipes = recipeData.map(recipe => new Recipe(recipe));
-const mainRepository = new RecipeRepository(allRecipes);
+const mainRepository = new RecipeRepository(recipeData);
 const user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
 
 
@@ -55,6 +54,10 @@ function displayCards(recipeList) {
         let instructions = recipe.instructions.map((instruction) => {
             return `<p class="foodText">${instruction.instruction}</p>`
         })
+        let ingredients = recipe.ingredients.map((ingredient) => {
+            console.log(ingredient)
+            return `<li>${ingredient.name}</li>`
+        })
         cardSection.innerHTML += `
         <section class="card cardFront" id="cf${recipe.id}" tabindex="0" data-side="front" data-index="${recipe.id}">
           <button aria-label="Save Recipe Button" class="saveRecipeButton" id="save-btn-${index}" data-index="${recipe.id}"></button>
@@ -70,12 +73,9 @@ function displayCards(recipeList) {
         <section class="card cardBack hidden" id="cb${recipe.id}" tabindex="0" data-side="back" data-index="${recipe.id}">
           <h2 class="foodTitle">${recipe.name}</h2>
           <ul class="ingredientsList" id="ingred-list2">
-            <li>1 egg</li>
-            <li>2 egg</li>
-            <li>3 egg</li>
-            <li>4 egg</li>
+            ${ingredients.join("")}
           </ul>
-          ${instructions.join(" ")}
+          ${instructions.join("")}
         </section>
         `
     })
