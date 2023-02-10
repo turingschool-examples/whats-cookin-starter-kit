@@ -2,7 +2,7 @@ import { assert, expect } from 'chai';
 import Recipe from '../src/classes/recipeClass';
 import recipeTestData from '../src/data/recipeTestData';
 
-describe('Recipe1', () => {
+describe('Recipe', () => {
   let recipe1, recipe2;
 
   beforeEach(() => {

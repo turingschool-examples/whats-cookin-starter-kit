@@ -3,12 +3,12 @@ import User from '../src/classes/userClass';
 import usersTestData from '../src/data/userTestData';
 import recipeTestData from '../src/data/recipeTestData';
 import RecipeRepository from '../src/classes/RecipeRepository';
+import Recipe from '../src/classes/recipeClass';
 
 describe('User', () => {
   let user
   beforeEach(() => {
     user = new User(usersTestData[0]);
-    user.makeRecipeList(recipeTestData);
   });
 
   it('should be an instance of User', () => {
@@ -26,27 +26,29 @@ describe('User', () => {
   });
 
   it('should have a recipe to cook list', () => {
-    assert.instanceOf(user.recipesToCook, RecipeRepository);
+    assert.deepEqual(user.recipesToCook, []);
   });
 
   it('should be able to add or remove a recipe from their list', () => {
     user.addRecipeToCook(recipeTestData[0]);
-    assert.equal(user.recipesToCook.recipeList[0], user.totalRecipes.recipeList[0]);
+    assert.deepEqual(user.recipesToCook[0], new Recipe(user.recipesToCook[0]));
     
     user.addRecipeToCook(recipeTestData[1]);
-    assert.equal(user.recipesToCook.recipeList.length, 2);
+    assert.equal(user.recipesToCook.length, 2);
     
-    user.removeRecipeFromCook(user.recipesToCook.recipeList[1], 1);
-    assert.deepEqual(user.recipesToCook.recipeList.length, 1);
+    user.removeRecipeFromCook(user.recipesToCook[1], 1);
+    assert.deepEqual(user.recipesToCook.length, 1);
   });
 
-  it.skip('should be able to filter my recipes by tag', () => {
+  it('should be able to filter my recipes by tag', () => {
     user.addRecipeToCook(recipeTestData[1]);
-    user.findRecipeByTag('lunch');
-    assert.equal(user.totalRecipes.filteredList[0], recipeTestData[1]);
+    user.findByTag('lunch');
+    assert.deepEqual(user.recipesToCook[0], new Recipe(recipeTestData[1]));
   });
 
-  it.skip('should be able to filter my recipes by name', () => {
-    assert.equal();
+  it('should be able to filter my recipes by name', () => {
+    user.addRecipeToCook(recipeTestData[1]);
+    user.findByName('Loaded Chocolate Chip Pudding Cookie Cups');
+    assert.deepEqual(user.recipesToCook[0], new Recipe(recipeTestData[1]));
   });
 });
