@@ -12,35 +12,51 @@ import recipeData from './data/recipes';
 //even handler /listener for form and form data
 //search bar will return recipe based on taking in
 //name or tag from recipeRepository
-// const recipeInfo = new Recipe();
+const recipeRepository = new RecipeRepository(recipeData);
 // const globalArray = [];
 
 const searchBarBtn = document.querySelector('#searchButton');
 const savedViewBtn = document.querySelector('#savedViewButton');
 const userNamePrompt = document.querySelector('#userName');
 const cardTileDisplay = document.querySelector('#cardTileView');
+const searchBarInput =document.querySelector('#searchBar')
+const tagSeachResults = document.querySelector('#tagSearchResults')
+const nameSearchResults = document.querySelector('#nameResultsView')
 
 // Event Listeners
 // window.addEventListener('load', function(){
 //     console.log('hello')
 // });
 window.addEventListener('load', () => {insertRecipeCards(recipeData)})
-
+console.log("yes getting hit")
 searchBarBtn.addEventListener( 'click', function() {
-  getRecipeByTag();
+//   getRecipeByTag();
+console.log("hola")
   getRecipeByName();
 });
 
 // Event handlers 
-function getRecipeByTag(userInput) {
-  if ( userInput.includes(RecipeRepository.filteredList.filterByTag()));
-};
+// function getRecipeByTag(userInput) {
+//   if ( userInput.includes(recipeRepository.filteredList.filterByTag()));
+// };
 
 function getRecipeByName() {
-    
+    console.log("hi")
+    let nameResults = [];
+    let userInput = searchBarInput.value;
+    nameResults = recipeRepository.filterByName(userInput);
+    console.log(nameResults)
+    nameResults.forEach(result => {
+        nameSearchResults.innetHTML += `<section class="nameResults"><h1 class="searched-recipe" id=${result.id}></h1></section>`
+    })
+    if (nameResults.length === 0) {
+        nameSearchResults.innerHTML = `<h1>No results found.</h1>`
+    };
+    insertRecipeCards(nameResults)
 };
 
 function insertRecipeCards(array) {
+    cardTileDisplay.innerHTML = "";
   for(let i = 0; i < array.length; i++){
     cardTileDisplay.innerHTML += 
       `<section class="card" id="${array[i].id}">
