@@ -25,8 +25,8 @@ window.addEventListener('load', () => {
     displayCards(mainRepository);
 });
 
-main.addEventListener('click', checkClick);
-navBar.addEventListener('click', checkNavButtons);
+main.addEventListener('click', handleCardEvents);
+navBar.addEventListener('click', toggleView);
 
 searchBar.addEventListener('keydown', e => {
     if (e.code === "Enter") {
@@ -54,7 +54,6 @@ function displayCards(recipeList) {
             return `<p class="foodText">${instruction.instruction}</p>`
         })
         let ingredients = recipe.ingredients.map((ingredient) => {
-            console.log(ingredient)
             return `<li>${ingredient.name}</li>`
         })
         cardSection.innerHTML += `
@@ -85,15 +84,13 @@ function toggleRecipeSaved(element) {
 
   if (!recipe) {
     user.saveRecipe(mainRepository.recipes.find(repoRecipe => repoRecipe.id === parseInt(element.dataset.index)));
-    console.log(user.recipesToCook.recipes);
   } else {
     user.removeSaved(recipe.id);
-    console.log(user.recipesToCook.recipes);
   }
   returnIfHome() ? displayCards(mainRepository) : displayCards(user.recipesToCook);
 }
 
-function checkClick(e) {
+function handleCardEvents(e) {
     if (e.target.dataset.side) {
         e.target.dataset.side === 'front' ? flipToBack(e.target.dataset.index) : flipToFront(e.target.dataset.index)
     } else if (e.target.id.includes('save-btn')) {
@@ -101,10 +98,10 @@ function checkClick(e) {
     }
  }
 
-function checkNavButtons(e) {
-    if (e.target.id === 'home-button') {
+function toggleView(event) {
+    if (event.target.id === 'home-button') {
         displayHomePage()
-    } else if (e.target.id === 'my-food-button') {
+    } else if (event.target.id === 'my-food-button') {
         displaySavedFoodPage()
     }
 }
@@ -123,9 +120,10 @@ function flipToFront(elementIndex) {
     hide(backCardToFlip);
 }
 
-function displayHomePage() {
+function displayHomePage(tag) {
     cardSection.dataset.page = "home";
     displayCards(mainRepository);
+    uncheckOtherFilters(tag);
 }
 
 function displaySavedFoodPage() {
@@ -149,7 +147,7 @@ function searchRecipes(searchTerm) {
     if (returnIfHome()) {
         mainRepository.filterRecipesByName(searchTerm.toUpperCase()) ? displayCards(mainRepository.recipesByName) : warnNoResults();
     } else {
-        user.filterSavedByName(searchTerm.toUpperCase()) ? displayCards(user.recipesToCook) : warnNoResults();
+        user.filterSavedByName(searchTerm.toUpperCase()) ? displayCards(user.recipesToCook.recipesByName) : warnNoResults();
     };
 };
 
@@ -160,7 +158,7 @@ function filterRecipes(tag) {
         displayCards(mainRepository.recipesByTag);
     } else {
         user.filterSavedByTag(tag);
-        displayCards(user.recipesToCook);
+        displayCards(user.recipesToCook.recipesByTag);
     };
 };
 
