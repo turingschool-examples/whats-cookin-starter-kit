@@ -1,4 +1,30 @@
-// Your fetch requests will live here!
+let apiCalls;
+
+const userData = fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
+.then(response => response.json())
+.then(data => data)
+.catch(err => console.log(err))
+
+//console.log(usersData)
+
+//let data;
+
+const ingData = fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients')
+.then(response => response.json())
+.then(data => data)
+.catch(err => console.log(err))
+
+// ingredients.then(val => {
+//     data = val
+//})
+
+const recData = fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
+.then(response => response.json())
+.then(data => data)
+.catch(err => console.log(err))
 
 
-console.log('I will be a fetch request!')
+
+
+apiCalls = [userData, ingData, recData]
+export default apiCalls
