@@ -1,4 +1,4 @@
-ingredients = [
+const ingredients = [
     {
         "id": 20081,
         "name": "wheat flour",
@@ -81,7 +81,7 @@ ingredients = [
       }
 ]
 
-recipes = [
+const recipes = [
     {
         "id": 595736,
         "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -536,7 +536,7 @@ recipes = [
       },
 ]
 
-users = [
+const users = [
     {
         "name": "Saige O'Kon",
         "id": 1,
@@ -776,3 +776,5 @@ users = [
         ]
       }
 ]
+
+export default {ingredients, users, recipes};

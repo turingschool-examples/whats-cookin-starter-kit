@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
+import mockdata from '../src/data/mockdata';
 
 describe('Recipe Repository', () => {
   
@@ -67,9 +68,9 @@ describe('Recipe Repository', () => {
           
       ]
     }
-    
+    console.log(mockdata.ingredients[0])
 
-    mealPlan = new RecipeRepository(recipe1, );
+    mealPlan = new RecipeRepository(recipe1);
   })
 
   it('Should be a function', () => {
