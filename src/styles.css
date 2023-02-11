@@ -99,7 +99,7 @@ button:hover,
   opacity: 0.5;
 }
 
-.side-btns {
+.util-btns {
   display: flex;
   flex-direction: column;
   position: fixed;

@@ -15,23 +15,26 @@ import recipeData from './data/recipes';
 // const recipeInfo = new Recipe();
 // const globalArray = [];
 
-const searchBarBtn = document.querySelector('#searchButton');
-const savedViewBtn = document.querySelector('#savedViewButton');
+const searchBarBtn = document.querySelector('#searchBtn');
+const savedViewBtn = document.querySelector('#savedViewBtn');
 const userNamePrompt = document.querySelector('#userName');
 const cardTileDisplay = document.querySelector('#cardTileView');
 const singleRecipeDisplay = document.querySelector('#singleRecipeView');
+const homeViewBtn = document.querySelector('#homeViewBtn');
 // Event Listeners
 window.addEventListener('load', () => {insertRecipeCards(recipeData)});
-cardTileDisplay.addEventListener('dblclick', () => {
+cardTileDisplay.addEventListener('dblclick', (event) => {
   if (event.target.closest('.card')) {
     showSingleRecipe(event);
   }
 });
-searchBarBtn.addEventListener( 'click', function() {
-  getRecipeByTag();
-  getRecipeByName();
-});
-
+homeViewBtn.addEventListener('click', () => {
+  showHomeView();
+})
+// searchBarBtn.addEventListener('click', function() {
+//   getRecipeByTag();
+//   getRecipeByName();
+// });
 // Event handlers 
 function getRecipeByTag(userInput) {
   if ( userInput.includes(RecipeRepository.filteredList.filterByTag()));
@@ -53,10 +56,12 @@ function insertRecipeCards(array) {
 
 function showSingleRecipe(event) {
   show(singleRecipeDisplay);
+  show(homeViewBtn);
   hide(cardTileDisplay);
   const recipeElement = event.target;
   singleRecipeDisplay.innerHTML = 
-  `<h2>${recipeElement.name}</h2>
+  `<section id="${recipeElement.id}>
+  <h2>${recipeElement.name}</h2>
   <img src="${recipeElement.image}" alt="image of ${recipeElement.name}">
   <div class="rating">
     <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
@@ -70,10 +75,18 @@ function showSingleRecipe(event) {
   </div>
   <div>
     <p>${recipeElement.ingredients}</p>
-  </div>`
+  </div>
+  </section>`
 }
 // Functions
 // this will populate all the cards in an array to either using the saved recipes or the original load recipes
+function showHomeView() {
+  console.log('Is this button really a button?');
+  show(cardTileDisplay);
+  hide(singleRecipeDisplay);
+  hide(homeViewBtn);
+}
+
 
 // Helper Functions
 function show(element) {
