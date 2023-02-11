@@ -1,11 +1,8 @@
 import './styles.css';
-import apiCalls from './apiCalls';
 import './images/turing-logo.png'
-// import recipeData from './data/recipes.js';
 import MicroModal from 'micromodal'
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User.js'
-// import ingredientsData from './data/ingredients.js'
 import Recipe from './classes/Recipe'
 MicroModal.init()
 
@@ -117,9 +114,10 @@ function loadPage(recipeRepository, user, ingredientsData) {
     let currentRecipeId
     let currentRecipe
 
-    for (var i = 0; i < recipeRepository.recipes.length; i++) {
-        currentDisplayedRecipes.push(recipeData[i])
-    }
+        recipeRepository.recipes.forEach(element => {
+            currentDisplayedRecipes.push(element)
+        })
+
     popularRecipes()
 
     window.onscroll = function () {
@@ -147,23 +145,23 @@ function loadPage(recipeRepository, user, ingredientsData) {
 
     function renderCurrentRecipe() {
         recipeModal.innerHTML = ''
-                let ingredients = currentRecipe.determineRecipeIngredients(ingredientsData)
+        let ingredients = currentRecipe.determineRecipeIngredients(ingredientsData)
 
-                const ingredientsHTML = ingredients.map(ingredient => {
-                    return '<li>' + ingredient.ingredient + '</li>'
-                }).join('')
+        const ingredientsHTML = ingredients.map(ingredient => {
+            return '<li>' + ingredient.ingredient + '</li>'
+        }).join('')
 
-                if (saved.filter(current => current.id === currentRecipe.id).length !== 0) {
-                    var isSaved = "Saved"
-                } else {
-                    var isSaved = "♥️"
-                }
+        if (saved.filter(current => current.id === currentRecipe.id).length !== 0) {
+            var isSaved = "Saved"
+        } else {
+            var isSaved = "♥️"
+        }
 
-                const instructionsHTML = currentRecipe.returnInstructions().map(instruction => {
-                    return '<li>' + instruction + '</li>'
-                }).join('')
-                recipeModal.innerHTML =
-                    `
+        const instructionsHTML = currentRecipe.returnInstructions().map(instruction => {
+            return '<li>' + instruction + '</li>'
+        }).join('')
+        recipeModal.innerHTML =
+            `
     <header class="modal__header">
           <h2 class="modal__title" id="modal-1-title">
             ${currentRecipe.name}
@@ -184,14 +182,14 @@ function loadPage(recipeRepository, user, ingredientsData) {
           <button class="modal__close" aria-label="Close modal" data-micromodal-close>CLOSE</button>
         </main>
         `
-                MicroModal.show('modal-1')
-                var saveButton = document.querySelector('.modal__btn')
-                if (saved.filter(current => current.id === currentRecipe.id).length !== 0) {
-                    saveButton.style.backgroundColor = "red"
-                }
-                saveButton.addEventListener('click', function () {
-                    saveRecipe(saveButton)
-                })
+        MicroModal.show('modal-1')
+        var saveButton = document.querySelector('.modal__btn')
+        if (saved.filter(current => current.id === currentRecipe.id).length !== 0) {
+            saveButton.style.backgroundColor = "red"
+        }
+        saveButton.addEventListener('click', function () {
+            saveRecipe(saveButton)
+        })
     }
 
     function saveRecipe(button) {
@@ -205,8 +203,6 @@ function loadPage(recipeRepository, user, ingredientsData) {
             button.innerText = '♥️'
             button.style.backgroundColor = "#e6e6e6"
         }
-        //sort through the saved array
-        //locate the index of 
     }
 
     function displayRecipes() {
@@ -217,7 +213,6 @@ function loadPage(recipeRepository, user, ingredientsData) {
         <img src="${recipe.image}" class="recipe"></img>
         `
         })
-
     }
 
     function displaySavedRecipes() {
@@ -241,7 +236,6 @@ function loadPage(recipeRepository, user, ingredientsData) {
         `
         })
     }
-       
 
     function popularRecipes() {
         for (var i = 0; i < 10; i++) {
@@ -289,7 +283,6 @@ function loadPage(recipeRepository, user, ingredientsData) {
         } else {
             recipeSection.innerHTML = `<p>NO RESULTS</p>`
         }
-
         displayRecipes();
     }
 
@@ -297,4 +290,4 @@ function loadPage(recipeRepository, user, ingredientsData) {
         recipeSection.innerHTML = ''
         pantrySection.innerHTML = ''
     }
-} 
+}
