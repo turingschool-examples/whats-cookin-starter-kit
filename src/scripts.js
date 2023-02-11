@@ -6,14 +6,9 @@ import Ingredient from './classes/Ingredient';
 import Recipe from './classes/Recipe';
 import User from './classes/User';
 
-// import recipeData from './data/recipes';
-// import usersData from './data/users';
+import recipeData from './data/recipes';
+import usersData from './data/users';
 
-let recipeData;
-let ingredientsData;
-let usersData;
-let user;
-let mainRepository;
 
 const searchBar = document.querySelector('#search-bar');
 const cardSection = document.querySelector('#card-section');
@@ -22,23 +17,13 @@ const main = document.querySelector('main');
 const footer = document.querySelector('footer');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-Promise.all(apiCalls)
-.then(function(values) {
-    usersData = values[0].usersData;
-    ingredientsData = values[1].ingredientsData;
-    recipeData = values[2].recipesData
-    user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
-    mainRepository = new RecipeRepository(recipeData, ingredientsData);
+const mainRepository = new RecipeRepository(recipeData);
+const user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
+
+
+window.addEventListener('load', () => {
     displayCards(mainRepository);
-})
-
-// const mainRepository = new RecipeRepository(recipeData);
-// const user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
-
-
-//window.addEventListener('load', () => {
-//     displayCards(mainRepository);
-// });
+});
 
 main.addEventListener('click', handleCardEvents);
 navBar.addEventListener('click', toggleView);
