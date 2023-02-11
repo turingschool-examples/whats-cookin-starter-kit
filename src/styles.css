@@ -7,9 +7,8 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  align-content: center;
-  justify-content: space-around;
   height: 100%;
+  margin: 0;
 }
 
 .welcome-header {
@@ -17,12 +16,19 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: fixed;
   width: 100vw;
-  height: 20vh;
+  height: 12vh;
+  z-index: 4;
+  background-color: #a2a9bb;
+  color: #282A35;
+  padding-left: 12px;
+  padding-right: 16px;
 }
 
 h1 {
   position: inherit;
+  width: auto;
   color: white;
   font-size: 40px;
   text-shadow: 2px 2px black;
@@ -31,7 +37,7 @@ h1 {
 main {
   display:flex;
   height: 80vh;
-  width: 80vw;
+  width: 100vw;
 }
 
 /* Recipie Card Section */
@@ -41,7 +47,9 @@ main {
   flex-wrap: wrap;
   justify-content: space-evenly;
   height: auto;
-  width: 80vw;
+  width: auto;
+  margin-top: 12vh;
+  margin-left: 20vw;
 }
 
 .card {
@@ -80,9 +88,18 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  position: fixed;
+  nav-left: auto;
+  margin-top: 12vh;
   background-color: #1e2947;
-  height: 80vh;
+  height: 100vh;
   width: 20vw;
+  overflow-x: hidden;
+}
+
+.nav-bar > form {
+  margin-top: 20px;
+  margin-left: 20px;
 }
 
 button {
@@ -99,7 +116,7 @@ button:hover,
   opacity: 0.5;
 }
 
-.side-btns {
+.util-btns {
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -107,11 +124,84 @@ button:hover,
   right: 0;
 }
 
-.hidden {
-  display: none;
-}
 
 .search-bar {
   height: 20px;
   width: 200px;
+}
+
+.single-recipe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+  width: 80vw;
+  margin-top: 12vh;
+  margin-left: 20vw;
+}
+
+.single-recipe > h2 {
+  color: white;
+  text-shadow: 2px 2px black;
+}
+
+.single-recipe > img {
+  height: 50%;
+  width: 50%;
+}
+
+/* Star Rating */
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > label {
+  position: relative;
+  width: 1.1em;
+  font-size: 45px;
+  color: #ffc430;
+  cursor: pointer;
+  text-shadow: 1px solid black;
+}
+
+.rating > label::before {
+  content: "\2605";
+  position: absolute;
+  opacity: 0;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before {
+opacity: 1 !important;
+}
+.rating > input:checked ~ label:before{
+opacity:1;
+
+}
+.rating:hover > input:checked ~ label:before{
+opacity: 0.4;
+ }
+
+ /* Creator Info Page*/
+
+ .creator-info-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: auto;
+  width: auto;
+  margin-top: 12vh;
+  margin-left: 20vw;
+ }
+
+
+.hidden {
+  display: none;
 }
