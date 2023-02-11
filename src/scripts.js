@@ -26,7 +26,7 @@ Promise.all(apiCalls)
 .then(function(values) {
     usersData = values[0].usersData;
     ingredientsData = values[1].ingredientsData;
-    recipeData = values[2].recipesData
+    recipeData = values[2].recipeData
     user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
     mainRepository = new RecipeRepository(recipeData, ingredientsData);
     displayCards(mainRepository);
