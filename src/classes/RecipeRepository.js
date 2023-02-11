@@ -6,11 +6,11 @@ class RecipeRepository {
     this.filteredRecipes;
   }
   filterByTag(tag) {
-    for(var i = 0; i < tag.length; i++) {
-      if (!tag[i]) {
-        return;
-      }
-      this.filteredRecipes = this.recipes.filter(recipe => recipe.tags.includes(tag[i]));
+    // for(var i = 0; i < tag.length; i++) {
+    //   if (!tag[i]) {
+    //     return;
+    //   }
+      this.filteredRecipes = this.recipes.filter(recipe => recipe.tags.includes(tag));
 
       if (this.filteredRecipes.length === 0) {
         this.filteredRecipes = null;
@@ -18,7 +18,7 @@ class RecipeRepository {
       } else {
         return this.filteredRecipes
       }
-    }
+    // }
   }
   filterByName(name) {
     if (!name) {
