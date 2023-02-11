@@ -21,13 +21,17 @@ console.log(userData);
 //even handler /listener for form and form data
 //search bar will return recipe based on taking in
 //name or tag from recipeRepository
-// const recipeInfo = new Recipe();
+const recipeRepository = new RecipeRepository(recipeData);
 // const globalArray = [];
 
 const searchBarBtn = document.querySelector('#searchBtn');
 const savedViewBtn = document.querySelector('#savedViewBtn');
 const userNamePrompt = document.querySelector('#userName');
 const cardTileDisplay = document.querySelector('#cardTileView');
+const searchBarInput =document.querySelector('#searchBar')
+const tagSeachResults = document.querySelector('#tagSearchResults')
+const nameSearchResults = document.querySelector('#nameResultsView')
+const tagSearchResults = document.querySelector('#tagResultsView')
 
 const welcomeMessage = document.querySelector('#userName')
 
@@ -35,13 +39,24 @@ const welcomeMessage = document.querySelector('#userName')
 // window.addEventListener('load', function(){
 //     console.log('hello')
 // });
-window.addEventListener('load', () => {insertRecipeCards(recipeData)})
+window.addEventListener('load', () => {insertRecipeCards(recipeData)});
 
 window.addEventListener('load', function() {
     getRandomUser();
 });
 
 searchBarBtn.addEventListener( 'click', function() {
+    cardTileDisplay.innerHTML = "";
+    getRecipeByTag();
+    getRecipeByName();
+    displayNoResults();
+});
+
+searchBarInput.addEventListener( 'change', () => {
+cardTileDisplay.innerHTML = "";    
+getRecipeByTag();
+getRecipeByName();
+displayNoResults();
   getRecipeByTag();
   getRecipeByName();
 const singleRecipeDisplay = document.querySelector('#singleRecipeView');
@@ -65,6 +80,15 @@ infoBtn.addEventListener('click', showInfo)
 // });
 
 // Event handlers 
+function getRecipeByTag() {
+    let tagResults = [];
+    let userInput = searchBarInput.value;
+    tagResults = recipeRepository.filterByTag(userInput);
+    tagResults.forEach(result => {
+        tagSearchResults.innerHTML += `<section class="tagResults"><h1 class="searched-recipe" id=${result.tags}></h1></section>`
+    });
+    insertRecipeCards(tagResults);
+
 function getRandomUser() {
     let randomIndex = Math.floor(Math.random() * usersData.length);
     currentUser = new User(usersData[randomIndex]);
@@ -83,10 +107,23 @@ function getRecipeByTag(userInput) {
 };
 
 function getRecipeByName() {
-    
+    let nameResults = [];
+    let userInput = searchBarInput.value;
+    nameResults = recipeRepository.filterByName(userInput);
+    nameResults.forEach(result => {
+        nameSearchResults.innerHTML += `<section class="nameResults"><h1 class="searched-recipe" id=${result.id}></h1></section>`
+    });
+    insertRecipeCards(nameResults);
 };
 
+// function displayNoResults() {
+//     if (nameResults.length === 0 && tagResults.length === 0) {
+//         nameSearchResults.innerHTML = `<h1>No results found.</h1>`
+// }
+// }
+
 function insertRecipeCards(array) {
+    // cardTileDisplay.innerHTML = "";
   for(let i = 0; i < array.length; i++){
     cardTileDisplay.innerHTML += 
       `<section class="card" id="${array[i].id}">
