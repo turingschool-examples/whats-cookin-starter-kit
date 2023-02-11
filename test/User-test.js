@@ -5,7 +5,7 @@ import User from '../src/classes/User';
 import mockdata from '../src/data/mockdata';
 
 describe.only('User', () => {
-    let user, recipe, recipeRepo;
+    let user, recipe;
 
     beforeEach(() => {
         user = new User(mockdata.users[0]);
@@ -54,7 +54,6 @@ describe.only('User', () => {
     });
 
     it('should return an empty array when filtered by a name that doesn\'t exist', () => {
-        
         user.filterSavedByName("Chicken Marsala".toUpperCase());
         expect(user.recipesToCook.recipesByName.length).to.equal(0);
     });
