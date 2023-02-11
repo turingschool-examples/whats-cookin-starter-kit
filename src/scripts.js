@@ -17,9 +17,18 @@ const main = document.querySelector('main');
 const footer = document.querySelector('footer');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-const mainRepository = new RecipeRepository(recipeData);
-const user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
+Promise.all(apiCalls)
+.then(function(values) {
+    usersData = values[0].usersData;
+    ingredientsData = values[1].ingredientsData;
+    recipeData = values[2].recipeData
+    user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
+    mainRepository = new RecipeRepository(recipeData, ingredientsData);
+    displayCards(mainRepository);
+})
 
+// const mainRepository = new RecipeRepository(recipeData);
+// const user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
 
 window.addEventListener('load', () => {
     displayCards(mainRepository);
