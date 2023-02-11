@@ -35,6 +35,10 @@ h2 {
   flex: 1;
   margin-right: 5vw;
 }
+.x-menu {
+  height: 35px;
+}
+
 .directory-title {
   background-color: rgb(0, 120, 139);
   color: #FFFFFF;

@@ -5,6 +5,8 @@ import Recipe from './classes/recipe';
 import User from './classes/user';
 import './images/turing-logo.png'
 
+
+const recipeContainer = document.querySelector('.recipe-container');
 const miniCardSection = document.getElementById('miniCardSection');
 const miniCardList = document.getElementById('miniCardList');
 const defaultView = document.getElementById('mainScreen')
@@ -12,10 +14,19 @@ const overlay = document.querySelector('.overlay')
 
 const buttonHome = document.getElementById('homeButton');
 const buttonViewAll = document.getElementById('viewAllButton');
-const buttonSavedRecipes = document.getElementBy('savedRecipesButton')
+const buttonSavedRecipes = document.getElementById('savedRecipesButton')
 
 // buttonHome.addEventListener('click',)
-buttonViewAll.addEventListener('click',)
+// buttonViewAll.addEventListener('click',)
+// window.addEventListener('load', () => {
+//   const viewHomePage = (data) => {
+//     data[2].recipeData
+//   }
+// });
+
+window.addEventListener('load', () => {
+  
+});
 
 const show = (element) => {
   element.classList.remove('hidden');
@@ -24,15 +35,25 @@ const hide = (element) => {
   element.classList.add('hidden');
 };
 
-const vewAllRecipes = () => {
-
-}
+const viewHomePage = (data) => {
+  let recipeData = data[2].recipeData;
+  console.log(recipeData)
+  
+  let recipeHTML = `
+    <article class="recipe">
+    <h2 class="recipe-title">${recipeData.name}</h2>
+    <img class="recipe-image" src="${recipeData.image}" alt="${recipeData.name}">
+    </article>
+  `;
+  recipeContainer.innerHTML = recipeHTML;   
+  }
 
 fetchAll()
-.then(data => {
-  console.log(data[0].usersData)
-
+  .then(data => {
+  console.log(data)
+  viewHomePage(data)
 })
+
 
 
 
