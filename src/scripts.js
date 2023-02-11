@@ -35,8 +35,7 @@ Promise.all(apiCalls)
 // const mainRepository = new RecipeRepository(recipeData);
 // const user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
 
-
-//window.addEventListener('load', () => {
+// window.addEventListener('load', () => {
 //     displayCards(mainRepository);
 // });
 

@@ -16,4 +16,16 @@ const recData = fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/re
 .catch(err => console.log(err))
 
 apiCalls = [userData, ingData, recData]
+
 export default apiCalls
+
+
+
+
+
+
+
+
+
+
+
