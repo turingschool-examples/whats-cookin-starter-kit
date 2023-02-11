@@ -6,6 +6,7 @@ import Ingredient from '../src/classes/ingredient';
 describe('user', () =>{
     let user;
     let recipe;
+    let recipe2;
     let ingredient;
 
     beforeEach(() =>{
@@ -18,7 +19,8 @@ describe('user', () =>{
                   ingredient: 11297,
                   amount: 4
                 },
-            ]
+            ],
+    
         }
         )
       
@@ -32,10 +34,15 @@ describe('user', () =>{
             id: 4,
             name: 'cookies',
             ingredients: ingredient,
-            tag: "dessert"   
+            tags: ["dessert"]   
               
         })
-    
+        recipe2 = new Recipe({
+            id: 8,
+            name: 'scrambled eggs',
+            ingredients: ingredient,
+            tags: ["breakfast"]
+        })
     })
 
     it('should be a function', () => {
@@ -63,8 +70,10 @@ describe('user', () =>{
     })
     
     it('should filter a recipe by the tag', () => {
-      const filteredRecipes = user.filterRecipeByTag('dessert')
-      expect(user.recipe).to.contain(tag)
+        user.addRecipeToCook(recipe)
+        user.addRecipeToCook(recipe2)
+        const filteredRecipes = user.filterRecipesByTag('dessert')
+        expect(filteredRecipes[0].id).to.equal(4)
     })
 
 })
