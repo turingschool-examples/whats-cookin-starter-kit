@@ -15,22 +15,26 @@ import recipeData from './data/recipes';
 // const recipeInfo = new Recipe();
 // const globalArray = [];
 
-const searchBarBtn = document.querySelector('#searchButton');
-const savedViewBtn = document.querySelector('#savedViewButton');
+const searchBarBtn = document.querySelector('#searchBtn');
+const savedViewBtn = document.querySelector('#savedViewBtn');
 const userNamePrompt = document.querySelector('#userName');
 const cardTileDisplay = document.querySelector('#cardTileView');
-
+const singleRecipeDisplay = document.querySelector('#singleRecipeView');
+const homeViewBtn = document.querySelector('#homeViewBtn');
 // Event Listeners
-// window.addEventListener('load', function(){
-//     console.log('hello')
-// });
-window.addEventListener('load', () => {insertRecipeCards(recipeData)})
-
-searchBarBtn.addEventListener( 'click', function() {
-  getRecipeByTag();
-  getRecipeByName();
+window.addEventListener('load', () => {insertRecipeCards(recipeData)});
+cardTileDisplay.addEventListener('dblclick', (event) => {
+  if (event.target.closest('.card')) {
+    showSingleRecipe(event);
+  }
 });
-
+homeViewBtn.addEventListener('click', () => {
+  showHomeView();
+})
+// searchBarBtn.addEventListener('click', function() {
+//   getRecipeByTag();
+//   getRecipeByName();
+// });
 // Event handlers 
 function getRecipeByTag(userInput) {
   if ( userInput.includes(RecipeRepository.filteredList.filterByTag()));
@@ -46,12 +50,43 @@ function insertRecipeCards(array) {
       `<section class="card" id="${array[i].id}">
       <h2>${array[i].name}</h2>
       <img src="${array[i].image}" alt="image of ${array[i].name}">
-      <div class="rating">*****</div>
       </section>`;
   };
 };
+
+function showSingleRecipe(event) {
+  show(singleRecipeDisplay);
+  show(homeViewBtn);
+  hide(cardTileDisplay);
+  const recipeElement = event.target;
+  singleRecipeDisplay.innerHTML = 
+  `<section class="single-recipe" id="${recipeElement.id}">
+  <h2>Loaded Chocolate Chip Pudding Cookie Cups</h2>
+  <img src="https://cookgem.com/wp-content/uploads/2021/09/Are-Spaghettios-Vegan-2.jpg" alt="image of ${recipeElement.name}">
+  <div class="rating">
+    <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+    <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+    <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+    <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+    <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+  </div>
+  <div>
+    <p>${recipeElement.instructions}</p>
+  </div>
+  <div>
+    <p>${recipeElement.ingredients}</p>
+  </div>
+  </section>`
+}
 // Functions
 // this will populate all the cards in an array to either using the saved recipes or the original load recipes
+function showHomeView() {
+  console.log('Is this button really a button?');
+  show(cardTileDisplay);
+  hide(singleRecipeDisplay);
+  hide(homeViewBtn);
+}
+
 
 // Helper Functions
 function show(element) {
