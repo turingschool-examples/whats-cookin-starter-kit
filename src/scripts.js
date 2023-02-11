@@ -37,16 +37,19 @@ const hide = (element) => {
 
 const viewHomePage = (data) => {
   let recipeData = data[2].recipeData;
-  console.log(recipeData)
-  
-  let recipeHTML = `
+  console.log(recipeData) 
+  let recipeHTML = recipeData.map(recipe => `
     <article class="recipe">
-    <h2 class="recipe-title">${recipeData.name}</h2>
-    <img class="recipe-image" src="${recipeData.image}" alt="${recipeData.name}">
+      <h2 class="recipe-title">${recipe.name}</h2>
+      <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">
     </article>
-  `;
-  recipeContainer.innerHTML = recipeHTML;   
-  }
+  `).join('');
+  recipeContainer.innerHTML = recipeHTML;
+  //map method iterates over each recipe in the recipeData array and maps each one to an HTML string.
+  // The join method is then used to concatenate all of the HTML strings into one string - then added to the inner html of the 'recipe container'
+  //join() method creates and returns a new string by concatenating all of the elements in an array (or an array-like object), separated by commas or a specified separator string
+  // this will allow multiple articles to be added to the recipe container.(new image / new name)
+}
 
 fetchAll()
   .then(data => {
