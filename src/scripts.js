@@ -5,9 +5,18 @@ import Recipe from './recipe';
 import User from './user';
 import './images/turing-logo.png'
 
+const miniCardSection = document.getElementById('miniCardSection');
+const miniCardList = document.getElementById('miniCardList');
+
+const buttonHome = document.getElementById('homeButton');
+const buttonViewAll = document.getElementById('viewAllButton');
+const buttonSavedRecipes = document.getElementById('savedRecipesButton')
 
 
-console.log('Hello world');
+
+
+
+
 
 /*
 As a user, I should be able to view a list of all recipes.

@@ -1,15 +1,9 @@
-import RecipeRepository from "./RecipeRepository"
-
 class User{
     constructor(userObj){
         this.name = userObj.name
         this.id = userObj.id
         this.pantry = userObj.pantry
         this.recipe = userObj.recipe
-
-      
-        // console.log(userObj)
-
         this.recipesToCook = []
 
     }
@@ -31,7 +25,7 @@ class User{
     
     filterRecipesByName(name){
         const recipesByName = this.recipesToCook.filter((recipe) => recipe.name.includes(name))
-        console.log(this.recipesToCook[1])
+        // console.log(this.recipesToCook[1])
         return recipesByName
     }
 };
