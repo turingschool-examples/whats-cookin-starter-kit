@@ -43,7 +43,7 @@ Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
 
 function loadPage(recipeRepository, user, ingredientsData) {
 
-    var morningMeal = ['breakfast', 'morning meal, ']
+    var morningMeal = ['breakfast', 'morning meal']
     var snack = ['dip', 'snack', 'appetizer']
     var other = ['condiment', 'spread']
     var mainDish = ['main dish', 'dinner', 'lunch']
@@ -75,14 +75,14 @@ function loadPage(recipeRepository, user, ingredientsData) {
     }
 
     topButton.addEventListener('click', () => document.documentElement.scrollTop = 0)
-    allRecipes.addEventListener('click', displayAllRecipes)
-    savedRecipes.addEventListener('click', displaySavedRecipes)
+    allRecipes.addEventListener('click', () => displayRecipes(recipeRepository.recipes))
+    savedRecipes.addEventListener('click', () => displayRecipes(user.recipesToCook))
     breakfastFilter.addEventListener('click', () => showFilteredRecipes(morningMeal))
     snacksAppFilter.addEventListener('click', () => showFilteredRecipes(snack))
     brunchFilter.addEventListener('click', () => showFilteredRecipes(other))
     mainDishFilter.addEventListener('click', () => showFilteredRecipes(mainDish))
     compDishFilter.addEventListener('click', () => showFilteredRecipes(complimentaryDish))
-    searchGo.addEventListener('click', () => searchRecipeByName())
+    searchGo.addEventListener('click', () => searchRecipes(recipeRepository))
     pantryButton.addEventListener('click', () => displayPantry(user, ingredientsData))
     recipeSection.addEventListener('click', (event) => {
         assignCurrentRecipe(event)
@@ -92,6 +92,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
     let currentDisplayedRecipes = []
     let currentRecipeId
     let currentRecipe
+    let filteredRecipes
 
     recipeRepository.recipes.forEach(element => {
         currentDisplayedRecipes.push(element)
@@ -182,26 +183,6 @@ function loadPage(recipeRepository, user, ingredientsData) {
         }
     }
 
-    function displayRecipes() {
-        recipeSection.innerHTML = ''
-        currentDisplayedRecipes.filter(recipe => {
-            recipeSection.innerHTML +=
-                `
-        <img src="${recipe.image}" class="recipe"></img>
-        `
-        })
-    }
-
-    function displaySavedRecipes() {
-        recipeSection.innerHTML = ''
-        user.recipesToCook.filter(savedRecipe => {
-            recipeSection.innerHTML +=
-                `
-        <img src="${savedRecipe.image}" class="recipe"></img>
-        `
-        })
-    }
-
     function displayPantry(user, ingredientsData) {
         pantrySection.innerHTML += `Hello, ${user.name}. You have these items in your pantry. `
         let currentIngredient
@@ -214,18 +195,23 @@ function loadPage(recipeRepository, user, ingredientsData) {
         })
     }
 
-    function renderPopularRecipes() {
-        for (var i = 0; i < 10; i++) {
-            recipeSection.innerHTML +=
-                `
-        <img src="${recipeRepository.recipes[i].image}" class="recipe"></img>
-        `
-        }
-    }
+    // function renderPopularRecipes() {
+    //     for (var i = 0; i < 10; i++) {
+    //         recipeSection.innerHTML +=
+    //             `
+    //     <img src="${recipeRepository.recipes[i].image}" class="recipe"></img>
+    //     `
+    //     }
+    // }
 
-    function displayAllRecipes() {
+    function displayRecipes(recipes) {
+        if (!recipes) {
+            recipeSection.innerHTML = `<p>NO RESULTS</p>`
+            return
+        }
         recipeSection.innerHTML = ''
-        recipeRepository.recipes.forEach(recipe => {
+        currentDisplayedRecipes = recipes
+        recipes.forEach(recipe => {
             recipeSection.innerHTML +=
                 `
         <section class='recipe' data-all-recipes='${recipe.id}'>
@@ -237,28 +223,15 @@ function loadPage(recipeRepository, user, ingredientsData) {
     }
 
     function showFilteredRecipes(tag) {
-        currentDisplayedRecipes = []
-        var filteredRecipes = recipeRepository.filterByTag(tag)
-        filteredRecipes.forEach(recipe => currentDisplayedRecipes.push(recipe))
-        displayRecipes()
+        filteredRecipes = recipeRepository.filterByTag(tag)
+        displayRecipes(filteredRecipes)
+        currentDisplayedRecipes = filteredRecipes
     }
 
-    function searchRecipeByName() {
-        currentDisplayedRecipes = []
-        let filterByName = recipeRepository.filterByName(searchBar.value)
-        let filteredRecipes = recipeRepository.filterByTag(searchBar.value)
-        if (filterByName !== undefined) {
-            for (var i = 0; i < filterByName.length; i++) {
-                currentDisplayedRecipes.push(filterByName[i])
-            }
-        } else if (filteredRecipes !== undefined) {
-            for (var i = 0; i < filteredRecipes.length; i++) {
-                currentDisplayedRecipes.push(filteredRecipes[i])
-            }
-        } else {
-            recipeSection.innerHTML = `<p>NO RESULTS</p>`
-        }
-        displayRecipes()
+    function searchRecipes(recipes) {
+        let filteredRecipes = recipes.filterByName(searchBar.value) || recipes.filterByTag(searchBar.value)
+        currentDisplayedRecipes = null
+        displayRecipes(filteredRecipes)
     }
 
     function hideAll() {
