@@ -2,8 +2,9 @@ import { expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
 import Recipe from '../src/classes/Recipe';
 import User from '../src/classes/User';
+import mockdata from '../src/data/mockdata';
 
-describe('User', () => {
+describe.only('User', () => {
     let user, recipe, recipeRepo;
 
     beforeEach(() => {
@@ -23,7 +24,7 @@ describe('User', () => {
               "starter",
               "snack",
             ]
-        });
+        }, mockdata.ingredients);
         
         user.saveRecipe(recipe);
     });

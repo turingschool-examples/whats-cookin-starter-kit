@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
 import mockdata from '../src/data/mockdata';
 
-describe.only('Recipe', () => {
+describe('Recipe', () => {
     let recipe1;
     let recipe2;
 
