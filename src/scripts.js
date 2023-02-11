@@ -8,6 +8,7 @@ import './images/turing-logo.png'
 const miniCardSection = document.getElementById('miniCardSection');
 const miniCardList = document.getElementById('miniCardList');
 const defaultView = document.getElementById('mainScreen')
+const overlay = document.querySelector('.overlay')
 
 const buttonHome = document.getElementById('homeButton');
 const buttonViewAll = document.getElementById('viewAllButton');
@@ -16,8 +17,15 @@ const buttonSavedRecipes = document.getElementBy('savedRecipesButton')
 // buttonHome.addEventListener('click',)
 buttonViewAll.addEventListener('click',)
 
+const show = (element) => {
+  element.classList.remove('hidden');
+};
+const hide = (element) => {
+  element.classList.add('hidden');
+};
+
 const vewAllRecipes = () => {
- defaultView.classList
+
 }
 
 fetchAll()
