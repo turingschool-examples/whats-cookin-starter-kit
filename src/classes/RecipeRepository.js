@@ -7,16 +7,22 @@ class RecipeRepository {
   };
 
   filterByTag(tag) {
-    const findByTag = this.recipeList.filter(recipe => recipe.tags.includes(tag));
+    const findByTag = this.recipeList.filter(recipe => recipe.tags.includes(tag.toLowerCase()));
     this.filteredList = findByTag;
     return findByTag;
   };
 
   filterByName(foodName) {
-    const findByName = this.recipeList.filter(recipe => recipe.name === foodName);
+    const findByName = this.recipeList.filter(recipe => recipe.name.toLowerCase().includes(foodName.toLowerCase()));
     this.filteredList = findByName;
     return findByName;
   };
+
+  // filterByNameOrTag(foodName) {
+  //   const findByName = this.recipeList.filter(recipe => recipe.name.toLowerCase().includes(foodName.toLowerCase()) || recipe.tags.includes(tag));
+  //   this.filteredList = findByName;
+  //   return findByName;
+  // };
 };
 
 export default RecipeRepository;
