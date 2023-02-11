@@ -62,7 +62,7 @@ function showSingleRecipe(event) {
   singleRecipeDisplay.innerHTML = 
   `<section class="single-recipe" id="${recipeElement.id}">
   <h2>Loaded Chocolate Chip Pudding Cookie Cups</h2>
-  <img src="${recipeElement.image}" alt="image of ${recipeElement.name}">
+  <img src="https://cookgem.com/wp-content/uploads/2021/09/Are-Spaghettios-Vegan-2.jpg" alt="image of ${recipeElement.name}">
   <div class="rating">
     <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
     <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
