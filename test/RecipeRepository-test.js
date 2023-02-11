@@ -69,7 +69,7 @@ describe('Recipe Repository', () => {
     }
     
 
-    mealPlan = new RecipeRepository(recipe1);
+    mealPlan = new RecipeRepository(recipe1, );
   })
 
   it('Should be a function', () => {
