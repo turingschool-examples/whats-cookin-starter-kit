@@ -3,14 +3,18 @@ import apiCalls from './apiCalls';
 import RecipeRepository from '../src/classes/RecipeRepository';
 import Recipe from '../src/classes/Recipe'
 import recipeData from './data/recipes';
+import usersData from './data/users';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
+
+
+const newUser = new User;
+let currentUser;
 
 //api calls here to initialize our datasets
 //
 const userData = fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users").then(response=>response.json()).catch(data=>console.log(data))
 console.log(userData);
-
 
 //header that welcomes user based on user data
 
@@ -24,6 +28,22 @@ const searchBarBtn = document.querySelector('#searchBtn');
 const savedViewBtn = document.querySelector('#savedViewBtn');
 const userNamePrompt = document.querySelector('#userName');
 const cardTileDisplay = document.querySelector('#cardTileView');
+
+const welcomeMessage = document.querySelector('#userName')
+
+// Event Listeners
+// window.addEventListener('load', function(){
+//     console.log('hello')
+// });
+window.addEventListener('load', () => {insertRecipeCards(recipeData)})
+
+window.addEventListener('load', function() {
+    getRandomUser();
+});
+
+searchBarBtn.addEventListener( 'click', function() {
+  getRecipeByTag();
+  getRecipeByName();
 const singleRecipeDisplay = document.querySelector('#singleRecipeView');
 const homeViewBtn = document.querySelector('#homeViewBtn');
 const infoBtn = document.querySelector('#infoBtn');
@@ -43,7 +63,21 @@ infoBtn.addEventListener('click', showInfo)
 //   getRecipeByTag();
 //   getRecipeByName();
 // });
+
 // Event handlers 
+function getRandomUser() {
+    let randomIndex = Math.floor(Math.random() * usersData.length);
+    currentUser = new User(usersData[randomIndex]);
+    welcomeUser();
+    return currenUser
+};
+
+function welcomeUser() {
+    if (usersData.name) {
+        welcomeMessage.innerHTML = `${usersData.name}`;
+    };
+};
+
 function getRecipeByTag(userInput) {
   if ( userInput.includes(RecipeRepository.filteredList.filterByTag()));
 };
