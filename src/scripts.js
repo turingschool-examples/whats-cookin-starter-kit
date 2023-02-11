@@ -22,41 +22,57 @@ const cardTileDisplay = document.querySelector('#cardTileView');
 const searchBarInput =document.querySelector('#searchBar')
 const tagSeachResults = document.querySelector('#tagSearchResults')
 const nameSearchResults = document.querySelector('#nameResultsView')
+const tagSearchResults = document.querySelector('#tagResultsView')
 
 // Event Listeners
 // window.addEventListener('load', function(){
 //     console.log('hello')
 // });
-window.addEventListener('load', () => {insertRecipeCards(recipeData)})
-console.log("yes getting hit")
+window.addEventListener('load', () => {insertRecipeCards(recipeData)});
+
 searchBarBtn.addEventListener( 'click', function() {
-//   getRecipeByTag();
-console.log("hola")
-  getRecipeByName();
+    cardTileDisplay.innerHTML = "";
+    getRecipeByTag();
+    getRecipeByName();
+    displayNoResults();
+});
+
+searchBarInput.addEventListener( 'change', () => {
+cardTileDisplay.innerHTML = "";    
+getRecipeByTag();
+getRecipeByName();
+displayNoResults();
 });
 
 // Event handlers 
-// function getRecipeByTag(userInput) {
-//   if ( userInput.includes(recipeRepository.filteredList.filterByTag()));
-// };
+function getRecipeByTag() {
+    let tagResults = [];
+    let userInput = searchBarInput.value;
+    tagResults = recipeRepository.filterByTag(userInput);
+    tagResults.forEach(result => {
+        tagSearchResults.innerHTML += `<section class="tagResults"><h1 class="searched-recipe" id=${result.tags}></h1></section>`
+    });
+    insertRecipeCards(tagResults);
+};
 
 function getRecipeByName() {
-    console.log("hi")
     let nameResults = [];
     let userInput = searchBarInput.value;
     nameResults = recipeRepository.filterByName(userInput);
-    console.log(nameResults)
     nameResults.forEach(result => {
-        nameSearchResults.innetHTML += `<section class="nameResults"><h1 class="searched-recipe" id=${result.id}></h1></section>`
-    })
-    if (nameResults.length === 0) {
-        nameSearchResults.innerHTML = `<h1>No results found.</h1>`
-    };
-    insertRecipeCards(nameResults)
+        nameSearchResults.innerHTML += `<section class="nameResults"><h1 class="searched-recipe" id=${result.id}></h1></section>`
+    });
+    insertRecipeCards(nameResults);
 };
 
+// function displayNoResults() {
+//     if (nameResults.length === 0 && tagResults.length === 0) {
+//         nameSearchResults.innerHTML = `<h1>No results found.</h1>`
+// }
+// }
+
 function insertRecipeCards(array) {
-    cardTileDisplay.innerHTML = "";
+    // cardTileDisplay.innerHTML = "";
   for(let i = 0; i < array.length; i++){
     cardTileDisplay.innerHTML += 
       `<section class="card" id="${array[i].id}">

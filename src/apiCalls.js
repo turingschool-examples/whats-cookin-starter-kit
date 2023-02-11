@@ -3,4 +3,3 @@
 
 console.log('I will be a fetch request!')
 
-export default apiCalls;
