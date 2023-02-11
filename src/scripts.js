@@ -24,6 +24,10 @@ let allCookingData = {
 
 let recipeRepository
 let user
+let num
+let num1
+let num2
+let num3
 
 Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
     .then((data) => {
@@ -35,13 +39,13 @@ Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
     .then(
         (allCookingData) => {
             recipeRepository = new RecipeRepository(allCookingData.recipes.recipeData)
-            let num = Math.floor(Math.random() * allCookingData.users.usersData.length)
+            num = Math.floor(Math.random() * allCookingData.users.usersData.length)
             user = new User(allCookingData.users.usersData[num])
-            loadPage(recipeRepository, user, allCookingData.ingredients.ingredientsData)
+            loadPage(recipeRepository, user, allCookingData.ingredients.ingredientsData, num1, num2, num3)
         }
     )
 
-function loadPage(recipeRepository, user, ingredientsData) {
+function loadPage(recipeRepository, user, ingredientsData, num1, num2, num3) {
 
     var morningMeal = ['breakfast', 'morning meal']
     var snack = ['dip', 'snack', 'appetizer']
@@ -77,11 +81,26 @@ function loadPage(recipeRepository, user, ingredientsData) {
     topButton.addEventListener('click', () => document.documentElement.scrollTop = 0)
     allRecipes.addEventListener('click', () => displayRecipes(recipeRepository.recipes))
     savedRecipes.addEventListener('click', () => displayRecipes(user.recipesToCook))
-    breakfastFilter.addEventListener('click', () => showFilteredRecipes(morningMeal))
-    snacksAppFilter.addEventListener('click', () => showFilteredRecipes(snack))
-    brunchFilter.addEventListener('click', () => showFilteredRecipes(other))
-    mainDishFilter.addEventListener('click', () => showFilteredRecipes(mainDish))
-    compDishFilter.addEventListener('click', () => showFilteredRecipes(complimentaryDish))
+    breakfastFilter.addEventListener('click', () => { 
+        filterRecipes(morningMeal)
+        displayRecipes(filteredRecipes)
+    })
+    snacksAppFilter.addEventListener('click', () => { 
+        filterRecipes(snack)
+        displayRecipes(filteredRecipes)
+    })
+    brunchFilter.addEventListener('click', () => { 
+        filterRecipes(other)
+        displayRecipes(filteredRecipes)
+    })
+    mainDishFilter.addEventListener('click', () => { 
+        filterRecipes(mainDish)
+        displayRecipes(filteredRecipes)
+    })
+    compDishFilter.addEventListener('click', () => { 
+        filterRecipes(complimentaryDish)
+        displayRecipes(filteredRecipes)
+    })
     searchGo.addEventListener('click', () => searchRecipes(recipeRepository))
     pantryButton.addEventListener('click', () => displayPantry(user, ingredientsData))
     recipeSection.addEventListener('click', (event) => {
@@ -89,16 +108,15 @@ function loadPage(recipeRepository, user, ingredientsData) {
         renderCurrentRecipe()
     })
 
-    let currentDisplayedRecipes = []
+    let currentDisplayedRecipes
     let currentRecipeId
     let currentRecipe
     let filteredRecipes
-
-    recipeRepository.recipes.forEach(element => {
-        currentDisplayedRecipes.push(element)
-    })
-
-    renderPopularRecipes()
+    num1 = Math.floor(Math.random() * recipeRepository.recipes.length)
+    num2 = Math.floor(Math.random() * recipeRepository.recipes.length)
+    num3 = Math.floor(Math.random() * recipeRepository.recipes.length)
+    let fakePopularRecipes = [recipeRepository.recipes[num1],recipeRepository.recipes[num2], recipeRepository.recipes[num3]]
+    displayRecipes(fakePopularRecipes)
 
     window.onscroll = () => {
         if (document.documentElement.scrollTop > 350) {
@@ -194,15 +212,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         `
         })
     }
-
-    // function renderPopularRecipes() {
-    //     for (var i = 0; i < 10; i++) {
-    //         recipeSection.innerHTML +=
-    //             `
-    //     <img src="${recipeRepository.recipes[i].image}" class="recipe"></img>
-    //     `
-    //     }
-    // }
+''
 
     function displayRecipes(recipes) {
         if (!recipes) {
@@ -222,9 +232,9 @@ function loadPage(recipeRepository, user, ingredientsData) {
         })
     }
 
-    function showFilteredRecipes(tag) {
+    function filterRecipes(tag) {
         filteredRecipes = recipeRepository.filterByTag(tag)
-        displayRecipes(filteredRecipes)
+
         currentDisplayedRecipes = filteredRecipes
     }
 
