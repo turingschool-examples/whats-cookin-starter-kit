@@ -107,7 +107,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
     searchGo.addEventListener('click', function () {
         searchRecipeByName()
     })
-    // pantryButton.addEventListener('click', displayPantry)
+    pantryButton.addEventListener('click', () => displayPantry(user, ingredientsData))
     recipeSection.addEventListener('click', (event) => {
         assignCurrentRecipe(event)
         renderCurrentRecipe()
@@ -230,17 +230,18 @@ function loadPage(recipeRepository, user, ingredientsData) {
         })
     }
 
-
-    // function displayPantry() {
-    //     pantrySection.innerHTML += `Hello, ${user.name}. You have these items in your pantry. `
-    //     for (var i = 0; i < user.pantry.length; i++) {
-    //         var currentIngredient = ingredientsData.findIndex(x => x.id === user.pantry[i].ingredient)
-    //         pantrySection.innerHTML +=
-    //             `
-    //     <h1 class="pantry">• ${ingredientsData[currentIngredient].name}</h1>
-    //     `
-    //     }
-    // }
+    function displayPantry(user, ingredientsData) {
+        pantrySection.innerHTML += `Hello, ${user.name}. You have these items in your pantry. `
+        let currentIngredient
+        user.pantry.forEach((element) => {
+            currentIngredient = ingredientsData.findIndex(x => x.id === element.ingredient)
+            pantrySection.innerHTML +=
+                `
+        <h1 class="pantry">• ${ingredientsData[currentIngredient].name}</h1>
+        `
+        })
+    }
+       
 
     function popularRecipes() {
         for (var i = 0; i < 10; i++) {
@@ -296,4 +297,4 @@ function loadPage(recipeRepository, user, ingredientsData) {
         recipeSection.innerHTML = ''
         pantrySection.innerHTML = ''
     }
-}
+} 
