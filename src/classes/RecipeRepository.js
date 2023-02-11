@@ -1,14 +1,14 @@
 import Recipe from "./Recipe";
 
 class RecipeRepository {
-  constructor(data) {
-    this.recipes = data ? this.parseRecipes(data) : [];
+  constructor(data, ingData) {
+    this.recipes = data ? this.parseRecipes(data, ingData) : [];
     this.recipesByTag = [];
     this.recipesByName = [];
   };
 
-  parseRecipes(allRecipes) {
-    return allRecipes.map(recipe => new Recipe(recipe));
+  parseRecipes(allRecipes, ingData) {
+    return allRecipes.map(recipe => new Recipe(recipe, ingData));
   };
 
   filterRecipesByTag(tag) {
