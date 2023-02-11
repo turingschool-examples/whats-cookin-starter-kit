@@ -70,7 +70,7 @@ describe('Recipe Repository', () => {
     }
     console.log(mockdata.ingredients[0])
 
-    mealPlan = new RecipeRepository(recipe1);
+    mealPlan = new RecipeRepository(recipe1, mockdata.ingredients);
   })
 
   it('Should be a function', () => {
