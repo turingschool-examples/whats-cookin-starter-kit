@@ -1,43 +1,41 @@
-import './styles.css';
+import './styles.css'
 import './images/turing-logo.png'
 import MicroModal from 'micromodal'
-import RecipeRepository from './classes/RecipeRepository';
+import RecipeRepository from './classes/RecipeRepository'
 import User from './classes/User.js'
 import Recipe from './classes/Recipe'
 MicroModal.init()
 
 const usersDataFetch = fetch(
     "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users"
-).then((response) => response.json());
+).then((response) => response.json())
 const ingredientsDataFetch = fetch(
     "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients"
-).then((response) => response.json());
+).then((response) => response.json())
 const recipesDataFetch = fetch(
     "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes"
-).then((response) => response.json());
+).then((response) => response.json())
 
 let allCookingData = {
     users: [],
     ingredients: [],
     recipes: []
-};
+}
 
-let recipeRepository;
-let user;
+let recipeRepository
+let user
 
 Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
     .then((data) => {
-        console.log("1111", data);
-        allCookingData.users = data[0];
-        allCookingData.ingredients = data[1];
-        allCookingData.recipes = data[2];
-        console.log("allcookingdata", allCookingData)
-        return allCookingData;
+        allCookingData.users = data[0]
+        allCookingData.ingredients = data[1]
+        allCookingData.recipes = data[2]
+        return allCookingData
     })
     .then(
         (allCookingData) => {
             recipeRepository = new RecipeRepository(allCookingData.recipes.recipeData)
-            let num = Math.floor(Math.random() * allCookingData.users.usersData.length);
+            let num = Math.floor(Math.random() * allCookingData.users.usersData.length)
             user = new User(allCookingData.users.usersData[num])
             loadPage(recipeRepository, user, allCookingData.ingredients.ingredientsData)
         }
@@ -45,7 +43,7 @@ Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
 
 function loadPage(recipeRepository, user, ingredientsData) {
 
-    const saved = []
+    // const saved = []
 
     var morningMeal = ['breakfast', 'morning meal, ']
     var snack = ['dip', 'snack', 'appetizer']
@@ -53,13 +51,10 @@ function loadPage(recipeRepository, user, ingredientsData) {
     var mainDish = ['main dish', 'dinner', 'lunch']
     var complimentaryDish = ['antipasti', 'hor d\'oeuvre', 'starter', 'salad', 'side dish', 'appetizer']
 
+    const recipeSection = document.querySelector('#recipe-section')
     const navigationSection = document.querySelector(".navigation-section")
-    const recipeSection = document.querySelector(".recipe-section")
     const pantrySection = document.querySelector(".pantry-section")
     const savedRecipes = document.querySelector("#saved-recipes")
-    const navigationSeciton = document.querySelector(".navigation-section")
-    const recipes = document.querySelector(".recipe")
-
     const topButton = document.querySelector("#top-button")
     const allRecipes = document.querySelector("#recipe-button")
     const breakfastFilter = document.querySelector("#breakfast-filter")
@@ -73,37 +68,23 @@ function loadPage(recipeRepository, user, ingredientsData) {
     const buttons = document.querySelectorAll('button')
     const recipeModal = document.querySelector('#modal')
 
-
     for (var i of buttons) {
-        i.addEventListener('click', function () {
+        i.addEventListener('click', function (event) {
             if (event.target.id !== "top-button") {
                 hideAll()
             }
-        });
+        })
     }
-    topButton.addEventListener('click', function () {
-        document.documentElement.scrollTop = 0
-    })
-    allRecipes.addEventListener('click', showAllRecipes)
+
+    topButton.addEventListener('click',() => document.documentElement.scrollTop = 0)
+    allRecipes.addEventListener('click', displayAllRecipes)
     savedRecipes.addEventListener('click', displaySavedRecipes)
-    breakfastFilter.addEventListener('click', function () {
-        showFilteredRecipes(morningMeal)
-    })
-    snacksAppFilter.addEventListener('click', function () {
-        showFilteredRecipes(snack)
-    })
-    brunchFilter.addEventListener('click', function () {
-        showFilteredRecipes(other)
-    })
-    mainDishFilter.addEventListener('click', function () {
-        showFilteredRecipes(mainDish)
-    })
-    compDishFilter.addEventListener('click', function () {
-        showFilteredRecipes(complimentaryDish)
-    })
-    searchGo.addEventListener('click', function () {
-        searchRecipeByName()
-    })
+    breakfastFilter.addEventListener('click', () => showFilteredRecipes(morningMeal))
+    snacksAppFilter.addEventListener('click', () => showFilteredRecipes(snack))
+    brunchFilter.addEventListener('click', () => showFilteredRecipes(other))
+    mainDishFilter.addEventListener('click', () => showFilteredRecipes(mainDish))
+    compDishFilter.addEventListener('click', () => showFilteredRecipes(complimentaryDish))
+    searchGo.addEventListener('click', () => searchRecipeByName())
     pantryButton.addEventListener('click', () => displayPantry(user, ingredientsData))
     recipeSection.addEventListener('click', (event) => {
         assignCurrentRecipe(event)
@@ -114,17 +95,17 @@ function loadPage(recipeRepository, user, ingredientsData) {
     let currentRecipeId
     let currentRecipe
 
-        recipeRepository.recipes.forEach(element => {
-            currentDisplayedRecipes.push(element)
-        })
+    recipeRepository.recipes.forEach(element => {
+        currentDisplayedRecipes.push(element)
+    })
 
-    popularRecipes()
+    renderPopularRecipes()
 
-    window.onscroll = function () {
+    window.onscroll = () => {
         if (document.documentElement.scrollTop > 350) {
-            topButton.style.display = "block";
+            topButton.style.display = "block"
         } else {
-            topButton.style.display = "none";
+            topButton.style.display = "none"
         }
     }
 
@@ -151,7 +132,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
             return '<li>' + ingredient.ingredient + '</li>'
         }).join('')
 
-        if (saved.filter(current => current.id === currentRecipe.id).length !== 0) {
+        if (user.recipesToCook.filter(current => current.id === currentRecipe.id).length !== 0) {
             var isSaved = "Saved"
         } else {
             var isSaved = "♥️"
@@ -184,18 +165,16 @@ function loadPage(recipeRepository, user, ingredientsData) {
         `
         MicroModal.show('modal-1')
         var saveButton = document.querySelector('.modal__btn')
-        if (saved.filter(current => current.id === currentRecipe.id).length !== 0) {
+        if (user.recipesToCook.filter(current => current.id === currentRecipe.id).length !== 0) {
             saveButton.style.backgroundColor = "red"
         }
-        saveButton.addEventListener('click', function () {
-            saveRecipe(saveButton)
-        })
+        saveButton.addEventListener('click', () => saveRecipe(saveButton))
     }
 
     function saveRecipe(button) {
-        var sa = saved.filter(current => current.id === currentRecipe.id)
+        var sa = user.recipesToCook.filter(current => current.id === currentRecipe.id)
         if (sa.length === 0) {
-            saved.push(currentRecipe)
+            user.recipesToCook.push(currentRecipe)
             button.innerText = 'Saved'
             button.style.backgroundColor = "red"
         } else {
@@ -217,7 +196,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
 
     function displaySavedRecipes() {
         recipeSection.innerHTML = ''
-        saved.filter(savedRecipe => {
+        user.recipesToCook.filter(savedRecipe => {
             recipeSection.innerHTML +=
                 `
         <img src="${savedRecipe.image}" class="recipe"></img>
@@ -237,7 +216,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         })
     }
 
-    function popularRecipes() {
+    function renderPopularRecipes() {
         for (var i = 0; i < 10; i++) {
             recipeSection.innerHTML +=
                 `
@@ -246,7 +225,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         }
     }
 
-    function showAllRecipes() {
+    function displayAllRecipes() {
         recipeSection.innerHTML = ''
         recipeRepository.recipes.forEach(recipe => {
             recipeSection.innerHTML +=
@@ -262,9 +241,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
     function showFilteredRecipes(tag) {
         currentDisplayedRecipes = []
         var filteredRecipes = recipeRepository.filterByTag(tag)
-        for (var i = 0; i < filteredRecipes.length; i++) {
-            currentDisplayedRecipes.push(filteredRecipes[i])
-        }
+        filteredRecipes.forEach(recipe => currentDisplayedRecipes.push(recipe))
         displayRecipes()
     }
 
@@ -274,7 +251,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         let filteredRecipes = recipeRepository.filterByTag(searchBar.value)
         if (filterByName !== undefined) {
             for (var i = 0; i < filterByName.length; i++) {
-                currentDisplayedRecipes.push(filterByName[i]);
+                currentDisplayedRecipes.push(filterByName[i])
             }
         } else if (filteredRecipes !== undefined) {
             for (var i = 0; i < filteredRecipes.length; i++) {
@@ -283,7 +260,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         } else {
             recipeSection.innerHTML = `<p>NO RESULTS</p>`
         }
-        displayRecipes();
+        displayRecipes()
     }
 
     function hideAll() {
