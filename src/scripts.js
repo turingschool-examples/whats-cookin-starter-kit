@@ -60,8 +60,8 @@ function showSingleRecipe(event) {
   hide(cardTileDisplay);
   const recipeElement = event.target;
   singleRecipeDisplay.innerHTML = 
-  `<section id="${recipeElement.id}>
-  <h2>${recipeElement.name}</h2>
+  `<section class="single-recipe" id="${recipeElement.id}">
+  <h2>Loaded Chocolate Chip Pudding Cookie Cups</h2>
   <img src="${recipeElement.image}" alt="image of ${recipeElement.name}">
   <div class="rating">
     <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>

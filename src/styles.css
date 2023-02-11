@@ -7,9 +7,8 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  align-content: center;
-  justify-content: space-around;
   height: 100%;
+  margin: 0;
 }
 
 .welcome-header {
@@ -17,6 +16,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: fixed;
   width: 100vw;
   height: 20vh;
 }
@@ -41,7 +41,8 @@ main {
   flex-wrap: wrap;
   justify-content: space-evenly;
   height: auto;
-  width: 80vw;
+  width: auto;
+  margin-left: 20vw;
 }
 
 .card {
@@ -80,9 +81,12 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  position: fixed;
+  nav-left: auto;
   background-color: #1e2947;
-  height: 80vh;
+  height: 100vh;
   width: 20vw;
+  overflow-x: hidden;
 }
 
 button {
@@ -116,13 +120,22 @@ button:hover,
   width: 200px;
 }
 
+.single-recipe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+  width: 80vw;
+}
+
 .single-recipe > h2 {
-  font-color: white;
+  color: white;
+  text-shadow: 2px 2px black;
 }
 
 .single-recipe > img {
-  height: 200px;
-  width: 200px;
+  height: 50%;
+  width: 50%;
 }
 
 /* Star Rating */
@@ -141,7 +154,9 @@ button:hover,
   position: relative;
   width: 1.1em;
   font-size: 45px;
-  color: #FFD700;
+  color: #ffc430;
+  cursor: pointer;
+  text-shadow: 1px solid black;
 }
 
 .rating > label::before {
