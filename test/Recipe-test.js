@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe'
-import ingredientsData from "../src/data/ingredients";
-import sampleRecipeData from "../src/data/sample-recipe-data";
+import sampleIngredientsData from "../src/data/sample-ingredient-data"
+import sampleRecipeData from "../src/data/sample-recipe-data"
 
 describe("Recipe", () => {
     let recipe
@@ -48,13 +48,12 @@ describe("Recipe", () => {
     })
 
     it("should be able to converts id numbers to ingredient", () => {
-        let ingredientNames = recipe.determineRecipeIngredients(
-          ingredientsData);
+        let ingredientNames = recipe.determineRecipeIngredients(sampleIngredientsData);
         expect(ingredientNames).to.have.length(11)
     })
 
     it("should be able to to calculate total ingredient cost", () => {
-        expect(recipe.calculateRecipeCost(ingredientsData)).to.equal('177.76')
+        expect(recipe.calculateRecipeCost(sampleIngredientsData)).to.equal('177.76')
     })
 
     it("should have a function recipe to return recipe instructions", () => {

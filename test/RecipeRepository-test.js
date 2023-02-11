@@ -35,7 +35,7 @@ describe('RecipeRepository', () => {
 
   it('should not be able to filter recipes without a tag', () => {
     recipe.filterByTag()
-    expect(recipe.filteredRecipes).to.equal(undefined);
+    expect(recipe.filteredRecipes).to.equal(null);
   });
 
   it('should not be able to filter by nonexistant tag', () => {
@@ -43,8 +43,8 @@ describe('RecipeRepository', () => {
     expect(recipe.filteredRecipes).to.equal(null);
   });
 
-  it('should let user know if no recipes include that tag', () => {
-    expect(recipe.filterByTag('hello')).to.equal('Sorry, there are no recipes with hello!');
+  it('should not let user know if no recipes include that tag', () => {
+    expect(recipe.filterByTag('hello')).to.equal(undefined);
   });
 
   it('should be able to filter recipes by name', () => {
@@ -62,8 +62,8 @@ describe('RecipeRepository', () => {
     expect(recipe.filteredRecipes).to.equal(null);
   });
 
-  it('should let user know if no recipes have that name', () => {
-    expect(recipe.filterByName('hello')).to.equal('Sorry, there are no recipes matching hello!');
+  it('should not let user know if no recipes have that name', () => {
+    expect(recipe.filterByName('hello')).to.equal(undefined);
   });
 
 })
