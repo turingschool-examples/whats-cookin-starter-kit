@@ -1,16 +1,47 @@
 import './styles.css';
 import apiCalls from './apiCalls';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
-import recipeData from './data/recipes.js';
+// import recipeData from './data/recipes.js';
 import MicroModal from 'micromodal'
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User.js'
-import ingredientsData from './data/ingredients.js'
+// import ingredientsData from './data/ingredients.js'
 import Recipe from './classes/Recipe'
 MicroModal.init()
 
-var user 
+const usersDataFetch = fetch(
+  "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users"
+).then((response) => response.json());
+const ingredientsDataFetch = fetch(
+  "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients"
+).then((response) => response.json());
+const recipesDataFetch = fetch(
+  "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes"
+).then((response) => response.json());
+
+let allCookingData = { users: [], ingredients: [], recipes: [] };
+
+let recipeRepository;
+let user;
+
+Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
+  .then((data) => {
+    console.log("1111", data);
+    allCookingData.users = data[0];
+    allCookingData.ingredients = data[1];
+    allCookingData.recipes = data[2];
+    console.log("allcookingdata", allCookingData)
+    return allCookingData;
+  })
+  .then(
+    (allCookingData) =>
+      (recipeRepository = new RecipeRepository(allCookingData.recipes.recipeData))
+  )
+  .then(
+    (allCookingData) =>
+      (user = new User(allCookingData.users.usersData))
+  );
+
 const saved = []
 
 var morningMeal = ['breakfast', 'morning meal, ']
@@ -19,12 +50,6 @@ var other = [ 'condiment', 'spread']
 var mainDish = ['main dish', 'dinner', 'lunch']
 var complimentaryDish = ['antipasti', 'hor d\'oeuvre', 'starter', 'salad', 'side dish',  'appetizer']
 
-let recipeRepository
-fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
-.then((response) => response.json())
-.then((data) => {
-    recipeRepository = new RecipeRepository(data.recipeData)
-})
 const navigationSection = document.querySelector(".navigation-section")
 const recipeSection  = document.querySelector(".recipe-section")
 const pantrySection = document.querySelector(".pantry-section")
@@ -70,13 +95,11 @@ let currentDisplayedRecipes = []
 let currentRecipeId
 let currentRecipe
 
-window.onload = function() {
-    for(var i = 0; i < recipeData.length; i++) {
-        currentDisplayedRecipes.push(recipeData[i])
-    }
-    generateRandUser()
-    popularRecipes()
-}
+    // for(var i = 0; i < recipeRepository.recipes.length; i++) {
+    //     currentDisplayedRecipes.push(recipeData[i])
+    // }
+    // generateRandUser()
+    // popularRecipes()
 
 window.onscroll = function() {
     if (document.documentElement.scrollTop > 350) {
@@ -84,13 +107,8 @@ window.onscroll = function() {
       } else {
         topButton.style.display = "none";
     }
-    // if (document.documentElement.scrollTop > 280) {
-    //     navigationSeciton.style.position = "fixed"
-    //     navigationSection.style.marginTop = "10px"
-    // } else {
-    //     navigationSeciton.style.position = "relative"
-    // }
 }
+
 function assignCurrentRecipe(event) {
     if (event.target.dataset.allRecipes) {
         currentRecipeId = event.target.dataset.allRecipes
