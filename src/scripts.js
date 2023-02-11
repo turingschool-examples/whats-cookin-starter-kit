@@ -16,10 +16,45 @@ const navBar = document.querySelector('nav');
 const main = document.querySelector('main');
 const footer = document.querySelector('footer');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const cardScroll = document.querySelector('main') //this horizontal
+const verticalCardScroll = document.querySelector('cardSection')
+console.log("look:", verticalCardScroll)
 
 const mainRepository = new RecipeRepository(recipeData);
 const user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
 
+let preventHorizontalScroll = false
+
+cardScroll.addEventListener('wheel', scrollCards) 
+
+// verticalCardScroll.addEventListener('mouseenter', function(event) {
+//     preventHorizontalScroll = true;
+//     event.preventDefault();
+//     });
+    
+//     verticalCardScroll.addEventListener('mouseleave', function(event) {
+//     preventHorizontalScroll = false;
+//     event.preventDefault();
+//     })
+
+// function mouseEnter() {
+//     preventHorizontalScroll = true
+// }
+
+// function mouseLeave() {
+//     preventHorizontalScroll = false
+// }
+
+
+function scrollCards(event) {
+    if(!preventHorizontalScroll){
+        if (event.deltaY < 0) {
+            cardScroll.scrollLeft -= 50
+        }else{
+            cardScroll.scrollLeft += 50
+        }
+    }
+}
 
 window.addEventListener('load', () => {
     displayCards(mainRepository);
