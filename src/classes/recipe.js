@@ -7,13 +7,11 @@ class Recipe {
         this.name = recipeData.name
         this.tags = recipeData.tags
         this.ingredientsData = ingredientsData
+       
     }
     getIngredientsName(name) {
         return this.ingredients.filter(ingredient => ingredient.name === name);
         
-    }
-    getIngredientsName(name) {
-        return this.ingredients.filter(ingredient => ingredient.name === name);
     }
     
       calculateIngredientsCosts() {
