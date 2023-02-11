@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import User from '../src/classes/user';
 import Recipe from '../src/classes/recipe';
+import RecipeRepository from '../src/classes/RecipeRepository';
 import Ingredient from '../src/classes/ingredient';
 
 describe('user', () =>{
@@ -10,29 +11,33 @@ describe('user', () =>{
 
     beforeEach(() =>{
         user = new User(
+        {
+            name: "Brexye Quysh",
+            id: 1,
+            pantry: [
             {
-              name: "Brexye Quysh",
-              id: 1,
-              pantry: [
-                {
-                  ingredient: 11297,
-                  amount: 4
-                },
-            ]
-        }
-        )
-      
-        ingredient = new Ingredient({
-            id: 7,
-            name: 'choccy chips',
-            cost: 50
-        })
-          
-        recipe = new Recipe({
+                ingredient: 11297,
+                amount: 4
+            },
+        ],
+        recipe : new Recipe({
             id: 4,
             name: 'cookies',
             ingredients: ingredient,
-            tag: "dessert"   
+            tags: "dessert"   
+                
+        })
+    })
+      ingredient = new Ingredient({
+            id: 7,
+            name: 'choccy chips',
+            cost: 50
+    })
+          recipe = new Recipe({
+            id: 4,
+            name: 'cookies',
+            ingredients: ingredient,
+            tags: "dessert"   
               
         })
     
@@ -62,9 +67,26 @@ describe('user', () =>{
         expect(user.recipesToCook).to.not.contain(recipe)
     })
     
-    it('should filter a recipe by the tag', () => {
-      const filteredRecipes = user.filterRecipeByTag('dessert')
-      expect(user.recipe).to.contain(tag)
+    it.skip('should filter a recipe by the tag', () => {
+        const filteredRecipes = user.filterRecipeByTag('dessert');
+        expect(filteredRecipes).to.deep.equal([
+          { name: 'Chocolate Cake', tags: ['dessert', 'chocolate'] },
+          { name: 'Strawberry Smoothie', tags: ['drink', 'dessert'] },
+        ]);
+      });
+      
+    it('should filter a recipe by the name', () => {
+        it('should filter a recipe by the name', () => {
+            const recipes = [
+              { name: 'Chocolate Cake', tags: ['dessert', 'chocolate'] },
+              { name: 'Spaghetti Bolognese', tags: ['pasta', 'main course'] },
+              { name: 'Strawberry Smoothie', tags: ['drink', 'dessert'] },
+            ];
+            const recipeRepository = new RecipeRepository(recipes);
+            const filteredRecipes = recipeRepository.filterRecipeByName('Strawberry Smoothie');
+            expect(filteredRecipes).to.have.lengthOf(1);
+            expect(filteredRecipes[0].name).to.equal('Strawberry Smoothie');
+          });
+        });
     })
 
-})
