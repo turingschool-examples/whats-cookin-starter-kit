@@ -13,11 +13,6 @@ describe('user', () =>{
     beforeEach(() =>{
         user = new User(
         {
-            name: "Brexye Quysh",
-            id: 1,
-            pantry: [
-            {
-
               name: "Brexye Quysh",
               id: 1,
               pantry: [
@@ -26,7 +21,6 @@ describe('user', () =>{
                   amount: 4
                 },
             ],
-    
         }
         )
       
@@ -52,6 +46,7 @@ describe('user', () =>{
             tags: ["breakfast"]
         })
     })
+
 
     it('should be a function', () => {
         expect(User).to.be.a('function');
@@ -85,4 +80,4 @@ describe('user', () =>{
         expect(filteredRecipes[0].id).to.equal(4)
 
     })
-
+})
