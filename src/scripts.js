@@ -147,16 +147,18 @@ function loadPage(recipeRepository, user, ingredientsData) {
           </h2>
         </header>
         <main class="modal__content" id="modal-1-content">
-          <img src="${currentRecipe.image}">
-          <h3>Ingredients</h3>
-          <ul>
-            ${ingredientsHTML}
-          </ul>
-          <h3>Recipe Instructions</h3>
+          <img class="modal_img" src="${currentRecipe.image}">
+          <div class="modal_ingredients_container">
+            <h3 class="modal_ingredients">Ingredients</h3>
+            <ul>
+                ${ingredientsHTML}
+             </ul>
+          </div>
+            <h3 class="modal_recipe_instructions">Recipe Instructions</h3>
           <ol type="1">
             ${instructionsHTML}
           </ol>
-          <h4>Recipe Cost:$${currentRecipe.calculateRecipeCost(ingredientsData)}</h4>
+          <h4 class="modal_cost">Recipe Cost:$${currentRecipe.calculateRecipeCost(ingredientsData)}</h4>
           <button type="button" class="modal__btn">${isSaved}</button>
           <button class="modal__close" aria-label="Close modal" data-micromodal-close>CLOSE</button>
         </main>
