@@ -14,7 +14,9 @@ describe('Recipe Repository', () => {
         "id": 595736,
         "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
         "ingredients" : [{ 
+          //"estimatedCostInCents": 142,
           "id": 20081,
+          //"name": "wheat flour",
           "quantity": {
             "amount": 1.5,
             "unit": "c"
