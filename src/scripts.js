@@ -1,19 +1,38 @@
 import './styles.css';
-import apiCalls from './apiCalls';
+import fetchAll from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import Recipe from './recipe';
-import User from './user';
+import Recipe from './classes/recipe';
+import User from './classes/user';
 import './images/turing-logo.png'
 
 const miniCardSection = document.getElementById('miniCardSection');
 const miniCardList = document.getElementById('miniCardList');
+const defaultView = document.getElementById('mainScreen')
+const overlay = document.querySelector('.overlay')
 
 const buttonHome = document.getElementById('homeButton');
 const buttonViewAll = document.getElementById('viewAllButton');
-const buttonSavedRecipes = document.getElementById('savedRecipesButton')
+const buttonSavedRecipes = document.getElementBy('savedRecipesButton')
 
+// buttonHome.addEventListener('click',)
+buttonViewAll.addEventListener('click',)
 
+const show = (element) => {
+  element.classList.remove('hidden');
+};
+const hide = (element) => {
+  element.classList.add('hidden');
+};
 
+const vewAllRecipes = () => {
+
+}
+
+fetchAll()
+.then(data => {
+  console.log(data[0].usersData)
+
+})
 
 
 

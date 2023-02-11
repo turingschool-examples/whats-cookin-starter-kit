@@ -1,21 +1,14 @@
 
-fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users")
+const fetchData = (url) => {
+   return fetch(url)
     .then(response => response.json())
-	.then(data => console.log(data))
-	.catch(err => console.log(err)) 
-    console.log(userApis)
+}
 
-fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients")
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
-
-fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes")
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
-
-
-
-
-    export default apiCalls
+const fetchAll = () => {
+   return Promise.all([
+    fetchData("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users"),
+    fetchData("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients"),
+    fetchData("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes")
+])
+}
+    export default fetchAll
