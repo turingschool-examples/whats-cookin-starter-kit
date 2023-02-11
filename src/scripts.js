@@ -6,6 +6,11 @@ import recipeData from './data/recipes';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
 
+//api calls here to initialize our datasets
+//
+const userData = fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users").then(response=>response.json()).catch(data=>console.log(data))
+console.log(userData);
+
 
 //header that welcomes user based on user data
 
@@ -21,6 +26,8 @@ const userNamePrompt = document.querySelector('#userName');
 const cardTileDisplay = document.querySelector('#cardTileView');
 const singleRecipeDisplay = document.querySelector('#singleRecipeView');
 const homeViewBtn = document.querySelector('#homeViewBtn');
+const infoBtn = document.querySelector('#infoBtn');
+const creatorDisplay = document.querySelector('#creatorInfoPage')
 // Event Listeners
 window.addEventListener('load', () => {insertRecipeCards(recipeData)});
 cardTileDisplay.addEventListener('dblclick', (event) => {
@@ -31,6 +38,7 @@ cardTileDisplay.addEventListener('dblclick', (event) => {
 homeViewBtn.addEventListener('click', () => {
   showHomeView();
 })
+infoBtn.addEventListener('click', showInfo)
 // searchBarBtn.addEventListener('click', function() {
 //   getRecipeByTag();
 //   getRecipeByName();
@@ -85,8 +93,14 @@ function showHomeView() {
   show(cardTileDisplay);
   hide(singleRecipeDisplay);
   hide(homeViewBtn);
+  hide(creatorDisplay);
 }
 
+function showInfo() {
+  show(creatorDisplay);
+  show(homeViewBtn);
+  hide(cardTileDisplay);
+}
 
 // Helper Functions
 function show(element) {

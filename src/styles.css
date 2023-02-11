@@ -124,9 +124,6 @@ button:hover,
   right: 0;
 }
 
-.hidden {
-  display: none;
-}
 
 .search-bar {
   height: 20px;
@@ -191,3 +188,20 @@ opacity:1;
 .rating:hover > input:checked ~ label:before{
 opacity: 0.4;
  }
+
+ /* Creator Info Page*/
+
+ .creator-info-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: auto;
+  width: auto;
+  margin-top: 12vh;
+  margin-left: 20vw;
+ }
+
+
+.hidden {
+  display: none;
+}
