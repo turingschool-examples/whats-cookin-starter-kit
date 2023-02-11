@@ -43,8 +43,6 @@ Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
 
 function loadPage(recipeRepository, user, ingredientsData) {
 
-    // const saved = []
-
     var morningMeal = ['breakfast', 'morning meal, ']
     var snack = ['dip', 'snack', 'appetizer']
     var other = ['condiment', 'spread']
@@ -76,7 +74,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         })
     }
 
-    topButton.addEventListener('click',() => document.documentElement.scrollTop = 0)
+    topButton.addEventListener('click', () => document.documentElement.scrollTop = 0)
     allRecipes.addEventListener('click', displayAllRecipes)
     savedRecipes.addEventListener('click', displaySavedRecipes)
     breakfastFilter.addEventListener('click', () => showFilteredRecipes(morningMeal))
@@ -118,13 +116,13 @@ function loadPage(recipeRepository, user, ingredientsData) {
         if (!currentRecipeId) {
             return
         }
-
         currentRecipeId = parseInt(currentRecipeId)
-        currentRecipe = recipeRepository.recipes.filter(recipe => recipe.id === currentRecipeId)
-        currentRecipe = new Recipe(currentRecipe[0])
+        currentRecipe = recipeRepository.recipes.find(recipe => recipe.id === currentRecipeId)
+        currentRecipe = new Recipe(currentRecipe)
     }
 
     function renderCurrentRecipe() {
+        let isSaved;
         recipeModal.innerHTML = ''
         let ingredients = currentRecipe.determineRecipeIngredients(ingredientsData)
 
@@ -133,9 +131,9 @@ function loadPage(recipeRepository, user, ingredientsData) {
         }).join('')
 
         if (user.recipesToCook.filter(current => current.id === currentRecipe.id).length !== 0) {
-            var isSaved = "Saved"
+            isSaved = "Saved"
         } else {
-            var isSaved = "♥️"
+            isSaved = "♥️"
         }
 
         const instructionsHTML = currentRecipe.returnInstructions().map(instruction => {
@@ -143,7 +141,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         }).join('')
         recipeModal.innerHTML =
             `
-    <header class="modal__header">
+        <header class="modal__header">
           <h2 class="modal__title" id="modal-1-title">
             ${currentRecipe.name}
           </h2>
