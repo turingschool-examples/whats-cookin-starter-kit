@@ -36,8 +36,7 @@ describe('user', () =>{
             ingredients: ingredient,
 
             tags: ["dessert"]   
-
-              
+ 
         })
         recipe2 = new Recipe({
             id: 8,
@@ -76,8 +75,16 @@ describe('user', () =>{
     it('should filter a recipe by the tag', () => {
         user.addRecipeToCook(recipe)
         user.addRecipeToCook(recipe2)
-        const filteredRecipes = user.filterRecipesByTag('dessert')
-        expect(filteredRecipes[0].id).to.equal(4)
+        const filteredRecipesByTag = user.filterRecipesByTag('dessert')
+        expect(filteredRecipesByTag[0].id).to.equal(4)
 
     })
+
+    it('should filter a recipe by name', () => {
+        user.addRecipeToCook(recipe)
+        user.addRecipeToCook(recipe2)
+        const filteredRecipesByName = user.filterRecipesByName('scrambled eggs')
+        expect(filteredRecipesByName[0].id).to.equal(8)
+    })
+    // double check this method ^^^^^ index problem
 })

@@ -30,9 +30,9 @@ class User{
     }
     
     filterRecipesByName(name){
-    
-        const recipeTag = this.recipesToCook.filter((recipe) => this.recipe.tags)
-
+        const recipesByName = this.recipesToCook.filter((recipe) => recipe.name.includes(name))
+        console.log(this.recipesToCook[1])
+        return recipesByName
     }
 };
 
