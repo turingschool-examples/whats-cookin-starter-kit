@@ -91,7 +91,11 @@ const viewHomePage = () => {
 }
 
 function viewRecipesByTag() {
-  let tagHTML = recipeRolodex.recipes.recipeData.tag.
+  let tagHTML = recipeRolodex.getRecipeByTag(tag)
+  tagHTML.map(tag => ` <article class="recipe">
+  <h2 class="recipe-title">${tag.name}</h2>
+  <img class="recipe-image" src="${tag.image}" alt="${tag.name}">
+</article>`).join('')
 }
 
 // fetchAll()
