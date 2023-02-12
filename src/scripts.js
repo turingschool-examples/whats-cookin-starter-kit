@@ -25,9 +25,7 @@ let allCookingData = {
 let recipeRepository
 let user
 let num
-let num1
-let num2
-let num3
+
 
 Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
     .then((data) => {
@@ -41,11 +39,11 @@ Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
             recipeRepository = new RecipeRepository(allCookingData.recipes.recipeData)
             num = Math.floor(Math.random() * allCookingData.users.usersData.length)
             user = new User(allCookingData.users.usersData[num])
-            loadPage(recipeRepository, user, allCookingData.ingredients.ingredientsData, num1, num2, num3)
+            loadPage(recipeRepository, user, allCookingData.ingredients.ingredientsData)
         }
     )
 
-function loadPage(recipeRepository, user, ingredientsData, num1, num2, num3) {
+function loadPage(recipeRepository, user, ingredientsData) {
 
     var morningMeal = ['breakfast', 'morning meal']
     var snack = ['dip', 'snack', 'appetizer']
@@ -70,53 +68,63 @@ function loadPage(recipeRepository, user, ingredientsData, num1, num2, num3) {
     const buttons = document.querySelectorAll('button')
     const recipeModal = document.querySelector('#modal')
 
-    for (var i of buttons) {
-        i.addEventListener('click', function (event) {
-            if (event.target.id !== "top-button") {
-                hideAll()
-            }
-        })
-    }
+    let currentDisplayedRecipes
+    let currentRecipeId
+    let currentRecipe
+    let currentView = 'landing'
+    let filterTerm = ''
+
+    renderPage()
+
 
     topButton.addEventListener('click', () => document.documentElement.scrollTop = 0)
-    allRecipes.addEventListener('click', () => displayRecipes(recipeRepository.recipes))
-    savedRecipes.addEventListener('click', () => displayRecipes(user.recipesToCook))
-    breakfastFilter.addEventListener('click', () => { 
-        filterRecipes(morningMeal)
-        displayRecipes(filteredRecipes)
+    allRecipes.addEventListener('click', () => {
+        currentView = 'recipes'
+        filterTerm = ''
+        renderPage()
+    
     })
-    snacksAppFilter.addEventListener('click', () => { 
-        filterRecipes(snack)
-        displayRecipes(filteredRecipes)
+    savedRecipes.addEventListener('click', () => {
+        currentView = 'recipesToCook'
+        filterTerm = ''   
+        renderPage()
     })
-    brunchFilter.addEventListener('click', () => { 
-        filterRecipes(other)
-        displayRecipes(filteredRecipes)
+    // breakfastFilter.addEventListener('click', () => {
+    //     filterRecipes(morningMeal)
+    
+    // })
+    // snacksAppFilter.addEventListener('click', () => {
+    //     filterRecipes(snack)
+    
+    // })
+    // brunchFilter.addEventListener('click', () => {
+    //     filterRecipes(other)
+    
+    // })
+    // mainDishFilter.addEventListener('click', () => {
+    //     filterRecipes(mainDish)
+    
+    // })
+    // compDishFilter.addEventListener('click', () => {
+    //     filterRecipes(complimentaryDish)
+    // })
+
+    searchGo.addEventListener('click', () => {
+        currentView = 'recipes'
+        filterTerm = searchBar.value
+        renderPage()
+        searchBar.value = ''
     })
-    mainDishFilter.addEventListener('click', () => { 
-        filterRecipes(mainDish)
-        displayRecipes(filteredRecipes)
+
+    pantryButton.addEventListener('click', () => {
+        currentView = 'pantry'
+        renderPage()
     })
-    compDishFilter.addEventListener('click', () => { 
-        filterRecipes(complimentaryDish)
-        displayRecipes(filteredRecipes)
-    })
-    searchGo.addEventListener('click', () => searchRecipes(recipeRepository))
-    pantryButton.addEventListener('click', () => displayPantry(user, ingredientsData))
+
     recipeSection.addEventListener('click', (event) => {
         assignCurrentRecipe(event)
         renderCurrentRecipe()
     })
-
-    let currentDisplayedRecipes
-    let currentRecipeId
-    let currentRecipe
-    let filteredRecipes
-    num1 = Math.floor(Math.random() * recipeRepository.recipes.length)
-    num2 = Math.floor(Math.random() * recipeRepository.recipes.length)
-    num3 = Math.floor(Math.random() * recipeRepository.recipes.length)
-    let fakePopularRecipes = [recipeRepository.recipes[num1],recipeRepository.recipes[num2], recipeRepository.recipes[num3]]
-    displayRecipes(fakePopularRecipes)
 
     window.onscroll = () => {
         if (document.documentElement.scrollTop > 350) {
@@ -202,6 +210,7 @@ function loadPage(recipeRepository, user, ingredientsData, num1, num2, num3) {
     }
 
     function displayPantry(user, ingredientsData) {
+        pantrySection.innerHTML = ''
         pantrySection.innerHTML += `Hello, ${user.name}. You have these items in your pantry. `
         let currentIngredient
         user.pantry.forEach((element) => {
@@ -212,7 +221,6 @@ function loadPage(recipeRepository, user, ingredientsData, num1, num2, num3) {
         `
         })
     }
-''
 
     function displayRecipes(recipes) {
         if (!recipes) {
@@ -220,7 +228,6 @@ function loadPage(recipeRepository, user, ingredientsData, num1, num2, num3) {
             return
         }
         recipeSection.innerHTML = ''
-        currentDisplayedRecipes = recipes
         recipes.forEach(recipe => {
             recipeSection.innerHTML +=
                 `
@@ -232,20 +239,36 @@ function loadPage(recipeRepository, user, ingredientsData, num1, num2, num3) {
         })
     }
 
-    function filterRecipes(tag) {
-        filteredRecipes = recipeRepository.filterByTag(tag)
-
-        currentDisplayedRecipes = filteredRecipes
+    function getCurrentDisplayedRecipes(recipes, filterTerm) {
+        if(filterTerm) {
+            return recipes.filterByName(searchBar.value) || recipes.filterByTag(searchBar.value)
+        }
+        else {
+            return recipes.recipes
+        }
     }
 
-    function searchRecipes(recipes) {
-        let filteredRecipes = recipes.filterByName(searchBar.value) || recipes.filterByTag(searchBar.value)
-        currentDisplayedRecipes = null
-        displayRecipes(filteredRecipes)
+    function renderPage() {
+        if (currentView === 'pantry') {
+            renderCorrectPage(recipeSection, pantrySection)
+            displayPantry(user, ingredientsData)
+        } else if (currentView === 'recipes') {
+            renderCorrectPage(pantrySection, recipeSection)
+            displayRecipes(getCurrentDisplayedRecipes(recipeRepository, filterTerm))
+        } else if (currentView === 'recipesToCook') {
+            renderCorrectPage(pantrySection, recipeSection)
+            displayRecipes(user.recipesToCook)
+        } else if (currentView ==='landing') {
+            const num1 = Math.floor(Math.random() * recipeRepository.recipes.length)
+            const num2 = Math.floor(Math.random() * recipeRepository.recipes.length)
+            const num3 = Math.floor(Math.random() * recipeRepository.recipes.length)
+            let fakePopularRecipes = [recipeRepository.recipes[num1], recipeRepository.recipes[num2], recipeRepository.recipes[num3]]
+            displayRecipes(fakePopularRecipes)
+        }
     }
 
-    function hideAll() {
-        recipeSection.innerHTML = ''
-        pantrySection.innerHTML = ''
+    function renderCorrectPage(element1, element2) {
+        element1.classList.add('hidden')
+        element2.classList.remove('hidden')
     }
 }
