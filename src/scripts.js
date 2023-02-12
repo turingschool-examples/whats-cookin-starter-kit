@@ -136,17 +136,20 @@ function loadPage(recipeRepository, user, ingredientsData) {
             isSaved = "♥️"
         }
 
-        const instructionsHTML = currentRecipe.returnInstructions().map(instruction => {
-            return '<li>' + instruction + '</li>'
-        }).join('')
-        recipeModal.innerHTML =
-            `
+        const instructionsHTML = currentRecipe
+          .returnInstructions()
+          .map((instruction) => {
+            return "<li>" + instruction + "</li>";
+          })
+          .join("");
+        recipeModal.innerHTML = `
         <header class="modal__header">
           <h2 class="modal__title" id="modal-1-title">
             ${currentRecipe.name}
           </h2>
         </header>
         <main class="modal__content" id="modal-1-content">
+          <div class="modal_container_img_ingredients"> 
           <img class="modal_img" src="${currentRecipe.image}">
           <div class="modal_ingredients_container">
             <h3 class="modal_ingredients">Ingredients</h3>
@@ -154,15 +157,20 @@ function loadPage(recipeRepository, user, ingredientsData) {
                 ${ingredientsHTML}
              </ul>
           </div>
+          </div>
             <h3 class="modal_recipe_instructions">Recipe Instructions</h3>
           <ol type="1">
             ${instructionsHTML}
           </ol>
-          <h4 class="modal_cost">Recipe Cost:$${currentRecipe.calculateRecipeCost(ingredientsData)}</h4>
+          <h4 class="modal_cost">Recipe Cost:$${currentRecipe.calculateRecipeCost(
+            ingredientsData
+          )}</h4>
+          <div class="modal_button_container">
           <button type="button" class="modal__btn">${isSaved}</button>
           <button class="modal__close" aria-label="Close modal" data-micromodal-close>CLOSE</button>
+          </div>
         </main>
-        `
+        `;
         MicroModal.show('modal-1')
         var saveButton = document.querySelector('.modal__btn')
         if (user.recipesToCook.filter(current => current.id === currentRecipe.id).length !== 0) {
