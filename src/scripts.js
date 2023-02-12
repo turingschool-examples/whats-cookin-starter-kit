@@ -53,10 +53,14 @@ window.addEventListener('load', () => {
     
 });
 
+
 const searchForRecipe = () => {
     let input = searchBar.value
-    RecipeRepository.getRecipeByTag(input)
-    RecipeRepository.getRecipeByName(input)
+    if(recipeRolodex.getRecipeByTag(input).length > 0 ||recipeRolodex.getRecipeByName(input).length > 0) {
+      //  display the stored recipes with a helper function
+    } else {
+      // display "eh... nothin here... sorryyyyyyyy"
+    }
 }
 
 const show = (element) => {
