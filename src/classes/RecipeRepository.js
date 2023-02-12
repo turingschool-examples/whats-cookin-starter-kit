@@ -4,7 +4,6 @@ class RecipeRepository {
     this.storedRecipes 
   }
   
-
   getRecipeByTag(tag) {
     this.storedRecipes = this.recipes.filter(recipe => recipe.tags.includes(tag));
     return this.storedRecipes;

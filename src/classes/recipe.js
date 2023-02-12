@@ -10,8 +10,7 @@ class Recipe {
        
     }
     getIngredientsName(name) {
-        return this.ingredients.filter(ingredient => ingredient.name === name);
-        
+        return this.ingredients.filter(ingredient => ingredient.name === name);  
     }
     
       calculateIngredientsCosts() {
