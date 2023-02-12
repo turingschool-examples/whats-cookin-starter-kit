@@ -54,7 +54,7 @@ window.addEventListener('load', () => {
 });
 
 
-const searchForRecipe = () => {
+function searchForRecipe() {
     let input = searchBar.value
     if(recipeRolodex.getRecipeByTag(input).length > 0) {
       viewRecipesByTag(input)
@@ -62,7 +62,7 @@ const searchForRecipe = () => {
     else if(recipeRolodex.getRecipeByName(input).length > 0){
         viewRecipeByName(name)
       } else { 
-          // display "eh... nothin here... sorryyyyyyyy"
+           "eh... nothin here... sorryyyyyyyy"
   }
 }
 
