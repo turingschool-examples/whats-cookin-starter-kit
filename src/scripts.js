@@ -52,6 +52,7 @@ window.addEventListener('load', () => {
     })
     
 });
+buttonSearch.addEventListener('click', searchForRecipe);
 
 
 function searchForRecipe() {
@@ -62,14 +63,14 @@ function searchForRecipe() {
     else if(recipeRolodex.getRecipeByName(input).length > 0){
         viewRecipeByName(name)
       } else { 
-           "eh... nothin here... sorryyyyyyyy"
+           "Cool Shiba says, no. Try again."
   }
 }
 
-const show = (element) => {
+function show(element) {
   element.classList.remove('hidden');
 };
-const hide = (element) => {
+function hide(element) {
   element.classList.add('hidden');
 };
 
