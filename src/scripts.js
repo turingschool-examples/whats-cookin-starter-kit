@@ -3,30 +3,61 @@ import fetchAll from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import Recipe from './classes/recipe';
 import User from './classes/user';
+import RecipeRepository from './classes/RecipeRepository';
 import './images/turing-logo.png'
+
+
+let userData;
+let ingredientsData;
+let recipeRolodex;
 
 
 const recipeContainer = document.querySelector('.recipe-container');
 const miniCardSection = document.getElementById('miniCardSection');
 const miniCardList = document.getElementById('miniCardList');
-const defaultView = document.getElementById('mainScreen')
-const overlay = document.querySelector('.overlay')
+const defaultView = document.getElementById('mainScreen');
+const overlay = document.querySelector('.overlay');
 
 const buttonHome = document.getElementById('homeButton');
 const buttonViewAll = document.getElementById('viewAllButton');
-const buttonSavedRecipes = document.getElementById('savedRecipesButton')
+const buttonSavedRecipes = document.getElementById('savedRecipesButton');
+const buttonSearch = document.getElementById('searchBtn');
 
-// buttonHome.addEventListener('click',)
-// buttonViewAll.addEventListener('click',)
-// window.addEventListener('load', () => {
-//   const viewHomePage = (data) => {
-//     data[2].recipeData
-//   }
-// });
+const searchBar = document.getElementById('search-bar');
+
+// buttonSearch.addEventListener('click', searchForRecipe)
+
+// fetchAll()
+//   .then(data => {
+//   console.log(data)
+//   viewHomePage(data)
+// })
+
+// const searchForRecipe = () => {
+//     let input = searchBar.value
+//     RecipeRepository.getRecipeByTag(input)
+//     RecipeRepository.getRecipeByName(input)
+// }
+
 
 window.addEventListener('load', () => {
-  
+    fetchAll()
+    .then(data => {
+        //   console.log(data)
+    // userData = allApis[0] 
+    // ingredientsData = allApis[1]
+    recipeRolodex = new RecipeRepository(data[2])
+    // console.log(recipeRolodex)
+    viewHomePage()
+    })
+    
 });
+
+const searchForRecipe = () => {
+    let input = searchBar.value
+    RecipeRepository.getRecipeByTag(input)
+    RecipeRepository.getRecipeByName(input)
+}
 
 const show = (element) => {
   element.classList.remove('hidden');
@@ -35,10 +66,11 @@ const hide = (element) => {
   element.classList.add('hidden');
 };
 
-const viewHomePage = (data) => {
-  let recipeData = data[2].recipeData;
-  console.log(recipeData) 
-  let recipeHTML = recipeData.map(recipe => `
+const viewHomePage = () => {
+    
+//   let recipeData = data[2].recipeData;
+  console.log(recipeRolodex) 
+  let recipeHTML = recipeRolodex.recipes.recipeData.map(recipe => `
     <article class="recipe">
       <h2 class="recipe-title">${recipe.name}</h2>
       <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">
@@ -51,11 +83,11 @@ const viewHomePage = (data) => {
   // this will allow multiple articles to be added to the recipe container.(new image / new name)
 }
 
-fetchAll()
-  .then(data => {
-  console.log(data)
-  viewHomePage(data)
-})
+// fetchAll()
+//   .then(data => {
+//   console.log(data)
+//   viewHomePage(data)
+// })
 
 
 
