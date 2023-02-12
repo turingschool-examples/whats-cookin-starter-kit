@@ -22,8 +22,8 @@ const overlay = document.querySelector('.overlay');
 const buttonHome = document.getElementById('homeButton');
 const buttonViewAll = document.getElementById('viewAllButton');
 const buttonSavedRecipes = document.getElementById('savedRecipesButton');
-const buttonSearch = document.getElementById('searchBtn');
 
+const buttonSearch = document.getElementById('searchBtn');
 const searchBar = document.getElementById('search-bar');
 
 buttonSearch.addEventListener('click', searchForRecipe);
@@ -39,27 +39,32 @@ window.addEventListener('load', () => {
     fetchAll()
     .then(data => {
         const idNum = getRandomUserId()
-        console.log(data[0])
+        // console.log(data[0])
         userProfile = new User(data[0].usersData.find(user => user.id === idNum))
-        // console.log('user profile:', userProfile)
-
+        console.log('user profile:', userProfile)
 
     // ingredientsData = allApis[1]
-    recipeRolodex = new RecipeRepository(data[2])
+    recipeRolodex = new RecipeRepository(data[2].recipeData)
     // console.log(recipeRolodex)
     viewHomePage()
-    })
-    
+    }) 
 });
+
+buttonSearch.addEventListener('click', function() {
+    let input = searchBar.value
+    searchForRecipe(input)
+});
+
+
+// STUFF WE NEED:
+//  save button on recipe
+//  
+
 
 
 function getRandomUserId(){
     return Math.floor(Math.random() * 41);
 }
-
-
-// buttonSearch.addEventListener('click', searchForRecipe);
-
 
 function searchForRecipe() {
     let input = searchBar.value
@@ -67,11 +72,11 @@ function searchForRecipe() {
       viewRecipesByTag(input)
     } 
     else if(recipeRolodex.getRecipeByName(input).length > 0){
-        viewRecipeByName(name)
+        viewRecipeByName(input)
       } else { 
            "Cool Shiba says, no. Try again."
   }
-}
+};
 
 function show(element) {
   element.classList.remove('hidden');
@@ -82,8 +87,8 @@ function hide(element) {
 
 const viewHomePage = () => {
 //   let recipeData = data[2].recipeData;
-  console.log(recipeRolodex) 
-  let recipeHTML = recipeRolodex.recipes.recipeData.map(recipe => `
+//   console.log(recipeRolodex) 
+  let recipeHTML = recipeRolodex.recipes.map(recipe => `
     <article class="recipe">
       <h2 class="recipe-title">${recipe.name}</h2>
       <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">
