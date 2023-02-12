@@ -1,16 +1,63 @@
-# What's Cookin'? Starter Kit
+# What's Cookin'? 
 
-The details of this project are outlined in the <a href="https://frontend.turing.edu/projects/What%27sCookin-PartOne.html" target="\__blank">project spec</a>.
+### Abstract:
+This Application was developed to make the user's experience searching for recipes, efficient and fun. The user is presented with an array of popular recipes on the main page. They are able to search and filter recipes based on their culinary choice. The user has the option to view more details of the recipe and save their favorite recipes to their own page, which can be selected in the navigation bar clicking `Saved Recipes`. The user is also able to see what ingredients are located in their pantry to complete the recipe clicking `Your Pantry.`
 
-## Set Up
+### Feature Spotlight
+We successfully implemented MicroModal as seen in the GIF below. This provides users with an expanded view of any recipe they wish to see further with a detailed ingredient list, directions, and estimated cost. As a team we researched features to optimize the user experience and we decided MicroModal.js to be the best solution.
 
-1. Within your group, decide on one person to have the project repository on their Github account. This person will *fork* this repository - on the top right corner of the page, click the fork button.
-2. All group members should then clone down the forked repository (make sure that everyone is added as a collaborator as well). Since you don't want your project to be named "whats-cookin-starter-kit", add an optional argument after the repo url when cloning. The command should look like this: `git clone [remote-address] [what you want to name the repo]`.
-3. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` or `npm i` to install project dependencies.
-4. Run npm start in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page). `Control + C` is the command to stop running the local server. Closing the terminal without stopping the server first could allow the server to continue to run in the background and cause problems. This command is not specific to Webpack; make note of it for future use.
-5. Make sure both members of your team are collaborators on the forked repo.
-6. Do not run `npm audit fix --force`. This will update to the latest version of packages. We need to be using `webpack-dev-server@3.11.2` which is not the latest version. If you start to run into Webpack errors, first check that all group members are using the correct version.
+### Installation Instructions:
+1. Fork this repository
+1. Open terminal and navigate where you would like to store the application. 
+1. Click `SSH` and copy and paste `git@github.com:Espressogoddess/whats-cookin.git` into your terminal.
+1. `cd` into the repository on your local machine and run `npm install` or `npm i` to install project dependencies.
+4. Run `npm start` in the terminal to launch the API's server. 
+5. Open the link to your local server (listed in your terminal) in your web browser to view the live page.
+6. `Control + C` is the command to stop running the local server. 
 
-## Testing
+### Preview of App:
 
-Mocha and chai are already set up, with a boilerplate test for you.
+<img width="1440" alt="app preview" src="">
+
+### Context:
+
+This project was completed in the 8th week of the Turing front-end software engineering program. We were required to synthesize technical information learned thus in the program, in addition to project management skills to create a fully functioning site. This project required additional research to implement new technologies.
+
+### Contributors:
+
+- [Amber](https://github.com/Espressogoddess)
+
+- [Sam](https://github.com/SamanthaMcElhinney)
+
+- [Michael](https://github.com/mrlobatoman)
+
+- [Trevor](https://github.com/trevorfitz0)
+
+### Learning Goals:
+
+- Use object and array prototype methods to perform data manipulation
+- Implement ES6 classes with a complex data model
+- Create a user interface that is easy to use and clearly displays information
+- Write modular, reusable code that follows SRP (Single Responsibility Principle)
+- Implement a robust testing suite using TDD
+- Make network requests to retrieve data
+
+### Technologies Used:
+- Fetch API
+- MicroModal.js 3rd party library
+- Webpack module bundler
+- Git/GitHub
+- Trello project board
+- JavaScript
+- CSS
+- HTML
+- Mocha JavaScript testing framework
+- Chai assertion library
+
+### Wins + Challenges:
+
+#### Wins
+- We were able to deepen our understanding and successfully implemented use of fetch API to fetch resources asynchronously.
+
+#### Challenges:
+- Dividing workload with various schedules, learning and working styles. We implemented a project board and diligently used PR requests for code review and feedback from peers. We adjusted our workflow, viable product and design based on deadlines, product output and the team's needs.
