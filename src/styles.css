@@ -329,7 +329,9 @@ button:active {
   background-color: #00449e;
   color: #fff;
 }
-
+.hidden {
+  display: none;
+}
 /**************************\
   Demo Animation Style
 \**************************/
