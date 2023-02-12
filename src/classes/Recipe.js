@@ -8,7 +8,6 @@ class Recipe {
     this.tags = recipe.tags;
     this.ingredientsList = []
     this.totalCost;
-    this.ingredientsList = []
   }
 
   getIngredientIds() {
