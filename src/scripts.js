@@ -56,11 +56,14 @@ window.addEventListener('load', () => {
 
 const searchForRecipe = () => {
     let input = searchBar.value
-    if(recipeRolodex.getRecipeByTag(input).length > 0 ||recipeRolodex.getRecipeByName(input).length > 0) {
+    if(recipeRolodex.getRecipeByTag(input).length > 0) {
       //  display the stored recipes with a helper function
-    } else {
-      // display "eh... nothin here... sorryyyyyyyy"
-    }
+    } 
+    else if(recipeRolodex.getRecipeByName(input).length > 0){
+            //  display the stored recipe with a helper function
+      } else { 
+          // display "eh... nothin here... sorryyyyyyyy"
+  }
 }
 
 const show = (element) => {
@@ -85,6 +88,10 @@ const viewHomePage = () => {
   // The join method is then used to concatenate all of the HTML strings into one string - then added to the inner html of the 'recipe container'
   //join() method creates and returns a new string by concatenating all of the elements in an array (or an array-like object), separated by commas or a specified separator string
   // this will allow multiple articles to be added to the recipe container.(new image / new name)
+}
+
+function viewRecipesByTag() {
+  let tagHTML = recipeRolodex.recipes.recipeData.tag
 }
 
 // fetchAll()
