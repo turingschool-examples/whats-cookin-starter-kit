@@ -52,24 +52,25 @@ window.addEventListener('load', () => {
     })
     
 });
+buttonSearch.addEventListener('click', searchForRecipe);
 
 
-const searchForRecipe = () => {
+function searchForRecipe() {
     let input = searchBar.value
     if(recipeRolodex.getRecipeByTag(input).length > 0) {
       viewRecipesByTag(input)
     } 
     else if(recipeRolodex.getRecipeByName(input).length > 0){
-            //  display the stored recipe with a helper function
+        viewRecipeByName(name)
       } else { 
-          // display "eh... nothin here... sorryyyyyyyy"
+           "Cool Shiba says, no. Try again."
   }
 }
 
-const show = (element) => {
+function show(element) {
   element.classList.remove('hidden');
 };
-const hide = (element) => {
+function hide(element) {
   element.classList.add('hidden');
 };
 
@@ -96,6 +97,14 @@ function viewRecipesByTag(tag) {
   <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">
 </article>`).join('')
 recipeContainer.innerHTML = tagHTML;
+}
+
+function viewRecipeByName(name){
+  let nameHTML = recipeRolodex.getRecipeByName(name)(recipe => ` <article class="recipe">
+  <h2 class="recipe-title">${recipe.name}</h2>
+  <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">
+</article>`)
+recipeContainer.innerHTML = nameHTML;
 }
 
 // fetchAll()
