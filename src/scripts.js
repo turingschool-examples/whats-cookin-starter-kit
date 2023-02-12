@@ -84,7 +84,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
 
     })
     savedRecipes.addEventListener('click', () => {
-        currentView = 'recipesToCook'
+        currentView = 'savedRecipes'
         filterTerm = ''
         renderPage()
     })
@@ -159,7 +159,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
             return '<li>' + ingredient.ingredient + '</li>'
         }).join('')
 
-        if (user.recipesToCook.recipes.filter(current => current.id === currentRecipe.id).length !== 0) {
+        if (user.savedRecipes.recipes.filter(current => current.id === currentRecipe.id).length !== 0) {
             isSaved = "Saved"
         } else {
             isSaved = "♥️"
@@ -202,7 +202,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         `;
         MicroModal.show('modal-1')
         var saveButton = document.querySelector('.modal__btn')
-        if (user.recipesToCook.recipes.find(current => current.id === currentRecipe.id)) {
+        if (user.savedRecipes.recipes.find(current => current.id === currentRecipe.id)) {
             saveButton.style.backgroundColor = "red"
         }
         saveButton.addEventListener('click', () => saveRecipe(saveButton))
@@ -210,11 +210,11 @@ function loadPage(recipeRepository, user, ingredientsData) {
 
     function saveRecipe(button) {
         if (button.innerText === '♥️') {
-            user.addToRecipesToCook(currentRecipe)
+            user.addToSavedRecipes(currentRecipe)
             button.innerText = 'Saved'
             button.style.backgroundColor = "red"
         } else {
-            user.removeFromRecipesToCook(currentRecipe)
+            user.removeFromSavedRecipes(currentRecipe)
             button.innerText = '♥️'
             button.style.backgroundColor = "#e6e6e6"
             renderPage()
@@ -268,10 +268,10 @@ function loadPage(recipeRepository, user, ingredientsData) {
             searchBar.placeholder = "search all recipes..."
             renderCorrectPage(pantrySection, recipeSection)
             displayRecipes(getCurrentDisplayedRecipes(recipeRepository, filterTerm))
-        } else if (currentView === 'recipesToCook') {
+        } else if (currentView === 'savedRecipes') {
             searchBar.placeholder = 'search saved recipes...'
             renderCorrectPage(pantrySection, recipeSection)
-            displayRecipes(getCurrentDisplayedRecipes(user.recipesToCook, filterTerm))
+            displayRecipes(getCurrentDisplayedRecipes(user.savedRecipes, filterTerm))
         } else if (currentView === 'landing') {
             const num1 = Math.floor(Math.random() * recipeRepository.recipes.length)
             const num2 = Math.floor(Math.random() * recipeRepository.recipes.length)
