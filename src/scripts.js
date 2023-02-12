@@ -10,6 +10,7 @@ import './images/turing-logo.png'
 let userData;
 let ingredientsData;
 let recipeRolodex;
+let userProfile;
 
 
 const recipeContainer = document.querySelector('.recipe-container');
@@ -25,13 +26,8 @@ const buttonSearch = document.getElementById('searchBtn');
 
 const searchBar = document.getElementById('search-bar');
 
-// buttonSearch.addEventListener('click', searchForRecipe)
+buttonSearch.addEventListener('click', searchForRecipe);
 
-// fetchAll()
-//   .then(data => {
-//   console.log(data)
-//   viewHomePage(data)
-// })
 
 // const searchForRecipe = () => {
 //     let input = searchBar.value
@@ -39,12 +35,15 @@ const searchBar = document.getElementById('search-bar');
 //     RecipeRepository.getRecipeByName(input)
 // }
 
-
 window.addEventListener('load', () => {
     fetchAll()
     .then(data => {
-        //   console.log(data)
-    // userData = allApis[0] 
+        const idNum = getRandomUserId()
+        console.log(data[0])
+        userProfile = new User(data[0].usersData.find(user => user.id === idNum))
+        // console.log('user profile:', userProfile)
+
+
     // ingredientsData = allApis[1]
     recipeRolodex = new RecipeRepository(data[2])
     // console.log(recipeRolodex)
@@ -52,7 +51,14 @@ window.addEventListener('load', () => {
     })
     
 });
-buttonSearch.addEventListener('click', searchForRecipe);
+
+
+function getRandomUserId(){
+    return Math.floor(Math.random() * 41);
+}
+
+
+// buttonSearch.addEventListener('click', searchForRecipe);
 
 
 function searchForRecipe() {
@@ -75,7 +81,6 @@ function hide(element) {
 };
 
 const viewHomePage = () => {
-    
 //   let recipeData = data[2].recipeData;
   console.log(recipeRolodex) 
   let recipeHTML = recipeRolodex.recipes.recipeData.map(recipe => `
@@ -85,10 +90,6 @@ const viewHomePage = () => {
     </article>
   `).join('');
   recipeContainer.innerHTML = recipeHTML;
-  //map method iterates over each recipe in the recipeData array and maps each one to an HTML string.
-  // The join method is then used to concatenate all of the HTML strings into one string - then added to the inner html of the 'recipe container'
-  //join() method creates and returns a new string by concatenating all of the elements in an array (or an array-like object), separated by commas or a specified separator string
-  // this will allow multiple articles to be added to the recipe container.(new image / new name)
 }
 
 function viewRecipesByTag(tag) {
@@ -106,12 +107,6 @@ function viewRecipeByName(name){
 </article>`)
 recipeContainer.innerHTML = nameHTML;
 }
-
-// fetchAll()
-//   .then(data => {
-//   console.log(data)
-//   viewHomePage(data)
-// })
 
 
 
