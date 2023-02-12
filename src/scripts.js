@@ -24,6 +24,8 @@ let allCookingData = {
 
 let recipeRepository
 let user
+let num
+
 
 Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
     .then((data) => {
@@ -35,7 +37,7 @@ Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
     .then(
         (allCookingData) => {
             recipeRepository = new RecipeRepository(allCookingData.recipes.recipeData)
-            let num = Math.floor(Math.random() * allCookingData.users.usersData.length)
+            num = Math.floor(Math.random() * allCookingData.users.usersData.length)
             user = new User(allCookingData.users.usersData[num])
             loadPage(recipeRepository, user, allCookingData.ingredients.ingredientsData)
         }
@@ -43,7 +45,7 @@ Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
 
 function loadPage(recipeRepository, user, ingredientsData) {
 
-    var morningMeal = ['breakfast', 'morning meal, ']
+    var morningMeal = ['breakfast', 'morning meal']
     var snack = ['dip', 'snack', 'appetizer']
     var other = ['condiment', 'spread']
     var mainDish = ['main dish', 'dinner', 'lunch']
@@ -66,38 +68,63 @@ function loadPage(recipeRepository, user, ingredientsData) {
     const buttons = document.querySelectorAll('button')
     const recipeModal = document.querySelector('#modal')
 
-    for (var i of buttons) {
-        i.addEventListener('click', function (event) {
-            if (event.target.id !== "top-button") {
-                hideAll()
-            }
-        })
-    }
+    let currentDisplayedRecipes
+    let currentRecipeId
+    let currentRecipe
+    let currentView = 'landing'
+    let filterTerm = ''
+
+    renderPage()
+
 
     topButton.addEventListener('click', () => document.documentElement.scrollTop = 0)
-    allRecipes.addEventListener('click', displayAllRecipes)
-    savedRecipes.addEventListener('click', displaySavedRecipes)
-    breakfastFilter.addEventListener('click', () => showFilteredRecipes(morningMeal))
-    snacksAppFilter.addEventListener('click', () => showFilteredRecipes(snack))
-    brunchFilter.addEventListener('click', () => showFilteredRecipes(other))
-    mainDishFilter.addEventListener('click', () => showFilteredRecipes(mainDish))
-    compDishFilter.addEventListener('click', () => showFilteredRecipes(complimentaryDish))
-    searchGo.addEventListener('click', () => searchRecipeByName())
-    pantryButton.addEventListener('click', () => displayPantry(user, ingredientsData))
+    allRecipes.addEventListener('click', () => {
+        currentView = 'recipes'
+        filterTerm = ''
+        renderPage()
+    
+    })
+    savedRecipes.addEventListener('click', () => {
+        currentView = 'recipesToCook'
+        filterTerm = ''   
+        renderPage()
+    })
+    // breakfastFilter.addEventListener('click', () => {
+    //     filterRecipes(morningMeal)
+    
+    // })
+    // snacksAppFilter.addEventListener('click', () => {
+    //     filterRecipes(snack)
+    
+    // })
+    // brunchFilter.addEventListener('click', () => {
+    //     filterRecipes(other)
+    
+    // })
+    // mainDishFilter.addEventListener('click', () => {
+    //     filterRecipes(mainDish)
+    
+    // })
+    // compDishFilter.addEventListener('click', () => {
+    //     filterRecipes(complimentaryDish)
+    // })
+
+    searchGo.addEventListener('click', () => {
+        currentView = 'recipes'
+        filterTerm = searchBar.value
+        renderPage()
+        searchBar.value = ''
+    })
+
+    pantryButton.addEventListener('click', () => {
+        currentView = 'pantry'
+        renderPage()
+    })
+
     recipeSection.addEventListener('click', (event) => {
         assignCurrentRecipe(event)
         renderCurrentRecipe()
     })
-
-    let currentDisplayedRecipes = []
-    let currentRecipeId
-    let currentRecipe
-
-    recipeRepository.recipes.forEach(element => {
-        currentDisplayedRecipes.push(element)
-    })
-
-    renderPopularRecipes()
 
     window.onscroll = () => {
         if (document.documentElement.scrollTop > 350) {
@@ -192,27 +219,8 @@ function loadPage(recipeRepository, user, ingredientsData) {
         }
     }
 
-    function displayRecipes() {
-        recipeSection.innerHTML = ''
-        currentDisplayedRecipes.filter(recipe => {
-            recipeSection.innerHTML +=
-                `
-        <img src="${recipe.image}" class="recipe"></img>
-        `
-        })
-    }
-
-    function displaySavedRecipes() {
-        recipeSection.innerHTML = ''
-        user.recipesToCook.filter(savedRecipe => {
-            recipeSection.innerHTML +=
-                `
-        <img src="${savedRecipe.image}" class="recipe"></img>
-        `
-        })
-    }
-
     function displayPantry(user, ingredientsData) {
+        pantrySection.innerHTML = ''
         pantrySection.innerHTML += `Hello, ${user.name}. You have these items in your pantry. `
         let currentIngredient
         user.pantry.forEach((element) => {
@@ -224,18 +232,13 @@ function loadPage(recipeRepository, user, ingredientsData) {
         })
     }
 
-    function renderPopularRecipes() {
-        for (var i = 0; i < 10; i++) {
-            recipeSection.innerHTML +=
-                `
-        <img src="${recipeRepository.recipes[i].image}" class="recipe"></img>
-        `
+    function displayRecipes(recipes) {
+        if (!recipes) {
+            recipeSection.innerHTML = `<p>NO RESULTS</p>`
+            return
         }
-    }
-
-    function displayAllRecipes() {
         recipeSection.innerHTML = ''
-        recipeRepository.recipes.forEach(recipe => {
+        recipes.forEach(recipe => {
             recipeSection.innerHTML +=
                 `
         <section class='recipe' data-all-recipes='${recipe.id}'>
@@ -246,33 +249,36 @@ function loadPage(recipeRepository, user, ingredientsData) {
         })
     }
 
-    function showFilteredRecipes(tag) {
-        currentDisplayedRecipes = []
-        var filteredRecipes = recipeRepository.filterByTag(tag)
-        filteredRecipes.forEach(recipe => currentDisplayedRecipes.push(recipe))
-        displayRecipes()
-    }
-
-    function searchRecipeByName() {
-        currentDisplayedRecipes = []
-        let filterByName = recipeRepository.filterByName(searchBar.value)
-        let filteredRecipes = recipeRepository.filterByTag(searchBar.value)
-        if (filterByName !== undefined) {
-            for (var i = 0; i < filterByName.length; i++) {
-                currentDisplayedRecipes.push(filterByName[i])
-            }
-        } else if (filteredRecipes !== undefined) {
-            for (var i = 0; i < filteredRecipes.length; i++) {
-                currentDisplayedRecipes.push(filteredRecipes[i])
-            }
-        } else {
-            recipeSection.innerHTML = `<p>NO RESULTS</p>`
+    function getCurrentDisplayedRecipes(recipes, filterTerm) {
+        if(filterTerm) {
+            return recipes.filterByName(searchBar.value) || recipes.filterByTag(searchBar.value)
         }
-        displayRecipes()
+        else {
+            return recipes.recipes
+        }
     }
 
-    function hideAll() {
-        recipeSection.innerHTML = ''
-        pantrySection.innerHTML = ''
+    function renderPage() {
+        if (currentView === 'pantry') {
+            renderCorrectPage(recipeSection, pantrySection)
+            displayPantry(user, ingredientsData)
+        } else if (currentView === 'recipes') {
+            renderCorrectPage(pantrySection, recipeSection)
+            displayRecipes(getCurrentDisplayedRecipes(recipeRepository, filterTerm))
+        } else if (currentView === 'recipesToCook') {
+            renderCorrectPage(pantrySection, recipeSection)
+            displayRecipes(user.recipesToCook)
+        } else if (currentView ==='landing') {
+            const num1 = Math.floor(Math.random() * recipeRepository.recipes.length)
+            const num2 = Math.floor(Math.random() * recipeRepository.recipes.length)
+            const num3 = Math.floor(Math.random() * recipeRepository.recipes.length)
+            let fakePopularRecipes = [recipeRepository.recipes[num1], recipeRepository.recipes[num2], recipeRepository.recipes[num3]]
+            displayRecipes(fakePopularRecipes)
+        }
+    }
+
+    function renderCorrectPage(element1, element2) {
+        element1.classList.add('hidden')
+        element2.classList.remove('hidden')
     }
 }
