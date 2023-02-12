@@ -6,12 +6,10 @@ import User from './classes/user';
 import RecipeRepository from './classes/RecipeRepository';
 import './images/turing-logo.png'
 
-
 let userData;
 let ingredientsData;
 let recipeRolodex;
 let userProfile;
-
 
 const recipeContainer = document.querySelector('.recipe-container');
 const miniCardSection = document.getElementById('miniCardSection');
@@ -24,10 +22,9 @@ const buttonViewAll = document.getElementById('viewAllButton');
 const buttonSavedRecipes = document.getElementById('savedRecipesButton');
 
 const buttonSearch = document.getElementById('searchBtn');
-const searchBar = document.getElementById('search-bar');
+const searchBar = document.getElementById('searchBar');
 
-buttonSearch.addEventListener('click', searchForRecipe);
-
+// buttonSearch.addEventListener('click', searchForRecipe);
 
 // const searchForRecipe = () => {
 //     let input = searchBar.value
@@ -55,19 +52,9 @@ buttonSearch.addEventListener('click', function() {
     searchForRecipe(input)
 });
 
-
-// STUFF WE NEED:
-//  save button on recipe
-//  
-
-
-
-function getRandomUserId(){
-    return Math.floor(Math.random() * 41);
-}
-
 function searchForRecipe() {
     let input = searchBar.value
+    console.log(input)
     if(recipeRolodex.getRecipeByTag(input).length > 0) {
       viewRecipesByTag(input)
     } 
@@ -76,6 +63,10 @@ function searchForRecipe() {
       } else { 
            "Cool Shiba says, no. Try again."
   }
+};
+
+function getRandomUserId(){
+    return Math.floor(Math.random() * 41);
 };
 
 function show(element) {
@@ -95,7 +86,7 @@ const viewHomePage = () => {
     </article>
   `).join('');
   recipeContainer.innerHTML = recipeHTML;
-}
+};
 
 function viewRecipesByTag(tag) {
   let tagHTML = recipeRolodex.getRecipeByTag(tag).map(recipe => ` <article class="recipe">
@@ -103,7 +94,7 @@ function viewRecipesByTag(tag) {
   <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">
 </article>`).join('')
 recipeContainer.innerHTML = tagHTML;
-}
+};
 
 function viewRecipeByName(name){
   let nameHTML = recipeRolodex.getRecipeByName(name)(recipe => ` <article class="recipe">
@@ -111,10 +102,7 @@ function viewRecipeByName(name){
   <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">
 </article>`)
 recipeContainer.innerHTML = nameHTML;
-}
-
-
-
+};
 
 
 /*
