@@ -326,6 +326,133 @@ const sampleRecipeData = [
       "tags": [
         "sauce"
       ]
+    },
+    {
+      "id": 793584,
+      "image": "https://spoonacular.com/recipeImages/793584-556x370.jpg",
+      "ingredients": [
+        {
+          "id": 11143,
+          "quantity": {
+            "amount": 0.5,
+            "unit": "cup"
+          }
+        },
+        {
+          "id": 1002046,
+          "quantity": {
+            "amount": 1,
+            "unit": "teaspoon"
+          }
+        },
+        {
+          "id": 1129,
+          "quantity": {
+            "amount": 2,
+            "unit": ""
+          }
+        },
+        {
+          "id": 4641,
+          "quantity": {
+            "amount": 2,
+            "unit": "tablespoons"
+          }
+        },
+        {
+          "id": 1011256,
+          "quantity": {
+            "amount": 0.5,
+            "unit": "cup"
+          }
+        },
+        {
+          "id": 2026,
+          "quantity": {
+            "amount": 0.5,
+            "unit": "teaspoon"
+          }
+        },
+        {
+          "id": 11297,
+          "quantity": {
+            "amount": 2,
+            "unit": "tablespoons"
+          }
+        },
+        {
+          "id": 1002030,
+          "quantity": {
+            "amount": 0.5,
+            "unit": "teaspoon"
+          }
+        },
+        {
+          "id": 11944,
+          "quantity": {
+            "amount": 3,
+            "unit": "tablespoons"
+          }
+        },
+        {
+          "id": 10011282,
+          "quantity": {
+            "amount": 2,
+            "unit": "tablespoons"
+          }
+        },
+        {
+          "id": 11353,
+          "quantity": {
+            "amount": 2,
+            "unit": "pounds"
+          }
+        },
+        {
+          "id": 2047,
+          "quantity": {
+            "amount": 0.75,
+            "unit": "teaspoons"
+          }
+        },
+        {
+          "id": 2047,
+          "quantity": {
+            "amount": 1,
+            "unit": "tablespoon"
+          }
+        }
+      ],
+      "instructions": [
+        {
+          "instruction": "Place potatoes in a large saucepan and add water to cover by 1 inch. Bring to boil over medium-high heat.",
+          "number": 1
+        },
+        {
+          "instruction": "Add 1-tablespoon salt, reduce heat to medium, and simmer. Stir a few times, until potatoes re-fork tender, about 8 minutes.",
+          "number": 2
+        },
+        {
+          "instruction": "Drain potatoes and transfer to a large bowl.In a medium sized bowl whisk together yogurt, mayonnaise, mustard, salt, pepper and onion powder.",
+          "number": 3
+        },
+        {
+          "instruction": "Add to potatoes and gently stir to combine.",
+          "number": 4
+        },
+        {
+          "instruction": "Add celery, pickles, red onions, parsley and chopped eggs to potato mixture, stir to combine.",
+          "number": 5
+        },
+        {
+          "instruction": "Add more salt and pepper to taste.Cover and refrigerate until chilled, about 1 hour before serving. Potato salad can be made up to one day ahead.",
+          "number": 6
+        }
+      ],
+      "name": "Easy Creamy Potato Salad with Yogurt",
+      "tags": [
+        "salad"
+      ]
     }
 ];
 export default sampleRecipeData;
