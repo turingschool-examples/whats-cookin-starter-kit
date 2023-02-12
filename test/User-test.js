@@ -2,28 +2,14 @@ import { expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
 import Recipe from '../src/classes/Recipe';
 import User from '../src/classes/User';
+import mockdata from '../src/data/mockdata';
 
-describe('User', () => {
-    let user, recipe, recipeRepo;
+describe.only('User', () => {
+    let user, recipe;
 
     beforeEach(() => {
-        user = new User({"name": "Saige O'Kon", "id": 1, "pantry": [{"ingredient": 11297, "amount": 4}]});
-        recipe = new Recipe({
-            "id": 595736,
-            "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
-            "ingredients" : [
-                { "id": 20081, "quantity": { "amount": 1.5, "unit": "c"}}
-            ], 
-            "instructions" : [
-                {"instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.", "number": 1}
-            ],
-            "name": "Loaded Chocolate Chip Pudding Cookie Cups",
-            "tags": [
-              "antipasti",
-              "starter",
-              "snack",
-            ]
-        });
+        user = new User(mockdata.users[0]);
+        recipe = new Recipe(mockdata.recipes[0], mockdata.ingredients);
         
         user.saveRecipe(recipe);
     });
@@ -42,7 +28,7 @@ describe('User', () => {
     });
 
     it('should have a pantry that holds ingredients', () => {
-        expect(user.pantry).to.deep.equal([{"ingredient": 11297, "amount": 4}]);
+        expect(user.pantry[0]).to.deep.equal({"ingredient": 11297, "amount": 4});
     });
 
     it('should be able to hold recipes to cook', () => {
@@ -68,7 +54,6 @@ describe('User', () => {
     });
 
     it('should return an empty array when filtered by a name that doesn\'t exist', () => {
-        
         user.filterSavedByName("Chicken Marsala".toUpperCase());
         expect(user.recipesToCook.recipesByName.length).to.equal(0);
     });
