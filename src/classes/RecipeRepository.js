@@ -3,7 +3,6 @@ import Recipe from "./Recipe";
 class RecipeRepository {
   constructor(recipeData) {
     this.recipes = recipeData.map(recipe => new Recipe(recipe));
-    // this.filteredRecipes;
   }
   
   addRecipe(recipeToAdd) {
