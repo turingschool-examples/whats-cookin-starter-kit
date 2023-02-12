@@ -112,7 +112,6 @@ function loadPage(recipeRepository, user, ingredientsData) {
         if (currentView === 'pantry') {
             currentView = 'recipes'
         }
-        // currentView = 'recipes'
         filterTerm = searchBar.value
         renderPage()
         searchBar.value = ''
@@ -203,20 +202,19 @@ function loadPage(recipeRepository, user, ingredientsData) {
         `;
         MicroModal.show('modal-1')
         var saveButton = document.querySelector('.modal__btn')
-        if (user.recipesToCook.recipes.filter(current => current.id === currentRecipe.id).length !== 0) {
+        if (user.recipesToCook.recipes.find(current => current.id === currentRecipe.id)) {
             saveButton.style.backgroundColor = "red"
         }
         saveButton.addEventListener('click', () => saveRecipe(saveButton))
     }
 
     function saveRecipe(button) {
-        let possibleSavedRecipe = user.recipesToCook.recipes.filter(current => current.id === currentRecipe.id)
-        if (possibleSavedRecipe.length === 0) {
-            user.recipesToCook.recipes.push(currentRecipe)
+        if (button.innerText === '♥️') {
+            user.addToRecipesToCook(currentRecipe)
             button.innerText = 'Saved'
             button.style.backgroundColor = "red"
         } else {
-            user.recipesToCook.recipes.splice(user.recipesToCook.recipes.indexOf(currentRecipe))
+            user.removeFromRecipesToCook(currentRecipe)
             button.innerText = '♥️'
             button.style.backgroundColor = "#e6e6e6"
             renderPage()

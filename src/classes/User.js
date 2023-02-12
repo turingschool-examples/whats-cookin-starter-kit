@@ -1,20 +1,19 @@
 import RecipeRepository from "./RecipeRepository"
-import Recipe from "./Recipe"
 
 class User {
     constructor(user) {
         this.name = user.name
         this.id = user.id
         this.pantry = user.pantry
-        this.recipesToCook = new RecipeRepository([])
+        this.savedRecipes = new RecipeRepository([])
     }
 
-    addToRecipesToCook(recipeToAdd) {
-        this.recipesToCook.addRecipe(recipeToAdd)
+    addToSavedRecipes(recipeToAdd) {
+        this.savedRecipes.addRecipe(recipeToAdd)
     }
 
-    removeFromRecipesToCook(recipeToRemove) {
-      this.recipesToCook.removeRecipe(recipeToRemove.id) 
+    removeFromSavedRecipes(recipeToRemove) {
+      this.savedRecipes.removeRecipe(recipeToRemove.id) 
     }
 }
 

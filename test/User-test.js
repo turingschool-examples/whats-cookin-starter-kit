@@ -31,25 +31,25 @@ describe('User', () => {
 
     it('should start with no recipes to cook', () => {
 
-        expect(user.recipesToCook.recipes).to.have.lengthOf(0);
+        expect(user.savedRecipes.recipes).to.have.lengthOf(0);
     });
 
     it('should be able to add recipe to recipes to cook', () => {
 
-        user.addToRecipesToCook(sampleRecipeData[0]);
-        expect(user.recipesToCook.recipes).to.have.lengthOf(1);
+        user.addToSavedRecipes(sampleRecipeData[0]);
+        expect(user.savedRecipes.recipes).to.have.lengthOf(1);
     });
 
     it('should be able to remove recipe from recipes to cook', () => {
 
-        user.addToRecipesToCook(sampleRecipeData[0]);
-        user.addToRecipesToCook(sampleRecipeData[1]);
+        user.addToSavedRecipes(sampleRecipeData[0]);
+        user.addToSavedRecipes(sampleRecipeData[1]);
 
-        expect(user.recipesToCook.recipes).to.have.lengthOf(2);
+        expect(user.savedRecipes.recipes).to.have.lengthOf(2);
 
-        user.removeFromRecipesToCook(sampleRecipeData[1]);
+        user.removeFromSavedRecipes(sampleRecipeData[1]);
 
-        expect(user.recipesToCook.recipes).to.have.lengthOf(1);
+        expect(user.savedRecipes.recipes).to.have.lengthOf(1);
     });
 
 });
