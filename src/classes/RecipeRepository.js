@@ -3,7 +3,16 @@ import Recipe from "./Recipe";
 class RecipeRepository {
   constructor(recipeData) {
     this.recipes = recipeData.map(recipe => new Recipe(recipe));
-    this.filteredRecipes;
+  }
+  
+  addRecipe(recipeToAdd) {
+    if (!this.recipes.find(recipe => recipe.id === recipeToAdd.id)) {
+      this.recipes.push(new Recipe(recipeToAdd));
+    }  
+  }
+  removeRecipe(recipeId) {
+    this.recipes = this.recipes.filter(recipe => recipeId !== recipe.id);
+
   }
   filterByTag(tag) {
     // for(var i = 0; i < tag.length; i++) {
@@ -16,7 +25,7 @@ class RecipeRepository {
         this.filteredRecipes = null;
         return
       } else {
-        return this.filteredRecipes
+        return this.filteredRecipes;
       }
     // }
   }

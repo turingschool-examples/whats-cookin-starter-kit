@@ -8,7 +8,7 @@ describe('RecipeRepository', () => {
   let recipe;
 
   beforeEach(() => {
-    recipe = new RecipeRepository(sampleRecipeData);
+    recipe = new RecipeRepository(sampleRecipeData.slice(0, 3));
   });
 
   it('Should be a function', () => {
@@ -19,7 +19,7 @@ describe('RecipeRepository', () => {
     expect(recipe).to.be.an.instanceOf(RecipeRepository);
   });
 
-  it('should have a recipes data property', () => {
+  it('should have a recipes property', () => {
     expect(recipe.recipes).to.have.lengthOf(3);
     expect(recipe.recipes[0]).to.be.an.instanceOf(Recipe);
   });
@@ -57,13 +57,19 @@ describe('RecipeRepository', () => {
     expect(recipe.filteredRecipes).to.equal(undefined);
   });
 
-  it('should let user know there are no recipes with nonexistant name', () => {
-    recipe.filterByName('fake')
+  it('should allow adding recipes', () => {
+    recipe.addRecipe(sampleRecipeData[3])
+    expect(recipe.recipes).to.have.lengthOf(4);
+    recipe.filterByName('Easy Creamy Potato Salad with Yogurt');
+    
+  });
+
+  it('should be able to remove recipes', () => {
+    recipe.removeRecipe(sampleRecipeData[0].id);
+    expect(recipe.recipes).to.have.lengthOf(2);
+    recipe.filterByName('Loaded Chocolate Chip Pudding Cookie Cups')
     expect(recipe.filteredRecipes).to.equal(null);
+
   });
 
-  it('should not let user know if no recipes have that name', () => {
-    expect(recipe.filterByName('hello')).to.equal(undefined);
-  });
-
-})
+});
