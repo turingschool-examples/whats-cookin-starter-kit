@@ -42,27 +42,31 @@ window.addEventListener('load', () => {
 
     // ingredientsData = allApis[1]
     recipeRolodex = new RecipeRepository(data[2].recipeData)
-    // console.log(recipeRolodex)
+    console.log(recipeRolodex)
     viewHomePage()
     }) 
 });
 
 buttonSearch.addEventListener('click', function() {
-    let input = searchBar.value
-    searchForRecipe(input)
+    searchForRecipe(searchBar.value)
 });
 
-function searchForRecipe() {
-    let input = searchBar.value
-    console.log(input)
-    if(recipeRolodex.getRecipeByTag(input).length > 0) {
-      viewRecipesByTag(input)
+function searchForRecipe(input) {
+   const recipeFound = recipeRolodex.getRecipeByTag(input)
+  //   console.log("recipe found:", recipeFound)
+  // console.log("recipe repository:", recipeRolodex)
+    if(input.length > 0) {
+      console.log("here", recipeRolodex.getRecipeByTag(input).length)
+      recipeContainer.innerHTML = ""
+      viewRecipesByTag(recipeFound)
     } 
-    else if(recipeRolodex.getRecipeByName(input).length > 0){
-        viewRecipeByName(input)
+    else if(input.length > 0){
+      recipeContainer.innerHTML = ""
+        viewRecipeByName(recipeFound)
       } else { 
-           "Cool Shiba says, no. Try again."
+        recipeContainer.innerHTML = `<h2>Cool Shiba says, no. Try again.</h2>`
   }
+viewRecipeByName()
 };
 
 function getRandomUserId(){
@@ -88,20 +92,28 @@ const viewHomePage = () => {
   recipeContainer.innerHTML = recipeHTML;
 };
 
-function viewRecipesByTag(tag) {
-  let tagHTML = recipeRolodex.getRecipeByTag(tag).map(recipe => ` <article class="recipe">
-  <h2 class="recipe-title">${recipe.name}</h2>
-  <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">
-</article>`).join('')
-recipeContainer.innerHTML = tagHTML;
+function viewRecipesByTag(recipeTag) {
+  console.log("tag name:", recipeTag.name)
+  const searchTag = recipeTag.forEach(recipe => {
+  recipeContainer.innerHTML += ` 
+    <article class="recipe">
+      <h2 class="recipe-title">${recipe.name}</h2>
+      <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">   
+    </article>`
+  });
+  return searchTag
+//   <h2 class="recipe-title">${recipe.name}</h2>
+//   <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">
+// </article>`).join('')
+// recipeContainer.innerHTML = tagHTML;
 };
 
 function viewRecipeByName(name){
-  let nameHTML = recipeRolodex.getRecipeByName(name)(recipe => ` <article class="recipe">
-  <h2 class="recipe-title">${recipe.name}</h2>
-  <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">
-</article>`)
-recipeContainer.innerHTML = nameHTML;
+//   let nameHTML = recipeRolodex.getRecipeByName(name)(recipe => ` <article class="recipe">
+//   <h2 class="recipe-title">${recipe.name}</h2>
+//   <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">
+// </article>`)
+// recipeContainer.innerHTML = nameHTML;
 };
 
 

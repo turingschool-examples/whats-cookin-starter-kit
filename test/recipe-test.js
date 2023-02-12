@@ -18,6 +18,8 @@ beforeEach(() => {
   }, ingredientSampleData);
 });
 
+
+
   it('should be a function', () => {
       expect(Recipe).to.be.a('function');
   })

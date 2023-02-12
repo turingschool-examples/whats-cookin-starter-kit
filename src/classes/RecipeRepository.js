@@ -5,8 +5,8 @@ class RecipeRepository {
   }
   
   getRecipeByTag(tag) {
-   return this.recipes.filter(recipe => recipe.tags.includes(tag));
-   
+    const viewRecipeByTag = this.recipes.filter(recipe => recipe.tags.includes(tag));
+   return viewRecipeByTag
 }
 
     getRecipeByName(name){
