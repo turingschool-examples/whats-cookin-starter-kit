@@ -1,29 +1,20 @@
+import RecipeRepository from "./RecipeRepository"
+import Recipe from "./Recipe"
+
 class User {
     constructor(user) {
         this.name = user.name
         this.id = user.id
         this.pantry = user.pantry
-        this.recipesToCook = []
-        this.filteredRecipes
+        this.recipesToCook = new RecipeRepository([])
     }
 
     addToRecipesToCook(recipeToAdd) {
-        if(!this.recipesToCook.includes(recipeToAdd)) {
-            this.recipesToCook.push(recipeToAdd)
-        }
+        this.recipesToCook.addRecipe(recipeToAdd)
     }
 
     removeFromRecipesToCook(recipeToRemove) {
-      this.recipesToCook = this.recipesToCook.filter(recipe => recipeToRemove !== recipe)  
-    }
-
-    filterRecipesToCook(tag, name) {
-        if (tag) {
-            this.filteredRecipes = this.recipesToCook.filter(recipe => recipe.tags.includes(tag));
-
-        } else if(name) {
-            this.filteredRecipes = this.recipesToCook.filter(recipe => (recipe.name.toUpperCase().includes(name.toUpperCase())));
-        }
+      this.recipesToCook.removeRecipe(recipeToRemove.id) 
     }
 }
 
