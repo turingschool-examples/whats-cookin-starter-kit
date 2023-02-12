@@ -57,7 +57,7 @@ window.addEventListener('load', () => {
 const searchForRecipe = () => {
     let input = searchBar.value
     if(recipeRolodex.getRecipeByTag(input).length > 0) {
-      //  display the stored recipes with a helper function
+      viewRecipesByTag(input)
     } 
     else if(recipeRolodex.getRecipeByName(input).length > 0){
             //  display the stored recipe with a helper function
@@ -90,12 +90,12 @@ const viewHomePage = () => {
   // this will allow multiple articles to be added to the recipe container.(new image / new name)
 }
 
-function viewRecipesByTag() {
-  let tagHTML = recipeRolodex.getRecipeByTag(tag)
-  tagHTML.map(tag => ` <article class="recipe">
-  <h2 class="recipe-title">${tag.name}</h2>
-  <img class="recipe-image" src="${tag.image}" alt="${tag.name}">
+function viewRecipesByTag(tag) {
+  let tagHTML = recipeRolodex.getRecipeByTag(tag).map(recipe => ` <article class="recipe">
+  <h2 class="recipe-title">${recipe.name}</h2>
+  <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">
 </article>`).join('')
+recipeContainer.innerHTML = tagHTML;
 }
 
 // fetchAll()
