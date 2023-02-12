@@ -212,27 +212,62 @@ button:active {
   border-radius: 4px;
   overflow-y: auto;
   box-sizing: border-box;
-}
-
-.modal__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: rgb(247, 243, 233);
+  display:flex
 }
 
 .modal__title {
   margin-top: 0;
   margin-bottom: 0;
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: 2rem;
   line-height: 1.25;
-  color: #00449e;
+  color: black;
   box-sizing: border-box;
+  text-align: center !important;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.modal__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_container_img_ingredients {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.modal_img {
+  display:flex;
+  align-items: flex-start;
+}
+
+.modal_ingredients_container {
+  display: flex;
+  border-radius: 5px;
+  width:35%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal_recipe_instructions {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .modal__close {
   background: transparent;
   border: 0;
+  float:right;
+  margin-right: 10px;
 }
 
 .modal__header .modal__close:before { content: "\2715"; }
@@ -242,12 +277,25 @@ button:active {
   margin-bottom: 2rem;
   line-height: 1.5;
   color: rgba(0,0,0,.8);
+  border-radius: 2px;
+}
+
+.modal_cost {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.modal_button_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .modal__btn {
+  margin-right: 20px !important;
   font-size: .875rem;
   padding-left: 1rem;
-  padding-right: 1rem;
+  padding-right: 2rem;
   padding-top: .5rem;
   padding-bottom: .5rem;
   background-color: #e6e6e6;
