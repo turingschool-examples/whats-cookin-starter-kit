@@ -62,13 +62,12 @@ function loadPage(recipeRepository, user, ingredientsData) {
     const brunchFilter = document.querySelector("#brunch-filter")
     const mainDishFilter = document.querySelector("#main-dish-filter")
     const compDishFilter = document.querySelector("#complimentary-dish-filter")
-    const searchBar = document.querySelector(".search-bar")
+    const searchBar = document.querySelector("#search-bar")
     const searchGo = document.querySelector("#search-button")
     const pantryButton = document.querySelector("#your-pantry")
-    const buttons = document.querySelectorAll('button')
+    // const buttons = document.querySelectorAll('button')
     const recipeModal = document.querySelector('#modal')
 
-    let currentDisplayedRecipes
     let currentRecipeId
     let currentRecipe
     let currentView = 'landing'
@@ -82,35 +81,38 @@ function loadPage(recipeRepository, user, ingredientsData) {
         currentView = 'recipes'
         filterTerm = ''
         renderPage()
-    
+
     })
     savedRecipes.addEventListener('click', () => {
         currentView = 'recipesToCook'
-        filterTerm = ''   
+        filterTerm = ''
         renderPage()
     })
     // breakfastFilter.addEventListener('click', () => {
     //     filterRecipes(morningMeal)
-    
+
     // })
     // snacksAppFilter.addEventListener('click', () => {
     //     filterRecipes(snack)
-    
+
     // })
     // brunchFilter.addEventListener('click', () => {
     //     filterRecipes(other)
-    
+
     // })
     // mainDishFilter.addEventListener('click', () => {
     //     filterRecipes(mainDish)
-    
+
     // })
     // compDishFilter.addEventListener('click', () => {
     //     filterRecipes(complimentaryDish)
     // })
 
     searchGo.addEventListener('click', () => {
-        currentView = 'recipes'
+        if (currentView === 'pantry') {
+            currentView = 'recipes'
+        }
+        // currentView = 'recipes'
         filterTerm = searchBar.value
         renderPage()
         searchBar.value = ''
@@ -118,6 +120,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
 
     pantryButton.addEventListener('click', () => {
         currentView = 'pantry'
+        filterTerm = ''
         renderPage()
     })
 
@@ -157,18 +160,18 @@ function loadPage(recipeRepository, user, ingredientsData) {
             return '<li>' + ingredient.ingredient + '</li>'
         }).join('')
 
-        if (user.recipesToCook.filter(current => current.id === currentRecipe.id).length !== 0) {
+        if (user.recipesToCook.recipes.filter(current => current.id === currentRecipe.id).length !== 0) {
             isSaved = "Saved"
         } else {
             isSaved = "♥️"
         }
 
         const instructionsHTML = currentRecipe
-          .returnInstructions()
-          .map((instruction) => {
-            return "<li>" + instruction + "</li>";
-          })
-          .join("");
+            .returnInstructions()
+            .map((instruction) => {
+                return "<li>" + instruction + "</li>";
+            })
+            .join("");
         recipeModal.innerHTML = `
         <header class="modal__header">
           <h2 class="modal__title" id="modal-1-title">
@@ -200,22 +203,23 @@ function loadPage(recipeRepository, user, ingredientsData) {
         `;
         MicroModal.show('modal-1')
         var saveButton = document.querySelector('.modal__btn')
-        if (user.recipesToCook.filter(current => current.id === currentRecipe.id).length !== 0) {
+        if (user.recipesToCook.recipes.filter(current => current.id === currentRecipe.id).length !== 0) {
             saveButton.style.backgroundColor = "red"
         }
         saveButton.addEventListener('click', () => saveRecipe(saveButton))
     }
 
     function saveRecipe(button) {
-        var sa = user.recipesToCook.filter(current => current.id === currentRecipe.id)
-        if (sa.length === 0) {
-            user.recipesToCook.push(currentRecipe)
+        let possibleSavedRecipe = user.recipesToCook.recipes.filter(current => current.id === currentRecipe.id)
+        if (possibleSavedRecipe.length === 0) {
+            user.recipesToCook.recipes.push(currentRecipe)
             button.innerText = 'Saved'
             button.style.backgroundColor = "red"
         } else {
-            saved.splice(saved.indexOf(currentRecipe))
+            user.recipesToCook.recipes.splice(user.recipesToCook.recipes.indexOf(currentRecipe))
             button.innerText = '♥️'
             button.style.backgroundColor = "#e6e6e6"
+            renderPage()
         }
     }
 
@@ -234,6 +238,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
 
     function displayRecipes(recipes) {
         if (!recipes) {
+            recipeSection.innerHTML = ''
             recipeSection.innerHTML = `<p>NO RESULTS</p>`
             return
         }
@@ -252,8 +257,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
     function getCurrentDisplayedRecipes(recipes, filterTerm) {
         if(filterTerm) {
             return recipes.filterByName(searchBar.value) || recipes.filterByTag(searchBar.value)
-        }
-        else {
+        } else {
             return recipes.recipes
         }
     }
@@ -263,12 +267,14 @@ function loadPage(recipeRepository, user, ingredientsData) {
             renderCorrectPage(recipeSection, pantrySection)
             displayPantry(user, ingredientsData)
         } else if (currentView === 'recipes') {
+            searchBar.placeholder = "search all recipes..."
             renderCorrectPage(pantrySection, recipeSection)
             displayRecipes(getCurrentDisplayedRecipes(recipeRepository, filterTerm))
         } else if (currentView === 'recipesToCook') {
+            searchBar.placeholder = 'search saved recipes...'
             renderCorrectPage(pantrySection, recipeSection)
-            displayRecipes(user.recipesToCook)
-        } else if (currentView ==='landing') {
+            displayRecipes(getCurrentDisplayedRecipes(user.recipesToCook, filterTerm))
+        } else if (currentView === 'landing') {
             const num1 = Math.floor(Math.random() * recipeRepository.recipes.length)
             const num2 = Math.floor(Math.random() * recipeRepository.recipes.length)
             const num3 = Math.floor(Math.random() * recipeRepository.recipes.length)
