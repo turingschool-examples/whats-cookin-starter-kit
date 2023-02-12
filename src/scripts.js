@@ -91,7 +91,7 @@ const viewHomePage = () => {
 }
 
 function viewRecipesByTag() {
-  let tagHTML = recipeRolodex.recipes.recipeData.tag
+  let tagHTML = recipeRolodex.recipes.recipeData.tag.
 }
 
 // fetchAll()
