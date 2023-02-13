@@ -60,6 +60,7 @@ body {
 }
 
 .title {
+  overflow: hidden;
   margin-top: 5vh;
   margin-left: 20px;
   font-size: 50px;
@@ -498,11 +499,9 @@ button:active {
 }
 
 .small-recipe-text {
-  height: 65px;
+  height: 68px;
   width:auto;
-  /* overflow: hidden;
-   */
-   min-width: 100px;
+  min-width: 100px;
 }
 
 #recipe-container {
