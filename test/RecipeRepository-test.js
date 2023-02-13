@@ -32,6 +32,14 @@ describe('RecipeRepository', () => {
     recipe.filterByTag('starter')
     expect(recipe.filteredRecipes).to.have.lengthOf(1);
   });
+  it('should be able to filter by multiple tags', () => {
+    recipe.filterByTag(['lunch','sauce'])
+    expect(recipe.filteredRecipes).to.have.lengthOf(2);
+  })
+  it('should not save duplicates when filtering by tag', () => {
+    recipe.filterByTag(['main course', 'main dish'])
+    expect(recipe.filteredRecipes).to.have.lengthOf(1);
+  })
 
   it('should not be able to filter recipes without a tag', () => {
     recipe.filterByTag()

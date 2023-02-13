@@ -65,7 +65,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
     const searchBar = document.querySelector("#search-bar")
     const searchGo = document.querySelector("#search-button")
     const pantryButton = document.querySelector("#your-pantry")
-    // const buttons = document.querySelectorAll('button')
+    const buttons = document.querySelectorAll('button')
     const recipeModal = document.querySelector('#modal')
 
     let currentRecipeId
@@ -88,28 +88,38 @@ function loadPage(recipeRepository, user, ingredientsData) {
         filterTerm = ''
         renderPage()
     })
-    // breakfastFilter.addEventListener('click', () => {
-    //     filterRecipes(morningMeal)
+    breakfastFilter.addEventListener('click', () => {
+        currentView = 'recipes'
+        filterTerm = morningMeal
+        renderPage()
 
-    // })
-    // snacksAppFilter.addEventListener('click', () => {
-    //     filterRecipes(snack)
+    })
+    snacksAppFilter.addEventListener('click', () => {
+        currentView = "recipes"
+        filterTerm = snack
+        renderPage()
 
-    // })
-    // brunchFilter.addEventListener('click', () => {
-    //     filterRecipes(other)
+    })
+    brunchFilter.addEventListener('click', () => {
+        currentView = "recipes"
+        filterTerm = other
+        renderPage()
 
-    // })
-    // mainDishFilter.addEventListener('click', () => {
-    //     filterRecipes(mainDish)
+    })
+    mainDishFilter.addEventListener('click', () => {
+        currentView = "recipes"
+        filterTerm = mainDish
+        renderPage()
 
-    // })
-    // compDishFilter.addEventListener('click', () => {
-    //     filterRecipes(complimentaryDish)
-    // })
+    })
+    compDishFilter.addEventListener('click', () => {
+        currentView = "recipes"
+        filterTerm = complimentaryDish
+        renderPage()
+    })
 
     searchGo.addEventListener('click', () => {
-        if (currentView === 'pantry') {
+        if (currentView === 'pantry' || 'landing') {
             currentView = 'recipes'
         }
         filterTerm = searchBar.value
@@ -253,8 +263,10 @@ function loadPage(recipeRepository, user, ingredientsData) {
     }
 
     function getCurrentDisplayedRecipes(recipes, filterTerm) {
-        if(filterTerm) {
-            return recipes.filterByName(searchBar.value) || recipes.filterByTag(searchBar.value)
+        if (Array.isArray(filterTerm)) {
+            return recipes.filterByTag(filterTerm)
+        } else if (filterTerm) {
+            return (recipes.filterByName(filterTerm) || recipes.filterByTag(filterTerm))
         } else {
             return recipes.recipes
         }
