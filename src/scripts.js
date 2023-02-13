@@ -119,12 +119,15 @@ function loadPage(recipeRepository, user, ingredientsData) {
     })
 
     searchGo.addEventListener('click', () => {
+        if (searchBar.value) {
+            filterTerm = searchBar.value
+            renderPage()
+            searchBar.value = ''
+            
+        }
         if (currentView === 'pantry' || 'landing') {
             currentView = 'recipes'
         }
-        filterTerm = searchBar.value
-        renderPage()
-        searchBar.value = ''
     })
 
     pantryButton.addEventListener('click', () => {
@@ -161,6 +164,9 @@ function loadPage(recipeRepository, user, ingredientsData) {
     }
 
     function renderCurrentRecipe() {
+        if (!currentRecipe) {
+            return
+        }
         let isSaved;
         recipeModal.innerHTML = ''
         let ingredients = currentRecipe.determineRecipeIngredients(ingredientsData)
@@ -206,16 +212,20 @@ function loadPage(recipeRepository, user, ingredientsData) {
           )}</h4>
           <div class="modal_button_container">
           <button type="button" class="modal__btn">${isSaved}</button>
-          <button class="modal__close" aria-label="Close modal" data-micromodal-close>CLOSE</button>
+          <button class="modal__close" id="close" aria-label="Close modal" data-micromodal-close>CLOSE</button>
           </div>
         </main>
         `;
         MicroModal.show('modal-1')
-        var saveButton = document.querySelector('.modal__btn')
+        const saveButton = document.querySelector('.modal__btn')
+        const closeButton = document.querySelector('#close')
         if (user.savedRecipes.recipes.find(current => current.id === currentRecipe.id)) {
             saveButton.style.backgroundColor = "red"
         }
         saveButton.addEventListener('click', () => saveRecipe(saveButton))
+        closeButton.addEventListener('click', () => currentRecipe = '')
+
+        
     }
 
     function saveRecipe(button) {
@@ -229,6 +239,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
             button.style.backgroundColor = "#e6e6e6"
             renderPage()
         }
+        currentRecipe = ''
     }
 
     function displayPantry(user, ingredientsData) {
