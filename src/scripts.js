@@ -89,23 +89,33 @@ function loadPage(recipeRepository, user, ingredientsData) {
         renderPage()
     })
     breakfastFilter.addEventListener('click', () => {
-        getCurrentDisplayedRecipes(morningMeal);
+        currentView = 'recipes'
+        filterTerm = morningMeal
+        renderPage()
 
     })
     snacksAppFilter.addEventListener('click', () => {
-        getCurrentDisplayedRecipes(snack);
+        currentView = "recipes"
+        filterTerm = snack
+        renderPage()
 
     })
     brunchFilter.addEventListener('click', () => {
-        getCurrentDisplayedRecipes(other);
+        currentView = "recipes"
+        filterTerm = other
+        renderPage()
 
     })
     mainDishFilter.addEventListener('click', () => {
-        getCurrentDisplayedRecipes(mainDish);
+        currentView = "recipes"
+        filterTerm = mainDish
+        renderPage()
 
     })
     compDishFilter.addEventListener('click', () => {
-        getCurrentDisplayedRecipes(complimentaryDish);
+        currentView = "recipes"
+        filterTerm = complimentaryDish
+        renderPage()
     })
 
     searchGo.addEventListener('click', () => {
@@ -253,8 +263,10 @@ function loadPage(recipeRepository, user, ingredientsData) {
     }
 
     function getCurrentDisplayedRecipes(recipes, filterTerm) {
-        if(filterTerm) {
-            return recipes.filterByName(searchBar.value) || recipes.filterByTag(searchBar.value)
+        if (Array.isArray(filterTerm)) {
+            return recipes.filterByTag(filterTerm)
+        } else if (filterTerm) {
+            return (recipes.filterByName(filterTerm) || recipes.filterByTag(filterTerm))
         } else {
             return recipes.recipes
         }
