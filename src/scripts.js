@@ -244,16 +244,18 @@ function loadPage(recipeRepository, user, ingredientsData) {
 
     function displayPantry(user, ingredientsData) {
         pantrySection.innerHTML = ''
-        pantrySection.innerHTML += `<header class="pantry__header">
+        pantrySection.innerHTML += `<header class="pantry">
           <h2 class="pantry__title">
-        Hello, ${user.name}. You have these items in your pantry. `;
+        Hi, ${user.name} ✨
+        <h1 class="pantry_subtitle"> You have these items in your pantry: </h1>`;
         let currentIngredient
         user.pantry.forEach((element) => {
             currentIngredient = ingredientsData.findIndex(x => x.id === element.ingredient)
-            pantrySection.innerHTML +=
-                `
-        <h1 class="pantry">• ${ingredientsData[currentIngredient].name}</h1>
-        `
+            pantrySection.innerHTML += `
+                <ol class="pantry-list">
+                     <li>${ingredientsData[currentIngredient].name}</li>
+                </ol></>
+            `;
         })
     }
 
