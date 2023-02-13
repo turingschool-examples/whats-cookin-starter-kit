@@ -65,7 +65,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
     const searchBar = document.querySelector("#search-bar")
     const searchGo = document.querySelector("#search-button")
     const pantryButton = document.querySelector("#your-pantry")
-    // const buttons = document.querySelectorAll('button')
+    const buttons = document.querySelectorAll('button')
     const recipeModal = document.querySelector('#modal')
 
     let currentRecipeId
@@ -88,28 +88,28 @@ function loadPage(recipeRepository, user, ingredientsData) {
         filterTerm = ''
         renderPage()
     })
-    // breakfastFilter.addEventListener('click', () => {
-    //     filterRecipes(morningMeal)
+    breakfastFilter.addEventListener('click', () => {
+        getCurrentDisplayedRecipes(morningMeal);
 
-    // })
-    // snacksAppFilter.addEventListener('click', () => {
-    //     filterRecipes(snack)
+    })
+    snacksAppFilter.addEventListener('click', () => {
+        getCurrentDisplayedRecipes(snack);
 
-    // })
-    // brunchFilter.addEventListener('click', () => {
-    //     filterRecipes(other)
+    })
+    brunchFilter.addEventListener('click', () => {
+        getCurrentDisplayedRecipes(other);
 
-    // })
-    // mainDishFilter.addEventListener('click', () => {
-    //     filterRecipes(mainDish)
+    })
+    mainDishFilter.addEventListener('click', () => {
+        getCurrentDisplayedRecipes(mainDish);
 
-    // })
-    // compDishFilter.addEventListener('click', () => {
-    //     filterRecipes(complimentaryDish)
-    // })
+    })
+    compDishFilter.addEventListener('click', () => {
+        getCurrentDisplayedRecipes(complimentaryDish);
+    })
 
     searchGo.addEventListener('click', () => {
-        if (currentView === 'pantry') {
+        if (currentView === 'pantry' || 'landing') {
             currentView = 'recipes'
         }
         filterTerm = searchBar.value
