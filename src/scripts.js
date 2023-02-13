@@ -45,28 +45,28 @@ Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
 
 function loadPage(recipeRepository, user, ingredientsData) {
 
-    var morningMeal = ['breakfast', 'morning meal']
+    var breakfast = ['breakfast', 'morning meal']
     var snack = ['dip', 'snack', 'appetizer']
-    var other = ['condiment', 'spread']
     var mainDish = ['main dish', 'dinner', 'lunch']
-    var complimentaryDish = ['antipasti', 'hor d\'oeuvre', 'starter', 'salad', 'side dish', 'appetizer']
+    var complimentaryDish = ['antipasti', 'hor d\'oeuvre', 'starter', 'salad', 'side dish', 'appetizer', 'condiment', 'spread']
 
     const recipeSection = document.querySelector('#recipe-section')
     const navigationSection = document.querySelector(".navigation-section")
     const pantrySection = document.querySelector(".pantry-section")
     const savedRecipes = document.querySelector("#saved-recipes")
     const topButton = document.querySelector("#top-button")
-    const allRecipes = document.querySelector("#recipe-button")
-    const breakfastFilter = document.querySelector("#breakfast-filter")
-    const snacksAppFilter = document.querySelector("#snack-appetizers-filter")
-    const brunchFilter = document.querySelector("#brunch-filter")
-    const mainDishFilter = document.querySelector("#main-dish-filter")
-    const compDishFilter = document.querySelector("#complimentary-dish-filter")
+    const allRecipesButton = document.querySelector("#recipe-button")
+    const breakfastButton = document.querySelector("#breakfast-filter")
+    const snacksAppButton = document.querySelector("#snack-appetizers-filter")
+    const mainDishButton = document.querySelector("#main-dish-filter")
+    const compDishButton = document.querySelector("#complimentary-dish-filter")
     const searchBar = document.querySelector("#search-bar")
     const searchGo = document.querySelector("#search-button")
     const pantryButton = document.querySelector("#your-pantry")
     const buttons = document.querySelectorAll('button')
     const recipeModal = document.querySelector('#modal')
+    const recipesHeader = document.querySelector('#recipes-header')
+    const recipeContainer = document.querySelector('#recipe-container')
 
     let currentRecipeId
     let currentRecipe
@@ -77,9 +77,10 @@ function loadPage(recipeRepository, user, ingredientsData) {
 
 
     topButton.addEventListener('click', () => document.documentElement.scrollTop = 0)
-    allRecipes.addEventListener('click', () => {
+    allRecipesButton.addEventListener('click', () => {
         currentView = 'recipes'
         filterTerm = ''
+        recipesHeader.innerText = 'All Recipes'
         renderPage()
 
     })
@@ -88,31 +89,25 @@ function loadPage(recipeRepository, user, ingredientsData) {
         filterTerm = ''
         renderPage()
     })
-    breakfastFilter.addEventListener('click', () => {
+    breakfastButton.addEventListener('click', () => {
         currentView = 'recipes'
-        filterTerm = morningMeal
+        filterTerm = breakfast
         renderPage()
 
     })
-    snacksAppFilter.addEventListener('click', () => {
+    snacksAppButton.addEventListener('click', () => {
         currentView = "recipes"
         filterTerm = snack
         renderPage()
 
     })
-    brunchFilter.addEventListener('click', () => {
-        currentView = "recipes"
-        filterTerm = other
-        renderPage()
-
-    })
-    mainDishFilter.addEventListener('click', () => {
+    mainDishButton.addEventListener('click', () => {
         currentView = "recipes"
         filterTerm = mainDish
         renderPage()
 
     })
-    compDishFilter.addEventListener('click', () => {
+    compDishButton.addEventListener('click', () => {
         currentView = "recipes"
         filterTerm = complimentaryDish
         renderPage()
@@ -248,34 +243,51 @@ function loadPage(recipeRepository, user, ingredientsData) {
           <h2 class="pantry__title">
           ✨ Hi ${user.name} ✨
         <h1 class="pantry_subtitle"> You have these items in your pantry: </h1>
+        </div>
+        <div id='pantry-items-container' class ='scroll-pantry-section'>
+        <ol class='pantry-list'>
+        </ol>
         </div>`
+        const pantryItems = document.querySelector('.pantry-list')
         let currentIngredient
         user.pantry.forEach((element) => {
             currentIngredient = ingredientsData.findIndex(x => x.id === element.ingredient)
-            pantrySection.innerHTML += `
-                <ol class="pantry-list">
+            pantryItems.innerHTML += ` 
                      <li>${ingredientsData[currentIngredient].name}</li>
-                </ol>
-            `;
+            `
         })
     }
 
     function displayRecipes(recipes) {
         if (!recipes) {
-            recipeSection.innerHTML = ''
-            recipeSection.innerHTML = `<p>NO RESULTS</p>`
+            recipeContainer.innerHTML = ''
+            recipesHeader.innerHTML = `<p>NO RESULTS</p>`
             return
         }
-        recipeSection.innerHTML = ''
-        recipes.forEach(recipe => {
-            recipeSection.innerHTML +=
-                `
-        <section class='recipe' data-all-recipes='${recipe.id}'>
-        <h3 id='${recipe.id}' class='small-recipe-text'>${recipe.name}</h3>
-        <img src="${recipe.image}" class="recipe-img">
-        </section>
-        `
-        })
+        if (currentView === 'landing') {
+            recipeContainer.innerHTML = ''
+            recipesHeader.innerText = 'Popular Recipes'
+            recipes.forEach(recipe => {
+                recipeContainer.innerHTML +=
+                    `
+            <section class='popular-recipe' data-all-recipes='${recipe.id}'>
+            <h3 id='${recipe.id}' class='small-recipe-text'>${recipe.name}</h3>
+            <img src="${recipe.image}" class="recipe-img">
+            </section>
+            `
+            })
+        } else {
+            recipeContainer.innerHTML = ''
+            recipes.forEach(recipe => {
+                recipeContainer.innerHTML +=
+                    `
+            <section class='recipe' data-all-recipes='${recipe.id}'>
+            <h3 id='${recipe.id}' class='small-recipe-text'>${recipe.name}</h3>
+            <img src="${recipe.image}" class="recipe-img">
+            </section>
+            `
+            })
+        }
     }
 
     function getCurrentDisplayedRecipes(recipes, filterTerm) {
@@ -294,10 +306,16 @@ function loadPage(recipeRepository, user, ingredientsData) {
             displayPantry(user, ingredientsData)
         } else if (currentView === 'recipes') {
             searchBar.placeholder = "search all recipes..."
+            if (!filterTerm) {
+                recipesHeader.innerText = 'All Recipes'
+            } else {
+                recipesHeader.innerText = ''
+            }
             renderCorrectPage(pantrySection, recipeSection)
             displayRecipes(getCurrentDisplayedRecipes(recipeRepository, filterTerm))
         } else if (currentView === 'savedRecipes') {
             searchBar.placeholder = 'search saved recipes...'
+            recipesHeader.innerText = 'Saved Recipes'
             renderCorrectPage(pantrySection, recipeSection)
             displayRecipes(getCurrentDisplayedRecipes(user.savedRecipes, filterTerm))
         } else if (currentView === 'landing') {
