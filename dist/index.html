@@ -12,30 +12,33 @@
   <header class="main-header">
     <h1 class="title">What's cookin</h1>
     <div class="search-container">
-      <div class="search">
-        <input type="search" class="search-bar" placeholder="search all recipes..." id="search-bar">
+      <form class="search">
+        <input type="search" required='true' class="search-bar" placeholder="search all recipes..." id="search-bar">
         <button class="search-button" id="search-button" type="submit">
           <i class="fa fa-search" aria-hidden="true"></i>
         </button>
-      </div>
+      </form>
     </div>
   </header>
   <section class="main-elements">
     <nav class="navigation-section">
       <section class="buttons">
-        <button id="recipe-button">Recipes</button>
+        <button id="recipe-button">All Recipes</button>
         <button id="saved-recipes">Saved Recipes</button>
         <button id="your-pantry">Your pantry</button>
-        <button id="breakfast-filter">Morning Meal</button>
-        <button id="snack-appetizers-filter">Snack/Appetizers</button>
-        <button id="brunch-filter">other</button>
-        <button id="main-dish-filter">Main Dish</button>
-        <button id="complimentary-dish-filter">Complimentary Dish</button>
+        <button id="breakfast-filter">Breakfast</button>
+        <button id="snack-appetizers-filter">Snacks/Appetizers</button>
+        <button id="main-dish-filter">Main Dishes</button>
+        <button id="complimentary-dish-filter">Complimentary Dishes</button>
       </section>
     </nav>
     <section class="recipe-section" id="recipe-section">
+      <h2 id="recipes-header"></h2>
+      <div id="recipe-container"></div>
     </section>
-    <section class="pantry-section">
+    <section class="pantry-section hidden">
+      <div id='pantry-items-container'>
+      </div>
     </section>
   </section>
 </body>
