@@ -16,7 +16,7 @@ We successfully implemented MicroModal as seen in the GIF below. This provides u
 
 ### Preview of App:
 
-![Preview]()
+
 
 ### Context:
 
