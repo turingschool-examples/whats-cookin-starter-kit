@@ -205,3 +205,7 @@ footer {
 .hidden {
   display: none;
 }
+
+.prevent-scroll {
+  overflow: hidden;
+}

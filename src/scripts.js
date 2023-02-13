@@ -32,8 +32,21 @@ Promise.all(apiCalls)
     displayCards(mainRepository);
 })
 
-// const mainRepository = new RecipeRepository(recipeData);
-// const user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
+
+main.addEventListener('wheel', scrollCards) 
+
+let preventHorizontalScroll = 0
+
+function scrollCards(event) {
+    console.log("look!:",preventHorizontalScroll)
+    if(preventHorizontalScroll === 0){
+        if (event.deltaY < 0) {
+            cardScroll.scrollLeft -= 50
+        }else{
+            cardScroll.scrollLeft += 50
+        }
+    }
+}
 
 // window.addEventListener('load', () => {
 //     displayCards(mainRepository);
@@ -49,12 +62,12 @@ searchBar.addEventListener('keydown', e => {
         resetWarning();
     };
 });
+
 footer.addEventListener('click', e => {
     if (e.target.type === "checkbox") {
         e.target.checked ? filterRecipes(e.target.dataset.tag) : resetFilters();
     };
 });
-
 
 function displayCards(recipeList) {
     searchBar.value = '';
@@ -123,6 +136,7 @@ function toggleView(event) {
 function flipToBack(elementIndex) {
     const frontCardToFlip = document.getElementById(`cf${elementIndex}`);
     const backCardToFlip = document.getElementById(`cb${elementIndex}`);
+    preventHorizontalScroll += 1
     show(backCardToFlip);
     hide(frontCardToFlip);
 }
@@ -130,6 +144,7 @@ function flipToBack(elementIndex) {
 function flipToFront(elementIndex) {
     const frontCardToFlip = document.getElementById(`cf${elementIndex}`);
     const backCardToFlip = document.getElementById(`cb${elementIndex}`);
+    preventHorizontalScroll -= 1
     show(frontCardToFlip);
     hide(backCardToFlip);
 }
