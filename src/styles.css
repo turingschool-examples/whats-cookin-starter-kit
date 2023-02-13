@@ -224,13 +224,6 @@ button:active {
   border-radius: 5px;
 }
 
-/* .scroll-pantry-section {
-  position: relative;
-  width: 100vw;
-  height: 20rem;
-  overflow-x: hidden;
-} */
-
 .scroll-element {
   width: inherit;
   height: inherit;
@@ -259,7 +252,7 @@ button:active {
   text-align: center;
   padding: .4em .4em .4em .8em;
   margin: .5em 0 .5em 2.5em;
-  background: #ddd;
+  background-color: rgba(238, 229, 229, 0.1);
   border: rgba(238, 229, 229, 0.6) solid 1px;
   flex-wrap: wrap;
   border-radius: 3px;
@@ -269,15 +262,16 @@ button:active {
   flex-direction: row;
 }
 .pantry-list > li {
-  margin: 9px;
+  margin: 3px;
+  border: rgba(238, 229, 229, 0.6) solid 1px;
+  border-radius: 2px;
+  padding: 6px;
 }
+
 .pantry_subtitle {
   justify-content: center;
 }
 
-/* .pantry-list :hover{
-    background: #eee;
-} */
 
 .recipe-img {
   width: 200px;
