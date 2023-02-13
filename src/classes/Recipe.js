@@ -1,4 +1,3 @@
-import ingredientsData from '../data/ingredients.js'
 import Ingredient from './Ingredient.js';
 
 
