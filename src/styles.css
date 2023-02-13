@@ -111,7 +111,6 @@ button:active {
 
 .search-bar {
   size: 200%;
-  margin-right: 30px;
   width: 250px;
   height: 30px;
   padding: 5px;
@@ -125,8 +124,13 @@ button:active {
   background-color: rgba(255, 255, 255, 0.75);
 }
 
+::placeholder {
+  color:#fa5e09;
+}
+
 .search-button {
   width: 10px;
+  min-width: 10px;
   height: 30px;
   border: 1px solid #61567B;
   background: #61567B;
@@ -136,9 +140,11 @@ button:active {
   cursor: pointer;
   font-size: 20px;
   display: flex;
-  justify-content: flex-end;
-
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
+
 .recipe-section {
   display: flex;
   margin: 40px 20px 20px 20px;
