@@ -32,19 +32,6 @@ body {
   display: flex;
 }
 
-#top-button {
-  display: none;
-  font-size: 18px;
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  z-index: 99;
-  background-color: rgb(240, 235, 235, .85);
-  color: rgb(41, 7, 73);
-  padding: 15px;
-  border-radius: 10px;
-  height: fit-content;
-}
 
 .main-header {
   border-radius: 25px;
@@ -70,7 +57,7 @@ body {
 .search {
   width: 100%;
   display: flex;
-
+  
 }
 
 .navigation-section {
@@ -97,10 +84,10 @@ button {
   box-shadow: 0 0 0 .1em inset var(--c);
   --_g: linear-gradient(var(--c) 0 0) no-repeat;
   background:
-    var(--_g) calc(var(--_p, 0%) - 100%) 0%,
-    var(--_g) calc(200% - var(--_p, 0%)) 0%,
-    var(--_g) calc(var(--_p, 0%) - 100%) 100%,
-    var(--_g) calc(200% - var(--_p, 0%)) 100%;
+  var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+  var(--_g) calc(200% - var(--_p, 0%)) 0%,
+  var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+  var(--_g) calc(200% - var(--_p, 0%)) 100%;
   background-size: 50.5% calc(var(--_p, 0%)/2 + .5%);
   outline-offset: .1em;
   transition: background-size .4s, background-position 0s .4s;
@@ -232,7 +219,7 @@ button:active {
   from {
     top: 0%;
   }
-
+  
   to {
     bottom: -100%;
   }
@@ -322,7 +309,7 @@ button:active {
   box-sizing: border-box;
   text-align: center !important;
   justify-content: center;
-
+  
 }
 
 .modal__header {
@@ -411,6 +398,7 @@ button:active {
   transform: scale(1.05);
 }
 
+
 .hidden {
   display: none;
 }
@@ -419,7 +407,7 @@ button:active {
   from {
     opacity: 0;
   }
-
+  
   to {
     opacity: 1;
   }
@@ -429,7 +417,7 @@ button:active {
   from {
     opacity: 1;
   }
-
+  
   to {
     opacity: 0;
   }
@@ -439,7 +427,7 @@ button:active {
   from {
     transform: translateY(15%);
   }
-
+  
   to {
     transform: translateY(0);
   }
@@ -449,7 +437,7 @@ button:active {
   from {
     transform: translateY(0);
   }
-
+  
   to {
     transform: translateY(-10%);
   }
@@ -517,4 +505,18 @@ button:active {
 #recipes-header {
   margin-right: 50px;
   margin-bottom: 30px;
+}
+
+#top-button {
+  display: none;
+  font-size: 18px;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  background-color: rgb(240, 235, 235, .85);
+  color: rgb(41, 7, 73);
+  padding: 15px;
+  border-radius: 10px;
+  height: fit-content;
 }
