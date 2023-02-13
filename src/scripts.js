@@ -2,12 +2,7 @@ import './styles.css';
 import apiCalls from './apiCalls';
 import './images/turing-logo.png'
 import RecipeRepository from './classes/RecipeRepository';
-import Ingredient from './classes/Ingredient';
-import Recipe from './classes/Recipe';
 import User from './classes/User';
-
-// import recipeData from './data/recipes';
-// import usersData from './data/users';
 
 let recipeData;
 let ingredientsData;
@@ -22,6 +17,7 @@ const main = document.querySelector('main');
 const footer = document.querySelector('footer');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
+
 Promise.all(apiCalls)
 .then(function(values) {
     usersData = values[0].usersData;
@@ -35,22 +31,17 @@ Promise.all(apiCalls)
 
 main.addEventListener('wheel', scrollCards) 
 
-let preventHorizontalScroll = 0
+let preventHorizontalScroll = 0;
 
 function scrollCards(event) {
-    console.log("look!:",preventHorizontalScroll)
     if(preventHorizontalScroll === 0){
         if (event.deltaY < 0) {
-            cardScroll.scrollLeft -= 50
+            main.scrollLeft -= 50;
         }else{
-            cardScroll.scrollLeft += 50
-        }
-    }
-}
-
-// window.addEventListener('load', () => {
-//     displayCards(mainRepository);
-// });
+            main.scrollLeft += 50;
+        };
+    };
+};
 
 main.addEventListener('click', handleCardEvents);
 navBar.addEventListener('click', toggleView);
@@ -79,10 +70,10 @@ function displayCards(recipeList) {
     displayRecipes.forEach((recipe, index) => {
         let instructions = recipe.instructions.map((instruction) => {
             return `<p class="foodText">${instruction.instruction}</p>`
-        })
+        });
         let ingredients = recipe.ingredients.map((ingredient) => {
             return `<li>${ingredient.name}</li>`
-        })
+        });
         cardSection.innerHTML += `
         <section class="card cardFront" id="cf${recipe.id}" data-side="front" data-index="${recipe.id}">
           <button aria-label="Save Recipe Button" class="saveRecipeButton" id="save-btn-${index}" data-index="${recipe.id}"></button>
@@ -101,9 +92,9 @@ function displayCards(recipeList) {
           ${instructions.join("")}
         </section>
         `
-    })
+    });
     fixSavedHearts();
-}
+};
 
 function toggleRecipeSaved(element) {
   element.classList.toggle('savedRecipe');
@@ -113,17 +104,17 @@ function toggleRecipeSaved(element) {
     user.saveRecipe(mainRepository.recipes.find(repoRecipe => repoRecipe.id === parseInt(element.dataset.index)));
   } else {
     user.removeSaved(recipe.id);
-  }
+  };
   returnIfHome() ? displayCards(mainRepository) : displayCards(user.recipesToCook);
-}
+};
 
 function handleCardEvents(e) {
     if (e.target.dataset.side) {
         e.target.dataset.side === 'front' ? flipToBack(e.target.dataset.index) : flipToFront(e.target.dataset.index)
     } else if (e.target.id.includes('save-btn')) {
         toggleRecipeSaved(e.target);
-    }
- }
+    };
+ };
 
 function toggleView(event) {
     if (event.target.id === 'home-button') {
