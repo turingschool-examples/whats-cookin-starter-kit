@@ -1,19 +1,18 @@
-# What's Cookin'? 
+# [What's Cookin](https://espressogoddess.github.io/whats-cookin/) 
 
 ### Abstract:
-This Application was developed to make the user's experience searching for recipes, efficient and fun. The user is presented with an array of popular recipes on the main page. They are able to search and filter recipes based on their culinary choice. The user has the option to view more details of the recipe and save their favorite recipes to their own page, which can be selected in the navigation bar clicking `Saved Recipes`. The user is also able to see what ingredients are located in their pantry to complete the recipe clicking `Your Pantry.`
+This in an interactive web-based application that was developed to make the user's experience searching for recipes, efficient and fun. The user is presented with an array of popular recipes on the main page. They are able to search and filter recipes based on their culinary choice. The user has the option to view more details of the recipe and save their favorite recipes to their own page, which can be selected in the navigation bar clicking `Saved Recipes`. The user is also able to see what ingredients are located in their pantry to complete the recipe clicking `Your Pantry.`
 
 ### Feature Spotlight
 We successfully implemented MicroModal as seen in the GIF below. This provides users with an expanded view of any recipe they wish to see further with a detailed ingredient list, directions, and estimated cost. As a team we researched features to optimize the user experience and we decided MicroModal.js to be the best solution.
 
 ### Installation Instructions:
-1. Fork this repository
 1. Open terminal and navigate where you would like to store the application. 
 1. Click `SSH` and copy and paste `git@github.com:Espressogoddess/whats-cookin.git` into your terminal.
 1. `cd` into the repository on your local machine and run `npm install` or `npm i` to install project dependencies.
-4. Run `npm start` in the terminal to launch the API's server. 
-5. Open the link to your local server (listed in your terminal) in your web browser to view the live page.
-6. `Control + C` is the command to stop running the local server. 
+1. Run `npm start` in the terminal to launch the API's server. 
+1. Open the link to your local server (listed in your terminal) in your web browser to view the live page.
+1. `Control + C` is the command to stop running the local server. 
 
 ### Preview of App:
 
@@ -53,11 +52,16 @@ This project was completed in the 8th week of the Turing front-end software engi
 - HTML
 - Mocha JavaScript testing framework
 - Chai assertion library
+- Test driven development
 
 ### Wins + Challenges:
 
 #### Wins
 - We were able to deepen our understanding and successfully implemented use of fetch API to fetch resources asynchronously.
+- Refactor our filter by tag function to accept an array while using TDD.
 
 #### Challenges:
 - Dividing workload with various schedules, learning and working styles. We implemented a project board and diligently used PR requests for code review and feedback from peers. We adjusted our workflow, viable product and design based on deadlines, product output and the team's needs.
+- Implementing inner HTML on the appropriate elements when dynamically adding items to the page.
+- Utilizing API's without using async/ await.
+- Fixing bug that allowed the user to open up the most recently viewed recipe when clicking in the recipe section background.
