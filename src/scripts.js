@@ -190,7 +190,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         </header>
         <main class="modal__content" id="modal-1-content">
           <div class="modal_container_img_ingredients"> 
-          <img class="modal_img" src="${currentRecipe.image}">
+          <img class="modal_img" src="${currentRecipe.image}" alt=${currentRecipe.name}>
           <div class="modal_ingredients_container">
             <h3 class="modal_ingredients">Ingredients</h3>
             <ul>
@@ -272,7 +272,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
                     `
             <section class='popular-recipe' data-all-recipes='${recipe.id}'>
             <h3 id='${recipe.id}' class='small-recipe-text'>${recipe.name}</h3>
-            <img src="${recipe.image}" class="recipe-img">
+            <img src="${recipe.image}" alt="${recipe.name}" class="recipe-img">
             </section>
             `
             })
@@ -283,7 +283,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
                     `
             <section class='recipe' data-all-recipes='${recipe.id}'>
             <h3 id='${recipe.id}' class='small-recipe-text'>${recipe.name}</h3>
-            <img src="${recipe.image}" class="recipe-img">
+            <img src="${recipe.image}" alt="image of ${recipe.name}" class="recipe-img">
             </section>
             `
             })
