@@ -35,11 +35,9 @@ const searchBar = document.getElementById('searchBar');
 window.addEventListener('load', () => {
     fetchAll()
     .then(data => {
-        const idNum = getRandomUserId()
-        // console.log(data[0])
-        userProfile = new User(data[0].usersData.find(user => user.id === idNum))
-        console.log('user profile:', userProfile)
-
+    const idNum = getRandomUserId()
+    userProfile = new User(data[0].usersData.find(user => user.id === idNum))
+    console.log('user profile:', userProfile)
     // ingredientsData = allApis[1]
     recipeRolodex = new RecipeRepository(data[2].recipeData)
     console.log(recipeRolodex)
@@ -48,26 +46,39 @@ window.addEventListener('load', () => {
 });
 
 buttonSearch.addEventListener('click', function() {
-    searchForRecipe(searchBar.value)
+  if (searchBar.value.startsWith("#")) {
+      searchForRecipeTag(searchBar.value.slice(1))
+  } else {
+      searchForRecipeName(searchBar.value)
+  }
 });
 
-function searchForRecipe(input) {
-   const recipeFound = recipeRolodex.getRecipeByTag(input)
-  //   console.log("recipe found:", recipeFound)
+function searchForRecipeName(input) {
+  const recipeNameFound = recipeRolodex.getRecipeByName(input)
+if(input.length > 0) {
+  recipeContainer.innerHTML = ""
+  viewRecipesByName(recipeNameFound)
+} else {
+  recipeContainer.innerHTML = `<h2>Cool Shiba says, no. Try again.</h2>`
+  }
+}
+
+function searchForRecipeTag(input) {
+    const recipeFound = recipeRolodex.getRecipeByTag(input)
+    console.log("recipe found:", recipeFound)
   // console.log("recipe repository:", recipeRolodex)
     if(input.length > 0) {
-      console.log("here", recipeRolodex.getRecipeByTag(input).length)
-      recipeContainer.innerHTML = ""
-      viewRecipesByTag(recipeFound)
-    } 
-    else if(input.length > 0){
-      recipeContainer.innerHTML = ""
-        viewRecipeByName(recipeFound)
-      } else { 
-        recipeContainer.innerHTML = `<h2>Cool Shiba says, no. Try again.</h2>`
+    console.log("here", recipeRolodex.getRecipeByTag(input).length)
+    recipeContainer.innerHTML = ""
+    viewRecipesByTag(recipeFound)
+    } else { 
+    recipeContainer.innerHTML = `<h2>Cool Shiba says, no. Try again.</h2>`
   }
-viewRecipeByName()
-};
+} 
+
+
+// else if(recipeRolodex.getRecipeByName(input).length > 0){
+//   viewRecipeByName(input)
 
 function getRandomUserId(){
     return Math.floor(Math.random() * 41);
@@ -76,13 +87,12 @@ function getRandomUserId(){
 function show(element) {
   element.classList.remove('hidden');
 };
+
 function hide(element) {
   element.classList.add('hidden');
 };
 
 const viewHomePage = () => {
-//   let recipeData = data[2].recipeData;
-//   console.log(recipeRolodex) 
   let recipeHTML = recipeRolodex.recipes.map(recipe => `
     <article class="recipe">
       <h2 class="recipe-title">${recipe.name}</h2>
@@ -93,7 +103,7 @@ const viewHomePage = () => {
 };
 
 function viewRecipesByTag(recipeTag) {
-  console.log("tag name:", recipeTag.name)
+  // console.log("tag name:", recipeTag.name)
   const searchTag = recipeTag.forEach(recipe => {
   recipeContainer.innerHTML += ` 
     <article class="recipe">
@@ -102,18 +112,19 @@ function viewRecipesByTag(recipeTag) {
     </article>`
   });
   return searchTag
-//   <h2 class="recipe-title">${recipe.name}</h2>
-//   <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">
-// </article>`).join('')
-// recipeContainer.innerHTML = tagHTML;
 };
 
-function viewRecipeByName(name){
-//   let nameHTML = recipeRolodex.getRecipeByName(name)(recipe => ` <article class="recipe">
-//   <h2 class="recipe-title">${recipe.name}</h2>
-//   <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">
-// </article>`)
-// recipeContainer.innerHTML = nameHTML;
+function viewRecipesByName(recipeTag){
+console.log("recipe name:", recipeTag.name)
+const searchName = recipeTag.forEach(recipe => {
+  recipeContainer.innerHTML += `
+  <article class="recipe">
+      <h2 class="recipe-title">${recipe.name}</h2>
+      <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">   
+    </article>
+  `
+});
+return searchName
 };
 
 
