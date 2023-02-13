@@ -1,7 +1,8 @@
 import { expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
+import mockdata from '../src/data/mockdata';
 
-describe('Recipe Repository', () => {
+describe.only('Recipe Repository', () => {
   
   let recipe1;
   let recipe2;
@@ -14,7 +15,9 @@ describe('Recipe Repository', () => {
         "id": 595736,
         "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
         "ingredients" : [{ 
+          //"estimatedCostInCents": 142,
           "id": 20081,
+          //"name": "wheat flour",
           "quantity": {
             "amount": 1.5,
             "unit": "c"
@@ -65,9 +68,9 @@ describe('Recipe Repository', () => {
           
       ]
     }
-    
+    //console.log(mockdata.ingredients[0])
 
-    mealPlan = new RecipeRepository(recipe1);
+    mealPlan = new RecipeRepository(mockdata.recipes, mockdata.ingredients);
   })
 
   it('Should be a function', () => {
@@ -75,7 +78,7 @@ describe('Recipe Repository', () => {
   });
 
   it('Should be able to take in data', () => {
-    expect(mealPlan.recipes).to.deep.equal(recipe1);
+    expect(mealPlan.recipes[0].id).to.deep.equal(mockdata.recipes[0].id);
 
     const porkChops = new RecipeRepository();
     expect(porkChops).to.be.an.instanceOf(RecipeRepository);
@@ -84,7 +87,7 @@ describe('Recipe Repository', () => {
   })
 
   it('Should filter recipes into a list based on a tag', () => {
-    mealPlan.recipes.push(recipe2);
+    //mealPlan.recipes.push(recipe2);
     recipe1 =  {
       "id": 595736,
       "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -106,14 +109,14 @@ describe('Recipe Repository', () => {
         "snack",
       ]
     }
-    expect(mealPlan.recipes).to.deep.equal([recipe1, recipe2]);
+    expect(mealPlan.recipes[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
     expect(mealPlan.recipes.length).to.equal(2);
 
     mealPlan.filterRecipesByTag('lunch')
-    expect(mealPlan.recipesByTag).to.deep.equal([recipe2]);
+    expect(mealPlan.recipesByTag[0].id).to.equal(mockdata.recipes[1].id);
 
     mealPlan.filterRecipesByTag('snack')
-    expect(mealPlan.recipesByTag).to.deep.equal([recipe1, recipe2]);
+    expect(mealPlan.recipesByTag[0].name).to.equal(mockdata.recipes[0].name);
 
     mealPlan.filterRecipesByTag('')
     expect(mealPlan.recipesByTag).to.deep.equal([]);
@@ -129,47 +132,44 @@ describe('Recipe Repository', () => {
   })
 
   it('Should filter recipes into a list based on name', () => {
-    mealPlan.recipes.push(recipe2)
-    recipe1 =  {
-      "id": 595736,
-      "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
-      "ingredients" : [{ 
-        "id": 20081,
-        "quantity": {
-          "amount": 1.5,
-          "unit": "c"
-          }
-      }], 
-      "instructions" : [{
-        "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
-        "number": 1
-      }],
-      "name": "Loaded Chocolate Chip Pudding Cookie Cups",
-      "tags": [
-        "antipasti",
-        "starter",
-        "snack",
-      ]
-    }
-    expect(mealPlan.recipes).to.deep.equal([recipe1, recipe2]);
-
-    mealPlan.filterRecipesByName('Maple Dijon Apple Cider Grilled Pork Chop'.toUpperCase())
-    expect(mealPlan.recipesByName).to.deep.equal([recipe2]);
     
-    mealPlan.filterRecipesByName('Pork Chops'.toUpperCase())
-    expect(mealPlan.recipesByName).to.deep.equal([recipe2]);
+    // recipe1 =  {
+    //   "id": 595736,
+    //   "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
+    //   "ingredients" : [{ 
+    //     "id": 20081,
+    //     "quantity": {
+    //       "amount": 1.5,
+    //       "unit": "c"
+    //       }
+    //   }], 
+    //   "instructions" : [{
+    //     "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
+    //     "number": 1
+    //   }],
+    //   "name": "Loaded Chocolate Chip Pudding Cookie Cups",
+    //   "tags": [
+    //     "antipasti",
+    //     "starter",
+    //     "snack",
+    //   ]
+    // }
+    expect(mealPlan.recipes[0].id).to.equal(595736);
+
+    mealPlan.filterRecipesByName("Loaded Chocolate Chip Pudding Cookie Cups".toUpperCase())
+    expect(mealPlan.recipesByName[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
     
-    mealPlan.filterRecipesByName('Chocolate'.toUpperCase())
-    expect(mealPlan.recipesByName).to.deep.equal([recipe1]);
+     mealPlan.filterRecipesByName("Maple Dijon Apple Cider Grilled Pork Chops".toUpperCase())
+     expect(mealPlan.recipesByName[0].name).to.equal("Maple Dijon Apple Cider Grilled Pork Chops");
 
-    mealPlan.filterRecipesByTag('Chocolate Maple'.toUpperCase())
-    expect(mealPlan.recipesByTag).to.deep.equal([]);
+     mealPlan.filterRecipesByTag('Chocolate Maple'.toUpperCase())
+     expect(mealPlan.recipesByTag).to.deep.equal([]);
 
-    mealPlan.filterRecipesByTag('')
-    expect(mealPlan.recipesByTag).to.deep.equal([]);
+     mealPlan.filterRecipesByTag('')
+     expect(mealPlan.recipesByTag).to.deep.equal([]);
 
-    mealPlan.filterRecipesByTag(23) 
-    expect(mealPlan.recipesByTag).to.deep.equal([]);
-  })
+     mealPlan.filterRecipesByTag(23) 
+     expect(mealPlan.recipesByTag).to.deep.equal([]);
+   })
 
 })

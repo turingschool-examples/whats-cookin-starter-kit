@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
+import mockdata from '../src/data/mockdata';
 
 describe('Recipe', () => {
     let recipe1;
@@ -26,7 +27,7 @@ describe('Recipe', () => {
             "starter",
             "snack",
           ]
-        });
+        }, mockdata.ingredients);
       recipe2 = new Recipe({
         "id": 678353,
         "image": "https://spoonacular.com/recipeImages/678353-556x370.jpg",
@@ -57,7 +58,7 @@ describe('Recipe', () => {
             "dinner",
             "snack"
         ]
-      })
+      }, mockdata.ingredients)
     })
         
 

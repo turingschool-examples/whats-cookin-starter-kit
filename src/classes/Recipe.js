@@ -3,10 +3,10 @@ import Ingredient from './Ingredient.js';
 
 
 class Recipe {
-    constructor(recipe) {
+    constructor(recipe, ingredientsData) {
         this.id = recipe.id;
         this.image = recipe.image;
-        this.ingredients = this.createIngredientArray(recipe.ingredients);
+        this.ingredients = this.createIngredientArray(recipe.ingredients, ingredientsData);
         this.instructions = recipe.instructions;
         this.name = recipe.name;
         this.tags = recipe.tags;
@@ -16,7 +16,7 @@ class Recipe {
         return this.ingredients.map((ingredient) => ingredient.name)    
     }
 
-    createIngredientArray(recipeIngredients) {
+    createIngredientArray(recipeIngredients, ingredientsData) {
         const ingredientInstances = recipeIngredients.map((recipeIngredient) => {
             const ingredient = new Ingredient(ingredientsData.find(dataIngredient =>  dataIngredient.id === recipeIngredient.id))
             ingredient.quantity = recipeIngredient.quantity

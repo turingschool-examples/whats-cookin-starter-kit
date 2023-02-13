@@ -6,8 +6,14 @@ import Ingredient from './classes/Ingredient';
 import Recipe from './classes/Recipe';
 import User from './classes/User';
 
-import recipeData from './data/recipes';
-import usersData from './data/users';
+// import recipeData from './data/recipes';
+// import usersData from './data/users';
+
+let recipeData;
+let ingredientsData;
+let usersData;
+let user;
+let mainRepository;
 
 const searchBar = document.querySelector('#search-bar');
 const cardSection = document.querySelector('#card-section');
@@ -15,12 +21,19 @@ const navBar = document.querySelector('nav');
 const main = document.querySelector('main');
 const footer = document.querySelector('footer');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-const cardScroll = document.querySelector('main')
 
-const mainRepository = new RecipeRepository(recipeData);
-const user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
+Promise.all(apiCalls)
+.then(function(values) {
+    usersData = values[0].usersData;
+    ingredientsData = values[1].ingredientsData;
+    recipeData = values[2].recipeData
+    user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
+    mainRepository = new RecipeRepository(recipeData, ingredientsData);
+    displayCards(mainRepository);
+})
 
-cardScroll.addEventListener('wheel', scrollCards) 
+
+main.addEventListener('wheel', scrollCards) 
 
 let preventHorizontalScroll = 0
 
@@ -35,9 +48,9 @@ function scrollCards(event) {
     }
 }
 
-window.addEventListener('load', () => {
-    displayCards(mainRepository);
-});
+// window.addEventListener('load', () => {
+//     displayCards(mainRepository);
+// });
 
 main.addEventListener('click', handleCardEvents);
 navBar.addEventListener('click', toggleView);
