@@ -25,6 +25,6 @@ class User {
         this.recipesToCook.filterRecipesByName(name);
         return this.recipesToCook.recipesByName.length;
     };
-};
+}
 
 export default User;
