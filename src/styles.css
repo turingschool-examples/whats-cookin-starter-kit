@@ -1,6 +1,6 @@
 * {
   font-family: 'Noto Serif Ahom', serif;
-}
+};
 
 body {
   background-color: #548c2f;
@@ -11,7 +11,7 @@ body {
   margin: 0;
   overflow: hidden;
   width: 100vw;
-}
+};
 
 nav {
   align-items: center;
@@ -19,7 +19,7 @@ nav {
   display: flex;
   justify-content: space-between;
   width: 100%;
-}
+};
 
 .navTitle {
   color: white;
@@ -27,7 +27,7 @@ nav {
   font-size: 6rem;
   margin: 0px;
   padding-left: 1%;
-}
+};
 
 .navBarInteractions {
   align-content: center;
@@ -37,23 +37,23 @@ nav {
   gap: 0.75rem;
   padding-right: 1%;
   width: 15%;
-}
+};
 
 .navButtons {
   display: flex;
   gap: 0.75rem;
+  height: 20%;
   justify-content: flex-end;
   width: 100%;
-  height: 20%;
-}
+};
 
 .navButtons > button,
 .searchBar {
-  font-size: clamp(0.5rem, 1.2vw, 2vw);
   border: none;
   border-radius: 4px;
+  font-size: clamp(0.5rem, 1.2vw, 2vw);
   min-width: 30%;
-}
+};
 
 button {
   background-color: white;
@@ -62,7 +62,7 @@ button {
   font-weight: bold;
   padding: 5px 10px;
   text-transform: uppercase;
-}
+};
 
 main {
   align-items: center;
@@ -71,20 +71,20 @@ main {
   overflow-x: auto;
   overflow-y: hidden;
   width: 100vw;
-}
+};
 
 button:hover {
   background-color: #333;
   color: #fff;
-}
+};
 
 .cardSection {
-  height: 95%;
   display: flex;
   gap: 1rem;
+  height: 95%;
   justify-content: center;
   width: fit-content;
-}
+};
 
 .card {
   align-items: center;
@@ -97,19 +97,19 @@ button:hover {
   justify-content: space-between;
   position: relative;
   width: 20vw;
-}
+};
 
 .cardBack {
   overflow-x: hidden;
   overflow-y: scroll;
-}
+};
 
 .card > img {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   height: 60%;
   width: 100%;
-}
+};
 
 .saveRecipeButton {
   background-color: #f39584;
@@ -121,21 +121,21 @@ button:hover {
   top: 10px;
   right: 10px;
   width: 50px;
-}
+};
 
 .saveRecipeButton::before {
   align-items: center;
   color: #ffffff;
   content: "\2764";
   font-size: 30px;
-}
+};
 
 .savedRecipe::before {
+  align-items: center;
+  color: red;
   content: "\2764";
   font-size: 30px;
-  color: red;
-  align-items: center;
-}
+};
 
 .foodTitle {
   color: #5f4a48;
@@ -143,7 +143,7 @@ button:hover {
   margin: 0;
   max-width: 25ch;
   text-align: center;
-}
+};
 
 .frontStats {
   color: rgb(0, 67, 0);
@@ -152,7 +152,7 @@ button:hover {
   gap: 2rem;
   justify-content: space-evenly;
   width: 80%;
-}
+};
 
 .foodText,
 .ingredientsList {
@@ -161,11 +161,11 @@ button:hover {
   margin: 0 0 0 5%;
   padding: 5%;
   width: fit-content;
-}
+};
 
 .ingredientsList {
   padding-left: 10%;
-}
+};
 
 footer {
   align-items: center;
@@ -174,7 +174,7 @@ footer {
   height: 20vh;
   justify-content: space-around;
   width: 100vw;
-}
+};
 
 .filter {
   align-items: center;
@@ -184,28 +184,28 @@ footer {
   height: 100%;
   max-height: 100%;
   width: 15%;
-}
+};
 
 .filterHeaders {
   font-family: 'Lobster', Lobster;
   font-size: 1.8rem;
   margin: 10% 0 10% 0;
   padding: 0;
-}
+};
 
 .filterItem {
   align-self: flex-start;
   padding-left: 20%;
-}
+};
 
 .checkbox {
   border-radius: 20px;
-}
+};
 
 .hidden {
   display: none;
-}
+};
 
 .prevent-scroll {
   overflow: hidden;
-}
+};
