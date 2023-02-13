@@ -16,9 +16,7 @@ We successfully implemented MicroModal as seen in the GIF below. This provides u
 
 ### Preview of App:
 
-![Alt text]()
-
-<img width="1440" alt="app preview" src="">
+![Preview]()
 
 ### Context:
 
