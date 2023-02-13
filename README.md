@@ -16,7 +16,7 @@ We successfully implemented MicroModal as seen in the GIF below. This provides u
 
 ### Preview of App:
 
-
+![Alt Text](https://github.com/Espressogoddess/whats-cookin/blob/main/src/images/What's%20Cookin%20.gif?raw=true)
 
 ### Context:
 
