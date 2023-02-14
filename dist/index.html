@@ -12,8 +12,8 @@
     <h1 class="title">What's cookin</h1>
     <div class="search-container">
       <form class="search">
-        <input type="search" label='search recipes' required='true' class="search-bar" placeholder="search all recipes..." id="search-bar">
-        <button class="search-button" value='search-button' id="search-button" type="submit"> 
+        <input type="search" aria-label='search recipes' required='true' class="search-bar" placeholder="search all recipes..." id="search-bar">
+        <button class="search-button" value='search-button' id="search-button" type="submit" aria-label="Search"> 
           <i class="fa fa-search" aria-hidden="true"></i>
         </button>
       </form>
@@ -45,6 +45,7 @@
   <div class="modal__overlay" tabindex="-1">
     <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
       <div id="modal">
+        <p id='modal-1-title'></p>
       </div>
     </div>
   </div>

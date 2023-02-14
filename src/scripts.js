@@ -190,7 +190,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         </header>
         <main class="modal__content" id="modal-1-content">
           <div class="modal_container_img_ingredients"> 
-          <img class="modal_img" src="${currentRecipe.image}" alt=${currentRecipe.name}>
+          <img class="modal_img" src="${currentRecipe.image}" alt='${currentRecipe.name}'>
           <div class="modal_ingredients_container">
             <h3 class="modal_ingredients">Ingredients</h3>
             <ul>
