@@ -12,7 +12,7 @@ class RecipeRepository {
   };
 
   filterRecipesByTag(tag) {
-    this.recipesByTag = this.recipes.filter((recipe) => recipe.tags.includes(tag))
+    this.recipesByTag = this.recipes.filter((recipe) => recipe.tags.includes(tag));
     return this.recipesByTag.length;
   };
 
