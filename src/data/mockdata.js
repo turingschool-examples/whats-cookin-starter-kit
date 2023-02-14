@@ -79,7 +79,7 @@ const ingredients = [
         "name": "whole garlic clove",
         "estimatedCostInCents": 220
       }
-]
+];
 
 const recipes = [
     {
@@ -254,7 +254,7 @@ const recipes = [
           "dinner"
         ]
       }
-]
+];
 
 const users = [
     {
@@ -495,6 +495,6 @@ const users = [
           }
         ]
       }
-]
+];
 
 export default {ingredients, users, recipes};
