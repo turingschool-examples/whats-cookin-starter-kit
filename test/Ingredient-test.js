@@ -1,13 +1,14 @@
 import { expect } from 'chai';
 import Ingredient from '../src/classes/Ingredient';
+import mockdata from '../src/data/mockdata';
 
 describe('Ingredient', () => {
     let ingredient1, ingredient2, ingredient3;
 
     beforeEach(() => {
-        ingredient1 = new Ingredient({"id": 20081, "name": "wheat flour", "estimatedCostInCents": 142});
-        ingredient2 = new Ingredient({"id": 18372, "name": "bicarbonate of soda", "estimatedCostInCents": 582});
-        ingredient3 = new Ingredient({"id": 1123, "name": "eggs", "estimatedCostInCents": 472});
+        ingredient1 = new Ingredient(mockdata.ingredients[0]);
+        ingredient2 = new Ingredient(mockdata.ingredients[1]);
+        ingredient3 = new Ingredient(mockdata.ingredients[2]);
     });
 
     it('should be a function', () => {
