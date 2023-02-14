@@ -4,7 +4,7 @@ import Recipe from '../src/classes/Recipe';
 import User from '../src/classes/User';
 import mockdata from '../src/data/mockdata';
 
-describe.only('User', () => {
+describe('User', () => {
     let user, recipe;
 
     beforeEach(() => {
