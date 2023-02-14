@@ -60,5 +60,4 @@ describe('Recipe Repository', () => {
      mealPlan.filterRecipesByName(23, 'snack');
      expect(mealPlan.recipesByName).to.deep.equal([]);
     });
-
 });
