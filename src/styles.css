@@ -90,6 +90,7 @@ button:hover {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  padding: 10px;
 }
 
 .chef-hat {
