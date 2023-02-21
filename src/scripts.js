@@ -66,7 +66,7 @@ function checkPage() {
 
 function handleCardEvents(event) {
     if (event.target.dataset.side) {
-        event.target.dataset.side === 'front' ? flipToBack(event.target.dataset.index) : flipToFront(event.target.dataset.index);
+        event.target.dataset.side === 'front' ? flipCard(event.target.dataset.index) : flipCard(event.target.dataset.index);
     } else if (event.target.id.includes('save-btn')) {
         toggleRecipeSaved(event.target);
     };
@@ -80,22 +80,36 @@ function toggleView(event) {
     };
 };
 
-function flipToBack(elementIndex) {
-    const frontCardToFlip = document.getElementById(`cf${elementIndex}`);
-    const backCardToFlip = document.getElementById(`cb${elementIndex}`);
-    preventHorizontalScroll += 1;
-    show(backCardToFlip);
-    hide(frontCardToFlip);
-};
+function flipCard(elementIndex, flip) {
+    const frontCard = document.getElementById(`cf${elementIndex}`);
+    const backCard = document.getElementById(`cb${elementIndex}`);
+    
+    if (flip) {
+      preventHorizontalScroll -= 1;
+      show(frontCard);
+      hide(backCard);
+    } else {
+      preventHorizontalScroll += 1;
+      show(backCard);
+      hide(frontCard);
+    }
+  }
+  
+//   flipToBack(elementIndex) {
+//     const frontCardToFlip = document.getElementById(`cf${elementIndex}`);
+//     const backCardToFlip = document.getElementById(`cb${elementIndex}`);
+//     preventHorizontalScroll += 1
+//     show(backCardToFlip);
+//     hide(frontCardToFlip);
+// }
 
-function flipToFront(elementIndex) {
-    const frontCardToFlip = document.getElementById(`cf${elementIndex}`);
-    const backCardToFlip = document.getElementById(`cb${elementIndex}`);
-    preventHorizontalScroll -= 1;
-    show(frontCardToFlip);
-    hide(backCardToFlip);
-};
-
+// function flipToFront(elementIndex) {
+//     const frontCardToFlip = document.getElementById(`cf${elementIndex}`);
+//     const backCardToFlip = document.getElementById(`cb${elementIndex}`);
+//     preventHorizontalScroll -= 1
+//     show(frontCardToFlip);
+//     hide(backCardToFlip);
+// }
 function displayHomePage(tag) {
     cardSection.dataset.page = "home";
     displayCards(mainRepository);
