@@ -11,14 +11,14 @@ const footer = document.querySelector('footer');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
 let preventHorizontalScroll = 0;
-let usersData, ingredientsData, recipeData, user, mainRepository;
+let user, mainRepository;
 
 Promise.all(apiCalls)
 .then(function(values) {
-    usersData = values[0].usersData;
-    ingredientsData = values[1].ingredientsData;
-    recipeData = values[2].recipeData;
-    user = new User(usersData[Math.floor(Math.random() * usersData.length)]);
+    const usersData = values[0].usersData;
+    const ingredientsData = values[1].ingredientsData;
+    const recipeData = values[2].recipeData;
+    user = new User(usersData[0]);
     mainRepository = new RecipeRepository(recipeData, ingredientsData);
     displayCards(mainRepository);
 });
