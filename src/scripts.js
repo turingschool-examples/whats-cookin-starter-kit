@@ -80,36 +80,22 @@ function toggleView(event) {
     };
 };
 
-function flipCard(elementIndex, flip) {
+function flipCard(elementIndex) {
     const frontCard = document.getElementById(`cf${elementIndex}`);
     const backCard = document.getElementById(`cb${elementIndex}`);
-    
-    if (flip) {
-      preventHorizontalScroll -= 1;
-      show(frontCard);
-      hide(backCard);
-    } else {
-      preventHorizontalScroll += 1;
-      show(backCard);
-      hide(frontCard);
-    }
-  }
-  
-//   flipToBack(elementIndex) {
-//     const frontCardToFlip = document.getElementById(`cf${elementIndex}`);
-//     const backCardToFlip = document.getElementById(`cb${elementIndex}`);
-//     preventHorizontalScroll += 1
-//     show(backCardToFlip);
-//     hide(frontCardToFlip);
-// }
+    const isFrontCardVisible = !frontCard.classList.contains("hidden");
 
-// function flipToFront(elementIndex) {
-//     const frontCardToFlip = document.getElementById(`cf${elementIndex}`);
-//     const backCardToFlip = document.getElementById(`cb${elementIndex}`);
-//     preventHorizontalScroll -= 1
-//     show(frontCardToFlip);
-//     hide(backCardToFlip);
-// }
+    if (isFrontCardVisible) {
+        preventHorizontalScroll -= 1;
+        show(backCard);
+        hide(frontCard);
+    } else {
+        preventHorizontalScroll += 1;
+        show(frontCard);
+        hide(backCard);
+    }
+}
+
 function displayHomePage(tag) {
     cardSection.dataset.page = "home";
     displayCards(mainRepository);
