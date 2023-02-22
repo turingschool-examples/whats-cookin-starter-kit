@@ -4,8 +4,6 @@ import mockdata from '../src/data/mockdata';
 
 describe('Recipe Repository', () => {
   
-  let recipe1;
-  let recipe2;
   let mealPlan;
 
   beforeEach(() => {
