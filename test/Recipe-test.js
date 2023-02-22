@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import Ingredient from '../src/classes/Ingredient';
 import Recipe from '../src/classes/Recipe';
 import mockdata from '../src/data/mockdata';
 
@@ -34,15 +35,27 @@ describe('Recipe', () => {
   it('should have a method to find the names of the ingredients in the recipe', () => {
     const cookieIngredients = recipe1.findIngredientNames();
     expect(cookieIngredients[0]).to.deep.equal("wheat flour");
+    expect(cookieIngredients.length).to.equal(11);
   });
+
+  it('should have a method to create an array of ingredients with the data', () => {
+    const ingredientArray = recipe1.createIngredientArray(recipe1.ingredients, mockdata.ingredients);
+    expect(ingredientArray[0].id).to.equal(20081);
+    expect(ingredientArray[0].name).to.equal('wheat flour');
+    expect(ingredientArray[0]).to.be.an.instanceOf(Ingredient);
+    expect(ingredientArray[1].estimatedCostInCents).to.equal(582);
+    expect(ingredientArray[0].quantity.amount).to.equal(1.5);
+    expect(ingredientArray[1].quantity.unit).to.equal('tsp');
+  })
 
   it('should be able to calculate the total cost of the recipe', () => {
     expect(recipe1.calculateCost()).to.equal('177.76');
+    expect(recipe2.calculateCost()).to.equal('21.91')
   });
 
   it('should have a method that returns the instructions from the recipe', () => {
     const porkChopInstructions = recipe2.returnInstructions();
-    expect(recipe2.returnInstructions()).to.deep.equal([{"instruction": "Season the pork chops with salt and pepper and grill or pan fry over medium high heat until cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook until the sauce thickens, about 2-5 minutes.Grill or saute the apple slices until just tender but still crisp.Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!","number": 1}]);
+    expect(porkChopInstructions).to.deep.equal([{"instruction": "Season the pork chops with salt and pepper and grill or pan fry over medium high heat until cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook until the sauce thickens, about 2-5 minutes.Grill or saute the apple slices until just tender but still crisp.Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!","number": 1}]);
   });
 })
 
