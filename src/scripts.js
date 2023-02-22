@@ -16,39 +16,26 @@ const recipesDataFetch = fetch(
     "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes"
 ).then((response) => response.json())
 
-let allCookingData = {
-    users: [],
-    ingredients: [],
-    recipes: []
-}
-
-let recipeRepository
-let user
-let num
-
-
 Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
-    .then((data) => {
-        allCookingData.users = data[0]
-        allCookingData.ingredients = data[1]
-        allCookingData.recipes = data[2]
-        return allCookingData
-    })
-    .then(
-        (allCookingData) => {
+.then((data) => {
+    let allCookingData = {
+        users: data[0],
+        ingredients: data[1],
+        recipes: data[2]
+    }
+    return allCookingData
+})
+.then(
+    (allCookingData) => {
+            let recipeRepository
             recipeRepository = new RecipeRepository(allCookingData.recipes.recipeData)
-            num = Math.floor(Math.random() * allCookingData.users.usersData.length)
-            user = new User(allCookingData.users.usersData[num])
+            let num = Math.floor(Math.random() * allCookingData.users.usersData.length)
+            let user = new User(allCookingData.users.usersData[num])
             loadPage(recipeRepository, user, allCookingData.ingredients.ingredientsData)
         }
     )
 
 function loadPage(recipeRepository, user, ingredientsData) {
-
-    var breakfast = ['breakfast', 'morning meal']
-    var snack = ['dip', 'snack', 'appetizer']
-    var mainDish = ['main dish', 'dinner', 'lunch']
-    var complimentaryDish = ['antipasti', 'hor d\'oeuvre', 'starter', 'salad', 'side dish', 'appetizer', 'condiment', 'spread']
 
     const recipeSection = document.querySelector('#recipe-section')
     const navigationSection = document.querySelector(".navigation-section")
@@ -68,8 +55,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
     const recipesHeader = document.querySelector('#recipes-header')
     const recipeContainer = document.querySelector('#recipe-container')
 
-    let currentRecipeId
-    let currentRecipe
+    let currentRecipe 
     let currentView = 'landing'
     let filterTerm = ''
 
@@ -91,25 +77,25 @@ function loadPage(recipeRepository, user, ingredientsData) {
     })
     breakfastButton.addEventListener('click', () => {
         currentView = 'recipes'
-        filterTerm = breakfast
+        filterTerm = ['breakfast', 'morning meal']
         renderPage()
 
     })
     snacksAppButton.addEventListener('click', () => {
         currentView = "recipes"
-        filterTerm = snack
+        filterTerm = ['dip', 'snack', 'appetizer']
         renderPage()
 
     })
     mainDishButton.addEventListener('click', () => {
         currentView = "recipes"
-        filterTerm = mainDish
+        filterTerm = ['main dish', 'dinner', 'lunch']
         renderPage()
 
     })
     compDishButton.addEventListener('click', () => {
         currentView = "recipes"
-        filterTerm = complimentaryDish
+        filterTerm = ['antipasti', 'hor d\'oeuvre', 'starter', 'salad', 'side dish', 'appetizer', 'condiment', 'spread']
         renderPage()
     })
 
@@ -145,6 +131,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
     }
 
     function assignCurrentRecipe(event) {
+        let currentRecipeId
         if (event.target.dataset.allRecipes) {
             currentRecipeId = event.target.dataset.allRecipes
         } else {
