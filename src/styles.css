@@ -126,7 +126,8 @@ button:active {
   border-right: none;
   border-radius: 5px 0 0 5px;
   outline: none;
-  background-color: rgb(41, 35, 51, .7)
+  background-color: rgb(41, 35, 51, .7);
+  color: #c5b8e4;
 }
 
 ::placeholder {
