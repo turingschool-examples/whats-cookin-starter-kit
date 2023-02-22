@@ -14,8 +14,8 @@ class Recipe {
         return this.ingredients.map((ingredient) => ingredient.name);    
     };
 
-    createIngredientArray(recipeIngredients, ingredientsData) {
-        const ingredientInstances = recipeIngredients.map((recipeIngredient) => {
+    createIngredientArray(recipeIngredients, ingredientsData) { 
+        const ingredientInstances = recipeIngredients.map((recipeIngredient) => { 
             const ingredient = new Ingredient(ingredientsData.find(dataIngredient =>  dataIngredient.id === recipeIngredient.id));
             ingredient.quantity = recipeIngredient.quantity;
             return ingredient;
