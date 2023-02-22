@@ -15,11 +15,6 @@ class RecipeRepository {
 
   }
   filterByTag(tag) {
-
-    //Goal: filter by tag.
-    //Input: Object
-    //Output: Array of objects
-    //Steps: First we need to loop through the tags array. For each tag we want to look through the recipes and see if the tags match. If so push it into the filtered recipes.
     if (Array.isArray(tag)) {
       this.filteredRecipes = [];
       this.recipes.forEach((recipe) => {
