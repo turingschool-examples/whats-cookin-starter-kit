@@ -75,7 +75,6 @@ function loadPage(recipeRepository, user, ingredientsData) {
 
     renderPage()
 
-
     topButton.addEventListener('click', () => document.documentElement.scrollTop = 0)
     allRecipesButton.addEventListener('click', () => {
         currentView = 'recipes'
@@ -157,7 +156,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         currentRecipe = recipeRepository.recipes.find(recipe => recipe.id === currentRecipeId)
         currentRecipe = new Recipe(currentRecipe)
     }
-
+ 
     function renderCurrentRecipe() {
         if (!currentRecipe) {
             return
@@ -302,7 +301,8 @@ function loadPage(recipeRepository, user, ingredientsData) {
 
     function renderPage() {
         if (currentView === 'pantry') {
-            renderCorrectPage(recipeSection, pantrySection)
+            recipeSection.classList.add('hidden')
+            pantrySection.classList.remove('hidden')
             displayPantry(user, ingredientsData)
         } else if (currentView === 'recipes') {
             searchBar.placeholder = "search all recipes..."
@@ -311,12 +311,14 @@ function loadPage(recipeRepository, user, ingredientsData) {
             } else {
                 recipesHeader.innerText = ''
             }
-            renderCorrectPage(pantrySection, recipeSection)
+            pantrySection.classList.add('hidden')
+            recipeSection.classList.remove('hidden')
             displayRecipes(getCurrentDisplayedRecipes(recipeRepository, filterTerm))
         } else if (currentView === 'savedRecipes') {
             searchBar.placeholder = 'search saved recipes...'
             recipesHeader.innerText = 'Saved Recipes'
-            renderCorrectPage(pantrySection, recipeSection)
+            pantrySection.classList.add('hidden')
+            recipeSection.classList.remove('hidden')
             displayRecipes(getCurrentDisplayedRecipes(user.savedRecipes, filterTerm))
         } else if (currentView === 'landing') {
             const num1 = Math.floor(Math.random() * recipeRepository.recipes.length)
@@ -325,10 +327,5 @@ function loadPage(recipeRepository, user, ingredientsData) {
             let fakePopularRecipes = [recipeRepository.recipes[num1], recipeRepository.recipes[num2], recipeRepository.recipes[num3]]
             displayRecipes(fakePopularRecipes)
         }
-    }
-
-    function renderCorrectPage(element1, element2) {
-        element1.classList.add('hidden')
-        element2.classList.remove('hidden')
     }
 }
