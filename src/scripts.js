@@ -30,8 +30,7 @@ Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
 .then(
     (allCookingData) => {
             let recipeRepository = new RecipeRepository(allCookingData.recipes)
-            let num = Math.floor(Math.random() * allCookingData.users.length)
-            let user = new User(allCookingData.users[num])
+            let user = new User(allCookingData.users[10])
             loadPage(recipeRepository, user, allCookingData.ingredients)
         }
     )
@@ -215,6 +214,13 @@ function loadPage(recipeRepository, user, ingredientsData) {
             user.addToSavedRecipes(currentRecipe)
             button.innerText = 'Saved'
             button.style.backgroundColor = "red"
+        fetch('http://localhost:3001/api/v1/usersRecipes', {
+            method: 'POST',
+            body: JSON.stringify({ userID: user.id, recipeID: currentRecipe.id}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
         } else {
             user.removeFromSavedRecipes(currentRecipe)
             button.innerText = '♥️'
