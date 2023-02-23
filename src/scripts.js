@@ -7,13 +7,13 @@ import Recipe from './classes/Recipe'
 MicroModal.init()
 
 const usersDataFetch = fetch(
-    "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users"
+    "http://localhost:3001/api/v1/users"
 ).then((response) => response.json())
 const ingredientsDataFetch = fetch(
-    "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients"
+    "http://localhost:3001/api/v1/ingredients"
 ).then((response) => response.json())
 const recipesDataFetch = fetch(
-    "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes"
+    "http://localhost:3001/api/v1/recipes"
 ).then((response) => response.json())
 
 Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
@@ -27,16 +27,14 @@ Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
 })
 .then(
     (allCookingData) => {
-            let recipeRepository
-            recipeRepository = new RecipeRepository(allCookingData.recipes.recipeData)
-            let num = Math.floor(Math.random() * allCookingData.users.usersData.length)
-            let user = new User(allCookingData.users.usersData[num])
-            loadPage(recipeRepository, user, allCookingData.ingredients.ingredientsData)
+            let recipeRepository = new RecipeRepository(allCookingData.recipes)
+            let user = new User(allCookingData.users[10])
+            user.savedRecipes = user.changeIdToRecipe(recipeRepository)
+            loadPage(recipeRepository, user, allCookingData.ingredients)
         }
     )
 
 function loadPage(recipeRepository, user, ingredientsData) {
-
     const recipeSection = document.querySelector('#recipe-section')
     const navigationSection = document.querySelector(".navigation-section")
     const pantrySection = document.querySelector(".pantry-section")
@@ -214,6 +212,20 @@ function loadPage(recipeRepository, user, ingredientsData) {
             user.addToSavedRecipes(currentRecipe)
             button.innerText = 'Saved'
             button.style.backgroundColor = "red"
+        fetch('http://localhost:3001/api/v1/usersRecipes', {
+            method: 'POST',
+            body: JSON.stringify({ userID: user.id, recipeID: currentRecipe.id}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then((response) => {
+            if (!response.ok) {
+              throw new Error('Issue with request: ', response.status);
+            }
+            return response.json()
+           })
+           .catch(error => alert(error))
         } else {
             user.removeFromSavedRecipes(currentRecipe)
             button.innerText = '♥️'
