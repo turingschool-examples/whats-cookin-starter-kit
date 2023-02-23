@@ -13,6 +13,19 @@ body {
   width: 100vw;
 }
 
+.skip-link {
+  left: 50%;
+  font-size: 20pt;
+  background-color: #548c2f;
+  position: absolute;
+  transform: translateY(-100%);
+  transition: transform 0.3s;
+}
+
+.skip-link:focus {
+  transform: translateY(0%);
+}
+
 nav {
   align-items: center;
   background: rgb(0, 67, 0);

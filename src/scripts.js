@@ -51,7 +51,6 @@ footer.addEventListener('click', event => {
     };
 });
 
-
 function show(element) {
     element.classList.remove('hidden');
 };
