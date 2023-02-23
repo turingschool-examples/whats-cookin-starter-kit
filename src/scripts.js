@@ -7,31 +7,38 @@ import Recipe from './classes/Recipe'
 MicroModal.init()
 
 const usersDataFetch = fetch(
-    "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users"
+    "http://localhost:3001/api/v1/users"
 ).then((response) => response.json())
+//.then(data => console.log(data))
 const ingredientsDataFetch = fetch(
-    "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients"
+    "http://localhost:3001/api/v1/ingredients"
 ).then((response) => response.json())
+//.then(data => console.log(data))
 const recipesDataFetch = fetch(
-    "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes"
+    "http://localhost:3001/api/v1/recipes"
 ).then((response) => response.json())
+//.then(data => console.log(data))
+
+
 
 Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
 .then((data) => {
+    console.log('WHATS BAD', data)
     let allCookingData = {
         users: data[0],
         ingredients: data[1],
         recipes: data[2]
     }
+    console.log('WHATS GOOD:', allCookingData)
     return allCookingData
 })
 .then(
     (allCookingData) => {
             let recipeRepository
-            recipeRepository = new RecipeRepository(allCookingData.recipes.recipeData)
-            let num = Math.floor(Math.random() * allCookingData.users.usersData.length)
-            let user = new User(allCookingData.users.usersData[num])
-            loadPage(recipeRepository, user, allCookingData.ingredients.ingredientsData)
+            recipeRepository = new RecipeRepository(allCookingData.recipes)
+            let num = Math.floor(Math.random() * allCookingData.users.length)
+            let user = new User(allCookingData.users[num])
+            loadPage(recipeRepository, user, allCookingData.ingredients)
         }
     )
 
