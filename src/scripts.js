@@ -10,7 +10,7 @@ const main = document.querySelector('main');
 const footer = document.querySelector('footer');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-let preventHorizontalScroll = 0;
+// let preventHorizontalScroll = 0;
 let user, mainRepository;
 
 Promise.all(apiCalls)
@@ -25,15 +25,24 @@ Promise.all(apiCalls)
 
 
 main.addEventListener('click', handleCardEvents);
-main.addEventListener('wheel', event => {
-    if (preventHorizontalScroll === 0) {
-        if (event.deltaY < 0) {
-            main.scrollLeft -= 50;
-        } else {
-            main.scrollLeft += 50;
-        };
+main.addEventListener('keydown', event => {
+    if (event.code === "Enter" || event.code === "Space") {
+        handleCardEvents(event);
+        setTimeout(() => {
+            setFocus(event);
+        }, 100);
     };
 });
+
+// main.addEventListener('wheel', event => {
+//     if (preventHorizontalScroll === 0) {
+//         if (event.deltaY < 0) {
+//             main.scrollLeft -= 50;
+//         } else {
+//             main.scrollLeft += 50;
+//         };
+//     };
+// });
 
 navBar.addEventListener('click', toggleView);
 
@@ -85,11 +94,11 @@ function flipCard(elementIndex) {
     const isFrontCardVisible = !frontCard.classList.contains("hidden");
 
     if (isFrontCardVisible) {
-        preventHorizontalScroll -= 1;
+        // preventHorizontalScroll -= 1;
         show(backCard);
         hide(frontCard);
     } else {
-        preventHorizontalScroll += 1;
+        // preventHorizontalScroll += 1;
         show(frontCard);
         hide(backCard);
     }
@@ -202,4 +211,8 @@ function uncheckOtherFilters(tag) {
             box.checked = false;
         };
     });
+};
+
+function setFocus(event) {
+    document.getElementById(event.target.id).focus();
 };
