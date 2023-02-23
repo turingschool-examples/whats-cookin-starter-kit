@@ -36,7 +36,6 @@ Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
 
 function loadPage(recipeRepository, user, ingredientsData) {
     const recipeSection = document.querySelector('#recipe-section')
-    const navigationSection = document.querySelector(".navigation-section")
     const pantrySection = document.querySelector(".pantry-section")
     const savedRecipes = document.querySelector("#saved-recipes")
     const topButton = document.querySelector("#top-button")
@@ -48,7 +47,6 @@ function loadPage(recipeRepository, user, ingredientsData) {
     const searchBar = document.querySelector("#search-bar")
     const searchGo = document.querySelector("#search-button")
     const pantryButton = document.querySelector("#your-pantry")
-    const buttons = document.querySelectorAll('button')
     const recipeModal = document.querySelector('#modal')
     const recipesHeader = document.querySelector('#recipes-header')
     const recipeContainer = document.querySelector('#recipe-container')
