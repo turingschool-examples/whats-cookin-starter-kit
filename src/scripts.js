@@ -18,13 +18,11 @@ const recipesDataFetch = fetch(
 
 Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
 .then((data) => {
-    console.log('WHATS BAD', data)
     let allCookingData = {
         users: data[0],
         ingredients: data[1],
         recipes: data[2]
     }
-    console.log('WHATS GOOD:', allCookingData)
     return allCookingData
 })
 .then(
@@ -221,6 +219,13 @@ function loadPage(recipeRepository, user, ingredientsData) {
                 'Content-Type': 'application/json'
             }
         })
+        .then((response) => {
+            if (!response.ok) {
+              throw new Error('Issue with request: ', response.status);
+            }
+            return response.json()
+           })
+           .catch(error => alert(error))
         } else {
             user.removeFromSavedRecipes(currentRecipe)
             button.innerText = '♥️'
