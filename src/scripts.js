@@ -1,6 +1,6 @@
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
-import apiCalls from './apiCalls';
+import { apiCalls, saveFavorites } from './apiCalls';
 import './styles.css';
 
 const searchBar = document.querySelector('#search-bar');
@@ -15,9 +15,9 @@ let user, mainRepository;
 
 Promise.all(apiCalls)
 .then(function(values) {
-    const usersData = values[0].usersData;
-    const ingredientsData = values[1].ingredientsData;
-    const recipeData = values[2].recipeData;
+    const usersData = values[0];
+    const ingredientsData = values[1];
+    const recipeData = values[2];
     user = new User(usersData[0]);
     mainRepository = new RecipeRepository(recipeData, ingredientsData);
     displayCards(mainRepository);
