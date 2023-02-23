@@ -9,17 +9,12 @@ MicroModal.init()
 const usersDataFetch = fetch(
     "http://localhost:3001/api/v1/users"
 ).then((response) => response.json())
-//.then(data => console.log(data))
 const ingredientsDataFetch = fetch(
     "http://localhost:3001/api/v1/ingredients"
 ).then((response) => response.json())
-//.then(data => console.log(data))
 const recipesDataFetch = fetch(
     "http://localhost:3001/api/v1/recipes"
 ).then((response) => response.json())
-//.then(data => console.log(data))
-
-
 
 Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
 .then((data) => {
@@ -34,8 +29,7 @@ Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
 })
 .then(
     (allCookingData) => {
-            let recipeRepository
-            recipeRepository = new RecipeRepository(allCookingData.recipes)
+            let recipeRepository = new RecipeRepository(allCookingData.recipes)
             let num = Math.floor(Math.random() * allCookingData.users.length)
             let user = new User(allCookingData.users[num])
             loadPage(recipeRepository, user, allCookingData.ingredients)
