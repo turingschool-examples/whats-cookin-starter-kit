@@ -29,12 +29,12 @@ Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
     (allCookingData) => {
             let recipeRepository = new RecipeRepository(allCookingData.recipes)
             let user = new User(allCookingData.users[10])
+            user.savedRecipes = user.changeIdToRecipe(recipeRepository)
             loadPage(recipeRepository, user, allCookingData.ingredients)
         }
     )
 
 function loadPage(recipeRepository, user, ingredientsData) {
-
     const recipeSection = document.querySelector('#recipe-section')
     const navigationSection = document.querySelector(".navigation-section")
     const pantrySection = document.querySelector(".pantry-section")
