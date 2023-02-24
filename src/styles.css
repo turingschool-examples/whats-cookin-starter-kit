@@ -80,7 +80,7 @@ button {
 main {
   align-items: center;
   display: flex;
-  height: 60vh;
+  height: 66vh;
   overflow-x: auto;
   overflow-y: hidden;
   width: 100vw;
@@ -137,31 +137,52 @@ button:hover {
   width: 100%;
 }
 
-.saveRecipeButton {
-  background-color: #f39584;
-  border: none;
-  border-radius: 25px;
-  box-shadow: 0px 5px 15px rgb(0 0 0);
+.saveRecipeButton,
+.notesButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 50px;
+  width: 50px;
   position: absolute;
   top: 10px;
-  right: 10px;
-  width: 50px;
+  border: 0;
+  border-radius: 25px;
+  color: white;
+  background: #f39584;
+  box-shadow: 0px 5px 15px rgb(0 0 0);
 }
 
-.saveRecipeButton::before {
+.saveRecipeButton {
+  right: 10px;
+  text-shadow: 1px 1px 2px black;
+  font-size: 1.75rem;
+}
+
+.notesButton {
+  left: 10px;
+  font-size: 1.6rem;
+  text-shadow: 1px 1px 4px black;
+}
+
+.savedRecipe,
+.savedRecipe:hover {
+  color: red;
+}
+
+/* .saveRecipeButton::before {
   align-items: center;
   color: #ffffff;
   content: "\2764";
   font-size: 30px;
-}
+} */
 
-.savedRecipe::before {
+/* .savedRecipe::before {
   align-items: center;
   color: red;
   content: "\2764";
   font-size: 30px;
-}
+} */
 
 .foodTitle {
   color: #5f4a48;

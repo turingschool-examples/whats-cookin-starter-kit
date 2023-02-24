@@ -75,9 +75,9 @@ function checkPage() {
 function handleCardEvents(event) {
     if (event.target.dataset.side) {
         event.target.dataset.side === 'front' ? flipCard(event.target.dataset.index) : flipCard(event.target.dataset.index);
-    } else if (event.target.id.includes('save-btn')) {
+    } else if (event.target.classList.contains('cardButton')) {
         toggleRecipeSaved(event.target);
-    };
+    }
 };
 
 function toggleView(event) {
@@ -132,7 +132,12 @@ function displayCards(recipeList) {
         });
         cardSection.innerHTML += `
         <section class="card cardFront" id="cf${recipe.id}" tabindex="0" data-side="front" data-index="${recipe.id}">
-          <button aria-label="Save Recipe Button" class="saveRecipeButton" id="save-btn-${index}" data-index="${recipe.id}"></button>
+          <button aria-label="Save Recipe Button" class="saveRecipeButton cardButton" id="save-btn-${index}" data-index="${recipe.id}">
+            <i class="fa-solid fa-heart cardButton" data-index="${recipe.id}"></i>
+          </button>
+          <button aria-label="Write Notes Button" class="notesButton" id="notes-btn-${index}" data-index="${recipe.id}">
+            <i class="fa-solid fa-comment"></i>
+          </button>
           <img class="foodImage" src="${recipe.image}" alt="Picture of ${recipe.name}" data-side="front" data-index="${recipe.id}">
             <h2 class="foodTitle" data-side="front" data-index="${recipe.id}">${recipe.name}</h2>
             <div class="frontStats">
@@ -150,6 +155,7 @@ function displayCards(recipeList) {
         `
     });
     fixSavedHearts();
+    toggleNotesButtons();
 };
 
 function toggleRecipeSaved(element) {
@@ -162,6 +168,14 @@ function toggleRecipeSaved(element) {
       user.removeSaved(recipe.id);
     };
     checkPage() ? displayCards(mainRepository) : displayCards(user.recipesToCook);
+};
+
+function toggleNotesButtons() {
+    const allNotesButtons = document.querySelectorAll('.notesButton');
+
+    checkPage() ? 
+    allNotesButtons.forEach(noteButton => hide(noteButton)) :
+    allNotesButtons.forEach(noteButton => show(noteButton));
 };
 
 function fixSavedHearts() {
