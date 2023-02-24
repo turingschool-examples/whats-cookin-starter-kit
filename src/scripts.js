@@ -201,8 +201,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         }
         saveButton.addEventListener('click', () => saveRecipe(saveButton))
         closeButton.addEventListener('click', () => currentRecipe = '')
-
-        
+        recipeModal.scrollTo(0,0)        
     }
 
     function saveRecipe(button) {
