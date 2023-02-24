@@ -19,9 +19,9 @@ const recipesDataFetch = fetch(
 Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
 .then((data) => {
     let allCookingData = {
-        users: data[0],
-        ingredients: data[1],
-        recipes: data[2]
+        users: data[0].users,
+        ingredients: data[1].ingredients,
+        recipes: data[2].recipes
     }
     return allCookingData
 })
@@ -152,7 +152,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
             return '<li>' + ingredient.ingredient + '</li>'
         }).join('')
 
-        if (user.savedRecipes.recipes.filter(current => current.id === currentRecipe.id).length !== 0) {
+        if ( user.savedRecipes && user.savedRecipes.recipes.filter(current => current.id === currentRecipe.id).length !== 0) {
             isSaved = "Saved"
         } else {
             isSaved = "♥️"

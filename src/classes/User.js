@@ -5,7 +5,6 @@ class User {
         this.name = user.name
         this.id = user.id
         this.pantry = user.pantry
-        this.savedRecipes = new RecipeRepository([])
         this.recipesToCook = user.recipesToCook
     }
 
@@ -23,6 +22,8 @@ class User {
                 })
             })
             return new RecipeRepository(matchingRecipe)
+        } else {
+            return new RecipeRepository([])
         }
     } 
 
