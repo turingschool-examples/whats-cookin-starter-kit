@@ -72,7 +72,7 @@ body {
 
 .navigation-section {
   padding: 20px;
-  margin-top: 13vh;
+  margin-top: 100px;
   margin-left: 25px;
   border-radius: 25px;
   height: 388px;
@@ -90,7 +90,7 @@ body {
 }
 
 button {
-  --c: var(--text-color);
+  --c: var(--body-background-color);
   box-shadow: 0 0 0 .1em inset var(--c);
   --_g: linear-gradient(var(--c) 0 0) no-repeat;
   background:
@@ -100,7 +100,7 @@ button {
   var(--_g) calc(200% - var(--_p, 0%)) 100%;
   background-size: 50.5% calc(var(--_p, 0%)/2 + .5%);
   outline-offset: .1em;
-  transition: background-size .4s, background-position 0s .4s;
+  transition: background-size .2s, background-position 0s .2s;
   font-family: system-ui, sans-serif;
   font-size: 1rem;
   cursor: pointer;
@@ -112,11 +112,13 @@ button {
   margin-bottom: 10px;
   width: 5em;
   color: var(--text-color);
+  transition-duration: .2s;
 }
 
 button:hover {
   --_p: 100%;
   transition: background-position .4s, background-size 0s;
+  color: var(--highlight-color);
 }
 
 button:active {
@@ -397,7 +399,7 @@ button:active {
 .modal__btn {
   margin-right: 20px;
   font-size: .875rem;
-  background-color: #e6e6e6;
+  background-color: white;
   color: rgba(0, 0, 0, .8);
   border-radius: .25rem;
   border-style: none;
@@ -516,6 +518,7 @@ button:active {
 }
 
 .small-recipe-text {
+  margin-top: 2vh;
   height: 68px;
   width: auto;
   min-width: 100px;

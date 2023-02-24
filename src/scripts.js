@@ -201,7 +201,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         }
         saveButton.addEventListener('click', () => saveRecipe(saveButton))
         closeButton.addEventListener('click', () => currentRecipe = '')
-        recipeModal.scrollTo(0,0)        
+        recipeModal.scrollTo(0,0) 
     }
 
     function saveRecipe(button) {
@@ -231,12 +231,14 @@ function loadPage(recipeRepository, user, ingredientsData) {
               },
             body: JSON.stringify({ userID: user.id, recipeID: currentRecipe.id})
         })
-        // .then(res => res.text())
-        // .then(res => {
-        //     if(!res.ok) {
-        //         throw new Error('Issue with request: ', res.status);
-        //     }
-        // })
+        .then((response) => {
+            if (!response.ok) {
+              throw new Error('Issue with request: ', response.status);
+            }
+            return response.json()
+           })
+           .catch(error => alert(error))
+        
             user.removeFromSavedRecipes(currentRecipe)
             button.innerText = '♥️'
             button.style.backgroundColor = "#e6e6e6"
