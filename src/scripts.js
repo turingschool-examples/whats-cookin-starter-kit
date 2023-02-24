@@ -201,8 +201,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         }
         saveButton.addEventListener('click', () => saveRecipe(saveButton))
         closeButton.addEventListener('click', () => currentRecipe = '')
-
-        
+        recipeModal.scrollTo(0,0) 
     }
 
     function saveRecipe(button) {
@@ -225,12 +224,26 @@ function loadPage(recipeRepository, user, ingredientsData) {
            })
            .catch(error => alert(error))
         } else {
+        fetch('http://localhost:3001/api/v1/usersRecipes', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify({ userID: user.id, recipeID: currentRecipe.id})
+        })
+        .then((response) => {
+            if (!response.ok) {
+              throw new Error('Issue with request: ', response.status);
+            }
+            return response.json()
+           })
+           .catch(error => alert(error))
+        
             user.removeFromSavedRecipes(currentRecipe)
             button.innerText = '♥️'
             button.style.backgroundColor = "#e6e6e6"
             renderPage()
         }
-        currentRecipe = ''
     }
 
     function displayPantry(user, ingredientsData) {
