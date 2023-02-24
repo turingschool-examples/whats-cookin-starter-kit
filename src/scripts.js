@@ -19,8 +19,11 @@ Promise.all(apiCalls)
     const ingredientsData = values[1];
     const recipeData = values[2];
     user = new User(usersData[0]);
+    const userRecipeRepo = new RecipeRepository(usersData[0].recipesToCook, ingredientsData)
+    user.recipesToCook = userRecipeRepo
     mainRepository = new RecipeRepository(recipeData, ingredientsData);
     displayCards(mainRepository);
+    
 });
 
 
@@ -158,12 +161,16 @@ function displayCards(recipeList) {
     toggleNotesButtons();
 };
 
+
+
 function toggleRecipeSaved(element) {
     element.classList.toggle('savedRecipe');
     const recipe = user.recipesToCook.recipes.find(recipe => recipe.id === parseInt(element.dataset.index));
   
     if (!recipe) {
-      user.saveRecipe(mainRepository.recipes.find(repoRecipe => repoRecipe.id === parseInt(element.dataset.index)));
+      let unsavedRecipe = mainRepository.recipes.find(repoRecipe => repoRecipe.id === parseInt(element.dataset.index));
+      user.saveRecipe(unsavedRecipe);
+      saveFavorites(unsavedRecipe, user);
     } else {
       user.removeSaved(recipe.id);
     };
