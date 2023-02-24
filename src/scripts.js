@@ -9,8 +9,9 @@ const navBar = document.querySelector('nav');
 const main = document.querySelector('main');
 const footer = document.querySelector('footer');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const homeButton = document.querySelector('#home-button');
+const myFoodButton = document.querySelector('#my-food-button');
 
-// let preventHorizontalScroll = 0;
 let user, mainRepository;
 
 Promise.all(apiCalls)
@@ -23,7 +24,7 @@ Promise.all(apiCalls)
     user.recipesToCook = userRecipeRepo
     mainRepository = new RecipeRepository(recipeData, ingredientsData);
     displayCards(mainRepository);
-    
+    buttonIndicateCurrentPage();
 });
 
 
@@ -36,16 +37,6 @@ main.addEventListener('keydown', event => {
         }, 100);
     };
 });
-
-// main.addEventListener('wheel', event => {
-//     if (preventHorizontalScroll === 0) {
-//         if (event.deltaY < 0) {
-//             main.scrollLeft -= 50;
-//         } else {
-//             main.scrollLeft += 50;
-//         };
-//     };
-// });
 
 navBar.addEventListener('click', toggleView);
 
@@ -78,7 +69,7 @@ function checkPage() {
 function handleCardEvents(event) {
     if (event.target.dataset.side) {
         event.target.dataset.side === 'front' ? flipCard(event.target.dataset.index) : flipCard(event.target.dataset.index);
-    } else if (event.target.classList.contains('cardButton')) {
+    } else if (event.target.id.includes('save-btn')) {
         toggleRecipeSaved(event.target);
     }
 };
@@ -97,11 +88,9 @@ function flipCard(elementIndex) {
     const isFrontCardVisible = !frontCard.classList.contains("hidden");
 
     if (isFrontCardVisible) {
-        // preventHorizontalScroll -= 1;
         show(backCard);
         hide(frontCard);
     } else {
-        // preventHorizontalScroll += 1;
         show(frontCard);
         hide(backCard);
     }
@@ -111,12 +100,14 @@ function displayHomePage(tag) {
     cardSection.dataset.page = "home";
     displayCards(mainRepository);
     uncheckOtherFilters(tag);
+    buttonIndicateCurrentPage();
 };
 
 function displaySavedFoodPage() {
     cardSection.dataset.page = "saved";
     displayCards(user.recipesToCook);
     uncheckOtherFilters();
+    buttonIndicateCurrentPage();
 };
 
 function displayCards(recipeList) {
@@ -233,6 +224,20 @@ function uncheckOtherFilters(tag) {
         };
     });
 };
+
+function buttonIndicateCurrentPage() {
+    if(checkPage()) {
+        homeButton.style.backgroundColor = '#548c2f';
+        homeButton.style.color = 'white';
+        myFoodButton.style.backgroundColor = 'white';
+        myFoodButton.style.color = '#5f4a48';
+    } else {
+        homeButton.style.backgroundColor = 'white';
+        homeButton.style.color = '#5f4a48';
+        myFoodButton.style.backgroundColor = '#548c2f';
+        myFoodButton.style.color = 'white';
+    }
+}
 
 function setFocus(event) {
     document.getElementById(event.target.id).focus();
