@@ -152,17 +152,24 @@ function displayCards(recipeList) {
     fixSavedHearts();
 };
 
+
+
 function toggleRecipeSaved(element) {
     element.classList.toggle('savedRecipe');
     const recipe = user.recipesToCook.recipes.find(recipe => recipe.id === parseInt(element.dataset.index));
   
     if (!recipe) {
-      user.saveRecipe(mainRepository.recipes.find(repoRecipe => repoRecipe.id === parseInt(element.dataset.index)));
+      let unsavedRecipe = mainRepository.recipes.find(repoRecipe => repoRecipe.id === parseInt(element.dataset.index));
+      user.saveRecipe(unsavedRecipe);
+      saveFavorites(unsavedRecipe, user);
     } else {
       user.removeSaved(recipe.id);
     };
     checkPage() ? displayCards(mainRepository) : displayCards(user.recipesToCook);
+    console.log(user)
 };
+
+
 
 function fixSavedHearts() {
     const allHearts = document.querySelectorAll('.saveRecipeButton');
