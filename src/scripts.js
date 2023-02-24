@@ -19,8 +19,11 @@ Promise.all(apiCalls)
     const ingredientsData = values[1];
     const recipeData = values[2];
     user = new User(usersData[0]);
+    const userRecipeRepo = new RecipeRepository(usersData[0].recipesToCook, ingredientsData)
+    user.recipesToCook = userRecipeRepo
     mainRepository = new RecipeRepository(recipeData, ingredientsData);
     displayCards(mainRepository);
+    
 });
 
 
@@ -172,7 +175,6 @@ function toggleRecipeSaved(element) {
       user.removeSaved(recipe.id);
     };
     checkPage() ? displayCards(mainRepository) : displayCards(user.recipesToCook);
-    console.log(user)
 };
 
 function toggleNotesButtons() {
