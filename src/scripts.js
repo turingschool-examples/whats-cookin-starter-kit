@@ -131,10 +131,10 @@ function displayCards(recipeList) {
     cardSection.innerHTML = '';
     displayRecipes.forEach((recipe, index) => {
         let instructions = recipe.instructions.map((instruction) => {
-            return `<p class="foodText">${instruction.instruction}</p>`;
+            return `<p class="foodText" data-side="back" data-index="${recipe.id}">${instruction.instruction}</p>`;
         });
         let ingredients = recipe.ingredients.map((ingredient) => {
-            return `<li>${ingredient.name}</li>`;
+            return `<li data-side="back" data-index="${recipe.id}">${ingredient.name}</li>`;
         });
         cardSection.innerHTML += `
         <section class="card cardFront" id="cf${recipe.id}" tabindex="0" data-side="front" data-index="${recipe.id}">
@@ -152,7 +152,7 @@ function displayCards(recipeList) {
             </div>
         </section>
         <section class="card cardBack hidden" id="cb${recipe.id}" tabindex="0" data-side="back" data-index="${recipe.id}">
-          <h2 class="foodTitle">${recipe.name}</h2>
+          <h2 class="foodTitle" data-side="back" data-index="${recipe.id}">${recipe.name}</h2>
           <ul class="ingredientsList">
             ${ingredients.join("")}
           </ul>

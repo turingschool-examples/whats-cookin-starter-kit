@@ -3,17 +3,15 @@ let apiCalls;
 const userData = fetch('http://localhost:3001/api/v1/users')
 .then(response => response.json())
 .then(data => data)
-.catch(err => console.log(err))
+.catch(err => alert(`Server Error: ${err}. Please try again later.`))
 
 const ingData = fetch('	http://localhost:3001/api/v1/ingredients')
 .then(response => response.json())
 .then(data => data)
-.catch(err => console.log(err))
 
 const recData = fetch('http://localhost:3001/api/v1/recipes')
 .then(response => response.json())
 .then(data => data)
-.catch(err => console.log(err))
 
 apiCalls = [userData, ingData, recData]
 
@@ -28,7 +26,7 @@ function saveFavorites(myRecipe, myUser) {
     })
     .then(res => res.json())
     .then(data => console.log(data))
-    .catch(err => console.log(err))
+    .catch(err => alert(`Server Error: ${err}. Please try again later.`))
 }
 
 export { apiCalls, saveFavorites }
