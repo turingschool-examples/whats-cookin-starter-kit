@@ -170,20 +170,6 @@ button:hover {
   color: red;
 }
 
-/* .saveRecipeButton::before {
-  align-items: center;
-  color: #ffffff;
-  content: "\2764";
-  font-size: 30px;
-} */
-
-/* .savedRecipe::before {
-  align-items: center;
-  color: red;
-  content: "\2764";
-  font-size: 30px;
-} */
-
 .foodTitle {
   color: #5f4a48;
   font-size: 1.3vw;

@@ -10,7 +10,6 @@ const main = document.querySelector('main');
 const footer = document.querySelector('footer');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-// let preventHorizontalScroll = 0;
 let user, mainRepository;
 
 Promise.all(apiCalls)
@@ -23,7 +22,6 @@ Promise.all(apiCalls)
     user.recipesToCook = userRecipeRepo
     mainRepository = new RecipeRepository(recipeData, ingredientsData);
     displayCards(mainRepository);
-    
 });
 
 
@@ -37,21 +35,12 @@ main.addEventListener('keydown', event => {
     };
 });
 
-// main.addEventListener('wheel', event => {
-//     if (preventHorizontalScroll === 0) {
-//         if (event.deltaY < 0) {
-//             main.scrollLeft -= 50;
-//         } else {
-//             main.scrollLeft += 50;
-//         };
-//     };
-// });
-
 navBar.addEventListener('click', toggleView);
 
 searchBar.addEventListener('keydown', event => {
     if (event.code === "Enter") {
         searchRecipes(searchBar.value);
+        uncheckOtherFilters();
     } else {
         resetWarning();
     };
@@ -78,9 +67,9 @@ function checkPage() {
 function handleCardEvents(event) {
     if (event.target.dataset.side) {
         event.target.dataset.side === 'front' ? flipCard(event.target.dataset.index) : flipCard(event.target.dataset.index);
-    } else if (event.target.classList.contains('cardButton')) {
+    } else if (event.target.classList.contains('saveBtn')) {
         toggleRecipeSaved(event.target);
-    }
+    };
 };
 
 function toggleView(event) {
@@ -97,20 +86,18 @@ function flipCard(elementIndex) {
     const isFrontCardVisible = !frontCard.classList.contains("hidden");
 
     if (isFrontCardVisible) {
-        // preventHorizontalScroll -= 1;
         show(backCard);
         hide(frontCard);
     } else {
-        // preventHorizontalScroll += 1;
         show(frontCard);
         hide(backCard);
-    }
-}
+    };
+};
 
-function displayHomePage(tag) {
+function displayHomePage() {
     cardSection.dataset.page = "home";
     displayCards(mainRepository);
-    uncheckOtherFilters(tag);
+    uncheckOtherFilters();
 };
 
 function displaySavedFoodPage() {
@@ -135,8 +122,8 @@ function displayCards(recipeList) {
         });
         cardSection.innerHTML += `
         <section class="card cardFront" id="cf${recipe.id}" tabindex="0" data-side="front" data-index="${recipe.id}">
-          <button aria-label="Save Recipe Button" class="saveRecipeButton cardButton" id="save-btn-${index}" data-index="${recipe.id}">
-            <i class="fa-solid fa-heart cardButton" data-index="${recipe.id}"></i>
+          <button aria-label="Save Recipe Button" class="saveRecipeButton saveBtn cardButton" id="save-btn-${index}" data-index="${recipe.id}">
+            <i class="fa-solid fa-heart cardButton saveBtn" data-index="${recipe.id}"></i>
           </button>
           <button aria-label="Write Notes Button" class="notesButton" id="notes-btn-${index}" data-index="${recipe.id}">
             <i class="fa-solid fa-comment"></i>
@@ -161,10 +148,28 @@ function displayCards(recipeList) {
     toggleNotesButtons();
 };
 
+function toggleSavedButton(element) {
+    if (element.children[0]) {
+        if (element.classList.contains('savedRecipe') || element.children[0].classList.contains('savedRecipe')) {
+            element.classList.remove('savedRecipe');
+            element.children[0].classList.remove('savedRecipe');
+        } else {
+            element.classList.add('savedRecipe');
+        };
+    } else if (!element.children[0]) {
+        if (element.classList.contains('savedRecipe') || element.parentNode.classList.contains('savedRecipe')) {
+            element.classList.remove('savedRecipe');
+            element.parentNode.classList.remove('savedRecipe');
+        } else {
+            element.classList.add('savedRecipe');
+        };
+    };
+};
 
 
 function toggleRecipeSaved(element) {
-    element.classList.toggle('savedRecipe');
+    toggleSavedButton(element);
+
     const recipe = user.recipesToCook.recipes.find(recipe => recipe.id === parseInt(element.dataset.index));
   
     if (!recipe) {
@@ -174,7 +179,6 @@ function toggleRecipeSaved(element) {
     } else {
       user.removeSaved(recipe.id);
     };
-    checkPage() ? displayCards(mainRepository) : displayCards(user.recipesToCook);
 };
 
 function toggleNotesButtons() {
