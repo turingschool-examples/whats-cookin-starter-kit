@@ -130,6 +130,40 @@ button:hover {
   overflow-y: scroll;
 }
 
+.notes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  width: 20vw;
+  border-radius: 15px;
+  height: 60vh;
+  background-color: #f1f1f1;
+  z-index: 1;
+  gap: 1rem;
+}
+
+.notesInput {
+  width: 75%;
+  border-radius: 5px;
+}
+
+.closeNotes {
+  border: 0;
+  height: 50px;
+  width: 50px;
+  background: transparent;
+  font-size: 2.1rem;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
 .card > img {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -168,6 +202,13 @@ button:hover {
   left: 10px;
   font-size: 1.6rem;
   text-shadow: 1px 1px 4px black;
+}
+
+.submit {
+  background: #5f4a48;
+  border: 0;
+  border-radius: 10px;
+  color: white;
 }
 
 .savedRecipe,
