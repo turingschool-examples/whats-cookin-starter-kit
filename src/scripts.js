@@ -56,6 +56,8 @@ function loadPage(recipeRepository, user, ingredientsData) {
     let currentView = 'landing'
     let filterTerm = ''
 
+    createLocalStorage()
+
     renderPage()
 
     topButton.addEventListener('click', () => document.documentElement.scrollTop = 0)
@@ -142,6 +144,9 @@ function loadPage(recipeRepository, user, ingredientsData) {
     }
  
     function renderCurrentRecipe() {
+
+        updateClickCount()
+
         if (!currentRecipe) {
             return
         }
@@ -366,5 +371,16 @@ function loadPage(recipeRepository, user, ingredientsData) {
     function checkLogin(username, password) {
         if(username === "admin" && password === "password"){ return true }
         else{ return false} 
+    }
+
+    function createLocalStorage() {
+        var clickRepo = recipeRepository.recipes.map(recipe => {
+            return { [recipe.name]: recipe.clicks }
+        })
+        localStorage.setItem('clicks', JSON.stringify(clickRepo))
+    }
+
+    function updateClickCount() {
+        localStorage.setItem(JSON.stringify(recipeRepository.recipes), 1);
     }
 }
