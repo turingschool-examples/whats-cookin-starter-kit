@@ -208,6 +208,14 @@ button:active {
   height: 100%;
 }
 
+.login-button {   
+  background-color: var(--background-color);   
+  width: 5%;    
+   margin: 10px 0px;   
+   border: none;   
+   cursor: pointer;   
+}   
+
 #admin-items-container {
   flex-wrap: wrap;
   width: 90%;

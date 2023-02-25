@@ -52,6 +52,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
     const recipeContainer = document.querySelector('#recipe-container')
 
     let currentRecipe 
+    var loggedIn = false
     let currentView = 'landing'
     let filterTerm = ''
 
@@ -252,15 +253,38 @@ function loadPage(recipeRepository, user, ingredientsData) {
 
     function displayPantry(user, ingredientsData) {
         adminSection.innerHTML = ''
-        adminSection.innerHTML += `<div class="admin">
+        if(!loggedIn){
+        adminSection.innerHTML = `
+        <label>Username : </label>   
+            <input class="user" type="text" placeholder="Enter Username" name="username" required>  
+            <label>Password : </label>   
+            <input class="password" type="password" placeholder="Enter Password" name="password" required>  
+        <button class="login-button" type="submit">Login</button>
+        `
+        var login = document.querySelector('.login-button')
+        login.addEventListener('click', () => {
+            var username = document.querySelector('.user').value
+            var password = document.querySelector('.password').value
+            if(checkLogin(username, password)) {loggedIn = true}
+            else{loggedIn = false}
+            displayPantry()
+        }) 
+        }
+
+        if(loggedIn) {
+        adminSection.innerHTML += `
+        <div class="admin">
           <h2 class="admin-title">
-          ✨ Hi ${user.name} ✨
-        <h1 class="admin-subtitle"> Welcome to the Admin Center </h1>
+          ✨ Hi Admin ✨
+            <h1 class="admin-subtitle"> Welcome to the Admin Center </h1>
         </div>
         <div id='pantry-items-container' class ='scroll-admin-section'>
-        <ol class='admin-list'>
+            <ol class='admin-list'>
         </ol>
-        </div>`
+        </div>
+        `
+        }
+            
         const pantryItems = document.querySelector('.admin-list')
         let currentIngredient
         // user.pantry.forEach((element) => {
@@ -343,5 +367,11 @@ function loadPage(recipeRepository, user, ingredientsData) {
             let fakePopularRecipes = [recipeRepository.recipes[num1], recipeRepository.recipes[num2], recipeRepository.recipes[num3]]
             displayRecipes(fakePopularRecipes)
         }
+    }
+
+    function checkLogin(username, password) {
+        console.log(username, password)
+        if(username === "admin" && password === "password"){ return true }
+        else{ return false} 
     }
 }
