@@ -50,16 +50,16 @@ function loadPage(recipeRepository, user, ingredientsData) {
     const recipeModal = document.querySelector('#modal')
     const recipesHeader = document.querySelector('#recipes-header')
     const recipeContainer = document.querySelector('#recipe-container')
+    // const clear = document.querySelector('.clear-button')
 
+    var clickRepo
     let currentRecipe 
     var loggedIn = false
     let currentView = 'landing'
     let filterTerm = ''
 
-    createLocalStorage()
-
     renderPage()
-
+    // clear.addEventListener('click', genClickRepo)
     topButton.addEventListener('click', () => document.documentElement.scrollTop = 0)
     allRecipesButton.addEventListener('click', () => {
         currentView = 'recipes'
@@ -94,6 +94,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
     compDishButton.addEventListener('click', () => {
         currentView = "recipes"
         filterTerm = ['antipasti', 'hor d\'oeuvre', 'starter', 'salad', 'side dish', 'appetizer', 'condiment', 'spread']
+        genClickRepo()
         renderPage()
     })
 
@@ -104,13 +105,13 @@ function loadPage(recipeRepository, user, ingredientsData) {
             searchBar.value = ''
             
         }
-        if (currentView === 'pantry' || 'landing') {
+        if (currentView === 'admin' || 'landing') {
             currentView = 'recipes'
         }
     })
 
     adminCenter.addEventListener('click', () => {
-        currentView = 'pantry'
+        currentView = 'admin'
         filterTerm = ''
         renderPage()
     })
@@ -141,11 +142,15 @@ function loadPage(recipeRepository, user, ingredientsData) {
         currentRecipeId = parseInt(currentRecipeId)
         currentRecipe = recipeRepository.recipes.find(recipe => recipe.id === currentRecipeId)
         currentRecipe = new Recipe(currentRecipe)
+        updateRecipeCount()
+        updateClickCount()
     }
+
+    function updateRecipeCount() {
+        currentRecipe.clicks += 1;
+      }
  
     function renderCurrentRecipe() {
-
-        updateClickCount()
 
         if (!currentRecipe) {
             return
@@ -257,9 +262,8 @@ function loadPage(recipeRepository, user, ingredientsData) {
     }
 
     function displayPantry(user, ingredientsData) {
-        adminSection.innerHTML = ''
         if(!loggedIn){
-        adminSection.innerHTML = `
+        adminSection.innerHTML += `
         <label>Username : </label>   
             <input class="user" type="text" placeholder="Enter Username" name="username" required>  
             <label>Password : </label>   
@@ -337,7 +341,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
     }
 
     function renderPage() {
-        if (currentView === 'pantry') {
+        if (currentView === 'admin') {
             recipeSection.classList.add('hidden')
             adminSection.classList.remove('hidden')
             displayPantry(user, ingredientsData)
@@ -373,15 +377,26 @@ function loadPage(recipeRepository, user, ingredientsData) {
         else{ return false} 
     }
 
-    function createLocalStorage() {
-        var clickRepo = recipeRepository.recipes.map(recipe => {
-            return { [recipe.name]: recipe.clicks }
+    function updateClickCount() {
+        clickRepo = localStorage.getItem('clicks')
+        var par = JSON.parse(clickRepo)
+        par.forEach(recipe => {
+            console.log(recipe)
+            if(recipe.name[0] === currentRecipe.name){recipe.clicks += 1}
         })
-        
-        localStorage.setItem('clicks', JSON.stringify(clickRepo))
+        console.log(par)
+
+        localStorage.clear()
+        localStorage.setItem('clicks', JSON.stringify(par))
     }
 
-    function updateClickCount() {
-        localStorage.setItem(JSON.stringify(recipeRepository.recipes), 1);
+    function genClickRepo() {
+        console.log("f")
+        localStorage.clear()
+        clickRepo = recipeRepository.recipes.map(recipe => {
+            return { name: [recipe.name], clicks: 0 }
+        })
+        console.log(clickRepo)
+        localStorage.setItem('clicks', JSON.stringify(clickRepo))
     }
 }
