@@ -256,7 +256,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         }
     }
 
-    function displayPantry(user, ingredientsData) {
+    function displayAdmin() {
         adminSection.innerHTML = ''
         if(!loggedIn){
         adminSection.innerHTML = `
@@ -272,7 +272,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
             var password = document.querySelector('.password').value
             if(checkLogin(username, password)) {loggedIn = true}
             else{loggedIn = false}
-            displayPantry()
+            displayAdmin()
         }) 
         }
 
@@ -319,7 +319,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
                     `
             <section class='recipe' data-all-recipes='${recipe.id}'>
             <h3 id='${recipe.id}' class='small-recipe-text'>${recipe.name}</h3>
-            <img src="${recipe.image}" alt="image of ${recipe.name}" class="recipe-img">
+            <img src="${recipe.image}" alt="${recipe.name}" class="recipe-img">
             </section>
             `
             })
@@ -340,7 +340,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         if (currentView === 'admin') {
             recipeSection.classList.add('hidden')
             adminSection.classList.remove('hidden')
-            displayPantry(user, ingredientsData)
+            displayAdmin(user, ingredientsData)
         } else if (currentView === 'recipes') {
             searchBar.placeholder = "search all recipes..."
             if (!filterTerm) {
