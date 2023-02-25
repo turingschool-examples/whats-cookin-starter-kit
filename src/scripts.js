@@ -9,6 +9,8 @@ const navBar = document.querySelector('nav');
 const main = document.querySelector('main');
 const footer = document.querySelector('footer');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const homeButton = document.querySelector('#home-button');
+const myFoodButton = document.querySelector('#my-food-button');
 
 let user, mainRepository;
 
@@ -22,6 +24,7 @@ Promise.all(apiCalls)
     user.recipesToCook = userRecipeRepo
     mainRepository = new RecipeRepository(recipeData, ingredientsData);
     displayCards(mainRepository);
+    buttonIndicateCurrentPage();
 });
 
 
@@ -98,12 +101,14 @@ function displayHomePage() {
     cardSection.dataset.page = "home";
     displayCards(mainRepository);
     uncheckOtherFilters();
+    buttonIndicateCurrentPage();
 };
 
 function displaySavedFoodPage() {
     cardSection.dataset.page = "saved";
     displayCards(user.recipesToCook);
     uncheckOtherFilters();
+    buttonIndicateCurrentPage();
 };
 
 function displayCards(recipeList) {
@@ -237,6 +242,20 @@ function uncheckOtherFilters(tag) {
         };
     });
 };
+
+function buttonIndicateCurrentPage() {
+    if(checkPage()) {
+        homeButton.style.backgroundColor = '#548c2f';
+        homeButton.style.color = 'white';
+        myFoodButton.style.backgroundColor = 'white';
+        myFoodButton.style.color = '#5f4a48';
+    } else {
+        homeButton.style.backgroundColor = 'white';
+        homeButton.style.color = '#5f4a48';
+        myFoodButton.style.backgroundColor = '#548c2f';
+        myFoodButton.style.color = 'white';
+    }
+}
 
 function setFocus(event) {
     document.getElementById(event.target.id).focus();
