@@ -75,11 +75,14 @@ function handleCardEvents(event) {
         event.target.dataset.side === 'front' ? flipCard(event.target.dataset.index) : flipCard(event.target.dataset.index);
     } else if (event.target.classList.contains('saveBtn')) {
         toggleRecipeSaved(event.target);
-    } else if (event.target.classList.contains('notesButton')){
+    } else if (event.target.classList.contains('noteButtonGrab')) {
         const notesSection = document.getElementById(`notes${event.target.dataset.index}`)
         show(notesSection)
-    } else if (event.target.classList.contains('submit')){
+    } else if (event.target.classList.contains('submit')) {
         addNote(event.target.dataset.index)
+    } else if (event.target.classList.contains('closeNotes')) {
+        const notesSection = document.getElementById(`notes${event.target.dataset.index}`)
+        hide(notesSection);
     }
 };
 
@@ -138,8 +141,8 @@ function displayCards(recipeList) {
           <button aria-label="Save Recipe Button" class="saveRecipeButton saveBtn cardButton" id="save-btn-${index}" data-index="${recipe.id}">
             <i class="fa-solid fa-heart cardButton saveBtn" data-index="${recipe.id}"></i>
           </button>
-          <button aria-label="Write Notes Button" class="notesButton" id="notes-btn-${index}" data-index="${recipe.id}">
-            <i class="fa-solid fa-comment"></i>
+          <button aria-label="Write Notes Button" class="notesButton noteButtonGrab" id="notes-btn-${index}" data-index="${recipe.id}">
+            <i class="fa-solid fa-comment noteButtonGrab" data-index="${recipe.id}"></i>
           </button>
           <img class="foodImage" src="${recipe.image}" alt="Picture of ${recipe.name}" data-side="front" data-index="${recipe.id}">
             <h2 class="foodTitle" data-side="front" data-index="${recipe.id}">${recipe.name}</h2>
@@ -154,15 +157,17 @@ function displayCards(recipeList) {
             ${ingredients.join("")}
           </ul>
           ${instructions.join("")}
-          </section>
-          <section class="recipe-notes hidden" id="notes${recipe.id}">
-            <div class="notes">
-            <p>${recipe.name} Notes</p>
-            <input type="text" id="note-input${recipe.id}"></input>
-            <button class="submit" data-index="${recipe.id}">submit</button>
+        </section>
+        <section class="recipe-notes hidden" id="notes${recipe.id}">
+          <div class="notes">
+            <button class="closeNotes fa-regular fa-circle-xmark" data-index="${recipe.id}"></button>
+            <p class="foodTitle">${recipe.name} Notes</p>
+            <input type="text" class="notesInput" id="note-input${recipe.id}"></input>
+            <label class="visuallyHidden" for="note-input${recipe.id}">Notes input</label>
+            <button class="submit" data-index="${recipe.id}">Submit</button>
             <p class="notes-list" id="note-content${recipe.id}">notes</p>
-            </div>
-          </section>
+          </div>
+        </section>
         `
     });
     fixSavedHearts();
