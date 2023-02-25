@@ -6,8 +6,13 @@ class Recipe {
     this.instructions = recipe.instructions;
     this.name = recipe.name;
     this.tags = recipe.tags;
-    this.ingredientsList = []
+    this.ingredientsList = [];
     this.totalCost;
+    this.clicks = 0;
+  }
+
+  updateRecipeCount() {
+    this.clicks += 1;
   }
 
   getIngredientIds() {
@@ -17,7 +22,7 @@ class Recipe {
 
   determineRecipeIngredients(ingredientsData) {
     this.ingredientsList = ingredientsData.reduce((acc, ingredient) => {
-     this.ingredients.forEach((item) => {
+      this.ingredients.forEach((item) => {
         if (item.id === ingredient.id) {
           let name = ingredient.name;
           let list = {
@@ -34,31 +39,35 @@ class Recipe {
   }
 
   calculateRecipeCost(ingredientsData) {
-    var prices = []
+    var prices = [];
 
-    ingredientsData.forEach(ingredient => {
-        this.ingredients.forEach((item) => {
-            if(item.id === ingredient.id ) {
-                let cost = (item.quantity.amount * ingredient.estimatedCostInCents)/ 100
-                prices.push(cost)
-            }
-        })
-    })
-    
-    const totalPrice = prices.reduce((sum,cost) => {
-        return sum += cost
-    }, 0)
-        return totalPrice.toFixed(2)
+    ingredientsData.forEach((ingredient) => {
+      this.ingredients.forEach((item) => {
+        if (item.id === ingredient.id) {
+          let cost =
+            (item.quantity.amount * ingredient.estimatedCostInCents) / 100;
+          prices.push(cost);
+        }
+      });
+    });
+
+    const totalPrice = prices.reduce((sum, cost) => {
+      return (sum += cost);
+    }, 0);
+    return totalPrice.toFixed(2);
   }
 
   returnInstructions() {
-    const retrieveInstr = this.instructions.reduce((acc, currentInstructions) => {
-        const instructions = `${currentInstructions.number}: ${currentInstructions.instruction}`
-        acc.push(instructions)
-        return acc
-    },[])
-    return retrieveInstr
-    }
+    const retrieveInstr = this.instructions.reduce(
+      (acc, currentInstructions) => {
+        const instructions = `${currentInstructions.number}: ${currentInstructions.instruction}`;
+        acc.push(instructions);
+        return acc;
+      },
+      []
+    );
+    return retrieveInstr;
+  }
 }
 export default Recipe;
 

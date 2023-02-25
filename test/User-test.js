@@ -31,9 +31,6 @@ describe('User', () => {
     });
 
     it('should be able to add recipe to recipes to cook', () => {
-
-        console.log(sampleRecipeData[0])
-        // user.recipesToCook = user.changeIdToRecipe(sampleRecipeData);
         user.addToSavedRecipes(sampleRecipeData[0]);
         expect(user.recipesToCook.recipes).to.have.lengthOf(1);
     });
