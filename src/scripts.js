@@ -50,7 +50,6 @@ function loadPage(recipeRepository, user, ingredientsData) {
     const recipeModal = document.querySelector('#modal')
     const recipesHeader = document.querySelector('#recipes-header')
     const recipeContainer = document.querySelector('#recipe-container')
-    // const clear = document.querySelector('.clear-button')
 
     var clickRepo
     let currentRecipe 
@@ -59,7 +58,9 @@ function loadPage(recipeRepository, user, ingredientsData) {
     let filterTerm = ''
 
     renderPage()
-    // clear.addEventListener('click', genClickRepo)
+
+    if(localStorage.length < 1){genClickRepo()}
+
     topButton.addEventListener('click', () => document.documentElement.scrollTop = 0)
     allRecipesButton.addEventListener('click', () => {
         currentView = 'recipes'
@@ -94,7 +95,6 @@ function loadPage(recipeRepository, user, ingredientsData) {
     compDishButton.addEventListener('click', () => {
         currentView = "recipes"
         filterTerm = ['antipasti', 'hor d\'oeuvre', 'starter', 'salad', 'side dish', 'appetizer', 'condiment', 'spread']
-        genClickRepo()
         renderPage()
     })
 
@@ -264,7 +264,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
     function displayAdmin() {
         adminSection.innerHTML = ''
         if(!loggedIn){
-        adminSection.innerHTML = 
+        adminSection.innerHTML += 
         `
         <label>Username : </label>   
             <input class="user" type="text" placeholder="Enter Username" name="username" required>  
@@ -272,6 +272,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
             <input class="password" type="password" placeholder="Enter Password" name="password" required>  
         <button class="login-button" type="submit">Login</button>
         `
+
         var login = document.querySelector('.login-button')
         login.addEventListener('click', () => {
             var username = document.querySelector('.user').value
@@ -285,6 +286,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         if(loggedIn) {
         adminSection.innerHTML += 
         `
+        <button id="clear-button">Clear Clicks</button>
         <div class="admin">
           <h2 class="admin-title">Hi Admin</h2>
           <h3 class="admin-subtitle"> Welcome to the Admin Center </h3>
@@ -293,6 +295,9 @@ function loadPage(recipeRepository, user, ingredientsData) {
             <ol class='admin-list'></ol>
         </div>
         `
+        const clearButton = document.querySelector('#clear-button')
+        clearButton.addEventListener('click', genClickRepo)
+
         }
             
         const recipeStats = document.querySelector('.admin-list')
@@ -381,22 +386,18 @@ function loadPage(recipeRepository, user, ingredientsData) {
         clickRepo = localStorage.getItem('clicks')
         var par = JSON.parse(clickRepo)
         par.forEach(recipe => {
-            console.log(recipe)
             if(recipe.name[0] === currentRecipe.name){recipe.clicks += 1}
         })
-        console.log(par)
 
         localStorage.clear()
         localStorage.setItem('clicks', JSON.stringify(par))
     }
 
     function genClickRepo() {
-        console.log("f")
-        localStorage.clear()
         clickRepo = recipeRepository.recipes.map(recipe => {
             return { name: [recipe.name], clicks: 0 }
         })
-        console.log(clickRepo)
+        
         localStorage.setItem('clicks', JSON.stringify(clickRepo))
     }
 }
