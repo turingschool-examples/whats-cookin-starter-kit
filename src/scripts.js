@@ -29,7 +29,7 @@ Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
     (allCookingData) => {
             let recipeRepository = new RecipeRepository(allCookingData.recipes)
             let user = new User(allCookingData.users[10])
-            user.savedRecipes = user.changeIdToRecipe(recipeRepository)
+            user.recipesToCook = user.changeIdToRecipe(recipeRepository);
             loadPage(recipeRepository, user, allCookingData.ingredients)
         }
     )
@@ -152,7 +152,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
             return '<li>' + ingredient.ingredient + '</li>'
         }).join('')
 
-        if ( user.savedRecipes && user.savedRecipes.recipes.filter(current => current.id === currentRecipe.id).length !== 0) {
+        if ( user.recipesToCook && user.recipesToCook.recipes.filter(current => current.id === currentRecipe.id).length !== 0) {
             isSaved = "Saved"
         } else {
             isSaved = "♥️"
@@ -196,8 +196,12 @@ function loadPage(recipeRepository, user, ingredientsData) {
         MicroModal.show('modal-1')
         const saveButton = document.querySelector('.modal__btn')
         const closeButton = document.querySelector('#close')
-        if (user.savedRecipes.recipes.find(current => current.id === currentRecipe.id)) {
-            saveButton.style.backgroundColor = "red"
+        if (
+          user.recipesToCook.recipes.find(
+            (current) => current.id === currentRecipe.id
+          )
+        ) {
+          saveButton.style.backgroundColor = "red";
         }
         saveButton.addEventListener('click', () => saveRecipe(saveButton))
         closeButton.addEventListener('click', () => currentRecipe = '')
@@ -329,7 +333,9 @@ function loadPage(recipeRepository, user, ingredientsData) {
             recipesHeader.innerText = 'Saved Recipes'
             pantrySection.classList.add('hidden')
             recipeSection.classList.remove('hidden')
-            displayRecipes(getCurrentDisplayedRecipes(user.savedRecipes, filterTerm))
+            displayRecipes(
+              getCurrentDisplayedRecipes(user.recipesToCook, filterTerm)
+            );
         } else if (currentView === 'landing') {
             const num1 = Math.floor(Math.random() * recipeRepository.recipes.length)
             const num2 = Math.floor(Math.random() * recipeRepository.recipes.length)
