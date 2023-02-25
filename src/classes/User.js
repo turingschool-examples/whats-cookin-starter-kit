@@ -9,10 +9,10 @@ class User {
     }
 
     addToSavedRecipes(recipeToAdd) {
-        this.savedRecipes.addRecipe(recipeToAdd)
+        this.recipesToCook.addRecipe(recipeToAdd)
     }
     changeIdToRecipe(recipes) {
-        if(this.recipesToCook.length) {
+        if(this.recipesToCook && this.recipesToCook.length) {
             let matchingRecipe = []
             this.recipesToCook.forEach(id => {
                 recipes.recipes.forEach(element => {
@@ -28,7 +28,7 @@ class User {
     } 
 
     removeFromSavedRecipes(recipeToRemove) {
-      this.savedRecipes.removeRecipe(recipeToRemove.id) 
+      this.recipesToCook.removeRecipe(recipeToRemove.id) 
     }
 }
 
