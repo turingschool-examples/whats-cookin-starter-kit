@@ -56,6 +56,8 @@ function loadPage(recipeRepository, user, ingredientsData) {
     var loggedIn = false
     let currentView = 'landing'
     let filterTerm = ''
+    var username
+    var password
 
     renderPage()
 
