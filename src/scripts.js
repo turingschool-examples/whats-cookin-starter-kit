@@ -377,6 +377,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         var clickRepo = recipeRepository.recipes.map(recipe => {
             return { [recipe.name]: recipe.clicks }
         })
+        
         localStorage.setItem('clicks', JSON.stringify(clickRepo))
     }
 
