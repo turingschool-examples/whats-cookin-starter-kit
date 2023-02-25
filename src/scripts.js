@@ -275,8 +275,8 @@ function loadPage(recipeRepository, user, ingredientsData) {
 
         var login = document.querySelector('.login-button')
         login.addEventListener('click', () => {
-            var username = document.querySelector('.user').value
-            var password = document.querySelector('.password').value
+            username = document.querySelector('.user').value
+            password = document.querySelector('.password').value
             if(checkLogin(username, password)) {loggedIn = true}
             else{loggedIn = false}
             displayAdmin()
@@ -292,15 +292,22 @@ function loadPage(recipeRepository, user, ingredientsData) {
           <h3 class="admin-subtitle"> Welcome to the Admin Center </h3>
         </div>
         <div class ='scroll-admin-section'>
-            <ol class='admin-list'></ol>
+            <ul class='admin-list'></ul>
         </div>
         `
+        var adminList = document.querySelector('.admin-list')
+
+        var clicks = localStorage.getItem('clicks')
+        var click = JSON.parse(clicks)
+        console.log(click)
+        click.forEach(clickCount=> {
+            adminList.innerHTML += `<li>${clickCount.name} has ${clickCount.clicks} click(s)</li>`
+        })
+
         const clearButton = document.querySelector('#clear-button')
         clearButton.addEventListener('click', genClickRepo)
 
         }
-            
-        const recipeStats = document.querySelector('.admin-list')
     }
 
     function displayRecipes(recipes) {
