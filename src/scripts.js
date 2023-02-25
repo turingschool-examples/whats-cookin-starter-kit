@@ -259,7 +259,8 @@ function loadPage(recipeRepository, user, ingredientsData) {
     function displayAdmin() {
         adminSection.innerHTML = ''
         if(!loggedIn){
-        adminSection.innerHTML = `
+        adminSection.innerHTML = 
+        `
         <label>Username : </label>   
             <input class="user" type="text" placeholder="Enter Username" name="username" required>  
             <label>Password : </label>   
@@ -277,21 +278,19 @@ function loadPage(recipeRepository, user, ingredientsData) {
         }
 
         if(loggedIn) {
-        adminSection.innerHTML += `
+        adminSection.innerHTML += 
+        `
         <div class="admin">
-          <h2 class="admin-title">
-          ✨ Hi Admin ✨
-            <h1 class="admin-subtitle"> Welcome to the Admin Center </h1>
+          <h2 class="admin-title">Hi Admin</h2>
+          <h3 class="admin-subtitle"> Welcome to the Admin Center </h3>
         </div>
-        <div id='pantry-items-container' class ='scroll-admin-section'>
-            <ol class='admin-list'>
-        </ol>
+        <div class ='scroll-admin-section'>
+            <ol class='admin-list'></ol>
         </div>
         `
         }
             
-        const pantryItems = document.querySelector('.admin-list')
-        let currentIngredient
+        const recipeStats = document.querySelector('.admin-list')
     }
 
     function displayRecipes(recipes) {
@@ -305,7 +304,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
             recipesHeader.innerText = 'Popular Recipes'
             recipes.forEach(recipe => {
                 recipeContainer.innerHTML +=
-                    `
+            `
             <section class='popular-recipe' data-all-recipes='${recipe.id}'>
             <h3 id='${recipe.id}' class='small-recipe-text'>${recipe.name}</h3>
             <img src="${recipe.image}" alt="${recipe.name}" class="recipe-img">
@@ -316,7 +315,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
             recipeContainer.innerHTML = ''
             recipes.forEach(recipe => {
                 recipeContainer.innerHTML +=
-                    `
+            `
             <section class='recipe' data-all-recipes='${recipe.id}'>
             <h3 id='${recipe.id}' class='small-recipe-text'>${recipe.name}</h3>
             <img src="${recipe.image}" alt="${recipe.name}" class="recipe-img">
