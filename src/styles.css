@@ -196,7 +196,7 @@ button:active {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2)
 }
 
-.pantry-section {
+.admin-section {
   margin-top: 30px;
   margin-bottom: 30px;
   text-align: center;
@@ -208,12 +208,12 @@ button:active {
   height: 100%;
 }
 
-#pantry-items-container {
+#admin-items-container {
   flex-wrap: wrap;
   width: 90%;
 }
 
-.pantry {
+.admin {
   overflow: hidden;
   position: relative;
   text-align: center;
@@ -223,7 +223,7 @@ button:active {
   background: var(--highlight-color);
   color: #444;
   border-radius: 5px;
-}
+} 
 
 .scroll-element {
   width: inherit;
@@ -244,11 +244,11 @@ button:active {
   }
 }
 
-.pantry__title {
+.admin-title {
   justify-content: center;
 }
 
-.pantry-list {
+.admin-list {
   overflow: hidden;
   position: relative;
   text-align: center;
@@ -264,14 +264,14 @@ button:active {
   flex-direction: row;
 }
 
-.pantry-list>li {
+.admin-list>li {
   margin: 3px;
   border: rgba(238, 229, 229, 0.6) solid 1px;
   border-radius: 2px;
   padding: 6px;
 }
 
-.pantry_subtitle {
+.admin-subtitle {
   justify-content: center;
   margin-top: 2vh;
 }
