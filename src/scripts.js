@@ -102,13 +102,13 @@ function loadPage(recipeRepository, user, ingredientsData) {
             searchBar.value = ''
             
         }
-        if (currentView === 'pantry' || 'landing') {
+        if (currentView === 'admin' || 'landing') {
             currentView = 'recipes'
         }
     })
 
     adminCenter.addEventListener('click', () => {
-        currentView = 'pantry'
+        currentView = 'admin'
         filterTerm = ''
         renderPage()
     })
@@ -332,7 +332,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
     }
 
     function renderPage() {
-        if (currentView === 'pantry') {
+        if (currentView === 'admin') {
             recipeSection.classList.add('hidden')
             adminSection.classList.remove('hidden')
             displayPantry(user, ingredientsData)
