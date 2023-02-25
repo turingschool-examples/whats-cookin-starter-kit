@@ -40,6 +40,7 @@ navBar.addEventListener('click', toggleView);
 searchBar.addEventListener('keydown', event => {
     if (event.code === "Enter") {
         searchRecipes(searchBar.value);
+        uncheckOtherFilters();
     } else {
         resetWarning();
     };
@@ -93,10 +94,10 @@ function flipCard(elementIndex) {
     };
 };
 
-function displayHomePage(tag) {
+function displayHomePage() {
     cardSection.dataset.page = "home";
     displayCards(mainRepository);
-    uncheckOtherFilters(tag);
+    uncheckOtherFilters();
 };
 
 function displaySavedFoodPage() {
@@ -178,7 +179,6 @@ function toggleRecipeSaved(element) {
     } else {
       user.removeSaved(recipe.id);
     };
-    // fixSavedHearts();
 };
 
 function toggleNotesButtons() {
