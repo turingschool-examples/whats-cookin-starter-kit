@@ -68,6 +68,8 @@ describe("Recipe", () => {
     it("should increment clicks by one", () => {
         recipe.updateRecipeCount()
         expect(recipe.clicks).to.equal(1)
+        recipe.updateRecipeCount();
+        expect(recipe.clicks).to.equal(2);
     })
 })
 
