@@ -36,7 +36,7 @@ Promise.all([usersDataFetch, ingredientsDataFetch, recipesDataFetch])
 
 function loadPage(recipeRepository, user, ingredientsData) {
     const recipeSection = document.querySelector('#recipe-section')
-    const pantrySection = document.querySelector(".pantry-section")
+    const adminSection = document.querySelector(".admin-section")
     const savedRecipes = document.querySelector("#saved-recipes")
     const topButton = document.querySelector("#top-button")
     const allRecipesButton = document.querySelector("#recipe-button")
@@ -46,12 +46,13 @@ function loadPage(recipeRepository, user, ingredientsData) {
     const compDishButton = document.querySelector("#complimentary-dish-filter")
     const searchBar = document.querySelector("#search-bar")
     const searchGo = document.querySelector("#search-button")
-    const pantryButton = document.querySelector("#your-pantry")
+    const adminCenter = document.querySelector("#admin-center")
     const recipeModal = document.querySelector('#modal')
     const recipesHeader = document.querySelector('#recipes-header')
     const recipeContainer = document.querySelector('#recipe-container')
 
     let currentRecipe 
+    var loggedIn = false
     let currentView = 'landing'
     let filterTerm = ''
 
@@ -106,7 +107,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
         }
     })
 
-    pantryButton.addEventListener('click', () => {
+    adminCenter.addEventListener('click', () => {
         currentView = 'pantry'
         filterTerm = ''
         renderPage()
@@ -251,24 +252,41 @@ function loadPage(recipeRepository, user, ingredientsData) {
     }
 
     function displayPantry(user, ingredientsData) {
-        pantrySection.innerHTML = ''
-        pantrySection.innerHTML += `<div class="pantry">
-          <h2 class="pantry__title">
-          ✨ Hi ${user.name} ✨
-        <h1 class="pantry_subtitle"> You have these items in your pantry: </h1>
+        adminSection.innerHTML = ''
+        if(!loggedIn){
+        adminSection.innerHTML = `
+        <label>Username : </label>   
+            <input class="user" type="text" placeholder="Enter Username" name="username" required>  
+            <label>Password : </label>   
+            <input class="password" type="password" placeholder="Enter Password" name="password" required>  
+        <button class="login-button" type="submit">Login</button>
+        `
+        var login = document.querySelector('.login-button')
+        login.addEventListener('click', () => {
+            var username = document.querySelector('.user').value
+            var password = document.querySelector('.password').value
+            if(checkLogin(username, password)) {loggedIn = true}
+            else{loggedIn = false}
+            displayPantry()
+        }) 
+        }
+
+        if(loggedIn) {
+        adminSection.innerHTML += `
+        <div class="admin">
+          <h2 class="admin-title">
+          ✨ Hi Admin ✨
+            <h1 class="admin-subtitle"> Welcome to the Admin Center </h1>
         </div>
-        <div id='pantry-items-container' class ='scroll-pantry-section'>
-        <ol class='pantry-list'>
+        <div id='pantry-items-container' class ='scroll-admin-section'>
+            <ol class='admin-list'>
         </ol>
-        </div>`
-        const pantryItems = document.querySelector('.pantry-list')
+        </div>
+        `
+        }
+            
+        const pantryItems = document.querySelector('.admin-list')
         let currentIngredient
-        user.pantry.forEach((element) => {
-            currentIngredient = ingredientsData.findIndex(x => x.id === element.ingredient)
-            pantryItems.innerHTML += ` 
-                     <li>${ingredientsData[currentIngredient].name}</li>
-            `
-        })
     }
 
     function displayRecipes(recipes) {
@@ -316,7 +334,7 @@ function loadPage(recipeRepository, user, ingredientsData) {
     function renderPage() {
         if (currentView === 'pantry') {
             recipeSection.classList.add('hidden')
-            pantrySection.classList.remove('hidden')
+            adminSection.classList.remove('hidden')
             displayPantry(user, ingredientsData)
         } else if (currentView === 'recipes') {
             searchBar.placeholder = "search all recipes..."
@@ -325,13 +343,13 @@ function loadPage(recipeRepository, user, ingredientsData) {
             } else {
                 recipesHeader.innerText = ''
             }
-            pantrySection.classList.add('hidden')
+            adminSection.classList.add('hidden')
             recipeSection.classList.remove('hidden')
             displayRecipes(getCurrentDisplayedRecipes(recipeRepository, filterTerm))
         } else if (currentView === 'savedRecipes') {
             searchBar.placeholder = 'search saved recipes...'
             recipesHeader.innerText = 'Saved Recipes'
-            pantrySection.classList.add('hidden')
+            adminSection.classList.add('hidden')
             recipeSection.classList.remove('hidden')
             displayRecipes(
               getCurrentDisplayedRecipes(user.recipesToCook, filterTerm)
@@ -343,5 +361,10 @@ function loadPage(recipeRepository, user, ingredientsData) {
             let fakePopularRecipes = [recipeRepository.recipes[num1], recipeRepository.recipes[num2], recipeRepository.recipes[num3]]
             displayRecipes(fakePopularRecipes)
         }
+    }
+
+    function checkLogin(username, password) {
+        if(username === "admin" && password === "password"){ return true }
+        else{ return false} 
     }
 }
