@@ -14,9 +14,9 @@ let user, mainRepository;
 
 Promise.all(apiCalls)
 .then(function(values) {
-    const usersData = values[0];
-    const ingredientsData = values[1];
-    const recipeData = values[2];
+    const usersData = values[0].users;
+    const ingredientsData = values[1].ingredients;
+    const recipeData = values[2].recipes;
     user = new User(usersData[0]);
     const userRecipeRepo = new RecipeRepository(usersData[0].recipesToCook, ingredientsData)
     user.recipesToCook = userRecipeRepo
