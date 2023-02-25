@@ -287,12 +287,6 @@ function loadPage(recipeRepository, user, ingredientsData) {
             
         const pantryItems = document.querySelector('.admin-list')
         let currentIngredient
-        // user.pantry.forEach((element) => {
-        //     currentIngredient = ingredientsData.findIndex(x => x.id === element.ingredient)
-        //     pantryItems.innerHTML += ` 
-        //              <li>${ingredientsData[currentIngredient].name}</li>
-        //     `
-        // })
     }
 
     function displayRecipes(recipes) {
@@ -370,7 +364,6 @@ function loadPage(recipeRepository, user, ingredientsData) {
     }
 
     function checkLogin(username, password) {
-        console.log(username, password)
         if(username === "admin" && password === "password"){ return true }
         else{ return false} 
     }
