@@ -11,6 +11,7 @@ const footer = document.querySelector('footer');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 const homeButton = document.querySelector('#home-button');
 const myFoodButton = document.querySelector('#my-food-button');
+const notesButton = document.querySelector('.notes-button')
 
 let user, mainRepository;
 
@@ -72,7 +73,7 @@ function handleCardEvents(event) {
         event.target.dataset.side === 'front' ? flipCard(event.target.dataset.index) : flipCard(event.target.dataset.index);
     } else if (event.target.classList.contains('saveBtn')) {
         toggleRecipeSaved(event.target);
-    };
+    } else if(event.target.classList.contains(''))
 };
 
 function toggleView(event) {
@@ -146,6 +147,12 @@ function displayCards(recipeList) {
             ${ingredients.join("")}
           </ul>
           ${instructions.join("")}
+          <section class="recipe-notes hidden">
+          <div class="notes">
+          <input type="text"></input>
+          <button type="submit">submit</button>
+          </div>
+          </section>
         </section>
         `
     });

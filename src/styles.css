@@ -130,6 +130,14 @@ button:hover {
   overflow-y: scroll;
 }
 
+.notes {
+  position: absolute;
+  width: 20vw;
+  border-radius: 15px;
+  height: 100%;
+  background-color: #f1f1f1;
+}
+
 .card > img {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
