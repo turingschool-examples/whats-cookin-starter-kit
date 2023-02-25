@@ -11,7 +11,7 @@ const footer = document.querySelector('footer');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 const homeButton = document.querySelector('#home-button');
 const myFoodButton = document.querySelector('#my-food-button');
-const notesButton = document.querySelector('.notes-button')
+
 
 let user, mainRepository;
 
@@ -50,6 +50,8 @@ searchBar.addEventListener('keydown', event => {
     };
 });
 
+
+
 footer.addEventListener('click', event => {
     if (event.target.type === "checkbox") {
         event.target.checked ? filterRecipes(event.target.dataset.tag) : resetFilters();
@@ -73,7 +75,12 @@ function handleCardEvents(event) {
         event.target.dataset.side === 'front' ? flipCard(event.target.dataset.index) : flipCard(event.target.dataset.index);
     } else if (event.target.classList.contains('saveBtn')) {
         toggleRecipeSaved(event.target);
-    } else if(event.target.classList.contains(''))
+    } else if (event.target.classList.contains('notesButton')){
+        const notesSection = document.getElementById(`notes${event.target.dataset.index}`)
+        show(notesSection)
+    } else if (event.target.classList.contains('submit')){
+        addNote(event.target.dataset.index)
+    }
 };
 
 function toggleView(event) {
@@ -147,18 +154,27 @@ function displayCards(recipeList) {
             ${ingredients.join("")}
           </ul>
           ${instructions.join("")}
-          <section class="recipe-notes hidden">
-          <div class="notes">
-          <input type="text"></input>
-          <button type="submit">submit</button>
-          </div>
           </section>
-        </section>
+          <section class="recipe-notes hidden" id="notes${recipe.id}">
+            <div class="notes">
+            <p>${recipe.name} Notes</p>
+            <input type="text" id="note-input${recipe.id}"></input>
+            <button class="submit" data-index="${recipe.id}">submit</button>
+            <p class="notes-list" id="note-content${recipe.id}">notes</p>
+            </div>
+          </section>
         `
     });
     fixSavedHearts();
     toggleNotesButtons();
 };
+
+function addNote(id) {
+    const noteInput = document.getElementById(`note-input${id}`).value
+    let noteContent = document.getElementById(`note-content${id}`)
+    noteContent.innerText = noteInput
+}
+
 
 function toggleSavedButton(element) {
     if (element.children[0]) {
