@@ -25,10 +25,6 @@ body {
 .recipe-section,
 .search-container,
 .recipe,
-.pantry-section,
-.pantry__title,
-.pantry-list,
-.pantry_subtitle,
 .modal__overlay,
 .modal__title,
 .modal__header,
@@ -228,7 +224,6 @@ button:active {
   margin-top: 30px;
   padding: .4em .4em .4em .8em;
   margin: .5em 0 .5em 2.5em;
-  background: var(--highlight-color);
   color: #444;
   border-radius: 5px;
 } 
@@ -254,6 +249,7 @@ button:active {
 
 .admin-title {
   justify-content: center;
+  color: var(--highlight-color)
 }
 
 .admin-list {
@@ -262,7 +258,6 @@ button:active {
   text-align: center;
   padding: .4em .4em .4em .8em;
   margin: .5em 0 .5em 2.5em;
-  background-color: var(--highlight-color);
   border: rgba(238, 229, 229, 0.6) solid 1px;
   flex-wrap: wrap;
   border-radius: 3px;
@@ -282,6 +277,7 @@ button:active {
 .admin-subtitle {
   justify-content: center;
   margin-top: 2vh;
+  color: var(--highlight-color)
 }
 
 .recipe-img {
