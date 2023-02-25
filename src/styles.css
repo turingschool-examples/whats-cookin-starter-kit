@@ -153,6 +153,11 @@ button:hover {
   box-shadow: 0px 5px 15px rgb(0 0 0);
 }
 
+.notesButton {
+  background: #CACFD6;
+  color: white;
+}
+
 .saveRecipeButton {
   right: 10px;
   text-shadow: 1px 1px 2px black;
@@ -169,20 +174,6 @@ button:hover {
 .savedRecipe:hover {
   color: red;
 }
-
-/* .saveRecipeButton::before {
-  align-items: center;
-  color: #ffffff;
-  content: "\2764";
-  font-size: 30px;
-} */
-
-/* .savedRecipe::before {
-  align-items: center;
-  color: red;
-  content: "\2764";
-  font-size: 30px;
-} */
 
 .foodTitle {
   color: #5f4a48;
