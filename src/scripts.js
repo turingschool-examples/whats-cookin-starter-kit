@@ -279,9 +279,18 @@ function loadPage(recipeRepository, user, ingredientsData) {
         login.addEventListener('click', () => {
             username = document.querySelector('.user').value
             password = document.querySelector('.password').value
-            if(checkLogin(username, password)) {loggedIn = true}
-            else{loggedIn = false}
-            displayAdmin()
+            console.log(username)
+            if(checkLogin(username, password)) {
+                loggedIn = true 
+                displayAdmin()
+            }
+            else{
+                loggedIn = false
+                adminSection.innerHTML += `<h1>Incorrect Username or Password</h1>`
+                setTimeout(() => {
+                    displayAdmin()
+                  }, "1500")
+            }
         }) 
         }
 
