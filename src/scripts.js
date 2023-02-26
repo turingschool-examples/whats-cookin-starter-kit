@@ -408,5 +408,6 @@ function loadPage(recipeRepository, user, ingredientsData) {
         })
         
         localStorage.setItem('clicks', JSON.stringify(clickRepo))
+        displayAdmin()
     }
 }
