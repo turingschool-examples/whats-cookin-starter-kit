@@ -552,3 +552,16 @@ button:active {
   border-radius: 10px;
   height: fit-content;
 }
+
+#clear-button {
+  font-size: 18px;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  background-color: var(--background-color);
+  color: rgb(41, 7, 73);
+  padding: 15px;
+  border-radius: 10px;
+  height: fit-content;
+}
