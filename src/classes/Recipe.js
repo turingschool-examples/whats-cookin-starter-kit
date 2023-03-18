@@ -41,7 +41,7 @@ class Recipe {
                 if (element.id === curr.id) {
                     amount = element.amount;
                 }
-            })
+            });
             acc += ((curr.cost) * (amount));
             return acc;
         }, 0);
