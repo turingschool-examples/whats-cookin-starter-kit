@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { getIngredientsNames } from '../src/get-ingredient-names'
+import { getIngredientsNames } from '../src/get-ingredients-names'
 import { sampleIngredientsData, sampleRecipeData } from './sampleIngredients';
 
 describe('getIngredientsNames', () => {
