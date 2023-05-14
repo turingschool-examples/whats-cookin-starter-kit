@@ -1733,3 +1733,9 @@ const userTestData = [
     ]
   }
 ];
+
+module.exports = {
+  ingredientTestData,
+  recipeTestData,
+  userTestData,
+}
