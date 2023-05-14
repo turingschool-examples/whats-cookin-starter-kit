@@ -24,12 +24,12 @@
         </div>
           <div class="right-nav-flexbox">
             <div class="icon-flexbox">
-              <img src="./images/restaurant.png" class="icon" alt="saved recipes icon" class="myRecipes">
+              <img src="./images/restaurant.png" class="icon" alt="saved recipes icon" id="myRecipes">
               <label for="my recipes">My Recipes</label>
             </div>
             <div class="icon-flexbox">
-              <img class="icon" src="./images/home.png" alt="icon to view dashboard">
-              <label for="my dashboard" id="dashboardNav">My Dashboard</label>
+              <img id="dashboardNav" class="icon" src="./images/home.png" alt="icon to view dashboard">
+              <label for="my dashboard" >My Dashboard</label>
             </div>
           </div>
         </div>
@@ -39,24 +39,59 @@
       <h1>What's <span id="cookinText">Cookin'?</span></h1>
     </header>
     <main>
-      <h1 id="discoverHeader"><i>DISCOVER RECIPES</i></h1>
-      <div class="card-container">
-        <article class="recipe-card">
-          <img class="recipe-img" src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=772&q=80">
-          <h2 class="recipe-name">Triple Berry Breakfast Smoothie</h2>
-        </article>
-        <article class="recipe-card">
-          <img class="recipe-img" src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80">
-          <h2 class="recipe-name">Cookies</h2>
-        </article>
-        <article class="recipe-card">
-          <img class="recipe-img" src="https://images.unsplash.com/photo-1621273581871-6a5178a0cdf2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=689&q=80">
-          <h2 class="recipe-name">Apple Fritters</h2>
-        </article>
-        <article class="recipe-card">
-          <img class="recipe-img" src="https://images.unsplash.com/photo-1564671165093-20688ff1fffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1396&q=80">
-          <h2 class="recipe-name">Homemade Shrimp and Coconut Curry</h2>
-        </article>
+      <div id="mainView">
+        <h1 id="discoverHeader"><i>DISCOVER RECIPES</i></h1>
+        <div class="card-container">
+          <article class="recipe-card">
+            <img class="recipe-img"
+              src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=772&q=80">
+            <p class="recipe-tag">tag</p>
+            <div class="recipe-title-flex">
+              <h2 class="recipe-name">Triple Berry Breakfast Smoothie
+              </h2>
+              <div class="bookmark-flex">
+                <img src="./images/bookmark.png" class="bookmark-icon">
+              </div>
+            </div>
+          </article>
+          <article class="recipe-card">
+            <img class="recipe-img"
+              src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80">
+            <p class="recipe-tag">tag</p>
+            <div class="recipe-title-flex">
+              <h2 class="recipe-name">Double Choco Cookies
+              </h2>
+              <div class="bookmark-flex">
+                <img src="./images/bookmark.png" class="bookmark-icon">
+              </div>
+            </div>
+          </article>
+          <article class="recipe-card">
+            <img class="recipe-img"
+              src="https://images.unsplash.com/photo-1621273581871-6a5178a0cdf2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=689&q=80">
+            <p class="recipe-tag">tag</p>
+            <div class="recipe-title-flex">
+              <h2 class="recipe-name">Apple Fritters</h2>
+              <div class="bookmark-flex">
+                <img src="./images/bookmark.png" class="bookmark-icon">
+              </div>
+            </div>
+          </article>
+          <article class="recipe-card">
+            <img class="recipe-img"
+              src="https://images.unsplash.com/photo-1564671165093-20688ff1fffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1396&q=80">
+            <p class="recipe-tag">tag</p>
+            <div class="recipe-title-flex">
+              <h2 class="recipe-name">Homemade Coconut Shrimp Curry</h2>
+              <div class="bookmark-flex">
+                <img src="./images/bookmark.png" class="bookmark-icon">
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div id="myRecipeView" class="hidden">
+        <h1 id="myRecipesHeader"><i>MY SAVED RECIPES</i></h1>
       </div>
     </main>
       <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->

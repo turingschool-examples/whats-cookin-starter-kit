@@ -4,8 +4,15 @@ desert sand: #E6B89C
 wheat: #EAD2AC
 cadet grey: #9CAFB7
 cerulean: #4281A4 */
+
+/* Argentinian blue #5AA9E6
+Light Sky blue#7FC8F8
+Seasalt #F9F9F9
+Naples yellow #FFE45E
+Cyclamen #FF6392 */
+
 body {
-  background-color: white;
+  background-color: #F9F9F9;
   margin: 0;
   font-family: 'Sen', sans-serif;
 }
@@ -30,7 +37,7 @@ nav {
 }
 
 #navColorBar {
-  background-color: #4281A4;
+  background-color: #5AA9E6;
   height: 30px;
 }
 
@@ -58,13 +65,18 @@ nav {
   text-align: center;
 }
 
+#searchInput:focus {
+  outline: none;
+}
+
+
 #searchSelect {
   padding: 10px;
   border-radius: 20px;
 }
 
 #searchIconBackground {
-  background-color: #FE938C;
+  background-color: #FFE45E;
   border-radius: 50%;
   padding: 6px;
 }
@@ -90,10 +102,9 @@ nav {
 }
 
 /* HEADER */
-
 header {
   margin: 15px 25px;
-  background-color: #4281A4;
+  background-color: #5AA9E6;
   padding: 1px;
   box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
 }
@@ -111,9 +122,8 @@ h1 {
 }
 
 /* MAIN VIEW */
-
-#discoverHeader {
-  background-color:  #E6B89C;
+#discoverHeader, #myRecipesHeader {
+  background-color:  #FFE45E;
   color: black;
   width: 250px;
   font-size: 1.5rem;
@@ -148,11 +158,37 @@ h1 {
   height: 310px;
 }
 
+.recipe-title-flex {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 15px;
+}
+
 .recipe-name {
-  background-color:  #FE938C;
-  width: 75%;
+  width: 80%;
   text-align: center;
   font-size: 1.2rem;
-  margin-top: 5px;
-  padding: 10px
+  margin: 10px;
+  margin-right: 0;
+}
+
+.recipe-tag {
+  background-color: #FFE45E;
+  width: 100px;
+  margin: 0;
+  padding-left: 10px;
+}
+
+.bookmark-flex {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+}
+
+.bookmark-icon {
+  height: 25px;
+}
+
+.hidden {
+  display: none;
 }
