@@ -12,13 +12,13 @@
  * mv/rename files in git: git mv old-file-name new-file-name
  */
 
-const getIngredientNames = (recipe, ingredientsData) => {
-  const ingredientIDs = recipe.ingredients.map(ele => {return ele.id});
-  const ingredientNames = ingredientIDs.map(id => {
+const getIngredientsNames = (recipe, ingredientsData) => {
+  const ingredientsIDs = recipe.ingredients.map(ele => {return ele.id});
+  const ingredientsNames = ingredientsIDs.map(id => {
     const ingredient = ingredientsData.find(ingredient => { return ingredient.id === id;});
     return ingredient.name;
   });
-  return ingredientNames;
+  return ingredientsNames;
 };
 
-export { getIngredientNames };
+export { getIngredientsNames };
