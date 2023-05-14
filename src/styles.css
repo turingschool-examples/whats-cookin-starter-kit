@@ -1,5 +1,6 @@
 *{
   border: 2px solid red;
+  font-size: 25px;
 }
 
 
@@ -25,17 +26,23 @@ main {
 }
 
 .catagory {
- padding: 2em
+ padding: 2em;
+}
+
+.video {
+  width: 50vw;
 }
 
 /* footer section */
 
 footer {
   display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .footer_pic {
-  padding: 2em
+  padding: 1em
 }
 
 .hidden {
