@@ -2,11 +2,62 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Leckerli+One&family=Sen:wght@700&display=swap" rel="stylesheet">
     <title>Whats Cookin</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <div id="navColorBar"></div>
+    <nav>
+      <div class="nav-flexbox">
+        <div class="search-flexbox">
+            <select name="searchSelect" id="searchSelect">
+              <option value="select">Search By: </option>
+              <option value="tag">Tag</option>
+              <option value="name">Name</option>
+            </select>
+            <input type="text" id="searchInput" placeholder="Search for Recipes">
+            <img class="icon" src="./images/search.png" alt="icon to search">
+        </div>
+          <div class="right-nav-flexbox">
+            <div class="icon-flexbox">
+              <img src="./images/restaurant.png" class="icon" alt="saved recipes icon" class="myRecipes">
+              <label for="my recipes">My Recipes</label>
+            </div>
+            <div class="icon-flexbox">
+              <img class="icon" src="./images/home.png" alt="icon to view dashboard">
+              <label for="my dashboard" id="dashboardNav">My Dashboard</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <header>
+      <h1>What's <span id="cookinText">Cookin'?</span></h1>
+    </header>
+    <main>
+      <h1 id="discoverHeader"><i>Discover Recipes</i></h1>
+      <div class="card-container">
+        <article class="recipe-card">
+          <img class="recipe-img" src="https://images.unsplash.com/photo-1564671165093-20688ff1fffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1396&q=80">
+          <h2 class="recipe-name">Pumpkin Cheesecake Breakfast Smoothie</h2>
+        </article>
+        <article class="recipe-card">
+          <img class="recipe-img" src="https://images.unsplash.com/photo-1564671165093-20688ff1fffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1396&q=80">
+          <h2 class="recipe-name">Cookies</h2>
+        </article>
+        <article class="recipe-card">
+          <img class="recipe-img" src="https://images.unsplash.com/photo-1564671165093-20688ff1fffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1396&q=80">
+          <h2 class="recipe-name">Apple Fritters</h2>
+        </article>
+        <article class="recipe-card">
+          <img class="recipe-img" src="https://images.unsplash.com/photo-1564671165093-20688ff1fffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1396&q=80">
+          <h2 class="recipe-name">Healthy Beet Farmer's Market Pie</h2>
+        </article>
+      </div>
+    </main>
+      <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+      <script src="bundle.js"></script>
   </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
 </html>

@@ -1,3 +1,148 @@
+/* COLORS */
+/* coral pink: #FE938C
+desert sand: #E6B89C
+wheat: #EAD2AC
+cadet grey: #9CAFB7
+cerulean: #4281A4 */
 body {
-  background-color: blueviolet;
+  background-color: white;
+  margin: 0;
+  font-family: 'Sen', sans-serif;
+}
+
+/* NAVIGATION BAR */
+nav {
+  background-color: #ffffff;
+  height: 60px;
+  /* box-shadow: 0 5px rgba(196, 196, 196, 0.5); */
+  box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  /* border: 1px solid red; */
+}
+
+.nav-flexbox {
+  display: flex;
+  /* border: 1px solid green; */
+  min-width: 100%;
+  justify-content: space-between;
+}
+
+#navColorBar {
+  background-color: #4281A4;
+  height: 30px;
+}
+
+.icon {
+  height: 30px;
+  padding: 8px;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+
+.search-flexbox {
+  display: flex;
+  min-width: 400px;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid black; */
+}
+
+#searchInput {
+  min-width: 300px;
+  height: 40px;
+  border: none;
+  text-align: center;
+}
+
+#searchSelect {
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.right-nav-flexbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid black; */
+
+}
+
+.icon-flexbox {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 15px;
+  /* border: 1px solid red; */
+}
+
+/* HEADER */
+
+header {
+  margin: 15px 25px;
+  background-color: #4281A4;
+  padding: 1px;
+  box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
+}
+
+h1 {
+  color: white;
+  font-size: 2.5rem;
+  margin: 0 0 0 20px;
+}
+
+#cookinText {
+  text-shadow: 1px 1px 2px grey, 0 0 0.05em white;
+  font-family: 'Leckerli One', cursive;
+  font-size: 2.5rem;
+}
+
+/* MAIN VIEW */
+
+#discoverHeader {
+  background-color:  #E6B89C;
+  color: black;
+  width: 200px;
+  font-size: 1.5rem;
+  padding: 9px;
+  margin-left: 50px;
+  box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px;
+}
+
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+  margin: 10px;
+  height: 400px;
+  width: 250px;
+  box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
+}
+
+.recipe-card:hover {
+  cursor: pointer;
+}
+
+.recipe-img {
+  width: 250px;
+  height: 310px;
+}
+
+.recipe-name {
+  background-color:  #E6B89C;
+  width: 75%;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 5px;
+  padding: 10px
 }
