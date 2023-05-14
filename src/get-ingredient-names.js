@@ -1,22 +1,24 @@
-// take object recipe as an argument
-// return a string of ingredient name
+// take an object recipe as argument
+// return an array of strings (ingredients names)
 
 /**
  * new method learned:
- * .sort().join() to compare array values
+ * Array.sort().join() to compare array values
  * 
  * testing:
- * expect().to.have.all.members()
+ * to use chai to compare array with same values: expect().to.have.same.members()
  * 
  * git:
- * mv/rename files in git:
- * git mv old-file-name new-file-name
+ * mv/rename files in git: git mv old-file-name new-file-name
  */
 
-const getIngredientNames = (recipe) => {
-  let ingredientNames;
-  // return ingredientNames;
-  return 1;
+const getIngredientNames = (recipe, ingredientsData) => {
+  const ingredientIDs = recipe.ingredients.map(ele => {return ele.id});
+  const ingredientNames = ingredientIDs.map(id => {
+    const ingredient = ingredientsData.find(ingredient => { return ingredient.id === id;});
+    return ingredient.name;
+  });
+  return ingredientNames;
 };
 
 export { getIngredientNames };
