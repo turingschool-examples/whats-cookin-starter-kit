@@ -94,7 +94,7 @@ const sampleRecipeData = [
     tags: ['sauce', 'gravy', 'creamy'],
   },
   {
-    id: 623855,
+    id: 103,
     image: 'https://spoonacular.com/recipeImages/623855-556x370.jpg',
     ingredients: [
       {
@@ -223,7 +223,7 @@ const sampleRecipeData = [
     tags: ['side dish', 'dessert', 'cookie'],
   },
   {
-    id: 231951,
+    id: 104,
     image: 'https://spoonacular.com/recipeImages/231951-556x370.jpg',
     ingredients: [
       {
@@ -296,7 +296,7 @@ const sampleRecipeData = [
     tags: ['side dish', 'dessert', 'pudding', 'snack'],
   },
   {
-    id: 880108,
+    id: 105,
     image: 'https://spoonacular.com/recipeImages/880108-556x370.jpg',
     ingredients: [
       {
@@ -381,7 +381,7 @@ const sampleRecipeData = [
     tags: ['side dish', 'snack'],
   },
   {
-    id: 602311,
+    id: 107,
     image: 'https://spoonacular.com/recipeImages/602311-556x370.jpg',
     ingredients: [
       {
@@ -463,25 +463,11 @@ const sampleRecipeData = [
     tags: ['antipasti', 'starter', 'snack', 'appetizer', 'antipasto', "hor d'oeuvre"],
   },
   {
-    id: 670408,
+    id: 109,
     image: 'https://spoonacular.com/recipeImages/670408-556x370.jpg',
     ingredients: [
       {
-        id: 93828,
-        quantity: {
-          amount: 0.5,
-          unit: 'cup',
-        },
-      },
-      {
-        id: 11266,
-        quantity: {
-          amount: 16,
-          unit: 'ounces',
-        },
-      },
-      {
-        id: 1017,
+        id: 3,
         quantity: {
           amount: 4,
           unit: 'ounces',
