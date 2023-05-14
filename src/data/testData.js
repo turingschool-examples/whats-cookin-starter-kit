@@ -1734,8 +1734,8 @@ const userTestData = [
   }
 ];
 
-module.exports = {
+export {
   ingredientTestData,
   recipeTestData,
-  userTestData,
+  userTestData
 }
