@@ -5,33 +5,43 @@
     <title>Whats Cookin</title>
   </head>
   <body>
-    <section class="header">
-      <img class="header_icon" src="src/images/turing-logo.png">
-      <h1>Home Made Recipes</h1>
-      <button class="user_button">New User</button>
-    </section>
-    <main class="main">
-      <section class="catagory_section catagory">
-        <div class="catagory_header_label catagory">Choose a food catagory!</div>
-        <div class="catagory_health_food catagory">Health food</div>
-        <div class="catagory_meats catagory">Meats</div>
-        <div class="catagory_deserts catagory">Deserts</div>
-        <div class="catagory_pasta catagory">Pasta</div>
+    <home-page class="home_page hidden">
+      <section class="home_page_header">
+        <img class="header_icon" src="src/images/turing-logo.png">
+        <h1>Home Made Recipes</h1>
+        <button class="user_button">New User</button>
       </section>
-      <section class="video">
-        Video placeholder
+      <main class="main">
+        <section class="catagory_section catagory">
+          <div class="catagory_header_label catagory">Choose a food catagory!</div>
+          <div class="catagory_health_food catagory">Health food</div>
+          <div class="catagory_meats catagory">Meats</div>
+          <div class="catagory_deserts catagory">Deserts</div>
+          <div class="catagory_pasta catagory">Pasta</div>
+        </section>
+        <section class="video">
+          Video placeholder
+        </section>
+      </main>
+      <footer class="footer">
+        <div class="footer_pic" id="1">pic1 with disc</div>
+        <div class="footer_pic" id="2">pic2 with disc</div>
+        <div class="footer_pic" id="3">pic3 with disc</div>
+        <div class="footer_pic" id="4">pic4 with disc</div>
+        <div class="footer_pic" id="5">pic5 with disc</div>
+        <div class="footer_pic" id="6">pic6 with disc</div>
+        <div class="footer_pic" id="7">pic7 with disc</div>
+        <div class="footer_pic" id="8">pic8 with disc</div>
+      </footer>
+    </home-page>
+    <recipe-page class="recipe-page">
+      <section class="recipe-header">
+        <img class="header_icon" src="src/images/turing-logo.png">
+          <h1 class="recipe_title">Cookies!</h1>
+        <button class="save_button">Save Recipe</button>
       </section>
-    </main>
-    <footer class="footer">
-      <div class="footer_pic" id="1">pic1 with disc</div>
-      <div class="footer_pic" id="2">pic2 with disc</div>
-      <div class="footer_pic" id="3">pic3 with disc</div>
-      <div class="footer_pic" id="4">pic4 with disc</div>
-      <div class="footer_pic" id="5">pic5 with disc</div>
-      <div class="footer_pic" id="6">pic6 with disc</div>
-      <div class="footer_pic" id="7">pic7 with disc</div>
-      <div class="footer_pic" id="8">pic8 with disc</div>
-    </footer>
+
+    </recipe-page>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
