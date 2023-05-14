@@ -1,3 +1,43 @@
+*{
+  border: 2px solid red;
+}
+
+
+
 body {
-  background-color: blueviolet;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: lightgrey;
+  height: 100vh;
+}
+/* header section */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* main section */
+main {
+  display: flex;
+  justify-content: space-around;
+}
+
+.catagory {
+ padding: 2em
+}
+
+/* footer section */
+
+footer {
+  display: flex;
+}
+
+.footer_pic {
+  padding: 2em
+}
+
+.hidden {
+  display: none;
 }
