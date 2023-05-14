@@ -1,10 +1,10 @@
 import { expect } from 'chai';
-import { getIngredientNames } from '../src/get-ingredient-name'
+import { getIngredientNames } from '../src/get-ingredient-names'
 import { sampleIngredientsData, sampleRecipeData } from './sampleIngredients';
 
 describe('getIngredientNames', () => {
   it('should be a fuction', () => {
-    expect(getIngredientName).to.be.a('function');
+    expect(getIngredientNames).to.be.a('function');
   });
 
   it('should Determine the names of ingredients needed for a given recipe', () => {
