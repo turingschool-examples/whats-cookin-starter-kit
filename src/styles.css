@@ -10,27 +10,36 @@ body {
   background-color: lightgrey;
   height: 100vh;
 }
+
 /*  home page header section */
-.home_page_header {
+
+.home__header {
   display: flex;
   justify-content: space-between;
 }
 
-.header_icon{
+.home__icon{
   height: 3em;
 }
 
-/* main section */
-main {
+.home__ubutton {
+  background-color: rgb(133, 38, 38);
+  color: white;
+  border-radius: 1em;
+  height: 1.5em;
+}
+
+/* categories section */
+.categories {
   display: flex;
   justify-content: space-around;
 }
 
-.catagory_section {
+.categories__container {
   margin-top: 4em;
 }
 
-.catagory {
+.categories--category {
  padding: 2em;
  margin: 1em;
  background-color: rgba(23, 89, 181, 0.632);
@@ -38,7 +47,7 @@ main {
  color: white
 }
 
-.video {
+.categories__video {
   padding-top: 10vh;
   height: 50vh; 
   width: 50vw;
@@ -52,56 +61,70 @@ footer {
   flex-wrap: wrap;
 }
 
-.footer_pic {
+.footer__pic {
   padding: 1em
 }
 
 /* recipe section */
 
-.recipe_header,
- .icon_and_home_button,
- .recipe_main {
+.recipe__header,
+ .recipe__header2,
+ .recipe__main {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.icon_and_home_button, .instructions, .instruction {
+.recipe__hbutton, .recipe__instructions, .recipe__instruction, .recipe__ingredients {
   display: flex;
 }
 
-.home_button, .save_button, .user_button {
+.recipe__hbutton, .recipe__sbutton {
   background-color: rgb(133, 38, 38);
   color: white;
   border-radius: 1em;
 }
 
-.recipe_left, .instructions, .recipe_img {
+.recipe__turing{
+  height: 3em;
+}
+
+.recipe__left, .recipe__instructions, .recipe__img {
   width: 50vh;
 }
 
-.instructions, .instruction {
+.recipe__instructions, .recipe__instruction, .recipe__ingredients {
 align-items: center;
 flex-direction: column;
 }
 
 /* user section */
 
-.user_header, .saved_recipes, .saved_recipe{
+.user__header, .user__recipes, .user__recipe, .user__hbutton, .user__header2{
   display: flex;
-  padding: 1em;
+  align-items: center;
 }
 
-.user_icon, .saved_recipe_img {
-  height: 5em
+.user__turing, .user__img, .user__icon {
+  height: 4em
 }
 
-.saved_recipes {
+.user__hbutton {
+  background-color: rgb(133, 38, 38);
+  color: white;
+  border-radius: 1em;
+
+}
+
+.user__recipes {
   flex-direction: column;
   align-items: center;
 }
 
 /* hidden section */
 
-.hidden {
+.home--hidden, .recipe--hidden, .user--hidden {
   display: none;
 }
+
+
