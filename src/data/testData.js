@@ -63,8 +63,7 @@ const ingredientTestData = [
     "id": 2050,
     "name": "vanilla",
     "estimatedCostInCents": 926
-  },
-
+  }
 ];
 
 // --------------------------------------
