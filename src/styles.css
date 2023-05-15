@@ -12,11 +12,14 @@ body {
   background-color: lightgrey;
   height: 100vh;
 }
-/* header section */
-.header {
+/*  home page header section */
+.home_page_header {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+.header_icon{
+  height: 3em;
 }
 
 /* main section */
@@ -44,6 +47,29 @@ footer {
 .footer_pic {
   padding: 1em
 }
+
+/* recipe section */
+
+.recipe_header,
+ .icon_and_home_button,
+ .recipe_main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon_and_home_button {
+  display: flex;
+}
+
+.recipe_left, .instructions, .recipe_img {
+  width: 50vh;
+}
+
+
+
+
+
+/* hidden section */
 
 .hidden {
   display: none;

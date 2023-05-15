@@ -5,9 +5,9 @@
     <title>Whats Cookin</title>
   </head>
   <body>
-    <home-page class="home_page hidden">
+    <home_page class="home_page">
       <section class="home_page_header">
-        <img class="header_icon" src="src/images/turing-logo.png">
+        <img class="header_icon" src="/images/turing-logo.png">
         <h1>Home Made Recipes</h1>
         <button class="user_button">New User</button>
       </section>
@@ -33,15 +33,43 @@
         <div class="footer_pic" id="7">pic7 with disc</div>
         <div class="footer_pic" id="8">pic8 with disc</div>
       </footer>
-    </home-page>
-    <recipe-page class="recipe-page">
-      <section class="recipe-header">
-        <img class="header_icon" src="src/images/turing-logo.png">
-          <h1 class="recipe_title">Cookies!</h1>
+    </home_page>
+    <recipe_page class="recipe_page">
+      <section class="recipe_header">
+        <section class="icon_and_home_button">
+          <img class="header_icon" src="/images/turing-logo.png">
+          <button class="home_button">Home Page</button>
+        </section>
+        <h1 class="recipe_title">Chocolate Chip Cookies!</h1>
         <button class="save_button">Save Recipe</button>
       </section>
-
+      <recipe_home class="recipe_main">
+        <section class="recipe_left">
+          <img class="recipe_img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
+          <section class="ingredients">
+            <div class="ingredient1">ingredient1</div>
+            <div class="ingredient2">ingredient2</div>
+            <div class="ingredient3">ingredient3</div>
+            <div class="ingredient4">ingredient4</div>
+            <div class="ingredient5">ingredient5</div>
+            <div class="ingredient6">ingredient6...</div>
+          </section>
+          <section class="cost_of_ingredients">
+            Cost of ingredients: $12
+          </section>
+        </section>
+        <section class="instructions">Instructions:
+          <div class="instruction1">instruction 1:</div>
+          <div class="instruction2">instruction 2:</div>
+          <div class="instruction3">instruction 3:</div>
+          <div class="instruction4">instruction 4:</div>
+          <div class="instruction5">instruction 5:</div>
+          <div class="instruction6">instruction 6:...</div>
+        </section>
+      </recipe_home>
     </recipe-page>
+    <user_page>
+    </user_page>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
