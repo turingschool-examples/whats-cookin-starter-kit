@@ -78,6 +78,7 @@ main {
 .recipe-wrapper {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .recipe, .recipe-info {
