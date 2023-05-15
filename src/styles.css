@@ -1,3 +1,7 @@
+html, body {
+  min-height: 100vh;
+}
+
 body {
   font-family: 'Kalam', cursive;
   background-color: #F8EDEB;
@@ -7,25 +11,49 @@ h1 {
   font-family: 'Mogra', cursive;
 }
 
-.nav-pages {
-  display: flex;
-  
-}
-
 #user-search {
   display: flex;
   justify-content: flex-end;
 }
 
+#search-btn {
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: transparent;
+  background-image: url('images/search.png');
+  background-size: cover;
+}
+
+.nav-pages {
+  display: flex;
+  align-items: flex-end;
+}
+
+#home-icon {
+  width: 150px;
+  height: 150px;
+  border-radius: 30px;
+  background-color: #FFD7BA;
+  background-image: url('images/chef.png');
+  background-size: cover;
+}
+
 .nav-btn {
+  width: 100px;
+  height: 30px;
   border: none;
   color:#F8EDEB;
   background-color: #FEC5BB;
-  margin: 5px;
+  margin: 10px;
   border-radius: 5px;
 }
 
 .nav-btn:hover {
   cursor: pointer;
   transform: scale(1.1);
+}
+
+#home-icon:hover, #search-btn:hover {
+  cursor: pointer;
 }
