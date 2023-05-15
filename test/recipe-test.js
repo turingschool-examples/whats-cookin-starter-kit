@@ -10,19 +10,16 @@ describe('', () => {
   });
 
   describe('createRecipe', () => {
-    it.skip('should be a function', () => {
+    it('should be a function', () => {
       expect(createRecipe).to.be.a('function');
     });
-
-    it.skip('should have an id', () => {
+    it('should have an id', () => {
       expect(recipe.id).to.equal(595736);
     });
-
-    it.skip('should have an image', () => {
+    it('should have an image', () => {
       expect(recipe.image).to.equal('https://spoonacular.com/recipeImages/595736-556x370.jpg');
     });
-
-    it.skip('should have ingredients', () => {
+    it('should have ingredients', () => {
       expect(recipe.ingredients).to.deep.equal([
         {"id": 20081, "quantity": {"amount": 1.5, "unit": "c"}},
         {"id": 18372, "quantity": {"amount": 0.5, "unit": "tsp"}},
@@ -37,8 +34,7 @@ describe('', () => {
         {"id": 2050, "quantity": {"amount": 0.5, "unit": "tsp"}}
       ]);
     });
-
-    it.skip('should have instructions', () => {
+    it('should have instructions', () => {
       expect(recipe.instructions).to.deep.equal([
         {"instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.", "number": 1},
         {"instruction": "Add egg and vanilla and mix until combined.", "number": 2},
@@ -48,12 +44,10 @@ describe('', () => {
         {"instruction": "Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice cream and a drizzle of chocolate sauce.", "number": 6}
       ]);
     });
-
-    it.skip('should have a name', () => {
+    it('should have a name', () => {
       expect(recipe.name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups')
     });
-
-    it.skip('should have tags', () => {
+    it('should have tags', () => {
       expect(recipe.tags).to.deep.equal([
         "antipasti",
         "starter",
@@ -66,11 +60,11 @@ describe('', () => {
   });
 
   describe('calculateCost', () => {
-    it.skip('should be a function', () => {
+    it('should be a function', () => {
       expect(calculateCost).to.be.a('function');
     });
 
-    it.skip(`should calculate the cost of a given recipe's ingredients`, () => {
+    it(`should calculate the cost of a given recipe's ingredients`, () => {
       const totalCost = calculateCost(recipe);
       expect(totalCost).to.equal(177.76)
     });
