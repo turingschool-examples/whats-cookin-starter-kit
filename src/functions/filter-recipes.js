@@ -17,12 +17,20 @@ const filterByTag = (recipeData, tagInput) => {
   }
 }
 
-// filter by name function
-  // input: data and name
-  // output: any recipe that contains the name input. ex. chocolate should return chocolate cupcakes
-
-const filterByName = (recipeData, nameInput) => {
-
-}
+function filterByName(recipeData, name) {
+  var filteredRecipesByName = [];
+  var lowerCaseName = name.toLowerCase()
+  var lowerCaseRecipe;
+    for(var i = 0; i < recipeData.length; i++) {
+      lowerCaseRecipe = recipeData[i].name.toLowerCase()
+      if(lowerCaseRecipe.includes(lowerCaseName)) {
+        filteredRecipesByName.push(recipeData[i]);
+      };
+    };
+  if (!filteredRecipesByName.length) {
+    return 'No results';
+  } 
+  return filteredRecipesByName;
+};
 
 export { filterByTag, filterByName }
