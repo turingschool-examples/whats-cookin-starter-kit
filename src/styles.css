@@ -1,28 +1,57 @@
 body, html {
-  background-color: rgb(233, 226, 239);
+  background-color: #ebebeb;
   min-height: 100vh;
   margin: 0;
 }
 
+h1 {
+  font-family: Poppins;
+  font-size: 40px;
+  color: black;
+}
+
 nav {
   overflow: hidden;
-  background-color: #cbc5c5;
+  background-color: #aabda5;
+  height: 100px;
+  width: 1000px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-around
+}
+
+button {
+  font-family: Poppins;
+  font-size: 15px;
+  border-radius: 25px;
+  cursor: auto;
+  height: 45px;
+  width: 300px
+}
+
+input {
+  font-family: Poppins;
+  border-radius: 15px;
+  height: 45px;
+  width: 300px
 }
 
 header {
   display: flex;
+  align-items: center;
   flex-direction: column;
   text-align: center;
-  height: 25vh
+  height: 30vh
 }
-
 
 main {
   display: flex;
   text-align: center;
   align-items: center;
   justify-content: center;
-  height: 75vh
+  height: 70vh
 }
 
 .recipe {
