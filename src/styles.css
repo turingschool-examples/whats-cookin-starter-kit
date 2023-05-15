@@ -67,6 +67,14 @@ main {
   justify-content: center;
 }
 
+.recipe-info {
+  display: flex;
+  text-align:left;
+  flex-direction: column;
+  padding-left: 10px;
+
+}
+
 .recipe-wrapper {
   display: flex;
   flex-direction: column;
