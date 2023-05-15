@@ -1,0 +1,1 @@
+import { recipeIngredients } from '../src/functions/recipe-ingredients'
