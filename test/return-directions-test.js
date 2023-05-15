@@ -1,9 +1,14 @@
 import { expect } from 'chai';
-import { returnInstructions } from '../src/return-directions'
+import { returnDirections } from '../src/return-directions'
 import { sampleIngredientsData, sampleRecipeData } from './sampleIngredients';
 
-describe('getIngredientsNames', () => {
+describe('returnInstructions', () => {
   it('should be a fuction', () => {
-    expect(returnInstructions).to.be.a('function');
+    expect(returnDirections).to.be.a('function');
   });
 })
+  it('should return directions needed for a given recipe', () => {
+    const directions = returnDirections(sampleRecipeData[0], sampleIngredientsData)
+    expect(directions).to.deep.equal(sampleIngredientsData[0].instructions);
+  });
+
