@@ -1,6 +1,31 @@
-body {
+body, html {
   background-color: rgb(233, 226, 239);
-  flex: display;
+  min-height: 100vh;
+  margin: 0;
+}
+
+nav {
+  overflow: hidden;
+  background-color: #cbc5c5;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  height: 25vh
+}
+
+
+main {
+  display: flex;
+  text-align: center;
+  align-items: center;
   justify-content: center;
+  height: 75vh
+}
+
+.recipe {
+  width: 300px;
+  height: auto;
 }
