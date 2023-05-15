@@ -1,6 +1,4 @@
-import { ingredientTestData } from "./data/testData"
-import { recipieTestData } from "./data/testData"
-
+import {ingredientTestData, recipeTestData, userTestData} from '../src/data/testData.js';
 
 const filterByTag = (recipes,tag) => {
     const findRecipe = recipes.filter(recipe => {
@@ -10,7 +8,6 @@ const filterByTag = (recipes,tag) => {
    
    return findRecipe
 }
-
 
 const filterByName = (recipes,name) => {
     const findName = recipes.filter(recipe => {
@@ -27,10 +24,22 @@ const returnInstructions = recipe => {
 
 }
 
-
-///need to return 
+const determineIngredientNames = (recipesData, ingredientsData, recipeName) => {
+  let ingredientNames = [];
+  const recipeIds = recipesData.find(find => find.name === recipeName).ingredients
+  .map(ingr => ingr.id);  
+  ingredientsData.forEach((ingredient)=> {
+    if(recipeIds.includes(ingredient.id)) {
+      ingredientNames.push(ingredient.name)
+    }
+  })
+return ingredientNames
+}
 
 export {returnInstructions,
     filterByTag,
-    filterByName}
+    filterByName,
+    determineIngredientNames,
+}
     
+
