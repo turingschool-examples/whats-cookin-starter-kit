@@ -17,14 +17,21 @@ describe('filter recipes', () => {
 
   it.skip('Should filter recipes by name', () => {
     const filteredRecipes = filterByName(sampleRecipeData, 'Chocolate');
-    expect(filteredRecipes).to.equal(['Loaded Chocolate Chip Pudding Cookie Cups', 'Creamy Coconut Yogurt Bowl with Chocolate Granola (Video)'])
+    expect(filteredRecipes).to.deep.equal(['Loaded Chocolate Chip Pudding Cookie Cups', 'Creamy Coconut Yogurt Bowl with Chocolate Granola (Video)'])
   });
 
   it.skip('Should work with upper and lower case', () => {
     let filteredRecipes = filterByName(sampleRecipeData, 'chocolate');
-    expect(filteredRecipes).to.equal(['Loaded Chocolate Chip Pudding Cookie Cups', 'Creamy Coconut Yogurt Bowl with Chocolate Granola (Video)'])
+    let filteredRecipeNames = filteredRecipes.map(recipe => recipe.name);
+    expect(filteredRecipeNames).to.deep.equal(['Loaded Chocolate Chip Pudding Cookie Cups', 'Creamy Coconut Yogurt Bowl with Chocolate Granola (Video)'])
     
     filteredRecipes = filterByName(sampleRecipeData, 'CHOCOLATE');
-    expect(filteredRecipes).to.equal(['Loaded Chocolate Chip Pudding Cookie Cups', 'Creamy Coconut Yogurt Bowl with Chocolate Granola (Video)'])
+    filteredRecipeNames = filteredRecipes.map(recipe => recipe.name);
+    expect(filteredRecipes).to.deep.equal(['Loaded Chocolate Chip Pudding Cookie Cups', 'Creamy Coconut Yogurt Bowl with Chocolate Granola (Video)'])
   });
+
+  it.skip('should return an error message if name does not match', () => {
+    let filteredRecipes = filterByName(sampleRecipeData, 'platypus');
+    expect(filteredRecipes).to.equal('No results');
+  })
 });
