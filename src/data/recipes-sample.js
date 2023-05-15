@@ -1,4 +1,4 @@
-const recipeData1 = [
+const recipeData = [
   {
     "id": 595736,
     "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -327,8 +327,151 @@ const recipeData1 = [
       "sauce"
     ]
   },
+  {
+    "id": 779583,
+    "image": "https://spoonacular.com/recipeImages/779583-556x370.jpg",
+    "ingredients": [
+      {
+        "id": 19334,
+        "quantity": {
+          "amount": 1,
+          "unit": "tablespoon"
+        }
+      },
+      {
+        "id": 19334,
+        "quantity": {
+          "amount": 3,
+          "unit": "tablespoons"
+        }
+      },
+      {
+        "id": 4582,
+        "quantity": {
+          "amount": 1,
+          "unit": "tablespoon"
+        }
+      },
+      {
+        "id": 4582,
+        "quantity": {
+          "amount": 2,
+          "unit": "tablespoons"
+        }
+      },
+      {
+        "id": 1015062,
+        "quantity": {
+          "amount": 1,
+          "unit": "pound"
+        }
+      },
+      {
+        "id": 10011109,
+        "quantity": {
+          "amount": 4,
+          "unit": "cups"
+        }
+      },
+      {
+        "id": 10116098,
+        "quantity": {
+          "amount": 1,
+          "unit": "tablespoon"
+        }
+      },
+      {
+        "id": 2064,
+        "quantity": {
+          "amount": 0.25,
+          "unit": "cup"
+        }
+      },
+      {
+        "id": 2021,
+        "quantity": {
+          "amount": 1,
+          "unit": "teaspoon"
+        }
+      },
+      {
+        "id": 9160,
+        "quantity": {
+          "amount": 2,
+          "unit": "tablespoons"
+        }
+      },
+      {
+        "id": 9266,
+        "quantity": {
+          "amount": 1.25,
+          "unit": "cups"
+        }
+      },
+      {
+        "id": 16124,
+        "quantity": {
+          "amount": 1,
+          "unit": "tablespoon"
+        }
+      },
+      {
+        "id": 1016168,
+        "quantity": {
+          "amount": 0.5,
+          "unit": "tablespoon"
+        }
+      },
+      {
+        "id": 1016168,
+        "quantity": {
+          "amount": 1,
+          "unit": "tablespoon"
+        }
+      }
+    ],
+    "instructions": [
+      {
+        "instruction": "Prepare the chicken: In a large bowl, whisk together the brown sugar, ginger, oil, soy sauce, Sriracha and peanut butter.",
+        "number": 1
+      },
+      {
+        "instruction": "Add the chicken and toss to coat.",
+        "number": 2
+      },
+      {
+        "instruction": "Let marinate at room temperature for 15 minutes or cover and refrigerate for up to 6 hours. Preheat the oven broiler with a rack set 4-inches from the heat source. Line an 18x13-inch rimmed sheet pan with foil and spray with nonstick spray.",
+        "number": 3
+      },
+      {
+        "instruction": "Remove the chicken from the marinade, discarding excess marinade, and place on prepared pan, covering two-thirds of the pan and spacing evenly. Broil for 6 minutes.",
+        "number": 4
+      },
+      {
+        "instruction": "Remove the pan from the oven and spread pineapple on the remaining space on the pan. Sprinkle the pineapple with 1 tablespoon brown sugar. Broil for 3 to 5 minutes or until chicken is browned and no longer pink inside.",
+        "number": 5
+      },
+      {
+        "instruction": "Transfer the chicken to serving plates.",
+        "number": 6
+      },
+      {
+        "instruction": "Place the coleslaw mix in a medium bowl.",
+        "number": 7
+      },
+      {
+        "instruction": "Add the broiled pineapple, lime juice, oil, soy sauce and Sriracha; toss to coat. Divide among the plates with the chicken and sprinkle the slaw with mint or basil.",
+        "number": 8
+      }
+    ],
+    "name": "Thai Chicken Tenders with Broiled Pineapple Slaw",
+    "tags": [
+      "lunch",
+      "main course",
+      "main dish",
+      "dinner"
+    ]
+  },
 ]
 
-module.exports = {
-  recipeData1
-}
+export default recipeData

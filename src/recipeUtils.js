@@ -1,5 +1,7 @@
-import recipes from 'data/recipes-sample.js'
-
-function recipesFromTag(recipes, tag) {
-
+export function recipesFromTag(recipes, tag) {
+  return recipes.filter((recipe) => {
+    return recipe.tags.includes(tag)
+  })
 }
+
+
