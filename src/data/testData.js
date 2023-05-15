@@ -50,6 +50,16 @@ const ingredientTestData = [
     "estimatedCostInCents": 617
   },
   {
+    "id": 1050,
+    "name": "test1",
+    "estimatedCostInCents": 926
+  },
+  {
+    "id": 1030,
+    "name": "test2",
+    "estimatedCostInCents": 926
+  },
+  {
     "id": 2050,
     "name": "vanilla",
     "estimatedCostInCents": 926
@@ -1764,8 +1774,8 @@ const userTestData = [
   }
 ];
 
-export {
+module.exports = {
   ingredientTestData,
   recipeTestData,
-  userTestData
+  userTestData,
 }

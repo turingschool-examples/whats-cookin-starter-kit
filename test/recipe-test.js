@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import {ingredientTestData, recipeTestData, userTestData} from '../src/data/testData.js';
-import {createRecipe, calculateCost} from '../src/recipe.js';
+import {createRecipe, filterByTag, filterByName, determineIngredientNames, calculateCost, returnInstructions} from '../src/recipe.js';
 
 describe('', () => {
   let recipe;
@@ -58,8 +58,34 @@ describe('', () => {
       ]);
     });
   });
+  
+describe('filterByTag', () => {
+ it('Should return recipie filtered by given tag', () => {
+    const result = filterByTag(recipeTestData,"antipasti")
+    expect(result).to.deep.equal([recipeTestData[0]])
+  })
+})
 
-  describe('calculateCost', () => {
+describe('filterByName', () => {
+  it('Should return recipe according to name passed in', () => {
+    const result = filterByName(recipeTestData,"Loaded Chocolate Chip Pudding Cookie Cups")
+    expect(result).to.deep.equal([recipeTestData[0]])
+  })
+})
+  
+describe('determineIngredientNames', () => {
+  it('Should be a function', () => {
+    expect(determineIngredientNames).to.be.a('function');
+  });
+    it('Should return an array of ingredient names', () => {
+      const ingredientsPuddin = ['wheat flour', 'bicarbonate of soda', 'eggs', 'sucrose', 'instant vanilla pudding', 'brown sugar', 'salt', 'fine sea salt', 'semi sweet chips', 'unsalted butter', 'vanilla'];
+      const findIngredients = determineIngredientNames(recipeTestData, ingredientTestData, "Loaded Chocolate Chip Pudding Cookie Cups");
+      expect(findIngredients).to.deep.equal(ingredientsPuddin);
+  
+  });
+})
+  
+describe('calculateCost', () => {
     it('should be a function', () => {
       expect(calculateCost).to.be.a('function');
     });
@@ -69,4 +95,16 @@ describe('', () => {
       expect(totalCost).to.equal(177.76)
     });
   });
+
+describe('returnInstructions', () => {
+  it('Should be a function', () => {
+    expect(returnInstructions).to.be.a('function');
+  });
+
+  it('Should return the instructions of searched recipe', () => {
+  
+    const instructions = returnInstructions(recipeTestData[0])
+    expect(instructions).to.deep.equal(recipeTestData[0].instructions)
+  })
+})
 });

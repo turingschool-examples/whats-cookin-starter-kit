@@ -1,4 +1,4 @@
-import { ingredientTestData } from "./data/testData";
+import {ingredientTestData, recipeTestData, userTestData} from '../src/data/testData.js';
 
 const createRecipe = recipe => ({
   id: recipe.id,
@@ -9,13 +9,47 @@ const createRecipe = recipe => ({
   tags: recipe.tags
 });
 
+const filterByTag = (recipes, tag) => {
+    const findRecipe = recipes.filter(recipe => {
+      return recipe.tags.includes(tag);
+    })
+    return findRecipe;
+}
+
+const filterByName = (recipes, name) => {
+  const findName = recipes.filter(recipe => {
+    return recipe.name === name;
+  });
+  return findName;
+}
+
+const determineIngredientNames = (recipesData, ingredientsData, recipeName) => {
+  let ingredientNames = [];
+  const recipeIds = recipesData.find(find => find.name === recipeName).ingredients
+  .map(ingr => ingr.id);  
+  ingredientsData.forEach((ingredient)=> {
+    if(recipeIds.includes(ingredient.id)) {
+      ingredientNames.push(ingredient.name)
+    }
+  });
+  return ingredientNames;
+}
+
 const calculateCost = recipe => {
   let iDs = ingredientTestData.reduce((array, ingredient) => [...array, ingredient.id], []);
   recipe.ingredients.forEach(ingredient => ingredient.cost = ingredientTestData[iDs.indexOf(ingredient.id)].estimatedCostInCents);
   return recipe.ingredients.reduce((sum, ingredient) => sum + (ingredient.quantity.amount * ingredient.cost), 0) / 100;
 };
 
-export {
-  createRecipe,
-  calculateCost
+const returnInstructions = recipe => {
+  return recipe.instructions;
 }
+
+export {createRecipe,
+    filterByTag,
+    filterByName,
+    calculateCost,
+    determineIngredientNames,
+    returnInstructions
+}
+
