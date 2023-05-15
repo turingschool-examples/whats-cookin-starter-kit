@@ -7,22 +7,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">    <title>Whats Cookin</title>
   </head>
   <body>
-    <header class="nav-bar">
-      <nav id="user-search">
-        <button type="button" id="search-btn"></button>
-        <!-- user initials in circle -->
-      </nav>
-      <nav class="nav-pages">
-        <button type="button" id="home-icon"></button>
-        <button type="button" class="nav-btn" id="saved-btn">Saved Recipes</button>
-        <button type="button" class="nav-btn" id="all-recipes-btn">All Recipes</button>
-        <button type="button" class="nav-btn" id="all-categories-btn">All Categories</button>
+    <header>
+      <nav class="nav-bar">
+        <section id="user-search">
+            <button type="button" id="search-btn"></button>
+            <figure>
+              <img id="user" src="../src/images/user.png">
+              <figcaption id="user-initials">AB</figcaption>
+            </figure>
+        </section>
+        <section class="nav-pages">
+          <button type="button" id="home-icon"></button>
+          <button type="button" class="nav-btn" id="saved-btn">Saved Recipes</button>
+          <button type="button" class="nav-btn" id="all-recipes-btn">All Recipes</button>
+          <button type="button" class="nav-btn" id="all-categories-btn">All Categories</button>
+        </section>
       </nav>
     </header>
-    <h1>What's Cookin</h1>
-    <section>
-      <p>What's up</p>
-    </section>
+    <main>
+      <section id="home-view">
+        <h1>Recipe of the Day</h1>
+      </section>
+      <section id="recipe-view" class="hidden">
+        <h1>Your Recipe here</h1>
+      </section>
+      <section id="saved-view" class="hidden">
+        <h1>Recipes to Cook</h1>
+      </section>
+      <section id="all-recipes-view" class="hidden">
+        <h1>All Recipes</h1>
+      </section>
+      <section id="all-categories-view" class="hidden">
+        <h1>All Categories</h1>
+      </section>
+    </main>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
