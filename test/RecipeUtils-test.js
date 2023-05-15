@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import RecipeRepository from '../src/classes/RecipeRepository';
+import recipeUtils from '../src/recipeUtils';
 
-describe('Recipe', () => {
+describe('RecipeUtils', () => {
   it('Should be a function', () => {
     expect(RecipeRepository).to.be.a('function');
   });
