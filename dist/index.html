@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang = "en">
   <head>
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
   </head>
   <body>
     <h1>Whats Cookin</h1>
+    <nav class="navbar">
+      <button class = "all-recipes">All Recipes</button>
+      <input type="text" placeholder="Search..">
+      <button class = "saved recipes">Saved Recipes</button>
+    </nav>
+    <article class = "front-recipe-display" id = "front-display">
+      <img id = "front-recipe-1" src = "https://spoonacular.com/recipeImages/741603-556x370.jpeg" class = "recipe" alt = "pancakes with bananas in-between">
+      <img id = "front-recipe-2" src = "https://spoonacular.com/recipeImages/562334-556x370.jpg" class = "recipe">
+      <img id = "front-recipe-3" src = "https://spoonacular.com/recipeImages/507921-556x370.jpg" class = "recipe">
+    </article>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
