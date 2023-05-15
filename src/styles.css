@@ -10,3 +10,31 @@ h1 {
 h2 {
   text-align: center;
 }
+
+.all-recipes {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.recipe-grid {
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.individual-recipe {
+  margin-bottom: 30px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  /* ie8 */
+}
