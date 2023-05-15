@@ -1,6 +1,9 @@
 const returnDirections = (sampleRecipeData) => {
-  const directions = sampleRecipeData['instructions'];
-  return directions;
+  if (!sampleRecipeData) {
+    return "Sorry no directions were found.";
+  } else {
+    return sampleRecipeData["instructions"];
+  }
 };
 
-export { returnDirections }
+export { returnDirections };
