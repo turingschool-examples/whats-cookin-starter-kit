@@ -1,7 +1,6 @@
 import { ingredientTestData } from "./data/testData"
 import { recipieTestData } from "./data/testData"
 
-const returnInstructions = recipe => recipe 
 
 const filterByTag = (recipes,tag) => {
     const findRecipe = recipes.filter(recipe => {
@@ -13,6 +12,25 @@ const filterByTag = (recipes,tag) => {
 }
 
 
-export {returnInstructions,
-filterByTag}
+const filterByName = (recipes,name) => {
+    const findName = recipes.filter(recipe => {
 
+       return recipe.name === name
+   })
+   
+   return findName
+}
+
+const returnInstructions = recipe => {
+
+    return recipe.instructions
+
+}
+
+
+///need to return 
+
+export {returnInstructions,
+    filterByTag,
+    filterByName}
+    
