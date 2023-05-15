@@ -1,9 +1,7 @@
 *{
-  border: 2px solid red;
+  /* border: 2px solid red; */
   font-size: 25px;
 }
-
-
 
 body {
   display: flex;
@@ -28,11 +26,21 @@ main {
   justify-content: space-around;
 }
 
+.catagory_section {
+  margin-top: 4em;
+}
+
 .catagory {
  padding: 2em;
+ margin: 1em;
+ background-color: rgba(23, 89, 181, 0.632);
+ border-radius: 1em;
+ color: white
 }
 
 .video {
+  padding-top: 10vh;
+  height: 50vh; 
   width: 50vw;
 }
 
@@ -57,17 +65,40 @@ footer {
   justify-content: space-between;
 }
 
-.icon_and_home_button {
+.icon_and_home_button, .instructions, .instruction {
   display: flex;
+}
+
+.home_button, .save_button, .user_button {
+  background-color: rgb(133, 38, 38);
+  color: white;
+  border-radius: 1em;
 }
 
 .recipe_left, .instructions, .recipe_img {
   width: 50vh;
 }
 
+.instructions, .instruction {
+align-items: center;
+flex-direction: column;
+}
 
+/* user section */
 
+.user_header, .saved_recipes, .saved_recipe{
+  display: flex;
+  padding: 1em;
+}
 
+.user_icon, .saved_recipe_img {
+  height: 5em
+}
+
+.saved_recipes {
+  flex-direction: column;
+  align-items: center;
+}
 
 /* hidden section */
 

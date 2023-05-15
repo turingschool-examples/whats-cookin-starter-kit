@@ -12,16 +12,14 @@
         <button class="user_button">New User</button>
       </section>
       <main class="main">
-        <section class="catagory_section catagory">
-          <div class="catagory_header_label catagory">Choose a food catagory!</div>
+        <section class="catagory_section">
+          <div class="catagory_header_label">Choose a food catagory!</div>
           <div class="catagory_health_food catagory">Health food</div>
           <div class="catagory_meats catagory">Meats</div>
           <div class="catagory_deserts catagory">Deserts</div>
           <div class="catagory_pasta catagory">Pasta</div>
         </section>
-        <section class="video">
-          Video placeholder
-        </section>
+        <img class="video" src="https://catch35.com/wp-content/uploads/2021/10/Seafood-low.gif">
       </main>
       <footer class="footer">
         <div class="footer_pic" id="1">pic1 with disc</div>
@@ -34,7 +32,7 @@
         <div class="footer_pic" id="8">pic8 with disc</div>
       </footer>
     </home_page>
-    <recipe_page class="recipe_page">
+    <recipe_page class="recipe_page hidden">
       <section class="recipe_header">
         <section class="icon_and_home_button">
           <img class="header_icon" src="/images/turing-logo.png">
@@ -59,16 +57,30 @@
           </section>
         </section>
         <section class="instructions">Instructions:
-          <div class="instruction1">instruction 1:</div>
-          <div class="instruction2">instruction 2:</div>
-          <div class="instruction3">instruction 3:</div>
-          <div class="instruction4">instruction 4:</div>
-          <div class="instruction5">instruction 5:</div>
-          <div class="instruction6">instruction 6:...</div>
+          <div class="instruction">instruction 1:</div>
+          <div class="instruction">instruction 2:</div>
+          <div class="instruction">instruction 3:</div>
+          <div class="instruction">instruction 4:</div>
+          <div class="instruction">instruction 5:</div>
+          <div class="instruction">instruction 6:...</div>
         </section>
       </recipe_home>
-    </recipe-page>
-    <user_page>
+    </recipe_page>
+    <user_page class="user_page hidden">
+      <section class="user_header">
+        <section class="icon_and_home_button">
+          <img class="header_icon" src="/images/turing-logo.png">
+          <button class="home_button">Home Page</button>
+        </section>
+        <h1 class="welcome_user">Welcome Sayde Welch!</h1>
+      </section>
+      <img class="user_icon" src="https://media.giphy.com/media/krtfaufO44Uz6/giphy.gif" alt="kitty playing with fish">
+      <section class="saved_recipes">Your saved recipes are:
+        <div class="saved_recipe">
+          <img class="saved_recipe_img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
+          <p>Chocolate Chip Cookies!</p>
+        </div>
+      </section>
     </user_page>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
