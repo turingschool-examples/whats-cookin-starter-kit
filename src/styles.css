@@ -4,8 +4,11 @@ body, html {
   margin: 0;
 }
 
-h1 {
+* {
   font-family: Poppins;
+}
+
+h1 {
   font-size: 40px;
   color: black;
 }
@@ -23,16 +26,14 @@ nav {
 }
 
 button {
-  font-family: Poppins;
   font-size: 15px;
   border-radius: 25px;
-  cursor: auto;
+  cursor: pointer;
   height: 45px;
   width: 300px
 }
 
 input {
-  font-family: Poppins;
   border-radius: 15px;
   height: 45px;
   width: 300px
@@ -46,15 +47,31 @@ header {
   height: 30vh
 }
 
-main {
+.recipe-info {
+  background-color: white;
+  height: 150px;
+}
+
+article {
   display: flex;
   text-align: center;
   align-items: center;
   justify-content: center;
-  height: 70vh
+  justify-content: space-evenly;
+  height: 70vh;
+  width: 100%
 }
 
-.recipe {
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.recipe-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe, .recipe-info {
   width: 300px;
-  height: auto;
 }
