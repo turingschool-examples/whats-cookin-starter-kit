@@ -1,6 +1,28 @@
 import {ingredientTestData, recipeTestData, userTestData} from '../src/data/testData.js';
 
-const returnInstructions = recipeName => recipeName 
+const filterByTag = (recipes,tag) => {
+    const findRecipe = recipes.filter(recipe => {
+
+       return recipe.tags.includes(tag)
+   })
+   
+   return findRecipe
+}
+
+const filterByName = (recipes,name) => {
+    const findName = recipes.filter(recipe => {
+
+       return recipe.name === name
+   })
+   
+   return findName
+}
+
+const returnInstructions = recipe => {
+
+    return recipe.instructions
+
+}
 
 const determineIngredientNames = (recipesData, ingredientsData, recipeName) => {
   let ingredientNames = [];
@@ -14,4 +36,10 @@ const determineIngredientNames = (recipesData, ingredientsData, recipeName) => {
 return ingredientNames
 }
 
-export {returnInstructions, determineIngredientNames}
+export {returnInstructions,
+    filterByTag,
+    filterByName,
+    determineIngredientNames,
+}
+    
+
