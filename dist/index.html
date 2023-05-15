@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Whats Cookin</title>
+  </head>
+  <body>
+    <section class="home">
+      <section class="home__header">
+        <img class="home__icon" src="/images/turing-logo.png">
+        <h1>Home Made Recipes</h1>
+        <button class="home__ubutton">New User</button>
+      </section>
+      <section class="categories">
+        <section class="categories__container">
+          <div class="categories__header">Choose a food catagory!</div>
+          <div class="categories__health categories--category">Health food</div>
+          <div class="categories__meats categories--category">Meats</div>
+          <div class="categories__deserts categories--category">Deserts</div>
+          <div class="categories__pasta categories--category">Pasta</div>
+        </section>
+        <img class="categories__video" src="https://catch35.com/wp-content/uploads/2021/10/Seafood-low.gif">
+      </section>
+      <footer class="footer">
+        <div class="footer__pic" id="1">pic1 with disc</div>
+        <div class="footer__pic" id="2">pic2 with disc</div>
+        <div class="footer__pic" id="3">pic3 with disc</div>
+        <div class="footer__pic" id="4">pic4 with disc</div>
+        <div class="footer__pic" id="5">pic5 with disc</div>
+        <div class="footer__pic" id="6">pic6 with disc</div>
+        <div class="footer__pic" id="7">pic7 with disc</div>
+        <div class="footer__pic" id="8">pic8 with disc</div>
+      </footer>
+    </section>
+    <section class="recipe recipe--hidden">
+      <section class="recipe__header">
+        <section class="recipe__header2">
+          <img class="recipe__turing" src="/images/turing-logo.png">
+          <button class="recipe__hbutton">Home Page</button>
+        </section>
+        <h1 class="recipe__title">Chocolate Chip Cookies!</h1>
+        <button class="recipe__sbutton">Save Recipe</button>
+      </section>
+      <section class="recipe__main">
+        <section class="recipe__left">
+          <img class="recipe__img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
+          <section class="recipe__ingredients">
+            <div class="recipe__ingredient1">ingredient1</div>
+            <div class="recipe__ingredient2">ingredient2</div>
+            <div class="recipe__ingredient3">ingredient3</div>
+            <div class="recipe__ingredient4">ingredient4</div>
+            <div class="recipe__ingredient5">ingredient5</div>
+            <div class="recipe__ingredient6">ingredient6...</div>
+          </section>
+          <section class="recipe__cost">
+            Cost of ingredients: $12
+          </section>
+        </section>
+        <section class="recipe__instructions">Instructions:
+          <div class="recipe__instruction">instruction 1:</div>
+          <div class="recipe__instruction">instruction 2:</div>
+          <div class="recipe__instruction">instruction 3:</div>
+          <div class="recipe__instruction">instruction 4:</div>
+          <div class="recipe__instruction">instruction 5:</div>
+          <div class="recipe__instruction">instruction 6:...</div>
+        </section>
+      </section>
+    </section>
+    <section class="user user--hidden">
+      <section class="user__header">
+        <section class="user__header2">
+          <img class="user__turing" src="/images/turing-logo.png">
+          <button class="user__hbutton">Home Page</button>
+        </section>
+        <h1 class="user__name">Welcome Sayde Welch!</h1>
+      </section>
+      <img class="user__icon" src="https://media.giphy.com/media/krtfaufO44Uz6/giphy.gif" alt="kitty playing with fish">
+      <section class="user__recipes">Your saved recipes are:
+        <div class="user__recipe">
+          <img class="user__img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
+          <p>Chocolate Chip Cookies!</p>
+        </div>
+      </section>
+    </section>
+  </body>
+  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+  <script src="bundle.js"></script>
+</html>
