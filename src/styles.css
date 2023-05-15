@@ -1,0 +1,130 @@
+*{
+  /* border: 2px solid red; */
+  font-size: 25px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: lightgrey;
+  height: 100vh;
+}
+
+/*  home page header section */
+
+.home__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.home__icon{
+  height: 3em;
+}
+
+.home__ubutton {
+  background-color: rgb(133, 38, 38);
+  color: white;
+  border-radius: 1em;
+  height: 1.5em;
+}
+
+/* categories section */
+.categories {
+  display: flex;
+  justify-content: space-around;
+}
+
+.categories__container {
+  margin-top: 4em;
+}
+
+.categories--category {
+ padding: 2em;
+ margin: 1em;
+ background-color: rgba(23, 89, 181, 0.632);
+ border-radius: 1em;
+ color: white
+}
+
+.categories__video {
+  padding-top: 10vh;
+  height: 50vh; 
+  width: 50vw;
+}
+
+/* footer section */
+
+footer {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.footer__pic {
+  padding: 1em
+}
+
+/* recipe section */
+
+.recipe__header,
+ .recipe__header2,
+ .recipe__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recipe__hbutton, .recipe__instructions, .recipe__instruction, .recipe__ingredients {
+  display: flex;
+}
+
+.recipe__hbutton, .recipe__sbutton {
+  background-color: rgb(133, 38, 38);
+  color: white;
+  border-radius: 1em;
+}
+
+.recipe__turing{
+  height: 3em;
+}
+
+.recipe__left, .recipe__instructions, .recipe__img {
+  width: 50vh;
+}
+
+.recipe__instructions, .recipe__instruction, .recipe__ingredients {
+align-items: center;
+flex-direction: column;
+}
+
+/* user section */
+
+.user__header, .user__recipes, .user__recipe, .user__hbutton, .user__header2{
+  display: flex;
+  align-items: center;
+}
+
+.user__turing, .user__img, .user__icon {
+  height: 4em
+}
+
+.user__hbutton {
+  background-color: rgb(133, 38, 38);
+  color: white;
+  border-radius: 1em;
+
+}
+
+.user__recipes {
+  flex-direction: column;
+  align-items: center;
+}
+
+/* hidden section */
+
+.home--hidden, .recipe--hidden, .user--hidden {
+  display: none;
+}
+
+
