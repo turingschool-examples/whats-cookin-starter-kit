@@ -1,7 +1,5 @@
-const chai = require('chai');
-// import {chai} from '../node_modules/chai/chai.js';
 import { expect } from 'chai';
-import { filterRecipes } from '../src/scripts.js'
+import { filterRecipes } from '../src/recipes.js'
 import { sampleRecipeData } from '../src/data/sample-recipes.js';
 
 describe ('filter', function() {
@@ -75,7 +73,6 @@ describe ('filter', function() {
       ]
       )
   })
-
   
   it('should be able return an array of filtered recipes by a different tag', function() {
     let filteredRecipes = filterRecipes(sampleRecipeData, 'sauce')
