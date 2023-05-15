@@ -12,7 +12,7 @@ const calculateRecipePrice = (recipe, ingredientsData) => {
   const sumTotalQuantity = ingredientQuantityInfo.reduce((acc, curr) => {
     acc += curr.quantity
     return acc
-  }, 0)
+  }, 0);
   
   const costInCents = ingredientQuantityInfo.map(id=> {
     const ingredient = ingredientsData.find(ingredient => { 
@@ -23,11 +23,11 @@ const calculateRecipePrice = (recipe, ingredientsData) => {
   const hello = costInCents.reduce((acc, curr) => {
     acc += curr
     return acc
-  },0)
+  }, 0);
 
   const finalTotalCost = (sumTotalQuantity * hello)/100
     return `$${finalTotalCost.toFixed(2)}`
-  }
+  };
 };
 
 export {calculateRecipePrice }
