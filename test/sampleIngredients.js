@@ -14,22 +14,22 @@ const sampleRecipeData = [
       {
         id: 7,
         quantity: {
-          amount: 165,
-          unit: 'grams',
+          amount: 2,
+          unit: 'cups',
         },
       },
       {
         id: 8,
         quantity: {
-          amount: 240,
-          unit: 'grams',
+          amount: 2,
+          unit: 'cups',
         },
       },
       {
         id: 9,
         quantity: {
-          amount: 240,
-          unit: 'grams',
+          amount: 2,
+          unit: 'cups',
         },
       },
       {
