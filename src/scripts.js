@@ -11,5 +11,21 @@ import {exampleFunction1, exampleFunction2} from './domUpdates.js'
 
 exampleFunction1('heather')
 exampleFunction2('heather')
-
 console.log(ingredientsData)
+
+
+// FILTER FUNCTION
+
+const filterRecipes = (data, filterTerm) => {
+  filteredRecipes = data.filter((recipe) => {
+    recipe.tags.includes(filterTerm) || recipe.name === filterTerm
+  })
+  if(filteredRecipes.length === 0) {
+    return 'Sorry, no matching results!'
+  }
+  return filteredRecipes
+}
+
+// 
+
+export {filterRecipes}
