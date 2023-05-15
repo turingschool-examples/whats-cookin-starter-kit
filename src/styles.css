@@ -30,11 +30,27 @@ h2 {
 }
 
 .individual-recipe {
+  background-color: #35363a;
   margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+}
+
+.recipe-image {
+  max-width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 img {
-  max-width: 100%;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  align-self: center;
+  max-width: 90%;
   height: auto;
-  /* ie8 */
+  border-radius: 15px;
 }
