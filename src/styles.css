@@ -1,8 +1,31 @@
 body {
-  font-family: 'Caveat', cursive;
-  background-color: blueviolet;
+  font-family: 'Kalam', cursive;
+  background-color: #F8EDEB;
 }
 
 h1 {
   font-family: 'Mogra', cursive;
+}
+
+.nav-pages {
+  display: flex;
+  
+}
+
+#user-search {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-btn {
+  border: none;
+  color:#F8EDEB;
+  background-color: #FEC5BB;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.nav-btn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
