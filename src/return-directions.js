@@ -1,6 +1,6 @@
-import { sampleRecipeData } from "../test/sampleIngredients"
-
-const returnDirections = sampleRecipeData => sampleRecipeData['instructions']
-console.log('REturn', returnDirections(sampleRecipeData[0]))
+const returnDirections = (sampleRecipeData) => {
+  const directions = sampleRecipeData['instructions'];
+  return directions;
+};
 
 export { returnDirections }

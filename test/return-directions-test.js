@@ -7,8 +7,9 @@ describe('returnInstructions', () => {
     expect(returnDirections).to.be.a('function');
   });
 })
+
   it('should return directions needed for a given recipe', () => {
     const directions = returnDirections(sampleRecipeData[0], sampleIngredientsData)
-    expect(directions).to.deep.equal(sampleIngredientsData[0].instructions);
+    expect(directions).to.deep.equal(sampleRecipeData[0].instructions);
   });
 
