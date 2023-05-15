@@ -381,7 +381,7 @@ const sampleRecipeData = [
     tags: ['side dish', 'snack'],
   },
   {
-    id: 107,
+    id: 106,
     image: 'https://spoonacular.com/recipeImages/602311-556x370.jpg',
     ingredients: [
       {
@@ -463,7 +463,7 @@ const sampleRecipeData = [
     tags: ['antipasti', 'starter', 'snack', 'appetizer', 'antipasto', "hor d'oeuvre"],
   },
   {
-    id: 109,
+    id: 107,
     image: 'https://spoonacular.com/recipeImages/670408-556x370.jpg',
     ingredients: [
       {
