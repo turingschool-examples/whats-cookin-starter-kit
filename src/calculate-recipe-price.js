@@ -6,5 +6,16 @@ const compileIngredientQuantity = (recipe, ingredientsData) => {
    }
      return quantity});
  }
- 
-export { compileIngredientQuantity };
+
+   const sumTotalIngredientQuantity = (sampleRecipeData, sampleIngredientsData) => {
+    console.log(sampleRecipeData[0])
+    
+   const ingQuantityData = compileIngredientQuantity(sampleRecipeData[0], sampleIngredientsData)
+    return ingQuantityData.reduce((acc, curr) => {
+    acc += curr.quantity
+    return acc
+  }, 0)} 
+
+
+
+export { compileIngredientQuantity, sumTotalIngredientQuantity };
