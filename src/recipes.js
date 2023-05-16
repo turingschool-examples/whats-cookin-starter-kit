@@ -31,10 +31,31 @@ const calculateRecipeCost = (recipeIngredients) => {
   }, 0);
 };
 
+const getIngredients = (currentRecipe, allIngredients) => {
+  if(!allIngredients.length){
+    return 'Sorry, no ingredients given!'
+  }
+  return currentRecipe.ingredients.reduce((ingredients, ingredient) => {
+    let foundIngredients = allIngredients.find(item => ingredient.id === item.id)
+    ingredients.push(foundIngredients)
+    return ingredients;
+  },[]);
+};
+
+const getIngredientNames = (ingredients) => {
+  if(!ingredients.length){
+    return 'Sorry, no ingredients given!'
+  }
+  let ingredientNames = [];
+  ingredients.forEach(item => ingredientNames.push(item.name))
+  return ingredientNames;
+}
+
 export { 
   filterRecipes, 
   getRecipeInstructions, 
-  getRecipeById, 
-  calculateRecipeCost
+  getRecipeById,
+  getIngredients,
+  getIngredientNames 
 };
 
