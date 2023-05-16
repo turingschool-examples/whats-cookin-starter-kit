@@ -32,10 +32,17 @@ const getIngredients = (currentRecipe, allIngredients) => {
   },[]);
 };
 
+const getIngredientNames = (ingredients) => {
+  let ingredientNames = [];
+  ingredients.forEach(item => ingredientNames.push(item.name))
+  return ingredientNames;
+}
+
 export { 
   filterRecipes, 
   getRecipeInstructions, 
   getRecipeById,
-  getIngredients, 
+  getIngredients,
+  getIngredientNames 
 };
 

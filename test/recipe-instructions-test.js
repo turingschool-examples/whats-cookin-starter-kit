@@ -64,4 +64,11 @@ describe('ingredients', () => {
     const ingredients = getIngredients(recipe2, [])
     expect(ingredients).to.equal('Sorry, no ingredients given!')
   })
+  
+  it('should determine the names of ingredients needed for a given recipe', () => {
+    const ingredients = getIngredients(recipe2, sampleIngredientsData)
+    const ingredientNames = getIngredientNames(ingredients)
+
+    expect(ingredientNames).to.deep.equal(['apple cider', 'apple', 'corn starch'])
+  })
 })
