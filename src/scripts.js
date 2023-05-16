@@ -3,7 +3,6 @@
 
 import './styles.css'
 import { renderGrid } from './domUpdates'
-import { recipeData } from './data/recipes'
 
 // import apiCalls from './apiCalls'
 
@@ -17,10 +16,7 @@ const recipeGrid = document.querySelector('.recipe-grid')
 // //Example of one way to import functions from the domUpdates file. You will delete these examples.
 // import {exampleFunction1, exampleFunction2} from './domUpdates.js'
 
-// exampleFunction1('heather')
-// exampleFunction2('heather')
-
-// console.log(ingredientsData)
+// Exports
 export {
   recipeGrid
 }

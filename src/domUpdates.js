@@ -1,15 +1,8 @@
-//NOTE: Your DOM manipulation will occur in this file
+// Imports
 import {recipeData} from './data/recipes'
 import {recipeGrid} from './scripts'
-window.addEventListener("load", renderGrid)
-//Here are 2 example functions just to demonstrate one way you can export/import between the two js files. You'll want to delete these once you get your own code going.
-function exampleFunction1(person) {
-  console.log(`oh hi there ${person}`)
-}
 
-function exampleFunction2(person) {
-  console.log(`bye now ${person}`)
-}
+// functions
 
 const makeRecipeColumnData = (data) => {
   const mappedRecipe = data.map((recipe, index) => {
@@ -63,15 +56,16 @@ const createGridHTML = allColumns => {
   return htmlCode;
 }
 
-function renderGrid() {
+const renderGrid = () => {
   const gridData = makeRecipeColumnData(recipeData)
   recipeGrid.innerHTML = ''
   recipeGrid.innerHTML = createGridHTML(gridData);
-  // console.log("hey")
 }
 
+// Event listeners
+window.addEventListener("load", renderGrid)
+
+// Exports
 export {
-  exampleFunction1,
-  exampleFunction2,
   renderGrid
 }
