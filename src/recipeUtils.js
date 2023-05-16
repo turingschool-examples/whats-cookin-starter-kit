@@ -15,5 +15,14 @@ export const findRecipe = (recipeData, recipeName) => {
   return recipe
 };  
 
+export const findIngredientNames = (recipeData, ingredientsData, recipeName) => {
+  const recipe = findRecipe(recipeData, recipeName);
+    if (recipe === undefined) {
+      return "Sorry, we don't have that recipe."
+    }
+  const ingredientIds = recipe.ingredients.map(({ id }) => id);
+  const ingredients = ingredientsData.filter(({ id }) => ingredientIds.includes(id));
+  return ingredients.map(({ name }) => name);
+};
 
 
