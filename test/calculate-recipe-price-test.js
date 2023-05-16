@@ -1,18 +1,25 @@
 import { expect } from 'chai';
-import { calculateRecipePrice  } from '../src/calculate-recipe-price'
+import { compileIngredientQuantity  } from '../src/calculate-recipe-price'
 import { sampleIngredientsData, sampleRecipeData } from './sampleIngredients';
 
-describe('calculateRecipePrice', () => {
+
+describe('compileIngredientQuantity', () => {
   it('should be a fuction', () => {
-    expect(calculateRecipePrice).to.be.a('function');
+    expect(compileIngredientQuantity).to.be.a('function');
   });
 
-  it('should determine the total price of a given recipe', () => {
-    expect(calculateRecipePrice(sampleRecipeData[0], sampleIngredientsData)).to.equal('$527.75');
-    expect(calculateRecipePrice(sampleRecipeData[1], sampleIngredientsData)).to.equal('$78.75');
+  it('should compile the id and quantity of each ingredient', () => {
+    expect(compileIngredientQuantity(sampleRecipeData[0], sampleIngredientsData)).to.deep.equal([
+      { id: 1, quantity: 6 },
+      { id: 7, quantity: 2 },
+      { id: 8, quantity: 2 },
+      { id: 9, quantity: 2 },
+      { id: 10, quantity: 0.5 }
+    ]);
+    expect(compileIngredientQuantity(sampleRecipeData[1], sampleIngredientsData)).to.deep.equal([
+      { id: 2, quantity: 4 },
+      { id: 3, quantity: 1 },
+      { id: 4, quantity: 4 }
+    ]);
   });
-
-  it('should return a message if no recipe is chosen', () => {
-    expect(calculateRecipePrice(sampleRecipeData[10], sampleIngredientsData)).to.equal('Sorry this is not a recipe!');
-  })
-})
+});
