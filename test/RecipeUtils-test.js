@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { recipesFromTag, recipesfromName, findRecipe, findIngredientNames, getRecipeCost } from '../src/recipeUtils';
+import { recipesFromTag, recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions } from '../src/recipeUtils';
 import recipeData from '../src/data/recipes-sample.js';
 import ingredientsData from '../src/data/ingredients-sample.js';
 
@@ -78,22 +78,45 @@ describe('findIngredientNames', () => {
 
   it('should return message if no recipe is found', () => {
     const recipeName = 'Not a recipe';
-    const ingredients = findIngredientNames(recipeData, ingredientsData, recipeName);
-    expect(ingredients).to.equal("Sorry, we don't have that recipe.")
+    const ingredients = findIngredientNames(recipeData, ingredientsData,recipeName);
+    expect(ingredients).to.equal("Sorry, we don't have that recipe.");
   });
 });
 
-describe('getRecipeCost', () => {
+describe('calculateRecipeCost', () => {
   it('should be a function', () => {
-    expect(getRecipeCost).to.be.a('function');
+    expect(calculateRecipeCost).to.be.a('function');
   });
 
   it('should return the total cost of a recipe', () => {
     const recipe = recipeData[0];
-    const expectedCost = '177.76'
-    const actualCost = getRecipeCost(recipe)
+    const expectedCost = '177.76';
+    const actualCost = calculateRecipeCost(recipe);
     expect(actualCost).to.equal(expectedCost);
+  })
+
+  it('should return undefined if the recipe cannot be found', () => {
+    const recipe = recipeData[1000];
+    const totalCost = calculateRecipeCost(recipe)
+    expect(totalCost).to.equal('Sorry, that recipe cannot be found.')
   })
 });
 
+describe('recipeInstructions', () => {
+  it('should be a function', () => {
+    expect(recipeInstructions).to.be.a('function');
+  });
 
+  // it('should return a given recipes instruction in numerical order', () => {
+  //   const recipe = recipeData[0].name;
+  //   const instructions = recipeInstructions(recipeData, recipe);
+  //   expect(instructions).to.equal
+  // });
+
+  it('should return a message if the recipe cannot be found', () => {
+    const recipeName = 'Not a recipe'
+    const instructions = (recipeInstructions(recipeData, recipeName));
+    expect(instructions).to.equal("Sorry, that recipe cannot be found.")
+  });
+
+});

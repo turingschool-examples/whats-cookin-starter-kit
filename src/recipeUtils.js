@@ -29,11 +29,23 @@ const findIngredientNames = (recipeData, ingredientsData, recipeName) => {
   return ingredients.map(({ name }) => name);
 };
 
-const getRecipeCost = recipe => {
-  const totalCost = recipe.ingredients.reduce((acc, {id, quantity: {amount, unit}}) => 
+const calculateRecipeCost = recipe => {
+  if (recipe === undefined) {
+    return 'Sorry, that recipe cannot be found.'
+  }
+  const totalCost = recipe.ingredients.reduce((acc, {id, quantity: {amount}}) => 
     acc + (amount / 100) * (ingredientsData.find(data => data.id === id).estimatedCostInCents), 0)
   return totalCost.toFixed(2);
 }
+
+const recipeInstructions = (recipeData, recipeName) => {
+  const recipe = findRecipe(recipeData, recipeName);
+   if (!recipe) {
+     return "Sorry, that recipe cannot be found.";
+   }
+   const instructions = recipe.instructions.map(({ number, instruction }) => `${number}. ${instruction}`);
+   return instructions.join('\n');
+ };
 
 
 
@@ -42,5 +54,6 @@ export {
   recipesfromName,
   findRecipe,
   findIngredientNames,
-  getRecipeCost
+  calculateRecipeCost,
+  recipeInstructions
 }
