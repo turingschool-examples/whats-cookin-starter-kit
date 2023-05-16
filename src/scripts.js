@@ -7,7 +7,7 @@ import './images/restaurant.png';
 import './images/bookmark.png';
 import './images/bookmark-filled.png'
 
-import { toMyRecipeView , toDashboardView, renderRecipeCards, toggleBookmark } from './domUpdates'
+import { toMyRecipeView , toDashboardView, renderRecipeCards, toggleBookmark, renderEnlargedRecipeCard } from './domUpdates'
 import {recipeData} from './data/recipes'
 
 
@@ -17,14 +17,22 @@ const mainView = document.querySelector('#mainView');
 const myRecipesView = document.querySelector('#myRecipeView');
 const dashboardBtn = document.querySelector('#dashboardNav');
 const mainViewCardContainer = document.querySelector('#mainViewCardContainer');
+const enlargedRecipeView = document.querySelector('#enlargedRecipeView');
 
 // EVENT LISTENERS
 myRecipesBtn.addEventListener('click', toMyRecipeView)
 dashboardBtn.addEventListener('click', toDashboardView)
 mainViewCardContainer.addEventListener('click', (e) => {
   toggleBookmark(e)})
-
+// mainView.addEventListener('click', (e) => {
+//   renderEnlargedRecipeCard(e, recipeData);
+// })
 // FUNCTIONS
 renderRecipeCards(mainViewCardContainer, recipeData)
 
-export { mainView , myRecipesView, mainViewCardContainer }
+export { 
+  mainView,
+  myRecipesView,
+  mainViewCardContainer,
+  enlargedRecipeView
+}

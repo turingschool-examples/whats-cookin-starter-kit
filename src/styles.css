@@ -190,6 +190,31 @@ h1 {
   height: 25px;
 }
 
+/* RECIPE VIEW */
+#enlargedRecipeView {
+  display: flex;
+  justify-content: center;
+}
+
+.enlarged-recipe-card-flex {
+  display: flex;
+  height: 500px;
+  width: 800px;
+  margin: 40px;
+  border: 1px solid black;
+}
+
+.enlarged-recipe-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.enlgarged-recipe-img {
+  max-width: 350px;
+  height: 500px;
+  object-fit: contain;
+}
+
 .hidden {
   display: none;
 }
