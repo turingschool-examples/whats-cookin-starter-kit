@@ -20,25 +20,21 @@ const filterRecipes = (data, filterTerm) => {
   return filteredRecipes
 }
 
-const calculateRecipeCost = (recipeId) => {
-  // const recipe = sampleRecipeData.find(function(recipe){
-  //   return recipeId === recipe.id
-  // }) 
-  // // if (!recipe) {
-  // //   re
-  // // }
-  return recipe.ingredients.reduce(function(amount, ingredient) {
+const calculateRecipeCost = (recipeIngredients) => {
+  return recipeCost = recipeIngredients.reduce((totalCost, ingredient) => {
+    return totalCost += (ingredient.amount * ingredient.estimatedCostInCents)
     // use ingredient.id to get the sample ingredient data
     // find out the $amount for that ing by multiplying the amount of that ingredient
     // by the estimatedCostInCents
     // add that to the amount
     // return the amount
-  }
-  , 0)
+  }, 0);
 };
+
 export { 
   filterRecipes, 
   getRecipeInstructions, 
-  getRecipeById 
+  getRecipeById, 
+  calculateRecipeCost
 };
 
