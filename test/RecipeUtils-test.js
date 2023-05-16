@@ -38,17 +38,17 @@ describe('RecipeUtils', () => {
 })
 
 describe('findRecipe', () => {
-  it('Should be a function', () => {
+  it('should be a function', () => {
     expect(findRecipe).to.be.a('function');
   });
 
-  it('returns the correct recipe based on the recipe name', () => {
+  it('should return the correct recipe based on the recipe name', () => {
     const recipeName = 'Loaded Chocolate Chip Pudding Cookie Cups';
     const recipe = findRecipe(recipeData, recipeName);
     expect(recipe).to.deep.equal(recipeData[0]);
   });
 
-  it('returns undefined if the recipe is not found', () => {
+  it('should return undefined if the recipe is not found', () => {
     const recipeName = 'Spaghetti and Meatballs';
     const recipe = findRecipe(recipeData, recipeName);
     expect(recipe).to.be.undefined;
@@ -56,6 +56,10 @@ describe('findRecipe', () => {
 });
 
 describe('findIngredientNames', () => {
+  it('should be a function', () => {
+    expect(findRecipe).to.be.a('function');
+  });
+
   it('should return an array of ingredient names for specific recipe', () => {
     const recipeName = 'Loaded Chocolate Chip Pudding Cookie Cups';
     const ingredients = findIngredientNames(recipeData, ingredientsData, recipeName);
@@ -71,6 +75,11 @@ describe('findIngredientNames', () => {
       'unsalted butter',
       'vanilla' ]);
   });
-  
+
+  it('should return message if no recipe is found', () => {
+    const recipeName = 'Not a recipe';
+    const ingredients = findIngredientNames(recipeData, ingredientsData, recipeName);
+    expect(ingredients).to.equal("Sorry, we don't have that recipe.")
+  });
 });
 
