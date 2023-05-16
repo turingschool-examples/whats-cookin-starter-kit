@@ -48,6 +48,11 @@ describe('findRecipe', () => {
     expect(recipe).to.deep.equal(recipeData[0]);
   });
 
+  it('returns undefined if the recipe is not found', () => {
+    const recipeName = 'Spaghetti and Meatballs';
+    const recipe = findRecipe(recipeData, recipeName);
+    expect(recipe).to.be.undefined;
+  });
 });
 
 
