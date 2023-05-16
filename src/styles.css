@@ -105,12 +105,13 @@ figure {
 
 #recipe-of-the-day {
   border-radius: 10px;
-  height: 200px;
-  width: 400px;
+  height: auto;
+  max-height: 30vh;
+  width: 30%;
+  object-fit: cover;
 }
 
 #featured-recipes {
-  height: 20%;
   background-color: #D8E2DC;
 }
 
