@@ -2,11 +2,57 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans&family=Leckerli+One&family=Sen:wght@700&display=swap" rel="stylesheet">
     <title>Whats Cookin</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <div id="navColorBar"></div>
+    <nav>
+      <div class="nav-flexbox">
+        <div class="search-flexbox">
+            <select name="searchSelect" id="searchSelect">
+              <option value="select">Search By: </option>
+              <option value="tag">Tag</option>
+              <option value="name">Name</option>
+            </select>
+            <input type="text" id="searchInput" placeholder="Search for Recipes">
+            <div id="searchIconBackground">
+              <img id="searchIcon" class="icon" src="./images/search.png" alt="icon to search">
+            </div>
+        </div>
+          <div class="right-nav-flexbox">
+            <div class="icon-flexbox">
+              <img src="./images/restaurant.png" class="icon" alt="saved recipes icon" id="myRecipes">
+              <label for="my recipes">My Recipes</label>
+            </div>
+            <div class="icon-flexbox">
+              <img id="dashboardNav" class="icon" src="./images/home.png" alt="icon to view dashboard">
+              <label for="my dashboard" >My Dashboard</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <header>
+      <h1>What's <span id="cookinText">Cookin'?</span></h1>
+    </header>
+    <main>
+      <div id="mainView">
+        <h1 id="discoverHeader"><i>DISCOVER RECIPES</i></h1>
+        <div id="mainViewCardContainer" class="card-container">
+          <!-- RENDERED RECIPE CARDS WILL GO HERE -->
+        </div>
+      </div>
+      <div id="myRecipeView" class="hidden">
+        <h1 id="myRecipesHeader"><i>MY SAVED RECIPES</i></h1>
+      </div>
+      <div id="enlargedRecipeView" class="hidden">
+        <!-- RECIPE CARD WILL GO HERE -->
+      </div>
+    </main>
+      <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+      <script src="bundle.js"></script>
   </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
 </html>
