@@ -8,7 +8,7 @@ describe('calculate cost of ingredients', function() {
     expect(calculatRecipeCost).to.be.a('function');
   });
 
-  it('should calculate the cost of a given recipe', function() {
+  // it('should calculate the cost of a given recipe', function() {
     // const costOfCookieCup = calculatRecipeCost(595736)
-  })
+  // })
 })
