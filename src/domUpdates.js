@@ -40,7 +40,7 @@ const createSingleRecipeHTML = singleRecipe => {
 
 const createColumnHTML = column => {
   let htmlCode = '';
-  htmlCode += '<div class = col>'
+  htmlCode += '<div class = "col">'
   column.forEach(recipe => {
     htmlCode += createSingleRecipeHTML(recipe);
   });
