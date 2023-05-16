@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { recipesFromTag, recipesfromName, findRecipe } from '../src/recipeUtils';
+import { recipesFromTag, recipesfromName, findRecipe, } from '../src/recipeUtils';
 import recipeData from '../src/data/recipes-sample.js';
 import ingredientsData from '../src/data/ingredients-sample.js';
 
@@ -55,4 +55,12 @@ describe('findRecipe', () => {
   });
 });
 
+describe('findIngredientNames', () => {
+  it('should return an array of ingredient names for specific recipe', () => {
+    const recipeName = 'Loaded Chocolate Chip Pudding Cookie Cups'
+    const recipe = findRecipe(recipeData, recipeName)
+    const ingredientNames = findIngredientNames(ingredientsData, recipeName)
+      expect(ingredientNames).to.equal(['wheat flour', 'bicarbonate of soda', 'eggs', 'sucrose', 'instant vanilla pudding', 'brown sugar', 'salt', 'fine sea salt', 'semi sweet chips', 'unsalted butter', 'vanilla'])
+  })
+});
 
