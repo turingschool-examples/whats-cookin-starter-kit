@@ -1,3 +1,16 @@
+
+const getRecipeById = (recipes, id) => {
+  const recipe = recipes.find(recipe => recipe.id === id);
+  return recipe;
+};
+
+const getRecipeInstructions = (recipe) => {
+  return recipe.instructions.reduce((instructions, instruction) => {
+    instructions.push(`${instruction.number}. ${instruction.instruction}`);
+    return instructions;
+  }, []);
+};
+
 const filterRecipes = (data, filterTerm) => {
   const filteredRecipes = data.filter((recipe) => {
      return recipe.tags.includes(filterTerm) || recipe.name === filterTerm
@@ -8,4 +21,9 @@ const filterRecipes = (data, filterTerm) => {
   return filteredRecipes
 }
 
-export {filterRecipes}
+export { 
+  filterRecipes, 
+  getRecipeInstructions, 
+  getRecipeById 
+};
+
