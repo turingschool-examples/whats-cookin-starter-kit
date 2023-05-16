@@ -2,7 +2,14 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
+import { renderGrid } from './domUpdates'
+import { recipeData } from './data/recipes'
+
 // import apiCalls from './apiCalls'
+
+const recipeGrid = document.querySelector('.recipe-grid')
+
+
 // // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
 // import ingredientsData from './data/ingredients.js'
@@ -14,3 +21,6 @@ import './styles.css'
 // exampleFunction2('heather')
 
 // console.log(ingredientsData)
+export {
+  recipeGrid
+}

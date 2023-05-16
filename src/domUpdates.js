@@ -1,8 +1,7 @@
 //NOTE: Your DOM manipulation will occur in this file
-import {recipeData} from './recipes'
-
-const recipeGrid = document.querySelector('.recipe-grid')
-
+import {recipeData} from './data/recipes'
+import {recipeGrid} from './scripts'
+window.addEventListener("load", renderGrid)
 //Here are 2 example functions just to demonstrate one way you can export/import between the two js files. You'll want to delete these once you get your own code going.
 function exampleFunction1(person) {
   console.log(`oh hi there ${person}`)
@@ -43,6 +42,7 @@ const createSingleRecipeHTML = singleRecipe => {
     <h2>${singleRecipe.name}</h2>
   </div>
   `;
+  return htmlCode
 }
 
 const createColumnHTML = column => {
@@ -63,12 +63,15 @@ const createGridHTML = allColumns => {
   return htmlCode;
 }
 
-const renderGrid = () => {
+function renderGrid() {
   const gridData = makeRecipeColumnData(recipeData)
-  recipeGrid.innerHTML += createGridHTML();
+  recipeGrid.innerHTML = ''
+  recipeGrid.innerHTML = createGridHTML(gridData);
+  // console.log("hey")
 }
 
 export {
   exampleFunction1,
   exampleFunction2,
+  renderGrid
 }
