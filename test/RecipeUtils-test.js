@@ -83,3 +83,21 @@ describe('findIngredientNames', () => {
   });
 });
 
+describe('calculateCostForOneIngredient', () => {
+  it('should be a function', () => {
+    expect(calculateCostForOneIngredient).to.be.a('function');
+  });
+
+  it('should return the cost of one ingredient', () => {
+    const ingredient = ingredientsData[0];
+    const quantity = { amount: 1, unit: 'c' };
+    const actual = calculateCostForOneIngredient(ingredient.id, quantity);
+    const expected = ingredient.estimatedCostInCents;
+    expect(actual).to.equal(expected);
+  });
+
+  
+
+});
+
+
