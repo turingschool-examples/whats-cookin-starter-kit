@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { recipesFromTag, recipesfromName } from '../src/recipeUtils';
+import { recipesFromTag, recipesfromName, findRecipe } from '../src/recipeUtils';
 import recipeData from '../src/data/recipes-sample.js';
 import ingredientsData from '../src/data/ingredients-sample.js';
 
@@ -36,3 +36,6 @@ describe('RecipeUtils', () => {
     expect(filtered.length).to.equal(0)
   })
 })
+
+
+

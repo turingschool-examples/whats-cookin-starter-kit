@@ -10,6 +10,9 @@ export function recipesfromName(recipes, name) {
   })
 }
 
-
+export const findRecipe = (recipeData, recipeName) => {
+  const recipe = recipeData.find(({ name }) => name === recipeName);
+  return recipe
+};  
 
 
