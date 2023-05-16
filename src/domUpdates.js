@@ -1,16 +1,17 @@
-import {myRecipesView, mainView, enlargedRecipeView} from './scripts'
+import { myRecipesView, mainView, singleRecipeView } from './scripts'
+import { getIngredientsNames } from './get-ingredients-names'
 
 // EVENT HANDLERS
 const toMyRecipeView = () => {
   mainView.classList.add('hidden');
   myRecipesView.classList.remove('hidden');
-  enlargedRecipeView.innerHTML= '';
+  singleRecipeView.innerHTML= '';
 }
 
 const toDashboardView = () => {
   mainView.classList.remove('hidden');
   myRecipesView.classList.add('hidden');
-  enlargedRecipeView.innerHTML= '';
+  singleRecipeView.innerHTML= '';
 }
 
 // DOM FUNCTIONS
@@ -59,26 +60,58 @@ const findRecipe = (e, recipes) => {
       })
 }
 
-const renderEnlargedRecipeCard = (e, recipes) => {
-  let recipe = findRecipe(e, recipes);
-  mainView.classList.add('hidden');
-  enlargedRecipeView.classList.remove('hidden');
-  enlargedRecipeView.innerHTML = '';
-  enlargedRecipeView.innerHTML += `
-    <div class="enlarged-recipe-card-flex">
-      <article class="enlarged-recipe-card">
-        <img class="enlgarged-recipe-img" src="${recipe.image}">
-        <p class="recipe-tag">${recipe.tags[0]}</p>
-        <div class="recipe-title-flex">
-          <h2 class="recipe-name">${recipe.name}</h2>
-          <div class="bookmark-flex">
-            <img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked" alt="bookmark icon">
-            <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">
-          </div>
-        </div>
-      </article>
-    </div>`
-}
+
 //card should have instruction, cost to make, and tags?
 
-export { toMyRecipeView , toDashboardView, renderRecipeCards, toggleBookmark, renderEnlargedRecipeCard }
+// newly added functions- remember to export and import in proper files
+const renderSingleRecipeView = (e, recipes, ingredients) => {
+  let recipe = findRecipe(e, recipes);
+  mainView.classList.add('hidden');
+  singleRecipeView.classList.remove('hidden');
+  singleRecipeView.innerHTML = '';
+  singleRecipeView.innerHTML += `
+    <div class="single-recipe-view-flex">
+      <img class="single-recipe-img" src="${recipe.image}">
+      <h2 class="recipe-title">${recipe.name}</h2>
+      <div class="recipe-content-flex">
+        <div class="side-info-flex">
+          ${renderIngredients(recipe, ingredients)}
+          <p class="recipe-tag-flex">${renderTags(recipe)}</p>
+        </div>
+        <div class="vertical-divider"></div>
+        <div class="recipe-instructions-flex">
+          ${renderInstructions(recipe)}
+        </div>
+      </div>
+     
+      
+    </div>`
+}
+
+const renderInstructions = (recipe) => {
+  let instructions = recipe.instructions;
+  let output = '<h2 class="instruction-title">Instruction</h2>';
+  instructions.forEach((ele) => {
+    output += `<p>${ele.number}. ${ele.instruction}</p>`
+  })
+  return output;
+};
+
+const renderIngredients = (recipe, ingredients) => {
+  let ingredientNames = getIngredientsNames(recipe, ingredients);
+  let output = '<h2>Ingredients</h2>';
+  ingredientNames.forEach((ele) => {
+    output += `<span>- ${ele}</span>`
+  })
+  return output;
+};
+
+const renderTags = (recipe) => {
+  let output = `<h2>Tags<h2>`
+  recipe.tags.forEach((ele) => {
+    output += `<span class="tags-text-flex">${ele}</span>`
+  })
+  return output;
+};
+
+export { toMyRecipeView , toDashboardView, renderRecipeCards, toggleBookmark, renderSingleRecipeView }

@@ -1,9 +1,9 @@
-const getIngredientsNames = (recipe, ingredientsData) => {
+const getIngredientsNames = (recipe, ingredients) => {
   const ingredientsIDs = recipe.ingredients.map((ele) => {
     return ele.id
   });
   const ingredientsNames = ingredientsIDs.map((id) => {
-    const ingredient = ingredientsData.find(ingredient => { 
+    const ingredient = ingredients.find(ingredient => { 
       return ingredient.id === id;
     });
     return ingredient.name;
