@@ -1,16 +1,17 @@
-//NOTE: Your DOM manipulation will occur in this file
+import {recipeTestData} from './data/testData.js';
 
-//Here are 2 example functions just to demonstrate one way you can export/import between the two js files. You'll want to delete these once you get your own code going.
-function exampleFunction1(person) {
-  console.log(`oh hi there ${person}`)
+// Global Variables
+const main = document.querySelector('main');
+// Event Handlers
+const viewAllRecipes = () => {
+  recipeTestData.forEach(recipe => main.innerHTML += `
+  <section class='recipe-container' id='${recipe.id}'>
+    <img id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
+    <h3 class='recipe-name'>${recipe.name}</h3>
+  </section>
+  `);
 }
-
-function exampleFunction2(person) {
-  console.log(`bye now ${person}`)
-}
-
 
 export {
-  exampleFunction1,
-  exampleFunction2,
+  viewAllRecipes
 }

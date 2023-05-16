@@ -28,8 +28,19 @@ main {
   height: 80vh;  
 }
 
+.recipe-container {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  height: 20vh;
+}
+
 .panel {
   display: flex;
   width: 20vw;
   height: 80vh;  
+}
+
+.hidden {
+  display: none;
 }
