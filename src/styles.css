@@ -5,6 +5,7 @@ body {
 
 h1 {
   text-align: center;
+  font-size: 55px;
 }
 
 .all-recipes {
@@ -64,7 +65,7 @@ img {
   position: absolute;
   background-color: #ffffff;
   border-radius: 15px;
-  opacity: 0.5;
+  opacity: 0.4;
   color: #2c2d30;
   font-size: 40px;
   display: flex;
@@ -93,12 +94,13 @@ h3 {
     height: 0%;
   }
   100% {
-    height: 70%
+    height: 35%
   }
 }
 
 .individual-recipe:hover {
   box-shadow: 2px 2px 20px whitesmoke;
+  cursor: pointer;
 }
 
 .individual-recipe:hover img {
