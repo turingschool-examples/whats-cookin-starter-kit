@@ -21,9 +21,13 @@ const filterRecipes = (data, filterTerm) => {
   return filteredRecipes
 }
 
-export { 
-  filterRecipes, 
+const getRandomRecipe = (recipeList) => {
+
+};
+
+export {
+  filterRecipes,
+  getRandomRecipe,
   getRecipeInstructions, 
   getRecipeById 
 };
-
