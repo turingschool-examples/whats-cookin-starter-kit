@@ -22,7 +22,12 @@ const filterRecipes = (data, filterTerm) => {
 }
 
 const getRandomRecipe = (recipeList) => {
+  if(!recipeList) {
+    return `Recipe not found`;
+  }
+  const indexPosition = Math.floor(Math.random() * recipeList.length);
 
+  return recipeList[indexPosition];
 };
 
 export {
