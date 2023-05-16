@@ -25,7 +25,7 @@ const createSingleRecipeHTML = singleRecipe => {
   let htmlCode = '';
   htmlCode += 
   `
-  <div class="individual-recipe">
+  <article class="individual-recipe">
       <div class="recipe-image">
         <img src="${singleRecipe.image}">
         <div class="hover-card"> 
@@ -33,7 +33,7 @@ const createSingleRecipeHTML = singleRecipe => {
         </div>               
       </div>
     <h2>${singleRecipe.name}</h2>
-  </div>
+  </article>
   `;
   return htmlCode
 }
