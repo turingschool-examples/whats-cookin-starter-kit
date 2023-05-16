@@ -1,5 +1,5 @@
 const filterRecipes = (data, filterTerm) => {
-  let filteredRecipes = data.filter((recipe) => {
+  const filteredRecipes = data.filter((recipe) => {
      return recipe.tags.includes(filterTerm) || recipe.name === filterTerm
   })
   if(filteredRecipes.length === 0) {
