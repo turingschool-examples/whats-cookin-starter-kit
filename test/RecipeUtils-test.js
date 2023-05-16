@@ -41,6 +41,13 @@ describe('findRecipe', () => {
   it('Should be a function', () => {
     expect(findRecipe).to.be.a('function');
   });
+
+  it('returns the correct recipe based on the recipe name', () => {
+    const recipeName = 'Loaded Chocolate Chip Pudding Cookie Cups';
+    const recipe = findRecipe(recipeData, recipeName);
+    expect(recipe).to.deep.equal(recipeData[0]);
+  });
+
 });
 
 
