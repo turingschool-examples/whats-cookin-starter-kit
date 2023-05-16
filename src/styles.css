@@ -7,10 +7,6 @@ h1 {
   text-align: center;
 }
 
-h2 {
-  text-align: center;
-}
-
 .all-recipes {
   display: flex;
   align-items: center;
@@ -79,6 +75,13 @@ img {
 h2 {
   font-size: 20px;
   font-weight: 200;
+  transition: 0.5s;
+  text-align: center;
+}
+
+h3 {
+  visibility: hidden;
+  transition: 1s;
 }
 
 .individual-recipe:hover .hover-card {
@@ -103,3 +106,10 @@ h2 {
   filter: blur(8px);
 }
 
+.individual-recipe:hover h2 {
+  filter: blur(1.5px);
+}
+
+.individual-recipe:hover h3 {
+  visibility: visible;
+}
