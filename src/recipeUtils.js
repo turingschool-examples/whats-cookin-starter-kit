@@ -1,3 +1,7 @@
+import recipeData from '../src/data/recipes-sample.js';
+import ingredientsData from '../src/data/ingredients-sample.js';
+
+
 function recipesFromTag(recipes, tag) {
   return recipes.filter((recipe) => {
     return recipe.tags.includes(tag)
@@ -25,6 +29,12 @@ const findIngredientNames = (recipeData, ingredientsData, recipeName) => {
   return ingredients.map(({ name }) => name);
 };
 
+const getRecipeCost = recipe => {
+  const totalCost = recipe.ingredients.reduce((acc, {id, quantity: {amount, unit}}) => 
+    acc + (amount / 100) * (ingredientsData.find(data => data.id === id).estimatedCostInCents), 0)
+  return totalCost.toFixed(2);
+}
+
 
 
 export {
@@ -32,5 +42,5 @@ export {
   recipesfromName,
   findRecipe,
   findIngredientNames,
-  
+  getRecipeCost
 }
