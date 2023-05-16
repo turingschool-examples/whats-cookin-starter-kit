@@ -2,10 +2,55 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../src/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mogra&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">    
     <title>Whats Cookin</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <header>
+      <nav class="nav-bar">
+        <section id="user-search">
+            <button type="button" id="search-btn"></button>
+            <figure>
+              <img id="user" src="../src/images/user.png">
+              <figcaption id="user-initials">AB</figcaption>
+            </figure>
+        </section>
+        <section class="nav-pages">
+          <button type="button" id="home-icon" alt="What's Cookin Chef"></button>
+          <button type="button" class="nav-btn" id="saved-btn">Saved Recipes</button>
+          <button type="button" class="nav-btn" id="all-recipes-btn">All Recipes</button>
+          <button type="button" class="nav-btn" id="all-categories-btn">All Categories</button>
+        </section>
+      </nav>
+    </header>
+    <main>
+      <section id="home-view">
+        <figure id="home-banner">
+          <img id="recipe-of-the-day" alt="Recipe of the Day" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
+          <figcaption id="recipe-today"><h1>Recipe of the Day</h1></figcaption>
+        </figure>
+        <article class="featured" id="featured-recipes">
+          <h1>Featured Recipes</h1>
+        </article>
+        <article class="featured">
+          <h1>Featured Recipe Categories</h1>
+        </article>
+      </section>
+      <section id="recipe-view" class="hidden">
+        <h1>Your Recipe here</h1>
+      </section>
+      <section id="saved-view" class="hidden">
+        <h1>Recipes to Cook</h1>
+      </section>
+      <section id="all-recipes-view" class="hidden">
+        <h1>All Recipes</h1>
+      </section>
+      <section id="all-categories-view" class="hidden">
+        <h1>All Categories</h1>
+      </section>
+    </main>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
