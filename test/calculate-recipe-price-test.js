@@ -8,8 +8,8 @@ describe('calculateRecipePrice', () => {
   });
 
   it('should determine the total price of a given recipe', () => {
+    expect(calculateRecipePrice(sampleRecipeData[0], sampleIngredientsData)).to.equal('$527.75');
     expect(calculateRecipePrice(sampleRecipeData[1], sampleIngredientsData)).to.equal('$78.75');
-    expect(calculateRecipePrice(sampleRecipeData[2], sampleIngredientsData)).to.equal('$510.92');
   });
 
   it('should return a message if no recipe is chosen', () => {
