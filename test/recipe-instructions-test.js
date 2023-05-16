@@ -60,7 +60,7 @@ describe('ingredients', () => {
     expect(ingredients[1].estimatedCostInCents).to.equal(582)
   })
 
-  it('should return an error if no ingredients are found', () => {
+  it('should return an error message if no ingredients are found', () => {
     const ingredients = getIngredients(recipe2, [])
     expect(ingredients).to.equal('Sorry, no ingredients given!')
   })
@@ -70,5 +70,11 @@ describe('ingredients', () => {
     const ingredientNames = getIngredientNames(ingredients)
 
     expect(ingredientNames).to.deep.equal(['apple cider', 'apple', 'corn starch'])
+  })
+
+  it('should return an error message if no ingredients are found', () => {
+    const ingredientNames = getIngredientNames([])
+
+    expect(ingredientNames).to.equal('Sorry, no ingredients given!')
   })
 })

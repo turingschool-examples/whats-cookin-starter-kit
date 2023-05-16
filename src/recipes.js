@@ -33,6 +33,9 @@ const getIngredients = (currentRecipe, allIngredients) => {
 };
 
 const getIngredientNames = (ingredients) => {
+  if(!ingredients.length){
+    return 'Sorry, no ingredients given!'
+  }
   let ingredientNames = [];
   ingredients.forEach(item => ingredientNames.push(item.name))
   return ingredientNames;
