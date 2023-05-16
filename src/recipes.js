@@ -21,6 +21,7 @@ const filterRecipes = (data, filterTerm) => {
   return filteredRecipes
 }
 
+
 const getRandomRecipe = (recipeList) => {
   if(!recipeList) {
     return `Recipe not found`;
@@ -30,9 +31,32 @@ const getRandomRecipe = (recipeList) => {
   return recipeList[indexPosition];
 };
 
+const getIngredients = (currentRecipe, allIngredients) => {
+  if(!allIngredients.length){
+    return 'Sorry, no ingredients given!'
+  }
+  return currentRecipe.ingredients.reduce((ingredients, ingredient) => {
+    let foundIngredients = allIngredients.find(item => ingredient.id === item.id)
+    ingredients.push(foundIngredients)
+    return ingredients;
+  },[]);
+};
+
+const getIngredientNames = (ingredients) => {
+  if(!ingredients.length){
+    return 'Sorry, no ingredients given!'
+  }
+  let ingredientNames = [];
+  ingredients.forEach(item => ingredientNames.push(item.name))
+  return ingredientNames;
+}
+
+
 export {
   filterRecipes,
-  getRandomRecipe,
   getRecipeInstructions, 
-  getRecipeById 
+  getRecipeById, 
+  getRandomRecipe,
+  getIngredients,
+  getIngredientNames 
 };
