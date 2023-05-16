@@ -1,3 +1,120 @@
+html, body {
+  min-height: 100vh;
+}
+
 body {
-  background-color: blueviolet;
+  font-family: 'Kalam', cursive;
+  background-color: #F8EDEB;
+  margin: 0px;
+}
+
+h1 {
+  font-family: 'Mogra', cursive;
+}
+
+/* NAV BAR */
+
+.nav-bar {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+#user-search {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+}
+
+figure {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+}
+
+#user {
+  width: 100px;
+  height: 100px;
+}
+
+#user-initials {
+  position: absolute;
+  bottom: 0;
+  color: #FEC89A;
+  width: 100%;
+  height: 85px;
+  font-size: 40px;
+  text-align: center;
+}
+
+#search-btn {
+  width: 50px;
+  height: 50px;
+  border: none;
+  margin-top: 10px;
+  background: transparent;
+  background-image: url('images/search.png');
+  background-size: cover;
+}
+
+.nav-pages {
+  display: flex;
+  align-items: flex-end;
+  margin: 20px;
+}
+
+#home-icon {
+  width: 150px;
+  height: 150px;
+  border-radius: 30px;
+  background-color: #FFD7BA;
+  background-image: url('images/chef.png');
+  background-size: cover;
+}
+
+.nav-btn {
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
+  border: none;
+  color:#F8EDEB;
+  background-color: #FEC5BB;
+  margin: 10px;
+  border-radius: 5px;
+  font-family: 'Kalam', cursive;
+}
+
+.nav-btn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+#home-icon:hover, #search-btn:hover {
+  cursor: pointer;
+}
+
+/* HOME VIEW */
+
+#home-banner, .featured {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#recipe-of-the-day {
+  border-radius: 10px;
+  height: auto;
+  max-height: 30vh;
+  width: 30%;
+  object-fit: cover;
+}
+
+#featured-recipes {
+  background-color: #D8E2DC;
+}
+
+.hidden {
+  display:none;
 }
