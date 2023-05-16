@@ -117,7 +117,7 @@ describe('recipe', () => {
     // ]
   });
   it.skip("should calulcaulte the cost of a different receipe's ingredients", () => {});
-  it('should return the intructions for a given recipe', () => {
+  it('should return the intsructions for a given recipe', () => {
     const cookieInstructions = getInstructions(cookies);
     const cookieDirections = [
       'In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.',
