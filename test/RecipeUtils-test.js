@@ -37,5 +37,10 @@ describe('RecipeUtils', () => {
   })
 })
 
+describe('findRecipe', () => {
+  it('Should be a function', () => {
+    expect(findRecipe).to.be.a('function');
+  });
+});
 
 
