@@ -1,6 +1,7 @@
 import { expect } from 'chai';
-import { getRecipeInstructions, getRecipeById } from '../src/recipes.js'
+import { getRecipeInstructions, getRecipeById, getIngredients, getIngredientNames } from '../src/recipes.js'
 import { sampleRecipeData } from '../src/data/sample-recipes.js';
+import { sampleIngredientsData } from '../src/data/sample-ingredients.js';
 
 describe ('recipe info', () => {
   let findRecipe, findAnotherRecipe;
@@ -43,3 +44,24 @@ describe ('recipe info', () => {
     ])
   });
 });
+
+describe('ingredients', () => {
+  let recipe1, recipe2;
+
+  beforeEach(() => {
+    recipe1 = getRecipeById(sampleRecipeData, 595736);
+    recipe2 = getRecipeById(sampleRecipeData, 678353);
+  });
+
+  it('should find the ingredient information needed for a recipe', () => {
+    const ingredients = getIngredients(recipe1, sampleIngredientsData)
+    expect(ingredients[1].id).to.equal(18372)
+    expect(ingredients[1].name).to.equal('bicarbonate of soda')
+    expect(ingredients[1].estimatedCostInCents).to.equal(582)
+  })
+
+  it('should return an error if no ingredients are found', () => {
+    const ingredients = getIngredients(recipe2, [])
+    expect(ingredients).to.equal('Sorry, no ingredients given!')
+  })
+})
