@@ -1186,4 +1186,4 @@ const sampleRecipeData = [
 }
 ]
 
-export { sampleRecipeData };
+export { sampleRecipeData }
