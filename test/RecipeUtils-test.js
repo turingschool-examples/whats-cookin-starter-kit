@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { recipesFromTag, recipesfromName, findRecipe, findIngredientNames } from '../src/recipeUtils';
+import { recipesFromTag, recipesfromName, findRecipe, findIngredientNames,  } from '../src/recipeUtils';
 import recipeData from '../src/data/recipes-sample.js';
 import ingredientsData from '../src/data/ingredients-sample.js';
 
@@ -91,13 +91,10 @@ describe('calculateCostForOneIngredient', () => {
   it('should return the cost of one ingredient', () => {
     const ingredient = ingredientsData[0];
     const quantity = { amount: 1, unit: 'c' };
-    const actual = calculateCostForOneIngredient(ingredient.id, quantity);
+    const actual = calculateCostForOneIngredient(ingredient, quantity, ingredientsData);
     const expected = ingredient.estimatedCostInCents;
     expect(actual).to.equal(expected);
   });
-
-  
-
 });
 
 
