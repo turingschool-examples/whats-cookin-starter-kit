@@ -12,6 +12,8 @@ h1 {
   font-family: 'Mogra', cursive;
 }
 
+/* NAV BAR */
+
 .nav-bar {
   display: flex;
   flex-direction: row-reverse;
@@ -72,13 +74,15 @@ figure {
 }
 
 .nav-btn {
-  width: 100px;
-  height: 30px;
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
   border: none;
   color:#F8EDEB;
   background-color: #FEC5BB;
   margin: 10px;
   border-radius: 5px;
+  font-family: 'Kalam', cursive;
 }
 
 .nav-btn:hover {
@@ -88,6 +92,26 @@ figure {
 
 #home-icon:hover, #search-btn:hover {
   cursor: pointer;
+}
+
+/* HOME VIEW */
+
+#home-banner, .featured {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#recipe-of-the-day {
+  border-radius: 10px;
+  height: 200px;
+  width: 400px;
+}
+
+#featured-recipes {
+  height: 20%;
+  background-color: #D8E2DC;
 }
 
 .hidden {
