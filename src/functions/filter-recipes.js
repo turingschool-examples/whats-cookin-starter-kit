@@ -15,7 +15,7 @@ const filterByTag = (recipeData, tagInput) => {
   } else {
     return filteredRecipes;
   }
-}
+};
 
 function filterByName(recipeData, name) {
   var filteredRecipesByName = [];
