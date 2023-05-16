@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { compileIngredientQuantity  } from '../src/calculate-recipe-price'
+import { compileIngredientQuantity, sumTotalIngredientQuantity  } from '../src/calculate-recipe-price'
 import { sampleIngredientsData, sampleRecipeData } from './sampleIngredients';
 
 
@@ -23,3 +23,15 @@ describe('compileIngredientQuantity', () => {
     ]);
   });
 });
+
+  describe('sumTotalIngredientQuantity', () => {
+    it('should be a function', () => {
+      expect(sumTotalIngredientQuantity).to.be.a('function')
+    });
+
+    it('should sum the total ingredient quantity for a recipe', () => {
+      const total = sumTotalIngredientQuantity(sampleRecipeData, sampleIngredientsData)
+      expect(total).to.equal(12.5)
+    });
+  });
+  
