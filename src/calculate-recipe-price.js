@@ -1,6 +1,7 @@
 import { sampleRecipeData } from "../test/sampleIngredients";
 
-const compileIngredientQuantity = (recipe, ingredientsData) => {
+const compileIngredientQuantity = (recipe) => {
+  console.log("RECIPE,", recipe)
   return recipe.ingredients.map((quantity) => {
     quantity = {
       id: quantity.id,
@@ -12,14 +13,13 @@ const compileIngredientQuantity = (recipe, ingredientsData) => {
 
 const sumTotalIngredientQuantity = (
   sampleRecipeData,
-  sampleIngredientsData
 ) => {
   const ingQuantityData = compileIngredientQuantity(
-    sampleRecipeData[0],
-    sampleIngredientsData
+    sampleRecipeData
   );
   return ingQuantityData.reduce((acc, curr) => {
     acc += curr.quantity;
+    console.log(acc)
     return acc;
   }, 0);
 };
@@ -39,16 +39,33 @@ const costInCents = (sampleRecipeData, sampleIngredientsData) => {
 
 const totalCostInCents = (sampleRecipeData, sampleIngredientsData) => {
   const centsPerRecipe = costInCents(sampleRecipeData, sampleIngredientsData);
-  console.log("centsPerRecipe", centsPerRecipe);
   return centsPerRecipe.reduce((acc, curr) => {
     acc += curr;
     return acc;
   }, 0);
 };
 
+const calculateRecipePrice = (sampleRecipeData, sampleIngredientsData) => {
+  if (!sampleRecipeData) {
+    return "Sorry no price could be calculated.";
+  } else {
+    const totalQuantityAmt = sumTotalIngredientQuantity(
+      sampleRecipeData,
+      sampleIngredientsData
+    );
+    const totalCents = totalCostInCents(
+      sampleRecipeData[0],
+      sampleIngredientsData
+    );
+    const finalTotal = (totalQuantityAmt * totalCents) / 100;
+    return `$${finalTotal.toFixed(2)}`;
+  }
+};
+
 export {
   compileIngredientQuantity,
   sumTotalIngredientQuantity,
   costInCents,
-  totalCostInCents
+  totalCostInCents,
+  calculateRecipePrice,
 };
