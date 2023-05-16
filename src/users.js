@@ -1,4 +1,4 @@
-const copyItem = item => JSON.parse(JSON.stringify(item))
+import { copyItem } from "./helper-functions";
 
 const addRecipeToCook = (user, recipe) => {
   const updatedUser = copyItem(user);
