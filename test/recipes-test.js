@@ -126,6 +126,7 @@ describe('calculate cost of ingredients', () => {
 
   it('should show an error if ingredients don\'t exist', function() {
     const badIngredients = calculateRecipeCost([], recipe2)
-    expect(badIngredients).to.equal('Error: no ingredients given :(')
-  })
+    expect(badIngredients).to.equal('Error: no ingredients :(')
+  });
+
 })

@@ -42,7 +42,7 @@ const getIngredientNames = (ingredients) => {
 
 const calculateRecipeCost = (ingredients, recipe) => {
   if(!ingredients.length){
-    return 'Error: no ingredients given :('
+    return 'Error: no ingredients :('
   }
   return ingredients.reduce((totalCost, ingredient) => {
     let ingredientQuantity = recipe.ingredients.find(recipe => recipe.id === ingredient.id) 
