@@ -34,89 +34,35 @@ describe('recipe', () => {
     ];
     assert.deepEqual(cookieIngredients, cookieIngredientList);
   });
-  it.skip('should determine the names of ingredients for a different recipe', () => {});
-  it.skip("should calculate the cost of a given recipe's ingredients", () => {
-    // [
-    //   {
-    //     "id": 20081,
-    //     "quantity": {
-    //       "amount": 1.5,
-    //       "unit": "c"
-    //     }
-    //   },
-    //   {
-    //     "id": 18372,
-    //     "quantity": {
-    //       "amount": 0.5,
-    //       "unit": "tsp"
-    //     }
-    //   },
-    //   {
-    //     "id": 1123,
-    //     "quantity": {
-    //       "amount": 1,
-    //       "unit": "large"
-    //     }
-    //   },
-    //   {
-    //     "id": 19335,
-    //     "quantity": {
-    //       "amount": 0.5,
-    //       "unit": "c"
-    //     }
-    //   },
-    //   {
-    //     "id": 19206,
-    //     "quantity": {
-    //       "amount": 3,
-    //       "unit": "Tbsp"
-    //     }
-    //   },
-    //   {
-    //     "id": 19334,
-    //     "quantity": {
-    //       "amount": 0.5,
-    //       "unit": "c"
-    //     }
-    //   },
-    //   {
-    //     "id": 2047,
-    //     "quantity": {
-    //       "amount": 0.5,
-    //       "unit": "tsp"
-    //     }
-    //   },
-    //   {
-    //     "id": 1012047,
-    //     "quantity": {
-    //       "amount": 24,
-    //       "unit": "servings"
-    //     }
-    //   },
-    //   {
-    //     "id": 10019903,
-    //     "quantity": {
-    //       "amount": 2,
-    //       "unit": "c"
-    //     }
-    //   },
-    //   {
-    //     "id": 1145,
-    //     "quantity": {
-    //       "amount": 0.5,
-    //       "unit": "c"
-    //     }
-    //   },
-    //   {
-    //     "id": 2050,
-    //     "quantity": {
-    //       "amount": 0.5,
-    //       "unit": "tsp"
-    //     }
-    //   }
-    // ]
+  it('should determine the names of ingredients for a different recipe', () => {
+    const porkChopIngredients = getIngredients(porkChops, allIngredients);
+    const porkChopIngredientList = [
+      'apple cider',
+      'apple',
+      'corn starch',
+      'dijon style mustard',
+      'whole garlic clove',
+      'whole grain dijon mustard',
+      'maple',
+      'miso',
+      'pork chop',
+      's&p',
+      'soy sauce',
+      'sriracha sauce',
+    ];
+    assert.deepEqual(porkChopIngredients, porkChopIngredientList);
   });
-  it.skip("should calulcaulte the cost of a different receipe's ingredients", () => {});
+  
+  it("should calculate the cost of a given recipe's ingredients", () => {
+    const cost = calculateRecipeCost(cookies, allIngredients);
+    assert.equal(cost, '$177.76');
+  });
+
+  it("should calulcaulte the cost of a different receipe's ingredients", () => {
+    const cost = calculateRecipeCost(porkChops, allIngredients);
+    assert.equal(cost, '$272.97');
+  });
+
   it('should return the intsructions for a given recipe', () => {
     const cookieInstructions = getInstructions(cookies);
     const cookieDirections = [
