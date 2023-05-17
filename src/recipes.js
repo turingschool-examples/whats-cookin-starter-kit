@@ -5,14 +5,13 @@ const getInstructions = recipe => {
 }
 
 const filterRecipes = (allRecipes, ...tags) => {
-  let filteredRecipes = [];
-  tags.forEach((tag) => {
-    filteredRecipes.push(allRecipes.filter(recipe => {
+  let filteredRecipes = tags.flatMap((tag) => {
+    return allRecipes.filter(recipe => {
       return recipe.tags.includes(tag);
-    }));
-  })
+    });
+  });
 
-  return [ ...new Set(filteredRecipes.flat())];
+  return [ ...new Set(filteredRecipes)];
 }
 
 const getIngredients = (recipe, ingredients) => {
