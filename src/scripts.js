@@ -1,5 +1,5 @@
 // DOM UPDATES
-import './styles.css'
+import './styles.css';
 import './images/user.png';
 import './images/home.png';
 import './images/search.png';
@@ -7,14 +7,21 @@ import './images/restaurant.png';
 import './images/bookmark.png';
 import './images/bookmark-filled.png'
 
-import { toMyRecipeView , toDashboardView, renderRecipeCards, toggleBookmark, renderEnlargedRecipeCard } from './domUpdates'
-import {recipeData} from './data/recipes'
 import { getRandomUser } from './users';
 import { sampleIngredientsData } from '../test/sampleIngredients';
 import { sampleUserData } from '../test/sampleUsers';
-import { recipesToCook, removeRecipes
- } from './recipes-to-cook';
-
+import { recipesToCook, removeRecipes} from './recipes-to-cook';
+import { recipeData }  from './data/recipes';
+import { ingredientsData } from './data/ingredients';
+import {
+  toMyRecipeView,
+  toDashboardView,
+  renderRecipeCards,
+  toggleBookmark,
+  renderSingleRecipeView,
+  searchBarClicked,
+} from './domUpdates';
+import { findRecipe } from './filters';
 
 //GLOBAL VARIABLE
 let currentUser
@@ -25,25 +32,40 @@ const mainView = document.querySelector('#mainView');
 const myRecipesView = document.querySelector('#myRecipeView');
 const dashboardBtn = document.querySelector('#dashboardNav');
 const mainViewCardContainer = document.querySelector('#mainViewCardContainer');
-const enlargedRecipeView = document.querySelector('#enlargedRecipeView');
+const singleRecipeView = document.querySelector('#singleRecipeView');
+const searchBar = document.querySelector('#searchInput');
+const searchByToggle = document.querySelector('#searchSelect');
+const searchButton = document.querySelector('#searchIconBackground');
 
 // EVENT LISTENERS
-myRecipesBtn.addEventListener('click', toMyRecipeView)
-dashboardBtn.addEventListener('click', toDashboardView)
+searchButton.addEventListener('click', searchBarClicked);
+myRecipesBtn.addEventListener('click', toMyRecipeView);
+dashboardBtn.addEventListener('click', toDashboardView);
 mainViewCardContainer.addEventListener('click', (e) => {
-  toggleBookmark(e, currentUser)
-})
+  toggleBookmark(e, currentUser);
+});
 window.addEventListener('load', () => {
   currentUser = getRandomUser(sampleUserData)
-})
+});
+singleRecipeView.addEventListener('click', (e) => {
+  toggleBookmark(e)});
+mainView.addEventListener('click', (e) => {
+  if (e.target.classList.contains('recipe-img') || e.target.classList.contains('recipe-name')) {
+    renderSingleRecipeView(e, recipeData, ingredientsData);
+  }
+});
 
 // FUNCTIONS
-renderRecipeCards(mainViewCardContainer, recipeData)
+renderRecipeCards(mainViewCardContainer, recipeData);
 
-export { 
+export {
   mainView,
   myRecipesView,
   mainViewCardContainer,
-  enlargedRecipeView,
-  currentUser
-}
+  currentUser,
+  singleRecipeView,
+  searchBar,
+  searchButton,
+  searchByToggle,
+};
+
