@@ -26,7 +26,10 @@ dashboardBtn.addEventListener('click', toDashboardView)
 mainViewCardContainer.addEventListener('click', (e) => {
   toggleBookmark(e)})
 mainView.addEventListener('click', (e) => {
-  renderSingleRecipeView(e, recipeData, ingredientsData);
+  if (e.target.classList.contains('recipe-img') || e.target.classList.contains('recipe-name')) {
+    renderSingleRecipeView(e, recipeData, ingredientsData);
+  }
+
 })
 // FUNCTIONS
 renderRecipeCards(mainViewCardContainer, recipeData)

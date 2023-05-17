@@ -56,6 +56,9 @@ const toggleBookmark = (e) => {
 //CREATE A TEST FOR THIS FUNCITON!!!!
 const findRecipe = (e, recipes) => {
      return recipes.find((recipe) => {
+        if (e.target.classList.contains('recipe-name')) {
+          return recipe.id === parseInt(e.target.parentElement.parentElement.id)
+        }
         return recipe.id === parseInt(e.target.id)
       })
 }
