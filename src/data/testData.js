@@ -393,7 +393,7 @@ const recipeTestData = [
         "number": 1
       }
     ],
-    "name": "Dirty Steve's Original Wing Sauce",
+    "name": "Dirty Dan's Original Wing Sauce",
     "tags": [
       "sauce",
       "dinner"

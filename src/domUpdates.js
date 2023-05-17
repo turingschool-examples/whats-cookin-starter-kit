@@ -35,17 +35,25 @@ const viewRecipeInfo = (e) => {
 }
 }
 
-
-
 const displayRecipeInfo = () => {
   alert('howdy')
 }
 
-const filterRecipeByTag = (recipes, tag) => {
-  const findRecipe = recipes.filter(recipe => {
-    return recipe.tags.includes(tag);
-  })
-  return findRecipe;
+const filterRecipeByTag = (event) => {
+  // filterByTag(recipes, tag)
+
+  recipeTestData.forEach(recipe => {
+
+  if (recipe.tags.includes(event.target.id)) {
+    mainRecipe.innerHTML = ''
+    mainRecipe.innerHTML += `<section class='recipe-container box' id='${recipe.id}'>
+    <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
+    <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
+  </section>
+  `
+  }
+})
+ 
 }
 
 const searchRecipe = (recipes, name) => {
