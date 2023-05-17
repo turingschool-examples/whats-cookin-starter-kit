@@ -20,10 +20,10 @@ mainRecipe.addEventListener('click', (e) => {
 })
 
 tagButtons.forEach((button) => {
-button.addEventListener('click', (event) => {
-  filterRecipeByTag(event)
-  }) 
-})
+  button.addEventListener('click', (event) => {
+    filterRecipeByTag(event)
+    }) 
+  })
 
 searchButton.addEventListener('click', searchRecipe)
 
