@@ -1,4 +1,4 @@
-export const sampleRecipeData = [
+const sampleRecipeData = [
   {
     "id": 595736,
     "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -329,7 +329,7 @@ export const sampleRecipeData = [
   }
 ]
 
-export const sampleIngredientsData = [
+const sampleIngredientsData = [
   {
     "id": 20081,
     "name": "wheat flour",
@@ -503,7 +503,7 @@ export const sampleIngredientsData = [
 ]
 
 
-export const sampleUsersData = [
+const sampleUsersData = [
   {
     "name": "Saige O'Kon",
     "id": 1,
@@ -1107,3 +1107,38 @@ export const sampleUsersData = [
     ]
   }
 ]
+
+const simpleRecipe = {
+  instructions: [],
+  ingredients: [
+    {
+      id: 1,
+      quantity: { amount: 1 },
+    },
+    {
+      id: 2,
+      quantity: { amount: 2 },
+    },
+  ],
+};
+
+const simpleIngredients = [
+  {
+    id: 1,
+    name: 'sugar',
+    estimatedCostInCents: 500,
+  },
+  {
+    id: 2,
+    name: 'salt',
+    estimatedCostInCents: 200,
+  },
+];
+
+export {
+  sampleRecipeData,
+  sampleIngredientsData,
+  sampleUsersData,
+  simpleIngredients,
+  simpleRecipe
+}

@@ -1,76 +1,29 @@
 import { assert } from 'chai'
-import { sampleIngredientsData, sampleRecipeData } from '../src/data/sampleData';
+
+import {
+  sampleIngredientsData,
+  sampleRecipeData,
+  simpleIngredients,
+  simpleRecipe,
+} from '../src/data/sampleData';
+
 import {
   getInstructions,
   getIngredients,
   calculateRecipeCost,
 } from '../src/recipes';
-import { getIngredientProperty } from '../src/helper-functions';
 
 describe('recipe', () => {
   const cookies = sampleRecipeData[0];
   const porkChops = sampleRecipeData[1];
   const allIngredients = sampleIngredientsData;
-  const simpleRecipe = {
-    instructions: [],
-    ingredients: [
-      {
-        id: 1,
-        quantity: { amount: 1 },
-      },
-      {
-        id: 2,
-        quantity: { amount: 2 },
-      },
-    ],
-  };
-
-  const simpleIngredients = [
-    {
-      id: 1,
-      name: 'sugar',
-      estimatedCostInCents: 500,
-    },
-    {
-      id: 2,
-      name: 'salt',
-      estimatedCostInCents: 200,
-    },
-  ];
 
   it('should be a funciton', () => {
-    assert.isFunction(getIngredientProperty);
     assert.isFunction(getInstructions);
     assert.isFunction(getIngredients);
     assert.isFunction(calculateRecipeCost);
   });
 
-  it('should be able to find the name of a specific ingredient', () => {
-    const flour = getIngredientProperty(cookies.ingredients[0], allIngredients, 'name');
-    assert.equal(flour, 'wheat flour');
-  })
-
-  it('should be able to find the price of a specific ingredient', () => {
-    const costInCents = getIngredientProperty(cookies.ingredients[0], allIngredients, 'estimatedCostInCents');
-    assert.equal(costInCents, 142)
-  })
-
-  it('should be able to find the name and price of simple ingredients', () => {
-    const sugar = {
-      name: getIngredientProperty(simpleRecipe.ingredients[0], simpleIngredients, 'name'),
-      price: getIngredientProperty(simpleRecipe.ingredients[0], simpleIngredients, 'estimatedCostInCents')
-    }
-
-    const salt = {
-      name: getIngredientProperty(simpleRecipe.ingredients[1], simpleIngredients, 'name'),
-      price: getIngredientProperty(simpleRecipe.ingredients[1], simpleIngredients, 'estimatedCostInCents')
-    }
-
-    assert.equal(sugar.name, 'sugar');
-    assert.equal(sugar.price, 500);
-    assert.equal(salt.name, 'salt');
-    assert.equal(salt.price, 200);
-  })
   it('should determine the names of ingredients needed for a recipe', () => {
     const cookieIngredients = getIngredients(cookies, allIngredients);
     const cookieIngredientList = [
