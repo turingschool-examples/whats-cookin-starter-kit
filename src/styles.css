@@ -1,13 +1,13 @@
 *{
   /* border: 2px solid red; */
-  font-size: 25px;
-  font-family:'Hind Siliguri';
-  font-weight:400
+
 }
 
 html {
   width: 100vw;
   height: 100vh;
+  font-family:'Hind Siliguri';
+  font-weight:400
 }
 
 body {
@@ -22,18 +22,27 @@ body {
 .home {
   width: 100%;
   height: 100%;
-  font-size: 62.5%;
+
   margin: 0;
 }
 
 .home__header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 6em;
   width: 100%;
   margin: 0;
   background-color: rgb(205, 205, 205);
-  /* border: solid black 3px; */
 }
+
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+}
+  /* border: solid black 3px; */
+
 
 .home__icon{
   height: 3em;
