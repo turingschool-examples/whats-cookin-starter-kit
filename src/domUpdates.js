@@ -1,6 +1,6 @@
 // Imports
 import {recipeData} from './data/recipes'
-import {recipeGrid, clickedRecipe} from './scripts'
+import {recipeGrid, clickedRecipe, tagArea} from './scripts'
 
 // functions
 
