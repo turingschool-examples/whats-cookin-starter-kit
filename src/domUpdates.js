@@ -17,8 +17,15 @@ allFilterDisplay.addEventListener('click', function(event) {
 
 //Event Handlers/Functions
 function showRecipes() {
+  removeHiddenClass([allRecipeDisplay, allFilterDisplay])
   addHiddenClass([frontRecipeDisplay]);
-  allRecipeDisplay.innerHTML = 'recipes';
+  allRecipeDisplay.innerHTML = ''
+  recipeData.forEach(recipe => allRecipeDisplay.innerHTML += `<div class = "recipe-wrapper">
+  <img id="${recipe.name}" src="${recipe.image}" class="recipe">
+  <div class = "recipe-info">
+    <p>${recipe.name}</p>
+    <p>Total Cost: $..</p>
+  </div>`)
 };
 
 function removeHiddenClass(elements) {
