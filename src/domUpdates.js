@@ -1,6 +1,6 @@
 // Imports
 import {recipeData} from './data/recipes'
-import {recipeGrid} from './scripts'
+import {recipeGrid, clickedRecipe} from './scripts'
 
 // functions
 
@@ -62,10 +62,26 @@ const renderGrid = () => {
   recipeGrid.innerHTML = createGridHTML(gridData);
 }
 
+const showRecipe = (recipeCard) => {
+  const recipeCardName = recipeCard.lastElementChild.textContent;
+  const thisRecipe = recipeData.find(recipe => recipe.name === recipeCardName);
+  clickedRecipe.classList.toggle("hidden");
+  clickedRecipe.classList.toggle("flex");
+  clickedRecipe.classList.toggle("fade-in");
+};
+
+const closeRecipe = (e) => {
+  clickedRecipe.classList.add("hidden");
+  clickedRecipe.classList.remove("flex");
+  clickedRecipe.classList.remove("fade-in");
+}
+
 // Event listeners
 window.addEventListener("load", renderGrid)
 
 // Exports
 export {
-  renderGrid
+  renderGrid,
+  showRecipe,
+  closeRecipe
 }
