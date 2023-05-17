@@ -46,11 +46,7 @@ const calculateRecipeCost = recipe => {
    return instructions.join(' ')
  };
 
-/// still trying to figure out a way to put each instruction on a new line... my new line of thinking is using two prototype.methods... .join then .string ??  -- let me know what you think...
-// -- Andrea
 
-
- 
 
 export {
   recipesFromTag,
