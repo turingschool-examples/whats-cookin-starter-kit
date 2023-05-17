@@ -1,11 +1,13 @@
 //NOTE: Your DOM manipulation will occur in this file
 
+import sampleRecipeData from "./data/sample-recipes.js";
+
 const viewAll = document.querySelector('.categories__all');
+const allSection = document.querySelector('.all');
 
-viewAll.addEventListener('click', () => {
-
-})
-
+function testFunction () {
+console.log(viewAll)
+};
 
 const show = (names, section) => {
   names.forEach((name) => {
@@ -18,3 +20,5 @@ const hide = (names, section) => {
     name.classList.add(section);
   })
 };
+
+export { testFunction }
