@@ -25,7 +25,7 @@ const createSingleRecipeHTML = singleRecipe => {
   let htmlCode = '';
   htmlCode += 
   `
-  <article class="individual-recipe">
+  <article class="individual-recipe" id="${singleRecipe.id}">
       <div class="recipe-image-div">
         <img class="recipe-image"src="${singleRecipe.image}">
         <div class="hover-card"> 
