@@ -7,6 +7,7 @@ const mainRecipe = document.querySelector('.main-recipe');
 // const lunchButton = document.querySelector('#lunch');
 // const dinnerButton = document.querySelector('#dinner');
 const tagButtons = document.querySelectorAll('.tag')
+const searchButton = document.querySelector('.submit-button')
 let testBox;
 
 
@@ -57,10 +58,11 @@ const filterRecipeByTag = (event) => {
 }
 
 const searchRecipe = (recipes, name) => {
-const findName = recipes.filter(recipe => {
-  return recipe.name === name;
-});
-return findName;
+// const findName = recipes.filter(recipe => {
+//   return recipe.name === name;
+// });
+// return findName;
+alert('YOOO')
 }
 
 
@@ -75,5 +77,6 @@ export {
   // breakfastButton,
   // lunchButton,
   // dinnerButton
-  tagButtons
+  tagButtons,
+  searchButton
 }
