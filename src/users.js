@@ -5,5 +5,4 @@ const getRandomUser = (userData) => {
   return userData.users[getRandomIndex(userData.users.length)]
 }
 
-
 export { getRandomUser, getRandomIndex}
