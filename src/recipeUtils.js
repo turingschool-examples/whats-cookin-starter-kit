@@ -2,16 +2,21 @@ import recipeData from '../src/data/recipes-sample.js';
 import ingredientsData from '../src/data/ingredients-sample.js';
 
 
-function recipesFromTag(recipes, tag) {
-  return recipes.filter((recipe) => {
-    return recipe.tags.includes(tag)
-  });
+function recipesFromTag(recipes, tags) {
+  const filtered = recipes.filter((recipe) => {
+    return tags.every((tag => {
+      return recipe.tags.includes(tag)
+    }))
+  })
+  return filtered
 }
 
 function recipesfromName(recipes, name) {
   return recipes.filter((recipe) => {
-    return recipe.name.includes(name)
-  })
+    if (recipe.name.toLowerCase().includes(name.toLowerCase())) {
+    return recipe.name
+  }
+})
 }
 
 const findRecipe = (recipeData, recipeName) => {
