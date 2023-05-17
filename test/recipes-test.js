@@ -104,7 +104,7 @@ describe('ingredients', () => {
   })
 })
 
-describe('calculate cost of ingredients', function() {
+describe('calculate cost of ingredients', () => {
   let recipe; let ingredients;
 
   beforeEach(() => {
