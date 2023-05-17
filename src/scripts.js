@@ -6,7 +6,7 @@ import apiCalls from './apiCalls'
 import './images/turing-logo.png'
 import ingredientsData from './data/ingredients.js'
 import sampleRecipeData from './data/sample-recipes.js'
-import { viewAll, viewAllRecipes, viewSalads, viewHordoeuvres, viewMains, viewSides, viewFilteredRecipes, 
+import { viewAll, viewAllRecipes, viewSalads, viewHordoeuvres, viewMains, viewSides, viewFilteredRecipes, viewRecipe, allRecipes 
  } from './domUpdates.js'
 
 //Example of one way to import functions from the domUpdates file. You will delete these examples.
@@ -16,6 +16,13 @@ import { viewAll, viewAllRecipes, viewSalads, viewHordoeuvres, viewMains, viewSi
 // exampleFunction2('heather')
 
 // console.log(ingredientsData)
+const setUpRecipes = (event) => {
+  viewFilteredRecipes(event)
+  const recipes = allRecipes()
+  recipes.forEach((recipe) => {
+    recipe.addEventListener('click', viewRecipe)
+  })
+}
 
 viewAll.addEventListener('click', viewAllRecipes)
 viewSalads.addEventListener('click', function(event) {

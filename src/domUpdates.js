@@ -75,4 +75,6 @@ export {
   viewMains, 
   viewSides,
   viewFilteredRecipes, 
+  viewRecipe,
+  allRecipes
 }
