@@ -15,7 +15,7 @@ const allRecipes = () => document.querySelectorAll('.all__recipes');
 const recipeTitle = document.querySelector('.recipe__title');
 const recipeImg = document.querySelector('.recipe__img');
 const recipeIngredients = document.querySelector('.recipe__ingredients');
-
+const recipeInstructions = document.querySelector('.recipe__instructions')
 
 const viewRecipe = (event) => {
   recipeData.forEach(recipe => {
