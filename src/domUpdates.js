@@ -7,7 +7,7 @@ import { recipeData } from './data/recipes';
 const makeRecipeColumnData = (data) => {
   const mappedRecipe = data.map((recipe, index) => {
     return {
-      column: index+1,
+      column: (index+1) % 3,
       id: recipe.id,
       image: recipe.image,
       name: recipe.name,
@@ -15,9 +15,9 @@ const makeRecipeColumnData = (data) => {
     }
   });
 
-  const leftColumn = mappedRecipe.filter(recipe => recipe.column % 3 === 1);
-  const centreColumn = mappedRecipe.filter(recipe => recipe.column % 3 === 2);
-  const rightColumn = mappedRecipe.filter(recipe => recipe.column % 3 === 0);
+  const leftColumn = mappedRecipe.filter(recipe => recipe.column === 1);
+  const centreColumn = mappedRecipe.filter(recipe => recipe.column === 2);
+  const rightColumn = mappedRecipe.filter(recipe => recipe.column === 0);
   return [leftColumn, centreColumn, rightColumn];
 }
 
@@ -74,12 +74,18 @@ const getAllTags = recipes => {
 }
 
 const clubTagsAndIcons = tags => {
-  const tagsAndIcons = tags.reduce((iconPaths, tag) => {
+  const tagsAndIcons = tags.reduce((iconPaths, tag, index) => {
     iconPaths[tag] = `./images/${tag}.png`;
+    iconPaths.row = (index+1) % 2;
     return iconPaths;
   }, {})
 }
 
+const splitTagsinRows = tagsAndIcons => {
+  const topRow = tagsAndIcons.filter(tag => tag.row === 1);
+  const bottomRow = tagsAndIcons.filter(tag => tag.row === 2);
+  return [topRow, bottomRow];
+}
 
 
 // Event listeners
