@@ -79,8 +79,34 @@ main {
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  margin-bottom: 5vh;
 }
 
 .recipe, .recipe-info {
   width: 300px;
+}
+
+.all-recipes-wrapper {
+  display: flex;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+  width: 20vh;
+}
+
+.all-recipes-display {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 80vh;
+  width: 120vh;
+}
+
+.hidden {
+  display: none;
 }
