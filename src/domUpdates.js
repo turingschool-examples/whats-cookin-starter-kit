@@ -75,7 +75,13 @@ const renderSingleRecipeView = (e, recipes, ingredients) => {
   singleRecipeView.innerHTML += `
     <div class="single-recipe-view-flex">
       <img class="single-recipe-img" src="${recipe.image}">
-      <h2 class="recipe-title">${recipe.name}</h2>
+      <div class="recipe-header-flex">
+        <h2 class="recipe-title">${recipe.name}</h2>
+        <div class="bookmark-flex">
+          <img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked" alt="bookmark icon">
+          <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">
+        </div>
+      </div>
       <div class="recipe-content-flex">
         <div class="side-info-flex">
           ${renderIngredients(recipe, ingredients)}
@@ -86,8 +92,6 @@ const renderSingleRecipeView = (e, recipes, ingredients) => {
           ${renderInstructions(recipe)}
         </div>
       </div>
-     
-      
     </div>`
 }
 
