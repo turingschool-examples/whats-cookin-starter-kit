@@ -32,7 +32,7 @@ const determineIngredientNames = (recipesData, ingredientsData, recipeName) => {
       ingredientNames.push(ingredient.name)
     }
   });
-  return ingredientNames;
+  return ingredientNames
 }
 
 const calculateCost = recipe => {
@@ -42,7 +42,7 @@ const calculateCost = recipe => {
 };
 
 const returnInstructions = recipe => {
-  return recipe.instructions;
+ return recipe.instructions.reduce((string, instruction) => `${string}` + `${instruction.number}) ${instruction.instruction} `, '')
 }
 
 export {createRecipe,

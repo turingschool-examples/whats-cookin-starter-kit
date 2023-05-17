@@ -1,7 +1,10 @@
-import {recipeTestData} from './data/testData.js';
+import {recipeTestData, ingredientTestData} from './data/testData.js';
+import {calculateCost, determineIngredientNames, returnInstructions} from './recipe.js';
 
 //Query Selectors
 const main = document.querySelector('main');
+let testBox;
+
 
 // Event Handlers
 const viewAllRecipes = () => {
@@ -14,14 +17,32 @@ const viewAllRecipes = () => {
 }
 
 const viewRecipeInfo = (e) => {
+ testBox = document.querySelector('.test')
  if(e.target.classList.contains('box')) {
-  const id = recipeTestData.find(recipe => recipe.id === Number(e.target.id))
-  console.log(id)
- }
+  const selectedRecipe = recipeTestData.find(recipe => recipe.id === Number(e.target.id))
+  console.log('hello is this working')
+  testBox.innerHTML= `
+  <h2 class='recipe-name'> ${selectedRecipe.name}</h2>
+  <img class='recipe-img' id='${selectedRecipe.id}' src='${selectedRecipe.image}' alt='${selectedRecipe.name}'>
+  <p class='ingredients'>${determineIngredientNames(recipeTestData, ingredientTestData, selectedRecipe.name).join(' ')}</p>
+  <p class='instructions'>${returnInstructions(selectedRecipe)}</p>
+  <p class='cost'>Total cost: $${calculateCost(selectedRecipe)}</p>
+  `
 }
+}
+
+
+
+const displayRecipeInfo = () => {
+  console.log('howdy')
+}
+
+
 
 export {
   viewAllRecipes,
   viewRecipeInfo, 
-  main
+  main, 
+  testBox, 
+  displayRecipeInfo
 }

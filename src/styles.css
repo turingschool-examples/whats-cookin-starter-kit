@@ -42,6 +42,12 @@ main {
   height: 80vh;  
 }
 
+.test-box{
+  height:25vh;
+  width:25vw;
+  border: solid black 2px 
+}
+
 .hidden {
   display: none;
 }
