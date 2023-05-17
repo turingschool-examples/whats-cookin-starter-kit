@@ -10,6 +10,20 @@ describe('recipe', () => {
   const cookies = sampleRecipeData[0];
   const porkChops = sampleRecipeData[1];
   const allIngredients = sampleIngredientsData;
+  const simpleRecipe = {
+    instructions: [],
+    ingredients: [
+      {
+        id: 1,
+        quantity: { amount: 1 },
+      },
+      {
+        id: 2,
+        quantity: { amount: 2 },
+      },
+    ],
+  };
+
   it('should be a funciton', () => {
     // Determine the names of ingredients needed for a given recipe.
     // Calculate the cost of a given recipe’s ingredients
@@ -34,6 +48,7 @@ describe('recipe', () => {
     ];
     assert.deepEqual(cookieIngredients, cookieIngredientList);
   });
+
   it('should determine the names of ingredients for a different recipe', () => {
     const porkChopIngredients = getIngredients(porkChops, allIngredients);
     const porkChopIngredientList = [
@@ -52,7 +67,7 @@ describe('recipe', () => {
     ];
     assert.deepEqual(porkChopIngredients, porkChopIngredientList);
   });
-  
+
   it("should calculate the cost of a given recipe's ingredients", () => {
     const cost = calculateRecipeCost(cookies, allIngredients);
     assert.equal(cost, '$177.76');
@@ -62,6 +77,36 @@ describe('recipe', () => {
     const cost = calculateRecipeCost(porkChops, allIngredients);
     assert.equal(cost, '$272.97');
   });
+
+  it('should calculate the cost of a simple recipe', () => {
+    const simpleIngredients = [
+      {
+        id: 1,
+        estimatedCostInCents: 500,
+      },
+      {
+        id: 2,
+        estimatedCostInCents: 200,
+      },
+    ];
+    const cost = calculateRecipeCost(simpleRecipe, simpleIngredients)
+    assert.equal(cost, '$9.00')
+  });
+
+  it('should calculate the cost of a free recipe', () => {
+    const freeIngredients = [
+      {
+        id: 1,
+        estimatedCostInCents: 0,
+      },
+      {
+        id: 2,
+        estimatedCostInCents: 0,
+      },
+    ];
+    const cost = calculateRecipeCost(simpleRecipe, freeIngredients)
+    assert.equal(cost, '$0.00')
+  })
 
   it('should return the intsructions for a given recipe', () => {
     const cookieInstructions = getInstructions(cookies);
@@ -76,6 +121,7 @@ describe('recipe', () => {
 
     assert.deepEqual(cookieInstructions, cookieDirections);
   });
+
   it('should return instructions for a different recipe', () => {
     const porkChopInstructions = getInstructions(porkChops);
     const porkChopDirections = [
@@ -84,4 +130,8 @@ describe('recipe', () => {
 
     assert.deepEqual(porkChopInstructions, porkChopDirections);
   });
+  it('should return an empty array for recipes with no instructions', () => {
+    const noInstructions = getInstructions(simpleRecipe)
+    assert.deepEqual(noInstructions, [])
+  })
 });
