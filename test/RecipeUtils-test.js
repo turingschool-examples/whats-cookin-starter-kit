@@ -10,24 +10,31 @@ describe('RecipeUtils', () => {
   });
   it ('Should filter recipes based on tag', () => {
     const expected = 'Loaded Chocolate Chip Pudding Cookie Cups'
-    const filtered = recipesFromTag(recipeData, 'starter')
+    const filtered = recipesFromTag(recipeData, ['starter'])
     expect(filtered.length).to.equal(1)
     expect(filtered[0].name).to.equal(expected)
   });
   it ('Should filter recipes if tag applies to multiple recipes', () => {
     const expected = ['Thai Chicken Tenders with Broiled Pineapple Slaw', 'Maple Dijon Apple Cider Grilled Pork Chops']
-    const filtered = recipesFromTag(recipeData, 'lunch')
+    const filtered = recipesFromTag(recipeData, ['lunch'])
     expect(filtered.length).to.equal(2)
     const names = filtered.map(f => f.name)
     expect(names).to.have.members(expected)
   });
+  it ('Should filter recipes when multiple tags are applied', () => {
+    const expected = ['Thai Chicken Tenders with Broiled Pineapple Slaw', 'Maple Dijon Apple Cider Grilled Pork Chops']
+    const filtered = recipesFromTag(recipeData, ['lunch', 'main dish'])
+    expect(filtered.length).to.equal(2)
+    const names = filtered.map(f => f.name)
+    expect(names).to.have.members(expected)
+  })
   it ('Should filter recipes based on name', () => {
     const filtered = recipesfromName(recipeData, 'Thai Chicken Tenders with Broiled Pineapple Slaw')
     expect(filtered.length).to.equal(1)
   })
   it ('Should filter recipes based on a similar name', () => {
     const expected = 'Thai Chicken Tenders with Broiled Pineapple Slaw'
-    const filtered = recipesfromName(recipeData, 'Thai Chicken')
+    const filtered = recipesfromName(recipeData, 'chicken')
     expect(filtered.length).to.equal(1)
     expect(filtered[0].name).to.equal(expected)
   })
