@@ -12,6 +12,16 @@ const allSection = document.querySelector('.all');
 const homePage = document.querySelector('.home');
 const allContainer = document.querySelector('.all__container');
 const allRecipes = () => document.querySelectorAll('.all__recipes');
+const recipeTitle = document.querySelector('.recipe__title');
+
+
+const viewRecipe = (event) => {
+  recipeData.forEach(recipe => {
+    if(recipe.name === event.target.innerHTML){
+      recipe
+    }
+  })
+}
 
 const viewAllRecipes = () => {
   hide([homePage], 'home--hidden');
