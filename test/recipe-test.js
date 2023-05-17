@@ -126,6 +126,24 @@ describe('recipe', () => {
     assert.deepEqual(ingredientInfo, expectedInfo);
   });
 
+
+  it('should get the amounts, units, and names of ingredients for a simple recipe', () => {
+    const ingredientInfo = getIngredientAmounts(simpleRecipe, simpleIngredients);
+    const expectedInfo = [
+      {
+        amount: 1, 
+        unit: 'c', 
+        name: 'sugar'
+      },
+      {
+        amount: 2, 
+        unit: 'tsp',
+        name: 'salt'
+      }
+    ]
+    assert.deepEqual(ingredientInfo, expectedInfo)
+  });
+
   it("should calculate the cost of a given recipe's ingredients", () => {
     const cost = calculateRecipeCost(cookies, allIngredients);
     assert.equal(cost, '$177.76');
