@@ -16,8 +16,8 @@ h1 {
   border-radius: 15px;
   display: flex;
   align-items: center;
-
-    /* justify-content: flex-start; */
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .tag-rows {
@@ -59,12 +59,21 @@ h1 {
 
 .tag-image-bg {
   background-color: white;
+  /* background-color: #F4E4BA; */
+  /* background-color: #FFF07C; */
+  /* background-color: #DCCCA3; */
   display: flex;
   justify-content: center;
   opacity: 0.4;
   border-radius: 15px;
   padding: 5px;
   transition: 0.2s;
+}
+
+.active-bg {
+  opacity: 1;
+  background-color: greenyellow;
+  box-shadow: 2px 2px 10px greenyellow;
 }
 
 .tag-text {
