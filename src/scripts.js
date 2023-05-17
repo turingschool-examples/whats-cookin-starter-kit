@@ -6,7 +6,7 @@ import apiCalls from './apiCalls'
 import './images/turing-logo.png'
 import ingredientsData from './data/ingredients.js'
 import sampleRecipeData from './data/sample-recipes.js'
-import { testFunction } from './domUpdates.js'
+import { viewAllRecipes } from './domUpdates.js'
 
 //Example of one way to import functions from the domUpdates file. You will delete these examples.
 // import {exampleFunction1, exampleFunction2} from './domUpdates.js'
@@ -15,4 +15,4 @@ import { testFunction } from './domUpdates.js'
 // exampleFunction2('heather')
 
 // console.log(ingredientsData)
-testFunction()
+viewAllRecipes()

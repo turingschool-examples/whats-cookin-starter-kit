@@ -4,9 +4,10 @@ import sampleRecipeData from "./data/sample-recipes.js";
 
 const viewAll = document.querySelector('.categories__all');
 const allSection = document.querySelector('.all');
+const homePage = document.querySelector('.home');
 
-function testFunction () {
-console.log(viewAll)
+function viewAllRecipes () {
+  hide([homePage], 'home--hidden');
 };
 
 const show = (names, section) => {
@@ -21,4 +22,4 @@ const hide = (names, section) => {
   })
 };
 
-export { testFunction }
+export { viewAllRecipes }
