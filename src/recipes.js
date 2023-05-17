@@ -41,19 +41,9 @@ const getIngredientNames = (ingredients) => {
 }
 
 const calculateRecipeCost = (ingredients, recipe) => {
-  // const amounts = getIngredientAmounts(ingredients)    
-  // const ingredientQuantity = recipe.ingredients 
-  
   return ingredients.reduce((totalCost, ingredient) => {
     let ingredientQuantity = recipe.ingredients.find(recipe => recipe.id === ingredient.id) 
-    // if ()
-    console.log('quantity', ingredientQuantity)
     totalCost += (ingredient.estimatedCostInCents * ingredientQuantity.quantity.amount)
-    // find out the $amount for that ing by multiplying the amount of that ingredient
-    // by the estimatedCostInCents
-    // add that to the amount
-    // return the amount
-console.log('whats that', ingredient.estimatedCostInCents)
     return totalCost
   }, 0);
 };
@@ -64,7 +54,6 @@ export {
   getRecipeById,
   getIngredients,
   getIngredientNames,
-  // getIngredientAmounts,
   calculateRecipeCost
 };
 
