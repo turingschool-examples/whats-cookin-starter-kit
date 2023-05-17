@@ -1,3 +1,4 @@
+import { removeRecipes, recipesToCook } from './recipes-to-cook';
 import {myRecipesView, mainView, enlargedRecipeView} from './scripts'
 
 // EVENT HANDLERS
@@ -38,14 +39,16 @@ const isUnchecked = (e) => {
   }
 }
 
-const toggleBookmark = (e) => {
+const toggleBookmark = (e, currentUser) => {
   if (e.target.classList[0]=== 'bookmark-icon') {
     if(isUnchecked(e)) {
-      //and push into my saved recipes array
+      recipesToCook(e.target.id, currentUser)
+      console.log(currentUser)
       e.target.classList.add('hidden')
       e.target.nextElementSibling.classList.remove('hidden');
     } else {
-      //and remove from my recipe array
+      removeRecipes(e.target.id, currentUser)
+      console.log(currentUser)
       e.target.classList.add('hidden')
       e.target.previousElementSibling.classList.remove('hidden');
     }

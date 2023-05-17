@@ -9,7 +9,15 @@ import './images/bookmark-filled.png'
 
 import { toMyRecipeView , toDashboardView, renderRecipeCards, toggleBookmark, renderEnlargedRecipeCard } from './domUpdates'
 import {recipeData} from './data/recipes'
+import { getRandomUser } from './users';
+import { sampleIngredientsData } from '../test/sampleIngredients';
+import { sampleUserData } from '../test/sampleUsers';
+import { recipesToCook, removeRecipes
+ } from './recipes-to-cook';
 
+
+//GLOBAL VARIABLE
+let currentUser
 
 // QUERY SELECTORS
 const myRecipesBtn = document.querySelector('#myRecipes');
@@ -23,10 +31,12 @@ const enlargedRecipeView = document.querySelector('#enlargedRecipeView');
 myRecipesBtn.addEventListener('click', toMyRecipeView)
 dashboardBtn.addEventListener('click', toDashboardView)
 mainViewCardContainer.addEventListener('click', (e) => {
-  toggleBookmark(e)})
-// mainView.addEventListener('click', (e) => {
-//   renderEnlargedRecipeCard(e, recipeData);
-// })
+  toggleBookmark(e, currentUser)
+})
+window.addEventListener('load', () => {
+  currentUser = getRandomUser(sampleUserData)
+})
+
 // FUNCTIONS
 renderRecipeCards(mainViewCardContainer, recipeData)
 
@@ -34,5 +44,6 @@ export {
   mainView,
   myRecipesView,
   mainViewCardContainer,
-  enlargedRecipeView
+  enlargedRecipeView,
+  currentUser
 }
