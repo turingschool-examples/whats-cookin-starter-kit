@@ -11,6 +11,7 @@ import {
   getInstructions,
   getIngredients,
   calculateRecipeCost,
+  getIngredientAmounts,
 } from '../src/recipes';
 
 describe('recipe', () => {
@@ -21,6 +22,7 @@ describe('recipe', () => {
   it('should be a funciton', () => {
     assert.isFunction(getInstructions);
     assert.isFunction(getIngredients);
+    assert.isFunction(getIngredientAmounts);
     assert.isFunction(calculateRecipeCost);
   });
 
@@ -61,6 +63,69 @@ describe('recipe', () => {
     assert.deepEqual(porkChopIngredients, porkChopIngredientList);
   });
 
+  it('should get the amounts, units, and names of ingredients for a given recipe', () => {
+    const ingredientInfo = getIngredientAmounts(cookies, allIngredients);
+    const expectedInfo = [
+      {
+        amount: 1.5,
+        unit: 'c',
+        name: 'wheat flour',
+      },
+      {
+        amount: 0.5,
+        unit: 'tsp',
+        name: 'bicarbonate of soda',
+      },
+      {
+        amount: 1,
+        unit: 'large',
+        name: 'eggs',
+      },
+      {
+        amount: 0.5,
+        unit: 'c',
+        name: 'sucrose',
+      },
+      {
+        amount: 3,
+        unit: 'Tbsp',
+        name: 'instant vanilla pudding',
+      },
+      {
+        amount: 0.5,
+        unit: 'c',
+        name: 'brown sugar',
+      },
+      {
+        amount: 0.5,
+        unit: 'tsp',
+        name: 'salt',
+      },
+      {
+        amount: 24,
+        unit: 'servings',
+        name: 'fine sea salt',
+      },
+      {
+        amount: 2,
+        unit: 'c',
+        name: 'semi sweet chips',
+      },
+      {
+        amount: 0.5,
+        unit: 'c',
+        name: 'unsalted butter',
+      },
+      {
+        amount: 0.5,
+        unit: 'tsp',
+        name: 'vanilla',
+      },
+    ];
+
+    assert.deepEqual(ingredientInfo, expectedInfo);
+  });
+
   it("should calculate the cost of a given recipe's ingredients", () => {
     const cost = calculateRecipeCost(cookies, allIngredients);
     assert.equal(cost, '$177.76');
@@ -72,8 +137,8 @@ describe('recipe', () => {
   });
 
   it('should calculate the cost of a simple recipe', () => {
-    const cost = calculateRecipeCost(simpleRecipe, simpleIngredients)
-    assert.equal(cost, '$9.00')
+    const cost = calculateRecipeCost(simpleRecipe, simpleIngredients);
+    assert.equal(cost, '$9.00');
   });
 
   it('should calculate the cost of a free recipe', () => {
@@ -87,9 +152,9 @@ describe('recipe', () => {
         estimatedCostInCents: 0,
       },
     ];
-    const cost = calculateRecipeCost(simpleRecipe, freeIngredients)
-    assert.equal(cost, '$0.00')
-  })
+    const cost = calculateRecipeCost(simpleRecipe, freeIngredients);
+    assert.equal(cost, '$0.00');
+  });
 
   it('should return the intsructions for a given recipe', () => {
     const cookieInstructions = getInstructions(cookies);
@@ -114,7 +179,7 @@ describe('recipe', () => {
     assert.deepEqual(porkChopInstructions, porkChopDirections);
   });
   it('should return an empty array for recipes with no instructions', () => {
-    const noInstructions = getInstructions(simpleRecipe)
-    assert.deepEqual(noInstructions, [])
-  })
+    const noInstructions = getInstructions(simpleRecipe);
+    assert.deepEqual(noInstructions, []);
+  });
 });
