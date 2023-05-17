@@ -16,8 +16,8 @@ h1 {
   border-radius: 15px;
   display: flex;
   align-items: center;
-  overflow-y: hidden;
-  overflow-x: hidden;
+  justify-content: center;
+  margin-bottom: 0;
 }
 
 .tag-rows {
@@ -27,6 +27,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .tag-row {
@@ -50,8 +51,6 @@ h1 {
   align-items: center;
   transition: 0.3s;
   background-color: #2c2d30;
-  /* box-shadow: 1px 1px 5px white; */
-  overflow-y: unset;
   height: 70%;
   width: 7%;
   font-size: 16px;
