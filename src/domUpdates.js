@@ -1,4 +1,4 @@
-
+import { removeRecipes, recipesToCook } from './recipes-to-cook';
 import { getIngredientsNames } from './get-ingredients-names';
 import {
   myRecipesView,
@@ -98,15 +98,17 @@ const isUnchecked = (e) => {
   }
 };
 
-const toggleBookmark = (e) => {
-  if (e.target.classList[0] === 'bookmark-icon') {
-    if (isUnchecked(e)) {
-      //and push into my saved recipes array
-      e.target.classList.add('hidden');
+const toggleBookmark = (e, currentUser) => {
+  if (e.target.classList[0]=== 'bookmark-icon') {
+    if(isUnchecked(e)) {
+      recipesToCook(e.target.id, currentUser)
+      console.log(currentUser)
+      e.target.classList.add('hidden')
       e.target.nextElementSibling.classList.remove('hidden');
     } else {
-      //and remove from my recipe array
-      e.target.classList.add('hidden');
+      removeRecipes(e.target.id, currentUser)
+      console.log(currentUser)
+      e.target.classList.add('hidden')
       e.target.previousElementSibling.classList.remove('hidden');
     }
   }
@@ -121,10 +123,6 @@ const findRecipe = (e, recipes) => {
         return recipe.id === parseInt(e.target.id);
       });
 };
-
-
-
-//card should have instruction, cost to make, and tags?
 
 // newly added functions- remember to export and import in proper files
 const renderSingleRecipeView = (e, recipes, ingredients) => {
