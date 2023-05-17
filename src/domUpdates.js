@@ -8,6 +8,7 @@ import {
   searchButton,
   searchByToggle,
   mainViewCardContainer,
+  currentUser,
 } from './scripts';
 import { filterByName, filterByTag } from './filters';
 import { recipeData } from './data/recipes';
@@ -53,7 +54,7 @@ const handleTagSearch = () => {
   if (myRecipesView.classList.contains('hidden')) {
     return filterByTag(searchBar.value, recipeData);
   } else if (mainView.classList.contains('hidden')) {
-    return filterByTag(searchBar.value /* enter user array here */);
+    return filterByTag(searchBar.value, currentUser.recipesToCook);
   }
 };
 
@@ -61,7 +62,7 @@ const handleNameSearch = () => {
   if (myRecipesView.classList.contains('hidden')) {
     return filterByName(searchBar.value, recipeData);
   } else if (mainView.classList.contains('hidden')) {
-    return filterByTag(searchBar.value /* enter user array here */);
+    return filterByTag(searchBar.value, currentUser.recipesToCook);
   }
 };
 
