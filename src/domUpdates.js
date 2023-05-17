@@ -11,6 +11,7 @@ const viewSides = document.querySelector('.categories__sides');
 const allSection = document.querySelector('.all');
 const homePage = document.querySelector('.home');
 const allContainer = document.querySelector('.all__container');
+const allRecipes = () => document.querySelectorAll('.all__recipes');
 
 const viewAllRecipes = () => {
   hide([homePage], 'home--hidden');
