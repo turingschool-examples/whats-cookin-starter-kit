@@ -11,17 +11,18 @@ h1 {
 /* Tag box */
 .tag-area {
   background-color: #35363a;
-  height: 150px;
+  height: 25vh;
   width: 78%;
   border-radius: 15px;
   display: flex;
   align-items: center;
+
     /* justify-content: flex-start; */
 }
 
 .tag-rows {
   /* background-color: #ffffff; */
-  height: 150px;
+  height: 85%;
   width: 100%;
   border-radius: 15px;
   display: flex;
@@ -32,8 +33,9 @@ h1 {
 .tag-row {
   height: 50%;
   width: 100%;
+  
   border-radius: 15px;
-  border: solid 2px white;
+  /* border: solid 2px white; */
   display: flex;
   justify-content: space-evenly;
 }
@@ -47,6 +49,7 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: 0.3s;
 }
 
 .tag-image {
@@ -71,6 +74,10 @@ h1 {
   margin-bottom: 2px;
 }
 
+.tag-card:hover {
+  cursor: pointer;
+  transform: scale(1.5);
+}
 .tag-card:hover .tag-image-bg {
   opacity:1;
   box-shadow: 2px 2px 10px whitesmoke;
