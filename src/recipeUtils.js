@@ -19,7 +19,7 @@ const findRecipe = (recipeData, recipeName) => {
   return recipe
 };  
 
-const findIngredientNames = (recipeData, ingredientsData, recipeName) => {
+const findIngredientNames = (recipeData, recipeName) => {
   const recipe = findRecipe(recipeData, recipeName);
     if (recipe === undefined) {
       return "Sorry, we don't have that recipe."
@@ -38,16 +38,19 @@ const calculateRecipeCost = recipe => {
   return totalCost.toFixed(2);
 }
 
-const recipeInstructions = (recipeData, recipeName) => {
-  const recipe = findRecipe(recipeData, recipeName);
-   if (!recipe) {
+  const recipeInstructions = recipe => {
+   if (recipe === undefined) {
      return "Sorry, that recipe cannot be found.";
    }
    const instructions = recipe.instructions.map(({ number, instruction }) => `${number}. ${instruction}`);
-   return instructions.join('\n');
+   return instructions.join(' ')
  };
 
+/// still trying to figure out a way to put each instruction on a new line... my new line of thinking is using two prototype.methods... .join then .string ??  -- let me know what you think...
+// -- Andrea
 
+
+ 
 
 export {
   recipesFromTag,
