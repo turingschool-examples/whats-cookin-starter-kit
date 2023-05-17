@@ -23,13 +23,8 @@ const setUpRecipes = (event) => {
     recipe.addEventListener('click', viewRecipe)
   })
 }
-
 viewAll.addEventListener('click', viewAllRecipes)
-viewSalads.addEventListener('click', function(event) {
-  viewFilteredRecipes(event)})
-viewHordoeuvres.addEventListener('click', function(event) {
-  viewFilteredRecipes(event)})
-viewMains.addEventListener('click', function(event) {
-  viewFilteredRecipes(event)})
-viewSides.addEventListener('click', function(event) {
-  viewFilteredRecipes(event)})
+viewSalads.addEventListener('click', setUpRecipes)
+viewHordoeuvres.addEventListener('click', setUpRecipes)
+viewMains.addEventListener('click', setUpRecipes)
+viewSides.addEventListener('click',setUpRecipes)
