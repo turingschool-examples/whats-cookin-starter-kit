@@ -1,5 +1,5 @@
-import { myRecipesView, mainView, singleRecipeView } from './scripts'
-import { getIngredientsNames } from './get-ingredients-names'
+import { myRecipesView, mainView, singleRecipeView } from './scripts';
+import { getIngredientsNames } from './get-ingredients-names';
 
 // EVENT HANDLERS
 const toMyRecipeView = () => {
@@ -16,7 +16,7 @@ const toDashboardView = () => {
 
 // DOM FUNCTIONS
 const renderRecipeCards = (view, recipes) => {
-  view.innerHTML = ''
+  view.innerHTML = '';
   recipes.forEach((recipe) => {
     view.innerHTML += `
     <article class="recipe-card" id="${recipe.id}">
@@ -29,7 +29,7 @@ const renderRecipeCards = (view, recipes) => {
           <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">
         </div>
       </div>
-    </article>`
+    </article>`;
   })
 }
 
@@ -57,9 +57,9 @@ const toggleBookmark = (e) => {
 const findRecipe = (e, recipes) => {
      return recipes.find((recipe) => {
         if (e.target.classList.contains('recipe-name')) {
-          return recipe.id === parseInt(e.target.parentElement.parentElement.id)
+          return recipe.id === parseInt(e.target.parentElement.parentElement.id);
         }
-        return recipe.id === parseInt(e.target.id)
+        return recipe.id === parseInt(e.target.id);
       })
 }
 
@@ -94,14 +94,14 @@ const renderSingleRecipeView = (e, recipes, ingredients) => {
           ${renderInstructions(recipe)}
         </div>
       </div>
-    </div>`
+    </div>`;
 }
 
 const renderInstructions = (recipe) => {
   let instructions = recipe.instructions;
   let output = '<h2 class="instruction-title">Instruction</h2>';
   instructions.forEach((ele) => {
-    output += `<p>${ele.number}. ${ele.instruction}</p>`
+    output += `<p>${ele.number}. ${ele.instruction}</p>`;
   })
   return output;
 };
@@ -110,7 +110,7 @@ const renderIngredients = (recipe, ingredients) => {
   let ingredientNames = getIngredientsNames(recipe, ingredients);
   let output = '<h2>Ingredients</h2>';
   ingredientNames.forEach((ele) => {
-    output += `<span>- ${ele}</span>`
+    output += `<span>- ${ele}</span>`;
   })
   return output;
 };
@@ -118,9 +118,9 @@ const renderIngredients = (recipe, ingredients) => {
 const renderTags = (recipe) => {
   let output = `<h2>Tags</h2>`;
   recipe.tags.forEach((ele) => {
-    output += `<span class="tags-text-flex">${ele}</span>`
+    output += `<span class="tags-text-flex">${ele}</span>`;
   })
   return output;
 };
 
-export { toMyRecipeView , toDashboardView, renderRecipeCards, toggleBookmark, renderSingleRecipeView }
+export { toMyRecipeView , toDashboardView, renderRecipeCards, toggleBookmark, renderSingleRecipeView };

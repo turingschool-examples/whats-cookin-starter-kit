@@ -205,8 +205,6 @@ h1 {
   margin: 40px;
 }
 
-
-
 .recipe-content-flex {
   display: flex;
   justify-content: space-evenly;
@@ -230,7 +228,6 @@ h1 {
   display: flex;
   flex-direction: column;
   width: 40vw;
-  /* border: dashed 5px pink; */
 }
 
 .recipe-header-flex {
