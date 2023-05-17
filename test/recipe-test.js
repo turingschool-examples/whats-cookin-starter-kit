@@ -78,7 +78,7 @@ describe('determineIngredientNames', () => {
     expect(determineIngredientNames).to.be.a('function');
   });
     it('Should return an array of ingredient names', () => {
-      const ingredientsPuddin = ['wheat flour', 'bicarbonate of soda', 'eggs', 'sucrose', 'instant vanilla pudding', 'brown sugar', 'salt', 'fine sea salt', 'semi sweet chips', 'unsalted butter', 'vanilla'];
+      const ingredientsPuddin = ['Wheat flour', 'Bicarbonate of soda', 'Eggs', 'Sucrose', 'Instant vanilla pudding', 'Brown sugar', 'Salt', 'Fine sea salt', 'Semi sweet chips', 'Unsalted butter', 'Vanilla'];
       const findIngredients = determineIngredientNames(recipeTestData, ingredientTestData, "Loaded Chocolate Chip Pudding Cookie Cups");
       expect(findIngredients).to.deep.equal(ingredientsPuddin);
   

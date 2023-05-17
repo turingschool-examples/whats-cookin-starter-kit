@@ -29,7 +29,7 @@ const determineIngredientNames = (recipesData, ingredientsData, recipeName) => {
   .map(ingr => ingr.id);  
   ingredientsData.forEach((ingredient)=> {
     if(recipeIds.includes(ingredient.id)) {
-      ingredientNames.push(ingredient.name)
+      ingredientNames.push(`${ingredient.name.charAt(0).toUpperCase()}${ingredient.name.slice(1)}`)
     }
   });
   return ingredientNames
@@ -42,9 +42,9 @@ const calculateCost = recipe => {
 };
 
 const returnInstructions = recipe => {
- return recipe.instructions.reduce((string, instruction) => `${string}` + `${instruction.number}) ${instruction.instruction} `, '')
+  return recipe.instructions.reduce((string, instruction) => `${string}` + `${instruction.number}) ${instruction.instruction.replace(`.`, `. `)}
+ `, '')
 }
-
 export {createRecipe,
     filterByTag,
     filterByName,
