@@ -1,7 +1,7 @@
 // recipe ingredients function here
 
 import ingredientsData from "../data/ingredients";
-import { sampleRecipeData } from "../data/sample-recipes";
+import sampleRecipeData from "../data/sample-recipes";
 
 const recipeIngredients = (recipe) => {
   const filteredRecipe = sampleRecipeData.find((item) => {

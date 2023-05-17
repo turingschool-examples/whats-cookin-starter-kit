@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { recipeInstructions } from '../src/functions/recipe-instructions'
-import { sampleRecipeData } from '../src/data/sample-recipes'
+import sampleRecipeData from '../src/data/sample-recipes'
 
 describe('recipeInstructions', () => {
   it('should return recipe instructions', () => {
