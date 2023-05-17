@@ -20,14 +20,14 @@ h1 {
 }
 
 .tag-rows {
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   height: 150px;
   width: 100%;
   border-radius: 15px;
 }
 
 .tag-row {
-  background-color: #000000;
+  /* background-color: #000000; */
   height: 50%;
   width: 100%;
   border-radius: 15px;
@@ -52,7 +52,6 @@ h1 {
 
 }
 
-
 .tag-card {
   display: flex;
   flex-direction: column;
@@ -61,7 +60,7 @@ h1 {
 }
 
 .tag-image {
-  height: 6vh;
+  height: 4vh;
   width: auto;
 }
 
@@ -72,7 +71,12 @@ h1 {
   opacity: 0.4;
   border-radius: 15px;
   padding: 5px;
+  transition: 0.2s;
 }
+
+/* .tag-image-bg:hover {
+  opacity: 1;
+} */
 
 .tag-text {
   color: white;
@@ -81,13 +85,12 @@ h1 {
   margin-bottom: 2px;
 }
 
-.test-strip-1 {
-
+.tag-card:hover .tag-image-bg {
+  opacity:1
 }
 
-.test-strip-2 {
- 
-
+.tag-card:hover .tag-text {
+  opacity:1
 }
 
 /* Recipe grid */ 
