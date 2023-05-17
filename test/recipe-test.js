@@ -1,4 +1,5 @@
-import { assert } from 'chai'
+
+import { assert, expect } from 'chai'
 
 import {
   sampleIngredientsData,
@@ -11,6 +12,7 @@ import {
   getInstructions,
   getIngredients,
   calculateRecipeCost,
+  filterRecipes
 } from '../src/recipes';
 
 describe('recipe', () => {
@@ -117,4 +119,24 @@ describe('recipe', () => {
     const noInstructions = getInstructions(simpleRecipe)
     assert.deepEqual(noInstructions, [])
   })
+});
+
+describe('filterRecipes', () => {
+  it('should filter list of recipes based on single tag', () => {
+    let expectedRecipes = [sampleRecipeData[0]];
+    let filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto')
+    expect(filteredRecipes).to.deep.equal(expectedRecipes);
+  });
+
+  it('should filter list of recipes based on multiple tags', () => {
+    let expectedRecipes = [sampleRecipeData[0], sampleRecipeData[2]];
+    let filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'sauce');
+    expect(filteredRecipes).to.deep.equal(expectedRecipes);
+  });
+
+  it('filtered recipe list should contain only unique entries if it contains multiple tags being filtered', () => {
+    let expectedRecipes = [sampleRecipeData[0]];
+    let filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'antipasti');
+    expect(filteredRecipes).to.deep.equal(expectedRecipes);
+  });
 });

@@ -4,6 +4,16 @@ const getInstructions = recipe => {
   return recipe.instructions.map(item => item.instruction)
 }
 
+const filterRecipes = (allRecipes, ...tags) => {
+  let filteredRecipes = tags.flatMap((tag) => {
+    return allRecipes.filter(recipe => {
+      return recipe.tags.includes(tag);
+    });
+  });
+
+  return [ ...new Set(filteredRecipes)];
+}
+
 const getIngredients = (recipe, ingredients) => {
   return recipe.ingredients.map(ingredient => getIngredientProperty(ingredient, ingredients, 'name'))
 }
@@ -16,6 +26,7 @@ const calculateRecipeCost = (recipe, ingredients) => {
 
 export {
   getInstructions,
+  filterRecipes,
   getIngredients,
   calculateRecipeCost
 }
