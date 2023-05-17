@@ -3,6 +3,10 @@ import {calculateCost, determineIngredientNames, returnInstructions, filterByTag
 
 //Query Selectors
 const mainRecipe = document.querySelector('.main-recipe');
+// const breakfastButton = document.querySelector('#breakfast');
+// const lunchButton = document.querySelector('#lunch');
+// const dinnerButton = document.querySelector('#dinner');
+const tagButtons = document.querySelectorAll('.tag')
 let testBox;
 
 
@@ -34,7 +38,7 @@ const viewRecipeInfo = (e) => {
 
 
 const displayRecipeInfo = () => {
-  console.log('howdy')
+  alert('howdy')
 }
 
 const filterRecipeByTag = (recipes, tag) => {
@@ -59,5 +63,9 @@ export {
   testBox, 
   displayRecipeInfo,
   filterRecipeByTag,
-  searchRecipe
+  searchRecipe,
+  // breakfastButton,
+  // lunchButton,
+  // dinnerButton
+  tagButtons
 }
