@@ -26,27 +26,26 @@ const toDashboardView = () => {
 
 const searchBarClicked = () => {
   let searchResults;
-  if (searchByToggle.value === 'select') {
+  if (searchBar.value.length === 0) {
+    console.log('in here')
+    searchResults = recipeData;
+  } else if (searchByToggle.value === 'select') {
     searchBar.value = ''
     searchBar.placeholder = '⬅️ You must search by tag or name.';
     searchResults = recipeData;
-  }
-  if (searchByToggle.value === 'tag' && myRecipesView.classList.contains('hidden')) {
+  } else if (searchByToggle.value === 'tag' && myRecipesView.classList.contains('hidden')) {
     searchResults = filterByTag(searchBar.value, recipeData);
   } else if (searchByToggle.value === 'tag' && mainView.classList.contains('hidden')) {
     searchResults = filterByTag(
       searchBar.value //enter user array here//
     );
-  }
-  if (searchByToggle.value === 'name' && myRecipesView.classList.contains('hidden')) {
+  } else if (searchByToggle.value === 'name' && myRecipesView.classList.contains('hidden')) {
     searchResults = filterByName(searchBar.value, recipeData);
   } else if (searchByToggle.value === 'name' && mainView.classList.contains('hidden')) {
     searchResults = filterByTag(
       searchBar.value //enter user array here//
     );
-  }
-  if (typeof searchResults === 'string') {
-    console.log('got here', searchResults)
+  } else if (typeof searchResults === 'string') {
     return mainViewCardContainer.innerHTML = `<p>${searchResults}</p>`
   }
   renderRecipeCards(mainViewCardContainer, searchResults);
