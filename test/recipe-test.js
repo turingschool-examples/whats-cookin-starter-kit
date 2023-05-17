@@ -25,12 +25,11 @@ describe('recipe', () => {
   };
 
   it('should be a funciton', () => {
-    // Determine the names of ingredients needed for a given recipe.
-    // Calculate the cost of a given recipe’s ingredients
     assert.isFunction(getInstructions);
     assert.isFunction(getIngredients);
     assert.isFunction(calculateRecipeCost);
   });
+  
   it('should determine the names of ingredients needed for a recipe', () => {
     const cookieIngredients = getIngredients(cookies, allIngredients);
     const cookieIngredientList = [
