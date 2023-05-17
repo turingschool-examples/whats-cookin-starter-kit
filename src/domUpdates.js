@@ -53,21 +53,21 @@ const filterRecipeByTag = (event) => {
 
 const searchRecipe = () => {
 
-let input = userInput.value.toLowerCase()
-console.log(userInput.value.toLowerCase())
- recipeTestData.forEach(recipe => {
-  let recipe1 = recipe.name.toLowerCase()
-
-  if (recipe1.includes(input)) {
-    searchButton.disable = false
-    mainRecipe.innerHTML = ''
-    mainRecipe.innerHTML += `<section class='recipe-container box' id='${recipe.id}'>
-    <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
-    <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
-  </section>
-  `
-  } 
-})
+  let input = userInput.value.toLowerCase()
+  console.log(userInput.value.toLowerCase())
+   recipeTestData.forEach(recipe => {
+    let recipe1 = recipe.name.toLowerCase()
+  
+    if (recipe1.includes(input)) {
+      searchButton.disable = false
+      mainRecipe.innerHTML = ''
+      mainRecipe.innerHTML += `<section class='recipe-container box' id='${recipe.id}'>
+      <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
+      <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
+    </section>
+    `
+    } 
+  })
 
   if (!input){
     mainRecipe.innerHTML = ''
