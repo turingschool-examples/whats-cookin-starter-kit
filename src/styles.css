@@ -54,11 +54,11 @@ h1 {
   overflow-y: unset;
   height: 70%;
   width: 7%;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .tag-image {
-  height: 4vh;
+  height: 6vh;
   width: auto;
 }
 
