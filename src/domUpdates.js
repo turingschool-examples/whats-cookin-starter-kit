@@ -13,6 +13,7 @@ const homePage = document.querySelector('.home');
 const allContainer = document.querySelector('.all__container');
 const categoriesSection = document.querySelector('.categories');
 const footerSection = document.querySelector('.footer');
+
 const viewAllRecipes = () => {
   hide([categoriesSection, footerSection], 'home--hidden');
   show([allSection], 'all--hidden');
