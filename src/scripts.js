@@ -3,6 +3,7 @@
 
 import './styles.css'
 import { renderGrid } from './domUpdates'
+import './images/breakfast.png'
 
 // import apiCalls from './apiCalls'
 

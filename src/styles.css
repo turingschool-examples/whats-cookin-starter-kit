@@ -8,6 +8,23 @@ h1 {
   font-size: 55px;
 }
 
+/* Tag box */
+.tag-area {
+  background-color: #35363a;
+  height: 150px;
+  width: 78%;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.tag-image {
+  height: 60px;
+  width: 60px;
+}
+
+/* Recipe grid */ 
+
 .all-recipes {
   display: flex;
   align-items: center;
@@ -60,7 +77,7 @@ h1 {
   animation: fade-in 0.5s ease-in forwards;
 }
 
-.recipe-image {
+.recipe-image-div {
   max-width: 85%;
   height: auto;
   display: flex;
@@ -69,7 +86,7 @@ h1 {
   margin-top: 25px;
 }
 
-img {
+.recipe-image {
   height: 100%;
   width: 100%;
   border-radius: 15px;
