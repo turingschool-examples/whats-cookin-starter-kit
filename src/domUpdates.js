@@ -5,7 +5,7 @@ import recipeData from "./data/recipes.js"
 
 const viewAll = document.querySelector('.categories__all');
 const viewSalads = document.querySelector('.categories__salads');
-const viewHordoeuvres = document.querySelector('.categories__hordoeuvres');
+const viewHordoeuvres = document.querySelector('.categories__horsdoeuvres');
 const viewMains = document.querySelector('.categories__mains');
 const viewSides = document.querySelector('.categories__sides');
 const allSection = document.querySelector('.all');
@@ -19,7 +19,7 @@ const viewAllRecipes = () => {
   show([allSection], 'all--hidden');
   recipeData.forEach(recipe => {
     allContainer.innerHTML += 
-    `<div class='all__recipes'>
+    `<div style="background-image: url(${recipe.image})" class='all__recipes'>
       <p class='all__text'>${recipe.name}</p>
     </div>`
   })
@@ -29,12 +29,12 @@ const viewFilteredRecipes = (event) => {
   hide([categoriesSection, footerSection], 'home--hidden');
   show([allSection], 'all--hidden');
   recipeData.forEach(recipe => {
-    recipe.tags.forEach(tag=> {
-      if (tag===event.target.id)
-      allContainer.innerHTML += 
-      `<div class='all__recipes'>
-        <p class='all__text'>${recipe.name}</p>
-      </div>`
+    recipe.tags.forEach(tag => {
+      if(tag === event.target.id)
+        allContainer.innerHTML += 
+        `<div style='background-image: url(${recipe.image})' class='all__recipes'>
+          <p class='all__text'>${recipe.name}</p>
+        </div>`
     })
   })
 };
