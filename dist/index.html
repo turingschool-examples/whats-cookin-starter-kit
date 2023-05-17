@@ -1,12 +1,48 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-  </head>
-  <body>
-    <h1>Whats Cookin</h1>
-  </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>What's Cookin?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>What's Cookin?</h1>
+    <nav class="navbar">
+      <button class="all-recipes">All Recipes</button>
+      <input type="text" placeholder=" Search...">
+      <button class="saved recipes">Saved Recipes</button>
+    </nav>
+  </header>
+  <main>
+    <article class="front-recipe-display" id="front-display">
+      <div class = "recipe-wrapper">
+        <img id="front-recipe-1" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" class="recipe">
+        <div class = "recipe-info">
+          <p>Elvis Pancakes</p>
+          <p>Total Cost: $..</p>
+        </div>
+      </div>
+      <div class = "recipe-wrapper">
+        <img id="front-recipe-2" src="https://spoonacular.com/recipeImages/562334-556x370.jpg" class="recipe">
+        <div class = "recipe-info">
+          <p>Udi's GF Bread</p>
+          <p>Total Cost: $..</p>
+        </div>
+      </div>
+      <div class = "recipe-wrapper">
+        <img id="front-recipe-3" src="https://spoonacular.com/recipeImages/507921-556x370.jpg" class="recipe">
+        <div class = "recipe-info">
+          <p>Cupcake?</p>
+          <p>Total Cost: $..</p>
+        </div>
+      </div>
+    </article>
+  <main>
+</body>
+<!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+<script src="bundle.js"></script>
+
 </html>
