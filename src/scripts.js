@@ -3,11 +3,30 @@
 
 import './styles.css'
 import { renderGrid } from './domUpdates'
+import './images/antipasti.png';
+import './images/antipasto.png'
+import './images/appetizer.png'
 import './images/breakfast.png'
+import './images/brunch.png'
+import './images/condiment.png'
+import './images/dinner.png'
+import './images/dip.png'
+import "./images/hor d'oeuvre.png"
+import './images/lunch.png'
+import './images/main course.png'
+import './images/main dish.png'
+import './images/morning meal.png'
+import './images/salad.png'
+import './images/sauce.png'
+import './images/side dish.png'
+import './images/snack.png'
+import './images/spread.png'
+import './images/starter.png'
 
 // import apiCalls from './apiCalls'
 
-const recipeGrid = document.querySelector('.recipe-grid')
+const recipeGrid = document.querySelector('.recipe-grid');
+const tagArea = document.querySelector('.tag-area');
 
 
 // // An example of how you tell webpack to use an image (also need to link to it in the index.html)
@@ -20,4 +39,5 @@ window.addEventListener("load", renderGrid)
 // Exports
 export {
   recipeGrid,
+  tagArea
 }

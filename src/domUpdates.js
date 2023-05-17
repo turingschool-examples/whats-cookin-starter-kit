@@ -1,5 +1,8 @@
 // Imports
-import {  recipeGrid } from './scripts';
+import { 
+   recipeGrid,
+   tagArea 
+  } from './scripts';
 import { recipeData } from './data/recipes';
 
 // functions
@@ -62,7 +65,7 @@ const renderGrid = () => {
   recipeGrid.innerHTML = createGridHTML(gridData);
 }
 
-const getAllTags = recipes => {
+const getTagsFromRecipes = recipes => {
   const uniqueTags = [];
   const allTags = recipes.flatMap(recipe => recipe.tags)
   allTags.forEach(tag => {
@@ -74,22 +77,83 @@ const getAllTags = recipes => {
 }
 
 const clubTagsAndIcons = tags => {
-  const tagsAndIcons = tags.reduce((iconPaths, tag, index) => {
-    iconPaths[tag] = `./images/${tag}.png`;
-    iconPaths.row = (index+1) % 2;
-    return iconPaths;
-  }, {})
+  const tagsAndIcons = tags.map((tag, index) => {
+    return {
+      name: tag,
+      path: `./images/${tag}.png`,
+      row: (index + 1) % 2
+    };
+  });
+
+  return tagsAndIcons;
 }
 
 const splitTagsinRows = tagsAndIcons => {
   const topRow = tagsAndIcons.filter(tag => tag.row === 1);
-  const bottomRow = tagsAndIcons.filter(tag => tag.row === 2);
+  const bottomRow = tagsAndIcons.filter(tag => tag.row === 0);
   return [topRow, bottomRow];
 }
 
+const createTagCardHTML = tag => {
+  let htmlCode = '';
+  htmlCode += `
+  <div class = "tag-card">
+      <div class="tag-image-bg">
+          <img class = "tag-image" src = "${tag.path}">
+      </div>
+      <div class="tag-option">
+          <p class="tag-text">${tag.name}</p>
+      </div>
+  </div>
+  `;
+  return htmlCode;
+}
 
+const createRowHTML = row => {
+  let rowNumber;
+
+  if (row.length === 10) {
+    rowNumber = "row-one";
+  } else {
+    rowNumber = "row-two";
+  };
+
+  let htmlCode = '';
+  htmlCode += `<div class="tag-row ${rowNumber}">`;
+  row.forEach(tag => {
+    htmlCode += createTagCardHTML(tag);
+  });
+  htmlCode += `</div>`;
+  return htmlCode;
+};
+
+const createTagAreaHTML = rows => {
+  let htmlCode = '';
+  htmlCode += '<div class="tag-rows">';
+
+  rows.forEach(row => {
+    htmlCode += createRowHTML(row);
+  });
+
+  htmlCode += '</div>';
+  return htmlCode;
+}
+
+const renderTagArea = () => {
+  const tagData = getTagsFromRecipes(recipeData);
+  const tagsAndIcons = clubTagsAndIcons(tagData);
+  const tagRows = splitTagsinRows(tagsAndIcons);
+  const htmlCode = createTagAreaHTML(tagRows);
+  tagArea.innerHTML = htmlCode;
+}
+
+const pageLoadRenders = () => {
+  renderGrid();
+  renderTagArea();
+}
 // Event listeners
-window.addEventListener("load", renderGrid)
+window.addEventListener("load", pageLoadRenders)
+
 
 // Exports
 export {
