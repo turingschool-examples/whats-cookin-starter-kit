@@ -1,21 +1,22 @@
 import { expect } from 'chai';
-import { getRandomUser } from '../src/users'
+import { getRandomUser, getRandomIndex } from '../src/users'
 import { sampleUserData } from './sampleUsers';
 
-describe('getRandoindex', () => {
-  it('should be a fuction', () => {
+describe('getRandomindex', () => {
+  it('should be a function', () => {
     expect(getRandomIndex).to.be.a('function');
   });
-  it('should return random numbers', () => {
-
+  it('should return a number', () => {
+    expect(getRandomIndex(sampleUserData.users.length)).to.be.a('number');
   });
 });
 
 describe('getRandomUser', () => {
-  it('should be a fuction', () => {
+  it('should be a function', () => {
     expect(getRandomUser).to.be.a('function');
   });
-  it('should be a fuction', () => {
-    expect(getRandomUser(sampleUserData)).to.be.a('function');
+  
+  it('should return a user object', () => {
+    expect(getRandomUser(sampleUserData)).to.have.key('id', 'name', 'recipesToCook');
   });
 });
