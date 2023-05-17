@@ -19,5 +19,5 @@ const recipeGrid = document.querySelector('.recipe-grid')
 window.addEventListener("load", renderGrid)
 // Exports
 export {
-  recipeGrid
+  recipeGrid,
 }

@@ -1,6 +1,6 @@
 // Imports
-import {recipeData} from './data/recipes'
-import {recipeGrid} from './scripts'
+import {  recipeGrid } from './scripts';
+import { recipeData } from './data/recipes';
 
 // functions
 
@@ -61,6 +61,26 @@ const renderGrid = () => {
   recipeGrid.innerHTML = ''
   recipeGrid.innerHTML = createGridHTML(gridData);
 }
+
+const getAllTags = recipes => {
+  const uniqueTags = [];
+  const allTags = recipes.flatMap(recipe => recipe.tags)
+  allTags.forEach(tag => {
+    if (!uniqueTags.includes(tag)) {
+      uniqueTags.push(tag);
+    }
+  })
+  return uniqueTags;
+}
+
+const clubTagsAndIcons = tags => {
+  const tagsAndIcons = tags.reduce((iconPaths, tag) => {
+    iconPaths[tag] = `./images/${tag}.png`;
+    return iconPaths;
+  }, {})
+}
+
+
 
 // Event listeners
 window.addEventListener("load", renderGrid)
