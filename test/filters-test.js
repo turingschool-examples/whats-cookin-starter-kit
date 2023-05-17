@@ -4,15 +4,13 @@ import { sampleIngredientsData, sampleRecipeData } from './sampleIngredients';
 
 describe('filterByTag', () => {
   it('should filter recipe list by tag', () => {
-    const tag1 = 'snack';
+    const tag1 = 'snack cookie';
     const tag2 = 'DESSERT';
     const tag3 = 'concrete';
     const tag4 = ''
     expect(filterByTag(tag1, sampleRecipeData)).to.deep.equal([
       sampleRecipeData[0],
-      sampleRecipeData[3],
-      sampleRecipeData[4],
-      sampleRecipeData[5],
+      sampleRecipeData[2],
     ]);
     expect(filterByTag(tag2, sampleRecipeData)).to.deep.equal([
       sampleRecipeData[0],

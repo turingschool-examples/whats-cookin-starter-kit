@@ -1,9 +1,11 @@
 const filterByTag = (tag, recipes) => {
-  const searchedTag = tag.toLowerCase();
+  const searchedTags = tag.toLowerCase().split(' ');
   const searchedRecipes = recipes.filter((recipe) => {
-    return recipe.tags.includes(searchedTag);
+      return searchedTags.every((searchedTag) => {
+        return recipe.tags.includes(searchedTag);
+      });
   });
-  if (!searchedTag) {
+  if (searchedTags[0] === '') {
     return 'You need to enter a tag before you search!';
   }
   if (!searchedRecipes.length) {
@@ -25,5 +27,7 @@ const filterByName = (name, recipes) => {
   }
   return searchedRecipes;
 };
+
+
 
 export { filterByTag, filterByName };

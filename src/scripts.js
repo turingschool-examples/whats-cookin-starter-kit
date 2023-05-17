@@ -1,15 +1,22 @@
 // DOM UPDATES
-import './styles.css'
+import './styles.css';
 import './images/user.png';
 import './images/home.png';
 import './images/search.png';
 import './images/restaurant.png';
 import './images/bookmark.png';
-import './images/bookmark-filled.png'
+import './images/bookmark-filled.png';
 
-import { toMyRecipeView , toDashboardView, renderRecipeCards, toggleBookmark, renderEnlargedRecipeCard } from './domUpdates'
-import {recipeData} from './data/recipes'
-
+import {
+  toMyRecipeView,
+  toDashboardView,
+  renderRecipeCards,
+  toggleBookmark,
+  renderEnlargedRecipeCard,
+  searchBarClicked,
+} from './domUpdates';
+import { recipeData } from './data/recipes';
+import { findRecipe } from './filters';
 
 // QUERY SELECTORS
 const myRecipesBtn = document.querySelector('#myRecipes');
@@ -18,21 +25,29 @@ const myRecipesView = document.querySelector('#myRecipeView');
 const dashboardBtn = document.querySelector('#dashboardNav');
 const mainViewCardContainer = document.querySelector('#mainViewCardContainer');
 const enlargedRecipeView = document.querySelector('#enlargedRecipeView');
+const searchBar = document.querySelector('#searchInput');
+const searchByToggle = document.querySelector('#searchSelect');
+const searchButton = document.querySelector('#searchIconBackground');
 
 // EVENT LISTENERS
-myRecipesBtn.addEventListener('click', toMyRecipeView)
-dashboardBtn.addEventListener('click', toDashboardView)
+searchButton.addEventListener('click', searchBarClicked);
+myRecipesBtn.addEventListener('click', toMyRecipeView);
+dashboardBtn.addEventListener('click', toDashboardView);
 mainViewCardContainer.addEventListener('click', (e) => {
-  toggleBookmark(e)})
+  toggleBookmark(e);
+});
 // mainView.addEventListener('click', (e) => {
 //   renderEnlargedRecipeCard(e, recipeData);
 // })
 // FUNCTIONS
-renderRecipeCards(mainViewCardContainer, recipeData)
+renderRecipeCards(mainViewCardContainer, recipeData);
 
-export { 
+export {
   mainView,
   myRecipesView,
   mainViewCardContainer,
-  enlargedRecipeView
-}
+  enlargedRecipeView,
+  searchBar,
+  searchButton,
+  searchByToggle,
+};
