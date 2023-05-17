@@ -1,13 +1,12 @@
 const filterByTag = (tag, recipes) => {
-  const searchedTag = tag.toLowerCase();
+  const searchedTags = tag.toLowerCase().split(' ');
   const searchedRecipes = recipes.filter((recipe) => {
-    return recipe.tags.includes(searchedTag);
+      return searchedTags.every((searchedTag) => {
+        return splitTags(recipe.tags).includes(searchedTag);
+      });
   });
-  if (!searchedTag) {
-    return 'You need to enter a tag before you search!';
-  }
   if (!searchedRecipes.length) {
-    return 'Sorry, there are no recipes with this tag!';
+    return 'Sorry, no recipes were found in your search!';
   }
   return searchedRecipes;
 };
@@ -17,13 +16,17 @@ const filterByName = (name, recipes) => {
   const searchedRecipes = recipes.filter((recipe) => {
     return recipe.name.toLowerCase().includes(searchedName);
   });
-  if (!searchedName) {
-    return 'You need to enter a name before you search!';
-  }
   if (!searchedRecipes.length) {
-    return 'Sorry, there are no recipes with this name!';
+    return 'Sorry, no recipes were found in your search!';
   }
   return searchedRecipes;
 };
+
+const splitTags = (tags) => {
+  return tags.flatMap((tag) => {
+    return tag.split(' ')
+  })
+}
+
 
 export { filterByTag, filterByName };

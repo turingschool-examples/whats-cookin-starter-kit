@@ -220,7 +220,7 @@ const sampleRecipeData = [
       },
     ],
     name: 'Puppy Chow Cookies',
-    tags: ['side dish', 'dessert', 'cookie'],
+    tags: ['side dish', 'dessert', 'cookie', 'snack'],
   },
   {
     id: 104,
