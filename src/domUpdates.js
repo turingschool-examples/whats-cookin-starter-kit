@@ -31,7 +31,12 @@ const toDashboardView = () => {
 
 const searchBarClicked = () => {
   let searchResults;
-
+  let view;
+  if (myRecipesView.classList.contains('hidden')) {
+    view = mainView;
+  } else if (mainView.classList.contains('hidden')) {
+    view = myRecipesView;
+  }
   if (searchBar.value.length === 0) {
     searchResults = recipeData;
   } else if (searchByToggle.value === 'select') {
@@ -43,7 +48,7 @@ const searchBarClicked = () => {
     searchResults = handleNameSearch();
   }
 // potential refactor: turn this into a search object
-  handleSearchResults(searchResults);
+  handleSearchResults(view, searchResults);
 };
 
 const handleInvalidSearch = (message) => {
@@ -67,11 +72,11 @@ const handleNameSearch = () => {
   }
 };
 
-const handleSearchResults = (results) => {
+const handleSearchResults = (view, results) => {
   if (typeof results === 'string') {
     mainViewCardContainer.innerHTML = `<p>${results}</p>`;
   } else {
-    renderRecipeCards(mainViewCardContainer, results);
+    renderRecipeCards(view, results);
   }
 };
 
