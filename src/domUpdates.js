@@ -14,6 +14,8 @@ const allContainer = document.querySelector('.all__container');
 const allRecipes = () => document.querySelectorAll('.all__recipes');
 const recipeTitle = document.querySelector('.recipe__title');
 const recipeImg = document.querySelector('.recipe__img');
+const recipeIngredients = document.querySelector('.recipe__ingredients');
+
 
 const viewRecipe = (event) => {
   recipeData.forEach(recipe => {
