@@ -8,7 +8,7 @@ import './images/bookmark.png';
 import './images/bookmark-filled.png'
 
 import { getRandomUser } from './users';
-import { sampleIngredientsData } from '../test/sampleIngredients';
+import { sampleIngredientsData, sampleRecipeData } from '../test/sampleIngredients';
 import { sampleUserData } from '../test/sampleUsers';
 import { recipesToCook, removeRecipes} from './recipes-to-cook';
 import { recipeData }  from './data/recipes';
@@ -42,13 +42,13 @@ searchButton.addEventListener('click', searchBarClicked);
 myRecipesBtn.addEventListener('click', toMyRecipeView);
 dashboardBtn.addEventListener('click', toDashboardView);
 mainViewCardContainer.addEventListener('click', (e) => {
-  toggleBookmark(e, currentUser);
+  toggleBookmark(e, currentUser, recipeData);
 });
 window.addEventListener('load', () => {
   currentUser = getRandomUser(sampleUserData)
 });
 singleRecipeView.addEventListener('click', (e) => {
-  toggleBookmark(e)});
+  toggleBookmark(e, currentUser, recipeData)});
 mainView.addEventListener('click', (e) => {
   if (e.target.classList.contains('recipe-img') || e.target.classList.contains('recipe-name')) {
     renderSingleRecipeView(e, recipeData, ingredientsData);
