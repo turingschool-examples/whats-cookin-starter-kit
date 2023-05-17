@@ -7,4 +7,4 @@ const getRandomUser = (userData) => {
 }
 
 
-export { getRandomUser }
+export { getRandomUser, getRandomIndex}
