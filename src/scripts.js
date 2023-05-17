@@ -20,7 +20,7 @@ const closeRecipeButton = document.querySelector('#closeRecipe');
 window.addEventListener("load", renderGrid);
 
 allRecipes.addEventListener("click", (event) => {
-  if (event.target.classList.contains('individual-recipe')) {
+  if (event.target.classList?.contains('individual-recipe')) {
     showRecipe(event.target);
   }
 });

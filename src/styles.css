@@ -154,19 +154,19 @@ h3 {
   background-color: darkgray;
 }
 
-#recipeLeftSide {
+.recipe-details {
   display: flex;
   flex-direction: column;
-  align-items: center;
   height: 97%;
+}
+
+#recipeLeftSide {
+  align-items: center;
   width: 60%;
   margin: 10px 0 10px 10px;
 }
 
 #recipeRightSide {
-  display: flex;
-  flex-direction: column;
-  height: 97%;
   width: 40%;
   margin: 10px 10px 10px 0;
   background-color: #fcfcf3;

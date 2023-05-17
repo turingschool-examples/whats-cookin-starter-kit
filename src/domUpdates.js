@@ -63,7 +63,7 @@ const renderGrid = () => {
 }
 
 const showRecipe = (recipeCard) => {
-  const recipeCardName = recipeCard.lastElementChild.textContent;
+  const recipeCardName = recipeCard.closest(".individual-recipe").querySelector("h2");
   const thisRecipe = recipeData.find(recipe => recipe.name === recipeCardName);
   clickedRecipe.classList.toggle("hidden");
   clickedRecipe.classList.toggle("flex");
