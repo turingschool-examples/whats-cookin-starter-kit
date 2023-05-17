@@ -1,4 +1,4 @@
-import { assert } from 'chai'
+import { assert, expect } from 'chai'
 import { sampleRecipeData } from '../src/data/sampleData';
 import { getInstructions, filterRecipes }  from '../src/recipes';
 
@@ -28,14 +28,20 @@ describe('recipe', () => {
 
 describe('filterRecipes', () => {
   it('should filter list of recipes based on single tag', () => {
-    let expectedRecipes = [sampleRecipeData[0]];
+    let stringifiedExpectedRecipes = JSON.stringify([sampleRecipeData[0]]);
     let filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto')
-    expect(filteredRecipes).to.deepEqual(expectedRecipes);
+    expect(JSON.stringify(filteredRecipes)).to.equal(stringifiedExpectedRecipes);
   });
 
-  it.skip('should filter list of recipes based on multiple tags', () => {
-    let expectedRecipes = [sampleRecipeData[0], sampleRecipeData[2]];
-    let filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'sauce')
-    expect(filteredRecipes).to.deepEqual(expectedRecipes);
+  it('should filter list of recipes based on multiple tags', () => {
+    let stringifiedExpectedRecipes = JSON.stringify([sampleRecipeData[0], sampleRecipeData[2]]);
+    let filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'sauce');
+    expect(JSON.stringify(filteredRecipes)).to.eql(stringifiedExpectedRecipes);
+  });
+
+  it.skip('filtered recipe list should contain only unique entries', () => {
+    // let stringifiedExpectedRecipes = JSON.stringify([sampleRecipeData[0], sampleRecipeData[2]]);
+    // let filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'sauce');
+    // expect(JSON.stringify(filteredRecipes)).to.eql(stringifiedExpectedRecipes);
   });
 });
