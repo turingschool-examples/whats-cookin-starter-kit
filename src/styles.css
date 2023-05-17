@@ -46,13 +46,17 @@ h1 {
 
 .home__icon{
   height: 3em;
+  margin: 1em;
 }
 
 .home__ubutton {
   background-color: rgb(133, 38, 38);
   color: white;
-  border-radius: 1em;
+  border-radius: .4em;
+  border: 0;
   height: 1.5em;
+  margin: 1em;
+  cursor: pointer;
 }
 
 /* categories section */
@@ -70,7 +74,8 @@ h1 {
  margin: 1em;
  background-color: rgba(23, 89, 181, 0.632);
  border-radius: 1em;
- color: white
+ color: white;
+ cursor: pointer;
 }
 
 .categories__video {

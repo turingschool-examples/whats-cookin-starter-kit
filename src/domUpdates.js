@@ -11,9 +11,10 @@ const viewSides = document.querySelector('.categories__sides');
 const allSection = document.querySelector('.all');
 const homePage = document.querySelector('.home');
 const allContainer = document.querySelector('.all__container');
-
+const categoriesSection = document.querySelector('.categories');
+const footerSection = document.querySelector('.footer');
 const viewAllRecipes = () => {
-  hide([homePage], 'home--hidden');
+  hide([categoriesSection, footerSection], 'home--hidden');
   show([allSection], 'all--hidden');
   recipeData.forEach(recipe => {
     allContainer.innerHTML += 
@@ -24,7 +25,7 @@ const viewAllRecipes = () => {
 };
 
 const viewFilteredRecipes = (event) => {
-  hide([homePage], 'home--hidden');
+  hide([categoriesSection, footerSection], 'home--hidden');
   show([allSection], 'all--hidden');
   recipeData.forEach(recipe => {
     recipe.tags.forEach(tag=> {
