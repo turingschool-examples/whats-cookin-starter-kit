@@ -85,7 +85,9 @@ const renderSingleRecipeView = (e, recipes, ingredients) => {
       <div class="recipe-content-flex">
         <div class="side-info-flex">
           ${renderIngredients(recipe, ingredients)}
-          <p class="recipe-tag-flex">${renderTags(recipe)}</p>
+          <p class="recipe-tag-flex">
+            ${renderTags(recipe)}
+          </p>
         </div>
         <div class="vertical-divider"></div>
         <div class="recipe-instructions-flex">
@@ -114,7 +116,7 @@ const renderIngredients = (recipe, ingredients) => {
 };
 
 const renderTags = (recipe) => {
-  let output = `<h2>Tags<h2>`
+  let output = `<h2>Tags</h2>`;
   recipe.tags.forEach((ele) => {
     output += `<span class="tags-text-flex">${ele}</span>`
   })

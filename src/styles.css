@@ -223,6 +223,7 @@ h1 {
   font-size: 15px;
   display: flex;
   flex-direction: column;
+  margin: 0;
 }
 
 .recipe-instructions-flex {
