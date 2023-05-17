@@ -29,21 +29,14 @@ const searchBarClicked = () => {
 
   if (searchBar.value.length === 0) {
     searchResults = recipeData;
-  } else if (searchBar.value === 'select') {
+  } else if (searchByToggle.value === 'select') {
+    console.log('you got here')
     handleInvalidSearch('⬅️ You must search by tag or name.');
     searchResults = recipeData;
   } else if (searchByToggle.value === 'tag') {
-    if (myRecipesView.classList.contains('hidden')) {
-      searchResults = filterByTag(searchBar.value, recipeData);
-    } else if (mainView.classList.contains('hidden')) {
-      searchResults = filterByTag(searchBar.value /* enter user array here */);
-    }
+    searchResults = handleTagSearch();
   } else if (searchByToggle.value === 'name') {
-    if (myRecipesView.classList.contains('hidden')) {
-      searchResults = filterByName(searchBar.value, recipeData);
-    } else if (mainView.classList.contains('hidden')) {
-      searchResults = filterByTag(searchBar.value /* enter user array here */);
-    }
+    searchResults = handleNameSearch();
   }
 
   handleSearchResults(searchResults);
@@ -54,6 +47,22 @@ const handleInvalidSearch = (message) => {
   searchBar.placeholder = message;
 };
 
+const handleTagSearch = () => {
+  if (myRecipesView.classList.contains('hidden')) {
+    return filterByTag(searchBar.value, recipeData);
+  } else if (mainView.classList.contains('hidden')) {
+    return filterByTag(searchBar.value /* enter user array here */);
+  }
+};
+
+const handleNameSearch = () => {
+  if (myRecipesView.classList.contains('hidden')) {
+    return filterByName(searchBar.value, recipeData);
+  } else if (mainView.classList.contains('hidden')) {
+    return filterByTag(searchBar.value /* enter user array here */);
+  }
+};
+
 const handleSearchResults = (results) => {
   if (typeof results === 'string') {
     mainViewCardContainer.innerHTML = `<p>${results}</p>`;
@@ -61,6 +70,7 @@ const handleSearchResults = (results) => {
     renderRecipeCards(mainViewCardContainer, results);
   }
 };
+
 
 // DOM FUNCTIONS
 const renderRecipeCards = (view, recipes) => {
