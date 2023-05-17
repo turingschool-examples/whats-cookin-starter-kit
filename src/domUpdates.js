@@ -147,13 +147,16 @@ const renderTagArea = () => {
   tagArea.innerHTML = htmlCode;
 };
 
-const makeTagActive = (event) => {    
-  if (event.target.closest(".tag-image-bg").classList.contains("active-bg")) {
-    event.target.closest(".tag-image-bg").classList.remove("active-bg");
+const isTagActive = event => event.target.closest(".tag-card")?.querySelector(".tag-image-bg").classList.contains("active-bg");
+const removeActiveFromTag = event => event.target.closest(".tag-card").querySelector(".tag-image-bg").classList.remove("active-bg");
+const addActiveToTag = event => event.target.closest(".tag-card").querySelector(".tag-image-bg").classList.add("active-bg")
+
+const makeTagActive = (event) => {  
+  if (isTagActive(event)) {
+    removeActiveFromTag(event);
   } else {
-    event.target.closest(".tag-image-bg").classList.add("active-bg");
+    addActiveToTag(event);
   }
-    
 };
 
 const pageLoadRenders = () => {

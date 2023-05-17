@@ -37,7 +37,7 @@ const tagArea = document.querySelector('.tag-area');
 // import {exampleFunction1, exampleFunction2} from './domUpdates.js'
 window.addEventListener("load", pageLoadRenders)
 tagArea.addEventListener("click", function(event) {
-  if (event.target.closest(".tag-card")) {
+  if (event.target.classList && event.target.closest(".tag-card")) {
     makeTagActive(event);
   };
 });
