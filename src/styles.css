@@ -1,7 +1,7 @@
-/* *{
-  /* border: 2px solid red; */
+/* * {
+  border: 2px solid red;
 
-/* } */
+} */
 
 html {
   width: 100vw;
@@ -30,7 +30,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 6em;
+  height: 8em;
   width: 100%;
   margin: 0;
   background-color: rgb(205, 205, 205);
@@ -62,30 +62,65 @@ h1 {
 /* categories section */
 .categories {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  height: 150vh;
+  width: 100vw;
 }
 
 .categories__container {
+  display: flex;
+  justify-content: space-evenly;
   margin-top: 4em;
 }
 
 .categories--category {
- padding: 2em;
+ padding: .5em;
  margin: 1em;
  background-color: rgba(23, 89, 181, 0.632);
  border-radius: 1em;
- color: white;
+ color: rgb(255, 255, 255);
  cursor: pointer;
+ height: 11em;
+ width: 10em;
+ display: flex;
+ align-items: flex-end;
+ font-size: 1.4em;
+ font-weight: 600;
+ text-shadow:1px 1px 3px black
+}
+
+.categories--category:hover {
+  height: 11.3em;
+  width: 10.3em;
+  color:bisque
+}
+
+.categories__salads {
+  background-image: url("https://cdn.pixabay.com/photo/2014/02/12/18/11/lettuce-264826_1280.jpg")
+}
+
+.categories__horsdoeuvres {
+  background-image: url("https://spoonacular.com/recipeImages/764810-556x370.jpg")
+}
+
+.categories__mains {
+  background-image: url("https://spoonacular.com/recipeImages/678353-556x370.jpg")
+}
+
+.categories__sides {
+  background-image: url("https://spoonacular.com/recipeImages/741603-556x370.jpeg")
 }
 
 .categories__video {
-  padding-top: 10vh;
-  height: 50vh; 
-  width: 50vw;
+  /* padding-top: 10vh; */
+
+  width: 100vw;
+  margin: 0;
+  padding: 0;
 }
 
 .categories__all {
-  cursor: pointer;
+  background-image: url("https://cdn.pixabay.com/photo/2017/07/09/18/29/salad-2487775_1280.jpg")
 }
 
 /* footer section */
