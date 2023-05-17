@@ -5,7 +5,10 @@ const calculateCost = (recipe) => {
   let costs = [];
   const currentRecipe = sampleRecipeData.find((item) => {
     return item.name === recipe
-   });
+  });
+  if(!currentRecipe){
+    return `Cannot calculate ${recipe} recipe cost`
+  } else {
   let recipeIngredients = currentRecipe.ingredients;
   recipeIngredients.forEach((recipeIngredient) => {
     ingredientsData.forEach((ingredient) => {
@@ -18,6 +21,8 @@ const calculateCost = (recipe) => {
   acc + currentValue)
   totalCost = totalCost.toFixed(2)
   return `$${totalCost}`
+  }
 }
+
 
 export { calculateCost }
