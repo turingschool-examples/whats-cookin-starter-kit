@@ -19,12 +19,13 @@ const toMyRecipeView = () => {
   myRecipesView.classList.remove('hidden');
   singleRecipeView.innerHTML= '';
   searchBar.placeholder = 'Search your bookmarked Recipes';
-  renderRecipeCards(myRecipesView, currentUser.recipesToCook)
+  renderRecipeCards(myRecipesView, currentUser.recipesToCook, currentUser);
 };
 
 const toDashboardView = () => {
   mainView.classList.remove('hidden');
   myRecipesView.classList.add('hidden');
+  renderRecipeCards(mainViewCardContainer, recipeData, currentUser);
   singleRecipeView.innerHTML= '';
   searchBar.placeholder = 'Search for new Recipes';
 };
@@ -76,12 +77,22 @@ const handleSearchResults = (view, results) => {
   if (typeof results === 'string') {
     mainViewCardContainer.innerHTML = `<p>${results}</p>`;
   } else {
-    renderRecipeCards(view, results);
+    renderRecipeCards(mainViewCardContainer, results, currentUser);
   }
 };
 
 // DOM FUNCTIONS
-const renderRecipeCards = (view, recipes) => {
+const renderBookmarks = (currentUser, recipe) => {
+  if (currentUser.recipesToCook.includes(recipe)) {
+    return `<img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked hidden" alt="bookmark icon">
+    <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked" alt="bookmark icon filled in">`
+  } else {
+    return `<img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked" alt="bookmark icon">
+    <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">`
+  }
+}
+
+const renderRecipeCards = (view, recipes, currentUser) => {
   view.innerHTML = '';
   recipes.forEach((recipe) => {
     view.innerHTML += `
@@ -91,8 +102,7 @@ const renderRecipeCards = (view, recipes) => {
       <div class="recipe-title-flex">
         <h2 class="recipe-name">${recipe.name}</h2>
         <div class="bookmark-flex">
-          <img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked" alt="bookmark icon">
-          <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">
+          ${renderBookmarks(currentUser, recipe)}
         </div>
       </div>
     </article>`;
@@ -121,7 +131,7 @@ const toggleBookmark = (e, currentUser, recipeData) => {
   }
 };
 
-//CREATE A TEST FOR THIS FUNCITON!!!!
+
 const findRecipe = (e, recipes) => {
      return recipes.find((recipe) => {
         if (e.target.classList.contains('recipe-name')) {
@@ -188,6 +198,12 @@ const renderTags = (recipe) => {
   return output;
 };
 
+const removeRecipeCard = (e) => {
+  if(e.target.classList.contains('bookmark-icon')) {
+    e.target.parentElement.parentElement.parentElement.remove();
+  };
+}
+
 export {
   toMyRecipeView,
   toDashboardView,
@@ -195,5 +211,6 @@ export {
   toggleBookmark,
   renderSingleRecipeView,
   searchBarClicked,
+  removeRecipeCard
 };
 
