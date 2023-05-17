@@ -114,17 +114,17 @@ describe('calculate cost of ingredients', () => {
     ingredients2 = getIngredients(recipe2, sampleIngredientsData);
   });
 
-  it('should calculate the total cost of a given recipe\'s ingredients', function() {
+  it('should calculate the total cost of a given recipe\'s ingredients', () => {
     const costOfCookieCup = calculateRecipeCost(ingredients, recipe)
     expect(costOfCookieCup).to.equal(976)
   });
 
-  it('should calculate the total cost of a different recipe\'s ingredients', function() {
+  it('should calculate the total cost of a different recipe\'s ingredients', () => {
     const costOfPorkChops = calculateRecipeCost(ingredients2, recipe2)
     expect(costOfPorkChops).to.equal(1352)
   });
 
-  it('should show an error if ingredients don\'t exist', function() {
+  it('should show an error if ingredients don\'t exist', () => {
     const badIngredients = calculateRecipeCost([], recipe2)
     expect(badIngredients).to.equal('Error: no ingredients :(')
   });
