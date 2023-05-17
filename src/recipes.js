@@ -20,17 +20,6 @@ const filterRecipes = (data, filterTerm) => {
   return filteredRecipes
 }
 
-const calculateRecipeCost = (recipeIngredients) => {
-  return recipeCost = recipeIngredients.reduce((totalCost, ingredient) => {
-    return totalCost += (ingredient.amount * ingredient.estimatedCostInCents)
-    // use ingredient.id to get the sample ingredient data
-    // find out the $amount for that ing by multiplying the amount of that ingredient
-    // by the estimatedCostInCents
-    // add that to the amount
-    // return the amount
-  }, 0);
-};
-
 const getIngredients = (currentRecipe, allIngredients) => {
   if(!allIngredients.length){
     return 'Sorry, no ingredients given!'
@@ -51,11 +40,24 @@ const getIngredientNames = (ingredients) => {
   return ingredientNames;
 }
 
+const calculateRecipeCost = (ingredients) => {
+  return ingredients.reduce((totalCost, ingredient) => {
+    totalCost += (ingredient.estimatedCostInCents)
+    // find out the $amount for that ing by multiplying the amount of that ingredient
+    // by the estimatedCostInCents
+    // add that to the amount
+    // return the amount
+    return totalCost
+  }, 0);
+};
+
 export { 
   filterRecipes, 
   getRecipeInstructions, 
   getRecipeById,
   getIngredients,
-  getIngredientNames 
+  getIngredientNames,
+  // getIngredientAmount,
+  calculateRecipeCost
 };
 

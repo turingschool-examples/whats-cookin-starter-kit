@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { getRecipeInstructions, getRecipeById, filterRecipes, getIngredients, getIngredientNames } from '../src/recipes.js'
+import { getRecipeInstructions, getRecipeById, filterRecipes, getIngredients, getIngredientNames, calculateRecipeCost } from '../src/recipes.js'
 import { sampleRecipeData } from '../src/data/sample-recipes.js';
 import { sampleIngredientsData } from '../src/data/sample-ingredients.js';
 
@@ -99,7 +99,24 @@ describe('ingredients', () => {
 
   it('should return an error message if no ingredients are found', () => {
     const ingredientNames = getIngredientNames([])
-
+    
     expect(ingredientNames).to.equal('Sorry, no ingredients given!')
+  })
+})
+
+describe('calculate cost of ingredients', function() {
+  let recipe; let ingredients;
+
+  beforeEach(() => {
+
+    recipe = getRecipeById(sampleRecipeData, 595736);
+    ingredients = getIngredients(recipe, sampleIngredientsData);
+    // console.log('ingreds', ingredients)
+  });
+
+  it('should calculate the cost of a given recipe', function() {
+    const costOfCookieCup = calculateRecipeCost(ingredients)
+    expect(costOfCookieCup).to.equal('976')
+   console.log('cookie cost', costOfCookieCup)
   })
 })
