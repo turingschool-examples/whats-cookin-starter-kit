@@ -76,6 +76,16 @@ const handleSearchResults = (results) => {
 };
 
 // DOM FUNCTIONS
+const renderBookmarks = (view, recipe) => {
+  if (view === myRecipesView) {
+    return `<img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked hidden" alt="bookmark icon">
+    <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked" alt="bookmark icon filled in">`
+  } else {
+    return `<img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked" alt="bookmark icon">
+    <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">`
+  }
+}
+
 const renderRecipeCards = (view, recipes) => {
   view.innerHTML = '';
   recipes.forEach((recipe) => {
@@ -86,8 +96,7 @@ const renderRecipeCards = (view, recipes) => {
       <div class="recipe-title-flex">
         <h2 class="recipe-name">${recipe.name}</h2>
         <div class="bookmark-flex">
-          <img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked" alt="bookmark icon">
-          <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">
+          ${renderBookmarks(view, recipe)}
         </div>
       </div>
     </article>`;
