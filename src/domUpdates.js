@@ -1,5 +1,6 @@
 
 import { getIngredientsNames } from './get-ingredients-names';
+import { calculateRecipePrice } from './calculate-recipe-price';
 import {
   myRecipesView,
   mainView,
@@ -122,10 +123,6 @@ const findRecipe = (e, recipes) => {
       });
 };
 
-
-
-//card should have instruction, cost to make, and tags?
-
 // newly added functions- remember to export and import in proper files
 const renderSingleRecipeView = (e, recipes, ingredients) => {
   let recipe = findRecipe(e, recipes);
@@ -145,6 +142,8 @@ const renderSingleRecipeView = (e, recipes, ingredients) => {
       <div class="recipe-content-flex">
         <div class="side-info-flex">
           ${renderIngredients(recipe, ingredients)}
+          <h2>Total Cost</h2>
+          <span>${calculateRecipePrice(recipe, ingredients)}</span>
           <p class="recipe-tag-flex">
             ${renderTags(recipe)}
           </p>
