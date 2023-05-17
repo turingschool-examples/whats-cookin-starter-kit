@@ -30,7 +30,6 @@ const searchBarClicked = () => {
   if (searchBar.value.length === 0) {
     searchResults = recipeData;
   } else if (searchByToggle.value === 'select') {
-    console.log('you got here')
     handleInvalidSearch('⬅️ You must search by tag or name.');
     searchResults = recipeData;
   } else if (searchByToggle.value === 'tag') {
@@ -38,7 +37,7 @@ const searchBarClicked = () => {
   } else if (searchByToggle.value === 'name') {
     searchResults = handleNameSearch();
   }
-
+// potential refactor: turn this into a search object
   handleSearchResults(searchResults);
 };
 
