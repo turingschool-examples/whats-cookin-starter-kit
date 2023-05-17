@@ -1,5 +1,5 @@
 import ingredientsData from "../data/ingredients";
-import { sampleRecipeData } from "../data/sample-recipes";
+import sampleRecipeData from "../data/sample-recipes";
 
 const calculateCost = (recipe) => {
   let costs = [];
