@@ -16,11 +16,78 @@ h1 {
   border-radius: 15px;
   display: flex;
   align-items: center;
+    /* justify-content: flex-start; */
+}
+
+.tag-rows {
+  background-color: #ffffff;
+  height: 150px;
+  width: 100%;
+  border-radius: 15px;
+}
+
+.tag-row {
+  background-color: #000000;
+  height: 50%;
+  width: 100%;
+  border-radius: 15px;
+  border: solid 2px white;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+.slider {
+  width: 100%;
+  position: relative;
+}
+
+.slides {
+  display: flex;
+  overflow-x: scroll;
+  position: relative;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  justify-content: center;
+
+}
+
+
+.tag-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .tag-image {
-  height: 60px;
-  width: 60px;
+  height: 6vh;
+  width: auto;
+}
+
+.tag-image-bg {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  opacity: 0.4;
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.tag-text {
+  color: white;
+  opacity: 0.4;
+  margin-top: 4px;
+  margin-bottom: 2px;
+}
+
+.test-strip-1 {
+
+}
+
+.test-strip-2 {
+ 
+
 }
 
 /* Recipe grid */ 
@@ -133,11 +200,11 @@ h3 {
 @keyframes fade-in {
   0% {
     visibility: hidden;
-  opacity: 0;
+    opacity: 0;
   }
   30% {
     visibility: hidden;
-  opacity: 0;
+    opacity: 0;
   }
   60% {
     visibility: visible;
