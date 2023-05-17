@@ -2,7 +2,7 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { renderGrid } from './domUpdates'
+import { renderGrid, makeTagActive, pageLoadRenders } from './domUpdates'
 import './images/antipasti.png';
 import './images/antipasto.png'
 import './images/appetizer.png'
@@ -35,7 +35,12 @@ const tagArea = document.querySelector('.tag-area');
 
 // //Example of one way to import functions from the domUpdates file. You will delete these examples.
 // import {exampleFunction1, exampleFunction2} from './domUpdates.js'
-window.addEventListener("load", renderGrid)
+window.addEventListener("load", pageLoadRenders)
+tagArea.addEventListener("click", function(event) {
+  if (event.target.closest(".tag-card")) {
+    makeTagActive(event);
+  };
+});
 // Exports
 export {
   recipeGrid,

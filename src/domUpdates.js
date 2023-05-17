@@ -137,7 +137,7 @@ const createTagAreaHTML = rows => {
 
   htmlCode += '</div>';
   return htmlCode;
-}
+};
 
 const renderTagArea = () => {
   const tagData = getTagsFromRecipes(recipeData);
@@ -145,17 +145,25 @@ const renderTagArea = () => {
   const tagRows = splitTagsinRows(tagsAndIcons);
   const htmlCode = createTagAreaHTML(tagRows);
   tagArea.innerHTML = htmlCode;
-}
+};
+
+const makeTagActive = (event) => {    
+  if (event.target.closest(".tag-image-bg").classList.contains("active-bg")) {
+    event.target.closest(".tag-image-bg").classList.remove("active-bg");
+  } else {
+    event.target.closest(".tag-image-bg").classList.add("active-bg");
+  }
+    
+};
 
 const pageLoadRenders = () => {
   renderGrid();
   renderTagArea();
-}
-// Event listeners
-window.addEventListener("load", pageLoadRenders)
-
+};
 
 // Exports
 export {
-  renderGrid
+  renderGrid,
+  makeTagActive,
+  pageLoadRenders
 }
