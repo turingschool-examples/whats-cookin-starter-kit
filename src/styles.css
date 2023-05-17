@@ -163,6 +163,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   margin-top: 25px;
+  pointer-events: none;
 }
 
 .recipe-image {
@@ -193,6 +194,7 @@ h2 {
   text-align: center;
   margin-left: 3px;
   margin-right: 3px;
+  pointer-events: none;
 }
 
 h3 {
@@ -206,6 +208,15 @@ h3 {
   }
   100% {
     height: 35%
+  }
+}
+
+@keyframes animate-recipe {
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 98%
   }
 }
 
@@ -228,3 +239,71 @@ h3 {
   }
 }
 
+#clickedRecipe {
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  right: 0;
+  width: 98%;
+  border-radius: 50px;
+  background-color: darkgray;
+}
+
+.recipe-details {
+  display: flex;
+  flex-direction: column;
+  height: 97%;
+}
+
+#recipeLeftSide {
+  align-items: center;
+  width: 60%;
+  margin: 10px 0 10px 10px;
+}
+
+#recipeRightSide {
+  width: 40%;
+  margin: 10px 10px 10px 0;
+  background-color: #fcfcf3;
+  border-radius: 50px;
+}
+
+#recipeName {
+  background-color: black;
+  height: 40%;
+  width: 100%;
+}
+
+#recipeInstructions {
+  background-color: green;
+  height: 100%;
+  width: 100%;
+}
+
+#recipeRightSide h3 {
+  visibility: visible;
+  opacity: 100;
+  color: black;
+  font-size: 55px;
+}
+
+#closeRecipe {
+  height: 38px;
+  width: 38px;
+  padding: 20px 20px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.fade-in {
+  animation: fade-in 0.75s ease-in forwards, animate-recipe .75s ease-in-out forwards;
+}
+
+.flex {
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}

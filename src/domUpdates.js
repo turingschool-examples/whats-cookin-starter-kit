@@ -1,9 +1,6 @@
 // Imports
-import { 
-   recipeGrid,
-   tagArea 
-  } from './scripts';
-import { recipeData } from './data/recipes';
+import {recipeData} from './data/recipes'
+import {recipeGrid, clickedRecipe} from './scripts'
 
 // functions
 
@@ -164,9 +161,25 @@ const pageLoadRenders = () => {
   renderTagArea();
 };
 
+const showRecipe = (recipeCard) => {
+  const recipeCardName = recipeCard.closest(".individual-recipe").querySelector("h2");
+  const thisRecipe = recipeData.find(recipe => recipe.name === recipeCardName);
+  clickedRecipe.classList.toggle("hidden");
+  clickedRecipe.classList.toggle("flex");
+  clickedRecipe.classList.toggle("fade-in");
+};
+
+const closeRecipe = () => {
+  clickedRecipe.classList.add("hidden");
+  clickedRecipe.classList.remove("flex");
+  clickedRecipe.classList.remove("fade-in");
+};
+
 // Exports
 export {
   renderGrid,
   makeTagActive,
-  pageLoadRenders
+  pageLoadRenders,
+  showRecipe,
+  closeRecipe
 }
