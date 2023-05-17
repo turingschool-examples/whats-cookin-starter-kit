@@ -25,5 +25,5 @@ tagButtons.forEach((button) => {
     }) 
   })
 
-searchButton.addEventListener('click', searchRecipe)
+  searchButton.addEventListener('click', searchRecipe)
 
