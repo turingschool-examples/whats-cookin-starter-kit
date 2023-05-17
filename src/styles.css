@@ -18,6 +18,7 @@ nav {
   background-color: #e6d7ff;
   margin: .5% .5% .5% 1%;
   border-radius: 10% 0% 0% 10%;
+  align-items: center;
 }
 
 .nav-user {
@@ -45,6 +46,9 @@ main {
 
 .main-panel {
   display: flex;
+  justify-content:space-evenly;
+  flex-direction: column;
+  align-items: center;
   width: 18vw;
   height: 73vh;
   margin: .5% 1% .5% 1%;
@@ -65,11 +69,11 @@ main {
   /* overflow-x: hidden;   */
 }
 
-.main-recipe::-webkit-scrollbar{
+.main-recipe::-webkit-scrollbar {
   display: none;
 }
 
-.test{
+.test {
   width: 75vw;
   width: 73vw;
   text-align: center;
@@ -79,8 +83,28 @@ main {
   /* visibility: visible; */
 }
 
-.test::-webkit-scrollbar{
+.test::-webkit-scrollbar {
   display: none;
+}
+
+.tag {
+display:flex;
+
+ height:40px;
+ width:100px;
+ border-radius: 10px;
+ align-items: center;
+ justify-content: center;
+ background-color: #e1c4ff;
+ font-size: 15px;
+}
+
+.tag:hover {
+  background-color: #d2afff;
+}
+
+#search-bar {
+  height: 40px
 }
 
 .hidden {
