@@ -8,6 +8,7 @@ import {
   searchButton,
   searchByToggle,
   mainViewCardContainer,
+  currentUser,
 } from './scripts';
 import { filterByName, filterByTag } from './filters';
 import { recipeData } from './data/recipes';
@@ -18,6 +19,7 @@ const toMyRecipeView = () => {
   myRecipesView.classList.remove('hidden');
   singleRecipeView.innerHTML= '';
   searchBar.placeholder = 'Search your bookmarked Recipes';
+  renderRecipeCards(myRecipesView, currentUser.recipesToCook)
 };
 
 const toDashboardView = () => {
@@ -98,10 +100,10 @@ const isUnchecked = (e) => {
   }
 };
 
-const toggleBookmark = (e, currentUser) => {
+const toggleBookmark = (e, currentUser, recipeData) => {
   if (e.target.classList[0]=== 'bookmark-icon') {
     if(isUnchecked(e)) {
-      recipesToCook(e.target.id, currentUser)
+      recipesToCook(e.target.id, currentUser, recipeData)
       console.log(currentUser)
       e.target.classList.add('hidden')
       e.target.nextElementSibling.classList.remove('hidden');
