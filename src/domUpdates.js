@@ -26,29 +26,40 @@ const toDashboardView = () => {
 
 const searchBarClicked = () => {
   let searchResults;
+
   if (searchBar.value.length === 0) {
-    console.log('in here')
     searchResults = recipeData;
-  } else if (searchByToggle.value === 'select') {
-    searchBar.value = ''
-    searchBar.placeholder = '⬅️ You must search by tag or name.';
+  } else if (searchBar.value === 'select') {
+    handleInvalidSearch('⬅️ You must search by tag or name.');
     searchResults = recipeData;
-  } else if (searchByToggle.value === 'tag' && myRecipesView.classList.contains('hidden')) {
-    searchResults = filterByTag(searchBar.value, recipeData);
-  } else if (searchByToggle.value === 'tag' && mainView.classList.contains('hidden')) {
-    searchResults = filterByTag(
-      searchBar.value //enter user array here//
-    );
-  } else if (searchByToggle.value === 'name' && myRecipesView.classList.contains('hidden')) {
-    searchResults = filterByName(searchBar.value, recipeData);
-  } else if (searchByToggle.value === 'name' && mainView.classList.contains('hidden')) {
-    searchResults = filterByTag(
-      searchBar.value //enter user array here//
-    );
-  } else if (typeof searchResults === 'string') {
-    return mainViewCardContainer.innerHTML = `<p>${searchResults}</p>`
+  } else if (searchByToggle.value === 'tag') {
+    if (myRecipesView.classList.contains('hidden')) {
+      searchResults = filterByTag(searchBar.value, recipeData);
+    } else if (mainView.classList.contains('hidden')) {
+      searchResults = filterByTag(searchBar.value /* enter user array here */);
+    }
+  } else if (searchByToggle.value === 'name') {
+    if (myRecipesView.classList.contains('hidden')) {
+      searchResults = filterByName(searchBar.value, recipeData);
+    } else if (mainView.classList.contains('hidden')) {
+      searchResults = filterByTag(searchBar.value /* enter user array here */);
+    }
   }
-  renderRecipeCards(mainViewCardContainer, searchResults);
+
+  handleSearchResults(searchResults);
+};
+
+const handleInvalidSearch = (message) => {
+  searchBar.value = '';
+  searchBar.placeholder = message;
+};
+
+const handleSearchResults = (results) => {
+  if (typeof results === 'string') {
+    mainViewCardContainer.innerHTML = `<p>${results}</p>`;
+  } else {
+    renderRecipeCards(mainViewCardContainer, results);
+  }
 };
 
 // DOM FUNCTIONS
