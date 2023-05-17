@@ -22,51 +22,13 @@ const viewAllRecipes = () => {
     </div>`
   })
 };
-const viewSaladRecipes = () => {
+
+const viewFilteredRecipes = (event) => {
   hide([homePage], 'home--hidden');
   show([allSection], 'all--hidden');
   recipeData.forEach(recipe => {
     recipe.tags.forEach(tag=> {
-      if (tag==='salad')
-      allContainer.innerHTML += 
-      `<div class='all__recipes'>
-        <p class='all__text'>${recipe.name}</p>
-      </div>`
-    })
-  })
-};
-const viewHordoeuvresRecipes = () => {
-  hide([homePage], 'home--hidden');
-  show([allSection], 'all--hidden');
-  recipeData.forEach(recipe => {
-    recipe.tags.forEach(tag=> {
-      if (tag===`hor d'oeuvre`)
-      allContainer.innerHTML += 
-      `<div class='all__recipes'>
-        <p class='all__text'>${recipe.name}</p>
-      </div>`
-    })
-  })
-};
-const viewMainsRecipes = () => {
-  hide([homePage], 'home--hidden');
-  show([allSection], 'all--hidden');
-  recipeData.forEach(recipe => {
-    recipe.tags.forEach(tag=> {
-      if (tag==='main course')
-      allContainer.innerHTML += 
-      `<div class='all__recipes'>
-        <p class='all__text'>${recipe.name}</p>
-      </div>`
-    })
-  })
-};
-const viewSidesRecipes = () => {
-  hide([homePage], 'home--hidden');
-  show([allSection], 'all--hidden');
-  recipeData.forEach(recipe => {
-    recipe.tags.forEach(tag=> {
-      if (tag==='side dish')
+      if (tag===event.target.id)
       allContainer.innerHTML += 
       `<div class='all__recipes'>
         <p class='all__text'>${recipe.name}</p>
@@ -91,11 +53,8 @@ export {
   viewAll,
   viewAllRecipes,
   viewSalads, 
-  viewSaladRecipes, 
   viewHordoeuvres, 
-  viewHordoeuvresRecipes,
   viewMains, 
-  viewMainsRecipes,
   viewSides,
-  viewSidesRecipes
+  viewFilteredRecipes, 
 }
