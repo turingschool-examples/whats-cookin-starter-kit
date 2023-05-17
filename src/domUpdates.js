@@ -1,5 +1,5 @@
 import {recipeTestData, ingredientTestData} from './data/testData.js';
-import {calculateCost, determineIngredientNames, returnInstructions} from './recipe.js';
+import {calculateCost, determineIngredientNames, returnInstructions, filterByTag, filterByName} from './recipe.js';
 
 //Query Selectors
 const mainRecipe = document.querySelector('.main-recipe');
@@ -37,6 +37,19 @@ const displayRecipeInfo = () => {
   console.log('howdy')
 }
 
+const filterRecipeByTag = (recipes, tag) => {
+  const findRecipe = recipes.filter(recipe => {
+    return recipe.tags.includes(tag);
+  })
+  return findRecipe;
+}
+
+const searchRecipe = (recipes, name) => {
+const findName = recipes.filter(recipe => {
+  return recipe.name === name;
+});
+return findName;
+}
 
 
 export {
@@ -44,5 +57,7 @@ export {
   viewRecipeInfo, 
   mainRecipe, 
   testBox, 
-  displayRecipeInfo
+  displayRecipeInfo,
+  filterRecipeByTag,
+  searchRecipe
 }

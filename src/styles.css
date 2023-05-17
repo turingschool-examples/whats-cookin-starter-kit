@@ -45,6 +45,8 @@ main {
 
 .main-panel {
   display: flex;
+  justify-content:space-evenly;
+  flex-direction: column;
   width: 18vw;
   height: 73vh;
   margin: .5% 1% .5% 1%;
@@ -65,11 +67,11 @@ main {
   /* overflow-x: hidden;   */
 }
 
-.main-recipe::-webkit-scrollbar{
+.main-recipe::-webkit-scrollbar {
   display: none;
 }
 
-.test{
+.test {
   width: 75vw;
   width: 73vw;
   text-align: center;
@@ -79,8 +81,15 @@ main {
   /* visibility: visible; */
 }
 
-.test::-webkit-scrollbar{
+.test::-webkit-scrollbar {
   display: none;
+}
+
+.tag {
+display:flex;
+
+ height:30px;
+ width:100px
 }
 
 .hidden {
