@@ -78,7 +78,7 @@ h1 {
  margin: 1em;
  background-color: rgba(23, 89, 181, 0.632);
  border-radius: 1em;
- color: rgb(255, 255, 255);
+ color: rgb(253, 241, 241);
  cursor: pointer;
  height: 11em;
  width: 10em;
@@ -89,10 +89,10 @@ h1 {
  text-shadow:1px 1px 3px black
 }
 
-.categories--category:hover {
+.categories--category:hover, .all__recipes:hover {
   height: 11.3em;
   width: 10.3em;
-  color:bisque
+  color: rgb(250, 183, 183);
 }
 
 .categories__salads {

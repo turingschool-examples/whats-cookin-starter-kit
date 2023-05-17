@@ -29,12 +29,12 @@ const viewFilteredRecipes = (event) => {
   hide([categoriesSection, footerSection], 'home--hidden');
   show([allSection], 'all--hidden');
   recipeData.forEach(recipe => {
-    recipe.tags.forEach(tag=> {
-      if (tag===event.target.id)
-      allContainer.innerHTML += 
-      `<div style="background-image: url(${recipe.image})" class='all__recipes'>
-        <p class='all__text'>${recipe.name}</p>
-      </div>`
+    recipe.tags.forEach(tag => {
+      if(tag === event.target.id)
+        allContainer.innerHTML += 
+        `<div style='background-image: url(${recipe.image})' class='all__recipes'>
+          <p class='all__text'>${recipe.name}</p>
+        </div>`
     })
   })
 };
