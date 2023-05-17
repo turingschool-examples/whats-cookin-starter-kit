@@ -108,15 +108,17 @@ describe('calculate cost of ingredients', () => {
   let recipe; let ingredients;
 
   beforeEach(() => {
-
     recipe = getRecipeById(sampleRecipeData, 595736);
     ingredients = getIngredients(recipe, sampleIngredientsData);
-    // console.log('ingreds', ingredients)
   });
 
   it('should calculate the cost of a given recipe', function() {
-    const costOfCookieCup = calculateRecipeCost(ingredients)
-    expect(costOfCookieCup).to.equal('976')
-   console.log('cookie cost', costOfCookieCup)
+    const costOfCookieCup = calculateRecipeCost(ingredients, recipe)
+    console.log('ing', ingredients)
+    // console.log('recipe', recipe)
+    console.log('recipe ing', recipe.ingredients)
+    // console.log('recipe ing quant', recipe.ingredients[quantity])
+    expect(costOfCookieCup).to.equal(976)
+  //  console.log('cookie cost', costOfCookieCup)
   })
 })
