@@ -2,7 +2,26 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { renderGrid, showRecipe, closeRecipe } from './domUpdates'
+import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe } from './domUpdates'
+import './images/antipasti.png';
+import './images/antipasto.png'
+import './images/appetizer.png'
+import './images/breakfast.png'
+import './images/brunch.png'
+import './images/condiment.png'
+import './images/dinner.png'
+import './images/dip.png'
+import "./images/hor d'oeuvre.png"
+import './images/lunch.png'
+import './images/main course.png'
+import './images/main dish.png'
+import './images/morning meal.png'
+import './images/salad.png'
+import './images/sauce.png'
+import './images/side dish.png'
+import './images/snack.png'
+import './images/spread.png'
+import './images/starter.png'
 
 // import apiCalls from './apiCalls'
 
@@ -10,6 +29,7 @@ const recipeGrid = document.querySelector('.recipe-grid');
 const allRecipes = document.querySelector('.all-recipes');
 const clickedRecipe = document.querySelector('#clickedRecipe');
 const closeRecipeButton = document.querySelector('#closeRecipe');
+const tagArea = document.querySelector('.tag-area');
 
 // // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
@@ -17,7 +37,13 @@ const closeRecipeButton = document.querySelector('#closeRecipe');
 
 // //Example of one way to import functions from the domUpdates file. You will delete these examples.
 // import {exampleFunction1, exampleFunction2} from './domUpdates.js'
+window.addEventListener("load", pageLoadRenders);
 window.addEventListener("load", renderGrid);
+tagArea.addEventListener("click", function(event) {
+  if (event.target.classList && event.target.closest(".tag-card")) {
+    makeTagActive(event);
+  };
+});
 
 allRecipes.addEventListener("click", (event) => {
   if (event.target.classList?.contains('individual-recipe')) {
@@ -30,5 +56,6 @@ closeRecipeButton.addEventListener("click", closeRecipe);
 // Exports
 export {
   recipeGrid,
+  tagArea,
   clickedRecipe
 }
