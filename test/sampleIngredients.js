@@ -1,4 +1,4 @@
-// RECIPES
+//RECIPES
 const sampleRecipeData = [
   {
     id: 101,
