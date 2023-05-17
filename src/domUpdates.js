@@ -1,11 +1,8 @@
 import {recipeTestData, ingredientTestData} from './data/testData.js';
-import {calculateCost, determineIngredientNames, returnInstructions, filterByTag, filterByName} from './recipe.js';
+import {calculateCost, determineIngredientNames, returnInstructions} from './recipe.js';
 
 //Query Selectors
 const mainRecipe = document.querySelector('.main-recipe');
-// const breakfastButton = document.querySelector('#breakfast');
-// const lunchButton = document.querySelector('#lunch');
-// const dinnerButton = document.querySelector('#dinner');
 const tagButtons = document.querySelectorAll('.tag');
 const searchButton = document.querySelector('.submit-button');
 const userInput = document.querySelector('#search-bar');
@@ -23,7 +20,6 @@ const viewAllRecipes = () => {
 }
 
 const viewRecipeInfo = (e) => {
- testBox = document.querySelector('.test')
  if(e.target.classList.contains('box')) {
   const selectedRecipe = recipeTestData.find(recipe => recipe.id === Number(e.target.id))
   console.log('hello is this working')
@@ -36,13 +32,11 @@ const viewRecipeInfo = (e) => {
   <p class='cost'>Total cost: $${calculateCost(selectedRecipe)}</p>
   </div>
   `
-}
+  }
 }
 
 
 const filterRecipeByTag = (event) => {
-  // filterByTag(recipes, tag)
-
   recipeTestData.forEach(recipe => {
 
   if (recipe.tags.includes(event.target.id)) {
@@ -58,16 +52,11 @@ const filterRecipeByTag = (event) => {
 }
 
 const searchRecipe = () => {
-// const findName = recipes.filter(recipe => {
-//   return recipe.name === name;
-// });
-// return findName;
-// userInput.value.toLowerCase()
+
 let input = userInput.value.toLowerCase()
 console.log(userInput.value.toLowerCase())
  recipeTestData.forEach(recipe => {
   let recipe1 = recipe.name.toLowerCase()
-  // console.log(recipe.name.toLowerCase())
 
   if (recipe1.includes(input)) {
     searchButton.disable = false
@@ -81,10 +70,9 @@ console.log(userInput.value.toLowerCase())
 })
 
   if (!input){
-    // alert('INPUT REQUIRED')
     mainRecipe.innerHTML = ''
     viewAllRecipes()
-    return
+   
   }
 
 }
@@ -95,12 +83,8 @@ export {
   viewRecipeInfo, 
   mainRecipe, 
   testBox, 
-  // displayRecipeInfo,
   filterRecipeByTag,
   searchRecipe,
-  // breakfastButton,
-  // lunchButton,
-  // dinnerButton
   tagButtons,
   searchButton,
   userInput
