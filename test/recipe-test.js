@@ -1,13 +1,100 @@
+
 import { assert, expect } from 'chai'
-import { sampleRecipeData } from '../src/data/sampleData';
-import { getInstructions, filterRecipes }  from '../src/recipes';
+
+import {
+  sampleIngredientsData,
+  sampleRecipeData,
+  simpleIngredients,
+  simpleRecipe,
+} from '../src/data/sampleData';
+
+import {
+  getInstructions,
+  getIngredients,
+  calculateRecipeCost,
+  filterRecipes
+} from '../src/recipes';
 
 describe('recipe', () => {
+  const cookies = sampleRecipeData[0];
+  const porkChops = sampleRecipeData[1];
+  const allIngredients = sampleIngredientsData;
+
   it('should be a funciton', () => {
-    assert.isFunction(getInstructions)
+    assert.isFunction(getInstructions);
+    assert.isFunction(getIngredients);
+    assert.isFunction(calculateRecipeCost);
+  });
+
+  it('should determine the names of ingredients needed for a recipe', () => {
+    const cookieIngredients = getIngredients(cookies, allIngredients);
+    const cookieIngredientList = [
+      'wheat flour',
+      'bicarbonate of soda',
+      'eggs',
+      'sucrose',
+      'instant vanilla pudding',
+      'brown sugar',
+      'salt',
+      'fine sea salt',
+      'semi sweet chips',
+      'unsalted butter',
+      'vanilla',
+    ];
+    assert.deepEqual(cookieIngredients, cookieIngredientList);
+  });
+
+  it('should determine the names of ingredients for a different recipe', () => {
+    const porkChopIngredients = getIngredients(porkChops, allIngredients);
+    const porkChopIngredientList = [
+      'apple cider',
+      'apple',
+      'corn starch',
+      'dijon style mustard',
+      'whole garlic clove',
+      'whole grain dijon mustard',
+      'maple',
+      'miso',
+      'pork chop',
+      's&p',
+      'soy sauce',
+      'sriracha sauce',
+    ];
+    assert.deepEqual(porkChopIngredients, porkChopIngredientList);
+  });
+
+  it("should calculate the cost of a given recipe's ingredients", () => {
+    const cost = calculateRecipeCost(cookies, allIngredients);
+    assert.equal(cost, '$177.76');
+  });
+
+  it("should calulcaulte the cost of a different receipe's ingredients", () => {
+    const cost = calculateRecipeCost(porkChops, allIngredients);
+    assert.equal(cost, '$272.97');
+  });
+
+  it('should calculate the cost of a simple recipe', () => {
+    const cost = calculateRecipeCost(simpleRecipe, simpleIngredients)
+    assert.equal(cost, '$9.00')
+  });
+
+  it('should calculate the cost of a free recipe', () => {
+    const freeIngredients = [
+      {
+        id: 1,
+        estimatedCostInCents: 0,
+      },
+      {
+        id: 2,
+        estimatedCostInCents: 0,
+      },
+    ];
+    const cost = calculateRecipeCost(simpleRecipe, freeIngredients)
+    assert.equal(cost, '$0.00')
   })
-  it('should return the intructions for a given recipe', () => {
-    const cookieInstructions = getInstructions(sampleRecipeData[0]);
+
+  it('should return the intsructions for a given recipe', () => {
+    const cookieInstructions = getInstructions(cookies);
     const cookieDirections = [
       'In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.',
       'Add egg and vanilla and mix until combined.',
@@ -16,14 +103,22 @@ describe('recipe', () => {
       'Bake for 9 to 10 minutes, or until you see the edges start to brown.',
       'Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice cream and a drizzle of chocolate sauce.',
     ];
-    const porkChopInstructions = getInstructions(sampleRecipeData[1]);
+
+    assert.deepEqual(cookieInstructions, cookieDirections);
+  });
+
+  it('should return instructions for a different recipe', () => {
+    const porkChopInstructions = getInstructions(porkChops);
     const porkChopDirections = [
       'Season the pork chops with salt and pepper and grill or pan fry over medium high heat until cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook until the sauce thickens, about 2-5 minutes.Grill or saute the apple slices until just tender but still crisp.Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!',
     ];
 
-    assert.deepEqual(cookieInstructions, cookieDirections);
     assert.deepEqual(porkChopInstructions, porkChopDirections);
   });
+  it('should return an empty array for recipes with no instructions', () => {
+    const noInstructions = getInstructions(simpleRecipe)
+    assert.deepEqual(noInstructions, [])
+  })
 });
 
 describe('filterRecipes', () => {
