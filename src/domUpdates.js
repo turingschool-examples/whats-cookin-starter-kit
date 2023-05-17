@@ -98,9 +98,7 @@ const createTagCardHTML = tag => {
       <div class="tag-image-bg">
           <img class = "tag-image" src = "${tag.path}">
       </div>
-      <div class="tag-option">
-          <p class="tag-text">${tag.name}</p>
-      </div>
+      <p class="tag-text">${tag.name}</p>
   </section>
   `;
   return htmlCode;
