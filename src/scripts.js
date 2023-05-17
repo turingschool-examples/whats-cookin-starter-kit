@@ -1,16 +1,22 @@
 // DOM UPDATES
-import './styles.css'
+import './styles.css';
 import './images/user.png';
 import './images/home.png';
 import './images/search.png';
 import './images/restaurant.png';
 import './images/bookmark.png';
 import './images/bookmark-filled.png'
-
-import { toMyRecipeView , toDashboardView, renderRecipeCards, toggleBookmark, renderSingleRecipeView } from './domUpdates';
 import { recipeData }  from './data/recipes';
 import { ingredientsData } from './data/ingredients';
-
+import {
+  toMyRecipeView,
+  toDashboardView,
+  renderRecipeCards,
+  toggleBookmark,
+  renderSingleRecipeView,
+  searchBarClicked,
+} from './domUpdates';
+import { findRecipe } from './filters';
 
 // QUERY SELECTORS
 const myRecipesBtn = document.querySelector('#myRecipes');
@@ -19,12 +25,17 @@ const myRecipesView = document.querySelector('#myRecipeView');
 const dashboardBtn = document.querySelector('#dashboardNav');
 const mainViewCardContainer = document.querySelector('#mainViewCardContainer');
 const singleRecipeView = document.querySelector('#singleRecipeView');
+const searchBar = document.querySelector('#searchInput');
+const searchByToggle = document.querySelector('#searchSelect');
+const searchButton = document.querySelector('#searchIconBackground');
 
 // EVENT LISTENERS
+searchButton.addEventListener('click', searchBarClicked);
 myRecipesBtn.addEventListener('click', toMyRecipeView);
 dashboardBtn.addEventListener('click', toDashboardView);
 mainViewCardContainer.addEventListener('click', (e) => {
-  toggleBookmark(e)});
+  toggleBookmark(e);
+});
 singleRecipeView.addEventListener('click', (e) => {
   toggleBookmark(e)});
 mainView.addEventListener('click', (e) => {
@@ -33,12 +44,17 @@ mainView.addEventListener('click', (e) => {
   }
 });
 
+
 // FUNCTIONS
 renderRecipeCards(mainViewCardContainer, recipeData);
 
-export { 
+export {
   mainView,
   myRecipesView,
   mainViewCardContainer,
-  singleRecipeView
-}
+  singleRecipeView,
+  searchBar,
+  searchButton,
+  searchByToggle,
+};
+

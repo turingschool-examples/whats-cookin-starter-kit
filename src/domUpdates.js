@@ -1,18 +1,77 @@
-import { myRecipesView, mainView, singleRecipeView } from './scripts';
+
 import { getIngredientsNames } from './get-ingredients-names';
+import {
+  myRecipesView,
+  mainView,
+  singleRecipeView,
+  searchBar,
+  searchButton,
+  searchByToggle,
+  mainViewCardContainer,
+} from './scripts';
+import { filterByName, filterByTag } from './filters';
+import { recipeData } from './data/recipes';
 
 // EVENT HANDLERS
 const toMyRecipeView = () => {
   mainView.classList.add('hidden');
   myRecipesView.classList.remove('hidden');
   singleRecipeView.innerHTML= '';
-}
+  searchBar.placeholder = 'Search your bookmarked Recipes';
+};
 
 const toDashboardView = () => {
   mainView.classList.remove('hidden');
   myRecipesView.classList.add('hidden');
   singleRecipeView.innerHTML= '';
-}
+  searchBar.placeholder = 'Search for new Recipes';
+};
+
+const searchBarClicked = () => {
+  let searchResults;
+
+  if (searchBar.value.length === 0) {
+    searchResults = recipeData;
+  } else if (searchByToggle.value === 'select') {
+    handleInvalidSearch('⬅️ You must search by tag or name.');
+    searchResults = recipeData;
+  } else if (searchByToggle.value === 'tag') {
+    searchResults = handleTagSearch();
+  } else if (searchByToggle.value === 'name') {
+    searchResults = handleNameSearch();
+  }
+// potential refactor: turn this into a search object
+  handleSearchResults(searchResults);
+};
+
+const handleInvalidSearch = (message) => {
+  searchBar.value = '';
+  searchBar.placeholder = message;
+};
+
+const handleTagSearch = () => {
+  if (myRecipesView.classList.contains('hidden')) {
+    return filterByTag(searchBar.value, recipeData);
+  } else if (mainView.classList.contains('hidden')) {
+    return filterByTag(searchBar.value /* enter user array here */);
+  }
+};
+
+const handleNameSearch = () => {
+  if (myRecipesView.classList.contains('hidden')) {
+    return filterByName(searchBar.value, recipeData);
+  } else if (mainView.classList.contains('hidden')) {
+    return filterByTag(searchBar.value /* enter user array here */);
+  }
+};
+
+const handleSearchResults = (results) => {
+  if (typeof results === 'string') {
+    mainViewCardContainer.innerHTML = `<p>${results}</p>`;
+  } else {
+    renderRecipeCards(mainViewCardContainer, results);
+  }
+};
 
 // DOM FUNCTIONS
 const renderRecipeCards = (view, recipes) => {
@@ -30,28 +89,28 @@ const renderRecipeCards = (view, recipes) => {
         </div>
       </div>
     </article>`;
-  })
-}
+  });
+};
 
 const isUnchecked = (e) => {
-  if (e.target.classList.contains('unchecked')){
-      return true;
+  if (e.target.classList.contains('unchecked')) {
+    return true;
   }
-}
+};
 
 const toggleBookmark = (e) => {
-  if (e.target.classList[0]=== 'bookmark-icon') {
-    if(isUnchecked(e)) {
+  if (e.target.classList[0] === 'bookmark-icon') {
+    if (isUnchecked(e)) {
       //and push into my saved recipes array
-      e.target.classList.add('hidden')
+      e.target.classList.add('hidden');
       e.target.nextElementSibling.classList.remove('hidden');
     } else {
       //and remove from my recipe array
-      e.target.classList.add('hidden')
+      e.target.classList.add('hidden');
       e.target.previousElementSibling.classList.remove('hidden');
     }
   }
-}
+};
 
 //CREATE A TEST FOR THIS FUNCITON!!!!
 const findRecipe = (e, recipes) => {
@@ -60,8 +119,9 @@ const findRecipe = (e, recipes) => {
           return recipe.id === parseInt(e.target.parentElement.parentElement.id);
         }
         return recipe.id === parseInt(e.target.id);
-      })
-}
+      });
+};
+
 
 
 //card should have instruction, cost to make, and tags?
@@ -123,4 +183,12 @@ const renderTags = (recipe) => {
   return output;
 };
 
-export { toMyRecipeView , toDashboardView, renderRecipeCards, toggleBookmark, renderSingleRecipeView };
+export {
+  toMyRecipeView,
+  toDashboardView,
+  renderRecipeCards,
+  toggleBookmark,
+  renderSingleRecipeView,
+  searchBarClicked,
+};
+
