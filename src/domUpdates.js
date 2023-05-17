@@ -85,7 +85,7 @@ const clubTagsAndIcons = tags => {
   return tagsAndIcons;
 }
 
-const splitTagsinRows = tagsAndIcons => {
+const splitTagsInRows = tagsAndIcons => {
   const topRow = tagsAndIcons.filter(tag => tag.row === 1);
   const bottomRow = tagsAndIcons.filter(tag => tag.row === 0);
   return [topRow, bottomRow];
@@ -94,14 +94,14 @@ const splitTagsinRows = tagsAndIcons => {
 const createTagCardHTML = tag => {
   let htmlCode = '';
   htmlCode += `
-  <div class = "tag-card">
+  <section class = "tag-card">
       <div class="tag-image-bg">
           <img class = "tag-image" src = "${tag.path}">
       </div>
       <div class="tag-option">
           <p class="tag-text">${tag.name}</p>
       </div>
-  </div>
+  </section>
   `;
   return htmlCode;
 }
@@ -139,7 +139,7 @@ const createTagAreaHTML = rows => {
 const renderTagArea = () => {
   const tagData = getTagsFromRecipes(recipeData);
   const tagsAndIcons = clubTagsAndIcons(tagData);
-  const tagRows = splitTagsinRows(tagsAndIcons);
+  const tagRows = splitTagsInRows(tagsAndIcons);
   const htmlCode = createTagAreaHTML(tagRows);
   tagArea.innerHTML = htmlCode;
 };
