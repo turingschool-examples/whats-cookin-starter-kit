@@ -11,9 +11,8 @@ const filterRecipes = (allRecipes, ...tags) => {
       return recipe.tags.includes(tag);
     }));
   })
-  
-  console.log(filteredRecipes.flat());
-  return filteredRecipes.flat();
+
+  return [ ...new Set(filteredRecipes.flat())];
 }
 
 const getIngredients = (recipe, ingredients) => {

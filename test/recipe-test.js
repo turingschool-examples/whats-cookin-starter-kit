@@ -134,9 +134,9 @@ describe('filterRecipes', () => {
     expect(JSON.stringify(filteredRecipes)).to.eql(stringifiedExpectedRecipes);
   });
 
-  it.skip('filtered recipe list should contain only unique entries', () => {
-    // let stringifiedExpectedRecipes = JSON.stringify([sampleRecipeData[0], sampleRecipeData[2]]);
-    // let filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'sauce');
-    // expect(JSON.stringify(filteredRecipes)).to.eql(stringifiedExpectedRecipes);
+  it('filtered recipe list should contain only unique entries if it contains multiple tags being filtered', () => {
+    let stringifiedExpectedRecipes = JSON.stringify([sampleRecipeData[0]]);
+    let filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'antipasti');
+    expect(JSON.stringify(filteredRecipes)).to.eql(stringifiedExpectedRecipes);
   });
 });
