@@ -1,4 +1,6 @@
 //NOTE: Your DOM manipulation will occur in this file
+import recipeData from "./data/recipes";
+
 // Query Selectors:
 const allRecipesButton = document.querySelector('.all-recipes');
 const frontRecipeDisplay = document.querySelector('.front-recipe-display');

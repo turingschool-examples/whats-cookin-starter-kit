@@ -5380,4 +5380,6 @@ const recipeData = [
         "side dish"
       ]
     }
-  ]
+  ];
+  
+export default recipeData
