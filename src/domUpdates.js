@@ -31,4 +31,4 @@ const hide = (names, section) => {
   })
 };
 
-export { viewAllRecipes }
+export { viewAll, viewAllRecipes }

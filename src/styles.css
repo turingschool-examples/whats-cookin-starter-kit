@@ -53,6 +53,10 @@ body {
   width: 50vw;
 }
 
+.categories__all {
+  cursor: pointer;
+}
+
 /* footer section */
 
 footer {
