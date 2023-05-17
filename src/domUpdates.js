@@ -70,7 +70,7 @@ const showRecipe = (recipeCard) => {
   clickedRecipe.classList.toggle("fade-in");
 };
 
-const closeRecipe = (e) => {
+const closeRecipe = () => {
   clickedRecipe.classList.add("hidden");
   clickedRecipe.classList.remove("flex");
   clickedRecipe.classList.remove("fade-in");
