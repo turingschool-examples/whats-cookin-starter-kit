@@ -12,17 +12,22 @@ const allSection = document.querySelector('.all');
 const homePage = document.querySelector('.home');
 const allContainer = document.querySelector('.all__container');
 const allRecipes = () => document.querySelectorAll('.all__recipes');
+const recipePage = document.querySelector('.recipe');
 const recipeTitle = document.querySelector('.recipe__title');
 const recipeImg = document.querySelector('.recipe__img');
-const recipeIngredients = document.querySelector('.recipe__ingredients');
-const recipeInstructions = document.querySelector('.recipe__instructions')
+// const recipeIngredients = document.querySelector('.recipe__ingredients');
+// const recipeInstructions = document.querySelector('.recipe__instructions')
 
 const viewRecipe = (event) => {
+  hide([allSection], 'all--hidden');
+  show([recipePage], 'recipe--hidden');
   recipeData.forEach(recipe => {
     if(recipe.name === event.target.innerHTML){
-      recipe
+      recipeTitle.innerHTML = `<p> ${recipe.name}</p>`;
+      recipeImg.innerHTML = `<img class="recipe__img" src=${recipe.image}>`;
+      // recipe.ingredients.forEach(ingredient => )
     }
-  })
+  });
 }
 
 const viewAllRecipes = () => {
