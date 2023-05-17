@@ -1,16 +1,34 @@
 //NOTE: Your DOM manipulation will occur in this file
 
-//Here are 2 example functions just to demonstrate one way you can export/import between the two js files. You'll want to delete these once you get your own code going.
-function exampleFunction1(person) {
-  console.log(`oh hi there ${person}`)
-}
+import sampleRecipeData from "./data/sample-recipes.js";
+import recipeData from "./data/recipes.js"
 
-function exampleFunction2(person) {
-  console.log(`bye now ${person}`)
-}
+const viewAll = document.querySelector('.categories__all');
+const allSection = document.querySelector('.all');
+const homePage = document.querySelector('.home');
+const allContainer = document.querySelector('.all__container');
 
+const viewAllRecipes = () => {
+  hide([homePage], 'home--hidden');
+  show([allSection], 'all--hidden');
+  recipeData.forEach(recipe => {
+    allContainer.innerHTML += 
+    `<div class='all__recipes'>
+      <p class='all__text'>${recipe.name}</p>
+    </div>`
+  })
+};
 
-export {
-  exampleFunction1,
-  exampleFunction2,
-}
+const show = (names, section) => {
+  names.forEach((name) => {
+    name.classList.remove(section);
+  })
+};
+
+const hide = (names, section) => {
+  names.forEach((name) => {
+    name.classList.add(section);
+  })
+};
+
+export { viewAll, viewAllRecipes }

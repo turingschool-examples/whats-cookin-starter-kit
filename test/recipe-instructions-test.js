@@ -13,5 +13,5 @@ describe('recipeInstructions', () => {
   it('should return a message if no recipe', () => {
     const instructions = recipeInstructions();
     expect(instructions).to.equal('No recipe located');
-  })
+  });
 });
