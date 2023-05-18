@@ -19,6 +19,13 @@ import { viewAll, viewAllRecipes, viewSalads, viewHordoeuvres, viewMains,
 // exampleFunction2('heather')
 
 // console.log(ingredientsData)
+const setUpAllRecipes = (event) => {
+  viewAllRecipes(event)
+  const recipes = allRecipes()
+  recipes.forEach((recipe) => {
+    recipe.addEventListener('click', viewRecipe)
+  })
+}
 const setUpRecipes = (event) => {
   viewFilteredRecipes(event)
   const recipes = allRecipes()
@@ -26,12 +33,18 @@ const setUpRecipes = (event) => {
     recipe.addEventListener('click', viewRecipe)
   })
 }
-viewAll.addEventListener('click', viewAllRecipes)
+const setUpSearchedRecipes = (event) => {
+  filterByNameOrTag(event)
+  const recipes = allRecipes()
+  recipes.forEach((recipe) => {
+    recipe.addEventListener('click', viewRecipe)
+  })
+}
+viewAll.addEventListener('click', setUpAllRecipes)
 viewSalads.addEventListener('click', setUpRecipes)
 viewHordoeuvres.addEventListener('click', setUpRecipes)
 viewMains.addEventListener('click', setUpRecipes)
 viewSides.addEventListener('click',setUpRecipes)
-viewSearchResults.addEventListener('click', function(event) {
-  filterByNameOrTag(event)})
+viewSearchResults.addEventListener('click', setUpSearchedRecipes)
 homeButton.addEventListener('click', showHome)
 

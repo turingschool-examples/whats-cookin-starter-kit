@@ -25,10 +25,18 @@ const instructionsEl = document.querySelector('.recipe__instructions');
 const recipeCost = document.querySelector('.recipe__cost')
 const homeButton = document.querySelector('.home__button')
 
+const show = (names) => {
+  names.forEach((name) => name.classList.remove('class--hidden'))
+};
+
+const hide = (names) => {
+  names.forEach((name) => name.classList.add('class--hidden'))
+};
+
 const viewAllRecipes = () => {
   allContainer.innerHTML = ''
-  hide([categoriesSection, footerSection], 'home--hidden');
-  show([allSection], 'all--hidden');
+  hide([categoriesSection, footerSection, recipePage]);
+  show([allSection, homeButton]);
   recipeData.forEach(recipe => {
     allContainer.innerHTML += 
     `<div style="background-image: url(${recipe.image})" class='all__recipes'>
@@ -39,8 +47,8 @@ const viewAllRecipes = () => {
 
 const viewFilteredRecipes = (event) => {
   allContainer.innerHTML = ''
-  hide([categoriesSection, footerSection], 'home--hidden');
-  show([allSection], 'all--hidden');
+  hide([categoriesSection, footerSection, recipePage]);
+  show([allSection, homeButton]);
   recipeData.forEach(recipe => {
     recipe.tags.forEach(tag => {
       if(tag === event.target.id)
@@ -54,8 +62,8 @@ const viewFilteredRecipes = (event) => {
 
 const filterByNameOrTag = () => {
   allContainer.innerHTML = ''
-  hide([categoriesSection, footerSection], 'home--hidden');
-  show([allSection], 'all--hidden');
+  hide([categoriesSection, footerSection, recipePage]);
+  show([allSection, homeButton]);
   let results = filterByTag(recipeData, searchInput.value)
   if (results === `Error: try a new tag`){
     results = filterByName(recipeData, searchInput.value)
@@ -73,25 +81,13 @@ const filterByNameOrTag = () => {
   }
 }
 
-const show = (names, section) => {
-  names.forEach((name) => {
-    name.classList.remove(section);
-  })
-};
-
-const hide = (names, section) => {
-  names.forEach((name) => {
-    name.classList.add(section);
-  })
-};
-
 const showHome = () => {
-  // hide([allSection], 'home--hidden');
-  // show([categoriesSection, footerSection], 'all--hidden');
-  console.log('click')
+  hide([allSection, homeButton, recipePage]);
+  show([categoriesSection, footerSection]);
 }
 
 const viewRecipe = (event) => {
+  console.log(event.target)
   recipeData.forEach(recipe => {
     if(recipe.name === event.target.innerText){
       displayRecipe(recipe)
@@ -100,24 +96,27 @@ const viewRecipe = (event) => {
 }
 
 const displayRecipe = (recipe) => {
-  hide([allSection], 'all--hidden');
-  show([recipePage], 'recipe--hidden');
+  recipeTitle.innerText = ''
+  recipeCost.innerText = ''
+  hide([allSection]);
+  show([recipePage, homeButton]);
   recipeTitle.innerText = `${recipe.name}`;
   displayRecipeImg(recipe);
   displayIngredients(recipe);
   displayInstructions(recipe);
   const cost = calculateCost(recipe.name);
   recipeCost.innerText = `The estimated cost is ${cost}`;
-  console.log(cost)
 }
 
 const displayRecipeImg = (recipe) => {
+  imageContainer.innerHTML =''
   const image = document.createElement('img');
   image.setAttribute('src', recipe.image);
   image.classList.add('recipe__img');
   imageContainer.appendChild(image);
 }
 const displayIngredients = (recipe) => {
+  ingredientsEl.innerHTML = 'Ingredients:'
   const ingredientsArr = recipeIngredients(recipe.name);
   recipe.ingredients.forEach((ingredient, index) => {
     const {quantity: {amount, unit}} = ingredient;
@@ -126,6 +125,7 @@ const displayIngredients = (recipe) => {
 }
 
 const displayInstructions = (recipe) => {
+  instructionsEl.innerHTML = 'Instructions:'
   recipe.instructions.forEach((instruction, index) => {
     instructionsEl.innerHTML += `<p> ${instruction.instruction} </p>`;
   })
