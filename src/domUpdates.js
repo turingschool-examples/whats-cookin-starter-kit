@@ -1,5 +1,5 @@
 
-import { getIngredientsInfos } from './get-ingredients-names';
+import { getIngredientsInfos } from './get-ingredients-infos';
 import { calculateRecipePrice } from './calculate-recipe-price';
 import {
   myRecipesView,
