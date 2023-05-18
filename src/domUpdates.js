@@ -1,7 +1,8 @@
 //NOTE: Your DOM manipulation will occur in this file
 
-import sampleRecipeData from "./data/sample-recipes.js";
 import recipeData from "./data/recipes.js"
+import { calculateCost } from "./functions/calculate-cost.js";
+import { recipeIngredients } from "./functions/recipe-ingredients.js";
 
 const viewAll = document.querySelector('.categories__all');
 const viewSalads = document.querySelector('.categories__salads');
@@ -14,20 +15,48 @@ const allContainer = document.querySelector('.all__container');
 const allRecipes = () => document.querySelectorAll('.all__recipes');
 const recipePage = document.querySelector('.recipe');
 const recipeTitle = document.querySelector('.recipe__title');
-const recipeImg = document.querySelector('.recipe__img');
-// const recipeIngredients = document.querySelector('.recipe__ingredients');
-// const recipeInstructions = document.querySelector('.recipe__instructions')
-
+const imageContainer = document.querySelector('.image__container');
+const ingredientsEl = document.querySelector('.recipe__ingredients');
+const instructionsEl = document.querySelector('.recipe__instructions');
+const recipeCost = document.querySelector('.recipe__cost')
 const viewRecipe = (event) => {
-  hide([allSection], 'all--hidden');
-  show([recipePage], 'recipe--hidden');
   recipeData.forEach(recipe => {
-    if(recipe.name === event.target.innerHTML){
-      recipeTitle.innerHTML = `<p> ${recipe.name}</p>`;
-      recipeImg.innerHTML = `<img class="recipe__img" src=${recipe.image}>`;
-      // recipe.ingredients.forEach(ingredient => )
+    if(recipe.name === event.target.innerText){
+      displayRecipe(recipe)
     }
   });
+}
+
+const displayRecipe = (recipe) => {
+  hide([allSection], 'all--hidden');
+  show([recipePage], 'recipe--hidden');
+  recipeTitle.innerText = `${recipe.name}`;
+  displayRecipeImg(recipe);
+  displayIngredients(recipe);
+  displayInstructions(recipe);
+  const cost = calculateCost(recipe.name);
+  recipeCost.innerText = `The estimated cost is ${cost}`;
+  console.log(cost)
+}
+
+const displayRecipeImg = (recipe) => {
+  const image = document.createElement('img');
+  image.setAttribute('src', recipe.image);
+  image.classList.add('recipe__img');
+  imageContainer.appendChild(image);
+}
+const displayIngredients = (recipe) => {
+  const ingredientsArr = recipeIngredients(recipe.name);
+  recipe.ingredients.forEach((ingredient, index) => {
+    const {quantity: {amount, unit}} = ingredient;
+    ingredientsEl.innerHTML += `<p> ${amount} ${unit} ${ingredientsArr[index]}</p>`;
+  })
+}
+
+const displayInstructions = (recipe) => {
+  recipe.instructions.forEach((instruction, index) => {
+    instructionsEl.innerHTML += `<p> ${instruction.instruction} </p>`;
+  })
 }
 
 const viewAllRecipes = () => {
@@ -62,7 +91,9 @@ const show = (names, section) => {
 };
 
 const hide = (names, section) => {
+  console.log(names)
   names.forEach((name) => {
+    console.log(name)
     name.classList.add(section);
   })
 };
