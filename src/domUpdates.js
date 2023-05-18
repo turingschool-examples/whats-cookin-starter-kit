@@ -1,5 +1,7 @@
+
+import { getIngredientsInfos } from './get-ingredients-infos';
+import { calculateRecipePrice } from './calculate-recipe-price';
 import { removeRecipes, recipesToCook } from './recipes-to-cook';
-import { getIngredientsNames } from './get-ingredients-names';
 import {
   myRecipesView,
   mainView,
@@ -142,7 +144,6 @@ const findRecipe = (e, recipes) => {
       });
 };
 
-// newly added functions- remember to export and import in proper files
 const renderSingleRecipeView = (e, recipes, ingredients) => {
   let recipe = findRecipe(e, recipes);
   mainView.classList.add('hidden');
@@ -160,10 +161,14 @@ const renderSingleRecipeView = (e, recipes, ingredients) => {
       </div>
       <div class="recipe-content-flex">
         <div class="side-info-flex">
+          <h2>Ingredients</h2>
           ${renderIngredients(recipe, ingredients)}
-          <p class="recipe-tag-flex">
+          <h2>Total Cost</h2>
+          <span>${calculateRecipePrice(recipe, ingredients)}</span>
+          <h2>Tags</h2>
+          <span class="recipe-tag-flex">
             ${renderTags(recipe)}
-          </p>
+          </span>
         </div>
         <div class="vertical-divider"></div>
         <div class="recipe-instructions-flex">
@@ -183,8 +188,8 @@ const renderInstructions = (recipe) => {
 };
 
 const renderIngredients = (recipe, ingredients) => {
-  let ingredientNames = getIngredientsNames(recipe, ingredients);
-  let output = '<h2>Ingredients</h2>';
+  let ingredientNames = getIngredientsInfos(recipe, ingredients);
+  let output = '';
   ingredientNames.forEach((ele) => {
     output += `<span>- ${ele}</span>`;
   })
@@ -192,7 +197,7 @@ const renderIngredients = (recipe, ingredients) => {
 };
 
 const renderTags = (recipe) => {
-  let output = `<h2>Tags</h2>`;
+  let output = ``;
   recipe.tags.forEach((ele) => {
     output += `<span class="tags-text-flex">${ele}</span>`;
   })
