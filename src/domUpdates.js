@@ -10,6 +10,7 @@ const allRecipeDisplay = document.querySelector('.all-recipes-display');
 const allFilterDisplay = document.querySelector('.all-filters');
 const checkCategories = document.getElementsByName('checkbox');
 const searchInput = document.getElementById('search-bar');
+const singleRecipeDisplay = document.querySelector('.single-recipe-display');
 
 //Event Listeners
 allRecipesButton.addEventListener('click', showRecipes);
@@ -23,6 +24,12 @@ searchInput.addEventListener('keypress', function (e) {
     showSearchResults();
   }
 })
+
+allRecipeDisplay.addEventListener('click', function (event) {
+  addHiddenClass([allRecipeDisplay]);
+  removeHiddenClass([singleRecipeDisplay]);
+  viewSelectedRecipe(event);
+});
 
 //Event Handlers/Functions
 function showSearchResults() {
