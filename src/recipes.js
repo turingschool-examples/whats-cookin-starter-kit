@@ -39,7 +39,7 @@ const filterRecipesByName = (recipes, name) => {
 }
 
 const filterRecipesByIngredient = (recipes, searchedIngredient, ingredientData) => {
-  const searchedIngredientID = ingredientData.find(ingredient => ingredient.name === searchedIngredient)?.id;
+  const searchedIngredientID = ingredientData.find(ingredient => ingredient.name.includes(searchedIngredient))?.id;
   const matchedRecipes = recipes.filter(recipe => recipe.ingredients.some(ingredient => ingredient.id === searchedIngredientID));
   return matchedRecipes;
 };
