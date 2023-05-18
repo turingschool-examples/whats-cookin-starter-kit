@@ -1,6 +1,7 @@
 
 import { getIngredientsInfos } from './get-ingredients-infos';
 import { calculateRecipePrice } from './calculate-recipe-price';
+import { removeRecipes, recipesToCook } from './recipes-to-cook';
 import {
   myRecipesView,
   mainView,
@@ -9,6 +10,7 @@ import {
   searchButton,
   searchByToggle,
   mainViewCardContainer,
+  currentUser,
 } from './scripts';
 import { filterByName, filterByTag } from './filters';
 import { recipeData } from './data/recipes';
@@ -19,11 +21,13 @@ const toMyRecipeView = () => {
   myRecipesView.classList.remove('hidden');
   singleRecipeView.innerHTML= '';
   searchBar.placeholder = 'Search your bookmarked Recipes';
+  renderRecipeCards(myRecipesView, currentUser.recipesToCook, currentUser);
 };
 
 const toDashboardView = () => {
   mainView.classList.remove('hidden');
   myRecipesView.classList.add('hidden');
+  renderRecipeCards(mainViewCardContainer, recipeData, currentUser);
   singleRecipeView.innerHTML= '';
   searchBar.placeholder = 'Search for new Recipes';
 };
@@ -70,12 +74,22 @@ const handleSearchResults = (results) => {
   if (typeof results === 'string') {
     mainViewCardContainer.innerHTML = `<p>${results}</p>`;
   } else {
-    renderRecipeCards(mainViewCardContainer, results);
+    renderRecipeCards(mainViewCardContainer, results, currentUser);
   }
 };
 
 // DOM FUNCTIONS
-const renderRecipeCards = (view, recipes) => {
+const renderBookmarks = (currentUser, recipe) => {
+  if (currentUser.recipesToCook.includes(recipe)) {
+    return `<img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked hidden" alt="bookmark icon">
+    <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked" alt="bookmark icon filled in">`
+  } else {
+    return `<img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked" alt="bookmark icon">
+    <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">`
+  }
+}
+
+const renderRecipeCards = (view, recipes, currentUser) => {
   view.innerHTML = '';
   recipes.forEach((recipe) => {
     view.innerHTML += `
@@ -85,8 +99,7 @@ const renderRecipeCards = (view, recipes) => {
       <div class="recipe-title-flex">
         <h2 class="recipe-name">${recipe.name}</h2>
         <div class="bookmark-flex">
-          <img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked" alt="bookmark icon">
-          <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">
+          ${renderBookmarks(currentUser, recipe)}
         </div>
       </div>
     </article>`;
@@ -99,21 +112,23 @@ const isUnchecked = (e) => {
   }
 };
 
-const toggleBookmark = (e) => {
-  if (e.target.classList[0] === 'bookmark-icon') {
-    if (isUnchecked(e)) {
-      //and push into my saved recipes array
-      e.target.classList.add('hidden');
+const toggleBookmark = (e, currentUser, recipeData) => {
+  if (e.target.classList[0]=== 'bookmark-icon') {
+    if(isUnchecked(e)) {
+      recipesToCook(e.target.id, currentUser, recipeData)
+      console.log(currentUser)
+      e.target.classList.add('hidden')
       e.target.nextElementSibling.classList.remove('hidden');
     } else {
-      //and remove from my recipe array
-      e.target.classList.add('hidden');
+      removeRecipes(e.target.id, currentUser)
+      console.log(currentUser)
+      e.target.classList.add('hidden')
       e.target.previousElementSibling.classList.remove('hidden');
     }
   }
 };
 
-//CREATE A TEST FOR THIS FUNCITON!!!!
+
 const findRecipe = (e, recipes) => {
      return recipes.find((recipe) => {
         if (e.target.classList.contains('recipe-name')) {
@@ -123,7 +138,6 @@ const findRecipe = (e, recipes) => {
       });
 };
 
-// newly added functions- remember to export and import in proper files
 const renderSingleRecipeView = (e, recipes, ingredients) => {
   let recipe = findRecipe(e, recipes);
   mainView.classList.add('hidden');
@@ -184,6 +198,12 @@ const renderTags = (recipe) => {
   return output;
 };
 
+const removeRecipeCard = (e) => {
+  if(e.target.classList.contains('bookmark-icon')) {
+    e.target.parentElement.parentElement.parentElement.remove();
+  };
+}
+
 export {
   toMyRecipeView,
   toDashboardView,
@@ -191,5 +211,6 @@ export {
   toggleBookmark,
   renderSingleRecipeView,
   searchBarClicked,
+  removeRecipeCard
 };
 

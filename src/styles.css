@@ -132,7 +132,7 @@ h1 {
   box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
 }
 
-.card-container {
+.card-container, #myRecipeView {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
