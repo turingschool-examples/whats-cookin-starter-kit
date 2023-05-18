@@ -185,7 +185,8 @@ const recipeTestData = [
       "snack",
       "appetizer",
       "antipasto",
-      "hor d'oeuvre"
+      "hor d'oeuvre", 
+      "breakfast"
     ]
   },
   {
