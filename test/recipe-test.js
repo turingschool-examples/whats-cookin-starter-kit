@@ -263,21 +263,21 @@ describe('filterRecipes', () => {
   it('should return the only recipe with the searched ingredient', () => {
     expectedRecipes = [sampleRecipeData[0]];
     ingredientSearched = "unsalted butter";
-    filteredRecipes = filterRecipesByIngredient(sampleRecipeData, nameSearched);
+    filteredRecipes = filterRecipesByIngredient(sampleRecipeData, ingredientSearched, sampleIngredientsData);
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   });
 
   it('should return all recipes that contain the ingredient', () => {
     expectedRecipes = [sampleRecipeData[0], sampleRecipeData[5]];
     ingredientSearched = "fine sea salt";
-    filteredRecipes = filterRecipesByIngredient(sampleRecipeData, nameSearched);
+    filteredRecipes = filterRecipesByIngredient(sampleRecipeData, ingredientSearched, sampleIngredientsData);
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   })
 
   it('should not return no recipes if no ingredient match is found', () => {
     expectedRecipes = [];
     ingredientSearched = "no match string";
-    filteredRecipes = filterRecipesByIngredient(sampleRecipeData, firstIngredientSearched);
+    filteredRecipes = filterRecipesByIngredient(sampleRecipeData, ingredientSearched, sampleIngredientsData);
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   })
 });

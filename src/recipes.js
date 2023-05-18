@@ -34,10 +34,26 @@ const calculateRecipeCost = (recipe, ingredients) => {
   return `$${(costInCents/100).toFixed(2)}`;
 }
 
+const filterRecipesByName = (recipes, name) => {
+  return recipes.filter(recipe => recipe.name.includes(name));
+}
+
+const filterRecipesByIngredient = (recipes, searchedIngredient, ingredientData) => {
+  const searchedIngredientID = ingredientData.find(ingredient => ingredient.name === searchedIngredient)?.id;
+  const matchedRecipes = recipes.filter(recipe => recipe.ingredients.some(ingredient => ingredient.id === searchedIngredientID));
+  return matchedRecipes;
+};
+
+
+
 export {
   getInstructions,
   filterRecipes,
   getIngredients,
   getIngredientAmounts,
-  calculateRecipeCost
+  calculateRecipeCost,
+  filterRecipesByName,
+  filterRecipesByIngredient
 }
+
+
