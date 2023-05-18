@@ -1,41 +1,12 @@
-import {ingredientTestData, recipeTestData, userTestData} from '../src/data/testData.js';
+import { ingredientTestData, recipeTestData, userTestData } from '../src/data/testData.js';
 
-var recipesToCook = [];
+let recipesToCook = [];
 
-const createRecipe = recipe => ({
-  id: recipe.id,
-  image: recipe.image,
-  ingredients: recipe.ingredients,
-  instructions: recipe.instructions,
-  name: recipe.name,
-  tags: recipe.tags
-});
+const filterByTag = (recipes, tag) => recipes.filter(recipe => recipe.tags.includes(tag));
 
-const filterByTag = (recipes, tag) => {
-    const findRecipe = recipes.filter(recipe => {
-      return recipe.tags.includes(tag);
-    })
-    return findRecipe;
-}
+const filterByName = (recipes, name) => recipes.filter(recipe => recipe.name === name);
 
-const filterByName = (recipes, name) => {
-  const findName = recipes.filter(recipe => {
-    return recipe.name === name;
-  });
-  return findName;
-}
-
-const determineIngredientNames = (recipesData, ingredientsData, recipeName) => {
-  let ingredientNames = [];
-  const recipeIds = recipesData.find(find => find.name === recipeName).ingredients
-  .map(ingr => ingr.id);  
-  ingredientsData.forEach((ingredient)=> {
-    if(recipeIds.includes(ingredient.id)) {
-      ingredientNames.push(`${ingredient.name.charAt(0).toUpperCase()}${ingredient.name.slice(1)}`)
-    }
-  });
-  return ingredientNames
-}
+const determineIngredientNames = (recipes, ingredients, name) => recipes.filter(recipe => recipe.name === name)[0].ingredients.map(ingr => ingr.id).map(ID => ingredients[ingredients.findIndex(ing => ing.id === ID)].name);
 
 const calculateCost = recipe => {
   let iDs = ingredientTestData.reduce((array, ingredient) => [...array, ingredient.id], []);
@@ -43,10 +14,7 @@ const calculateCost = recipe => {
   return recipe.ingredients.reduce((sum, ingredient) => sum + (ingredient.quantity.amount * ingredient.cost), 0) / 100;
 };
 
-const returnInstructions = recipe => {
-  return recipe.instructions.reduce((string, instruction) => `${string}` + `${instruction.number}) ${instruction.instruction.replace(`.`, `. `)}
- `, '')
-}
+const returnInstructions = recipe => recipe.instructions.reduce((string, instruction) => `${string}` + `${instruction.number}) ${instruction.instruction.replace(`.`, `. `)}`, '');
 
 const toggleRecipesToCook = e => {
   recipeTestData.forEach(recipe => {
@@ -58,15 +26,23 @@ const toggleRecipesToCook = e => {
   });
 }
 
-
 export {
-  createRecipe,
   filterByTag,
   filterByName,
-  calculateCost,
   determineIngredientNames,
+  calculateCost,
   returnInstructions,
-  toggleRecipesToCook,
-  recipesToCook
+  toggleRecipesToCook
 }
 
+// const determineIngredientNames = (recipesData, ingredientsData, recipeName) => {
+//   let ingredientNames = [];
+//   const recipeIds = recipesData.find(find => find.name === recipeName).ingredients
+//   .map(ingr => ingr.id);  
+//   ingredientsData.forEach((ingredient)=> {
+//     if(recipeIds.includes(ingredient.id)) {
+//       ingredientNames.push(`${ingredient.name.charAt(0).toUpperCase()}${ingredient.name.slice(1)}`)
+//     }
+//   });
+//   return ingredientNames
+// }
