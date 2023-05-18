@@ -1,6 +1,7 @@
 // Imports
 import {recipeData} from './data/recipes'
-import {recipeGrid, clickedRecipe, tagArea} from './scripts'
+import {recipeGrid, clickedRecipe, tagArea, getRecipeCard} from './scripts'
+let currentRecipeCard = require('./scripts');
 
 // functions
 
@@ -160,8 +161,9 @@ const pageLoadRenders = () => {
 };
 
 const showRecipe = (recipeCard) => {
-  const recipeCardName = recipeCard.closest(".individual-recipe").querySelector("h2");
-  const thisRecipe = recipeData.find(recipe => recipe.name === recipeCardName);
+  const recipeCardID = recipeCard.closest("article")?.id;
+  const thisRecipe = recipeData.find(recipe => recipe.id.toString() === recipeCardID);
+  currentRecipeCard = getRecipeCard(thisRecipe);
   clickedRecipe.classList.toggle("hidden");
   clickedRecipe.classList.toggle("flex");
   clickedRecipe.classList.toggle("fade-in");
