@@ -189,10 +189,14 @@ const populateInstructions = (recipe) => {
   addScrollBar(recipe, '.instruction-steps')
 }
 
-const showRecipe = (recipeCard) => {
+const updateCurrentRecipe = recipeCard => {
   const recipeCardId = recipeCard.closest("article").id;
   const thisRecipe = recipeData.find(recipe => recipe.id.toString() === recipeCardId);
   currentRecipeCard = getRecipeCard(thisRecipe);
+}
+
+const showRecipe = (recipeCard) => {
+  updateCurrentRecipe(recipeCard)
   populateInstructions(currentRecipeCard);
   clickedRecipe.classList.toggle("hidden");
   clickedRecipe.classList.toggle("flex");
