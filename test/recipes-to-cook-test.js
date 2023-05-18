@@ -1,17 +1,15 @@
 import { expect } from 'chai';
 import { recipesToCook, removeRecipes, matchRecipe} from '../src/recipes-to-cook'
-// import { sampleUserData} from './sampleUsers'
 import { sampleRecipeData } from './sampleIngredients';
 
 describe('matchRecipe', () => {
-  it('should be a fuction', () => {
+  it('should be a function', () => {
     expect(matchRecipe).to.be.a('function');
   });
 
   it('should return the matching recipe object', () => {
-    const recipe = matchRecipe(101, sampleRecipeData)
-    console.log(recipe)
-    expect(recipe).to.equal(sampleRecipeData[0]);
+    expect(matchRecipe(101, sampleRecipeData)).to.equal(sampleRecipeData[0]);
+    expect(matchRecipe(102, sampleRecipeData)).to.equal(sampleRecipeData[1]);
   });
 });
 
@@ -32,6 +30,7 @@ describe('recipesToCook', () => {
 
     expect(currentUser.recipesToCook).to.deep.equal([sampleRecipeData[0]]);
     recipesToCook(106, currentUser, sampleRecipeData);
+    
     expect(currentUser.recipesToCook).to.deep.equal([sampleRecipeData[0], sampleRecipeData[5]]);
     recipesToCook(102, currentUser, sampleRecipeData);
     expect(currentUser.recipesToCook).to.deep.equal([sampleRecipeData[0], sampleRecipeData[5], sampleRecipeData[1]]);
@@ -50,13 +49,15 @@ describe('removeRecipes', () => {
       recipesToCook: []
     }
 
-    recipesToCook(101, currentUser);
-    recipesToCook(105, currentUser);
-    recipesToCook(102, currentUser);
-    console.log(currentUser)
-    removeRecipes(105, currentUser)
-
-    expect(currentUser.recipesToCook).to.deep.equal([sampleRecipeData[0], sampleRecipeData[1]])
+    recipesToCook(101, currentUser, sampleRecipeData);
+    recipesToCook(105, currentUser, sampleRecipeData);
+    recipesToCook(102, currentUser, sampleRecipeData);
+    recipesToCook(104, currentUser, sampleRecipeData);
+    removeRecipes(101, currentUser);
+    
+    expect(currentUser.recipesToCook).to.deep.equal([sampleRecipeData[4], sampleRecipeData[1], sampleRecipeData[3]]);
+    removeRecipes(104, currentUser);
+    expect(currentUser.recipesToCook).to.deep.equal([sampleRecipeData[4], sampleRecipeData[1]]);
   })
 });
 //we need to have current suer and assign it to a user
