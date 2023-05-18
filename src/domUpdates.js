@@ -2,7 +2,7 @@
 import recipeData from "./data/recipes";
 import { recipesFromTag } from "./recipeUtils";
 import { recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions } from "../src/recipeUtils";
-import ingredientsData from "./data/ingredients-sample";
+import ingredientsData from "./data/ingredients";
 
 // Query Selectors:
 const allRecipesButton = document.querySelector('.all-recipes');
