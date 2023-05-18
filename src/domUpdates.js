@@ -160,10 +160,33 @@ const pageLoadRenders = () => {
   renderTagArea();
 };
 
+const getInstructionHTML = (recipe) => {
+  return recipe.instructions.map((instruction, i) => {
+    if(recipe.instructions.length > 1) {
+      return `<section class='single-instruction-step'> 
+                <p class='step'>STEP ${i+1}</p> 
+                <p class='instruction'>${instruction}</p> 
+              </section>`
+    } else {
+      return `<p>${instruction}</p>`
+    }
+  })
+}
+
+const addScrollBar = (recipe, element) => {
+  if (recipe.instructions.length > 1) {
+    document.querySelector(element).classList.add('scrollbar')
+  }
+}
+
 const populateInstructions = (recipe) => {
-  const instructions = recipe.instructions.map((instruction, i) => `<p> Step ${i+1}: ${instruction}</p>`)
+  const instructions = getInstructionHTML(recipe)
   const instructionSection= document.querySelector('#recipeInstructions')
-  instructionSection.innerHTML = instructions.join('')
+  instructionSection.innerHTML = `<p>Method</p>
+                                  <section class='instruction-steps'> 
+                                    ${instructions.join('')} 
+                                  </section>`
+  addScrollBar(recipe, '.instruction-steps')
 }
 
 const showRecipe = (recipeCard) => {
