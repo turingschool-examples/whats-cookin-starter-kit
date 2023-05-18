@@ -75,5 +75,7 @@ export {
   recipeGrid,
   tagArea,
   clickedRecipe,
-  getRecipeCard
+  getRecipeCard,
+  currentRecipeCard,
+  allRecipes
 }

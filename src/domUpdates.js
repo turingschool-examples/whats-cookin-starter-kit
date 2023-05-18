@@ -1,6 +1,6 @@
 // Imports
 import {recipeData} from './data/recipes'
-import {recipeGrid, clickedRecipe, tagArea, getRecipeCard} from './scripts'
+import {recipeGrid, clickedRecipe, tagArea, getRecipeCard, allRecipes} from './scripts'
 let currentRecipeCard = require('./scripts');
 
 // functions
@@ -196,6 +196,7 @@ const updateCurrentRecipe = recipeCard => {
 }
 
 const openRecipeCard = () => {
+  allRecipes.classList.add('blur')
   clickedRecipe.classList.toggle("hidden");
   clickedRecipe.classList.toggle("flex");
   clickedRecipe.classList.toggle("fade-in");
@@ -209,6 +210,7 @@ const showRecipe = (recipeCard) => {
 
 
 const closeRecipe = () => {
+  allRecipes.classList.remove('blur')
   clickedRecipe.classList.add("hidden");
   clickedRecipe.classList.remove("flex");
   clickedRecipe.classList.remove("fade-in");
