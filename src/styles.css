@@ -276,8 +276,12 @@ h3 {
 }
 
 #recipeInstructions {
-  max-height: 60%;
+  height: 60%;
   width: 95%;
+  border: 3px solid #4f515a;
+  background: #808391;;
+  padding: 10px;
+  border-radius: 25px;
 }
 
 .scrollbar {
