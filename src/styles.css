@@ -1,6 +1,7 @@
 * {
   border: 0px solid red;
   font-family: 'Bebas Neue', sans-serif;
+  color: #321e36
 }
 
 body {
@@ -18,17 +19,21 @@ nav {
   height:  20vh;
   background-color: #e6d7ff;
   margin: .5% .5% .5% 1%;
-  border-radius: 10% 0% 0% 10%;
+  /* border-radius: 10% 0% 0% 10%; */
+  border-radius: 10px;
   align-items: center;
+  gap: 20px
 }
 
 .nav-user {
   display: flex;
-  width: 18vw;
+  width: 15vw;
   height: 17vh;
   margin: .75% .1% .1% 2%;
   background-color: #e1c4ff;
-  border-radius: 10% 0% 0% 10%;
+  /* border-radius: 10% 0% 0% 10%; */
+  border-radius: 10px;
+  
 }
 
 main {
@@ -42,7 +47,7 @@ main {
   flex-direction: column;
   width: 10vw;
   height: 10vh;
-  margin: 5% 1% 1% 20%;
+  margin: 5% 1% 1% 10%;
 }
 
 .main-panel {
@@ -52,8 +57,9 @@ main {
   align-items: center;
   width: 18vw;
   height: 73vh;
-  margin: .5% 1% .5% 1%;
-  border-radius: 10% 0% 10% 0%;
+  margin: .5% 1% .5% 1%; 
+  /* border-radius: 10% 0% 10% 0%; */
+  border-radius: 10px;
   background-color: #e6d7ff;
   
 }
@@ -61,13 +67,15 @@ main {
 .main-recipe {
   display: flex;
   flex-wrap: wrap;
-  width: 75vw;
+  width: 76.5vw;
   height: 73vh;
-  margin: .5% .5% .5% 2.6%;
-  border-radius: 10% 0% 7% 0%;
+  margin: .5% .5% .5% 1%;
+  /* border-radius: 10% 0% 7% 0%;  */
+  border-radius: 10px;
   background-color: #e6d7ff;
   overflow-x: scroll;
-  /* overflow-x: hidden;   */
+  overflow-x: hidden;  
+  
 }
 
 .main-recipe::-webkit-scrollbar {
@@ -75,13 +83,15 @@ main {
 }
 
 .test {
-  width: 75vw;
+  height: 75vw;
   width: 73vw;
   text-align: center;
   /* position: absolute; */
-  border-radius: 10% 0% 10% 0%;
+  /* border-radius: 10% 0% 10% 0%; */
   background-color: #e6d7ff;  
-  /* visibility: visible; */
+  visibility: visible;
+  border-radius: 10px;
+  overflow-x: scroll;
 }
 
 .test::-webkit-scrollbar {
@@ -90,7 +100,6 @@ main {
 
 .tag {
 display:flex;
-
  height:40px;
  width:100px;
  border-radius: 10px;
@@ -104,8 +113,28 @@ display:flex;
   background-color: #d2afff;
 }
 
-#search-bar {
-  height: 40px
+#search-bar{
+  height: 40px;
+  width: 200px;
+  border-radius: 5px;
+  padding-left: 20px;
+}
+
+.submit-button, #favorite {
+  display: flex;
+  background-color: #321e36;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  width: 100px;
+  border-radius: 10px;
+  color: #e1c4ff;
+  font-size: 20px;
+}
+
+.box, .recipe-img{
+  border-radius: 5px;
+
 }
 
 .hidden {
