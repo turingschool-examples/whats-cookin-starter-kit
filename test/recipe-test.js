@@ -139,4 +139,32 @@ describe('filterRecipes', () => {
     let filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'antipasti');
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   });
+
+  it('should filter recipe list based on name', () => {
+    const expectedRecipes = [sampleRecipeData[1]];
+    const nameSearched = "Maple Dijon Apple Cider Grilled Pork Chops";
+    const filteredRecipes = filterRecipes(sampleRecipeData, nameSearched); 
+    expect(filteredRecipes).to.deep.equal(expectedRecipes);
+  });
+
+  it('should filter recipe list even with sub-strings', () => {
+    const expectedRecipes = [sampleRecipeData[1]];
+    const nameSearched = "Maple Di";
+    const filteredRecipes = filterRecipes(sampleRecipeData, nameSearched);
+    expect(filteredRecipes).to.deep.equal(expectedRecipes);
+  });
+
+  it('should filter multiple recipes if they share the same substring', () => {
+    const expectedRecipes = [sampleRecipeData[3], sampleRecipeData[4]];
+    const nameSearched = "cake";
+    const filteredRecipes = filterRecipes(sampleRecipeData, nameSearched);
+    expect(filteredRecipes).to.deep.equal(expectedRecipes);
+  });
+
+  it('should return no recipe if no name matches', () => {
+    const expectedRecipes = [];
+    const nameSearched = "Test Text";
+    const filteredRecipes = filterRecipes(sampleRecipeData, nameSearched);
+    expect(filteredRecipes).to.deep.equal(expectedRecipes);
+  });
 });
