@@ -2,8 +2,9 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe } from './domUpdates
-import { getIngredientAmounts } from './recipes'; 
+import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe } from './domUpdates';
+import { getIngredientAmounts, getInstructions } from './recipes'; 
+import { ingredientsData } from './data/ingredients';
 import './images/antipasti.png';
 import './images/antipasto.png'
 import './images/appetizer.png'
@@ -33,7 +34,7 @@ const closeRecipeButton = document.querySelector('#closeRecipe');
 const tagArea = document.querySelector('.tag-area');
 
 // DATA MODEL 
-let currentRecipeCard;
+let currentRecipeCard = {};
 
 //FUNCTIONS 
 const getRecipeCard = (recipe) => {
