@@ -1,6 +1,7 @@
 //NOTE: Your DOM manipulation will occur in this file
 
 import recipeData from "./data/recipes.js"
+import { filterByTag, filterByName } from "./functions/filter-recipes.js"
 import { calculateCost } from "./functions/calculate-cost.js";
 import { recipeIngredients } from "./functions/recipe-ingredients.js";
 
@@ -12,6 +13,8 @@ const viewSides = document.querySelector('.categories__sides');
 const allSection = document.querySelector('.all');
 const categoriesSection = document.querySelector('.categories');
 const footerSection = document.querySelector('.footer');
+const viewSearchResults = document.querySelector('.home__searchIcon');
+const searchInput = document.querySelector('.home__searchInput');
 const allContainer = document.querySelector('.all__container');
 const allRecipes = () => document.querySelectorAll('.all__recipes');
 const recipePage = document.querySelector('.recipe');
@@ -22,6 +25,7 @@ const instructionsEl = document.querySelector('.recipe__instructions');
 const recipeCost = document.querySelector('.recipe__cost')
 
 const viewAllRecipes = () => {
+  allContainer.innerHTML = ''
   hide([categoriesSection, footerSection], 'home--hidden');
   show([allSection], 'all--hidden');
   recipeData.forEach(recipe => {
@@ -33,6 +37,7 @@ const viewAllRecipes = () => {
 };
 
 const viewFilteredRecipes = (event) => {
+  allContainer.innerHTML = ''
   hide([categoriesSection, footerSection], 'home--hidden');
   show([allSection], 'all--hidden');
   recipeData.forEach(recipe => {
@@ -45,6 +50,27 @@ const viewFilteredRecipes = (event) => {
     })
   })
 };
+
+const filterByNameOrTag = () => {
+  allContainer.innerHTML = ''
+  hide([categoriesSection, footerSection], 'home--hidden');
+  show([allSection], 'all--hidden');
+  let results = filterByTag(recipeData, searchInput.value)
+  if (results === `Error: try a new tag`){
+    results = filterByName(recipeData, searchInput.value)
+  }
+  if (results !== 'No results' && searchInput.value){
+    results.forEach(recipe => {
+      allContainer.innerHTML += 
+      `<div style="background-image: url(${recipe.image})" class='all__recipes'>
+        <p class='all__text'>${recipe.name}</p>
+      </div>`
+    })
+  } else {
+    allContainer.innerHTML = 
+      `<p class='all__text'>No Results!</p>`
+  }
+}
 
 const show = (names, section) => {
   names.forEach((name) => {
@@ -107,7 +133,9 @@ export {
   viewHordoeuvres, 
   viewMains, 
   viewSides,
-  viewFilteredRecipes, 
+  viewFilteredRecipes,
+  viewSearchResults, 
+  filterByNameOrTag,
   viewRecipe,
   allRecipes
 }

@@ -7,7 +7,8 @@ import './images/turing-logo.png'
 import './images/search-icon.png'
 import ingredientsData from './data/ingredients.js'
 import sampleRecipeData from './data/sample-recipes.js'
-import { viewAll, viewAllRecipes, viewSalads, viewHordoeuvres, viewMains, viewSides, viewFilteredRecipes, viewRecipe, allRecipes 
+import { viewAll, viewAllRecipes, viewSalads, viewHordoeuvres, viewMains,
+   viewSides, viewFilteredRecipes, filterByNameOrTag, viewSearchResults, viewRecipe, allRecipes 
  } from './domUpdates.js'
 
 //Example of one way to import functions from the domUpdates file. You will delete these examples.
@@ -29,3 +30,5 @@ viewSalads.addEventListener('click', setUpRecipes)
 viewHordoeuvres.addEventListener('click', setUpRecipes)
 viewMains.addEventListener('click', setUpRecipes)
 viewSides.addEventListener('click',setUpRecipes)
+viewSearchResults.addEventListener('click', function(event) {
+  filterByNameOrTag(event)})
