@@ -1,6 +1,7 @@
 // Imports
 import {recipeData} from './data/recipes'
-import {recipeGrid, clickedRecipe, tagArea} from './scripts'
+import {recipeGrid, clickedRecipe, tagArea, getRecipeCard} from './scripts'
+let currentRecipeCard = require('./scripts');
 
 // functions
 
@@ -159,13 +160,22 @@ const pageLoadRenders = () => {
   renderTagArea();
 };
 
+const populateInstructions = (recipe) => {
+  const instructions = recipe.instructions.map((instruction, i) => `<p> Step ${i+1}: ${instruction}</p>`)
+  const instructionSection= document.querySelector('#recipeInstructions')
+  instructionSection.innerHTML = instructions.join('')
+}
+
 const showRecipe = (recipeCard) => {
-  const recipeCardName = recipeCard.closest(".individual-recipe").querySelector("h2");
-  const thisRecipe = recipeData.find(recipe => recipe.name === recipeCardName);
+  const recipeCardId = recipeCard.closest("article").id;
+  const thisRecipe = recipeData.find(recipe => recipe.id.toString() === recipeCardId);
+  currentRecipeCard = getRecipeCard(thisRecipe);
+  populateInstructions(currentRecipeCard);
   clickedRecipe.classList.toggle("hidden");
   clickedRecipe.classList.toggle("flex");
   clickedRecipe.classList.toggle("fade-in");
 };
+
 
 const closeRecipe = () => {
   clickedRecipe.classList.add("hidden");
