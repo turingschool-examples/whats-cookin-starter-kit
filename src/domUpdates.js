@@ -1,6 +1,6 @@
 // Imports
 import {recipeData} from './data/recipes'
-import {recipeGrid, clickedRecipe, tagArea, getRecipeCard} from './scripts'
+import {recipeGrid, clickedRecipe, tagArea, getRecipeCard, ingredientsList} from './scripts'
 let currentRecipeCard = require('./scripts');
 
 // functions
@@ -164,6 +164,7 @@ const showRecipe = (recipeCard) => {
   const recipeCardID = recipeCard.closest("article")?.id;
   const thisRecipe = recipeData.find(recipe => recipe.id.toString() === recipeCardID);
   currentRecipeCard = getRecipeCard(thisRecipe);
+  getIngredients(currentRecipeCard);
   clickedRecipe.classList.toggle("hidden");
   clickedRecipe.classList.toggle("flex");
   clickedRecipe.classList.toggle("fade-in");
@@ -173,8 +174,20 @@ const closeRecipe = () => {
   clickedRecipe.classList.add("hidden");
   clickedRecipe.classList.remove("flex");
   clickedRecipe.classList.remove("fade-in");
+  ingredientsList.innerHTML = '';
 };
 
+const getIngredients = currentRecipeCard => {
+  createIngredientsHTML(currentRecipeCard.ingredients);
+};
+
+const createIngredientsHTML = ingredients => {
+  ingredients.forEach(ingredient => {
+    ingredientsList.innerHTML += `
+      <label><input type="checkbox" class="ingredient-text" value="value">${ingredient.amount} ${ingredient.unit} ${ingredient.name}</label>
+    `;
+  });
+}
 // Exports
 export {
   renderGrid,

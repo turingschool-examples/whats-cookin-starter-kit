@@ -260,6 +260,26 @@ h3 {
   height: 97%;
 }
 
+label {
+  color: black;
+  font-family: Lexend;
+  font-size: 20px;
+  padding: 0 0 10px 30px;
+}
+
+label:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+input[type=checkbox] {
+  accent-color: rgb(0, 172, 0);
+  transform: scale(2);
+  clip-path: circle(50% at 50% 50%);
+  margin-right: 20px;
+  padding: 10px;
+}
+
 #recipeLeftSide {
   align-items: center;
   width: 60%;
@@ -269,7 +289,7 @@ h3 {
 #recipeRightSide {
   width: 40%;
   margin: 10px 10px 10px 0;
-  background-color: #fcfcf3;
+  background-color: #ffffff;
   border-radius: 50px;
 }
 
@@ -287,9 +307,15 @@ h3 {
 
 #recipeRightSide h3 {
   visibility: visible;
+  padding-left: 30px;
   opacity: 100;
   color: black;
   font-size: 55px;
+}
+
+#ingredientsList {
+  display: flex;
+  flex-direction: column;
 }
 
 #closeRecipe {
