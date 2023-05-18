@@ -1,5 +1,3 @@
-import { ingredientsData } from "./ingredients";
-
 const sampleRecipeData = [
   {
     "id": 595736,
