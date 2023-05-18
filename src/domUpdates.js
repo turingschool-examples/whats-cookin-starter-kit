@@ -174,10 +174,8 @@ const getInstructionHTML = (recipe) => {
   })
 }
 
-const addScrollBar = (recipe, element) => {
-  if (recipe.instructions.length > 1) {
+const addScrollBar = (element) => {
     document.querySelector(element).classList.add('scrollbar')
-  }
 }
 
 const populateInstructions = (recipe) => {
