@@ -1235,3 +1235,4 @@ const ingredientsData = [
   ];
 
   export { ingredientsData }
+  

@@ -1,7 +1,7 @@
 // Imports
 import {recipeData} from './data/recipes'
 import {recipeGrid, clickedRecipe, tagArea, getRecipeCard} from './scripts'
-let currentRecipeCard  = require('./scripts');
+let currentRecipeCard = require('./scripts');
 
 // functions
 
