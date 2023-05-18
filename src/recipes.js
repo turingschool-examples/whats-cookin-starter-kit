@@ -18,6 +18,16 @@ const getIngredients = (recipe, ingredients) => {
   return recipe.ingredients.map(ingredient => getIngredientProperty(ingredient, ingredients, 'name'))
 }
 
+const getIngredientAmounts = (recipe, ingredients) => {
+  return recipe.ingredients.map(ingredient => {
+    return {
+      amount: ingredient.quantity.amount,
+      unit: ingredient.quantity.unit,
+      name: getIngredientProperty(ingredient, ingredients, 'name')
+    }
+  })
+}
+
 const calculateRecipeCost = (recipe, ingredients) => {
   const recipeIngredients = recipe.ingredients.map(ingredient => ({amount: ingredient.quantity.amount, costPerUnit: getIngredientProperty(ingredient, ingredients, 'estimatedCostInCents')}))
   const costInCents = recipeIngredients.reduce((totalCost, curr) => totalCost += (curr.amount * curr.costPerUnit), 0);
@@ -28,5 +38,6 @@ export {
   getInstructions,
   filterRecipes,
   getIngredients,
+  getIngredientAmounts,
   calculateRecipeCost
 }
