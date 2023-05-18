@@ -1,4 +1,4 @@
-import {recipeTestData, ingredientTestData} from './data/testData.js';
+import {recipeTestData, ingredientTestData, userTestData} from './data/testData.js';
 import {calculateCost, determineIngredientNames, recipesToCook, returnInstructions, toggleRecipesToCook} from './recipe.js';
 
 //Query Selectors
@@ -8,6 +8,7 @@ const tagButtons = document.querySelectorAll('.tag');
 const searchButton = document.querySelector('.submit-button');
 const userInput = document.querySelector('#search-bar');
 const page = {mode: 'home'}
+const user = document.querySelector('.user')
 let testBox;
 
 // Event Handlers
@@ -105,6 +106,15 @@ const toggleMode = (e) => {
 page.mode = e.target.id
 }
 
+const getRandomIndex= (array) => {
+  return Math.floor(Math.random() * array.length);
+}
+
+const displayRandomUser = () => {
+  console.log(userTestData.name)
+  user.innerText = userTestData[getRandomIndex(userTestData)].name
+}
+
 
 export {
   viewAllRecipes,
@@ -118,5 +128,6 @@ export {
   tagButtons,
   searchButton,
   userInput,
-  toggleMode
+  toggleMode, 
+  displayRandomUser
 }
