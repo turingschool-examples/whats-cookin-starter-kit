@@ -1,6 +1,36 @@
-// Your fetch requests will live here!
-fetch("https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users").then(response => response.json()).then(data => console.log(data.users.forEach((user)=>{
-  console.log(user.recipesToCook)
-})))
+let curUser 
 
-console.log('I will be a fetch request!')
+const getUsers = () => {
+  return fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
+  .then((res) => {
+    return res.json()
+  })
+  .then((data)=> {
+    // console.log(data)
+    return data
+  })
+}
+
+const getRecipes = () => {
+  return fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
+  .then((res) => {
+    return res.json()
+  })
+  .then((data)=> {
+    // console.log(data)
+    return data
+  })
+}
+
+const getIngredients = () => {
+  return fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients')
+  .then((res) => {
+    return res.json()
+  })
+  .then((data)=> {
+    // console.log(data)
+    return data
+  })
+}
+
+export {getUsers, getRecipes, getIngredients}
