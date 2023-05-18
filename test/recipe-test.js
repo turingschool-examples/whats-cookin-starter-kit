@@ -4,9 +4,12 @@ import {createRecipe, filterByTag, filterByName, determineIngredientNames, calcu
 
 describe('', () => {
   let recipe;
-
+  let ingredientData;
+  let instructions;
   beforeEach(() => {
     recipe = createRecipe(recipeTestData[0]);
+    ingredientData = ['Wheat flour', 'Bicarbonate of soda', 'Eggs', 'Sucrose', 'Instant vanilla pudding', 'Brown sugar', 'Salt', 'Fine sea salt', 'Semi sweet chips', 'Unsalted butter', 'Vanilla'];
+    
   });
 
   describe('createRecipe', () => {
@@ -78,9 +81,8 @@ describe('determineIngredientNames', () => {
     expect(determineIngredientNames).to.be.a('function');
   });
     it('Should return an array of ingredient names', () => {
-      const ingredientsPuddin = ['Wheat flour', 'Bicarbonate of soda', 'Eggs', 'Sucrose', 'Instant vanilla pudding', 'Brown sugar', 'Salt', 'Fine sea salt', 'Semi sweet chips', 'Unsalted butter', 'Vanilla'];
       const findIngredients = determineIngredientNames(recipeTestData, ingredientTestData, "Loaded Chocolate Chip Pudding Cookie Cups");
-      expect(findIngredients).to.deep.equal(ingredientsPuddin);
+      expect(findIngredients).to.deep.equal(ingredientData);
   
   });
 })
@@ -102,9 +104,8 @@ describe('returnInstructions', () => {
   });
 
   it('Should return the instructions of searched recipe', () => {
-  
-    const instructions = returnInstructions(recipeTestData[0])
-    expect(instructions).to.deep.equal(recipeTestData[0].instructions)
+    const instructionsTest = returnInstructions(recipeTestData[0]);
+    expect(instructionsTest).to.deep.equal(instructions)
   })
 })
 });
