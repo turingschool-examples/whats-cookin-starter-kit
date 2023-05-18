@@ -47,12 +47,9 @@ const start = () => {
   let ingredientsData = data[1].ingredients;
   let recipeData = data[2].recipes;
 
-  let currentUser;
+  currentUser = getRandomUser(userData);
+  renderRecipeCards(mainViewCardContainer, recipeData, currentUser);
 
-  window.addEventListener('load', () => {
-    currentUser = getRandomUser(userData);
-    renderRecipeCards(mainViewCardContainer, recipeData, currentUser);
-  });
   searchButton.addEventListener('click', searchBarClicked);
   myRecipesBtn.addEventListener('click', () => {
     toMyRecipeView(currentUser);
@@ -83,7 +80,7 @@ const start = () => {
 };
 
 // EVENT LISTENERS
-window.addEventListener('load', start());
+window.addEventListener('load', start);
 
 export {
   mainView,
