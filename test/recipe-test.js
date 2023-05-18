@@ -13,7 +13,9 @@ import {
   getIngredients,
   calculateRecipeCost,
   getIngredientAmounts,
-  filterRecipes
+  filterRecipes,
+  filterRecipesByIngredient,
+  filterRecipesByName
 } from '../src/recipes';
 
 describe('recipe', () => {
@@ -26,6 +28,9 @@ describe('recipe', () => {
     assert.isFunction(getIngredients);
     assert.isFunction(getIngredientAmounts);
     assert.isFunction(calculateRecipeCost);
+    assert.isFunction(filterRecipes);
+    assert.isFunction(filterRecipesByIngredient);
+    assert.isFunction(filterRecipesByName);
   });
 
   it('should determine the names of ingredients needed for a recipe', () => {
