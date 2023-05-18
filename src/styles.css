@@ -1,3 +1,232 @@
-body {
-  background-color: blueviolet;
+/* * {
+  border: 2px solid red;
+
+} */
+
+html {
+  width: 100vw;
+  height: 100vh;
+  font-family:'Hind Siliguri';
+  font-weight:400
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgb(234, 232, 232);
+  margin: 0;
+}
+
+/*  home page header section */
+.home {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.home__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 8em;
+  width: 100%;
+  margin: 0;
+  background-color: rgb(205, 205, 205);
+}
+
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+}
+  /* border: solid black 3px; */
+
+.home__icon{
+  height: 3em;
+  margin: 1em;
+}
+
+.home__searchIcon{
+  height: 1.5em;
+  border-radius: 100em;
+  margin-right: 1em;
+}
+
+.home__ubutton {
+  background-color: rgb(133, 38, 38);
+  color: white;
+  border-radius: .4em;
+  border: 0;
+  height: 1.5em;
+  margin: 1em;
+  cursor: pointer;
+}
+
+/* categories section */
+.categories {
+  display: flex;
+  flex-direction: column;
+  height: 150vh;
+  width: 100vw;
+}
+
+.categories__container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 4em;
+}
+
+.categories--category, .all__recipes {
+ padding: .5em;
+ margin: 1em;
+ background-color: rgba(23, 89, 181, 0.632);
+ border-radius: 1em;
+ color: rgb(253, 241, 241);
+ cursor: pointer;
+ height: 11em;
+ width: 10em;
+ display: flex;
+ align-items: flex-end;
+ font-size: 1.4em;
+ font-weight: 600;
+ text-shadow:1px 1px 3px black
+}
+
+.categories--category:hover, .all__recipes:hover {
+  height: 11.3em;
+  width: 10.3em;
+  color: rgb(250, 183, 183);
+}
+
+.categories__salads {
+  background-image: url("https://cdn.pixabay.com/photo/2014/02/12/18/11/lettuce-264826_1280.jpg")
+}
+
+.categories__horsdoeuvres {
+  background-image: url("https://spoonacular.com/recipeImages/764810-556x370.jpg")
+}
+
+.categories__mains {
+  background-image: url("https://spoonacular.com/recipeImages/678353-556x370.jpg")
+}
+
+.categories__sides {
+  background-image: url("https://spoonacular.com/recipeImages/741603-556x370.jpeg")
+}
+
+.categories__video {
+  /* padding-top: 10vh; */
+
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+.categories__all {
+  background-image: url("https://cdn.pixabay.com/photo/2017/07/09/18/29/salad-2487775_1280.jpg")
+}
+
+/* footer section */
+
+footer {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.footer__pic {
+  padding: 1em
+}
+
+/* view all recipes section */
+.all__container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* .all__recipes {
+  border: solid black 2px;
+  height: 4em;
+  width: 10em;
+  border-radius: 10px;
+  background-color: rgb(133, 38, 38);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+
+.all__text {
+  margin: 0;
+  font-size: .8em;
+  text-align: center;
+  padding: .3em;
+}
+/* recipe section */
+
+.recipe__header,
+ .recipe__header2,
+ .recipe__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recipe__hbutton, .recipe__instructions, .recipe__instruction, .recipe__ingredients {
+  display: flex;
+}
+
+.recipe__hbutton, .recipe__sbutton {
+  background-color: rgb(133, 38, 38);
+  color: white;
+  border-radius: 1em;
+}
+
+.recipe__turing{
+  height: 3em;
+}
+
+.recipe__left, .recipe__instructions, .recipe__img {
+  width: 50vh;
+}
+
+.recipe__instructions, .recipe__instruction, .recipe__ingredients {
+align-items: center;
+flex-direction: column;
+}
+
+/* user section */
+
+.user__header, .user__recipes, .user__recipe, .user__hbutton, .user__header2{
+  display: flex;
+  align-items: center;
+}
+
+.user__turing, .user__img, .user__icon {
+  height: 4em
+}
+
+.user__hbutton {
+  background-color: rgb(133, 38, 38);
+  color: white;
+  border-radius: 1em;
+
+}
+
+.user__recipes {
+  flex-direction: column;
+  align-items: center;
+}
+
+/* hidden section */
+
+.home--hidden, .recipe--hidden, .user--hidden {
+  display: none;
+}
+
+
