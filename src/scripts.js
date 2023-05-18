@@ -2,7 +2,8 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe } from './domUpdates'
+import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe } from './domUpdates
+import { getIngredientAmounts } from './recipes'; 
 import './images/antipasti.png';
 import './images/antipasto.png'
 import './images/appetizer.png'
@@ -31,6 +32,21 @@ const clickedRecipe = document.querySelector('#clickedRecipe');
 const closeRecipeButton = document.querySelector('#closeRecipe');
 const tagArea = document.querySelector('.tag-area');
 
+// DATA MODEL 
+let currentRecipeCard;
+
+//FUNCTIONS 
+const getRecipeCard = (recipe) => {
+  const recipeCard =  {
+    id: recipe.id,
+    instructions: getInstructions(recipe),
+    ingredients: getIngredientAmounts(recipe, ingredientsData),
+    image: recipe.image,
+    name: recipe.name
+  }
+return recipeCard;
+}
+
 // // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
 // import ingredientsData from './data/ingredients.js'
@@ -57,5 +73,7 @@ closeRecipeButton.addEventListener("click", closeRecipe);
 export {
   recipeGrid,
   tagArea,
-  clickedRecipe
+  clickedRecipe,
+  getRecipeCard,
+  currentRecipeCard
 }
