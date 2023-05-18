@@ -12,7 +12,7 @@
     <h1>What's Cookin?</h1>
     <nav class="navbar">
       <button class="all-recipes">All Recipes</button>
-      <input type="text" placeholder=" Search...">
+      <input id = "search-bar" type="text" placeholder=" Search...">
       <button class="saved recipes">Saved Recipes</button>
     </nav>
   </header>
@@ -22,67 +22,72 @@
         <img id="front-recipe-1" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" class="recipe">
         <div class = "recipe-info">
           <p>Elvis Pancakes</p>
-          <p>Total Cost: $..</p>
         </div>
       </div>
       <div class = "recipe-wrapper">
         <img id="front-recipe-2" src="https://spoonacular.com/recipeImages/562334-556x370.jpg" class="recipe">
         <div class = "recipe-info">
           <p>Udi's GF Bread</p>
-          <p>Total Cost: $..</p>
         </div>
       </div>
       <div class = "recipe-wrapper">
         <img id="front-recipe-3" src="https://spoonacular.com/recipeImages/507921-556x370.jpg" class="recipe">
         <div class = "recipe-info">
           <p>Cupcake?</p>
-          <p>Total Cost: $..</p>
         </div>
       </div>
     </article>
   </main>
   <div class="all-recipes-wrapper">
     <aside class="all-filters hidden">
-      <input type="checkbox" class="checkbox" id="antipasto">
+      <input type="checkbox" class="checkbox" id="antipasto" name="checkbox">
       <label for="antipasto">Antipasto</label>
-      <input type="checkbox" class="checkbox" id="appatizer">
-      <label for="appatizer">Appatizer</label>
-      <input type="checkbox" class="checkbox" id="breakfast">
+      <input type="checkbox" class="checkbox" id="appetizer" name="checkbox">
+      <label for="appetizer">Appetizer</label>
+      <input type="checkbox" class="checkbox" id="breakfast" name="checkbox">
       <label for="breakfast">Breakfast</label>
-      <input type="checkbox" class="checkbox" id="brunch">
+      <input type="checkbox" class="checkbox" id="brunch" name="checkbox">
       <label for="brunch">Brunch</label>
-      <input type="checkbox" class="checkbox" id="condiment">
+      <input type="checkbox" class="checkbox" id="condiment" name="checkbox">
       <label for="condiment">Condiment</label>
-      <input type="checkbox" class="checkbox" id="dinner">
+      <input type="checkbox" class="checkbox" id="dinner" name="checkbox">
       <label for="dinner">Dinner</label>
-      <input type="checkbox" class="checkbox" id="dip">
+      <input type="checkbox" class="checkbox" id="dip" name="checkbox">
       <label for="dip">Dip</label>
-      <input type="checkbox" class="checkbox" id="hor d'oeuvre">
+      <input type="checkbox" class="checkbox" id="hor d'oeuvre" name="checkbox">
       <label for="hor d'oeuvre">Hor d'oeuvre</label>
-      <input type="checkbox" class="checkbox" id="lunch">
+      <input type="checkbox" class="checkbox" id="lunch" name="checkbox">
       <label for="lunch">Lunch</label>
-      <input type="checkbox" class="checkbox" id="main course">
+      <input type="checkbox" class="checkbox" id="main course" name="checkbox">
       <label for="main course">Main Course</label>
-      <input type="checkbox" class="checkbox" id="main dish">
+      <input type="checkbox" class="checkbox" id="main dish" name="checkbox">
       <label for="main dish">Main Dish</label>
-      <input type="checkbox" class="checkbox" id="morning meal">
+      <input type="checkbox" class="checkbox" id="morning meal" name="checkbox">
       <label for="morning meal">Morning Meal</label>
-      <input type="checkbox" class="checkbox" id="dip">
+      <input type="checkbox" class="checkbox" id="dip" name="checkbox">
       <label for="dip">Dip</label>
-      <input type="checkbox" class="checkbox" id="salad">
+      <input type="checkbox" class="checkbox" id="salad" name="checkbox">
       <label for="salad">Salad</label>
-      <input type="checkbox" class="checkbox" id="sauce">
+      <input type="checkbox" class="checkbox" id="sauce" name="checkbox">
       <label for="sauce">Sauce</label>
-      <input type="checkbox" class="checkbox" id="side dish">
+      <input type="checkbox" class="checkbox" id="side dish" name="checkbox">
       <label for="side dish">Side Dish</label>
-      <input type="checkbox" class="checkbox" id="snack">
+      <input type="checkbox" class="checkbox" id="snack" name="checkbox">
       <label for="snack">Snack</label>
-      <input type="checkbox" class="checkbox" id="spread">
+      <input type="checkbox" class="checkbox" id="spread" name="checkbox">
       <label for="spread">Spread</label>
-      <input type="checkbox" class="checkbox" id="starter">
+      <input type="checkbox" class="checkbox" id="starter" name="checkbox">
       <label for="starter">Starter</label>
     </aside>
     <section class="all-recipes-display hidden">
+      <!-- DOM elements go here -->
+    </section>
+    <section class="single-recipe-display hidden">
+      <h2>Recipe Name</h2>
+      <img id="front-recipe-1" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" class="recipe" alt='recipe-title'>
+      <p class="total-cost-box">The total cost to make this recipe is: $1 million</p>
+      <p class="ingredient-box">Ingredients Box</p>
+      <p class="instruction-box"></p>
       <!-- DOM elements go here -->
     </section>
   </div>
