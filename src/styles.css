@@ -269,10 +269,10 @@ label {
 
 label:hover {
   cursor: pointer;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
-input[type=checkbox] {
+input {
   accent-color: rgb(0, 172, 0);
   transform: scale(2);
   clip-path: circle(50% at 50% 50%);

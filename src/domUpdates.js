@@ -182,9 +182,13 @@ const getIngredients = currentRecipeCard => {
 };
 
 const createIngredientsHTML = ingredients => {
-  ingredients.forEach(ingredient => {
+  ingredients.forEach((ingredient, i) => {
+    let ingredientLabelName = `ingredient${i}`
     ingredientsList.innerHTML += `
-      <label><input type="checkbox" class="ingredient-text" value="value">${ingredient.amount} ${ingredient.unit} ${ingredient.name}</label>
+    <label for=${ingredientLabelName}>
+      <input id=${ingredientLabelName} type="checkbox" name="${ingredientLabelName}" />
+      ${ingredient.amount} ${ingredient.unit} ${ingredient.name}
+    </label>
     `;
   });
 }
