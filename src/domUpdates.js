@@ -30,18 +30,16 @@ function showSearchResults() {
   removeHiddenClass([allRecipeDisplay, allFilterDisplay])
   addHiddenClass([frontRecipeDisplay]);
     allRecipeDisplay.innerHTML = ''
-    console.log(recipesfromName(recipeData, searchValue).forEach(recipe => allRecipeDisplay.innerHTML += `<div class = "recipe-wrapper">
+    recipesfromName(recipeData, searchValue).forEach(recipe => allRecipeDisplay.innerHTML += `<div class = "recipe-wrapper">
     <img id="${recipe.name}" src="${recipe.image}" class="recipe">
     <div class = "recipe-info">
       <p>${recipe.name}</p>
       <p>Total Cost: $..</p>
     </div>`)
-  )
 };
 
 function renderFilteredRecipes() {
   const tags = Array.from(checkCategories).filter((category) => category.checked).map(c => c.id)
-  console.log(tags)
   if (tags.length === 0) {
     showRecipes()
     return
