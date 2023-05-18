@@ -2,6 +2,7 @@
 import recipeData from "./data/recipes";
 import { recipesFromTag } from "./recipeUtils";
 import { recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions } from "../src/recipeUtils";
+import ingredientsData from "./data/ingredients-sample";
 
 // Query Selectors:
 const allRecipesButton = document.querySelector('.all-recipes');
@@ -64,7 +65,7 @@ function renderFilteredRecipes() {
 function viewSelectedRecipe(event){
   const recipeName = event.target.id;
   const selectedRecipe = findRecipe(recipeData, recipeName);
-  const recipeCost = calculateRecipeCost(selectedRecipe);
+  const recipeCost = calculateRecipeCost(selectedRecipe, ingredientsData);
   const ingredients = findIngredientNames(recipeData, recipeName);
   const instructions = recipeInstructions(selectedRecipe);
   addHiddenClass([allFilterDisplay]);
