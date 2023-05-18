@@ -34,12 +34,12 @@ const findIngredientNames = (recipeData, recipeName) => {
   return ingredients.map(({ name }) => name);
 };
 
-const calculateRecipeCost = recipe => {
+const calculateRecipeCost = (recipe, ingredients) => {
   if (recipe === undefined) {
     return 'Sorry, that recipe cannot be found.'
   }
   const totalCost = recipe.ingredients.reduce((acc, {id, quantity: {amount}}) => 
-    acc + (amount / 100) * (ingredientsData.find(data => data.id === id).estimatedCostInCents), 0)
+    acc + (amount / 100) * (ingredients.find(ingredient => ingredient.id === id).estimatedCostInCents), 0)
   return totalCost.toFixed(2);
 }
 
