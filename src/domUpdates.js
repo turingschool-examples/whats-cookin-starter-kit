@@ -33,8 +33,17 @@ const toDashboardView = () => {
 };
 
 const searchBarClicked = () => {
-  let searchResults;
+  mainViewCardContainer.innerHTML = '';
+  myRecipesView.innerHTML = '';
 
+  let searchResults;
+  let view;
+  
+  if (myRecipesView.classList.contains('hidden')) {
+    view = mainViewCardContainer;
+  } else if (mainView.classList.contains('hidden')) {
+    view = myRecipesView;
+  }
   if (searchBar.value.length === 0) {
     searchResults = recipeData;
   } else if (searchByToggle.value === 'select') {
@@ -46,7 +55,7 @@ const searchBarClicked = () => {
     searchResults = handleNameSearch();
   }
 // potential refactor: turn this into a search object
-  handleSearchResults(searchResults);
+  handleSearchResults(view, searchResults);
 };
 
 const handleInvalidSearch = (message) => {
@@ -58,7 +67,7 @@ const handleTagSearch = () => {
   if (myRecipesView.classList.contains('hidden')) {
     return filterByTag(searchBar.value, recipeData);
   } else if (mainView.classList.contains('hidden')) {
-    return filterByTag(searchBar.value /* enter user array here */);
+    return filterByTag(searchBar.value, currentUser.recipesToCook);
   }
 };
 
@@ -66,15 +75,15 @@ const handleNameSearch = () => {
   if (myRecipesView.classList.contains('hidden')) {
     return filterByName(searchBar.value, recipeData);
   } else if (mainView.classList.contains('hidden')) {
-    return filterByTag(searchBar.value /* enter user array here */);
+    return filterByName(searchBar.value, currentUser.recipesToCook);
   }
 };
 
-const handleSearchResults = (results) => {
+const handleSearchResults = (view, results) => {
   if (typeof results === 'string') {
-    mainViewCardContainer.innerHTML = `<p>${results}</p>`;
+    view.innerHTML = `<p>${results}</p>`;
   } else {
-    renderRecipeCards(mainViewCardContainer, results, currentUser);
+    renderRecipeCards(view, results, currentUser);
   }
 };
 
@@ -90,7 +99,8 @@ const renderBookmarks = (currentUser, recipe) => {
 }
 
 const renderRecipeCards = (view, recipes, currentUser) => {
-  view.innerHTML = '';
+  mainViewCardContainer.innerHTML = '';
+  myRecipesView.innerHTML = '';
   recipes.forEach((recipe) => {
     view.innerHTML += `
     <article class="recipe-card" id="${recipe.id}">
