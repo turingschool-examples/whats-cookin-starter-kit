@@ -1113,11 +1113,11 @@ const simpleRecipe = {
   ingredients: [
     {
       id: 1,
-      quantity: { amount: 1 },
+      quantity: { amount: 1, unit: 'c' },
     },
     {
       id: 2,
-      quantity: { amount: 2 },
+      quantity: { amount: 2, unit: 'tsp' },
     },
   ],
 };
