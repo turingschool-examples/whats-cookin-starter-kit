@@ -190,8 +190,8 @@ const populateInstructions = (recipe) => {
 }
 
 const updateCurrentRecipe = recipeCard => {
-  const recipeCardId = recipeCard.closest("article").id;
-  const thisRecipe = recipeData.find(recipe => recipe.id.toString() === recipeCardId);
+  const recipeCardID = recipeCard.closest("article")?.id;
+  const thisRecipe = recipeData.find(recipe => recipe.id.toString() === recipeCardID);
   currentRecipeCard = getRecipeCard(thisRecipe);
 }
 

@@ -238,6 +238,7 @@ h3 {
     opacity: 1;
   }
 }
+/* Recipe Card */
 
 #clickedRecipe {
   position: fixed;
@@ -247,7 +248,8 @@ h3 {
   right: 0;
   width: 98%;
   border-radius: 50px;
-  background-color: darkgray;
+  background-image: linear-gradient(to right, #535a72eb, #171d2feb);
+ 
 }
 
 .recipe-details {
@@ -279,8 +281,6 @@ h3 {
   font-size: 1.35rem;
   height: 60%;
   width: 95%;
-  /* border: 3px solid #4f515a; */
-  /* background: #808391;; */
   padding: 10px;
   border-radius: 25px;
 }
@@ -292,7 +292,7 @@ h3 {
 
 .scrollbar::-webkit-scrollbar {
   width: 10px;
-  background-color: rgba(135, 123, 133, 0.8);
+  background-color: #3b4154;
   border-radius: 5px;
 }
 
@@ -314,7 +314,7 @@ h3 {
 }
 
 .instruction {
-  min-width: 90%;
+  width: 90%;
 }
 
 .step{
