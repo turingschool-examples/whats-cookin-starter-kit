@@ -185,7 +185,7 @@ const populateInstructions = (recipe) => {
                                   <section class='instruction-steps'> 
                                     ${instructions.join('')} 
                                   </section>`
-  addScrollBar(recipe, '.instruction-steps')
+  addScrollBar('.instruction-steps')
 }
 
 const updateCurrentRecipe = recipeCard => {
