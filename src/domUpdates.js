@@ -1,28 +1,44 @@
-import {recipeTestData, ingredientTestData} from './data/testData.js';
-import {calculateCost, determineIngredientNames, returnInstructions} from './recipe.js';
+import {recipeTestData, ingredientTestData, userTestData} from './data/testData.js';
+import {calculateCost, determineIngredientNames, recipesToCook, returnInstructions, toggleRecipesToCook} from './recipe.js';
 
 //Query Selectors
 const mainRecipe = document.querySelector('.main-recipe');
+const favoriteButton = document.querySelector('.favorite-button');  
 const tagButtons = document.querySelectorAll('.tag');
 const searchButton = document.querySelector('.submit-button');
 const userInput = document.querySelector('#search-bar');
+const page = {mode: 'home'}
+const user = document.querySelector('.user')
 let testBox;
 
 
+
 // Event Handlers
-const viewAllRecipes = () => {
-  recipeTestData.forEach(recipe => mainRecipe.innerHTML += `
+const viewRecipe = (recipe) => {
+  mainRecipe.innerHTML += `
   <section class='recipe-container box' id='${recipe.id}'>
-    <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
-    <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
-  </section>
-  `);
+  <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
+  <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
+</section>
+`
+}
+
+
+
+const viewAllRecipes = (recipes) => {
+  mainRecipe.innerHTML = '';
+  if(page.mode === 'home'){
+    recipes = recipeTestData
+  }else {
+    recipes = recipesToCook
+  }
+  recipes.forEach(recipe => viewRecipe(recipe));
+
 }
 
 const viewRecipeInfo = (e) => {
  if(e.target.classList.contains('box')) {
   const selectedRecipe = recipeTestData.find(recipe => recipe.id === Number(e.target.id))
-  console.log('hello is this working')
   mainRecipe.innerHTML= `
   <div class="test">
   <h2 class='recipe-name'> ${selectedRecipe.name}</h2>
@@ -35,46 +51,59 @@ const viewRecipeInfo = (e) => {
   }
 }
 
+const selectFavoriteRecipes = e => {
+  toggleRecipesToCook(e);
+}
 
-const filterRecipeByTag = (event) => {
-  recipeTestData.forEach(recipe => {
-
-  if (recipe.tags.includes(event.target.id)) {
-    mainRecipe.innerHTML = ''
-    mainRecipe.innerHTML += `<section class='recipe-container box' id='${recipe.id}'>
-    <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
-    <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
-  </section>
-  `
+const filterRecipeByTag = (e, recipes) => {
+  if(page.mode === 'home'){
+    recipes = recipeTestData
+  }else {
+    recipes = recipesToCook
+  }
+  mainRecipe.innerHTML = ''
+  recipes.forEach(recipe => {
+  if (recipe.tags.includes(e.target.id)) {
+    viewRecipe(recipe)
   }
 })
  
 }
 
-const searchRecipe = () => {
-
-  let input = userInput.value.toLowerCase()
-  console.log(userInput.value.toLowerCase())
-   recipeTestData.forEach(recipe => {
-    let recipe1 = recipe.name.toLowerCase()
+const searchRecipe = (recipes) => {
+  mainRecipe.innerHTML = ''
+  if(page.mode === 'home'){
+    recipes = recipeTestData
+  }else {
+    recipes = recipesToCook
+  }
   
+  let input = userInput.value.toLowerCase()
+   recipes.forEach(recipe => {
+    let recipe1 = recipe.name.toLowerCase()
     if (recipe1.includes(input)) {
-      searchButton.disable = false
+      // searchButton.disable = false
       mainRecipe.innerHTML = ''
-      mainRecipe.innerHTML += `<section class='recipe-container box' id='${recipe.id}'>
-      <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
-      <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
-    </section>
-    `
+      
     } 
   })
-
   if (!input){
     mainRecipe.innerHTML = ''
-    viewAllRecipes()
-   
+    viewAllRecipes()   
   }
+}
 
+const toggleMode = (e) => {
+page.mode = e.target.id
+}
+
+const getRandomIndex= (array) => {
+  return Math.floor(Math.random() * array.length);
+}
+
+const displayRandomUser = () => {
+  console.log(userTestData.name)
+  user.innerText = userTestData[getRandomIndex(userTestData)].name
 }
 
 
@@ -82,10 +111,14 @@ export {
   viewAllRecipes,
   viewRecipeInfo, 
   mainRecipe, 
+  favoriteButton,
   testBox, 
+  selectFavoriteRecipes,
   filterRecipeByTag,
   searchRecipe,
   tagButtons,
   searchButton,
-  userInput
+  userInput,
+  toggleMode, 
+  displayRandomUser
 }

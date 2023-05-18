@@ -1,5 +1,7 @@
 import {ingredientTestData, recipeTestData, userTestData} from '../src/data/testData.js';
 
+var recipesToCook = [];
+
 const createRecipe = recipe => ({
   id: recipe.id,
   image: recipe.image,
@@ -45,11 +47,26 @@ const returnInstructions = recipe => {
   return recipe.instructions.reduce((string, instruction) => `${string}` + `${instruction.number}) ${instruction.instruction.replace(`.`, `. `)}
  `, '')
 }
-export {createRecipe,
-    filterByTag,
-    filterByName,
-    calculateCost,
-    determineIngredientNames,
-    returnInstructions
+
+const toggleRecipesToCook = e => {
+  recipeTestData.forEach(recipe => {
+    if (Number(e.target.id) === recipe.id && !recipesToCook.some(recipe => Number(e.target.id) === recipe.id)) {
+      recipesToCook.push(recipe);
+    } else if (Number(e.target.id) === recipe.id && recipesToCook.some(recipe => Number(e.target.id) === recipe.id)) {
+      recipesToCook = recipesToCook.filter(recipe => recipe.id !== Number(e.target.id));
+    }
+  });
+}
+
+
+export {
+  createRecipe,
+  filterByTag,
+  filterByName,
+  calculateCost,
+  determineIngredientNames,
+  returnInstructions,
+  toggleRecipesToCook,
+  recipesToCook
 }
 

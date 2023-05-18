@@ -5,6 +5,16 @@ const ingredientTestData = [
     "estimatedCostInCents": 142
   },
   {
+    "id": 10211529,
+    "name": "italian tomato",
+    "estimatedCostInCents": 978
+  },
+  {
+    "id": 1011009,
+    "name": "white cheddar",
+    "estimatedCostInCents": 709
+  },
+  {
     "id": 18372,
     "name": "bicarbonate of soda",
     "estimatedCostInCents": 582
@@ -48,16 +58,6 @@ const ingredientTestData = [
     "id": 1145,
     "name": "unsalted butter",
     "estimatedCostInCents": 617
-  },
-  {
-    "id": 1050,
-    "name": "test1",
-    "estimatedCostInCents": 926
-  },
-  {
-    "id": 1030,
-    "name": "test2",
-    "estimatedCostInCents": 926
   },
   {
     "id": 2050,
@@ -185,7 +185,8 @@ const recipeTestData = [
       "snack",
       "appetizer",
       "antipasto",
-      "hor d'oeuvre"
+      "hor d'oeuvre", 
+      "breakfast"
     ]
   },
   {
@@ -695,7 +696,7 @@ const recipeTestData = [
 
 const userTestData = [
   {
-    "name": "Saige O'Kon",
+    "name": "VICTOR IS A SPACE CAT",
     "id": 1,
     "pantry": [
       {
