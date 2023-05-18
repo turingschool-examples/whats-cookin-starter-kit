@@ -157,10 +157,9 @@ const removeRecipeCard = (e) => {
 }
 
   const renderBookmarks = (currentUser, recipe) => {
-    console.log('inside', recipe)
-    console.log('insideuser', currentUser.recipesToCook)
+    // console.log('inside', recipe)
+    // console.log('insideuser', currentUser.recipesToCook)
     if (currentUser.recipesToCook.includes(recipe)) {
-      console.log(true)
       return `<img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked hidden" alt="bookmark icon">
       <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked" alt="bookmark icon filled in">`
     } else {
