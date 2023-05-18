@@ -75,14 +75,17 @@ const filterRecipeByTag = (e, recipes) => {
  
 }
 
-const searchRecipe = () => {
-
+const searchRecipe = (recipes) => {
+  if(page.mode === 'home'){
+    recipes = recipeTestData
+  }else {
+    recipes = recipesToCook
+  }
+  mainRecipe.innerHTML = ''
   let input = userInput.value.toLowerCase()
-  console.log(userInput.value.toLowerCase())
-   recipeTestData.forEach(recipe => {
+   recipes.forEach(recipe => {
     let recipe1 = recipe.name.toLowerCase()
-  
-    if (recipe1.includes(input)) {
+    if (recipe1.inlcudes(input)) {
       searchButton.disable = false
       mainRecipe.innerHTML = ''
       mainRecipe.innerHTML += `<section class='recipe-container box' id='${recipe.id}'>
