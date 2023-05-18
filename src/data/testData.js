@@ -185,7 +185,8 @@ const recipeTestData = [
       "snack",
       "appetizer",
       "antipasto",
-      "hor d'oeuvre"
+      "hor d'oeuvre", 
+      "breakfast"
     ]
   },
   {
@@ -695,7 +696,7 @@ const recipeTestData = [
 
 const userTestData = [
   {
-    "name": "Saige O'Kon",
+    "name": "VICTOR IS A SPACE CAT",
     "id": 1,
     "pantry": [
       {

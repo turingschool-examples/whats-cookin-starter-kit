@@ -1,4 +1,4 @@
-import {recipeTestData, ingredientTestData} from './data/testData.js';
+import {recipeTestData, ingredientTestData, userTestData} from './data/testData.js';
 import {calculateCost, determineIngredientNames, recipesToCook, returnInstructions, toggleRecipesToCook} from './recipe.js';
 
 //Query Selectors
@@ -7,17 +7,25 @@ const favoriteButton = document.querySelector('.favorite-button');
 const tagButtons = document.querySelectorAll('.tag');
 const searchButton = document.querySelector('.submit-button');
 const userInput = document.querySelector('#search-bar');
+const page = {mode: 'home'}
+const user = document.querySelector('.user')
 let testBox;
 
 // Event Handlers
-const viewAllRecipes = () => {
+const viewAllRecipes = (recipes) => {
   mainRecipe.innerHTML = '';
-  recipeTestData.forEach(recipe => mainRecipe.innerHTML += `
+  if(page.mode === 'home'){
+    recipes = recipeTestData
+  }else {
+    recipes = recipesToCook
+  }
+  recipes.forEach(recipe => mainRecipe.innerHTML += `
   <section class='recipe-container box' id='${recipe.id}'>
     <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
     <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
   </section>
   `);
+
 }
 
 const viewRecipeInfo = (e) => {
@@ -39,21 +47,25 @@ const selectFavoriteRecipes = e => {
   toggleRecipesToCook(e);
 }
 
-const viewFavoriteRecipes = () => {
-  mainRecipe.innerHTML = '';
-  recipesToCook.forEach(recipe => mainRecipe.innerHTML += `
-  <section class='recipe-container box' id='${recipe.id}'>
-    <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
-    <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
-  </section>
-  `);
-}
+// const viewFavoriteRecipes = () => {
+//   mainRecipe.innerHTML = '';
+//   recipesToCook.forEach(recipe => mainRecipe.innerHTML += `
+//   <section class='recipe-container box' id='${recipe.id}'>
+//     <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
+//     <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
+//   </section>
+//   `);
+// }
 
-const filterRecipeByTag = (event) => {
-  recipeTestData.forEach(recipe => {
-
-  if (recipe.tags.includes(event.target.id)) {
-    mainRecipe.innerHTML = ''
+const filterRecipeByTag = (e, recipes) => {
+  if(page.mode === 'home'){
+    recipes = recipeTestData
+  }else {
+    recipes = recipesToCook
+  }
+  mainRecipe.innerHTML = ''
+  recipes.forEach(recipe => {
+  if (recipe.tags.includes(e.target.id)) {
     mainRecipe.innerHTML += `<section class='recipe-container box' id='${recipe.id}'>
     <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
     <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
@@ -64,14 +76,17 @@ const filterRecipeByTag = (event) => {
  
 }
 
-const searchRecipe = () => {
-
+const searchRecipe = (recipes) => {
+  if(page.mode === 'home'){
+    recipes = recipeTestData
+  }else {
+    recipes = recipesToCook
+  }
+  mainRecipe.innerHTML = ''
   let input = userInput.value.toLowerCase()
-  console.log(userInput.value.toLowerCase())
-   recipeTestData.forEach(recipe => {
+   recipes.forEach(recipe => {
     let recipe1 = recipe.name.toLowerCase()
-  
-    if (recipe1.includes(input)) {
+    if (recipe1.inlcudes(input)) {
       searchButton.disable = false
       mainRecipe.innerHTML = ''
       mainRecipe.innerHTML += `<section class='recipe-container box' id='${recipe.id}'>
@@ -87,6 +102,20 @@ const searchRecipe = () => {
   }
 }
 
+const toggleMode = (e) => {
+page.mode = e.target.id
+}
+
+const getRandomIndex= (array) => {
+  return Math.floor(Math.random() * array.length);
+}
+
+const displayRandomUser = () => {
+  console.log(userTestData.name)
+  user.innerText = userTestData[getRandomIndex(userTestData)].name
+}
+
+
 export {
   viewAllRecipes,
   viewRecipeInfo, 
@@ -94,10 +123,11 @@ export {
   favoriteButton,
   testBox, 
   selectFavoriteRecipes,
-  viewFavoriteRecipes,
   filterRecipeByTag,
   searchRecipe,
   tagButtons,
   searchButton,
   userInput,
+  toggleMode, 
+  displayRandomUser
 }
