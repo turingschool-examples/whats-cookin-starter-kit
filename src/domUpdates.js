@@ -33,8 +33,12 @@ const toDashboardView = () => {
 };
 
 const searchBarClicked = () => {
+  mainViewCardContainer.innerHTML = '';
+  myRecipesView.innerHTML = '';
+
   let searchResults;
   let view;
+  
   if (myRecipesView.classList.contains('hidden')) {
     view = mainViewCardContainer;
   } else if (mainView.classList.contains('hidden')) {
@@ -71,13 +75,13 @@ const handleNameSearch = () => {
   if (myRecipesView.classList.contains('hidden')) {
     return filterByName(searchBar.value, recipeData);
   } else if (mainView.classList.contains('hidden')) {
-    return filterByTag(searchBar.value, currentUser.recipesToCook);
+    return filterByName(searchBar.value, currentUser.recipesToCook);
   }
 };
 
 const handleSearchResults = (view, results) => {
   if (typeof results === 'string') {
-    mainViewCardContainer.innerHTML = `<p>${results}</p>`;
+    view.innerHTML = `<p>${results}</p>`;
   } else {
     renderRecipeCards(view, results, currentUser);
   }
