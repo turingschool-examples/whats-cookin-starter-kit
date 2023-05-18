@@ -140,8 +140,13 @@ display:flex;
 
 h1 {
   font-size: 60px;
-  padding-left: 10px;
-  padding-right: 170px;
+  /* padding-right: 50x; */
+}
+
+.chef-hat {
+  height: 60px;
+  width:50px;
+  padding-right: 100px;
 }
 
 .hidden {
