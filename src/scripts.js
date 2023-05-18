@@ -8,10 +8,11 @@ import ingredientsData from './data/ingredients.js'
 
 //Example of one way to import functions from the domUpdates file. You will delete these examples.
 import {exampleFunction1, exampleFunction2} from './domUpdates.js'
-
+import { recipesFromTag } from './recipeUtils'
 
 
 exampleFunction1('heather')
 exampleFunction2('heather')
+// renderFilteredRecipes(event)
 
 console.log(ingredientsData)
