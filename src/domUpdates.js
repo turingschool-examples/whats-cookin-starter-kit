@@ -11,7 +11,20 @@ const page = {mode: 'home'}
 const user = document.querySelector('.user')
 let testBox;
 
+
+
 // Event Handlers
+const viewRecipe = (recipe) => {
+  mainRecipe.innerHTML += `
+  <section class='recipe-container box' id='${recipe.id}'>
+  <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
+  <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
+</section>
+`
+}
+
+
+
 const viewAllRecipes = (recipes) => {
   mainRecipe.innerHTML = '';
   if(page.mode === 'home'){
@@ -19,12 +32,7 @@ const viewAllRecipes = (recipes) => {
   }else {
     recipes = recipesToCook
   }
-  recipes.forEach(recipe => mainRecipe.innerHTML += `
-  <section class='recipe-container box' id='${recipe.id}'>
-    <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
-    <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
-  </section>
-  `);
+  recipes.forEach(recipe => viewRecipe(recipe));
 
 }
 
@@ -47,16 +55,6 @@ const selectFavoriteRecipes = e => {
   toggleRecipesToCook(e);
 }
 
-// const viewFavoriteRecipes = () => {
-//   mainRecipe.innerHTML = '';
-//   recipesToCook.forEach(recipe => mainRecipe.innerHTML += `
-//   <section class='recipe-container box' id='${recipe.id}'>
-//     <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
-//     <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
-//   </section>
-//   `);
-// }
-
 const filterRecipeByTag = (e, recipes) => {
   if(page.mode === 'home'){
     recipes = recipeTestData
@@ -66,34 +64,27 @@ const filterRecipeByTag = (e, recipes) => {
   mainRecipe.innerHTML = ''
   recipes.forEach(recipe => {
   if (recipe.tags.includes(e.target.id)) {
-    mainRecipe.innerHTML += `<section class='recipe-container box' id='${recipe.id}'>
-    <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
-    <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
-  </section>
-  `
+    viewRecipe(recipe)
   }
 })
  
 }
 
 const searchRecipe = (recipes) => {
+  mainRecipe.innerHTML = ''
   if(page.mode === 'home'){
     recipes = recipeTestData
   }else {
     recipes = recipesToCook
   }
-  mainRecipe.innerHTML = ''
+  
   let input = userInput.value.toLowerCase()
    recipes.forEach(recipe => {
     let recipe1 = recipe.name.toLowerCase()
-    if (recipe1.inlcudes(input)) {
-      searchButton.disable = false
+    if (recipe1.includes(input)) {
+      // searchButton.disable = false
       mainRecipe.innerHTML = ''
-      mainRecipe.innerHTML += `<section class='recipe-container box' id='${recipe.id}'>
-      <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
-      <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
-    </section>
-    `
+      
     } 
   })
   if (!input){
