@@ -276,9 +276,48 @@ h3 {
 }
 
 #recipeInstructions {
-  background-color: green;
-  height: 100%;
-  width: 100%;
+  max-height: 60%;
+  width: 95%;
+}
+
+.scrollbar {
+  overflow-y: scroll;
+  max-height: 80%;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 10px;
+  background-color: rgba(135, 123, 133, 0.8);
+  border-radius: 5px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color:rgba(210, 204, 194, 0.8);
+  border-radius: 5px;
+}
+
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color:rgba(227, 216, 200, 0.8);
+}
+
+.single-instruction-step {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 6rem;
+}
+
+.instruction {
+  min-width: 90%;
+}
+
+.step{
+  transform: rotate(-0.25turn);
+  min-width: 6rem;
+  padding: 15px, 0%, 15px;
+  text-align: center;
+  margin: 0;
 }
 
 #recipeRightSide h3 {
