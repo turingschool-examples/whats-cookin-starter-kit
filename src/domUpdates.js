@@ -1,7 +1,7 @@
 //NOTE: Your DOM manipulation will occur in this file
 import recipeData from "./data/recipes";
 import { recipesFromTag } from "./recipeUtils";
-import { recipesfromName } from '../src/recipeUtils';
+import { recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions } from "../src/recipeUtils";
 
 // Query Selectors:
 const allRecipesButton = document.querySelector('.all-recipes');
@@ -60,6 +60,23 @@ function renderFilteredRecipes() {
         <p>Total Cost: $..</p
       </div>`)
 };
+
+function viewSelectedRecipe(event){
+  const recipeName = event.target.id;
+  const selectedRecipe = findRecipe(recipeData, recipeName);
+  const recipeCost = calculateRecipeCost(selectedRecipe);
+  const ingredients = findIngredientNames(recipeData, recipeName);
+  const instructions = recipeInstructions(selectedRecipe);
+  addHiddenClass([allFilterDisplay]);
+  singleRecipeDisplay.innerHTML= `
+  <h2>${selectedRecipe.name}</h2>
+  <img id="${selectedRecipe.id}" src="${selectedRecipe.image}" class="recipe" alt='${selectedRecipe.name}'>
+  <p class="total-cost-box">This recipe costs a total of: $${recipeCost} to make!</p>
+  <p class="ingredient-box">The ingredients you will need to make this recipe are: <br>
+  ${ingredients}</p>
+  <p class="instruction-box">Instructions: <br>
+  ${instructions}</p>`;
+}
 
 function showRecipes() {
   removeHiddenClass([allRecipeDisplay, allFilterDisplay])
