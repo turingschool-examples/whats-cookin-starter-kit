@@ -195,6 +195,10 @@ const updateCurrentRecipe = recipeCard => {
   currentRecipeCard = getRecipeCard(thisRecipe);
 }
 
+const populateRecipeName = currentRecipe => {
+  document.querySelector('#recipeName').innerHTML = `<h1>${currentRecipe.name}</h1>`
+}
+
 const openRecipeCard = () => {
   allRecipes.classList.add('blur')
   clickedRecipe.classList.toggle("hidden");
@@ -205,6 +209,7 @@ const openRecipeCard = () => {
 const showRecipe = (recipeCard) => {
   updateCurrentRecipe(recipeCard);
   populateInstructions(currentRecipeCard);
+  populateRecipeName(currentRecipeCard);
   openRecipeCard();
 };
 

@@ -252,7 +252,6 @@ h3 {
   width: 98%;
   border-radius: 50px;
   background-image: linear-gradient(to right, #535a72ea, #171d2fea);
- 
 }
 
 .recipe-details {
@@ -275,12 +274,18 @@ h3 {
 }
 
 #recipeName {
-  background-color: black;
+  display: flex; 
+  align-items: center;
   height: 40%;
   width: 100%;
 }
 
+#recipeName > h1 {
+  text-align: left;
+}
+
 #recipeInstructions {
+  overflow-y: hidden;
   font-size: 1.35rem;
   height: 60%;
   width: 95%;
