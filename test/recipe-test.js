@@ -65,7 +65,24 @@ describe('recipe', () => {
     assert.deepEqual(porkChopIngredients, porkChopIngredientList);
   });
 
-  it('should get the amounts, units, and names of ingredients for a given recipe', () => {
+  it('should get the amounts, units, and names of ingredients from simple recipe data', () => {
+    const ingredientInfo = getIngredientAmounts(simpleRecipe, simpleIngredients);
+    const expectedInfo = [
+      {
+        amount: 1, 
+        unit: 'c', 
+        name: 'sugar'
+      },
+      {
+        amount: 2, 
+        unit: 'tsp',
+        name: 'salt'
+      }
+    ]
+    assert.deepEqual(ingredientInfo, expectedInfo)
+  });
+
+  it('should get the amounts, units, and names of ingredients from sampleRecipeData', () => {
     const ingredientInfo = getIngredientAmounts(cookies, allIngredients);
     const expectedInfo = [
       {
@@ -126,24 +143,6 @@ describe('recipe', () => {
     ];
 
     assert.deepEqual(ingredientInfo, expectedInfo);
-  });
-
-
-  it('should get the amounts, units, and names of ingredients for a simple recipe', () => {
-    const ingredientInfo = getIngredientAmounts(simpleRecipe, simpleIngredients);
-    const expectedInfo = [
-      {
-        amount: 1, 
-        unit: 'c', 
-        name: 'sugar'
-      },
-      {
-        amount: 2, 
-        unit: 'tsp',
-        name: 'salt'
-      }
-    ]
-    assert.deepEqual(ingredientInfo, expectedInfo)
   });
 
   it("should calculate the cost of a given recipe's ingredients", () => {
