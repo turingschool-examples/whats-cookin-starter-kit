@@ -35,6 +35,11 @@ body {
   background-color: rgb(205, 205, 205);
 }
 
+.home__header2 {
+  display: flex;
+  align-items: center;
+}
+
 h1 {
   font-family: 'Bebas Neue', sans-serif;
   font-weight: 600;
@@ -56,7 +61,7 @@ h1 {
 .home__ubutton {
   background-color: rgb(133, 38, 38);
   color: white;
-  border-radius: .4em;
+  border-radius: 1em;
   border: 0;
   height: 1.5em;
   margin: 1em;
@@ -177,11 +182,11 @@ footer {
   align-items: center;
 }
 
-.recipe__hbutton, .recipe__instructions, .recipe__instruction, .recipe__ingredients {
+.home__button, .recipe__instructions, .recipe__instruction, .recipe__ingredients {
   display: flex;
 }
 
-.recipe__hbutton, .recipe__sbutton {
+.home__button, .recipe__sbutton {
   background-color: rgb(133, 38, 38);
   color: white;
   border-radius: 1em;

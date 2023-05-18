@@ -23,6 +23,7 @@ const imageContainer = document.querySelector('.image__container');
 const ingredientsEl = document.querySelector('.recipe__ingredients');
 const instructionsEl = document.querySelector('.recipe__instructions');
 const recipeCost = document.querySelector('.recipe__cost')
+const homeButton = document.querySelector('.home__button')
 
 const viewAllRecipes = () => {
   allContainer.innerHTML = ''
@@ -79,12 +80,16 @@ const show = (names, section) => {
 };
 
 const hide = (names, section) => {
-  console.log(names)
   names.forEach((name) => {
-    console.log(name)
     name.classList.add(section);
   })
 };
+
+const showHome = () => {
+  // hide([allSection], 'home--hidden');
+  // show([categoriesSection, footerSection], 'all--hidden');
+  console.log('click')
+}
 
 const viewRecipe = (event) => {
   recipeData.forEach(recipe => {
@@ -137,5 +142,7 @@ export {
   viewSearchResults, 
   filterByNameOrTag,
   viewRecipe,
-  allRecipes
+  allRecipes,
+  homeButton,
+  showHome
 }
