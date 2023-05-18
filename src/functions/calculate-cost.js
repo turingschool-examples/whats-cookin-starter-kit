@@ -1,9 +1,9 @@
 import ingredientsData from "../data/ingredients";
-import sampleRecipeData from "../data/sample-recipes";
+import recipeData from "../data/recipes.js";
 
 const calculateCost = (recipe) => {
   let costs = [];
-  const currentRecipe = sampleRecipeData.find((item) => {
+  const currentRecipe = recipeData.find((item) => {
     return item.name === recipe
   });
   if(!currentRecipe){

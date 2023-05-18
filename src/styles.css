@@ -225,7 +225,7 @@ flex-direction: column;
 
 /* hidden section */
 
-.home--hidden, .recipe--hidden, .user--hidden {
+.home--hidden, .recipe--hidden, .user--hidden, .all--hidden{
   display: none;
 }
 

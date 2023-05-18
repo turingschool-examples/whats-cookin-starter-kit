@@ -8,7 +8,7 @@ import './images/search-icon.png'
 import ingredientsData from './data/ingredients.js'
 import sampleRecipeData from './data/sample-recipes.js'
 import { viewAll, viewAllRecipes, viewSalads, viewHordoeuvres, viewMains,
-   viewSides, viewFilteredRecipes, filterByNameOrTag, viewSearchResults 
+   viewSides, viewFilteredRecipes, filterByNameOrTag, viewSearchResults, viewRecipe, allRecipes 
  } from './domUpdates.js'
 
 //Example of one way to import functions from the domUpdates file. You will delete these examples.
@@ -18,15 +18,17 @@ import { viewAll, viewAllRecipes, viewSalads, viewHordoeuvres, viewMains,
 // exampleFunction2('heather')
 
 // console.log(ingredientsData)
-
+const setUpRecipes = (event) => {
+  viewFilteredRecipes(event)
+  const recipes = allRecipes()
+  recipes.forEach((recipe) => {
+    recipe.addEventListener('click', viewRecipe)
+  })
+}
 viewAll.addEventListener('click', viewAllRecipes)
-viewSalads.addEventListener('click', function(event) {
-  viewFilteredRecipes(event)})
-viewHordoeuvres.addEventListener('click', function(event) {
-  viewFilteredRecipes(event)})
-viewMains.addEventListener('click', function(event) {
-  viewFilteredRecipes(event)})
-viewSides.addEventListener('click', function(event) {
-  viewFilteredRecipes(event)})
+viewSalads.addEventListener('click', setUpRecipes)
+viewHordoeuvres.addEventListener('click', setUpRecipes)
+viewMains.addEventListener('click', setUpRecipes)
+viewSides.addEventListener('click',setUpRecipes)
 viewSearchResults.addEventListener('click', function(event) {
   filterByNameOrTag(event)})
