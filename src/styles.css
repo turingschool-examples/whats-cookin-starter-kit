@@ -22,18 +22,20 @@ nav {
   /* border-radius: 10% 0% 0% 10%; */
   border-radius: 10px;
   align-items: center;
-  gap: 20px
+  gap: 20px;
+  /* justify-content: ; */
+  
 }
 
 .nav-user {
   display: flex;
-  width: 15vw;
+  width: 16vw;
   height: 17vh;
-  margin: .75% .1% .1% 2%;
+  margin: .75%  1% 1% 1%;
   background-color: #e1c4ff;
   /* border-radius: 10% 0% 0% 10%; */
   border-radius: 10px;
-  
+  padding-left: 10px;
 }
 
 main {
@@ -43,11 +45,33 @@ main {
 }
 
 .recipe-container {
-  display: flex;
-  flex-direction: column;
-  width: 10vw;
-  height: 10vh;
-  margin: 5% 1% 1% 10%;
+  display: inline-block;
+  font-size: .8vw;
+  width: 16vw;
+  height: 16vh;
+  margin: 2% 0% 0% 4%;
+  position: relative;
+  overflow: hidden;
+  border: 0%;
+}
+
+.recipe-text {
+    position: absolute;
+    top: 60%;
+    width: 9em;
+    left: 20%;
+    transform: translate(0%, -30%);
+    font-weight: bold;
+    color: #ff00c8;
+    word-wrap: break-word
+}
+
+.recipe-image{ 
+    object-fit: contain;
+    height: 100%;
+    width: 100%;  
+    filter: opacity(65%); 
+
 }
 
 .tags-panel {
@@ -73,13 +97,24 @@ main {
   /* border-radius: 10% 0% 7% 0%;  */
   border-radius: 10px;
   background-color: #e6d7ff;
-  overflow-x: scroll;
-  overflow-x: hidden;  
-  
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .main-recipe::-webkit-scrollbar {
-  display: none;
+  border-radius: 100%;
+  width: 13vh;
+  height: 20vh;
+}
+
+.main-recipe::-webkit-scrollbar-thumb {
+  border-radius: 100%;
+  background-size: 40vh;
+  background-image: url('https://buildyourbite.com/wp-content/uploads/2021/11/greek-yogurt-mac-and-cheese-recipe-4.jpg');
+}
+
+.main-recipe::-webkit-scrollbar-button {
+  visibility: hidden;
 }
 
 .test {
@@ -132,9 +167,19 @@ display:flex;
   font-size: 20px;
 }
 
-.box, .recipe-img{
-  border-radius: 5px;
+.submit-button:hover, #favorite:hover {
+  background-color: #54335a;
+}
 
+h1 {
+  font-size: 60px;
+  /* padding-right: 50x; */
+}
+
+.chef-hat {
+  height: 60px;
+  width:50px;
+  padding-right: 100px;
 }
 
 .hidden {

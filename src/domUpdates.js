@@ -31,6 +31,8 @@ const viewAllRecipes = recipes => {
   recipes.forEach(recipe => viewRecipe(recipe));
 }
 
+const organizeInstructions = instructs => instructs.split('.').map(x => x + '.').join('<br>').slice(0, instructs.length);
+
 const viewRecipeInfo = e => {
   if (e.target.classList.contains('box')) {
     let selectedRecipe = recipeTestData.find(recipe => recipe.id === Number(e.target.id));
@@ -39,7 +41,7 @@ const viewRecipeInfo = e => {
       <h2 class='recipe-name'> ${selectedRecipe.name}</h2>
       <img class='recipe-img' id='${selectedRecipe.id}' src='${selectedRecipe.image}' alt='${selectedRecipe.name}'>
       <p class='ingredients'>${determineIngredientNames(recipeTestData, ingredientTestData, selectedRecipe.name).join(' -- ')}</p>
-      <p class='instructions'>${returnInstructions(selectedRecipe)}</p>
+      <p class='instructions'>${organizeInstructions(returnInstructions(selectedRecipe))}</p>
       <p class='cost'>Total cost: $${calculateCost(selectedRecipe)}</p>
     </div>
     `;
@@ -87,6 +89,7 @@ export {
   toggleMode,
   viewRecipe,
   viewAllRecipes,
+//   organizeInstructions,
   viewRecipeInfo,
   filterRecipeByTag,
   searchRecipe

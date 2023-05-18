@@ -2,6 +2,7 @@
 import './styles.css';
 import apiCalls from './apiCalls';
 import './images/turing-logo.png';
+import './images/clipart16385.png';
 import { toggleRecipesToCook } from './recipe.js';
 import { searchButton, favoriteButton, tags, mainPanel, displayRandomUser, toggleMode, viewAllRecipes, viewRecipeInfo, filterRecipeByTag, searchRecipe } from './domUpdates.js';
 
