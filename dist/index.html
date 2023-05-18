@@ -219,20 +219,18 @@
         </div>
       </article>
     </section>
-    <div class="'flex-container"> 
-      <section id="clickedRecipe" class="hidden">
-        <section class="recipe-details" id="recipeLeftSide">
-          <div id="recipeName"></div>
-          <article id="recipeInstructions">
-          </article>
-        </section>
-        <section class="recipe-details" id="recipeRightSide">
-          <img id="closeRecipe" src="delete.png"></img>
-          <h3>Ingredients</h3>
-          <div id="ingredientsList"></div>
-        </section>
+    <section id="clickedRecipe" class="hidden">
+      <section class="recipe-details" id="recipeLeftSide">
+        <div id="recipeName"></div>
+        <article id="recipeInstructions">
+        </article>
       </section>
-    </div>
+      <section class="recipe-details" id="recipeRightSide">
+        <img id="closeRecipe" src="delete.png"></img>
+        <h3>Ingredients</h3>
+        <div id="ingredientsList"></div>
+      </section>
+    </section>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
