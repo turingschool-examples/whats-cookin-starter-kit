@@ -36,7 +36,7 @@ const viewAllRecipes = (recipes) => {
 
 }
 
-const organizeInstructions = (instructs) => instructs.split('.').map(x => x + '.').join('<br>')
+const organizeInstructions = (instructs) => instructs.split('.').map(x => x + '.').join('<br>').slice(0, instructs.length)
 
 const viewRecipeInfo = (e) => {
  if(e.target.classList.contains('box')) {
