@@ -2,10 +2,92 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Wix+Madefor+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Hind+Siliguri:wght@300;400;500;600;700&family=Wix+Madefor+Display&display=swap" rel="stylesheet">
     <title>Whats Cookin</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <section class="home">
+      <section class="home__header">
+        <div class="home__header2">
+          <img class="home__icon" src="/images/turing-logo.png">
+          <button class="home__button class--hidden">Home Page</button>
+        </div>
+        <h1>WHAT'S COOKIN'?</h1>
+        <div>
+          <button class="home__ubutton">New User</button>
+          <section>
+            <input class="home__searchInput" type="search" name="s" placeholder="Search" required="">
+            <img class="home__searchIcon" src="./images/search-icon.png">
+          </section>
+        </div>
+      </section>
+      <section class="categories">
+        <img class="categories__video" src="https://thumbs.dreamstime.com/b/food-panorama-copy-space-many-various-products-shot-top-dark-blue-wooden-background-flat-lay-place-text-200856024.jpg">
+        <section class="categories__container">
+          <div class="categories__salads categories--category" id="salad">Salads</div>
+          <div class="categories__horsdoeuvres categories--category" id="hor d'oeuvre">Hors D'oeuvres</div>
+          <div class="categories__mains categories--category" id="main course">Main Courses</div>
+          <div class="categories__sides categories--category" id="side dish">Sides</div>
+          <div class="categories__all categories--category">View All</div>
+        </section>
+      </section>
+      <footer class="footer">
+        <div class="footer__pic" id="1">pic1 with disc</div>
+        <div class="footer__pic" id="2">pic2 with disc</div>
+        <div class="footer__pic" id="3">pic3 with disc</div>
+        <div class="footer__pic" id="4">pic4 with disc</div>
+        <div class="footer__pic" id="5">pic5 with disc</div>
+        <div class="footer__pic" id="6">pic6 with disc</div>
+        <div class="footer__pic" id="7">pic7 with disc</div>
+        <div class="footer__pic" id="8">pic8 with disc</div>
+      </footer>
+    </section>
+    <section class="all class--hidden">
+      <div class="all__container">
+        <!-- lists of recipes will go here -->
+      </div> 
+    </section>
+    <section class="recipe class--hidden">
+      <section class="recipe__header">
+        <section class="recipe__header2"> 
+        </section>
+        <h1 class="recipe__title">Chocolate Chip Cookies!</h1>
+        <button class="recipe__sbutton">Save Recipe</button>
+      </section>
+      <section class="recipe__main">
+        <section class="recipe__left">
+          <div class="image__container"></div>
+          <section class="recipe__ingredients">Ingredients:
+            <!-- ingredients will go here -->
+          </section>
+          <section class="recipe__cost">
+            <!-- total cost will go here -->
+          </section>
+        </section>
+        <section class="recipe__instructions">Instructions:
+          <!-- instructions will go here -->
+        </section>
+      </section>
+    </section>
+    <section class="user class--hidden">
+      <section class="user__header">
+        <section class="user__header2">
+          <img class="user__turing" src="/images/turing-logo.png">
+          <button class="user__hbutton">Home Page</button>
+        </section>
+        <h1 class="user__name">Welcome Sayde Welch!</h1>
+      </section>
+      <img class="user__icon" src="https://media.giphy.com/media/krtfaufO44Uz6/giphy.gif" alt="kitty playing with fish">
+      <section class="user__recipes">Your saved recipes are:
+        <div class="user__recipe">
+          <img class="user__img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
+          <p>Chocolate Chip Cookies!</p>
+        </div>
+      </section>
+    </section>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
