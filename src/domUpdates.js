@@ -34,7 +34,7 @@ const searchBarClicked = () => {
   let searchResults;
   let view;
   if (myRecipesView.classList.contains('hidden')) {
-    view = mainView;
+    view = mainViewCardContainer;
   } else if (mainView.classList.contains('hidden')) {
     view = myRecipesView;
   }
@@ -77,7 +77,7 @@ const handleSearchResults = (view, results) => {
   if (typeof results === 'string') {
     mainViewCardContainer.innerHTML = `<p>${results}</p>`;
   } else {
-    renderRecipeCards(mainViewCardContainer, results, currentUser);
+    renderRecipeCards(view, results, currentUser);
   }
 };
 
@@ -93,7 +93,8 @@ const renderBookmarks = (currentUser, recipe) => {
 }
 
 const renderRecipeCards = (view, recipes, currentUser) => {
-  view.innerHTML = '';
+  mainViewCardContainer.innerHTML = '';
+  myRecipesView.innerHTML = '';
   recipes.forEach((recipe) => {
     view.innerHTML += `
     <article class="recipe-card" id="${recipe.id}">
