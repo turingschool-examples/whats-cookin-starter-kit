@@ -195,12 +195,16 @@ const updateCurrentRecipe = recipeCard => {
   currentRecipeCard = getRecipeCard(thisRecipe);
 }
 
-const showRecipe = (recipeCard) => {
-  updateCurrentRecipe(recipeCard)
-  populateInstructions(currentRecipeCard);
+const openRecipeCard = () => {
   clickedRecipe.classList.toggle("hidden");
   clickedRecipe.classList.toggle("flex");
   clickedRecipe.classList.toggle("fade-in");
+}
+
+const showRecipe = (recipeCard) => {
+  updateCurrentRecipe(recipeCard);
+  populateInstructions(currentRecipeCard);
+  openRecipeCard();
 };
 
 
