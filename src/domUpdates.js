@@ -17,8 +17,8 @@ let testBox;
 const viewRecipe = (recipe) => {
   mainRecipe.innerHTML += `
   <section class='recipe-container box' id='${recipe.id}'>
-  <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
-  <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
+  <img class='recipe-image box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
+  <h3 class='recipe-text box' id="${recipe.id}">${recipe.name}</h3>
 </section>
 `
 }

@@ -43,11 +43,30 @@ main {
 }
 
 .recipe-container {
-  display: flex;
-  flex-direction: column;
-  width: 10vw;
-  height: 10vh;
-  margin: 5% 1% 1% 20%;
+  display: inline-block;
+  font-size: .8vw;
+  width: 16vw;
+  height: 16vh;
+  margin: 2% 0% 0% 4%;
+  position: relative;
+  overflow: hidden;
+  border: 0%;
+}
+.recipe-text {
+    position: absolute;
+    top: 60%;
+    width: 9em;
+    left: 20%;
+    transform: translate(0%, -30%);
+    font-weight: bold;
+    color: #ff00c8;
+    word-wrap: break-word
+}
+.recipe-image{ 
+    object-fit: contain;
+    height: 100%;
+    width: 100%;  
+    filter: opacity(65%); 
 }
 
 .main-panel {
@@ -78,7 +97,6 @@ main {
 }
 
 .main-recipe::-webkit-scrollbar {
-  background: #F8DBF8;
   border-radius: 100%;
   width: 13vh;
   height: 20vh;
