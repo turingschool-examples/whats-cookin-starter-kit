@@ -20,6 +20,7 @@ import {
   toggleBookmark,
   renderSingleRecipeView,
   searchBarClicked,
+  removeRecipeCard,
 } from './domUpdates';
 import { findRecipe } from './filters';
 
@@ -45,7 +46,8 @@ mainViewCardContainer.addEventListener('click', (e) => {
   toggleBookmark(e, currentUser, recipeData);
 });
 window.addEventListener('load', () => {
-  currentUser = getRandomUser(sampleUserData)
+  currentUser = getRandomUser(sampleUserData);
+  renderRecipeCards(mainViewCardContainer, recipeData, currentUser);
 });
 singleRecipeView.addEventListener('click', (e) => {
   toggleBookmark(e, currentUser, recipeData)});
@@ -54,9 +56,10 @@ mainView.addEventListener('click', (e) => {
     renderSingleRecipeView(e, recipeData, ingredientsData);
   }
 });
-
-// FUNCTIONS
-renderRecipeCards(mainViewCardContainer, recipeData);
+myRecipesView.addEventListener('click', (e) => {
+  toggleBookmark(e, currentUser, recipeData);
+  removeRecipeCard(e);
+})
 
 export {
   mainView,
