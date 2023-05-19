@@ -27,7 +27,7 @@ const viewRecipe = recipe => {
 
 const viewAllRecipes = recipes => {
   mainPanel.innerHTML = '';
-  page.mode === 'home' ? recipes : recipes = recipesToCook;
+  // page.mode === 'home' ? recipes : recipes = recipesToCook;
   recipes.forEach(recipe => viewRecipe(recipe));
 }
 
