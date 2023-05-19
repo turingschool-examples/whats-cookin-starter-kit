@@ -55,7 +55,6 @@ const searchResults = () => {
 };
 
 const searchBarClicked = () => {
-  toggleHidden([mainView], 'remove');
   clearView([mainViewCardContainer, myRecipesView, singleRecipeView]);
   handleSearchResults(setView(), searchResults());
 };
@@ -82,6 +81,11 @@ const handleNameSearch = () => {
 };
 
 const handleSearchResults = (view, results) => {
+  if (view === mainViewCardContainer) {
+    toggleHidden([mainView], 'remove')
+  } else {
+    toggleHidden([myRecipesView], 'remove')
+  }
   if (typeof results === 'string') {
     view.innerHTML = `<p>${results}</p>`;
   } else {
