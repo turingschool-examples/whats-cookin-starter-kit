@@ -56,6 +56,7 @@ const searchResults = () => {
 }
 
 const searchBarClicked = () => {
+  toggleHidden([mainView], 'remove');
   clearView([mainViewCardContainer, myRecipesView, singleRecipeView]);
   handleSearchResults(setView(), searchResults());
 };
