@@ -16,7 +16,8 @@ import {
   getIngredientAmounts,
   filterRecipes,
   filterRecipesByIngredient,
-  filterRecipesByName
+  filterRecipesByName,
+  searchRecipes
 } from '../src/recipes';
 
 describe('recipe', () => {
@@ -289,3 +290,47 @@ describe('filterRecipes', () => {
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   })
 });
+
+describe('search recipes', () => {
+
+  it('should be a function', () => {
+    assert.isFunction(searchRecipes)
+  });
+
+  it('should handle single word searches for both names and ingredients', () => {
+    let filteredRecipesByName = searchRecipes(sampleRecipeData, sampleIngredientsData, 'cake')
+    let expectedRecipesByName = [sampleRecipeData[3], sampleRecipeData[4]];
+    let filteredRecipesByIngredient = searchRecipes(sampleRecipeData, sampleIngredientsData, 'wheat')
+    let expectedRecipesByIngredient = [sampleRecipeData[0],sampleRecipeData[3],sampleRecipeData[4]];
+    
+    assert.deepEqual(filteredRecipesByName, expectedRecipesByName);
+    assert.deepEqual(filteredRecipesByIngredient, expectedRecipesByIngredient);
+  })
+
+  it('should not be case sensitive', () => {
+    let filteredRecipes = searchRecipes(sampleRecipeData, sampleIngredientsData, 'cAkE')
+    let expectedRecipes = [sampleRecipeData[3], sampleRecipeData[4]];
+
+    assert.deepEqual(filteredRecipes, expectedRecipes)
+  })
+
+  it('should handle multi word searches with both names and ingredients, without returning duplicates', () => {
+    let filteredRecipes = searchRecipes(sampleRecipeData, sampleIngredientsData, 'wheat cake');
+    let expectedRecipes = [sampleRecipeData[3],sampleRecipeData[4], sampleRecipeData[0]];
+
+    assert.deepEqual(filteredRecipes, expectedRecipes);
+  });
+
+  it('should return an empty array for non matches', () => {
+    let filteredRecipes = searchRecipes(sampleRecipeData, sampleIngredientsData, 'no match string');
+    assert.deepEqual(filteredRecipes, []);
+  });
+
+  it('should return all recipes if only an empty string is entered', () => {
+    let allRecipes = searchRecipes(sampleRecipeData, sampleIngredientsData, ' ');
+    assert.deepEqual(allRecipes, sampleRecipeData)
+
+    let otherFilteredRecipes = searchRecipes(sampleRecipeData, sampleIngredientsData, '')
+    assert.deepEqual(otherFilteredRecipes, sampleRecipeData)
+  })
+})

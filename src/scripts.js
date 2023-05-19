@@ -2,9 +2,10 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe } from './domUpdates';
+import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe, searchForRecipes } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
+import { assignCurrentUser } from './apiCalls';
 import './images/antipasti.png';
 import './images/antipasto.png'
 import './images/appetizer.png'
@@ -24,7 +25,8 @@ import './images/side dish.png'
 import './images/snack.png'
 import './images/spread.png'
 import './images/starter.png'
-import { assignCurrentUser } from './apiCalls';
+import './images/search-button.png'
+import './images/user-icon.png'
 
 // import apiCalls from './apiCalls'
 
@@ -34,9 +36,8 @@ const clickedRecipe = document.querySelector('#clickedRecipe');
 const closeRecipeButton = document.querySelector('#closeRecipe');
 const tagArea = document.querySelector('.tag-area');
 const ingredientsList = document.querySelector('#ingredientsList');
-
-// DATA MODEL 
-let currentRecipeCard = {};
+const searchBar = document.querySelector('#searchBar');
+const searchBtn = document.querySelector('#searchBtn');
 
 //FUNCTIONS 
 const getRecipeCard = (recipe) => {
@@ -62,7 +63,7 @@ window.addEventListener("load", () => {
 
   pageLoadRenders();
 });
-// window.addEventListener("load", renderGrid);
+
 tagArea.addEventListener("click", function(event) {
   if (event.target.classList && event.target.closest(".tag-card")) {
     makeTagActive(event);
@@ -77,13 +78,15 @@ allRecipes.addEventListener("click", (event) => {
 
 closeRecipeButton.addEventListener("click", closeRecipe);
 
+searchBtn.addEventListener('click', searchForRecipes)
+
 // Exports
 export {
   recipeGrid,
   tagArea,
   clickedRecipe,
   getRecipeCard,
-  currentRecipeCard,
   ingredientsList,
-  allRecipes
+  allRecipes,
+  searchBar
 }

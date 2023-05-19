@@ -1,7 +1,15 @@
-// Your fetch requests will live here!
-
+//IMPORTS 
 import { getRandomUser } from "./users"
-let currentUser = {};
+
+// DATA MODEL 
+let currentUser;
+let pageData = {
+  activeTags: [],
+  currentView: 'ourRecipes',
+  currentRecipeCard: {}
+};
+
+// API CALLS
 
 const assignCurrentUser = () => {
   fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
@@ -14,4 +22,6 @@ const assignCurrentUser = () => {
     })
 }
   
-export {assignCurrentUser, currentUser}
+export {assignCurrentUser, currentUser, pageData}
+
+
