@@ -26,6 +26,7 @@ let userData
 let recipeData
 
 // QUERY SELECTORS
+const mainContainer = document.querySelector('main');
 const myRecipesBtn = document.querySelector('#myRecipes');
 const mainView = document.querySelector('#mainView');
 const myRecipesView = document.querySelector('#myRecipeView');
@@ -55,7 +56,7 @@ searchButton.addEventListener('click', searchBarClicked);
 singleRecipeView.addEventListener('click', (e) => {
   toggleBookmark(e, currentUser, recipeData);
 }); 
-mainView.addEventListener('click', (e) => {
+mainContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('recipe-img') || e.target.classList.contains('recipe-name')) {
     renderSingleRecipeView(e, recipeData, ingredientsData, currentUser);
   };
