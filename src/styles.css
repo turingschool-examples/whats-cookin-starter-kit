@@ -386,10 +386,17 @@ input {
 
 #recipeRightSide h3 {
   visibility: visible;
+  margin-bottom: 20px;
   padding-left: 50px;
   opacity: 100;
   color: black;
   font-size: 55px;
+}
+
+#recipeRightSide h4 {
+  color: black;
+  font-size: 25px;
+  margin: 0 10px 15px 35px;
 }
 
 #ingredientsList {
