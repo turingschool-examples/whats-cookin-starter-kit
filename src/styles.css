@@ -51,27 +51,29 @@ main {
   height: 16vh;
   margin: 2% 0% 0% 4%;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   border: 0%;
 }
 
-.recipe-text {
+.recipe-name {
     position: absolute;
     top: 60%;
-    width: 9em;
+    width: 8em;
     left: 20%;
-    transform: translate(0%, -30%);
+    transform: translate(-15%, 0%);
     font-weight: bold;
-    color: #ff00c8;
-    word-wrap: break-word
+    color: darkmagenta;
+    word-wrap: break-word;
+    background-color: #e1c4ff;
+    opacity: 75%;
+    border-radius: 10%;
 }
 
 .recipe-image{ 
     object-fit: contain;
     height: 100%;
-    width: 100%;  
-    filter: opacity(65%); 
-
+    width: 100%;
+    filter: opacity(65%);
 }
 
 .tags-panel {
@@ -82,7 +84,7 @@ main {
   width: 18vw;
   height: 73vh;
   margin: .5% 1% .5% 1%; 
-  /* border-radius: 10% 0% 10% 0%; */
+  border-radius: 10% 0% 10% 0%;
   border-radius: 10px;
   background-color: #e6d7ff;
   
@@ -101,19 +103,19 @@ main {
   overflow-x: hidden;
 }
 
-.main-recipe::-webkit-scrollbar {
+.main-panel::-webkit-scrollbar {
   border-radius: 100%;
   width: 13vh;
   height: 20vh;
 }
 
-.main-recipe::-webkit-scrollbar-thumb {
+.main-panel::-webkit-scrollbar-thumb {
   border-radius: 100%;
   background-size: 40vh;
   background-image: url('https://buildyourbite.com/wp-content/uploads/2021/11/greek-yogurt-mac-and-cheese-recipe-4.jpg');
 }
 
-.main-recipe::-webkit-scrollbar-button {
+.main-panel::-webkit-scrollbar-button {
   visibility: hidden;
 }
 
@@ -184,4 +186,10 @@ h1 {
 
 .hidden {
   display: none;
+}
+
+.box{
+  width: 25vh;
+  height: 10vw;
+  border-radius: 20%;
 }
