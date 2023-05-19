@@ -24,6 +24,8 @@ import './images/side dish.png'
 import './images/snack.png'
 import './images/spread.png'
 import './images/starter.png'
+import './images/search-button.png'
+import './images/user-icon.png'
 
 // import apiCalls from './apiCalls'
 
