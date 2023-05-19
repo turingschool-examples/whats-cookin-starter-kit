@@ -1,6 +1,5 @@
 import { recipeTestData, ingredientTestData } from './data/testData.js';
 import { determineIngredientNames, calculateCost, returnInstructions } from './recipe.js';
-import { userTestData} from './apiCalls.js'
 
 // Global Variables
 const user = document.querySelector('.user')
@@ -14,7 +13,7 @@ let page = {mode: 'home'};
 // Event Handlers
 const getRandomIndex = array => Math.floor(Math.random() * array.length);
 
-const displayRandomUser = () => user.innerText = userTestData[getRandomIndex(userTestData)].name;
+const loadUsers = userData => user.innerText = userData[getRandomIndex(userData)].name;
 
 const toggleMode = e => page.mode = e.target.id;
 
@@ -26,9 +25,10 @@ const viewRecipe = recipe => {
   </section>
   `;
 }
+
 const viewAllRecipes = recipes => {
   mainPanel.innerHTML = '';
-  page.mode === 'home' ? recipes = recipeTestData : recipes = recipesToCook;
+  page.mode === 'home' ? recipes : recipes = recipesToCook;
   recipes.forEach(recipe => viewRecipe(recipe));
 }
 
@@ -78,14 +78,6 @@ const searchRecipe = recipes => {
   }
 }
 
-const loadUsers = (userData) => {
-  // fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
-  // .then(response => response.json())
-  // .then(data => data.users.forEach(u => userTestData.push(u)))
-  console.log('data', userData[0])
-  user.innerText = userData[getRandomIndex(userData)].name
-}
-
 export {
   user,
   userInput,
@@ -94,7 +86,6 @@ export {
   tags,
   mainPanel,
   getRandomIndex,
-  displayRandomUser,
   toggleMode,
   viewRecipe,
   viewAllRecipes,

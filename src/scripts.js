@@ -1,6 +1,6 @@
 //NOTE: Data model and non-dom manipulating logic will live in this file.
 import './styles.css';
-import {fetchUsers} from './apiCalls';
+import {fetchAPI} from './apiCalls';
 import './images/turing-logo.png';
 import './images/clipart16385.png';
 import { toggleRecipesToCook } from './recipe.js';
@@ -10,9 +10,10 @@ let userTestData;
 
 // Event Listeners
 window.addEventListener('load', () => {
-  viewAllRecipes(),
-  fetchUsers()
-    .then(response => loadUsers(response.users))
+  fetchAPI('users')
+    .then(response => loadUsers(response.users)),
+  fetchAPI('recipes')
+    .then(response => viewAllRecipes(response.recipes))
 });
 
 // console.log('test data', userTestData)
