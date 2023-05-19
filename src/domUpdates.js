@@ -61,8 +61,8 @@ const createGridHTML = allColumns => {
   return htmlCode;
 }
 
-const renderGrid = () => {
-  const gridData = makeRecipeColumnData(recipeData)
+const renderGrid = (data) => {
+  const gridData = makeRecipeColumnData(data)
   recipeGrid.innerHTML = ''
   recipeGrid.innerHTML = createGridHTML(gridData);
 }
@@ -160,7 +160,7 @@ const makeTagActive = (event) => {
 };
 
 const pageLoadRenders = () => {
-  renderGrid();
+  renderGrid(recipeData);
   renderTagArea();
 };
 
@@ -243,9 +243,7 @@ const createIngredientsHTML = ingredients => {
 
 const searchForRecipes = () => {
   searchedRecipes = searchRecipes(recipeData, ingredientsData, searchBar.value)
-  const gridData = makeRecipeColumnData(searchedRecipes)
-  recipeGrid.innerHTML = ''
-  recipeGrid.innerHTML = createGridHTML(gridData);
+  renderGrid(searchedRecipes)
 }
 
 // Exports
