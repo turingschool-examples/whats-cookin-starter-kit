@@ -7,13 +7,8 @@ import './images/restaurant.png';
 import './images/bookmark.png';
 import './images/bookmark-filled.png'
 
-import {getIngredients, getRecipes, getUsers} from './apiCalls'
 import { getRandomUser } from './users';
-// import { sampleIngredientsData, sampleRecipeData } from '../test/sampleIngredients';
-// import { sampleUserData } from '../test/sampleUsers';
-import { recipesToCook, removeRecipes} from './recipes-to-cook';
-// import { recipeData }  from './data/recipes';
-// import { ingredientsData } from './data/ingredients';
+import { fetchAPI } from './apiCalls';
 import {
   toMyRecipeView,
   toDashboardView,
@@ -23,7 +18,6 @@ import {
   searchBarClicked,
   removeRecipeCard,
 } from './domUpdates';
-import { findRecipe } from './filters';
 
 //GLOBAL VARIABLE
 let currentUser
@@ -43,7 +37,7 @@ const searchByToggle = document.querySelector('#searchSelect');
 const searchButton = document.querySelector('#searchIconBackground');
 
 const start = () => {
-  Promise.all([getUsers(), getIngredients(), getRecipes()])
+  Promise.all([fetchAPI('users'), fetchAPI('ingredients'), fetchAPI('recipes')])
  .then((data) => {
 
   userData = data[0];
@@ -52,9 +46,6 @@ const start = () => {
   currentUser = getRandomUser(userData);
 
   renderRecipeCards(mainViewCardContainer, recipeData, currentUser);
- })
- .catch((err) => {
-  console.log(err);
  });
 };
 

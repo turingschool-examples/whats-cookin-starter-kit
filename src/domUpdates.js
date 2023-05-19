@@ -5,14 +5,12 @@ import {
   mainView,
   singleRecipeView,
   searchBar,
-  searchButton,
   searchByToggle,
   mainViewCardContainer,
   currentUser,
 } from './scripts';
 import { filterByName, filterByTag } from './filters';
 import { recipeData } from './data/recipes';
-import {curUser, getUsers} from './apiCalls'
 
 // EVENT HANDLERS
 const toMyRecipeView = (currentUser) => {
