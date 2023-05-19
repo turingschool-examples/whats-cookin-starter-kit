@@ -2,7 +2,7 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe } from './domUpdates';
+import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe, switchView } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
 import './images/antipasti.png';
@@ -28,11 +28,15 @@ import './images/starter.png'
 // import apiCalls from './apiCalls'
 
 const recipeGrid = document.querySelector('.recipe-grid');
-const allRecipes = document.querySelector('.all-recipes');
+const allRecipes = document.querySelector('.landing-page');
+const allUserRecipes = document.querySelector('.all-user-recipes');
 const clickedRecipe = document.querySelector('#clickedRecipe');
 const closeRecipeButton = document.querySelector('#closeRecipe');
 const tagArea = document.querySelector('.tag-area');
 const ingredientsList = document.querySelector('#ingredientsList');
+const inactiveView = document.querySelector('.unselected-view')
+const ourViewBtn = document.querySelector("#our-view");
+const yourViewBtn = document.querySelector("#your-view");
 
 // DATA MODEL 
 let currentRecipeCard = {};
@@ -71,7 +75,7 @@ allRecipes.addEventListener("click", (event) => {
 });
 
 closeRecipeButton.addEventListener("click", closeRecipe);
-
+inactiveView.addEventListener("click", switchView);
 // Exports
 export {
   recipeGrid,
@@ -80,5 +84,9 @@ export {
   getRecipeCard,
   currentRecipeCard,
   ingredientsList,
-  allRecipes
+  allRecipes,
+  ourViewBtn,
+  yourViewBtn,
+  allUserRecipes,
+  inactiveView
 }

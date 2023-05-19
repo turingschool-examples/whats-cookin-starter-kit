@@ -44,6 +44,10 @@ h1 {
   background-color: #242528;
 }
 
+.unselected-view {
+  transition: 0.2s;
+}
+
 .unselected-view:hover {
   border: solid 2px #242528;
   cursor: pointer;

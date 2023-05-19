@@ -1,6 +1,17 @@
 // Imports
 import {recipeData} from './data/recipes'
-import {recipeGrid, clickedRecipe, tagArea, getRecipeCard, allRecipes, ingredientsList} from './scripts'
+import {
+  recipeGrid, 
+  clickedRecipe, 
+  tagArea, 
+  getRecipeCard,
+  allRecipes, 
+  ingredientsList,
+  inactiveView,
+  ourViewBtn,
+  yourViewBtn,
+  allUserRecipes
+} from './scripts'
 
 let currentRecipeCard = require('./scripts');
 
@@ -236,6 +247,15 @@ const createIngredientsHTML = ingredients => {
     </label>
     `;
   });
+};
+
+const switchView = () => {
+    allRecipes.classList.toggle("hidden");
+    allUserRecipes.classList.toggle("hidden");
+    ourViewBtn.classList.toggle("selected-view");
+    ourViewBtn.classList.toggle("unselected-view");
+    yourViewBtn.classList.toggle("unselected-view");
+    yourViewBtn.classList.add.toggle("selected-view")
 }
 // Exports
 export {
@@ -243,5 +263,6 @@ export {
   makeTagActive,
   pageLoadRenders,
   showRecipe,
-  closeRecipe
+  closeRecipe,
+  switchView,
 }
