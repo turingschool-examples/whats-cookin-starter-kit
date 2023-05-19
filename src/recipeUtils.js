@@ -50,8 +50,11 @@ const calculateRecipeCost = (recipe, ingredients) => {
  };
 
 const saveRecipe = (recipe) => {
-  recipesToCook.push(recipe)
-  return recipesToCook
+  if(!recipesToCook.includes(recipe)) {
+    recipesToCook.push(recipe);
+    return recipesToCook;
+  }
+  return recipesToCook;
 }
 
 const deleteRecipe = (recipe) => {

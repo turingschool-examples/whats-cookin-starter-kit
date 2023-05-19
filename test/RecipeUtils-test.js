@@ -140,6 +140,14 @@ describe('saveRecipe', () => {
     expect(savedRecipes.length).to.equal(1);
     expect(savedRecipes[0]).to.equal(recipesToCook[0]);
   });
+
+  it('should not have duplicate recipes in the array', () => {
+    const savedRecipes = saveRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
+    const savedRecipeDuplicate = saveRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
+
+    expect(savedRecipes.length).to.equal(1);
+    expect(savedRecipes[0]).to.equal(recipesToCook[0]);
+  });
 });
 
 describe('deleteRecipe', () => {
