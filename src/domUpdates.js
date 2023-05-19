@@ -20,17 +20,17 @@ const clearView = (views) => {
     view.innerHTML = '';
   })
 }
-const toMyRecipeView = () => {
-  mainView.classList.add('hidden');
-  myRecipesView.classList.remove('hidden');
+const toMyRecipeView = (currentUser) => {
+  toggleHidden([mainView], 'add');
+  toggleHidden([myRecipesView], 'remove');
   clearView([singleRecipeView]);
   searchBar.placeholder = 'Search your bookmarked Recipes';
   renderRecipeCards(myRecipesView, currentUser.recipesToCook, currentUser);
 };
 
 const toDashboardView = (currentUser) => {
-  mainView.classList.remove('hidden');
-  myRecipesView.classList.add('hidden');
+  toggleHidden([mainView], 'remove');
+  toggleHidden([myRecipesView], 'add');
   renderRecipeCards(mainViewCardContainer, recipeData, currentUser);
   clearView([singleRecipeView]);
   searchBar.placeholder = 'Search for new Recipes';
@@ -65,14 +65,6 @@ const handleInvalidSearch = (message) => {
   searchBar.placeholder = message;
 };
 
-// const handleSearch = (type) => {
-//     if (myRecipesView.classList.contains('hidden')) {
-//       return filterByTag(searchBar.value, recipeData);
-//     } else if (mainView.classList.contains('hidden')) {
-//       return filterByTag(searchBar.value, currentUser.recipesToCook);
-//     }
-//   };
-
 const handleTagSearch = () => {
   if (myRecipesView.classList.contains('hidden')) {
     return filterByTag(searchBar.value, recipeData);
@@ -98,17 +90,8 @@ const handleSearchResults = (view, results) => {
 };
 
 // DOM FUNCTIONS
-
-// const searchMyRecipes = (currentUser, recipe) => {
-//   if (currentUser.recipesToCook.includes(recipe)){
-//     .classList.add('hidden')
-//   }
-// }
-
 const renderBookmarks = (currentUser, recipe) => {
   if (currentUser.recipesToCook.includes(recipe)) {
-    //hide or unhide based on conditional, but only the hidden class 
-    //mayve have another function that checks to see if recipe is included, and have it return "hidden " or nothing 
     return `<img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked hidden" alt="bookmark icon">
     <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked" alt="bookmark icon filled in">`
   } else {
@@ -116,7 +99,6 @@ const renderBookmarks = (currentUser, recipe) => {
     <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">`
   }
 }
-//redundant code- potentially refactor
 
 const renderRecipeCards = (view, recipes, currentUser) => {
   clearView([mainViewCardContainer, myRecipesView])
@@ -160,7 +142,6 @@ const toggleBookmark = (e, currentUser, recipeData) => {
     }
   }
 };
-
 
 const findRecipe = (e, recipes) => {
   return recipes.find((recipe) => {
@@ -236,22 +217,6 @@ const removeRecipeCard = (e) => {
     e.target.parentElement.parentElement.parentElement.remove();
   };
 }
-
-  const toggleBookmark = (e, currentUser, recipeData) => {
-    if (e.target.classList[0]=== 'bookmark-icon') {
-      if(isUnchecked(e)) {
-        recipesToCook(e.target.id, currentUser, recipeData)
-        console.log(currentUser)
-        e.target.classList.add('hidden')
-        e.target.nextElementSibling.classList.remove('hidden');
-      } else {
-        removeRecipes(e.target.id, currentUser)
-        console.log(currentUser)
-        e.target.classList.add('hidden')
-        e.target.previousElementSibling.classList.remove('hidden');
-      }
-    }
-  };
 
 export {
   toMyRecipeView,
