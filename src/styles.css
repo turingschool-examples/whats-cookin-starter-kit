@@ -346,6 +346,8 @@ input {
 }
 
 .instruction {
+  font-family: Lexend;
+  font-size: smaller;
   width: 90%;
 }
 
@@ -356,6 +358,7 @@ input {
   text-align: center;
   margin: 0;
   color: #fbbf83;
+  font-family: Lexend;
   font-size: 1.2rem;
 }
 
