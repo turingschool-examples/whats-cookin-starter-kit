@@ -49,7 +49,10 @@ const calculateRecipeCost = (recipe, ingredients) => {
    return instructions.join(' ')
  };
 
-
+function shuffleData(recipes) {
+  let shuffle = recipes.sort((recipe) => Math.random(recipe) - 0.5)
+  return shuffle
+}
 
 export {
   recipesFromTag,
@@ -57,5 +60,6 @@ export {
   findRecipe,
   findIngredientNames,
   calculateRecipeCost,
-  recipeInstructions
+  recipeInstructions,
+  shuffleData
 }

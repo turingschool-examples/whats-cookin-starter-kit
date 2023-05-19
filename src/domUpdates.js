@@ -1,7 +1,7 @@
 //NOTE: Your DOM manipulation will occur in this file
 import recipeData from "./data/recipes";
 import { recipesFromTag } from "./recipeUtils";
-import { recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions } from "../src/recipeUtils";
+import { recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions, shuffleData } from "../src/recipeUtils";
 import ingredientsData from "./data/ingredients";
 
 // Query Selectors:
@@ -33,9 +33,8 @@ allRecipeDisplay.addEventListener('click', function (event) {
   viewSelectedRecipe(event);
 });
 
-homeButton.addEventListener('click', showHomePage)
-
-
+homeButton.addEventListener('click', showHomePage, randomizeHomePage)
+window.addEventListener('load', randomizeHomePage);
 
 
 //Event Handlers/Functions
@@ -57,6 +56,34 @@ function showHomePage() {
   removeHiddenClass([frontRecipeDisplay]);
 }
 
+function randomizeHomePage() {
+  shuffleData(recipeData)
+  frontRecipeDisplay.innerHTML = '';
+  recipeData.forEach((recipe) => frontRecipeDisplay.innerHTML = `
+      <div class = "recipe-wrapper">
+        <img id="front-recipe-1" src="${recipe.image}" class="recipe">
+        <div class = "recipe-info">
+          <p>${recipe.name}</p>
+        </div>
+
+  
+    
+        </div>
+      <div class = "recipe-wrapper">
+        <img id="front-recipe-2" src="${recipe.image}"  class="recipe">
+        <div class = "recipe-info">
+          <p>${recipe.name}</p>
+        </div>
+      </div>
+      <div class = "recipe-wrapper">
+        <img id="front-recipe-3" src="${recipe.image}"  class="recipe">
+        <div class = "recipe-info">
+          <p>${recipe.name}</p>
+        </div>`
+)
+}
+
+
 
 function renderFilteredRecipes() {
   const tags = Array.from(checkCategories).filter((category) => category.checked).map(c => c.id)
@@ -65,6 +92,7 @@ function renderFilteredRecipes() {
     return
   }
     let filtered = recipesFromTag(recipeData, tags);
+    console.log(recipeData)
   allRecipeDisplay.innerHTML = '';
   filtered.forEach(recipe => allRecipeDisplay.innerHTML += `<div class = "recipe-wrapper">
       <img id="${recipe.name}" src="${recipe.image}" class="recipe">
