@@ -38,10 +38,9 @@ const ingredientsList = document.querySelector('#ingredientsList');
 let user;
 let pageData = {
   activeTags: [],
-  currentView: ''
+  currentView: '',
+  currentRecipeCard: {}
 };
-
-let currentRecipeCard = {};
 
 //FUNCTIONS 
 const getRecipeCard = (recipe) => {
@@ -84,7 +83,6 @@ export {
   tagArea,
   clickedRecipe,
   getRecipeCard,
-  currentRecipeCard,
   ingredientsList,
   allRecipes
 }
