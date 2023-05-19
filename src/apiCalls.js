@@ -10,3 +10,5 @@ let pageData = {
 
 
 console.log('I will be a fetch request!')
+
+export {currentUser, pageData}
