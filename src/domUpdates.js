@@ -99,6 +99,13 @@ const handleSearchResults = (view, results) => {
 };
 
 // DOM FUNCTIONS
+
+// const searchMyRecipes = (currentUser, recipe) => {
+//   if (currentUser.recipesToCook.includes(recipe)){
+//     .classList.add('hidden')
+//   }
+// }
+
 const renderBookmarks = (currentUser, recipe) => {
   if (currentUser.recipesToCook.includes(recipe)) {
     //hide or unhide based on conditional, but only the hidden class 
@@ -166,7 +173,7 @@ const findRecipe = (e, recipes) => {
       });
 };
 
-const renderSingleRecipeView = (e, recipes, ingredients) => {
+const renderSingleRecipeView = (e, recipes, ingredients, currentUser) => {
   let recipe = findRecipe(e, recipes);
   toggleHidden([mainView], 'add');
   toggleHidden([singleRecipeView], 'remove');
@@ -178,8 +185,7 @@ const renderSingleRecipeView = (e, recipes, ingredients) => {
       <div class="recipe-header-flex">
         <h2 class="recipe-title">${recipe.name}</h2>
         <div class="bookmark-flex">
-          <img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked" alt="bookmark icon">
-          <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">
+          ${renderBookmarks(currentUser, recipe)}
         </div>
       </div>
       <div class="recipe-content-flex">
@@ -242,5 +248,3 @@ export {
   searchBarClicked,
   removeRecipeCard
 };
-
-//create hidden toggle functions

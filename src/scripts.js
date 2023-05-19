@@ -53,7 +53,7 @@ singleRecipeView.addEventListener('click', (e) => {
   toggleBookmark(e, currentUser, recipeData)});
 mainView.addEventListener('click', (e) => {
   if (e.target.classList.contains('recipe-img') || e.target.classList.contains('recipe-name')) {
-    renderSingleRecipeView(e, recipeData, ingredientsData);
+    renderSingleRecipeView(e, recipeData, ingredientsData, currentUser);
   }
 });
 myRecipesView.addEventListener('click', (e) => {
