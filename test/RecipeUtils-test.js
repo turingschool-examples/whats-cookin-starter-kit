@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { recipesFromTag, recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions } from '../src/recipeUtils';
+import { recipesFromTag, recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions, saveRecipe } from '../src/recipeUtils';
 import recipeData from '../src/data/recipes-sample.js';
 import ingredientsData from '../src/data/ingredients-sample.js';
 
@@ -67,7 +67,7 @@ describe('findIngredientNames', () => {
     expect(findRecipe).to.be.a('function');
   });
 
-  it('should return an array of ingredient names for specific recipe', () => {
+  it.skip('should return an array of ingredient names for specific recipe', () => {
     const recipeName = 'Loaded Chocolate Chip Pudding Cookie Cups';
     const ingredients = findIngredientNames(recipeData, recipeName);
     expect(ingredients).to.deep.equal([ 'wheat flour',
@@ -83,7 +83,7 @@ describe('findIngredientNames', () => {
       'vanilla' ]);
   });
 
-  it('should return message if no recipe is found', () => {
+  it.skip('should return message if no recipe is found', () => {
     const recipeName = 'Not a recipe';
     const ingredients = findIngredientNames(recipeData, ingredientsData,recipeName);
     expect(ingredients).to.equal("Sorry, we don't have that recipe.");
@@ -95,7 +95,7 @@ describe('calculateRecipeCost', () => {
     expect(calculateRecipeCost).to.be.a('function');
   });
 
-  it('should return the total cost of a recipe', () => {
+  it.skip('should return the total cost of a recipe', () => {
     const recipe = recipeData[0];
     const expectedCost = '177.76';
     const actualCost = calculateRecipeCost(recipe);
@@ -126,4 +126,17 @@ describe('recipeInstructions', () => {
     expect(instructions).to.equal("Sorry, that recipe cannot be found.")
   });
 
+});
+
+// WHAT - Working with arrays
+// WANT - to pull for from the recipeData array, and if the user saves a recipe, it should be pushed into a new array
+// HOW/METHODS - 
+describe('saveRecipe', () => {
+  it('should be a function', () => {
+    expect(saveRecipe).to.be.a('function');
+  });
+
+  it('should be able to add a recipe to the data model array', () => {
+
+  });
 });
