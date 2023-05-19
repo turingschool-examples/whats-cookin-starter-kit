@@ -312,6 +312,7 @@ h3 {
   font-family: Lexend;
   font-size: 20px;
   padding: 0 0 10px 30px;
+  max-width: 90%;
 }
 
 .ingredient-label:hover {
@@ -325,6 +326,10 @@ h3 {
   clip-path: circle(50% at 50% 50%);
   margin-right: 20px;
   padding: 10px;
+}
+
+input[type=checkbox] {
+  accent-color: #fbbf83;
 }
 
 #recipeLeftSide {
@@ -414,9 +419,20 @@ h3 {
 }
 
 #ingredientsList {
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
+  padding-bottom: 2%;
 }
+/* }
+
+#ingredientsList::-webkit-scrollbar-track {
+  background-color: #3b4154;
+}
+
+#ingredientsList::-webkit-scrollbar-thumb {
+  background-color: #fbbf83;
+} */
 
 #closeRecipe {
   height: 38px;
