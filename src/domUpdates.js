@@ -216,17 +216,26 @@ const populateRecipeName = currentRecipe => {
   document.querySelector('#recipeName').innerHTML = `  <h1>${currentRecipe.name}</h1>  `
 }
 
-const populateAddBtn = (currentRecipe, user) => {
-  const reciveSaved = user.recipesToCook.some(recipe => recipe.id === currentRecipe.id);
-  let buttonText;
-  let buttonStatus;
-  if (!recipeSaved) { 
-    buttonText = "Add to Save to Cook Recipes";
-    buttonStatus = "Add";
-  } else {
-    buttonText = "Remove from Save to Cook Recipes";
-    buttonStatus = "Remove";
-  }
+const populateAddBtn = () => {
+  // const recipeSaved = user.recipesToCook.some(recipe => recipe.id === currentRecipe.id);
+  // let buttonText;
+  // let buttonStatus;
+  // if (!recipeSaved) { 
+  //   buttonText = "Add to Save to Cook Recipes";
+  //   buttonStatus = "add-recipe modal-recipe-btn";
+  // } else {
+  //   buttonText = "Remove from Save to Cook Recipes";
+  //   buttonStatus = "remove-recipe modal-recipe-btn";
+  // };
+//saving to use once currentUser is accessible
+  const buttonStatus = "add-recipe modal-recipe-btn";
+  const buttonText = "Add to Saved Recipes";
+  document.querySelector('.modal-add-recipe').innerHTML = 
+  `
+  <div class= "${buttonStatus}">
+    <h4>${buttonText}</h4>
+  </div>
+  `;
 }
 
 const openRecipeCard = () => {
@@ -237,8 +246,9 @@ const openRecipeCard = () => {
   clickedRecipe.classList.toggle("fade-in");
 }
 
-const showRecipe = (recipeCard) => {
+const showRecipe = (recipeCard, currentUser) => {
   updateCurrentRecipe(recipeCard);
+  populateAddBtn();
   populateInstructions(currentRecipeCard);
   populateRecipeName(currentRecipeCard);
   openRecipeCard();
