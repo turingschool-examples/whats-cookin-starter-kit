@@ -243,7 +243,9 @@ const createIngredientsHTML = ingredients => {
 
 const searchForRecipes = () => {
   searchedRecipes = searchRecipes(recipeData, ingredientsData, searchBar.value)
-  renderGrid(searchedRecipes)
+  searchedRecipes.length  
+    ? renderGrid(searchedRecipes)
+    : recipeGrid.innerHTML = `<p>Sorry, we couldn't find any recipes for your search of "${searchBar.value}"</p>`
 }
 
 // Exports
