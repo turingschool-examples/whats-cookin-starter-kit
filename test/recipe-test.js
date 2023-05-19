@@ -282,7 +282,7 @@ describe('filterRecipes', () => {
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   })
 
-  it('should not return no recipes if no ingredient match is found', () => {
+  it('should not return any recipes if no ingredient match is found', () => {
     expectedRecipes = [];
     ingredientSearched = "no match string";
     filteredRecipes = filterRecipesByIngredient(sampleRecipeData, ingredientSearched, sampleIngredientsData);
