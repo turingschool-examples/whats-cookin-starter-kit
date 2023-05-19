@@ -3,7 +3,7 @@
 
 import './styles.css'
 import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe } from './domUpdates';
-import { getIngredientAmounts, getInstructions } from './recipes'; 
+import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
 import './images/antipasti.png';
 import './images/antipasto.png'
@@ -44,7 +44,8 @@ const getRecipeCard = (recipe) => {
     instructions: getInstructions(recipe),
     ingredients: getIngredientAmounts(recipe, ingredientsData),
     image: recipe.image,
-    name: recipe.name
+    name: recipe.name,
+    price: calculateRecipeCost(recipe, ingredientsData)
   }
 return recipeCard;
 }
@@ -78,5 +79,6 @@ export {
   clickedRecipe,
   getRecipeCard,
   currentRecipeCard,
-  ingredientsList
+  ingredientsList,
+  allRecipes
 }
