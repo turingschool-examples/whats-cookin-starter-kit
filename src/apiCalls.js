@@ -2,7 +2,7 @@
 let currentUser;
 let pageData = {
   activeTags: [],
-  currentView: '',
+  currentView: 'ourRecipes',
   currentRecipeCard: {}
 };
 
