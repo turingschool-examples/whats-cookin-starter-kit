@@ -1,3 +1,11 @@
+// DATA MODEL 
+let currentUser;
+let pageData = {
+  activeTags: [],
+  currentView: 'ourRecipes',
+  currentRecipeCard: {}
+};
+
 // Your fetch requests will live here!
 
 

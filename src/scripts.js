@@ -34,9 +34,6 @@ const closeRecipeButton = document.querySelector('#closeRecipe');
 const tagArea = document.querySelector('.tag-area');
 const ingredientsList = document.querySelector('#ingredientsList');
 
-// DATA MODEL 
-let currentRecipeCard = {};
-
 //FUNCTIONS 
 const getRecipeCard = (recipe) => {
   const recipeCard =  {
@@ -78,7 +75,6 @@ export {
   tagArea,
   clickedRecipe,
   getRecipeCard,
-  currentRecipeCard,
   ingredientsList,
   allRecipes
 }
