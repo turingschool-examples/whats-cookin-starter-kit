@@ -54,7 +54,9 @@ const saveRecipe = (recipe) => {
   return recipesToCook
 }
 
+const deleteRecipe = (recipe) => {
 
+}
 export {
   recipesFromTag,
   recipesfromName,
@@ -62,5 +64,6 @@ export {
   findIngredientNames,
   calculateRecipeCost,
   recipeInstructions,
-  saveRecipe
+  saveRecipe,
+  deleteRecipe
 }
