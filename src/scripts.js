@@ -8,11 +8,7 @@ import './images/bookmark.png';
 import './images/bookmark-filled.png'
 
 import { getRandomUser } from './users';
-import { sampleIngredientsData, sampleRecipeData } from '../test/sampleIngredients';
-import { sampleUserData } from '../test/sampleUsers';
-import { recipesToCook, removeRecipes} from './recipes-to-cook';
-import { recipeData }  from './data/recipes';
-import { ingredientsData } from './data/ingredients';
+import { fetchAPI } from './apiCalls';
 import {
   toMyRecipeView,
   toDashboardView,
@@ -22,10 +18,12 @@ import {
   searchBarClicked,
   removeRecipeCard,
 } from './domUpdates';
-import { findRecipe } from './filters';
 
 //GLOBAL VARIABLE
 let currentUser
+let ingredientsData
+let userData
+let recipeData
 
 // QUERY SELECTORS
 const myRecipesBtn = document.querySelector('#myRecipes');
@@ -38,28 +36,44 @@ const searchBar = document.querySelector('#searchInput');
 const searchByToggle = document.querySelector('#searchSelect');
 const searchButton = document.querySelector('#searchIconBackground');
 
-// EVENT LISTENERS
-searchButton.addEventListener('click', searchBarClicked);
-myRecipesBtn.addEventListener('click', toMyRecipeView);
-dashboardBtn.addEventListener('click', toDashboardView);
-mainViewCardContainer.addEventListener('click', (e) => {
-  toggleBookmark(e, currentUser, recipeData);
-});
-window.addEventListener('load', () => {
-  currentUser = getRandomUser(sampleUserData);
+const start = () => {
+  Promise.all([fetchAPI('users'), fetchAPI('ingredients'), fetchAPI('recipes')])
+ .then((data) => {
+
+  userData = data[0];
+  ingredientsData = data[1].ingredients;
+  recipeData = data[2].recipes;
+  currentUser = getRandomUser(userData);
+
   renderRecipeCards(mainViewCardContainer, recipeData, currentUser);
-});
+ });
+};
+
+// EVENT LISTENERS
+window.addEventListener('load', start);
+searchButton.addEventListener('click', searchBarClicked);
 singleRecipeView.addEventListener('click', (e) => {
-  toggleBookmark(e, currentUser, recipeData)});
+  toggleBookmark(e, currentUser, recipeData);
+}); 
 mainView.addEventListener('click', (e) => {
   if (e.target.classList.contains('recipe-img') || e.target.classList.contains('recipe-name')) {
     renderSingleRecipeView(e, recipeData, ingredientsData);
-  }
+  };
 });
-myRecipesView.addEventListener('click', (e) => {
-  toggleBookmark(e, currentUser, recipeData);
-  removeRecipeCard(e);
-})
+myRecipesBtn.addEventListener('click', () => {
+  toMyRecipeView(currentUser);
+  console.log(currentUser)
+});
+ dashboardBtn.addEventListener('click', () => {
+   toDashboardView(currentUser);
+ });
+ mainViewCardContainer.addEventListener('click', (e) => {
+   toggleBookmark(e, currentUser, recipeData);
+ });
+ myRecipesView.addEventListener('click', (e) => {
+   toggleBookmark(e, currentUser, recipeData);
+   removeRecipeCard(e);
+ });
 
 export {
   mainView,

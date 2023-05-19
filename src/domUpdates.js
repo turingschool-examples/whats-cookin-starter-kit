@@ -7,7 +7,6 @@ import {
   mainView,
   singleRecipeView,
   searchBar,
-  searchButton,
   searchByToggle,
   mainViewCardContainer,
   currentUser,
@@ -16,7 +15,7 @@ import { filterByName, filterByTag } from './filters';
 import { recipeData } from './data/recipes';
 
 // EVENT HANDLERS
-const toMyRecipeView = () => {
+const toMyRecipeView = (currentUser) => {
   mainView.classList.add('hidden');
   myRecipesView.classList.remove('hidden');
   singleRecipeView.innerHTML= '';
@@ -24,7 +23,7 @@ const toMyRecipeView = () => {
   renderRecipeCards(myRecipesView, currentUser.recipesToCook, currentUser);
 };
 
-const toDashboardView = () => {
+const toDashboardView = (currentUser) => {
   mainView.classList.remove('hidden');
   myRecipesView.classList.add('hidden');
   renderRecipeCards(mainViewCardContainer, recipeData, currentUser);
@@ -122,35 +121,19 @@ const isUnchecked = (e) => {
   }
 };
 
-const toggleBookmark = (e, currentUser, recipeData) => {
-  if (e.target.classList[0]=== 'bookmark-icon') {
-    if(isUnchecked(e)) {
-      recipesToCook(e.target.id, currentUser, recipeData)
-      console.log(currentUser)
-      e.target.classList.add('hidden')
-      e.target.nextElementSibling.classList.remove('hidden');
-    } else {
-      removeRecipes(e.target.id, currentUser)
-      console.log(currentUser)
-      e.target.classList.add('hidden')
-      e.target.previousElementSibling.classList.remove('hidden');
-    }
-  }
-};
-
-
 const findRecipe = (e, recipes) => {
-     return recipes.find((recipe) => {
-        if (e.target.classList.contains('recipe-name')) {
-          return recipe.id === parseInt(e.target.parentElement.parentElement.id);
-        }
-        return recipe.id === parseInt(e.target.id);
-      });
+  return recipes.find((recipe) => {
+     if (e.target.classList.contains('recipe-name')) {
+       return recipe.id === parseInt(e.target.parentElement.parentElement.id);
+     }
+     return recipe.id === parseInt(e.target.id);
+   });
 };
 
 const renderSingleRecipeView = (e, recipes, ingredients) => {
   let recipe = findRecipe(e, recipes);
   mainView.classList.add('hidden');
+  myRecipesView.innerHTML = ''
   singleRecipeView.classList.remove('hidden');
   singleRecipeView.innerHTML = '';
   singleRecipeView.innerHTML += `
@@ -213,6 +196,22 @@ const removeRecipeCard = (e) => {
     e.target.parentElement.parentElement.parentElement.remove();
   };
 }
+
+  const toggleBookmark = (e, currentUser, recipeData) => {
+    if (e.target.classList[0]=== 'bookmark-icon') {
+      if(isUnchecked(e)) {
+        recipesToCook(e.target.id, currentUser, recipeData)
+        console.log(currentUser)
+        e.target.classList.add('hidden')
+        e.target.nextElementSibling.classList.remove('hidden');
+      } else {
+        removeRecipes(e.target.id, currentUser)
+        console.log(currentUser)
+        e.target.classList.add('hidden')
+        e.target.previousElementSibling.classList.remove('hidden');
+      }
+    }
+  };
 
 export {
   toMyRecipeView,
