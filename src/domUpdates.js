@@ -120,8 +120,7 @@ const renderBookmarks = (currentUser, recipe) => {
 //redundant code- potentially refactor
 
 const renderRecipeCards = (view, recipes, currentUser) => {
-  mainViewCardContainer.innerHTML = '';
-  myRecipesView.innerHTML = '';
+  clearView([mainViewCardContainer, myRecipesView])
   recipes.forEach((recipe) => {
     view.innerHTML += `
     <article class="recipe-card" id="${recipe.id}">
