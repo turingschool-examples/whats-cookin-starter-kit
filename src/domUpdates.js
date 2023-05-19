@@ -12,6 +12,7 @@ const allFilterDisplay = document.querySelector('.all-filters');
 const checkCategories = document.getElementsByName('checkbox');
 const searchInput = document.getElementById('search-bar');
 const singleRecipeDisplay = document.querySelector('.single-recipe-display');
+const homeButton = document.querySelector('.title')
 
 //Event Listeners
 allRecipesButton.addEventListener('click', showRecipes);
@@ -32,6 +33,11 @@ allRecipeDisplay.addEventListener('click', function (event) {
   viewSelectedRecipe(event);
 });
 
+homeButton.addEventListener('click', showHomePage)
+
+
+
+
 //Event Handlers/Functions
 function showSearchResults() {
   let searchValue = searchInput.value
@@ -45,6 +51,12 @@ function showSearchResults() {
       <p>Total Cost: $..</p>
     </div>`)
 };
+
+function showHomePage() {
+  addHiddenClass([allRecipeDisplay], [allFilterDisplay]);
+  removeHiddenClass([frontRecipeDisplay]);
+}
+
 
 function renderFilteredRecipes() {
   const tags = Array.from(checkCategories).filter((category) => category.checked).map(c => c.id)
