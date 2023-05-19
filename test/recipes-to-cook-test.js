@@ -59,10 +59,17 @@ describe('removeRecipes', () => {
     removeRecipes(104, currentUser);
     expect(currentUser.recipesToCook).to.deep.equal([sampleRecipeData[4], sampleRecipeData[1]]);
   })
+
+  it('return message if recipe cannot be deleted', () => {
+    let currentUser = {
+      id: 1,
+      name: "Sadye Welch",
+      recipesToCook: []
+    }
+
+    recipesToCook(101, currentUser, sampleRecipeData);
+    recipesToCook(105, currentUser, sampleRecipeData);
+    recipesToCook(102, currentUser, sampleRecipeData);
+    expect(removeRecipes(undefined, currentUser)).to.equal('Cannot delete recipe');
+  });
 });
-//we need to have current suer and assign it to a user
-//we can expect the recipes to cook to deep
-//equal an array of recipe numbers
-//sad path: ? no event.target so undefined
-//removeREcips = test array length or a deep equal
-//sadpath
