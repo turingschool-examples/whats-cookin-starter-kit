@@ -1,6 +1,13 @@
 // Imports
 import {recipeData} from './data/recipes'
-import {recipeGrid, clickedRecipe, tagArea, getRecipeCard, allRecipes, ingredientsList} from './scripts'
+import {
+  recipeGrid,
+  clickedRecipe,
+  tagArea,
+  getRecipeCard,
+  allRecipes,
+  ingredientsList
+} from './scripts'
 
 let currentRecipeCard = require('./scripts');
 
@@ -194,13 +201,17 @@ const updateCurrentRecipe = recipeCard => {
   currentRecipeCard = getRecipeCard(thisRecipe);
 }
 
-const populateRecipeName = currentRecipe => {
-  document.querySelector('#recipeName').innerHTML = `<h1>${currentRecipe.name}</h1>`
+const populateRecipeHeader = currentRecipe => {
+  document.querySelector('#recipeName').innerHTML = `
+  <h1>${currentRecipe.name}</h1>
+  <div class="individual-recipe-image">
+    <img src="${currentRecipe.image}"></img>
+  </div>
+  `
 }
 
 const openRecipeCard = () => {
   allRecipes.classList.add('blur')
-  getIngredients(currentRecipeCard);
   clickedRecipe.classList.toggle("hidden");
   clickedRecipe.classList.toggle("flex");
   clickedRecipe.classList.toggle("fade-in");
@@ -208,8 +219,9 @@ const openRecipeCard = () => {
 
 const showRecipe = (recipeCard) => {
   updateCurrentRecipe(recipeCard);
+  populateRecipeHeader(currentRecipeCard);
   populateInstructions(currentRecipeCard);
-  populateRecipeName(currentRecipeCard);
+  populateIngredients(currentRecipeCard);
   openRecipeCard();
 };
 
@@ -219,10 +231,10 @@ const closeRecipe = () => {
   clickedRecipe.classList.add("hidden");
   clickedRecipe.classList.remove("flex");
   clickedRecipe.classList.remove("fade-in");
-  ingredientsList.innerHTML = '';
 };
 
-const getIngredients = currentRecipeCard => {
+const populateIngredients = currentRecipeCard => {
+  ingredientsList.innerHTML = '';
   createIngredientsHTML(currentRecipeCard.ingredients);
 };
 

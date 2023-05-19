@@ -10,6 +10,7 @@ body {
 h1 {
   text-align: center;
   font-size: 55px;
+  z-index: 2;
 }
 
 /* Tag box */
@@ -264,6 +265,26 @@ h3 {
   height: 97%;
 }
 
+.individual-recipe-image {
+  position: absolute;
+  bottom:0;
+  right:0;
+  flex-shrink: 0;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+  z-index: 1;
+  margin-right: -40px;
+}
+
+.individual-recipe-image img {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
+}
+
 label {
   color: black;
   font-family: Lexend;
@@ -298,7 +319,8 @@ input {
 }
 
 #recipeName {
-  display: flex; 
+  display: flex;
+  position: relative;
   align-items: center;
   height: 40%;
   width: 100%;
@@ -351,7 +373,7 @@ input {
   width: 90%;
 }
 
-.step{
+.step {
   transform: rotate(-0.25turn);
   min-width: 6rem;
   padding: 15px, 0%, 15px;
@@ -364,7 +386,7 @@ input {
 
 #recipeRightSide h3 {
   visibility: visible;
-  padding-left: 30px;
+  padding-left: 50px;
   opacity: 100;
   color: black;
   font-size: 55px;
