@@ -55,7 +55,8 @@ const saveRecipe = (recipe) => {
 }
 
 const deleteRecipe = (recipe) => {
-
+  recipesToCook.splice(recipe);
+  return recipesToCook;
 }
 export {
   recipesFromTag,

@@ -146,4 +146,12 @@ describe('deleteRecipe', () => {
   it('should be a function', () => {
     expect(deleteRecipe).to.be.a('function');
   });
+
+  it('should be able to remove a recipe from the data model array', () => {
+    const recipes = saveRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
+    const newRecipes = deleteRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
+
+    expect(newRecipes.length).to.equal(0);
+    expect(newRecipes).to.deep.equal(recipesToCook);
+  });
 });
