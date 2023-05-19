@@ -256,7 +256,11 @@ const createIngredientsHTML = ingredients => {
 }
 
 const searchForRecipes = () => {
-  searchedRecipes = searchRecipes(recipeData, ingredientsData, searchBar.value)
+  const data = {
+    ourRecipes: recipeData,
+    yourRecipes: null
+  }
+  let searchedRecipes = searchRecipes(data[pageData.currentView], ingredientsData, searchBar.value)
   searchedRecipes.length  
     ? renderGrid(searchedRecipes)
     : recipeGrid.innerHTML = `<p>Sorry, we couldn't find any recipes for your search of "${searchBar.value}"</p>`
