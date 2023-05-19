@@ -7,6 +7,7 @@ const searchButton = document.querySelector('.submit-button');
 const favoriteButton = document.querySelector('.favorite-button');  
 const tags = document.querySelectorAll('.tag');
 const mainPanel = document.querySelector('.main-panel');
+const homeButton = document.querySelector('.home-button')
 let page = {mode: 'home'};
 
 // Event Handlers
@@ -82,6 +83,12 @@ const searchRecipe = recipes => {
   }
 }
 
+const toggleButtons = () => {
+  homeButton.classList.toggle('hidden');
+  favoriteButton.classList.toggle('hidden');
+  }
+
+
 export {
   user,
   userInput,
@@ -89,6 +96,7 @@ export {
   favoriteButton,
   tags,
   mainPanel,
+  homeButton,
   getRandomIndex,
   toggleMode,
   viewRecipe,
@@ -96,5 +104,6 @@ export {
   viewRecipeInfo,
   filterRecipeByTag,
   searchRecipe, 
-  loadUsers
+  loadUsers, 
+  toggleButtons
 }
