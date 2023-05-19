@@ -1,7 +1,8 @@
 //NOTE: Your DOM manipulation will occur in this file
 import recipeData from "./data/recipes";
 import { recipesFromTag } from "./recipeUtils";
-import { recipesfromName } from '../src/recipeUtils';
+import { recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions } from "../src/recipeUtils";
+import ingredientsData from "./data/ingredients";
 
 // Query Selectors:
 const allRecipesButton = document.querySelector('.all-recipes');
@@ -10,6 +11,7 @@ const allRecipeDisplay = document.querySelector('.all-recipes-display');
 const allFilterDisplay = document.querySelector('.all-filters');
 const checkCategories = document.getElementsByName('checkbox');
 const searchInput = document.getElementById('search-bar');
+const singleRecipeDisplay = document.querySelector('.single-recipe-display');
 
 //Event Listeners
 allRecipesButton.addEventListener('click', showRecipes);
@@ -24,24 +26,28 @@ searchInput.addEventListener('keypress', function (e) {
   }
 })
 
+allRecipeDisplay.addEventListener('click', function (event) {
+  addHiddenClass([allRecipeDisplay]);
+  removeHiddenClass([singleRecipeDisplay]);
+  viewSelectedRecipe(event);
+});
+
 //Event Handlers/Functions
 function showSearchResults() {
   let searchValue = searchInput.value
   removeHiddenClass([allRecipeDisplay, allFilterDisplay])
   addHiddenClass([frontRecipeDisplay]);
     allRecipeDisplay.innerHTML = ''
-    console.log(recipesfromName(recipeData, searchValue).forEach(recipe => allRecipeDisplay.innerHTML += `<div class = "recipe-wrapper">
+    recipesfromName(recipeData, searchValue).forEach(recipe => allRecipeDisplay.innerHTML += `<div class = "recipe-wrapper">
     <img id="${recipe.name}" src="${recipe.image}" class="recipe">
     <div class = "recipe-info">
       <p>${recipe.name}</p>
       <p>Total Cost: $..</p>
     </div>`)
-  )
 };
 
 function renderFilteredRecipes() {
   const tags = Array.from(checkCategories).filter((category) => category.checked).map(c => c.id)
-  console.log(tags)
   if (tags.length === 0) {
     showRecipes()
     return
@@ -56,15 +62,33 @@ function renderFilteredRecipes() {
       </div>`)
 };
 
+function viewSelectedRecipe(event){
+  const recipeName = event.target.id;
+  const selectedRecipe = findRecipe(recipeData, recipeName);
+  const recipeCost = calculateRecipeCost(selectedRecipe, ingredientsData);
+  const ingredients = findIngredientNames(recipeData, recipeName);
+  const instructions = recipeInstructions(selectedRecipe);
+  addHiddenClass([allFilterDisplay]);
+  singleRecipeDisplay.innerHTML= `
+  <h2>${selectedRecipe.name}</h2>
+  <img id="${selectedRecipe.id}" src="${selectedRecipe.image}" class="recipe" alt='${selectedRecipe.name}'>
+  <p class="total-cost-box">This recipe costs a total of: $${recipeCost} to make!</p>
+  <p class="ingredient-box">The ingredients you will need to make this recipe are: <br>
+  ${ingredients}</p>
+  <p class="instruction-box">Instructions: <br>
+  ${instructions}</p>`;
+}
+
 function showRecipes() {
-  removeHiddenClass([allRecipeDisplay, allFilterDisplay])
-  addHiddenClass([frontRecipeDisplay]);
+  removeHiddenClass([allRecipeDisplay, allFilterDisplay]);
+  addHiddenClass([frontRecipeDisplay, singleRecipeDisplay]);
   allRecipeDisplay.innerHTML = ''
-  recipeData.forEach(recipe => allRecipeDisplay.innerHTML += `<div class = "recipe-wrapper">
-  <img id="${recipe.name}" src="${recipe.image}" class="recipe">
+  recipeData.forEach(recipe => allRecipeDisplay.innerHTML += `
+  <div class = "recipe-wrapper">
+    <img id="${recipe.name}" src="${recipe.image}" class="recipe">
   <div class = "recipe-info">
     <p>${recipe.name}</p>
-  </div>`)
+  </div>`);
 };
 
 function removeHiddenClass(elements) {
