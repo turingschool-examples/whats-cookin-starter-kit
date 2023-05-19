@@ -1,4 +1,12 @@
-// Your fetch requests will live here!
 
 
-console.log('I will be a fetch request!')
+const fetchUsers = () => {
+ return fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
+    .then(response => response.json())
+    .catch(err => console.log(err))
+}
+
+
+export {
+  fetchUsers
+}
