@@ -1,17 +1,21 @@
 //NOTE: Data model and non-dom manipulating logic will live in this file.
 import './styles.css';
-import {userTestData} from './apiCalls';
+import {fetchUsers} from './apiCalls';
 import './images/turing-logo.png';
 import './images/clipart16385.png';
 import { toggleRecipesToCook } from './recipe.js';
-import { searchButton, favoriteButton, tags, mainPanel, displayRandomUser, toggleMode, viewAllRecipes, viewRecipeInfo, filterRecipeByTag, searchRecipe } from './domUpdates.js';
+import { searchButton, favoriteButton, tags, mainPanel, loadUsers, toggleMode, viewAllRecipes, viewRecipeInfo, filterRecipeByTag, searchRecipe} from './domUpdates.js';
+
+let userTestData;
 
 // Event Listeners
 window.addEventListener('load', () => {
   viewAllRecipes(),
-  displayRandomUser()
+  fetchUsers()
+    .then(response => loadUsers(response.users))
 });
 
+// console.log('test data', userTestData)
 mainPanel.addEventListener('click', e => {
   viewRecipeInfo(e),
   toggleRecipesToCook(e)

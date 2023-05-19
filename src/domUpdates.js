@@ -1,5 +1,6 @@
-import { recipeTestData, ingredientTestData, userTestData } from './data/testData.js';
+import { recipeTestData, ingredientTestData } from './data/testData.js';
 import { determineIngredientNames, calculateCost, returnInstructions } from './recipe.js';
+import { userTestData} from './apiCalls.js'
 
 // Global Variables
 const user = document.querySelector('.user')
@@ -77,6 +78,14 @@ const searchRecipe = recipes => {
   }
 }
 
+const loadUsers = (userData) => {
+  // fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
+  // .then(response => response.json())
+  // .then(data => data.users.forEach(u => userTestData.push(u)))
+  console.log('data', userData[0])
+  user.innerText = userData[getRandomIndex(userData)].name
+}
+
 export {
   user,
   userInput,
@@ -92,5 +101,6 @@ export {
 //   organizeInstructions,
   viewRecipeInfo,
   filterRecipeByTag,
-  searchRecipe
+  searchRecipe, 
+  loadUsers
 }
