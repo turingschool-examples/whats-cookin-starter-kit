@@ -1,6 +1,6 @@
 import recipeData from '../src/data/recipes-sample.js';
 import ingredientsData from '../src/data/ingredients-sample.js';
-
+import recipesToCook from './data/recipesToCook-sample.js';
 
 function recipesFromTag(recipes, tags) {
   const filtered = recipes.filter((recipe) => {
@@ -49,8 +49,9 @@ const calculateRecipeCost = (recipe, ingredients) => {
    return instructions.join(' ')
  };
 
-const saveRecipe = () => {
-
+const saveRecipe = (recipe) => {
+  recipesToCook.push(recipe)
+  return recipesToCook
 }
 
 
