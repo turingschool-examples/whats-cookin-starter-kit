@@ -3,8 +3,8 @@ import './styles.css';
 import { savePromises } from './apiCalls';
 import './images/turing-logo.png';
 import './images/clipart16385.png';
-import { toggleRecipesToCook } from './recipe.js';
-import { searchButton, favoriteButton, tags, mainPanel, loadUsers, toggleMode, viewAllRecipes, viewRecipeInfo, filterRecipeByTag, searchRecipe } from './domUpdates.js';
+import { recipesToCook, toggleRecipesToCook } from './recipe.js';
+import { searchButton, favoriteButton, tags, mainPanel, loadUsers, viewAllRecipes, viewRecipeInfo, filterRecipeByTag, searchRecipe } from './domUpdates.js';
 
 let users;
 let recipes;
@@ -24,7 +24,7 @@ window.addEventListener('load', () => {
 
 mainPanel.addEventListener('click', e => {
   viewRecipeInfo(recipes, ingredients, e),
-  toggleRecipesToCook(e)
+  toggleRecipesToCook(e, recipes)
 });
 
 tags.forEach(tag => {
@@ -37,7 +37,6 @@ searchButton.addEventListener('click', () => {
   searchRecipe(recipes);
 });
 
-favoriteButton.addEventListener('click', e => {
-  toggleMode(e),
-  viewAllRecipes()
+favoriteButton.addEventListener('click', () => {
+  viewAllRecipes(recipesToCook)
 });

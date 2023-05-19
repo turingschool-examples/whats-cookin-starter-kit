@@ -14,7 +14,7 @@ const calculateCost = (recipe, ingredients) => {
 
 const returnInstructions = recipe => recipe.instructions.reduce((string, instruction) => `${string}` + `${instruction.number}) ${instruction.instruction}`, '');
 
-const toggleRecipesToCook = e => {
+const toggleRecipesToCook = (e, recipes) => {
   recipes.forEach(recipe => {
     if (Number(e.target.id) === recipe.id && !recipesToCook.some(recipe => Number(e.target.id) === recipe.id)) {
       recipesToCook.push(recipe);
@@ -25,6 +25,7 @@ const toggleRecipesToCook = e => {
 }
 
 export {
+  recipesToCook,
   filterByTag,
   filterByName,
   determineIngredientNames,
