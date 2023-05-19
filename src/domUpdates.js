@@ -80,14 +80,15 @@ function viewSelectedRecipe(event){
 }
 
 function showRecipes() {
-  removeHiddenClass([allRecipeDisplay, allFilterDisplay])
-  addHiddenClass([frontRecipeDisplay]);
+  removeHiddenClass([allRecipeDisplay, allFilterDisplay]);
+  addHiddenClass([frontRecipeDisplay, singleRecipeDisplay]);
   allRecipeDisplay.innerHTML = ''
-  recipeData.forEach(recipe => allRecipeDisplay.innerHTML += `<div class = "recipe-wrapper">
-  <img id="${recipe.name}" src="${recipe.image}" class="recipe">
+  recipeData.forEach(recipe => allRecipeDisplay.innerHTML += `
+  <div class = "recipe-wrapper">
+    <img id="${recipe.name}" src="${recipe.image}" class="recipe">
   <div class = "recipe-info">
     <p>${recipe.name}</p>
-  </div>`)
+  </div>`);
 };
 
 function removeHiddenClass(elements) {
