@@ -16,7 +16,7 @@ h1 {
 nav {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
 }
 
@@ -29,24 +29,12 @@ nav {
   cursor: pointer;
 }
 
-.nav-child > label {
-  color: white; 
-  opacity: 0.4;
-  font-size: 1.25rem;
-  cursor: pointer;
-}
-
 .nav-icon {
   height: 1.75rem;
   background-color: white;
   opacity: 0.4;
   border-radius: 50%;
   margin: 0 auto;
-}
-
-#userNav{
-  padding-right: 5%;
-  border-right: 1px solid #fbbf83;
 }
 
 #searchBar {

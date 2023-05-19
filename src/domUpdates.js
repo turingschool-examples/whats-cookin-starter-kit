@@ -181,7 +181,7 @@ const addScrollBar = (element) => {
 const populateInstructions = (recipe) => {
   const instructions = getInstructionHTML(recipe)
   const instructionSection= document.querySelector('#recipeInstructions')
-  instructionSection.innerHTML = `<p>Method</p>
+  instructionSection.innerHTML = `<p>Directions</p>
                                   <section class='instruction-steps'> 
                                     ${instructions.join('')} 
                                   </section>`
