@@ -14,7 +14,7 @@ const calculateCost = recipe => {
   return recipe.ingredients.reduce((sum, ingredient) => sum + (ingredient.quantity.amount * ingredient.cost), 0) / 100;
 };
 
-const returnInstructions = recipe => recipe.instructions.reduce((string, instruction) => `${string}` + `${instruction.number}) ${instruction.instruction.replace(`.`, `. `)}`, '');
+const returnInstructions = recipe => recipe.instructions.reduce((string, instruction) => `${string}` + `${instruction.number}) ${instruction.instruction}`, '');
 
 const toggleRecipesToCook = e => {
   recipeTestData.forEach(recipe => {

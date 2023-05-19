@@ -21,7 +21,7 @@ const viewRecipe = recipe => {
   mainPanel.innerHTML += `
   <section class='recipe-container box' id='${recipe.id}'>
     <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
-    <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
+    <h3 class='recipe-name' id="${recipe.id}">${recipe.name}</h3>
   </section>
   `;
 }
@@ -38,7 +38,7 @@ const viewRecipeInfo = e => {
     let selectedRecipe = recipeTestData.find(recipe => recipe.id === Number(e.target.id));
     mainPanel.innerHTML = `
     <div class="test">
-      <h2 class='recipe-name'> ${selectedRecipe.name}</h2>
+      <h2 class='recipe-names'> ${selectedRecipe.name}</h2>
       <img class='recipe-img' id='${selectedRecipe.id}' src='${selectedRecipe.image}' alt='${selectedRecipe.name}'>
       <p class='ingredients'>${determineIngredientNames(recipeTestData, ingredientTestData, selectedRecipe.name).join(' -- ')}</p>
       <p class='instructions'>${organizeInstructions(returnInstructions(selectedRecipe))}</p>
