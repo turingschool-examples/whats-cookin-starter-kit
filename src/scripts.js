@@ -2,7 +2,7 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe } from './domUpdates';
+import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe, searchForRecipes } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
 import './images/antipasti.png';
@@ -35,9 +35,12 @@ const clickedRecipe = document.querySelector('#clickedRecipe');
 const closeRecipeButton = document.querySelector('#closeRecipe');
 const tagArea = document.querySelector('.tag-area');
 const ingredientsList = document.querySelector('#ingredientsList');
+const searchBar = document.querySelector('#searchBar');
+const searchBtn = document.querySelector('#searchBtn');
 
 // DATA MODEL 
 let currentRecipeCard = {};
+let searchedRecipes = [];
 
 //FUNCTIONS 
 const getRecipeCard = (recipe) => {
@@ -74,6 +77,8 @@ allRecipes.addEventListener("click", (event) => {
 
 closeRecipeButton.addEventListener("click", closeRecipe);
 
+searchBtn.addEventListener('click', searchForRecipes)
+
 // Exports
 export {
   recipeGrid,
@@ -81,6 +86,8 @@ export {
   clickedRecipe,
   getRecipeCard,
   currentRecipeCard,
+  searchedRecipes,
   ingredientsList,
-  allRecipes
+  allRecipes,
+  searchBar
 }

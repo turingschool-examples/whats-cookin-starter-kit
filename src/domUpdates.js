@@ -1,8 +1,11 @@
 // Imports
 import {recipeData} from './data/recipes'
-import {recipeGrid, clickedRecipe, tagArea, getRecipeCard, allRecipes, ingredientsList} from './scripts'
+import { ingredientsData } from './data/ingredients';
+import {recipeGrid, clickedRecipe, tagArea, getRecipeCard, allRecipes, ingredientsList, searchBar} from './scripts'
+import { searchRecipes } from './recipes';
 
 let currentRecipeCard = require('./scripts');
+let searchedRecipes = require('./scripts')
 
 // functions
 
@@ -237,11 +240,20 @@ const createIngredientsHTML = ingredients => {
     `;
   });
 }
+
+const searchForRecipes = () => {
+  searchedRecipes = searchRecipes(recipeData, ingredientsData, searchBar.value)
+  const gridData = makeRecipeColumnData(searchedRecipes)
+  recipeGrid.innerHTML = ''
+  recipeGrid.innerHTML = createGridHTML(gridData);
+}
+
 // Exports
 export {
   renderGrid,
   makeTagActive,
   pageLoadRenders,
   showRecipe,
-  closeRecipe
+  closeRecipe,
+  searchForRecipes
 }
