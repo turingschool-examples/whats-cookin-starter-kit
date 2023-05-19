@@ -13,7 +13,7 @@ h1 {
 }
 
 /* NAV BAR */
-.navigation {
+nav {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -24,18 +24,16 @@ h1 {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 10%;
+  width: 13%;
   margin: 2%;
+  cursor: pointer;
 }
 
 .nav-child > label {
   color: white; 
   opacity: 0.4;
   font-size: 1.25rem;
-}
-
-#searchNav {
-  width: 15%;
+  cursor: pointer;
 }
 
 .nav-icon {
@@ -43,11 +41,19 @@ h1 {
   background-color: white;
   opacity: 0.4;
   border-radius: 50%;
+  margin: 0 auto;
+}
+
+#userNav{
+  padding-right: 5%;
+  border-right: 1px solid #fbbf83;
 }
 
 #searchBar {
   border-radius: 15px;
 }
+
+
 
 /* Tag box */
 .tag-area {
@@ -301,19 +307,19 @@ h3 {
   height: 97%;
 }
 
-label {
+.ingredient-label {
   color: black;
   font-family: Lexend;
   font-size: 20px;
   padding: 0 0 10px 30px;
 }
 
-label:hover {
+.ingredient-label:hover {
   cursor: pointer;
   transform: scale(1.05);
 }
 
-input {
+.ingredient-input {
   accent-color: rgb(0, 172, 0);
   transform: scale(2);
   clip-path: circle(50% at 50% 50%);

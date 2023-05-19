@@ -200,7 +200,6 @@ const populateRecipeName = currentRecipe => {
 
 const openRecipeCard = () => {
   allRecipes.classList.add('blur')
-  getIngredients(currentRecipeCard);
   clickedRecipe.classList.toggle("hidden");
   clickedRecipe.classList.toggle("flex");
   clickedRecipe.classList.toggle("fade-in");
@@ -208,6 +207,7 @@ const openRecipeCard = () => {
 
 const showRecipe = (recipeCard) => {
   updateCurrentRecipe(recipeCard);
+  getIngredients(currentRecipeCard);
   populateInstructions(currentRecipeCard);
   populateRecipeName(currentRecipeCard);
   openRecipeCard();
@@ -230,8 +230,8 @@ const createIngredientsHTML = ingredients => {
   ingredients.forEach((ingredient, i) => {
     let ingredientLabelName = `ingredient${i}`
     ingredientsList.innerHTML += `
-    <label for="${ingredientLabelName}">
-      <input id="${ingredientLabelName}" type="checkbox" name="${ingredientLabelName}" />
+    <label class="ingredient-label" for="${ingredientLabelName}">
+      <input class="ingredient-input" id="${ingredientLabelName}" type="checkbox" name="${ingredientLabelName}" />
       ${ingredient.amount} ${ingredient.unit} ${ingredient.name}
     </label>
     `;
