@@ -1,8 +1,7 @@
 import { expect } from 'chai';
-import { recipesFromTag, recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions, saveRecipe, deleteRecipe } from '../src/recipeUtils';
+import { recipesFromTag, recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions } from '../src/recipeUtils';
 import recipeData from '../src/data/recipes-sample.js';
 import ingredientsData from '../src/data/ingredients-sample.js';
-import recipesToCook from '../src/data/recipesToCook-sample.js';
 
 
 describe('RecipeUtils', () => {
@@ -28,7 +27,7 @@ describe('RecipeUtils', () => {
     expect(filtered.length).to.equal(2)
     const names = filtered.map(f => f.name)
     expect(names).to.have.members(expected)
-  })
+  });
   it ('Should filter recipes based on name', () => {
     const filtered = recipesfromName(recipeData, 'Thai Chicken Tenders with Broiled Pineapple Slaw')
     expect(filtered.length).to.equal(1)
@@ -43,7 +42,7 @@ describe('RecipeUtils', () => {
     const filtered = recipesfromName(recipeData, 'Spicy Potatoes')
     expect(filtered.length).to.equal(0)
   })
-})
+});
 
 describe('findRecipe', () => {
   it('should be a function', () => {
@@ -125,41 +124,5 @@ describe('recipeInstructions', () => {
     const recipe = recipeData[1000]
     const instructions = (recipeInstructions(recipe));
     expect(instructions).to.equal("Sorry, that recipe cannot be found.")
-  });
-
-});
-
-describe('saveRecipe', () => {
-  it('should be a function', () => {
-    expect(saveRecipe).to.be.a('function');
-  });
-
-  it('should be able to add a recipe to the data model array', () => {
-    const savedRecipes = saveRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
-
-    expect(savedRecipes.length).to.equal(1);
-    expect(savedRecipes[0]).to.equal(recipesToCook[0]);
-  });
-
-  it('should not have duplicate recipes in the array', () => {
-    const savedRecipes = saveRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
-    const savedRecipeDuplicate = saveRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
-
-    expect(savedRecipes.length).to.equal(1);
-    expect(savedRecipes[0]).to.equal(recipesToCook[0]);
-  });
-});
-
-describe('deleteRecipe', () => {
-  it('should be a function', () => {
-    expect(deleteRecipe).to.be.a('function');
-  });
-
-  it('should be able to remove a recipe from the data model array', () => {
-    const recipes = saveRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
-    const newRecipes = deleteRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
-
-    expect(newRecipes.length).to.equal(0);
-    expect(newRecipes).to.deep.equal(recipesToCook);
   });
 });

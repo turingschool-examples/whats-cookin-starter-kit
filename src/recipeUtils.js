@@ -1,6 +1,4 @@
-import recipeData from '../src/data/recipes-sample.js';
 import ingredientsData from '../src/data/ingredients-sample.js';
-import recipesToCook from './data/recipesToCook-sample.js';
 
 function recipesFromTag(recipes, tags) {
   const filtered = recipes.filter((recipe) => {
@@ -49,25 +47,11 @@ const calculateRecipeCost = (recipe, ingredients) => {
    return instructions.join(' ')
  };
 
-const saveRecipe = (recipe) => {
-  if(!recipesToCook.includes(recipe)) {
-    recipesToCook.push(recipe);
-    return recipesToCook;
-  }
-  return recipesToCook;
-}
-
-const deleteRecipe = (recipe) => {
-  recipesToCook.splice(recipe);
-  return recipesToCook;
-}
 export {
   recipesFromTag,
   recipesfromName,
   findRecipe,
   findIngredientNames,
   calculateRecipeCost,
-  recipeInstructions,
-  saveRecipe,
-  deleteRecipe
+  recipeInstructions
 }
