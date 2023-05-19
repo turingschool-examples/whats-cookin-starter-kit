@@ -213,7 +213,20 @@ const updateCurrentRecipe = recipeCard => {
 }
 
 const populateRecipeName = currentRecipe => {
-  document.querySelector('#recipeName').innerHTML = `<h1>${currentRecipe.name}</h1>`
+  document.querySelector('#recipeName').innerHTML = `  <h1>${currentRecipe.name}</h1>  `
+}
+
+const populateAddBtn = (currentRecipe, user) => {
+  const reciveSaved = user.recipesToCook.some(recipe => recipe.id === currentRecipe.id);
+  let buttonText;
+  let buttonStatus;
+  if (!recipeSaved) { 
+    buttonText = "Add to Save to Cook Recipes";
+    buttonStatus = "Add";
+  } else {
+    buttonText = "Remove from Save to Cook Recipes";
+    buttonStatus = "Remove";
+  }
 }
 
 const openRecipeCard = () => {
