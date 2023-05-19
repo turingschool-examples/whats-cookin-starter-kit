@@ -58,7 +58,6 @@ const searchResults = () => {
 
 const searchBarClicked = () => {
   clearView([mainViewCardContainer, myRecipesView, singleRecipeView]);
-
   handleSearchResults(setView(), searchResults());
 };
 
@@ -67,13 +66,13 @@ const handleInvalidSearch = (message) => {
   searchBar.placeholder = message;
 };
 
-const handleSearch = (type) => {
-    if (myRecipesView.classList.contains('hidden')) {
-      return filterByTag(searchBar.value, recipeData);
-    } else if (mainView.classList.contains('hidden')) {
-      return filterByTag(searchBar.value, currentUser.recipesToCook);
-    }
-  };
+// const handleSearch = (type) => {
+//     if (myRecipesView.classList.contains('hidden')) {
+//       return filterByTag(searchBar.value, recipeData);
+//     } else if (mainView.classList.contains('hidden')) {
+//       return filterByTag(searchBar.value, currentUser.recipesToCook);
+//     }
+//   };
 
 const handleTagSearch = () => {
   if (myRecipesView.classList.contains('hidden')) {
@@ -137,18 +136,22 @@ const isUnchecked = (e) => {
   }
 };
 
+const toggleHidden = (elements, type) => {
+  elements.forEach((element)=> {
+    element.classList[type]('hidden');
+  })
+}
+
 const toggleBookmark = (e, currentUser, recipeData) => {
   if (e.target.classList[0]=== 'bookmark-icon') {
     if(isUnchecked(e)) {
       recipesToCook(e.target.id, currentUser, recipeData)
-      console.log(currentUser)
-      e.target.classList.add('hidden')
-      e.target.nextElementSibling.classList.remove('hidden');
+      toggleHidden([e.target], 'add');
+      toggleHidden([e.target.nextElementSibling], 'remove');
     } else {
       removeRecipes(e.target.id, currentUser)
-      console.log(currentUser)
-      e.target.classList.add('hidden')
-      e.target.previousElementSibling.classList.remove('hidden');
+      toggleHidden([e.target], 'add');
+      toggleHidden([e.target.previousElementSibling], 'remove');
     }
   }
 };
@@ -165,9 +168,10 @@ const findRecipe = (e, recipes) => {
 
 const renderSingleRecipeView = (e, recipes, ingredients) => {
   let recipe = findRecipe(e, recipes);
-  mainView.classList.add('hidden');
-  singleRecipeView.classList.remove('hidden');
-  singleRecipeView.innerHTML = '';
+  toggleHidden([mainView], 'add');
+  toggleHidden([singleRecipeView], 'remove');
+  clearView([singleRecipeView]);
+  
   singleRecipeView.innerHTML += `
     <div class="single-recipe-view-flex">
       <img class="single-recipe-img" src="${recipe.image}">
