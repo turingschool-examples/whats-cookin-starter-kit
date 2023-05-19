@@ -234,7 +234,6 @@ const closeRecipe = () => {
 };
 
 const populateIngredients = currentRecipeCard => {
-  console.log(currentRecipeCard)
   ingredientsList.innerHTML = `
     <h4>total ingredient cost: ${currentRecipeCard.price}</h4>
   `;
