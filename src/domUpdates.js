@@ -230,8 +230,8 @@ const createIngredientsHTML = ingredients => {
   ingredients.forEach((ingredient, i) => {
     let ingredientLabelName = `ingredient${i}`
     ingredientsList.innerHTML += `
-    <label for=${ingredientLabelName}>
-      <input id=${ingredientLabelName} type="checkbox" name="${ingredientLabelName}" />
+    <label for="${ingredientLabelName}">
+      <input id="${ingredientLabelName}" type="checkbox" name="${ingredientLabelName}" />
       ${ingredient.amount} ${ingredient.unit} ${ingredient.name}
     </label>
     `;
