@@ -1,6 +1,6 @@
 //NOTE: Data model and non-dom manipulating logic will live in this file.
 import './styles.css';
-import apiCalls from './apiCalls';
+import {userTestData} from './apiCalls';
 import './images/turing-logo.png';
 import './images/clipart16385.png';
 import { toggleRecipesToCook } from './recipe.js';
