@@ -1,3 +1,7 @@
+* {
+  font-family: 'Playfair Display', sans-serif;
+}
+
 body {
   background-color: #2c2d30;
   color: white;
@@ -275,6 +279,10 @@ h3 {
     opacity: 1;
   }
 }
+/* Recipe Card */
+.blur{
+  filter: blur(4px);
+}
 
 #clickedRecipe {
   position: fixed;
@@ -284,13 +292,33 @@ h3 {
   right: 0;
   width: 98%;
   border-radius: 50px;
-  background-color: darkgray;
+  background-image: linear-gradient(to right, #535a72ea, #171d2fea);
 }
 
 .recipe-details {
   display: flex;
   flex-direction: column;
   height: 97%;
+}
+
+label {
+  color: black;
+  font-family: Lexend;
+  font-size: 20px;
+  padding: 0 0 10px 30px;
+}
+
+label:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+input {
+  accent-color: rgb(0, 172, 0);
+  transform: scale(2);
+  clip-path: circle(50% at 50% 50%);
+  margin-right: 20px;
+  padding: 10px;
 }
 
 #recipeLeftSide {
@@ -302,27 +330,86 @@ h3 {
 #recipeRightSide {
   width: 40%;
   margin: 10px 10px 10px 0;
-  background-color: #fcfcf3;
+  background-color: #ffffff;
   border-radius: 50px;
 }
 
 #recipeName {
-  background-color: black;
+  display: flex; 
+  align-items: center;
   height: 40%;
   width: 100%;
 }
 
+#recipeName > h1 {
+  text-align: left;
+}
+
 #recipeInstructions {
-  background-color: green;
-  height: 100%;
-  width: 100%;
+  overflow-y: hidden;
+  font-size: 1.35rem;
+  height: 60%;
+  width: 95%;
+  padding: 10px;
+  border-radius: 25px;
+}
+
+.scrollbar {
+  overflow-y: auto;
+  max-height: 80%;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 10px;
+  background-color: #3b4154;
+  border-radius: 5px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #fbbf83;
+  border-radius: 5px;
+}
+
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color:#faac5f;
+}
+
+.single-instruction-step {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 6rem;
+}
+
+.instruction {
+  font-family: Lexend;
+  font-size: smaller;
+  width: 90%;
+}
+
+.step{
+  transform: rotate(-0.25turn);
+  min-width: 6rem;
+  padding: 15px, 0%, 15px;
+  text-align: center;
+  margin: 0;
+  color: #fbbf83;
+  font-family: Lexend;
+  font-size: 1.2rem;
 }
 
 #recipeRightSide h3 {
   visibility: visible;
+  padding-left: 30px;
   opacity: 100;
   color: black;
   font-size: 55px;
+}
+
+#ingredientsList {
+  display: flex;
+  flex-direction: column;
 }
 
 #closeRecipe {

@@ -3,7 +3,7 @@
 
 import './styles.css'
 import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe } from './domUpdates';
-import { getIngredientAmounts, getInstructions } from './recipes'; 
+import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
 import './images/antipasti.png';
 import './images/antipasto.png'
@@ -34,6 +34,7 @@ const allRecipes = document.querySelector('.all-recipes');
 const clickedRecipe = document.querySelector('#clickedRecipe');
 const closeRecipeButton = document.querySelector('#closeRecipe');
 const tagArea = document.querySelector('.tag-area');
+const ingredientsList = document.querySelector('#ingredientsList');
 
 // DATA MODEL 
 let currentRecipeCard = {};
@@ -45,7 +46,8 @@ const getRecipeCard = (recipe) => {
     instructions: getInstructions(recipe),
     ingredients: getIngredientAmounts(recipe, ingredientsData),
     image: recipe.image,
-    name: recipe.name
+    name: recipe.name,
+    price: calculateRecipeCost(recipe, ingredientsData)
   }
 return recipeCard;
 }
@@ -78,5 +80,7 @@ export {
   tagArea,
   clickedRecipe,
   getRecipeCard,
-  currentRecipeCard
+  currentRecipeCard,
+  ingredientsList,
+  allRecipes
 }

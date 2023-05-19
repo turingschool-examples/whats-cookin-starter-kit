@@ -1,6 +1,7 @@
 // Imports
 import {recipeData} from './data/recipes'
-import {recipeGrid, clickedRecipe, tagArea, getRecipeCard} from './scripts'
+import {recipeGrid, clickedRecipe, tagArea, getRecipeCard, allRecipes, ingredientsList} from './scripts'
+
 let currentRecipeCard = require('./scripts');
 
 // functions
@@ -160,21 +161,82 @@ const pageLoadRenders = () => {
   renderTagArea();
 };
 
-const showRecipe = (recipeCard) => {
+const getInstructionHTML = (recipe) => {
+  return recipe.instructions.map((instruction, i) => {
+    if(recipe.instructions.length > 1) {
+      return `<section class='single-instruction-step'> 
+                <p class='step'>STEP ${i+1}</p> 
+                <p class='instruction'>${instruction}</p> 
+              </section>`
+    } else {
+      return `<p>${instruction}</p>`
+    }
+  })
+}
+
+const addScrollBar = (element) => {
+    document.querySelector(element).classList.add('scrollbar')
+}
+
+const populateInstructions = (recipe) => {
+  const instructions = getInstructionHTML(recipe)
+  const instructionSection= document.querySelector('#recipeInstructions')
+  instructionSection.innerHTML = `<p>Method</p>
+                                  <section class='instruction-steps'> 
+                                    ${instructions.join('')} 
+                                  </section>`
+  addScrollBar('.instruction-steps')
+}
+
+const updateCurrentRecipe = recipeCard => {
   const recipeCardID = recipeCard.closest("article")?.id;
   const thisRecipe = recipeData.find(recipe => recipe.id.toString() === recipeCardID);
   currentRecipeCard = getRecipeCard(thisRecipe);
+}
+
+const populateRecipeName = currentRecipe => {
+  document.querySelector('#recipeName').innerHTML = `<h1>${currentRecipe.name}</h1>`
+}
+
+const openRecipeCard = () => {
+  allRecipes.classList.add('blur')
+  getIngredients(currentRecipeCard);
   clickedRecipe.classList.toggle("hidden");
   clickedRecipe.classList.toggle("flex");
   clickedRecipe.classList.toggle("fade-in");
+}
+
+const showRecipe = (recipeCard) => {
+  updateCurrentRecipe(recipeCard);
+  populateInstructions(currentRecipeCard);
+  populateRecipeName(currentRecipeCard);
+  openRecipeCard();
 };
 
+
 const closeRecipe = () => {
+  allRecipes.classList.remove('blur')
   clickedRecipe.classList.add("hidden");
   clickedRecipe.classList.remove("flex");
   clickedRecipe.classList.remove("fade-in");
+  ingredientsList.innerHTML = '';
 };
 
+const getIngredients = currentRecipeCard => {
+  createIngredientsHTML(currentRecipeCard.ingredients);
+};
+
+const createIngredientsHTML = ingredients => {
+  ingredients.forEach((ingredient, i) => {
+    let ingredientLabelName = `ingredient${i}`
+    ingredientsList.innerHTML += `
+    <label for="${ingredientLabelName}">
+      <input id="${ingredientLabelName}" type="checkbox" name="${ingredientLabelName}" />
+      ${ingredient.amount} ${ingredient.unit} ${ingredient.name}
+    </label>
+    `;
+  });
+}
 // Exports
 export {
   renderGrid,
