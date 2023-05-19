@@ -1,5 +1,6 @@
 import { expect } from 'chai';
-import { saveRecipe, deleteRecipe, recipesToCook } from '../src/userUtils.js';
+import { saveRecipe, deleteRecipe, recipesToCook, addSavedRecipesToUser} from '../src/userUtils.js';
+import usersData from '../src/data/users.js';
 
 
 describe('saveRecipe', () => {
@@ -34,5 +35,21 @@ describe('deleteRecipe', () => {
 
     expect(newRecipes.length).to.equal(0);
     expect(newRecipes).to.deep.equal(recipesToCook);
+  });
+});
+
+describe('addSavedRecipesToUser', () => {
+  it('should be a function', () => {
+    expect(addSavedRecipesToUser).to.be.a('function');
+  });
+
+  it('should update the currentUser object with recipesToCook array', () => {
+    const savedRecipes = saveRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
+    const currentUser = usersData[0];
+    const updatedUser = addSavedRecipesToUser(currentUser, savedRecipes);
+
+    expect(savedRecipes.length).to.equal(1);
+    expect(savedRecipes[0]).to.equal(recipesToCook[0]);
+    expect(updatedUser.recipesToCook).to.equal(savedRecipes);
   });
 });
