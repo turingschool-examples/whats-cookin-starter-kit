@@ -33,18 +33,26 @@ const makeRecipeColumnData = (data) => {
   return [leftColumn, centreColumn, rightColumn];
 }
 
+
+
 const createSingleRecipeHTML = singleRecipe => {
   let htmlCode = '';
   htmlCode += 
   `
-  <article class="individual-recipe" id="${singleRecipe.id}">
+  <article class="individual-recipe-container">
+    <section class="add-panel">
+      <div class="plus-symbol">+</div>
+      <h4> Add to recipes to cook</h4>
+    </section>
+    <article class="individual-recipe" id="${singleRecipe.id}">
       <div class="recipe-image-div">
         <img class="recipe-image"src="${singleRecipe.image}">
         <div class="hover-card"> 
           <h3>Read more...</h3>
         </div>               
       </div>
-    <h2>${singleRecipe.name}</h2>
+      <h2>${singleRecipe.name}</h2>
+    </article>
   </article>
   `;
   return htmlCode
