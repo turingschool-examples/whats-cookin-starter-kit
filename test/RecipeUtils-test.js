@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { recipesFromTag, recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions, saveRecipe } from '../src/recipeUtils';
+import { recipesFromTag, recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions, saveRecipe, deleteRecipe } from '../src/recipeUtils';
 import recipeData from '../src/data/recipes-sample.js';
 import ingredientsData from '../src/data/ingredients-sample.js';
 import recipesToCook from '../src/data/recipesToCook-sample.js';
@@ -129,9 +129,6 @@ describe('recipeInstructions', () => {
 
 });
 
-// WHAT - Working with arrays
-// WANT - to pull for from the recipeData array, and if the user saves a recipe, it should be pushed into a new array
-// HOW/METHODS - 
 describe('saveRecipe', () => {
   it('should be a function', () => {
     expect(saveRecipe).to.be.a('function');
@@ -142,5 +139,11 @@ describe('saveRecipe', () => {
 
     expect(savedRecipes.length).to.equal(1);
     expect(savedRecipes[0]).to.equal(recipesToCook[0]);
+  });
+});
+
+describe('deleteRecipe', () => {
+  it('should be a function', () => {
+    expect(deleteRecipe).to.be.a('function');
   });
 });
