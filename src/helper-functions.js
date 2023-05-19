@@ -5,6 +5,10 @@ const getIngredientProperty = (currentIngredient, allIngredients, property) => {
   return matchingIngredient[property]
 }
 
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length);
+}
+
 // const getUniqueIngredients = () => {
 //   const output = [];
 //   recipes.forEach(recipe => { 
@@ -17,6 +21,6 @@ const getIngredientProperty = (currentIngredient, allIngredients, property) => {
 //   console.log(ingredientsData.filter(ingredient => output.includes(ingredient.id)) )
 // }
 
-export {copyItem, getIngredientProperty}
+export {copyItem, getIngredientProperty, getRandomIndex}
 
 
