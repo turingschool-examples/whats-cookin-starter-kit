@@ -35,15 +35,23 @@ const calculateRecipeCost = (recipe, ingredients) => {
 }
 
 const filterRecipesByName = (recipes, name) => {
-  return recipes.filter(recipe => recipe.name.includes(name));
+  return recipes.filter(recipe => recipe.name.toLowerCase().includes(name.toLowerCase()));
 }
 
 const filterRecipesByIngredient = (recipes, searchedIngredient, ingredientData) => {
-  const matchingIngredients = ingredientData.filter(ingredient => ingredient.name.includes(searchedIngredient));
+  const matchingIngredients = ingredientData.filter(ingredient => ingredient.name?.toLowerCase().includes(searchedIngredient.toLowerCase()));
   const matchingIngredientsID = matchingIngredients.map(ingredient => ingredient.id);
   const matchedRecipes = recipes.filter(recipe => recipe.ingredients.some(ingredient => matchingIngredientsID.includes(ingredient.id)));
   return matchedRecipes;
 };
+
+const searchRecipes = (allRecipes, allIngredients, userSearch) => {
+  const searchedItems = userSearch.split(' ')
+  const recipesByName = searchedItems.flatMap(searchWord => filterRecipesByName(allRecipes, searchWord))
+  const recipesByIngredient = searchedItems.flatMap(searchWord => filterRecipesByIngredient(allRecipes, searchWord, allIngredients))
+  const foundRecipes = [...recipesByName, ...recipesByIngredient]
+  return [...new Set(foundRecipes)]
+}
 
 export {
   getInstructions,
@@ -52,7 +60,8 @@ export {
   getIngredientAmounts,
   calculateRecipeCost,
   filterRecipesByName,
-  filterRecipesByIngredient
+  filterRecipesByIngredient,
+  searchRecipes
 }
 
 
