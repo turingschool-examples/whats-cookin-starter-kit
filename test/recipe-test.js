@@ -323,6 +323,13 @@ describe('search recipes', () => {
 
   it('should return an empty array for non matches', () => {
     let filteredRecipes = searchRecipes(sampleRecipeData, sampleIngredientsData, 'no match string');
+    let otherFilteredRecipes = searchRecipes(sampleRecipeData, sampleIngredientsData, '')
     assert.deepEqual(filteredRecipes, []);
+    assert.deepEqual(otherFilteredRecipes, [])
   });
+
+  it('should return all recipes if only a space is entered', () => {
+    let allRecipes = searchRecipes(sampleRecipeData, sampleIngredientsData, ' ');
+    assert.deepEqual(allRecipes, sampleRecipeData)
+  })
 })
