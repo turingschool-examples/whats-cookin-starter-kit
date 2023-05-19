@@ -35,6 +35,12 @@ const tagArea = document.querySelector('.tag-area');
 const ingredientsList = document.querySelector('#ingredientsList');
 
 // DATA MODEL 
+let user;
+let pageData = {
+  activeTags: [],
+  currentView: ''
+};
+
 let currentRecipeCard = {};
 
 //FUNCTIONS 
