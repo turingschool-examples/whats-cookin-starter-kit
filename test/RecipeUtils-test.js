@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import { recipesFromTag, recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions, saveRecipe } from '../src/recipeUtils';
 import recipeData from '../src/data/recipes-sample.js';
 import ingredientsData from '../src/data/ingredients-sample.js';
+import recipesToCook from '../src/data/recipesToCook-sample.js';
 
 
 describe('RecipeUtils', () => {
@@ -137,6 +138,9 @@ describe('saveRecipe', () => {
   });
 
   it('should be able to add a recipe to the data model array', () => {
+    const savedRecipes = saveRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
 
+    expect(savedRecipes.length).to.equal(1);
+    expect(savedRecipes[0]).to.equal(recipesToCook[0]);
   });
 });
