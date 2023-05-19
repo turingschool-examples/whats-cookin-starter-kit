@@ -18,5 +18,3 @@ const getIngredientProperty = (currentIngredient, allIngredients, property) => {
 // }
 
 export {copyItem, getIngredientProperty}
-
-
