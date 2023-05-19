@@ -28,15 +28,15 @@ import './images/starter.png'
 // import apiCalls from './apiCalls'
 
 const recipeGrid = document.querySelector('.recipe-grid');
-const allRecipes = document.querySelector('.landing-page');
+const landingPage = document.querySelector('.landing-page')
 const allUserRecipes = document.querySelector('.all-user-recipes');
 const clickedRecipe = document.querySelector('#clickedRecipe');
 const closeRecipeButton = document.querySelector('#closeRecipe');
 const tagArea = document.querySelector('.tag-area');
 const ingredientsList = document.querySelector('#ingredientsList');
-const inactiveView = document.querySelector('.unselected-view')
-const ourViewBtn = document.querySelector("#our-view");
-const yourViewBtn = document.querySelector("#your-view");
+const chooseView = document.querySelector('.choose-view')
+const ourViewBtn = document.querySelector("#our-recipes");
+const yourViewBtn = document.querySelector("#your-recipes");
 
 // DATA MODEL 
 let currentRecipeCard = {};
@@ -68,14 +68,18 @@ tagArea.addEventListener("click", function(event) {
   };
 });
 
-allRecipes.addEventListener("click", (event) => {
+recipeGrid.addEventListener("click", (event) => {
   if (event.target.classList?.contains('individual-recipe')) {
     showRecipe(event.target);
   }
 });
 
 closeRecipeButton.addEventListener("click", closeRecipe);
-inactiveView.addEventListener("click", switchView);
+chooseView.addEventListener("click", function(event) {
+  if (event.target.classList.contains("unselected-view")) {
+    switchView(event.target.id);
+  }
+});
 // Exports
 export {
   recipeGrid,
@@ -84,9 +88,9 @@ export {
   getRecipeCard,
   currentRecipeCard,
   ingredientsList,
-  allRecipes,
+  landingPage,
   ourViewBtn,
   yourViewBtn,
   allUserRecipes,
-  inactiveView
+  chooseView
 }

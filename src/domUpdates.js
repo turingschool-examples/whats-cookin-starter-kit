@@ -5,9 +5,8 @@ import {
   clickedRecipe, 
   tagArea, 
   getRecipeCard,
-  allRecipes, 
+  landingPage,
   ingredientsList,
-  inactiveView,
   ourViewBtn,
   yourViewBtn,
   allUserRecipes
@@ -210,7 +209,7 @@ const populateRecipeName = currentRecipe => {
 }
 
 const openRecipeCard = () => {
-  allRecipes.classList.add('blur')
+  landingPage.classList.add('blur')
   getIngredients(currentRecipeCard);
   clickedRecipe.classList.toggle("hidden");
   clickedRecipe.classList.toggle("flex");
@@ -226,7 +225,7 @@ const showRecipe = (recipeCard) => {
 
 
 const closeRecipe = () => {
-  allRecipes.classList.remove('blur')
+  landingPage.classList.remove('blur')
   clickedRecipe.classList.add("hidden");
   clickedRecipe.classList.remove("flex");
   clickedRecipe.classList.remove("fade-in");
@@ -249,13 +248,22 @@ const createIngredientsHTML = ingredients => {
   });
 };
 
-const switchView = () => {
-    allRecipes.classList.toggle("hidden");
-    allUserRecipes.classList.toggle("hidden");
-    ourViewBtn.classList.toggle("selected-view");
-    ourViewBtn.classList.toggle("unselected-view");
-    yourViewBtn.classList.toggle("unselected-view");
-    yourViewBtn.classList.add.toggle("selected-view")
+const switchView = (clickedViewID) => {
+  if (clickedViewID === "our-recipes") {
+    // allUserRecipes.classList.add("hidden");
+    recipeGrid.classList.remove("hidden");
+    ourViewBtn.classList.add("selected-view");
+    yourViewBtn.classList.remove("selected-view");
+    yourViewBtn.classList.add("unselected-view");  
+    ourViewBtn.classList.remove("unselected-view");
+  } else {
+    // allUserRecipes.classList.remove("hidden");
+    recipeGrid.classList.add("hidden");
+    ourViewBtn.classList.remove("selected-view");
+    yourViewBtn.classList.add("selected-view");
+    yourViewBtn.classList.remove("unselected-view");  
+    ourViewBtn.classList.add("unselected-view");
+  }
 }
 // Exports
 export {
