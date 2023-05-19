@@ -68,10 +68,10 @@ const searchRecipe = recipes => {
   page.mode === 'home' ? recipes = recipes : recipes = recipesToCook;
   recipes.forEach(recipe => {
     if (recipe.name.toLowerCase().includes(userInput.value.toLowerCase())) {
-      mainPanel.innerHTML = `
+      mainPanel.innerHTML += `
       <section class='recipe-container box' id='${recipe.id}'>
         <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
-        <h3 class='recipe-name box' id="${recipe.id}">${recipe.name}</h3>
+        <h3 class='recipe-name' id="${recipe.id}">${recipe.name}</h3>
       </section>
       `;
     }

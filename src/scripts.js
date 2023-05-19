@@ -33,9 +33,8 @@ tags.forEach(tag => {
   });
 });
 
-searchButton.addEventListener('click', r => {
-  console.log(r);
-  searchRecipe(r);
+searchButton.addEventListener('click', () => {
+  searchRecipe(recipes);
 });
 
 favoriteButton.addEventListener('click', e => {
