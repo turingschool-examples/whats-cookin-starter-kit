@@ -62,11 +62,12 @@ main {
     left: 20%;
     transform: translate(-15%, 0%);
     font-weight: bold;
-    color: darkmagenta;
+    color: #321e36;
     word-wrap: break-word;
     background-color: #e1c4ff;
     opacity: 75%;
     border-radius: 10%;
+    padding-left: 5%
 }
 
 .recipe-image{ 
@@ -74,6 +75,10 @@ main {
     height: 100%;
     width: 100%;
     filter: opacity(65%);
+}
+
+.recipe-img {
+  border-radius: 5%;
 }
 
 .tags-panel {
@@ -189,7 +194,7 @@ h1 {
 }
 
 .box{
-  width: 25vh;
+  width: 29vh;
   height: 10vw;
-  border-radius: 20%;
+  border-radius: 5%;
 }
