@@ -9,11 +9,11 @@ import './images/bookmark-filled.png'
 
 import {getIngredients, getRecipes, getUsers} from './apiCalls'
 import { getRandomUser } from './users';
-import { sampleIngredientsData, sampleRecipeData } from '../test/sampleIngredients';
-import { sampleUserData } from '../test/sampleUsers';
+// import { sampleIngredientsData, sampleRecipeData } from '../test/sampleIngredients';
+// import { sampleUserData } from '../test/sampleUsers';
 import { recipesToCook, removeRecipes} from './recipes-to-cook';
-import { recipeData }  from './data/recipes';
-import { ingredientsData } from './data/ingredients';
+// import { recipeData }  from './data/recipes';
+// import { ingredientsData } from './data/ingredients';
 import {
   toMyRecipeView,
   toDashboardView,
@@ -27,6 +27,9 @@ import { findRecipe } from './filters';
 
 //GLOBAL VARIABLE
 let currentUser
+let ingredientsData
+let userData
+let recipeData
 
 // QUERY SELECTORS
 const myRecipesBtn = document.querySelector('#myRecipes');
@@ -43,36 +46,12 @@ const start = () => {
   Promise.all([getUsers(), getIngredients(), getRecipes()])
  .then((data) => {
 
-  let userData = data[0];
-  let ingredientsData = data[1].ingredients;
-  let recipeData = data[2].recipes;
-
+  userData = data[0];
+  ingredientsData = data[1].ingredients;
+  recipeData = data[2].recipes;
   currentUser = getRandomUser(userData);
-  renderRecipeCards(mainViewCardContainer, recipeData, currentUser);
 
-  searchButton.addEventListener('click', searchBarClicked);
-  myRecipesBtn.addEventListener('click', () => {
-    toMyRecipeView(currentUser);
-    console.log(currentUser)
-  });
-   dashboardBtn.addEventListener('click', () => {
-     toDashboardView(currentUser);
-   });
-   mainViewCardContainer.addEventListener('click', (e) => {
-     toggleBookmark(e, currentUser, recipeData);
-   });
-   singleRecipeView.addEventListener('click', (e) => {
-     toggleBookmark(e, currentUser, recipeData);
-   });
-   mainView.addEventListener('click', (e) => {
-     if (e.target.classList.contains('recipe-img') || e.target.classList.contains('recipe-name')) {
-       renderSingleRecipeView(e, recipeData, ingredientsData);
-     };
-   });
-   myRecipesView.addEventListener('click', (e) => {
-     toggleBookmark(e, currentUser, recipeData);
-     removeRecipeCard(e);
-   });
+  renderRecipeCards(mainViewCardContainer, recipeData, currentUser);
  })
  .catch((err) => {
   console.log(err);
@@ -81,6 +60,29 @@ const start = () => {
 
 // EVENT LISTENERS
 window.addEventListener('load', start);
+searchButton.addEventListener('click', searchBarClicked);
+singleRecipeView.addEventListener('click', (e) => {
+  toggleBookmark(e, currentUser, recipeData);
+}); 
+mainView.addEventListener('click', (e) => {
+  if (e.target.classList.contains('recipe-img') || e.target.classList.contains('recipe-name')) {
+    renderSingleRecipeView(e, recipeData, ingredientsData);
+  };
+});
+myRecipesBtn.addEventListener('click', () => {
+  toMyRecipeView(currentUser);
+  console.log(currentUser)
+});
+ dashboardBtn.addEventListener('click', () => {
+   toDashboardView(currentUser);
+ });
+ mainViewCardContainer.addEventListener('click', (e) => {
+   toggleBookmark(e, currentUser, recipeData);
+ });
+ myRecipesView.addEventListener('click', (e) => {
+   toggleBookmark(e, currentUser, recipeData);
+   removeRecipeCard(e);
+ });
 
 export {
   mainView,
