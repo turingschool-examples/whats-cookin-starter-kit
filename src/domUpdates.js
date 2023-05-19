@@ -15,46 +15,49 @@ import { filterByName, filterByTag } from './filters';
 import { recipeData } from './data/recipes';
 
 // EVENT HANDLERS
+const clearView = (views) => {
+  views.forEach((view) => {
+    view.innerHTML = '';
+  })
+}
 const toMyRecipeView = (currentUser) => {
-  mainView.classList.add('hidden');
-  myRecipesView.classList.remove('hidden');
-  singleRecipeView.innerHTML= '';
+  toggleHidden([mainView], 'add');
+  toggleHidden([myRecipesView], 'remove');
+  clearView([singleRecipeView]);
   searchBar.placeholder = 'Search your bookmarked Recipes';
   renderRecipeCards(myRecipesView, currentUser.recipesToCook, currentUser);
 };
 
 const toDashboardView = (currentUser) => {
-  mainView.classList.remove('hidden');
-  myRecipesView.classList.add('hidden');
+  toggleHidden([mainView], 'remove');
+  toggleHidden([myRecipesView], 'add');
   renderRecipeCards(mainViewCardContainer, recipeData, currentUser);
-  singleRecipeView.innerHTML= '';
+  clearView([singleRecipeView]);
   searchBar.placeholder = 'Search for new Recipes';
 };
 
-const searchBarClicked = () => {
-  mainViewCardContainer.innerHTML = '';
-  myRecipesView.innerHTML = '';
-
-  let searchResults;
-  let view;
-  
+const setView = () => {
   if (myRecipesView.classList.contains('hidden')) {
-    view = mainViewCardContainer;
+    return mainViewCardContainer;
   } else if (mainView.classList.contains('hidden')) {
-    view = myRecipesView;
+    return myRecipesView;
   }
-  if (searchBar.value.length === 0) {
-    searchResults = recipeData;
-  } else if (searchByToggle.value === 'select') {
+}
+
+const searchResults = () => {
+  if (searchByToggle.value === 'select' || searchBar.value.length === 0) {
     handleInvalidSearch('⬅️ You must search by tag or name.');
-    searchResults = recipeData;
+    return recipeData;
   } else if (searchByToggle.value === 'tag') {
-    searchResults = handleTagSearch();
+    return handleTagSearch();
   } else if (searchByToggle.value === 'name') {
-    searchResults = handleNameSearch();
+    return handleNameSearch();
   }
-// potential refactor: turn this into a search object
-  handleSearchResults(view, searchResults);
+}
+
+const searchBarClicked = () => {
+  clearView([mainViewCardContainer, myRecipesView, singleRecipeView]);
+  handleSearchResults(setView(), searchResults());
 };
 
 const handleInvalidSearch = (message) => {
@@ -98,8 +101,7 @@ const renderBookmarks = (currentUser, recipe) => {
 }
 
 const renderRecipeCards = (view, recipes, currentUser) => {
-  mainViewCardContainer.innerHTML = '';
-  myRecipesView.innerHTML = '';
+  clearView([mainViewCardContainer, myRecipesView])
   recipes.forEach((recipe) => {
     view.innerHTML += `
     <article class="recipe-card" id="${recipe.id}">
@@ -108,7 +110,7 @@ const renderRecipeCards = (view, recipes, currentUser) => {
       <div class="recipe-title-flex">
         <h2 class="recipe-name">${recipe.name}</h2>
         <div class="bookmark-flex">
-          ${renderBookmarks(currentUser, recipe)}
+        ${renderBookmarks(currentUser, recipe)}
         </div>
       </div>
     </article>`;
@@ -121,6 +123,26 @@ const isUnchecked = (e) => {
   }
 };
 
+const toggleHidden = (elements, type) => {
+  elements.forEach((element)=> {
+    element.classList[type]('hidden');
+  })
+}
+
+const toggleBookmark = (e, currentUser, recipeData) => {
+  if (e.target.classList[0]=== 'bookmark-icon') {
+    if(isUnchecked(e)) {
+      recipesToCook(e.target.id, currentUser, recipeData)
+      toggleHidden([e.target], 'add');
+      toggleHidden([e.target.nextElementSibling], 'remove');
+    } else {
+      removeRecipes(e.target.id, currentUser)
+      toggleHidden([e.target], 'add');
+      toggleHidden([e.target.previousElementSibling], 'remove');
+    }
+  }
+};
+
 const findRecipe = (e, recipes) => {
   return recipes.find((recipe) => {
      if (e.target.classList.contains('recipe-name')) {
@@ -130,20 +152,19 @@ const findRecipe = (e, recipes) => {
    });
 };
 
-const renderSingleRecipeView = (e, recipes, ingredients) => {
+const renderSingleRecipeView = (e, recipes, ingredients, currentUser) => {
   let recipe = findRecipe(e, recipes);
-  mainView.classList.add('hidden');
-  myRecipesView.innerHTML = ''
-  singleRecipeView.classList.remove('hidden');
-  singleRecipeView.innerHTML = '';
+  toggleHidden([mainView], 'add');
+  toggleHidden([singleRecipeView], 'remove');
+  // clearView([singleRecipeView]);
+  console.log(currentUser)
   singleRecipeView.innerHTML += `
     <div class="single-recipe-view-flex">
       <img class="single-recipe-img" src="${recipe.image}">
       <div class="recipe-header-flex">
         <h2 class="recipe-title">${recipe.name}</h2>
         <div class="bookmark-flex">
-          <img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked" alt="bookmark icon">
-          <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">
+          ${renderBookmarks(currentUser, recipe)}
         </div>
       </div>
       <div class="recipe-content-flex">
@@ -197,22 +218,6 @@ const removeRecipeCard = (e) => {
   };
 }
 
-  const toggleBookmark = (e, currentUser, recipeData) => {
-    if (e.target.classList[0]=== 'bookmark-icon') {
-      if(isUnchecked(e)) {
-        recipesToCook(e.target.id, currentUser, recipeData)
-        console.log(currentUser)
-        e.target.classList.add('hidden')
-        e.target.nextElementSibling.classList.remove('hidden');
-      } else {
-        removeRecipes(e.target.id, currentUser)
-        console.log(currentUser)
-        e.target.classList.add('hidden')
-        e.target.previousElementSibling.classList.remove('hidden');
-      }
-    }
-  };
-
 export {
   toMyRecipeView,
   toDashboardView,
@@ -222,4 +227,3 @@ export {
   searchBarClicked,
   removeRecipeCard
 };
-

@@ -1,8 +1,8 @@
-const returnDirections = (sampleRecipeData) => {
-  if (!sampleRecipeData) {
+const returnDirections = (recipes) => {
+  if (!recipes) {
     return "Sorry no directions were found.";
   } else {
-    return sampleRecipeData["instructions"];
+    return recipes["instructions"];
   }
 };
 

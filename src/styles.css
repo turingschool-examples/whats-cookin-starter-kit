@@ -188,6 +188,7 @@ h1 {
 
 .bookmark-icon {
   height: 25px;
+  cursor: pointer;
 }
 
 /* RECIPE VIEW */

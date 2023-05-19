@@ -20,7 +20,7 @@ const removeRecipes = (eventId, currentUser) => {
   const index = recipes.indexOf(`${eventId}`);
 
   currentUser.recipesToCook.splice(index, 1);
-};
+}
 };
 
 export { recipesToCook, removeRecipes, matchRecipe };

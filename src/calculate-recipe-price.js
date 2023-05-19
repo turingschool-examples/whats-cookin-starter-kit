@@ -1,5 +1,3 @@
-import { sampleRecipeData } from "../test/sampleIngredients";
-
 const compileIngredientQuantity = (recipe) => {
   return recipe.ingredients.map((quantity) => {
       quantity = {
@@ -37,13 +35,13 @@ const calculateRecipePrice = (recipe, ingredientsData) => {
   if (!recipe) {
     return "Sorry this is not a recipe!";
   } else {
-    const ingredientQuantityInfo = compileIngredientQuantity(recipe)
+    const ingredientQuantityInfo = compileIngredientQuantity(recipe);
 
-    const sumTotalQuantity = sumTotalIngredientQuantity(ingredientQuantityInfo)
+    const sumTotalQuantity = sumTotalIngredientQuantity(ingredientQuantityInfo);
 
-    const costInCentss = costInCents(ingredientQuantityInfo, ingredientsData)
+    const costInCentss = costInCents(ingredientQuantityInfo, ingredientsData);
 
-    const totalCost = totalCostInCents(costInCentss)
+    const totalCost = totalCostInCents(costInCentss);
 
     const finalTotalCost = (sumTotalQuantity * totalCost) / 100;
     return `$${finalTotalCost.toFixed(2)}`;
