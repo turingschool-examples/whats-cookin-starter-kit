@@ -441,15 +441,6 @@ input[type=checkbox] {
   flex-direction: column;
   padding-bottom: 2%;
 }
-/* }
-
-#ingredientsList::-webkit-scrollbar-track {
-  background-color: #3b4154;
-}
-
-#ingredientsList::-webkit-scrollbar-thumb {
-  background-color: #fbbf83;
-} */
 
 #closeRecipe {
   height: 38px;
