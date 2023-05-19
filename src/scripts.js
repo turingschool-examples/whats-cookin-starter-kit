@@ -25,7 +25,7 @@ import './images/snack.png'
 import './images/spread.png'
 import './images/starter.png'
 import './images/search-button.png'
-import './images/user-icon.png'
+import { assignCurrentUser } from './apiCalls';
 
 // import apiCalls from './apiCalls'
 
@@ -63,7 +63,11 @@ return recipeCard;
 
 // //Example of one way to import functions from the domUpdates file. You will delete these examples.
 // import {exampleFunction1, exampleFunction2} from './domUpdates.js'
-window.addEventListener("load", pageLoadRenders);
+window.addEventListener("load", () => {
+  assignCurrentUser();
+  pageLoadRenders();
+});
+
 tagArea.addEventListener("click", function(event) {
   if (event.target.classList && event.target.closest(".tag-card")) {
     makeTagActive(event);
@@ -98,5 +102,4 @@ export {
   allUserRecipes,
   chooseView,
   searchBar,
-  //allRecipes
 }

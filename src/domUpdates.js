@@ -1,5 +1,5 @@
 // Imports
-import { pageData } from './apiCalls';
+import { pageData, currentUser } from './apiCalls';
 import {recipeData} from './data/recipes'
 import { ingredientsData } from './data/ingredients';
 import {
@@ -12,7 +12,6 @@ import {
   searchBar,
   ourViewBtn,
   yourViewBtn,
-  allUserRecipes
 } from './scripts'
 import { searchRecipes } from './recipes';
 
