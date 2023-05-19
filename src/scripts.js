@@ -38,10 +38,6 @@ const ingredientsList = document.querySelector('#ingredientsList');
 const searchBar = document.querySelector('#searchBar');
 const searchBtn = document.querySelector('#searchBtn');
 
-// DATA MODEL 
-let currentRecipeCard = {};
-let searchedRecipes = [];
-
 //FUNCTIONS 
 const getRecipeCard = (recipe) => {
   const recipeCard =  {
@@ -85,8 +81,6 @@ export {
   tagArea,
   clickedRecipe,
   getRecipeCard,
-  currentRecipeCard,
-  searchedRecipes,
   ingredientsList,
   allRecipes,
   searchBar

@@ -1,11 +1,18 @@
 // Imports
 import {recipeData} from './data/recipes'
 import { ingredientsData } from './data/ingredients';
-import {recipeGrid, clickedRecipe, tagArea, getRecipeCard, allRecipes, ingredientsList, searchBar} from './scripts'
 import { searchRecipes } from './recipes';
+import { currentUser, pageData } from './apiCalls';
+import {
+  recipeGrid,
+  clickedRecipe,
+  tagArea,
+  getRecipeCard,
+  allRecipes,
+  ingredientsList, 
+  searchBar
+} from './scripts'
 
-let currentRecipeCard = require('./scripts');
-let searchedRecipes = require('./scripts')
 
 // functions
 
@@ -194,11 +201,16 @@ const populateInstructions = (recipe) => {
 const updateCurrentRecipe = recipeCard => {
   const recipeCardID = recipeCard.closest("article")?.id;
   const thisRecipe = recipeData.find(recipe => recipe.id.toString() === recipeCardID);
-  currentRecipeCard = getRecipeCard(thisRecipe);
+  pageData.currentRecipeCard = getRecipeCard(thisRecipe);
 }
 
-const populateRecipeName = currentRecipe => {
-  document.querySelector('#recipeName').innerHTML = `<h1>${currentRecipe.name}</h1>`
+const populateRecipeHeader = currentRecipe => {
+  document.querySelector('#recipeName').innerHTML = `
+  <h1>${currentRecipe.name}</h1>
+  <div class="individual-recipe-image">
+    <img src="${currentRecipe.image}"></img>
+  </div>
+  `
 }
 
 const openRecipeCard = () => {
@@ -210,9 +222,9 @@ const openRecipeCard = () => {
 
 const showRecipe = (recipeCard) => {
   updateCurrentRecipe(recipeCard);
-  getIngredients(currentRecipeCard);
-  populateInstructions(currentRecipeCard);
-  populateRecipeName(currentRecipeCard);
+  populateRecipeHeader(pageData.currentRecipeCard);
+  populateInstructions(pageData.currentRecipeCard);
+  populateIngredients(pageData.currentRecipeCard);
   openRecipeCard();
 };
 
@@ -222,10 +234,12 @@ const closeRecipe = () => {
   clickedRecipe.classList.add("hidden");
   clickedRecipe.classList.remove("flex");
   clickedRecipe.classList.remove("fade-in");
-  ingredientsList.innerHTML = '';
 };
 
-const getIngredients = currentRecipeCard => {
+const populateIngredients = currentRecipeCard => {
+  ingredientsList.innerHTML = `
+    <h4>total ingredient cost: ${currentRecipeCard.price}</h4>
+  `;
   createIngredientsHTML(currentRecipeCard.ingredients);
 };
 
