@@ -45,8 +45,8 @@ const setView = () => {
 }
 
 const searchResults = () => {
-  if (searchByToggle.value === 'select' || searchBar.value.length === 0) {
-    handleInvalidSearch('⬅️ You must search by tag or name.');
+  if (searchBar.value.length === 0) {
+    handleInvalidSearch(`You can't search for nothing!`);
     return recipeData;
   } else if (searchByToggle.value === 'tag') {
     return handleTagSearch();
