@@ -4,7 +4,7 @@ import { savePromises } from './apiCalls';
 import './images/turing-logo.png';
 import './images/clipart16385.png';
 import { recipesToCook, toggleRecipesToCook } from './recipe.js';
-import { searchButton, favoriteButton, tags, mainPanel, loadUsers, viewAllRecipes, viewRecipeInfo, filterRecipeByTag, searchRecipe } from './domUpdates.js';
+import { searchButton, favoriteButton, homeButton, tags, mainPanel, loadUsers, viewAllRecipes, viewRecipeInfo, filterRecipeByTag, searchRecipe, toggleButtons } from './domUpdates.js';
 
 let users;
 let recipes;
@@ -38,5 +38,12 @@ searchButton.addEventListener('click', () => {
 });
 
 favoriteButton.addEventListener('click', () => {
-  viewAllRecipes(recipesToCook)
+  viewAllRecipes(recipesToCook),
+  toggleButtons()
+});
+
+
+homeButton.addEventListener('click', () => {
+  viewAllRecipes(recipes),
+  toggleButtons()
 });
