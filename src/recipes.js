@@ -31,13 +31,28 @@ const getIngredientAmounts = (recipe, ingredients) => {
 const calculateRecipeCost = (recipe, ingredients) => {
   const recipeIngredients = recipe.ingredients.map(ingredient => ({amount: ingredient.quantity.amount, costPerUnit: getIngredientProperty(ingredient, ingredients, 'estimatedCostInCents')}))
   const costInCents = recipeIngredients.reduce((totalCost, curr) => totalCost += (curr.amount * curr.costPerUnit), 0);
-  return `$${(costInCents/100).toFixed(2)}`
+  return `$${(costInCents/100).toFixed(2)}`;
 }
+
+const filterRecipesByName = (recipes, name) => {
+  return recipes.filter(recipe => recipe.name.includes(name));
+}
+
+const filterRecipesByIngredient = (recipes, searchedIngredient, ingredientData) => {
+  const matchingIngredients = ingredientData.filter(ingredient => ingredient.name.includes(searchedIngredient));
+  const matchingIngredientsID = matchingIngredients.map(ingredient => ingredient.id);
+  const matchedRecipes = recipes.filter(recipe => recipe.ingredients.some(ingredient => matchingIngredientsID.includes(ingredient.id)));
+  return matchedRecipes;
+};
 
 export {
   getInstructions,
   filterRecipes,
   getIngredients,
   getIngredientAmounts,
-  calculateRecipeCost
+  calculateRecipeCost,
+  filterRecipesByName,
+  filterRecipesByIngredient
 }
+
+

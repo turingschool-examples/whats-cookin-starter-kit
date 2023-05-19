@@ -5,4 +5,18 @@ const getIngredientProperty = (currentIngredient, allIngredients, property) => {
   return matchingIngredient[property]
 }
 
+// const getUniqueIngredients = () => {
+//   const output = [];
+//   recipes.forEach(recipe => { 
+//     recipe.ingredients.forEach(ingredient => {
+//       if (!output.includes(ingredient.id)) {
+//         output.push(ingredient.id);
+//       }
+//     })
+//   })
+//   console.log(ingredientsData.filter(ingredient => output.includes(ingredient.id)) )
+// }
+
 export {copyItem, getIngredientProperty}
+
+

@@ -6,6 +6,7 @@ import {
   sampleRecipeData,
   simpleIngredients,
   simpleRecipe,
+  simpleRecipes
 } from '../src/data/sampleData';
 
 import {
@@ -13,7 +14,9 @@ import {
   getIngredients,
   calculateRecipeCost,
   getIngredientAmounts,
-  filterRecipes
+  filterRecipes,
+  filterRecipesByIngredient,
+  filterRecipesByName
 } from '../src/recipes';
 
 describe('recipe', () => {
@@ -26,6 +29,9 @@ describe('recipe', () => {
     assert.isFunction(getIngredients);
     assert.isFunction(getIngredientAmounts);
     assert.isFunction(calculateRecipeCost);
+    assert.isFunction(filterRecipes);
+    assert.isFunction(filterRecipesByIngredient);
+    assert.isFunction(filterRecipesByName);
   });
 
   it('should determine the names of ingredients needed for a recipe', () => {
@@ -204,21 +210,82 @@ describe('recipe', () => {
 });
 
 describe('filterRecipes', () => {
+  let expectedRecipes;
+  let filteredRecipes;
+  let nameSearched;
+  let ingredientSearched;
+
   it('should filter list of recipes based on single tag', () => {
-    let expectedRecipes = [sampleRecipeData[0]];
-    let filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto')
+    expectedRecipes = [sampleRecipeData[0]];
+    filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto')
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   });
 
   it('should filter list of recipes based on multiple tags', () => {
-    let expectedRecipes = [sampleRecipeData[0], sampleRecipeData[2]];
-    let filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'sauce');
+    expectedRecipes = [sampleRecipeData[0], sampleRecipeData[2]];
+    filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'sauce');
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   });
 
   it('filtered recipe list should contain only unique entries if it contains multiple tags being filtered', () => {
-    let expectedRecipes = [sampleRecipeData[0]];
-    let filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'antipasti');
+    expectedRecipes = [sampleRecipeData[0]];
+    filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'antipasti');
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   });
+
+  it('should filter recipe list based on name', () => {
+    expectedRecipes = [sampleRecipeData[1]];
+    const nameSearched = "Maple Dijon Apple Cider Grilled Pork Chops";
+    filteredRecipes = filterRecipesByName(sampleRecipeData, nameSearched); 
+    expect(filteredRecipes).to.deep.equal(expectedRecipes);
+  });
+
+  it('should filter recipe list even with sub-strings', () => {
+    expectedRecipes = [sampleRecipeData[1]];
+    nameSearched = "Maple Di";
+    filteredRecipes = filterRecipesByName(sampleRecipeData, nameSearched);
+    expect(filteredRecipes).to.deep.equal(expectedRecipes);
+  });
+
+  it('should filter multiple recipes if they share the same substring', () => {
+    expectedRecipes = [sampleRecipeData[3], sampleRecipeData[4]];
+    nameSearched = "cake";
+    filteredRecipes = filterRecipesByName(sampleRecipeData, nameSearched);
+    expect(filteredRecipes).to.deep.equal(expectedRecipes);
+  });
+
+  it('should return no recipe if no name matches', () => {
+    expectedRecipes = [];
+    nameSearched = "Test Text";
+    filteredRecipes = filterRecipesByName(sampleRecipeData, nameSearched);
+    expect(filteredRecipes).to.deep.equal(expectedRecipes);
+  });
+
+  it('should return the only recipe with the searched ingredient', () => {
+    expectedRecipes = [sampleRecipeData[0]];
+    ingredientSearched = "unsalted butter";
+    filteredRecipes = filterRecipesByIngredient(sampleRecipeData, ingredientSearched, sampleIngredientsData);
+    expect(filteredRecipes).to.deep.equal(expectedRecipes);
+  });
+
+  it('should return all recipes that contain the ingredient', () => {
+    expectedRecipes = [sampleRecipeData[0], sampleRecipeData[5]];
+    ingredientSearched = "fine sea salt";
+    filteredRecipes = filterRecipesByIngredient(sampleRecipeData, ingredientSearched, sampleIngredientsData);
+    expect(filteredRecipes).to.deep.equal(expectedRecipes);
+  })
+
+  it('should look for recipies even with a matching substring of ingredients', () => {
+    expectedRecipes = [simpleRecipes[0], simpleRecipes[2]];
+    ingredientSearched = "sugar";
+    filteredRecipes = filterRecipesByIngredient(simpleRecipes, ingredientSearched, simpleIngredients);
+    expect(filteredRecipes).to.deep.equal(expectedRecipes);
+  })
+
+  it('should not return any recipes if no ingredient match is found', () => {
+    expectedRecipes = [];
+    ingredientSearched = "no match string";
+    filteredRecipes = filterRecipesByIngredient(sampleRecipeData, ingredientSearched, sampleIngredientsData);
+    expect(filteredRecipes).to.deep.equal(expectedRecipes);
+  })
 });
