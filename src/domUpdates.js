@@ -156,8 +156,8 @@ const renderSingleRecipeView = (e, recipes, ingredients, currentUser) => {
   let recipe = findRecipe(e, recipes);
   toggleHidden([mainView], 'add');
   toggleHidden([singleRecipeView], 'remove');
-  clearView([singleRecipeView]);
-  
+  // clearView([singleRecipeView]);
+  console.log(currentUser)
   singleRecipeView.innerHTML += `
     <div class="single-recipe-view-flex">
       <img class="single-recipe-img" src="${recipe.image}">

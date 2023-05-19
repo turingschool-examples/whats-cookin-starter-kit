@@ -57,7 +57,7 @@ singleRecipeView.addEventListener('click', (e) => {
 }); 
 mainView.addEventListener('click', (e) => {
   if (e.target.classList.contains('recipe-img') || e.target.classList.contains('recipe-name')) {
-    renderSingleRecipeView(e, recipeData, ingredientsData);
+    renderSingleRecipeView(e, recipeData, ingredientsData, currentUser);
   };
 });
 myRecipesBtn.addEventListener('click', () => {
