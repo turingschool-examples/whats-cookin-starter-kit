@@ -1,5 +1,4 @@
-import { recipeTestData, ingredientTestData } from './data/testData.js';
-import { determineIngredientNames, calculateCost, returnInstructions } from './recipe.js';
+import { determineIngredientNames, calculateCost, returnInstructions, filterByTag } from './recipe.js';
 
 // Global Variables
 const user = document.querySelector('.user')
@@ -34,34 +33,39 @@ const viewAllRecipes = recipes => {
 
 const organizeInstructions = instructs => instructs.split('.').map(x => x + '.').join('<br>').slice(0, instructs.length);
 
-const viewRecipeInfo = e => {
+const viewRecipeInfo = (recipes, ingredients, e) => {
   if (e.target.classList.contains('box')) {
-    let selectedRecipe = recipeTestData.find(recipe => recipe.id === Number(e.target.id));
+    let selectedRecipe = recipes.find(recipe => recipe.id === Number(e.target.id));
     mainPanel.innerHTML = `
     <div class="test">
       <h2 class='recipe-names'> ${selectedRecipe.name}</h2>
       <img class='recipe-img' id='${selectedRecipe.id}' src='${selectedRecipe.image}' alt='${selectedRecipe.name}'>
-      <p class='ingredients'>${determineIngredientNames(recipeTestData, ingredientTestData, selectedRecipe.name).join(' -- ')}</p>
+      <p class='ingredients'>${determineIngredientNames(recipes, ingredients, selectedRecipe.name).join(' -- ')}</p>
       <p class='instructions'>${organizeInstructions(returnInstructions(selectedRecipe))}</p>
-      <p class='cost'>Total cost: $${calculateCost(selectedRecipe)}</p>
+      <p class='cost'>Total cost: $${calculateCost(selectedRecipe, ingredients)}</p>
     </div>
     `;
   }
 }
 
+// const filterRecipeByTag = (e, recipes) => {
+//   mainPanel.innerHTML = '';
+//   page.mode === 'home' ? recipes = recipes : recipes = recipesToCook;
+//   recipes.forEach(recipe => {
+//     if (recipe.tags.includes(e.target.id)) {
+//       viewRecipe(recipe);
+//     }
+//   });
+// }
+
 const filterRecipeByTag = (e, recipes) => {
-  mainPanel.innerHTML = '';
-  page.mode === 'home' ? recipes = recipeTestData : recipes = recipesToCook;
-  recipes.forEach(recipe => {
-    if (recipe.tags.includes(e.target.id)) {
-      viewRecipe(recipe);
-    }
-  });
+  let filteredRecipes = filterByTag(e, recipes);
+  return viewAllRecipes(filteredRecipes);
 }
 
 const searchRecipe = recipes => {
   mainPanel.innerHTML = '';
-  page.mode === 'home' ? recipes = recipeTestData : recipes = recipesToCook;
+  page.mode === 'home' ? recipes = recipes : recipes = recipesToCook;
   recipes.forEach(recipe => {
     if (recipe.name.toLowerCase().includes(userInput.value.toLowerCase())) {
       mainPanel.innerHTML = `
@@ -89,7 +93,6 @@ export {
   toggleMode,
   viewRecipe,
   viewAllRecipes,
-//   organizeInstructions,
   viewRecipeInfo,
   filterRecipeByTag,
   searchRecipe, 

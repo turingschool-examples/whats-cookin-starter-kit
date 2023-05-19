@@ -1,32 +1,42 @@
 //NOTE: Data model and non-dom manipulating logic will live in this file.
 import './styles.css';
-import {fetchAPI} from './apiCalls';
+import { savePromises } from './apiCalls';
 import './images/turing-logo.png';
 import './images/clipart16385.png';
 import { toggleRecipesToCook } from './recipe.js';
-import { searchButton, favoriteButton, tags, mainPanel, loadUsers, toggleMode, viewAllRecipes, viewRecipeInfo, filterRecipeByTag, searchRecipe} from './domUpdates.js';
+import { searchButton, favoriteButton, tags, mainPanel, loadUsers, toggleMode, viewAllRecipes, viewRecipeInfo, filterRecipeByTag, searchRecipe } from './domUpdates.js';
 
-let userTestData;
+let users;
+let recipes;
+let ingredients;
 
 // Event Listeners
 window.addEventListener('load', () => {
-  fetchAPI('users')
-    .then(response => loadUsers(response.users)),
-  fetchAPI('recipes')
-    .then(response => viewAllRecipes(response.recipes))
+  savePromises()
+    .then(data => {
+      users = data[0].users;
+      recipes = data[1].recipes;
+      ingredients = data[2].ingredients;
+      loadUsers(users);
+      viewAllRecipes(recipes);
+    });
 });
 
-// console.log('test data', userTestData)
 mainPanel.addEventListener('click', e => {
-  viewRecipeInfo(e),
+  viewRecipeInfo(recipes, ingredients, e),
   toggleRecipesToCook(e)
 });
 
 tags.forEach(tag => {
-  tag.addEventListener('click', e => filterRecipeByTag(e));
+  tag.addEventListener('click', e => {
+    filterRecipeByTag(e, recipes);
+  });
 });
 
-searchButton.addEventListener('click', searchRecipe);
+searchButton.addEventListener('click', r => {
+  console.log(r);
+  searchRecipe(r);
+});
 
 favoriteButton.addEventListener('click', e => {
   toggleMode(e),

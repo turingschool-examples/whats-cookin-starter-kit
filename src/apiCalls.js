@@ -4,6 +4,8 @@ const fetchAPI = type => {
     .catch(err => console.log(err))
 }
 
+const savePromises = () => Promise.all([fetchAPI('users'), fetchAPI('recipes'), fetchAPI('ingredients')]);
+
 export {
-  fetchAPI
+  savePromises
 }
