@@ -1,9 +1,10 @@
 // Imports
 import {recipeData} from './data/recipes'
+import { currentUser } from './apiCalls'
 import {recipeGrid, clickedRecipe, tagArea, getRecipeCard, allRecipes, ingredientsList} from './scripts'
 
-let currentRecipeCard = require('./scripts');
-
+let currentRecipeCard = require('./scripts')
+// let currentUser = require('./apiCalls')
 // functions
 
 const makeRecipeColumnData = (data) => {
