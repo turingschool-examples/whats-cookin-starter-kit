@@ -9,6 +9,9 @@ const recipesToCook = (eventId, currentUser, recipeData) => {
 };
 
 const removeRecipes = (eventId, currentUser) => {
+  if(!eventId){
+    return  'Cannot delete recipe'
+  } else {
   const recipes = currentUser.recipesToCook
     .map((recipe) => {
       return recipe.id;
@@ -18,13 +21,6 @@ const removeRecipes = (eventId, currentUser) => {
 
   currentUser.recipesToCook.splice(index, 1);
 };
+};
 
 export { recipesToCook, removeRecipes, matchRecipe };
-// on page load we need to select a random user then push whatever
-//recipes they choose into their array
-//add event listener to the bookmark and then grab id
-//then push it into the userrecipes array
-//event.target.classList.contains('bookmark-icon')
-//grab event.target of the recipe match that recipe id
-//just push id's into users recipestocook array
-//create a separate function that will match recipe id to the recipe data
