@@ -3,7 +3,7 @@ const matchIngredient = (id, ingredientsData) => {
     return ingredient.id === id;
   });
   return ingredient;
-}
+};
 
 const getIngredientName = (id, ingredientsData) => {
   const matchedIngredient = matchIngredient(id, ingredientsData);
