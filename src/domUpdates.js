@@ -16,10 +16,15 @@ import { filterByName, filterByTag } from './filters';
 import { recipeData } from './data/recipes';
 
 // EVENT HANDLERS
+const clearView = (views) => {
+  views.forEach((view) => {
+    view.innerHTML = '';
+  })
+}
 const toMyRecipeView = () => {
   mainView.classList.add('hidden');
   myRecipesView.classList.remove('hidden');
-  singleRecipeView.innerHTML= '';
+  clearView([singleRecipeView]);
   searchBar.placeholder = 'Search your bookmarked Recipes';
   renderRecipeCards(myRecipesView, currentUser.recipesToCook, currentUser);
 };
@@ -28,40 +33,47 @@ const toDashboardView = () => {
   mainView.classList.remove('hidden');
   myRecipesView.classList.add('hidden');
   renderRecipeCards(mainViewCardContainer, recipeData, currentUser);
-  singleRecipeView.innerHTML= '';
+  clearView([singleRecipeView]);
   searchBar.placeholder = 'Search for new Recipes';
 };
 
-const searchBarClicked = () => {
-  mainViewCardContainer.innerHTML = '';
-  myRecipesView.innerHTML = '';
-
-  let searchResults;
-  let view;
-  
+const setView = () => {
   if (myRecipesView.classList.contains('hidden')) {
-    view = mainViewCardContainer;
+    return mainViewCardContainer;
   } else if (mainView.classList.contains('hidden')) {
-    view = myRecipesView;
+    return myRecipesView;
   }
-  if (searchBar.value.length === 0) {
-    searchResults = recipeData;
-  } else if (searchByToggle.value === 'select') {
+}
+
+const searchResults = () => {
+  if (searchByToggle.value === 'select' || searchBar.value.length === 0) {
     handleInvalidSearch('⬅️ You must search by tag or name.');
-    searchResults = recipeData;
+    return recipeData;
   } else if (searchByToggle.value === 'tag') {
-    searchResults = handleTagSearch();
+    return handleTagSearch();
   } else if (searchByToggle.value === 'name') {
-    searchResults = handleNameSearch();
+    return handleNameSearch();
   }
-// potential refactor: turn this into a search object
-  handleSearchResults(view, searchResults);
+}
+
+const searchBarClicked = () => {
+  clearView([mainViewCardContainer, myRecipesView, singleRecipeView]);
+
+  handleSearchResults(setView(), searchResults());
 };
 
 const handleInvalidSearch = (message) => {
   searchBar.value = '';
   searchBar.placeholder = message;
 };
+
+const handleSearch = (type) => {
+    if (myRecipesView.classList.contains('hidden')) {
+      return filterByTag(searchBar.value, recipeData);
+    } else if (mainView.classList.contains('hidden')) {
+      return filterByTag(searchBar.value, currentUser.recipesToCook);
+    }
+  };
 
 const handleTagSearch = () => {
   if (myRecipesView.classList.contains('hidden')) {
@@ -90,6 +102,8 @@ const handleSearchResults = (view, results) => {
 // DOM FUNCTIONS
 const renderBookmarks = (currentUser, recipe) => {
   if (currentUser.recipesToCook.includes(recipe)) {
+    //hide or unhide based on conditional, but only the hidden class 
+    //mayve have another function that checks to see if recipe is included, and have it return "hidden " or nothing 
     return `<img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked hidden" alt="bookmark icon">
     <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked" alt="bookmark icon filled in">`
   } else {
@@ -97,6 +111,7 @@ const renderBookmarks = (currentUser, recipe) => {
     <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">`
   }
 }
+//redundant code- potentially refactor
 
 const renderRecipeCards = (view, recipes, currentUser) => {
   mainViewCardContainer.innerHTML = '';
@@ -109,7 +124,7 @@ const renderRecipeCards = (view, recipes, currentUser) => {
       <div class="recipe-title-flex">
         <h2 class="recipe-name">${recipe.name}</h2>
         <div class="bookmark-flex">
-          ${renderBookmarks(currentUser, recipe)}
+        ${renderBookmarks(currentUser, recipe)}
         </div>
       </div>
     </article>`;
@@ -224,3 +239,4 @@ export {
   removeRecipeCard
 };
 
+//create hidden toggle functions
