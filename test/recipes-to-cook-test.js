@@ -72,4 +72,7 @@ describe('removeRecipes', () => {
     recipesToCook(102, currentUser, sampleRecipeData);
     expect(removeRecipes(undefined, currentUser)).to.equal('Cannot delete recipe');
   });
+
+  //currentUser if they are on saved page and there is nothing to delete
+  ///
 });
