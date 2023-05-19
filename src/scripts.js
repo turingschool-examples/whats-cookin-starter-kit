@@ -32,6 +32,7 @@ const allRecipes = document.querySelector('.all-recipes');
 const clickedRecipe = document.querySelector('#clickedRecipe');
 const closeRecipeButton = document.querySelector('#closeRecipe');
 const tagArea = document.querySelector('.tag-area');
+const ingredientsList = document.querySelector('#ingredientsList');
 
 // DATA MODEL 
 let currentRecipeCard = {};
@@ -78,6 +79,6 @@ export {
   clickedRecipe,
   getRecipeCard,
   currentRecipeCard,
+  ingredientsList,
   allRecipes
-
 }

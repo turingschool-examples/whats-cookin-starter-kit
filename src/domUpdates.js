@@ -1,6 +1,6 @@
 // Imports
 import {recipeData} from './data/recipes'
-import {recipeGrid, clickedRecipe, tagArea, getRecipeCard, allRecipes} from './scripts'
+import {recipeGrid, clickedRecipe, tagArea, getRecipeCard, allRecipes, ingredientsList} from './scripts'
 
 let currentRecipeCard = require('./scripts');
 
@@ -200,6 +200,7 @@ const populateRecipeName = currentRecipe => {
 
 const openRecipeCard = () => {
   allRecipes.classList.add('blur')
+  getIngredients(currentRecipeCard);
   clickedRecipe.classList.toggle("hidden");
   clickedRecipe.classList.toggle("flex");
   clickedRecipe.classList.toggle("fade-in");
@@ -218,8 +219,24 @@ const closeRecipe = () => {
   clickedRecipe.classList.add("hidden");
   clickedRecipe.classList.remove("flex");
   clickedRecipe.classList.remove("fade-in");
+  ingredientsList.innerHTML = '';
 };
 
+const getIngredients = currentRecipeCard => {
+  createIngredientsHTML(currentRecipeCard.ingredients);
+};
+
+const createIngredientsHTML = ingredients => {
+  ingredients.forEach((ingredient, i) => {
+    let ingredientLabelName = `ingredient${i}`
+    ingredientsList.innerHTML += `
+    <label for="${ingredientLabelName}">
+      <input id="${ingredientLabelName}" type="checkbox" name="${ingredientLabelName}" />
+      ${ingredient.amount} ${ingredient.unit} ${ingredient.name}
+    </label>
+    `;
+  });
+}
 // Exports
 export {
   renderGrid,
