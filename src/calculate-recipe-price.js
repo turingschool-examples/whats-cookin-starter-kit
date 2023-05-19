@@ -14,7 +14,7 @@ const calculateRecipePrice = (recipe, ingredientsData) => {
     return acc
   }, 0);
   const costInDollar = costInCents / 100;
-  return costInDollar.toFixed(2);
+  return `$${costInDollar.toFixed(2)}`;
 }
 
 

@@ -1,6 +1,6 @@
 import { getIngredientName } from './get-ingredient-name';
 
-const compileIngredientInfos = (recipe, ingredientsData) => {
+const compileIngredientItems = (recipe, ingredientsData) => {
   const ingredientsInfos = recipe.ingredients.map(ele => {
     return `${getIngredientName(ele.id, ingredientsData)} × ${ele.quantity.amount} ${ele.quantity.unit}`;
   })
@@ -8,4 +8,4 @@ const compileIngredientInfos = (recipe, ingredientsData) => {
   return ingredientsInfos;
 };
 
-export { compileIngredientInfos }
+export { compileIngredientItems }

@@ -1,5 +1,5 @@
 
-import { getIngredientsInfos } from './get-ingredients-infos';
+import { compileIngredientItems } from './compile-ingredient-items';
 import { calculateRecipePrice } from './calculate-recipe-price';
 import { removeRecipes, recipesToCook } from './recipes-to-cook';
 import {
@@ -196,9 +196,9 @@ const renderInstructions = (recipe) => {
 };
 
 const renderIngredients = (recipe, ingredients) => {
-  let ingredientNames = getIngredientsInfos(recipe, ingredients);
+  let ingredientItems = compileIngredientItems(recipe, ingredients);
   let output = '';
-  ingredientNames.forEach((ele) => {
+  ingredientItems.forEach((ele) => {
     output += `<span>- ${ele}</span>`;
   })
   return output;
