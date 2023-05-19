@@ -1517,29 +1517,27 @@ const sampleUsersData = [
 ]
 
 const simpleRecipes = [
-  [
     {
-      ingredients: [
+      "ingredients": [
         {
           id: 1,
         }
       ]
     },
     {
-      ingredients: [
+      "ingredients": [
         {
           id: 2
         }
       ]
     },
     {
-      ingredients: [
+      "ingredients": [
         {
           id: 3
         }
       ]
     }
-  ]
 ]
 
 const simpleRecipe = {
@@ -1579,5 +1577,6 @@ export {
   sampleIngredientsData,
   sampleUsersData,
   simpleIngredients,
-  simpleRecipe
+  simpleRecipe,
+  simpleRecipes
 }

@@ -6,6 +6,7 @@ import {
   sampleRecipeData,
   simpleIngredients,
   simpleRecipe,
+  simpleRecipes
 } from '../src/data/sampleData';
 
 import {
@@ -271,6 +272,13 @@ describe('filterRecipes', () => {
     expectedRecipes = [sampleRecipeData[0], sampleRecipeData[5]];
     ingredientSearched = "fine sea salt";
     filteredRecipes = filterRecipesByIngredient(sampleRecipeData, ingredientSearched, sampleIngredientsData);
+    expect(filteredRecipes).to.deep.equal(expectedRecipes);
+  })
+
+  it('should look for recipies even with a matching substring of ingredients', () => {
+    expectedRecipes = [simpleRecipes[0], simpleRecipes[2]];
+    ingredientSearched = "sugar";
+    filteredRecipes = filterRecipesByIngredient(simpleRecipes, ingredientSearched, simpleIngredients);
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   })
 

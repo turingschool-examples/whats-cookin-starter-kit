@@ -39,12 +39,11 @@ const filterRecipesByName = (recipes, name) => {
 }
 
 const filterRecipesByIngredient = (recipes, searchedIngredient, ingredientData) => {
-  const searchedIngredientID = ingredientData.find(ingredient => ingredient.name.includes(searchedIngredient))?.id;
-  const matchedRecipes = recipes.filter(recipe => recipe.ingredients.some(ingredient => ingredient.id === searchedIngredientID));
+  const matchingIngredients = ingredientData.filter(ingredient => ingredient.name.includes(searchedIngredient));
+  const matchingIngredientsID = matchingIngredients.map(ingredient => ingredient.id);
+  const matchedRecipes = recipes.filter(recipe => recipe.ingredients.some(ingredient => matchingIngredientsID.includes(ingredient.id)));
   return matchedRecipes;
 };
-
-
 
 export {
   getInstructions,
