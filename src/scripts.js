@@ -2,9 +2,10 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe, searchForRecipes } from './domUpdates';
+import { makeTagActive, pageLoadRenders, closeRecipe, showRecipe, searchForRecipes } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
+import { assignCurrentUser } from './apiCalls';
 import './images/antipasti.png';
 import './images/antipasto.png'
 import './images/appetizer.png'
@@ -57,7 +58,10 @@ return recipeCard;
 
 // //Example of one way to import functions from the domUpdates file. You will delete these examples.
 // import {exampleFunction1, exampleFunction2} from './domUpdates.js'
-window.addEventListener("load", pageLoadRenders);
+window.addEventListener("load", () => {
+  assignCurrentUser();
+  pageLoadRenders();
+});
 
 tagArea.addEventListener("click", function(event) {
   if (event.target.classList && event.target.closest(".tag-card")) {
@@ -73,7 +77,13 @@ allRecipes.addEventListener("click", (event) => {
 
 closeRecipeButton.addEventListener("click", closeRecipe);
 
-searchBtn.addEventListener('click', searchForRecipes)
+searchBar.addEventListener('keypress', (event) => {
+  if(event.key === 'Enter') {
+    searchForRecipes();
+  }
+})
+
+searchBtn.addEventListener('click', searchForRecipes);
 
 // Exports
 export {

@@ -326,11 +326,18 @@ describe('search recipes', () => {
     assert.deepEqual(filteredRecipes, []);
   });
 
-  it('should return all recipes if only an empty string is entered', () => {
+  it('should do nothing if only an empty string is entered', () => {
     let allRecipes = searchRecipes(sampleRecipeData, sampleIngredientsData, ' ');
-    assert.deepEqual(allRecipes, sampleRecipeData)
+    assert.deepEqual(allRecipes, undefined)
 
     let otherFilteredRecipes = searchRecipes(sampleRecipeData, sampleIngredientsData, '')
-    assert.deepEqual(otherFilteredRecipes, sampleRecipeData)
+    assert.deepEqual(otherFilteredRecipes, undefined)
+  })
+
+  it('should ignore spaces', () => {
+    let filteredRecipes = searchRecipes(sampleRecipeData, sampleIngredientsData, '   cake   ')
+    let expectedRecipes = [sampleRecipeData[3], sampleRecipeData[4]];
+
+    assert.deepEqual(filteredRecipes, expectedRecipes)
   })
 })
