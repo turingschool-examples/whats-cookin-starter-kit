@@ -17,11 +17,13 @@ const homeButton = document.querySelector('.title')
 
 //Event Listeners
 allRecipesButton.addEventListener('click', showRecipes);
+
 allFilterDisplay.addEventListener('click', function (event) {
   if (event.target.classList.contains('checkbox')) {
     renderFilteredRecipes(event)
   }
 });
+
 searchInput.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
     showSearchResults();
@@ -38,6 +40,7 @@ homeButton.addEventListener('click', function () {
   showHomePage()
   randomizeHomePage()
 })
+
 window.addEventListener('load', () => {
   randomizeHomePage();
   generateRandomUser(usersData);
@@ -63,7 +66,6 @@ function showSearchResults() {
       <p>Total Cost: $..</p>
     </div>`)
 };
-
 
 function showHomePage() {
   addHiddenClass([allRecipeDisplay], [allFilterDisplay]);
@@ -149,18 +151,7 @@ function addHiddenClass(elements) {
   return elements.forEach(element => element.classList.add('hidden'));
 };
 
-//Here are 2 example functions just to demonstrate one way you can export/import between the two js files. You'll want to delete these once you get your own code going.
-function exampleFunction1(person) {
-  console.log(`oh hi there ${person}`)
-}
-
-function exampleFunction2(person) {
-  console.log(`bye now ${person}`)
-}
-
 export {
-  exampleFunction1,
-  exampleFunction2,
   showRecipes,
   removeHiddenClass,
   addHiddenClass,
