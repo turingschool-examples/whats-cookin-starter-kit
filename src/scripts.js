@@ -51,8 +51,15 @@ const start = () => {
 // EVENT LISTENERS
 window.addEventListener('load', start);
 searchButton.addEventListener('click', searchBarClicked);
+searchBar.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    searchButton.click();
+  }
+});
 singleRecipeView.addEventListener('click', (e) => {
-  toggleBookmark(e, currentUser, recipeData);
+  toggleBookmark(e, currentUser, recipeData)
+});
 mainContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('recipe-img') || e.target.classList.contains('recipe-name')) {
     renderSingleRecipeView(e, recipeData, ingredientsData, currentUser);
@@ -82,4 +89,4 @@ export {
   searchBar,
   searchButton,
   searchByToggle,
-};
+}
