@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { saveRecipe, deleteRecipe, recipesToCook, addSavedRecipesToUser} from '../src/userUtils.js';
 import usersData from '../src/data/users.js';
+import recipeData1 from '../src/data/recipes-sample.js';
 
 
 describe('saveRecipe', () => {
@@ -44,7 +45,8 @@ describe('addSavedRecipesToUser', () => {
   });
 
   it('should update the currentUser object with recipesToCook array', () => {
-    const savedRecipes = saveRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
+    const savedRecipes = saveRecipe(recipeData1, "Thai Chicken Tenders with Broiled Pineapple Slaw");
+    const savedRecipes2 = saveRecipe(recipeData1, "Thai Chicken Tenders with Broiled Pineapple Slaw");
     const currentUser = usersData[0];
     const updatedUser = addSavedRecipesToUser(currentUser, savedRecipes);
 

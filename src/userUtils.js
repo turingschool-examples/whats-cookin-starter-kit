@@ -1,5 +1,3 @@
-import usersData from "./data/users";
-
 var recipesToCook = [];
 var currentUser;
 
