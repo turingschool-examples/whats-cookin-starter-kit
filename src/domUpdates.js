@@ -1,5 +1,5 @@
 // Imports
-import { pageData, currentUser } from './apiCalls';
+import { pageData, currentUser, updateCurrentUser } from './apiCalls';
 import {recipeData} from './data/recipes'
 import { ingredientsData } from './data/ingredients';
 import {
@@ -14,6 +14,7 @@ import {
   yourViewBtn,
 } from './scripts'
 import { searchRecipes } from './recipes';
+import { updateRecipesToCook } from './users';
 
 // functions
 
@@ -41,10 +42,14 @@ const createSingleRecipeHTML = singleRecipe => {
   htmlCode += 
   `
   <article class="individual-recipe-container">
-    <section class="add-panel">
+    <section class="add-panel panel">
       <div class="plus-symbol">+</div>
       <h4> Add to recipes to cook</h4>
     </section>
+    <section class="remove-panel panel hidden">
+    <div class="minus-symbol synmbol">-</div>
+    <h4> Remove from recipes to cook</h4>
+  </section>
     <article class="individual-recipe" id="${singleRecipe.id}">
       <div class="recipe-image-div">
         <img class="recipe-image"src="${singleRecipe.image}">
@@ -213,9 +218,6 @@ const updateCurrentRecipe = recipeCard => {
   pageData.currentRecipeCard = getRecipeCard(thisRecipe);
 }
 
-const populateRecipeName = currentRecipe => {
-  document.querySelector('#recipeName').innerHTML = `  <h1>${currentRecipe.name}</h1>  `
-}
 
 const populateAddBtn = () => {
   // const recipeSaved = user.recipesToCook.some(recipe => recipe.id === currentRecipe.id);
@@ -322,6 +324,24 @@ const searchForRecipes = () => {
   }
 }
 
+const updateUserRecipes = (e) => {
+  const recipeID = e.target.closest('.individual-recipe-container')?.querySelector('.individual-recipe').id;
+  const recipe = recipeData.find(recipe => recipe.id.toString() === recipeID)
+  const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel')
+  const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel')
+  if (e.target.parentNode.classList[0] === 'add-panel') {
+    updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'add'))
+    addBtn.classList.add('hidden')
+    removeBtn.classList.remove('hidden')
+  } else if (e.target.parentNode.classList[0] === 'remove-panel') {
+    updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'remove'))
+    addBtn.classList.remove('hidden')
+    removeBtn.classList.add('hidden')
+  }
+  console.log(currentUser.recipesToCook)
+}
+
+
 // Exports
 export {
   renderGrid,
@@ -330,5 +350,6 @@ export {
   showRecipe,
   closeRecipe,
   switchView,
-  searchForRecipes
+  searchForRecipes,
+  updateUserRecipes
 }

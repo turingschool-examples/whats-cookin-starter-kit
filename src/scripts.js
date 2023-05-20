@@ -2,7 +2,7 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { makeTagActive, pageLoadRenders, closeRecipe, showRecipe, switchView, searchForRecipes } from './domUpdates';
+import { makeTagActive, pageLoadRenders, closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
 import './images/antipasti.png';
@@ -94,6 +94,10 @@ searchBar.addEventListener('keypress', (event) => {
 })
 
 searchBtn.addEventListener('click', searchForRecipes);
+
+window.addEventListener('click', (event) => {
+  updateUserRecipes(event)
+})
 
 // Exports
 export {
