@@ -2,11 +2,7 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-<<<<<<< HEAD
 import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe, switchView, searchForRecipes } from './domUpdates';
-=======
-import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe, searchForRecipes } from './domUpdates';
->>>>>>> main
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
 import './images/antipasti.png';
