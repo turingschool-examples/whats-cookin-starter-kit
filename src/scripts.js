@@ -2,7 +2,7 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe, switchView, searchForRecipes } from './domUpdates';
+import { makeTagActive, pageLoadRenders, closeRecipe, showRecipe, switchView, searchForRecipes } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
 import './images/antipasti.png';
@@ -87,7 +87,7 @@ chooseView.addEventListener("click", function(event) {
   }
 });
 
-searchBtn.addEventListener('click', searchForRecipes)
+searchBtn.addEventListener('click', searchForRecipes);
 
 // Exports
 export {

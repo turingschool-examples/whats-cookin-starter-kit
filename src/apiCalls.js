@@ -22,8 +22,10 @@ const assignCurrentUser = () => {
     })
 }
 
-const updateCurrentUser = user => {
+const updateCurrentUser = (user) => {
   currentUser = user;
-}
-  
-export {assignCurrentUser, currentUser, updateCurrentUser}
+};
+
+export { assignCurrentUser, currentUser, pageData, updateCurrentUser };
+
+
