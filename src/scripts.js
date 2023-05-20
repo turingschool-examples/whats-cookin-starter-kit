@@ -62,7 +62,6 @@ mainView.addEventListener('click', (e) => {
 });
 myRecipesBtn.addEventListener('click', () => {
   toMyRecipeView(currentUser);
-  console.log(currentUser)
 });
  dashboardBtn.addEventListener('click', () => {
    toDashboardView(currentUser);
