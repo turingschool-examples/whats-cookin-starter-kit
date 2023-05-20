@@ -3,8 +3,10 @@ import './styles.css';
 import { savePromises } from './apiCalls';
 import './images/turing-logo.png';
 import './images/clipart16385.png';
+import './images/rh.png';
+import './images/bh.png';
 import { recipesToCook, toggleRecipesToCook } from './recipe.js';
-import { searchButton, favoriteButton, homeButton, tags, mainPanel, loadUsers, viewAllRecipes, viewRecipeInfo, filterRecipeByTag, searchRecipe, toggleButtons } from './domUpdates.js';
+import { searchButton, favoriteButton, homeButton, tags, mainPanel, loadUsers, viewAllRecipes, viewRecipeInfo, filterRecipeByTag, searchRecipe, toggleButtons, toggleHearts } from './domUpdates.js';
 
 let users;
 let recipes;
@@ -23,8 +25,12 @@ window.addEventListener('load', () => {
 });
 
 mainPanel.addEventListener('click', e => {
-  viewRecipeInfo(recipes, ingredients, e),
-  toggleRecipesToCook(e, recipes)
+  viewRecipeInfo(recipes, ingredients, e);
+  if (e.target.classList.contains('heart-saved') || e.target.classList.contains('heart-unsaved')) {
+    console.log('heartheartheart', e.target.id)
+    toggleHearts(e);
+    toggleRecipesToCook(e, recipes)
+  }
 });
 
 tags.forEach(tag => {

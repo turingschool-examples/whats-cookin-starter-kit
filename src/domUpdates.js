@@ -8,6 +8,8 @@ const favoriteButton = document.querySelector('.favorite-button');
 const tags = document.querySelectorAll('.tag');
 const mainPanel = document.querySelector('.main-panel');
 const homeButton = document.querySelector('.home-button')
+let unsaved; 
+let saved;
 let page = {mode: 'home'};
 
 // Event Handlers
@@ -22,6 +24,8 @@ const viewRecipe = recipe => {
   <section class='recipe-container box' id='${recipe.id}'>
     <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
     <h3 class='recipe-name' id="${recipe.id}">${recipe.name}</h3>
+    <img class='heart-unsaved' id='${recipe.id}' src='./images/bh.png' alt='unsave ${recipe.name}'>
+    <img class='heart-saved hidden' id='${recipe.id}' src='./images/rh.png' alt='save ${recipe.name}'>
   </section>
   `;
 }
@@ -88,6 +92,15 @@ const toggleButtons = () => {
   favoriteButton.classList.toggle('hidden');
   }
 
+  const toggleHearts = (e) => {
+  unsaved = document.querySelectorAll('.heart-unsaved');
+  saved = document.querySelectorAll('.heart-saved');
+  unsaved.forEach(x => x)
+    console.log(unsaved, 'sadge')
+    console.log(e.target.id, 'sadalfjladslfladsfhldfh')
+    unsaved.classList.toggle('hidden');
+    saved.classList.toggle('hidden')
+  }
 
 export {
   user,
@@ -105,5 +118,6 @@ export {
   filterRecipeByTag,
   searchRecipe, 
   loadUsers, 
-  toggleButtons
+  toggleButtons,
+  toggleHearts
 }
