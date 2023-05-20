@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import { recipesFromTag, recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions } from '../src/recipeUtils';
 import recipeData from '../src/data/recipes-sample.js';
 import ingredientsData from '../src/data/ingredients-sample.js';
+import { recipesToCook, saveRecipe } from '../src/userUtils';
 
 
 describe('RecipeUtils', () => {
@@ -14,6 +15,15 @@ describe('RecipeUtils', () => {
     expect(filtered.length).to.equal(1)
     expect(filtered[0].name).to.equal(expected)
   });
+  it('should filter recipesToCook based on a tag', ()=> {
+    const save = saveRecipe(recipeData, 'Loaded Chocolate Chip Pudding Cookie Cups')
+    const sav2 = saveRecipe(recipeData, 'Maple Dijon Apple Cider Grilled Pork Chops')
+    const expectedRecipesToCook = [recipeData[0]];
+    const filteredRecipesToCook = recipesFromTag(recipesToCook, ['starter'])
+
+    expect(filteredRecipesToCook.length).to.equal(1)
+    expect(filteredRecipesToCook).to.deep.equal(expectedRecipesToCook)
+  })
   it ('Should filter recipes if tag applies to multiple recipes', () => {
     const expected = ['Thai Chicken Tenders with Broiled Pineapple Slaw', 'Maple Dijon Apple Cider Grilled Pork Chops']
     const filtered = recipesFromTag(recipeData, ['lunch'])
