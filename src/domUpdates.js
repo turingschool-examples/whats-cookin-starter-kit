@@ -33,7 +33,10 @@ allRecipeDisplay.addEventListener('click', function (event) {
   viewSelectedRecipe(event);
 });
 
-homeButton.addEventListener('click', showHomePage, randomizeHomePage)
+homeButton.addEventListener('click', function () {
+  showHomePage()
+  randomizeHomePage()
+})
 window.addEventListener('load', randomizeHomePage);
 
 
@@ -51,6 +54,7 @@ function showSearchResults() {
     </div>`)
 };
 
+
 function showHomePage() {
   addHiddenClass([allRecipeDisplay], [allFilterDisplay]);
   removeHiddenClass([frontRecipeDisplay]);
@@ -59,31 +63,27 @@ function showHomePage() {
 function randomizeHomePage() {
   shuffleData(recipeData)
   frontRecipeDisplay.innerHTML = '';
-  recipeData.forEach((recipe) => frontRecipeDisplay.innerHTML = `
+  for (let i = 0; i < recipeData.length; i++) {
+    frontRecipeDisplay.innerHTML = `
       <div class = "recipe-wrapper">
-        <img id="front-recipe-1" src="${recipe.image}" class="recipe">
+        <img id="front-recipe-1" src="${recipeData[0].image}" class="recipe">
         <div class = "recipe-info">
-          <p>${recipe.name}</p>
+          <p>${recipeData[0].name}</p>
         </div>
-
-  
-    
         </div>
       <div class = "recipe-wrapper">
-        <img id="front-recipe-2" src="${recipe.image}"  class="recipe">
+        <img id="front-recipe-2" src="${recipeData[1].image}"  class="recipe">
         <div class = "recipe-info">
-          <p>${recipe.name}</p>
+          <p>${recipeData[1].name}</p>
         </div>
       </div>
       <div class = "recipe-wrapper">
-        <img id="front-recipe-3" src="${recipe.image}"  class="recipe">
+        <img id="front-recipe-3" src="${recipeData[2].image}"  class="recipe">
         <div class = "recipe-info">
-          <p>${recipe.name}</p>
+          <p>${recipeData[2].name}</p>
         </div>`
-)
+  }
 }
-
-
 
 function renderFilteredRecipes() {
   const tags = Array.from(checkCategories).filter((category) => category.checked).map(c => c.id)
@@ -153,5 +153,7 @@ export {
   exampleFunction2,
   showRecipes,
   removeHiddenClass,
-  addHiddenClass
+  addHiddenClass,
+  showHomePage,
+  randomizeHomePage
 }
