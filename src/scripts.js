@@ -3,7 +3,7 @@ import './styles.css';
 import { savePromises } from './apiCalls';
 import './images/turing-logo.png';
 import './images/clipart16385.png';
-import './images/Avatar1.gif';
+// import './images/Avatar1.gif';
 import './images/rh.png';
 import './images/bh.png';
 import { recipesToCook, toggleRecipesToCook } from './recipe.js';
