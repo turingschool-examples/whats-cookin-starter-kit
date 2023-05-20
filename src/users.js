@@ -1,4 +1,4 @@
-import { copyItem } from "./helper-functions";
+import { copyItem, getRandomIndex } from "./helper-functions";
 
 const addUniqueRecipes = (userRecipes, newRecipe) => {
   if(!userRecipes.find(item => item.id === newRecipe.id)) userRecipes.push(newRecipe)
@@ -13,4 +13,8 @@ const addRecipeToCook = (user, recipe) => {
   return updatedUser;
 };
 
-export { addRecipeToCook };
+const getRandomUser = users => {
+  return users[getRandomIndex(users)]
+}
+
+export { addRecipeToCook, getRandomUser };

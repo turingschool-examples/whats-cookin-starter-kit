@@ -310,12 +310,14 @@ const switchView = (clickedViewID) => {
 const searchForRecipes = () => {
   const data = {
     ourRecipes: recipeData,
-    yourRecipes: null
+    yourRecipes: currentUser.recipesToCook
   }
   let searchedRecipes = searchRecipes(data[pageData.currentView], ingredientsData, searchBar.value)
-  searchedRecipes.length  
+  if(searchedRecipes) {
+    searchedRecipes.length  
     ? renderGrid(searchedRecipes)
     : recipeGrid.innerHTML = `<p>Sorry, we couldn't find any recipes for your search of "${searchBar.value}"</p>`
+  }
 }
 
 // Exports
