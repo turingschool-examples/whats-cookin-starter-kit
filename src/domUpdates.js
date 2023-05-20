@@ -3,9 +3,9 @@ import { pageData, currentUser } from './apiCalls';
 import {recipeData} from './data/recipes'
 import { ingredientsData } from './data/ingredients';
 import {
-  recipeGrid, 
-  clickedRecipe, 
-  tagArea, 
+  recipeGrid,
+  clickedRecipe,
+  tagArea,
   getRecipeCard,
   allRecipes,
   ingredientsList,
@@ -33,8 +33,6 @@ const makeRecipeColumnData = (data) => {
   const rightColumn = mappedRecipe.filter(recipe => recipe.column === 0);
   return [leftColumn, centreColumn, rightColumn];
 }
-
-
 
 const createSingleRecipeHTML = singleRecipe => {
   let htmlCode = '';
