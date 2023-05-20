@@ -58,6 +58,15 @@ describe('RecipeUtils', () => {
     expect(filtered.length).to.equal(1)
     expect(filtered[0].name).to.equal(expected)
   })
+  it('Should filter recipesToCook based on name', () => {
+    const save1 = saveRecipe(recipeData, 'Thai Chicken Tenders with Broiled Pineapple Slaw')
+    const save2 = saveRecipe(recipeData, 'Loaded Chocolate Chip Pudding Cookie Cups')
+    console.log('0',recipesToCook)
+    const filtered = recipesfromName(recipesToCook, 'Thai Chicken Tenders with Broiled Pineapple Slaw')
+    console.log('1',filtered)
+
+    expect(filtered.length).to.equal(1)
+  })
   it ('Should return nothing if no recipes match the user input name', () => {
     const filtered = recipesfromName(recipeData, 'Spicy Potatoes')
     expect(filtered.length).to.equal(0)
