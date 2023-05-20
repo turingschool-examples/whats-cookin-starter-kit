@@ -2,10 +2,10 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { makeTagActive, pageLoadRenders, closeRecipe, showRecipe, searchForRecipes } from './domUpdates';
+import { makeTagActive, closeRecipe, showRecipe, searchForRecipes } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
-import { assignCurrentUser } from './apiCalls';
+import { assignCurrentUser, fetchRecipes } from './apiCalls';
 import './images/antipasti.png';
 import './images/antipasto.png'
 import './images/appetizer.png'
@@ -60,7 +60,7 @@ return recipeCard;
 // import {exampleFunction1, exampleFunction2} from './domUpdates.js'
 window.addEventListener("load", () => {
   assignCurrentUser();
-  pageLoadRenders();
+  fetchRecipes();
 });
 
 tagArea.addEventListener("click", function(event) {

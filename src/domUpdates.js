@@ -1,5 +1,4 @@
 // Imports
-import {recipeData} from './data/recipes'
 import { ingredientsData } from './data/ingredients';
 import { searchRecipes } from './recipes';
 import { currentUser, pageData } from './apiCalls';
@@ -12,7 +11,6 @@ import {
   ingredientsList, 
   searchBar
 } from './scripts'
-
 
 // functions
 
@@ -146,8 +144,8 @@ const createTagAreaHTML = rows => {
   return htmlCode;
 };
 
-const renderTagArea = () => {
-  const tagData = getTagsFromRecipes(recipeData);
+const renderTagArea = (data) => {
+  const tagData = getTagsFromRecipes(data);
   const tagsAndIcons = clubTagsAndIcons(tagData);
   const tagRows = splitTagsInRows(tagsAndIcons);
   const htmlCode = createTagAreaHTML(tagRows);
@@ -166,9 +164,10 @@ const makeTagActive = (event) => {
   }
 };
 
-const pageLoadRenders = () => {
-  renderGrid(recipeData);
-  renderTagArea();
+const pageLoadRenders = (data) => {
+  console.log(data)
+  renderGrid(data);
+  renderTagArea(data);
 };
 
 const getInstructionHTML = (recipe) => {
@@ -200,7 +199,7 @@ const populateInstructions = (recipe) => {
 
 const updateCurrentRecipe = recipeCard => {
   const recipeCardID = recipeCard.closest("article")?.id;
-  const thisRecipe = recipeData.find(recipe => recipe.id.toString() === recipeCardID);
+  const thisRecipe = pageData.recipesOfInterest.find(recipe => recipe.id.toString() === recipeCardID);
   pageData.currentRecipeCard = getRecipeCard(thisRecipe);
 }
 
@@ -257,7 +256,7 @@ const createIngredientsHTML = ingredients => {
 
 const searchForRecipes = () => {
   const data = {
-    ourRecipes: recipeData,
+    ourRecipes: pageData.recipesOfInterest,
     yourRecipes: currentUser.recipesToCook
   }
   let searchedRecipes = searchRecipes(data[pageData.currentView], ingredientsData, searchBar.value)
