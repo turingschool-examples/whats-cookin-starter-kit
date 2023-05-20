@@ -50,8 +50,8 @@ const calculateRecipeCost = (recipe, ingredients) => {
  };
 
 function shuffleData(recipes) {
-  let shuffle = recipes.sort((recipe) => Math.random(recipe) - 0.5)
-  return shuffle
+  recipes.sort(() => Math.random() - 0.5)
+  return
 }
 
 export {
