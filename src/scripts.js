@@ -27,7 +27,7 @@ window.addEventListener('load', () => {
 
 mainPanel.addEventListener('click', e => {
   viewRecipeInfo(recipes, ingredients, e);
-  toggleRecipesToCook(e, recipes);
+  toggleRecipesToCook(e.target.parentNode.id, recipes);
   toggleHearts(e, recipes);
 });
 

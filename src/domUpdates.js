@@ -45,7 +45,12 @@ const viewAllRecipes = recipes => {
   recipes.forEach(recipe => viewRecipe(recipe));
 }
 
-const organizeInstructions = instructs => instructs.split('.').map(x => x + '.').join('<br>').slice(0, instructs.length);
+// const organizeInstructions = instructs => instructs.split('.').map(x => x + '.').join('<br>').slice(0, instructs.length);
+
+const organizeInstructions = instructs => {
+  instructs = instructs.reduce((string, instruction) => `${string}` + `${instruction.number}) ${instruction.instruction}`, '');
+  return instructs.split('.').map(x => x + '.').join('<br>').slice(0, instructs.length);
+}
 
 const viewRecipeInfo = (recipes, ingredients, e) => {
   if (e.target.classList.contains('box')) {
@@ -74,7 +79,7 @@ const viewRecipeInfo = (recipes, ingredients, e) => {
 
 const filterRecipeByTag = (e, r) => {
   page.mode === 'home' ? r : r = recipesToCook;
-  let filteredRecipes = filterByTag(e, r);
+  let filteredRecipes = filterByTag(e.target.id, r);
   console.log(e.target.id);
   console.log('r', r)
   console.log('filtered', filteredRecipes);
@@ -82,7 +87,14 @@ const filterRecipeByTag = (e, r) => {
   loadHearts(filteredRecipes);
 }
 
+
+// not currently functional, but don't want to block
 const searchRecipe = r => {
+  if (!input) {
+    // mainPanel.innerHTML = '';
+    return alert('you done goofed my guy');
+    // viewAllRecipes();
+  }
   mainPanel.innerHTML = '';
   page.mode === 'home' ? r : r = recipesToCook;
   r.forEach(recipe => {
@@ -98,10 +110,6 @@ const searchRecipe = r => {
     }
   });
   loadHearts(recipesToCook);
-  if (!input) {
-    mainPanel.innerHTML = '';
-    viewAllRecipes();
-  }
 }
 
 const toggleButtons = () => {
@@ -135,7 +143,7 @@ const loadHearts = (recipes) => {
       document.getElementById(`unsaved-${recipe.id}`).classList.remove('hidden');
       document.getElementById(`saved-${recipe.id}`).classList.add('hidden');
     }
-  })
+  });
 }
 
 const viewHome = () => {
