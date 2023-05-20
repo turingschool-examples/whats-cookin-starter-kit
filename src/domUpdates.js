@@ -15,6 +15,7 @@ import {
 } from './scripts'
 import { searchRecipes } from './recipes';
 import { updateRecipesToCook } from './users';
+import { toggleHidden } from './helper-functions';
 
 // functions
 
@@ -329,16 +330,9 @@ const updateUserRecipes = (e) => {
   const recipe = recipeData.find(recipe => recipe.id.toString() === recipeID)
   const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel')
   const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel')
-  if (e.target.parentNode.classList[0] === 'add-panel') {
-    updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'add'))
-    addBtn.classList.add('hidden')
-    removeBtn.classList.remove('hidden')
-  } else if (e.target.parentNode.classList[0] === 'remove-panel') {
-    updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'remove'))
-    addBtn.classList.remove('hidden')
-    removeBtn.classList.add('hidden')
-  }
-  console.log(currentUser.recipesToCook)
+  if (e.target.parentNode.classList.contains('add-panel')) updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'add'))
+  if (e.target.parentNode.classList.contains('remove-panel')) updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'remove'))
+  toggleHidden([addBtn, removeBtn])
 }
 
 
