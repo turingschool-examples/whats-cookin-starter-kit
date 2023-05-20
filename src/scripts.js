@@ -53,6 +53,7 @@ window.addEventListener('load', start);
 searchButton.addEventListener('click', searchBarClicked);
 singleRecipeView.addEventListener('click', (e) => {
   toggleBookmark(e, currentUser, recipeData);
+});
 mainContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('recipe-img') || e.target.classList.contains('recipe-name')) {
     renderSingleRecipeView(e, recipeData, ingredientsData, currentUser);
@@ -60,7 +61,6 @@ mainContainer.addEventListener('click', (e) => {
 });
 myRecipesBtn.addEventListener('click', () => {
   toMyRecipeView(currentUser);
-  console.log(currentUser);
 });
 dashboardBtn.addEventListener('click', () => {
   toDashboardView(currentUser);

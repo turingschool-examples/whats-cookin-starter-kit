@@ -1,3 +1,4 @@
+import { checkUserForRecipe } from './users';
 import { compileIngredientItems } from './compile-ingredient-items';
 import { calculateRecipePrice } from './calculate-recipe-price';
 import { removeRecipes, recipesToCook } from './recipes-to-cook';
@@ -19,6 +20,7 @@ const clearView = (views) => {
     view.innerHTML = '';
   });
 };
+
 const toMyRecipeView = (currentUser) => {
   toggleHidden([mainView], 'add');
   toggleHidden([myRecipesView], 'remove');
@@ -40,7 +42,7 @@ const setView = () => {
     return mainViewCardContainer;
   } else if (mainView.classList.contains('hidden')) {
     return myRecipesView;
-  }
+  };
 };
 
 const searchResults = () => {
@@ -51,7 +53,7 @@ const searchResults = () => {
     return handleTagSearch();
   } else if (searchByToggle.value === 'name') {
     return handleNameSearch();
-  }
+  };
 };
 
 const searchBarClicked = () => {
@@ -69,7 +71,7 @@ const handleTagSearch = () => {
     return filterByTag(searchBar.value, recipeData);
   } else if (mainView.classList.contains('hidden')) {
     return filterByTag(searchBar.value, currentUser.recipesToCook);
-  }
+  };
 };
 
 const handleNameSearch = () => {
@@ -77,7 +79,7 @@ const handleNameSearch = () => {
     return filterByName(searchBar.value, recipeData);
   } else if (mainView.classList.contains('hidden')) {
     return filterByName(searchBar.value, currentUser.recipesToCook);
-  }
+  };
 };
 
 const handleSearchResults = (view, results) => {
@@ -90,18 +92,18 @@ const handleSearchResults = (view, results) => {
     view.innerHTML = `<p>${results}</p>`;
   } else {
     renderRecipeCards(view, results, currentUser);
-  }
+  };
 };
 
 // DOM FUNCTIONS
 const renderBookmarks = (currentUser, recipe) => {
-  if (currentUser.recipesToCook.includes(recipe)) {
+  if (checkUserForRecipe(currentUser, recipe)) {
     return `<img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked hidden" alt="bookmark icon">
     <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked" alt="bookmark icon filled in">`;
   } else {
     return `<img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked" alt="bookmark icon">
     <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">`;
-  }
+  };
 };
 
 const renderRecipeCards = (view, recipes, currentUser) => {
@@ -124,7 +126,7 @@ const renderRecipeCards = (view, recipes, currentUser) => {
 const isUnchecked = (e) => {
   if (e.target.classList.contains('unchecked')) {
     return true;
-  }
+  };
 };
 
 const toggleHidden = (elements, type) => {
@@ -143,8 +145,8 @@ const toggleBookmark = (e, currentUser, recipeData) => {
       removeRecipes(e.target.id, currentUser);
       toggleHidden([e.target], 'add');
       toggleHidden([e.target.previousElementSibling], 'remove');
-    }
-  }
+    };
+  };
 };
 
 const findRecipe = (e, recipes) => {
@@ -161,7 +163,7 @@ const renderSingleRecipeView = (e, recipes, ingredients, currentUser) => {
   toggleHidden([mainView], 'add');
   toggleHidden([singleRecipeView], 'remove');
   clearView([singleRecipeView, myRecipesView]);
-  
+
   singleRecipeView.innerHTML += `
     <div class="single-recipe-view-flex">
       <img class="single-recipe-img" src="${recipe.image}">
@@ -219,7 +221,7 @@ const renderTags = (recipe) => {
 const removeRecipeCard = (e) => {
   if (e.target.classList.contains('bookmark-icon')) {
     e.target.parentElement.parentElement.parentElement.remove();
-  }
+  };
 };
 
 export {
