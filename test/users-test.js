@@ -30,6 +30,7 @@ describe('getRandomUser', () => {
   it('should return undefined if no user data is passed in', () => {
     expect(getRandomUser()).to.equal('user data not found');
   });
+});
 
 describe('checkUserForRecipe', () => {
  
@@ -38,13 +39,13 @@ describe('checkUserForRecipe', () => {
     recipesToCook(101, user, sampleRecipeData)
 
     expect(checkUserForRecipe(user, sampleRecipeData[0])).to.be.true
-    });
   });
+ 
 
   it('should return false if no recipes were found', () => {
-    const user = sampleUserData.users[0]
-    recipesToCook(102, user, sampleRecipeData)
+    const user2 = sampleUserData.users[1]
+    recipesToCook(103, user2, sampleRecipeData)
 
-    expect(checkUserForRecipe(user, sampleRecipeData[0])).to.be.false
+    expect(checkUserForRecipe(user2, sampleRecipeData[0])).to.be.false
   });
 });
