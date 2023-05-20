@@ -1,8 +1,9 @@
 //NOTE: Your DOM manipulation will occur in this file
 import recipeData from "./data/recipes";
-import { recipesFromTag } from "./recipeUtils";
-import { recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions, shuffleData } from "../src/recipeUtils";
+import { recipesfromName, recipesFromTag, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions, shuffleData } from "../src/recipeUtils";
 import ingredientsData from "./data/ingredients";
+import usersData from "./data/users"
+import { recipesToCook, saveRecipe, deleteRecipe, addSavedRecipesToUser } from "../src/userUtils";
 
 // Query Selectors:
 const allRecipesButton = document.querySelector('.all-recipes');
@@ -37,10 +38,19 @@ homeButton.addEventListener('click', function () {
   showHomePage()
   randomizeHomePage()
 })
-window.addEventListener('load', randomizeHomePage);
-
+window.addEventListener('load', () => {
+  randomizeHomePage();
+  generateRandomUser(usersData);
+})
 
 //Event Handlers/Functions
+
+const generateRandomUser = users => {
+  var currentUser = users[Math.floor(Math.random() * users.length)];
+  console.log(currentUser)
+  return currentUser
+}
+
 function showSearchResults() {
   let searchValue = searchInput.value
   removeHiddenClass([allRecipeDisplay, allFilterDisplay])
