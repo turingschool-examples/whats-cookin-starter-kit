@@ -489,6 +489,7 @@ input[type=checkbox] {
   text-align: left;
   font-size: 55px;
   margin-bottom: 25px;
+  z-index: 2;
 }
 
 #recipeInstructions {
