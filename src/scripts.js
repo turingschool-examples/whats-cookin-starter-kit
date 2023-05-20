@@ -3,6 +3,7 @@ import './styles.css';
 import { savePromises } from './apiCalls';
 import './images/turing-logo.png';
 import './images/clipart16385.png';
+import './images/Avatar1.gif';
 import { recipesToCook, toggleRecipesToCook } from './recipe.js';
 import { searchButton, favoriteButton, homeButton, tags, mainPanel, loadUsers, viewAllRecipes, viewRecipeInfo, filterRecipeByTag, searchRecipe, toggleButtons } from './domUpdates.js';
 
