@@ -3,13 +3,15 @@ import usersData from "./data/users";
 var recipesToCook = [];
 var currentUser;
 
-const saveRecipe = (recipe) => {
-  if(!recipesToCook.includes(recipe)) {
-    recipesToCook.push(recipe);
+const saveRecipe = (recipes, recipeName) => {
+  let fullRecipe = recipes.find(recipe => recipe.name === recipeName);
+  if(!recipesToCook.includes(fullRecipe)) {
+    recipesToCook.push(fullRecipe);
+    console.log(recipesToCook)
     return recipesToCook;
   }
   return recipesToCook;
-}
+};
 
 const deleteRecipe = (recipe) => {
   recipesToCook.splice(recipe);
