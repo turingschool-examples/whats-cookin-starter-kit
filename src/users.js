@@ -4,13 +4,27 @@ const addUniqueRecipes = (userRecipes, newRecipe) => {
   if(!userRecipes.find(item => item.id === newRecipe.id)) userRecipes.push(newRecipe)
 };
 
-const addRecipeToCook = (user, recipe) => {
+const addRecipe = (userRecipes, newRecipe) => {
+  if (!userRecipes) userRecipes = [newRecipe];
+  addUniqueRecipes(userRecipes, newRecipe);
+  return userRecipes;
+}
+
+const removeRecipe = (userRecipes, recipeToRemove) => {
+  let found = userRecipes.find(recipe => recipe.id === recipeToRemove.id);
+  if (found) userRecipes.splice(userRecipes.indexOf(found), 1);
+  return userRecipes;
+}
+
+const updateRecipesToCook = (user, recipe, change) => {
   const updatedUser = copyItem(user);
   let recipes = updatedUser.recipesToCook;
-  if (!recipes) recipes = [recipe];
-  addUniqueRecipes(recipes, recipe)
-  updatedUser.recipesToCook = recipes;
+  let recipeUpdate = {
+    add: () => addRecipe(recipes, recipe),
+    remove: () => removeRecipe(recipes, recipe)
+  }
+  updatedUser.recipesToCook = recipeUpdate[change]();
   return updatedUser;
 };
 
-export { addRecipeToCook };
+export { updateRecipesToCook };
