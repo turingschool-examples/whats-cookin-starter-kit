@@ -87,6 +87,12 @@ chooseView.addEventListener("click", function(event) {
   }
 });
 
+searchBar.addEventListener('keypress', (event) => {
+  if(event.key === 'Enter') {
+    searchForRecipes();
+  }
+})
+
 searchBtn.addEventListener('click', searchForRecipes);
 
 // Exports
