@@ -60,7 +60,6 @@ return recipeCard;
 // import {exampleFunction1, exampleFunction2} from './domUpdates.js'
 window.addEventListener("load", () => {
   assignCurrentUser();
-
   pageLoadRenders();
 });
 
