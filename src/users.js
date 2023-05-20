@@ -17,5 +17,4 @@ const getRandomUser = users => {
   return users[getRandomIndex(users)]
 }
 
-
 export { addRecipeToCook, getRandomUser };

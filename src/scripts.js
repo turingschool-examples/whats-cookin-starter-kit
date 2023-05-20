@@ -2,7 +2,7 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe, searchForRecipes } from './domUpdates';
+import { makeTagActive, pageLoadRenders, closeRecipe, showRecipe, searchForRecipes } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
 import { assignCurrentUser } from './apiCalls';
@@ -77,7 +77,7 @@ allRecipes.addEventListener("click", (event) => {
 
 closeRecipeButton.addEventListener("click", closeRecipe);
 
-searchBtn.addEventListener('click', searchForRecipes)
+searchBtn.addEventListener('click', searchForRecipes);
 
 // Exports
 export {

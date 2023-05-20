@@ -21,7 +21,11 @@ const assignCurrentUser = () => {
       console.error(error)
     })
 }
-  
-export {assignCurrentUser, currentUser, pageData}
+
+const updateCurrentUser = (user) => {
+  currentUser = user;
+};
+
+export { assignCurrentUser, currentUser, pageData, updateCurrentUser };
 
 
