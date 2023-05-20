@@ -2,7 +2,11 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe, switchView } from './domUpdates';
+<<<<<<< HEAD
+import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe, switchView, searchForRecipes } from './domUpdates';
+=======
+import { renderGrid, makeTagActive, pageLoadRenders, closeRecipe, showRecipe, searchForRecipes } from './domUpdates';
+>>>>>>> main
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
 import './images/antipasti.png';
@@ -24,6 +28,8 @@ import './images/side dish.png'
 import './images/snack.png'
 import './images/spread.png'
 import './images/starter.png'
+import './images/search-button.png'
+import './images/user-icon.png'
 
 // import apiCalls from './apiCalls'
 
@@ -37,9 +43,10 @@ const ingredientsList = document.querySelector('#ingredientsList');
 const chooseView = document.querySelector('.choose-view')
 const ourViewBtn = document.querySelector("#our-recipes");
 const yourViewBtn = document.querySelector("#your-recipes");
+const searchBar = document.querySelector('#searchBar');
+const searchBtn = document.querySelector('#searchBtn');
 
 // DATA MODEL 
-let currentRecipeCard = {};
 
 //FUNCTIONS 
 const getRecipeCard = (recipe) => {
@@ -61,7 +68,6 @@ return recipeCard;
 // //Example of one way to import functions from the domUpdates file. You will delete these examples.
 // import {exampleFunction1, exampleFunction2} from './domUpdates.js'
 window.addEventListener("load", pageLoadRenders);
-// window.addEventListener("load", renderGrid);
 tagArea.addEventListener("click", function(event) {
   if (event.target.classList && event.target.closest(".tag-card")) {
     makeTagActive(event);
@@ -80,17 +86,21 @@ chooseView.addEventListener("click", function(event) {
     switchView(event.target.id);
   }
 });
+
+searchBtn.addEventListener('click', searchForRecipes)
+
 // Exports
 export {
   recipeGrid,
   tagArea,
   clickedRecipe,
   getRecipeCard,
-  currentRecipeCard,
   ingredientsList,
   landingPage,
   ourViewBtn,
   yourViewBtn,
   allUserRecipes,
-  chooseView
+  chooseView,
+  searchBar,
+  //allRecipes
 }

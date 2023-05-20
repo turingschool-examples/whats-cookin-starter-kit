@@ -53,6 +53,37 @@ body {
   cursor: pointer;
 }
 
+/* NAV BAR */
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.nav-child {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 13%;
+  margin: 2%;
+  cursor: pointer;
+}
+
+.nav-icon {
+  height: 1.75rem;
+  background-color: white;
+  opacity: 0.4;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+#searchBar {
+  border-radius: 15px;
+}
+
+
+
 /* Tag box */
 .tag-area {
   background-color: #2c2d30;
@@ -358,24 +389,49 @@ h3 {
   height: 97%;
 }
 
-label {
+.individual-recipe-image {
+  position: absolute;
+  bottom:0;
+  right:0;
+  flex-shrink: 0;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+  z-index: 1;
+  margin-right: -40px;
+}
+
+.individual-recipe-image img {
+  display: inline;
+  height: 100%;
+  width: auto;
+  margin-left: -20px;
+}
+
+.ingredient-label {
   color: black;
   font-family: Lexend;
   font-size: 20px;
   padding: 0 0 10px 30px;
+  max-width: 90%;
 }
 
-label:hover {
+.ingredient-label:hover {
   cursor: pointer;
   transform: scale(1.05);
 }
 
-input {
+.ingredient-input {
   accent-color: rgb(0, 172, 0);
   transform: scale(2);
   clip-path: circle(50% at 50% 50%);
   margin-right: 20px;
   padding: 10px;
+}
+
+input[type=checkbox] {
+  accent-color: #fbbf83;
 }
 
 #recipeLeftSide {
@@ -422,7 +478,8 @@ input {
 }
 
 #recipeName {
-  display: flex; 
+  display: flex;
+  position: relative;
   align-items: center;
   height: 40%;
   width: 100%;
@@ -477,7 +534,7 @@ input {
   width: 90%;
 }
 
-.step{
+.step {
   transform: rotate(-0.25turn);
   min-width: 6rem;
   padding: 15px, 0%, 15px;
@@ -490,15 +547,24 @@ input {
 
 #recipeRightSide h3 {
   visibility: visible;
-  padding-left: 30px;
+  margin-bottom: 20px;
+  padding-left: 50px;
   opacity: 100;
   color: black;
   font-size: 55px;
 }
 
+#recipeRightSide h4 {
+  color: black;
+  font-size: 25px;
+  margin: 0 10px 15px 35px;
+}
+
 #ingredientsList {
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
+  padding-bottom: 2%;
 }
 
 #closeRecipe {

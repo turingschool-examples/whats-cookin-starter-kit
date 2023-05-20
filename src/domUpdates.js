@@ -1,4 +1,5 @@
 // Imports
+import { pageData } from './apiCalls';
 import {recipeData} from './data/recipes'
 import {
   recipeGrid, 
@@ -7,12 +8,12 @@ import {
   getRecipeCard,
   landingPage,
   ingredientsList,
+  searchBar,
   ourViewBtn,
   yourViewBtn,
   allUserRecipes
 } from './scripts'
 
-let currentRecipeCard = require('./scripts');
 
 // functions
 
@@ -76,8 +77,8 @@ const createGridHTML = allColumns => {
   return htmlCode;
 }
 
-const renderGrid = () => {
-  const gridData = makeRecipeColumnData(recipeData)
+const renderGrid = (data) => {
+  const gridData = makeRecipeColumnData(data)
   recipeGrid.innerHTML = ''
   recipeGrid.innerHTML = createGridHTML(gridData);
 }
@@ -175,7 +176,7 @@ const makeTagActive = (event) => {
 };
 
 const pageLoadRenders = () => {
-  renderGrid();
+  renderGrid(recipeData);
   renderTagArea();
 };
 
@@ -199,7 +200,7 @@ const addScrollBar = (element) => {
 const populateInstructions = (recipe) => {
   const instructions = getInstructionHTML(recipe)
   const instructionSection= document.querySelector('#recipeInstructions')
-  instructionSection.innerHTML = `<p>Method</p>
+  instructionSection.innerHTML = `<p>Directions</p>
                                   <section class='instruction-steps'> 
                                     ${instructions.join('')} 
                                   </section>`
@@ -209,7 +210,7 @@ const populateInstructions = (recipe) => {
 const updateCurrentRecipe = recipeCard => {
   const recipeCardID = recipeCard.closest("article")?.id;
   const thisRecipe = recipeData.find(recipe => recipe.id.toString() === recipeCardID);
-  currentRecipeCard = getRecipeCard(thisRecipe);
+  pageData.currentRecipeCard = getRecipeCard(thisRecipe);
 }
 
 const populateRecipeName = currentRecipe => {
@@ -238,9 +239,17 @@ const populateAddBtn = () => {
   `;
 }
 
+const populateRecipeHeader = currentRecipe => {
+  document.querySelector('#recipeName').innerHTML = `
+  <h1>${currentRecipe.name}</h1>
+  <div class="individual-recipe-image">
+    <img src="${currentRecipe.image}"></img>
+  </div>
+  `
+}
+
 const openRecipeCard = () => {
   landingPage.classList.add('blur')
-  getIngredients(currentRecipeCard);
   clickedRecipe.classList.toggle("hidden");
   clickedRecipe.classList.toggle("flex");
   clickedRecipe.classList.toggle("fade-in");
@@ -248,9 +257,10 @@ const openRecipeCard = () => {
 
 const showRecipe = (recipeCard, currentUser) => {
   updateCurrentRecipe(recipeCard);
-  populateAddBtn();
-  populateInstructions(currentRecipeCard);
-  populateRecipeName(currentRecipeCard);
+  populateRecipeHeader(pageData.currentRecipeCard);
+  populateInstructions(pageData.currentRecipeCard);
+  populateIngredients(pageData.currentRecipeCard);
+  populateAddBtn(pageData.currentRecipeCard);
   openRecipeCard();
 };
 
@@ -260,10 +270,12 @@ const closeRecipe = () => {
   clickedRecipe.classList.add("hidden");
   clickedRecipe.classList.remove("flex");
   clickedRecipe.classList.remove("fade-in");
-  ingredientsList.innerHTML = '';
 };
 
-const getIngredients = currentRecipeCard => {
+const populateIngredients = currentRecipeCard => {
+  ingredientsList.innerHTML = `
+    <h4>total ingredient cost: ${currentRecipeCard.price}</h4>
+  `;
   createIngredientsHTML(currentRecipeCard.ingredients);
 };
 
@@ -271,8 +283,8 @@ const createIngredientsHTML = ingredients => {
   ingredients.forEach((ingredient, i) => {
     let ingredientLabelName = `ingredient${i}`
     ingredientsList.innerHTML += `
-    <label for="${ingredientLabelName}">
-      <input id="${ingredientLabelName}" type="checkbox" name="${ingredientLabelName}" />
+    <label class="ingredient-label" for="${ingredientLabelName}">
+      <input class="ingredient-input" id="${ingredientLabelName}" type="checkbox" name="${ingredientLabelName}" />
       ${ingredient.amount} ${ingredient.unit} ${ingredient.name}
     </label>
     `;
@@ -296,6 +308,18 @@ const switchView = (clickedViewID) => {
     ourViewBtn.classList.add("unselected-view");
   }
 }
+
+const searchForRecipes = () => {
+  const data = {
+    ourRecipes: recipeData,
+    yourRecipes: null
+  }
+  let searchedRecipes = searchRecipes(data[pageData.currentView], ingredientsData, searchBar.value)
+  searchedRecipes.length  
+    ? renderGrid(searchedRecipes)
+    : recipeGrid.innerHTML = `<p>Sorry, we couldn't find any recipes for your search of "${searchBar.value}"</p>`
+}
+
 // Exports
 export {
   renderGrid,
@@ -304,4 +328,5 @@ export {
   showRecipe,
   closeRecipe,
   switchView,
+  searchForRecipes
 }
