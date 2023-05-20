@@ -26,15 +26,16 @@ describe('recipesToCook', () => {
     id: 1,
     name: "Sadye Welch",
     recipesToCook: []
-  }
+  };
 
   it('user should be able to bookmark multiple recipes', () => {
     recipesToCook(101, currentUser, sampleRecipeData);
-
-    expect(currentUser.recipesToCook).to.deep.equal([sampleRecipeData[0]]);
-    recipesToCook(106, currentUser, sampleRecipeData);
     
+    expect(currentUser.recipesToCook).to.deep.equal([sampleRecipeData[0]]);
+    
+    recipesToCook(106, currentUser, sampleRecipeData);
     expect(currentUser.recipesToCook).to.deep.equal([sampleRecipeData[0], sampleRecipeData[5]]);
+   
     recipesToCook(102, currentUser, sampleRecipeData);
     expect(currentUser.recipesToCook).to.deep.equal([sampleRecipeData[0], sampleRecipeData[5], sampleRecipeData[1]]);
   });
@@ -64,6 +65,7 @@ describe('removeRecipes', () => {
     
     expect(currentUser.recipesToCook).to.deep.equal([sampleRecipeData[4], sampleRecipeData[1], sampleRecipeData[3]]);
     removeRecipes(104, currentUser);
+    
     expect(currentUser.recipesToCook).to.deep.equal([sampleRecipeData[4], sampleRecipeData[1]]);
   });
 
@@ -72,7 +74,7 @@ describe('removeRecipes', () => {
       id: 1,
       name: "Sadye Welch",
       recipesToCook: []
-    }
+    };
 
     recipesToCook(101, currentUser, sampleRecipeData);
     recipesToCook(105, currentUser, sampleRecipeData);
