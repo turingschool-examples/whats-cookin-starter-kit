@@ -1,6 +1,7 @@
 // Imports
 import { pageData } from './apiCalls';
 import {recipeData} from './data/recipes'
+import { ingredientsData } from './data/ingredients';
 import {
   recipeGrid, 
   clickedRecipe, 
@@ -13,7 +14,7 @@ import {
   yourViewBtn,
   allUserRecipes
 } from './scripts'
-
+import { searchRecipes } from './recipes';
 
 // functions
 
