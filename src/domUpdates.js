@@ -105,6 +105,13 @@ const renderBookmarks = (currentUser, recipe) => {
     <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">`;
   };
 };
+const renderRecipeCardTag = (recipe) => {
+  if(recipe.tags.length > 0){
+  return `<p class="recipe-tag">${recipe.tags[0]}</p>`
+  } else {
+    return `<p class="recipe-tag">-</p>`
+  };
+}
 
 const renderRecipeCards = (view, recipes, currentUser) => {
   clearView([mainViewCardContainer, myRecipesView]);
@@ -112,7 +119,7 @@ const renderRecipeCards = (view, recipes, currentUser) => {
     view.innerHTML += `
     <article class="recipe-card" id="${recipe.id}">
       <img class="recipe-img" src="${recipe.image}" id="${recipe.id}">
-      <p class="recipe-tag">${recipe.tags[0]}</p>
+      ${renderRecipeCardTag(recipe)}
       <div class="recipe-title-flex">
         <h2 class="recipe-name">${recipe.name}</h2>
         <div class="bookmark-flex">
