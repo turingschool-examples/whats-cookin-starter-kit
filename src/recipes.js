@@ -65,5 +65,3 @@ export {
   filterRecipesByIngredient,
   searchRecipes
 }
-
-

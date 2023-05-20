@@ -2,7 +2,7 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { makeTagActive, closeRecipe, showRecipe, searchForRecipes } from './domUpdates';
+import { makeTagActive, closeRecipe, showRecipe, searchForRecipes, switchView } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
 import { assignCurrentUser, fetchRecipes } from './apiCalls';
@@ -31,13 +31,19 @@ import './images/user-icon.png'
 // import apiCalls from './apiCalls'
 
 const recipeGrid = document.querySelector('.recipe-grid');
-const allRecipes = document.querySelector('.all-recipes');
+const allRecipes = document.querySelector('.all-recipes')
+const allUserRecipes = document.querySelector('.all-user-recipes');
 const clickedRecipe = document.querySelector('#clickedRecipe');
 const closeRecipeButton = document.querySelector('#closeRecipe');
 const tagArea = document.querySelector('.tag-area');
 const ingredientsList = document.querySelector('#ingredientsList');
+const chooseView = document.querySelector('.choose-view')
+const ourViewBtn = document.querySelector("#our-recipes");
+const yourViewBtn = document.querySelector("#your-recipes");
 const searchBar = document.querySelector('#searchBar');
 const searchBtn = document.querySelector('#searchBtn');
+
+// DATA MODEL 
 
 //FUNCTIONS 
 const getRecipeCard = (recipe) => {
@@ -69,13 +75,18 @@ tagArea.addEventListener("click", function(event) {
   };
 });
 
-allRecipes.addEventListener("click", (event) => {
+recipeGrid.addEventListener("click", (event) => {
   if (event.target.classList?.contains('individual-recipe')) {
     showRecipe(event.target);
   }
 });
 
 closeRecipeButton.addEventListener("click", closeRecipe);
+chooseView.addEventListener("click", function(event) {
+  if (event.target.classList.contains("unselected-view")) {
+    switchView(event.target.id);
+  }
+});
 
 searchBar.addEventListener('keypress', (event) => {
   if(event.key === 'Enter') {
@@ -93,5 +104,10 @@ export {
   getRecipeCard,
   ingredientsList,
   allRecipes,
-  searchBar
+  ourViewBtn,
+  yourViewBtn,
+  allUserRecipes,
+  chooseView,
+  searchBar,
+  //allRecipes
 }

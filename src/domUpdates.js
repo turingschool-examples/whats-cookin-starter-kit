@@ -1,16 +1,18 @@
 // Imports
+import { pageData, currentUser } from './apiCalls';
 import { ingredientsData } from './data/ingredients';
-import { searchRecipes } from './recipes';
-import { currentUser, pageData } from './apiCalls';
 import {
   recipeGrid,
   clickedRecipe,
   tagArea,
   getRecipeCard,
   allRecipes,
-  ingredientsList, 
-  searchBar
+  ingredientsList,
+  searchBar,
+  ourViewBtn,
+  yourViewBtn,
 } from './scripts'
+import { searchRecipes } from './recipes';
 
 // functions
 
@@ -35,14 +37,20 @@ const createSingleRecipeHTML = singleRecipe => {
   let htmlCode = '';
   htmlCode += 
   `
-  <article class="individual-recipe" id="${singleRecipe.id}">
+  <article class="individual-recipe-container">
+    <section class="add-panel">
+      <div class="plus-symbol">+</div>
+      <h4> Add to recipes to cook</h4>
+    </section>
+    <article class="individual-recipe" id="${singleRecipe.id}">
       <div class="recipe-image-div">
         <img class="recipe-image"src="${singleRecipe.image}">
         <div class="hover-card"> 
           <h3>Read more...</h3>
         </div>               
       </div>
-    <h2>${singleRecipe.name}</h2>
+      <h2>${singleRecipe.name}</h2>
+    </article>
   </article>
   `;
   return htmlCode
@@ -202,6 +210,32 @@ const updateCurrentRecipe = recipeCard => {
   pageData.currentRecipeCard = getRecipeCard(thisRecipe);
 }
 
+const populateRecipeName = currentRecipe => {
+  document.querySelector('#recipeName').innerHTML = `  <h1>${currentRecipe.name}</h1>  `
+}
+
+const populateAddBtn = () => {
+  // const recipeSaved = user.recipesToCook.some(recipe => recipe.id === currentRecipe.id);
+  // let buttonText;
+  // let buttonStatus;
+  // if (!recipeSaved) { 
+  //   buttonText = "Add to Save to Cook Recipes";
+  //   buttonStatus = "add-recipe modal-recipe-btn";
+  // } else {
+  //   buttonText = "Remove from Save to Cook Recipes";
+  //   buttonStatus = "remove-recipe modal-recipe-btn";
+  // };
+//saving to use once currentUser is accessible
+  const buttonStatus = "add-recipe modal-recipe-btn";
+  const buttonText = "Add to Saved Recipes";
+  document.querySelector('.modal-add-recipe').innerHTML = 
+  `
+  <div class= "${buttonStatus}">
+    <h4>${buttonText}</h4>
+  </div>
+  `;
+}
+
 const populateRecipeHeader = currentRecipe => {
   document.querySelector('#recipeName').innerHTML = `
   <h1>${currentRecipe.name}</h1>
@@ -218,11 +252,12 @@ const openRecipeCard = () => {
   clickedRecipe.classList.toggle("fade-in");
 }
 
-const showRecipe = (recipeCard) => {
+const showRecipe = (recipeCard, currentUser) => {
   updateCurrentRecipe(recipeCard);
   populateRecipeHeader(pageData.currentRecipeCard);
   populateInstructions(pageData.currentRecipeCard);
   populateIngredients(pageData.currentRecipeCard);
+  populateAddBtn(pageData.currentRecipeCard);
   openRecipeCard();
 };
 
@@ -251,6 +286,22 @@ const createIngredientsHTML = ingredients => {
     </label>
     `;
   });
+};
+
+const switchView = (clickedViewID) => {
+  if (clickedViewID === "our-recipes") {
+    recipeGrid.classList.remove("hidden");
+    ourViewBtn.classList.add("selected-view");
+    yourViewBtn.classList.remove("selected-view");
+    yourViewBtn.classList.add("unselected-view");  
+    ourViewBtn.classList.remove("unselected-view");
+  } else {
+    recipeGrid.classList.add("hidden");
+    ourViewBtn.classList.remove("selected-view");
+    yourViewBtn.classList.add("selected-view");
+    yourViewBtn.classList.remove("unselected-view");  
+    ourViewBtn.classList.add("unselected-view");
+  }
 }
 
 const searchForRecipes = () => {
@@ -273,5 +324,6 @@ export {
   pageLoadRenders,
   showRecipe,
   closeRecipe,
+  switchView,
   searchForRecipes
 }
