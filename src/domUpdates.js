@@ -1,5 +1,5 @@
 import { checkUserForRecipe } from './users';
-import { getIngredientsInfos } from './get-ingredients-infos';
+import { compileIngredientItems } from './compile-ingredient-items';
 import { calculateRecipePrice } from './calculate-recipe-price';
 import { removeRecipes, recipesToCook } from './recipes-to-cook';
 import {
@@ -18,7 +18,7 @@ import { recipeData } from './data/recipes';
 const clearView = (views) => {
   views.forEach((view) => {
     view.innerHTML = '';
-  })
+  });
 };
 
 const toMyRecipeView = (currentUser) => {
@@ -46,8 +46,8 @@ const setView = () => {
 };
 
 const searchResults = () => {
-  if (searchByToggle.value === 'select' || searchBar.value.length === 0) {
-    handleInvalidSearch('⬅️ You must search by tag or name.');
+  if (searchBar.value.length === 0) {
+    handleInvalidSearch(`You can't search for nothing!`);
     return recipeData;
   } else if (searchByToggle.value === 'tag') {
     return handleTagSearch();
@@ -83,6 +83,11 @@ const handleNameSearch = () => {
 };
 
 const handleSearchResults = (view, results) => {
+  if (view === mainViewCardContainer) {
+    toggleHidden([mainView], 'remove')
+  } else {
+    toggleHidden([myRecipesView], 'remove')
+  }
   if (typeof results === 'string') {
     view.innerHTML = `<p>${results}</p>`;
   } else {
@@ -102,8 +107,7 @@ const renderBookmarks = (currentUser, recipe) => {
 };
 
 const renderRecipeCards = (view, recipes, currentUser) => {
-  clearView([mainViewCardContainer, myRecipesView])
-
+  clearView([mainViewCardContainer, myRecipesView]);
   recipes.forEach((recipe) => {
     view.innerHTML += `
     <article class="recipe-card" id="${recipe.id}">
@@ -122,18 +126,18 @@ const renderRecipeCards = (view, recipes, currentUser) => {
 const isUnchecked = (e) => {
   if (e.target.classList.contains('unchecked')) {
     return true;
-  }
+  };
 };
 
 const toggleHidden = (elements, type) => {
-  elements.forEach((element)=> {
+  elements.forEach((element) => {
     element.classList[type]('hidden');
   });
 };
 
 const toggleBookmark = (e, currentUser, recipeData) => {
-  if (e.target.classList[0]=== 'bookmark-icon') {
-    if(isUnchecked(e)) {
+  if (e.target.classList[0] === 'bookmark-icon') {
+    if (isUnchecked(e)) {
       recipesToCook(e.target.id, currentUser, recipeData);
       toggleHidden([e.target], 'add');
       toggleHidden([e.target.nextElementSibling], 'remove');
@@ -147,17 +151,19 @@ const toggleBookmark = (e, currentUser, recipeData) => {
 
 const findRecipe = (e, recipes) => {
   return recipes.find((recipe) => {
-     if (e.target.classList.contains('recipe-name')) {
-       return recipe.id === parseInt(e.target.parentElement.parentElement.id);
-     }
-     return recipe.id === parseInt(e.target.id);
-   });
+    if (e.target.classList.contains('recipe-name')) {
+      return recipe.id === parseInt(e.target.parentElement.parentElement.id);
+    }
+    return recipe.id === parseInt(e.target.id);
+  });
 };
 
 const renderSingleRecipeView = (e, recipes, ingredients, currentUser) => {
   let recipe = findRecipe(e, recipes);
   toggleHidden([mainView], 'add');
   toggleHidden([singleRecipeView], 'remove');
+  clearView([singleRecipeView, myRecipesView]);
+
   singleRecipeView.innerHTML += `
     <div class="single-recipe-view-flex">
       <img class="single-recipe-img" src="${recipe.image}">
@@ -196,11 +202,11 @@ const renderInstructions = (recipe) => {
 };
 
 const renderIngredients = (recipe, ingredients) => {
-  let ingredientNames = getIngredientsInfos(recipe, ingredients);
+  let ingredientItems = compileIngredientItems(recipe, ingredients);
   let output = '';
-  ingredientNames.forEach((ele) => {
+  ingredientItems.forEach((ele) => {
     output += `<span>- ${ele}</span>`;
-  })
+  });
   return output;
 };
 
@@ -213,7 +219,7 @@ const renderTags = (recipe) => {
 };
 
 const removeRecipeCard = (e) => {
-  if(e.target.classList.contains('bookmark-icon')) {
+  if (e.target.classList.contains('bookmark-icon')) {
     e.target.parentElement.parentElement.parentElement.remove();
   };
 };
@@ -225,5 +231,5 @@ export {
   toggleBookmark,
   renderSingleRecipeView,
   searchBarClicked,
-  removeRecipeCard
+  removeRecipeCard,
 };
