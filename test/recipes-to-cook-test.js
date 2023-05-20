@@ -11,8 +11,11 @@ describe('matchRecipe', () => {
     expect(matchRecipe(101, sampleRecipeData)).to.equal(sampleRecipeData[0]);
     expect(matchRecipe(102, sampleRecipeData)).to.equal(sampleRecipeData[1]);
   });
-});
 
+  it('returns a message if id cannot be matched', () => {
+    expect(matchRecipe(undefined, sampleRecipeData)).to.equal(`No recipe matches that ID`);
+  });
+});
 
 describe('recipesToCook', () => {
   it('should be a function', () => {
@@ -35,6 +38,10 @@ describe('recipesToCook', () => {
     recipesToCook(102, currentUser, sampleRecipeData);
     expect(currentUser.recipesToCook).to.deep.equal([sampleRecipeData[0], sampleRecipeData[5], sampleRecipeData[1]]);
   });
+
+  it('returns message if ID is not found', () => {
+    expect(recipesToCook(undefined, currentUser, sampleRecipeData)).to.equal('The recipe could not be found');
+  });
 });
 
 describe('removeRecipes', () => {
@@ -47,7 +54,7 @@ describe('removeRecipes', () => {
       id: 1,
       name: "Sadye Welch",
       recipesToCook: []
-    }
+    };
 
     recipesToCook(101, currentUser, sampleRecipeData);
     recipesToCook(105, currentUser, sampleRecipeData);
@@ -58,7 +65,7 @@ describe('removeRecipes', () => {
     expect(currentUser.recipesToCook).to.deep.equal([sampleRecipeData[4], sampleRecipeData[1], sampleRecipeData[3]]);
     removeRecipes(104, currentUser);
     expect(currentUser.recipesToCook).to.deep.equal([sampleRecipeData[4], sampleRecipeData[1]]);
-  })
+  });
 
   it('return message if recipe cannot be deleted', () => {
     let currentUser = {
@@ -72,7 +79,14 @@ describe('removeRecipes', () => {
     recipesToCook(102, currentUser, sampleRecipeData);
     expect(removeRecipes(undefined, currentUser)).to.equal('Cannot delete recipe');
   });
+  
+  it('return message if saved recipes array is empty', () => {
+    let currentUser = {
+      id: 1,
+      name: "Sadye Welch",
+      recipesToCook: []
+    };
 
-  //currentUser if they are on saved page and there is nothing to delete
-  ///
+    expect(removeRecipes(104, currentUser)).to.equal('Cannot delete recipe');
+  });
 });
