@@ -82,9 +82,9 @@ const handleNameSearch = () => {
 
 const handleSearchResults = (view, results) => {
   if (view === mainViewCardContainer) {
-    toggleHidden([mainView], 'remove')
+    toggleHidden([mainView], 'remove');
   } else {
-    toggleHidden([myRecipesView], 'remove')
+    toggleHidden([myRecipesView], 'remove');
   }
   if (typeof results === 'string') {
     view.innerHTML = `<p>${results}</p>`;
@@ -161,7 +161,7 @@ const renderSingleRecipeView = (e, recipes, ingredients, currentUser) => {
   toggleHidden([mainView], 'add');
   toggleHidden([singleRecipeView], 'remove');
   clearView([singleRecipeView, myRecipesView]);
-  
+
   singleRecipeView.innerHTML += `
     <div class="single-recipe-view-flex">
       <img class="single-recipe-img" src="${recipe.image}">

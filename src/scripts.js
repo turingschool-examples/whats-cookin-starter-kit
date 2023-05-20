@@ -58,7 +58,7 @@ searchBar.addEventListener('keypress', (e) => {
   }
 });
 singleRecipeView.addEventListener('click', (e) => {
-  toggleBookmark(e, currentUser, recipeData)
+  toggleBookmark(e, currentUser, recipeData);
 });
 mainContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('recipe-img') || e.target.classList.contains('recipe-name')) {
@@ -89,4 +89,4 @@ export {
   searchBar,
   searchButton,
   searchByToggle,
-}
+};
