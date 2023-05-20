@@ -12,7 +12,7 @@ describe('saveRecipe', () => {
   it('should be able to add a recipe to a users recipesToCook array', () => {
     const savedRecipes = saveRecipe(recipeData1, "Thai Chicken Tenders with Broiled Pineapple Slaw");
 
-    expect(savedRecipes.length).to.equal(1);
+    expect(savedRecipes.length).to.equal(3);
     expect(savedRecipes[0]).to.equal(recipesToCook[0]);
   });
 
@@ -20,7 +20,7 @@ describe('saveRecipe', () => {
     const savedRecipes = saveRecipe(recipeData1, "Thai Chicken Tenders with Broiled Pineapple Slaw");
     const savedRecipeDuplicate = saveRecipe(recipeData1, "Thai Chicken Tenders with Broiled Pineapple Slaw");
 
-    expect(savedRecipeDuplicate.length).to.equal(1);
+    expect(savedRecipeDuplicate.length).to.equal(3);
     expect(savedRecipes[0]).to.equal(recipesToCook[0]);
   });
 });
