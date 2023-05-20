@@ -1,4 +1,4 @@
-import { getIngredientsInfos } from './get-ingredients-infos';
+import { compileIngredientItems } from './compile-ingredient-items';
 import { calculateRecipePrice } from './calculate-recipe-price';
 import { removeRecipes, recipesToCook } from './recipes-to-cook';
 import {
@@ -160,8 +160,8 @@ const renderSingleRecipeView = (e, recipes, ingredients, currentUser) => {
   let recipe = findRecipe(e, recipes);
   toggleHidden([mainView], 'add');
   toggleHidden([singleRecipeView], 'remove');
-  // clearView([singleRecipeView]);
-  console.log(currentUser);
+  clearView([singleRecipeView, myRecipesView]);
+  
   singleRecipeView.innerHTML += `
     <div class="single-recipe-view-flex">
       <img class="single-recipe-img" src="${recipe.image}">
@@ -200,9 +200,9 @@ const renderInstructions = (recipe) => {
 };
 
 const renderIngredients = (recipe, ingredients) => {
-  let ingredientNames = getIngredientsInfos(recipe, ingredients);
+  let ingredientItems = compileIngredientItems(recipe, ingredients);
   let output = '';
-  ingredientNames.forEach((ele) => {
+  ingredientItems.forEach((ele) => {
     output += `<span>- ${ele}</span>`;
   });
   return output;
