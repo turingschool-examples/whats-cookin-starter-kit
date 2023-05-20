@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { recipesFromTag, recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions, shuffleData } from '../src/recipeUtils';
 import recipeData from '../src/data/recipes-sample.js';
 import ingredientsData from '../src/data/ingredients-sample.js';
-import recipesToCook from '../src/data/recipesToCook-sample.js';
+import { recipesToCook, saveRecipe } from '../src/userUtils';
 
 
 describe('RecipeUtils', () => {
@@ -15,6 +15,15 @@ describe('RecipeUtils', () => {
     expect(filtered.length).to.equal(1)
     expect(filtered[0].name).to.equal(expected)
   });
+  it('should filter recipesToCook based on a tag', ()=> {
+    const save = saveRecipe(recipeData, 'Loaded Chocolate Chip Pudding Cookie Cups')
+    const sav2 = saveRecipe(recipeData, 'Maple Dijon Apple Cider Grilled Pork Chops')
+    const expectedRecipesToCook = [recipeData[0]];
+    const filteredRecipesToCook = recipesFromTag(recipesToCook, ['starter'])
+
+    expect(filteredRecipesToCook.length).to.equal(1)
+    expect(filteredRecipesToCook).to.deep.equal(expectedRecipesToCook)
+  })
   it ('Should filter recipes if tag applies to multiple recipes', () => {
     const expected = ['Thai Chicken Tenders with Broiled Pineapple Slaw', 'Maple Dijon Apple Cider Grilled Pork Chops']
     const filtered = recipesFromTag(recipeData, ['lunch'])
@@ -22,13 +31,23 @@ describe('RecipeUtils', () => {
     const names = filtered.map(f => f.name)
     expect(names).to.have.members(expected)
   });
+  it('Should filter recipesToCook if tag applies to multiple recipes', () => {
+    const save = saveRecipe(recipeData, 'Loaded Chocolate Chip Pudding Cookie Cups')
+    const sav2 = saveRecipe(recipeData, 'Maple Dijon Apple Cider Grilled Pork Chops')
+    const sav3 = saveRecipe(recipeData, 'Thai Chicken Tenders with Broiled Pineapple Slaw')
+    const expectedRecipesToCook2 = [recipeData[1], recipeData[3]]
+    const filteredRecipesToCook2 = recipesFromTag(recipesToCook, ['main dish'])
+
+    expect(filteredRecipesToCook2.length).to.equal(2)
+    expect(filteredRecipesToCook2).to.deep.equal(expectedRecipesToCook2)
+  });
   it ('Should filter recipes when multiple tags are applied', () => {
     const expected = ['Thai Chicken Tenders with Broiled Pineapple Slaw', 'Maple Dijon Apple Cider Grilled Pork Chops']
     const filtered = recipesFromTag(recipeData, ['lunch', 'main dish'])
     expect(filtered.length).to.equal(2)
     const names = filtered.map(f => f.name)
     expect(names).to.have.members(expected)
-  })
+  });
   it ('Should filter recipes based on name', () => {
     const filtered = recipesfromName(recipeData, 'Thai Chicken Tenders with Broiled Pineapple Slaw')
     expect(filtered.length).to.equal(1)
@@ -39,11 +58,20 @@ describe('RecipeUtils', () => {
     expect(filtered.length).to.equal(1)
     expect(filtered[0].name).to.equal(expected)
   })
+  it('Should filter recipesToCook based on name', () => {
+    const save1 = saveRecipe(recipeData, 'Thai Chicken Tenders with Broiled Pineapple Slaw')
+    const save2 = saveRecipe(recipeData, 'Loaded Chocolate Chip Pudding Cookie Cups')
+    console.log('0',recipesToCook)
+    const filtered = recipesfromName(recipesToCook, 'Thai Chicken Tenders with Broiled Pineapple Slaw')
+    console.log('1',filtered)
+
+    expect(filtered.length).to.equal(1)
+  })
   it ('Should return nothing if no recipes match the user input name', () => {
     const filtered = recipesfromName(recipeData, 'Spicy Potatoes')
     expect(filtered.length).to.equal(0)
   })
-})
+});
 
 describe('findRecipe', () => {
   it('should be a function', () => {
@@ -126,6 +154,7 @@ describe('recipeInstructions', () => {
     const instructions = (recipeInstructions(recipe));
     expect(instructions).to.equal("Sorry, that recipe cannot be found.")
   });
+
 describe('shuffleData function', () => {
   it ('should randomize the recipe array order', () => {
     const shuffled = shuffleData(recipeData)

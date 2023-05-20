@@ -1,6 +1,4 @@
-import recipeData from '../src/data/recipes-sample.js';
 import ingredientsData from '../src/data/ingredients-sample.js';
-import recipesToCook from './data/recipesToCook-sample.js';
 
 function recipesFromTag(recipes, tags) {
   const filtered = recipes.filter((recipe) => {
@@ -48,6 +46,7 @@ const calculateRecipeCost = (recipe, ingredients) => {
    const instructions = recipe.instructions.map(({ number, instruction }) => `${number}. ${instruction}`);
    return instructions.join(' ')
  };
+
 
 function shuffleData(recipes) {
   recipes.sort(() => Math.random() - 0.5)
