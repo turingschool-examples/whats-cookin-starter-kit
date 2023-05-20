@@ -9,6 +9,7 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
+const toggleHidden = elements => elements.forEach(element => element.classList.toggle('hidden'))
 // const getUniqueIngredients = () => {
 //   const output = [];
 //   recipes.forEach(recipe => { 
@@ -22,4 +23,4 @@ function getRandomIndex(array) {
 // }
 
 
-export {copyItem, getIngredientProperty, getRandomIndex}
+export {copyItem, getIngredientProperty, getRandomIndex, toggleHidden}
