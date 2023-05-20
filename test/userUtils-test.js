@@ -30,7 +30,7 @@ describe('deleteRecipe', () => {
   });
 
   it('should be able to remove a recipe from the data model array', () => {
-    const recipes = saveRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
+    const savedRecipes = saveRecipe(recipeData1, "Thai Chicken Tenders with Broiled Pineapple Slaw");
     const newRecipes = deleteRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
 
     expect(newRecipes.length).to.equal(0);

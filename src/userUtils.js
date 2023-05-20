@@ -13,10 +13,11 @@ const saveRecipe = (recipes, recipeName) => {
   return recipesToCook;
 };
 
-const deleteRecipe = (recipe) => {
-  recipesToCook.splice(recipe);
+const deleteRecipe = (recipeName) => {
+  let found = recipesToCook.find(recipe => recipe.name === recipeName)
+  recipesToCook.splice(found);
   return recipesToCook;
-}
+};
 
 const addSavedRecipesToUser = (user, savedRecipes) => {
   user.recipesToCook = savedRecipes;
