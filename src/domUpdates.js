@@ -165,7 +165,6 @@ const makeTagActive = (event) => {
 };
 
 const pageLoadRenders = (data) => {
-  console.log(data)
   renderGrid(data);
   renderTagArea(data);
 };
