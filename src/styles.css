@@ -72,6 +72,19 @@ main {
     padding-left: 5%
 }
 
+.heart-saved, .heart-unsaved {
+  position: absolute;
+  top: 60%;
+  width: 2vw;
+  left: 60%;
+  transform: translate(100%, 50%);
+  color: #321e36;
+  word-wrap: break-word;
+  opacity: 75%;
+  border-radius: 10%;
+  padding-left: 5%
+}
+
 .recipe-image{ 
     object-fit: contain;
     height: 100%;

@@ -16,10 +16,10 @@ const returnInstructions = recipe => recipe.instructions.reduce((string, instruc
 
 const toggleRecipesToCook = (e, recipes) => {
   recipes.forEach(recipe => {
-    if (Number(e.target.id) === recipe.id && !recipesToCook.some(recipe => Number(e.target.id) === recipe.id)) {
+    if (Number(e.target.parentNode.id) === recipe.id && !recipesToCook.some(recipe => Number(e.target.parentNode.id) === recipe.id)) {
       recipesToCook.push(recipe);
-    } else if (Number(e.target.id) === recipe.id && recipesToCook.some(recipe => Number(e.target.id) === recipe.id)) {
-      recipesToCook = recipesToCook.filter(recipe => recipe.id !== Number(e.target.id));
+    } else if (Number(e.target.parentNode.id) === recipe.id && recipesToCook.some(recipe => Number(e.target.parentNode.id) === recipe.id)) {
+      recipesToCook = recipesToCook.filter(recipe => recipe.id !== Number(e.target.parentNode.id));
     }
   });
 }

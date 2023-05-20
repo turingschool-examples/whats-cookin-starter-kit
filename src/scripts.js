@@ -4,8 +4,10 @@ import { savePromises } from './apiCalls';
 import './images/turing-logo.png';
 import './images/clipart16385.png';
 import './images/Avatar1.gif';
+import './images/rh.png';
+import './images/bh.png';
 import { recipesToCook, toggleRecipesToCook } from './recipe.js';
-import { searchButton, favoriteButton, homeButton, tags, mainPanel, loadUsers, viewAllRecipes, viewRecipeInfo, filterRecipeByTag, searchRecipe, toggleButtons } from './domUpdates.js';
+import { searchButton, favoriteButton, homeButton, filterText, tags, mainPanel, loadUsers, viewAllRecipes, viewRecipeInfo, filterRecipeByTag, searchRecipe, toggleButtons, toggleHearts, loadHearts, toggleMode, viewHome, viewSaved } from './domUpdates.js';
 
 let users;
 let recipes;
@@ -24,8 +26,9 @@ window.addEventListener('load', () => {
 });
 
 mainPanel.addEventListener('click', e => {
-  viewRecipeInfo(recipes, ingredients, e),
-  toggleRecipesToCook(e, recipes)
+  viewRecipeInfo(recipes, ingredients, e);
+  toggleRecipesToCook(e, recipes);
+  toggleHearts(e, recipes);
 });
 
 tags.forEach(tag => {
@@ -39,12 +42,13 @@ searchButton.addEventListener('click', () => {
 });
 
 favoriteButton.addEventListener('click', () => {
-  viewAllRecipes(recipesToCook),
-  toggleButtons()
+  viewSaved();
+  viewAllRecipes(recipesToCook);
+  loadHearts(recipesToCook);
 });
 
-
 homeButton.addEventListener('click', () => {
-  viewAllRecipes(recipes),
-  toggleButtons()
+  viewHome();
+  viewAllRecipes(recipes);
+  loadHearts(recipes);
 });
