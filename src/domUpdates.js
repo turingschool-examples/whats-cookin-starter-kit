@@ -19,7 +19,8 @@ const clearView = (views) => {
   views.forEach((view) => {
     view.innerHTML = '';
   })
-}
+};
+
 const toMyRecipeView = (currentUser) => {
   toggleHidden([mainView], 'add');
   toggleHidden([myRecipesView], 'remove');
@@ -41,8 +42,8 @@ const setView = () => {
     return mainViewCardContainer;
   } else if (mainView.classList.contains('hidden')) {
     return myRecipesView;
-  }
-}
+  };
+};
 
 const searchResults = () => {
   if (searchByToggle.value === 'select' || searchBar.value.length === 0) {
@@ -52,8 +53,8 @@ const searchResults = () => {
     return handleTagSearch();
   } else if (searchByToggle.value === 'name') {
     return handleNameSearch();
-  }
-}
+  };
+};
 
 const searchBarClicked = () => {
   clearView([mainViewCardContainer, myRecipesView, singleRecipeView]);
@@ -70,7 +71,7 @@ const handleTagSearch = () => {
     return filterByTag(searchBar.value, recipeData);
   } else if (mainView.classList.contains('hidden')) {
     return filterByTag(searchBar.value, currentUser.recipesToCook);
-  }
+  };
 };
 
 const handleNameSearch = () => {
@@ -78,7 +79,7 @@ const handleNameSearch = () => {
     return filterByName(searchBar.value, recipeData);
   } else if (mainView.classList.contains('hidden')) {
     return filterByName(searchBar.value, currentUser.recipesToCook);
-  }
+  };
 };
 
 const handleSearchResults = (view, results) => {
@@ -86,22 +87,23 @@ const handleSearchResults = (view, results) => {
     view.innerHTML = `<p>${results}</p>`;
   } else {
     renderRecipeCards(view, results, currentUser);
-  }
+  };
 };
 
 // DOM FUNCTIONS
 const renderBookmarks = (currentUser, recipe) => {
-  if (currentUser.recipesToCook.includes(recipe)) {
+  if (checkUserForRecipe(currentUser, recipe)) {
     return `<img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked hidden" alt="bookmark icon">
-    <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked" alt="bookmark icon filled in">`
+    <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked" alt="bookmark icon filled in">`;
   } else {
     return `<img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked" alt="bookmark icon">
-    <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">`
-  }
-}
+    <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">`;
+  };
+};
 
 const renderRecipeCards = (view, recipes, currentUser) => {
   clearView([mainViewCardContainer, myRecipesView])
+
   recipes.forEach((recipe) => {
     view.innerHTML += `
     <article class="recipe-card" id="${recipe.id}">
@@ -126,21 +128,21 @@ const isUnchecked = (e) => {
 const toggleHidden = (elements, type) => {
   elements.forEach((element)=> {
     element.classList[type]('hidden');
-  })
-}
+  });
+};
 
 const toggleBookmark = (e, currentUser, recipeData) => {
   if (e.target.classList[0]=== 'bookmark-icon') {
     if(isUnchecked(e)) {
-      recipesToCook(e.target.id, currentUser, recipeData)
+      recipesToCook(e.target.id, currentUser, recipeData);
       toggleHidden([e.target], 'add');
       toggleHidden([e.target.nextElementSibling], 'remove');
     } else {
-      removeRecipes(e.target.id, currentUser)
+      removeRecipes(e.target.id, currentUser);
       toggleHidden([e.target], 'add');
       toggleHidden([e.target.previousElementSibling], 'remove');
-    }
-  }
+    };
+  };
 };
 
 const findRecipe = (e, recipes) => {
@@ -156,8 +158,6 @@ const renderSingleRecipeView = (e, recipes, ingredients, currentUser) => {
   let recipe = findRecipe(e, recipes);
   toggleHidden([mainView], 'add');
   toggleHidden([singleRecipeView], 'remove');
-  // clearView([singleRecipeView]);
-  console.log(currentUser)
   singleRecipeView.innerHTML += `
     <div class="single-recipe-view-flex">
       <img class="single-recipe-img" src="${recipe.image}">
@@ -184,14 +184,14 @@ const renderSingleRecipeView = (e, recipes, ingredients, currentUser) => {
         </div>
       </div>
     </div>`;
-}
+};
 
 const renderInstructions = (recipe) => {
   let instructions = recipe.instructions;
   let output = '<h2 class="instruction-title">Instruction</h2>';
   instructions.forEach((ele) => {
     output += `<p>${ele.number}. ${ele.instruction}</p>`;
-  })
+  });
   return output;
 };
 
@@ -208,7 +208,7 @@ const renderTags = (recipe) => {
   let output = ``;
   recipe.tags.forEach((ele) => {
     output += `<span class="tags-text-flex">${ele}</span>`;
-  })
+  });
   return output;
 };
 
@@ -216,7 +216,7 @@ const removeRecipeCard = (e) => {
   if(e.target.classList.contains('bookmark-icon')) {
     e.target.parentElement.parentElement.parentElement.remove();
   };
-}
+};
 
 export {
   toMyRecipeView,
