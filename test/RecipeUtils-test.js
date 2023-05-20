@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { recipesFromTag, recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions, saveRecipe, deleteRecipe } from '../src/recipeUtils';
+import { recipesFromTag, recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions, shuffleData } from '../src/recipeUtils';
 import recipeData from '../src/data/recipes-sample.js';
 import ingredientsData from '../src/data/ingredients-sample.js';
 import recipesToCook from '../src/data/recipesToCook-sample.js';
@@ -126,6 +126,12 @@ describe('recipeInstructions', () => {
     const instructions = (recipeInstructions(recipe));
     expect(instructions).to.equal("Sorry, that recipe cannot be found.")
   });
+describe('shuffleData function', () => {
+  it ('should randomize the recipe array order', () => {
+    const shuffled = shuffleData(recipeData)
+    expect(shuffled).to.not.equal(recipeData)  
+  })
+})
 
 });
 

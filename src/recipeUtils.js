@@ -49,18 +49,11 @@ const calculateRecipeCost = (recipe, ingredients) => {
    return instructions.join(' ')
  };
 
-const saveRecipe = (recipe) => {
-  if(!recipesToCook.includes(recipe)) {
-    recipesToCook.push(recipe);
-    return recipesToCook;
-  }
-  return recipesToCook;
+function shuffleData(recipes) {
+  recipes.sort(() => Math.random() - 0.5)
+  return
 }
 
-const deleteRecipe = (recipe) => {
-  recipesToCook.splice(recipe);
-  return recipesToCook;
-}
 export {
   recipesFromTag,
   recipesfromName,
@@ -68,6 +61,5 @@ export {
   findIngredientNames,
   calculateRecipeCost,
   recipeInstructions,
-  saveRecipe,
-  deleteRecipe
+  shuffleData
 }
