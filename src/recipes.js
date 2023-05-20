@@ -46,11 +46,13 @@ const filterRecipesByIngredient = (recipes, searchedIngredient, ingredientData) 
 };
 
 const searchRecipes = (allRecipes, allIngredients, userSearch) => {
-    const searchedItems = userSearch.split(' ')
-    const recipesByName = searchedItems.flatMap(searchWord => filterRecipesByName(allRecipes, searchWord))
-    const recipesByIngredient = searchedItems.flatMap(searchWord => filterRecipesByIngredient(allRecipes, searchWord, allIngredients))
-    const foundRecipes = [...recipesByName, ...recipesByIngredient]
-    return [...new Set(foundRecipes)]
+    const searchedItems = userSearch.split(' ').filter(word => word.length)
+    if(searchedItems.length) {
+      const recipesByName = searchedItems.flatMap(searchWord => filterRecipesByName(allRecipes, searchWord))
+      const recipesByIngredient = searchedItems.flatMap(searchWord => filterRecipesByIngredient(allRecipes, searchWord, allIngredients))
+      const foundRecipes = [...recipesByName, ...recipesByIngredient]
+      return [...new Set(foundRecipes)]
+    }
 }
 
 export {
