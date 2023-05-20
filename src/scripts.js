@@ -3,6 +3,7 @@ import './styles.css';
 import { savePromises } from './apiCalls';
 import './images/turing-logo.png';
 import './images/clipart16385.png';
+import './images/Avatar1.gif';
 import './images/rh.png';
 import './images/bh.png';
 import { recipesToCook, toggleRecipesToCook } from './recipe.js';
@@ -30,8 +31,6 @@ mainPanel.addEventListener('click', e => {
   toggleHearts(e, recipes);
 });
 
-
-
 tags.forEach(tag => {
   tag.addEventListener('click', e => {
     filterRecipeByTag(e, recipes);
@@ -40,7 +39,6 @@ tags.forEach(tag => {
 
 searchButton.addEventListener('click', () => {
   searchRecipe(recipes);
-  // loadHearts(recipesToCook);
 });
 
 favoriteButton.addEventListener('click', () => {
