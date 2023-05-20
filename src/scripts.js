@@ -30,7 +30,7 @@ import './images/user-icon.png'
 // import apiCalls from './apiCalls'
 
 const recipeGrid = document.querySelector('.recipe-grid');
-const landingPage = document.querySelector('.landing-page')
+const allRecipes = document.querySelector('.all-recipes')
 const allUserRecipes = document.querySelector('.all-user-recipes');
 const clickedRecipe = document.querySelector('#clickedRecipe');
 const closeRecipeButton = document.querySelector('#closeRecipe');
@@ -92,7 +92,7 @@ export {
   clickedRecipe,
   getRecipeCard,
   ingredientsList,
-  landingPage,
+  allRecipes,
   ourViewBtn,
   yourViewBtn,
   allUserRecipes,

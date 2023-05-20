@@ -7,7 +7,7 @@ body {
   color: white;
 }
 
-.landing-page > h1 {
+.all-recipes > h1 {
   text-align: center;
   font-size: 55px;
   margin-bottom: 25px;
@@ -180,7 +180,7 @@ nav {
 
 /* Recipe grid */ 
 
-.landing-page {
+.all-recipes {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -218,7 +218,7 @@ nav {
 }
 
 .add-panel > h4 {
-  font-size: 19px;
+  font-size: 14px;
   border: wheat;  
   height: 0px;
   width: 0px;
