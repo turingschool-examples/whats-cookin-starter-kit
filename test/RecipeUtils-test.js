@@ -31,6 +31,16 @@ describe('RecipeUtils', () => {
     const names = filtered.map(f => f.name)
     expect(names).to.have.members(expected)
   });
+  it('Should filter recipesToCook if tag applies to multiple recipes', () => {
+    const save = saveRecipe(recipeData, 'Loaded Chocolate Chip Pudding Cookie Cups')
+    const sav2 = saveRecipe(recipeData, 'Maple Dijon Apple Cider Grilled Pork Chops')
+    const sav3 = saveRecipe(recipeData, 'Thai Chicken Tenders with Broiled Pineapple Slaw')
+    const expectedRecipesToCook2 = [recipeData[1], recipeData[3]]
+    const filteredRecipesToCook2 = recipesFromTag(recipesToCook, ['main dish'])
+
+    expect(filteredRecipesToCook2.length).to.equal(2)
+    expect(filteredRecipesToCook2).to.deep.equal(expectedRecipesToCook2)
+  });
   it ('Should filter recipes when multiple tags are applied', () => {
     const expected = ['Thai Chicken Tenders with Broiled Pineapple Slaw', 'Maple Dijon Apple Cider Grilled Pork Chops']
     const filtered = recipesFromTag(recipeData, ['lunch', 'main dish'])
