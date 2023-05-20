@@ -77,6 +77,12 @@ allRecipes.addEventListener("click", (event) => {
 
 closeRecipeButton.addEventListener("click", closeRecipe);
 
+searchBar.addEventListener('keypress', (event) => {
+  if(event.key === 'Enter') {
+    searchForRecipes();
+  }
+})
+
 searchBtn.addEventListener('click', searchForRecipes);
 
 // Exports
