@@ -130,7 +130,7 @@ main {
 
 .tags-panel::-webkit-scrollbar, .recipeInfo::-webkit-scrollbar, .main-panel::-webkit-scrollbar {
   width: 5vw;
-  background-image: url('./images/lilac.png');
+  background-image: url('./images/lilacs.png');
   background-size: 27.5vh;
 };
 
@@ -138,7 +138,7 @@ main {
   width: 5vw;
   border-radius: 100%;
   background-size: 20.5vh;
-  background-image: url('./images/flowers.png');
+  background-image: url('./images/sunflowers.png');
 };
 
 .tags-panel::-webkit-scrollbar-button, .recipeInfo::-webkit-scrollbar-button, .main-panel::-webkit-scrollbar-button {

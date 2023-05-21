@@ -1,28 +1,10 @@
 let recipesToCook = [];
 
-const filterByTag = (tag, recipes) => {
-  if (!recipes.filter(recipe => recipe.tags.includes(tag)).length) {
-    return "No recipes found";
-  } else {
-    return recipes.filter(recipe => recipe.tags.includes(tag));
-  };
-};
+const filterByTag = (tag, recipes) => !recipes.filter(recipe => recipe.tags.includes(tag)).length ? "No recipes found" : recipes.filter(recipe => recipe.tags.includes(tag));
 
-const filterByName = (name, recipes) => {
-  if (!recipes.filter(recipe => recipe.name.toLowerCase().includes(name)).length) {
-    return "No recipes found";
-  } else {
-    return recipes.filter(recipe => recipe.name.toLowerCase().includes(name));
-  };
-};
+const filterByName = (name, recipes) => !recipes.filter(recipe => recipe.name.toLowerCase().includes(name)).length ? "No recipes found" : recipes.filter(recipe => recipe.name.toLowerCase().includes(name));
 
-const determineIngredientNames = (recipes, ingredients, name) => {
-  if (!recipes.filter(recipe => recipe.name === name).length) {
-    return "No recipes found";
-  } else {
-    return recipes.filter(recipe => recipe.name === name)[0].ingredients.map(ingr => ingr.id).map(ID => ingredients[ingredients.findIndex(ing => ing.id === ID)].name);
-  };
-};
+const determineIngredientNames = (recipes, ingredients, name) => !recipes.filter(recipe => recipe.name === name).length ? "No recipes found" : recipes.filter(recipe => recipe.name === name)[0].ingredients.map(ingr => ingr.id).map(ID => ingredients[ingredients.findIndex(ing => ing.id === ID)].name);
 
 const calculateCost = (recipe, ingredients) => {
   let iDs = ingredients.reduce((array, ingredient) => [...array, ingredient.id], []);
@@ -30,7 +12,7 @@ const calculateCost = (recipe, ingredients) => {
     return "Ingredient not found";
   } else {
   recipe.ingredients.forEach(ingredient => ingredient.cost = ingredients[iDs.indexOf(ingredient.id)].estimatedCostInCents);
-  return recipe.ingredients.reduce((sum, ingredient) => sum + (ingredient.quantity.amount * ingredient.cost), 0) / 100;
+  return Number((recipe.ingredients.reduce((sum, ingredient) => sum + (ingredient.quantity.amount * ingredient.cost), 0) / 100).toFixed(2));
     };
 };
 
