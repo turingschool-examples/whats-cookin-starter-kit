@@ -3,11 +3,11 @@ import './styles.css';
 import { savePromises } from './apiCalls';
 import './images/turing-logo.png';
 import './images/clipart16385.png';
-// import './images/Avatar1.gif';
+import './images/Avatar1.gif';
 import './images/rh.png';
 import './images/bh.png';
 import { recipesToCook, toggleRecipesToCook } from './recipe.js';
-import { searchButton, favoriteButton, homeButton, filterText, tags, mainPanel, loadUsers, viewAllRecipes, viewRecipeInfo, filterRecipeByTag, searchRecipe, toggleButtons, toggleHearts, loadHearts, toggleMode, viewHome, viewSaved } from './domUpdates.js';
+import { searchButton, favoriteButton, homeButton, filterText, tags, mainPanel, loadUsers, viewAllRecipes, viewRecipeInfo, filterRecipeByTag, searchRecipe, toggleButtons, toggleHearts, loadHearts, toggleMode, viewHome, viewSaved, test } from './domUpdates.js';
 
 let users;
 let recipes;
@@ -26,9 +26,14 @@ window.addEventListener('load', () => {
 });
 
 mainPanel.addEventListener('click', e => {
+  if (e.target.classList.contains('info-button')) {
+    test.classList.add('hidden');
+    viewAllRecipes(recipes);
+  } else {
   viewRecipeInfo(recipes, ingredients, e);
   toggleRecipesToCook(e.target.parentNode.id, recipes);
   toggleHearts(e, recipes);
+  }
 });
 
 tags.forEach(tag => {
@@ -48,6 +53,8 @@ favoriteButton.addEventListener('click', () => {
 });
 
 homeButton.addEventListener('click', () => {
+    console.log(hey)
+
   viewHome();
   viewAllRecipes(recipes);
   loadHearts(recipes);

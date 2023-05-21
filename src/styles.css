@@ -116,6 +116,30 @@ main {
   overflow-x: hidden;
 }
 
+body {
+  /* -webkit-filter: blur(2px); */
+}
+
+.test {
+  height: 76.5vh;
+  width: 73vw;
+  text-align: center;
+  background-color: #C7B6DC;  
+  visibility: visible;
+  border-radius: 3%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: absolute; 
+  transform: translate(-10%, -15%);
+  /* -webkit-filter: blur(-2px); */
+  /* background-color: rgba(0,0,255,0.5); */
+}
+
+/* .test:target {
+  opacity: 0;
+} */
+
+
 .main-panel::-webkit-scrollbar {
   width: 5vw;
   background-image: url('./images/lilac.png');
@@ -125,7 +149,7 @@ main {
 .main-panel::-webkit-scrollbar-thumb {
   width: 5vw;
   border-radius: 100%;
-  background-size: 10.5vh;
+  background-size: 20.5vh;
   background-image: url('./images/flowers.png');
 }
 
@@ -133,29 +157,36 @@ main {
   visibility: hidden;
 }
 
-.test {
-  height: 76.5vh;
-  width: 73vw;
-  text-align: center;
-  background-color: #e6d7ff;  
-  visibility: visible;
-  border-radius: 3%;
-  overflow-x: scroll;
-}
-
 .test::-webkit-scrollbar {
-  display: none;
+  width: 5vw;
+  background-image: url('./images/lilac.png');
+  background-size: 27.5vh;
 }
 
-.tag {
-display:flex;
- height: 4vh;
- width: 8vw;
- border-radius: 9%;
- align-items: center;
- justify-content: center;
- background-color: #e1c4ff;
- font-size: 1.8vw;
+.test::-webkit-scrollbar-thumb {
+  width: 5vw;
+  border-radius: 100%;
+  background-size: 20.5vh;
+  background-image: url('./images/flowers.png');
+}
+
+.test::-webkit-scrollbar-button {
+  visibility: hidden;
+} 
+
+.tag, .info-button {
+  display:flex;
+  height: 4vh;
+  width: 8vw;
+  border-radius: 9%;
+  align-items: center;
+  justify-content: center;
+  background-color: #e1c4ff;
+  font-size: 1.8vw;
+}
+
+.info-button {
+  margin: 2%;
 }
 
 .tag:hover {
@@ -187,13 +218,13 @@ display:flex;
   background-color: #54335a;
 }
 
-h1, h2, {
+h1, h2 {
   white-space: nowrap;
   margin: 2%;
   font-size: 2.3vw;
 }
 
-p {
+.user {
   margin: 2%;
   font-size: 1.5vw;
 }
@@ -206,12 +237,11 @@ p {
 }
 
 .user-gif {
-  height: 13vh;
-    width: 13vh;
-    border-radius: 85%;
-    padding-top: 3%;
+  height: 65%;
+  width: 55%;
+  border-radius: 85%;
+  padding-top: 3%;
 }
-
 
 .box{
   width: 29vh;

@@ -8,7 +8,9 @@ const favoriteButton = document.querySelector('.favorite-button');
 const filterText = document.querySelector('h2');
 const tags = document.querySelectorAll('.tag');
 const mainPanel = document.querySelector('.main-panel');
-const homeButton = document.querySelector('.home-button')
+const homeButton = document.querySelector('.home-button');
+const main = document.querySelector('main');
+let test;
 let page = {mode: 'home'};
 
 // Event Handlers
@@ -57,6 +59,7 @@ const viewRecipeInfo = (recipes, ingredients, e) => {
     let selectedRecipe = recipes.find(recipe => recipe.id === Number(e.target.id));
     mainPanel.innerHTML = `
     <div class="test">
+      <button class='info-button'> Close </button>
       <h2 class='recipe-names'> ${selectedRecipe.name}</h2>
       <img class='recipe-img' id='${selectedRecipe.id}' src='${selectedRecipe.image}' alt='${selectedRecipe.name}'>
       <p class='ingredients'>${determineIngredientNames(recipes, ingredients, selectedRecipe.name).join(' -- ')}</p>
@@ -65,6 +68,7 @@ const viewRecipeInfo = (recipes, ingredients, e) => {
     </div>
     `;
   }
+  test = document.querySelector('.test')
 }
 
 // const filterRecipeByTag = (e, recipes) => {
@@ -177,5 +181,6 @@ export {
   toggleHearts,
   loadHearts,
   viewHome,
-  viewSaved
+  viewSaved,
+  test,
 }
