@@ -23,9 +23,9 @@ describe('compileIngredientItems', () => {
   });
 
   it('should take two arguments: a recipe object and a collection of ingredients data', () => {
-    expect(compileIngredientItems([], 1)).to.equal('Error: wrong intput type');
-    expect(compileIngredientItems(1, [])).to.equal('Error: wrong intput type');
-    expect(compileIngredientItems({}, 1)).to.equal('Error: wrong intput type');
+    expect(compileIngredientItems([], 1)).to.equal('Error: wrong input type');
+    expect(compileIngredientItems(1, [])).to.equal('Error: wrong input type');
+    expect(compileIngredientItems({}, 1)).to.equal('Error: wrong input type');
   });
 
   it('should return a list of ingredient items, which includes ingredient name, multiplication symbol, amount, and unit', () => {

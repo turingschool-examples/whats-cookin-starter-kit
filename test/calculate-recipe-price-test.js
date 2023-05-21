@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import { getIngredientCost, calculateRecipePrice } from '../src/calculate-recipe-price';
 import { sampleRecipeData as rData} from './sampleIngredients';
 import { sampleIngredientsData as iData } from './sampleIngredients';
+import { getIngredientCost, calculateRecipePrice } from '../src/calculate-recipe-price';
 
 describe('getIngredientCost', () => {
   it('should be a function', () => {
@@ -20,7 +20,7 @@ describe('getIngredientCost', () => {
     expect(getIngredientCost(200, iData)).to.equal('Error: no matching ingredient');
   });
 
-  it('it should return a string of the matching ingredient Cost', () => {
+  it('it should return a number of the matching ingredient cost', () => {
     expect(getIngredientCost(1, iData)).to.equal(472);
     expect(getIngredientCost(2, iData)).to.equal(200);
     expect(getIngredientCost(3, iData)).to.equal(350);
@@ -45,7 +45,7 @@ describe('calculateRecipePrice', () => {
     expect(calculateRecipePrice({}, 1)).to.equal('Error: wrong input type');
   });
 
-  it('should return a list of ingredient items, which includes ingredient name, multiplication symbol, amount, and unit', () => {
+  it('should return a two decimal digit of the recipe ingredients\' total cost in dollars', () => {
     expect(calculateRecipePrice(rData[0], iData)).to.deep.equal('$91.92');
     expect(calculateRecipePrice(rData[1], iData)).to.deep.equal('$24.50');
     expect(calculateRecipePrice(rData[2], iData)).to.deep.equal('$52.65');
@@ -54,5 +54,4 @@ describe('calculateRecipePrice', () => {
     expect(calculateRecipePrice(rData[5], iData)).to.deep.equal('$266.33');
     expect(calculateRecipePrice(rData[6], iData)).to.deep.equal('$123.67');
   });
-
 });

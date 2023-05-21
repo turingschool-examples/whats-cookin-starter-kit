@@ -1,4 +1,4 @@
-import { matchIngredient } from './get-ingredient-name'
+import { matchIngredient } from './get-ingredient-name';
 
 const getIngredientCost = (id, ingredientsData) => {
   const matchingResult = matchIngredient(id, ingredientsData);
