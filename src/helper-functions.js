@@ -9,8 +9,13 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
-const toggleHidden = elements => elements.forEach(element => {
-  element.classList.toggle('hidden')})
+const toggleView = elements => {
+  elements.forEach(element => {
+    element.classList.toggle('selected-view')
+    element.classList.toggle('unselected-view')
+  })
+}
+
 // const getUniqueIngredients = () => {
 //   const output = [];
 //   recipes.forEach(recipe => { 
@@ -24,4 +29,4 @@ const toggleHidden = elements => elements.forEach(element => {
 // }
 
 
-export {copyItem, getIngredientProperty, getRandomIndex, toggleHidden}
+export {copyItem, getIngredientProperty, getRandomIndex, toggleView}

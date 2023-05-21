@@ -17,7 +17,7 @@ import {
 } from './scripts'
 import { searchRecipes } from './recipes';
 import { updateRecipesToCook } from './users';
-import { toggleHidden } from './helper-functions';
+import { toggleView } from './helper-functions';
 
 // functions
 
@@ -266,9 +266,6 @@ const openRecipeCard = () => {
 }
 
 const showRecipe = (recipeCard, currentUser) => {
-  const outerAddBtn = recipeCard.parentNode.querySelector('.add-panel')
-  const outerRemoveBtn = recipeCard.parentNode.querySelector('.remove-panel')
-  console.log(outerAddBtn)
   updateCurrentRecipe(recipeCard);
   populateRecipeHeader(pageData.currentRecipeCard);
   populateInstructions(pageData.currentRecipeCard);
@@ -308,19 +305,11 @@ const switchView = (clickedViewID) => {
   if (clickedViewID === "our-recipes") {
     renderGrid(recipeData)
     pageData.currentView = 'ourRecipes';
-    ourViewBtn.classList.add("selected-view");
-    yourViewBtn.classList.remove("selected-view");
-    yourViewBtn.classList.add("unselected-view");  
-    ourViewBtn.classList.remove("unselected-view");
   } else {
     renderGrid(currentUser.recipesToCook);
     pageData.currentView = 'yourRecipes';
-    console.log(document.querySelectorAll('.individual-recipe-container'))
-    ourViewBtn.classList.remove("selected-view");
-    yourViewBtn.classList.add("selected-view");
-    yourViewBtn.classList.remove("unselected-view");  
-    ourViewBtn.classList.add("unselected-view");
   }
+  toggleView([ourViewBtn, yourViewBtn])
 }
 
 const searchForRecipes = () => {
