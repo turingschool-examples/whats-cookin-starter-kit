@@ -27,8 +27,6 @@ import './images/starter.png'
 import './images/search-button.png'
 import { loadData, pageData, updateCurrentUser, currentUser } from './apiCalls';
 import { updateRecipesToCook } from './users';
-import { recipeData } from './data/recipes';
-
 // import apiCalls from './apiCalls'
 
 const recipeGrid = document.querySelector('.recipe-grid');
@@ -102,15 +100,15 @@ searchBar.addEventListener('keypress', (event) => {
 
 searchBtn.addEventListener('click', searchForRecipes);
 
-modalAddBtn.addEventListener('click', (e) => {
-  const recipe = findRecipe(recipeData, pageData.currentRecipeCard.id)
+modalAddBtn.addEventListener('click', () => {
+  const recipe = findRecipe(pageData.allRecipes, pageData.currentRecipeCard.id)
   updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'add'))
   updateSaveButtons(recipe.id, modalAddBtn, modalRemoveBtn)
   updateSaveButtons(recipe.id, pageData.currentRecipeCard.outerAddBtn, pageData.currentRecipeCard.outerRemoveBtn)  
 });
 
-modalRemoveBtn.addEventListener('click', (e) => {
-  const recipe = findRecipe(recipeData, pageData.currentRecipeCard.id)
+modalRemoveBtn.addEventListener('click', () => {
+  const recipe = findRecipe(pageData.allRecipes, pageData.currentRecipeCard.id)
   updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'remove'))
   updateSaveButtons(recipe.id, modalAddBtn, modalRemoveBtn)
   updateSaveButtons(recipe.id, pageData.currentRecipeCard.outerAddBtn, pageData.currentRecipeCard.outerRemoveBtn)  

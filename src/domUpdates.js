@@ -16,7 +16,7 @@ import {
 } from './scripts'
 import { searchRecipes } from './recipes';
 import { updateRecipesToCook } from './users';
-import { toggleView } from './helper-functions';
+import { copyItem, toggleView } from './helper-functions';
 
 // functions
 
@@ -226,7 +226,7 @@ const findRecipe = (allRecipes, ID) => {
 
 const updateCurrentRecipe = recipeCard => {
   const recipeCardID = recipeCard.closest("article")?.id;
-  const thisRecipe = findRecipe(pageData.recipesOfInterest, recipeCardID);
+  const thisRecipe = findRecipe(pageData.allRecipes, recipeCardID);
   pageData.currentRecipeCard = getRecipeCard(thisRecipe);
   pageData.currentRecipeCard.outerAddBtn = recipeCard.parentNode.querySelector('.add-panel')
   pageData.currentRecipeCard.outerRemoveBtn = recipeCard.parentNode.querySelector('.remove-panel')
@@ -300,21 +300,16 @@ const createIngredientsHTML = ingredients => {
 
 const switchView = (clickedViewID) => {
   if (clickedViewID === "our-recipes") {
-    renderGrid(recipeData)
-    pageData.currentView = 'ourRecipes';
+    pageData.recipesOfInterest = copyItem(pageData.allRecipes);
   } else {
-    renderGrid(currentUser.recipesToCook);
-    pageData.currentView = 'yourRecipes';
+    pageData.recipesOfInterest = copyItem(currentUser.recipesToCook)
   }
+  renderGrid(pageData.recipesOfInterest)
   toggleView([ourViewBtn, yourViewBtn])
 }
 
 const searchForRecipes = () => {
-  const data = {
-    ourRecipes: pageData.recipesOfInterest,
-    yourRecipes: currentUser.recipesToCook
-  }
-  let searchedRecipes = searchRecipes(data[pageData.currentView], ingredientsData, searchBar.value)
+  let searchedRecipes = searchRecipes(pageData.recipesOfInterest, ingredientsData, searchBar.value)
   if(searchedRecipes) {
     searchedRecipes.length  
     ? renderGrid(searchedRecipes)
@@ -325,7 +320,7 @@ const searchForRecipes = () => {
 const updateUserRecipes = (e) => {
   if(e.target.parentNode.classList.contains('panel')) {
     const recipeID = e.target.closest('.individual-recipe-container')?.querySelector('.individual-recipe').id
-    const recipe = findRecipe(recipeData, recipeID)
+    const recipe = findRecipe(pageData.allRecipes, recipeID)
     if (e.target.parentNode.classList.contains('add-panel')) updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'add'))
     if (e.target.parentNode.classList.contains('remove-panel')) updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'remove'))
     const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel')
