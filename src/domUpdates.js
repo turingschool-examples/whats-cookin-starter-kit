@@ -1,5 +1,5 @@
 // Imports
-import { pageData, currentUser } from './apiCalls';
+import { pageData, currentUser, updateCurrentUser } from './apiCalls';
 import { ingredientsData } from './data/ingredients';
 import {
   recipeGrid,
@@ -11,8 +11,12 @@ import {
   searchBar,
   ourViewBtn,
   yourViewBtn,
+  modalAddBtn, 
+  modalRemoveBtn
 } from './scripts'
 import { searchRecipes } from './recipes';
+import { updateRecipesToCook } from './users';
+import { copyItem, toggleViewBtns } from './helper-functions';
 
 // functions
 
@@ -35,12 +39,24 @@ const makeRecipeColumnData = (data) => {
 
 const createSingleRecipeHTML = singleRecipe => {
   let htmlCode = '';
+  let addStatus = ''; 
+  let removeStatus = 'hidden';
+  if(currentUser?.recipesToCook){
+    if(checkSavedStatus(singleRecipe.id)) {
+      addStatus = 'hidden';
+      removeStatus = '';
+    }
+  }
   htmlCode += 
   `
   <article class="individual-recipe-container">
-    <section class="add-panel">
-      <div class="plus-symbol">+</div>
-      <h4> Add to recipes to cook</h4>
+    <section class="add-panel panel save-option ${addStatus}">
+      <div class="plus-symbol symbol save-option">+</div>
+      <h4 class="save-option"> Add to recipes to cook</h4>
+    </section>
+    <section class="remove-panel panel save-option ${removeStatus}">
+      <div class="minus-symbol synmbol save-option ">-</div>
+      <h4 class="save-option"> Remove from recipes to cook</h4>
     </section>
     <article class="individual-recipe" id="${singleRecipe.id}">
       <div class="recipe-image-div">
@@ -204,36 +220,30 @@ const populateInstructions = (recipe) => {
   addScrollBar('.instruction-steps')
 }
 
+const findRecipe = (allRecipes, ID) => {
+  return allRecipes.find(recipe => recipe.id.toString() === ID.toString());
+}
+
 const updateCurrentRecipe = recipeCard => {
   const recipeCardID = recipeCard.closest("article")?.id;
-  const thisRecipe = pageData.recipesOfInterest.find(recipe => recipe.id.toString() === recipeCardID);
+  const thisRecipe = findRecipe(pageData.allRecipes, recipeCardID);
   pageData.currentRecipeCard = getRecipeCard(thisRecipe);
+  pageData.currentRecipeCard.outerAddBtn = recipeCard.closest('.individual-recipe-container').querySelector('.add-panel')
+  pageData.currentRecipeCard.outerRemoveBtn = recipeCard.closest('.individual-recipe-container').querySelector('.remove-panel')
 }
 
-const populateRecipeName = currentRecipe => {
-  document.querySelector('#recipeName').innerHTML = `  <h1>${currentRecipe.name}</h1>  `
+const checkSavedStatus = (ID) => {
+  return currentUser.recipesToCook.some(recipe => recipe.id.toString() === ID.toString());
 }
 
-const populateAddBtn = () => {
-  // const recipeSaved = user.recipesToCook.some(recipe => recipe.id === currentRecipe.id);
-  // let buttonText;
-  // let buttonStatus;
-  // if (!recipeSaved) { 
-  //   buttonText = "Add to Save to Cook Recipes";
-  //   buttonStatus = "add-recipe modal-recipe-btn";
-  // } else {
-  //   buttonText = "Remove from Save to Cook Recipes";
-  //   buttonStatus = "remove-recipe modal-recipe-btn";
-  // };
-//saving to use once currentUser is accessible
-  const buttonStatus = "add-recipe modal-recipe-btn";
-  const buttonText = "Add to Saved Recipes";
-  document.querySelector('.modal-add-recipe').innerHTML = 
-  `
-  <div class= "${buttonStatus}">
-    <h4>${buttonText}</h4>
-  </div>
-  `;
+const updateSaveButtons = (ID, addButton, removeButton) => {
+  if(checkSavedStatus(ID)){
+    addButton.classList.add('hidden')
+    removeButton.classList.remove('hidden')
+  } else {
+    addButton.classList.remove('hidden')
+    removeButton.classList.add('hidden')
+  }
 }
 
 const populateRecipeHeader = currentRecipe => {
@@ -252,12 +262,12 @@ const openRecipeCard = () => {
   clickedRecipe.classList.toggle("fade-in");
 }
 
-const showRecipe = (recipeCard, currentUser) => {
+const showRecipe = (recipeCard) => {
   updateCurrentRecipe(recipeCard);
   populateRecipeHeader(pageData.currentRecipeCard);
   populateInstructions(pageData.currentRecipeCard);
   populateIngredients(pageData.currentRecipeCard);
-  populateAddBtn(pageData.currentRecipeCard);
+  updateSaveButtons(pageData.currentRecipeCard.id, modalAddBtn, modalRemoveBtn);
   openRecipeCard();
 };
 
@@ -290,31 +300,55 @@ const createIngredientsHTML = ingredients => {
 
 const switchView = (clickedViewID) => {
   if (clickedViewID === "our-recipes") {
-    recipeGrid.classList.remove("hidden");
-    ourViewBtn.classList.add("selected-view");
-    yourViewBtn.classList.remove("selected-view");
-    yourViewBtn.classList.add("unselected-view");  
-    ourViewBtn.classList.remove("unselected-view");
+    pageData.recipesOfInterest = copyItem(pageData.allRecipes);
   } else {
-    recipeGrid.classList.add("hidden");
-    ourViewBtn.classList.remove("selected-view");
-    yourViewBtn.classList.add("selected-view");
-    yourViewBtn.classList.remove("unselected-view");  
-    ourViewBtn.classList.add("unselected-view");
+    pageData.recipesOfInterest = copyItem(currentUser.recipesToCook);
   }
+  pageData.currentView = clickedViewID
+  renderGrid(pageData.recipesOfInterest)
+  toggleViewBtns([ourViewBtn, yourViewBtn])
 }
 
 const searchForRecipes = () => {
   const data = {
-    ourRecipes: pageData.recipesOfInterest,
-    yourRecipes: currentUser.recipesToCook
+    'our-recipes': pageData.allRecipes,
+    'your-recipes': currentUser.recipesToCook
   }
   let searchedRecipes = searchRecipes(data[pageData.currentView], ingredientsData, searchBar.value)
   if(searchedRecipes) {
-    searchedRecipes.length  
-    ? renderGrid(searchedRecipes)
-    : recipeGrid.innerHTML = `<p>Sorry, we couldn't find any recipes for your search of "${searchBar.value}"</p>`
+    if(searchedRecipes.length) {
+      pageData.recipesOfInterest = searchedRecipes;
+      renderGrid(searchedRecipes)
+    }else {
+      recipeGrid.innerHTML = `<p>Sorry, we couldn't find any recipes for your search of "${searchBar.value}"</p>`
+    }
   }
+}
+
+const updateUserRecipes = (e) => {
+  if(e.target.classList.contains('save-option')) {
+    const recipeID = e.target.closest('.individual-recipe-container')?.querySelector('.individual-recipe').id
+    const recipe = findRecipe(pageData.allRecipes, recipeID)
+    if (!checkSavedStatus(recipeID)) {
+      updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'add'))
+    } else if (checkSavedStatus(recipeID)) {
+      updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'remove'))
+    }
+    const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel')
+    const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel')
+    updateSaveButtons(recipeID, addBtn, removeBtn);
+    if (pageData.currentView === 'your-recipes') pageData.recipesOfInterest = copyItem(currentUser.recipesToCook)
+    renderGrid(pageData.recipesOfInterest);
+  }
+}
+
+const updateRecipesFromModal = (targetID) => {
+  const recipe = findRecipe(pageData.allRecipes, pageData.currentRecipeCard.id)
+  updateCurrentUser(updateRecipesToCook(currentUser, recipe, targetID))
+  updateSaveButtons(recipe.id, modalAddBtn, modalRemoveBtn)
+  updateSaveButtons(recipe.id, pageData.currentRecipeCard.outerAddBtn, pageData.currentRecipeCard.outerRemoveBtn) 
+  if (pageData.currentView === 'your-recipes') pageData.recipesOfInterest = copyItem(currentUser.recipesToCook)
+  renderGrid(pageData.recipesOfInterest)
 }
 
 // Exports
@@ -325,5 +359,9 @@ export {
   showRecipe,
   closeRecipe,
   switchView,
-  searchForRecipes
+  searchForRecipes,
+  updateUserRecipes,
+  findRecipe,
+  updateSaveButtons,
+  updateRecipesFromModal
 }

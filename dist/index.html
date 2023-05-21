@@ -145,6 +145,14 @@
       <article class="recipe-grid">
         <div class="col">
           <article class="individual-recipe-container">
+            <section class="add-panel panel">
+              <div class="plus-symbol symbol">+</div>
+              <h4> Add to recipes to cook</h4>
+            </section>
+            <section class="remove-panel panel hidden">
+              <div class="minus-symbol">-</div>
+              <h4> Remove from recipes to cook</h4>
+            </section>
             <article class="individual-recipe">
               <div class="recipe-image">
                 <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
@@ -245,7 +253,10 @@
     </section>
     <section id="clickedRecipe" class="hidden">
       <section class="recipe-details" id="recipeLeftSide">
-        <section class="modal-add-recipe"></section>
+        <section class="modal-add-recipe">
+          <button class= "add-recipe modal-recipe-btn" id="add">Add to Saved Recipes</button>
+          <button class="remove-recipe modal-recipe-btn hidden" id="remove">Remove from Saved Recipes</button>
+        </section>
         <div id="recipeName"></div>
         <article id="recipeInstructions">
         </article>

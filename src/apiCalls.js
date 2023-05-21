@@ -7,7 +7,7 @@ import { copyItem } from "./helper-functions"
 let currentUser;
 let pageData = {
   activeTags: [],
-  currentView: 'ourRecipes',
+  currentView: 'our-recipes',
   currentRecipeCard: {}
 };
 
@@ -44,7 +44,7 @@ const fetchIngredients = () => {
     .catch(error => console.error(error))
 }
 
-const dataLoad = () => {
+const loadData = () => {
   assignCurrentUser();
   fetchRecipes();
   fetchIngredients();
@@ -54,6 +54,4 @@ const updateCurrentUser = (user) => {
   currentUser = user;
 };
 
-export { currentUser, pageData, updateCurrentUser, dataLoad };
-
-
+export { currentUser, pageData, updateCurrentUser, loadData };

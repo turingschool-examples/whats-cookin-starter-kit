@@ -204,7 +204,7 @@ nav {
   justify-content: center;
 }
 
-.add-panel {
+.panel {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -217,8 +217,8 @@ nav {
   transition: 0.2s;
 }
 
-.add-panel > h4 {
-  font-size: 14px;
+.panel > h4 {
+  font-size: 19px;
   border: wheat;  
   height: 0px;
   width: 0px;
@@ -228,24 +228,24 @@ nav {
   font-weight: 100;
 }
 
-.plus-symbol {
+.symbol {
   display: flexbox;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
-.add-panel:hover {
+.panel:hover {
   width: 50%;
   cursor: pointer;
   background-color: #66686f;
 }
 
-.add-panel:hover .plus-symbol {
+.panel:hover .symbol {
   display: none;
 }
 
-.add-panel:hover h4 {
+.panel:hover h4 {
   animation: fade-in 0.2s ease-in forwards;
   width: auto;
   height: auto;
