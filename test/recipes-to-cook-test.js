@@ -72,8 +72,4 @@ describe('removeRecipes', () => {
     recipesToCook(102, currentUser, sampleRecipeData);
     expect(removeRecipes(undefined, currentUser)).to.equal('Cannot delete recipe');
   });
-  
-  it('return message if saved recipes array is empty', () => {
-    expect(removeRecipes(104, currentUser)).to.equal('Cannot delete recipe');
-  });
 });

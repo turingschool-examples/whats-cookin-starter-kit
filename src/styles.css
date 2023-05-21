@@ -12,7 +12,7 @@ Naples yellow #FFE45E
 Cyclamen #FF6392 */
 
 body {
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
   margin: 0;
   font-family: 'Sen', sans-serif;
 }
@@ -21,23 +21,20 @@ body {
 nav {
   background-color: white;
   height: 60px;
-  /* box-shadow: 0 5px rgba(196, 196, 196, 0.5); */
   box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
   display: flex;
   align-items: center;
   padding: 10px;
-  /* border: 1px solid red; */
 }
 
 .nav-flexbox {
   display: flex;
-  /* border: 1px solid green; */
   min-width: 100%;
   justify-content: space-between;
 }
 
 #navColorBar {
-  background-color: #5AA9E6;
+  background-color: #5aa9e6;
   height: 30px;
 }
 
@@ -55,7 +52,6 @@ nav {
   min-width: 400px;
   justify-content: space-between;
   align-items: center;
-  /* border: 1px solid black; */
 }
 
 #searchInput {
@@ -69,14 +65,13 @@ nav {
   outline: none;
 }
 
-
 #searchSelect {
   padding: 10px;
   border-radius: 20px;
 }
 
 #searchIconBackground {
-  background-color: #FFE45E;
+  background-color: #ffe45e;
   border-radius: 50%;
   padding: 6px;
 }
@@ -89,8 +84,6 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border: 1px solid black; */
-
 }
 
 .icon-flexbox {
@@ -98,13 +91,16 @@ nav {
   align-items: center;
   flex-direction: column;
   margin: 15px;
-  /* border: 1px solid red; */
+}
+
+.tag-bar {
+  display: flex;
 }
 
 /* HEADER */
 header {
   margin: 15px 25px;
-  background-color: #5AA9E6;
+  background-color: #5aa9e6;
   padding: 1px;
   box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
 }
@@ -122,8 +118,8 @@ h1 {
 }
 
 /* MAIN VIEW */
-#discoverHeader, #myRecipesHeader {
-  background-color:  #FFE45E;
+.discoverHeader {
+  background-color: #ffe45e;
   color: black;
   width: 250px;
   font-size: 1.5rem;
@@ -132,7 +128,7 @@ h1 {
   box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
 }
 
-.card-container, #myRecipeView {
+.card-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -142,7 +138,6 @@ h1 {
 .recipe-card {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-evenly; */
   margin: 10px;
   height: 300px;
   width: 275px;
@@ -174,7 +169,7 @@ h1 {
 }
 
 .recipe-tag {
-  background-color: #FFE45E;
+  background-color: #ffe45e;
   width: 100px;
   margin: 0;
   padding-left: 10px;
@@ -182,7 +177,7 @@ h1 {
 
 .bookmark-flex {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -256,7 +251,6 @@ h1 {
   font-size: 2rem;
   margin-right: 2rem;
 }
-
 
 .hidden {
   display: none;

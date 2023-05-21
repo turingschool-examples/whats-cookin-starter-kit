@@ -13,9 +13,8 @@
       <div class="nav-flexbox">
         <div class="search-flexbox">
             <select name="searchSelect" id="searchSelect">
-              <option value="select">Search By: </option>
-              <option value="tag">Tag</option>
               <option value="name">Name</option>
+              <option value="tag">Tag</option>
             </select>
             <input type="text" id="searchInput" placeholder="Search for new Recipes">
             <div id="searchIconBackground">
@@ -40,12 +39,16 @@
     </header>
     <main>
       <div id="mainView">
-        <h1 id="discoverHeader"><i>DISCOVER RECIPES</i></h1>
+        <h1 class="discoverHeader"><i>DISCOVER RECIPES</i></h1>
         <div id="mainViewCardContainer" class="card-container">
           <!-- RENDERED RECIPE CARDS WILL GO HERE -->
         </div>
       </div>
       <div id="myRecipeView" class="hidden">
+        <h1 class="discoverHeader" id="myRecipeHeader">MY SAVED RECIPES</h1>
+        <div id="savedCardContainer" class="card-container">
+        <!-- SAVED RECIPES WILL GO HERE -->
+        </div>
       </div>
       <div id="singleRecipeView" class="hidden">
         <!-- SINGLE RECIPE VIEW WILL GO HERE -->
