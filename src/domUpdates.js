@@ -19,16 +19,40 @@ const singleRecipeDisplay = document.querySelector('.single-recipe-display');
 const homeButton = document.querySelector('.title')
 const saveRecipeButton = document.querySelector('.save-recipe-button')
 const savedRecipesButton = document.querySelector('.saved-recipes')
+const savedRecipeDisplay = document.querySelector('.saved-recipe-display')
 
 //Event Listeners
 allRecipesButton.addEventListener('click', event => {
   showRecipes(event);
-  addHiddenClass([saveRecipeButton])
+  addHiddenClass([saveRecipeButton, savedRecipeDisplay])
+
 });
 
 savedRecipesButton.addEventListener('click', event => {
-  addHiddenClass([allRecipeDisplay, singleRecipeDisplay, saveRecipeButton])
+  console.log(recipesToCook)
+  addHiddenClass([allRecipeDisplay, singleRecipeDisplay, saveRecipeButton, frontRecipeDisplay]);
+  removeHiddenClass([savedRecipeDisplay]);
+  showSavedRecipes(currentUser, recipesToCook);
 })
+
+const showSavedRecipes = (currentUser, recipesToCook) => {
+  if (recipesToCook.length === 0) {
+    savedRecipeDisplay.innerHTML = `
+    <div class="no-saved-recipes-message">
+      <p> Hi, ${currentUser.name}! You currently have no saved recipes.</p>
+    </div>`
+  } else {
+    savedRecipeDisplay.innerHTML = '';
+    recipesToCook.forEach(recipe => savedRecipeDisplay.innerHTML += `
+    <div class="recipe-wrapper">
+      <img id="${recipe.name}" src="${recipe.image}" class="recipe" alt="${recipe.name}"
+      <div class="recipe-info">
+        <p>${recipe.name}</p>
+       </div>
+    </div>`);
+    console.log('savedRecipeDisplay:', savedRecipeDisplay)
+  }
+}
 
 saveRecipeButton.addEventListener('click', event => {
   if (event.target.classList.contains('save-recipe-btn')) {
@@ -152,16 +176,14 @@ const viewSelectedRecipe = event => {
   const ingredients = findIngredientNames(recipeData, recipeName);
   const instructions = recipeInstructions(selectedRecipe);
   addHiddenClass([allFilterDisplay]);
-  
   singleRecipeDisplay.innerHTML= '';
   singleRecipeDisplay.innerHTML += `
   <h2>${selectedRecipe.name}</h2>
   <img id="${selectedRecipe.id}" src="${selectedRecipe.image}" class="recipe" alt='${selectedRecipe.name}'>
   <p class="total-cost-box">This recipe costs a total of: $${recipeCost} to make!</p>
   <p class="ingredient-box">The ingredients you will need to make this recipe are: <br> ${ingredients}</p>
-  <p class="instruction-box">Instructions: <br> ${instructions}</p>`
-
-  recipeTitle.innerText = `${selectedRecipe.name}`
+  <p class="instruction-box">Instructions: <br> ${instructions}</p>`;
+  recipeTitle.innerText = `${selectedRecipe.name}`;
 }
 
 function showRecipes() {
