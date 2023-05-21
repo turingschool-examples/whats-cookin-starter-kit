@@ -148,8 +148,8 @@ nav {
 
 .active-bg {
   opacity: 1;
-  background-color: greenyellow;
-  box-shadow: 1px 1px 5px greenyellow;
+  background-color: #fbbf83;
+  box-shadow: 1px 1px 5px #fbbf83;
 }
 
 .tag-text {
