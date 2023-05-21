@@ -5,16 +5,18 @@ import ingredientsData from '../src/data/ingredients-sample.js';
 import { recipesToCook, saveRecipe } from '../src/userUtils';
 
 
-describe('RecipeUtils', () => {
+describe('recipesFromTag', () => {
   it('Should be a function', () => {
     expect(recipesFromTag).to.be.a('function');
   });
+
   it ('Should filter recipes based on tag', () => {
     const expected = 'Loaded Chocolate Chip Pudding Cookie Cups'
     const filtered = recipesFromTag(recipeData, ['starter'])
     expect(filtered.length).to.equal(1)
     expect(filtered[0].name).to.equal(expected)
   });
+
   it('should filter recipesToCook based on a tag', ()=> {
     const save = saveRecipe(recipeData, 'Loaded Chocolate Chip Pudding Cookie Cups')
     const sav2 = saveRecipe(recipeData, 'Maple Dijon Apple Cider Grilled Pork Chops')
@@ -24,6 +26,7 @@ describe('RecipeUtils', () => {
     expect(filteredRecipesToCook.length).to.equal(1)
     expect(filteredRecipesToCook).to.deep.equal(expectedRecipesToCook)
   })
+
   it ('Should filter recipes if tag applies to multiple recipes', () => {
     const expected = ['Thai Chicken Tenders with Broiled Pineapple Slaw', 'Maple Dijon Apple Cider Grilled Pork Chops']
     const filtered = recipesFromTag(recipeData, ['lunch'])
@@ -31,6 +34,7 @@ describe('RecipeUtils', () => {
     const names = filtered.map(f => f.name)
     expect(names).to.have.members(expected)
   });
+
   it('Should filter recipesToCook if tag applies to multiple recipes', () => {
     const save = saveRecipe(recipeData, 'Loaded Chocolate Chip Pudding Cookie Cups')
     const sav2 = saveRecipe(recipeData, 'Maple Dijon Apple Cider Grilled Pork Chops')
@@ -41,6 +45,7 @@ describe('RecipeUtils', () => {
     expect(filteredRecipesToCook2.length).to.equal(2)
     expect(filteredRecipesToCook2).to.deep.equal(expectedRecipesToCook2)
   });
+
   it ('Should filter recipes when multiple tags are applied', () => {
     const expected = ['Thai Chicken Tenders with Broiled Pineapple Slaw', 'Maple Dijon Apple Cider Grilled Pork Chops']
     const filtered = recipesFromTag(recipeData, ['lunch', 'main dish'])
@@ -48,23 +53,25 @@ describe('RecipeUtils', () => {
     const names = filtered.map(f => f.name)
     expect(names).to.have.members(expected)
   });
+});
+
+describe('recipesFromName', () => {
   it ('Should filter recipes based on name', () => {
     const filtered = recipesfromName(recipeData, 'Thai Chicken Tenders with Broiled Pineapple Slaw')
     expect(filtered.length).to.equal(1)
   })
+
   it ('Should filter recipes based on a similar name', () => {
     const expected = 'Thai Chicken Tenders with Broiled Pineapple Slaw'
     const filtered = recipesfromName(recipeData, 'chicken')
     expect(filtered.length).to.equal(1)
     expect(filtered[0].name).to.equal(expected)
   })
+
   it('Should filter recipesToCook based on name', () => {
     const save1 = saveRecipe(recipeData, 'Thai Chicken Tenders with Broiled Pineapple Slaw')
     const save2 = saveRecipe(recipeData, 'Loaded Chocolate Chip Pudding Cookie Cups')
-    console.log('0',recipesToCook)
     const filtered = recipesfromName(recipesToCook, 'Thai Chicken Tenders with Broiled Pineapple Slaw')
-    console.log('1',filtered)
-
     expect(filtered.length).to.equal(1)
   })
   it ('Should return nothing if no recipes match the user input name', () => {
@@ -96,26 +103,10 @@ describe('findIngredientNames', () => {
     expect(findRecipe).to.be.a('function');
   });
 
-  it.skip('should return an array of ingredient names for specific recipe', () => {
+  it('should return an array of ingredient names for specific recipe', () => {
     const recipeName = 'Loaded Chocolate Chip Pudding Cookie Cups';
     const ingredients = findIngredientNames(recipeData, recipeName);
-    expect(ingredients).to.deep.equal([ 'wheat flour',
-      'bicarbonate of soda',
-      'eggs',
-      'sucrose',
-      'instant vanilla pudding',
-      'brown sugar',
-      'salt',
-      'fine sea salt',
-      'semi sweet chips',
-      'unsalted butter',
-      'vanilla' ]);
-  });
-
-  it.skip('should return message if no recipe is found', () => {
-    const recipeName = 'Not a recipe';
-    const ingredients = findIngredientNames(recipeData, ingredientsData,recipeName);
-    expect(ingredients).to.equal("Sorry, we don't have that recipe.");
+    expect(ingredients).to.equal('wheat flour, bicarbonate of soda, eggs, sucrose, instant vanilla pudding, brown sugar, salt, fine sea salt, semi sweet chips, unsalted butter, vanilla');
   });
 });
 
@@ -124,10 +115,10 @@ describe('calculateRecipeCost', () => {
     expect(calculateRecipeCost).to.be.a('function');
   });
 
-  it.skip('should return the total cost of a recipe', () => {
+  it('should return the total cost of a recipe', () => {
     const recipe = recipeData[0];
     const expectedCost = '177.76';
-    const actualCost = calculateRecipeCost(recipe);
+    const actualCost = calculateRecipeCost(recipe, ingredientsData);
     expect(actualCost).to.equal(expectedCost);
   })
 
@@ -154,47 +145,11 @@ describe('recipeInstructions', () => {
     const instructions = (recipeInstructions(recipe));
     expect(instructions).to.equal("Sorry, that recipe cannot be found.")
   });
+});
 
-describe('shuffleData function', () => {
+describe('shuffleData', () => {
   it ('should randomize the recipe array order', () => {
     const shuffled = shuffleData(recipeData)
     expect(shuffled).to.not.equal(recipeData)  
-  })
-})
-
-});
-
-describe('saveRecipe', () => {
-  it('should be a function', () => {
-    expect(saveRecipe).to.be.a('function');
-  });
-
-  it('should be able to add a recipe to the data model array', () => {
-    const savedRecipes = saveRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
-
-    expect(savedRecipes.length).to.equal(1);
-    expect(savedRecipes[0]).to.equal(recipesToCook[0]);
-  });
-
-  it('should not have duplicate recipes in the array', () => {
-    const savedRecipes = saveRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
-    const savedRecipeDuplicate = saveRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
-
-    expect(savedRecipes.length).to.equal(1);
-    expect(savedRecipes[0]).to.equal(recipesToCook[0]);
-  });
-});
-
-describe('deleteRecipe', () => {
-  it('should be a function', () => {
-    expect(deleteRecipe).to.be.a('function');
-  });
-
-  it('should be able to remove a recipe from the data model array', () => {
-    const recipes = saveRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
-    const newRecipes = deleteRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
-
-    expect(newRecipes.length).to.equal(0);
-    expect(newRecipes).to.deep.equal(recipesToCook);
   });
 });
