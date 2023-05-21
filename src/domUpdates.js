@@ -139,6 +139,19 @@ function showSearchResults() {
     </div>`)
 };
 
+function showSavedSearchResults() {
+  let searchValue = savedSearchInput.value
+  removeHiddenClass([allFilterDisplay])
+  addHiddenClass([frontRecipeDisplay]);
+  savedRecipeDisplay.innerHTML = ''
+    recipesfromName(recipesToCook, searchValue).forEach(recipe =>
+    savedRecipeDisplay.innerHTML += `<div class = "recipe-wrapper">
+    <img id="${recipe.name}" src="${recipe.image}" class="recipe">
+    <div class = "recipe-info">
+      <p>${recipe.name}</p>
+    </div>`)
+}
+
 function showHomePage() {
   addHiddenClass([allRecipeDisplay], [allFilterDisplay]);
   removeHiddenClass([frontRecipeDisplay]);
@@ -162,6 +175,22 @@ const showSavedRecipes = (currentUser, recipesToCook) => {
       </div>
     </div>`});
   }
+};
+
+function filterSavedRecipes() {
+  const savedTags = Array.from(checkCategories).filter((category) => category.checked).map(c => c.id)
+  if (savedTags.length === 0 && allRecipeDisplay.classList[1] === 'hidden') {
+    showSavedRecipes(currentUser, recipesToCook);
+    return
+  }
+    let savedFiltered = recipesFromTag(recipesToCook, savedTags);
+    console.log(recipesToCook)
+    savedRecipeDisplay.innerHTML = '';
+  savedFiltered.forEach(recipe => savedRecipeDisplay.innerHTML += `<div class = "recipe-wrapper">
+      <img id="${recipe.name}" src="${recipe.image}" class="recipe">
+      <div class = "recipe-info">
+        <p>${recipe.name}</p>
+      </div>`)
 };
 
 function randomizeHomePage() {
