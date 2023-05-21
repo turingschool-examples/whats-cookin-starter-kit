@@ -25,7 +25,7 @@ describe('', () => {
     });
     it('Should return error message if no results are found', () => {
       const result = filterByTag("late night snack", recipeTestData);
-      expect(result).to.equal("No recipes found");
+      expect(result).to.deep.equal([]);
     });
   });
 
@@ -36,7 +36,7 @@ describe('', () => {
     });
     it('Should return error message if no recipe is found', () => {
       const result = filterByName("Loaded Nacho Pizza Pudding Pops", recipeTestData);
-      expect(result).to.equal("No recipes found");
+      expect(result).to.deep.equal([]);
     });
   }); 
     

@@ -1,8 +1,8 @@
 let recipesToCook = [];
 
-const filterByTag = (tag, recipes) => !recipes.filter(recipe => recipe.tags.includes(tag)).length ? "No recipes found" : recipes.filter(recipe => recipe.tags.includes(tag));
+const filterByTag = (tag, recipes) => !recipes.filter(recipe => recipe.tags.includes(tag)).length ? [] : recipes.filter(recipe => recipe.tags.includes(tag));
 
-const filterByName = (name, recipes) => !recipes.filter(recipe => recipe.name.toLowerCase().includes(name)).length ? "No recipes found" : recipes.filter(recipe => recipe.name.toLowerCase().includes(name));
+const filterByName = (name, recipes) => !recipes.filter(recipe => recipe.name.toLowerCase().includes(name)).length ? [] : recipes.filter(recipe => recipe.name.toLowerCase().includes(name));
 
 const determineIngredientNames = (recipes, ingredients, name) => !recipes.filter(recipe => recipe.name === name).length ? "No recipes found" : recipes.filter(recipe => recipe.name === name)[0].ingredients.map(ingr => ingr.id).map(ID => ingredients[ingredients.findIndex(ing => ing.id === ID)].name);
 
