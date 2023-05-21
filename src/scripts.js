@@ -2,8 +2,7 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { makeTagActive, closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, findRecipe, updateSaveButtons, renderGrid, updateRecipesFromModal } from './domUpdates';
-import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
+import { makeTagActive, closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, updateRecipesFromModal } from './domUpdates'; 
 import { ingredientsData } from './data/ingredients';
 import './images/antipasti.png';
 import './images/antipasto.png'
@@ -25,8 +24,7 @@ import './images/snack.png'
 import './images/spread.png'
 import './images/starter.png'
 import './images/search-button.png'
-import { loadData, pageData, updateCurrentUser, currentUser } from './apiCalls';
-import { updateRecipesToCook } from './users';
+import { loadData } from './apiCalls';
 // import apiCalls from './apiCalls'
 
 const recipeGrid = document.querySelector('.recipe-grid');
