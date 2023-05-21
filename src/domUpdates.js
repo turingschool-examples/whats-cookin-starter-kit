@@ -12,7 +12,8 @@ import {
   ourViewBtn,
   yourViewBtn,
   modalAddBtn, 
-  modalRemoveBtn
+  modalRemoveBtn,
+  body
 } from './scripts'
 import { searchRecipes } from './recipes';
 import { updateRecipesToCook } from './users';
@@ -257,6 +258,7 @@ const populateRecipeHeader = currentRecipe => {
 
 const openRecipeCard = () => {
   allRecipes.classList.add('blur')
+  body.classList.add('no-scroll')
   clickedRecipe.classList.toggle("hidden");
   clickedRecipe.classList.toggle("flex");
   clickedRecipe.classList.toggle("fade-in");
@@ -274,6 +276,7 @@ const showRecipe = (recipeCard) => {
 
 const closeRecipe = () => {
   allRecipes.classList.remove('blur')
+  body.classList.remove('no-scroll')
   clickedRecipe.classList.add("hidden");
   clickedRecipe.classList.remove("flex");
   clickedRecipe.classList.remove("fade-in");

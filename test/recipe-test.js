@@ -14,6 +14,7 @@ import {
   getIngredients,
   calculateRecipeCost,
   getIngredientAmounts,
+  fixIngredientAmount,
   filterRecipes,
   filterRecipesByIngredient,
   filterRecipesByName,
@@ -23,12 +24,14 @@ import {
 describe('recipe', () => {
   const cookies = sampleRecipeData[0];
   const porkChops = sampleRecipeData[1];
+  const doubleRaspberrySouffle = sampleRecipeData[6];
   const allIngredients = sampleIngredientsData;
 
   it('should be a funciton', () => {
     assert.isFunction(getInstructions);
     assert.isFunction(getIngredients);
     assert.isFunction(getIngredientAmounts);
+    assert.isFunction(fixIngredientAmount);
     assert.isFunction(calculateRecipeCost);
     assert.isFunction(filterRecipes);
     assert.isFunction(filterRecipesByIngredient);
@@ -151,6 +154,14 @@ describe('recipe', () => {
 
     assert.deepEqual(ingredientInfo, expectedInfo);
   });
+
+  it('should lop off any numbers after the first two decimal places', () => {
+    const ingredientInfo = getIngredientAmounts(doubleRaspberrySouffle, allIngredients);
+    let expectedAmount = 0.33;
+    const fixedAmount = fixIngredientAmount(ingredientInfo[0].amount);
+    
+    expect(fixedAmount).to.equal(expectedAmount);
+  })
 
   it("should calculate the cost of a given recipe's ingredients", () => {
     const cost = calculateRecipeCost(cookies, allIngredients);
