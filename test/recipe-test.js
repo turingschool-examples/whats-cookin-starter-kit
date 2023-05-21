@@ -32,7 +32,7 @@ describe('', () => {
 
   describe('filterByName', () => {
     it('Should return recipe according to name passed in', () => {
-      const result = filterByName("Loaded Chocolate Chip Pudding Cookie Cups", recipeTestData);
+      const result = filterByName("loaded chocolate chip pudding cookie cups", recipeTestData);
       expect(result).to.deep.equal([recipeInfo]);
     });
     it('Should return error message if no recipe is found', () => {

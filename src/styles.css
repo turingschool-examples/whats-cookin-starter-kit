@@ -65,7 +65,7 @@ main {
     padding-left: 5%
 }
 
-.heart-saved, .heart-unsaved {
+.heart {
   position: absolute;
   top: 60%;
   width: 2vw;
