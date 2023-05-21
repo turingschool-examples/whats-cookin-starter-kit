@@ -70,7 +70,7 @@ main {
   top: 60%;
   width: 2vw;
   left: 60%;
-  transform: translate(100%, 50%);
+  transform: translate(70%, 40%);
   color: #321e36;
   word-wrap: break-word;
   opacity: 75%;
@@ -116,10 +116,6 @@ main {
   overflow-x: hidden;
 }
 
-body {
-  /* -webkit-filter: blur(2px); */
-}
-
 .test {
   height: 76.5vh;
   width: 73vw;
@@ -131,14 +127,7 @@ body {
   overflow-x: hidden;
   position: absolute; 
   transform: translate(-10%, -15%);
-  /* -webkit-filter: blur(-2px); */
-  /* background-color: rgba(0,0,255,0.5); */
 }
-
-/* .test:target {
-  opacity: 0;
-} */
-
 
 .main-panel::-webkit-scrollbar {
   width: 5vw;
@@ -183,14 +172,37 @@ body {
   justify-content: center;
   background-color: #e1c4ff;
   font-size: 1.8vw;
+  margin: 2%
 }
 
-.info-button {
-  margin: 2%;
+.heart-saved:hover, .heart-unsaved:hover, .tag:hover, .info-button:hover, .submit-button:hover, .favorite-button:hover, .home-button:hover, .box:hover {
+  cursor: grab;
 }
 
-.tag:hover {
+.tag:hover, .info-button:hover, .submit-button:hover, .favorite-button:hover, .home-button:hover {
+  transform: scale(1.3);
   background-color: #d2afff;
+}
+
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }  
+}
+
+.chef-hat:hover { 
+  animation: spin .8s infinite;
+  cursor: cell;
+}
+
+@keyframes shimmy {
+  0% { transform: translate(20px, 0px); }
+  50% { transform: translate(-20px, 0px); }
+  100% { transform: translate(20px, 0px); }  
+}
+
+.user-gif:hover {
+  animation: shimmy .8s infinite;
+  cursor: cell;
 }
 
 #search-bar{
@@ -230,8 +242,8 @@ h1, h2 {
 }
 
 .chef-hat {
-  height: 7vh;
-  width: 5vw;
+  height: 10vh;
+  width: 8vw;
   margin-left: 5%;
   margin-right: 5%;
 }
