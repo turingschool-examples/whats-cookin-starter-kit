@@ -14,7 +14,7 @@ import {
   toDashboardView,
   renderRecipeCards,
   toggleBookmark,
-  renderSingleRecipeView,
+  toSingleRecipeView,
   searchBarClicked,
   removeRecipeCard,
 } from './domUpdates';
@@ -36,6 +36,7 @@ const singleRecipeView = document.querySelector('#singleRecipeView');
 const searchBar = document.querySelector('#searchInput');
 const searchByToggle = document.querySelector('#searchSelect');
 const searchButton = document.querySelector('#searchIconBackground');
+const savedCardContainer = document.querySelector('#savedCardContainer');
 
 const start = () => {
   Promise.all([fetchAPI('users'), fetchAPI('ingredients'), fetchAPI('recipes')]).then((data) => {
@@ -62,12 +63,11 @@ singleRecipeView.addEventListener('click', (e) => {
 });
 mainContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('recipe-img') || e.target.classList.contains('recipe-name')) {
-    renderSingleRecipeView(e, recipeData, ingredientsData, currentUser);
+    toSingleRecipeView(e, recipeData, ingredientsData);
   }
 });
 myRecipesBtn.addEventListener('click', () => {
   toMyRecipeView(currentUser);
-  console.log(currentUser);
 });
 dashboardBtn.addEventListener('click', () => {
   toDashboardView(currentUser);
@@ -89,4 +89,5 @@ export {
   searchBar,
   searchButton,
   searchByToggle,
+  savedCardContainer
 };

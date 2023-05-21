@@ -1,3 +1,4 @@
+import { checkUserForRecipe } from './users';
 import { compileIngredientItems } from './compile-ingredient-items';
 import { calculateRecipePrice } from './calculate-recipe-price';
 import { removeRecipes, recipesToCook } from './recipes-to-cook';
@@ -9,6 +10,7 @@ import {
   searchByToggle,
   mainViewCardContainer,
   currentUser,
+  savedCardContainer
 } from './scripts';
 import { filterByName, filterByTag } from './filters';
 import { recipeData } from './data/recipes';
@@ -19,12 +21,13 @@ const clearView = (views) => {
     view.innerHTML = '';
   });
 };
+
 const toMyRecipeView = (currentUser) => {
+  clearView([singleRecipeView]);
   toggleHidden([mainView], 'add');
   toggleHidden([myRecipesView], 'remove');
-  clearView([singleRecipeView]);
   searchBar.placeholder = 'Search your bookmarked Recipes';
-  renderRecipeCards(myRecipesView, currentUser.recipesToCook, currentUser);
+  renderSavedRecipes(savedCardContainer, currentUser.recipesToCook, currentUser);
 };
 
 const toDashboardView = (currentUser) => {
@@ -35,12 +38,19 @@ const toDashboardView = (currentUser) => {
   searchBar.placeholder = 'Search for new Recipes';
 };
 
+const toSingleRecipeView = (e, recipes, ingredients) => {
+  toggleHidden([mainView,], 'add');
+  toggleHidden([singleRecipeView], 'remove');
+  clearView([singleRecipeView, savedCardContainer]);
+  renderSingleRecipeView(e, recipes, ingredients);
+};
+
 const setView = () => {
   if (myRecipesView.classList.contains('hidden')) {
     return mainViewCardContainer;
   } else if (mainView.classList.contains('hidden')) {
-    return myRecipesView;
-  }
+    return savedCardContainer;
+  };
 };
 
 const searchResults = () => {
@@ -51,11 +61,11 @@ const searchResults = () => {
     return handleTagSearch();
   } else if (searchByToggle.value === 'name') {
     return handleNameSearch();
-  }
+  };
 };
 
 const searchBarClicked = () => {
-  clearView([mainViewCardContainer, myRecipesView, singleRecipeView]);
+  clearView([mainViewCardContainer, savedCardContainer, singleRecipeView]);
   handleSearchResults(setView(), searchResults());
 };
 
@@ -69,7 +79,7 @@ const handleTagSearch = () => {
     return filterByTag(searchBar.value, recipeData);
   } else if (mainView.classList.contains('hidden')) {
     return filterByTag(searchBar.value, currentUser.recipesToCook);
-  }
+  };
 };
 
 const handleNameSearch = () => {
@@ -77,7 +87,7 @@ const handleNameSearch = () => {
     return filterByName(searchBar.value, recipeData);
   } else if (mainView.classList.contains('hidden')) {
     return filterByName(searchBar.value, currentUser.recipesToCook);
-  }
+  };
 };
 
 const handleSearchResults = (view, results) => {
@@ -90,12 +100,12 @@ const handleSearchResults = (view, results) => {
     view.innerHTML = `<p>${results}</p>`;
   } else {
     renderRecipeCards(view, results, currentUser);
-  }
+  };
 };
 
 // DOM FUNCTIONS
 const renderBookmarks = (currentUser, recipe) => {
-  if (currentUser.recipesToCook.includes(recipe)) {
+  if (checkUserForRecipe(currentUser, recipe)) {
     return `<img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked hidden" alt="bookmark icon">
     <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked" alt="bookmark icon filled in">`;
   } else {
@@ -104,13 +114,27 @@ const renderBookmarks = (currentUser, recipe) => {
   }
 };
 
+const renderRecipeCardTag = (recipe) => {
+  if(recipe.tags.length > 0){
+  return `<p class="recipe-tag">${recipe.tags[0]}</p>`
+  } else {
+    return `<p class="recipe-tag">-</p>`
+  };
+
+const renderRecipeCardTag = (recipe) => {
+  if(recipe.tags.length > 0){
+  return `<p class="recipe-tag">${recipe.tags[0]}</p>`
+  } else {
+    return `<p class="recipe-tag">-</p>`
+  };
+
 const renderRecipeCards = (view, recipes, currentUser) => {
-  clearView([mainViewCardContainer, myRecipesView]);
+  clearView([mainViewCardContainer,savedCardContainer]);
   recipes.forEach((recipe) => {
     view.innerHTML += `
     <article class="recipe-card" id="${recipe.id}">
       <img class="recipe-img" src="${recipe.image}" id="${recipe.id}">
-      <p class="recipe-tag">${recipe.tags[0]}</p>
+      ${renderRecipeCardTag(recipe)}
       <div class="recipe-title-flex">
         <h2 class="recipe-name">${recipe.name}</h2>
         <div class="bookmark-flex">
@@ -121,10 +145,19 @@ const renderRecipeCards = (view, recipes, currentUser) => {
   });
 };
 
+
+const renderSavedRecipes = (view, recipes, currentUser) => {
+  if(!currentUser.recipesToCook.length) {
+    view.innerHTML = '<p>You have no saved recipe!</p>'
+  } else {
+    renderRecipeCards(view, recipes, currentUser);
+  }
+};
+
 const isUnchecked = (e) => {
   if (e.target.classList.contains('unchecked')) {
     return true;
-  }
+  };
 };
 
 const toggleHidden = (elements, type) => {
@@ -143,8 +176,9 @@ const toggleBookmark = (e, currentUser, recipeData) => {
       removeRecipes(e.target.id, currentUser);
       toggleHidden([e.target], 'add');
       toggleHidden([e.target.previousElementSibling], 'remove');
-    }
-  }
+      renderSavedRecipes(savedCardContainer, currentUser.recipesToCook, currentUser);
+    };
+  };
 };
 
 const findRecipe = (e, recipes) => {
@@ -156,12 +190,8 @@ const findRecipe = (e, recipes) => {
   });
 };
 
-const renderSingleRecipeView = (e, recipes, ingredients, currentUser) => {
+const renderSingleRecipeView = (e, recipes, ingredients) => {
   let recipe = findRecipe(e, recipes);
-  toggleHidden([mainView], 'add');
-  toggleHidden([singleRecipeView], 'remove');
-  clearView([singleRecipeView, myRecipesView]);
-
   singleRecipeView.innerHTML += `
     <div class="single-recipe-view-flex">
       <img class="single-recipe-img" src="${recipe.image}">
@@ -219,7 +249,7 @@ const renderTags = (recipe) => {
 const removeRecipeCard = (e) => {
   if (e.target.classList.contains('bookmark-icon')) {
     e.target.parentElement.parentElement.parentElement.remove();
-  }
+  };
 };
 
 export {
@@ -227,7 +257,7 @@ export {
   toDashboardView,
   renderRecipeCards,
   toggleBookmark,
-  renderSingleRecipeView,
+  toSingleRecipeView,
   searchBarClicked,
   removeRecipeCard,
 };

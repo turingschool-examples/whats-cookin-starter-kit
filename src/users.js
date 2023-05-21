@@ -2,7 +2,22 @@ const getRandomIndex = (usersLength) => {
  return Math.floor(Math.random() * usersLength);
 }
 const getRandomUser = (userData) => {
-  return userData.users[getRandomIndex(userData.users.length)];
+  if(userData) {
+    return userData.users[getRandomIndex(userData.users.length)];
+  } else {
+    return 'user data not found';
+  };
 }
 
-export { getRandomUser, getRandomIndex }
+const checkUserForRecipe = (currentUser, recipe) => {
+  if (currentUser.recipesToCook.length > 0) {
+    return currentUser.recipesToCook.map((recipe) => {
+      return recipe.id;
+    })
+    .some((id)=> {
+      return recipe.id === id;
+    });
+   };
+};
+
+export { getRandomUser, getRandomIndex, checkUserForRecipe }
