@@ -2,7 +2,7 @@ import { determineIngredientNames, calculateCost, returnInstructions, filterByTa
 
 // Global Variables
 const user = document.querySelector('.user')
-const userInput = document.querySelector('#search-bar');
+let userInput = document.querySelector('#search-bar');
 const searchButton = document.querySelector('.submit-button');
 const favoriteButton = document.querySelector('.favorite-button');  
 const filterText = document.querySelector('h2');
@@ -80,12 +80,15 @@ const viewRecipeInfo = (recipes, ingredients, e) => {
       <p class='cost'>Total cost: $${calculateCost(selectedRecipe, ingredients)}</p>
     </div>
     `;
-    
   };
   recipeInfo = document.querySelector('.recipeInfo');
   // console.log(recipeInfo)
   // return recipeInfo
 };
+
+const showRecipeCount = () => {
+
+}
 
 const exitPopUp = recipes => {
   recipeInfo = null;
@@ -109,10 +112,13 @@ const searchRecipe = recipes => {
   loadHearts(filteredRecipes);
 };
 
+
 const displaySearchError = () => {
   if(!userInput.value) {
-    alert('Please provide a valid input.')
-  };
+    userInput.placeholder = 'Please Fill Out This Field'
+    mainPanel.innerHTML = ''
+    mainPanel.innerHTML = `<p id='try-again-message'>Please Try Again</p>`
+  }
 };
 
 const toggleButtons = () => {
@@ -178,6 +184,7 @@ export {
   viewHome,
   viewSaved,
   displaySearchError,
+  showRecipeCount,
   recipeInfo
 };
 

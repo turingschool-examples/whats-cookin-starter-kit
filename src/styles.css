@@ -247,6 +247,13 @@ h1, h2 {
   border-radius: 5%;
 };
 
+#try-again-message {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 40% ;
+  font-size: 200%;
+}
+
 .hidden {
   display: none;
 };
