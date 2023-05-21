@@ -1,5 +1,4 @@
 
-var currentUser;
 var recipesToCook = [];
 
 const saveRecipe = (recipes, recipeName) => {
@@ -26,7 +25,6 @@ const addSavedRecipesToUser = (user, savedRecipes) => {
 
 export {
   recipesToCook,
-  currentUser,
   saveRecipe,
   deleteRecipe,
   addSavedRecipesToUser

@@ -3,7 +3,9 @@ import recipeData from "./data/recipes";
 import { recipesfromName, recipesFromTag, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions, shuffleData } from "../src/recipeUtils";
 import ingredientsData from "./data/ingredients";
 import usersData from "./data/users"
-import { recipesToCook, saveRecipe, deleteRecipe, addSavedRecipesToUser, currentUser; } from "../src/userUtils";
+import { recipesToCook, saveRecipe, deleteRecipe, addSavedRecipesToUser } from "../src/userUtils";
+
+var currentUser;
 
 // Query Selectors:
 const allRecipesButton = document.querySelector('.all-recipes');
@@ -16,13 +18,17 @@ const recipeTitle = document.querySelector('h2');
 const singleRecipeDisplay = document.querySelector('.single-recipe-display');
 const homeButton = document.querySelector('.title')
 const saveRecipeButton = document.querySelector('.save-recipe-button')
+const savedRecipesButton = document.querySelector('.saved-recipes')
 
 //Event Listeners
 allRecipesButton.addEventListener('click', event => {
   showRecipes(event);
   addHiddenClass([saveRecipeButton])
-
 });
+
+savedRecipesButton.addEventListener('click', event => {
+  addHiddenClass([allRecipeDisplay, singleRecipeDisplay, saveRecipeButton])
+})
 
 saveRecipeButton.addEventListener('click', event => {
   if (event.target.classList.contains('save-recipe-btn')) {
