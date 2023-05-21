@@ -20,7 +20,6 @@ const homeButton = document.querySelector('.title')
 const saveRecipeButton = document.querySelector('.save-recipe-button')
 const savedRecipesButton = document.querySelector('.saved-recipes')
 const savedRecipeDisplay = document.querySelector('.saved-recipe-display')
-// const deleteRecipeButton = document.querySelector('.recipe-wrapper')
 
 //Event Listeners
 
@@ -30,8 +29,7 @@ allRecipesButton.addEventListener('click', event => {
 
 });
 
-savedRecipesButton.addEventListener('click', event => {
-  console.log('recipesToCook:', recipesToCook)
+savedRecipesButton.addEventListener('click', () => {
   addHiddenClass([allRecipeDisplay, singleRecipeDisplay, saveRecipeButton, frontRecipeDisplay]);
   removeHiddenClass([savedRecipeDisplay]);
   showSavedRecipes(currentUser, recipesToCook);
@@ -44,14 +42,6 @@ saveRecipeButton.addEventListener('click', event => {
     saveRecipe(recipeData, recipeName);
   }
 });
-
-// deleteRecipeButton.addEventListener('click', event => {
-//   console.log('event', event)
-//   if (event.target.classList.contains('delete-recipe-button')) {
-//     const recipeName = event.target.id;
-//     deleteRecipe(recipeName)
-//   }
-// });
 
 allFilterDisplay.addEventListener('click', function (event) {
   if (event.target.classList.contains('checkbox')) {
@@ -88,17 +78,10 @@ savedRecipeDisplay.addEventListener('click', event => {
     viewSelectedRecipe(event);
   }
   if (event.target.classList.contains('delete-recipe-button')) {
-    console.log('event.target.id', event.target.id)
     if (event.target.classList.contains('delete-recipe-button')) {
-      console.log(event.target.classList)
       const recipeName = event.target.classList;
       deleteRecipe(recipeName)
-      console.log('recipeName:', recipeName)
-      console.log('currentUser 1:', currentUser)
-      console.log('recipesToCook 1:', recipesToCook)
       addSavedRecipesToUser(currentUser, recipesToCook)
-      console.log('currentUser 2:', currentUser)
-      console.log('recipesToCook 2:', recipesToCook)
       showSavedRecipes(currentUser, recipesToCook)
     }
   }
@@ -148,7 +131,6 @@ const showSavedRecipes = (currentUser, recipesToCook) => {
   } else {
     savedRecipeDisplay.innerHTML = '';
     recipesToCook.forEach(recipe => {
-    console.log('recipe:', recipe)  
     savedRecipeDisplay.innerHTML += `
     <div class="recipe-wrapper">
       <img id="${recipe.name}" src="${recipe.image}" class="recipe" alt="${recipe.name}">
@@ -157,7 +139,6 @@ const showSavedRecipes = (currentUser, recipesToCook) => {
         <button class="delete-recipe-button ${recipe.name}" id="${recipe.id}">🗑️</button>
       </div>
     </div>`});
-    console.log('savedRecipeDisplay:', savedRecipeDisplay)
   }
 };
 
@@ -192,8 +173,7 @@ function renderFilteredRecipes() {
     showRecipes()
     return
   }
-    let filtered = recipesFromTag(recipeData, tags);
-    console.log('recipeData:', recipeData)
+  let filtered = recipesFromTag(recipeData, tags);
   allRecipeDisplay.innerHTML = '';
   filtered.forEach(recipe => allRecipeDisplay.innerHTML += `<div class = "recipe-wrapper">
       <img id="${recipe.name}" src="${recipe.image}" class="recipe">
@@ -205,7 +185,6 @@ function renderFilteredRecipes() {
 
 const viewSelectedRecipe = event => {
   const recipeName = event.target.id;
-  console.log('event.target.id:', event.target.id)
   const selectedRecipe = findRecipe(recipeData, recipeName);
   const recipeCost = calculateRecipeCost(selectedRecipe, ingredientsData);
   const ingredients = findIngredientNames(recipeData, recipeName);
