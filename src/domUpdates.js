@@ -72,7 +72,7 @@ const viewRecipeInfo = (recipes, ingredients, e) => {
 
 const organizeInstructions = instructs => {
   instructs = instructs.reduce((string, instruction) => `${string}` + `${instruction.number}) ${instruction.instruction}`, '');
-  return instructs.split('.').map(x => x + '.').join('<br>').slice(0, instructs.length);
+  return instructs.split('.)').join('.').split(' (').join(' ').split(')').join('.').split('..').join('.').split('.,').join(',').split('.').join('. <br>');
 };
 
 const exitPopUp = recipes => {
@@ -97,10 +97,13 @@ const searchRecipe = recipes => {
   loadHearts(filteredRecipes);
 };
 
+
 const displaySearchError = () => {
   if(!userInput.value) {
-    alert('Please provide a valid input.')
-  };
+    userInput.placeholder = 'Please Fill Out This Field'
+    mainPanel.innerHTML = ''
+    mainPanel.innerHTML = `<p id='try-again-message'>Please Try Again</p>`
+  }
 };
 
 const toggleButtons = () => {
