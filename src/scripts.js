@@ -2,7 +2,7 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { makeTagActive, pageLoadRenders, closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes } from './domUpdates';
+import { makeTagActive, pageLoadRenders, closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, findRecipe, updateSaveButtons } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
 import './images/antipasti.png';
@@ -25,7 +25,9 @@ import './images/snack.png'
 import './images/spread.png'
 import './images/starter.png'
 import './images/search-button.png'
-import { assignCurrentUser } from './apiCalls';
+import { assignCurrentUser, pageData, updateCurrentUser, currentUser } from './apiCalls';
+import { updateRecipesToCook } from './users';
+import { recipeData } from './data/recipes';
 
 // import apiCalls from './apiCalls'
 
@@ -41,6 +43,8 @@ const ourViewBtn = document.querySelector("#our-recipes");
 const yourViewBtn = document.querySelector("#your-recipes");
 const searchBar = document.querySelector('#searchBar');
 const searchBtn = document.querySelector('#searchBtn');
+const modalAddBtn = document.querySelector('.add-recipe');
+const modalRemoveBtn = document.querySelector('.remove-recipe');
 
 // DATA MODEL 
 
@@ -67,6 +71,10 @@ window.addEventListener("load", () => {
   assignCurrentUser();
   pageLoadRenders();
 });
+
+window.addEventListener('click', (event) => {
+  updateUserRecipes(event)
+})
 
 tagArea.addEventListener("click", function(event) {
   if (event.target.classList && event.target.closest(".tag-card")) {
@@ -95,9 +103,19 @@ searchBar.addEventListener('keypress', (event) => {
 
 searchBtn.addEventListener('click', searchForRecipes);
 
-window.addEventListener('click', (event) => {
-  updateUserRecipes(event)
-})
+modalAddBtn.addEventListener('click', (e) => {
+  const recipe = findRecipe(recipeData, pageData.currentRecipeCard.id)
+  updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'add'))
+  updateSaveButtons(recipe.id, modalAddBtn, modalRemoveBtn)
+  updateSaveButtons(recipe.id, pageData.currentRecipeCard.outerAddBtn, pageData.currentRecipeCard.outerRemoveBtn)  
+});
+
+modalRemoveBtn.addEventListener('click', (e) => {
+  const recipe = findRecipe(recipeData, pageData.currentRecipeCard.id)
+  updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'remove'))
+  updateSaveButtons(recipe.id, modalAddBtn, modalRemoveBtn)
+  updateSaveButtons(recipe.id, pageData.currentRecipeCard.outerAddBtn, pageData.currentRecipeCard.outerRemoveBtn)  
+});
 
 // Exports
 export {
@@ -112,4 +130,6 @@ export {
   allUserRecipes,
   chooseView,
   searchBar,
+  modalAddBtn, 
+  modalRemoveBtn
 }

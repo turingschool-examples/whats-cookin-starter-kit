@@ -12,6 +12,8 @@ import {
   searchBar,
   ourViewBtn,
   yourViewBtn,
+  modalAddBtn, 
+  modalRemoveBtn
 } from './scripts'
 import { searchRecipes } from './recipes';
 import { updateRecipesToCook } from './users';
@@ -213,33 +215,30 @@ const populateInstructions = (recipe) => {
   addScrollBar('.instruction-steps')
 }
 
-const updateCurrentRecipe = recipeCard => {
-  const recipeCardID = recipeCard.closest("article")?.id;
-  const thisRecipe = recipeData.find(recipe => recipe.id.toString() === recipeCardID);
-  pageData.currentRecipeCard = getRecipeCard(thisRecipe);
+const findRecipe = (allRecipes, ID) => {
+  return allRecipes.find(recipe => recipe.id.toString() === ID.toString());
 }
 
+const updateCurrentRecipe = recipeCard => {
+  const recipeCardID = recipeCard.closest("article")?.id;
+  const thisRecipe = findRecipe(recipeData, recipeCardID);
+  pageData.currentRecipeCard = getRecipeCard(thisRecipe);
+  pageData.currentRecipeCard.outerAddBtn = recipeCard.parentNode.querySelector('.add-panel')
+  pageData.currentRecipeCard.outerRemoveBtn = recipeCard.parentNode.querySelector('.remove-panel')
+}
 
-const populateAddBtn = () => {
-  // const recipeSaved = user.recipesToCook.some(recipe => recipe.id === currentRecipe.id);
-  // let buttonText;
-  // let buttonStatus;
-  // if (!recipeSaved) { 
-  //   buttonText = "Add to Save to Cook Recipes";
-  //   buttonStatus = "add-recipe modal-recipe-btn";
-  // } else {
-  //   buttonText = "Remove from Save to Cook Recipes";
-  //   buttonStatus = "remove-recipe modal-recipe-btn";
-  // };
-//saving to use once currentUser is accessible
-  const buttonStatus = "add-recipe modal-recipe-btn";
-  const buttonText = "Add to Saved Recipes";
-  document.querySelector('.modal-add-recipe').innerHTML = 
-  `
-  <div class= "${buttonStatus}">
-    <h4>${buttonText}</h4>
-  </div>
-  `;
+const checkSavedStatus = (ID) => {
+  return currentUser.recipesToCook.some(recipe => recipe.id.toString() === ID.toString());
+}
+
+const updateSaveButtons = (ID, addButton, removeButton) => {
+  if(checkSavedStatus(ID)){
+    addButton.classList.add('hidden')
+    removeButton.classList.remove('hidden')
+  } else {
+    addButton.classList.remove('hidden')
+    removeButton.classList.add('hidden')
+  }
 }
 
 const populateRecipeHeader = currentRecipe => {
@@ -259,11 +258,14 @@ const openRecipeCard = () => {
 }
 
 const showRecipe = (recipeCard, currentUser) => {
+  const outerAddBtn = recipeCard.parentNode.querySelector('.add-panel')
+  const outerRemoveBtn = recipeCard.parentNode.querySelector('.remove-panel')
+  console.log(outerAddBtn)
   updateCurrentRecipe(recipeCard);
   populateRecipeHeader(pageData.currentRecipeCard);
   populateInstructions(pageData.currentRecipeCard);
   populateIngredients(pageData.currentRecipeCard);
-  populateAddBtn(pageData.currentRecipeCard);
+  updateSaveButtons(pageData.currentRecipeCard.id, modalAddBtn, modalRemoveBtn);
   openRecipeCard();
 };
 
@@ -326,15 +328,16 @@ const searchForRecipes = () => {
 }
 
 const updateUserRecipes = (e) => {
-  const recipeID = e.target.closest('.individual-recipe-container')?.querySelector('.individual-recipe').id;
-  const recipe = recipeData.find(recipe => recipe.id.toString() === recipeID)
-  const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel')
-  const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel')
-  if (e.target.parentNode.classList.contains('add-panel')) updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'add'))
-  if (e.target.parentNode.classList.contains('remove-panel')) updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'remove'))
-  toggleHidden([addBtn, removeBtn])
+  if(e.target.parentNode.classList.contains('panel')) {
+    const recipeID = e.target.closest('.individual-recipe-container')?.querySelector('.individual-recipe').id
+    const recipe = findRecipe(recipeData, recipeID)
+    if (e.target.parentNode.classList.contains('add-panel')) updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'add'))
+    if (e.target.parentNode.classList.contains('remove-panel')) updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'remove'))
+    const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel')
+    const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel')
+    updateSaveButtons(recipeID, addBtn, removeBtn);
+  }
 }
-
 
 // Exports
 export {
@@ -345,5 +348,7 @@ export {
   closeRecipe,
   switchView,
   searchForRecipes,
-  updateUserRecipes
+  updateUserRecipes,
+  findRecipe,
+  updateSaveButtons
 }
