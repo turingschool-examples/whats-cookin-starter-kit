@@ -10,6 +10,7 @@ import {
   searchByToggle,
   mainViewCardContainer,
   currentUser,
+  savedCardContainer
 } from './scripts';
 import { filterByName, filterByTag } from './filters';
 import { recipeData } from './data/recipes';
@@ -22,11 +23,11 @@ const clearView = (views) => {
 };
 
 const toMyRecipeView = (currentUser) => {
+  clearView([singleRecipeView]);
   toggleHidden([mainView], 'add');
   toggleHidden([myRecipesView], 'remove');
-  clearView([singleRecipeView]);
   searchBar.placeholder = 'Search your bookmarked Recipes';
-  renderRecipeCards(myRecipesView, currentUser.recipesToCook, currentUser);
+  renderRecipeCards(savedCardContainer, currentUser.recipesToCook, currentUser);
 };
 
 const toDashboardView = (currentUser) => {
@@ -57,7 +58,8 @@ const searchResults = () => {
 };
 
 const searchBarClicked = () => {
-  clearView([mainViewCardContainer, myRecipesView, singleRecipeView]);
+  // clearView([mainViewCardContainer, myRecipesView, singleRecipeView]);
+  clearView([mainViewCardContainer, savedCardContainer, singleRecipeView]);
   handleSearchResults(setView(), searchResults());
 };
 
@@ -114,7 +116,7 @@ const renderRecipeCardTag = (recipe) => {
 }
 
 const renderRecipeCards = (view, recipes, currentUser) => {
-  clearView([mainViewCardContainer, myRecipesView]);
+  clearView([mainViewCardContainer,savedCardContainer]);
   recipes.forEach((recipe) => {
     view.innerHTML += `
     <article class="recipe-card" id="${recipe.id}">
@@ -167,9 +169,9 @@ const findRecipe = (e, recipes) => {
 
 const renderSingleRecipeView = (e, recipes, ingredients, currentUser) => {
   let recipe = findRecipe(e, recipes);
-  toggleHidden([mainView], 'add');
+  toggleHidden([mainView,], 'add');
   toggleHidden([singleRecipeView], 'remove');
-  clearView([singleRecipeView, myRecipesView]);
+  clearView([singleRecipeView, savedCardContainer]);
 
   singleRecipeView.innerHTML += `
     <div class="single-recipe-view-flex">
