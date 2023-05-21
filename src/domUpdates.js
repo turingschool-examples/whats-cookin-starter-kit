@@ -55,9 +55,9 @@ const createSingleRecipeHTML = singleRecipe => {
       <h4> Add to recipes to cook</h4>
     </section>
     <section class="remove-panel panel ${removeStatus}">
-    <div class="minus-symbol synmbol">-</div>
-    <h4> Remove from recipes to cook</h4>
-  </section>
+      <div class="minus-symbol synmbol">-</div>
+      <h4> Remove from recipes to cook</h4>
+    </section>
     <article class="individual-recipe" id="${singleRecipe.id}">
       <div class="recipe-image-div">
         <img class="recipe-image"src="${singleRecipe.image}">
@@ -228,8 +228,8 @@ const updateCurrentRecipe = recipeCard => {
   const recipeCardID = recipeCard.closest("article")?.id;
   const thisRecipe = findRecipe(pageData.allRecipes, recipeCardID);
   pageData.currentRecipeCard = getRecipeCard(thisRecipe);
-  pageData.currentRecipeCard.outerAddBtn = recipeCard.parentNode.querySelector('.add-panel')
-  pageData.currentRecipeCard.outerRemoveBtn = recipeCard.parentNode.querySelector('.remove-panel')
+  pageData.currentRecipeCard.outerAddBtn = recipeCard.closest('.individual-recipe-container').querySelector('.add-panel')
+  pageData.currentRecipeCard.outerRemoveBtn = recipeCard.closest('.individual-recipe-container').querySelector('.remove-panel')
 }
 
 const checkSavedStatus = (ID) => {
@@ -277,7 +277,7 @@ const closeRecipe = () => {
   clickedRecipe.classList.add("hidden");
   clickedRecipe.classList.remove("flex");
   clickedRecipe.classList.remove("fade-in");
-  renderGrid(pageData.recipesOfInterest)
+  // renderGrid(pageData.recipesOfInterest)
 };
 
 const populateIngredients = currentRecipeCard => {
@@ -326,8 +326,11 @@ const updateUserRecipes = (e) => {
   if(e.target.parentNode.classList.contains('panel')) {
     const recipeID = e.target.closest('.individual-recipe-container')?.querySelector('.individual-recipe').id
     const recipe = findRecipe(pageData.allRecipes, recipeID)
-    if (e.target.parentNode.classList.contains('add-panel')) updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'add'))
-    if (e.target.parentNode.classList.contains('remove-panel')) updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'remove'))
+    if (!checkSavedStatus(recipeID)) {
+      updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'add'))
+    } else if (checkSavedStatus(recipeID)) {
+      updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'remove'))
+    }
     const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel')
     const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel')
     updateSaveButtons(recipeID, addBtn, removeBtn);
