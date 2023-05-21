@@ -35,24 +35,6 @@ savedRecipesButton.addEventListener('click', event => {
   showSavedRecipes(currentUser, recipesToCook);
 })
 
-const showSavedRecipes = (currentUser, recipesToCook) => {
-  if (recipesToCook.length === 0) {
-    savedRecipeDisplay.innerHTML = `
-    <div class="no-saved-recipes-message">
-      <p> Hi, ${currentUser.name}! You currently have no saved recipes.</p>
-    </div>`
-  } else {
-    savedRecipeDisplay.innerHTML = '';
-    recipesToCook.forEach(recipe => savedRecipeDisplay.innerHTML += `
-    <div class="recipe-wrapper">
-      <img id="${recipe.name}" src="${recipe.image}" class="recipe" alt="${recipe.name}"
-      <div class="recipe-info">
-        <p>${recipe.name}</p>
-       </div>
-    </div>`);
-    console.log('savedRecipeDisplay:', savedRecipeDisplay)
-  }
-}
 
 saveRecipeButton.addEventListener('click', event => {
   if (event.target.classList.contains('save-recipe-btn')) {
@@ -84,10 +66,17 @@ allRecipeDisplay.addEventListener('click', function (event) {
 
 frontRecipeDisplay.addEventListener('click', function (event) {
   if (event.target.classList.contains('recipe')) {
-  addHiddenClass([allRecipeDisplay]);
-  addHiddenClass([frontRecipeDisplay]);
+  addHiddenClass([allRecipeDisplay, frontRecipeDisplay]);
   removeHiddenClass([singleRecipeDisplay]);
   viewSelectedRecipe(event);
+  }
+});
+
+savedRecipeDisplay.addEventListener('click', event => {
+  if (event.target.classList.contains('recipe')) {
+    addHiddenClass([savedRecipeDisplay]);
+    removeHiddenClass([singleRecipeDisplay]);
+    viewSelectedRecipe(event);
   }
 });
 
@@ -125,6 +114,25 @@ function showHomePage() {
   addHiddenClass([allRecipeDisplay], [allFilterDisplay]);
   removeHiddenClass([frontRecipeDisplay]);
 }
+
+const showSavedRecipes = (currentUser, recipesToCook) => {
+  if (recipesToCook.length === 0) {
+    savedRecipeDisplay.innerHTML = `
+    <div class="no-saved-recipes-message">
+      <p> Hi, ${currentUser.name}! You currently have no saved recipes.</p>
+    </div>`;
+  } else {
+    savedRecipeDisplay.innerHTML = '';
+    recipesToCook.forEach(recipe => savedRecipeDisplay.innerHTML += `
+    <div class="recipe-wrapper">
+      <img id="${recipe.name}" src="${recipe.image}" class="recipe" alt="${recipe.name}"
+      <div class="recipe-info">
+        <p>${recipe.name}</p>
+       </div>
+    </div>`);
+    console.log('savedRecipeDisplay:', savedRecipeDisplay)
+  }
+};
 
 function randomizeHomePage() {
   shuffleData(recipeData)
