@@ -42,14 +42,22 @@ const makeRecipeColumnData = (data) => {
 
 const createSingleRecipeHTML = singleRecipe => {
   let htmlCode = '';
+  let addStatus = ''; 
+  let removeStatus = 'hidden';
+  if(currentUser?.recipesToCook){
+    if(checkSavedStatus(singleRecipe.id)) {
+      addStatus = 'hidden';
+      removeStatus = '';
+    }
+  }
   htmlCode += 
   `
   <article class="individual-recipe-container">
-    <section class="add-panel panel">
+    <section class="add-panel panel ${addStatus}">
       <div class="plus-symbol">+</div>
       <h4> Add to recipes to cook</h4>
     </section>
-    <section class="remove-panel panel hidden">
+    <section class="remove-panel panel ${removeStatus}">
     <div class="minus-symbol synmbol">-</div>
     <h4> Remove from recipes to cook</h4>
   </section>
@@ -298,15 +306,16 @@ const createIngredientsHTML = ingredients => {
 
 const switchView = (clickedViewID) => {
   if (clickedViewID === "our-recipes") {
-    // allUserRecipes.classList.add("hidden");
-    recipeGrid.classList.remove("hidden");
+    renderGrid(recipeData)
+    pageData.currentView = 'ourRecipes';
     ourViewBtn.classList.add("selected-view");
     yourViewBtn.classList.remove("selected-view");
     yourViewBtn.classList.add("unselected-view");  
     ourViewBtn.classList.remove("unselected-view");
   } else {
-    // allUserRecipes.classList.remove("hidden");
-    recipeGrid.classList.add("hidden");
+    renderGrid(currentUser.recipesToCook);
+    pageData.currentView = 'yourRecipes';
+    console.log(document.querySelectorAll('.individual-recipe-container'))
     ourViewBtn.classList.remove("selected-view");
     yourViewBtn.classList.add("selected-view");
     yourViewBtn.classList.remove("unselected-view");  
