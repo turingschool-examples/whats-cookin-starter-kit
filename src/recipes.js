@@ -21,7 +21,7 @@ const getIngredients = (recipe, ingredients) => {
 const getIngredientAmounts = (recipe, ingredients) => {
   return recipe.ingredients.map(ingredient => {
     return {
-      amount: ingredient.quantity.amount,
+      amount: fixIngredientAmount(ingredient.quantity.amount),
       unit: ingredient.quantity.unit,
       name: getIngredientProperty(ingredient, ingredients, 'name')
     }
