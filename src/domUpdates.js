@@ -6,6 +6,7 @@ const userInput = document.querySelector('#search-bar');
 const searchButton = document.querySelector('.submit-button');
 const favoriteButton = document.querySelector('.favorite-button');  
 const filterText = document.querySelector('h2');
+const tagsPanel = document.querySelector('.tags-panel');
 const tags = document.querySelectorAll('.tag');
 const mainPanel = document.querySelector('.main-panel');
 const homeButton = document.querySelector('.home-button');
@@ -17,6 +18,12 @@ let page = {mode: 'home'};
 const getRandomIndex = array => Math.floor(Math.random() * array.length);
 
 const loadUsers = userData => user.innerText = userData[getRandomIndex(userData)].name;
+
+const loadTags = recipes => {
+  tagsPanel.innerHTML = '<h2>Filter Recipes</h2>';
+  let allTags = recipes.reduce((total, recipe) => [...total, ...recipe.tags], []);
+  allTags.forEach(tag => tagsPanel.innerHTML += `<button class="tag" id="${tag}">${tag.toUpperCase()}</button>`);
+}
 
 const toggleMode = mode => {  
   page.mode = mode;
@@ -36,8 +43,8 @@ const viewRecipe = recipe => {
   <section class='recipe-container box' id='${recipe.id}'>
     <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
     <h3 class='recipe-name' id="${recipe.id}">${recipe.name}</h3>
-    <img class='heart-unsaved' id='unsaved-${recipe.id}' src='./images/bh.png' alt='unsave ${recipe.name}'>
-    <img class='heart-saved hidden' id='saved-${recipe.id}' src='./images/rh.png' alt='save ${recipe.name}'>
+    <img class='heart' id='unsaved-${recipe.id}' src='./images/bh.png' alt='unsave ${recipe.name}'>
+    <img class='heart hidden' id='saved-${recipe.id}' src='./images/rh.png' alt='save ${recipe.name}'>
   </section>
   `;
 }
@@ -77,9 +84,6 @@ const exitPopUp = recipes => {
 const filterRecipeByTag = (e, r) => {
   page.mode === 'home' ? r : r = recipesToCook;
   let filteredRecipes = filterByTag(e.target.id, r);
-  console.log(e.target.id);
-  console.log('r', r)
-  console.log('filtered', filteredRecipes);
   viewAllRecipes(filteredRecipes);
   loadHearts(filteredRecipes);
 }
@@ -88,9 +92,9 @@ const searchRecipe = recipes => {
   mainPanel.innerHTML = '';
   page.mode === 'home' ? recipes : recipes = recipesToCook;
   let name = userInput.value.toLowerCase();
-  let filteredRecipes = filterByName(name, recipes)
-  console.log('filtered', filteredRecipes);
-  viewAllRecipes(filteredRecipes); 
+  let filteredRecipes = filterByName(name, recipes);
+  viewAllRecipes(filteredRecipes);
+  loadHearts(filteredRecipes);
 }
 
 const displaySearchError = () => {
@@ -106,7 +110,7 @@ const toggleButtons = () => {
 
 const toggleHearts = (e, recipes) => {
   recipes.forEach(recipe => {
-    if (Number(e.target.parentNode.id) === recipe.id) {
+    if (Number(e.target.parentNode.id) === recipe.id && !e.target.classList.contains('info-button')) {
       document.getElementById(`unsaved-${recipe.id}`).classList.toggle('hidden');
       document.getElementById(`saved-${recipe.id}`).classList.toggle('hidden');
     }
@@ -142,6 +146,7 @@ export {
   searchButton,
   favoriteButton,
   filterText,
+  tagsPanel,
   tags,
   mainPanel,
   homeButton,
@@ -150,9 +155,11 @@ export {
   viewRecipe,
   viewAllRecipes,
   viewRecipeInfo,
+  exitPopUp,
   filterRecipeByTag,
   searchRecipe, 
-  loadUsers, 
+  loadUsers,
+  loadTags,
   toggleButtons,
   toggleHearts,
   loadHearts,
