@@ -9,10 +9,10 @@ const filterByTag = (tag, recipes) => {
 };
 
 const filterByName = (name, recipes) => {
-  if (!recipes.filter(recipe => recipe.name === name).length) {
+  if (!recipes.filter(recipe => recipe.name.toLowerCase().includes(name)).length) {
     return "No recipes found";
   } else {
-    return recipes.filter(recipe => recipe.name === name);
+    return recipes.filter(recipe => recipe.name.toLowerCase().includes(name));
   }
 };
 
