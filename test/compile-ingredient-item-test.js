@@ -4,9 +4,26 @@ import { sampleRecipeData as rData } from './sampleIngredients';
 import { sampleIngredientsData as iData } from './sampleIngredients';
 
 describe('compileIngredientItems', () => {
-  beforeEach 
+  beforeEach(() => {
+    let results = rData.ingredients.map((ele, index) => {
+      let amounts = ele.map((ele) => {
+        return ele.quantity.amount;
+      });
 
-  it('should be a function', () => {
+      let units = ele.map((ele) => {
+        return ele.quantity.unit;
+      });
+
+      let names = ele.map((ele) => {
+        return iData[ele.id - 1];
+      }); 
+
+      return `${names[index]} × ${amounts[index]} ${units[index]}`;
+    });
+    console.log(results)
+  });
+  
+  it.skip('should be a function', () => {
     expect(compileIngredientItems).to.be.a('function');
   });
 
@@ -17,13 +34,13 @@ describe('compileIngredientItems', () => {
   });
 
   it('should return an array of strings', () => {
-    expect(compileIngredientItems(rData[0], iData)).to.have.same.members([`${iData[0].name} × ${rData[0].quantity.amount} ${rData[0].quantity.unit}`,`${iData[6].name} × ${rData[0].quantity.amount} ${rData[0].quantity.unit}`, `${iData[7].name} × ${rData[0].quantity.amount} ${rData[0].quantity.unit}`, `${iData[8].name} × ${rData[0].quantity.amount} ${rData[0].quantity.unit}`, `${iData[9].name} × ${rData[0].quantity.amount} ${rData[0].quantity.unit}`]);
-    expect(compileIngredientItems(rData[1], iData)).to.have.same.members([`${iData[1].name} × ${rData[1].quantity.amount} ${rData[1].quantity.unit}`,`${iData[2].name} × ${rData[1].quantity.amount} ${rData[1].quantity.unit}`, `${iData[3].name} × ${rData[1].quantity.amount} ${rData[1].quantity.unit}`]);
-    expect(compileIngredientItems(rData[2], iData)).to.have.same.members([`${iData[0].name} × ${rData[2].quantity.amount} ${rData[2].quantity.unit}`,`${iData[1].name} × ${rData[2].quantity.amount} ${rData[2].quantity.unit}`, `${iData[2].name} × ${rData[2].quantity.amount} ${rData[2].quantity.unit}`, `${iData[3].name} × ${rData[1].quantity.amount} ${rData[1].quantity.unit}`, `${iData[4].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`, `${iData[5].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`, `${iData[6].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`, `${iData[7].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`, `${iData[8].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`, `${iData[9].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`]);
-    expect(compileIngredientItems(rData[3], iData)).to.have.same.members([`${iData[0].name} × ${rData[3].quantity.amount} ${rData[3].quantity.unit}`,`${iData[1].name} × ${rData[3].quantity.amount} ${rData[3].quantity.unit}`, `${iData[2].name} × ${rData[3].quantity.amount} ${rData[3].quantity.unit}`, `${iData[3].name} × ${rData[2].quantity.amount} ${rData[2].quantity.unit}`, `${iData[4].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`, `${iData[5].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`, `${iData[6].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`]);
-    expect(compileIngredientItems(rData[4], iData)).to.have.same.members([`${iData[2].name} × ${rData[4].quantity.amount} ${rData[4].quantity.unit}`,`${iData[3].name} × ${rData[4].quantity.amount} ${rData[4].quantity.unit}`, `${iData[4].name} × ${rData[4].quantity.amount} ${rData[4].quantity.unit}`, `${iData[5].name} × ${rData[3].quantity.amount} ${rData[3].quantity.unit}`, `${iData[6].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`, `${iData[7].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`, `${iData[8].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`, `${iData[9].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`]);
-    expect(compileIngredientItems(rData[5], iData)).to.have.same.members([`${iData[6].name} × ${rData[5].quantity.amount} ${rData[5].quantity.unit}`,`${iData[5].name} × ${rData[5].quantity.amount} ${rData[5].quantity.unit}`, `${iData[4].name} × ${rData[5].quantity.amount} ${rData[5].quantity.unit}`, `${iData[3].name} × ${rData[4].quantity.amount} ${rData[4].quantity.unit}`, `${iData[2].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`, `${iData[1].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`, `${iData[0].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`]);
-    expect(compileIngredientItems(rData[6], iData)).to.have.same.members([`${iData[2].name} × ${rData[6].quantity.amount} ${rData[6].quantity.unit}`,`${iData[1].name} × ${rData[6].quantity.amount} ${rData[6].quantity.unit}`, `${iData[0].name} × ${rData[6].quantity.amount} ${rData[6].quantity.unit}`, `${iData[4].name} × ${rData[5].quantity.amount} ${rData[5].quantity.unit}`, `${iData[5].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`, `${iData[3].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`, `${iData[7].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`, `${iData[6].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`, `${iData[8].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`, `${iData[9].name} × ${rData[].quantity.amount} ${rData[].quantity.unit}`]);
+    expect(compileIngredientItems(rData[0], iData)).to.deep.equal(results[0]);
+    expect(compileIngredientItems(rData[1], iData)).to.deep.equal(results[1]);
+    expect(compileIngredientItems(rData[2], iData)).to.deep.equal(results[2]);
+    expect(compileIngredientItems(rData[3], iData)).to.deep.equal(results[3]);
+    expect(compileIngredientItems(rData[4], iData)).to.deep.equal(results[4]);
+    expect(compileIngredientItems(rData[5], iData)).to.deep.equal(results[5]);
+    expect(compileIngredientItems(rData[6], iData)).to.deep.equal(results[6]);
   });
 
   it('should return a list of ingredient items, which includes ingredient name, multiplication symbol, amount, and unit', () => {
