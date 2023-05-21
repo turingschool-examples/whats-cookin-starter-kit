@@ -37,10 +37,23 @@ const fetchRecipes = () => {
         });
 }
 
+const fetchIngredients = () => {
+  fetch(`https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients`)
+  .then(response => response.json())
+  .then(ingredientData => {pageData.allIngredients = ingredientData.ingredients})
+  .catch(error => console.log(error))
+}
+
+const dataLoad = () => {
+  assignCurrentUser();
+  fetchRecipes();
+  fetchIngredients();
+}
+
 const updateCurrentUser = (user) => {
   currentUser = user;
 };
 
-export { assignCurrentUser, fetchRecipes, currentUser, pageData, updateCurrentUser };
+export { currentUser, pageData, updateCurrentUser, dataLoad };
 
 

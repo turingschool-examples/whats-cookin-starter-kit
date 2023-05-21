@@ -5,7 +5,7 @@ import './styles.css'
 import { makeTagActive, closeRecipe, showRecipe, searchForRecipes, switchView } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
-import { assignCurrentUser, fetchRecipes } from './apiCalls';
+import { dataLoad, pageData } from './apiCalls';
 import './images/antipasti.png';
 import './images/antipasto.png'
 import './images/appetizer.png'
@@ -65,8 +65,7 @@ return recipeCard;
 // //Example of one way to import functions from the domUpdates file. You will delete these examples.
 // import {exampleFunction1, exampleFunction2} from './domUpdates.js'
 window.addEventListener("load", () => {
-  assignCurrentUser();
-  fetchRecipes();
+  dataLoad();
 });
 
 tagArea.addEventListener("click", function(event) {
