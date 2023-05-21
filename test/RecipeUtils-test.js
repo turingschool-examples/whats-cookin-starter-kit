@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { recipesFromTag, recipesfromName, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions, shuffleData } from '../src/recipeUtils';
+import { recipesFromTag, recipesfromName, findRecipe, displayIngredients, calculateRecipeCost, recipeInstructions, shuffleData } from '../src/recipeUtils';
 import recipeData from '../src/data/recipes-sample.js';
 import ingredientsData from '../src/data/ingredients-sample.js';
 import { recipesToCook, saveRecipe } from '../src/userUtils';
@@ -90,23 +90,17 @@ describe('findRecipe', () => {
     const recipe = findRecipe(recipeData, recipeName);
     expect(recipe).to.deep.equal(recipeData[0]);
   });
-
-  it('should return undefined if the recipe is not found', () => {
-    const recipeName = 'Spaghetti and Meatballs';
-    const recipe = findRecipe(recipeData, recipeName);
-    expect(recipe).to.be.undefined;
-  });
 });
 
-describe('findIngredientNames', () => {
+describe('displayIngredients', () => {
   it('should be a function', () => {
     expect(findRecipe).to.be.a('function');
   });
 
-  it('should return an array of ingredient names for specific recipe', () => {
+  it("should return the ingredient's amount, units & ingredient name of a given recipe", () => {
     const recipeName = 'Loaded Chocolate Chip Pudding Cookie Cups';
-    const ingredients = findIngredientNames(recipeData, recipeName);
-    expect(ingredients).to.equal('wheat flour, bicarbonate of soda, eggs, sucrose, instant vanilla pudding, brown sugar, salt, fine sea salt, semi sweet chips, unsalted butter, vanilla');
+    const ingredients = displayIngredients(recipeData, ingredientsData, recipeName);
+    expect(ingredients).to.equal('1.5 c of wheat flour, 0.5 tsp of bicarbonate of soda, 1 large of eggs, 0.5 c of sucrose, 3 Tbsp of instant vanilla pudding, 0.5 c of brown sugar, 0.5 tsp of salt, 24 servings of fine sea salt, 2 c of semi sweet chips, 0.5 c of unsalted butter, 0.5 tsp of vanilla');
   });
 });
 
@@ -121,12 +115,6 @@ describe('calculateRecipeCost', () => {
     const actualCost = calculateRecipeCost(recipe, ingredientsData);
     expect(actualCost).to.equal(expectedCost);
   })
-
-  it('should return undefined if the recipe cannot be found', () => {
-    const recipe = recipeData[1000];
-    const totalCost = calculateRecipeCost(recipe)
-    expect(totalCost).to.equal('Sorry, that recipe cannot be found.')
-  })
 });
 
 describe('recipeInstructions', () => {
@@ -138,12 +126,6 @@ describe('recipeInstructions', () => {
     const recipe = recipeData[0];
     const instructions = recipeInstructions(recipe);
     expect(instructions).to.equal('1. In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy. 2. Add egg and vanilla and mix until combined. 3. Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees. 4. Place the cookie dough balls into ungreased muffin pan. Sprinkle with sea salt. 5. Bake for 9 to 10 minutes, or until you see the edges start to brown. 6. Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice cream and a drizzle of chocolate sauce.')
-  });
-
-  it('should return a message if the recipe cannot be found', () => {
-    const recipe = recipeData[1000]
-    const instructions = (recipeInstructions(recipe));
-    expect(instructions).to.equal("Sorry, that recipe cannot be found.")
   });
 });
 

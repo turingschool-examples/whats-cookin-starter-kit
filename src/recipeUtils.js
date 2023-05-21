@@ -1,4 +1,3 @@
-import ingredientsData from '../src/data/ingredients-sample.js';
 
 function recipesFromTag(recipes, tags) {
   const filtered = recipes.filter((recipe) => {

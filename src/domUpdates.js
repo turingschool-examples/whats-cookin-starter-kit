@@ -185,14 +185,9 @@ function renderFilteredRecipes() {
 
 const viewSelectedRecipe = event => {
   const recipeName = event.target.id;
-  console.log('recipeName:', recipeName)
   const selectedRecipe = findRecipe(recipeData, recipeName);
-  console.log('selectedRecipe:', selectedRecipe)
   const recipeCost = calculateRecipeCost(selectedRecipe, ingredientsData);
-  console.log('recipeCost:', recipeCost)
-  // const ingredients = findIngredientNames(recipeData, recipeName);
   const ingredients = displayIngredients(recipeData, ingredientsData, recipeName)
-  console.log('displayIngredients:', displayIngredients)
   const instructions = recipeInstructions(selectedRecipe);
   addHiddenClass([allFilterDisplay]);
   singleRecipeDisplay.innerHTML= '';
