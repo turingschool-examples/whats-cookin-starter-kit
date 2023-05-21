@@ -7,7 +7,7 @@ import './images/Avatar1.gif';
 import './images/rh.png';
 import './images/bh.png';
 import { recipesToCook, toggleRecipesToCook } from './recipe.js';
-import { searchButton, favoriteButton, homeButton, filterText, tags, mainPanel, loadUsers, viewAllRecipes, viewRecipeInfo, filterRecipeByTag, searchRecipe, toggleButtons, toggleHearts, loadHearts, toggleMode, viewHome, viewSaved, test } from './domUpdates.js';
+import { searchButton, favoriteButton, homeButton, filterText, tags, mainPanel, loadUsers, viewAllRecipes, viewRecipeInfo, exitPopUp, filterRecipeByTag, searchRecipe, toggleButtons, toggleHearts, loadHearts, toggleMode, viewHome, viewSaved, test } from './domUpdates.js';
 
 let users;
 let recipes;
@@ -27,12 +27,12 @@ window.addEventListener('load', () => {
 
 mainPanel.addEventListener('click', e => {
   if (e.target.classList.contains('info-button')) {
-    test.classList.add('hidden');
-    viewAllRecipes(recipes);
+    exitPopUp(recipes);
+  } else if (e.target.classList.contains('heart')) {
+    toggleRecipesToCook(e.target.parentNode.id, recipes);
+    toggleHearts(e, recipes);
   } else {
-  viewRecipeInfo(recipes, ingredients, e);
-  toggleRecipesToCook(e.target.parentNode.id, recipes);
-  toggleHearts(e, recipes);
+    viewRecipeInfo(recipes, ingredients, e);
   }
 });
 
@@ -46,16 +46,14 @@ searchButton.addEventListener('click', () => {
   searchRecipe(recipes);
 });
 
-favoriteButton.addEventListener('click', () => {
+favoriteButton.addEventListener('click', e => {
   viewSaved();
   viewAllRecipes(recipesToCook);
   loadHearts(recipesToCook);
 });
 
-homeButton.addEventListener('click', () => {
-    console.log(hey)
-
+homeButton.addEventListener('click', e => {
   viewHome();
   viewAllRecipes(recipes);
-  loadHearts(recipes);
+  loadHearts(recipesToCook);
 });
