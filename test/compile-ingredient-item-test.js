@@ -4,26 +4,21 @@ import { sampleRecipeData as rData } from './sampleIngredients';
 import { sampleIngredientsData as iData } from './sampleIngredients';
 
 describe('compileIngredientItems', () => {
+
+  let results;
   beforeEach(() => {
-    let results = rData.ingredients.map((ele, index) => {
-      let amounts = ele.map((ele) => {
-        return ele.quantity.amount;
+    results = rData.map((recipe) => {
+      let item = recipe.ingredients.map((ele) => {
+        let name = iData[ele.id - 1].name;
+        let amount = ele.quantity.amount;
+        let unit = ele.quantity.unit;
+        return `${name} × ${amount} ${unit}`
       });
-
-      let units = ele.map((ele) => {
-        return ele.quantity.unit;
-      });
-
-      let names = ele.map((ele) => {
-        return iData[ele.id - 1];
-      }); 
-
-      return `${names[index]} × ${amounts[index]} ${units[index]}`;
+      return item;
     });
-    console.log(results)
   });
   
-  it.skip('should be a function', () => {
+  it('should be a function', () => {
     expect(compileIngredientItems).to.be.a('function');
   });
 
@@ -33,7 +28,7 @@ describe('compileIngredientItems', () => {
     expect(compileIngredientItems({}, 1)).to.equal('Error: wrong intput type');
   });
 
-  it('should return an array of strings', () => {
+  it('should return a list of ingredient items, which includes ingredient name, multiplication symbol, amount, and unit', () => {
     expect(compileIngredientItems(rData[0], iData)).to.deep.equal(results[0]);
     expect(compileIngredientItems(rData[1], iData)).to.deep.equal(results[1]);
     expect(compileIngredientItems(rData[2], iData)).to.deep.equal(results[2]);
@@ -42,8 +37,4 @@ describe('compileIngredientItems', () => {
     expect(compileIngredientItems(rData[5], iData)).to.deep.equal(results[5]);
     expect(compileIngredientItems(rData[6], iData)).to.deep.equal(results[6]);
   });
-
-  it('should return a list of ingredient items, which includes ingredient name, multiplication symbol, amount, and unit', () => {
-
-  });
-})
+});

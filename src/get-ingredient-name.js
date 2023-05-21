@@ -1,6 +1,6 @@
 const matchIngredient = (id, ingredientsData) => {
   if (typeof id !== 'number' || (typeof ingredientsData !== 'object' && !Array.isArray(ingredientsData))) {
-    return 'Error: wrong intput type';
+    return 'Error: wrong input type';
   }
 
   const ingredient = ingredientsData.find(ingredient => { 

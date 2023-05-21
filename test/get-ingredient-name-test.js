@@ -2,14 +2,14 @@ import { expect } from 'chai';
 import { getIngredientName, matchIngredient } from '../src/get-ingredient-name'
 import { sampleIngredientsData } from './sampleIngredients';
 describe('matchIngredient', () => {
-  it('should be a fuction', () => {
+  it('should be a function', () => {
     expect(matchIngredient).to.be.a('function');
   });
 
   it('it should take two arguments: an ingredient id and a collection of ingredients data', () => {
-    expect(matchIngredient('', {})).to.equal('Error: wrong intput type');
-    expect(matchIngredient(1, '')).to.equal('Error: wrong intput type');
-    expect(matchIngredient('', [])).to.equal('Error: wrong intput type');
+    expect(matchIngredient('', {})).to.equal('Error: wrong input type');
+    expect(matchIngredient(1, '')).to.equal('Error: wrong input type');
+    expect(matchIngredient('', [])).to.equal('Error: wrong input type');
   });
 
   it('it should return an error message if no matching ingredient is found', () => {
@@ -33,14 +33,14 @@ describe('matchIngredient', () => {
 });
 
 describe('getIngredientName', () => {
-  it('should be a fuction', () => {
+  it('should be a function', () => {
     expect(getIngredientName).to.be.a('function');
   });
 
   it('it should take two arguments: an ingredient id and a collection of ingredients data', () => {
-    expect(getIngredientName('', {})).to.equal('Error: wrong intput type');
-    expect(getIngredientName(1, '')).to.equal('Error: wrong intput type');
-    expect(getIngredientName('', [])).to.equal('Error: wrong intput type');
+    expect(getIngredientName('', {})).to.equal('Error: wrong input type');
+    expect(getIngredientName(1, '')).to.equal('Error: wrong input type');
+    expect(getIngredientName('', [])).to.equal('Error: wrong input type');
   });
 
   it('it should return an error message if no matching ingredient is found', () => {
