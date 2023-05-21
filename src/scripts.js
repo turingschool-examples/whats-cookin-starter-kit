@@ -5,7 +5,7 @@ import './styles.css'
 import { makeTagActive, closeRecipe, showRecipe, searchForRecipes, switchView } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
-import { dataLoad } from './apiCalls';
+import { dataLoad, assignCurrentUser, fetchRecipes } from './apiCalls';
 import './images/antipasti.png';
 import './images/antipasto.png'
 import './images/appetizer.png'
