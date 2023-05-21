@@ -1,6 +1,7 @@
 import { expect } from 'chai';
-import { getIngredientName, matchIngredient } from '../src/get-ingredient-name'
+import { getIngredientName, matchIngredient } from '../src/get-ingredient-name';
 import { sampleIngredientsData } from './sampleIngredients';
+
 describe('matchIngredient', () => {
   it('should be a function', () => {
     expect(matchIngredient).to.be.a('function');

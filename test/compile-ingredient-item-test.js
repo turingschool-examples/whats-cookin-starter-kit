@@ -12,7 +12,7 @@ describe('compileIngredientItems', () => {
         let name = iData[ele.id - 1].name;
         let amount = ele.quantity.amount;
         let unit = ele.quantity.unit;
-        return `${name} × ${amount} ${unit}`
+        return `${name} × ${amount} ${unit}`;
       });
       return item;
     });
