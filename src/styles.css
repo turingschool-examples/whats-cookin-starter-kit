@@ -21,17 +21,14 @@ body {
 nav {
   background-color: white;
   height: 60px;
-  /* box-shadow: 0 5px rgba(196, 196, 196, 0.5); */
   box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
   display: flex;
   align-items: center;
   padding: 10px;
-  /* border: 1px solid red; */
 }
 
 .nav-flexbox {
   display: flex;
-  /* border: 1px solid green; */
   min-width: 100%;
   justify-content: space-between;
 }
@@ -55,7 +52,6 @@ nav {
   min-width: 400px;
   justify-content: space-between;
   align-items: center;
-  /* border: 1px solid black; */
 }
 
 #searchInput {
@@ -88,7 +84,6 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border: 1px solid black; */
 }
 
 .icon-flexbox {
@@ -96,7 +91,10 @@ nav {
   align-items: center;
   flex-direction: column;
   margin: 15px;
-  /* border: 1px solid red; */
+}
+
+.tag-bar {
+  display: flex
 }
 
 /* HEADER */
@@ -140,7 +138,6 @@ h1 {
 .recipe-card {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-evenly; */
   margin: 10px;
   height: 300px;
   width: 275px;
