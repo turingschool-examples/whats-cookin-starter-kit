@@ -310,7 +310,11 @@ const switchView = (clickedViewID) => {
 }
 
 const searchForRecipes = () => {
-  let searchedRecipes = searchRecipes(pageData.recipesOfInterest, ingredientsData, searchBar.value)
+  const data = {
+    'our-recipes': pageData.allRecipes,
+    'your-recipes': currentUser.recipesToCook
+  }
+  let searchedRecipes = searchRecipes(data[pageData.currentView], ingredientsData, searchBar.value)
   if(searchedRecipes) {
     if(searchedRecipes.length) {
       pageData.recipesOfInterest = searchedRecipes;
