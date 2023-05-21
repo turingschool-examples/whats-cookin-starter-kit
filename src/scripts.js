@@ -27,12 +27,12 @@ window.addEventListener('load', () => {
 
 mainPanel.addEventListener('click', e => {
   if (e.target.classList.contains('info-button')) {
-    exitPopUp(recipes);
-  } else if (e.target.classList.contains('heart')) {
-    toggleRecipesToCook(e.target.parentNode.id, recipes);
-    toggleHearts(e, recipes);
+    test.classList.add('hidden');
+    viewAllRecipes(recipes);
   } else {
-    viewRecipeInfo(recipes, ingredients, e);
+  viewRecipeInfo(recipes, ingredients, e);
+  toggleRecipesToCook(e.target.parentNode.id, recipes);
+  toggleHearts(e, recipes);
   }
 });
 
@@ -48,14 +48,16 @@ searchButton.addEventListener('click', () => {
   displaySearchError();
 });
 
-favoriteButton.addEventListener('click', e => {
+favoriteButton.addEventListener('click', () => {
   viewSaved();
   viewAllRecipes(recipesToCook);
   loadHearts(recipesToCook);
 });
 
-homeButton.addEventListener('click', e => {
+homeButton.addEventListener('click', () => {
+    console.log(hey)
+
   viewHome();
   viewAllRecipes(recipes);
-  loadHearts(recipesToCook);
+  loadHearts(recipes);
 });
