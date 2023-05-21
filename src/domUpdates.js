@@ -277,6 +277,7 @@ const closeRecipe = () => {
   clickedRecipe.classList.add("hidden");
   clickedRecipe.classList.remove("flex");
   clickedRecipe.classList.remove("fade-in");
+  renderGrid(pageData.recipesOfInterest)
 };
 
 const populateIngredients = currentRecipeCard => {
@@ -302,7 +303,7 @@ const switchView = (clickedViewID) => {
   if (clickedViewID === "our-recipes") {
     pageData.recipesOfInterest = copyItem(pageData.allRecipes);
   } else {
-    pageData.recipesOfInterest = copyItem(currentUser.recipesToCook)
+    pageData.recipesOfInterest = copyItem(currentUser.recipesToCook);
   }
   renderGrid(pageData.recipesOfInterest)
   toggleView([ourViewBtn, yourViewBtn])
@@ -311,9 +312,12 @@ const switchView = (clickedViewID) => {
 const searchForRecipes = () => {
   let searchedRecipes = searchRecipes(pageData.recipesOfInterest, ingredientsData, searchBar.value)
   if(searchedRecipes) {
-    searchedRecipes.length  
-    ? renderGrid(searchedRecipes)
-    : recipeGrid.innerHTML = `<p>Sorry, we couldn't find any recipes for your search of "${searchBar.value}"</p>`
+    if(searchedRecipes.length) {
+      pageData.recipesOfInterest = searchedRecipes;
+      renderGrid(searchedRecipes)
+    }else {
+      recipeGrid.innerHTML = `<p>Sorry, we couldn't find any recipes for your search of "${searchBar.value}"</p>`
+    }
   }
 }
 
