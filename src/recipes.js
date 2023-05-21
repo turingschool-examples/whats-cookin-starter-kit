@@ -55,6 +55,34 @@ const searchRecipes = (allRecipes, allIngredients, userSearch) => {
     }
 }
 
+const getUniqueTagsFromRecipes = recipes => {
+  const uniqueTags = [];
+  const allTags = recipes.flatMap(recipe => recipe.tags)
+  allTags.forEach(tag => {
+    if (!uniqueTags.includes(tag)) {
+      uniqueTags.push(tag);
+    }
+  })
+  return uniqueTags;
+}
+
+const addInfoToTags = tags => {
+  return tags.map((tag, index) => {
+    return {
+      name: tag,
+      isActive: false,
+      path: `./images/${tag}.png`,
+      row: (index + 1) % 2
+    }
+  })
+}
+
+const populateTags = (recipes) => {
+  const tagData = getUniqueTagsFromRecipes(recipes);
+  const refinedTagData =  addInfoToTags(tagData);
+  return refinedTagData;
+}
+
 export {
   getInstructions,
   filterRecipes,
@@ -63,5 +91,6 @@ export {
   calculateRecipeCost,
   filterRecipesByName,
   filterRecipesByIngredient,
-  searchRecipes
+  searchRecipes,
+  populateTags
 }

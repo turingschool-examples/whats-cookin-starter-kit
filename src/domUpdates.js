@@ -168,10 +168,8 @@ const createTagAreaHTML = rows => {
   return htmlCode;
 };
 
-const renderTagArea = (data) => {
-  const tagData = getTagsFromRecipes(data);
-  const tagsAndIcons = clubTagsAndIcons(tagData);
-  const tagRows = splitTagsInRows(tagsAndIcons);
+const renderTagArea = () => {
+  const tagRows = splitTagsInRows(pageData.allTags);
   const htmlCode = createTagAreaHTML(tagRows);
   tagArea.innerHTML = htmlCode;
 };
@@ -190,7 +188,7 @@ const makeTagActive = (event) => {
 
 const pageLoadRenders = (data) => {
   renderGrid(data);
-  renderTagArea(data);
+  renderTagArea();
 };
 
 const getInstructionHTML = (recipe) => {
