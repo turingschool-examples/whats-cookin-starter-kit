@@ -35,7 +35,7 @@ allRecipesButton.addEventListener('click', event => {
 
 savedRecipesButton.addEventListener('click', () => {
   addHiddenClass([allRecipeDisplay, singleRecipeDisplay, saveRecipeButton, frontRecipeDisplay, searchInput]);
-  removeHiddenClass([savedRecipeDisplay]);
+  removeHiddenClass([savedRecipeDisplay, savedSearchInput, allFilterDisplay]);
   showSavedRecipes(currentUser, recipesToCook);
 })
 
@@ -51,7 +51,7 @@ saveRecipeButton.addEventListener('click', event => {
 allFilterDisplay.addEventListener('click', function (event) {
   if (event.target.classList.contains('checkbox')) {
     renderFilteredRecipes(event)
-    filterSavedRecipes(event)
+    renderFilteredSavedRecipes(event)
   }
 });
 
@@ -177,7 +177,7 @@ const showSavedRecipes = (currentUser, recipesToCook) => {
   }
 };
 
-function filterSavedRecipes() {
+function renderFilteredSavedRecipes() {
   const savedTags = Array.from(checkCategories).filter((category) => category.checked).map(c => c.id)
   if (savedTags.length === 0 && allRecipeDisplay.classList[1] === 'hidden') {
     showSavedRecipes(currentUser, recipesToCook);
@@ -220,7 +220,7 @@ function randomizeHomePage() {
 
 function renderFilteredRecipes() {
   const tags = Array.from(checkCategories).filter((category) => category.checked).map(c => c.id)
-  if (tags.length === 0) {
+  if (tags.length === 0 && savedRecipeDisplay.classList[1] === 'hidden') {
     showRecipes()
     return
   }
