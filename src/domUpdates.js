@@ -316,19 +316,34 @@ const switchView = (clickedViewID) => {
   toggleViewBtns([ourViewBtn, yourViewBtn])
 }
 
-const displayTaggedRecipes = () => {
+const setBaseData = () => {
   const data = {
     'our-recipes': pageData.allRecipes,
     'your-recipes': currentUser.recipesToCook
+  };
+
+  let baseData = data[pageData.currentView];
+
+  if (searchBar.value) {
+    baseData = pageData.recipesOfInterest;
   }
 
+  return baseData;
+}
+
+const displayTaggedRecipes = () => {
   const activeTags = pageData.allTags.filter(tag => tag.isActive).map(tag => tag.name);
-  const baseData = data[pageData.currentView];
+  const baseData = setBaseData();
+
   let filteredRecipes;
   if (activeTags.length) {
-    filteredRecipes = filterRecipesByTag(baseData, ...activeTags);
+    filteredRecipes = filterRecipesByTag(baseData, activeTags);
   } else {
-    filteredRecipes = copyItem(baseData)
+    const data = {
+      'our-recipes': pageData.allRecipes,
+      'your-recipes': currentUser.recipesToCook
+    };
+    filteredRecipes = copyItem(data[pageData.currentView]);
   }
   pageData.recipesOfInterest = filteredRecipes;
   renderGrid(pageData.recipesOfInterest)

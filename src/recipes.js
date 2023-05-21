@@ -4,14 +4,10 @@ const getInstructions = recipe => {
   return recipe.instructions.map(item => item.instruction)
 }
 
-const filterRecipesByTag = (allRecipes, ...tags) => {
-  let filteredRecipes = tags.flatMap((tag) => {
-    return allRecipes.filter(recipe => {
-      return recipe.tags.includes(tag);
-    });
-  });
-
-  return [ ...new Set(filteredRecipes)];
+const filterRecipesByTag = (allRecipes, tags) => {
+  let filteredRecipes = allRecipes.filter(recipe => tags.every(tag => recipe.tags.includes(tag)))
+  console.log(filteredRecipes);
+  return filteredRecipes;
 }
 
 const getIngredients = (recipe, ingredients) => {
