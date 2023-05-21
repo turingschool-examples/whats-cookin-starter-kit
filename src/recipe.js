@@ -48,8 +48,11 @@ const toggleRecipesToCook = (id, recipes) => {
       recipesToCook.push(recipe);
     } else if (Number(id) === recipe.id && recipesToCook.some(recipe => Number(id) === recipe.id)) {
       recipesToCook = recipesToCook.filter(recipe => recipe.id !== Number(id));
-    }
+    } 
   });
+  if(!recipes.some(recipe => recipe.id === id)){
+    return 'Recipe not found'
+  }
 }
 
 export {

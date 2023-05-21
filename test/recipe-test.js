@@ -1,16 +1,14 @@
 import { expect } from 'chai';
 import { ingredientTestData, recipeTestData, userTestData } from '../src/data/testData.js';
-import { filterByTag, filterByName, determineIngredientNames, calculateCost, returnInstructions, toggleRecipesToCook } from '../src/recipe.js';
+import { filterByTag, filterByName, determineIngredientNames, calculateCost, returnInstructions, toggleRecipesToCook, recipesToCook } from '../src/recipe.js';
 
 describe('', () => {
   let recipe;
   let ingredientData;
   let instructions;
-  let recipesToCook;
 
   beforeEach(() => {
     ingredientData = ['wheat flour', 'bicarbonate of soda', 'eggs', 'sucrose', 'instant vanilla pudding', 'brown sugar', 'salt', 'fine sea salt', 'semi sweet chips', 'unsalted butter', 'vanilla'];
-    recipesToCook = []
   });
   
   describe('filterByTag', () => {
@@ -81,12 +79,20 @@ describe('', () => {
     it('Should be a function', () => {
       expect(toggleRecipesToCook).to.be.a('function')
     })
-    it('Should add/remove favorite recipes', () => {
-    
+    it('Should add favorite recipes', () => {
       expect(recipesToCook).to.deep.equal([])
-      toggleRecipesToCook( 595736 , recipesToCook)
-      expect(recipesToCook).to.deep.equal([recipeTestData[0]])
+      toggleRecipesToCook(595736, recipeTestData)
+      expect(recipesToCook).to.deep.equal([(recipeTestData[0])])
     })
-  })
+    it('Should remove favorite recipes', () => {
+      expect(recipesToCook).to.deep.equal([(recipeTestData[0])])
+      toggleRecipesToCook(595736, recipeTestData)
+      expect(recipesToCook).to.deep.equal([])
+    });
+    it('Should return an error if the ID doesn\'t exist in the data set', () => {
+      var toggle = toggleRecipesToCook(66666, recipeTestData)
+      expect(toggle).to.equal('Recipe not found')
+    })
+  });
 });
 
