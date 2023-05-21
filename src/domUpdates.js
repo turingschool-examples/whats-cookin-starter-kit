@@ -50,13 +50,13 @@ const createSingleRecipeHTML = singleRecipe => {
   htmlCode += 
   `
   <article class="individual-recipe-container">
-    <section class="add-panel panel ${addStatus}">
-      <div class="plus-symbol">+</div>
-      <h4> Add to recipes to cook</h4>
+    <section class="add-panel panel save-option ${addStatus}">
+      <div class="plus-symbol symbol save-option">+</div>
+      <h4 class="save-option"> Add to recipes to cook</h4>
     </section>
-    <section class="remove-panel panel ${removeStatus}">
-      <div class="minus-symbol synmbol">-</div>
-      <h4> Remove from recipes to cook</h4>
+    <section class="remove-panel panel save-option ${removeStatus}">
+      <div class="minus-symbol synmbol save-option ">-</div>
+      <h4 class="save-option"> Remove from recipes to cook</h4>
     </section>
     <article class="individual-recipe" id="${singleRecipe.id}">
       <div class="recipe-image-div">
@@ -323,7 +323,7 @@ const searchForRecipes = () => {
 }
 
 const updateUserRecipes = (e) => {
-  if(e.target.parentNode.classList.contains('panel')) {
+  if(e.target.classList.contains('save-option')) {
     const recipeID = e.target.closest('.individual-recipe-container')?.querySelector('.individual-recipe').id
     const recipe = findRecipe(pageData.allRecipes, recipeID)
     if (!checkSavedStatus(recipeID)) {
