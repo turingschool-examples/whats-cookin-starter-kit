@@ -14,23 +14,27 @@ const allRecipeDisplay = document.querySelector('.all-recipes-display');
 const allFilterDisplay = document.querySelector('.all-filters');
 const checkCategories = document.getElementsByName('checkbox');
 const searchInput = document.getElementById('search-bar');
+const savedSearchInput = document.getElementById('saved-search-bar')
 const recipeTitle = document.querySelector('h2');
 const singleRecipeDisplay = document.querySelector('.single-recipe-display');
 const homeButton = document.querySelector('.title')
 const saveRecipeButton = document.querySelector('.save-recipe-button')
 const savedRecipesButton = document.querySelector('.saved-recipes')
 const savedRecipeDisplay = document.querySelector('.saved-recipe-display')
+const clearButton = document.querySelector('.clear-search-button')
 
 //Event Listeners
 
 allRecipesButton.addEventListener('click', event => {
   showRecipes(event);
-  addHiddenClass([saveRecipeButton, savedRecipeDisplay])
+  addHiddenClass([saveRecipeButton, savedRecipeDisplay, savedSearchInput])
+  removeHiddenClass([searchInput])
+
 
 });
 
 savedRecipesButton.addEventListener('click', () => {
-  addHiddenClass([allRecipeDisplay, singleRecipeDisplay, saveRecipeButton, frontRecipeDisplay]);
+  addHiddenClass([allRecipeDisplay, singleRecipeDisplay, saveRecipeButton, frontRecipeDisplay, searchInput]);
   removeHiddenClass([savedRecipeDisplay]);
   showSavedRecipes(currentUser, recipesToCook);
 })
@@ -43,9 +47,11 @@ saveRecipeButton.addEventListener('click', event => {
   }
 });
 
+
 allFilterDisplay.addEventListener('click', function (event) {
   if (event.target.classList.contains('checkbox')) {
     renderFilteredRecipes(event)
+    filterSavedRecipes(event)
   }
 });
 
@@ -54,6 +60,22 @@ searchInput.addEventListener('keypress', function (e) {
     showSearchResults();
   }
 });
+
+savedSearchInput.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    showSavedSearchResults();
+  }
+})
+
+clearButton.addEventListener('click', function (e) {
+  savedSearchInput.value = ''
+  searchInput.value = ''
+  if (allRecipeDisplay.classList[1] === 'hidden') {
+  showSavedRecipes(currentUser, recipesToCook)
+  } else {
+    showRecipes()
+  }
+})
 
 allRecipeDisplay.addEventListener('click', function (event) {
   if (event.target.classList.contains('recipe')) {
@@ -65,7 +87,7 @@ allRecipeDisplay.addEventListener('click', function (event) {
 
 frontRecipeDisplay.addEventListener('click', function (event) {
   if (event.target.classList.contains('recipe')) {
-  addHiddenClass([allRecipeDisplay, frontRecipeDisplay]);
+  addHiddenClass([allRecipeDisplay, frontRecipeDisplay, savedSearchInput]);
   removeHiddenClass([singleRecipeDisplay, saveRecipeButton]);
   viewSelectedRecipe(event);
   }
@@ -73,7 +95,7 @@ frontRecipeDisplay.addEventListener('click', function (event) {
 
 savedRecipeDisplay.addEventListener('click', event => {
   if (event.target.classList.contains('recipe')) {
-    addHiddenClass([savedRecipeDisplay]);
+    addHiddenClass([savedRecipeDisplay, savedSearchInput]);
     removeHiddenClass([singleRecipeDisplay]);
     viewSelectedRecipe(event);
   }
