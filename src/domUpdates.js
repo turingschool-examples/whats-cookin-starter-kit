@@ -14,7 +14,7 @@ import {
   modalAddBtn, 
   modalRemoveBtn
 } from './scripts'
-import { searchRecipes } from './recipes';
+import { filterRecipes, searchRecipes } from './recipes';
 import { updateRecipesToCook } from './users';
 import { copyItem, toggleViewBtns } from './helper-functions';
 
@@ -127,9 +127,14 @@ const splitTagsInRows = tagsAndIcons => {
 
 const createTagCardHTML = tag => {
   let htmlCode = '';
+  let bgClass = "tag-image-bg";
+  if (tag.isActive) {
+    bgClass = "tag-image-bg active-bg"
+  }
+
   htmlCode += `
-  <section class = "tag-card">
-      <div class="tag-image-bg">
+  <section class = "tag-card" id = "${tag.name}">
+      <div class="${bgClass}">
           <img class = "tag-image" src = "${tag.path}">
       </div>
       <p class="tag-text">${tag.name}</p>
@@ -178,13 +183,17 @@ const isTagActive = event => event.target.closest(".tag-card")?.querySelector(".
 const removeActiveFromTag = event => event.target.closest(".tag-card").querySelector(".tag-image-bg").classList.remove("active-bg");
 const addActiveToTag = event => event.target.closest(".tag-card").querySelector(".tag-image-bg").classList.add("active-bg")
 
-const makeTagActive = (event) => {  
+const renderActiveTag = (event) => {  
   if (isTagActive(event)) {
     removeActiveFromTag(event);
   } else {
     addActiveToTag(event);
   }
 };
+
+const toggleTagData = (tagID) => {
+  pageData.allTags.find(tag => tag.name === tagID).isActive = !pageData.allTags.find(tag => tag.name === tagID).isActive
+}
 
 const pageLoadRenders = (data) => {
   renderGrid(data);
@@ -307,6 +316,18 @@ const switchView = (clickedViewID) => {
   toggleViewBtns([ourViewBtn, yourViewBtn])
 }
 
+const displayTaggedRecipes = () => {
+  const activeTags = pageData.allTags.filter(tag => tag.isActive).map(tag => tag.name);
+  let filteredRecipes;
+  if (activeTags.length) {
+    filteredRecipes = filterRecipes(pageData.allRecipes, ...activeTags);
+  } else {
+    filteredRecipes = copyItem(pageData.allRecipes)
+  }
+  pageData.recipesOfInterest = filteredRecipes;
+  renderGrid(pageData.recipesOfInterest)
+}
+
 const searchForRecipes = () => {
   const data = {
     'our-recipes': pageData.allRecipes,
@@ -352,7 +373,7 @@ const updateRecipesFromModal = (targetID) => {
 // Exports
 export {
   renderGrid,
-  makeTagActive,
+  toggleTagData,
   pageLoadRenders,
   showRecipe,
   closeRecipe,
@@ -361,5 +382,8 @@ export {
   updateUserRecipes,
   findRecipe,
   updateSaveButtons,
-  updateRecipesFromModal
+  updateRecipesFromModal,
+  renderTagArea,
+  renderActiveTag,
+  displayTaggedRecipes
 }

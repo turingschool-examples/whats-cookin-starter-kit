@@ -83,6 +83,8 @@ const populateTags = (recipes) => {
   return refinedTagData;
 }
 
+
+
 export {
   getInstructions,
   filterRecipes,
@@ -92,5 +94,5 @@ export {
   filterRecipesByName,
   filterRecipesByIngredient,
   searchRecipes,
-  populateTags
+  populateTags,
 }
