@@ -1,67 +1,36 @@
 import { expect } from 'chai';
-import { compileIngredientQuantity, sumTotalIngredientQuantity, costInCents, totalCostInCents, calculateRecipePrice } from '../src/calculate-recipe-price';
-import { sampleIngredientsData, sampleRecipeData } from './sampleIngredients';
+import { getIngredientCost, calculateRecipePrice } from '../src/calculate-recipe-price';
+import { sampleRecipeData as rData} from './sampleIngredients';
+import { sampleIngredientsData as iData } from './sampleIngredients';
 
-describe('compileIngredientQuantity', () => {
-  it('should be a fuction', () => {
-    expect(compileIngredientQuantity).to.be.a('function');
-  });
-
-  it('should compile the id and quantity of each ingredient', () => {
-    expect(compileIngredientQuantity(sampleRecipeData[0])).to.deep.equal([
-      { id: 1, quantity: 6 },
-      { id: 7, quantity: 2 },
-      { id: 8, quantity: 2 },
-      { id: 9, quantity: 2 },
-      { id: 10, quantity: 0.5 }
-    ]);
-    expect(compileIngredientQuantity(sampleRecipeData[1])).to.deep.equal([
-      { id: 2, quantity: 4 },
-      { id: 3, quantity: 1 },
-      { id: 4, quantity: 4 }
-    ]);
-  });
-});
-
-describe('sumTotalIngredientQuantity', () => {
+describe('getIngredientCost', () => {
   it('should be a function', () => {
-    expect(sumTotalIngredientQuantity).to.be.a('function');
+    expect(getIngredientCost).to.be.a('function');
   });
 
-  it('should sum the total ingredient quantity for a given recipe', () => {
-    const ingredientQuantityInfo = compileIngredientQuantity(sampleRecipeData[0]);
-
-    expect(sumTotalIngredientQuantity(ingredientQuantityInfo)).to.equal(12.5);
-  });
-});
-  
-describe('costInCents', () => {
-  it('should be a function', () => {
-    expect(costInCents).to.be.a('function');
+  it('it should take two arguments: an ingredient id and a collection of ingredients data', () => {
+    expect(getIngredientCost('', {})).to.equal('Error: wrong input type');
+    expect(getIngredientCost(1, '')).to.equal('Error: wrong input type');
+    expect(getIngredientCost('', [])).to.equal('Error: wrong input type');
   });
 
-  it('should create a new array of the total cost in cents of all the ingredients', () => {
-    const ingredientQuantityInfo = compileIngredientQuantity(sampleRecipeData[0]);
-    const ingredientQuantityInfo2 = compileIngredientQuantity(sampleRecipeData[1]);
-
-    expect(costInCents(ingredientQuantityInfo, sampleIngredientsData)).to.deep.equal([ 472, 548, 1899, 543, 760 ]);
-    expect(costInCents(ingredientQuantityInfo2, sampleIngredientsData)).to.deep.equal([ 200, 350, 325]);
-  });
-});
-
-describe('totalCostInCents', () => {
-  it('should be a function', () => {
-    expect(totalCostInCents).to.be.a('function');
+  it('it should return an error message if no matching ingredient is found', () => {
+    expect(getIngredientCost(1, [])).to.equal('Error: no matching ingredient');
+    expect(getIngredientCost(13, iData)).to.equal('Error: no matching ingredient');
+    expect(getIngredientCost(200, iData)).to.equal('Error: no matching ingredient');
   });
 
-  it('sum the total price in cents', () => {
-    const ingredientQuantityInfo = compileIngredientQuantity(sampleRecipeData[0]);
-    const costInCentss = costInCents(ingredientQuantityInfo, sampleIngredientsData);
-    const ingredientQuantityInfo2 = compileIngredientQuantity(sampleRecipeData[1]);
-    const costInCentss2 = costInCents(ingredientQuantityInfo2, sampleIngredientsData);
-
-    expect(totalCostInCents(costInCentss)).to.deep.equal(4222)
-    expect(totalCostInCents(costInCentss2)).to.deep.equal(875)
+  it('it should return a string of the matching ingredient Cost', () => {
+    expect(getIngredientCost(1, iData)).to.equal(472);
+    expect(getIngredientCost(2, iData)).to.equal(200);
+    expect(getIngredientCost(3, iData)).to.equal(350);
+    expect(getIngredientCost(4, iData)).to.equal(325);
+    expect(getIngredientCost(5, iData)).to.equal(345);
+    expect(getIngredientCost(6, iData)).to.equal(689);
+    expect(getIngredientCost(7, iData)).to.equal(548);
+    expect(getIngredientCost(8, iData)).to.equal(1899);
+    expect(getIngredientCost(9, iData)).to.equal(543);
+    expect(getIngredientCost(10, iData)).to.equal(760);
   });
 });
 
@@ -70,12 +39,20 @@ describe('calculateRecipePrice', () => {
     expect(calculateRecipePrice).to.be.a('function');
   });
 
-  it('sum the total price of recipe in dollars', () => {
-    expect(calculateRecipePrice(sampleRecipeData[0], sampleIngredientsData)).to.equal('$527.75');
+  it('should take two arguments: a recipe object and a collection of ingredients data', () => {
+    expect(calculateRecipePrice([], 1)).to.equal('Error: wrong input type');
+    expect(calculateRecipePrice(1, [])).to.equal('Error: wrong input type');
+    expect(calculateRecipePrice({}, 1)).to.equal('Error: wrong input type');
   });
 
-  it('return a message if recipe is not entered', () => {
-    expect(calculateRecipePrice()).to.equal('Sorry this is not a recipe!');
-  })
+  it('should return a list of ingredient items, which includes ingredient name, multiplication symbol, amount, and unit', () => {
+    expect(calculateRecipePrice(rData[0], iData)).to.deep.equal('$91.92');
+    expect(calculateRecipePrice(rData[1], iData)).to.deep.equal('$24.50');
+    expect(calculateRecipePrice(rData[2], iData)).to.deep.equal('$52.65');
+    expect(calculateRecipePrice(rData[3], iData)).to.deep.equal('$47.20');
+    expect(calculateRecipePrice(rData[4], iData)).to.deep.equal('$60.83');
+    expect(calculateRecipePrice(rData[5], iData)).to.deep.equal('$266.33');
+    expect(calculateRecipePrice(rData[6], iData)).to.deep.equal('$123.67');
+  });
 
 });
