@@ -14,7 +14,7 @@ import {
   toDashboardView,
   renderRecipeCards,
   toggleBookmark,
-  renderSingleRecipeView,
+  toSingleRecipeView,
   searchBarClicked,
   removeRecipeCard,
 } from './domUpdates';
@@ -57,7 +57,7 @@ singleRecipeView.addEventListener('click', (e) => {
 });
 mainContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('recipe-img') || e.target.classList.contains('recipe-name')) {
-    renderSingleRecipeView(e, recipeData, ingredientsData, currentUser);
+    toSingleRecipeView(e, recipeData, ingredientsData);
   }
 });
 myRecipesBtn.addEventListener('click', () => {

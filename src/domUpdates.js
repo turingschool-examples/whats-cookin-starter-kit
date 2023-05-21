@@ -27,7 +27,7 @@ const toMyRecipeView = (currentUser) => {
   toggleHidden([mainView], 'add');
   toggleHidden([myRecipesView], 'remove');
   searchBar.placeholder = 'Search your bookmarked Recipes';
-  renderRecipeCards(savedCardContainer, currentUser.recipesToCook, currentUser);
+  renderSavedRecipes(savedCardContainer, currentUser.recipesToCook, currentUser);
 };
 
 const toDashboardView = (currentUser) => {
@@ -36,6 +36,13 @@ const toDashboardView = (currentUser) => {
   renderRecipeCards(mainViewCardContainer, recipeData, currentUser);
   clearView([singleRecipeView]);
   searchBar.placeholder = 'Search for new Recipes';
+};
+
+const toSingleRecipeView = (e, recipes, ingredients) => {
+  toggleHidden([mainView,], 'add');
+  toggleHidden([singleRecipeView], 'remove');
+  clearView([singleRecipeView, savedCardContainer]);
+  renderSingleRecipeView(e, recipes, ingredients);
 };
 
 const setView = () => {
@@ -132,6 +139,15 @@ const renderRecipeCards = (view, recipes, currentUser) => {
   });
 };
 
+
+const renderSavedRecipes = (view, recipes, currentUser) => {
+  if(!currentUser.recipesToCook.length) {
+    view.innerHTML = '<p>You have no saved recipe!</p>'
+  } else {
+    renderRecipeCards(view, recipes, currentUser);
+  }
+};
+
 const isUnchecked = (e) => {
   if (e.target.classList.contains('unchecked')) {
     return true;
@@ -154,6 +170,7 @@ const toggleBookmark = (e, currentUser, recipeData) => {
       removeRecipes(e.target.id, currentUser);
       toggleHidden([e.target], 'add');
       toggleHidden([e.target.previousElementSibling], 'remove');
+      renderSavedRecipes(savedCardContainer, currentUser.recipesToCook, currentUser);
     };
   };
 };
@@ -167,12 +184,8 @@ const findRecipe = (e, recipes) => {
   });
 };
 
-const renderSingleRecipeView = (e, recipes, ingredients, currentUser) => {
+const renderSingleRecipeView = (e, recipes, ingredients) => {
   let recipe = findRecipe(e, recipes);
-  toggleHidden([mainView,], 'add');
-  toggleHidden([singleRecipeView], 'remove');
-  clearView([singleRecipeView, savedCardContainer]);
-
   singleRecipeView.innerHTML += `
     <div class="single-recipe-view-flex">
       <img class="single-recipe-img" src="${recipe.image}">
@@ -238,7 +251,7 @@ export {
   toDashboardView,
   renderRecipeCards,
   toggleBookmark,
-  renderSingleRecipeView,
+  toSingleRecipeView,
   searchBarClicked,
   removeRecipeCard,
 };
