@@ -3,9 +3,7 @@ import recipeData from "./data/recipes";
 import { recipesfromName, recipesFromTag, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions, shuffleData } from "../src/recipeUtils";
 import ingredientsData from "./data/ingredients";
 import usersData from "./data/users"
-import { recipesToCook, saveRecipe, deleteRecipe, addSavedRecipesToUser } from "../src/userUtils";
-
-var currentUser;
+import { recipesToCook, saveRecipe, deleteRecipe, addSavedRecipesToUser, currentUser; } from "../src/userUtils";
 
 // Query Selectors:
 const allRecipesButton = document.querySelector('.all-recipes');
@@ -147,15 +145,6 @@ const viewSelectedRecipe = event => {
 
   recipeTitle.innerText = `${selectedRecipe.name}`
 }
-
-  // `singleRecipeDisplay.innerHTML=
-  // <h2 class="recipe-name">${selectedRecipe.name}</h2>
-  // <img id="${selectedRecipe.id}" src="${selectedRecipe.image}" class="recipe" alt='${selectedRecipe.name}'>
-  // <p class="total-cost-box">This recipe costs a total of: $${recipeCost} to make!</p>
-  // <p class="ingredient-box">The ingredients you will need to make this recipe are: <br>
-  // ${ingredients}</p>
-  // <p class="instruction-box">Instructions: <br>
-  // ${instructions}</p>;'
 
 function showRecipes() {
   removeHiddenClass([allRecipeDisplay, allFilterDisplay]);
