@@ -52,6 +52,12 @@ const start = () => {
 // EVENT LISTENERS
 window.addEventListener('load', start);
 searchButton.addEventListener('click', searchBarClicked);
+searchBar.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    searchButton.click();
+  }
+});
 singleRecipeView.addEventListener('click', (e) => {
   toggleBookmark(e, currentUser, recipeData);
 });

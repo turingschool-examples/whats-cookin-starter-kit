@@ -92,9 +92,9 @@ const handleNameSearch = () => {
 
 const handleSearchResults = (view, results) => {
   if (view === mainViewCardContainer) {
-    toggleHidden([mainView], 'remove')
+    toggleHidden([mainView], 'remove');
   } else {
-    toggleHidden([myRecipesView], 'remove')
+    toggleHidden([myRecipesView], 'remove');
   }
   if (typeof results === 'string') {
     view.innerHTML = `<p>${results}</p>`;
@@ -111,7 +111,7 @@ const renderBookmarks = (currentUser, recipe) => {
   } else {
     return `<img src="./images/bookmark.png" id="${recipe.id}" class="bookmark-icon unchecked" alt="bookmark icon">
     <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">`;
-  };
+  }
 };
 
 const renderRecipeCardTag = (recipe) => {
@@ -119,7 +119,7 @@ const renderRecipeCardTag = (recipe) => {
   return `<p class="recipe-tag">${recipe.tags[0]}</p>`
   } else {
     return `<p class="recipe-tag">-</p>`
-  };
+  }
 };
 
 const renderRecipeCards = (view, recipes, currentUser) => {
