@@ -1,6 +1,6 @@
 //NOTE: Your DOM manipulation will occur in this file
 import recipeData from "./data/recipes";
-import { recipesfromName, recipesFromTag, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions, shuffleData } from "../src/recipeUtils";
+import { recipesfromName, recipesFromTag, findRecipe, calculateRecipeCost, recipeInstructions, shuffleData, displayIngredients } from "../src/recipeUtils";
 import ingredientsData from "./data/ingredients";
 import usersData from "./data/users"
 import { recipesToCook, saveRecipe, deleteRecipe, addSavedRecipesToUser } from "../src/userUtils";
@@ -185,9 +185,14 @@ function renderFilteredRecipes() {
 
 const viewSelectedRecipe = event => {
   const recipeName = event.target.id;
+  console.log('recipeName:', recipeName)
   const selectedRecipe = findRecipe(recipeData, recipeName);
+  console.log('selectedRecipe:', selectedRecipe)
   const recipeCost = calculateRecipeCost(selectedRecipe, ingredientsData);
-  const ingredients = findIngredientNames(recipeData, recipeName);
+  console.log('recipeCost:', recipeCost)
+  // const ingredients = findIngredientNames(recipeData, recipeName);
+  const ingredients = displayIngredients(recipeData, ingredientsData, recipeName)
+  console.log('displayIngredients:', displayIngredients)
   const instructions = recipeInstructions(selectedRecipe);
   addHiddenClass([allFilterDisplay]);
   singleRecipeDisplay.innerHTML= '';
