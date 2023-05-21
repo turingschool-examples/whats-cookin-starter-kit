@@ -9,7 +9,6 @@ const searchButton = document.querySelector('.submit-button');
 const mainPanel = document.querySelector('.main-panel');
 const tagsPanel = document.querySelector('.tags-panel');
 const tags = document.querySelectorAll('.tag');
-const filterText = document.querySelector('h2');
 let recipeInfo;
 let page = {mode: 'home'};
 
@@ -29,11 +28,9 @@ const toggleMode = mode => {
   if (page.mode === 'home') {
     userInput.placeholder = 'Search Recipes';
     searchButton.innerText = 'Search Recipes';
-    filterText.innerText = 'Filter Recipes';
   } else {
     userInput.placeholder = 'Search Favorites';
     searchButton.innerText = 'Search Favorites';
-    filterText.innerText = 'Filter Favorites';
   };
 };
 
@@ -84,8 +81,12 @@ const exitPopUp = recipes => {
 const filterRecipeByTag = (e, recipes) => {
   page.mode === 'home' ? recipes : recipes = recipesToCook;
   let filteredRecipes = filterByTag(e.target.id, recipes);
-  viewAllRecipes(filteredRecipes);
-  loadHearts(filteredRecipes);
+  if (filteredRecipes.length) {
+    viewAllRecipes(filteredRecipes);
+    loadHearts(filteredRecipes);
+  } else {
+    mainPanel.innerHTML = `<p id='try-again-message'>No recipes found, please try again !</p>`
+  }
 };
 
 const searchRecipe = recipes => {
@@ -93,17 +94,20 @@ const searchRecipe = recipes => {
   page.mode === 'home' ? recipes : recipes = recipesToCook;
   let name = userInput.value.toLowerCase();
   let filteredRecipes = filterByName(name, recipes);
-  viewAllRecipes(filteredRecipes);
-  loadHearts(filteredRecipes);
+  if (filteredRecipes.length) {
+    viewAllRecipes(filteredRecipes);
+    loadHearts(filteredRecipes);
+  } else {
+    mainPanel.innerHTML = `<p id='try-again-message'>No recipes found, please try again !</p>`
+  }
 };
 
 
 const displaySearchError = () => {
   if(!userInput.value) {
     userInput.placeholder = 'Please Fill Out This Field'
-    mainPanel.innerHTML = ''
-    mainPanel.innerHTML = `<p id='try-again-message'>Please Try Again</p>`
-  }
+    mainPanel.innerHTML = `<p id='try-again-message'>No recipes found, please try again !</p>`
+  } 
 };
 
 const toggleButtons = () => {
@@ -152,7 +156,6 @@ export {
   mainPanel,
   tagsPanel,
   tags,
-  filterText,
   recipeInfo,
   getRandomIndex,
   loadUsers,

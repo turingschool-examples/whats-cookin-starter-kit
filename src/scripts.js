@@ -46,7 +46,7 @@ tagsPanel.addEventListener('click', e => {
 searchButton.addEventListener('click', () => {
   if (!recipeInfo) {
     searchRecipe(recipes);
-    displaySearchError();
+    displaySearchError(recipes);
   }
 });
 
@@ -55,6 +55,7 @@ favoriteButton.addEventListener('click', e => {
     viewSaved();
     viewAllRecipes(recipesToCook);
     loadHearts(recipesToCook);
+    document.querySelector('.filter-text').innerText = 'Filter Favorites';
   }
 });
 
@@ -63,5 +64,6 @@ homeButton.addEventListener('click', e => {
     viewHome();
     viewAllRecipes(recipes);
     loadHearts(recipesToCook);
+    document.querySelector('.filter-text').innerText = 'Filter Recipes';
   }
 });
