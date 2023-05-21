@@ -81,15 +81,6 @@ const filterRecipeByTag = (e, r) => {
   loadHearts(filteredRecipes);
 }
 
-// const searchRecipe = recipes => {
-//   mainPanel.innerHTML = '';
-//   page.mode === 'home' ? recipes : recipes = recipesToCook;
-//   let name = userInput.value.toLowerCase();
-//   let filteredRecipes = filterByName(name, recipes)
-//   console.log('filtered', filteredRecipes);
-//   viewAllRecipes(filteredRecipes);
-// }
-
 const searchRecipe = recipes => {
   mainPanel.innerHTML = '';
   page.mode === 'home' ? recipes : recipes = recipesToCook;
@@ -101,10 +92,9 @@ const searchRecipe = recipes => {
 
 const displaySearchError = () => {
   if(!userInput.value) {
-    alert('suck ittttttttt')
+    alert('Please provide a valid input.')
   }
 }
-
 
 const toggleButtons = () => {
   homeButton.classList.toggle('hidden');
