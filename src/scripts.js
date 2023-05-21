@@ -89,5 +89,5 @@ export {
   searchBar,
   searchButton,
   searchByToggle,
-  savedCardContainer
+  savedCardContainer,
 };

@@ -10,7 +10,7 @@ import {
   searchByToggle,
   mainViewCardContainer,
   currentUser,
-  savedCardContainer
+  savedCardContainer,
 } from './scripts';
 import { filterByName, filterByTag } from './filters';
 import { recipeData } from './data/recipes';
@@ -39,7 +39,7 @@ const toDashboardView = (currentUser) => {
 };
 
 const toSingleRecipeView = (e, recipes, ingredients) => {
-  toggleHidden([mainView,], 'add');
+  toggleHidden([mainView], 'add');
   toggleHidden([singleRecipeView], 'remove');
   clearView([singleRecipeView, savedCardContainer]);
   renderSingleRecipeView(e, recipes, ingredients);
@@ -50,7 +50,7 @@ const setView = () => {
     return mainViewCardContainer;
   } else if (mainView.classList.contains('hidden')) {
     return savedCardContainer;
-  };
+  }
 };
 
 const searchResults = () => {
@@ -61,7 +61,7 @@ const searchResults = () => {
     return handleTagSearch();
   } else if (searchByToggle.value === 'name') {
     return handleNameSearch();
-  };
+  }
 };
 
 const searchBarClicked = () => {
@@ -79,7 +79,7 @@ const handleTagSearch = () => {
     return filterByTag(searchBar.value, recipeData);
   } else if (mainView.classList.contains('hidden')) {
     return filterByTag(searchBar.value, currentUser.recipesToCook);
-  };
+  }
 };
 
 const handleNameSearch = () => {
@@ -87,7 +87,7 @@ const handleNameSearch = () => {
     return filterByName(searchBar.value, recipeData);
   } else if (mainView.classList.contains('hidden')) {
     return filterByName(searchBar.value, currentUser.recipesToCook);
-  };
+  }
 };
 
 const handleSearchResults = (view, results) => {
@@ -100,7 +100,7 @@ const handleSearchResults = (view, results) => {
     view.innerHTML = `<p>${results}</p>`;
   } else {
     renderRecipeCards(view, results, currentUser);
-  };
+  }
 };
 
 // DOM FUNCTIONS
@@ -115,15 +115,15 @@ const renderBookmarks = (currentUser, recipe) => {
 };
 
 const renderRecipeCardTag = (recipe) => {
-  if(recipe.tags.length > 0){
-  return `<p class="recipe-tag">${recipe.tags[0]}</p>`
+  if (recipe.tags.length > 0) {
+    return `<p class="recipe-tag">${recipe.tags[0]}</p>`;
   } else {
-    return `<p class="recipe-tag">-</p>`
+    return `<p class="recipe-tag">-</p>`;
   }
 };
 
 const renderRecipeCards = (view, recipes, currentUser) => {
-  clearView([mainViewCardContainer,savedCardContainer]);
+  clearView([mainViewCardContainer, savedCardContainer]);
   recipes.forEach((recipe) => {
     view.innerHTML += `
     <article class="recipe-card" id="${recipe.id}">
@@ -139,10 +139,9 @@ const renderRecipeCards = (view, recipes, currentUser) => {
   });
 };
 
-
 const renderSavedRecipes = (view, recipes, currentUser) => {
-  if(!currentUser.recipesToCook.length) {
-    view.innerHTML = '<p>You have no saved recipe!</p>'
+  if (!currentUser.recipesToCook.length) {
+    view.innerHTML = '<p>You have no saved recipe!</p>';
   } else {
     renderRecipeCards(view, recipes, currentUser);
   }
@@ -151,7 +150,7 @@ const renderSavedRecipes = (view, recipes, currentUser) => {
 const isUnchecked = (e) => {
   if (e.target.classList.contains('unchecked')) {
     return true;
-  };
+  }
 };
 
 const toggleHidden = (elements, type) => {
@@ -171,8 +170,8 @@ const toggleBookmark = (e, currentUser, recipeData) => {
       toggleHidden([e.target], 'add');
       toggleHidden([e.target.previousElementSibling], 'remove');
       renderSavedRecipes(savedCardContainer, currentUser.recipesToCook, currentUser);
-    };
-  };
+    }
+  }
 };
 
 const findRecipe = (e, recipes) => {
@@ -243,7 +242,7 @@ const renderTags = (recipe) => {
 const removeRecipeCard = (e) => {
   if (e.target.classList.contains('bookmark-icon')) {
     e.target.parentElement.parentElement.parentElement.remove();
-  };
+  }
 };
 
 export {
