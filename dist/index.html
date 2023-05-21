@@ -13,7 +13,7 @@
     <nav class="navbar">
       <button class="all-recipes">All Recipes</button>
       <input id = "search-bar" type="text" placeholder=" Search...">
-      <button class="saved recipes">Saved Recipes</button>
+      <button class="saved-recipes">Saved Recipes</button>
     </nav>
   </header>
   <main>
@@ -82,12 +82,18 @@
     <section class="all-recipes-display hidden">
       <!-- DOM elements go here -->
     </section>
+    <div class="save-recipe-button hidden">
+      <button class="save-recipe-btn">Save Recipe</button>
+    </div>
     <section class="single-recipe-display hidden">
-      <h2>Recipe Name</h2>
-      <img id="front-recipe-1" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" class="recipe" alt='recipe-title'>
-      <p class="total-cost-box">The total cost to make this recipe is: $1 million</p>
-      <p class="ingredient-box">Ingredients Box</p>
-      <p class="instruction-box"></p>
+      <div class="recipe-name-section">
+        <h2 class="recipe-name">RecipeName</h2>
+      </div>
+      <!-- <section class="recipe-info">
+      </section> -->
+      <!-- DOM elements go here -->
+    </section>
+    <section class="saved-recipe-display hidden">
       <!-- DOM elements go here -->
     </section>
   </div>
