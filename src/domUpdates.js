@@ -64,7 +64,7 @@ const viewAllRecipes = recipes => {
 
 const organizeInstructions = instructs => {
   instructs = instructs.reduce((string, instruction) => `${string}` + `${instruction.number}) ${instruction.instruction}`, '');
-  return instructs.split('.').map(x => x + '.').join('<br>').slice(0, instructs.length);
+  return instructs.split('.)').join('.').split(' (').join(' ').split(')').join('.').split('..').join('.').split('.,').join(',').split('.').join('. <br>');
 };
 
 const viewRecipeInfo = (recipes, ingredients, e) => {
