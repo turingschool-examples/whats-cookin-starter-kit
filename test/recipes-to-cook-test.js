@@ -2,6 +2,16 @@ import { expect } from 'chai';
 import { recipesToCook, removeRecipes, matchRecipe} from '../src/recipes-to-cook'
 import { sampleRecipeData } from './sampleIngredients';
 
+let currentUser; 
+  
+beforeEach(() => {
+   currentUser = {
+    id: 1,
+    name: "Sadye Welch",
+    recipesToCook: []
+  };
+});
+
 describe('matchRecipe', () => {
   it('should be a function', () => {
     expect(matchRecipe).to.be.a('function');
@@ -21,12 +31,6 @@ describe('recipesToCook', () => {
   it('should be a function', () => {
     expect(recipesToCook).to.be.a('function');
   });
-
-  let currentUser = {
-    id: 1,
-    name: "Sadye Welch",
-    recipesToCook: []
-  };
 
   it('user should be able to bookmark multiple recipes', () => {
     recipesToCook(101, currentUser, sampleRecipeData);
@@ -51,12 +55,6 @@ describe('removeRecipes', () => {
   });
 
   it('removes recipe when bookmark is unchecked', () => {
-    let currentUser = {
-      id: 1,
-      name: "Sadye Welch",
-      recipesToCook: []
-    };
-
     recipesToCook(101, currentUser, sampleRecipeData);
     recipesToCook(105, currentUser, sampleRecipeData);
     recipesToCook(102, currentUser, sampleRecipeData);
@@ -69,26 +67,13 @@ describe('removeRecipes', () => {
     expect(currentUser.recipesToCook).to.deep.equal([sampleRecipeData[4], sampleRecipeData[1]]);
   });
 
-  it('return message if recipe cannot be deleted', () => {
-    let currentUser = {
-      id: 1,
-      name: "Sadye Welch",
-      recipesToCook: []
-    };
-
-    recipesToCook(101, currentUser, sampleRecipeData);
+  it('return message if recipe cannot be deleted', () => {    recipesToCook(101, currentUser, sampleRecipeData);
     recipesToCook(105, currentUser, sampleRecipeData);
     recipesToCook(102, currentUser, sampleRecipeData);
     expect(removeRecipes(undefined, currentUser)).to.equal('Cannot delete recipe');
   });
   
   it('return message if saved recipes array is empty', () => {
-    let currentUser = {
-      id: 1,
-      name: "Sadye Welch",
-      recipesToCook: []
-    };
-
     expect(removeRecipes(104, currentUser)).to.equal('Cannot delete recipe');
   });
 });
