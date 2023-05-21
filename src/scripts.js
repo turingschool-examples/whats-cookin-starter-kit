@@ -3,7 +3,6 @@
 
 import './styles.css'
 import { makeTagActive, closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, updateRecipesFromModal } from './domUpdates'; 
-import { ingredientsData } from './data/ingredients';
 import './images/antipasti.png';
 import './images/antipasto.png'
 import './images/appetizer.png'

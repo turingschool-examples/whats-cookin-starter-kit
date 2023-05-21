@@ -1,6 +1,5 @@
 // Imports
 import { pageData, currentUser, updateCurrentUser, getRecipeCard } from './apiCalls';
-import { ingredientsData } from './data/ingredients';
 import {
   recipeGrid,
   clickedRecipe,
