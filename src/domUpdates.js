@@ -10,6 +10,7 @@ import {
   searchByToggle,
   mainViewCardContainer,
   currentUser,
+  savedCardContainer
 } from './scripts';
 import { filterByName, filterByTag } from './filters';
 import { recipeData } from './data/recipes';
@@ -22,11 +23,11 @@ const clearView = (views) => {
 };
 
 const toMyRecipeView = (currentUser) => {
+  clearView([singleRecipeView]);
   toggleHidden([mainView], 'add');
   toggleHidden([myRecipesView], 'remove');
-  clearView([singleRecipeView]);
   searchBar.placeholder = 'Search your bookmarked Recipes';
-  renderRecipeCards(myRecipesView, currentUser.recipesToCook, currentUser);
+  renderRecipeCards(savedCardContainer, currentUser.recipesToCook, currentUser);
 };
 
 const toDashboardView = (currentUser) => {
@@ -41,7 +42,7 @@ const setView = () => {
   if (myRecipesView.classList.contains('hidden')) {
     return mainViewCardContainer;
   } else if (mainView.classList.contains('hidden')) {
-    return myRecipesView;
+    return savedCardContainer;
   };
 };
 
@@ -57,7 +58,7 @@ const searchResults = () => {
 };
 
 const searchBarClicked = () => {
-  clearView([mainViewCardContainer, myRecipesView, singleRecipeView]);
+  clearView([mainViewCardContainer, savedCardContainer, singleRecipeView]);
   handleSearchResults(setView(), searchResults());
 };
 
@@ -106,13 +107,21 @@ const renderBookmarks = (currentUser, recipe) => {
   };
 };
 
+const renderRecipeCardTag = (recipe) => {
+  if(recipe.tags.length > 0){
+  return `<p class="recipe-tag">${recipe.tags[0]}</p>`
+  } else {
+    return `<p class="recipe-tag">-</p>`
+  };
+};
+
 const renderRecipeCards = (view, recipes, currentUser) => {
-  clearView([mainViewCardContainer, myRecipesView]);
+  clearView([mainViewCardContainer,savedCardContainer]);
   recipes.forEach((recipe) => {
     view.innerHTML += `
     <article class="recipe-card" id="${recipe.id}">
       <img class="recipe-img" src="${recipe.image}" id="${recipe.id}">
-      <p class="recipe-tag">${recipe.tags[0]}</p>
+      ${renderRecipeCardTag(recipe)}
       <div class="recipe-title-flex">
         <h2 class="recipe-name">${recipe.name}</h2>
         <div class="bookmark-flex">
@@ -160,9 +169,9 @@ const findRecipe = (e, recipes) => {
 
 const renderSingleRecipeView = (e, recipes, ingredients, currentUser) => {
   let recipe = findRecipe(e, recipes);
-  toggleHidden([mainView], 'add');
+  toggleHidden([mainView,], 'add');
   toggleHidden([singleRecipeView], 'remove');
-  clearView([singleRecipeView, myRecipesView]);
+  clearView([singleRecipeView, savedCardContainer]);
 
   singleRecipeView.innerHTML += `
     <div class="single-recipe-view-flex">

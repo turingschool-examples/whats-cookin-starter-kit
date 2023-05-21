@@ -36,6 +36,7 @@ const singleRecipeView = document.querySelector('#singleRecipeView');
 const searchBar = document.querySelector('#searchInput');
 const searchByToggle = document.querySelector('#searchSelect');
 const searchButton = document.querySelector('#searchIconBackground');
+const savedCardContainer = document.querySelector('#savedCardContainer');
 
 const start = () => {
   Promise.all([fetchAPI('users'), fetchAPI('ingredients'), fetchAPI('recipes')]).then((data) => {
@@ -82,4 +83,5 @@ export {
   searchBar,
   searchButton,
   searchByToggle,
+  savedCardContainer
 };

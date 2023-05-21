@@ -120,8 +120,7 @@ h1 {
 }
 
 /* MAIN VIEW */
-#discoverHeader,
-#myRecipesHeader {
+.discoverHeader {
   background-color: #ffe45e;
   color: black;
   width: 250px;
@@ -131,8 +130,7 @@ h1 {
   box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
 }
 
-.card-container,
-#myRecipeView {
+.card-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
