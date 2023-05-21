@@ -30,7 +30,9 @@ nav {
   padding: 8px;
 }
 
-.icon:hover {
+.icon:hover,
+.recipe-card:hover,
+.search-toggle {
   cursor: pointer;
 }
 
@@ -127,10 +129,6 @@ h1 {
   height: 300px;
   width: 275px;
   box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
-}
-
-.recipe-card:hover {
-  cursor: pointer;
 }
 
 .recipe-img {
