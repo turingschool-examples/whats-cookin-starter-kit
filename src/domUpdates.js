@@ -42,7 +42,7 @@ const setView = () => {
   if (myRecipesView.classList.contains('hidden')) {
     return mainViewCardContainer;
   } else if (mainView.classList.contains('hidden')) {
-    return myRecipesView;
+    return savedCardContainer;
   };
 };
 
@@ -58,7 +58,6 @@ const searchResults = () => {
 };
 
 const searchBarClicked = () => {
-  // clearView([mainViewCardContainer, myRecipesView, singleRecipeView]);
   clearView([mainViewCardContainer, savedCardContainer, singleRecipeView]);
   handleSearchResults(setView(), searchResults());
 };
@@ -107,13 +106,14 @@ const renderBookmarks = (currentUser, recipe) => {
     <img src="./images/bookmark-filled.png" id="${recipe.id}" class="bookmark-icon checked hidden" alt="bookmark icon filled in">`;
   };
 };
+
 const renderRecipeCardTag = (recipe) => {
   if(recipe.tags.length > 0){
   return `<p class="recipe-tag">${recipe.tags[0]}</p>`
   } else {
     return `<p class="recipe-tag">-</p>`
   };
-}
+};
 
 const renderRecipeCards = (view, recipes, currentUser) => {
   clearView([mainViewCardContainer,savedCardContainer]);
