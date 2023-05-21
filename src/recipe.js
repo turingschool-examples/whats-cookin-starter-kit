@@ -2,45 +2,39 @@ let recipesToCook = [];
 
 const filterByTag = (tag, recipes) => {
   if (!recipes.filter(recipe => recipe.tags.includes(tag)).length) {
-    return "No recipes found"
+    return "No recipes found";
   } else {
-    return recipes.filter(recipe => recipe.tags.includes(tag))
+    return recipes.filter(recipe => recipe.tags.includes(tag));
   }
 };
 
 const filterByName = (name, recipes) => {
   if (!recipes.filter(recipe => recipe.name === name).length) {
-    return "No recipes found"
+    return "No recipes found";
   } else {
-    return recipes.filter(recipe => recipe.name === name)
+    return recipes.filter(recipe => recipe.name === name);
   }
 };
 
 const determineIngredientNames = (recipes, ingredients, name) => {
   if (!recipes.filter(recipe => recipe.name === name).length) {
-    return "No recipes found"
+    return "No recipes found";
   } else {
-    return recipes.filter(recipe => recipe.name === name)[0].ingredients.map(ingr => ingr.id).map(ID => ingredients[ingredients.findIndex(ing => ing.id === ID)].name)
+    return recipes.filter(recipe => recipe.name === name)[0].ingredients.map(ingr => ingr.id).map(ID => ingredients[ingredients.findIndex(ing => ing.id === ID)].name);
   }
 }
 
 const calculateCost = (recipe, ingredients) => {
-  let iDs = ingredients.reduce((array, ingredient) => [...array, ingredient.id], [])
+  let iDs = ingredients.reduce((array, ingredient) => [...array, ingredient.id], []);
   if (!recipe.ingredients.every(ingredient => iDs.includes(ingredient.id))) {
-    return "Ingredient not found"
+    return "Ingredient not found";
   } else {
   recipe.ingredients.forEach(ingredient => ingredient.cost = ingredients[iDs.indexOf(ingredient.id)].estimatedCostInCents);
   return recipe.ingredients.reduce((sum, ingredient) => sum + (ingredient.quantity.amount * ingredient.cost), 0) / 100;
     }
 };
 
-const returnInstructions = recipe => {
-  if (!recipe){
-    return "Recipe not found"
-  } else {
-  return recipe.instructions
-  }
-};
+const returnInstructions = recipe => !recipe ? "Recipe not found" : recipe.instructions;
 
 const toggleRecipesToCook = (id, recipes) => {
   recipes.forEach(recipe => {
@@ -50,8 +44,8 @@ const toggleRecipesToCook = (id, recipes) => {
       recipesToCook = recipesToCook.filter(recipe => recipe.id !== Number(id));
     } 
   });
-  if(!recipes.some(recipe => recipe.id === id)){
-    return 'Recipe not found'
+  if (!recipes.some(recipe => recipe.id === id)) {
+    return 'Recipe not found';
   }
 }
 
