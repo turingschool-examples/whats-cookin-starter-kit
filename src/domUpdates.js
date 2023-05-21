@@ -16,7 +16,7 @@ import {
 } from './scripts'
 import { searchRecipes } from './recipes';
 import { updateRecipesToCook } from './users';
-import { copyItem, toggleView } from './helper-functions';
+import { copyItem, toggleViewBtns } from './helper-functions';
 
 // functions
 
@@ -277,7 +277,6 @@ const closeRecipe = () => {
   clickedRecipe.classList.add("hidden");
   clickedRecipe.classList.remove("flex");
   clickedRecipe.classList.remove("fade-in");
-  // renderGrid(pageData.recipesOfInterest)
 };
 
 const populateIngredients = currentRecipeCard => {
@@ -307,7 +306,7 @@ const switchView = (clickedViewID) => {
   }
   pageData.currentView = clickedViewID
   renderGrid(pageData.recipesOfInterest)
-  toggleView([ourViewBtn, yourViewBtn])
+  toggleViewBtns([ourViewBtn, yourViewBtn])
 }
 
 const searchForRecipes = () => {

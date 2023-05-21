@@ -9,7 +9,7 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
-const toggleView = elements => {
+const toggleViewBtns = elements => {
   elements.forEach(element => {
     element.classList.toggle('selected-view')
     element.classList.toggle('unselected-view')
@@ -29,4 +29,4 @@ const toggleView = elements => {
 // }
 
 
-export {copyItem, getIngredientProperty, getRandomIndex, toggleView}
+export {copyItem, getIngredientProperty, getRandomIndex, toggleViewBtns}

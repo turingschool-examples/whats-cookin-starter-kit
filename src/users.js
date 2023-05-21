@@ -9,7 +9,7 @@ const addUniqueRecipes = (userRecipes, newRecipe) => {
 };
 
 const addRecipe = (userRecipes, newRecipe) => {
-  if (!userRecipes) userRecipes = [newRecipe];
+  if (!userRecipes) userRecipes = [];
   addUniqueRecipes(userRecipes, newRecipe);
   return userRecipes;
 }
