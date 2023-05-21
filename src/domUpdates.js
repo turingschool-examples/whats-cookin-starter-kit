@@ -1,15 +1,15 @@
-import { determineIngredientNames, calculateCost, returnInstructions, filterByTag, recipesToCook, filterByName } from './recipe.js';
+import { recipesToCook, filterByTag, filterByName, determineIngredientNames, calculateCost, returnInstructions } from './recipe.js';
 
 // Global Variables
-const user = document.querySelector('.user')
-let userInput = document.querySelector('#search-bar');
-const searchButton = document.querySelector('.submit-button');
+const user = document.querySelector('.user');
+const userInput = document.querySelector('#search-bar');
+const homeButton = document.querySelector('.home-button');
 const favoriteButton = document.querySelector('.favorite-button');  
-const filterText = document.querySelector('h2');
+const searchButton = document.querySelector('.submit-button');
+const mainPanel = document.querySelector('.main-panel');
 const tagsPanel = document.querySelector('.tags-panel');
 const tags = document.querySelectorAll('.tag');
-const mainPanel = document.querySelector('.main-panel');
-const homeButton = document.querySelector('.home-button');
+const filterText = document.querySelector('h2');
 let recipeInfo;
 let page = {mode: 'home'};
 
@@ -19,19 +19,10 @@ const getRandomIndex = array => Math.floor(Math.random() * array.length);
 const loadUsers = userData => user.innerText = userData[getRandomIndex(userData)].name;
 
 const loadTags = recipes => {
-    tagsPanel.innerHTML = '<h2>Filter Recipes</h2>';
-    let allTags = recipes.reduce((total, recipe) => [...total, ...recipe.tags], []);
-    let tagReduced = []
-    allTags.forEach(tag => {
-      if (tagReduced.includes(tag)) {
-      } else {
-        tagReduced.push(tag)
-      }
-      return tagReduced
-    });
-    console.log(tagReduced)
-    tagReduced.forEach(tag => tagsPanel.innerHTML += `<button class="tag" id="${tag}">${tag.toUpperCase()}</button>`);
-  };
+  let allTags = recipes.reduce((total, recipe) => [...total, ...recipe.tags], [])
+  allTags = allTags.filter((tag, i) => allTags.indexOf(tag) === i);
+  allTags.forEach(tag => tagsPanel.innerHTML += `<button class="tag" id="${tag}">${tag.toUpperCase()}</button>`);
+}
 
 const toggleMode = mode => {  
   page.mode = mode;
@@ -51,8 +42,8 @@ const viewRecipe = recipe => {
   <section class='recipe-container box' id='${recipe.id}'>
     <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
     <h3 class='recipe-name' id="${recipe.id}">${recipe.name}</h3>
-    <img class='heart' id='unsaved-${recipe.id}' src='./images/bh.png' alt='unsave ${recipe.name}'>
-    <img class='heart hidden' id='saved-${recipe.id}' src='./images/rh.png' alt='save ${recipe.name}'>
+    <img class='heart' id='unsaved-${recipe.id}' src='./images/black-heart.png' alt='unsave ${recipe.name}'>
+    <img class='heart hidden' id='saved-${recipe.id}' src='./images/red-heart.png' alt='save ${recipe.name}'>
   </section>
   `;
 };
@@ -60,11 +51,6 @@ const viewRecipe = recipe => {
 const viewAllRecipes = recipes => {
   mainPanel.innerHTML = '';
   recipes.forEach(recipe => viewRecipe(recipe));
-};
-
-const organizeInstructions = instructs => {
-  instructs = instructs.reduce((string, instruction) => `${string}` + `${instruction.number}) ${instruction.instruction}`, '');
-  return instructs.split('.)').join('.').split(' (').join(' ').split(')').join('.').split('..').join('.').split('.,').join(',').split('.').join('. <br>');
 };
 
 const viewRecipeInfo = (recipes, ingredients, e) => {
@@ -82,13 +68,12 @@ const viewRecipeInfo = (recipes, ingredients, e) => {
     `;
   };
   recipeInfo = document.querySelector('.recipeInfo');
-  // console.log(recipeInfo)
-  // return recipeInfo
 };
 
-const showRecipeCount = () => {
-
-}
+const organizeInstructions = instructs => {
+  instructs = instructs.reduce((string, instruction) => `${string}` + `${instruction.number}) ${instruction.instruction}`, '');
+  return instructs.split('.)').join('.').split(' (').join(' ').split(')').join('.').split('..').join('.').split('.,').join(',').split('.').join('. <br>');
+};
 
 const exitPopUp = recipes => {
   recipeInfo = null;
@@ -96,9 +81,9 @@ const exitPopUp = recipes => {
   loadHearts(recipesToCook);
 };
 
-const filterRecipeByTag = (e, r) => {
-  page.mode === 'home' ? r : r = recipesToCook;
-  let filteredRecipes = filterByTag(e.target.id, r);
+const filterRecipeByTag = (e, recipes) => {
+  page.mode === 'home' ? recipes : recipes = recipesToCook;
+  let filteredRecipes = filterByTag(e.target.id, recipes);
   viewAllRecipes(filteredRecipes);
   loadHearts(filteredRecipes);
 };
@@ -135,10 +120,10 @@ const toggleHearts = (e, recipes) => {
   });
 };
 
-const loadHearts = (recipes) => {
-  let savedIDs = recipesToCook.map(saved => saved.id);
+const loadHearts = recipes => {
+  let savedIDs = recipesToCook.map(recipe => recipe.id);
   recipes.forEach(recipe => {
-    if (savedIDs.some(saved => saved === recipe.id)) {
+    if (savedIDs.some(id => id === recipe.id)) {
       document.getElementById(`unsaved-${recipe.id}`).classList.add('hidden');
       document.getElementById(`saved-${recipe.id}`).classList.remove('hidden');
     } else {
@@ -161,14 +146,17 @@ const viewSaved = () => {
 export {
   user,
   userInput,
-  searchButton,
+  homeButton,
   favoriteButton,
-  filterText,
+  searchButton,
+  mainPanel,
   tagsPanel,
   tags,
-  mainPanel,
-  homeButton,
+  filterText,
+  recipeInfo,
   getRandomIndex,
+  loadUsers,
+  loadTags,
   toggleMode,
   viewRecipe,
   viewAllRecipes,
@@ -176,15 +164,11 @@ export {
   exitPopUp,
   filterRecipeByTag,
   searchRecipe, 
-  loadUsers,
-  loadTags,
+  displaySearchError,
   toggleButtons,
   toggleHearts,
   loadHearts,
   viewHome,
-  viewSaved,
-  displaySearchError,
-  showRecipeCount,
-  recipeInfo
+  viewSaved
 };
 
