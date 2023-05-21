@@ -90,7 +90,8 @@ savedRecipeDisplay.addEventListener('click', event => {
   if (event.target.classList.contains('delete-recipe-button')) {
     console.log('event.target.id', event.target.id)
     if (event.target.classList.contains('delete-recipe-button')) {
-      const recipeName = event.target.id;
+      console.log(event.target.classList)
+      const recipeName = event.target.classList;
       deleteRecipe(recipeName)
       console.log('recipeName:', recipeName)
       console.log('currentUser 1:', currentUser)
@@ -153,7 +154,7 @@ const showSavedRecipes = (currentUser, recipesToCook) => {
       <img id="${recipe.name}" src="${recipe.image}" class="recipe" alt="${recipe.name}">
       <div class="recipe-info">
         <p>${recipe.name}</p>
-        <button class="delete-recipe-button" id="${recipe.name}">🗑️</button>
+        <button class="delete-recipe-button ${recipe.name}" id="${recipe.id}">🗑️</button>
       </div>
     </div>`});
     console.log('savedRecipeDisplay:', savedRecipeDisplay)
