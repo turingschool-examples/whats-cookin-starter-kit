@@ -108,19 +108,19 @@ function randomizeHomePage() {
   for (let i = 0; i < recipeData.length; i++) {
     frontRecipeDisplay.innerHTML = `
       <div class = "recipe-wrapper">
-        <img id="front-recipe-1" src="${recipeData[0].image}" class="recipe">
+        <img id="${recipeData[0].name}" src="${recipeData[0].image}" class="recipe">
         <div class = "recipe-info">
           <p>${recipeData[0].name}</p>
         </div>
         </div>
       <div class = "recipe-wrapper">
-        <img id="front-recipe-2" src="${recipeData[1].image}"  class="recipe">
+        <img id="${recipeData[1].name}" src="${recipeData[1].image}"  class="recipe">
         <div class = "recipe-info">
           <p>${recipeData[1].name}</p>
         </div>
       </div>
       <div class = "recipe-wrapper">
-        <img id="front-recipe-3" src="${recipeData[2].image}"  class="recipe">
+        <img id="${recipeData[2].name}" src="${recipeData[2].image}"  class="recipe">
         <div class = "recipe-info">
           <p>${recipeData[2].name}</p>
         </div>`
