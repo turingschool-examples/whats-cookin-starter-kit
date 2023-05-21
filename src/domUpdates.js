@@ -32,8 +32,8 @@ savedRecipesButton.addEventListener('click', event => {
 
 saveRecipeButton.addEventListener('click', event => {
   if (event.target.classList.contains('save-recipe-btn')) {
-    const recipeName = recipeTitle.innerText
-    addSavedRecipesToUser(currentUser, recipesToCook)
+    const recipeName = recipeTitle.innerText;
+    addSavedRecipesToUser(currentUser, recipesToCook);
     saveRecipe(recipeData, recipeName);
   }
 });
@@ -48,13 +48,25 @@ searchInput.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
     showSearchResults();
   }
-})
+});
 
 allRecipeDisplay.addEventListener('click', function (event) {
+  if (event.target.classList.contains('recipe')) {
   addHiddenClass([allRecipeDisplay]);
   removeHiddenClass([singleRecipeDisplay, saveRecipeButton]);
   viewSelectedRecipe(event);
+  }
 });
+
+frontRecipeDisplay.addEventListener('click', function (event) {
+  if (event.target.classList.contains('recipe')) {
+  addHiddenClass([allRecipeDisplay]);
+  addHiddenClass([frontRecipeDisplay]);
+  removeHiddenClass([singleRecipeDisplay]);
+  viewSelectedRecipe(event);
+  }
+});
+
 
 homeButton.addEventListener('click', function () {
   showHomePage()
