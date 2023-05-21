@@ -43,6 +43,7 @@ const searchBar = document.querySelector('#searchBar');
 const searchBtn = document.querySelector('#searchBtn');
 const modalAddBtn = document.querySelector('.add-recipe');
 const modalRemoveBtn = document.querySelector('.remove-recipe');
+const modalRecipeBtns = document.querySelectorAll('.modal-recipe-btn')
 
 // DATA MODEL 
 
@@ -69,7 +70,7 @@ window.addEventListener("load", () => {
   loadData();
 });
 
-window.addEventListener('click', (event) => {
+allRecipes.addEventListener('click', (event) => {
   updateUserRecipes(event)
 })
 
@@ -100,13 +101,9 @@ searchBar.addEventListener('keypress', (event) => {
 
 searchBtn.addEventListener('click', searchForRecipes);
 
-modalAddBtn.addEventListener('click', (e) => {
-  updateRecipesFromModal(e)
-});
-
-modalRemoveBtn.addEventListener('click', (e) => {
-  updateRecipesFromModal(e)
-});
+modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
+  updateRecipesFromModal(e.target.id)
+}));
 
 // Exports
 export {

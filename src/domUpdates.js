@@ -338,9 +338,9 @@ const updateUserRecipes = (e) => {
   }
 }
 
-const updateRecipesFromModal = (e) => {
+const updateRecipesFromModal = (targetID) => {
   const recipe = findRecipe(pageData.allRecipes, pageData.currentRecipeCard.id)
-  updateCurrentUser(updateRecipesToCook(currentUser, recipe, e.target.id))
+  updateCurrentUser(updateRecipesToCook(currentUser, recipe, targetID))
   updateSaveButtons(recipe.id, modalAddBtn, modalRemoveBtn)
   updateSaveButtons(recipe.id, pageData.currentRecipeCard.outerAddBtn, pageData.currentRecipeCard.outerRemoveBtn) 
   if (pageData.currentView === 'your-recipes') pageData.recipesOfInterest = copyItem(currentUser.recipesToCook)
