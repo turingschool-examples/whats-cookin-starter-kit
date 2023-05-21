@@ -58,15 +58,3 @@ export {
   returnInstructions,
   toggleRecipesToCook
 }
-
-// const determineIngredientNames = (recipesData, ingredientsData, recipeName) => {
-//   let ingredientNames = [];
-//   const recipeIds = recipesData.find(find => find.name === recipeName).ingredients
-//   .map(ingr => ingr.id);  
-//   ingredientsData.forEach((ingredient)=> {
-//     if(recipeIds.includes(ingredient.id)) {
-//       ingredientNames.push(`${ingredient.name.charAt(0).toUpperCase()}${ingredient.name.slice(1)}`)
-//     }
-//   });
-//   return ingredientNames
-// }
