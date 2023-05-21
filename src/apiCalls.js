@@ -7,7 +7,7 @@ import { copyItem } from "./helper-functions"
 let currentUser;
 let pageData = {
   activeTags: [],
-  currentView: 'ourRecipes',
+  currentView: 'our-recipes',
   currentRecipeCard: {}
 };
 

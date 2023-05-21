@@ -2,7 +2,7 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { makeTagActive, closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, findRecipe, updateSaveButtons } from './domUpdates';
+import { makeTagActive, closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, findRecipe, updateSaveButtons, renderGrid } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
 import './images/antipasti.png';
@@ -104,14 +104,18 @@ modalAddBtn.addEventListener('click', () => {
   const recipe = findRecipe(pageData.allRecipes, pageData.currentRecipeCard.id)
   updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'add'))
   updateSaveButtons(recipe.id, modalAddBtn, modalRemoveBtn)
-  updateSaveButtons(recipe.id, pageData.currentRecipeCard.outerAddBtn, pageData.currentRecipeCard.outerRemoveBtn)  
+  updateSaveButtons(recipe.id, pageData.currentRecipeCard.outerAddBtn, pageData.currentRecipeCard.outerRemoveBtn) 
+  if (pageData.currentView === 'your-recipes') pageData.recipesOfInterest = copyItem(currentUser.recipesToCook)
+  renderGrid(pageData.recipesOfInterest)
 });
 
 modalRemoveBtn.addEventListener('click', () => {
   const recipe = findRecipe(pageData.allRecipes, pageData.currentRecipeCard.id)
   updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'remove'))
   updateSaveButtons(recipe.id, modalAddBtn, modalRemoveBtn)
-  updateSaveButtons(recipe.id, pageData.currentRecipeCard.outerAddBtn, pageData.currentRecipeCard.outerRemoveBtn)  
+  updateSaveButtons(recipe.id, pageData.currentRecipeCard.outerAddBtn, pageData.currentRecipeCard.outerRemoveBtn) 
+  if (pageData.currentView === 'your-recipes') pageData.recipesOfInterest = copyItem(currentUser.recipesToCook) 
+  renderGrid(pageData.recipesOfInterest)
 });
 
 // Exports

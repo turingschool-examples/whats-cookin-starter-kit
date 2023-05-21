@@ -305,6 +305,7 @@ const switchView = (clickedViewID) => {
   } else {
     pageData.recipesOfInterest = copyItem(currentUser.recipesToCook);
   }
+  pageData.currentView = clickedViewID
   renderGrid(pageData.recipesOfInterest)
   toggleView([ourViewBtn, yourViewBtn])
 }
@@ -330,6 +331,8 @@ const updateUserRecipes = (e) => {
     const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel')
     const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel')
     updateSaveButtons(recipeID, addBtn, removeBtn);
+    if (pageData.currentView === 'your-recipes') pageData.recipesOfInterest = copyItem(currentUser.recipesToCook)
+    renderGrid(pageData.recipesOfInterest);
   }
 }
 
