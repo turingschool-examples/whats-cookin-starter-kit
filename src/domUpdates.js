@@ -336,6 +336,15 @@ const updateUserRecipes = (e) => {
   }
 }
 
+const updateRecipesFromModal = (e) => {
+  const recipe = findRecipe(pageData.allRecipes, pageData.currentRecipeCard.id)
+  updateCurrentUser(updateRecipesToCook(currentUser, recipe, e.target.id))
+  updateSaveButtons(recipe.id, modalAddBtn, modalRemoveBtn)
+  updateSaveButtons(recipe.id, pageData.currentRecipeCard.outerAddBtn, pageData.currentRecipeCard.outerRemoveBtn) 
+  if (pageData.currentView === 'your-recipes') pageData.recipesOfInterest = copyItem(currentUser.recipesToCook)
+  renderGrid(pageData.recipesOfInterest)
+}
+
 // Exports
 export {
   renderGrid,
@@ -347,5 +356,6 @@ export {
   searchForRecipes,
   updateUserRecipes,
   findRecipe,
-  updateSaveButtons
+  updateSaveButtons,
+  updateRecipesFromModal
 }
