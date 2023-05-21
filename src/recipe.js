@@ -5,7 +5,7 @@ const filterByTag = (tag, recipes) => {
     return "No recipes found";
   } else {
     return recipes.filter(recipe => recipe.tags.includes(tag));
-  }
+  };
 };
 
 const filterByName = (name, recipes) => {
@@ -13,7 +13,7 @@ const filterByName = (name, recipes) => {
     return "No recipes found";
   } else {
     return recipes.filter(recipe => recipe.name.toLowerCase().includes(name));
-  }
+  };
 };
 
 const determineIngredientNames = (recipes, ingredients, name) => {
@@ -21,8 +21,8 @@ const determineIngredientNames = (recipes, ingredients, name) => {
     return "No recipes found";
   } else {
     return recipes.filter(recipe => recipe.name === name)[0].ingredients.map(ingr => ingr.id).map(ID => ingredients[ingredients.findIndex(ing => ing.id === ID)].name);
-  }
-}
+  };
+};
 
 const calculateCost = (recipe, ingredients) => {
   let iDs = ingredients.reduce((array, ingredient) => [...array, ingredient.id], []);
@@ -31,7 +31,7 @@ const calculateCost = (recipe, ingredients) => {
   } else {
   recipe.ingredients.forEach(ingredient => ingredient.cost = ingredients[iDs.indexOf(ingredient.id)].estimatedCostInCents);
   return recipe.ingredients.reduce((sum, ingredient) => sum + (ingredient.quantity.amount * ingredient.cost), 0) / 100;
-    }
+    };
 };
 
 const returnInstructions = recipe => !recipe ? "Recipe not found" : recipe.instructions;
@@ -46,8 +46,8 @@ const toggleRecipesToCook = (id, recipes) => {
   });
   if (!recipes.some(recipe => recipe.id === id)) {
     return 'Recipe not found';
-  }
-}
+  };
+};
 
 export {
   recipesToCook,
@@ -57,4 +57,4 @@ export {
   calculateCost,
   returnInstructions,
   toggleRecipesToCook
-}
+};
