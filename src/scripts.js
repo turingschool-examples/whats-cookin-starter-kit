@@ -5,7 +5,7 @@ import './styles.css'
 import { makeTagActive, closeRecipe, showRecipe, searchForRecipes, switchView } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
-import { dataLoad, assignCurrentUser, fetchRecipes } from './apiCalls';
+import { dataLoad, getChatGPTRes } from './apiCalls';
 import './images/antipasti.png';
 import './images/antipasto.png'
 import './images/appetizer.png'
@@ -66,6 +66,7 @@ return recipeCard;
 // import {exampleFunction1, exampleFunction2} from './domUpdates.js'
 window.addEventListener("load", () => {
   dataLoad();
+  getChatGPTRes();
 });
 
 tagArea.addEventListener("click", function(event) {
