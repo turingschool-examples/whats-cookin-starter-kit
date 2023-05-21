@@ -4,7 +4,7 @@ const getInstructions = recipe => {
   return recipe.instructions.map(item => item.instruction)
 }
 
-const filterRecipes = (allRecipes, ...tags) => {
+const filterRecipesByTag = (allRecipes, ...tags) => {
   let filteredRecipes = tags.flatMap((tag) => {
     return allRecipes.filter(recipe => {
       return recipe.tags.includes(tag);
@@ -87,7 +87,7 @@ const populateTags = (recipes) => {
 
 export {
   getInstructions,
-  filterRecipes,
+  filterRecipesByTag,
   getIngredients,
   getIngredientAmounts,
   calculateRecipeCost,

@@ -79,7 +79,6 @@ tagArea.addEventListener("click", function(event) {
     toggleTagData(event.target.closest("section").id);
     renderActiveTag(event);
     displayTaggedRecipes();
-    renderGrid(pageData.recipesOfInterest)
   };
 });
 

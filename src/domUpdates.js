@@ -14,7 +14,7 @@ import {
   modalAddBtn, 
   modalRemoveBtn
 } from './scripts'
-import { filterRecipes, searchRecipes } from './recipes';
+import { filterRecipesByTag, searchRecipes } from './recipes';
 import { updateRecipesToCook } from './users';
 import { copyItem, toggleViewBtns } from './helper-functions';
 
@@ -317,12 +317,18 @@ const switchView = (clickedViewID) => {
 }
 
 const displayTaggedRecipes = () => {
+  const data = {
+    'our-recipes': pageData.allRecipes,
+    'your-recipes': currentUser.recipesToCook
+  }
+
   const activeTags = pageData.allTags.filter(tag => tag.isActive).map(tag => tag.name);
+  const baseData = data[pageData.currentView];
   let filteredRecipes;
   if (activeTags.length) {
-    filteredRecipes = filterRecipes(pageData.allRecipes, ...activeTags);
+    filteredRecipes = filterRecipesByTag(baseData, ...activeTags);
   } else {
-    filteredRecipes = copyItem(pageData.allRecipes)
+    filteredRecipes = copyItem(baseData)
   }
   pageData.recipesOfInterest = filteredRecipes;
   renderGrid(pageData.recipesOfInterest)
