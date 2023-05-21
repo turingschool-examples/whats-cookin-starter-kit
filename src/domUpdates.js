@@ -5,6 +5,8 @@ import ingredientsData from "./data/ingredients";
 import usersData from "./data/users"
 import { recipesToCook, saveRecipe, deleteRecipe, addSavedRecipesToUser } from "../src/userUtils";
 
+var currentUser;
+
 // Query Selectors:
 const allRecipesButton = document.querySelector('.all-recipes');
 const frontRecipeDisplay = document.querySelector('.front-recipe-display');
@@ -12,11 +14,25 @@ const allRecipeDisplay = document.querySelector('.all-recipes-display');
 const allFilterDisplay = document.querySelector('.all-filters');
 const checkCategories = document.getElementsByName('checkbox');
 const searchInput = document.getElementById('search-bar');
+const recipeTitle = document.querySelector('h2');
 const singleRecipeDisplay = document.querySelector('.single-recipe-display');
 const homeButton = document.querySelector('.title')
+const saveRecipeButton = document.querySelector('.save-recipe-button')
 
 //Event Listeners
-allRecipesButton.addEventListener('click', showRecipes);
+allRecipesButton.addEventListener('click', event => {
+  showRecipes(event);
+  addHiddenClass([saveRecipeButton])
+
+});
+
+saveRecipeButton.addEventListener('click', event => {
+  if (event.target.classList.contains('save-recipe-btn')) {
+    const recipeName = recipeTitle.innerText
+    addSavedRecipesToUser(currentUser, recipesToCook)
+    saveRecipe(recipeData, recipeName);
+  }
+});
 
 allFilterDisplay.addEventListener('click', function (event) {
   if (event.target.classList.contains('checkbox')) {
@@ -32,7 +48,7 @@ searchInput.addEventListener('keypress', function (e) {
 
 allRecipeDisplay.addEventListener('click', function (event) {
   addHiddenClass([allRecipeDisplay]);
-  removeHiddenClass([singleRecipeDisplay]);
+  removeHiddenClass([singleRecipeDisplay, saveRecipeButton]);
   viewSelectedRecipe(event);
 });
 
@@ -49,8 +65,7 @@ window.addEventListener('load', () => {
 //Event Handlers/Functions
 
 const generateRandomUser = users => {
-  var currentUser = users[Math.floor(Math.random() * users.length)];
-  console.log(currentUser)
+  currentUser = users[Math.floor(Math.random() * users.length)];
   return currentUser
 }
 
@@ -63,7 +78,6 @@ function showSearchResults() {
     <img id="${recipe.name}" src="${recipe.image}" class="recipe">
     <div class = "recipe-info">
       <p>${recipe.name}</p>
-      <p>Total Cost: $..</p>
     </div>`)
 };
 
@@ -114,22 +128,34 @@ function renderFilteredRecipes() {
       </div>`)
 };
 
-function viewSelectedRecipe(event){
+const viewSelectedRecipe = event => {
   const recipeName = event.target.id;
+  console.log('event.target.id:', event.target.id)
   const selectedRecipe = findRecipe(recipeData, recipeName);
   const recipeCost = calculateRecipeCost(selectedRecipe, ingredientsData);
   const ingredients = findIngredientNames(recipeData, recipeName);
   const instructions = recipeInstructions(selectedRecipe);
   addHiddenClass([allFilterDisplay]);
-  singleRecipeDisplay.innerHTML= `
+  
+  singleRecipeDisplay.innerHTML= '';
+  singleRecipeDisplay.innerHTML += `
   <h2>${selectedRecipe.name}</h2>
   <img id="${selectedRecipe.id}" src="${selectedRecipe.image}" class="recipe" alt='${selectedRecipe.name}'>
   <p class="total-cost-box">This recipe costs a total of: $${recipeCost} to make!</p>
-  <p class="ingredient-box">The ingredients you will need to make this recipe are: <br>
-  ${ingredients}</p>
-  <p class="instruction-box">Instructions: <br>
-  ${instructions}</p>`;
+  <p class="ingredient-box">The ingredients you will need to make this recipe are: <br> ${ingredients}</p>
+  <p class="instruction-box">Instructions: <br> ${instructions}</p>`
+
+  recipeTitle.innerText = `${selectedRecipe.name}`
 }
+
+  // `singleRecipeDisplay.innerHTML=
+  // <h2 class="recipe-name">${selectedRecipe.name}</h2>
+  // <img id="${selectedRecipe.id}" src="${selectedRecipe.image}" class="recipe" alt='${selectedRecipe.name}'>
+  // <p class="total-cost-box">This recipe costs a total of: $${recipeCost} to make!</p>
+  // <p class="ingredient-box">The ingredients you will need to make this recipe are: <br>
+  // ${ingredients}</p>
+  // <p class="instruction-box">Instructions: <br>
+  // ${instructions}</p>;'
 
 function showRecipes() {
   removeHiddenClass([allRecipeDisplay, allFilterDisplay]);
