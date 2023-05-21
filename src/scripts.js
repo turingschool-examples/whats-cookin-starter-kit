@@ -7,7 +7,7 @@ import './images/Avatar1.gif';
 import './images/rh.png';
 import './images/bh.png';
 import { recipesToCook, toggleRecipesToCook } from './recipe.js';
-import { searchButton, favoriteButton, homeButton, filterText, tagsPanel, tags, mainPanel, loadUsers, loadTags, viewAllRecipes, viewRecipeInfo, exitPopUp, filterRecipeByTag, searchRecipe, toggleButtons, toggleHearts, loadHearts, toggleMode, viewHome, viewSaved, test, displaySearchError } from './domUpdates.js';
+import { searchButton, favoriteButton, homeButton, tagsPanel, mainPanel, loadUsers, loadTags, viewAllRecipes, viewRecipeInfo, exitPopUp, filterRecipeByTag, searchRecipe, toggleHearts, loadHearts, viewHome, viewSaved, displaySearchError } from './domUpdates.js';
 
 let users;
 let recipes;
@@ -34,12 +34,12 @@ mainPanel.addEventListener('click', e => {
     toggleHearts(e, recipes);
   } else {
     viewRecipeInfo(recipes, ingredients, e);
-  }
+  };
 });
 
 tagsPanel.addEventListener('click', e => {
   filterRecipeByTag(e, recipes);
-})
+});
 
 searchButton.addEventListener('click', () => {
   searchRecipe(recipes);
