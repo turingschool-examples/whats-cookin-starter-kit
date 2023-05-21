@@ -36,8 +36,8 @@ const viewRecipe = recipe => {
   <section class='recipe-container box' id='${recipe.id}'>
     <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
     <h3 class='recipe-name' id="${recipe.id}">${recipe.name}</h3>
-    <img class='heart-unsaved' id='unsaved-${recipe.id}' src='./images/bh.png' alt='unsave ${recipe.name}'>
-    <img class='heart-saved hidden' id='saved-${recipe.id}' src='./images/rh.png' alt='save ${recipe.name}'>
+    <img class='heart' id='unsaved-${recipe.id}' src='./images/bh.png' alt='unsave ${recipe.name}'>
+    <img class='heart hidden' id='saved-${recipe.id}' src='./images/rh.png' alt='save ${recipe.name}'>
   </section>
   `;
 }
@@ -71,6 +71,11 @@ const viewRecipeInfo = (recipes, ingredients, e) => {
   test = document.querySelector('.test')
 }
 
+const exitPopUp = recipes => {
+  viewAllRecipes(recipes);
+  loadHearts(recipesToCook);
+}
+
 // const filterRecipeByTag = (e, recipes) => {
 //   mainPanel.innerHTML = '';
 //   page.mode === 'home' ? recipes = recipes : recipes = recipesToCook;
@@ -84,9 +89,6 @@ const viewRecipeInfo = (recipes, ingredients, e) => {
 const filterRecipeByTag = (e, r) => {
   page.mode === 'home' ? r : r = recipesToCook;
   let filteredRecipes = filterByTag(e.target.id, r);
-  console.log(e.target.id);
-  console.log('r', r)
-  console.log('filtered', filteredRecipes);
   viewAllRecipes(filteredRecipes);
   loadHearts(filteredRecipes);
 }
@@ -123,7 +125,7 @@ const toggleButtons = () => {
 
 const toggleHearts = (e, recipes) => {
   recipes.forEach(recipe => {
-    if (Number(e.target.parentNode.id) === recipe.id) {
+    if (Number(e.target.parentNode.id) === recipe.id && !e.target.classList.contains('info-button')) {
       document.getElementById(`unsaved-${recipe.id}`).classList.toggle('hidden');
       document.getElementById(`saved-${recipe.id}`).classList.toggle('hidden');
     }
@@ -174,6 +176,7 @@ export {
   viewRecipe,
   viewAllRecipes,
   viewRecipeInfo,
+  exitPopUp,
   filterRecipeByTag,
   searchRecipe, 
   loadUsers, 
@@ -182,5 +185,5 @@ export {
   loadHearts,
   viewHome,
   viewSaved,
-  test,
+  test
 }
