@@ -7,7 +7,7 @@ import './images/Avatar1.gif';
 import './images/rh.png';
 import './images/bh.png';
 import { recipesToCook, toggleRecipesToCook } from './recipe.js';
-import { searchButton, favoriteButton, homeButton, tagsPanel, mainPanel, loadUsers, loadTags, viewAllRecipes, viewRecipeInfo, exitPopUp, filterRecipeByTag, searchRecipe, toggleHearts, loadHearts, viewHome, viewSaved, displaySearchError } from './domUpdates.js';
+import { searchButton, favoriteButton, homeButton, tagsPanel, mainPanel, loadUsers, loadTags, viewAllRecipes, viewRecipeInfo, exitPopUp, filterRecipeByTag, searchRecipe, toggleHearts, loadHearts, viewHome, viewSaved, displaySearchError, recipeInfo} from './domUpdates.js';
 
 let users;
 let recipes;
@@ -38,22 +38,34 @@ mainPanel.addEventListener('click', e => {
 });
 
 tagsPanel.addEventListener('click', e => {
+  if (recipeInfo){
+  } else {
   filterRecipeByTag(e, recipes);
+  }
 });
 
 searchButton.addEventListener('click', () => {
+  if (recipeInfo){
+  } else {
   searchRecipe(recipes);
   displaySearchError();
+  }
 });
 
 favoriteButton.addEventListener('click', e => {
+  if (recipeInfo){
+  } else {
   viewSaved();
   viewAllRecipes(recipesToCook);
   loadHearts(recipesToCook);
+  }
 });
 
 homeButton.addEventListener('click', e => {
+  if (recipeInfo){
+  } else {
   viewHome();
   viewAllRecipes(recipes);
   loadHearts(recipesToCook);
+  }
 });

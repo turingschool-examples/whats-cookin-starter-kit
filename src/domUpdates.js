@@ -10,6 +10,7 @@ const tagsPanel = document.querySelector('.tags-panel');
 const tags = document.querySelectorAll('.tag');
 const mainPanel = document.querySelector('.main-panel');
 const homeButton = document.querySelector('.home-button');
+let recipeInfo;
 let page = {mode: 'home'};
 
 // Event Handlers
@@ -79,10 +80,15 @@ const viewRecipeInfo = (recipes, ingredients, e) => {
       <p class='cost'>Total cost: $${calculateCost(selectedRecipe, ingredients)}</p>
     </div>
     `;
+    
   };
+  recipeInfo = document.querySelector('.recipeInfo');
+  // console.log(recipeInfo)
+  // return recipeInfo
 };
 
 const exitPopUp = recipes => {
+  recipeInfo = null;
   viewAllRecipes(recipes);
   loadHearts(recipesToCook);
 };
@@ -172,4 +178,6 @@ export {
   viewHome,
   viewSaved,
   displaySearchError,
+  recipeInfo
 };
+

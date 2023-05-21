@@ -158,7 +158,7 @@ main {
 };
 
 .tag {
-  margin-top: 10%;
+  height: 8vh;
 }
 
 .heart-saved:hover, .heart-unsaved:hover, .tag:hover, .info-button:hover, .submit-button:hover, .favorite-button:hover, .home-button:hover, .box:hover {
