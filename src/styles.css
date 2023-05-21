@@ -65,7 +65,7 @@ main {
     padding-left: 5%
 }
 
-.heart-saved, .heart-unsaved {
+.heart {
   position: absolute;
   top: 60%;
   width: 2vw;
@@ -114,10 +114,6 @@ main {
   background-color: #e6d7ff;
   overflow-y: scroll;
   overflow-x: hidden;
-}
-
-body {
-  /* -webkit-filter: blur(2px); */
 }
 
 .test {

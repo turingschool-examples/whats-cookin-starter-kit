@@ -1,4 +1,4 @@
-import { determineIngredientNames, calculateCost, returnInstructions, filterByTag, recipesToCook } from './recipe.js';
+import { determineIngredientNames, calculateCost, returnInstructions, filterByTag, recipesToCook, filterByName } from './recipe.js';
 
 // Global Variables
 const user = document.querySelector('.user')
@@ -47,8 +47,6 @@ const viewAllRecipes = recipes => {
   recipes.forEach(recipe => viewRecipe(recipe));
 }
 
-// const organizeInstructions = instructs => instructs.split('.').map(x => x + '.').join('<br>').slice(0, instructs.length);
-
 const organizeInstructions = instructs => {
   instructs = instructs.reduce((string, instruction) => `${string}` + `${instruction.number}) ${instruction.instruction}`, '');
   return instructs.split('.').map(x => x + '.').join('<br>').slice(0, instructs.length);
@@ -76,16 +74,6 @@ const exitPopUp = recipes => {
   loadHearts(recipesToCook);
 }
 
-// const filterRecipeByTag = (e, recipes) => {
-//   mainPanel.innerHTML = '';
-//   page.mode === 'home' ? recipes = recipes : recipes = recipesToCook;
-//   recipes.forEach(recipe => {
-//     if (recipe.tags.includes(e.target.id)) {
-//       viewRecipe(recipe);
-//     }
-//   });
-// }
-
 const filterRecipeByTag = (e, r) => {
   page.mode === 'home' ? r : r = recipesToCook;
   let filteredRecipes = filterByTag(e.target.id, r);
@@ -93,29 +81,19 @@ const filterRecipeByTag = (e, r) => {
   loadHearts(filteredRecipes);
 }
 
-
-// not currently functional, but don't want to block
-const searchRecipe = r => {
-  if (!input) {
-    // mainPanel.innerHTML = '';
-    return alert('you done goofed my guy');
-    // viewAllRecipes();
-  }
+const searchRecipe = recipes => {
   mainPanel.innerHTML = '';
-  page.mode === 'home' ? r : r = recipesToCook;
-  r.forEach(recipe => {
-    if (recipe.name.toLowerCase().includes(userInput.value.toLowerCase())) {
-      mainPanel.innerHTML += `
-      <section class='recipe-container box' id='${recipe.id}'>
-        <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
-        <h3 class='recipe-name' id="${recipe.id}">${recipe.name}</h3>
-        <img class='heart-unsaved' id='unsaved-${recipe.id}' src='./images/bh.png' alt='unsave ${recipe.name}'>
-        <img class='heart-saved hidden' id='saved-${recipe.id}' src='./images/rh.png' alt='save ${recipe.name}'>
-      </section>
-      `;
-    }
-  });
-  loadHearts(recipesToCook);
+  page.mode === 'home' ? recipes : recipes = recipesToCook;
+  let name = userInput.value.toLowerCase();
+  let filteredRecipes = filterByName(name, recipes)
+  console.log('filtered', filteredRecipes);
+  viewAllRecipes(filteredRecipes); 
+}
+
+const displaySearchError = () => {
+  if(!userInput.value) {
+    alert('Please provide a valid input.')
+  }
 }
 
 const toggleButtons = () => {
@@ -131,13 +109,6 @@ const toggleHearts = (e, recipes) => {
     }
   });
 }
-
-// const loadHearts = r => {
-//   r.forEach(recipe => {
-//     document.getElementById(`unsaved-${recipe.id}`).classList.add('hidden');
-//     document.getElementById(`saved-${recipe.id}`).classList.remove('hidden');
-//   });
-// }
 
 const loadHearts = (recipes) => {
   let savedIDs = recipesToCook.map(saved => saved.id);
@@ -185,5 +156,6 @@ export {
   loadHearts,
   viewHome,
   viewSaved,
+  displaySearchError,
   test
 }
