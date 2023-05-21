@@ -1,13 +1,12 @@
 // Imports
 import { pageData, currentUser, updateCurrentUser } from './apiCalls';
-import {recipeData} from './data/recipes'
 import { ingredientsData } from './data/ingredients';
 import {
-  recipeGrid, 
-  clickedRecipe, 
-  tagArea, 
+  recipeGrid,
+  clickedRecipe,
+  tagArea,
   getRecipeCard,
-  landingPage,
+  allRecipes,
   ingredientsList,
   searchBar,
   ourViewBtn,
@@ -37,8 +36,6 @@ const makeRecipeColumnData = (data) => {
   const rightColumn = mappedRecipe.filter(recipe => recipe.column === 0);
   return [leftColumn, centreColumn, rightColumn];
 }
-
-
 
 const createSingleRecipeHTML = singleRecipe => {
   let htmlCode = '';
@@ -171,8 +168,8 @@ const createTagAreaHTML = rows => {
   return htmlCode;
 };
 
-const renderTagArea = () => {
-  const tagData = getTagsFromRecipes(recipeData);
+const renderTagArea = (data) => {
+  const tagData = getTagsFromRecipes(data);
   const tagsAndIcons = clubTagsAndIcons(tagData);
   const tagRows = splitTagsInRows(tagsAndIcons);
   const htmlCode = createTagAreaHTML(tagRows);
@@ -191,9 +188,9 @@ const makeTagActive = (event) => {
   }
 };
 
-const pageLoadRenders = () => {
-  renderGrid(recipeData);
-  renderTagArea();
+const pageLoadRenders = (data) => {
+  renderGrid(data);
+  renderTagArea(data);
 };
 
 const getInstructionHTML = (recipe) => {
@@ -229,7 +226,7 @@ const findRecipe = (allRecipes, ID) => {
 
 const updateCurrentRecipe = recipeCard => {
   const recipeCardID = recipeCard.closest("article")?.id;
-  const thisRecipe = findRecipe(recipeData, recipeCardID);
+  const thisRecipe = findRecipe(pageData.recipesOfInterest, recipeCardID);
   pageData.currentRecipeCard = getRecipeCard(thisRecipe);
   pageData.currentRecipeCard.outerAddBtn = recipeCard.parentNode.querySelector('.add-panel')
   pageData.currentRecipeCard.outerRemoveBtn = recipeCard.parentNode.querySelector('.remove-panel')
@@ -259,13 +256,13 @@ const populateRecipeHeader = currentRecipe => {
 }
 
 const openRecipeCard = () => {
-  landingPage.classList.add('blur')
+  allRecipes.classList.add('blur')
   clickedRecipe.classList.toggle("hidden");
   clickedRecipe.classList.toggle("flex");
   clickedRecipe.classList.toggle("fade-in");
 }
 
-const showRecipe = (recipeCard, currentUser) => {
+const showRecipe = (recipeCard) => {
   updateCurrentRecipe(recipeCard);
   populateRecipeHeader(pageData.currentRecipeCard);
   populateInstructions(pageData.currentRecipeCard);
@@ -276,7 +273,7 @@ const showRecipe = (recipeCard, currentUser) => {
 
 
 const closeRecipe = () => {
-  landingPage.classList.remove('blur')
+  allRecipes.classList.remove('blur')
   clickedRecipe.classList.add("hidden");
   clickedRecipe.classList.remove("flex");
   clickedRecipe.classList.remove("fade-in");
@@ -314,7 +311,7 @@ const switchView = (clickedViewID) => {
 
 const searchForRecipes = () => {
   const data = {
-    ourRecipes: recipeData,
+    ourRecipes: pageData.recipesOfInterest,
     yourRecipes: currentUser.recipesToCook
   }
   let searchedRecipes = searchRecipes(data[pageData.currentView], ingredientsData, searchBar.value)

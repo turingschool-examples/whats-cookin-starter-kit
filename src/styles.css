@@ -7,7 +7,7 @@ body {
   color: white;
 }
 
-.landing-page > h1 {
+.all-recipes > h1 {
   text-align: center;
   font-size: 55px;
   margin-bottom: 25px;
@@ -25,6 +25,7 @@ body {
   border-radius: 25px;
   margin-bottom: 20px;
   background-color: rgba(255, 255, 255, 0.1);
+  min-width: 230px
 }
 
 .view-button {
@@ -37,7 +38,6 @@ body {
   height: 40px;
   border-radius: 25px;
   border: solid 2px #00000000;
-
 }
 
 .selected-view {
@@ -180,7 +180,7 @@ nav {
 
 /* Recipe grid */ 
 
-.landing-page {
+.all-recipes {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -387,6 +387,7 @@ h3 {
   display: flex;
   flex-direction: column;
   height: 97%;
+  padding: 20px;
 }
 
 .individual-recipe-image {

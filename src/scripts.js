@@ -2,7 +2,7 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { makeTagActive, pageLoadRenders, closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, findRecipe, updateSaveButtons } from './domUpdates';
+import { makeTagActive, closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, findRecipe, updateSaveButtons } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
 import './images/antipasti.png';
@@ -25,14 +25,14 @@ import './images/snack.png'
 import './images/spread.png'
 import './images/starter.png'
 import './images/search-button.png'
-import { assignCurrentUser, pageData, updateCurrentUser, currentUser } from './apiCalls';
+import { loadData, pageData, updateCurrentUser, currentUser } from './apiCalls';
 import { updateRecipesToCook } from './users';
 import { recipeData } from './data/recipes';
 
 // import apiCalls from './apiCalls'
 
 const recipeGrid = document.querySelector('.recipe-grid');
-const landingPage = document.querySelector('.landing-page')
+const allRecipes = document.querySelector('.all-recipes')
 const allUserRecipes = document.querySelector('.all-user-recipes');
 const clickedRecipe = document.querySelector('#clickedRecipe');
 const closeRecipeButton = document.querySelector('#closeRecipe');
@@ -68,8 +68,7 @@ return recipeCard;
 // //Example of one way to import functions from the domUpdates file. You will delete these examples.
 // import {exampleFunction1, exampleFunction2} from './domUpdates.js'
 window.addEventListener("load", () => {
-  assignCurrentUser();
-  pageLoadRenders();
+  loadData();
 });
 
 window.addEventListener('click', (event) => {
@@ -124,7 +123,7 @@ export {
   clickedRecipe,
   getRecipeCard,
   ingredientsList,
-  landingPage,
+  allRecipes,
   ourViewBtn,
   yourViewBtn,
   allUserRecipes,

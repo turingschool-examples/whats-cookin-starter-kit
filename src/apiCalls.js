@@ -1,5 +1,7 @@
-// IMPORTS
+//IMPORTS 
 import { getRandomUser } from "./users"
+import { pageLoadRenders } from "./domUpdates"
+import { copyItem } from "./helper-functions"
 
 // DATA MODEL 
 let currentUser;
@@ -9,7 +11,7 @@ let pageData = {
   currentRecipeCard: {}
 };
 
-// Your fetch requests will live here!
+// API CALLS
 
 const assignCurrentUser = () => {
   fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
@@ -22,10 +24,34 @@ const assignCurrentUser = () => {
     })
 }
 
+const fetchRecipes = () => {
+    fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
+        .then(response => response.json())
+        .then(recipes => {
+            pageData.allRecipes = recipes.recipes;
+            pageData.recipesOfInterest = copyItem(pageData.allRecipes);
+            pageLoadRenders(pageData.recipesOfInterest);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
+
+const fetchIngredients = () => {
+  fetch(`https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients`)
+    .then(response => response.json())
+    .then(ingredientData => {pageData.allIngredients = ingredientData.ingredients})
+    .catch(error => console.error(error))
+}
+
+const loadData = () => {
+  assignCurrentUser();
+  fetchRecipes();
+  fetchIngredients();
+}
+
 const updateCurrentUser = (user) => {
   currentUser = user;
 };
 
-export { assignCurrentUser, currentUser, pageData, updateCurrentUser };
-
-
+export { currentUser, pageData, updateCurrentUser, loadData };
