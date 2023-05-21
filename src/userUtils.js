@@ -10,11 +10,9 @@ const saveRecipe = (recipes, recipeName) => {
   return recipesToCook;
 };
 
-// why are there two return statements? 
-
 const deleteRecipe = (recipeName) => {
   let found = recipesToCook.find(recipe => recipe.name === recipeName)
-  recipesToCook.splice(found);
+  recipesToCook.splice(found, 1);
   return recipesToCook;
 };
 

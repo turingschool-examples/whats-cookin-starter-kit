@@ -22,19 +22,18 @@ const savedRecipesButton = document.querySelector('.saved-recipes')
 const savedRecipeDisplay = document.querySelector('.saved-recipe-display')
 
 //Event Listeners
+
 allRecipesButton.addEventListener('click', event => {
   showRecipes(event);
   addHiddenClass([saveRecipeButton, savedRecipeDisplay])
 
 });
 
-savedRecipesButton.addEventListener('click', event => {
-  console.log(recipesToCook)
+savedRecipesButton.addEventListener('click', () => {
   addHiddenClass([allRecipeDisplay, singleRecipeDisplay, saveRecipeButton, frontRecipeDisplay]);
   removeHiddenClass([savedRecipeDisplay]);
   showSavedRecipes(currentUser, recipesToCook);
 })
-
 
 saveRecipeButton.addEventListener('click', event => {
   if (event.target.classList.contains('save-recipe-btn')) {
@@ -67,7 +66,7 @@ allRecipeDisplay.addEventListener('click', function (event) {
 frontRecipeDisplay.addEventListener('click', function (event) {
   if (event.target.classList.contains('recipe')) {
   addHiddenClass([allRecipeDisplay, frontRecipeDisplay]);
-  removeHiddenClass([singleRecipeDisplay]);
+  removeHiddenClass([singleRecipeDisplay, saveRecipeButton]);
   viewSelectedRecipe(event);
   }
 });
@@ -77,6 +76,14 @@ savedRecipeDisplay.addEventListener('click', event => {
     addHiddenClass([savedRecipeDisplay]);
     removeHiddenClass([singleRecipeDisplay]);
     viewSelectedRecipe(event);
+  }
+  if (event.target.classList.contains('delete-recipe-button')) {
+    if (event.target.classList.contains('delete-recipe-button')) {
+      const recipeName = event.target.classList;
+      deleteRecipe(recipeName)
+      addSavedRecipesToUser(currentUser, recipesToCook)
+      showSavedRecipes(currentUser, recipesToCook)
+    }
   }
 });
 
@@ -123,14 +130,15 @@ const showSavedRecipes = (currentUser, recipesToCook) => {
     </div>`;
   } else {
     savedRecipeDisplay.innerHTML = '';
-    recipesToCook.forEach(recipe => savedRecipeDisplay.innerHTML += `
+    recipesToCook.forEach(recipe => {
+    savedRecipeDisplay.innerHTML += `
     <div class="recipe-wrapper">
-      <img id="${recipe.name}" src="${recipe.image}" class="recipe" alt="${recipe.name}"
+      <img id="${recipe.name}" src="${recipe.image}" class="recipe" alt="${recipe.name}">
       <div class="recipe-info">
         <p>${recipe.name}</p>
-       </div>
-    </div>`);
-    console.log('savedRecipeDisplay:', savedRecipeDisplay)
+        <button class="delete-recipe-button ${recipe.name}" id="${recipe.id}">🗑️</button>
+      </div>
+    </div>`});
   }
 };
 
@@ -165,8 +173,7 @@ function renderFilteredRecipes() {
     showRecipes()
     return
   }
-    let filtered = recipesFromTag(recipeData, tags);
-    console.log(recipeData)
+  let filtered = recipesFromTag(recipeData, tags);
   allRecipeDisplay.innerHTML = '';
   filtered.forEach(recipe => allRecipeDisplay.innerHTML += `<div class = "recipe-wrapper">
       <img id="${recipe.name}" src="${recipe.image}" class="recipe">
@@ -178,7 +185,6 @@ function renderFilteredRecipes() {
 
 const viewSelectedRecipe = event => {
   const recipeName = event.target.id;
-  console.log('event.target.id:', event.target.id)
   const selectedRecipe = findRecipe(recipeData, recipeName);
   const recipeCost = calculateRecipeCost(selectedRecipe, ingredientsData);
   const ingredients = findIngredientNames(recipeData, recipeName);
