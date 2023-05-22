@@ -379,8 +379,8 @@ h3 {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 98%;
-  max-width: 1200px;
+  width: 85%;
+  max-height: 95%;
   border-radius: 50px;
   background-image: linear-gradient(to right, #535a72ea, #171d2fea);
 }
@@ -445,6 +445,7 @@ input[type=checkbox] {
 
 #recipeRightSide {
   width: 40%;
+  max-height: 90%;
   margin: 10px 10px 10px 0;
   background-color: #ffffff;
   border-radius: 50px;
