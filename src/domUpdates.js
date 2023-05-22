@@ -148,12 +148,12 @@ const renderTagArea = () => {
   tagArea.innerHTML = htmlCode;
 };
 
-const isTagActive = event => event.target.closest(".tag-card")?.querySelector(".tag-image-bg").classList.contains("active-bg");
+const checkIfActive = event => event.target.closest(".tag-card")?.querySelector(".tag-image-bg").classList.contains("active-bg");
 const removeActiveFromTag = event => event.target.closest(".tag-card").querySelector(".tag-image-bg").classList.remove("active-bg");
 const addActiveToTag = event => event.target.closest(".tag-card").querySelector(".tag-image-bg").classList.add("active-bg")
 
 const renderActiveTag = (event) => {  
-  if (isTagActive(event)) {
+  if (checkIfActive(event)) {
     removeActiveFromTag(event);
   } else {
     addActiveToTag(event);
