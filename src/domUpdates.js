@@ -1,11 +1,9 @@
 // Imports
-import { pageData, currentUser, updateCurrentUser } from './apiCalls';
-import { ingredientsData } from './data/ingredients';
+import { pageData, currentUser, updateCurrentUser, getRecipeCard } from './apiCalls';
 import {
   recipeGrid,
   clickedRecipe,
   tagArea,
-  getRecipeCard,
   allRecipes,
   ingredientsList,
   searchBar,
