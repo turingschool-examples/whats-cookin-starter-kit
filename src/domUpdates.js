@@ -11,9 +11,10 @@ import {
   mainViewCardContainer,
   currentUser,
   savedCardContainer,
+  recipeData,
+  ingredientsData
 } from './scripts';
 import { filterByName, filterByTag } from './filters';
-import { recipeData } from './data/recipes';
 
 // EVENT HANDLERS
 const clearView = (views) => {
