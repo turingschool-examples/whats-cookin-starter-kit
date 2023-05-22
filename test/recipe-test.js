@@ -368,15 +368,34 @@ describe('populating tags', () => {
 
   it('should add more info to a tag', () => {
     const basicTags = getUniqueTagsFromRecipes(simpleRecipes);
-    const expectedOutput = [{name: 'a', isActive: false, path: `./images/${basicTags[0]}.png`, row: 1}]
+    const firstElement = {
+      name: 'a',
+      isActive: false,
+      path: `./images/${basicTags[0]}.png`,
+      row: 1
+    };
+    const expectedOutput = [firstElement];
     const refinedTags = addInfoToTags([basicTags[0]]);
     expect(refinedTags).to.deep.equal(expectedOutput);
   });
 
   it('should add more info to multiple tags', () => {
     const basicTags = getUniqueTagsFromRecipes(simpleRecipes);
-    const expectedOutput = [{name: 'a', isActive: false, path: `./images/${basicTags[0]}.png`, row: 1}
-  , {name: 'b', isActive: false, path: `./images/${basicTags[1]}.png`, row: 0}]
+    const firstElement = {
+      name: 'a',
+      isActive: false,
+      path: `./images/${basicTags[0]}.png`,
+      row: 1
+    };
+
+    const secondElement = {
+      name: 'b',
+      isActive: false,
+      path: `./images/${basicTags[1]}.png`,
+      row: 0
+    };
+
+    const expectedOutput = [firstElement, secondElement];
     const refinedTags = addInfoToTags([basicTags[0], basicTags[1]]);
     expect(refinedTags).to.deep.equal(expectedOutput);
   })
