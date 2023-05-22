@@ -442,14 +442,8 @@ input[type=checkbox] {
   border-radius: 50px;
 }
 
-.modal-add-recipe {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 25px;
-  height: 8vh;
-  width: 50%;
-  background-color: black;
+.modal-btn-container {
+  align-self: flex-start;
 }
 
 .modal-recipe-btn {
@@ -458,30 +452,18 @@ input[type=checkbox] {
   align-items: center;
   background-color: transparent;
   border: none;
-  height: 200px;
-  width: 200px;
+  height: 7vh;
+  width: auto;
 }
 
 .bookmark-img {
-  height: 150px;
-  width: 150px;
+  height: 100%;
+  width: auto;
 }
 
 .modal-recipe-btn:hover {
-  transform: scale(1.01);
+  transform: scale(1.1);
   cursor: pointer;
-}
-
-.modal-recipe-btn:hover .hover-bookmark {
-  display: visible;
-}
-
-.modal-recipe-btn:hover .appear-bookmark {
-  display: none;
-}
-
-.modal-recipe-btn:hover .select-bookmark {
-  display: none;
 }
 
 #recipeName {
