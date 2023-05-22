@@ -6,7 +6,6 @@ const getInstructions = recipe => {
 
 const filterRecipesByTag = (allRecipes, tags) => {
   let filteredRecipes = allRecipes.filter(recipe => tags.every(tag => recipe.tags.includes(tag)))
-  console.log(filteredRecipes);
   return filteredRecipes;
 }
 

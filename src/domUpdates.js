@@ -325,28 +325,36 @@ const setBaseData = () => {
   let baseData = data[pageData.currentView];
 
   if (searchBar.value) {
+    searchForRecipes();
     baseData = pageData.recipesOfInterest;
   }
 
   return baseData;
 }
 
-const displayTaggedRecipes = () => {
-  const activeTags = pageData.allTags.filter(tag => tag.isActive).map(tag => tag.name);
-  const baseData = setBaseData();
-
-  let filteredRecipes;
+const setupFilterData = (baseData) => {
   if (activeTags.length) {
-    filteredRecipes = filterRecipesByTag(baseData, activeTags);
+    return filterRecipesByTag(baseData, activeTags);
   } else {
     const data = {
       'our-recipes': pageData.allRecipes,
       'your-recipes': currentUser.recipesToCook
     };
-    filteredRecipes = copyItem(data[pageData.currentView]);
+    return copyItem(data[pageData.currentView]);
   }
-  pageData.recipesOfInterest = filteredRecipes;
-  renderGrid(pageData.recipesOfInterest)
+}
+
+const displayTaggedRecipes = () => {
+  const activeTags = pageData.allTags.filter(tag => tag.isActive).map(tag => tag.name);
+  const baseData = setBaseData();
+  const filteredRecipes = setupFilterData(baseData);
+  
+  if (filteredRecipes.length) {
+    pageData.recipesOfInterest = filteredRecipes;
+    renderGrid(pageData.recipesOfInterest)
+  } else {
+    recipeGrid.innerHTML = `<p>Sorry, we couldn't find any recipes for the selected tags.</p>`
+  }
 }
 
 const searchForRecipes = () => {
