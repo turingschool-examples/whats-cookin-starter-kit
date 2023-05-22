@@ -33,7 +33,9 @@ const makeRecipeColumnData = (data) => {
   const leftColumn = mappedRecipe.filter(recipe => recipe.column === 1);
   const centreColumn = mappedRecipe.filter(recipe => recipe.column === 2);
   const rightColumn = mappedRecipe.filter(recipe => recipe.column === 0);
-  return [leftColumn, centreColumn, rightColumn];
+  const allColumns = [leftColumn, centreColumn, rightColumn];
+  const filteredColumns = allColumns.filter(column => column.length);
+  return filteredColumns;
 }
 
 const createSingleRecipeHTML = singleRecipe => {
