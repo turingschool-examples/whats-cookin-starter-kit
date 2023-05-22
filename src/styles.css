@@ -156,7 +156,7 @@ nav {
   min-width: 80px;
 }
 
-.tag-card:hover {
+.tag-row > .tag-card:hover {
   cursor: pointer;
   transform: scale(1.25);
 }
