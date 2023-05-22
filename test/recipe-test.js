@@ -399,4 +399,4 @@ describe('populating tags', () => {
     const refinedTags = addInfoToTags([basicTags[0], basicTags[1]]);
     expect(refinedTags).to.deep.equal(expectedOutput);
   })
-})
+});
