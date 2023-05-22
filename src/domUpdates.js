@@ -191,7 +191,6 @@ function renderFilteredSavedRecipes() {
     return
   }
     let savedFiltered = recipesFromTag(recipesToCook, savedTags);
-    console.log(recipesToCook)
     savedRecipeDisplay.innerHTML = '';
   savedFiltered.forEach(recipe => savedRecipeDisplay.innerHTML += `<div class = "recipe-wrapper">
       <img id="${recipe.name}" src="${recipe.image}" class="recipe">

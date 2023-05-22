@@ -1,4 +1,3 @@
-// Your fetch requests will live here!
 const getData = (type) => {
   if (!['ingredients', 'users', 'recipes'].includes(type)) {
     throw new Error("check spelling")
@@ -11,7 +10,3 @@ const getData = (type) => {
 export {
   getData
 }
-
-
-
-console.log('I will be a fetch request!')
