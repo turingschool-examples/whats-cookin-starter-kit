@@ -98,5 +98,7 @@ export {
   filterRecipesByIngredient,
   searchRecipes,
   populateTags,
-  splitTagsInRows
+  splitTagsInRows,
+  getUniqueTagsFromRecipes,
+  addInfoToTags
 }

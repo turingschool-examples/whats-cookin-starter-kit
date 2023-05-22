@@ -1522,21 +1522,24 @@ const simpleRecipes = [
         {
           id: 1,
         }
-      ]
+      ],
+      tags: ['a', 'b', 'c']
     },
     {
       "ingredients": [
         {
-          id: 2
+          id: 2,
         }
-      ]
+      ],
+      tags: ['a', 'c', 'd']
     },
     {
       "ingredients": [
         {
-          id: 3
+          id: 3,
         }
-      ]
+      ],
+      tags: ['e', 'f', 'g']
     }
 ]
 

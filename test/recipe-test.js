@@ -18,7 +18,9 @@ import {
   filterRecipesByIngredient,
   filterRecipesByName,
   searchRecipes,
-  splitTagsInRows
+  splitTagsInRows,
+  getUniqueTagsFromRecipes,
+  addInfoToTags
 } from '../src/recipes';
 
 describe('recipe', () => {
@@ -350,5 +352,32 @@ describe('search recipes', () => {
     let expectedRecipes = [sampleRecipeData[3], sampleRecipeData[4]];
 
     assert.deepEqual(filteredRecipes, expectedRecipes)
+  })
+})
+
+describe('populating tags', () => {
+  it('should get unique tags from overlapping tags in recipes', () => {
+    const uniqueTags = getUniqueTagsFromRecipes(simpleRecipes.slice(0,2));
+    expect(uniqueTags).to.deep.equal(['a', 'b', 'c', 'd'])
+  });
+
+  it('should get unique tags from unique tags in recipes', () => {
+    const uniqueTags = getUniqueTagsFromRecipes(simpleRecipes);
+    expect(uniqueTags).to.deep.equal(['a', 'b', 'c', 'd', 'e', 'f', 'g'])
+  });
+
+  it('should add more info to a tag', () => {
+    const basicTags = getUniqueTagsFromRecipes(simpleRecipes);
+    const expectedOutput = [{name: 'a', isActive: false, path: `./images/${basicTags[0]}.png`, row: 1}]
+    const refinedTags = addInfoToTags([basicTags[0]]);
+    expect(refinedTags).to.deep.equal(expectedOutput);
+  });
+
+  it('should add more info to multiple tags', () => {
+    const basicTags = getUniqueTagsFromRecipes(simpleRecipes);
+    const expectedOutput = [{name: 'a', isActive: false, path: `./images/${basicTags[0]}.png`, row: 1}
+  , {name: 'b', isActive: false, path: `./images/${basicTags[1]}.png`, row: 0}]
+    const refinedTags = addInfoToTags([basicTags[0], basicTags[1]]);
+    expect(refinedTags).to.deep.equal(expectedOutput);
   })
 })
