@@ -269,7 +269,6 @@ const showRecipe = (recipeCard) => {
   openRecipeCard();
 };
 
-
 const closeRecipe = () => {
   allRecipes.classList.remove('blur')
   clickedRecipe.classList.add("hidden");
