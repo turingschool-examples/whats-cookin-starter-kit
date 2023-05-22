@@ -225,7 +225,6 @@ const updateSaveButtons = (ID, addButton, removeButton) => {
 
 const populateRecipeHeader = currentRecipe => {
   let filteredTags = filterTagsByTagName(pageData.allTags, currentRecipe.tags);
-  console.log(JSON.stringify(pageData.allTags))
   let recipeTagsHTML = filteredTags.map((tag) => {
     tag.isActive = true;
     return createTagCardHTML(tag);
