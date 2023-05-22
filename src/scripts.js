@@ -24,7 +24,7 @@ import './images/snack.png'
 import './images/spread.png'
 import './images/starter.png'
 import './images/search-button.png'
-import { loadData } from './apiCalls';
+import { loadData, pageData, currentUser } from './apiCalls';
 // import apiCalls from './apiCalls'
 
 const body = document.querySelector('body');

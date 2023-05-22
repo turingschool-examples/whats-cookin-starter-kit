@@ -14,7 +14,7 @@ import {
   getPageData, 
   body
 } from './scripts'
-import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, searchRecipes, splitTagsInRows  } from './recipes';
+import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, splitTagsInRows  } from './recipes';
 import { updateRecipesToCook } from './users';
 import { copyItem, toggleViewBtns } from './helper-functions';
 
