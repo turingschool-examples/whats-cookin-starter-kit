@@ -44,14 +44,11 @@ const fetchRecipes = () => {
         .then(response => response.json())
         .then(recipes => {
             pageData.allRecipes = recipes.recipes;
-            pageData.recipesOfInterest = copyItem(pageData.allRecipes);
-            setTimeout(() => {
-              pageData.recipesOfInterest.forEach(recipe => {
-                getChatGPTRes(recipe);
-                pageLoadRenders(pageData.recipesOfInterest);
-              });
-            }, 2000);
-            
+        })
+        .then(() => {
+          pageData.recipesOfInterest = copyItem(pageData.allRecipes);
+          getChatGPTRes(pageData.recipesOfInterest);
+          pageLoadRenders(pageData.recipesOfInterest);
         })
         .catch(error => {
             console.error(error);
@@ -75,32 +72,35 @@ const updateCurrentUser = (user) => {
   currentUser = user;
 };
 
-const getChatGPTRes = (recipe) => {
-  const openai_api_key = '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'
-    const DEFAULT_PARAMS = {
-        "model": "text-davinci-002",
-        "prompt": `In 10 words or less, give me an enticing pitch based on this recipe name: ${recipe.name}`,
-        "temperature": 0.7,
-        "max_tokens": 256,
-        "top_p": 1,
-        "frequency_penalty": 0,
-        "presence_penalty": 0
-    };
+const getChatGPTRes = (allRecipes) => {
+  const openai_api_key = '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';
+  const DEFAULT_PARAMS = {
+    "model": "text-davinci-002",
+    "temperature": 0.7,
+    "max_tokens": 256,
+    "top_p": 1,
+    "frequency_penalty": 0,
+    "presence_penalty": 0
+  };
 
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + String(openai_api_key),
-            organization: 'org-47g2m7vnC6yUKCbIL0f7PSFb'
-        },
-        body: JSON.stringify(DEFAULT_PARAMS)
-    };
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + String(openai_api_key),
+        organization: 'org-47g2m7vnC6yUKCbIL0f7PSFb'
+    },
+  };
+
+  allRecipes.forEach((recipe) => {
+    DEFAULT_PARAMS["prompt"] = `In 10 words or less, give me an enticing pitch based on this recipe name: ${recipe.name}`;
+    requestOptions.body = JSON.stringify(DEFAULT_PARAMS);
 
     fetch('https://api.openai.com/v1/completions', requestOptions)
         .then(response => response.json())
         .then(data => recipe.pitch = data.choices[0].text)
         .catch(error => console.error(error));
+  });
 }
 
 export { currentUser, pageData, updateCurrentUser, loadData, getRecipeCard, getChatGPTRes, currentPitch };

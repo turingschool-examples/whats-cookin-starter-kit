@@ -90,7 +90,7 @@ const createGridHTML = allColumns => {
 }
 
 const renderGrid = (data) => {
-  console.log(data);
+  // console.log(data);
   const gridData = makeRecipeColumnData(data)
   recipeGrid.innerHTML = ''
   recipeGrid.innerHTML = createGridHTML(gridData);
@@ -189,6 +189,7 @@ const makeTagActive = (event) => {
 };
 
 const pageLoadRenders = (data) => {
+  console.log(data)
   renderGrid(data);
   renderTagArea(data);
 };
