@@ -141,10 +141,15 @@ nav {
   transition: 0.2s;
 }
 
-.active-bg {
+.tag-row .active-bg {
   opacity: 1;
   background-color: greenyellow;
   box-shadow: 1px 1px 5px greenyellow;
+}
+
+#individualRecipeTags .active-bg {
+  opacity: 1;
+  background-color: greenyellow;
 }
 
 .tag-text {
