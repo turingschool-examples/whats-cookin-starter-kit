@@ -2,10 +2,10 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { makeTagActive, closeRecipe, showRecipe, searchForRecipes, switchView } from './domUpdates';
+import { makeTagActive, closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, updateRecipesFromModal } from './domUpdates'; 
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import { ingredientsData } from './data/ingredients';
-import { dataLoad, getChatGPTRes } from './apiCalls';
+import { loadData, getChatGPTRes } from './apiCalls';
 import './images/antipasti.png';
 import './images/antipasto.png'
 import './images/appetizer.png'
@@ -26,8 +26,7 @@ import './images/snack.png'
 import './images/spread.png'
 import './images/starter.png'
 import './images/search-button.png'
-import './images/user-icon.png'
-
+import { loadData } from './apiCalls';
 // import apiCalls from './apiCalls'
 
 const recipeGrid = document.querySelector('.recipe-grid');
@@ -42,6 +41,9 @@ const ourViewBtn = document.querySelector("#our-recipes");
 const yourViewBtn = document.querySelector("#your-recipes");
 const searchBar = document.querySelector('#searchBar');
 const searchBtn = document.querySelector('#searchBtn');
+const modalAddBtn = document.querySelector('.add-recipe');
+const modalRemoveBtn = document.querySelector('.remove-recipe');
+const modalRecipeBtns = document.querySelectorAll('.modal-recipe-btn')
 
 // DATA MODEL 
 
@@ -65,9 +67,13 @@ return recipeCard;
 // //Example of one way to import functions from the domUpdates file. You will delete these examples.
 // import {exampleFunction1, exampleFunction2} from './domUpdates.js'
 window.addEventListener("load", () => {
-  dataLoad();
+  loadData();
   getChatGPTRes();
 });
+
+allRecipes.addEventListener('click', (event) => {
+  updateUserRecipes(event)
+})
 
 tagArea.addEventListener("click", function(event) {
   if (event.target.classList && event.target.closest(".tag-card")) {
@@ -96,6 +102,10 @@ searchBar.addEventListener('keypress', (event) => {
 
 searchBtn.addEventListener('click', searchForRecipes);
 
+modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
+  updateRecipesFromModal(e.target.id)
+}));
+
 // Exports
 export {
   recipeGrid,
@@ -109,5 +119,6 @@ export {
   allUserRecipes,
   chooseView,
   searchBar,
-  //allRecipes
+  modalAddBtn, 
+  modalRemoveBtn
 }

@@ -2,14 +2,28 @@
 import { getRandomUser } from "./users"
 import { pageLoadRenders } from "./domUpdates"
 import { copyItem } from "./helper-functions"
+import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 
 // DATA MODEL 
 let currentUser;
 let pageData = {
   activeTags: [],
-  currentView: 'ourRecipes',
+  currentView: 'our-recipes',
   currentRecipeCard: {}
 };
+
+const getRecipeCard = (recipe) => {
+    const recipeCard =  {
+      id: recipe.id,
+      instructions: getInstructions(recipe),
+      ingredients: getIngredientAmounts(recipe, pageData.allIngredients),
+      image: recipe.image,
+      name: recipe.name,
+      price: calculateRecipeCost(recipe, pageData.allIngredients)
+    }
+
+  return recipeCard;
+}
 
 // API CALLS
 
@@ -44,7 +58,7 @@ const fetchIngredients = () => {
     .catch(error => console.error(error))
 }
 
-const dataLoad = () => {
+const loadData = () => {
   assignCurrentUser();
   fetchRecipes();
   fetchIngredients();
@@ -81,6 +95,4 @@ const getChatGPTRes = () => {
         .catch(error => console.error(error));
 }
 
-export { currentUser, pageData, updateCurrentUser, dataLoad, getChatGPTRes };
-
-
+export { currentUser, pageData, updateCurrentUser, loadData, getRecipeCard, getChatGPTRes };

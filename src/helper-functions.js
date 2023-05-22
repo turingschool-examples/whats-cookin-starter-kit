@@ -9,6 +9,13 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
+const toggleViewBtns = elements => {
+  elements.forEach(element => {
+    element.classList.toggle('selected-view')
+    element.classList.toggle('unselected-view')
+  })
+}
+
 // const getUniqueIngredients = () => {
 //   const output = [];
 //   recipes.forEach(recipe => { 
@@ -21,6 +28,5 @@ function getRandomIndex(array) {
 //   console.log(ingredientsData.filter(ingredient => output.includes(ingredient.id)) )
 // }
 
-export {copyItem, getIngredientProperty, getRandomIndex}
 
-
+export {copyItem, getIngredientProperty, getRandomIndex, toggleViewBtns}
