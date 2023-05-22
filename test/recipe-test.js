@@ -6,7 +6,8 @@ import {
   sampleRecipeData,
   simpleIngredients,
   simpleRecipe,
-  simpleRecipes
+  simpleRecipes,
+  tagData
 } from '../src/data/sampleData';
 
 import {
@@ -16,6 +17,7 @@ import {
   getIngredientAmounts,
   fixIngredientAmount,
   filterRecipesByTag,
+  filterTagsByTagName,
   filterRecipesByIngredient,
   filterRecipesByName,
   searchRecipes,
@@ -37,6 +39,7 @@ describe('recipe', () => {
     assert.isFunction(fixIngredientAmount);
     assert.isFunction(calculateRecipeCost);
     assert.isFunction(filterRecipesByTag);
+    assert.isFunction(filterTagsByTagName);
     assert.isFunction(filterRecipesByIngredient);
     assert.isFunction(filterRecipesByName);
   });
@@ -410,4 +413,58 @@ describe('populating tags', () => {
     const refinedTags = addInfoToTags([basicTags[0], basicTags[1]]);
     expect(refinedTags).to.deep.equal(expectedOutput);
   })
+});
+
+describe('filterTagsByTagName', () => {
+  it('should correctly filter tag data given an array of tag names', () => {
+    let filteredTagData = filterTagsByTagName(tagData, [
+      'antipasti',
+      'starter',
+      'snack',
+      'appetizer',
+      'antipasto',
+      "hor d'oeuvre"
+    ]);
+
+    let expectedTagData = [
+      {
+        name: 'antipasti',
+        isActive: false,
+        path: './images/antipasti.png',
+        row: 1
+      },
+      {
+        name: 'starter',
+        isActive: false,
+        path: './images/starter.png',
+        row: 0
+      },
+      {
+        name: 'snack',
+        isActive: false,
+        path: './images/snack.png',
+        row: 1
+      },
+      {
+        name: 'appetizer',
+        isActive: false,
+        path: './images/appetizer.png',
+        row: 0
+      },
+      {
+        name: 'antipasto',
+        isActive: false,
+        path: './images/antipasto.png',
+        row: 1
+      },
+      {
+        name: "hor d'oeuvre",
+        isActive: false,
+        path: "./images/hor d'oeuvre.png",
+        row: 0
+      }
+    ]
+    
+    expect(filteredTagData).to.deep.equal(expectedTagData);
+  });
 });

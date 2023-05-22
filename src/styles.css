@@ -121,7 +121,6 @@ nav {
   justify-content: center;
   align-items: center;
   transition: 0.3s;
-  background-color: #2c2d30;
   height: 70%;
   width: 7%;
   font-size: 12px;
@@ -154,6 +153,7 @@ nav {
   margin-top: 4px;
   margin-bottom: 2px;
   text-align: center;
+  min-width: 80px;
 }
 
 .tag-card:hover {
@@ -475,15 +475,22 @@ input[type=checkbox] {
 #recipeName {
   display: flex;
   position: relative;
+  flex-direction: column;
   align-items: center;
   height: 40%;
   width: 100%;
 }
 
+#individualRecipeTags {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
 #recipeName > h1 {
   text-align: left;
   font-size: 55px;
-  margin-bottom: 25px;
+  margin: 0 0 25px;
   z-index: 2;
 }
 

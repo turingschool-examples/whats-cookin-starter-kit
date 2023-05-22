@@ -19,7 +19,8 @@ const getRecipeCard = (recipe) => {
       ingredients: getIngredientAmounts(recipe, pageData.allIngredients),
       image: recipe.image,
       name: recipe.name,
-      price: calculateRecipeCost(recipe, pageData.allIngredients)
+      price: calculateRecipeCost(recipe, pageData.allIngredients),
+      tags: recipe.tags
     }
 
   return recipeCard;
