@@ -312,7 +312,7 @@ const displayTaggedRecipes = () => {
     pageData.recipesOfInterest = filteredRecipes;
     renderGrid(pageData.recipesOfInterest)
   } else {
-    recipeGrid.innerHTML = `<p>Sorry, we couldn't find any recipes for the selected tags.</p>`
+    recipeGrid.innerHTML = `<p>Sorry, no recipes to display.</p>`
   }
 }
 
