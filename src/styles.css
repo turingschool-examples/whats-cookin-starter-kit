@@ -160,12 +160,12 @@ nav {
   cursor: pointer;
   transform: scale(1.25);
 }
-.tag-card:hover .tag-image-bg {
+.tag-row > .tag-card:hover .tag-image-bg {
   opacity:1;
   box-shadow: 2px 2px 10px whitesmoke;
 }
 
-.tag-card:hover .tag-text {
+.tag-row > .tag-card:hover .tag-text {
   opacity:1
 }
 
