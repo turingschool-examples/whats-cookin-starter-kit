@@ -1,8 +1,8 @@
 //IMPORTS 
-import { getRandomUser } from "./users"
-import { pageLoadRenders } from "./domUpdates"
-import { copyItem } from "./helper-functions"
-import {populateTags} from "./recipes"
+import { getRandomUser } from "./users";
+import { pageLoadRenders } from "./domUpdates";
+import { copyItem } from "./helper-functions";
+import { populateTags, calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 
 // DATA MODEL 
 let currentUser;
@@ -11,6 +11,19 @@ let pageData = {
   currentRecipeCard: {},
   allTags: []
 };
+
+const getRecipeCard = (recipe) => {
+    const recipeCard =  {
+      id: recipe.id,
+      instructions: getInstructions(recipe),
+      ingredients: getIngredientAmounts(recipe, pageData.allIngredients),
+      image: recipe.image,
+      name: recipe.name,
+      price: calculateRecipeCost(recipe, pageData.allIngredients)
+    }
+
+  return recipeCard;
+}
 
 // API CALLS
 
@@ -56,4 +69,4 @@ const updateCurrentUser = (user) => {
   currentUser = user;
 };
 
-export { currentUser, pageData, updateCurrentUser, loadData };
+export { currentUser, pageData, updateCurrentUser, loadData, getRecipeCard };
