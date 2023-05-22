@@ -14,7 +14,7 @@ As Mod 2 students in the Turing front end program, our learning goals were to fu
 We are also implimenting TDD or test driven development for the first time on a group project, so the goal was to create thourough tests for our functions that do not involve DOM manipulation or api calls.
 
 ## Project Preview
-
+![whatscookingif](https://github.com/Jade-ZS/whats-cooking/assets/118419729/8f02d80d-d415-43ec-ad2f-ae90b68fdd05)
 
 ## Set Up
 1. Fork and/or clone this repository down by opening the terminal on your local machine and run the command:
