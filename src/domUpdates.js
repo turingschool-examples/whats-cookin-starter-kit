@@ -1,6 +1,6 @@
 //NOTE: Your DOM manipulation will occur in this file
 import recipeData from "./data/recipes";
-import { recipesfromName, recipesFromTag, findRecipe, findIngredientNames, calculateRecipeCost, recipeInstructions, shuffleData } from "../src/recipeUtils";
+import { recipesfromName, recipesFromTag, findRecipe, calculateRecipeCost, recipeInstructions, shuffleData, displayIngredients } from "../src/recipeUtils";
 import ingredientsData from "./data/ingredients";
 import usersData from "./data/users"
 import { recipesToCook, saveRecipe, deleteRecipe, addSavedRecipesToUser } from "../src/userUtils";
@@ -238,7 +238,7 @@ const viewSelectedRecipe = event => {
   const recipeName = event.target.id;
   const selectedRecipe = findRecipe(recipeData, recipeName);
   const recipeCost = calculateRecipeCost(selectedRecipe, ingredientsData);
-  const ingredients = findIngredientNames(recipeData, recipeName);
+  const ingredients = displayIngredients(recipeData, ingredientsData, recipeName)
   const instructions = recipeInstructions(selectedRecipe);
   addHiddenClass([allFilterDisplay]);
   singleRecipeDisplay.innerHTML= '';

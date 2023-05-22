@@ -1,4 +1,3 @@
-import ingredientsData from '../src/data/ingredients-sample.js';
 
 function recipesFromTag(recipes, tags) {
   const filtered = recipes.filter((recipe) => {
@@ -22,27 +21,27 @@ const findRecipe = (recipeData, recipeName) => {
   return recipe
 };  
 
-const findIngredientNames = (recipeData, recipeName) => {
+const displayIngredients = (recipeData, ingredientsData, recipeName) => {
   const recipe = findRecipe(recipeData, recipeName);
-  const ingredientIds = recipe.ingredients.map(({ id }) => id);
-  const ingredients = ingredientsData.filter(({ id }) => ingredientIds.includes(id));
-  const ingredientNames = ingredients.map(({ name }) => name);
-  return ingredientNames.join(', ');
-};
+  let ingredients = [];
+  if (recipe) {
+    ingredients = recipe.ingredients.map((ingredient) => {
+      const { id, quantity: { amount, unit } } = ingredient;
+      const ingredientInfo = ingredientsData.find(ingredient => id === ingredient.id);
+      const ingredientName = ingredientInfo.name
+      return { name: ingredientName, amount, unit };
+    });
+  }
+  return ingredients.map((ingredient) => `${ingredient.amount} ${ingredient.unit} of ${ingredient.name}`).join(", ");
+}
 
 const calculateRecipeCost = (recipe, ingredients) => {
-  if (recipe === undefined) {
-    return 'Sorry, that recipe cannot be found.'
-  }
   const totalCost = recipe.ingredients.reduce((acc, {id, quantity: {amount}}) => 
     acc + (amount / 100) * (ingredients.find(ingredient => ingredient.id === id).estimatedCostInCents), 0)
   return totalCost.toFixed(2);
 }
 
   const recipeInstructions = recipe => {
-   if (recipe === undefined) {
-     return "Sorry, that recipe cannot be found.";
-   }
    const instructions = recipe.instructions.map(({ number, instruction }) => `${number}. ${instruction}`);
    return instructions.join(' ')
  };
@@ -57,8 +56,8 @@ export {
   recipesFromTag,
   recipesfromName,
   findRecipe,
-  findIngredientNames,
   calculateRecipeCost,
   recipeInstructions,
-  shuffleData
+  shuffleData,
+  displayIngredients,
 }
