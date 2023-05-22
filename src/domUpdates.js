@@ -13,7 +13,7 @@ import {
   modalRemoveBtn,
   body
 } from './scripts'
-import { filterRecipesByTag, searchRecipes, splitTagsInRows } from './recipes';
+import { filterRecipesByTag, filterTagsByTagName, searchRecipes, splitTagsInRows } from './recipes';
 import { updateRecipesToCook } from './users';
 import { copyItem, toggleViewBtns } from './helper-functions';
 
@@ -226,11 +226,18 @@ const updateSaveButtons = (ID, addButton, removeButton) => {
 }
 
 const populateRecipeHeader = currentRecipe => {
+  let filteredTags = filterTagsByTagName(pageData.allTags, currentRecipe.tags);
+  let recipeTagsHTML = filteredTags.map((tag) => {
+    tag.isActive = true;
+    return createTagCardHTML(tag);
+  });
+
   document.querySelector('#recipeName').innerHTML = `
-  <h1>${currentRecipe.name}</h1>
-  <div class="individual-recipe-image">
-    <img src="${currentRecipe.image}"></img>
-  </div>
+    <div id="individualRecipeTags">${recipeTagsHTML.join('')}</div>
+    <h1>${currentRecipe.name}</h1>
+    <div class="individual-recipe-image">
+      <img src="${currentRecipe.image}"></img>
+    </div>
   `
 }
 
