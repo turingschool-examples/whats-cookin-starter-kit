@@ -27,6 +27,7 @@ import './images/search-button.png'
 import { loadData } from './apiCalls';
 // import apiCalls from './apiCalls'
 
+const body = document.querySelector('body');
 const recipeGrid = document.querySelector('.recipe-grid');
 const allRecipes = document.querySelector('.all-recipes')
 const allUserRecipes = document.querySelector('.all-user-recipes');
@@ -119,5 +120,6 @@ export {
   chooseView,
   searchBar,
   modalAddBtn, 
-  modalRemoveBtn
+  modalRemoveBtn,
+  body
 }

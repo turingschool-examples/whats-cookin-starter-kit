@@ -20,11 +20,16 @@ const getIngredients = (recipe, ingredients) => {
 const getIngredientAmounts = (recipe, ingredients) => {
   return recipe.ingredients.map(ingredient => {
     return {
-      amount: ingredient.quantity.amount,
+      amount: fixIngredientAmount(ingredient.quantity.amount),
       unit: ingredient.quantity.unit,
       name: getIngredientProperty(ingredient, ingredients, 'name')
     }
   })
+}
+
+const fixIngredientAmount = (amount) => {
+  let remainder = amount % 1;
+  return remainder.toString().length > 2 ? Number(amount.toFixed(2)) : amount;
 }
 
 const calculateRecipeCost = (recipe, ingredients) => {
@@ -93,6 +98,7 @@ export {
   filterRecipesByTag,
   getIngredients,
   getIngredientAmounts,
+  fixIngredientAmount,
   calculateRecipeCost,
   filterRecipesByName,
   filterRecipesByIngredient,
