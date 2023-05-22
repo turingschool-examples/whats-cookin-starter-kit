@@ -60,6 +60,14 @@ const getRecipeCard = (recipe) => {
 return recipeCard;
 }
 
+const getPageData = () => {
+  const data = {
+    'our-recipes': pageData.allRecipes,
+    'your-recipes': currentUser.recipesToCook
+  }
+  return data[pageData.currentView]
+}
+
 // // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
 // import ingredientsData from './data/ingredients.js'
@@ -111,6 +119,7 @@ export {
   tagArea,
   clickedRecipe,
   getRecipeCard,
+  getPageData,
   ingredientsList,
   allRecipes,
   ourViewBtn,

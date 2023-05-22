@@ -12,7 +12,8 @@ import {
   ourViewBtn,
   yourViewBtn,
   modalAddBtn, 
-  modalRemoveBtn
+  modalRemoveBtn,
+  getPageData
 } from './scripts'
 import { searchRecipes, getTagsFromRecipes, findRecipe, checkSavedStatus } from './recipes';
 import { updateRecipesToCook } from './users';
@@ -287,23 +288,36 @@ const createIngredientsHTML = ingredients => {
   });
 };
 
-const switchView = (clickedViewID) => {
-  if (clickedViewID === "our-recipes") {
-    pageData.recipesOfInterest = copyItem(pageData.allRecipes);
-  } else {
-    pageData.recipesOfInterest = copyItem(currentUser.recipesToCook);
-  }
-  pageData.currentView = clickedViewID
+// const getPageData = () => {
+//   const data = {
+//     'our-recipes': pageData.allRecipes,
+//     'your-recipes': currentUser.recipesToCook
+//   }
+//   return data[pageData.currentView]
+// }
+
+const renderRecipesOfInterest = () => {
+  pageData.recipesOfInterest = copyItem(getPageData())
   renderGrid(pageData.recipesOfInterest)
+}
+
+const switchView = (clickedViewID) => {
+  // if (clickedViewID === "our-recipes") {
+  //   pageData.recipesOfInterest = copyItem(pageData.allRecipes);
+  // } else {
+  //   pageData.recipesOfInterest = copyItem(currentUser.recipesToCook);
+  // }
+  pageData.currentView = clickedViewID;
+  renderRecipesOfInterest();
   toggleViewBtns([ourViewBtn, yourViewBtn])
 }
 
 const searchForRecipes = () => {
-  const data = {
-    'our-recipes': pageData.allRecipes,
-    'your-recipes': currentUser.recipesToCook
-  }
-  let searchedRecipes = searchRecipes(data[pageData.currentView], ingredientsData, searchBar.value)
+  // const data = {
+  //   'our-recipes': pageData.allRecipes,
+  //   'your-recipes': currentUser.recipesToCook
+  // }
+  let searchedRecipes = searchRecipes(getPageData(), ingredientsData, searchBar.value)
   if(searchedRecipes) {
     if(searchedRecipes.length) {
       pageData.recipesOfInterest = searchedRecipes;
@@ -326,8 +340,9 @@ const updateUserRecipes = (e) => {
     const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel')
     const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel')
     updateSaveButtons(recipeID, addBtn, removeBtn);
-    if (pageData.currentView === 'your-recipes') pageData.recipesOfInterest = copyItem(currentUser.recipesToCook)
-    renderGrid(pageData.recipesOfInterest);
+    // if (pageData.currentView === 'your-recipes') pageData.recipesOfInterest = copyItem(currentUser.recipesToCook)
+    // renderGrid(pageData.recipesOfInterest);
+    renderRecipesOfInterest();
   }
 }
 
@@ -336,8 +351,9 @@ const updateRecipesFromModal = (targetID) => {
   updateCurrentUser(updateRecipesToCook(currentUser, recipe, targetID))
   updateSaveButtons(recipe.id, modalAddBtn, modalRemoveBtn)
   updateSaveButtons(recipe.id, pageData.currentRecipeCard.outerAddBtn, pageData.currentRecipeCard.outerRemoveBtn) 
-  if (pageData.currentView === 'your-recipes') pageData.recipesOfInterest = copyItem(currentUser.recipesToCook)
-  renderGrid(pageData.recipesOfInterest)
+  // if (pageData.currentView === 'your-recipes') pageData.recipesOfInterest = copyItem(currentUser.recipesToCook)
+  // renderGrid(pageData.recipesOfInterest)
+  renderRecipesOfInterest();
 }
 
 // Exports
