@@ -35,11 +35,15 @@ button {
   width: 300px
 }
 
-#search-bar {
+.nav-search-bar, .saved-search {
   border: none;
   border-radius: 30px;
   height: 45px;
   width: 40vw;
+}
+
+.clear-search-button {
+  width: 150px;
 }
 
 header {
@@ -106,7 +110,7 @@ aside {
   width: 20vh;
 }
 
-.all-recipes-display {
+.all-recipes-display, .saved-recipe-display {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
