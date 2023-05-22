@@ -115,6 +115,30 @@ aside {
   width: 80vw;
 }
 
+/* RECIPE PAGE */
+.single-recipe-display {
+  display: flex;
+  flex-direction: row;
+}
+
+.recipe-page-body {
+  margin-top: 56px;
+  margin-left: 16px;
+}
+
+.single-recipe-img {
+  border-radius: 16px;
+}
+
+.total-cost-box,
+.ingredient-box,
+.instruction-box {
+  padding: 8px;
+  background: #aabda5;
+  color: black;
+  border-radius: 8px;
+}
+
 .hidden {
   display: none;
 }
