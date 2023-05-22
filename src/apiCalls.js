@@ -1,15 +1,29 @@
 //IMPORTS 
-import { getRandomUser } from "./users"
-import { pageLoadRenders } from "./domUpdates"
-import { copyItem } from "./helper-functions"
+import { getRandomUser } from "./users";
+import { pageLoadRenders } from "./domUpdates";
+import { copyItem } from "./helper-functions";
+import { populateTags, calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 
 // DATA MODEL 
 let currentUser;
 let pageData = {
-  activeTags: [],
   currentView: 'our-recipes',
-  currentRecipeCard: {}
+  currentRecipeCard: {},
+  allTags: []
 };
+
+const getRecipeCard = (recipe) => {
+    const recipeCard =  {
+      id: recipe.id,
+      instructions: getInstructions(recipe),
+      ingredients: getIngredientAmounts(recipe, pageData.allIngredients),
+      image: recipe.image,
+      name: recipe.name,
+      price: calculateRecipeCost(recipe, pageData.allIngredients)
+    }
+
+  return recipeCard;
+}
 
 // API CALLS
 
@@ -30,6 +44,7 @@ const fetchRecipes = () => {
         .then(recipes => {
             pageData.allRecipes = recipes.recipes;
             pageData.recipesOfInterest = copyItem(pageData.allRecipes);
+            pageData.allTags = populateTags(pageData.allRecipes);
             pageLoadRenders(pageData.recipesOfInterest);
         })
         .catch(error => {
@@ -54,4 +69,4 @@ const updateCurrentUser = (user) => {
   currentUser = user;
 };
 
-export { currentUser, pageData, updateCurrentUser, loadData };
+export { currentUser, pageData, updateCurrentUser, loadData, getRecipeCard };

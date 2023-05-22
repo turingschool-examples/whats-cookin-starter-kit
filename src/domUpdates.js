@@ -1,11 +1,9 @@
 // Imports
-import { pageData, currentUser, updateCurrentUser } from './apiCalls';
-import { ingredientsData } from './data/ingredients';
+import { pageData, currentUser, updateCurrentUser, getRecipeCard } from './apiCalls';
 import {
   recipeGrid,
   clickedRecipe,
   tagArea,
-  getRecipeCard,
   allRecipes,
   ingredientsList,
   searchBar,
@@ -13,9 +11,10 @@ import {
   yourViewBtn,
   modalAddBtn, 
   modalRemoveBtn,
-  getPageData
+  getPageData, 
+  body
 } from './scripts'
-import { searchRecipes, getTagsFromRecipes, findRecipe, checkSavedStatus } from './recipes';
+import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, searchRecipes, splitTagsInRows  } from './recipes';
 import { updateRecipesToCook } from './users';
 import { copyItem, toggleViewBtns } from './helper-functions';
 
@@ -97,29 +96,16 @@ const renderGrid = (data) => {
   recipeGrid.innerHTML = createGridHTML(gridData);
 }
 
-const clubTagsAndIcons = tags => {
-  const tagsAndIcons = tags.map((tag, index) => {
-    return {
-      name: tag,
-      path: `./images/${tag}.png`,
-      row: (index + 1) % 2
-    };
-  });
-
-  return tagsAndIcons;
-}
-
-const splitTagsInRows = tagsAndIcons => {
-  const topRow = tagsAndIcons.filter(tag => tag.row === 1);
-  const bottomRow = tagsAndIcons.filter(tag => tag.row === 0);
-  return [topRow, bottomRow];
-}
-
 const createTagCardHTML = tag => {
   let htmlCode = '';
+  let bgClass = "tag-image-bg";
+  if (tag.isActive) {
+    bgClass = "tag-image-bg active-bg"
+  }
+
   htmlCode += `
-  <section class = "tag-card">
-      <div class="tag-image-bg">
+  <section class = "tag-card" id = "${tag.name}">
+      <div class="${bgClass}">
           <img class = "tag-image" src = "${tag.path}">
       </div>
       <p class="tag-text">${tag.name}</p>
@@ -128,7 +114,7 @@ const createTagCardHTML = tag => {
   return htmlCode;
 }
 
-const createRowHTML = row => {
+const createTagRowHTML = row => {
   let rowNumber;
 
   if (row.length === 10) {
@@ -151,36 +137,38 @@ const createTagAreaHTML = rows => {
   htmlCode += '<div class="tag-rows">';
 
   rows.forEach(row => {
-    htmlCode += createRowHTML(row);
+    htmlCode += createTagRowHTML(row);
   });
 
   htmlCode += '</div>';
   return htmlCode;
 };
 
-const renderTagArea = (data) => {
-  const tagData = getTagsFromRecipes(data);
-  const tagsAndIcons = clubTagsAndIcons(tagData);
-  const tagRows = splitTagsInRows(tagsAndIcons);
+const renderTagArea = () => {
+  const tagRows = splitTagsInRows(pageData.allTags);
   const htmlCode = createTagAreaHTML(tagRows);
   tagArea.innerHTML = htmlCode;
 };
 
-const isTagActive = event => event.target.closest(".tag-card")?.querySelector(".tag-image-bg").classList.contains("active-bg");
+const checkIfActive = event => event.target.closest(".tag-card")?.querySelector(".tag-image-bg").classList.contains("active-bg");
 const removeActiveFromTag = event => event.target.closest(".tag-card").querySelector(".tag-image-bg").classList.remove("active-bg");
 const addActiveToTag = event => event.target.closest(".tag-card").querySelector(".tag-image-bg").classList.add("active-bg");
 
-const makeTagActive = (event) => {  
-  if (isTagActive(event)) {
+const renderActiveTag = (event) => {  
+  if (checkIfActive(event)) {
     removeActiveFromTag(event);
   } else {
     addActiveToTag(event);
   }
 };
 
+const toggleTagData = (tagID) => {
+  pageData.allTags.find(tag => tag.name === tagID).isActive = !pageData.allTags.find(tag => tag.name === tagID).isActive
+}
+
 const pageLoadRenders = (data) => {
   renderGrid(data);
-  renderTagArea(data);
+  renderTagArea();
 };
 
 const getInstructionHTML = (recipe) => {
@@ -238,7 +226,8 @@ const populateRecipeHeader = currentRecipe => {
 }
 
 const openRecipeCard = () => {
-  allRecipes.classList.add('blur');
+  allRecipes.classList.add('blur')
+  body.classList.add('no-scroll')
   clickedRecipe.classList.toggle("hidden");
   clickedRecipe.classList.toggle("flex");
   clickedRecipe.classList.toggle("fade-in");
@@ -256,6 +245,7 @@ const showRecipe = (recipeCard) => {
 
 const closeRecipe = () => {
   allRecipes.classList.remove('blur')
+  body.classList.remove('no-scroll')
   clickedRecipe.classList.add("hidden");
   clickedRecipe.classList.remove("flex");
   clickedRecipe.classList.remove("fade-in");
@@ -289,6 +279,37 @@ const switchView = (clickedViewID) => {
   pageData.currentView = clickedViewID;
   renderRecipesOfInterest();
   toggleViewBtns([ourViewBtn, yourViewBtn]);
+}
+
+const setBaseData = () => {
+  let baseData = getPageData();
+  if (searchBar.value) {
+    searchForRecipes();
+    baseData = pageData.recipesOfInterest;
+  }
+
+  return baseData;
+}
+
+const setupFilterData = (activeTags, baseData) => {
+  if (activeTags.length) {
+    return filterRecipesByTag(baseData, activeTags);
+  } else {
+    return copyItem(getPageData());
+  }
+}
+
+const displayTaggedRecipes = () => {
+  const activeTags = pageData.allTags.filter(tag => tag.isActive).map(tag => tag.name);
+  const baseData = setBaseData();
+  const filteredRecipes = setupFilterData(activeTags, baseData);
+  
+  if (filteredRecipes.length) {
+    pageData.recipesOfInterest = filteredRecipes;
+    renderGrid(pageData.recipesOfInterest)
+  } else {
+    recipeGrid.innerHTML = `<p>Sorry, we couldn't find any recipes for the selected tags.</p>`
+  }
 }
 
 const searchForRecipes = () => {
@@ -330,7 +351,7 @@ const updateRecipesFromModal = (targetID) => {
 // Exports
 export {
   renderGrid,
-  makeTagActive,
+  toggleTagData,
   pageLoadRenders,
   showRecipe,
   closeRecipe,
@@ -339,5 +360,8 @@ export {
   updateUserRecipes,
   findRecipe,
   updateSaveButtons,
-  updateRecipesFromModal
+  updateRecipesFromModal,
+  renderTagArea,
+  renderActiveTag,
+  displayTaggedRecipes
 }
