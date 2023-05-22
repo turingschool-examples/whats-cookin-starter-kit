@@ -31,8 +31,11 @@ button {
   font-size: 15px;
   border-radius: 25px;
   cursor: pointer;
-  height: 45px;
-  width: 300px
+  padding: 12px 72px 12px 72px;
+}
+
+.clear-search-button, .save-recipe-btn {
+  padding: 12px 32px 12px 32px;
 }
 
 .nav-search-bar, .saved-search {
@@ -100,6 +103,7 @@ main {
 /* ALL RECIPES PAGE */
 .all-recipes-wrapper {
   display: flex;
+  margin-left: 16px;
 }
 
 aside {
