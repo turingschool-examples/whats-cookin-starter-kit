@@ -22,6 +22,8 @@ import './images/snack.png'
 import './images/spread.png'
 import './images/starter.png'
 import './images/search-button.png'
+import './images/hollow-bookmark-icon.png'
+import './images/select-bookmark-icon.png'
 import { loadData, pageData, currentUser } from './apiCalls';
 
 // QUERY SELCTORS

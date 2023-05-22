@@ -149,7 +149,7 @@ nav {
 
 #individualRecipeTags .active-bg {
   opacity: 1;
-  background-color: greenyellow;
+  background-color: #fbbf83;
 }
 
 .tag-text {
