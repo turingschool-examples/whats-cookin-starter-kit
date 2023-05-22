@@ -31,8 +31,12 @@ button {
   font-size: 15px;
   border-radius: 25px;
   cursor: pointer;
-  height: 45px;
-  width: 300px
+  padding: 12px 72px 12px 72px;
+}
+
+button:hover {
+  background: lightgray;
+  transition: 0.5s;
 }
 
 .nav-search-bar, .saved-search {
@@ -42,8 +46,8 @@ button {
   width: 40vw;
 }
 
-.clear-search-button {
-  width: 150px;
+.clear-search-button, .save-recipe-btn {
+  padding: 12px 32px 12px 32px;
 }
 
 header {
@@ -87,6 +91,12 @@ main {
   margin-bottom: 5vh;
 }
 
+
+.recipe-wrapper:hover {
+  filter: drop-shadow(8px 8px 4px);
+  transition: 0.7s;
+}
+
 .recipe-info {
   width: 300px;
   border-radius: 0 0 12px 12px;
@@ -123,6 +133,7 @@ aside {
 .single-recipe-display {
   display: flex;
   flex-direction: row;
+  margin-left: 16px;
 }
 
 .recipe-page-body {
