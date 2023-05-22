@@ -340,8 +340,13 @@ const updateUserRecipes = (e) => {
     const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel');
     const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel');
     updateSaveButtons(recipeID, addBtn, removeBtn);
-    if(pageData.currentView === 'your-recipes')renderRecipesOfInterest();
-  }
+    const activeTags = pageData.allTags.filter(tag => tag.isActive)
+    if(activeTags.length) {
+      displayTaggedRecipes();
+    } else if(pageData.currentView === 'your-recipes') {
+      renderRecipesOfInterest();
+    }
+  } 
 }
 
 const updateRecipesFromModal = (targetID) => {
@@ -349,7 +354,12 @@ const updateRecipesFromModal = (targetID) => {
   updateCurrentUser(updateRecipesToCook(currentUser, recipe, targetID));
   updateSaveButtons(recipe.id, modalAddBtn, modalRemoveBtn);
   updateSaveButtons(recipe.id, pageData.currentRecipeCard.outerAddBtn, pageData.currentRecipeCard.outerRemoveBtn);
-  if(pageData.currentView === 'your-recipes')renderRecipesOfInterest();
+  const activeTags = pageData.allTags.filter(tag => tag.isActive)
+  if(activeTags.length) {
+    displayTaggedRecipes();
+  } else if(pageData.currentView === 'your-recipes') {
+    renderRecipesOfInterest();
+  }
 }
 
 // Exports
