@@ -2,7 +2,7 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal } from './domUpdates';
+import { closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, renderRecipesOfInterest } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import './images/antipasti.png';
 import './images/antipasto.png'
@@ -102,8 +102,10 @@ chooseView.addEventListener("click", function(event) {
   }
 });
 
-searchBar.addEventListener('keypress', (event) => {
-  if(event.key === 'Enter') {
+searchBar.addEventListener('search', (event) => {
+  if (!event.target.value.length) {
+    renderRecipesOfInterest();
+  } else {
     searchForRecipes();
   }
 })

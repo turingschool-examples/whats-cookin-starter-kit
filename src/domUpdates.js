@@ -313,7 +313,7 @@ const displayTaggedRecipes = () => {
 }
 
 const searchForRecipes = () => {
-  let searchedRecipes = searchRecipes(getPageData(), ingredientsData, searchBar.value);
+  let searchedRecipes = searchRecipes(getPageData(), pageData.allIngredients, searchBar.value);
   if(searchedRecipes) {
     if(searchedRecipes.length) {
       pageData.recipesOfInterest = searchedRecipes;
@@ -363,5 +363,6 @@ export {
   updateRecipesFromModal,
   renderTagArea,
   renderActiveTag,
-  displayTaggedRecipes
+  displayTaggedRecipes,
+  renderRecipesOfInterest
 }
