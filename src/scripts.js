@@ -106,7 +106,6 @@ searchBar.addEventListener('keypress', (event) => {
 searchBtn.addEventListener('click', searchForRecipes);
 
 modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
-  console.log(e.target)
   updateRecipesFromModal(e.target.id)
 }));
 
