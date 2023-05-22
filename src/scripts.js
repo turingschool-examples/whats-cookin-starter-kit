@@ -4,8 +4,7 @@
 import './styles.css'
 import { closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
-import './images/appear-bookmark-icon.png'
-import './images/hover-bookmark-icon.png'
+import './images/hollow-bookmark-icon.png'
 import './images/select-bookmark-icon.png'
 import './images/antipasti.png'
 import './images/antipasto.png'
