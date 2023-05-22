@@ -1,3 +1,4 @@
+/* GENERAL */
 body, html {
   background-color: #ebebeb;
   min-height: 100vh;
@@ -8,6 +9,7 @@ body, html {
   font-family: Poppins;
 }
 
+/* NAV BAR */
 h1 {
   font-size: 40px;
   color: black;
@@ -18,8 +20,7 @@ nav {
   overflow: hidden;
   background-color: #aabda5;
   height: 100px;
-  width: 1000px;
-  border-radius: 5px;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,10 +35,11 @@ button {
   width: 300px
 }
 
-input {
-  border-radius: 15px;
+#search-bar {
+  border: none;
+  border-radius: 30px;
   height: 45px;
-  width: 300px
+  width: 40vw;
 }
 
 header {
@@ -45,14 +47,10 @@ header {
   align-items: center;
   flex-direction: column;
   text-align: center;
-  height: 30vh
+  height: 30vh;
 }
 
-.recipe-info {
-  background-color: white;
-  height: 150px;
-}
-
+/* MAIN PAGE */
 article {
   display: flex;
   text-align: center;
@@ -70,10 +68,12 @@ main {
 
 .recipe-info {
   display: flex;
-  text-align:left;
+  text-align:center;
   flex-direction: column;
+  font-weight: 600;
   padding-left: 10px;
-
+  background-color: white;
+  height: 150px;
 }
 
 .recipe-wrapper {
@@ -83,10 +83,17 @@ main {
   margin-bottom: 5vh;
 }
 
-.recipe, .recipe-info {
+.recipe-info {
   width: 300px;
+  border-radius: 0 0 12px 12px;
 }
 
+.recipe {
+  width: 310px;
+  border-radius: 12px 12px 0 0;
+}
+
+/* ALL RECIPES PAGE */
 .all-recipes-wrapper {
   display: flex;
 }
@@ -105,7 +112,7 @@ aside {
   flex-wrap: wrap;
   justify-content: space-between;
   height: 80vh;
-  width: 120vh;
+  width: 80vw;
 }
 
 .hidden {
