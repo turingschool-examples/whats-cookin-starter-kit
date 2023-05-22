@@ -27,8 +27,6 @@ allRecipesButton.addEventListener('click', event => {
   showRecipes(event);
   addHiddenClass([saveRecipeButton, savedRecipeDisplay, savedSearchInput])
   removeHiddenClass([searchInput])
-
-
 });
 
 savedRecipesButton.addEventListener('click', () => {
@@ -47,11 +45,10 @@ saveRecipeButton.addEventListener('click', event => {
   })
 });
 
-
 allFilterDisplay.addEventListener('click', function (event) {
   if (event.target.classList.contains('checkbox')) {
-    renderFilteredRecipes(event)
-    renderFilteredSavedRecipes(event)
+    renderFilteredRecipes(event);
+    renderFilteredSavedRecipes(event);
   }
 });
 
@@ -87,8 +84,8 @@ allRecipeDisplay.addEventListener('click', function (event) {
 
 frontRecipeDisplay.addEventListener('click', function (event) {
   if (event.target.classList.contains('recipe')) {
-    addHiddenClass([allRecipeDisplay, frontRecipeDisplay, savedSearchInput]);
-    removeHiddenClass([singleRecipeDisplay, saveRecipeButton]);
+    addHiddenClass([allRecipeDisplay, frontRecipeDisplay, savedSearchInput, savedRecipeDisplay]);
+    removeHiddenClass([singleRecipeDisplay, saveRecipeButton, searchInput]);
     viewSelectedRecipe(event);
   }
 });
@@ -101,16 +98,18 @@ savedRecipeDisplay.addEventListener('click', event => {
   }
   if (event.target.classList.contains('delete-recipe-button')) {
     const recipeName = event.target.id;
-    deleteRecipe(recipeName)
-    addSavedRecipesToUser(currentUser, recipesToCook)
-    showSavedRecipes(currentUser, recipesToCook)
+    deleteRecipe(recipeName);
+    addSavedRecipesToUser(currentUser, recipesToCook);
+    showSavedRecipes(currentUser, recipesToCook);
   }
 });
 
 
 homeButton.addEventListener('click', function () {
-  showHomePage()
-  randomizeHomePage()
+  addHiddenClass([saveRecipeButton, savedRecipeDisplay, singleRecipeDisplay, allFilterDisplay, savedSearchInput])
+  removeHiddenClass([savedRecipesButton, searchInput])
+  showHomePage();
+  randomizeHomePage();
 })
 
 window.addEventListener('load', () => {
@@ -128,31 +127,54 @@ const generateRandomUser = users => {
 }
 
 function showSearchResults() {
-  let searchValue = searchInput.value
-  removeHiddenClass([allRecipeDisplay, allFilterDisplay])
+  let searchValue = searchInput.value;
+  removeHiddenClass([allRecipeDisplay, allFilterDisplay]);
   addHiddenClass([frontRecipeDisplay]);
-  allRecipeDisplay.innerHTML = ''
+  allRecipeDisplay.innerHTML = '';
   getData('recipes').then(({ recipes }) => {
-    recipesfromName(recipes, searchValue).forEach(recipe => allRecipeDisplay.innerHTML += `<div class = "recipe-wrapper">
-    <img id="${recipe.name}" src="${recipe.image}" class="recipe">
-    <div class = "recipe-info">
-      <p>${recipe.name}</p>
-    </div>`)
-  })
+    const searchedRecipes = recipesfromName(recipes, searchValue);
+    if (searchedRecipes.length === 0) {
+      allRecipeDisplay.innerHTML = `
+        <div class="no-recipe-found-message">
+          <p>Sorry, ${currentUser.name}, we currently don't have any matching recipes.</p>
+        </div>`;
+    } else {
+      searchedRecipes.forEach(recipe => {
+        allRecipeDisplay.innerHTML += `
+          <div class="recipe-wrapper">
+            <img id="${recipe.name}" src="${recipe.image}" class="recipe">
+            <div class="recipe-info">
+              <p>${recipe.name}</p>
+            </div>
+          </div>`;
+      });
+    };
+  });
 };
 
 function showSavedSearchResults() {
-  let searchValue = savedSearchInput.value
-  removeHiddenClass([allFilterDisplay])
+  let searchValue = savedSearchInput.value;
+  removeHiddenClass([allFilterDisplay]);
   addHiddenClass([frontRecipeDisplay]);
-  savedRecipeDisplay.innerHTML = ''
-  recipesfromName(recipesToCook, searchValue).forEach(recipe =>
-    savedRecipeDisplay.innerHTML += `<div class = "recipe-wrapper">
-    <img id="${recipe.name}" src="${recipe.image}" class="recipe">
-    <div class = "recipe-info">
-      <p>${recipe.name}</p>
-    </div>`)
-}
+  savedRecipeDisplay.innerHTML = '';
+  const filteredRecipes = recipesfromName(recipesToCook, searchValue);
+  if (filteredRecipes.length === 0) {
+    savedRecipeDisplay.innerHTML = `
+      <div class="no-recipe-found-message">
+        <p>Sorry, ${currentUser.name}, you currently don't recipes saved matching that description.</p>
+      </div>`;
+  } else {
+    filteredRecipes.forEach(recipe => {
+      savedRecipeDisplay.innerHTML += `
+        <div class="recipe-wrapper">
+          <img id="${recipe.name}" src="${recipe.image}" class="recipe">
+          <div class="recipe-info">
+            <p>${recipe.name}</p>
+          </div>
+        </div>`;
+    });
+  };
+};
 
 function showHomePage() {
   addHiddenClass([allRecipeDisplay], [allFilterDisplay]);
