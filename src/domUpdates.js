@@ -34,7 +34,9 @@ const makeRecipeColumnData = (data) => {
   const leftColumn = mappedRecipe.filter(recipe => recipe.column === 1);
   const centreColumn = mappedRecipe.filter(recipe => recipe.column === 2);
   const rightColumn = mappedRecipe.filter(recipe => recipe.column === 0);
-  return [leftColumn, centreColumn, rightColumn];
+  const allColumns = [leftColumn, centreColumn, rightColumn];
+  const filteredColumns = allColumns.filter(column => column.length);
+  return filteredColumns;
 }
 
 const createSingleRecipeHTML = singleRecipe => {
@@ -60,7 +62,7 @@ const createSingleRecipeHTML = singleRecipe => {
     </section>
     <article class="individual-recipe" id="${singleRecipe.id}">
       <div class="recipe-image-div">
-        <img class="recipe-image"src="${singleRecipe.image}">
+        <img class="recipe-image"src="${singleRecipe.image}" alt="${singleRecipe.name}">
         <div class="hover-card"> 
           <h3>Read more...</h3>
         </div>               
@@ -106,7 +108,7 @@ const createTagCardHTML = tag => {
   htmlCode += `
   <section class = "tag-card" id = "${tag.name}">
       <div class="${bgClass}">
-          <img class = "tag-image" src = "${tag.path}">
+          <img class = "tag-image" src = "${tag.path}" alt="${tag.name}">
       </div>
       <p class="tag-text">${tag.name}</p>
   </section>
@@ -217,12 +219,19 @@ const updateSaveButtons = (ID, addButton, removeButton) => {
 }
 
 const populateRecipeHeader = currentRecipe => {
+  let filteredTags = filterTagsByTagName(pageData.allTags, currentRecipe.tags);
+  let recipeTagsHTML = filteredTags.map((tag) => {
+    tag.isActive = true;
+    return createTagCardHTML(tag);
+  });
+
   document.querySelector('#recipeName').innerHTML = `
-  <h1>${currentRecipe.name}</h1>
-  <div class="individual-recipe-image">
-    <img src="${currentRecipe.image}"></img>
-  </div>
-  `;
+    <div id="individualRecipeTags">${recipeTagsHTML.join('')}</div>
+    <h1>${currentRecipe.name}</h1>
+    <div class="individual-recipe-image">
+      <img src="${currentRecipe.image}"></img>
+    </div>
+  `
 }
 
 const openRecipeCard = () => {
@@ -241,7 +250,6 @@ const showRecipe = (recipeCard) => {
   updateSaveButtons(pageData.currentRecipeCard.id, modalAddBtn, modalRemoveBtn);
   openRecipeCard();
 };
-
 
 const closeRecipe = () => {
   allRecipes.classList.remove('blur')

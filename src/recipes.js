@@ -13,6 +13,15 @@ const filterRecipesByTag = (allRecipes, tags) => {
   return [ ...new Set(filteredRecipes)];
 }
 
+const filterTagsByTagName = (allTags, recipeTags) => {
+  let filteredTags = recipeTags.flatMap((thisTag) => {
+    return allTags.filter(tag => {
+      return tag.name === thisTag;
+    });
+  });
+  return [ ...new Set(filteredTags)];
+}
+
 const getIngredients = (recipe, ingredients) => {
   return recipe.ingredients.map(ingredient => getIngredientProperty(ingredient, ingredients, 'name'))
 }
@@ -104,6 +113,7 @@ const populateTags = (recipes) => {
 export {
   getInstructions,
   filterRecipesByTag,
+  filterTagsByTagName,
   getIngredients,
   getIngredientAmounts,
   fixIngredientAmount,
