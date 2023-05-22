@@ -90,4 +90,6 @@ export {
   searchButton,
   searchByToggle,
   savedCardContainer,
+  ingredientsData,
+  recipeData
 };
