@@ -61,7 +61,7 @@ const createSingleRecipeHTML = singleRecipe => {
     </section>
     <article class="individual-recipe" id="${singleRecipe.id}">
       <div class="recipe-image-div">
-        <img class="recipe-image"src="${singleRecipe.image}">
+        <img class="recipe-image"src="${singleRecipe.image}" alt="${singleRecipe.name}">
         <div class="hover-card"> 
           <h3>Read more...</h3>
         </div>               
@@ -107,7 +107,7 @@ const createTagCardHTML = tag => {
   htmlCode += `
   <section class = "tag-card" id = "${tag.name}">
       <div class="${bgClass}">
-          <img class = "tag-image" src = "${tag.path}">
+          <img class = "tag-image" src = "${tag.path}" alt="${tag.name}">
       </div>
       <p class="tag-text">${tag.name}</p>
   </section>
