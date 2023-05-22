@@ -240,6 +240,7 @@ function renderFilteredRecipes() {
 };
 
 const viewSelectedRecipe = event => {
+  singleRecipeDisplay.innerHTML= '';
   getData('ingredients').then(({ingredients}) => {
   getData('recipes').then(({recipes}) => {
   const recipeName = event.target.id;
@@ -248,7 +249,6 @@ const viewSelectedRecipe = event => {
   const ingredientsInfo = displayIngredients(recipes, ingredients, recipeName)
   const instructions = recipeInstructions(selectedRecipe);
   addHiddenClass([allFilterDisplay]);
-  singleRecipeDisplay.innerHTML= '';
   singleRecipeDisplay.innerHTML += `
   <div class="recipe-page-header">
     <h2>${selectedRecipe.name}</h2>
