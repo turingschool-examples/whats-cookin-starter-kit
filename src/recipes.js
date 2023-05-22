@@ -55,6 +55,25 @@ const searchRecipes = (allRecipes, allIngredients, userSearch) => {
     }
 }
 
+const getTagsFromRecipes = recipes => {
+  const uniqueTags = [];
+  const allTags = recipes.flatMap(recipe => recipe.tags)
+  allTags.forEach(tag => {
+    if (!uniqueTags.includes(tag)) {
+      uniqueTags.push(tag);
+    }
+  })
+  return uniqueTags;
+}
+
+const findRecipe = (allRecipes, ID) => {
+  return allRecipes.find(recipe => recipe.id.toString() === ID.toString());
+}
+
+const checkSavedStatus = (user, ID) => {
+  return user.recipesToCook.some(recipe => recipe.id.toString() === ID.toString());
+}
+
 export {
   getInstructions,
   filterRecipes,
@@ -63,5 +82,8 @@ export {
   calculateRecipeCost,
   filterRecipesByName,
   filterRecipesByIngredient,
-  searchRecipes
+  searchRecipes,
+  getTagsFromRecipes,
+  findRecipe, 
+  checkSavedStatus
 }

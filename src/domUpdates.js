@@ -14,7 +14,7 @@ import {
   modalAddBtn, 
   modalRemoveBtn
 } from './scripts'
-import { searchRecipes } from './recipes';
+import { searchRecipes, getTagsFromRecipes, findRecipe, checkSavedStatus } from './recipes';
 import { updateRecipesToCook } from './users';
 import { copyItem, toggleViewBtns } from './helper-functions';
 
@@ -42,7 +42,7 @@ const createSingleRecipeHTML = singleRecipe => {
   let addStatus = ''; 
   let removeStatus = 'hidden';
   if(currentUser?.recipesToCook){
-    if(checkSavedStatus(singleRecipe.id)) {
+    if(checkSavedStatus(currentUser, singleRecipe.id)) {
       addStatus = 'hidden';
       removeStatus = '';
     }
@@ -94,17 +94,6 @@ const renderGrid = (data) => {
   const gridData = makeRecipeColumnData(data)
   recipeGrid.innerHTML = ''
   recipeGrid.innerHTML = createGridHTML(gridData);
-}
-
-const getTagsFromRecipes = recipes => {
-  const uniqueTags = [];
-  const allTags = recipes.flatMap(recipe => recipe.tags)
-  allTags.forEach(tag => {
-    if (!uniqueTags.includes(tag)) {
-      uniqueTags.push(tag);
-    }
-  })
-  return uniqueTags;
 }
 
 const clubTagsAndIcons = tags => {
@@ -220,9 +209,9 @@ const populateInstructions = (recipe) => {
   addScrollBar('.instruction-steps')
 }
 
-const findRecipe = (allRecipes, ID) => {
-  return allRecipes.find(recipe => recipe.id.toString() === ID.toString());
-}
+// const findRecipe = (allRecipes, ID) => {
+//   return allRecipes.find(recipe => recipe.id.toString() === ID.toString());
+// }
 
 const updateCurrentRecipe = recipeCard => {
   const recipeCardID = recipeCard.closest("article")?.id;
@@ -232,12 +221,12 @@ const updateCurrentRecipe = recipeCard => {
   pageData.currentRecipeCard.outerRemoveBtn = recipeCard.closest('.individual-recipe-container').querySelector('.remove-panel')
 }
 
-const checkSavedStatus = (ID) => {
-  return currentUser.recipesToCook.some(recipe => recipe.id.toString() === ID.toString());
-}
+// const checkSavedStatus = (ID) => {
+//   return currentUser.recipesToCook.some(recipe => recipe.id.toString() === ID.toString());
+// }
 
 const updateSaveButtons = (ID, addButton, removeButton) => {
-  if(checkSavedStatus(ID)){
+  if(checkSavedStatus(currentUser, ID)){
     addButton.classList.add('hidden')
     removeButton.classList.remove('hidden')
   } else {
@@ -329,9 +318,9 @@ const updateUserRecipes = (e) => {
   if(e.target.classList.contains('save-option')) {
     const recipeID = e.target.closest('.individual-recipe-container')?.querySelector('.individual-recipe').id
     const recipe = findRecipe(pageData.allRecipes, recipeID)
-    if (!checkSavedStatus(recipeID)) {
+    if (!checkSavedStatus(currentUser, recipeID)) {
       updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'add'))
-    } else if (checkSavedStatus(recipeID)) {
+    } else if (checkSavedStatus(currentUser, recipeID)) {
       updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'remove'))
     }
     const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel')
