@@ -166,16 +166,16 @@ const showSavedRecipes = (currentUser, recipesToCook) => {
   } else {
     savedRecipeDisplay.innerHTML = '';
     recipesToCook.forEach(recipe => {
-    savedRecipeDisplay.innerHTML += `
-    <div class="recipe-wrapper">
-      <img id="${recipe.name}" src="${recipe.image}" class="recipe" alt="${recipe.name}">
-      <div class="recipe-info">
-        <p>${recipe.name}</p>
-        <button class="delete-recipe-button ${recipe.name}" id="${recipe.id}">🗑️</button>
-      </div>
-    </div>`});
-  }
-};
+      savedRecipeDisplay.innerHTML += `
+      <div class="recipe-wrapper">
+        <img id="${recipe.name}" src="${recipe.image}" class="recipe" alt="${recipe.name}">
+        <div class="recipe-info">
+          <p>${recipe.name}</p>
+          <button class="delete-recipe-button ${recipe.name}" id="${recipe.id}">🗑️</button>
+        </div>
+      </div>`});
+    }
+  };
 
 function renderFilteredSavedRecipes() {
   const savedTags = Array.from(checkCategories).filter((category) => category.checked).map(c => c.id)
