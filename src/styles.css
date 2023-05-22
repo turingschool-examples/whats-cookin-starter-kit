@@ -21,7 +21,7 @@ nav {
 }
 
 #navColorBar {
-  background-color: #5aa9e6;
+  background-color: #2a94e5;
   height: 30px;
 }
 
@@ -91,7 +91,7 @@ nav {
 /* HEADER */
 header {
   margin: 15px 25px;
-  background-color: #5aa9e6;
+  background-color: #2a94e5;
   padding: 1px;
   box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
 }
