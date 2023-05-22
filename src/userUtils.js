@@ -3,7 +3,7 @@ var recipesToCook = [];
 
 const saveRecipe = (recipes, recipeName) => {
   let fullRecipe = recipes.find(recipe => recipe.name === recipeName);
-  if(!recipesToCook.includes(fullRecipe)) {
+  if(recipesToCook.find(cook => fullRecipe.id === cook.id)== null) {
     recipesToCook.push(fullRecipe);
     return recipesToCook;
   }
@@ -11,8 +11,8 @@ const saveRecipe = (recipes, recipeName) => {
 };
 
 const deleteRecipe = (recipeName) => {
-  let found = recipesToCook.find(recipe => recipe.name === recipeName)
-  recipesToCook.splice(found, 1);
+  let foundIndex = recipesToCook.findIndex(index => index.name === recipeName)
+  recipesToCook.splice(foundIndex, 1);
   return recipesToCook;
 };
 
