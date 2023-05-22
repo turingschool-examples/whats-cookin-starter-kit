@@ -5,8 +5,12 @@ const getInstructions = recipe => {
 }
 
 const filterRecipesByTag = (allRecipes, tags) => {
-  let filteredRecipes = allRecipes.filter(recipe => tags.every(tag => recipe.tags.includes(tag)))
-  return filteredRecipes;
+  let filteredRecipes = tags.flatMap((tag) => {
+    return allRecipes.filter(recipe => {
+      return recipe.tags.includes(tag);
+    });
+  });
+  return [ ...new Set(filteredRecipes)];
 }
 
 const getIngredients = (recipe, ingredients) => {
@@ -72,13 +76,17 @@ const addInfoToTags = tags => {
   })
 }
 
+const splitTagsInRows = tagsAndIcons => {
+  const topRow = tagsAndIcons.filter(tag => tag.row === 1);
+  const bottomRow = tagsAndIcons.filter(tag => tag.row === 0);
+  return [topRow, bottomRow];
+}
+
 const populateTags = (recipes) => {
   const tagData = getUniqueTagsFromRecipes(recipes);
   const refinedTagData =  addInfoToTags(tagData);
   return refinedTagData;
 }
-
-
 
 export {
   getInstructions,
@@ -90,4 +98,5 @@ export {
   filterRecipesByIngredient,
   searchRecipes,
   populateTags,
+  splitTagsInRows
 }

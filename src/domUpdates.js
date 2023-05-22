@@ -14,7 +14,7 @@ import {
   modalAddBtn, 
   modalRemoveBtn
 } from './scripts'
-import { filterRecipesByTag, searchRecipes } from './recipes';
+import { filterRecipesByTag, searchRecipes, splitTagsInRows } from './recipes';
 import { updateRecipesToCook } from './users';
 import { copyItem, toggleViewBtns } from './helper-functions';
 
@@ -96,35 +96,6 @@ const renderGrid = (data) => {
   recipeGrid.innerHTML = createGridHTML(gridData);
 }
 
-const getTagsFromRecipes = recipes => {
-  const uniqueTags = [];
-  const allTags = recipes.flatMap(recipe => recipe.tags)
-  allTags.forEach(tag => {
-    if (!uniqueTags.includes(tag)) {
-      uniqueTags.push(tag);
-    }
-  })
-  return uniqueTags;
-}
-
-const clubTagsAndIcons = tags => {
-  const tagsAndIcons = tags.map((tag, index) => {
-    return {
-      name: tag,
-      path: `./images/${tag}.png`,
-      row: (index + 1) % 2
-    };
-  });
-
-  return tagsAndIcons;
-}
-
-const splitTagsInRows = tagsAndIcons => {
-  const topRow = tagsAndIcons.filter(tag => tag.row === 1);
-  const bottomRow = tagsAndIcons.filter(tag => tag.row === 0);
-  return [topRow, bottomRow];
-}
-
 const createTagCardHTML = tag => {
   let htmlCode = '';
   let bgClass = "tag-image-bg";
@@ -143,7 +114,7 @@ const createTagCardHTML = tag => {
   return htmlCode;
 }
 
-const createRowHTML = row => {
+const createTagRowHTML = row => {
   let rowNumber;
 
   if (row.length === 10) {
@@ -166,7 +137,7 @@ const createTagAreaHTML = rows => {
   htmlCode += '<div class="tag-rows">';
 
   rows.forEach(row => {
-    htmlCode += createRowHTML(row);
+    htmlCode += createTagRowHTML(row);
   });
 
   htmlCode += '</div>';
@@ -332,7 +303,7 @@ const setBaseData = () => {
   return baseData;
 }
 
-const setupFilterData = (baseData) => {
+const setupFilterData = (activeTags, baseData) => {
   if (activeTags.length) {
     return filterRecipesByTag(baseData, activeTags);
   } else {
@@ -347,7 +318,7 @@ const setupFilterData = (baseData) => {
 const displayTaggedRecipes = () => {
   const activeTags = pageData.allTags.filter(tag => tag.isActive).map(tag => tag.name);
   const baseData = setBaseData();
-  const filteredRecipes = setupFilterData(baseData);
+  const filteredRecipes = setupFilterData(activeTags, baseData);
   
   if (filteredRecipes.length) {
     pageData.recipesOfInterest = filteredRecipes;

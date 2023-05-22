@@ -14,10 +14,11 @@ import {
   getIngredients,
   calculateRecipeCost,
   getIngredientAmounts,
-  filterRecipes,
+  filterRecipesByTag,
   filterRecipesByIngredient,
   filterRecipesByName,
-  searchRecipes
+  searchRecipes,
+  splitTagsInRows
 } from '../src/recipes';
 
 describe('recipe', () => {
@@ -30,7 +31,7 @@ describe('recipe', () => {
     assert.isFunction(getIngredients);
     assert.isFunction(getIngredientAmounts);
     assert.isFunction(calculateRecipeCost);
-    assert.isFunction(filterRecipes);
+    assert.isFunction(filterRecipesByTag);
     assert.isFunction(filterRecipesByIngredient);
     assert.isFunction(filterRecipesByName);
   });
@@ -210,27 +211,37 @@ describe('recipe', () => {
   });
 });
 
-describe('filterRecipes', () => {
+describe('filterRecipesByTag', () => {
   let expectedRecipes;
   let filteredRecipes;
   let nameSearched;
   let ingredientSearched;
 
+  it ('should split tags in rows', () => {
+    const tag1 = {row: 1};
+    const tag2 = {row: 0};
+    const tag3 = {row: 1};
+    const topRow = [tag1, tag3];
+    const bottomRow = [tag2];
+    const rows = splitTagsInRows([tag1, tag2, tag3]);
+    expect(rows).to.deep.equal([topRow, bottomRow]);
+  });
+
   it('should filter list of recipes based on single tag', () => {
     expectedRecipes = [sampleRecipeData[0]];
-    filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto')
+    filteredRecipes = filterRecipesByTag(sampleRecipeData, ['antipasto'])
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   });
 
   it('should filter list of recipes based on multiple tags', () => {
     expectedRecipes = [sampleRecipeData[0], sampleRecipeData[2]];
-    filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'sauce');
+    filteredRecipes = filterRecipesByTag(sampleRecipeData, ['antipasto', 'sauce']);
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   });
 
   it('filtered recipe list should contain only unique entries if it contains multiple tags being filtered', () => {
     expectedRecipes = [sampleRecipeData[0]];
-    filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'antipasti');
+    filteredRecipes = filterRecipesByTag(sampleRecipeData, ['antipasto', 'antipasti']);
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   });
 
