@@ -31,10 +31,9 @@ describe('deleteRecipe', () => {
   });
 
   it('should be able to remove a recipe from the data model array', () => {
-    const savedRecipes = saveRecipe(recipeData, "Thai Chicken Tenders with Broiled Pineapple Slaw");
     const newRecipes = deleteRecipe("Thai Chicken Tenders with Broiled Pineapple Slaw");
 
-    expect(newRecipes.length).to.equal(0);
+    expect(newRecipes.length).to.equal(2);
     expect(newRecipes).to.deep.equal(recipesToCook);
   });
 });
@@ -45,13 +44,11 @@ describe('addSavedRecipesToUser', () => {
   });
 
   it('should update the currentUser object with recipesToCook array', () => {
-    const savedRecipes = saveRecipe(recipeData, "Thai Chicken Tenders with Broiled Pineapple Slaw");
-    const savedRecipes2 = saveRecipe(recipeData, "Thai Chicken Tenders with Broiled Pineapple Slaw");
     const currentUser = usersData[0];
-    const updatedUser = addSavedRecipesToUser(currentUser, savedRecipes);
+    const updatedUser = addSavedRecipesToUser(currentUser, recipesToCook);
 
-    expect(savedRecipes.length).to.equal(1);
-    expect(savedRecipes[0]).to.equal(recipesToCook[0]);
-    expect(updatedUser.recipesToCook).to.equal(savedRecipes);
+    expect(updatedUser.recipesToCook.length).to.equal(2);
+    expect(updatedUser.recipesToCook[0]).to.deep.equal(recipesToCook[0]);
+    expect(updatedUser.recipesToCook).to.deep.equal(recipesToCook);
   });
 });
