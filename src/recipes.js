@@ -4,13 +4,12 @@ const getInstructions = recipe => {
   return recipe.instructions.map(item => item.instruction)
 }
 
-const filterRecipes = (allRecipes, ...tags) => {
+const filterRecipesByTag = (allRecipes, tags) => {
   let filteredRecipes = tags.flatMap((tag) => {
     return allRecipes.filter(recipe => {
       return recipe.tags.includes(tag);
     });
   });
-
   return [ ...new Set(filteredRecipes)];
 }
 
@@ -55,13 +54,51 @@ const searchRecipes = (allRecipes, allIngredients, userSearch) => {
     }
 }
 
+const getUniqueTagsFromRecipes = recipes => {
+  const uniqueTags = [];
+  const allTags = recipes.flatMap(recipe => recipe.tags)
+  allTags.forEach(tag => {
+    if (!uniqueTags.includes(tag)) {
+      uniqueTags.push(tag);
+    }
+  })
+  return uniqueTags;
+}
+
+const addInfoToTags = tags => {
+  return tags.map((tag, index) => {
+    return {
+      name: tag,
+      isActive: false,
+      path: `./images/${tag}.png`,
+      row: (index + 1) % 2
+    }
+  })
+}
+
+const splitTagsInRows = tagsAndIcons => {
+  const topRow = tagsAndIcons.filter(tag => tag.row === 1);
+  const bottomRow = tagsAndIcons.filter(tag => tag.row === 0);
+  return [topRow, bottomRow];
+}
+
+const populateTags = (recipes) => {
+  const tagData = getUniqueTagsFromRecipes(recipes);
+  const refinedTagData =  addInfoToTags(tagData);
+  return refinedTagData;
+}
+
 export {
   getInstructions,
-  filterRecipes,
+  filterRecipesByTag,
   getIngredients,
   getIngredientAmounts,
   calculateRecipeCost,
   filterRecipesByName,
   filterRecipesByIngredient,
-  searchRecipes
+  searchRecipes,
+  populateTags,
+  splitTagsInRows,
+  getUniqueTagsFromRecipes,
+  addInfoToTags
 }

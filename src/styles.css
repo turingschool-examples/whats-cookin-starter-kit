@@ -15,7 +15,6 @@ body {
 
 /* Toggle view */
 .choose-view {
-  /* border: 1px solid white; */
   font-size: 17px;
   display: flex;
   width: 30vw;
@@ -32,7 +31,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* color: white; */
   opacity: 1;
   width: 45%;
   height: 40px;
@@ -81,8 +79,6 @@ nav {
 #searchBar {
   border-radius: 15px;
 }
-
-
 
 /* Tag box */
 .tag-area {
@@ -158,12 +154,7 @@ nav {
   margin-top: 4px;
   margin-bottom: 2px;
   text-align: center;
-
 }
-
-/* .tag-option {
-  text-align: center;
-} */
 
 .tag-card:hover {
   cursor: pointer;
@@ -218,7 +209,7 @@ nav {
 }
 
 .panel > h4 {
-  font-size: 19px;
+  font-size: 13px;
   border: wheat;  
   height: 0px;
   width: 0px;
@@ -458,7 +449,7 @@ input[type=checkbox] {
 }
 
 .modal-recipe-btn {
-  font-size: 25px;
+  font-size: 19px;
   height: 90%;
   width: 60%;
   background-color: #24252893;
@@ -517,7 +508,6 @@ input[type=checkbox] {
   background-color: #fbbf83;
   border-radius: 5px;
 }
-
 
 .scrollbar::-webkit-scrollbar-thumb:hover {
   background-color:#faac5f;

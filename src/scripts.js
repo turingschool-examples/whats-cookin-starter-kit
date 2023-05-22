@@ -2,7 +2,8 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { makeTagActive, closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, updateRecipesFromModal } from './domUpdates'; 
+import { closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal } from './domUpdates';
+import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
 import './images/antipasti.png';
 import './images/antipasto.png'
 import './images/appetizer.png'
@@ -73,7 +74,9 @@ allRecipes.addEventListener('click', (event) => {
 
 tagArea.addEventListener("click", function(event) {
   if (event.target.classList && event.target.closest(".tag-card")) {
-    makeTagActive(event);
+    toggleTagData(event.target.closest("section").id);
+    renderActiveTag(event);
+    displayTaggedRecipes();
   };
 });
 
