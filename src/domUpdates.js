@@ -127,7 +127,7 @@ const renderRecipeCards = (view, recipes, currentUser) => {
   recipes.forEach((recipe) => {
     view.innerHTML += `
     <article class="recipe-card" id="${recipe.id}">
-      <img class="recipe-img" src="${recipe.image}" id="${recipe.id}">
+      <img class="recipe-img" src="${recipe.image}" id="${recipe.id}" alt="${recipe.name}">
       ${renderRecipeCardTag(recipe)}
       <div class="recipe-title-flex">
         <h2 class="recipe-name">${recipe.name}</h2>
@@ -187,7 +187,7 @@ const renderSingleRecipeView = (e, recipes, ingredients) => {
   let recipe = findRecipe(e, recipes);
   singleRecipeView.innerHTML += `
     <div class="single-recipe-view-flex">
-      <img class="single-recipe-img" src="${recipe.image}">
+      <img class="single-recipe-img" src="${recipe.image}" alt="${recipe.name}">
       <div class="recipe-header-flex">
         <h2 class="recipe-title">${recipe.name}</h2>
         <div class="bookmark-flex">
