@@ -1,15 +1,15 @@
 //IMPORTS 
-import { getRandomUser } from "./users"
-import { pageLoadRenders } from "./domUpdates"
-import { copyItem } from "./helper-functions"
-import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
+import { getRandomUser } from "./users";
+import { pageLoadRenders } from "./domUpdates";
+import { copyItem } from "./helper-functions";
+import { populateTags, calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 
 // DATA MODEL 
 let currentUser;
 let pageData = {
-  activeTags: [],
   currentView: 'our-recipes',
-  currentRecipeCard: {}
+  currentRecipeCard: {},
+  allTags: []
 };
 let currentPitch;
 
@@ -47,7 +47,8 @@ const fetchRecipes = () => {
         })
         .then(() => {
           pageData.recipesOfInterest = copyItem(pageData.allRecipes);
-          getChatGPTRes(pageData.recipesOfInterest);
+          pageData.allTags = populateTags(pageData.allRecipes);
+          // getChatGPTRes(pageData.recipesOfInterest);
           pageLoadRenders(pageData.recipesOfInterest);
         })
         .catch(error => {

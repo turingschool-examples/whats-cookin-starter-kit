@@ -2,7 +2,7 @@
 // query selectors and event listeners in here 
 
 import './styles.css'
-import { makeTagActive, closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, updateRecipesFromModal } from './domUpdates'; 
+import { closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal } from './domUpdates'; 
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 import { loadData } from './apiCalls';
 import './images/antipasti.png';
@@ -27,6 +27,7 @@ import './images/starter.png'
 import './images/search-button.png'
 // import apiCalls from './apiCalls'
 
+const body = document.querySelector('body');
 const recipeGrid = document.querySelector('.recipe-grid');
 const allRecipes = document.querySelector('.all-recipes')
 const allUserRecipes = document.querySelector('.all-user-recipes');
@@ -74,7 +75,9 @@ allRecipes.addEventListener('click', (event) => {
 
 tagArea.addEventListener("click", function(event) {
   if (event.target.classList && event.target.closest(".tag-card")) {
-    makeTagActive(event);
+    toggleTagData(event.target.closest("section").id);
+    renderActiveTag(event);
+    displayTaggedRecipes();
   };
 });
 
@@ -117,5 +120,6 @@ export {
   chooseView,
   searchBar,
   modalAddBtn, 
-  modalRemoveBtn
+  modalRemoveBtn,
+  body
 }

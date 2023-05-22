@@ -666,6 +666,37 @@ const sampleRecipeData = [
       "main dish",
       "dinner"
     ]
+  },
+  {
+    "id": 698701,
+    "image": "https://spoonacular.com/recipeImages/698701-556x370.jpg",
+    "ingredients": [
+      {
+        "id": 19335,
+        "quantity": {
+          "amount": 0.3333333333333333,
+          "unit": "cup"
+        }
+      }
+    ],
+    "instructions": [
+      {
+        "instruction": "To prepare berry layer: Preheat oven to 375F. Coat six 8-ounce souffl cups with cooking spray.",
+        "number": 1
+      },
+      {
+        "instruction": "Add 1 teaspoon sugar to each cup and swirl to coat the inside. Distribute raspberries in the bottom of the cups and sprinkle each with 1 teaspoon crme de cassis (or eau-de-vie, juice or nectar).To prepare souffls: Stir raspberries in a saucepan over low heat until they are juicy (for fresh) or thawed (for frozen).",
+        "number": 2
+      },
+      {
+        "instruction": "Transfer to a fine sieve set over a bowl. With a spoon, press the berries through the sieve, being careful to extract all the pulp. Discard the seeds.Return the puree to the saucepan. Bring to a simmer and stir over medium heat until very thick and reduced to 1/4 cup, about 10 minutes. (Reduce the heat as the mixture thickens.) Stir in 1 tablespoon crme de cassis (or eau-de-vie, juice or nectar) and set aside to cool slightly.Beat egg whites and salt in a mixing bowl with an electric mixer on high speed until soft peaks form. Continuing to beat, gradually add sugar and beat until stiff peaks form. With a rubber spatula, fold about a fourth of the beaten whites into the reserved raspberry puree to lighten its texture, then pour the mixture over the remaining whites. Gently fold the puree and whites together until evenly blended. Spoon the souffl mixture into the cups, spreading to the edges of the cups.Set the cups on a baking sheet and bake for 10 minutes, or until lightly browned on the top. Dust with confectioners sugar and serve immediately.",
+        "number": 3
+      }
+    ],
+    "name": "Double Raspberry Soufflés",
+    "tags": [
+      "side dish"
+    ]
   }
 ]
 
@@ -1522,21 +1553,24 @@ const simpleRecipes = [
         {
           id: 1,
         }
-      ]
+      ],
+      tags: ['a', 'b', 'c']
     },
     {
       "ingredients": [
         {
-          id: 2
+          id: 2,
         }
-      ]
+      ],
+      tags: ['a', 'c', 'd']
     },
     {
       "ingredients": [
         {
-          id: 3
+          id: 3,
         }
-      ]
+      ],
+      tags: ['e', 'f', 'g']
     }
 ]
 

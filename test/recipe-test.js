@@ -14,23 +14,29 @@ import {
   getIngredients,
   calculateRecipeCost,
   getIngredientAmounts,
-  filterRecipes,
+  fixIngredientAmount,
+  filterRecipesByTag,
   filterRecipesByIngredient,
   filterRecipesByName,
-  searchRecipes
+  searchRecipes,
+  splitTagsInRows,
+  getUniqueTagsFromRecipes,
+  addInfoToTags
 } from '../src/recipes';
 
 describe('recipe', () => {
   const cookies = sampleRecipeData[0];
   const porkChops = sampleRecipeData[1];
+  const doubleRaspberrySouffle = sampleRecipeData[6];
   const allIngredients = sampleIngredientsData;
 
   it('should be a funciton', () => {
     assert.isFunction(getInstructions);
     assert.isFunction(getIngredients);
     assert.isFunction(getIngredientAmounts);
+    assert.isFunction(fixIngredientAmount);
     assert.isFunction(calculateRecipeCost);
-    assert.isFunction(filterRecipes);
+    assert.isFunction(filterRecipesByTag);
     assert.isFunction(filterRecipesByIngredient);
     assert.isFunction(filterRecipesByName);
   });
@@ -152,6 +158,14 @@ describe('recipe', () => {
     assert.deepEqual(ingredientInfo, expectedInfo);
   });
 
+  it('should lop off any numbers after the first two decimal places', () => {
+    const ingredientInfo = getIngredientAmounts(doubleRaspberrySouffle, allIngredients);
+    let expectedAmount = 0.33;
+    const fixedAmount = fixIngredientAmount(ingredientInfo[0].amount);
+    
+    expect(fixedAmount).to.equal(expectedAmount);
+  })
+
   it("should calculate the cost of a given recipe's ingredients", () => {
     const cost = calculateRecipeCost(cookies, allIngredients);
     assert.equal(cost, '$177.76');
@@ -210,27 +224,37 @@ describe('recipe', () => {
   });
 });
 
-describe('filterRecipes', () => {
+describe('filterRecipesByTag', () => {
   let expectedRecipes;
   let filteredRecipes;
   let nameSearched;
   let ingredientSearched;
 
+  it ('should split tags in rows', () => {
+    const tag1 = {row: 1};
+    const tag2 = {row: 0};
+    const tag3 = {row: 1};
+    const topRow = [tag1, tag3];
+    const bottomRow = [tag2];
+    const rows = splitTagsInRows([tag1, tag2, tag3]);
+    expect(rows).to.deep.equal([topRow, bottomRow]);
+  });
+
   it('should filter list of recipes based on single tag', () => {
     expectedRecipes = [sampleRecipeData[0]];
-    filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto')
+    filteredRecipes = filterRecipesByTag(sampleRecipeData, ['antipasto'])
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   });
 
   it('should filter list of recipes based on multiple tags', () => {
     expectedRecipes = [sampleRecipeData[0], sampleRecipeData[2]];
-    filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'sauce');
+    filteredRecipes = filterRecipesByTag(sampleRecipeData, ['antipasto', 'sauce']);
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   });
 
   it('filtered recipe list should contain only unique entries if it contains multiple tags being filtered', () => {
     expectedRecipes = [sampleRecipeData[0]];
-    filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'antipasti');
+    filteredRecipes = filterRecipesByTag(sampleRecipeData, ['antipasto', 'antipasti']);
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   });
 
@@ -341,3 +365,49 @@ describe('search recipes', () => {
     assert.deepEqual(filteredRecipes, expectedRecipes)
   })
 })
+
+describe('populating tags', () => {
+  it('should get unique tags from overlapping tags in recipes', () => {
+    const uniqueTags = getUniqueTagsFromRecipes(simpleRecipes.slice(0,2));
+    expect(uniqueTags).to.deep.equal(['a', 'b', 'c', 'd'])
+  });
+
+  it('should get unique tags from unique tags in recipes', () => {
+    const uniqueTags = getUniqueTagsFromRecipes(simpleRecipes);
+    expect(uniqueTags).to.deep.equal(['a', 'b', 'c', 'd', 'e', 'f', 'g'])
+  });
+
+  it('should add more info to a tag', () => {
+    const basicTags = getUniqueTagsFromRecipes(simpleRecipes);
+    const firstElement = {
+      name: 'a',
+      isActive: false,
+      path: `./images/${basicTags[0]}.png`,
+      row: 1
+    };
+    const expectedOutput = [firstElement];
+    const refinedTags = addInfoToTags([basicTags[0]]);
+    expect(refinedTags).to.deep.equal(expectedOutput);
+  });
+
+  it('should add more info to multiple tags', () => {
+    const basicTags = getUniqueTagsFromRecipes(simpleRecipes);
+    const firstElement = {
+      name: 'a',
+      isActive: false,
+      path: `./images/${basicTags[0]}.png`,
+      row: 1
+    };
+
+    const secondElement = {
+      name: 'b',
+      isActive: false,
+      path: `./images/${basicTags[1]}.png`,
+      row: 0
+    };
+
+    const expectedOutput = [firstElement, secondElement];
+    const refinedTags = addInfoToTags([basicTags[0], basicTags[1]]);
+    expect(refinedTags).to.deep.equal(expectedOutput);
+  })
+});
