@@ -276,6 +276,10 @@ const renderRecipesOfInterest = () => {
 }
 
 const switchView = (clickedViewID) => {
+  pageData.allTags.forEach(tag => {
+    tag.isActive = false
+  })
+  renderTagArea();
   pageData.currentView = clickedViewID;
   renderRecipesOfInterest();
   toggleViewBtns([ourViewBtn, yourViewBtn]);
@@ -336,7 +340,7 @@ const updateUserRecipes = (e) => {
     const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel');
     const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel');
     updateSaveButtons(recipeID, addBtn, removeBtn);
-    renderRecipesOfInterest();
+    if(pageData.currentView === 'your-recipes')renderRecipesOfInterest();
   }
 }
 
@@ -345,7 +349,7 @@ const updateRecipesFromModal = (targetID) => {
   updateCurrentUser(updateRecipesToCook(currentUser, recipe, targetID));
   updateSaveButtons(recipe.id, modalAddBtn, modalRemoveBtn);
   updateSaveButtons(recipe.id, pageData.currentRecipeCard.outerAddBtn, pageData.currentRecipeCard.outerRemoveBtn);
-  renderRecipesOfInterest();
+  if(pageData.currentView === 'your-recipes')renderRecipesOfInterest();
 }
 
 // Exports
