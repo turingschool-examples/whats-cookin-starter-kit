@@ -36,6 +36,10 @@ nav {
   cursor: pointer;
 }
 
+.icon-label {
+  margin: 0;
+}
+
 .search-flexbox {
   display: flex;
   min-width: 400px;
