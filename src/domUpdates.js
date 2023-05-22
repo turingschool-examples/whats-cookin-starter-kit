@@ -252,11 +252,15 @@ const viewSelectedRecipe = event => {
   addHiddenClass([allFilterDisplay]);
   singleRecipeDisplay.innerHTML= '';
   singleRecipeDisplay.innerHTML += `
-  <h2>${selectedRecipe.name}</h2>
-  <img id="${selectedRecipe.id}" src="${selectedRecipe.image}" class="recipe" alt='${selectedRecipe.name}'>
-  <p class="total-cost-box">This recipe costs a total of: $${recipeCost} to make!</p>
-  <p class="ingredient-box">The ingredients you will need to make this recipe are: <br> ${ingredientsInfo}</p>
-  <p class="instruction-box">Instructions: <br> ${instructions}</p>`
+  <div class="recipe-page-header">
+    <h2>${selectedRecipe.name}</h2>
+    <img class="single-recipe-img" id="${selectedRecipe.id}" src="${selectedRecipe.image}" class="recipe" alt='${selectedRecipe.name}'>
+  </div>
+  <div class="recipe-page-body">
+    <p class="total-cost-box">This recipe costs a total of: $${recipeCost} to make!</p>
+    <p class="ingredient-box">The ingredients you will need to make this recipe are: <br> ${ingredientsInfo}</p>
+    <p class="instruction-box">Instructions: <br> ${instructions}</p>
+  </div>`;
   recipeTitle.innerText = `${selectedRecipe.name}`;
 })
 })
