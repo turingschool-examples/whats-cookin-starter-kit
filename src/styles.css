@@ -451,11 +451,9 @@ input[type=checkbox] {
   width: 50%;
 }
 
-.modal-recipe-btn {
-  font-size: 19px;
-  height: 90%;
-  width: 60%;
-  background-color: #24252893;
+/* .modal-recipe-btn {
+  height: 100px;
+  width: 60px;
   color: white;
   opacity: 0.8;
   border-radius: 20px;
@@ -463,6 +461,13 @@ input[type=checkbox] {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: '.images/bookmark.png';
+} */
+
+.bookmark-img {
+  height: 80%;
+  width: auto;
+  mix-blend-mode: multiply;
 }
 
 .modal-recipe-btn:hover {
