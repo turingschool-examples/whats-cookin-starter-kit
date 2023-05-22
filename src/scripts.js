@@ -3,9 +3,8 @@
 
 import './styles.css'
 import { makeTagActive, closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, updateRecipesFromModal } from './domUpdates'; 
-import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
-import { ingredientsData } from './data/ingredients';
-import { loadData, getChatGPTRes } from './apiCalls';
+import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
+import { loadData } from './apiCalls';
 import './images/antipasti.png';
 import './images/antipasto.png'
 import './images/appetizer.png'
@@ -26,7 +25,6 @@ import './images/snack.png'
 import './images/spread.png'
 import './images/starter.png'
 import './images/search-button.png'
-import { loadData } from './apiCalls';
 // import apiCalls from './apiCalls'
 
 const recipeGrid = document.querySelector('.recipe-grid');
@@ -68,7 +66,6 @@ return recipeCard;
 // import {exampleFunction1, exampleFunction2} from './domUpdates.js'
 window.addEventListener("load", () => {
   loadData();
-  getChatGPTRes();
 });
 
 allRecipes.addEventListener('click', (event) => {

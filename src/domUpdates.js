@@ -25,6 +25,7 @@ const makeRecipeColumnData = (data) => {
       id: recipe.id,
       image: recipe.image,
       name: recipe.name,
+      pitch: recipe.pitch,
       tags: recipe.tags
     }
   });
@@ -60,7 +61,7 @@ const createSingleRecipeHTML = singleRecipe => {
       <div class="recipe-image-div">
         <img class="recipe-image"src="${singleRecipe.image}">
         <div class="hover-card"> 
-          <h3>Read more...</h3>
+          <h4>${singleRecipe.pitch}</h4>
         </div>               
       </div>
       <h2>${singleRecipe.name}</h2>
@@ -89,6 +90,7 @@ const createGridHTML = allColumns => {
 }
 
 const renderGrid = (data) => {
+  console.log(data);
   const gridData = makeRecipeColumnData(data)
   recipeGrid.innerHTML = ''
   recipeGrid.innerHTML = createGridHTML(gridData);

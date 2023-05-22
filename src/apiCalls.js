@@ -11,6 +11,7 @@ let pageData = {
   currentView: 'our-recipes',
   currentRecipeCard: {}
 };
+let currentPitch;
 
 const getRecipeCard = (recipe) => {
     const recipeCard =  {
@@ -44,7 +45,13 @@ const fetchRecipes = () => {
         .then(recipes => {
             pageData.allRecipes = recipes.recipes;
             pageData.recipesOfInterest = copyItem(pageData.allRecipes);
-            pageLoadRenders(pageData.recipesOfInterest);
+            setTimeout(() => {
+              pageData.recipesOfInterest.forEach(recipe => {
+                getChatGPTRes(recipe);
+                pageLoadRenders(pageData.recipesOfInterest);
+              });
+            }, 2000);
+            
         })
         .catch(error => {
             console.error(error);
@@ -68,11 +75,11 @@ const updateCurrentUser = (user) => {
   currentUser = user;
 };
 
-const getChatGPTRes = () => {
-    const openai_api_key = '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'
+const getChatGPTRes = (recipe) => {
+  const openai_api_key = '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'
     const DEFAULT_PARAMS = {
         "model": "text-davinci-002",
-        "prompt": "say this is a test",
+        "prompt": `In 10 words or less, give me an enticing pitch based on this recipe name: ${recipe.name}`,
         "temperature": 0.7,
         "max_tokens": 256,
         "top_p": 1,
@@ -84,15 +91,16 @@ const getChatGPTRes = () => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + String(openai_api_key)
+            Authorization: 'Bearer ' + String(openai_api_key),
+            organization: 'org-47g2m7vnC6yUKCbIL0f7PSFb'
         },
         body: JSON.stringify(DEFAULT_PARAMS)
     };
 
     fetch('https://api.openai.com/v1/completions', requestOptions)
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => recipe.pitch = data.choices[0].text)
         .catch(error => console.error(error));
 }
 
-export { currentUser, pageData, updateCurrentUser, loadData, getRecipeCard, getChatGPTRes };
+export { currentUser, pageData, updateCurrentUser, loadData, getRecipeCard, getChatGPTRes, currentPitch };
