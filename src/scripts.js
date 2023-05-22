@@ -3,8 +3,10 @@
 
 import './styles.css'
 import { closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal } from './domUpdates';
-import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
-import './images/antipasti.png';
+import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
+import './images/hollow-bookmark-icon.png'
+import './images/select-bookmark-icon.png'
+import './images/antipasti.png'
 import './images/antipasto.png'
 import './images/appetizer.png'
 import './images/breakfast.png'

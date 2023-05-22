@@ -442,34 +442,28 @@ input[type=checkbox] {
   border-radius: 50px;
 }
 
-.modal-add-recipe {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 25px;
-  height: 8vh;
-  width: 50%;
+.modal-btn-container {
+  align-self: flex-start;
 }
 
 .modal-recipe-btn {
-  font-size: 19px;
-  height: 90%;
-  width: 60%;
-  background-color: #24252893;
-  color: white;
-  opacity: 0.8;
-  border-radius: 20px;
-  margin-left: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: transparent;
+  border: none;
+  height: 7vh;
+  width: auto;
+}
+
+.bookmark-img {
+  height: 100%;
+  width: auto;
 }
 
 .modal-recipe-btn:hover {
-  background-color: #242528;
-  transform: scale(1.01);
+  transform: scale(1.1);
   cursor: pointer;
-  opacity: 1;
 }
 
 #recipeName {
