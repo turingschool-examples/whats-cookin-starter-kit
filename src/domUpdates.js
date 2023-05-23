@@ -98,6 +98,18 @@ const renderGrid = (data) => {
   recipeGrid.innerHTML = createGridHTML(gridData);
 }
 
+const createModalTagHTML = tag => {
+  return `
+  <section class = "tag-card" id = "${tag.name}">
+      <div class="tag-image-bg active-bg">
+          <img class = "tag-image" src = "${tag.path}" alt="${tag.name}">
+      </div>
+      <p class="tag-text">${tag.name}</p>
+  </section>
+  `;
+}
+
+
 const createTagCardHTML = tag => {
   let htmlCode = '';
   let bgClass = "tag-image-bg";
@@ -221,8 +233,7 @@ const updateSaveButtons = (ID, addButton, removeButton) => {
 const populateRecipeHeader = currentRecipe => {
   let filteredTags = filterTagsByTagName(pageData.allTags, currentRecipe.tags);
   let recipeTagsHTML = filteredTags.map((tag) => {
-    tag.isActive = true;
-    return createTagCardHTML(tag);
+    return createModalTagHTML(tag);
   });
 
   document.querySelector('#recipeName').innerHTML = `
