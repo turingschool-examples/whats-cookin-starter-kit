@@ -4,9 +4,11 @@ import { assert, expect } from 'chai'
 import {
   sampleIngredientsData,
   sampleRecipeData,
+  sampleUsersData,
   simpleIngredients,
   simpleRecipe,
-  simpleRecipes
+  simpleRecipes,
+  tagData
 } from '../src/data/sampleData';
 
 import {
@@ -14,23 +16,35 @@ import {
   getIngredients,
   calculateRecipeCost,
   getIngredientAmounts,
-  filterRecipes,
+  fixIngredientAmount,
+  filterRecipesByTag,
+  filterTagsByTagName,
   filterRecipesByIngredient,
   filterRecipesByName,
-  searchRecipes
+  searchRecipes,
+  findRecipe,
+  checkSavedStatus,
+  splitTagsInRows,
+  getUniqueTagsFromRecipes,
+  addInfoToTags
 } from '../src/recipes';
+
+import { updateRecipesToCook } from '../src/users';
 
 describe('recipe', () => {
   const cookies = sampleRecipeData[0];
   const porkChops = sampleRecipeData[1];
+  const doubleRaspberrySouffle = sampleRecipeData[6];
   const allIngredients = sampleIngredientsData;
 
   it('should be a funciton', () => {
     assert.isFunction(getInstructions);
     assert.isFunction(getIngredients);
     assert.isFunction(getIngredientAmounts);
+    assert.isFunction(fixIngredientAmount);
     assert.isFunction(calculateRecipeCost);
-    assert.isFunction(filterRecipes);
+    assert.isFunction(filterRecipesByTag);
+    assert.isFunction(filterTagsByTagName);
     assert.isFunction(filterRecipesByIngredient);
     assert.isFunction(filterRecipesByName);
   });
@@ -152,6 +166,14 @@ describe('recipe', () => {
     assert.deepEqual(ingredientInfo, expectedInfo);
   });
 
+  it('should lop off any numbers after the first two decimal places', () => {
+    const ingredientInfo = getIngredientAmounts(doubleRaspberrySouffle, allIngredients);
+    let expectedAmount = 0.33;
+    const fixedAmount = fixIngredientAmount(ingredientInfo[0].amount);
+    
+    expect(fixedAmount).to.equal(expectedAmount);
+  })
+
   it("should calculate the cost of a given recipe's ingredients", () => {
     const cost = calculateRecipeCost(cookies, allIngredients);
     assert.equal(cost, '$177.76');
@@ -210,27 +232,37 @@ describe('recipe', () => {
   });
 });
 
-describe('filterRecipes', () => {
+describe('filterRecipesByTag', () => {
   let expectedRecipes;
   let filteredRecipes;
   let nameSearched;
   let ingredientSearched;
 
+  it ('should split tags in rows', () => {
+    const tag1 = {row: 1};
+    const tag2 = {row: 0};
+    const tag3 = {row: 1};
+    const topRow = [tag1, tag3];
+    const bottomRow = [tag2];
+    const rows = splitTagsInRows([tag1, tag2, tag3]);
+    expect(rows).to.deep.equal([topRow, bottomRow]);
+  });
+
   it('should filter list of recipes based on single tag', () => {
     expectedRecipes = [sampleRecipeData[0]];
-    filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto')
+    filteredRecipes = filterRecipesByTag(sampleRecipeData, ['antipasto'])
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   });
 
   it('should filter list of recipes based on multiple tags', () => {
     expectedRecipes = [sampleRecipeData[0], sampleRecipeData[2]];
-    filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'sauce');
+    filteredRecipes = filterRecipesByTag(sampleRecipeData, ['antipasto', 'sauce']);
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   });
 
   it('filtered recipe list should contain only unique entries if it contains multiple tags being filtered', () => {
     expectedRecipes = [sampleRecipeData[0]];
-    filteredRecipes = filterRecipes(sampleRecipeData, 'antipasto', 'antipasti');
+    filteredRecipes = filterRecipesByTag(sampleRecipeData, ['antipasto', 'antipasti']);
     expect(filteredRecipes).to.deep.equal(expectedRecipes);
   });
 
@@ -341,3 +373,138 @@ describe('search recipes', () => {
     assert.deepEqual(filteredRecipes, expectedRecipes)
   })
 })
+
+describe('find recipes and check if they are saved', () => {
+  it('should be a function', () => {
+    assert.isFunction(findRecipe);
+    assert.isFunction(checkSavedStatus);
+  }) 
+
+  it('should find a recipe by it\'s ID', () => {
+    let foundRecipe = findRecipe(sampleRecipeData, 595736);
+    assert.deepEqual(foundRecipe, sampleRecipeData[0]);
+  })
+
+  it('should find a different recipe by it\'s id', () => {
+    let foundRecipe = findRecipe(sampleRecipeData, 678353);
+    assert.deepEqual(foundRecipe, sampleRecipeData[1]);
+  })
+
+  it('should return undefined if no recipe is found', () => {
+    let nonRecipe = findRecipe(sampleRecipeData, 12345);
+    assert.deepEqual(nonRecipe, undefined)
+  })
+
+  it('should check if a recipe is saved by a user', () => {
+    let saige = updateRecipesToCook(sampleUsersData[0], sampleRecipeData[0], 'add');
+    let savedStatus = checkSavedStatus(saige, 595736);
+    assert.deepEqual(savedStatus, true);
+  })
+
+  it('should check if a recipe is not saved by a user', () => {
+    let saige = updateRecipesToCook(sampleUsersData[0], sampleRecipeData[0], 'add');
+    let saigeWithoutRecipes = updateRecipesToCook(saige, sampleRecipeData[0], 'remove');
+    let savedStatus = checkSavedStatus(saigeWithoutRecipes, 595736);
+    assert.deepEqual(savedStatus, false)
+  })
+})
+
+describe('populating tags', () => {
+  it('should get unique tags from overlapping tags in recipes', () => {
+    const uniqueTags = getUniqueTagsFromRecipes(simpleRecipes.slice(0,2));
+    expect(uniqueTags).to.deep.equal(['a', 'b', 'c', 'd'])
+  });
+
+  it('should get unique tags from unique tags in recipes', () => {
+    const uniqueTags = getUniqueTagsFromRecipes(simpleRecipes);
+    expect(uniqueTags).to.deep.equal(['a', 'b', 'c', 'd', 'e', 'f', 'g'])
+  });
+
+  it('should add more info to a tag', () => {
+    const basicTags = getUniqueTagsFromRecipes(simpleRecipes);
+    const firstElement = {
+      name: 'a',
+      isActive: false,
+      path: `./images/${basicTags[0]}.png`,
+      row: 1
+    };
+    const expectedOutput = [firstElement];
+    const refinedTags = addInfoToTags([basicTags[0]]);
+    expect(refinedTags).to.deep.equal(expectedOutput);
+  });
+
+  it('should add more info to multiple tags', () => {
+    const basicTags = getUniqueTagsFromRecipes(simpleRecipes);
+    const firstElement = {
+      name: 'a',
+      isActive: false,
+      path: `./images/${basicTags[0]}.png`,
+      row: 1
+    };
+
+    const secondElement = {
+      name: 'b',
+      isActive: false,
+      path: `./images/${basicTags[1]}.png`,
+      row: 0
+    };
+
+    const expectedOutput = [firstElement, secondElement];
+    const refinedTags = addInfoToTags([basicTags[0], basicTags[1]]);
+    expect(refinedTags).to.deep.equal(expectedOutput);
+  })
+});
+
+describe('filterTagsByTagName', () => {
+  it('should correctly filter tag data given an array of tag names', () => {
+    let filteredTagData = filterTagsByTagName(tagData, [
+      'antipasti',
+      'starter',
+      'snack',
+      'appetizer',
+      'antipasto',
+      "hor d'oeuvre"
+    ]);
+
+    let expectedTagData = [
+      {
+        name: 'antipasti',
+        isActive: false,
+        path: './images/antipasti.png',
+        row: 1
+      },
+      {
+        name: 'starter',
+        isActive: false,
+        path: './images/starter.png',
+        row: 0
+      },
+      {
+        name: 'snack',
+        isActive: false,
+        path: './images/snack.png',
+        row: 1
+      },
+      {
+        name: 'appetizer',
+        isActive: false,
+        path: './images/appetizer.png',
+        row: 0
+      },
+      {
+        name: 'antipasto',
+        isActive: false,
+        path: './images/antipasto.png',
+        row: 1
+      },
+      {
+        name: "hor d'oeuvre",
+        isActive: false,
+        path: "./images/hor d'oeuvre.png",
+        row: 0
+      }
+    ]
+    
+    expect(filteredTagData).to.deep.equal(expectedTagData);
+  });
+});

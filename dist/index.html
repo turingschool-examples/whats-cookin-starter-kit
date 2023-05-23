@@ -10,8 +10,8 @@
   <body>
     <nav> 
       <div class="nav-child">
-        <input class="nav-icon" id="searchBar" type="text" placeholder="Search..">
-        <img class="nav-icon" id="searchBtn" src="./images/search-button.png" alt="Magnifying Glass Icon"> 
+        <input class="nav-icon" id="searchBar" type="search" placeholder="Search.." >
+        <img role="button" class="nav-icon" id="searchBtn" src="./images/search-button.png" alt="Magnifying Glass Icon"> 
       </div>
     </nav>
     <section class="all-recipes">
@@ -20,243 +20,23 @@
         <section class="view-button selected-view" id="our-recipes"> Our Recipes </section>
         <section class="view-button unselected-view" id="your-recipes">Your recipes</section>
       </section>
-      <section class = "tag-area">
-        <div class="tag-rows">
-          <div class="tag-row row-one">
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-          </div>
-          <div class="tag-row row-two">
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-            <section class = "tag-card">
-              <div class="tag-image-bg active-bg">
-                <img class = "tag-image" src = "./images/breakfast.png">
-              </div>
-              <p class="tag-text">Appetizer</p>
-            </section>
-          </div>
-        </div>
+      <section class = "tag-area"> 
+        <!-- Tags appear here  -->
       </section>
       <article class="recipe-grid">
-        <div class="col">
-          <article class="individual-recipe-container">
-            <section class="add-panel panel">
-              <div class="plus-symbol symbol">+</div>
-              <h4> Add to recipes to cook</h4>
-            </section>
-            <section class="remove-panel panel hidden">
-              <div class="minus-symbol">-</div>
-              <h4> Remove from recipes to cook</h4>
-            </section>
-            <article class="individual-recipe">
-              <div class="recipe-image">
-                <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
-                <div class="hover-card"> 
-                  <h3>Read more...  </h3>
-                </div>               
-              </div>
-              <h2>Loaded Chocolate Chip Pudding Cookie Cups</h2>
-            </article>
-          </article>
-          <article class="individual-recipe">
-            <div class="recipe-image">
-              <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
-              <div class="hover-card"> 
-                <h3>Read more...  </h3>
-              </div>               
-            </div>
-            <h2>Loaded Chocolate Chip Pudding Cookie Cups</h2>
-          </article>
-          <article class="individual-recipe">
-            <div class="recipe-image">
-              <img src="https://spoonacular.com/recipeImages/412309-556x370.jpeg">
-              <div class="hover-card"> 
-                <h3>Read more...  </h3>
-              </div>               
-            </div>
-            <h2>Loaded Chocolate Chip Pudding Cookie Cups</h2>
-          </article>
-          <article class="individual-recipe">
-            <div class="recipe-image">
-              <img src="https://spoonacular.com/recipeImages/678353-556x370.jpg">
-              <div class="hover-card"> 
-                <h3>Read more...  </h3>
-              </div>               
-            </div>
-            <h2>Loaded Chocolate Chip Pudding Cookie Cups</h2>
-          </article>
-        </div>
-        <div class="col">
-          <article class="individual-recipe">
-            <div class="recipe-image">
-              <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
-              <div class="hover-card"> 
-                <h3>Read more...  </h3>
-              </div>               
-            </div>
-            <h2>Loaded Chocolate Chip Pudding Cookie Cups</h2>
-          </article>
-          <article class="individual-recipe">
-            <div class="recipe-image">
-              <img src="https://spoonacular.com/recipeImages/412309-556x370.jpeg">
-              <div class="hover-card"> 
-                <h3>Read more...  </h3>
-              </div>               
-            </div>
-            <h2>Loaded Chocolate Chip Pudding Cookie Cups</h2>
-          </article>
-          <article class="individual-recipe">
-            <div class="recipe-image">
-              <img src="https://spoonacular.com/recipeImages/678353-556x370.jpg">
-              <div class="hover-card"> 
-                <h3>Read more...  </h3>
-              </div>               
-            </div>
-            <h2>Loaded Chocolate Chip Pudding Cookie Cups</h2>
-          </article>
-        </div>
-        <div class="col">
-          <article class="individual-recipe">
-            <div class="recipe-image">
-              <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg">
-              <div class="hover-card"> 
-                <h3>Read more...  </h3>
-              </div>               
-            </div>
-            <h2>Loaded Chocolate Chip Pudding Cookie Cups</h2>
-          </article>
-          <article class="individual-recipe">
-            <div class="recipe-image">
-              <img src="https://spoonacular.com/recipeImages/412309-556x370.jpeg">
-              <div class="hover-card"> 
-                <h3>Read more...  </h3>
-              </div>               
-            </div>
-            <h2>Loaded Chocolate Chip Pudding Cookie Cups</h2>
-          </article>
-          <article class="individual-recipe">
-            <div class="recipe-image">
-              <img src="https://spoonacular.com/recipeImages/678353-556x370.jpg">
-              <div class="hover-card"> 
-                <h3>Read more...  </h3>
-              </div>               
-            </div>
-            <h2>Loaded Chocolate Chip Pudding Cookie Cups</h2>
-          </article>
-        </div>
+        <!-- grid appears here -->
       </article>
     </section>
     <section id="clickedRecipe" class="hidden">
       <section class="recipe-details" id="recipeLeftSide">
-        <section class="modal-add-recipe">
-          <button class= "add-recipe modal-recipe-btn" id="add">Add to Saved Recipes</button>
-          <button class="remove-recipe modal-recipe-btn hidden" id="remove">Remove from Saved Recipes</button>
-        </section>
+        <div class="modal-btn-container">
+          <button class= "add-recipe modal-recipe-btn">
+            <img class="bookmark-img" src="./images/hollow-bookmark-icon.png" id="add">
+          </button>
+          <button class="remove-recipe modal-recipe-btn hidden" id="remove">
+            <img class="bookmark-img" src="./images/select-bookmark-icon.png" id="remove">
+          </button>
+        </div>
         <div id="recipeName"></div>
         <article id="recipeInstructions">
         </article>
@@ -268,6 +48,5 @@
       </section>
     </section>
   </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>

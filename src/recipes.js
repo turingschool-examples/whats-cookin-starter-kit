@@ -4,14 +4,22 @@ const getInstructions = recipe => {
   return recipe.instructions.map(item => item.instruction)
 }
 
-const filterRecipes = (allRecipes, ...tags) => {
+const filterRecipesByTag = (allRecipes, tags) => {
   let filteredRecipes = tags.flatMap((tag) => {
     return allRecipes.filter(recipe => {
       return recipe.tags.includes(tag);
     });
   });
-
   return [ ...new Set(filteredRecipes)];
+}
+
+const filterTagsByTagName = (allTags, recipeTags) => {
+  let filteredTags = recipeTags.flatMap((thisTag) => {
+    return allTags.filter(tag => {
+      return tag.name === thisTag;
+    });
+  });
+  return [ ...new Set(filteredTags)];
 }
 
 const getIngredients = (recipe, ingredients) => {
@@ -21,11 +29,16 @@ const getIngredients = (recipe, ingredients) => {
 const getIngredientAmounts = (recipe, ingredients) => {
   return recipe.ingredients.map(ingredient => {
     return {
-      amount: ingredient.quantity.amount,
+      amount: fixIngredientAmount(ingredient.quantity.amount),
       unit: ingredient.quantity.unit,
       name: getIngredientProperty(ingredient, ingredients, 'name')
     }
   })
+}
+
+const fixIngredientAmount = (amount) => {
+  let remainder = amount % 1;
+  return remainder.toString().length > 2 ? Number(amount.toFixed(2)) : amount;
 }
 
 const calculateRecipeCost = (recipe, ingredients) => {
@@ -55,13 +68,63 @@ const searchRecipes = (allRecipes, allIngredients, userSearch) => {
     }
 }
 
+const getUniqueTagsFromRecipes = recipes => {
+  const uniqueTags = [];
+  const allTags = recipes.flatMap(recipe => recipe.tags)
+  allTags.forEach(tag => {
+    if (!uniqueTags.includes(tag)) {
+      uniqueTags.push(tag);
+    }
+  })
+  return uniqueTags;
+}
+
+const findRecipe = (allRecipes, ID) => {
+  return allRecipes.find(recipe => recipe.id.toString() === ID.toString());
+}
+
+const checkSavedStatus = (user, ID) => {
+  return user.recipesToCook.some(recipe => recipe.id.toString() === ID.toString());
+}
+
+const addInfoToTags = tags => {
+  return tags.map((tag, index) => {
+    return {
+      name: tag,
+      isActive: false,
+      path: `./images/${tag}.png`,
+      row: (index + 1) % 2
+    }
+  })
+}
+
+const splitTagsInRows = tagsAndIcons => {
+  const topRow = tagsAndIcons.filter(tag => tag.row === 1);
+  const bottomRow = tagsAndIcons.filter(tag => tag.row === 0);
+  return [topRow, bottomRow];
+}
+
+const populateTags = (recipes) => {
+  const tagData = getUniqueTagsFromRecipes(recipes);
+  const refinedTagData =  addInfoToTags(tagData);
+  return refinedTagData;
+}
+
 export {
   getInstructions,
-  filterRecipes,
+  filterRecipesByTag,
+  filterTagsByTagName,
   getIngredients,
   getIngredientAmounts,
+  fixIngredientAmount,
   calculateRecipeCost,
   filterRecipesByName,
   filterRecipesByIngredient,
-  searchRecipes
+  searchRecipes,
+  findRecipe, 
+  checkSavedStatus,
+  populateTags,
+  splitTagsInRows,
+  getUniqueTagsFromRecipes,
+  addInfoToTags
 }
