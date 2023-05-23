@@ -4,6 +4,7 @@ import { assert, expect } from 'chai'
 import {
   sampleIngredientsData,
   sampleRecipeData,
+  sampleUsersData,
   simpleIngredients,
   simpleRecipe,
   simpleRecipes,
@@ -21,10 +22,14 @@ import {
   filterRecipesByIngredient,
   filterRecipesByName,
   searchRecipes,
+  findRecipe,
+  checkSavedStatus,
   splitTagsInRows,
   getUniqueTagsFromRecipes,
   addInfoToTags
 } from '../src/recipes';
+
+import { updateRecipesToCook } from '../src/users';
 
 describe('recipe', () => {
   const cookies = sampleRecipeData[0];
@@ -366,6 +371,41 @@ describe('search recipes', () => {
     let expectedRecipes = [sampleRecipeData[3], sampleRecipeData[4]];
 
     assert.deepEqual(filteredRecipes, expectedRecipes)
+  })
+})
+
+describe('find recipes and check if they are saved', () => {
+  it('should be a function', () => {
+    assert.isFunction(findRecipe);
+    assert.isFunction(checkSavedStatus);
+  }) 
+
+  it('should find a recipe by it\'s ID', () => {
+    let foundRecipe = findRecipe(sampleRecipeData, 595736);
+    assert.deepEqual(foundRecipe, sampleRecipeData[0]);
+  })
+
+  it('should find a different recipe by it\'s id', () => {
+    let foundRecipe = findRecipe(sampleRecipeData, 678353);
+    assert.deepEqual(foundRecipe, sampleRecipeData[1]);
+  })
+
+  it('should return undefined if no recipe is found', () => {
+    let nonRecipe = findRecipe(sampleRecipeData, 12345);
+    assert.deepEqual(nonRecipe, undefined)
+  })
+
+  it('should check if a recipe is saved by a user', () => {
+    let saige = updateRecipesToCook(sampleUsersData[0], sampleRecipeData[0], 'add');
+    let savedStatus = checkSavedStatus(saige, 595736);
+    assert.deepEqual(savedStatus, true);
+  })
+
+  it('should check if a recipe is not saved by a user', () => {
+    let saige = updateRecipesToCook(sampleUsersData[0], sampleRecipeData[0], 'add');
+    let saigeWithoutRecipes = updateRecipesToCook(saige, sampleRecipeData[0], 'remove');
+    let savedStatus = checkSavedStatus(saigeWithoutRecipes, 595736);
+    assert.deepEqual(savedStatus, false)
   })
 })
 

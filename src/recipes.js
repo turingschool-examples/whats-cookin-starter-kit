@@ -79,6 +79,14 @@ const getUniqueTagsFromRecipes = recipes => {
   return uniqueTags;
 }
 
+const findRecipe = (allRecipes, ID) => {
+  return allRecipes.find(recipe => recipe.id.toString() === ID.toString());
+}
+
+const checkSavedStatus = (user, ID) => {
+  return user.recipesToCook.some(recipe => recipe.id.toString() === ID.toString());
+}
+
 const addInfoToTags = tags => {
   return tags.map((tag, index) => {
     return {
@@ -113,6 +121,8 @@ export {
   filterRecipesByName,
   filterRecipesByIngredient,
   searchRecipes,
+  findRecipe, 
+  checkSavedStatus,
   populateTags,
   splitTagsInRows,
   getUniqueTagsFromRecipes,
