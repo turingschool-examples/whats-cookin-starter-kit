@@ -257,6 +257,8 @@ nav {
   transition: 0.5s;
   border: 1px solid gray;
   position: relative;
+  height: 300px; 
+  width: 350px;
 }
 
 .individual-recipe:hover .hover-card {
@@ -591,3 +593,44 @@ input[type=checkbox] {
 .no-scroll {
   overflow: hidden;
 }
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 2750px) {
+  .individual-recipe{
+    width: 500px;
+    height: 400px;
+  }
+}
+@media screen and (max-width: 1625px) {
+  .individual-recipe {
+    width: 400px;
+    height: 350px;
+   }
+}
+
+@media screen and (max-width: 1285px) {
+  .individual-recipe {
+    width: 325px;
+    height: 300px;
+  }
+  .tag-card {
+    width: 5%;
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 1075px) {
+  .individual-recipe {
+    width: 300px;
+    height: 275px;
+    overflow-y: auto;
+   }
+
+   .individual-recipe-image {
+    width: 175px;
+    height: 150px;
+    overflow: hidden;
+  }
+}
+
+
