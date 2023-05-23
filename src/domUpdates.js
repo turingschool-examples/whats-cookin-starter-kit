@@ -54,12 +54,14 @@ allFilterDisplay.addEventListener('click', function (event) {
 
 searchInput.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
+    addHiddenClass([singleRecipeDisplay, saveRecipeButton]);
     showSearchResults();
   }
 });
 
 savedSearchInput.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
+    addHiddenClass([singleRecipeDisplay, savedRecipesButton]);
     showSavedSearchResults();
   }
 })
@@ -170,6 +172,7 @@ function showSavedSearchResults() {
           <img id="${recipe.name}" src="${recipe.image}" class="recipe alt="${recipe.name}">
           <div class="recipe-info">
             <p>${recipe.name}</p>
+            <button class="delete-recipe-button ${recipe.name}" name="${recipe.name}">🗑️</button>
           </div>
         </div>`;
     });
@@ -213,6 +216,7 @@ function renderFilteredSavedRecipes() {
       <img id="${recipe.name}" src="${recipe.image}" class="recipe" alt="${recipe.name}">
       <div class = "recipe-info">
         <p>${recipe.name}</p>
+        <button class="delete-recipe-button ${recipe.name}" name="${recipe.name}">🗑️</button>
       </div>`)
 };
 
@@ -256,12 +260,12 @@ function renderFilteredRecipes() {
       <img id="${recipe.name}" src="${recipe.image}" class="recipe" alt="${recipe.name}">
       <div class = "recipe-info">
         <p>${recipe.name}</p>
-        <p>Total Cost: $..</p
       </div>`)
   })
 };
 
 const viewSelectedRecipe = event => {
+  removeHiddenClass([searchInput])
   singleRecipeDisplay.innerHTML = '';
   getData('ingredients').then(({ ingredients }) => {
     getData('recipes').then(({ recipes }) => {
