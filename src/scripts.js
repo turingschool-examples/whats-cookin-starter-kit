@@ -1,10 +1,7 @@
-//NOTE: Data model and non-dom manipulating logic will live in this file.
-// query selectors and event listeners in here 
-
+//IMPORTS
 import './styles.css'
-import { closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal } from './domUpdates'; 
+import { closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, renderRecipesOfInterest } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
-import { loadData } from './apiCalls';
 import './images/antipasti.png';
 import './images/antipasto.png'
 import './images/appetizer.png'
@@ -25,8 +22,13 @@ import './images/snack.png'
 import './images/spread.png'
 import './images/starter.png'
 import './images/search-button.png'
-// import apiCalls from './apiCalls'
 
+// import apiCalls from './apiCalls'
+import './images/hollow-bookmark-icon.png'
+import './images/select-bookmark-icon.png'
+import { loadData, pageData, currentUser } from './apiCalls';
+
+// QUERY SELCTORS
 const body = document.querySelector('body');
 const recipeGrid = document.querySelector('.recipe-grid');
 const allRecipes = document.querySelector('.all-recipes')
@@ -42,9 +44,7 @@ const searchBar = document.querySelector('#searchBar');
 const searchBtn = document.querySelector('#searchBtn');
 const modalAddBtn = document.querySelector('.add-recipe');
 const modalRemoveBtn = document.querySelector('.remove-recipe');
-const modalRecipeBtns = document.querySelectorAll('.modal-recipe-btn')
-
-// DATA MODEL 
+const modalRecipeBtns = document.querySelectorAll('.modal-recipe-btn');
 
 //FUNCTIONS 
 const getRecipeCard = (recipe) => {
@@ -59,18 +59,20 @@ const getRecipeCard = (recipe) => {
 return recipeCard;
 }
 
-// // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
-// import ingredientsData from './data/ingredients.js'
+const getPageData = () => {
+  const data = {
+    'our-recipes': pageData.allRecipes,
+    'your-recipes': currentUser.recipesToCook
+  }
+  return data[pageData.currentView];
+}
 
-// //Example of one way to import functions from the domUpdates file. You will delete these examples.
-// import {exampleFunction1, exampleFunction2} from './domUpdates.js'
 window.addEventListener("load", () => {
   loadData();
 });
 
 allRecipes.addEventListener('click', (event) => {
-  updateUserRecipes(event)
+  updateUserRecipes(event);
 })
 
 tagArea.addEventListener("click", function(event) {
@@ -94,8 +96,10 @@ chooseView.addEventListener("click", function(event) {
   }
 });
 
-searchBar.addEventListener('keypress', (event) => {
-  if(event.key === 'Enter') {
+searchBar.addEventListener('search', (event) => {
+  if (!event.target.value.length) {
+    renderRecipesOfInterest();
+  } else {
     searchForRecipes();
   }
 })
@@ -103,7 +107,7 @@ searchBar.addEventListener('keypress', (event) => {
 searchBtn.addEventListener('click', searchForRecipes);
 
 modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
-  updateRecipesFromModal(e.target.id)
+  updateRecipesFromModal(e.target.id);
 }));
 
 // Exports
@@ -112,6 +116,7 @@ export {
   tagArea,
   clickedRecipe,
   getRecipeCard,
+  getPageData,
   ingredientsList,
   allRecipes,
   ourViewBtn,

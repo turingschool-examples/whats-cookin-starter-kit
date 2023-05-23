@@ -13,6 +13,15 @@ const filterRecipesByTag = (allRecipes, tags) => {
   return [ ...new Set(filteredRecipes)];
 }
 
+const filterTagsByTagName = (allTags, recipeTags) => {
+  let filteredTags = recipeTags.flatMap((thisTag) => {
+    return allTags.filter(tag => {
+      return tag.name === thisTag;
+    });
+  });
+  return [ ...new Set(filteredTags)];
+}
+
 const getIngredients = (recipe, ingredients) => {
   return recipe.ingredients.map(ingredient => getIngredientProperty(ingredient, ingredients, 'name'))
 }
@@ -70,6 +79,14 @@ const getUniqueTagsFromRecipes = recipes => {
   return uniqueTags;
 }
 
+const findRecipe = (allRecipes, ID) => {
+  return allRecipes.find(recipe => recipe.id.toString() === ID.toString());
+}
+
+const checkSavedStatus = (user, ID) => {
+  return user.recipesToCook.some(recipe => recipe.id.toString() === ID.toString());
+}
+
 const addInfoToTags = tags => {
   return tags.map((tag, index) => {
     return {
@@ -96,6 +113,7 @@ const populateTags = (recipes) => {
 export {
   getInstructions,
   filterRecipesByTag,
+  filterTagsByTagName,
   getIngredients,
   getIngredientAmounts,
   fixIngredientAmount,
@@ -103,6 +121,8 @@ export {
   filterRecipesByName,
   filterRecipesByIngredient,
   searchRecipes,
+  findRecipe, 
+  checkSavedStatus,
   populateTags,
   splitTagsInRows,
   getUniqueTagsFromRecipes,

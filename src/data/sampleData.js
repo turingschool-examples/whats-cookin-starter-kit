@@ -1606,11 +1606,34 @@ const simpleIngredients = [
   }
 ];
 
+const tagData = [
+  {"name":"antipasti","isActive":false,"path":"./images/antipasti.png","row":1},
+  {"name":"starter","isActive":false,"path":"./images/starter.png","row":0},
+  {"name":"snack","isActive":false,"path":"./images/snack.png","row":1},
+  {"name":"appetizer","isActive":false,"path":"./images/appetizer.png","row":0},
+  {"name":"antipasto","isActive":false,"path":"./images/antipasto.png","row":1},
+  {"name":"hor d'oeuvre","isActive":false,"path":"./images/hor d'oeuvre.png","row":0},
+  {"name":"lunch","isActive":false,"path":"./images/lunch.png","row":1},
+  {"name":"main course","isActive":false,"path":"./images/main course.png","row":0},
+  {"name":"main dish","isActive":false,"path":"./images/main dish.png","row":1},
+  {"name":"dinner","isActive":false,"path":"./images/dinner.png","row":0},
+  {"name":"sauce","isActive":false,"path":"./images/sauce.png","row":1},
+  {"name":"side dish","isActive":false,"path":"./images/side dish.png","row":0},
+  {"name":"morning meal","isActive":false,"path":"./images/morning meal.png","row":1},
+  {"name":"brunch","isActive":false,"path":"./images/brunch.png","row":0},
+  {"name":"breakfast","isActive":false,"path":"./images/breakfast.png","row":1},
+  {"name":"salad","isActive":false,"path":"./images/salad.png","row":0},
+  {"name":"condiment","isActive":false,"path":"./images/condiment.png","row":1},
+  {"name":"dip","isActive":false,"path":"./images/dip.png","row":0},
+  {"name":"spread","isActive":false,"path":"./images/spread.png","row":1}
+];
+
 export {
   sampleRecipeData,
   sampleIngredientsData,
   sampleUsersData,
   simpleIngredients,
   simpleRecipe,
-  simpleRecipes
+  simpleRecipes,
+  tagData
 }

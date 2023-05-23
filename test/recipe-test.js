@@ -4,9 +4,11 @@ import { assert, expect } from 'chai'
 import {
   sampleIngredientsData,
   sampleRecipeData,
+  sampleUsersData,
   simpleIngredients,
   simpleRecipe,
-  simpleRecipes
+  simpleRecipes,
+  tagData
 } from '../src/data/sampleData';
 
 import {
@@ -16,13 +18,18 @@ import {
   getIngredientAmounts,
   fixIngredientAmount,
   filterRecipesByTag,
+  filterTagsByTagName,
   filterRecipesByIngredient,
   filterRecipesByName,
   searchRecipes,
+  findRecipe,
+  checkSavedStatus,
   splitTagsInRows,
   getUniqueTagsFromRecipes,
   addInfoToTags
 } from '../src/recipes';
+
+import { updateRecipesToCook } from '../src/users';
 
 describe('recipe', () => {
   const cookies = sampleRecipeData[0];
@@ -37,6 +44,7 @@ describe('recipe', () => {
     assert.isFunction(fixIngredientAmount);
     assert.isFunction(calculateRecipeCost);
     assert.isFunction(filterRecipesByTag);
+    assert.isFunction(filterTagsByTagName);
     assert.isFunction(filterRecipesByIngredient);
     assert.isFunction(filterRecipesByName);
   });
@@ -366,6 +374,41 @@ describe('search recipes', () => {
   })
 })
 
+describe('find recipes and check if they are saved', () => {
+  it('should be a function', () => {
+    assert.isFunction(findRecipe);
+    assert.isFunction(checkSavedStatus);
+  }) 
+
+  it('should find a recipe by it\'s ID', () => {
+    let foundRecipe = findRecipe(sampleRecipeData, 595736);
+    assert.deepEqual(foundRecipe, sampleRecipeData[0]);
+  })
+
+  it('should find a different recipe by it\'s id', () => {
+    let foundRecipe = findRecipe(sampleRecipeData, 678353);
+    assert.deepEqual(foundRecipe, sampleRecipeData[1]);
+  })
+
+  it('should return undefined if no recipe is found', () => {
+    let nonRecipe = findRecipe(sampleRecipeData, 12345);
+    assert.deepEqual(nonRecipe, undefined)
+  })
+
+  it('should check if a recipe is saved by a user', () => {
+    let saige = updateRecipesToCook(sampleUsersData[0], sampleRecipeData[0], 'add');
+    let savedStatus = checkSavedStatus(saige, 595736);
+    assert.deepEqual(savedStatus, true);
+  })
+
+  it('should check if a recipe is not saved by a user', () => {
+    let saige = updateRecipesToCook(sampleUsersData[0], sampleRecipeData[0], 'add');
+    let saigeWithoutRecipes = updateRecipesToCook(saige, sampleRecipeData[0], 'remove');
+    let savedStatus = checkSavedStatus(saigeWithoutRecipes, 595736);
+    assert.deepEqual(savedStatus, false)
+  })
+})
+
 describe('populating tags', () => {
   it('should get unique tags from overlapping tags in recipes', () => {
     const uniqueTags = getUniqueTagsFromRecipes(simpleRecipes.slice(0,2));
@@ -410,4 +453,58 @@ describe('populating tags', () => {
     const refinedTags = addInfoToTags([basicTags[0], basicTags[1]]);
     expect(refinedTags).to.deep.equal(expectedOutput);
   })
+});
+
+describe('filterTagsByTagName', () => {
+  it('should correctly filter tag data given an array of tag names', () => {
+    let filteredTagData = filterTagsByTagName(tagData, [
+      'antipasti',
+      'starter',
+      'snack',
+      'appetizer',
+      'antipasto',
+      "hor d'oeuvre"
+    ]);
+
+    let expectedTagData = [
+      {
+        name: 'antipasti',
+        isActive: false,
+        path: './images/antipasti.png',
+        row: 1
+      },
+      {
+        name: 'starter',
+        isActive: false,
+        path: './images/starter.png',
+        row: 0
+      },
+      {
+        name: 'snack',
+        isActive: false,
+        path: './images/snack.png',
+        row: 1
+      },
+      {
+        name: 'appetizer',
+        isActive: false,
+        path: './images/appetizer.png',
+        row: 0
+      },
+      {
+        name: 'antipasto',
+        isActive: false,
+        path: './images/antipasto.png',
+        row: 1
+      },
+      {
+        name: "hor d'oeuvre",
+        isActive: false,
+        path: "./images/hor d'oeuvre.png",
+        row: 0
+      }
+    ]
+    
+    expect(filteredTagData).to.deep.equal(expectedTagData);
+  });
 });
