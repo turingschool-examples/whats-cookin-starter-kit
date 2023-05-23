@@ -30,7 +30,8 @@ This is a recipe website that uses the fetch API to display information about a 
 
 
 ## Preview of App:
-![flash cards gif](./flashcards-gif.gif)
+![whats-cokin](https://user-images.githubusercontent.com/121131581/240096684-7fba460c-4627-4585-b015-51fdacb83aa3.gif)
+
 
 ## Context: 
 - Mod 2, Week 2: 
