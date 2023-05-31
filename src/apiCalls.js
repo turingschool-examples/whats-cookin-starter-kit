@@ -29,50 +29,90 @@ const getRecipeCard = (recipe) => {
 
 // API CALLS
 
-const assignCurrentUser = () => {
-  fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
-    .then(response => response.json())
-    .then(users => {
-      currentUser = getRandomUser(users.users);
-    })
-    .catch(error => {
-      console.error(error)
-    })
+// const assignCurrentUser = () => {
+//   fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
+//     .then(response => response.json())
+//     .then(users => {
+//       currentUser = getRandomUser(users.users);
+//     })
+//     .catch(error => {
+//       console.error(error)
+//     })
+// }
+
+// const fetchRecipes = () => {
+//     fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
+//         .then(response => response.json())
+//         .then(recipes => {
+//             pageData.allRecipes = recipes.recipes;
+//         })
+//         .then(() => {
+//           pageData.recipesOfInterest = copyItem(pageData.allRecipes);
+//           pageData.allTags = populateTags(pageData.allRecipes);
+//           // getChatGPTRecipePitches(pageData.allRecipes);
+//         })
+//         .then(() => {
+//           setTimeout(() => {
+//             hideSpinner();
+//             pageLoadRenders(pageData.allRecipes);
+//           }, 2000)
+//         })
+//         .catch(error => {
+//             console.error(error);
+//         });
+// }
+
+// const fetchIngredients = () => {
+//   fetch(`https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients`)
+//     .then(response => response.json())
+//     .then(ingredientData => {pageData.allIngredients = ingredientData.ingredients})
+//     .catch(error => console.error(error))
+// }
+
+// const loadData = () => {
+//   assignCurrentUser();
+//   fetchRecipes();
+//   fetchIngredients();
+// }
+
+
+const fetchUsers = () => fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
+const fetchRecipes = () => fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
+const fetchIngredients = () => fetch(`https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients`)
+
+const handleUserData = users => currentUser = getRandomUser(users)
+
+const handleRecipeData = recipes => {
+  pageData.allRecipes = recipes;
+  pageData.recipesOfInterest = copyItem(pageData.allRecipes);
+  pageData.allTags = populateTags(pageData.allRecipes);
+  // getChatGPTRecipePitches(pageData.allRecipes);
+  setTimeout(() => {
+  hideSpinner();
+  pageLoadRenders(pageData.allRecipes);
+  }, 2000)
+
 }
 
-const fetchRecipes = () => {
-    fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
-        .then(response => response.json())
-        .then(recipes => {
-            pageData.allRecipes = recipes.recipes;
-        })
-        .then(() => {
-          pageData.recipesOfInterest = copyItem(pageData.allRecipes);
-          pageData.allTags = populateTags(pageData.allRecipes);
-          // getChatGPTRecipePitches(pageData.allRecipes);
-        })
-        .then(() => {
-          setTimeout(() => {
-            hideSpinner();
-            pageLoadRenders(pageData.allRecipes);
-          }, 2000)
-        })
-        .catch(error => {
-            console.error(error);
-        });
-}
-
-const fetchIngredients = () => {
-  fetch(`https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients`)
-    .then(response => response.json())
-    .then(ingredientData => {pageData.allIngredients = ingredientData.ingredients})
-    .catch(error => console.error(error))
-}
+const handleIngredientData = ingredients => pageData.allIngredients = ingredients
 
 const loadData = () => {
-  assignCurrentUser();
-  fetchRecipes();
-  fetchIngredients();
+  Promise.all([fetchUsers(), fetchRecipes(), fetchIngredients()])
+    .then (responses => {
+      responses.forEach(response => {
+        response.json()
+        .then (data => {
+          const functions = {
+            users: (users) => handleUserData(users), 
+            recipes: (recipes) => handleRecipeData(recipes),
+            ingredients: (ingredients) => handleIngredientData(ingredients)
+          }
+          console.log('data', response.url.split('/').reverse()[0])
+          functions[response.url.split('/').reverse()[0]](data[response.url.split('/').reverse()[0]])
+        }
+        )
+    })
+  })   
 }
 
 const updateCurrentUser = (user) => {
@@ -110,3 +150,9 @@ const getChatGPTRecipePitches = (allRecipes) => {
 }
 
 export { currentUser, pageData, updateCurrentUser, loadData, getRecipeCard };
+
+
+
+
+
+
