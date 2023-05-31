@@ -3,7 +3,7 @@ const fetchAPI = (dataType) => {
     .then((response) => {
       return response.json()
     })
-    .catch(err => alert(err));
+    .catch(() => alert('ERROR: FAILED TO FETCH!'));
 }
 
 export { fetchAPI }
