@@ -1,8 +1,9 @@
 //IMPORTS 
 import { getRandomUser } from "./users";
-import { pageLoadRenders } from "./domUpdates";
+import { pageLoadRenders, hideSpinner } from "./domUpdates";
 import { copyItem } from "./helper-functions";
 import { populateTags, calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
+// import { config } from "../config.js"
 
 // DATA MODEL 
 let currentUser;
@@ -44,9 +45,17 @@ const fetchRecipes = () => {
         .then(response => response.json())
         .then(recipes => {
             pageData.allRecipes = recipes.recipes;
-            pageData.recipesOfInterest = copyItem(pageData.allRecipes);
-            pageData.allTags = populateTags(pageData.allRecipes);
-            pageLoadRenders(pageData.recipesOfInterest);
+        })
+        .then(() => {
+          pageData.recipesOfInterest = copyItem(pageData.allRecipes);
+          pageData.allTags = populateTags(pageData.allRecipes);
+          // getChatGPTRecipePitches(pageData.allRecipes);
+        })
+        .then(() => {
+          setTimeout(() => {
+            hideSpinner();
+            pageLoadRenders(pageData.allRecipes);
+          }, 2000)
         })
         .catch(error => {
             console.error(error);
@@ -69,5 +78,35 @@ const loadData = () => {
 const updateCurrentUser = (user) => {
   currentUser = user;
 };
+
+const getChatGPTRecipePitches = (allRecipes) => {
+  const DEFAULT_PARAMS = {
+    "model": "text-davinci-002",
+    "temperature": 0.7,
+    "max_tokens": 256,
+    "top_p": 1,
+    "frequency_penalty": 0,
+    "presence_penalty": 0
+  };
+
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + String(config.OPENAI_API_KEY),
+        organization: 'org-47g2m7vnC6yUKCbIL0f7PSFb'
+    },
+  };
+
+  allRecipes.forEach((recipe) => {
+    DEFAULT_PARAMS["prompt"] = `In 10 words or less, give me an enticing pitch based on this recipe name: ${recipe.name}`;
+    requestOptions.body = JSON.stringify(DEFAULT_PARAMS);
+
+    fetch('https://api.openai.com/v1/completions', requestOptions)
+        .then(response => response.json())
+        .then(data => recipe.pitch = data.choices[0].text)
+        .catch(error => console.error(error));
+  });
+}
 
 export { currentUser, pageData, updateCurrentUser, loadData, getRecipeCard };

@@ -1,18 +1,58 @@
-# What's Cookin'? Starter Kit
+# What's Cookin'? 
+<div align="center">
+<b>Built With:</b>
+<br>
+Javascript | HTML | CSS | REST API
+<br>
+<em>Testing Technologies:</em>
+<br>
+ Mocha & Chai 
 
-The details of this project are outlined in the <a href="https://frontend.turing.edu/projects/What%27sCookin-PartOne.html" target="\__blank">project spec</a>.
+</div>
 
-## Set Up
+## Abstract: 
+This is a recipe website that uses the fetch API to display information about a variety of recipes. This web app also allows searching recipes by name, ingredients, tags, and allows users to save their favorite recipes! This is a collaborative project, created to ensure cohesive usage of newly learned concepts such as Rest APIs and array prototype methods.
+### User Stories: 
+- Users can click on a recipe to view more information.
+- Users are able to save recipes from the main landing page as well as from inside the recipe display.
+### Technical pointers: 
+- The data for this website is fetched from an API endpoint. 
+- Recipe display is responsive to various screen sizes. 
+- Testing was implemented with the Mocha framework and Chai library. 
 
-1. Within your group, decide on **one** person to have the project repository on their Github account. This person will *fork* this repository - on the top right corner of the page, click the fork button.
-1. Add all group members and your PM as collaborators on the repo  
-1. All group members should then clone down the forked repository. Since you don't want your project to be named "whats-cookin-starter-kit", add an optional argument after the repo url when cloning. The command should look like this: `git clone [remote-address] [what your group wants to name the repo]`.
-1. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` or `npm i` to install project dependencies.
-1. Run `npm start` in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page).  
-    - `Control + C` is the command to stop running the local server. Closing the terminal without stopping the server first could allow the server to continue to run in the background and cause problems.  
-        - This command is not specific to Webpack; make note of it for future use.
-1. Do not run `npm audit fix --force`. This will update to the latest version of packages. We need to be using `webpack-dev-server@3.11.2` which is not the latest version. If you start to run into Webpack errors, first check that all group members are using the correct version.
 
-## Testing
+## Installation Instructions 
+- Fork [this](https://github.com/lauraguerra1/whats-cookin) repository. 
+- Clone it to your local machine using the command: `git clone git@github.com:lauraguerra1/whats-cookin.git`.
+- Run the command: `cd whats-cookin`
+- Run the command: `npm start`
+- Once the modules have finished compiling, enter `http://localhost:8080/` into your browser to see the live web page. 
 
-Mocha and chai are already set up, with a boilerplate test for you.
+
+## Preview of App:
+![whats-cokin](https://user-images.githubusercontent.com/121131581/240096684-7fba460c-4627-4585-b015-51fdacb83aa3.gif)
+
+
+## Context: 
+- Mod 2, Week 2: 
+  - We are current students of Turing School of Software & Design. 
+  - Turing is a 7 month program, which offers a total of 4 modules. 
+  - This project was made during the second week of the second module that the program has to offer. 
+
+- A total of approximately 60 hours was spent on this project between 3 contributors. 
+
+## Contributors: 
+- [Laura Garcia Guerra](https://github.com/lauraguerra1)
+
+- [Matt Fowler](https://github.com/mbenfowler)
+
+- [Taranveer Singh](https://github.com/taranveersingh93)
+
+## Learning Goals:
+- Use object and array prototype methods to perform data manipulation.
+- Create a user interface that is easy to use and clearly displays information.
+- Write DRY, reusable code that follows SRP and trends toward function purity
+- Implement a robust testing suite using Test Driven Development.
+- Make network requests (using fetch API) to retrieve data.
+- Collaborate productively and professionally as a team. 
+- Implement the use of a project board, task delegation tickets, and thorough code reviews.
