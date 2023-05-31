@@ -22,12 +22,15 @@ import { copyItem, toggleViewBtns } from './helper-functions';
 
 const makeRecipeColumnData = (data) => {
   const mappedRecipe = data.map((recipe, index) => {
+    let thisPitch;
+    !recipe.pitch ? thisPitch = "Read more..." : thisPitch = recipe.pitch;
+
     return {
       column: (index+1) % 3,
       id: recipe.id,
       image: recipe.image,
       name: recipe.name,
-      pitch: recipe.pitch,
+      pitch: thisPitch,
       tags: recipe.tags
     }
   });
