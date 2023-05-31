@@ -3,6 +3,7 @@ import { getRandomUser } from "./users";
 import { pageLoadRenders, hideSpinner } from "./domUpdates";
 import { copyItem } from "./helper-functions";
 import { populateTags, calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
+import { config } from "../config.js"
 
 // DATA MODEL 
 let currentUser;
@@ -79,7 +80,6 @@ const updateCurrentUser = (user) => {
 };
 
 const getChatGPTRecipePitches = (allRecipes) => {
-  const openai_api_key = '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';
   const DEFAULT_PARAMS = {
     "model": "text-davinci-002",
     "temperature": 0.7,
@@ -93,7 +93,7 @@ const getChatGPTRecipePitches = (allRecipes) => {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + String(openai_api_key),
+        Authorization: 'Bearer ' + String(config.OPENAI_API_KEY),
         organization: 'org-47g2m7vnC6yUKCbIL0f7PSFb'
     },
   };
