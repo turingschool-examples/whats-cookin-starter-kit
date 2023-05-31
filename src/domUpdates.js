@@ -22,8 +22,10 @@ import { copyItem, toggleViewBtns } from './helper-functions';
 
 const makeRecipeColumnData = (data) => {
   const mappedRecipe = data.map((recipe, index) => {
-    let thisPitch;
-    !recipe.pitch ? thisPitch = "Read more..." : thisPitch = recipe.pitch;
+    let thisPitch = "Click to read more...";
+    if (recipe.pitch) {
+      thisPitch = `${recipe.pitch} ${thisPitch}`;
+    }
 
     return {
       column: (index+1) % 3,
@@ -385,6 +387,12 @@ const updateRecipesFromModal = (targetID) => {
   }
 }
 
+const enableScrollPitchText = (pitchTextElement) => {
+  pitchTextElement.classList.remove("pitch-text-scroll");
+  void pitchTextElement.offsetWidth;
+  pitchTextElement.classList.add("pitch-text-scroll");
+}
+
 // Exports
 export {
   renderGrid,
@@ -401,5 +409,6 @@ export {
   renderTagArea,
   renderActiveTag,
   displayTaggedRecipes,
-  renderRecipesOfInterest
+  renderRecipesOfInterest,
+  enableScrollPitchText
 }

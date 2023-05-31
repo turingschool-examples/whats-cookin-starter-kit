@@ -308,10 +308,24 @@ nav {
   border-radius: 15px;
   opacity: 0.4;
   color: #2c2d30;
-  font-size: 30px;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: center;
+  overflow: hidden;
+}
+
+.pitch-text-scroll {
+  font-size: 20px;
+  animation: scroll-up 12s linear forwards;
+}
+
+@keyframes scroll-up {
+  from {
+    transform: translateY(15%);
+  }
+  to {
+    transform: translateY(-80%);
+  }
 }
 
 h2 {

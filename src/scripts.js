@@ -1,6 +1,6 @@
 //IMPORTS
 import './styles.css'
-import { closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, renderRecipesOfInterest } from './domUpdates';
+import { closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, renderRecipesOfInterest, enableScrollPitchText } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 import './images/antipasti.png';
 import './images/antipasto.png'
@@ -86,6 +86,12 @@ tagArea.addEventListener("click", function(event) {
 recipeGrid.addEventListener("click", (event) => {
   if (event.target.classList?.contains('individual-recipe')) {
     showRecipe(event.target);
+  }
+});
+
+recipeGrid.addEventListener("mouseover", (event) => {
+  if (event.target.classList?.contains('individual-recipe')) {
+    enableScrollPitchText(event.target.querySelector('h4'));
   }
 });
 
