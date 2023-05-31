@@ -11,7 +11,6 @@ let pageData = {
   currentRecipeCard: {},
   allTags: []
 };
-let currentPitch;
 
 const getRecipeCard = (recipe) => {
     const recipeCard =  {
@@ -49,8 +48,12 @@ const fetchRecipes = () => {
         .then(() => {
           pageData.recipesOfInterest = copyItem(pageData.allRecipes);
           pageData.allTags = populateTags(pageData.allRecipes);
-          // getChatGPTRes(pageData.recipesOfInterest);
-          pageLoadRenders(pageData.recipesOfInterest);
+          // getChatGPTRecipePitches(pageData.allRecipes);
+        })
+        .then(() => {
+          setTimeout(() => {
+            pageLoadRenders(pageData.allRecipes);
+          }, 2000)
         })
         .catch(error => {
             console.error(error);
@@ -74,7 +77,7 @@ const updateCurrentUser = (user) => {
   currentUser = user;
 };
 
-const getChatGPTRes = (allRecipes) => {
+const getChatGPTRecipePitches = (allRecipes) => {
   const openai_api_key = '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';
   const DEFAULT_PARAMS = {
     "model": "text-davinci-002",
@@ -105,4 +108,4 @@ const getChatGPTRes = (allRecipes) => {
   });
 }
 
-export { currentUser, pageData, updateCurrentUser, loadData, getRecipeCard, getChatGPTRes, currentPitch };
+export { currentUser, pageData, updateCurrentUser, loadData, getRecipeCard };
