@@ -46,7 +46,8 @@ const loadData = () => {
               recipes: (recipes) => handleRecipeData(recipes),
               ingredients: (ingredients) => handleIngredientData(ingredients)
             }
-            functions[response.url.split('/').reverse()[0]](data[response.url.split('/').reverse()[0]])
+            const property = response.url.split('/').reverse()[0]
+            functions[property](data[property])
           })
           .catch(err => console.error(err))
         } else {
