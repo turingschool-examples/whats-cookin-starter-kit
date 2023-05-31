@@ -1,6 +1,6 @@
 //IMPORTS 
 import { getRandomUser } from "./users";
-import { pageLoadRenders } from "./domUpdates";
+import { pageLoadRenders, hideSpinner } from "./domUpdates";
 import { copyItem } from "./helper-functions";
 import { populateTags, calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 
@@ -52,6 +52,7 @@ const fetchRecipes = () => {
         })
         .then(() => {
           setTimeout(() => {
+            hideSpinner();
             pageLoadRenders(pageData.allRecipes);
           }, 2000)
         })

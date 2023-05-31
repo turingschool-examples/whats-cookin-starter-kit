@@ -2,6 +2,7 @@
 import { pageData, currentUser, updateCurrentUser, getRecipeCard } from './apiCalls';
 import {
   recipeGrid,
+  spinner,
   clickedRecipe,
   tagArea,
   allRecipes,
@@ -393,9 +394,14 @@ const enableScrollPitchText = (pitchTextElement) => {
   pitchTextElement.classList.add("pitch-text-scroll");
 }
 
+const hideSpinner = () => {
+  spinner.classList.add('hidden');
+}
+
 // Exports
 export {
   renderGrid,
+  hideSpinner,
   toggleTagData,
   pageLoadRenders,
   showRecipe,

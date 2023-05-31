@@ -30,6 +30,7 @@ import { loadData, pageData, currentUser } from './apiCalls';
 
 // QUERY SELCTORS
 const body = document.querySelector('body');
+const spinner = document.querySelector('.spinner')
 const recipeGrid = document.querySelector('.recipe-grid');
 const allRecipes = document.querySelector('.all-recipes')
 const allUserRecipes = document.querySelector('.all-user-recipes');
@@ -119,6 +120,7 @@ modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
 // Exports
 export {
   recipeGrid,
+  spinner,
   tagArea,
   clickedRecipe,
   getRecipeCard,
