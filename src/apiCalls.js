@@ -2,7 +2,7 @@
 import { getRandomUser } from "./users";
 import { pageLoadRenders, hideSpinner } from "./domUpdates";
 import { copyItem } from "./helper-functions";
-import { populateTags, calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
+import { populateTags } from './recipes';
 // import { config } from "../config.js"
 
 // DATA MODEL 
@@ -13,69 +13,7 @@ let pageData = {
   allTags: []
 };
 
-const getRecipeCard = (recipe) => {
-    const recipeCard =  {
-      id: recipe.id,
-      instructions: getInstructions(recipe),
-      ingredients: getIngredientAmounts(recipe, pageData.allIngredients),
-      image: recipe.image,
-      name: recipe.name,
-      price: calculateRecipeCost(recipe, pageData.allIngredients),
-      tags: recipe.tags
-    }
-
-  return recipeCard;
-}
-
 // API CALLS
-
-// const assignCurrentUser = () => {
-//   fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
-//     .then(response => response.json())
-//     .then(users => {
-//       currentUser = getRandomUser(users.users);
-//     })
-//     .catch(error => {
-//       console.error(error)
-//     })
-// }
-
-// const fetchRecipes = () => {
-//     fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
-//         .then(response => response.json())
-//         .then(recipes => {
-//             pageData.allRecipes = recipes.recipes;
-//         })
-//         .then(() => {
-//           pageData.recipesOfInterest = copyItem(pageData.allRecipes);
-//           pageData.allTags = populateTags(pageData.allRecipes);
-//           // getChatGPTRecipePitches(pageData.allRecipes);
-//         })
-//         .then(() => {
-//           setTimeout(() => {
-//             hideSpinner();
-//             pageLoadRenders(pageData.allRecipes);
-//           }, 2000)
-//         })
-//         .catch(error => {
-//             console.error(error);
-//         });
-// }
-
-// const fetchIngredients = () => {
-//   fetch(`https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients`)
-//     .then(response => response.json())
-//     .then(ingredientData => {pageData.allIngredients = ingredientData.ingredients})
-//     .catch(error => console.error(error))
-// }
-
-// const loadData = () => {
-//   assignCurrentUser();
-//   fetchRecipes();
-//   fetchIngredients();
-// }
-
-
 const fetchUsers = () => fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
 const fetchRecipes = () => fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
 const fetchIngredients = () => fetch(`https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients`)
@@ -100,17 +38,20 @@ const loadData = () => {
   Promise.all([fetchUsers(), fetchRecipes(), fetchIngredients()])
     .then (responses => {
       responses.forEach(response => {
-        response.json()
-        .then (data => {
-          const functions = {
-            users: (users) => handleUserData(users), 
-            recipes: (recipes) => handleRecipeData(recipes),
-            ingredients: (ingredients) => handleIngredientData(ingredients)
-          }
-          console.log('data', response.url.split('/').reverse()[0])
-          functions[response.url.split('/').reverse()[0]](data[response.url.split('/').reverse()[0]])
+        if(response.ok) {
+          response.json()
+          .then (data => {
+            const functions = {
+              users: (users) => handleUserData(users), 
+              recipes: (recipes) => handleRecipeData(recipes),
+              ingredients: (ingredients) => handleIngredientData(ingredients)
+            }
+            functions[response.url.split('/').reverse()[0]](data[response.url.split('/').reverse()[0]])
+          })
+          .catch(err => console.error(err))
+        } else {
+          console.error(response.status)
         }
-        )
     })
   })   
 }
@@ -118,6 +59,8 @@ const loadData = () => {
 const updateCurrentUser = (user) => {
   currentUser = user;
 };
+
+// Chat GPT Extension 
 
 const getChatGPTRecipePitches = (allRecipes) => {
   const DEFAULT_PARAMS = {
@@ -149,7 +92,7 @@ const getChatGPTRecipePitches = (allRecipes) => {
   });
 }
 
-export { currentUser, pageData, updateCurrentUser, loadData, getRecipeCard };
+export { currentUser, pageData, updateCurrentUser, loadData };
 
 
 

@@ -1,5 +1,5 @@
 // Imports
-import { pageData, currentUser, updateCurrentUser, getRecipeCard } from './apiCalls';
+import { pageData, currentUser, updateCurrentUser } from './apiCalls';
 import {
   recipeGrid,
   spinner,
@@ -13,6 +13,7 @@ import {
   modalAddBtn, 
   modalRemoveBtn,
   getPageData, 
+  getRecipeCard,
   body
 } from './scripts'
 import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, splitTagsInRows, filterTagsByTagName  } from './recipes';

@@ -52,12 +52,14 @@ const getRecipeCard = (recipe) => {
   const recipeCard =  {
     id: recipe.id,
     instructions: getInstructions(recipe),
-    ingredients: getIngredientAmounts(recipe, ingredientsData),
+    ingredients: getIngredientAmounts(recipe, pageData.allIngredients),
     image: recipe.image,
     name: recipe.name,
-    price: calculateRecipeCost(recipe, ingredientsData)
+    price: calculateRecipeCost(recipe, pageData.allIngredients),
+    tags: recipe.tags
   }
-return recipeCard;
+
+  return recipeCard;
 }
 
 const getPageData = () => {
