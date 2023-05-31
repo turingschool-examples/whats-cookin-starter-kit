@@ -12,7 +12,6 @@ import {
   currentUser,
   savedCardContainer,
   recipeData,
-  ingredientsData
 } from './scripts';
 import { filterByName, filterByTag } from './filters';
 
@@ -91,17 +90,25 @@ const handleNameSearch = () => {
   }
 };
 
-const handleSearchResults = (view, results) => {
+const toggleSearchView = (view) => {
   if (view === mainViewCardContainer) {
     toggleHidden([mainView], 'remove');
   } else {
     toggleHidden([myRecipesView], 'remove');
   }
+};
+
+const setResults = (view, results) => {
   if (typeof results === 'string') {
     view.innerHTML = `<p>${results}</p>`;
   } else {
     renderRecipeCards(view, results, currentUser);
   }
+};
+
+const handleSearchResults = (view, results) => {
+  toggleSearchView(view);
+  setResults(view, results);
 };
 
 // DOM FUNCTIONS
