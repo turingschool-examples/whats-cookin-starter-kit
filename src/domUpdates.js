@@ -100,8 +100,8 @@ const createGridHTML = allColumns => {
 }
 
 const renderGrid = (data) => {
-  const gridData = makeRecipeColumnData(data)
-  recipeGrid.innerHTML = ''
+  const gridData = makeRecipeColumnData(data);
+  recipeGrid.innerHTML = '';
   recipeGrid.innerHTML = createGridHTML(gridData);
 }
 
