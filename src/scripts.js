@@ -96,7 +96,7 @@ chooseView.addEventListener("click", function(event) {
 
 searchBar.addEventListener('search', (event) => {
   if (!event.target.value.length) {
-    renderRecipesOfInterest();
+    displayTaggedRecipes();
   } else {
     searchForRecipes();
   }
