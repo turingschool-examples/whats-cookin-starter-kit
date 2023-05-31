@@ -2,6 +2,7 @@
 import { pageData, currentUser, updateCurrentUser, getRecipeCard } from './apiCalls';
 import {
   recipeGrid,
+  spinner,
   clickedRecipe,
   tagArea,
   allRecipes,
@@ -22,11 +23,17 @@ import { copyItem, toggleViewBtns } from './helper-functions';
 
 const makeRecipeColumnData = (data) => {
   const mappedRecipe = data.map((recipe, index) => {
+    let thisPitch = "Click to read more...";
+    if (recipe.pitch) {
+      thisPitch = `${recipe.pitch} ${thisPitch}`;
+    }
+
     return {
       column: (index+1) % 3,
       id: recipe.id,
       image: recipe.image,
       name: recipe.name,
+      pitch: thisPitch,
       tags: recipe.tags
     }
   });
@@ -64,7 +71,7 @@ const createSingleRecipeHTML = singleRecipe => {
       <div class="recipe-image-div">
         <img class="recipe-image"src="${singleRecipe.image}" alt="${singleRecipe.name}">
         <div class="hover-card"> 
-          <h3>Read more...</h3>
+          <h4>${singleRecipe.pitch}</h4>
         </div>               
       </div>
       <h2>${singleRecipe.name}</h2>
@@ -381,9 +388,20 @@ const updateRecipesFromModal = (targetID) => {
   }
 }
 
+const enableScrollPitchText = (pitchTextElement) => {
+  pitchTextElement.classList.remove("pitch-text-scroll");
+  void pitchTextElement.offsetWidth;
+  pitchTextElement.classList.add("pitch-text-scroll");
+}
+
+const hideSpinner = () => {
+  spinner.classList.add('hidden');
+}
+
 // Exports
 export {
   renderGrid,
+  hideSpinner,
   toggleTagData,
   pageLoadRenders,
   showRecipe,
@@ -397,5 +415,6 @@ export {
   renderTagArea,
   renderActiveTag,
   displayTaggedRecipes,
-  renderRecipesOfInterest
+  renderRecipesOfInterest,
+  enableScrollPitchText
 }

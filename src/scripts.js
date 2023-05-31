@@ -1,7 +1,7 @@
 //IMPORTS
 import './styles.css'
-import { closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, renderRecipesOfInterest } from './domUpdates';
-import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes'; 
+import { closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, renderRecipesOfInterest, enableScrollPitchText } from './domUpdates';
+import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 import './images/antipasti.png';
 import './images/antipasto.png'
 import './images/appetizer.png'
@@ -22,12 +22,15 @@ import './images/snack.png'
 import './images/spread.png'
 import './images/starter.png'
 import './images/search-button.png'
+
+// import apiCalls from './apiCalls'
 import './images/hollow-bookmark-icon.png'
 import './images/select-bookmark-icon.png'
 import { loadData, pageData, currentUser } from './apiCalls';
 
 // QUERY SELCTORS
 const body = document.querySelector('body');
+const spinner = document.querySelector('.spinner')
 const recipeGrid = document.querySelector('.recipe-grid');
 const allRecipes = document.querySelector('.all-recipes')
 const allUserRecipes = document.querySelector('.all-user-recipes');
@@ -87,6 +90,12 @@ recipeGrid.addEventListener("click", (event) => {
   }
 });
 
+recipeGrid.addEventListener("mouseover", (event) => {
+  if (event.target.classList?.contains('individual-recipe')) {
+    enableScrollPitchText(event.target.querySelector('h4'));
+  }
+});
+
 closeRecipeButton.addEventListener("click", closeRecipe);
 chooseView.addEventListener("click", function(event) {
   if (event.target.classList.contains("unselected-view")) {
@@ -111,6 +120,7 @@ modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
 // Exports
 export {
   recipeGrid,
+  spinner,
   tagArea,
   clickedRecipe,
   getRecipeCard,
