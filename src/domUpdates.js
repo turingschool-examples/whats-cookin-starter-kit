@@ -20,6 +20,7 @@ const saveRecipeButton = document.querySelector('.save-recipe-button')
 const savedRecipesButton = document.querySelector('.saved-recipes')
 const savedRecipeDisplay = document.querySelector('.saved-recipe-display')
 const clearButton = document.querySelector('.clear-search-button')
+const searchButton = document.querySelector('.search-button')
 
 //Event Listeners
 
@@ -65,6 +66,16 @@ savedSearchInput.addEventListener('keypress', function (e) {
     showSavedSearchResults();
   }
 })
+
+searchButton.addEventListener('click', function () {
+  if(savedSearchInput.classList[1] === 'hidden') {
+    addHiddenClass([singleRecipeDisplay]);
+    showSearchResults();
+  } else if (searchInput.classList[1] === 'hidden') {
+    addHiddenClass([singleRecipeDisplay, saveRecipeButton]);
+    showSavedSearchResults();
+  }
+});
 
 clearButton.addEventListener('click', function (e) {
   savedSearchInput.value = ''
