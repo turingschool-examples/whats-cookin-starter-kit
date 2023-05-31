@@ -3,7 +3,7 @@ import { getRandomUser } from "./users";
 import { pageLoadRenders, hideSpinner } from "./domUpdates";
 import { copyItem } from "./helper-functions";
 import { populateTags, calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
-import { config } from "../config.js"
+// import { config } from "../config.js"
 
 // DATA MODEL 
 let currentUser;
