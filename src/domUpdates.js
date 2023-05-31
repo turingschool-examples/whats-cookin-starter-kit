@@ -68,11 +68,10 @@ savedSearchInput.addEventListener('keypress', function (e) {
 })
 
 searchButton.addEventListener('click', function () {
+  addHiddenClass([singleRecipeDisplay, saveRecipeButton]);
   if(savedSearchInput.classList[1] === 'hidden') {
-    addHiddenClass([singleRecipeDisplay]);
     showSearchResults();
   } else if (searchInput.classList[1] === 'hidden') {
-    addHiddenClass([singleRecipeDisplay, saveRecipeButton]);
     showSavedSearchResults();
   }
 });
