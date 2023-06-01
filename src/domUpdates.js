@@ -1,5 +1,5 @@
 // Imports
-import { pageData, currentUser, updateCurrentUser, getRecipeCard } from './apiCalls';
+import { pageData, currentUser, updateCurrentUser } from './apiCalls';
 import {
   recipeGrid,
   spinner,
@@ -13,6 +13,7 @@ import {
   modalAddBtn, 
   modalRemoveBtn,
   getPageData, 
+  getRecipeCard,
   body
 } from './scripts'
 import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, splitTagsInRows, filterTagsByTagName  } from './recipes';
@@ -333,7 +334,6 @@ const displayTaggedRecipes = () => {
   const activeTags = pageData.allTags.filter(tag => tag.isActive).map(tag => tag.name);
   const baseData = setBaseData();
   const filteredRecipes = setupFilterData(activeTags, baseData);
-  
   if (filteredRecipes.length) {
     pageData.recipesOfInterest = filteredRecipes;
     renderGrid(pageData.recipesOfInterest)
@@ -343,7 +343,8 @@ const displayTaggedRecipes = () => {
 }
 
 const searchForRecipes = () => {
-  let searchedRecipes = searchRecipes(getPageData(), pageData.allIngredients, searchBar.value);
+  const activeTags = pageData.allTags.filter(tag => tag.isActive).map(tag => tag.name);
+  let searchedRecipes = searchRecipes(setupFilterData(activeTags, getPageData()), pageData.allIngredients, searchBar.value);
   if(searchedRecipes) {
     if(searchedRecipes.length) {
       pageData.recipesOfInterest = searchedRecipes;
