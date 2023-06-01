@@ -6,4 +6,19 @@ const fetchAPI = (dataType) => {
     .catch(() => alert('ERROR: FAILED TO FETCH!'));
 }
 
-export { fetchAPI }
+const postAPI = (user) => {
+  fetch('http://localhost:3001/api/v1/usersRecipes', {
+    method:'POST',
+    body: JSON.stringify(user),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+  })
+}
+
+// { userID: <number>, recipeID: <number> }
+export { fetchAPI, postAPI }
