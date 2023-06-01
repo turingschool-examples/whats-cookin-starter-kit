@@ -1,11 +1,14 @@
 import { copyItem, getRandomIndex } from "./helper-functions";
+import { currentUser, postRecipeToCook } from "./apiCalls";
 
 const getRandomUser = users => {
   return users[getRandomIndex(users)]
 }
 
 const addUniqueRecipes = (userRecipes, newRecipe) => {
-  if(!userRecipes.find(item => item.id === newRecipe.id)) userRecipes.push(newRecipe)
+  console.log(currentUser.name, currentUser.id, newRecipe.id)
+  if(!userRecipes.find(item => item.id === newRecipe.id)) userRecipes.push(newRecipe);
+  postRecipeToCook(currentUser.id, newRecipe.id);
 };
 
 const addRecipe = (userRecipes, newRecipe) => {

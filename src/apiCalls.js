@@ -29,7 +29,6 @@ const handleRecipeData = recipes => {
     hideSpinner();
     pageLoadRenders(pageData.allRecipes);
   }, 2000)
-
 }
 
 const handleIngredientData = ingredients => pageData.allIngredients = ingredients
@@ -60,6 +59,21 @@ const loadData = () => {
 const updateCurrentUser = (user) => {
   currentUser = user;
 };
+
+const postRecipeToCook = (userID, recipeID) => {
+  const body = {
+    userID,
+    recipeID
+  };
+
+  fetch('http://localhost:3001/api/v1/usersRecipes', {
+    method: "POST",
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json'
+  }})
+    .then()
+}
 
 // Chat GPT Extension 
 
@@ -93,4 +107,4 @@ const getChatGPTRecipePitches = (allRecipes) => {
   });
 }
 
-export { currentUser, pageData, updateCurrentUser, loadData };
+export { currentUser, pageData, updateCurrentUser, loadData, postRecipeToCook };
