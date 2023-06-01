@@ -1,7 +1,7 @@
 import { checkUserForRecipe } from './users';
 import { compileIngredientItems } from './compile-ingredient-items';
 import { calculateRecipePrice } from './calculate-recipe-price';
-import { removeRecipes, recipesToCook } from './recipes-to-cook';
+import { removeRecipes, recipesToCook, matchRecipe } from './recipes-to-cook';
 import {
   myRecipesView,
   mainView,
@@ -122,6 +122,16 @@ const renderBookmarks = (currentUser, recipe) => {
   }
 };
 
+const renderRating = (currentUser, recipe, level) => {
+  if (currentUser[`${level}RecipeRatings`].includes(recipe)) {
+    return `<img class="rating-icon unchecked ${level} hidden" id="${recipe.id}" src="./images/${level}.png">
+    <img class="rating-icon checked ${level}" id="${recipe.id}" src="./images/${level}-filled.png">`
+  } else {
+    return `<img class="rating-icon unchecked ${level}" id="${recipe.id}" src="./images/${level}.png">
+    <img class="rating-icon checked hidden ${level}" id="${recipe.id}" src="./images/${level}-filled.png">`;
+  }
+};
+
 const renderRecipeCardTag = (recipe) => {
   if (recipe.tags.length > 0) {
     return `<p class="recipe-tag">${recipe.tags[0]}</p>`;
@@ -191,6 +201,36 @@ const findRecipe = (e, recipes) => {
   });
 };
 
+const addToRatings = (eventId, currentUser, recipeData, level) => {
+    currentUser[`${level}RecipeRatings`].push(matchRecipe(eventId, recipeData));
+    console.log(currentUser)
+};
+
+
+const removeRatings = (eventId, currentUser, level) => {
+    const recipes = currentUser[`${level}RecipeRatings`].map((recipe) => {
+        return recipe.id;
+      }).map(String);
+      
+    const index = recipes.indexOf(`${eventId}`);
+    currentUser[`${level}RecipeRatings`].splice(index, 1);
+    console.log(currentUser[`${level}RecipeRatings`])
+};
+
+const toggleRating = (e, currentUser, recipeData) => {
+  if (e.target.classList[0] === 'rating-icon') {
+    if (isUnchecked(e)) {
+      addToRatings(e.target.id, currentUser, recipeData, e.target.classList[2])
+      toggleHidden([e.target], 'add');
+      toggleHidden([e.target.nextElementSibling], 'remove');
+    } else {
+      removeRatings(e.target.id, currentUser, e.target.classList[2])
+      toggleHidden([e.target], 'add');
+      toggleHidden([e.target.previousElementSibling], 'remove');
+    }
+  }
+};
+
 const renderSingleRecipeView = (e, recipes, ingredients) => {
   let recipe = findRecipe(e, recipes);
   singleRecipeView.innerHTML += `
@@ -201,6 +241,12 @@ const renderSingleRecipeView = (e, recipes, ingredients) => {
         <div class="bookmark-flex">
           ${renderBookmarks(currentUser, recipe)}
         </div>
+        <div class="bookmark-flex">
+        ${renderRating(currentUser, recipe, 'sad')}
+      </div>
+      <div class="bookmark-flex">
+        ${renderRating(currentUser, recipe, 'happy')}
+      </div>
       </div>
       <div class="recipe-content-flex">
         <div class="side-info-flex">
@@ -261,4 +307,5 @@ export {
   toSingleRecipeView,
   searchBarClicked,
   removeRecipeCard,
+  toggleRating
 };
