@@ -334,7 +334,6 @@ const displayTaggedRecipes = () => {
   const activeTags = pageData.allTags.filter(tag => tag.isActive).map(tag => tag.name);
   const baseData = setBaseData();
   const filteredRecipes = setupFilterData(activeTags, baseData);
-  console.log('here', filteredRecipes)
   if (filteredRecipes.length) {
     pageData.recipesOfInterest = filteredRecipes;
     renderGrid(pageData.recipesOfInterest)
