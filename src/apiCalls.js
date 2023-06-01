@@ -26,8 +26,8 @@ const handleRecipeData = recipes => {
   pageData.allTags = populateTags(pageData.allRecipes);
   // getChatGPTRecipePitches(pageData.allRecipes);
   setTimeout(() => {
-  hideSpinner();
-  pageLoadRenders(pageData.allRecipes);
+    hideSpinner();
+    pageLoadRenders(pageData.allRecipes);
   }, 2000)
 
 }
@@ -94,9 +94,3 @@ const getChatGPTRecipePitches = (allRecipes) => {
 }
 
 export { currentUser, pageData, updateCurrentUser, loadData };
-
-
-
-
-
-
