@@ -6,6 +6,10 @@ import './images/search.png';
 import './images/restaurant.png';
 import './images/bookmark.png';
 import './images/bookmark-filled.png';
+import './images/sad.png'
+import './images/sad-filled.png'
+import './images/happy.png'
+import './images/happy-filled.png'
 
 import { getRandomUser } from './users';
 import { fetchAPI } from './apiCalls';
@@ -17,6 +21,7 @@ import {
   toSingleRecipeView,
   searchBarClicked,
   removeRecipeCard,
+  toggleRating
 } from './domUpdates';
 
 //GLOBAL VARIABLE
@@ -44,6 +49,8 @@ const start = () => {
     ingredientsData = data[1].ingredients;
     recipeData = data[2].recipes;
     currentUser = getRandomUser(userData);
+    currentUser.happyRecipeRatings = [];
+    currentUser.sadRecipeRatings = [];
 
     renderRecipeCards(mainViewCardContainer, recipeData, currentUser);
   });
@@ -60,6 +67,7 @@ searchBar.addEventListener('keypress', (e) => {
 });
 singleRecipeView.addEventListener('click', (e) => {
   toggleBookmark(e, currentUser, recipeData);
+  toggleRating(e, currentUser, recipeData);
 });
 mainContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('recipe-img') || e.target.classList.contains('recipe-name')) {

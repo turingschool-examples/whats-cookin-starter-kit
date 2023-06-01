@@ -170,6 +170,7 @@ h1 {
 
 .bookmark-icon {
   height: 25px;
+  padding: 5px;
   cursor: pointer;
 }
 
@@ -230,6 +231,11 @@ h1 {
   font-family: 'Leckerli One', cursive;
   font-size: 2rem;
   margin-right: 2rem;
+}
+
+.rating-icon {
+  width: 30px;
+  padding: 5px;
 }
 
 .hidden {
