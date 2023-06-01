@@ -72,7 +72,16 @@ const postRecipeToCook = (userID, recipeID) => {
     headers: {
       'Content-Type': 'application/json'
   }})
-    .then()
+    .then(
+      fetchUsers()
+        .then(response => response.json())
+        .then(data => {
+          const foundUser = data.users.find(user => user.id === userID);
+          updateCurrentUser(foundUser);
+        })
+        .catch(err => console.error(err))
+    )
+    .catch(err => console.error(err))
 }
 
 // Chat GPT Extension 
