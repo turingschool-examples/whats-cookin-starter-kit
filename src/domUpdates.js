@@ -14,7 +14,7 @@ import {
   recipeData,
 } from './scripts';
 import { filterByName, filterByTag } from './filters';
-
+import { postAPI } from './apiCalls';
 // EVENT HANDLERS
 const clearView = (views) => {
   views.forEach((view) => {
@@ -170,6 +170,9 @@ const toggleHidden = (elements, type) => {
 const toggleBookmark = (e, currentUser, recipeData) => {
   if (e.target.classList[0] === 'bookmark-icon') {
     if (isUnchecked(e)) {
+    user = { userID: currentUser.id,
+            recipeID: e.target.id}
+      postAPI(user)
       recipesToCook(e.target.id, currentUser, recipeData);
       toggleHidden([e.target], 'add');
       toggleHidden([e.target.nextElementSibling], 'remove');

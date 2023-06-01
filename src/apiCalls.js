@@ -18,7 +18,6 @@ const postAPI = (user) => {
   .then(data => {
     console.log(data)
   })
+  .catch(() => alert("Your recipe couldn't be saved!") )
 }
-
-// { userID: <number>, recipeID: <number> }
 export { fetchAPI, postAPI }
