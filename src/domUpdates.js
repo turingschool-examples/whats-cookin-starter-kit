@@ -124,11 +124,11 @@ const renderBookmarks = (currentUser, recipe) => {
 
 const renderRating = (currentUser, recipe, level) => {
   if (currentUser[`${level}RecipeRatings`].includes(recipe)) {
-    return `<img class="rating-icon unchecked ${level} hidden" id="${recipe.id}" src="./images/${level}.png">
-    <img class="rating-icon checked ${level}" id="${recipe.id}" src="./images/${level}-filled.png">`
+    return `<img class="rating-icon unchecked ${level} hidden" alt="rating-icons" id="${recipe.id}" src="./images/${level}.png">
+    <img class="rating-icon checked ${level}" alt="rating-icons" id="${recipe.id}" src="./images/${level}-filled.png">`
   } else {
-    return `<img class="rating-icon unchecked ${level}" id="${recipe.id}" src="./images/${level}.png">
-    <img class="rating-icon checked hidden ${level}" id="${recipe.id}" src="./images/${level}-filled.png">`;
+    return `<img class="rating-icon unchecked ${level}" alt="rating-icons"  id="${recipe.id}" src="./images/${level}.png">
+    <img class="rating-icon checked hidden ${level}" alt="rating-icons" id="${recipe.id}" src="./images/${level}-filled.png">`;
   }
 };
 
