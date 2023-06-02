@@ -9,13 +9,17 @@
   </head>
   <body>
     <nav> 
-      <div class="nav-child">
-        <input class="nav-icon" id="searchBar" type="search" placeholder="Search.." >
+      <h1> What's cookin? </h1>
+      <div class="nav-child" id="searchArea">
+        <img role="button" class="nav-icon" id="homeBtn" src="home.png" alt="Return home"> 
+        <input id="searchBar" type="search" placeholder="Search.." >
         <img role="button" class="nav-icon" id="searchBtn" src="./images/search-button.png" alt="Magnifying Glass Icon"> 
+      </div>
+      <div class="nav-child">
+        <img role="button" class="nav-icon" id="settings" src="settings.png" alt="User settings">
       </div>
     </nav>
     <section class="all-recipes">
-      <h1> What's cookin? </h1>
       <section class="choose-view">
         <section class="view-button selected-view" id="our-recipes"> Our Recipes </section>
         <section class="view-button unselected-view" id="your-recipes">Your recipes</section>
