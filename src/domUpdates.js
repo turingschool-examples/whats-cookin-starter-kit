@@ -16,7 +16,7 @@ import {
   getRecipeCard,
   body
 } from './scripts'
-import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, splitTagsInRows, filterTagsByTagName  } from './recipes';
+import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, splitTagsInRows, filterTagsByTagName, sortByHits  } from './recipes';
 import { updateRecipesToCook } from './users';
 import { copyItem, toggleViewBtns } from './helper-functions';
 
