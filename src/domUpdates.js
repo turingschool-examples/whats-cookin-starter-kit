@@ -270,7 +270,7 @@ const showRecipe = (recipeCard) => {
   populateRecipeHeader(pageData.currentRecipeCard);
   populateInstructions(pageData.currentRecipeCard);
   populateIngredients(pageData.currentRecipeCard);
-  updateSaveButtons(pageData.currentRecipeCard.id, modalAddBtn, modalRemoveBtn);
+  updateSaveButtons(pageData.currentRecipeCard.id, modalAddBtn, modalRemoveBtn, currentUser);
   openRecipeCard();
 };
 
