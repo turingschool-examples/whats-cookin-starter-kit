@@ -224,7 +224,6 @@ const toggleRating = (e, currentUser, recipeData) => {
       addToRatings(e.target.id, currentUser, recipeData, e.target.classList[2]);
       toggleHidden([e.target], 'add');
       toggleHidden([e.target.nextElementSibling], 'remove');
-      //this makes sure the inverse button is deselected whenever happy/sad are selected.
       const inverse = e.target.classList[2] === 'happy' ? 'sad' : 'happy';
       const deselect = document.querySelector(`.${inverse}.checked`);
       removeRatings(e.target.id, currentUser, inverse);
