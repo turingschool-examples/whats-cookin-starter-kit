@@ -126,7 +126,7 @@ const renderBookmarks = (currentUser, recipe) => {
 const renderRating = (currentUser, recipe, level) => {
   if (currentUser[`${level}RecipeRatings`].includes(recipe)) {
     return `<img class="rating-icon unchecked ${level} hidden" alt="rating-icons" id="${recipe.id}" src="./images/${level}.png">
-    <img class="rating-icon checked ${level}" alt="rating-icons" id="${recipe.id}" src="./images/${level}-filled.png">`
+    <img class="rating-icon checked ${level}" alt="rating-icons" id="${recipe.id}" src="./images/${level}-filled.png">`;
   } else {
     return `<img class="rating-icon unchecked ${level}" alt="rating-icons"  id="${recipe.id}" src="./images/${level}.png">
     <img class="rating-icon checked hidden ${level}" alt="rating-icons" id="${recipe.id}" src="./images/${level}-filled.png">`;
@@ -212,29 +212,33 @@ const findRecipe = (e, recipes) => {
 };
 
 const addToRatings = (eventId, currentUser, recipeData, level) => {
-    currentUser[`${level}RecipeRatings`].push(matchRecipe(eventId, recipeData));
-    console.log(currentUser)
+  currentUser[`${level}RecipeRatings`].push(matchRecipe(eventId, recipeData));
 };
 
-
 const removeRatings = (eventId, currentUser, level) => {
-    const recipes = currentUser[`${level}RecipeRatings`].map((recipe) => {
-        return recipe.id;
-      }).map(String);
-      
-    const index = recipes.indexOf(`${eventId}`);
-    currentUser[`${level}RecipeRatings`].splice(index, 1);
-    console.log(currentUser[`${level}RecipeRatings`])
+  const recipes = currentUser[`${level}RecipeRatings`]
+    .map((recipe) => {
+      return recipe.id;
+    })
+    .map(String);
+
+  const index = recipes.indexOf(`${eventId}`);
+  currentUser[`${level}RecipeRatings`].splice(index, 1);
 };
 
 const toggleRating = (e, currentUser, recipeData) => {
   if (e.target.classList[0] === 'rating-icon') {
     if (isUnchecked(e)) {
-      addToRatings(e.target.id, currentUser, recipeData, e.target.classList[2])
+      addToRatings(e.target.id, currentUser, recipeData, e.target.classList[2]);
       toggleHidden([e.target], 'add');
       toggleHidden([e.target.nextElementSibling], 'remove');
+      const inverse = e.target.classList[2] === 'happy' ? 'sad' : 'happy';
+      const deselect = document.querySelector(`.${inverse}.checked`);
+      removeRatings(e.target.id, currentUser, inverse);
+      toggleHidden([deselect], 'add');
+      toggleHidden([deselect.previousElementSibling], 'remove');
     } else {
-      removeRatings(e.target.id, currentUser, e.target.classList[2])
+      removeRatings(e.target.id, currentUser, e.target.classList[2]);
       toggleHidden([e.target], 'add');
       toggleHidden([e.target.previousElementSibling], 'remove');
     }
@@ -317,5 +321,5 @@ export {
   toSingleRecipeView,
   searchBarClicked,
   removeRecipeCard,
-  toggleRating
+  toggleRating,
 };

@@ -6,10 +6,10 @@ import './images/search.png';
 import './images/restaurant.png';
 import './images/bookmark.png';
 import './images/bookmark-filled.png';
-import './images/sad.png'
-import './images/sad-filled.png'
-import './images/happy.png'
-import './images/happy-filled.png'
+import './images/sad.png';
+import './images/sad-filled.png';
+import './images/happy.png';
+import './images/happy-filled.png';
 
 import { getRandomUser } from './users';
 import { fetchAPI } from './apiCalls';
@@ -21,7 +21,7 @@ import {
   toSingleRecipeView,
   searchBarClicked,
   removeRecipeCard,
-  toggleRating
+  toggleRating,
 } from './domUpdates';
 
 //GLOBAL VARIABLE
@@ -100,5 +100,5 @@ export {
   searchByToggle,
   savedCardContainer,
   ingredientsData,
-  recipeData
+  recipeData,
 };

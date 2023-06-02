@@ -1,22 +1,22 @@
 const fetchAPI = (dataType) => {
- return fetch(`http://localhost:3001/api/v1/${dataType}`)
+  return fetch(`http://localhost:3001/api/v1/${dataType}`)
     .then((response) => {
-      return response.json()
+      return response.json();
     })
-    .catch(err => errorHandling(err));
-}
+    .catch((err) => errorHandling(err));
+};
 
-const errorHandling = err => {
-  alert(`${err.name}: ${err.message}!\nWhat's Cookin failed to obtain data from the server.`)
-}
+const errorHandling = (err) => {
+  alert(`${err.name}: ${err.message}!\nWhat's Cookin failed to obtain data from the server.`);
+};
 
 const postAPI = (user) => {
   fetch('http://localhost:3001/api/v1/usersRecipes', {
-    method:'POST',
+    method: 'POST',
     body: JSON.stringify(user),
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   })
   .then(response => response.json())
   .then(data => {
@@ -27,4 +27,4 @@ const postAPI = (user) => {
   .catch((err) => alert(err))
 }
 
-export { fetchAPI, postAPI }
+export { fetchAPI, postAPI };
