@@ -248,7 +248,7 @@ const populateRecipeHeader = currentRecipe => {
     <div id="individualRecipeTags">${recipeTagsHTML.join('')}</div>
     <h1>${currentRecipe.name}</h1>
     <div class="individual-recipe-image">
-      <img src="${currentRecipe.image}"></img>
+      <img src="${currentRecipe.image}" alt="${currentRecipe.name}"></img>
     </div>
   `
 }
