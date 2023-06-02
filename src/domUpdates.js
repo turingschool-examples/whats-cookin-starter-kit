@@ -57,27 +57,26 @@ const createSingleRecipeHTML = singleRecipe => {
       removeStatus = '';
     }
   }
-  htmlCode += 
-  `
-  <article class="individual-recipe-container">
-    <section class="add-panel panel save-option ${addStatus}">
-      <div class="plus-symbol symbol save-option">+</div>
-      <h4 class="save-option"> Add to recipes to cook</h4>
-    </section>
-    <section class="remove-panel panel save-option ${removeStatus}">
-      <div class="minus-symbol synmbol save-option ">-</div>
-      <h4 class="save-option"> Remove from recipes to cook</h4>
-    </section>
-    <article class="individual-recipe" id="${singleRecipe.id}">
-      <div class="recipe-image-div">
-        <img class="recipe-image"src="${singleRecipe.image}" alt="${singleRecipe.name}">
-        <div class="hover-card"> 
-          <h4>${singleRecipe.pitch}</h4>
-        </div>               
-      </div>
-      <h2>${singleRecipe.name}</h2>
+  htmlCode += `
+    <article class="individual-recipe-container">
+      <section class="add-panel panel save-option ${addStatus}">
+        <div class="plus-symbol symbol save-option">+</div>
+        <h4 class="save-option"> Add to recipes to cook</h4>
+      </section>
+      <section class="remove-panel panel save-option ${removeStatus}">
+        <div class="minus-symbol synmbol save-option ">-</div>
+        <h4 class="save-option"> Remove from recipes to cook</h4>
+      </section>
+      <article class="individual-recipe" id="${singleRecipe.id}">
+        <div class="recipe-image-div">
+          <img class="recipe-image"src="${singleRecipe.image}" alt="${singleRecipe.name}">
+          <div class="hover-card">
+            <h4>${singleRecipe.pitch}</h4>
+          </div>
+        </div>
+        <h2>${singleRecipe.name}</h2>
+      </article>
     </article>
-  </article>
   `;
   return htmlCode
 }
@@ -108,12 +107,12 @@ const renderGrid = (data) => {
 
 const createModalTagHTML = tag => {
   return `
-  <section class = "tag-card" id = "${tag.name}">
-      <div class="tag-image-bg active-bg">
-          <img class = "tag-image" src = "${tag.path}" alt="${tag.name}">
-      </div>
-      <p class="tag-text">${tag.name}</p>
-  </section>
+    <section class = "tag-card" id = "${tag.name}">
+        <div class="tag-image-bg active-bg">
+            <img class = "tag-image" src = "${tag.path}" alt="${tag.name}">
+        </div>
+        <p class="tag-text">${tag.name}</p>
+    </section>
   `;
 }
 
@@ -126,12 +125,12 @@ const createTagCardHTML = tag => {
   }
 
   htmlCode += `
-  <section class = "tag-card" id = "${tag.name}">
-      <div class="${bgClass}">
-          <img class = "tag-image" src = "${tag.path}" alt="${tag.name}">
-      </div>
-      <p class="tag-text">${tag.name}</p>
-  </section>
+    <section class = "tag-card" id = "${tag.name}">
+        <div class="${bgClass}">
+            <img class = "tag-image" src = "${tag.path}" alt="${tag.name}">
+        </div>
+        <p class="tag-text">${tag.name}</p>
+    </section>
   `;
   return htmlCode;
 }
@@ -195,11 +194,13 @@ const pageLoadRenders = (data) => {
 
 const getInstructionHTML = (recipe) => {
   return recipe.instructions.map((instruction, i) => {
-    if(recipe.instructions.length > 1) {
-      return `<section class='single-instruction-step'> 
-                <p class='step'>STEP ${i+1}</p> 
-                <p class='instruction'>${instruction}</p> 
-              </section>`;
+    if (recipe.instructions.length > 1) {
+      return `
+        <section class='single-instruction-step'>
+          <p class='step'>STEP ${i+1}</p>
+          <p class='instruction'>${instruction}</p>
+        </section>
+      `;
     } else {
       return `<p>${instruction}</p>`;
     }
@@ -213,10 +214,12 @@ const addScrollBar = (element) => {
 const populateInstructions = (recipe) => {
   const instructions = getInstructionHTML(recipe);
   const instructionSection= document.querySelector('#recipeInstructions')
-  instructionSection.innerHTML = `<p>Directions</p>
-                                  <section class='instruction-steps'> 
-                                    ${instructions.join('')} 
-                                  </section>`;
+  instructionSection.innerHTML = `
+    <p>Directions</p>
+    <section class='instruction-steps'>
+      ${instructions.join('')}
+    </section>
+  `;
   addScrollBar('.instruction-steps');
 }
 
@@ -289,10 +292,10 @@ const createIngredientsHTML = ingredients => {
   ingredients.forEach((ingredient, i) => {
     let ingredientLabelName = `ingredient${i}`
     ingredientsList.innerHTML += `
-    <label class="ingredient-label" for="${ingredientLabelName}">
-      <input class="ingredient-input" id="${ingredientLabelName}" type="checkbox" name="${ingredientLabelName}" />
-      ${ingredient.amount} ${ingredient.unit} ${ingredient.name}
-    </label>
+      <label class="ingredient-label" for="${ingredientLabelName}">
+        <input class="ingredient-input" id="${ingredientLabelName}" type="checkbox" name="${ingredientLabelName}" />
+        ${ingredient.amount} ${ingredient.unit} ${ingredient.name}
+      </label>
     `;
   });
 };
@@ -307,9 +310,11 @@ const switchView = (clickedViewID) => {
     tag.isActive = false
   })
   renderTagArea();
-  pageData.currentView = clickedViewID;
+  if (clickedViewID !== pageData.currentView) {
+    toggleViewBtns([ourViewBtn, yourViewBtn]);
+    pageData.currentView = clickedViewID;
+  }
   renderRecipesOfInterest();
-  toggleViewBtns([ourViewBtn, yourViewBtn]);
 }
 
 const setBaseData = () => {
@@ -346,17 +351,22 @@ const searchForRecipes = () => {
   const activeTags = pageData.allTags.filter(tag => tag.isActive).map(tag => tag.name);
   let searchedRecipes = searchRecipes(setupFilterData(activeTags, getPageData()), pageData.allIngredients, searchBar.value);
   if(searchedRecipes) {
-    if(searchedRecipes.length) {
+    if (searchedRecipes.length) {
       pageData.recipesOfInterest = searchedRecipes;
       renderGrid(searchedRecipes);
-    }else {
+    } else {
       recipeGrid.innerHTML = `<p>Sorry, we couldn't find any recipes for your search of "${searchBar.value}"</p>`;
     }
   }
 }
 
+const returnHome = () => {
+  searchBar.value = '';
+  switchView(pageData.currentView);
+}
+
 const updateUserRecipes = (e) => {
-  if(e.target.classList.contains('save-option')) {
+  if (e.target.classList.contains('save-option')) {
     const recipeID = e.target.closest('.individual-recipe-container')?.querySelector('.individual-recipe').id;
     const recipe = findRecipe(pageData.allRecipes, recipeID);
     if (!checkSavedStatus(currentUser, recipeID)) {
@@ -368,9 +378,9 @@ const updateUserRecipes = (e) => {
     const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel');
     updateSaveButtons(recipeID, addBtn, removeBtn);
     const activeTags = pageData.allTags.filter(tag => tag.isActive)
-    if(activeTags.length) {
+    if (activeTags.length) {
       displayTaggedRecipes();
-    } else if(pageData.currentView === 'your-recipes') {
+    } else if (pageData.currentView === 'your-recipes') {
       renderRecipesOfInterest();
     }
   } 
@@ -409,6 +419,7 @@ export {
   closeRecipe,
   switchView,
   searchForRecipes,
+  returnHome,
   updateUserRecipes,
   findRecipe,
   updateSaveButtons,
