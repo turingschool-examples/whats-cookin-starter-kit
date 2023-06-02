@@ -231,9 +231,10 @@ const updateCurrentRecipe = recipeCard => {
   pageData.currentRecipeCard.outerRemoveBtn = recipeCard.closest('.individual-recipe-container').querySelector('.remove-panel');
 }
 
-const updateSaveButtons = (ID, addButton, removeButton, currentUser) => {
-  if(checkSavedStatus(currentUser, ID)){
-    // console.log("inside if")
+const updateSaveButtons = (recipeID, addButton, removeButton, user) => {
+  console.log("user in updateSaveBtn", user)
+  if(checkSavedStatus(user, recipeID)){
+    console.log("addbtn", addButton)
     addButton.classList.add('hidden');
     removeButton.classList.remove('hidden');
   } else {
@@ -370,6 +371,7 @@ const updateUserRecipes = (e) => {
   if (e.target.classList.contains('save-option')) {
     const recipeID = e.target.closest('.individual-recipe-container')?.querySelector('.individual-recipe').id;
     const recipe = findRecipe(pageData.allRecipes, recipeID);
+    console.log("currentUser in updateUserRec", currentUser)
     if (!checkSavedStatus(currentUser, recipeID)) {
       updateRecipesToCook(e, recipe, 'add');
     } else if (checkSavedStatus(currentUser, recipeID)) {
@@ -387,11 +389,13 @@ const updateUserRecipes = (e) => {
   } 
 }
 
-const updateRecipesFromModal = (targetID) => {
-  const recipe = findRecipe(pageData.allRecipes, pageData.currentRecipeCard.id);
-  updateRecipesToCook(e, recipe, 'targetID');
-  updateSaveButtons(recipe.id, modalAddBtn, modalRemoveBtn);
-  updateSaveButtons(recipe.id, pageData.currentRecipeCard.outerAddBtn, pageData.currentRecipeCard.outerRemoveBtn);
+const updateRecipesFromModal = (e) => {
+  const change = e.target.id
+  const recipeID = pageData.currentRecipeCard.id;
+  const recipe = findRecipe(pageData.allRecipes, recipeID);
+  updateRecipesToCook(e, recipe, change);
+  // updateSaveButtons(recipe.id, modalAddBtn, modalRemoveBtn);
+  // updateSaveButtons(recipe.id, , pageData.currentRecipeCard.outerRemoveBtn);
   const activeTags = pageData.allTags.filter(tag => tag.isActive)
   if(activeTags.length) {
     displayTaggedRecipes();
@@ -400,10 +404,21 @@ const updateRecipesFromModal = (targetID) => {
   }
 }
 
-const toggleSavedButtons = (e, recipeID, currentUser) => {
-const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel');
-const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel');
-updateSaveButtons(recipeID, addBtn, removeBtn, currentUser);
+const checkIfModalOpen = () => allRecipes.classList.contains('blur')
+
+const toggleSavedButtons = (e, recipeID, user) => {
+  if (checkIfModalOpen()) {
+    console.log("modal open")
+    const outerAdd = pageData.currentRecipeCard.outerAddBtn;
+    const outerRemove = pageData.currentRecipeCard.outerAddBtn;
+    updateSaveButtons(recipeID, outerAdd, outerRemove, user);
+    updateSaveButtons(recipeID, modalAddBtn, modalRemoveBtn, user);
+  } else {
+    const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel');
+    const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel');
+    console.log("user in toggleSavedBtn", user)
+    updateSaveButtons(recipeID, addBtn, removeBtn, user);
+  }
 }
 
 const enableScrollPitchText = (pitchTextElement) => {

@@ -84,7 +84,7 @@ const findRecipe = (allRecipes, ID) => {
 }
 
 const checkSavedStatus = (user, ID) => {
-  // console.log(user, "checkSavedStatus");
+  console.log( "user in checkSavedStatus",user);
   return user.recipesToCook.some(recipeID => recipeID.toString() === ID.toString());
 }
 

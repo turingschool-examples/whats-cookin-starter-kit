@@ -81,7 +81,7 @@ allRecipes.addEventListener('click', (event) => {
 })
 
 modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
-  updateRecipesFromModal(e.target.id);
+  updateRecipesFromModal(e);
 }));
 
 tagArea.addEventListener("click", function(event) {
