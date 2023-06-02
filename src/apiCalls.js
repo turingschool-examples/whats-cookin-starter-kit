@@ -18,11 +18,13 @@ const postAPI = (user) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-    })
-    .catch(() => alert("Your recipe couldn't be saved!"));
-};
+  .then(response => response.json())
+  .then(data => {
+    if(data.message.includes('already')) {
+      throw new Error('Recipe already saved!');
+    }
+  })
+  .catch((err) => alert(err))
+}
 
 export { fetchAPI, postAPI };
