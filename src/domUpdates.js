@@ -340,10 +340,10 @@ function showRecipes() {
   allRecipeDisplay.innerHTML = ''
   getData('recipes').then(({ recipes }) => {
     recipes.forEach(recipe => allRecipeDisplay.innerHTML += `
-  <div class = "recipe-wrapper">
-    <img id="${recipe.name}" src="${recipe.image}" class="recipe" alt="${recipe.name}">
-  <div class = "recipe-info">
-    <p>${recipe.name}</p>
+  <div class="recipe-wrapper recipe" tabindex="0" id="${recipe.name}">
+    <img src="${recipe.image}" class="recipe" alt="${recipe.name}">
+  <div class = "recipe-info recipe">
+    <p class="recipe">${recipe.name}</p>
   </div>`);
   })
 };
