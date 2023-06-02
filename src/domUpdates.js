@@ -31,7 +31,7 @@ allRecipesButton.addEventListener('click', event => {
 });
 
 savedRecipesButton.addEventListener('click', () => {
-  addHiddenClass([allRecipeDisplay, singleRecipeDisplay, saveRecipeButton, frontRecipeDisplay, searchInput]);
+  addHiddenClass([allRecipeDisplay, singleRecipeDisplay, saveRecipeButton, saveRecipeButton, frontRecipeDisplay, searchInput]);
   removeHiddenClass([savedRecipeDisplay, savedSearchInput, allFilterDisplay]);
   showSavedRecipes(currentUser, recipesToCook);
 })
@@ -145,7 +145,7 @@ function showSearchResults() {
   allRecipeDisplay.innerHTML = '';
   getData('recipes').then(({ recipes }) => {
     const searchedRecipes = recipesfromName(recipes, searchValue);
-    if (searchedRecipes.length === 0) {
+    if (!searchedRecipes.length) {
       allRecipeDisplay.innerHTML = `
         <div class="no-recipe-found-message">
           <p>Sorry, ${currentUser.name}, we currently don't have any matching recipes.</p>
@@ -170,7 +170,7 @@ function showSavedSearchResults() {
   addHiddenClass([frontRecipeDisplay]);
   savedRecipeDisplay.innerHTML = '';
   const filteredRecipes = recipesfromName(recipesToCook, searchValue);
-  if (filteredRecipes.length === 0) {
+  if (!filteredRecipes.length) {
     savedRecipeDisplay.innerHTML = `
       <div class="no-recipe-found-message">
         <p>Sorry, ${currentUser.name}, you currently don't recipes saved matching that description.</p>
@@ -195,7 +195,7 @@ function showHomePage() {
 }
 
 const showSavedRecipes = (currentUser, recipesToCook) => {
-  if (recipesToCook.length === 0) {
+  if (!recipesToCook.length) {
     savedRecipeDisplay.innerHTML = `
     <div class="no-saved-recipes-message">
       <p> Hi, ${currentUser.name}! You currently have no saved recipes.</p>
@@ -216,7 +216,7 @@ const showSavedRecipes = (currentUser, recipesToCook) => {
 
 function renderFilteredSavedRecipes() {
   const savedTags = Array.from(checkCategories).filter((category) => category.checked).map(c => c.id)
-  if (savedTags.length === 0 && allRecipeDisplay.classList[1] === 'hidden') {
+  if (!savedTags.length && allRecipeDisplay.classList[1] === 'hidden') {
     showSavedRecipes(currentUser, recipesToCook);
     return
   }
@@ -265,7 +265,7 @@ function randomizeHomePage() {
 
 function renderFilteredRecipes() {
   const tags = Array.from(checkCategories).filter((category) => category.checked).map(c => c.id)
-  if (tags.length === 0 && savedRecipeDisplay.classList[1] === 'hidden') {
+  if (!tags.length && savedRecipeDisplay.classList[1] === 'hidden') {
     showRecipes()
     return
   }
