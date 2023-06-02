@@ -1,6 +1,6 @@
 //IMPORTS 
 import { getRandomUser } from "./users";
-import { pageLoadRenders, hideSpinner } from "./domUpdates";
+import { pageLoadRenders, hideSpinner, toggleSavedButtons } from "./domUpdates";
 import { copyItem } from "./helper-functions";
 import { populateTags } from './recipes';
 // import { config } from "../config.js"
@@ -60,7 +60,7 @@ const updateCurrentUser = (user) => {
   currentUser = user;
 };
 
-const postRecipeToCook = (userID, recipeID) => {
+const postRecipeToCook = (userID, recipeID, e) => {
   const body = {
     userID,
     recipeID
@@ -72,14 +72,24 @@ const postRecipeToCook = (userID, recipeID) => {
     headers: {
       'Content-Type': 'application/json'
   }})
-    .then(
+    .then((res) => {
+      if(res.message) {console.log("post response", res.message)}
       fetchUsers()
-        .then(response => response.json())
+        .then(response => {
+          if(response.message) {console.log("get response",response.message)}
+          return response.json();
+        })
         .then(data => {
           const foundUser = data.users.find(user => user.id === userID);
-          updateCurrentUser(foundUser);
+          // updateCurrentUser(foundUser);
+          currentUser = foundUser;
+          toggleSavedButtons(e, recipeID, currentUser)
+        })
+        .then(() => {
+          console.log("after change", currentUser)
         })
         .catch(err => console.error(err))
+    }
     )
     .catch(err => console.error(err))
 }

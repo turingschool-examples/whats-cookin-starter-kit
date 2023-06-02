@@ -84,7 +84,8 @@ const findRecipe = (allRecipes, ID) => {
 }
 
 const checkSavedStatus = (user, ID) => {
-  return user.recipesToCook.some(recipe => recipe.id.toString() === ID.toString());
+  // console.log(user, "checkSavedStatus");
+  return user.recipesToCook.some(recipeID => recipeID.toString() === ID.toString());
 }
 
 const addInfoToTags = tags => {

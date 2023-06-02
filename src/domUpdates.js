@@ -228,8 +228,9 @@ const updateCurrentRecipe = recipeCard => {
   pageData.currentRecipeCard.outerRemoveBtn = recipeCard.closest('.individual-recipe-container').querySelector('.remove-panel');
 }
 
-const updateSaveButtons = (ID, addButton, removeButton) => {
+const updateSaveButtons = (ID, addButton, removeButton, currentUser) => {
   if(checkSavedStatus(currentUser, ID)){
+    // console.log("inside if")
     addButton.classList.add('hidden');
     removeButton.classList.remove('hidden');
   } else {
@@ -360,20 +361,26 @@ const updateUserRecipes = (e) => {
     const recipeID = e.target.closest('.individual-recipe-container')?.querySelector('.individual-recipe').id;
     const recipe = findRecipe(pageData.allRecipes, recipeID);
     if (!checkSavedStatus(currentUser, recipeID)) {
-      updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'add'));
+      updateRecipesToCook(e, recipe, 'add');
     } else if (checkSavedStatus(currentUser, recipeID)) {
       updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'remove'));
     }
-    const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel');
-    const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel');
-    updateSaveButtons(recipeID, addBtn, removeBtn);
-    const activeTags = pageData.allTags.filter(tag => tag.isActive)
-    if(activeTags.length) {
-      displayTaggedRecipes();
-    } else if(pageData.currentView === 'your-recipes') {
-      renderRecipesOfInterest();
-    }
+    // const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel');
+    // const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel');
+    
+    // const activeTags = pageData.allTags.filter(tag => tag.isActive)
+    // if(activeTags.length) {
+    //   displayTaggedRecipes();
+    // } else if(pageData.currentView === 'your-recipes') {
+    //   renderRecipesOfInterest();
+    // }
   } 
+}
+
+const toggleSavedButtons = (e, recipeID, currentUser) => {
+  const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel');
+  const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel');
+  updateSaveButtons(recipeID, addBtn, removeBtn, currentUser);
 }
 
 const updateRecipesFromModal = (targetID) => {
@@ -417,5 +424,6 @@ export {
   renderActiveTag,
   displayTaggedRecipes,
   renderRecipesOfInterest,
-  enableScrollPitchText
+  enableScrollPitchText,
+  toggleSavedButtons
 }
