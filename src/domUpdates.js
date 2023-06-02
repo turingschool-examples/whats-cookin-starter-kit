@@ -164,10 +164,10 @@ function showSearchResults() {
     } else {
       searchedRecipes.forEach(recipe => {
         allRecipeDisplay.innerHTML += `
-          <div class="recipe-wrapper">
-            <img id="${recipe.name}" src="${recipe.image}" class="recipe" alt="${recipe.name}">
-            <div class="recipe-info">
-              <p>${recipe.name}</p>
+          <div class="recipe-wrapper recipe" tabindex="0" id="${recipe.name}" >
+            <img src="${recipe.image}" class="recipe" alt="${recipe.name}">
+            <div class="recipe-info recipe">
+              <p class="recipe">${recipe.name}</p>
             </div>
           </div>`;
       });
@@ -198,10 +198,10 @@ function showSavedSearchResults() {
   } else {
     filteredRecipes.forEach(recipe => {
       savedRecipeDisplay.innerHTML += `
-        <div class="recipe-wrapper">
-          <img id="${recipe.name}" src="${recipe.image}" class="recipe alt="${recipe.name}">
-          <div class="recipe-info">
-            <p>${recipe.name}</p>
+        <div class="recipe-wrapper recipe" tabindex="0" id="${recipe.name}">
+          <img src="${recipe.image}" class="recipe alt="${recipe.name}">
+          <div class="recipe-info recipe">
+            <p class="recipe>${recipe.name}</p>
             <button class="delete-recipe-button ${recipe.name}" name="${recipe.name}">🗑️</button>
           </div>
         </div>`;
@@ -224,10 +224,10 @@ const showSavedRecipes = (currentUser, recipesToCook) => {
     savedRecipeDisplay.innerHTML = '';
     recipesToCook.forEach(recipe => {
       savedRecipeDisplay.innerHTML += `
-      <div class="recipe-wrapper">
-        <img id="${recipe.name}" src="${recipe.image}" class="recipe" alt="${recipe.name}">
-        <div class="recipe-info">
-          <p>${recipe.name}</p>
+      <div class="recipe-wrapper recipe" tabindex="0" id="${recipe.name}" >
+        <img src="${recipe.image}" class="recipe" alt="${recipe.name}">
+        <div class="recipe-info recipe">
+          <p class="recipe">${recipe.name}</p>
           <button class="delete-recipe-button ${recipe.name}" name="${recipe.name}">🗑️</button>
         </div>
       </div>`});
@@ -242,12 +242,13 @@ function renderFilteredSavedRecipes() {
   }
   let savedFiltered = recipesFromTag(recipesToCook, savedTags);
   savedRecipeDisplay.innerHTML = '';
-  savedFiltered.forEach(recipe => savedRecipeDisplay.innerHTML += `<div class = "recipe-wrapper">
-      <img id="${recipe.name}" src="${recipe.image}" class="recipe" alt="${recipe.name}">
-      <div class = "recipe-info">
-        <p>${recipe.name}</p>
+  savedFiltered.forEach(recipe => savedRecipeDisplay.innerHTML += ` 
+    <div class="recipe-wrapper recipe" tabindex="0" id="${recipe.name}">
+      <img src="${recipe.image}" class="recipe" alt="${recipe.name}">
+      <div class="recipe-info recipe">
+      <p class="recipe">${recipe.name}</p>
         <button class="delete-recipe-button ${recipe.name}" name="${recipe.name}">🗑️</button>
-      </div>`);
+      </div>`)
   if (!savedFiltered.length) {
     savedRecipeDisplay.innerHTML = `
     <div class="no-recipe-found-message">
@@ -262,26 +263,26 @@ function randomizeHomePage() {
     frontRecipeDisplay.innerHTML = '';
     for (let i = 0; i < recipes.length; i++) {
       frontRecipeDisplay.innerHTML = `
-      <div class = "recipe-wrapper">
-        <img id="${recipes[0].name}" src="${recipes[0].image}" class="recipe" alt="${recipes[0].name}">
-        <div class="recipe-info">
-          <p>${recipes[0].name}</p>
-        </div>
-        </div>
-      <div class = "recipe-wrapper">
-        <img id="${recipes[1].name}" src="${recipes[1].image}" class="recipe" alt="${recipes[1].name}">
-        <div class = "recipe-info">
-          <p>${recipes[1].name}</p>
-        </div>
+      <div class="recipe-wrapper recipe" tabindex="0" id="${recipes[0].name}">
+      <img src="${recipes[0].image}" class="recipe" alt="${recipes[0].name}">
+      <div class="recipe-info recipe">
+        <p>${recipes[0].name}</p>
       </div>
-      <div class = "recipe-wrapper">
-        <img id="${recipes[2].name}" src="${recipes[2].image}" class="recipe" alt="${recipes[2].name}">
-        <div class = "recipe-info">
-          <p>${recipes[2].name}</p>
-        </div>`
+      </div>
+    <div class="recipe-wrapper recipe" tabindex="0" id="${recipes[1].name}">
+      <img src="${recipes[1].image}" class="recipe" alt="${recipes[1].name}">
+      <div class = "recipe-info recipe">
+        <p>${recipes[1].name}</p>
+      </div>
+    </div>
+    <div class = "recipe-wrapper recipe" tabindex="0" id="${recipes[2].name}" >
+      <img src="${recipes[2].image}" class="recipe" alt="${recipes[2].name}">
+      <div class = "recipe-info recipe">
+        <p>${recipes[2].name}</p>
+      </div>`
     }
   })
-}
+};
 
 function renderFilteredRecipes() {
   const tags = Array.from(checkCategories).filter((category) => category.checked).map(c => c.id)
@@ -292,10 +293,11 @@ function renderFilteredRecipes() {
   getData('recipes').then(({ recipes }) => {
     let filtered = recipesFromTag(recipes, tags);
     allRecipeDisplay.innerHTML = '';
-    filtered.forEach(recipe => allRecipeDisplay.innerHTML += `<div class = "recipe-wrapper">
-      <img id="${recipe.name}" src="${recipe.image}" class="recipe" alt="${recipe.name}">
-      <div class = "recipe-info">
-        <p>${recipe.name}</p>
+    filtered.forEach(recipe => allRecipeDisplay.innerHTML += `
+    <div class="recipe-wrapper recipe" tabindex="0" id="${recipe.name}">
+      <img src="${recipe.image}" class="recipe" alt="${recipe.name}">
+      <div class="recipe-info recipe">
+      <p class="recipe">${recipe.name}</p>
       </div>`)
     if (!filtered.length) {
       allRecipeDisplay.innerHTML = `
@@ -311,26 +313,26 @@ const viewSelectedRecipe = event => {
   singleRecipeDisplay.innerHTML = '';
   getData('ingredients').then(({ ingredients }) => {
     getData('recipes').then(({ recipes }) => {
-      const recipeName = event.target.id;
+      const recipeName = event.target.parentElement.id
       const selectedRecipe = findRecipe(recipes, recipeName);
       const recipeCost = calculateRecipeCost(selectedRecipe, ingredients);
       const ingredientsInfo = displayIngredients(recipes, ingredients, recipeName)
       const instructions = recipeInstructions(selectedRecipe);
       addHiddenClass([allFilterDisplay]);
       singleRecipeDisplay.innerHTML += `
-  <div class="recipe-page-header">
-    <h2>${selectedRecipe.name}</h2>
-    <img class="single-recipe-img" id="${selectedRecipe.id}" src="${selectedRecipe.image}" class="recipe" alt='${selectedRecipe.name}'>
-  </div>
-  <div class="recipe-page-body">
-    <p class="total-cost-box">This recipe costs a total of: $${recipeCost} to make!</p>
-    <p class="ingredient-box">The ingredients you will need to make this recipe are: <br> ${ingredientsInfo}</p>
-    <p class="instruction-box">Instructions: <br> ${instructions}</p>
-  </div>`;
+      <div class="recipe-page-header">
+        <h2>${selectedRecipe.name}</h2>
+        <img class="single-recipe-img" id="${selectedRecipe.id}" src="${selectedRecipe.image}" class="recipe" alt='${selectedRecipe.name}'>
+      </div>
+      <div class="recipe-page-body">
+        <p class="total-cost-box">This recipe costs a total of: $${recipeCost} to make!</p>
+        <p class="ingredient-box">The ingredients you will need to make this recipe are: <br> ${ingredientsInfo}</p>
+        <p class="instruction-box">Instructions: <br> ${instructions}</p>
+      </div>`;
       recipeTitle.innerText = `${selectedRecipe.name}`;
     })
   })
-}
+};
 
 function showRecipes() {
   removeHiddenClass([allRecipeDisplay, allFilterDisplay]);
