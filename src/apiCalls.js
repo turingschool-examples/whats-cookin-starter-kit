@@ -10,4 +10,19 @@ const errorHandling = err => {
   alert(`${err.name}: ${err.message}!\nWhat's Cookin failed to obtain data from the server.`)
 }
 
-export { fetchAPI }
+const postAPI = (user) => {
+  fetch('http://localhost:3001/api/v1/usersRecipes', {
+    method:'POST',
+    body: JSON.stringify(user),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+  })
+  .catch(() => alert("Your recipe couldn't be saved!"))
+}
+
+export { fetchAPI, postAPI }
