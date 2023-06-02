@@ -51,7 +51,8 @@ const start = () => {
     currentUser = getRandomUser(userData);
     currentUser.happyRecipeRatings = [];
     currentUser.sadRecipeRatings = [];
-
+    currentUser.deletedRecipes = [];
+    
     renderRecipeCards(mainViewCardContainer, recipeData, currentUser);
   });
 };

@@ -180,8 +180,16 @@ const toggleHidden = (elements, type) => {
 
 const toggleBookmark = (e, currentUser, recipeData) => {
   if (e.target.classList[0] === 'bookmark-icon') {
-    if (isUnchecked(e)) {
+    let check = currentUser.deletedRecipes.some((recipe)=>{
+      return recipe[0].id === parseInt(e.target.id)
+    })
+    
+    if (isUnchecked(e) && !check) {
       postAPI({userID: currentUser.id, recipeID: e.target.id})
+      recipesToCook(e.target.id, currentUser, recipeData);
+      toggleHidden([e.target], 'add');
+      toggleHidden([e.target.nextElementSibling], 'remove');
+    } else if(isUnchecked(e)){
       recipesToCook(e.target.id, currentUser, recipeData);
       toggleHidden([e.target], 'add');
       toggleHidden([e.target.nextElementSibling], 'remove');
