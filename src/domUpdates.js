@@ -62,17 +62,17 @@ const createSingleRecipeHTML = singleRecipe => {
   <article class="individual-recipe-container">
     <section class="add-panel panel save-option ${addStatus}">
       <div class="plus-symbol symbol save-option">+</div>
-      <h4 class="save-option"> Add to recipes to cook</h4>
+      <h3 class="save-option"> Add to recipes to cook</h3>
     </section>
     <section class="remove-panel panel save-option ${removeStatus}">
       <div class="minus-symbol synmbol save-option ">-</div>
-      <h4 class="save-option"> Remove from recipes to cook</h4>
+      <h3 class="save-option"> Remove from recipes to cook</h3>
     </section>
     <article class="individual-recipe" id="${singleRecipe.id}">
       <div class="recipe-image-div">
         <img class="recipe-image"src="${singleRecipe.image}" alt="${singleRecipe.name}">
         <div class="hover-card"> 
-          <h4>${singleRecipe.pitch}</h4>
+          <h3>${singleRecipe.pitch}</h3>
         </div>               
       </div>
       <h2>${singleRecipe.name}</h2>
