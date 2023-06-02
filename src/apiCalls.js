@@ -42,12 +42,13 @@ const patchHits = (recipe) => {
       'Content-Type': 'application/json'
     }
   })
-    .then(() => {
+    .then(res => res.json())
+    .then(data => {
+      if(!data.message.includes('Success')) {alert(data.message)}
       fetchRecipes()
         .then(res => res.json())
         .then(data => {
           pageData.allRecipes = data.recipes;
-          console.log(pageData.allRecipes)
         })
     })
 }
