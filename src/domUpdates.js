@@ -102,11 +102,12 @@ allRecipeDisplay.addEventListener('click', event => {
     viewSelectedRecipe(event);
   };
 });
- ////////
+
 frontRecipeDisplay.addEventListener('click', function (event) {
   if (event.target.classList.contains('recipe')) {
+    checkCurrentSavedRecipes(event)
     addHiddenClass([allRecipeDisplay, frontRecipeDisplay, savedSearchInput, savedRecipeDisplay]);
-    removeHiddenClass([singleRecipeDisplay, saveWhiteHeartButton, searchInput, allRecipesButton]);
+    removeHiddenClass([singleRecipeDisplay, searchInput, allRecipesButton]);
     viewSelectedRecipe(event);
   }
 });
@@ -115,6 +116,7 @@ savedRecipeDisplay.addEventListener('click', event => {
   if (event.target.classList.contains('recipe')) {
     addHiddenClass([savedRecipeDisplay, savedSearchInput]);
     removeHiddenClass([singleRecipeDisplay, savedRecipesButton]);
+    checkCurrentSavedRecipes(event)
     viewSelectedRecipe(event);
   }
   if (event.target.classList.contains('delete-recipe-button')) {
@@ -127,7 +129,7 @@ savedRecipeDisplay.addEventListener('click', event => {
 
 
 homeButton.addEventListener('click', function () {
-  addHiddenClass([saveWhiteHeartButton, savedRecipeDisplay, singleRecipeDisplay, allFilterDisplay, savedSearchInput])
+  addHiddenClass([saveWhiteHeartButton, savedRedHeartButton, savedRecipeDisplay, singleRecipeDisplay, allFilterDisplay, savedSearchInput])
   removeHiddenClass([savedRecipesButton, searchInput, allRecipesButton])
   showHomePage();
   randomizeHomePage();
