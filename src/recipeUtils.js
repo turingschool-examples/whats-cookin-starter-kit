@@ -1,5 +1,4 @@
-
-function recipesFromTag(recipes, tags) {
+const recipesFromTag = (recipes, tags) => {
   const filtered = recipes.filter((recipe) => {
     return tags.every((tag => {
       return recipe.tags.includes(tag)
@@ -8,7 +7,7 @@ function recipesFromTag(recipes, tags) {
   return filtered
 }
 
-function recipesfromName(recipes, name) {
+const recipesfromName = (recipes, name) => {
   return recipes.filter((recipe) => {
     if (recipe.name.toLowerCase().includes(name.toLowerCase())) {
     return recipe.name
@@ -41,13 +40,13 @@ const calculateRecipeCost = (recipe, ingredients) => {
   return totalCost.toFixed(2);
 }
 
-  const recipeInstructions = recipe => {
-   const instructions = recipe.instructions.map(({ number, instruction }) => `${number}. ${instruction}`);
-   return instructions.join(' ')
- };
+const recipeInstructions = recipe => {
+  const instructions = recipe.instructions.map(({ number, instruction }) => `${number}. ${instruction}`);
+  return instructions.join(' ')
+};
 
 
-function shuffleData(recipes) {
+const shuffleData = (recipes) => {
   recipes.sort(() => Math.random() - 0.5)
   return
 }
