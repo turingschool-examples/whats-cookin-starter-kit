@@ -22,6 +22,7 @@ import './images/snack.png'
 import './images/spread.png'
 import './images/starter.png'
 import './images/search-button.png'
+import './images/arrow.png'
 
 // import apiCalls from './apiCalls'
 import './images/hollow-bookmark-icon.png'
@@ -48,6 +49,8 @@ const homeBtn = document.querySelector('#homeBtn');
 const modalAddBtn = document.querySelector('.add-recipe');
 const modalRemoveBtn = document.querySelector('.remove-recipe');
 const modalRecipeBtns = document.querySelectorAll('.modal-recipe-btn');
+const leftArrow = document.querySelector('.left-arrow');
+const rightArrow = document.querySelector('.right-arrow');
 
 //FUNCTIONS 
 const getRecipeCard = (recipe) => {

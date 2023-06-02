@@ -166,8 +166,12 @@ const createTagAreaHTML = rows => {
 };
 
 const renderTagArea = () => {
-  const tagRows = splitTagsInRows(pageData.allTags);
-  const htmlCode = createTagAreaHTML(tagRows);
+  // const tagRows = splitTagsInRows(pageData.allTags);
+  // const htmlCode = createTagAreaHTML(tagRows);
+  let htmlCode = '';
+  pageData.allTags.forEach(tag => {
+    htmlCode += createTagCardHTML(tag)
+  })
   tagArea.innerHTML = htmlCode;
 };
 
