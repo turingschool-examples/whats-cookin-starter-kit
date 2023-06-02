@@ -130,6 +130,7 @@ main {
 /* ALL RECIPES PAGE */
 .all-recipes-wrapper {
   display: flex;
+  justify-content: space-around;
 }
 
 aside {
@@ -147,6 +148,16 @@ aside {
   justify-content: space-between;
   height: 80vh;
   width: 80vw;
+}
+
+.filter-option {
+  height: 5vh;
+  width: 8vw;
+  border-bottom: 3px solid rgb(214, 214, 214);
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  justify-content: space-between;
 }
 
 /* RECIPE PAGE */
