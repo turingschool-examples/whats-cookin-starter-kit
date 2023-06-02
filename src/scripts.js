@@ -1,6 +1,6 @@
 //IMPORTS
 import './styles.css'
-import { closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, renderRecipesOfInterest, enableScrollPitchText } from './domUpdates';
+import { closeRecipe, showRecipe, switchView, searchForRecipes, returnHome, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 import './images/antipasti.png';
 import './images/antipasto.png'
@@ -43,6 +43,8 @@ const ourViewBtn = document.querySelector("#our-recipes");
 const yourViewBtn = document.querySelector("#your-recipes");
 const searchBar = document.querySelector('#searchBar');
 const searchBtn = document.querySelector('#searchBtn');
+const whatsCookin = document.querySelector('nav > h1');
+const homeBtn = document.querySelector('#homeBtn');
 const modalAddBtn = document.querySelector('.add-recipe');
 const modalRemoveBtn = document.querySelector('.remove-recipe');
 const modalRecipeBtns = document.querySelectorAll('.modal-recipe-btn');
@@ -114,6 +116,8 @@ searchBar.addEventListener('search', (event) => {
 })
 
 searchBtn.addEventListener('click', searchForRecipes);
+whatsCookin.addEventListener('click', returnHome);
+homeBtn.addEventListener('click', returnHome);
 
 modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
   updateRecipesFromModal(e.target.id);
