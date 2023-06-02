@@ -5,19 +5,23 @@ import recipeData from '../src/data/recipes-sample.js';
 
 
 describe('saveRecipe', () => {
+  let savedRecipes;
+
+  beforeEach(function() {
+    savedRecipes = saveRecipe(recipeData, "Thai Chicken Tenders with Broiled Pineapple Slaw");
+  })
+
   it('should be a function', () => {
     expect(saveRecipe).to.be.a('function');
   });
 
   it('should be able to add a recipe to a users recipesToCook array', () => {
-    const savedRecipes = saveRecipe(recipeData, "Thai Chicken Tenders with Broiled Pineapple Slaw");
 
     expect(savedRecipes.length).to.equal(3);
     expect(savedRecipes[0]).to.equal(recipesToCook[0]);
   });
 
   it('should not have duplicate recipes in the array', () => {
-    const savedRecipes = saveRecipe(recipeData, "Thai Chicken Tenders with Broiled Pineapple Slaw");
     const savedRecipeDuplicate = saveRecipe(recipeData, "Thai Chicken Tenders with Broiled Pineapple Slaw");
 
     expect(savedRecipeDuplicate.length).to.equal(3);

@@ -26,13 +26,13 @@ const searchButton = document.querySelector('.search-button')
 
 allRecipesButton.addEventListener('click', event => {
   showRecipes(event);
-  addHiddenClass([saveRecipeButton, savedRecipeDisplay, savedSearchInput])
-  removeHiddenClass([searchInput])
+  addHiddenClass([saveRecipeButton, savedRecipeDisplay, savedSearchInput, allRecipesButton])
+  removeHiddenClass([searchInput, savedRecipesButton])
 });
 
 savedRecipesButton.addEventListener('click', () => {
-  addHiddenClass([allRecipeDisplay, singleRecipeDisplay, saveRecipeButton, saveRecipeButton, frontRecipeDisplay, searchInput]);
-  removeHiddenClass([savedRecipeDisplay, savedSearchInput, allFilterDisplay]);
+  addHiddenClass([allRecipeDisplay, singleRecipeDisplay, saveRecipeButton, savedRecipesButton, frontRecipeDisplay, searchInput]);
+  removeHiddenClass([savedRecipeDisplay, savedSearchInput, allFilterDisplay, allRecipesButton]);
   showSavedRecipes(currentUser, recipesToCook);
 })
 
@@ -88,7 +88,7 @@ clearButton.addEventListener('click', function (e) {
 
 allRecipeDisplay.addEventListener('click', function (event) {
   if (event.target.classList.contains('recipe')) {
-    addHiddenClass([allRecipeDisplay]);
+    addHiddenClass([allRecipeDisplay, allRecipesButton]);
     removeHiddenClass([singleRecipeDisplay, saveRecipeButton]);
     viewSelectedRecipe(event);
   }
@@ -97,7 +97,7 @@ allRecipeDisplay.addEventListener('click', function (event) {
 frontRecipeDisplay.addEventListener('click', function (event) {
   if (event.target.classList.contains('recipe')) {
     addHiddenClass([allRecipeDisplay, frontRecipeDisplay, savedSearchInput, savedRecipeDisplay]);
-    removeHiddenClass([singleRecipeDisplay, saveRecipeButton, searchInput]);
+    removeHiddenClass([singleRecipeDisplay, saveRecipeButton, searchInput, allRecipesButton]);
     viewSelectedRecipe(event);
   }
 });
@@ -105,7 +105,7 @@ frontRecipeDisplay.addEventListener('click', function (event) {
 savedRecipeDisplay.addEventListener('click', event => {
   if (event.target.classList.contains('recipe')) {
     addHiddenClass([savedRecipeDisplay, savedSearchInput]);
-    removeHiddenClass([singleRecipeDisplay]);
+    removeHiddenClass([singleRecipeDisplay, savedRecipesButton]);
     viewSelectedRecipe(event);
   }
   if (event.target.classList.contains('delete-recipe-button')) {
@@ -119,7 +119,7 @@ savedRecipeDisplay.addEventListener('click', event => {
 
 homeButton.addEventListener('click', function () {
   addHiddenClass([saveRecipeButton, savedRecipeDisplay, singleRecipeDisplay, allFilterDisplay, savedSearchInput])
-  removeHiddenClass([savedRecipesButton, searchInput])
+  removeHiddenClass([savedRecipesButton, searchInput, allRecipesButton])
   showHomePage();
   randomizeHomePage();
 })
@@ -287,7 +287,7 @@ function renderFilteredRecipes() {
 };
 
 const viewSelectedRecipe = event => {
-  removeHiddenClass([searchInput])
+  removeHiddenClass([searchInput, allRecipesButton])
   singleRecipeDisplay.innerHTML = '';
   getData('ingredients').then(({ ingredients }) => {
     getData('recipes').then(({ recipes }) => {
