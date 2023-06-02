@@ -20,6 +20,7 @@ const saveRecipeButton = document.querySelector('.save-recipe-button')
 const savedRecipesButton = document.querySelector('.saved-recipes')
 const savedRecipeDisplay = document.querySelector('.saved-recipe-display')
 const clearButton = document.querySelector('.clear-search-button')
+const searchButton = document.querySelector('.search-button')
 
 //Event Listeners
 
@@ -65,6 +66,15 @@ savedSearchInput.addEventListener('keypress', function (e) {
     showSavedSearchResults();
   }
 })
+
+searchButton.addEventListener('click', function () {
+  addHiddenClass([singleRecipeDisplay, saveRecipeButton]);
+  if(savedSearchInput.classList[1] === 'hidden') {
+    showSearchResults();
+  } else if (searchInput.classList[1] === 'hidden') {
+    showSavedSearchResults();
+  }
+});
 
 clearButton.addEventListener('click', function (e) {
   savedSearchInput.value = ''
@@ -217,7 +227,13 @@ function renderFilteredSavedRecipes() {
       <div class = "recipe-info">
         <p>${recipe.name}</p>
         <button class="delete-recipe-button ${recipe.name}" name="${recipe.name}">🗑️</button>
-      </div>`)
+      </div>`);
+  if (!savedFiltered.length) {
+    savedRecipeDisplay.innerHTML = `
+    <div class="no-recipe-found-message">
+      <p>Sorry, ${currentUser.name}, no recipes match these tags.</p>
+    </div>`
+  };
 };
 
 function randomizeHomePage() {
@@ -261,6 +277,12 @@ function renderFilteredRecipes() {
       <div class = "recipe-info">
         <p>${recipe.name}</p>
       </div>`)
+    if (!filtered.length) {
+      allRecipeDisplay.innerHTML = `
+      <div class="no-recipe-found-message">
+        <p>Sorry, ${currentUser.name}, no recipes match these tags.</p>
+      </div>`
+    }
   })
 };
 
