@@ -370,22 +370,16 @@ const updateUserRecipes = (e) => {
     
     // const activeTags = pageData.allTags.filter(tag => tag.isActive)
     // if(activeTags.length) {
-    //   displayTaggedRecipes();
-    // } else if(pageData.currentView === 'your-recipes') {
-    //   renderRecipesOfInterest();
-    // }
+      //   displayTaggedRecipes();
+      // } else if(pageData.currentView === 'your-recipes') {
+        //   renderRecipesOfInterest();
+        // }
   } 
-}
-
-const toggleSavedButtons = (e, recipeID, currentUser) => {
-  const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel');
-  const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel');
-  updateSaveButtons(recipeID, addBtn, removeBtn, currentUser);
 }
 
 const updateRecipesFromModal = (targetID) => {
   const recipe = findRecipe(pageData.allRecipes, pageData.currentRecipeCard.id);
-  updateCurrentUser(updateRecipesToCook(currentUser, recipe, targetID));
+  updateRecipesToCook(e, recipe, 'targetID');
   updateSaveButtons(recipe.id, modalAddBtn, modalRemoveBtn);
   updateSaveButtons(recipe.id, pageData.currentRecipeCard.outerAddBtn, pageData.currentRecipeCard.outerRemoveBtn);
   const activeTags = pageData.allTags.filter(tag => tag.isActive)
@@ -394,6 +388,12 @@ const updateRecipesFromModal = (targetID) => {
   } else if(pageData.currentView === 'your-recipes') {
     renderRecipesOfInterest();
   }
+}
+
+const toggleSavedButtons = (e, recipeID, currentUser) => {
+const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel');
+const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel');
+updateSaveButtons(recipeID, addBtn, removeBtn, currentUser);
 }
 
 const enableScrollPitchText = (pitchTextElement) => {

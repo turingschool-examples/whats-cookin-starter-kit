@@ -78,6 +78,10 @@ allRecipes.addEventListener('click', (event) => {
   updateUserRecipes(event);
 })
 
+modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
+  updateRecipesFromModal(e.target.id);
+}));
+
 tagArea.addEventListener("click", function(event) {
   if (event.target.classList && event.target.closest(".tag-card")) {
     toggleTagData(event.target.closest("section").id);
@@ -114,10 +118,6 @@ searchBar.addEventListener('search', (event) => {
 })
 
 searchBtn.addEventListener('click', searchForRecipes);
-
-modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
-  updateRecipesFromModal(e.target.id);
-}));
 
 // Exports
 export {
