@@ -49,7 +49,6 @@ body {
 nav {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
   width: 100%;
 }
 
@@ -63,8 +62,7 @@ nav > h1 {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 13%;
-  margin: 2%;
+  margin-right: 25px;
   cursor: pointer;
 }
 
@@ -73,7 +71,7 @@ nav > h1 {
   background-color: white;
   opacity: 0.4;
   border-radius: 50%;
-  margin: 0 auto;
+  margin: 0 2px 0 2px;
 }
 
 #searchBar {
