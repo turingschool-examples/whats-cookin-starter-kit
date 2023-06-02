@@ -1,5 +1,5 @@
 // Imports
-import { pageData, currentUser, updateCurrentUser } from './apiCalls';
+import { pageData, currentUser, updateCurrentUser, patchHits } from './apiCalls';
 import {
   recipeGrid,
   spinner,
@@ -268,6 +268,7 @@ const showRecipe = (recipeCard) => {
   populateIngredients(pageData.currentRecipeCard);
   updateSaveButtons(pageData.currentRecipeCard.id, modalAddBtn, modalRemoveBtn);
   openRecipeCard();
+  patchHits(pageData.currentRecipeCard)
 };
 
 const closeRecipe = () => {

@@ -14,9 +14,9 @@ let pageData = {
 };
 
 // API CALLS
-const fetchUsers = () => fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
-const fetchRecipes = () => fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
-const fetchIngredients = () => fetch(`https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients`)
+const fetchUsers = () => fetch('http://localhost:3001/api/v1/users')
+const fetchRecipes = () => fetch('http://localhost:3001/api/v1/recipes')
+const fetchIngredients = () => fetch(`http://localhost:3001/api/v1/ingredients`)
 
 const handleUserData = users => currentUser = getRandomUser(users)
 
@@ -33,6 +33,24 @@ const handleRecipeData = recipes => {
 }
 
 const handleIngredientData = ingredients => pageData.allIngredients = ingredients
+
+const patchHits = (recipe) => {
+  fetch('http://localhost:3001/api/v1/recipeHits', {
+    method: 'PATCH',
+    body: JSON.stringify({recipeID: recipe.id}),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(() => {
+      fetchRecipes()
+        .then(res => res.json())
+        .then(data => {
+          pageData.allRecipes = data.recipes;
+          console.log(pageData.allRecipes)
+        })
+    })
+}
 
 const loadData = () => {
   Promise.all([fetchUsers(), fetchRecipes(), fetchIngredients()])
@@ -93,4 +111,4 @@ const getChatGPTRecipePitches = (allRecipes) => {
   });
 }
 
-export { currentUser, pageData, updateCurrentUser, loadData };
+export { currentUser, pageData, updateCurrentUser, loadData, patchHits };
