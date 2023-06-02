@@ -16,7 +16,8 @@ const savedSearchInput = document.getElementById('saved-search-bar')
 const recipeTitle = document.querySelector('h2');
 const singleRecipeDisplay = document.querySelector('.single-recipe-display');
 const homeButton = document.querySelector('.title')
-const saveRecipeButton = document.querySelector('.save-recipe-button')
+const saveWhiteHeartButton = document.querySelector('.save-recipe-button')
+const savedRedHeartButton = document.querySelector('.saved-recipe-button')
 const savedRecipesButton = document.querySelector('.saved-recipes')
 const savedRecipeDisplay = document.querySelector('.saved-recipe-display')
 const clearButton = document.querySelector('.clear-search-button')
@@ -26,22 +27,24 @@ const searchButton = document.querySelector('.search-button')
 
 allRecipesButton.addEventListener('click', event => {
   showRecipes(event);
-  addHiddenClass([saveRecipeButton, savedRecipeDisplay, savedSearchInput, allRecipesButton])
+  addHiddenClass([saveWhiteHeartButton, savedRedHeartButton, savedRecipeDisplay, savedSearchInput, allRecipesButton])
   removeHiddenClass([searchInput, savedRecipesButton])
 });
 
 savedRecipesButton.addEventListener('click', () => {
-  addHiddenClass([allRecipeDisplay, singleRecipeDisplay, saveRecipeButton, savedRecipesButton, frontRecipeDisplay, searchInput]);
+  addHiddenClass([allRecipeDisplay, singleRecipeDisplay, saveWhiteHeartButton, savedRedHeartButton, savedRecipesButton, frontRecipeDisplay, searchInput]);
   removeHiddenClass([savedRecipeDisplay, savedSearchInput, allFilterDisplay, allRecipesButton]);
   showSavedRecipes(currentUser, recipesToCook);
 })
 
-saveRecipeButton.addEventListener('click', event => {
+saveWhiteHeartButton.addEventListener('click', event => {
   getData('recipes').then(({ recipes }) => {
     if (event.target.classList.contains('save-recipe-btn')) {
       const recipeName = recipeTitle.innerText;
       addSavedRecipesToUser(currentUser, recipesToCook)
       saveRecipe(recipes, recipeName);
+      removeHiddenClass([savedRedHeartButton]);
+      addHiddenClass([saveWhiteHeartButton]);
     }
   })
 });
@@ -50,12 +53,17 @@ allFilterDisplay.addEventListener('click', function (event) {
   if (event.target.classList.contains('checkbox')) {
     renderFilteredRecipes(event);
     renderFilteredSavedRecipes(event);
+    addHiddenClass([saveWhiteHeartButton, savedRedHeartButton])
+  }
+  if (event.target.classList.contains('recipe')) {
+    checkCurrentSavedRecipes(event)
+    viewSelectedRecipe(event)
   }
 });
 
 searchInput.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
-    addHiddenClass([singleRecipeDisplay, saveRecipeButton]);
+    addHiddenClass([singleRecipeDisplay, saveWhiteHeartButton]);
     showSearchResults();
   }
 });
@@ -68,7 +76,7 @@ savedSearchInput.addEventListener('keypress', function (e) {
 })
 
 searchButton.addEventListener('click', function () {
-  addHiddenClass([singleRecipeDisplay, saveRecipeButton]);
+  addHiddenClass([singleRecipeDisplay, saveWhiteHeartButton, savedRedHeartButton]);
   if(savedSearchInput.classList[1] === 'hidden') {
     showSearchResults();
   } else if (searchInput.classList[1] === 'hidden') {
@@ -86,18 +94,19 @@ clearButton.addEventListener('click', function (e) {
   }
 })
 
-allRecipeDisplay.addEventListener('click', function (event) {
+allRecipeDisplay.addEventListener('click', event => {
   if (event.target.classList.contains('recipe')) {
-    addHiddenClass([allRecipeDisplay, allRecipesButton]);
-    removeHiddenClass([singleRecipeDisplay, saveRecipeButton]);
+    checkCurrentSavedRecipes(event)
+    addHiddenClass([allRecipeDisplay]);
+    removeHiddenClass([singleRecipeDisplay]);
     viewSelectedRecipe(event);
-  }
+  };
 });
-
+ ////////
 frontRecipeDisplay.addEventListener('click', function (event) {
   if (event.target.classList.contains('recipe')) {
     addHiddenClass([allRecipeDisplay, frontRecipeDisplay, savedSearchInput, savedRecipeDisplay]);
-    removeHiddenClass([singleRecipeDisplay, saveRecipeButton, searchInput, allRecipesButton]);
+    removeHiddenClass([singleRecipeDisplay, saveWhiteHeartButton, searchInput, allRecipesButton]);
     viewSelectedRecipe(event);
   }
 });
@@ -118,7 +127,7 @@ savedRecipeDisplay.addEventListener('click', event => {
 
 
 homeButton.addEventListener('click', function () {
-  addHiddenClass([saveRecipeButton, savedRecipeDisplay, singleRecipeDisplay, allFilterDisplay, savedSearchInput])
+  addHiddenClass([saveWhiteHeartButton, savedRecipeDisplay, singleRecipeDisplay, allFilterDisplay, savedSearchInput])
   removeHiddenClass([savedRecipesButton, searchInput, allRecipesButton])
   showHomePage();
   randomizeHomePage();
@@ -162,6 +171,15 @@ function showSearchResults() {
       });
     };
   });
+};
+
+const checkCurrentSavedRecipes= event => {
+  const recipeFound = currentUser.recipesToCook.some(recipe => recipe.name.includes(event.target.parentElement.id));
+  if (recipeFound) {
+    removeHiddenClass([savedRedHeartButton]);
+  } else {
+    removeHiddenClass([saveWhiteHeartButton]);
+  }
 };
 
 function showSavedSearchResults() {
