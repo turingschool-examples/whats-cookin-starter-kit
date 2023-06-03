@@ -25,7 +25,8 @@ import {
   findRecipe,
   checkSavedStatus,
   getUniqueTagsFromRecipes,
-  addInfoToTags
+  addInfoToTags,
+  sortByHits
 } from '../src/recipes';
 
 import { updateRecipesToCook } from '../src/users';
@@ -497,3 +498,16 @@ describe('filterTagsByTagName', () => {
     expect(filteredTagData).to.deep.equal(expectedTagData);
   });
 });
+
+describe('sortByHits', () => {
+  it('should sort a list of recipes by most hits', () => {
+    let recipes = [{hits: 2}, {hits: 1}, {hits: 3}]
+    let sortedRecipes = sortByHits(recipes)
+    assert.deepEqual(sortedRecipes, [{hits: 3}, {hits: 2}, {hits: 1}])
+  })
+  it('should not alter the original set of recipes', () => {
+    let recipes = [{hits: 2}, {hits: 1}, {hits: 3}]
+    sortByHits(recipes)
+    assert.deepEqual(recipes, [{hits: 2}, {hits: 1}, {hits: 3}])
+  })
+})
