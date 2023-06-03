@@ -239,15 +239,17 @@ const updateSaveButtons = (recipeID, addButton, removeButton, user) => {
   if(checkSavedStatus(user, recipeID)){
     addButton.classList.add('hidden');
     removeButton.classList.remove('hidden');
+    console.log("first removeButton classlist", removeButton.classList)
     feedback.innerText = "Saved";
     feedback.classList.add('show-feedback')
-    setTimeout(() => {feedback.classList.remove('show-feedback')}, 1600)
+    setTimeout(() => {feedback.classList.remove('show-feedback')}, 1501)
   } else {
     addButton.classList.remove('hidden');
     removeButton.classList.add('hidden');
+    console.log("second removeButton classlist", removeButton.classList)
     feedback.innerText = "Removed";
     feedback.classList.add('show-feedback')
-    setTimeout(() => {feedback.classList.remove('show-feedback')}, 1600)
+    setTimeout(() => {feedback.classList.remove('show-feedback')}, 1501)
   }
 }
 
@@ -414,7 +416,7 @@ const checkIfModalOpen = () => allRecipes.classList.contains('blur')
 const toggleSavedButtons = (e, recipeID, user) => {
   if (checkIfModalOpen()) {
     const outerAdd = pageData.currentRecipeCard.outerAddBtn;
-    const outerRemove = pageData.currentRecipeCard.outerAddBtn;
+    const outerRemove = pageData.currentRecipeCard.outerRemoveBtn;
     updateSaveButtons(recipeID, outerAdd, outerRemove, user);
     updateSaveButtons(recipeID, modalAddBtn, modalRemoveBtn, user);
   } else {
