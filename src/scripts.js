@@ -167,5 +167,7 @@ export {
   searchBar,
   modalAddBtn, 
   modalRemoveBtn,
-  body
+  body,
+  leftArrow,
+  rightArrow
 }

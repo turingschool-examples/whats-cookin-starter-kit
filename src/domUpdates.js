@@ -14,7 +14,9 @@ import {
   modalRemoveBtn,
   getPageData, 
   getRecipeCard,
-  body
+  body,
+  leftArrow,
+  rightArrow
 } from './scripts'
 import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, splitTagsInRows, filterTagsByTagName  } from './recipes';
 import { updateRecipesToCook } from './users';
@@ -209,6 +211,7 @@ const toggleTagData = (tagID) => {
 const pageLoadRenders = (data) => {
   renderGrid(data);
   renderTagArea();
+  [leftArrow, rightArrow].forEach(arrow => arrow.classList.remove('hidden'))
 };
 
 const getInstructionHTML = (recipe) => {

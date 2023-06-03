@@ -106,8 +106,6 @@ nav > h1 {
   align-items: center;
   margin-bottom: 0;
   overflow-x: auto; 
-  /* padding-left: 2%;
-  padding-right: 2%; */
 }
 
 .arrows {
@@ -122,7 +120,7 @@ nav > h1 {
   opacity: 1;
 }
 
-.tag-rows {
+/* .tag-rows {
   height: 100%;
   width: 100%;
   border-radius: 15px;
@@ -130,8 +128,8 @@ nav > h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
+} */
+/* 
 .tag-row {
   height: 40%;
   width: 100%;
@@ -139,11 +137,11 @@ nav > h1 {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-}
+} */
 
-.row-two {
+/* .row-two {
   width: 90%;
-}
+} */
 
 .tag-card {
   display: flex;
@@ -192,16 +190,12 @@ nav > h1 {
   max-width: 100%;
 }
 
-.tag-row > .tag-card:hover {
-  cursor: pointer;
-  transform: scale(1.25);
-}
-.tag-row > .tag-card:hover .tag-image-bg {
+.tag-card:hover .tag-image-bg {
   opacity:1;
-  box-shadow: 2px 2px 10px whitesmoke;
+  box-shadow: 2px 2px 5px rgb(231, 231, 231);
 }
 
-.tag-row > .tag-card:hover .tag-text {
+.tag-card:hover .tag-text {
   opacity:1
 }
 
@@ -654,7 +648,9 @@ input[type=checkbox] {
 }
 
 #closeRecipeSmall {
-  display: none
+  display: none;
+  background-color: rgba(255, 255, 255, 0.438);
+  border-radius: 50px;
 }
 
 .fade-in {
@@ -695,6 +691,8 @@ input[type=checkbox] {
 }
 
 @media screen and (max-width: 1000px) {
+
+  /* Grid */
   .individual-recipe {
     width: 80%;
     height: 100%;
@@ -708,6 +706,8 @@ input[type=checkbox] {
       align-self: flex-start;
       margin-left: 10%;
    }
+
+   /* tags */
 
    .tag-card {
     margin-right: 10%;
@@ -727,6 +727,7 @@ input[type=checkbox] {
     display: none;
    }
 
+   /* recipe modal */
    #clickedRecipe {
     flex-direction: column;
    }
@@ -762,7 +763,12 @@ input[type=checkbox] {
 
    #closeRecipeSmall {
     display: block;
+    padding: 5px;
    }
+
+   #closeRecipeSmall:hover {
+    background-color: rgb(255, 255, 255);
+  }
 
    .modal-btn-container {
     display: flex; 
@@ -773,5 +779,9 @@ input[type=checkbox] {
 
    .bookmark-img {
     height: 70%;
+   }
+
+   .individual-recipe-image img {
+    display: none;
    }
 }
