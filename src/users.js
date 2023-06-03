@@ -14,7 +14,6 @@ const addUniqueRecipe = (userRecipes, newRecipe, e) => {
 const removeExistingRecipe = (userRecipes, recipeToRemove, e) => {
   let found = userRecipes.find(recipeID => recipeID.toString() === recipeToRemove.id.toString());
   if (found) {
-    console.log(currentUser, "before")
     deleteRecipeToCook(currentUser.id, recipeToRemove.id, e)
   }
 }

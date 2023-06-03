@@ -264,7 +264,7 @@ nav > h1 {
 }
 
 .show-feedback {
-  animation: fade-in-out 1.5s linear forwards; 
+  animation: fade-in-out 1.5s linear; 
 }
 
 @keyframes fade-in-out {
