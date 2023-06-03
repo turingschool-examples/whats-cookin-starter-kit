@@ -32,7 +32,7 @@
       </article>
       <div class="spinner"></div>
     </section>
-    <section id="clickedRecipe" class="hidden">
+    <section id="clickedRecipe" class="info-panel hidden">
       <section class="recipe-details" id="recipeLeftSide">
         <div class="modal-btn-container">
           <button class= "add-recipe modal-recipe-btn">
@@ -47,10 +47,13 @@
         </article>
       </section>
       <section class="recipe-details" id="recipeRightSide">
-        <img id="closeRecipe" src="delete.png"></img>
+        <img id="closeRecipe" class="close-button" src="delete.png"></img>
         <h3>Ingredients</h3>
         <div id="ingredientsList"></div>
       </section>
+    </section>
+    <section id="settingsPanel" class="info-panel hidden">
+      <img id="closeSettings" class="close-button" src="delete.png"></img>
     </section>
   </body>
   <script src="bundle.js"></script>

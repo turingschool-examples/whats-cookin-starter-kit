@@ -1,6 +1,6 @@
 //IMPORTS
 import './styles.css'
-import { closeRecipe, showRecipe, switchView, searchForRecipes, returnHome, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText } from './domUpdates';
+import { closePanel, showRecipe, switchView, searchForRecipes, returnHome, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, openInfoPanel } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 import './images/antipasti.png';
 import './images/antipasto.png'
@@ -35,7 +35,7 @@ const recipeGrid = document.querySelector('.recipe-grid');
 const allRecipes = document.querySelector('.all-recipes')
 const allUserRecipes = document.querySelector('.all-user-recipes');
 const clickedRecipe = document.querySelector('#clickedRecipe');
-const closeRecipeButton = document.querySelector('#closeRecipe');
+const closeButtons = document.querySelectorAll('.close-button');
 const tagArea = document.querySelector('.tag-area');
 const ingredientsList = document.querySelector('#ingredientsList');
 const chooseView = document.querySelector('.choose-view')
@@ -48,6 +48,8 @@ const homeBtn = document.querySelector('#homeBtn');
 const modalAddBtn = document.querySelector('.add-recipe');
 const modalRemoveBtn = document.querySelector('.remove-recipe');
 const modalRecipeBtns = document.querySelectorAll('.modal-recipe-btn');
+const settingsPanel = document.querySelector("#settingsPanel");
+const settingsBtn = document.querySelector("#settings");
 
 //FUNCTIONS 
 const getRecipeCard = (recipe) => {
@@ -100,7 +102,12 @@ recipeGrid.addEventListener("mouseover", (event) => {
   }
 });
 
-closeRecipeButton.addEventListener("click", closeRecipe);
+closeButtons.forEach(button => {
+  button.addEventListener("click", (e) => {
+    closePanel(e);
+  })
+});
+
 chooseView.addEventListener("click", function(event) {
   if (event.target.classList.contains("unselected-view")) {
     switchView(event.target.id);
@@ -118,6 +125,9 @@ searchBar.addEventListener('search', (event) => {
 searchBtn.addEventListener('click', searchForRecipes);
 whatsCookin.addEventListener('click', returnHome);
 homeBtn.addEventListener('click', returnHome);
+settingsBtn.addEventListener('click', (e) => {
+  openInfoPanel(e.target);
+});
 
 modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
   updateRecipesFromModal(e.target.id);
@@ -140,5 +150,6 @@ export {
   searchBar,
   modalAddBtn, 
   modalRemoveBtn,
-  body
+  body,
+  settingsPanel
 }

@@ -417,7 +417,7 @@ h3 {
   filter: blur(4px);
 }
 
-#clickedRecipe {
+.info-panel {
   position: fixed;
   justify-content: center;
   align-items: center;
@@ -617,7 +617,7 @@ input[type=checkbox] {
   padding-bottom: 2%;
 }
 
-#closeRecipe {
+.close-button {
   height: 38px;
   width: 38px;
   padding: 20px 20px;
