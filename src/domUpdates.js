@@ -1,5 +1,5 @@
 // Imports
-import { pageData, currentUser, updateCurrentUser } from './apiCalls';
+import { pageData, currentUser, updateCurrentUser, patchHits } from './apiCalls';
 import {
   recipeGrid,
   spinner,
@@ -18,7 +18,7 @@ import {
   body,
   settingsPanel
 } from './scripts'
-import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, splitTagsInRows, filterTagsByTagName  } from './recipes';
+import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, splitTagsInRows, filterTagsByTagName, sortByHits  } from './recipes';
 import { updateRecipesToCook } from './users';
 import { copyItem, toggleViewBtns } from './helper-functions';
 
@@ -265,6 +265,7 @@ const showRecipe = (recipeCard) => {
   populateIngredients(pageData.currentRecipeCard);
   updateSaveButtons(pageData.currentRecipeCard.id, modalAddBtn, modalRemoveBtn);
   openInfoPanel(recipeCard);
+  patchHits(pageData.currentRecipeCard)
 };
 
 const openInfoPanel = (infoType) => {
