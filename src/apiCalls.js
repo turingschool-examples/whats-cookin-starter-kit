@@ -43,8 +43,7 @@ const patchHits = (recipe) => {
     }
   })
     .then(res => res.json())
-    .then(data => {
-      if(!data.message.includes('Success')) {alert(data.message)}
+    .then(() => {
       fetchRecipes()
         .then(res => res.json())
         .then(data => {
