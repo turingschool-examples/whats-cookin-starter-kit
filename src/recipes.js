@@ -1,4 +1,4 @@
-import { getIngredientProperty } from "./helper-functions"
+import { getIngredientProperty, copyItem } from "./helper-functions"
 
 const getInstructions = recipe => {
   return recipe.instructions.map(item => item.instruction)
@@ -110,6 +110,12 @@ const populateTags = (recipes) => {
   return refinedTagData;
 }
 
+const sortByHits = recipes => {
+  let copiedRecipes = copyItem(recipes);
+  let updatedRecipes = copiedRecipes.sort((a,b) => b.hits - a.hits);
+  return updatedRecipes;
+}
+
 export {
   getInstructions,
   filterRecipesByTag,
@@ -126,5 +132,6 @@ export {
   populateTags,
   splitTagsInRows,
   getUniqueTagsFromRecipes,
-  addInfoToTags
+  addInfoToTags,
+  sortByHits
 }

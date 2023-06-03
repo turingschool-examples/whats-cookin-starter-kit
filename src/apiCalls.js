@@ -60,6 +60,24 @@ const handleRecipeData = recipes => {
 
 const handleIngredientData = ingredients => pageData.allIngredients = ingredients
 
+const patchHits = (recipe) => {
+  fetch('http://localhost:3001/api/v1/recipeHits', {
+    method: 'PATCH',
+    body: JSON.stringify({recipeID: recipe.id}),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(res => res.json())
+    .then(() => {
+      fetchRecipes()
+        .then(res => res.json())
+        .then(data => {
+          pageData.allRecipes = data.recipes;
+        })
+    })
+}
+
 const loadData = () => {
   Promise.all([getUsers(), getRecipes(), getIngredients()])
     .then (responses => {
@@ -137,4 +155,4 @@ const getChatGPTRecipePitches = (allRecipes) => {
   });
 }
 
-export { currentUser, pageData, updateCurrentUser, loadData, postRecipeToCook, deleteRecipeToCook };
+export { currentUser, pageData, updateCurrentUser, loadData, patchHits, postRecipeToCook, deleteRecipeToCook };
