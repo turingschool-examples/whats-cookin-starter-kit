@@ -64,7 +64,6 @@ const makeRecipeClickChart = () => {
 }
 
 const splitLabelLength = (recipeName) => {
-    console.log(recipeName)
     if (recipeName.split(' ').length > 3) {
         return recipeName.match(/\b[\w']+(?:[^\w\n]+[\w']+){0,2}\b/g);
     } else {
