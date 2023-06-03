@@ -1,6 +1,6 @@
 //IMPORTS
 import './styles.css'
-import { closeRecipe, showRecipe, switchView, searchForRecipes, returnHome, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText } from './domUpdates';
+import { closeRecipe, showRecipe, switchView, searchForRecipes, returnHome, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, checkIfModalOpen } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 import './images/antipasti.png';
 import './images/antipasto.png'
@@ -97,7 +97,7 @@ tagArea.addEventListener("click", function(event) {
 });
 
 recipeGrid.addEventListener("click", (event) => {
-  if (event.target.classList?.contains('individual-recipe')) {
+  if (event.target.classList?.contains('individual-recipe') && !checkIfModalOpen()) {
     showRecipe(event.target);
   }
 });

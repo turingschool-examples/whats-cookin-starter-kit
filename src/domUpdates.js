@@ -444,5 +444,6 @@ export {
   displayTaggedRecipes,
   renderRecipesOfInterest,
   enableScrollPitchText,
-  toggleSavedButtons
+  toggleSavedButtons,
+  checkIfModalOpen
 }
