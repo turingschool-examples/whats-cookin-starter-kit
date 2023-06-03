@@ -24,7 +24,6 @@ import {
   searchRecipes,
   findRecipe,
   checkSavedStatus,
-  splitTagsInRows,
   getUniqueTagsFromRecipes,
   addInfoToTags
 } from '../src/recipes';

@@ -53,7 +53,6 @@ const modalRemoveBtn = document.querySelector('.remove-recipe');
 const modalRecipeBtns = document.querySelectorAll('.modal-recipe-btn');
 const leftArrow = document.querySelector('.left-arrow');
 const rightArrow = document.querySelector('.right-arrow');
-const tagCards = document.querySelectorAll('.tag-card')
 
 //FUNCTIONS 
 const getRecipeCard = (recipe) => {
