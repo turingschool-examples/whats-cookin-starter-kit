@@ -1,6 +1,6 @@
 //IMPORTS
 import './styles.css'
-import { closeRecipe, showRecipe, switchView, searchForRecipes, returnHome, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText } from './domUpdates';
+import { closeRecipe, showRecipe, switchView, searchForRecipes, returnHome, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, renderGrid } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 import './images/antipasti.png';
 import './images/antipasto.png'
@@ -22,7 +22,9 @@ import './images/snack.png'
 import './images/spread.png'
 import './images/starter.png'
 import './images/search-button.png'
-import './images/arrow.png'
+import './images/right-arrow.png'
+import './images/left-arrow.png'
+
 
 // import apiCalls from './apiCalls'
 import './images/hollow-bookmark-icon.png'
@@ -51,6 +53,7 @@ const modalRemoveBtn = document.querySelector('.remove-recipe');
 const modalRecipeBtns = document.querySelectorAll('.modal-recipe-btn');
 const leftArrow = document.querySelector('.left-arrow');
 const rightArrow = document.querySelector('.right-arrow');
+const tagCards = document.querySelectorAll('.tag-card')
 
 //FUNCTIONS 
 const getRecipeCard = (recipe) => {
@@ -79,6 +82,10 @@ window.addEventListener("load", () => {
   loadData();
 });
 
+window.addEventListener('resize', () => {
+  renderGrid(pageData.recipesOfInterest)
+})
+
 allRecipes.addEventListener('click', (event) => {
   updateUserRecipes(event);
 })
@@ -90,6 +97,14 @@ tagArea.addEventListener("click", function(event) {
     displayTaggedRecipes();
   };
 });
+
+leftArrow.addEventListener('click', () => {
+  tagArea.scrollBy(-100, 0)
+})
+
+rightArrow.addEventListener('click', () => {
+  tagArea.scrollBy(100, 0)
+})
 
 recipeGrid.addEventListener("click", (event) => {
   if (event.target.classList?.contains('individual-recipe')) {

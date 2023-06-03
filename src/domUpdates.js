@@ -28,9 +28,15 @@ const makeRecipeColumnData = (data) => {
     if (recipe.pitch) {
       thisPitch = `${recipe.pitch} ${thisPitch}`;
     }
+    let columns = 3; 
+    if(window.innerWidth < 800) {
+      columns = 1; 
+    } else if (window.innerWidth < 1025) {
+      columns = 2;
+    }
 
     return {
-      column: (index+1) % 3,
+      column: (index+1) % columns,
       id: recipe.id,
       image: recipe.image,
       name: recipe.name,
