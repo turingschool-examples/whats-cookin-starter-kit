@@ -81,9 +81,7 @@ const postRecipeToCook = (userID, recipeID, e) => {
         })
         .then(data => {
           const foundUser = data.users.find(user => user.id === userID);
-          // updateCurrentUser(foundUser);
           currentUser = foundUser;
-          console.log("currentUser in post", currentUser)
           toggleSavedButtons(e, recipeID, currentUser)
         })
         .then(() => {

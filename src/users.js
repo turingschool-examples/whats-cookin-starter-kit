@@ -7,17 +7,9 @@ const getRandomUser = users => {
 
 const addUniqueRecipe = (userRecipes, newRecipe, e) => {
   if(!userRecipes.find(recipeID => recipeID.toString() === newRecipe.id.toString())) {
-    console.log("currentUSer in addUnique", currentUser)
     postRecipeToCook(currentUser.id, newRecipe.id, e);
-  } 
-  // userRecipes.push(newRecipe);
+  }
 };
-
-// const addRecipe = (userRecipes, newRecipe) => {
-//   if (!userRecipes) userRecipes = [];
-//   addUniqueRecipes(userRecipes, newRecipe);
-//   return userRecipes;
-// }
 
 const removeRecipe = (userRecipes, recipeToRemove) => {
   let found = userRecipes.find(recipe => recipe.id === recipeToRemove.id);
@@ -26,7 +18,6 @@ const removeRecipe = (userRecipes, recipeToRemove) => {
 }
 
 const updateRecipesToCook = (e, recipe, change) => {
-  console.log("user in updateRecipesToCOok", currentUser)
   let userRecipes = currentUser.recipesToCook;
   let recipeUpdate = {
     add: () => addUniqueRecipe(userRecipes, recipe, e),
