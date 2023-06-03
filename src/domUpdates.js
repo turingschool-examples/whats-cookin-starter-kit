@@ -18,7 +18,7 @@ import {
   leftArrow,
   rightArrow
 } from './scripts'
-import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, splitTagsInRows, filterTagsByTagName  } from './recipes';
+import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, filterTagsByTagName  } from './recipes';
 import { updateRecipesToCook } from './users';
 import { copyItem, toggleViewBtns } from './helper-functions';
 
@@ -152,39 +152,7 @@ const createTagCardHTML = tag => {
   return htmlCode;
 }
 
-const createTagRowHTML = row => {
-  let rowNumber;
-
-  if (row.length === 10) {
-    rowNumber = "row-one";
-  } else {
-    rowNumber = "row-two";
-  };
-
-  let htmlCode = '';
-  htmlCode += `<div class="tag-row ${rowNumber}">`;
-  row.forEach(tag => {
-    htmlCode += createTagCardHTML(tag);
-  });
-  htmlCode += `</div>`;
-  return htmlCode;
-};
-
-const createTagAreaHTML = rows => {
-  let htmlCode = '';
-  htmlCode += '<div class="tag-rows">';
-
-  rows.forEach(row => {
-    htmlCode += createTagRowHTML(row);
-  });
-
-  htmlCode += '</div>';
-  return htmlCode;
-};
-
 const renderTagArea = () => {
-  // const tagRows = splitTagsInRows(pageData.allTags);
-  // const htmlCode = createTagAreaHTML(tagRows);
   let htmlCode = '';
   pageData.allTags.forEach(tag => {
     htmlCode += createTagCardHTML(tag)
