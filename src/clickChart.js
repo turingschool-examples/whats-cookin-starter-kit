@@ -1,40 +1,72 @@
-import Chart from 'chart.js/auto'
+import Chart from 'chart.js/auto';
+import { pageData } from './apiCalls';
+import { sortByHits } from './recipes';
 
-  new Chart(
-    document.getElementById('clickChart'),
-    {
-      type: 'bar',
-      data: {
-        labels: data.map(row => row.year),
-        datasets: [
-          {
-            label: 'Recipes by Number of Clicks',
-            data: data.map(row => row.count),
-            borderColor: Utils.CHART_COLORS.red,
-            backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
+const makeRecipeClickChart = () => {
+    const sortedRecipes = sortByHits(pageData.allRecipes).slice(0, 9);
+    new Chart(document.querySelector('#clickChart'),
+        {
+            type: 'bar',
+            data: {
+                labels: sortedRecipes.map(recipe => splitLabelLength(recipe.name)),
+                fontColor: 'white',
+                datasets: [
+                    {
+                        label: 'Hits',
+                        data: sortedRecipes.map(recipe => recipe.hits),
+                        borderColor: 'red',
+                        backgroundColor: 'red',
+                    }
+                ]
+            },
             options: {
                 indexAxis: 'y',
-                // Elements options apply to all of the options unless overridden in a dataset
-                // In this case, we are setting the border of each horizontal bar to be 2px wide
                 elements: {
                     bar: {
-                    borderWidth: 2,
+                        borderWidth: 2,
                     }
                 },
                 responsive: true,
                 plugins: {
                     legend: {
-                    position: 'right',
+                        position: 'right',
                     },
                     title: {
-                    display: true,
-                    text: 'Recipes by Number of Clicks'
+                        display: true,
+                        text: 'Recipes by Number of Clicks',
+                        color: 'white'
                     }
+                },
+                scales: {
+                    x: {
+                        ticks:{
+                            display: true,
+                            color: 'white',
+                            stepSize: 1
+                        }
+                    },
+                    y: {
+                        ticks:{
+                            display: true,
+                            color: 'white',
+                            autoSkip: false
+                        }
+                    },
+                },
+                tooltips:{
+                    mode:'index'
                 }
-            },
-          }
-        ]
-      }
+            }
+        }
+    );
+}
+
+const splitLabelLength = (recipeName) => {
+    if (recipeName.split(' ').length > 3) {
+        return recipeName.match(/(.*?\s){3}/g);
+    } else {
+        return recipeName;
     }
-  );
-  
+}
+
+export { makeRecipeClickChart }

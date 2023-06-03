@@ -18,8 +18,9 @@ import {
   body,
   settingsPanel
 } from './scripts'
-import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, splitTagsInRows, filterTagsByTagName, sortByHits  } from './recipes';
+import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, splitTagsInRows, filterTagsByTagName } from './recipes';
 import { updateRecipesToCook } from './users';
+import { makeRecipeClickChart } from './clickChart';
 import { copyItem, toggleViewBtns } from './helper-functions';
 
 // functions
@@ -272,11 +273,13 @@ const openInfoPanel = (infoType) => {
   let thisPanel;
   if (infoType.id === 'settings') {
     thisPanel = settingsPanel;
+    thisPanel.classList.toggle('hidden');
+    new Promise(makeRecipeClickChart);
   } else {
     thisPanel = clickedRecipe;
+    thisPanel.classList.toggle('hidden');
   }
 
-  thisPanel.classList.toggle('hidden');
   thisPanel.classList.toggle("flex");
   thisPanel.classList.toggle("fade-in");
   allRecipes.classList.add('blur');
