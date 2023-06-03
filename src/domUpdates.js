@@ -68,6 +68,7 @@ const createSingleRecipeHTML = singleRecipe => {
         <h4 class="save-option"> Remove from recipes to cook</h4>
       </section>
       <article class="individual-recipe" id="${singleRecipe.id}">
+        <p class="grid-feedback"> Saved! </p>
         <div class="recipe-image-div">
           <img class="recipe-image"src="${singleRecipe.image}" alt="${singleRecipe.name}">
           <div class="hover-card">
@@ -232,12 +233,18 @@ const updateCurrentRecipe = recipeCard => {
 }
 
 const updateSaveButtons = (recipeID, addButton, removeButton, user) => {
+  const recipe = document.getElementById(recipeID);
+  const feedback = recipe.querySelector('.grid-feedback');
   if(checkSavedStatus(user, recipeID)){
     addButton.classList.add('hidden');
     removeButton.classList.remove('hidden');
+    feedback.innerText = "Saved";
+    feedback.classList.add('show-feedback')
   } else {
     addButton.classList.remove('hidden');
     removeButton.classList.add('hidden');
+    feedback.innerText = "Removed";
+    feedback.classList.add('show-feedback')
   }
 }
 

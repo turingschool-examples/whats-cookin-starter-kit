@@ -257,6 +257,31 @@ nav > h1 {
   height: auto;
 }
 
+.grid-feedback {
+  margin-bottom: 3px;
+  margin-top: 3px;
+  opacity: 0;
+}
+
+.show-feedback {
+  animation: fade-in-out 1.5s linear forwards; 
+}
+
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .individual-recipe {
   background-color: #35363a;
   margin-bottom: 30px;
@@ -299,7 +324,6 @@ nav > h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 25px;
   pointer-events: none;
 }
 
