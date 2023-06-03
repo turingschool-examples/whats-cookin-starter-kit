@@ -232,25 +232,46 @@ const updateCurrentRecipe = recipeCard => {
   pageData.currentRecipeCard.outerRemoveBtn = recipeCard.closest('.individual-recipe-container').querySelector('.remove-panel');
 }
 
-const updateSaveButtons = (recipeID, addButton, removeButton, user) => {
+const showGridFeedback = (recipeID, feedback) => {
   const recipe = document.getElementById(recipeID);
-  const feedback = recipe.querySelector('.grid-feedback');
+  const gridFeedback = recipe.querySelector('.grid-feedback');
+  gridFeedback.innerText = feedback;
+  gridFeedback.classList.add('show-feedback')
+  setTimeout(() => {gridFeedback.classList.remove('show-feedback')}, 751)
+}
+
+const showModalFeedback = (feedback) => {
+  let modalFeedback = document.querySelector('.modal-feedback');
+  modalFeedback.innerText = feedback
+  modalFeedback.classList.add('show-feedback');
+  setTimeout(() => {modalFeedback.classList.remove('show-feedback')}, 751)
+}
+
+const updateSaveButtons = (recipeID, addButton, removeButton, user) => {
+  let view;
+  let feedback; 
+  if (checkIfModalOpen()) {
+    view = "modal";
+  } else {
+    view = "grid";
+  }
 
   if(checkSavedStatus(user, recipeID)){
+    feedback = "Saved"
     addButton.classList.add('hidden');
     removeButton.classList.remove('hidden');
-    console.log("first removeButton classlist", removeButton.classList)
-    feedback.innerText = "Saved";
-    feedback.classList.add('show-feedback')
-    setTimeout(() => {feedback.classList.remove('show-feedback')}, 1501)
   } else {
+    feedback = "Removed"
     addButton.classList.remove('hidden');
     removeButton.classList.add('hidden');
-    console.log("second removeButton classlist", removeButton.classList)
-    feedback.innerText = "Removed";
-    feedback.classList.add('show-feedback')
-    setTimeout(() => {feedback.classList.remove('show-feedback')}, 1501)
   }
+
+  const feedbacks = {
+    modal: () => showModalFeedback(feedback),
+    grid: () => showGridFeedback(recipeID, feedback)
+  }
+
+  feedbacks[view]();
 }
 
 const populateRecipeHeader = currentRecipe => {
@@ -339,7 +360,6 @@ const setBaseData = () => {
     searchForRecipes();
     baseData = pageData.recipesOfInterest;
   }
-
   return baseData;
 }
 
