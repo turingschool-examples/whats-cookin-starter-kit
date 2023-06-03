@@ -70,7 +70,7 @@ const patchHits = (recipe) => {
   })
     .then(res => res.json())
     .then(() => {
-      fetchRecipes()
+      getRecipes()
         .then(res => res.json())
         .then(data => {
           pageData.allRecipes = data.recipes;
