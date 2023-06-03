@@ -1,4 +1,4 @@
-import { copyItem, getRandomIndex } from "./helper-functions";
+import { getRandomIndex } from "./helper-functions";
 import { currentUser, postRecipeToCook, deleteRecipeToCook } from "./apiCalls";
 
 const getRandomUser = users => {
