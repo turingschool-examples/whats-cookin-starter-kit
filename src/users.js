@@ -1,5 +1,5 @@
 import { copyItem, getRandomIndex } from "./helper-functions";
-import { currentUser, postRecipeToCook } from "./apiCalls";
+import { currentUser, postRecipeToCook, deleteRecipeToCook } from "./apiCalls";
 
 const getRandomUser = users => {
   return users[getRandomIndex(users)]
@@ -11,17 +11,19 @@ const addUniqueRecipe = (userRecipes, newRecipe, e) => {
   }
 };
 
-const removeRecipe = (userRecipes, recipeToRemove) => {
-  let found = userRecipes.find(recipe => recipe.id === recipeToRemove.id);
-  if (found) userRecipes.splice(userRecipes.indexOf(found), 1);
-  return userRecipes;
+const removeExistingRecipe = (userRecipes, recipeToRemove, e) => {
+  let found = userRecipes.find(recipeID => recipeID.toString() === recipeToRemove.id.toString());
+  if (found) {
+    console.log(currentUser, "before")
+    deleteRecipeToCook(currentUser.id, recipeToRemove.id, e)
+  }
 }
 
 const updateRecipesToCook = (e, recipe, change) => {
   let userRecipes = currentUser.recipesToCook;
   let recipeUpdate = {
     add: () => addUniqueRecipe(userRecipes, recipe, e),
-    remove: () => removeRecipe(userRecipes, recipe)
+    remove: () => removeExistingRecipe(userRecipes, recipe, e)
   }
   recipeUpdate[change]();
 };

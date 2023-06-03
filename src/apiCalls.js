@@ -14,9 +14,36 @@ let pageData = {
 };
 
 // API CALLS
-const fetchUsers = () => fetch('http://localhost:3001/api/v1/users')
-const fetchRecipes = () => fetch('http://localhost:3001/api/v1/recipes')
-const fetchIngredients = () => fetch(`http://localhost:3001/api/v1/ingredients`)
+const getUsers = () => fetch('http://localhost:3001/api/v1/users')
+const getRecipes = () => fetch('http://localhost:3001/api/v1/recipes')
+const getIngredients = () => fetch(`http://localhost:3001/api/v1/ingredients`)
+const updateRecipe = (userID, recipeID, request) => {
+  const body = {
+    userID,
+    recipeID
+  };
+
+  return fetch('http://localhost:3001/api/v1/usersRecipes', {
+    method: `${request}`,
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json'
+  }})
+}
+
+const getUsersAfterUpdate = (userID, recipeID, e) => {
+  return getUsers()
+          .then(response => {
+            if(response.message) {console.log("get response",response.message)}
+            return response.json();
+          })
+          .then(data => {
+            const foundUser = data.users.find(user => user.id === userID);
+            currentUser = foundUser;
+            toggleSavedButtons(e, recipeID, currentUser)
+          })
+          .catch(err => console.error(err))
+}
 
 const handleUserData = users => currentUser = getRandomUser(users)
 
@@ -34,7 +61,7 @@ const handleRecipeData = recipes => {
 const handleIngredientData = ingredients => pageData.allIngredients = ingredients
 
 const loadData = () => {
-  Promise.all([fetchUsers(), fetchRecipes(), fetchIngredients()])
+  Promise.all([getUsers(), getRecipes(), getIngredients()])
     .then (responses => {
       responses.forEach(response => {
         if(response.ok) {
@@ -61,36 +88,21 @@ const updateCurrentUser = (user) => {
 };
 
 const postRecipeToCook = (userID, recipeID, e) => {
-  const body = {
-    userID,
-    recipeID
-  };
-
-  fetch('http://localhost:3001/api/v1/usersRecipes', {
-    method: "POST",
-    body: JSON.stringify(body),
-    headers: {
-      'Content-Type': 'application/json'
-  }})
+  updateRecipe(userID, recipeID, "POST")
     .then((res) => {
-      if(res.message) {console.log("post response", res.message)}
-      fetchUsers()
-        .then(response => {
-          if(response.message) {console.log("get response",response.message)}
-          return response.json();
-        })
-        .then(data => {
-          const foundUser = data.users.find(user => user.id === userID);
-          currentUser = foundUser;
-          toggleSavedButtons(e, recipeID, currentUser)
-        })
-        .then(() => {
-          console.log("after change", currentUser)
-        })
-        .catch(err => console.error(err))
-    }
-    )
-    .catch(err => console.error(err))
+      if (res.message) {console.log("post response", res.message)}
+      getUsersAfterUpdate(userID, recipeID, e);
+    })
+    .catch(err => console.error(err));
+}
+
+const deleteRecipeToCook = (userID, recipeID, e) => {
+  updateRecipe(userID, recipeID, "DELETE")
+    .then((res) => {
+      if (res.message) {console.log("delete response", res.message)}
+      getUsersAfterUpdate(userID, recipeID, e);
+    })
+    .catch(err => console.error(err));
 }
 
 // Chat GPT Extension 
@@ -125,4 +137,4 @@ const getChatGPTRecipePitches = (allRecipes) => {
   });
 }
 
-export { currentUser, pageData, updateCurrentUser, loadData, postRecipeToCook };
+export { currentUser, pageData, updateCurrentUser, loadData, postRecipeToCook, deleteRecipeToCook };

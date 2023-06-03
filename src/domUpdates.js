@@ -392,7 +392,7 @@ const updateRecipesFromGrid = (e) => {
     if (!checkSavedStatus(currentUser, recipeID)) {
       updateRecipesToCook(e, recipe, 'add');
     } else if (checkSavedStatus(currentUser, recipeID)) {
-      updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'remove'));
+      updateRecipesToCook(e, recipe, 'remove');
     }
     renderTagsAfterFetch();
   } 
