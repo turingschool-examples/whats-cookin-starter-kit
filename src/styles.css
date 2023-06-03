@@ -418,8 +418,8 @@ h3 {
 }
 
 #settingsPanel {
-  background-color: white;
-  background-image: none;
+  flex-direction: column;
+  justify-content: normal;
   align-items: flex-start;
 }
 
@@ -433,7 +433,7 @@ h3 {
   width: 85%;
   max-height: 95%;
   border-radius: 50px;
-  background-image: linear-gradient(to right, #535a72ea, #171d2fea);
+  background-image: linear-gradient(to right, #535a72cc, #171d2fcc);
 }
 
 .recipe-details {
