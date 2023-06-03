@@ -234,7 +234,7 @@ const populateInstructions = (recipe) => {
   const instructions = getInstructionHTML(recipe);
   const instructionSection= document.querySelector('#recipeInstructions')
   instructionSection.innerHTML = `
-    <p>Directions</p>
+    <p class="instructions-header">Directions</p>
     <section class='instruction-steps'>
       ${instructions.join('')}
     </section>

@@ -544,7 +544,7 @@ input[type=checkbox] {
   position: relative;
   flex-direction: column;
   align-items: center;
-  height: 40%;
+  max-height: 40%;
   width: 100%;
 }
 
@@ -555,10 +555,11 @@ input[type=checkbox] {
 }
 
 #recipeName > h1 {
-  text-align: left;
-  font-size: 55px;
+  font-size: 40px;
   margin: 0 0 25px;
   z-index: 2;
+  max-width: 70%;
+  align-self: flex-start;
 }
 
 #recipeInstructions {
@@ -568,6 +569,10 @@ input[type=checkbox] {
   width: 95%;
   padding: 10px;
   border-radius: 25px;
+}
+
+.instructions-header {
+  margin-top: 10px;
 }
 
 .scrollbar {
