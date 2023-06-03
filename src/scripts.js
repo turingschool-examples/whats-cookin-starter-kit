@@ -29,6 +29,7 @@ import './images/select-bookmark-icon.png'
 import { loadData, pageData, currentUser } from './apiCalls';
 
 // QUERY SELCTORS
+const nav = document.querySelector('nav');
 const body = document.querySelector('body');
 const spinner = document.querySelector('.spinner')
 const recipeGrid = document.querySelector('.recipe-grid');
@@ -150,6 +151,7 @@ export {
   searchBar,
   modalAddBtn, 
   modalRemoveBtn,
+  nav,
   body,
   settingsPanel
 }

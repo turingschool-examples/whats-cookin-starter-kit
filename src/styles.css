@@ -417,6 +417,12 @@ h3 {
   filter: blur(4px);
 }
 
+#settingsPanel {
+  background-color: white;
+  background-image: none;
+  align-items: flex-start;
+}
+
 .info-panel {
   position: fixed;
   justify-content: center;
@@ -639,6 +645,10 @@ input[type=checkbox] {
 
 .no-scroll {
   overflow: hidden;
+}
+
+.no-click {
+  pointer-events: none;
 }
 
 /* MEDIA QUERIES */

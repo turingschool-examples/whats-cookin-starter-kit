@@ -14,6 +14,7 @@ import {
   modalRemoveBtn,
   getPageData, 
   getRecipeCard,
+  nav,
   body,
   settingsPanel
 } from './scripts'
@@ -278,12 +279,14 @@ const openInfoPanel = (infoType) => {
   thisPanel.classList.toggle("flex");
   thisPanel.classList.toggle("fade-in");
   allRecipes.classList.add('blur');
+  nav.classList.add('blur', 'no-click');
   body.classList.add('no-scroll');
 }
 
 const closePanel = (e) => {
   const thisInfoPanel = e.target.closest('.info-panel');
   allRecipes.classList.remove('blur')
+  nav.classList.remove('blur', 'no-click');
   body.classList.remove('no-scroll')
   thisInfoPanel.classList.toggle("hidden");
   thisInfoPanel.classList.toggle("flex");
