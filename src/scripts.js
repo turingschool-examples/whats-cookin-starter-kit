@@ -1,6 +1,6 @@
 //IMPORTS
 import './styles.css'
-import { closeRecipe, showRecipe, switchView, searchForRecipes, returnHome, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText } from './domUpdates';
+import { closeRecipe, showRecipe, switchView, searchForRecipes, returnHome, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, checkIfModalOpen } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 import './images/antipasti.png';
 import './images/antipasto.png'
@@ -64,10 +64,14 @@ const getRecipeCard = (recipe) => {
   return recipeCard;
 }
 
-const getPageData = () => {
+const getPageRecipes = () => {
+  const userRecipes = currentUser.recipesToCook
+    .map(savedID => pageData.allRecipes
+    .find(recipe => recipe.id === savedID));
+
   const data = {
     'our-recipes': pageData.allRecipes,
-    'your-recipes': currentUser.recipesToCook
+    'your-recipes': userRecipes
   }
   return data[pageData.currentView];
 }
@@ -77,8 +81,12 @@ window.addEventListener("load", () => {
 });
 
 allRecipes.addEventListener('click', (event) => {
-  updateUserRecipes(event);
+  updateRecipesFromGrid(event);
 })
+
+modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
+  updateRecipesFromModal(e);
+}));
 
 tagArea.addEventListener("click", function(event) {
   if (event.target.classList && event.target.closest(".tag-card")) {
@@ -89,7 +97,7 @@ tagArea.addEventListener("click", function(event) {
 });
 
 recipeGrid.addEventListener("click", (event) => {
-  if (event.target.classList?.contains('individual-recipe')) {
+  if (event.target.classList?.contains('individual-recipe') && !checkIfModalOpen()) {
     showRecipe(event.target);
   }
 });
@@ -101,6 +109,7 @@ recipeGrid.addEventListener("mouseover", (event) => {
 });
 
 closeRecipeButton.addEventListener("click", closeRecipe);
+
 chooseView.addEventListener("click", function(event) {
   if (event.target.classList.contains("unselected-view")) {
     switchView(event.target.id);
@@ -119,10 +128,6 @@ searchBtn.addEventListener('click', searchForRecipes);
 whatsCookin.addEventListener('click', returnHome);
 homeBtn.addEventListener('click', returnHome);
 
-modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
-  updateRecipesFromModal(e.target.id);
-}));
-
 // Exports
 export {
   recipeGrid,
@@ -130,7 +135,7 @@ export {
   tagArea,
   clickedRecipe,
   getRecipeCard,
-  getPageData,
+  getPageRecipes,
   ingredientsList,
   allRecipes,
   ourViewBtn,

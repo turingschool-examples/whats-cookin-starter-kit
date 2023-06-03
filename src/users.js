@@ -1,34 +1,30 @@
-import { copyItem, getRandomIndex } from "./helper-functions";
+import { getRandomIndex } from "./helper-functions";
+import { currentUser, postRecipeToCook, deleteRecipeToCook } from "./apiCalls";
 
 const getRandomUser = users => {
   return users[getRandomIndex(users)]
 }
 
-const addUniqueRecipes = (userRecipes, newRecipe) => {
-  if(!userRecipes.find(item => item.id === newRecipe.id)) userRecipes.push(newRecipe)
+const addUniqueRecipe = (userRecipes, newRecipe, e) => {
+  if(!userRecipes.find(recipeID => recipeID.toString() === newRecipe.id.toString())) {
+    postRecipeToCook(currentUser.id, newRecipe.id, e);
+  }
 };
 
-const addRecipe = (userRecipes, newRecipe) => {
-  if (!userRecipes) userRecipes = [];
-  addUniqueRecipes(userRecipes, newRecipe);
-  return userRecipes;
-}
-
-const removeRecipe = (userRecipes, recipeToRemove) => {
-  let found = userRecipes.find(recipe => recipe.id === recipeToRemove.id);
-  if (found) userRecipes.splice(userRecipes.indexOf(found), 1);
-  return userRecipes;
-}
-
-const updateRecipesToCook = (user, recipe, change) => {
-  const updatedUser = copyItem(user);
-  let recipes = updatedUser.recipesToCook;
-  let recipeUpdate = {
-    add: () => addRecipe(recipes, recipe),
-    remove: () => removeRecipe(recipes, recipe)
+const removeExistingRecipe = (userRecipes, recipeToRemove, e) => {
+  let found = userRecipes.find(recipeID => recipeID.toString() === recipeToRemove.id.toString());
+  if (found) {
+    deleteRecipeToCook(currentUser.id, recipeToRemove.id, e)
   }
-  updatedUser.recipesToCook = recipeUpdate[change]();
-  return updatedUser;
+}
+
+const updateRecipesToCook = (e, recipe, change) => {
+  let userRecipes = currentUser.recipesToCook;
+  let recipeUpdate = {
+    add: () => addUniqueRecipe(userRecipes, recipe, e),
+    remove: () => removeExistingRecipe(userRecipes, recipe, e)
+  }
+  recipeUpdate[change]();
 };
 
 
