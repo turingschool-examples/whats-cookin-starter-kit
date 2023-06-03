@@ -1,6 +1,6 @@
 //IMPORTS 
 import { getRandomUser } from "./users";
-import { pageLoadRenders, hideSpinner } from "./domUpdates";
+import { pageLoadRenders, hideSpinner, toggleSavedButtons, renderTagsAfterFetch } from "./domUpdates";
 import { copyItem } from "./helper-functions";
 import { populateTags } from './recipes';
 // import { config } from "../config.js"
@@ -14,9 +14,37 @@ let pageData = {
 };
 
 // API CALLS
-const fetchUsers = () => fetch('http://localhost:3001/api/v1/users')
-const fetchRecipes = () => fetch('http://localhost:3001/api/v1/recipes')
-const fetchIngredients = () => fetch(`http://localhost:3001/api/v1/ingredients`)
+const getUsers = () => fetch('http://localhost:3001/api/v1/users')
+const getRecipes = () => fetch('http://localhost:3001/api/v1/recipes')
+const getIngredients = () => fetch(`http://localhost:3001/api/v1/ingredients`)
+const updateRecipe = (userID, recipeID, request) => {
+  const body = {
+    userID,
+    recipeID
+  };
+
+  return fetch('http://localhost:3001/api/v1/usersRecipes', {
+    method: `${request}`,
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json'
+  }})
+}
+
+const getUsersAfterUpdate = (userID, recipeID, e) => {
+  return getUsers()
+          .then(response => {
+            if(response.message) {console.log("get response",response.message)}
+            return response.json();
+          })
+          .then(data => {
+            const foundUser = data.users.find(user => user.id === userID);
+            currentUser = foundUser;
+            toggleSavedButtons(e, recipeID, currentUser);
+            renderTagsAfterFetch();
+          })
+          .catch(err => console.error(err))
+}
 
 const handleUserData = users => currentUser = getRandomUser(users)
 
@@ -29,7 +57,6 @@ const handleRecipeData = recipes => {
     hideSpinner();
     pageLoadRenders(pageData.allRecipes);
   }, 2000)
-
 }
 
 const handleIngredientData = ingredients => pageData.allIngredients = ingredients
@@ -44,7 +71,7 @@ const patchHits = (recipe) => {
   })
     .then(res => res.json())
     .then(() => {
-      fetchRecipes()
+      getRecipes()
         .then(res => res.json())
         .then(data => {
           pageData.allRecipes = data.recipes;
@@ -53,7 +80,7 @@ const patchHits = (recipe) => {
 }
 
 const loadData = () => {
-  Promise.all([fetchUsers(), fetchRecipes(), fetchIngredients()])
+  Promise.all([getUsers(), getRecipes(), getIngredients()])
     .then (responses => {
       responses.forEach(response => {
         if(response.ok) {
@@ -78,6 +105,24 @@ const loadData = () => {
 const updateCurrentUser = (user) => {
   currentUser = user;
 };
+
+const postRecipeToCook = (userID, recipeID, e) => {
+  updateRecipe(userID, recipeID, "POST")
+    .then((res) => {
+      if (res.message) {console.log("post response", res.message)}
+      getUsersAfterUpdate(userID, recipeID, e);
+    })
+    .catch(err => console.error(err));
+}
+
+const deleteRecipeToCook = (userID, recipeID, e) => {
+  updateRecipe(userID, recipeID, "DELETE")
+    .then((res) => {
+      if (res.message) {console.log("delete response", res.message)}
+      getUsersAfterUpdate(userID, recipeID, e);
+    })
+    .catch(err => console.error(err));
+}
 
 // Chat GPT Extension 
 
@@ -111,4 +156,4 @@ const getChatGPTRecipePitches = (allRecipes) => {
   });
 }
 
-export { currentUser, pageData, updateCurrentUser, loadData, patchHits };
+export { currentUser, pageData, updateCurrentUser, loadData, patchHits, postRecipeToCook, deleteRecipeToCook };
