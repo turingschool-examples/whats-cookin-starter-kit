@@ -29,11 +29,11 @@ const makeRecipeColumnData = (data) => {
       thisPitch = `${recipe.pitch} ${thisPitch}`;
     }
     let columns = 3; 
-    if(window.innerWidth < 800) {
+    if(window.innerWidth < 1000) {
       columns = 1; 
-    } else if (window.innerWidth < 1025) {
+    } else if (window.innerWidth < 1300) {
       columns = 2;
-    }
+    } 
 
     return {
       column: (index+1) % columns,

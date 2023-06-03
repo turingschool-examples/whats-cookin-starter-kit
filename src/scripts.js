@@ -99,11 +99,19 @@ tagArea.addEventListener("click", function(event) {
 });
 
 leftArrow.addEventListener('click', () => {
-  tagArea.scrollBy(-100, 0)
+  tagArea.scrollBy({
+    top: 0,
+    left: -200,
+    behavior: "smooth",
+  })
 })
 
 rightArrow.addEventListener('click', () => {
-  tagArea.scrollBy(100, 0)
+  tagArea.scrollBy({
+    top: 0,
+    left: 200,
+    behavior: "smooth",
+  })
 })
 
 recipeGrid.addEventListener("click", (event) => {
