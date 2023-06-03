@@ -225,19 +225,19 @@ const populateInstructions = (recipe) => {
 }
 
 const updateCurrentRecipe = recipeCard => {
-  const recipeCardID = recipeCard.closest("article")?.id;
+  const recipeCardID = recipeCard?.closest("article")?.id;
   const thisRecipe = findRecipe(pageData.allRecipes, recipeCardID);
   pageData.currentRecipeCard = getRecipeCard(thisRecipe);
-  pageData.currentRecipeCard.outerAddBtn = recipeCard.closest('.individual-recipe-container').querySelector('.add-panel');
-  pageData.currentRecipeCard.outerRemoveBtn = recipeCard.closest('.individual-recipe-container').querySelector('.remove-panel');
+  pageData.currentRecipeCard.outerAddBtn = recipeCard?.closest('.individual-recipe-container').querySelector('.add-panel');
+  pageData.currentRecipeCard.outerRemoveBtn = recipeCard?.closest('.individual-recipe-container').querySelector('.remove-panel');
 }
 
 const showGridFeedback = (recipeID, feedback) => {
   const recipe = document.getElementById(recipeID);
-  const gridFeedback = recipe.querySelector('.grid-feedback');
+  const gridFeedback = recipe?.querySelector('.grid-feedback');
   gridFeedback.innerText = feedback;
-  gridFeedback.classList.add('show-feedback')
-  setTimeout(() => {gridFeedback.classList.remove('show-feedback')}, 751)
+  gridFeedback.classList?.add('show-feedback');
+  setTimeout(() => {gridFeedback.classList?.remove('show-feedback')}, 751);
 }
 
 const showModalFeedback = (feedback) => {
@@ -420,7 +420,6 @@ const updateRecipesFromGrid = (e) => {
     } else if (checkSavedStatus(currentUser, recipeID)) {
       updateRecipesToCook(e, recipe, 'remove');
     }
-    renderTagsAfterFetch();
   } 
 }
 
@@ -429,7 +428,6 @@ const updateRecipesFromModal = (e) => {
   const recipeID = pageData.currentRecipeCard.id;
   const recipe = findRecipe(pageData.allRecipes, recipeID);
   updateRecipesToCook(e, recipe, change);
-  renderTagsAfterFetch();
 }
 
 const checkIfModalOpen = () => allRecipes.classList.contains('blur')
@@ -474,6 +472,7 @@ export {
   updateRecipesFromModal,
   renderTagArea,
   renderActiveTag,
+  renderTagsAfterFetch,
   displayTaggedRecipes,
   renderRecipesOfInterest,
   enableScrollPitchText,

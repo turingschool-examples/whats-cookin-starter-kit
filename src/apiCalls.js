@@ -1,6 +1,6 @@
 //IMPORTS 
 import { getRandomUser } from "./users";
-import { pageLoadRenders, hideSpinner, toggleSavedButtons } from "./domUpdates";
+import { pageLoadRenders, hideSpinner, toggleSavedButtons, renderTagsAfterFetch } from "./domUpdates";
 import { copyItem } from "./helper-functions";
 import { populateTags } from './recipes';
 // import { config } from "../config.js"
@@ -40,7 +40,8 @@ const getUsersAfterUpdate = (userID, recipeID, e) => {
           .then(data => {
             const foundUser = data.users.find(user => user.id === userID);
             currentUser = foundUser;
-            toggleSavedButtons(e, recipeID, currentUser)
+            toggleSavedButtons(e, recipeID, currentUser);
+            renderTagsAfterFetch();
           })
           .catch(err => console.error(err))
 }
