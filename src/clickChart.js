@@ -3,6 +3,8 @@ import { pageData } from './apiCalls';
 import { sortByHits } from './recipes';
 
 const makeRecipeClickChart = () => {
+    const chartContainer = document.querySelector('#chartContainer');
+    chartContainer.innerHTML = `<canvas id="clickChart"></canvas>`;
     const sortedRecipes = sortByHits(pageData.allRecipes).slice(0, 9);
     new Chart(document.querySelector('#clickChart'),
         {
@@ -62,8 +64,9 @@ const makeRecipeClickChart = () => {
 }
 
 const splitLabelLength = (recipeName) => {
+    console.log(recipeName)
     if (recipeName.split(' ').length > 3) {
-        return recipeName.match(/(.*?\s){3}/g);
+        return recipeName.match(/\b[\w']+(?:[^\w\n]+[\w']+){0,2}\b/g);
     } else {
         return recipeName;
     }
