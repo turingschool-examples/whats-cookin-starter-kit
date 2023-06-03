@@ -105,10 +105,19 @@ const createGridHTML = allColumns => {
   return htmlCode;
 }
 
+const updateIngredientLayout = () => {
+  if(window.innerWidth < 1000) {
+    addScrollBar('.ingredients-list')
+  } else {
+    ingredientsList.classList.remove('scrollbar')
+  }
+}
+
 const renderGrid = (data) => {
   const gridData = makeRecipeColumnData(data);
   recipeGrid.innerHTML = '';
   recipeGrid.innerHTML = createGridHTML(gridData);
+  updateIngredientLayout();
 }
 
 const createModalTagHTML = tag => {
@@ -438,5 +447,5 @@ export {
   renderActiveTag,
   displayTaggedRecipes,
   renderRecipesOfInterest,
-  enableScrollPitchText
+  enableScrollPitchText,
 }

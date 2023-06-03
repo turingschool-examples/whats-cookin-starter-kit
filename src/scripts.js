@@ -38,9 +38,9 @@ const recipeGrid = document.querySelector('.recipe-grid');
 const allRecipes = document.querySelector('.all-recipes')
 const allUserRecipes = document.querySelector('.all-user-recipes');
 const clickedRecipe = document.querySelector('#clickedRecipe');
-const closeRecipeButton = document.querySelector('#closeRecipe');
+const closeRecipeButtons = document.querySelectorAll('.close-btn');
 const tagArea = document.querySelector('.tag-area');
-const ingredientsList = document.querySelector('#ingredientsList');
+const ingredientsList = document.querySelector('.ingredients-list');
 const chooseView = document.querySelector('.choose-view')
 const ourViewBtn = document.querySelector("#our-recipes");
 const yourViewBtn = document.querySelector("#your-recipes");
@@ -126,7 +126,8 @@ recipeGrid.addEventListener("mouseover", (event) => {
   }
 });
 
-closeRecipeButton.addEventListener("click", closeRecipe);
+closeRecipeButtons.forEach(btn => btn.addEventListener("click", closeRecipe));
+
 chooseView.addEventListener("click", function(event) {
   if (event.target.classList.contains("unselected-view")) {
     switchView(event.target.id);

@@ -153,6 +153,7 @@ nav > h1 {
   height: 70%;
   min-width: 80px;
   font-size: 12px;
+  margin-right: 2%;
 }
 
 .tag-image {
@@ -575,7 +576,7 @@ input[type=checkbox] {
 }
 
 .tag-scrollbar::-webkit-scrollbar, .scrollbar::-webkit-scrollbar {
-  /* width: 100px; */
+  width: 10px;
   height: 3px;
   background-color: #3b4154;
   border-radius: 5px;
@@ -629,19 +630,23 @@ input[type=checkbox] {
   margin: 0 10px 15px 35px;
 }
 
-#ingredientsList {
+.ingredients-list {
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
   padding-bottom: 2%;
 }
 
-#closeRecipe {
+.close-btn {
   height: 38px;
   width: 38px;
   padding: 20px 20px;
   margin-left: auto;
   cursor: pointer;
+}
+
+#closeRecipeSmall {
+  display: none
 }
 
 .fade-in {
@@ -689,15 +694,68 @@ input[type=checkbox] {
   .individual-recipe {
     width: 80%;
     height: 100%;
-    /* overflow-y: auto; */
    }
+
    .individual-recipe-container {
       align-items: center;
    }
+
    .panel {
       align-self: flex-start;
       margin-left: 10%;
    }
+
+   .tag-card {
+    margin-right: 10%;
+   }
+
+   .tag-area .tag-image {
+    width: 95%;
+    height: 95%;
+   }
+
+   #clickedRecipe {
+    flex-direction: column;
+   }
+
+   #recipeLeftSide {
+    height: 55%;
+    width: 80%;
+   }
+
+   #recipeRightSide {
+    height: 30%;
+    width: 80%;
+   }
+
+   #individualRecipeTags {
+    display: none;
+   }
+
+   #recipeName {
+    height: 10%;
+    padding-bottom: 10%;
+   }
+
+   #closeRecipe {
+    display: none; 
+   }
+
+   #closeRecipeSmall {
+    display: block;
+   }
+
+   .modal-btn-container {
+    display: flex; 
+    justify-content: space-between;
+    width: 95%;
+    z-index: 2;
+   }
+
+   .bookmark-img {
+    height: 70%;
+   }
+
 
    /* .individual-recipe-image {
     width: 175px;
