@@ -408,7 +408,7 @@ const returnHome = () => {
 }
 
 const renderTagsAfterFetch = () => {
-  const activeTags = pageData.allTags.filter(tag => tag.isActive)
+  const activeTags = pageData.allTags.filter(tag => tag.isActive);
   if(activeTags.length) {
     displayTaggedRecipes();
   } else if(pageData.currentView === 'your-recipes') {
