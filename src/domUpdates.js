@@ -297,7 +297,7 @@ const openInfoPanel = (infoType) => {
   if (infoType.id === 'settings') {
     thisPanel = settingsPanel;
     thisPanel.classList.toggle('hidden');
-    new Promise(makeRecipeClickChart);
+    makeRecipeClickChart();
   } else {
     thisPanel = clickedRecipe;
     thisPanel.classList.toggle('hidden');
