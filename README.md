@@ -23,10 +23,21 @@ This is a recipe website that uses the fetch API to display information about a 
 
 
 ## Installation Instructions 
-- Forl [this](https://github.com/lauraguerra1/whats-cookin-api) repository ()
+- In order for this application to function, it will require accessing both our backend server repository as well as our front-end repository. 
+
+- Fork [this](https://github.com/lauraguerra1/whats-cookin-api) repository. 
+- Clone it to your local machine using the command: `git clone git@github.com:lauraguerra1/whats-cookin-api.git`.
+- Run the command: `cd whats-cookin-api`
+- Run the command: `npm install`
+- Run the command: `npm start`
+
+
+- Open a separate tab in your terminal using `command T`
+
 - Fork [this](https://github.com/lauraguerra1/whats-cookin) repository. 
 - Clone it to your local machine using the command: `git clone git@github.com:lauraguerra1/whats-cookin.git`.
 - Run the command: `cd whats-cookin`
+- Run the command: `npm install`
 - Run the command: `npm start`
 - Once the modules have finished compiling, enter `http://localhost:8080/` into your browser to see the live web page. 
 
