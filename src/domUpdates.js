@@ -1,5 +1,5 @@
 // Imports
-import { pageData, currentUser, updateCurrentUser, patchHits } from './apiCalls';
+import { pageData, currentUser, patchHits } from './apiCalls';
 import {
   recipeGrid,
   spinner,
@@ -15,11 +15,14 @@ import {
   getPageRecipes, 
   getRecipeCard,
   body,
+  nav,
+  settingsPanel,
   leftArrow,
   rightArrow
 } from './scripts'
 import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, filterTagsByTagName, sortByHits  } from './recipes';
 import { updateRecipesToCook } from './users';
+import { makeRecipeClickChart } from './clickChart';
 import { copyItem, toggleViewBtns } from './helper-functions';
 
 // functions
@@ -279,30 +282,42 @@ const populateRecipeHeader = currentRecipe => {
   `
 }
 
-const openRecipeCard = () => {
-  allRecipes.classList.add('blur')
-  body.classList.add('no-scroll')
-  clickedRecipe.classList.toggle("hidden");
-  clickedRecipe.classList.toggle("flex");
-  clickedRecipe.classList.toggle("fade-in");
-}
-
 const showRecipe = (recipeCard) => {
   updateCurrentRecipe(recipeCard);
   populateRecipeHeader(pageData.currentRecipeCard);
   populateInstructions(pageData.currentRecipeCard);
   populateIngredients(pageData.currentRecipeCard);
   updateSaveButtons(pageData.currentRecipeCard.id, modalAddBtn, modalRemoveBtn, currentUser);
-  openRecipeCard();
+  openInfoPanel(recipeCard);
   patchHits(pageData.currentRecipeCard)
 };
 
-const closeRecipe = () => {
+const openInfoPanel = (infoType) => {
+  let thisPanel;
+  if (infoType.id === 'settings') {
+    thisPanel = settingsPanel;
+    thisPanel.classList.toggle('hidden');
+    makeRecipeClickChart();
+  } else {
+    thisPanel = clickedRecipe;
+    thisPanel.classList.toggle('hidden');
+  }
+
+  thisPanel.classList.toggle("flex");
+  thisPanel.classList.toggle("fade-in");
+  allRecipes.classList.add('blur');
+  nav.classList.add('blur', 'no-click');
+  body.classList.add('no-scroll');
+}
+
+const closePanel = (e) => {
+  const thisInfoPanel = e.target.closest('.info-panel');
   allRecipes.classList.remove('blur')
+  nav.classList.remove('blur', 'no-click');
   body.classList.remove('no-scroll')
-  clickedRecipe.classList.add("hidden");
-  clickedRecipe.classList.remove("flex");
-  clickedRecipe.classList.remove("fade-in");
+  thisInfoPanel.classList.toggle("hidden");
+  thisInfoPanel.classList.toggle("flex");
+  thisInfoPanel.classList.toggle("fade-in");
 };
 
 const populateIngredients = currentRecipeCard => {
@@ -454,7 +469,7 @@ export {
   toggleTagData,
   pageLoadRenders,
   showRecipe,
-  closeRecipe,
+  closePanel,
   switchView,
   searchForRecipes,
   returnHome,
@@ -468,6 +483,7 @@ export {
   displayTaggedRecipes,
   renderRecipesOfInterest,
   enableScrollPitchText,
+  openInfoPanel,
   toggleSavedButtons,
   checkIfModalOpen
 }
