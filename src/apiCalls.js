@@ -135,7 +135,8 @@ const deleteRecipeToCook = (userID, recipeID, e) => {
   updateRecipe(userID, recipeID, "DELETE")
     .then((res) => res.json())
     .then(status => {
-      if (status.message.includes("was added")) {
+      if (status.message.includes("was removed")) {
+        console.log("here")
         getUsersAfterUpdate(userID, recipeID, e);
       } else {
         showError(recipeID);
