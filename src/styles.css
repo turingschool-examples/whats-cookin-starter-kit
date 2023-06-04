@@ -249,6 +249,12 @@ nav > h1 {
   height: auto;
 }
 
+.grid-feedback {
+  margin-bottom: 3px;
+  margin-top: 3px;
+  opacity: 0;
+}
+
 .individual-recipe {
   background-color: #35363a;
   margin-bottom: 30px;
@@ -285,13 +291,27 @@ nav > h1 {
   animation: fade-in 0.5s ease-in forwards;
 }
 
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .recipe-image-div {
   max-width: 85%;
   height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 25px;
   pointer-events: none;
 }
 
@@ -490,24 +510,33 @@ input[type=checkbox] {
 
 .modal-btn-container {
   align-self: flex-start;
+  display: flex;
+  width: 25%;
 }
 
 .modal-recipe-btn {
-  display: flex;
-  justify-content: center;
   align-items: center;
   background-color: transparent;
   border: none;
   height: 7vh;
-  width: auto;
+}
+
+.modal-btn-container p {
+  color: #fbbf83;
+  font-size: 1em;
+  opacity: 0;
+}
+
+.show-feedback {
+  animation: fade-in-out 0.75s linear; 
 }
 
 .bookmark-img {
-  height: 100%;
+  height: 80%;
   width: auto;
 }
 
-.modal-recipe-btn:hover {
+.bookmark-img:hover {
   transform: scale(1.1);
   cursor: pointer;
 }

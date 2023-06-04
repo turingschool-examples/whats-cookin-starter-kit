@@ -29,8 +29,6 @@ import {
   sortByHits
 } from '../src/recipes';
 
-import { updateRecipesToCook } from '../src/users';
-
 describe('recipe', () => {
   const cookies = sampleRecipeData[0];
   const porkChops = sampleRecipeData[1];
@@ -383,19 +381,6 @@ describe('find recipes and check if they are saved', () => {
   it('should return undefined if no recipe is found', () => {
     let nonRecipe = findRecipe(sampleRecipeData, 12345);
     assert.deepEqual(nonRecipe, undefined)
-  })
-
-  it('should check if a recipe is saved by a user', () => {
-    let saige = updateRecipesToCook(sampleUsersData[0], sampleRecipeData[0], 'add');
-    let savedStatus = checkSavedStatus(saige, 595736);
-    assert.deepEqual(savedStatus, true);
-  })
-
-  it('should check if a recipe is not saved by a user', () => {
-    let saige = updateRecipesToCook(sampleUsersData[0], sampleRecipeData[0], 'add');
-    let saigeWithoutRecipes = updateRecipesToCook(saige, sampleRecipeData[0], 'remove');
-    let savedStatus = checkSavedStatus(saigeWithoutRecipes, 595736);
-    assert.deepEqual(savedStatus, false)
   })
 })
 
