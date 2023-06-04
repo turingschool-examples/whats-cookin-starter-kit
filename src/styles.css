@@ -436,7 +436,7 @@ h3 {
 }
 
 #chartContainer {
-  height: 100%;
+  height: 85%;
   width: 100%;
   position: relative;
 }
@@ -665,6 +665,18 @@ input[type=checkbox] {
   cursor: pointer;
 }
 
+#closeSettings {
+  background-color: rgba(255, 255, 255, 0.438);
+  border-radius: 50px;
+  margin-right: 20px;
+  margin-top: 20px;
+  padding: 5px;
+}
+
+#closeSettings:hover {
+  background-color: rgb(255, 255, 255);
+}
+
 #closeRecipeSmall {
   display: none;
   background-color: rgba(255, 255, 255, 0.438);
@@ -790,7 +802,7 @@ input[type=checkbox] {
 
    #closeRecipeSmall:hover {
     background-color: rgb(255, 255, 255);
-  }
+   }
 
    .modal-btn-container {
     display: flex; 
