@@ -37,6 +37,9 @@ const makeRecipeClickChart = () => {
                     title: {
                         display: true,
                         text: 'Recipes by Number of Clicks',
+                        font: {
+                            size: 40
+                        },
                         color: 'white'
                     }
                 },
