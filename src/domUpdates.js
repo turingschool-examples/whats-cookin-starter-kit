@@ -424,6 +424,14 @@ const updateRecipesFromModal = (e) => {
 
 const checkIfModalOpen = () => allRecipes.classList.contains('blur')
 
+const showError = () => {
+  if (checkIfModalOpen()){
+    showModalFeedback("Something went wrong")
+  } else {
+    showGridFeedback(recipeID, "Something went wrong")
+  }
+}
+
 const toggleSavedButtons = (e, recipeID, user) => {
   if (checkIfModalOpen()) {
     const outerAdd = pageData.currentRecipeCard.outerAddBtn;
@@ -469,5 +477,6 @@ export {
   renderRecipesOfInterest,
   enableScrollPitchText,
   toggleSavedButtons,
-  checkIfModalOpen
+  checkIfModalOpen,
+  showError
 }
