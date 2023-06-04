@@ -1,6 +1,6 @@
 //IMPORTS
 import './styles.css'
-import { closeRecipe, showRecipe, switchView, searchForRecipes, returnHome, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, checkIfModalOpen } from './domUpdates';
+import { closeRecipe, showRecipe, switchView, searchForRecipes, returnHome, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, checkIfModalOpen, renderGrid } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 import './images/antipasti.png';
 import './images/antipasto.png'
@@ -22,6 +22,9 @@ import './images/snack.png'
 import './images/spread.png'
 import './images/starter.png'
 import './images/search-button.png'
+import './images/right-arrow.png'
+import './images/left-arrow.png'
+
 
 // import apiCalls from './apiCalls'
 import './images/hollow-bookmark-icon.png'
@@ -35,9 +38,9 @@ const recipeGrid = document.querySelector('.recipe-grid');
 const allRecipes = document.querySelector('.all-recipes')
 const allUserRecipes = document.querySelector('.all-user-recipes');
 const clickedRecipe = document.querySelector('#clickedRecipe');
-const closeRecipeButton = document.querySelector('#closeRecipe');
+const closeRecipeButtons = document.querySelectorAll('.close-btn');
 const tagArea = document.querySelector('.tag-area');
-const ingredientsList = document.querySelector('#ingredientsList');
+const ingredientsList = document.querySelector('.ingredients-list');
 const chooseView = document.querySelector('.choose-view')
 const ourViewBtn = document.querySelector("#our-recipes");
 const yourViewBtn = document.querySelector("#your-recipes");
@@ -48,6 +51,8 @@ const homeBtn = document.querySelector('#homeBtn');
 const modalAddBtn = document.querySelector('.add-recipe');
 const modalRemoveBtn = document.querySelector('.remove-recipe');
 const modalRecipeBtns = document.querySelectorAll('.modal-recipe-btn');
+const leftArrow = document.querySelector('.left-arrow');
+const rightArrow = document.querySelector('.right-arrow');
 
 //FUNCTIONS 
 const getRecipeCard = (recipe) => {
@@ -80,6 +85,10 @@ window.addEventListener("load", () => {
   loadData();
 });
 
+window.addEventListener('resize', () => {
+  renderGrid(pageData.recipesOfInterest)
+})
+
 allRecipes.addEventListener('click', (event) => {
   updateRecipesFromGrid(event);
 })
@@ -96,6 +105,22 @@ tagArea.addEventListener("click", function(event) {
   };
 });
 
+leftArrow.addEventListener('click', () => {
+  tagArea.scrollBy({
+    top: 0,
+    left: -200,
+    behavior: "smooth",
+  })
+})
+
+rightArrow.addEventListener('click', () => {
+  tagArea.scrollBy({
+    top: 0,
+    left: 200,
+    behavior: "smooth",
+  })
+})
+
 recipeGrid.addEventListener("click", (event) => {
   if (event.target.classList?.contains('individual-recipe') && !checkIfModalOpen()) {
     showRecipe(event.target);
@@ -108,7 +133,7 @@ recipeGrid.addEventListener("mouseover", (event) => {
   }
 });
 
-closeRecipeButton.addEventListener("click", closeRecipe);
+closeRecipeButtons.forEach(btn => btn.addEventListener("click", closeRecipe));
 
 chooseView.addEventListener("click", function(event) {
   if (event.target.classList.contains("unselected-view")) {
@@ -145,5 +170,7 @@ export {
   searchBar,
   modalAddBtn, 
   modalRemoveBtn,
-  body
+  body,
+  leftArrow,
+  rightArrow
 }

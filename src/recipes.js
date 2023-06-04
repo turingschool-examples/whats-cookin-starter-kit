@@ -98,12 +98,6 @@ const addInfoToTags = tags => {
   })
 }
 
-const splitTagsInRows = tagsAndIcons => {
-  const topRow = tagsAndIcons.filter(tag => tag.row === 1);
-  const bottomRow = tagsAndIcons.filter(tag => tag.row === 0);
-  return [topRow, bottomRow];
-}
-
 const populateTags = (recipes) => {
   const tagData = getUniqueTagsFromRecipes(recipes);
   const refinedTagData =  addInfoToTags(tagData);
@@ -130,7 +124,6 @@ export {
   findRecipe, 
   checkSavedStatus,
   populateTags,
-  splitTagsInRows,
   getUniqueTagsFromRecipes,
   addInfoToTags,
   sortByHits

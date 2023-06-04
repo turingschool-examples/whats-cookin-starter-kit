@@ -24,7 +24,6 @@ import {
   searchRecipes,
   findRecipe,
   checkSavedStatus,
-  splitTagsInRows,
   getUniqueTagsFromRecipes,
   addInfoToTags,
   sortByHits
@@ -236,16 +235,6 @@ describe('filterRecipesByTag', () => {
   let filteredRecipes;
   let nameSearched;
   let ingredientSearched;
-
-  it ('should split tags in rows', () => {
-    const tag1 = {row: 1};
-    const tag2 = {row: 0};
-    const tag3 = {row: 1};
-    const topRow = [tag1, tag3];
-    const bottomRow = [tag2];
-    const rows = splitTagsInRows([tag1, tag2, tag3]);
-    expect(rows).to.deep.equal([topRow, bottomRow]);
-  });
 
   it('should filter list of recipes based on single tag', () => {
     expectedRecipes = [sampleRecipeData[0]];
