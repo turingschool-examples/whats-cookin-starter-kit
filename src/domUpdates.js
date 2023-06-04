@@ -294,7 +294,7 @@ const showRecipe = (recipeCard) => {
 
 const openInfoPanel = (infoType) => {
   let thisPanel;
-  if (infoType.id === 'graph-button') {
+  if (infoType.id === 'graphButton') {
     thisPanel = graphPanel;
     thisPanel.classList.toggle('hidden');
     makeRecipeClickChart();

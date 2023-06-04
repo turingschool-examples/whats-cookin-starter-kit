@@ -54,8 +54,8 @@ const refreshBtn = document.querySelector('#refresh-button');
 const modalAddBtn = document.querySelector('.add-recipe');
 const modalRemoveBtn = document.querySelector('.remove-recipe');
 const modalRecipeBtns = document.querySelectorAll('.modal-recipe-btn');
-const graphPanel = document.querySelector("#graph-panel");
-const graphBtn = document.querySelector("#graph-button");
+const graphPanel = document.querySelector("#graphPanel");
+const graphBtn = document.querySelector("#graphButton");
 const leftArrow = document.querySelector('.left-arrow');
 const rightArrow = document.querySelector('.right-arrow');
 
