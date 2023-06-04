@@ -1,6 +1,13 @@
 //IMPORTS 
 import { getRandomUser } from "./users";
-import { pageLoadRenders, hideSpinner, toggleSavedButtons, renderTagsAfterFetch } from "./domUpdates";
+import {
+  pageLoadRenders,
+  hideSpinner,
+  toggleSavedButtons,
+  renderTagsAfterFetch,
+  checkIfModalOpen,
+  showError
+ } from "./domUpdates";
 import { copyItem } from "./helper-functions";
 import { populateTags } from './recipes';
 // import { config } from "../config.js"
@@ -31,16 +38,15 @@ const updateRecipe = (userID, recipeID, request) => {
   }})
 }
 
-const getUsersAfterUpdate = (userID, recipeID, e) => {
+const getUsersAfterUpdate = (userID, recipeID, e, errorMessage) => {
   return getUsers()
           .then(response => {
-            if(response.message) {console.log("get response",response.message)}
             return response.json();
           })
           .then(data => {
             const foundUser = data.users.find(user => user.id === userID);
             currentUser = foundUser;
-            toggleSavedButtons(e, recipeID, currentUser);
+            toggleSavedButtons(e, recipeID, currentUser, errorMessage);
             renderTagsAfterFetch();
           })
           .catch(err => console.error(err))
@@ -69,8 +75,11 @@ const patchHits = (recipe) => {
       'Content-Type': 'application/json'
     }
   })
-    .then(res => res.json())
-    .then(() => {
+    .then(res => {
+      return res.json()
+    })
+    .then((status) => {
+      if (!status.message.includes("Success")) console.log(status.message)
       getRecipes()
         .then(res => res.json())
         .then(data => {
@@ -106,22 +115,24 @@ const updateCurrentUser = (user) => {
   currentUser = user;
 };
 
-const postRecipeToCook = (userID, recipeID, e) => {
-  updateRecipe(userID, recipeID, "POST")
-    .then((res) => {
-      if (res.message) {console.log("post response", res.message)}
+const updateServerRecipe = (userID, recipeID, e, requestType) => {
+  const conditions = {
+    "POST": 'added',
+    "DELETE": 'removed'
+  }
+  updateRecipe(userID, recipeID, requestType)
+  .then((res) => res.json())
+  .then(status => {
+    if (status.message.includes(`was ${conditions[requestType]}`)) {
       getUsersAfterUpdate(userID, recipeID, e);
-    })
-    .catch(err => console.error(err));
-}
-
-const deleteRecipeToCook = (userID, recipeID, e) => {
-  updateRecipe(userID, recipeID, "DELETE")
-    .then((res) => {
-      if (res.message) {console.log("delete response", res.message)}
-      getUsersAfterUpdate(userID, recipeID, e);
-    })
-    .catch(err => console.error(err));
+    } else {
+      showError(recipeID)
+    }
+  })
+  .catch(err => {
+    showError(recipeID);
+    console.error(err);
+  });
 }
 
 // Chat GPT Extension 
@@ -156,4 +167,4 @@ const getChatGPTRecipePitches = (allRecipes) => {
   });
 }
 
-export { currentUser, pageData, updateCurrentUser, loadData, patchHits, postRecipeToCook, deleteRecipeToCook };
+export { currentUser, pageData, updateCurrentUser, loadData, patchHits, updateServerRecipe };
