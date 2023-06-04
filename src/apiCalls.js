@@ -122,12 +122,12 @@ const postRecipeToCook = (userID, recipeID, e) => {
       if (status.message.includes("was added")) {
         getUsersAfterUpdate(userID, recipeID, e);
       } else {
-        showError()
+        showError(recipeID)
       }
     })
     .catch(err => {
+      showError(recipeID);
       console.error(err);
-      showError();
     });
 }
 
@@ -138,12 +138,12 @@ const deleteRecipeToCook = (userID, recipeID, e) => {
       if (status.message.includes("was added")) {
         getUsersAfterUpdate(userID, recipeID, e);
       } else {
-        showError();
+        showError(recipeID);
       }
     })
     .catch(err => {
+      showError(recipeID);
       console.error(err)
-      showError();
     });
 }
 

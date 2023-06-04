@@ -424,7 +424,7 @@ const updateRecipesFromModal = (e) => {
 
 const checkIfModalOpen = () => allRecipes.classList.contains('blur')
 
-const showError = () => {
+const showError = (recipeID) => {
   if (checkIfModalOpen()){
     showModalFeedback("Something went wrong")
   } else {
