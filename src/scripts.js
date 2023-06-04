@@ -54,8 +54,8 @@ const refreshBtn = document.querySelector('#refresh-button');
 const modalAddBtn = document.querySelector('.add-recipe');
 const modalRemoveBtn = document.querySelector('.remove-recipe');
 const modalRecipeBtns = document.querySelectorAll('.modal-recipe-btn');
-const settingsPanel = document.querySelector("#settingsPanel");
-const settingsBtn = document.querySelector("#settings");
+const graphPanel = document.querySelector("#graph-panel");
+const graphBtn = document.querySelector("#graph-button");
 const leftArrow = document.querySelector('.left-arrow');
 const rightArrow = document.querySelector('.right-arrow');
 
@@ -161,7 +161,7 @@ searchBar.addEventListener('search', (event) => {
 searchBtn.addEventListener('click', searchForRecipes);
 whatsCookin.addEventListener('click', returnHome);
 refreshBtn.addEventListener('click', returnHome);
-settingsBtn.addEventListener('click', (e) => {
+graphBtn.addEventListener('click', (e) => {
   openInfoPanel(e.target);
 });
 
@@ -184,7 +184,7 @@ export {
   modalRemoveBtn,
   nav,
   body,
-  settingsPanel,
+  graphPanel,
   leftArrow,
   rightArrow
 }

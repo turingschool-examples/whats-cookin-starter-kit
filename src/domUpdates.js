@@ -16,7 +16,7 @@ import {
   getRecipeCard,
   body,
   nav,
-  settingsPanel,
+  graphPanel,
   leftArrow,
   rightArrow
 } from './scripts'
@@ -294,8 +294,8 @@ const showRecipe = (recipeCard) => {
 
 const openInfoPanel = (infoType) => {
   let thisPanel;
-  if (infoType.id === 'settings') {
-    thisPanel = settingsPanel;
+  if (infoType.id === 'graph-button') {
+    thisPanel = graphPanel;
     thisPanel.classList.toggle('hidden');
     makeRecipeClickChart();
   } else {
