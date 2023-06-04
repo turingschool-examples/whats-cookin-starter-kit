@@ -29,6 +29,7 @@ const makeRecipeClickChart = () => {
                     }
                 },
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     legend: {
                         position: 'right',

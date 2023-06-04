@@ -435,6 +435,12 @@ h3 {
   align-items: flex-start;
 }
 
+#chartContainer {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
 .info-panel {
   position: fixed;
   justify-content: center;
