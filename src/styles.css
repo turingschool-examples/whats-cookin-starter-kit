@@ -525,7 +525,7 @@ input[type=checkbox] {
   color: #fbbf83;
   font-size: 1em;
   opacity: 0;
-  max-width: 170px;
+  min-width: 170px;
 }
 
 .show-feedback {
