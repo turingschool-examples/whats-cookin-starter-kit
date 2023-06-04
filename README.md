@@ -17,15 +17,17 @@ We are also implimenting TDD or test driven development for the first time on a 
 ![whatscookingif](https://github.com/Jade-ZS/whats-cooking/assets/118419729/8f02d80d-d415-43ec-ad2f-ae90b68fdd05)
 
 ## Set Up
-1. Fork and/or clone this repository down by opening the terminal on your local machine and run the command:
-`git clone git@github.com:Jade-ZS/whats-cooking.git`
-
-2. In the terminal, run the command `npm install` to install dependancies.
-
-3. In the terminal, run the commant `npm start` to start the application and go to the browser and type "localhost:8080" to view the application. 
-    - to exit the application, enter the command: control + c to stop the server!
-
-    You can also view the application here: [come back and put link!]
+1. Clone the api respository for this project by doing the followings:
+    - In ther terminal clone down this repository for the API endpoits by typing in the command: `git clone git@github.com:turingschool-examples/whats-cookin-api.git` 
+    - Run the command `cd whats-cookin-api` to get inside the api folder, and then run `npm install` to install depencies
+    - Start the api local server by running the command `npm start` 
+    
+2. Fork and/or clone this repository down by following these steps
+    - Open the terminal on your local machine and run the command `git clone git@github.com:Jade-ZS/whats-cooking.git`
+    - Run the command `npm install` to install dependancies.
+    - In the terminal, run the commant `npm start` to start the application and go to the browser and type "localhost:8080" to view the application. 
+        - to exit the application, enter the command: control + c to stop the server!
+        - You can also view the application here: <a href="https://jade-zs.github.io/whats-cooking/"> Linked here </a>
 
 3. Click on the bookmark icons to save recipes. Click on any of the recipe cards to bring up the infomation on each recipe. Use the search bar to search recipes by tag or by name.
 
