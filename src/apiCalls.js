@@ -115,37 +115,24 @@ const updateCurrentUser = (user) => {
   currentUser = user;
 };
 
-const postRecipeToCook = (userID, recipeID, e) => {
-  updateRecipe(userID, recipeID, "POST")
-    .then((res) => res.json())
-    .then(status => {
-      if (status.message.includes("was added")) {
-        getUsersAfterUpdate(userID, recipeID, e);
-      } else {
-        showError(recipeID)
-      }
-    })
-    .catch(err => {
-      showError(recipeID);
-      console.error(err);
-    });
-}
-
-const deleteRecipeToCook = (userID, recipeID, e) => {
-  updateRecipe(userID, recipeID, "DELETE")
-    .then((res) => res.json())
-    .then(status => {
-      if (status.message.includes("was removed")) {
-        console.log("here")
-        getUsersAfterUpdate(userID, recipeID, e);
-      } else {
-        showError(recipeID);
-      }
-    })
-    .catch(err => {
-      showError(recipeID);
-      console.error(err)
-    });
+const updateServerRecipe = (userID, recipeID, e, requestType) => {
+  const conditions = {
+    "POST": 'added',
+    "DELETE": 'removed'
+  }
+  updateRecipe(userID, recipeID, requestType)
+  .then((res) => res.json())
+  .then(status => {
+    if (status.message.includes(`was ${conditions[requestType]}`)) {
+      getUsersAfterUpdate(userID, recipeID, e);
+    } else {
+      showError(recipeID)
+    }
+  })
+  .catch(err => {
+    showError(recipeID);
+    console.error(err);
+  });
 }
 
 // Chat GPT Extension 
@@ -180,4 +167,4 @@ const getChatGPTRecipePitches = (allRecipes) => {
   });
 }
 
-export { currentUser, pageData, updateCurrentUser, loadData, patchHits, postRecipeToCook, deleteRecipeToCook };
+export { currentUser, pageData, updateCurrentUser, loadData, patchHits, updateServerRecipe };
