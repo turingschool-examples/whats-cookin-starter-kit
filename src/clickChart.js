@@ -16,8 +16,8 @@ const makeRecipeClickChart = () => {
                     {
                         label: 'Hits',
                         data: sortedRecipes.map(recipe => recipe.hits),
-                        borderColor: 'red',
-                        backgroundColor: 'red',
+                        borderColor: '#fbbf83',
+                        backgroundColor: '#fbbf83',
                     }
                 ]
             },
