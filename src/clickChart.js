@@ -5,12 +5,12 @@ import { sortByHits } from './recipes';
 const makeRecipeClickChart = () => {
     const chartContainer = document.querySelector('#chartContainer');
     chartContainer.innerHTML = `<canvas id="clickChart"></canvas>`;
-    const sortedRecipes = sortByHits(pageData.allRecipes).slice(0, 9);
+    const sortedRecipes = sortByHits(pageData.allRecipes).slice(0, 10);
     new Chart(document.querySelector('#clickChart'),
         {
             type: 'bar',
             data: {
-                labels: sortedRecipes.map(recipe => splitLabelLength(recipe.name)),
+                labels: sortedRecipes.map(recipe => splitRecipeName(recipe.name)),
                 fontColor: 'white',
                 datasets: [
                     {
@@ -36,7 +36,7 @@ const makeRecipeClickChart = () => {
                     },
                     title: {
                         display: true,
-                        text: 'Recipes by Number of Clicks',
+                        text: 'Top 10 Recipes by Clicks',
                         font: {
                             size: 40
                         },
@@ -67,12 +67,23 @@ const makeRecipeClickChart = () => {
     );
 }
 
-const splitLabelLength = (recipeName) => {
-    if (recipeName.split(' ').length > 3) {
-        return recipeName.match(/\b[\w']+(?:[^\w\n]+[\w']+){0,2}\b/g);
-    } else {
-        return recipeName;
+const splitRecipeName = recipeName => {
+    const splitRecipeName = recipeName.split(" ");
+    const recipeNameArray = [];
+    let threeWordString;
+    const numberOfWords = splitRecipeName.length;
+
+    for (var i = 0; i < numberOfWords/3; i++) {
+        if (!splitRecipeName.length < 3) {
+            threeWordString = splitRecipeName.splice(0,3).join(" ");
+        } else {
+            threeWordString = splitRecipeName.splice(0, splitRecipeName.length - 1).join(" ");
+        }
+
+        recipeNameArray.push(threeWordString);
     }
+
+    return recipeNameArray;
 }
 
 export { makeRecipeClickChart }
