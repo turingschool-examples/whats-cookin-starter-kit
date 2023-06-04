@@ -1,6 +1,6 @@
 //IMPORTS
 import './styles.css'
-import { closeRecipe, showRecipe, switchView, searchForRecipes, returnHome, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, checkIfModalOpen } from './domUpdates';
+import { closeRecipe, showRecipe, switchView, searchForRecipes, returnHome, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, checkIfModalOpen, renderGrid } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 import './images/antipasti.png';
 import './images/antipasto.png'
