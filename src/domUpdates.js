@@ -1,5 +1,5 @@
 // Imports
-import { pageData, currentUser, updateCurrentUser, patchHits } from './apiCalls';
+import { pageData, currentUser, patchHits } from './apiCalls';
 import {
   recipeGrid,
   spinner,
@@ -14,11 +14,13 @@ import {
   modalRemoveBtn,
   getPageRecipes, 
   getRecipeCard,
-  nav,
   body,
-  settingsPanel
+  nav,
+  settingsPanel,
+  leftArrow,
+  rightArrow
 } from './scripts'
-import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, splitTagsInRows, filterTagsByTagName } from './recipes';
+import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, filterTagsByTagName, sortByHits  } from './recipes';
 import { updateRecipesToCook } from './users';
 import { makeRecipeClickChart } from './clickChart';
 import { copyItem, toggleViewBtns } from './helper-functions';
@@ -31,9 +33,15 @@ const makeRecipeColumnData = (data) => {
     if (recipe.pitch) {
       thisPitch = `${recipe.pitch} ${thisPitch}`;
     }
+    let columns = 3; 
+    if(window.innerWidth < 1000) {
+      columns = 1; 
+    } else if (window.innerWidth < 1300) {
+      columns = 2;
+    } 
 
     return {
-      column: (index+1) % 3,
+      column: (index+1) % columns,
       id: recipe.id,
       image: recipe.image,
       name: recipe.name,
@@ -103,10 +111,19 @@ const createGridHTML = allColumns => {
   return htmlCode;
 }
 
+const updateIngredientLayout = () => {
+  if(window.innerWidth < 1000) {
+    addScrollBar('.ingredients-list')
+  } else {
+    ingredientsList.classList.remove('scrollbar')
+  }
+}
+
 const renderGrid = (data) => {
   const gridData = makeRecipeColumnData(data);
   recipeGrid.innerHTML = '';
   recipeGrid.innerHTML = createGridHTML(gridData);
+  updateIngredientLayout();
 }
 
 const createModalTagHTML = tag => {
@@ -139,39 +156,11 @@ const createTagCardHTML = tag => {
   return htmlCode;
 }
 
-const createTagRowHTML = row => {
-  let rowNumber;
-
-  if (row.length === 10) {
-    rowNumber = "row-one";
-  } else {
-    rowNumber = "row-two";
-  };
-
-  let htmlCode = '';
-  htmlCode += `<div class="tag-row ${rowNumber}">`;
-  row.forEach(tag => {
-    htmlCode += createTagCardHTML(tag);
-  });
-  htmlCode += `</div>`;
-  return htmlCode;
-};
-
-const createTagAreaHTML = rows => {
-  let htmlCode = '';
-  htmlCode += '<div class="tag-rows">';
-
-  rows.forEach(row => {
-    htmlCode += createTagRowHTML(row);
-  });
-
-  htmlCode += '</div>';
-  return htmlCode;
-};
-
 const renderTagArea = () => {
-  const tagRows = splitTagsInRows(pageData.allTags);
-  const htmlCode = createTagAreaHTML(tagRows);
+  let htmlCode = '';
+  pageData.allTags.forEach(tag => {
+    htmlCode += createTagCardHTML(tag)
+  })
   tagArea.innerHTML = htmlCode;
 };
 
@@ -194,6 +183,7 @@ const toggleTagData = (tagID) => {
 const pageLoadRenders = (data) => {
   renderGrid(data);
   renderTagArea();
+  [leftArrow, rightArrow].forEach(arrow => arrow.classList.remove('hidden'))
 };
 
 const getInstructionHTML = (recipe) => {
@@ -219,7 +209,7 @@ const populateInstructions = (recipe) => {
   const instructions = getInstructionHTML(recipe);
   const instructionSection= document.querySelector('#recipeInstructions')
   instructionSection.innerHTML = `
-    <p>Directions</p>
+    <p class="instructions-header">Directions</p>
     <section class='instruction-steps'>
       ${instructions.join('')}
     </section>

@@ -24,9 +24,13 @@
         <section class="view-button selected-view" id="our-recipes"> Our Recipes </section>
         <section class="view-button unselected-view" id="your-recipes">Your recipes</section>
       </section>
-      <section class = "tag-area"> 
-        <!-- Tags appear here  -->
-      </section>
+      <div class="tag-scroll-area">        
+        <img role="button" class="left-arrow arrows hidden" src="./images/left-arrow.png" alt="left arrow button">
+        <section class = "tag-area tag-scrollbar"> 
+          <!-- Tags appear here  -->
+        </section>
+        <img role="button" class="right-arrow arrows hidden" src="./images/right-arrow.png" alt="right arrow button">
+      </div>
       <article class="recipe-grid">
         <!-- grid appears here -->
       </article>
@@ -41,20 +45,24 @@
           <button class="remove-recipe modal-recipe-btn hidden" id="remove">
             <img class="bookmark-img" src="./images/select-bookmark-icon.png" id="remove">
           </button>
+          <img class="close-btn" id="closeRecipeSmall" src="delete.png"></img>
           <p class="modal-feedback"></p>
         </div>
         <div id="recipeName"></div>
         <article id="recipeInstructions">
+          <!-- recipe instructions will appear here -->
         </article>
       </section>
       <section class="recipe-details" id="recipeRightSide">
-        <img id="closeRecipe" class="close-button" src="delete.png"></img>
+        <img  class="close-btn" id="closeRecipe" src="delete.png"></img>
         <h3>Ingredients</h3>
-        <div id="ingredientsList"></div>
+        <div class="ingredients-list">
+          <!-- recipe ingredients will appear here  -->
+        </div>
       </section>
     </section>
     <section id="settingsPanel" class="info-panel hidden">
-      <img id="closeSettings" class="close-button" src="delete.png"></img>
+      <img id="closeSettings" class="close-btn" src="delete.png"></img>
       <div id="chartContainer"></div>
     </section>
   </body>
