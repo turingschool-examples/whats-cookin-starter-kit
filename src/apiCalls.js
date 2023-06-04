@@ -46,8 +46,8 @@ const getUsersAfterUpdate = (userID, recipeID, e, errorMessage) => {
           .then(data => {
             const foundUser = data.users.find(user => user.id === userID);
             currentUser = foundUser;
-            toggleSavedButtons(e, recipeID, currentUser, errorMessage);
             renderTagsAfterFetch();
+            toggleSavedButtons(e, recipeID, currentUser, errorMessage);
           })
           .catch(err => console.error(err))
 }
