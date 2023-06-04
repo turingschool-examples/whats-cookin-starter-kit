@@ -2,7 +2,9 @@
 import './styles.css'
 import { closePanel, showRecipe, switchView, searchForRecipes, returnHome, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, openInfoPanel, checkIfModalOpen, renderGrid } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
-import './images/antipasti.png';
+import './images/graph.png'
+import './images/refresh.png'
+import './images/antipasti.png'
 import './images/antipasto.png'
 import './images/appetizer.png'
 import './images/breakfast.png'
@@ -48,12 +50,12 @@ const yourViewBtn = document.querySelector("#your-recipes");
 const searchBar = document.querySelector('#searchBar');
 const searchBtn = document.querySelector('#searchBtn');
 const whatsCookin = document.querySelector('nav > h1');
-const homeBtn = document.querySelector('#homeBtn');
+const refreshBtn = document.querySelector('#refreshButton');
 const modalAddBtn = document.querySelector('.add-recipe');
 const modalRemoveBtn = document.querySelector('.remove-recipe');
 const modalRecipeBtns = document.querySelectorAll('.modal-recipe-btn');
-const settingsPanel = document.querySelector("#settingsPanel");
-const settingsBtn = document.querySelector("#settings");
+const graphPanel = document.querySelector("#graphPanel");
+const graphBtn = document.querySelector("#graphButton");
 const leftArrow = document.querySelector('.left-arrow');
 const rightArrow = document.querySelector('.right-arrow');
 
@@ -158,8 +160,8 @@ searchBar.addEventListener('search', (event) => {
 
 searchBtn.addEventListener('click', searchForRecipes);
 whatsCookin.addEventListener('click', returnHome);
-homeBtn.addEventListener('click', returnHome);
-settingsBtn.addEventListener('click', (e) => {
+refreshBtn.addEventListener('click', returnHome);
+graphBtn.addEventListener('click', (e) => {
   openInfoPanel(e.target);
 });
 
@@ -182,7 +184,7 @@ export {
   modalRemoveBtn,
   nav,
   body,
-  settingsPanel,
+  graphPanel,
   leftArrow,
   rightArrow
 }

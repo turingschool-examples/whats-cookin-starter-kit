@@ -429,7 +429,7 @@ h3 {
   filter: blur(4px);
 }
 
-#settingsPanel {
+#graphPanel {
   flex-direction: column;
   justify-content: normal;
   align-items: flex-start;
@@ -666,7 +666,7 @@ input[type=checkbox] {
   cursor: pointer;
 }
 
-#closeSettings {
+#closeGraph {
   background-color: rgba(255, 255, 255, 0.438);
   border-radius: 50px;
   margin-right: 20px;
@@ -674,7 +674,7 @@ input[type=checkbox] {
   padding: 5px;
 }
 
-#closeSettings:hover {
+#closeGraph:hover {
   background-color: rgb(255, 255, 255);
 }
 
