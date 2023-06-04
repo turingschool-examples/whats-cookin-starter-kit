@@ -50,7 +50,7 @@ const yourViewBtn = document.querySelector("#your-recipes");
 const searchBar = document.querySelector('#searchBar');
 const searchBtn = document.querySelector('#searchBtn');
 const whatsCookin = document.querySelector('nav > h1');
-const homeBtn = document.querySelector('#homeBtn');
+const refreshBtn = document.querySelector('#refresh-button');
 const modalAddBtn = document.querySelector('.add-recipe');
 const modalRemoveBtn = document.querySelector('.remove-recipe');
 const modalRecipeBtns = document.querySelectorAll('.modal-recipe-btn');
@@ -160,7 +160,7 @@ searchBar.addEventListener('search', (event) => {
 
 searchBtn.addEventListener('click', searchForRecipes);
 whatsCookin.addEventListener('click', returnHome);
-homeBtn.addEventListener('click', returnHome);
+refreshBtn.addEventListener('click', returnHome);
 settingsBtn.addEventListener('click', (e) => {
   openInfoPanel(e.target);
 });
