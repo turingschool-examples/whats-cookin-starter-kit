@@ -674,7 +674,7 @@ input[type=checkbox] {
   padding: 5px;
 }
 
-#close-graph:hover {
+#closeGraph:hover {
   background-color: rgb(255, 255, 255);
 }
 
