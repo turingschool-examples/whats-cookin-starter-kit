@@ -14,7 +14,11 @@ As Mod 2 students in the Turing front end program, our learning goals were to fu
 We are also implimenting TDD or test driven development for the first time on a group project, so the goal was to create thourough tests for our functions that do not involve DOM manipulation or api calls.
 
 ## Project Preview
-![whatscookingif](https://github.com/Jade-ZS/whats-cooking/assets/118419729/8f02d80d-d415-43ec-ad2f-ae90b68fdd05)
+![ezgif com-video-to-gif (1)](https://github.com/Jade-ZS/whats-cooking/assets/123792434/fc00e4c4-febd-440c-9739-43c79ffa533b)
+![ezgif com-video-to-gif (2)](https://github.com/Jade-ZS/whats-cooking/assets/123792434/ad6efea6-0fa7-44e8-9889-468ac1341615)
+![ezgif com-video-to-gif (3)](https://github.com/Jade-ZS/whats-cooking/assets/123792434/80cd82f0-c345-404a-b53c-d6b134635ad2)
+![ezgif com-video-to-gif (4)](https://github.com/Jade-ZS/whats-cooking/assets/123792434/3419d798-f522-4f00-9d14-eddea4ed1dae)
+
 
 ## Set Up
 1. Clone the api respository for this project by doing the followings:
@@ -27,8 +31,7 @@ We are also implimenting TDD or test driven development for the first time on a 
     - Run the command `npm install` to install dependancies.
     - In the terminal, run the commant `npm start` to start the application and go to the browser and type "localhost:8080" to view the application. 
         - to exit the application, enter the command: control + c to stop the server!
-        - You can also view the application here: <a href="https://jade-zs.github.io/whats-cooking/"> Linked here </a>
 
-3. Click on the bookmark icons to save recipes. Click on any of the recipe cards to bring up the infomation on each recipe. Use the search bar to search recipes by tag or by name.
+3. Click on the bookmark icons to save (or unsave) recipes. Click on any of the recipe cards to bring up the infomation on each recipe. Use the search bar to search recipes by tag or by name. Click happy or sad faces to like or dislike a recipe.
 
 4. TESTING: to check testing, run the command `npm test` in the terminal.
