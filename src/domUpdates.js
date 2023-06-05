@@ -447,12 +447,10 @@ const updateRecipesFromGrid = (e) => {
 }
 
 const updateRecipesFromModal = (e) => {
-  if (e.target.classList.contains('bookmark-img')) {
-    const change = e.target.id
-    const recipeID = pageData.currentRecipeCard.id;
-    const recipe = findRecipe(pageData.allRecipes, recipeID);
-    updateRecipesToCook(e, recipe, change);
-  }
+  const change = e.target.id
+  const recipeID = pageData.currentRecipeCard.id;
+  const recipe = findRecipe(pageData.allRecipes, recipeID);
+  updateRecipesToCook(e, recipe, change);
 }
 
 const checkIfModalOpen = () => allRecipes.classList.contains('blur')
