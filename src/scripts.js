@@ -1,6 +1,6 @@
 //IMPORTS
 import './styles.css'
-import { closePanel, showRecipe, switchView, searchForRecipes, returnHome, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, openInfoPanel, checkIfModalOpen, renderGrid } from './domUpdates';
+import { closePanel, showRecipe, switchView, searchForRecipes, returnHome, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, openInfoPanel, checkIfModalOpen, renderGrid, showFeedback } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 import './images/graph.png'
 import './images/refresh.png'
@@ -95,7 +95,9 @@ window.addEventListener('resize', () => {
 })
 
 allRecipes.addEventListener('click', (event) => {
-  updateRecipesFromGrid(event);
+  if (event.target.classList.contains("save-option")) {
+    updateRecipesFromGrid(event);
+  }
 })
 
 modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {

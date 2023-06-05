@@ -6,7 +6,8 @@ import {
   toggleSavedButtons,
   renderTagsAfterFetch,
   checkIfModalOpen,
-  showError
+  showError,
+  showFeedback
  } from "./domUpdates";
 import { copyItem } from "./helper-functions";
 import { populateTags } from './recipes';
@@ -48,6 +49,7 @@ const getUsersAfterUpdate = (userID, recipeID, e, errorMessage) => {
             currentUser = foundUser;
             renderTagsAfterFetch();
             toggleSavedButtons(e, recipeID, currentUser, errorMessage);
+            showFeedback(currentUser, recipeID)
           })
           .catch(err => console.error(err))
 }
