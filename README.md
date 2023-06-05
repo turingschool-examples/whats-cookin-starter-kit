@@ -11,11 +11,11 @@ Javascript | HTML | CSS | REST API
 </div>
 
 ## Abstract: 
-This is a recipe website that uses the fetch API to display information about a variety of recipes. This web app also allows searching recipes by name, ingredients, tags, and allows users to save their favorite recipes! This is a collaborative project, created to ensure cohesive usage of newly learned concepts such as Rest APIs and array prototype methods.
+This is a recipe website that uses the fetch API to display information about a variety of recipes. This web app also allows searching recipes by name, ingredients, tags, and allows users to save their favorite recipes! This is a collaborative project, created to ensure cohesive usage of newly learned concepts such as Rest APIs, and array prototype methods to implement CRUD functionality. 
 ### User Stories: 
 - Users can click on a recipe to view more information.
 - Users are able to save recipes from the main landing page as well as from inside the recipe display.
-- Users are able to click on the settings to view a graph representing which recipes are most popular across multiple users. 
+- Users are able to view a graph representing which recipes are most popular across multiple users. 
 ### Technical pointers: 
 - The data for this website is fetched from an API endpoint. 
 - Recipe display is responsive across, small, medium, and large screens, including cell phones and tablets. 
@@ -25,15 +25,17 @@ This is a recipe website that uses the fetch API to display information about a 
 ## Installation Instructions 
 - In order for this application to function, it will require accessing both our backend server repository as well as our front-end repository. 
 
+### Server Setup
 - Fork [this](https://github.com/lauraguerra1/whats-cookin-api) repository. 
 - Clone it to your local machine using the command: `git clone git@github.com:lauraguerra1/whats-cookin-api.git`.
 - Run the command: `cd whats-cookin-api`
 - Run the command: `npm install`
 - Run the command: `npm start`
 
+<br>
 
+### Client App Setup
 - Open a separate tab in your terminal using `command T`
-
 - Fork [this](https://github.com/lauraguerra1/whats-cookin) repository. 
 - Clone it to your local machine using the command: `git clone git@github.com:lauraguerra1/whats-cookin.git`.
 - Run the command: `cd whats-cookin`
@@ -43,11 +45,18 @@ This is a recipe website that uses the fetch API to display information about a 
 
 
 ## Preview of App:
-Desktop:
+
+### Cell Phone Display: 
+
+
+![whats cookin gif for cell phone](https://user-images.githubusercontent.com/121131581/243466673-6b7b8534-feb7-4e0e-82b3-30c5ae89a772.gif)
+
+<br>
+
+### Desktop Display:
+
 ![whats-cookin gif](https://user-images.githubusercontent.com/121131581/243463414-55dc4ba2-79a0-40f6-8642-09d9001f66b3.gif)
 
-Cell Phone: 
-![whats cookin gif for cell phone](https://user-images.githubusercontent.com/121131581/243466673-6b7b8534-feb7-4e0e-82b3-30c5ae89a772.gif)
 
 
 ## Context: 
