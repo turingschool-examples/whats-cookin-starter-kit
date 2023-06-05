@@ -210,7 +210,7 @@ const populateInstructions = (recipe) => {
   const instructionSection= document.querySelector('#recipeInstructions')
   instructionSection.innerHTML = `
     <p class="instructions-header">Directions</p>
-    <section class='instruction-steps'>
+    <section tabindex="0" class='instruction-steps'>
       ${instructions.join('')}
     </section>
   `;
