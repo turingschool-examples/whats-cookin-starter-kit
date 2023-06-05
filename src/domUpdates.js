@@ -1,5 +1,5 @@
 // Imports
-import { pageData, currentUser, updateCurrentUser } from './apiCalls';
+import { pageData, currentUser, patchHits } from './apiCalls';
 import {
   recipeGrid,
   spinner,
@@ -12,12 +12,17 @@ import {
   yourViewBtn,
   modalAddBtn, 
   modalRemoveBtn,
-  getPageData, 
+  getPageRecipes, 
   getRecipeCard,
-  body
+  body,
+  nav,
+  graphPanel,
+  leftArrow,
+  rightArrow
 } from './scripts'
-import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, splitTagsInRows, filterTagsByTagName  } from './recipes';
+import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, filterTagsByTagName, sortByHits  } from './recipes';
 import { updateRecipesToCook } from './users';
+import { makeRecipeClickChart } from './clickChart';
 import { copyItem, toggleViewBtns } from './helper-functions';
 
 // functions
@@ -28,9 +33,15 @@ const makeRecipeColumnData = (data) => {
     if (recipe.pitch) {
       thisPitch = `${recipe.pitch} ${thisPitch}`;
     }
+    let columns = 3; 
+    if(window.innerWidth < 1000) {
+      columns = 1; 
+    } else if (window.innerWidth < 1300) {
+      columns = 2;
+    } 
 
     return {
-      column: (index+1) % 3,
+      column: (index+1) % columns,
       id: recipe.id,
       image: recipe.image,
       name: recipe.name,
@@ -57,28 +68,28 @@ const createSingleRecipeHTML = singleRecipe => {
       removeStatus = '';
     }
   }
-  htmlCode += 
-  `
+  htmlCode += `
   <article class="individual-recipe-container">
     <section class="add-panel panel save-option ${addStatus}">
       <div class="plus-symbol symbol save-option">+</div>
-      <h3 class="save-option"> Add to recipes to cook</h3>
+      <h3 class="save-option"> Add to recipes to cook</h4>
     </section>
     <section class="remove-panel panel save-option ${removeStatus}">
       <div class="minus-symbol synmbol save-option ">-</div>
-      <h3 class="save-option"> Remove from recipes to cook</h3>
+      <h3 class="save-option"> Remove from recipes to cook</h4>
     </section>
     <article class="individual-recipe" id="${singleRecipe.id}">
+      <p class="grid-feedback"> Saved! </p>
       <div class="recipe-image-div">
         <img class="recipe-image"src="${singleRecipe.image}" alt="${singleRecipe.name}">
-        <div class="hover-card"> 
-          <h3>${singleRecipe.pitch}</h3>
-        </div>               
+        <div class="hover-card">
+          <h4>${singleRecipe.pitch}</h4>
+        </div>
       </div>
       <h2>${singleRecipe.name}</h2>
     </article>
   </article>
-  `;
+`;
   return htmlCode
 }
 
@@ -100,20 +111,29 @@ const createGridHTML = allColumns => {
   return htmlCode;
 }
 
+const updateIngredientLayout = () => {
+  if(window.innerWidth < 1000) {
+    addScrollBar('.ingredients-list')
+  } else {
+    ingredientsList.classList.remove('scrollbar')
+  }
+}
+
 const renderGrid = (data) => {
   const gridData = makeRecipeColumnData(data);
   recipeGrid.innerHTML = '';
   recipeGrid.innerHTML = createGridHTML(gridData);
+  updateIngredientLayout();
 }
 
 const createModalTagHTML = tag => {
   return `
-  <section class = "tag-card" id = "${tag.name}">
-      <div class="tag-image-bg active-bg">
-          <img class = "tag-image" src = "${tag.path}" alt="${tag.name}">
-      </div>
-      <p class="tag-text">${tag.name}</p>
-  </section>
+    <section class = "tag-card" id = "${tag.name}">
+        <div class="tag-image-bg active-bg">
+            <img class = "tag-image" src = "${tag.path}" alt="${tag.name}">
+        </div>
+        <p class="tag-text">${tag.name}</p>
+    </section>
   `;
 }
 
@@ -126,49 +146,21 @@ const createTagCardHTML = tag => {
   }
 
   htmlCode += `
-  <section class = "tag-card" id = "${tag.name}">
-      <div class="${bgClass}">
-          <img class = "tag-image" src = "${tag.path}" alt="${tag.name}">
-      </div>
-      <p class="tag-text">${tag.name}</p>
-  </section>
+    <section class = "tag-card" id = "${tag.name}">
+        <div class="${bgClass}">
+            <img class = "tag-image" src = "${tag.path}" alt="${tag.name}">
+        </div>
+        <p class="tag-text">${tag.name}</p>
+    </section>
   `;
   return htmlCode;
 }
 
-const createTagRowHTML = row => {
-  let rowNumber;
-
-  if (row.length === 10) {
-    rowNumber = "row-one";
-  } else {
-    rowNumber = "row-two";
-  };
-
-  let htmlCode = '';
-  htmlCode += `<div class="tag-row ${rowNumber}">`;
-  row.forEach(tag => {
-    htmlCode += createTagCardHTML(tag);
-  });
-  htmlCode += `</div>`;
-  return htmlCode;
-};
-
-const createTagAreaHTML = rows => {
-  let htmlCode = '';
-  htmlCode += '<div class="tag-rows">';
-
-  rows.forEach(row => {
-    htmlCode += createTagRowHTML(row);
-  });
-
-  htmlCode += '</div>';
-  return htmlCode;
-};
-
 const renderTagArea = () => {
-  const tagRows = splitTagsInRows(pageData.allTags);
-  const htmlCode = createTagAreaHTML(tagRows);
+  let htmlCode = '';
+  pageData.allTags.forEach(tag => {
+    htmlCode += createTagCardHTML(tag)
+  })
   tagArea.innerHTML = htmlCode;
 };
 
@@ -191,15 +183,18 @@ const toggleTagData = (tagID) => {
 const pageLoadRenders = (data) => {
   renderGrid(data);
   renderTagArea();
+  [leftArrow, rightArrow].forEach(arrow => arrow.classList.remove('hidden'))
 };
 
 const getInstructionHTML = (recipe) => {
   return recipe.instructions.map((instruction, i) => {
-    if(recipe.instructions.length > 1) {
-      return `<section class='single-instruction-step'> 
-                <p class='step'>STEP ${i+1}</p> 
-                <p class='instruction'>${instruction}</p> 
-              </section>`;
+    if (recipe.instructions.length > 1) {
+      return `
+        <section class='single-instruction-step'>
+          <p class='step'>STEP ${i+1}</p>
+          <p class='instruction'>${instruction}</p>
+        </section>
+      `;
     } else {
       return `<p>${instruction}</p>`;
     }
@@ -213,29 +208,63 @@ const addScrollBar = (element) => {
 const populateInstructions = (recipe) => {
   const instructions = getInstructionHTML(recipe);
   const instructionSection= document.querySelector('#recipeInstructions')
-  instructionSection.innerHTML = `<p>Directions</p>
-                                  <section class='instruction-steps'> 
-                                    ${instructions.join('')} 
-                                  </section>`;
+  instructionSection.innerHTML = `
+    <p class="instructions-header">Directions</p>
+    <section class='instruction-steps'>
+      ${instructions.join('')}
+    </section>
+  `;
   addScrollBar('.instruction-steps');
 }
 
 const updateCurrentRecipe = recipeCard => {
-  const recipeCardID = recipeCard.closest("article")?.id;
+  const recipeCardID = recipeCard?.closest("article")?.id;
   const thisRecipe = findRecipe(pageData.allRecipes, recipeCardID);
   pageData.currentRecipeCard = getRecipeCard(thisRecipe);
-  pageData.currentRecipeCard.outerAddBtn = recipeCard.closest('.individual-recipe-container').querySelector('.add-panel');
-  pageData.currentRecipeCard.outerRemoveBtn = recipeCard.closest('.individual-recipe-container').querySelector('.remove-panel');
+  pageData.currentRecipeCard.outerAddBtn = recipeCard?.closest('.individual-recipe-container').querySelector('.add-panel');
+  pageData.currentRecipeCard.outerRemoveBtn = recipeCard?.closest('.individual-recipe-container').querySelector('.remove-panel');
 }
 
-const updateSaveButtons = (ID, addButton, removeButton) => {
-  if(checkSavedStatus(currentUser, ID)){
+const showGridFeedback = (recipeID, feedback) => {
+  const recipe = document.getElementById(recipeID);
+  const gridFeedback = recipe?.querySelector('.grid-feedback');
+  gridFeedback.innerText = feedback;
+  gridFeedback.classList?.add('show-feedback');
+  setTimeout(() => {gridFeedback.classList?.remove('show-feedback')}, 751);
+}
+
+const showModalFeedback = (feedback) => {
+  let modalFeedback = document.querySelector('.modal-feedback');
+  modalFeedback.innerText = feedback
+  modalFeedback.classList.add('show-feedback');
+  setTimeout(() => {modalFeedback.classList.remove('show-feedback')}, 751)
+}
+
+const updateSaveButtons = (recipeID, addButton, removeButton, user) => {
+  let view;
+  let feedback; 
+  if (checkIfModalOpen()) {
+    view = "modal";
+  } else {
+    view = "grid";
+  }
+
+  if(checkSavedStatus(user, recipeID)){
+    feedback = "Saved"
     addButton.classList.add('hidden');
     removeButton.classList.remove('hidden');
   } else {
+    feedback = "Removed"
     addButton.classList.remove('hidden');
     removeButton.classList.add('hidden');
   }
+
+  const feedbacks = {
+    modal: () => showModalFeedback(feedback),
+    grid: () => showGridFeedback(recipeID, feedback)
+  }
+
+  feedbacks[view]();
 }
 
 const populateRecipeHeader = currentRecipe => {
@@ -253,29 +282,42 @@ const populateRecipeHeader = currentRecipe => {
   `
 }
 
-const openRecipeCard = () => {
-  allRecipes.classList.add('blur')
-  body.classList.add('no-scroll')
-  clickedRecipe.classList.toggle("hidden");
-  clickedRecipe.classList.toggle("flex");
-  clickedRecipe.classList.toggle("fade-in");
-}
-
 const showRecipe = (recipeCard) => {
   updateCurrentRecipe(recipeCard);
   populateRecipeHeader(pageData.currentRecipeCard);
   populateInstructions(pageData.currentRecipeCard);
   populateIngredients(pageData.currentRecipeCard);
-  updateSaveButtons(pageData.currentRecipeCard.id, modalAddBtn, modalRemoveBtn);
-  openRecipeCard();
+  updateSaveButtons(pageData.currentRecipeCard.id, modalAddBtn, modalRemoveBtn, currentUser);
+  openInfoPanel(recipeCard);
+  patchHits(pageData.currentRecipeCard)
 };
 
-const closeRecipe = () => {
+const openInfoPanel = (infoType) => {
+  let thisPanel;
+  if (infoType.id === 'graphButton') {
+    thisPanel = graphPanel;
+    thisPanel.classList.toggle('hidden');
+    makeRecipeClickChart();
+  } else {
+    thisPanel = clickedRecipe;
+    thisPanel.classList.toggle('hidden');
+  }
+
+  thisPanel.classList.toggle("flex");
+  thisPanel.classList.toggle("fade-in");
+  allRecipes.classList.add('blur');
+  nav.classList.add('blur', 'no-click');
+  body.classList.add('no-scroll');
+}
+
+const closePanel = (e) => {
+  const thisInfoPanel = e.target.closest('.info-panel');
   allRecipes.classList.remove('blur')
+  nav.classList.remove('blur', 'no-click');
   body.classList.remove('no-scroll')
-  clickedRecipe.classList.add("hidden");
-  clickedRecipe.classList.remove("flex");
-  clickedRecipe.classList.remove("fade-in");
+  thisInfoPanel.classList.toggle("hidden");
+  thisInfoPanel.classList.toggle("flex");
+  thisInfoPanel.classList.toggle("fade-in");
 };
 
 const populateIngredients = currentRecipeCard => {
@@ -289,36 +331,41 @@ const createIngredientsHTML = ingredients => {
   ingredients.forEach((ingredient, i) => {
     let ingredientLabelName = `ingredient${i}`
     ingredientsList.innerHTML += `
-    <label class="ingredient-label" for="${ingredientLabelName}">
-      <input class="ingredient-input" id="${ingredientLabelName}" type="checkbox" name="${ingredientLabelName}" />
-      ${ingredient.amount} ${ingredient.unit} ${ingredient.name}
-    </label>
+      <label class="ingredient-label" for="${ingredientLabelName}">
+        <input class="ingredient-input" id="${ingredientLabelName}" type="checkbox" name="${ingredientLabelName}" />
+        ${ingredient.amount} ${ingredient.unit} ${ingredient.name}
+      </label>
     `;
   });
 };
 
 const renderRecipesOfInterest = () => {
-  pageData.recipesOfInterest = copyItem(getPageData());
+  pageData.recipesOfInterest = copyItem(getPageRecipes());
   renderGrid(pageData.recipesOfInterest);
 }
 
-const switchView = (clickedViewID) => {
+const setAllTagsInactive = () => {
   pageData.allTags.forEach(tag => {
     tag.isActive = false
   })
+}
+
+const switchView = (clickedViewID) => {
+  setAllTagsInactive();
   renderTagArea();
-  pageData.currentView = clickedViewID;
+  if (clickedViewID !== pageData.currentView) {
+    toggleViewBtns([ourViewBtn, yourViewBtn]);
+    pageData.currentView = clickedViewID;
+  }
   renderRecipesOfInterest();
-  toggleViewBtns([ourViewBtn, yourViewBtn]);
 }
 
 const setBaseData = () => {
-  let baseData = getPageData();
+  let baseData = getPageRecipes();
   if (searchBar.value) {
     searchForRecipes();
     baseData = pageData.recipesOfInterest;
   }
-
   return baseData;
 }
 
@@ -326,7 +373,7 @@ const setupFilterData = (activeTags, baseData) => {
   if (activeTags.length) {
     return filterRecipesByTag(baseData, activeTags);
   } else {
-    return copyItem(getPageData());
+    return copyItem(getPageRecipes());
   }
 }
 
@@ -344,48 +391,72 @@ const displayTaggedRecipes = () => {
 
 const searchForRecipes = () => {
   const activeTags = pageData.allTags.filter(tag => tag.isActive).map(tag => tag.name);
-  let searchedRecipes = searchRecipes(setupFilterData(activeTags, getPageData()), pageData.allIngredients, searchBar.value);
+  let searchedRecipes = searchRecipes(setupFilterData(activeTags, getPageRecipes()), pageData.allIngredients, searchBar.value);
   if(searchedRecipes) {
-    if(searchedRecipes.length) {
+    if (searchedRecipes.length) {
       pageData.recipesOfInterest = searchedRecipes;
       renderGrid(searchedRecipes);
-    }else {
+    } else {
       recipeGrid.innerHTML = `<p>Sorry, we couldn't find any recipes for your search of "${searchBar.value}"</p>`;
     }
   }
 }
 
-const updateUserRecipes = (e) => {
-  if(e.target.classList.contains('save-option')) {
-    const recipeID = e.target.closest('.individual-recipe-container')?.querySelector('.individual-recipe').id;
-    const recipe = findRecipe(pageData.allRecipes, recipeID);
-    if (!checkSavedStatus(currentUser, recipeID)) {
-      updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'add'));
-    } else if (checkSavedStatus(currentUser, recipeID)) {
-      updateCurrentUser(updateRecipesToCook(currentUser, recipe, 'remove'));
-    }
-    const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel');
-    const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel');
-    updateSaveButtons(recipeID, addBtn, removeBtn);
-    const activeTags = pageData.allTags.filter(tag => tag.isActive)
-    if(activeTags.length) {
-      displayTaggedRecipes();
-    } else if(pageData.currentView === 'your-recipes') {
-      renderRecipesOfInterest();
-    }
-  } 
+const returnHome = () => {
+  searchBar.value = '';
+  switchView(pageData.currentView);
 }
 
-const updateRecipesFromModal = (targetID) => {
-  const recipe = findRecipe(pageData.allRecipes, pageData.currentRecipeCard.id);
-  updateCurrentUser(updateRecipesToCook(currentUser, recipe, targetID));
-  updateSaveButtons(recipe.id, modalAddBtn, modalRemoveBtn);
-  updateSaveButtons(recipe.id, pageData.currentRecipeCard.outerAddBtn, pageData.currentRecipeCard.outerRemoveBtn);
-  const activeTags = pageData.allTags.filter(tag => tag.isActive)
+const renderTagsAfterFetch = () => {
+  const activeTags = pageData.allTags.filter(tag => tag.isActive);
   if(activeTags.length) {
     displayTaggedRecipes();
   } else if(pageData.currentView === 'your-recipes') {
     renderRecipesOfInterest();
+  }
+}
+
+const updateRecipesFromGrid = (e) => {
+  if (e.target.classList.contains('save-option')) {
+    const recipeID = e.target.closest('.individual-recipe-container')?.querySelector('.individual-recipe').id;
+    const recipe = findRecipe(pageData.allRecipes, recipeID);
+    if (!checkSavedStatus(currentUser, recipeID)) {
+      updateRecipesToCook(e, recipe, 'add');
+    } else if (checkSavedStatus(currentUser, recipeID)) {
+      updateRecipesToCook(e, recipe, 'remove');
+    }
+  } 
+}
+
+const updateRecipesFromModal = (e) => {
+  if (e.target.classList.contains('bookmark-img')) {
+    const change = e.target.id
+    const recipeID = pageData.currentRecipeCard.id;
+    const recipe = findRecipe(pageData.allRecipes, recipeID);
+    updateRecipesToCook(e, recipe, change);
+  }
+}
+
+const checkIfModalOpen = () => allRecipes.classList.contains('blur')
+
+const showError = (recipeID) => {
+  if (checkIfModalOpen()){
+    showModalFeedback("Something went wrong")
+  } else {
+    showGridFeedback(recipeID, "Something went wrong")
+  }
+}
+
+const toggleSavedButtons = (e, recipeID, user) => {
+  if (checkIfModalOpen()) {
+    const outerAdd = pageData.currentRecipeCard.outerAddBtn;
+    const outerRemove = pageData.currentRecipeCard.outerRemoveBtn;
+    updateSaveButtons(recipeID, outerAdd, outerRemove, user);
+    updateSaveButtons(recipeID, modalAddBtn, modalRemoveBtn, user);
+  } else {
+    const addBtn = e.target.closest('.individual-recipe-container')?.querySelector('.add-panel');
+    const removeBtn = e.target.closest('.individual-recipe-container')?.querySelector('.remove-panel');
+    updateSaveButtons(recipeID, addBtn, removeBtn, user);
   }
 }
 
@@ -406,16 +477,22 @@ export {
   toggleTagData,
   pageLoadRenders,
   showRecipe,
-  closeRecipe,
+  closePanel,
   switchView,
   searchForRecipes,
-  updateUserRecipes,
+  returnHome,
+  updateRecipesFromGrid,
   findRecipe,
   updateSaveButtons,
   updateRecipesFromModal,
   renderTagArea,
   renderActiveTag,
+  renderTagsAfterFetch,
   displayTaggedRecipes,
   renderRecipesOfInterest,
-  enableScrollPitchText
+  enableScrollPitchText,
+  openInfoPanel,
+  toggleSavedButtons,
+  checkIfModalOpen,
+  showError
 }

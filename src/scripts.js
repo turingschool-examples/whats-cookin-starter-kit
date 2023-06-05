@@ -1,8 +1,10 @@
 //IMPORTS
 import './styles.css'
-import { closeRecipe, showRecipe, switchView, searchForRecipes, updateUserRecipes, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, renderRecipesOfInterest, enableScrollPitchText } from './domUpdates';
+import { closePanel, showRecipe, switchView, searchForRecipes, returnHome, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, openInfoPanel, checkIfModalOpen, renderGrid } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
-import './images/antipasti.png';
+import './images/graph.png'
+import './images/refresh.png'
+import './images/antipasti.png'
 import './images/antipasto.png'
 import './images/appetizer.png'
 import './images/breakfast.png'
@@ -22,6 +24,9 @@ import './images/snack.png'
 import './images/spread.png'
 import './images/starter.png'
 import './images/search-button.png'
+import './images/right-arrow.png'
+import './images/left-arrow.png'
+
 
 // import apiCalls from './apiCalls'
 import './images/hollow-bookmark-icon.png'
@@ -29,23 +34,30 @@ import './images/select-bookmark-icon.png'
 import { loadData, pageData, currentUser } from './apiCalls';
 
 // QUERY SELCTORS
+const nav = document.querySelector('nav');
 const body = document.querySelector('body');
 const spinner = document.querySelector('.spinner')
 const recipeGrid = document.querySelector('.recipe-grid');
 const allRecipes = document.querySelector('.all-recipes')
 const allUserRecipes = document.querySelector('.all-user-recipes');
 const clickedRecipe = document.querySelector('#clickedRecipe');
-const closeRecipeButton = document.querySelector('#closeRecipe');
+const closeButtons = document.querySelectorAll('.close-btn');
 const tagArea = document.querySelector('.tag-area');
-const ingredientsList = document.querySelector('#ingredientsList');
+const ingredientsList = document.querySelector('.ingredients-list');
 const chooseView = document.querySelector('.choose-view')
 const ourViewBtn = document.querySelector("#our-recipes");
 const yourViewBtn = document.querySelector("#your-recipes");
 const searchBar = document.querySelector('#searchBar');
 const searchBtn = document.querySelector('#searchBtn');
+const whatsCookin = document.querySelector('nav > h1');
+const refreshBtn = document.querySelector('#refreshButton');
 const modalAddBtn = document.querySelector('.add-recipe');
 const modalRemoveBtn = document.querySelector('.remove-recipe');
 const modalRecipeBtns = document.querySelectorAll('.modal-recipe-btn');
+const graphPanel = document.querySelector("#graphPanel");
+const graphBtn = document.querySelector("#graphButton");
+const leftArrow = document.querySelector('.left-arrow');
+const rightArrow = document.querySelector('.right-arrow');
 
 //FUNCTIONS 
 const getRecipeCard = (recipe) => {
@@ -62,10 +74,14 @@ const getRecipeCard = (recipe) => {
   return recipeCard;
 }
 
-const getPageData = () => {
+const getPageRecipes = () => {
+  const userRecipes = currentUser.recipesToCook
+    .map(savedID => pageData.allRecipes
+    .find(recipe => recipe.id === savedID));
+
   const data = {
     'our-recipes': pageData.allRecipes,
-    'your-recipes': currentUser.recipesToCook
+    'your-recipes': userRecipes
   }
   return data[pageData.currentView];
 }
@@ -74,9 +90,17 @@ window.addEventListener("load", () => {
   loadData();
 });
 
-allRecipes.addEventListener('click', (event) => {
-  updateUserRecipes(event);
+window.addEventListener('resize', () => {
+  renderGrid(pageData.recipesOfInterest)
 })
+
+allRecipes.addEventListener('click', (event) => {
+  updateRecipesFromGrid(event);
+})
+
+modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
+  updateRecipesFromModal(e);
+}));
 
 tagArea.addEventListener("click", function(event) {
   if (event.target.classList && event.target.closest(".tag-card")) {
@@ -86,8 +110,24 @@ tagArea.addEventListener("click", function(event) {
   };
 });
 
+leftArrow.addEventListener('click', () => {
+  tagArea.scrollBy({
+    top: 0,
+    left: -200,
+    behavior: "smooth",
+  })
+})
+
+rightArrow.addEventListener('click', () => {
+  tagArea.scrollBy({
+    top: 0,
+    left: 200,
+    behavior: "smooth",
+  })
+})
+
 recipeGrid.addEventListener("click", (event) => {
-  if (event.target.classList?.contains('individual-recipe')) {
+  if (event.target.classList?.contains('individual-recipe') && !checkIfModalOpen()) {
     showRecipe(event.target);
   }
 });
@@ -98,7 +138,12 @@ recipeGrid.addEventListener("mouseover", (event) => {
   }
 });
 
-closeRecipeButton.addEventListener("click", closeRecipe);
+closeButtons.forEach(button => {
+  button.addEventListener("click", (e) => {
+    closePanel(e);
+  })
+});
+
 chooseView.addEventListener("click", function(event) {
   if (event.target.classList.contains("unselected-view")) {
     switchView(event.target.id);
@@ -114,10 +159,11 @@ searchBar.addEventListener('search', (event) => {
 })
 
 searchBtn.addEventListener('click', searchForRecipes);
-
-modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
-  updateRecipesFromModal(e.target.id);
-}));
+whatsCookin.addEventListener('click', returnHome);
+refreshBtn.addEventListener('click', returnHome);
+graphBtn.addEventListener('click', (e) => {
+  openInfoPanel(e.target);
+});
 
 // Exports
 export {
@@ -126,7 +172,7 @@ export {
   tagArea,
   clickedRecipe,
   getRecipeCard,
-  getPageData,
+  getPageRecipes,
   ingredientsList,
   allRecipes,
   ourViewBtn,
@@ -136,5 +182,9 @@ export {
   searchBar,
   modalAddBtn, 
   modalRemoveBtn,
-  body
+  nav,
+  body,
+  graphPanel,
+  leftArrow,
+  rightArrow
 }

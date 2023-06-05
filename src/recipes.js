@@ -1,4 +1,4 @@
-import { getIngredientProperty } from "./helper-functions"
+import { getIngredientProperty, copyItem } from "./helper-functions"
 
 const getInstructions = recipe => {
   return recipe.instructions.map(item => item.instruction)
@@ -84,7 +84,7 @@ const findRecipe = (allRecipes, ID) => {
 }
 
 const checkSavedStatus = (user, ID) => {
-  return user.recipesToCook.some(recipe => recipe.id.toString() === ID.toString());
+  return user.recipesToCook.some(recipeID => recipeID.toString() === ID.toString());
 }
 
 const addInfoToTags = tags => {
@@ -98,16 +98,16 @@ const addInfoToTags = tags => {
   })
 }
 
-const splitTagsInRows = tagsAndIcons => {
-  const topRow = tagsAndIcons.filter(tag => tag.row === 1);
-  const bottomRow = tagsAndIcons.filter(tag => tag.row === 0);
-  return [topRow, bottomRow];
-}
-
 const populateTags = (recipes) => {
   const tagData = getUniqueTagsFromRecipes(recipes);
   const refinedTagData =  addInfoToTags(tagData);
   return refinedTagData;
+}
+
+const sortByHits = recipes => {
+  let copiedRecipes = copyItem(recipes);
+  let updatedRecipes = copiedRecipes.sort((a,b) => b.hits - a.hits);
+  return updatedRecipes;
 }
 
 export {
@@ -124,7 +124,7 @@ export {
   findRecipe, 
   checkSavedStatus,
   populateTags,
-  splitTagsInRows,
   getUniqueTagsFromRecipes,
-  addInfoToTags
+  addInfoToTags,
+  sortByHits
 }

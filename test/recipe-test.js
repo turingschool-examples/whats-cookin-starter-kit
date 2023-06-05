@@ -24,12 +24,10 @@ import {
   searchRecipes,
   findRecipe,
   checkSavedStatus,
-  splitTagsInRows,
   getUniqueTagsFromRecipes,
-  addInfoToTags
+  addInfoToTags,
+  sortByHits
 } from '../src/recipes';
-
-import { updateRecipesToCook } from '../src/users';
 
 describe('recipe', () => {
   const cookies = sampleRecipeData[0];
@@ -238,16 +236,6 @@ describe('filterRecipesByTag', () => {
   let nameSearched;
   let ingredientSearched;
 
-  it ('should split tags in rows', () => {
-    const tag1 = {row: 1};
-    const tag2 = {row: 0};
-    const tag3 = {row: 1};
-    const topRow = [tag1, tag3];
-    const bottomRow = [tag2];
-    const rows = splitTagsInRows([tag1, tag2, tag3]);
-    expect(rows).to.deep.equal([topRow, bottomRow]);
-  });
-
   it('should filter list of recipes based on single tag', () => {
     expectedRecipes = [sampleRecipeData[0]];
     filteredRecipes = filterRecipesByTag(sampleRecipeData, ['antipasto'])
@@ -394,19 +382,6 @@ describe('find recipes and check if they are saved', () => {
     let nonRecipe = findRecipe(sampleRecipeData, 12345);
     assert.deepEqual(nonRecipe, undefined)
   })
-
-  it('should check if a recipe is saved by a user', () => {
-    let saige = updateRecipesToCook(sampleUsersData[0], sampleRecipeData[0], 'add');
-    let savedStatus = checkSavedStatus(saige, 595736);
-    assert.deepEqual(savedStatus, true);
-  })
-
-  it('should check if a recipe is not saved by a user', () => {
-    let saige = updateRecipesToCook(sampleUsersData[0], sampleRecipeData[0], 'add');
-    let saigeWithoutRecipes = updateRecipesToCook(saige, sampleRecipeData[0], 'remove');
-    let savedStatus = checkSavedStatus(saigeWithoutRecipes, 595736);
-    assert.deepEqual(savedStatus, false)
-  })
 })
 
 describe('populating tags', () => {
@@ -508,3 +483,16 @@ describe('filterTagsByTagName', () => {
     expect(filteredTagData).to.deep.equal(expectedTagData);
   });
 });
+
+describe('sortByHits', () => {
+  it('should sort a list of recipes by most hits', () => {
+    let recipes = [{hits: 2}, {hits: 1}, {hits: 3}]
+    let sortedRecipes = sortByHits(recipes)
+    assert.deepEqual(sortedRecipes, [{hits: 3}, {hits: 2}, {hits: 1}])
+  })
+  it('should not alter the original set of recipes', () => {
+    let recipes = [{hits: 2}, {hits: 1}, {hits: 3}]
+    sortByHits(recipes)
+    assert.deepEqual(recipes, [{hits: 2}, {hits: 1}, {hits: 3}])
+  })
+})

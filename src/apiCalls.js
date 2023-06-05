@@ -1,6 +1,13 @@
 //IMPORTS 
 import { getRandomUser } from "./users";
-import { pageLoadRenders, hideSpinner } from "./domUpdates";
+import {
+  pageLoadRenders,
+  hideSpinner,
+  toggleSavedButtons,
+  renderTagsAfterFetch,
+  checkIfModalOpen,
+  showError
+ } from "./domUpdates";
 import { copyItem } from "./helper-functions";
 import { populateTags } from './recipes';
 // import { config } from "../config.js"
@@ -14,9 +21,36 @@ let pageData = {
 };
 
 // API CALLS
-const fetchUsers = () => fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users')
-const fetchRecipes = () => fetch('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes')
-const fetchIngredients = () => fetch(`https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients`)
+const getUsers = () => fetch('http://localhost:3001/api/v1/users')
+const getRecipes = () => fetch('http://localhost:3001/api/v1/recipes')
+const getIngredients = () => fetch(`http://localhost:3001/api/v1/ingredients`)
+const updateRecipe = (userID, recipeID, request) => {
+  const body = {
+    userID,
+    recipeID
+  };
+
+  return fetch('http://localhost:3001/api/v1/usersRecipes', {
+    method: `${request}`,
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json'
+  }})
+}
+
+const getUsersAfterUpdate = (userID, recipeID, e, errorMessage) => {
+  return getUsers()
+          .then(response => {
+            return response.json();
+          })
+          .then(data => {
+            const foundUser = data.users.find(user => user.id === userID);
+            currentUser = foundUser;
+            renderTagsAfterFetch();
+            toggleSavedButtons(e, recipeID, currentUser, errorMessage);
+          })
+          .catch(err => console.error(err))
+}
 
 const handleUserData = users => currentUser = getRandomUser(users)
 
@@ -29,13 +63,33 @@ const handleRecipeData = recipes => {
     hideSpinner();
     pageLoadRenders(pageData.allRecipes);
   }, 2000)
-
 }
 
 const handleIngredientData = ingredients => pageData.allIngredients = ingredients
 
+const patchHits = (recipe) => {
+  fetch('http://localhost:3001/api/v1/recipeHits', {
+    method: 'PATCH',
+    body: JSON.stringify({recipeID: recipe.id}),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(res => {
+      return res.json()
+    })
+    .then((status) => {
+      if (!status.message.includes("Success")) console.log(status.message)
+      getRecipes()
+        .then(res => res.json())
+        .then(data => {
+          pageData.allRecipes = data.recipes;
+        })
+    })
+}
+
 const loadData = () => {
-  Promise.all([fetchUsers(), fetchRecipes(), fetchIngredients()])
+  Promise.all([getUsers(), getRecipes(), getIngredients()])
     .then (responses => {
       responses.forEach(response => {
         if(response.ok) {
@@ -60,6 +114,26 @@ const loadData = () => {
 const updateCurrentUser = (user) => {
   currentUser = user;
 };
+
+const updateServerRecipe = (userID, recipeID, e, requestType) => {
+  const conditions = {
+    "POST": 'added',
+    "DELETE": 'removed'
+  }
+  updateRecipe(userID, recipeID, requestType)
+  .then((res) => res.json())
+  .then(status => {
+    if (status.message.includes(`was ${conditions[requestType]}`)) {
+      getUsersAfterUpdate(userID, recipeID, e);
+    } else {
+      showError(recipeID)
+    }
+  })
+  .catch(err => {
+    showError(recipeID);
+    console.error(err);
+  });
+}
 
 // Chat GPT Extension 
 
@@ -93,4 +167,4 @@ const getChatGPTRecipePitches = (allRecipes) => {
   });
 }
 
-export { currentUser, pageData, updateCurrentUser, loadData };
+export { currentUser, pageData, updateCurrentUser, loadData, patchHits, updateServerRecipe };
