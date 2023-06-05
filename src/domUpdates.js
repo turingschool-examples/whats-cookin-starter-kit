@@ -233,6 +233,7 @@ const showGridFeedback = (recipeID, feedback) => {
   setTimeout(() => {gridFeedback.classList?.remove('show-feedback')}, 751);
 }
 
+
 const showModalFeedback = (feedback) => {
   let modalFeedback = document.querySelector('.modal-feedback');
   modalFeedback.innerText = feedback
@@ -240,31 +241,44 @@ const showModalFeedback = (feedback) => {
   setTimeout(() => {modalFeedback.classList.remove('show-feedback')}, 751)
 }
 
-const updateSaveButtons = (recipeID, addButton, removeButton, user) => {
-  let view;
-  let feedback; 
-  if (checkIfModalOpen()) {
-    view = "modal";
-  } else {
-    view = "grid";
-  }
+const showFeedback = (user, recipeID) => {
+  const unacceptableView = pageData.currentView === "your-recipes" && !checkIfModalOpen();
+  const acceptableView = !unacceptableView;
 
+  if (acceptableView) {
+    let view;
+    let feedback; 
+    
+    if (checkSavedStatus(user, recipeID)) {
+      feedback = "Saved"
+    } else {
+      feedback = "Removed"
+    }
+    
+    const feedbacks = {
+      modal: () => showModalFeedback(feedback),
+      grid: () => showGridFeedback(recipeID, feedback)
+    }
+  
+    if (checkIfModalOpen()) {
+      view = "modal";
+    } else {
+      view = "grid";
+    }
+    
+    feedbacks[view]();
+  }
+}
+
+const updateSaveButtons = (recipeID, addButton, removeButton, user) => {
+ 
   if(checkSavedStatus(user, recipeID)){
-    feedback = "Saved"
     addButton.classList.add('hidden');
     removeButton.classList.remove('hidden');
   } else {
-    feedback = "Removed"
     addButton.classList.remove('hidden');
     removeButton.classList.add('hidden');
   }
-
-  const feedbacks = {
-    modal: () => showModalFeedback(feedback),
-    grid: () => showGridFeedback(recipeID, feedback)
-  }
-
-  feedbacks[view]();
 }
 
 const populateRecipeHeader = currentRecipe => {
@@ -494,5 +508,6 @@ export {
   openInfoPanel,
   toggleSavedButtons,
   checkIfModalOpen,
-  showError
+  showError,
+  showFeedback
 }
