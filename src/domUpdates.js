@@ -137,7 +137,7 @@ const renderRecipeCardTag = (recipe) => {
   if (recipe.tags.length > 0) {
     return `<p class="recipe-tag">${recipe.tags[0]}</p>`;
   } else {
-    return `<p class="recipe-tag">-</p>`;
+    return `<p class="recipe-tag">(no tags)</p>`;
   }
 };
 
