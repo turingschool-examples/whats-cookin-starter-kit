@@ -132,6 +132,14 @@ recipeGrid.addEventListener("click", (event) => {
   }
 });
 
+recipeGrid.addEventListener("keyup", (event) => {
+  if(event.key === 'Enter') {
+    if (event.target.classList?.contains('individual-recipe') && !checkIfModalOpen()) {
+      showRecipe(event.target);
+    }
+  }
+});
+
 recipeGrid.addEventListener("mouseover", (event) => {
   if (event.target.classList?.contains('individual-recipe')) {
     enableScrollPitchText(event.target.querySelector('h3'));
