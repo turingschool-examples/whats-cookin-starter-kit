@@ -158,7 +158,7 @@ closeButtons.forEach(button => {
   button.addEventListener("click", (e) => {
     closePanel(e);
   })
-  
+
   button.addEventListener("keyup", (e) => {
     if(e.key === 'Enter') {
       closePanel(e);
@@ -168,6 +168,12 @@ closeButtons.forEach(button => {
 
 chooseView.addEventListener("click", function(event) {
   if (event.target.classList.contains("unselected-view")) {
+    switchView(event.target.id);
+  }
+});
+
+chooseView.addEventListener("keyup", function(event) {
+  if (event.key === 'Enter' && event.target.classList.contains("unselected-view")) {
     switchView(event.target.id);
   }
 });
