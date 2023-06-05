@@ -128,7 +128,7 @@ const renderGrid = (data) => {
 
 const createModalTagHTML = tag => {
   return `
-    <section class="tag-card" id="${tag.name}">
+    <section class="tag-card no-click" id="${tag.name}">
         <div class="tag-image-bg active-bg">
             <img class="tag-image" src="${tag.path}" alt="${tag.name}">
         </div>
@@ -323,14 +323,14 @@ const openInfoPanel = (infoType) => {
   }
   thisPanel.classList.toggle("flex");
   thisPanel.classList.toggle("fade-in");
-  allRecipes.classList.add('blur');
+  allRecipes.classList.add('blur', 'no-click');
   nav.classList.add('blur', 'no-click');
   body.classList.add('no-scroll');
 }
 
 const closePanel = (e) => {
   const thisInfoPanel = e.target.closest('.info-panel');
-  allRecipes.classList.remove('blur')
+  allRecipes.classList.remove('blur', 'no-click')
   nav.classList.remove('blur', 'no-click');
   body.classList.remove('no-scroll')
   thisInfoPanel.classList.toggle("hidden");
