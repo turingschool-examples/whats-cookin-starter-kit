@@ -227,18 +227,22 @@ const updateCurrentRecipe = recipeCard => {
 
 const showGridFeedback = (recipeID, feedback) => {
   const recipe = document.getElementById(recipeID);
-  const gridFeedback = recipe.querySelector('.grid-feedback');
-  gridFeedback?.innerText = feedback;
-  gridFeedback?.classList?.add('show-feedback');
-  setTimeout(() => {gridFeedback.classList?.remove('show-feedback')}, 751);
+  if (recipe) {
+    const gridFeedback = recipe.querySelector('.grid-feedback');
+    gridFeedback.innerText = feedback;
+    gridFeedback.classList.add('show-feedback');
+    setTimeout(() => {gridFeedback.classList.remove('show-feedback')}, 751);
+  }
 }
 
 
 const showModalFeedback = (feedback) => {
   let modalFeedback = document.querySelector('.modal-feedback');
-  modalFeedback?.innerText = feedback
-  modalFeedback?.classList.add('show-feedback');
-  setTimeout(() => {modalFeedback?.classList.remove('show-feedback')}, 751)
+  if (modalFeedback) {
+    modalFeedback.innerText = feedback
+    modalFeedback.classList.add('show-feedback');
+    setTimeout(() => {modalFeedback.classList.remove('show-feedback')}, 751)
+  }
 }
 
 const showFeedback = (user, recipeID) => {
