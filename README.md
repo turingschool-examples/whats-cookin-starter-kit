@@ -43,7 +43,11 @@ This is a recipe website that uses the fetch API to display information about a 
 
 
 ## Preview of App:
+Desktop:
 ![whats-cookin gif](https://user-images.githubusercontent.com/121131581/243463414-55dc4ba2-79a0-40f6-8642-09d9001f66b3.gif)
+
+Cell Phone: 
+![whats cookin gif for cell phone](https://user-images.githubusercontent.com/121131581/243466673-6b7b8534-feb7-4e0e-82b3-30c5ae89a772.gif)
 
 
 ## Context: 
