@@ -1,6 +1,6 @@
 //IMPORTS
 import './styles.css'
-import { closePanel, showRecipe, switchView, searchForRecipes, returnHome, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, openInfoPanel, checkIfModalOpen, renderGrid, showFeedback } from './domUpdates';
+import { closePanel, showRecipe, switchView, searchForRecipes, resetSearch, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, openInfoPanel, checkIfModalOpen, renderGrid } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 import './images/graph.png'
 import './images/refresh.png'
@@ -58,6 +58,7 @@ const graphPanel = document.querySelector("#graphPanel");
 const graphBtn = document.querySelector("#graphButton");
 const leftArrow = document.querySelector('.left-arrow');
 const rightArrow = document.querySelector('.right-arrow');
+const form = document.querySelector('form')
 
 //FUNCTIONS 
 const getRecipeCard = (recipe) => {
@@ -100,12 +101,29 @@ allRecipes.addEventListener('click', (event) => {
   }
 })
 
-modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
-  updateRecipesFromModal(e);
-}));
+modalRecipeBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    updateRecipesFromModal(e);
+  })
+
+  btn.addEventListener('keyup', (e) => {
+    if(e.key === 'Enter') {
+      updateRecipesFromModal(e);
+    }
+  })
+});
 
 tagArea.addEventListener("click", function(event) {
   if (event.target.classList && event.target.closest(".tag-card")) {
+    toggleTagData(event.target.closest("section").id);
+    renderActiveTag(event);
+    displayTaggedRecipes();
+  };
+});
+
+
+tagArea.addEventListener("keyup", function(event) {
+  if (event.key === 'Enter' && event.target.classList && event.target.closest(".tag-card")) {
     toggleTagData(event.target.closest("section").id);
     renderActiveTag(event);
     displayTaggedRecipes();
@@ -134,15 +152,29 @@ recipeGrid.addEventListener("click", (event) => {
   }
 });
 
+recipeGrid.addEventListener("keyup", (event) => {
+  if(event.key === 'Enter') {
+    if (event.target.classList?.contains('individual-recipe') && !checkIfModalOpen()) {
+      showRecipe(event.target);
+    }
+  }
+});
+
 recipeGrid.addEventListener("mouseover", (event) => {
   if (event.target.classList?.contains('individual-recipe')) {
-    enableScrollPitchText(event.target.querySelector('h4'));
+    enableScrollPitchText(event.target.querySelector('h3'));
   }
 });
 
 closeButtons.forEach(button => {
   button.addEventListener("click", (e) => {
     closePanel(e);
+  })
+
+  button.addEventListener("keyup", (e) => {
+    if(e.key === 'Enter') {
+      closePanel(e);
+    }
   })
 });
 
@@ -151,6 +183,14 @@ chooseView.addEventListener("click", function(event) {
     switchView(event.target.id);
   }
 });
+
+chooseView.addEventListener("keyup", function(event) {
+  if (event.key === 'Enter' && event.target.classList.contains("unselected-view")) {
+    switchView(event.target.id);
+  }
+});
+
+form.addEventListener('submit', (e) => {e.preventDefault()})
 
 searchBar.addEventListener('search', (event) => {
   if (!event.target.value.length) {
@@ -161,10 +201,24 @@ searchBar.addEventListener('search', (event) => {
 })
 
 searchBtn.addEventListener('click', searchForRecipes);
-whatsCookin.addEventListener('click', returnHome);
-refreshBtn.addEventListener('click', returnHome);
+whatsCookin.addEventListener('click', resetSearch);
+
+refreshBtn.addEventListener('click', resetSearch);
+
+refreshBtn.addEventListener('keyup', (e) => {
+  if (e.key === 'Enter') {
+    resetSearch();
+  }
+})
+
 graphBtn.addEventListener('click', (e) => {
   openInfoPanel(e.target);
+});
+
+graphBtn.addEventListener('keyup', (e) => {
+  if (e.key === 'Enter') {
+    openInfoPanel(e.target);
+  }
 });
 
 // Exports

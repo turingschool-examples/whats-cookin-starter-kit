@@ -20,7 +20,7 @@ import {
   leftArrow,
   rightArrow
 } from './scripts'
-import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, filterTagsByTagName, sortByHits  } from './recipes';
+import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, filterTagsByTagName  } from './recipes';
 import { updateRecipesToCook } from './users';
 import { makeRecipeClickChart } from './clickChart';
 import { copyItem, toggleViewBtns } from './helper-functions';
@@ -69,27 +69,27 @@ const createSingleRecipeHTML = singleRecipe => {
     }
   }
   htmlCode += `
-    <article class="individual-recipe-container">
-      <section class="add-panel panel save-option ${addStatus}">
-        <div class="plus-symbol symbol save-option">+</div>
-        <h4 class="save-option"> Add to recipes to cook</h4>
-      </section>
-      <section class="remove-panel panel save-option ${removeStatus}">
-        <div class="minus-symbol synmbol save-option ">-</div>
-        <h4 class="save-option"> Remove from recipes to cook</h4>
-      </section>
-      <article class="individual-recipe" id="${singleRecipe.id}">
-        <p class="grid-feedback"> Saved! </p>
-        <div class="recipe-image-div">
-          <img class="recipe-image"src="${singleRecipe.image}" alt="${singleRecipe.name}">
-          <div class="hover-card">
-            <h4>${singleRecipe.pitch}</h4>
-          </div>
+  <article class="individual-recipe-container">
+    <section class="add-panel panel save-option ${addStatus}">
+      <div class="plus-symbol symbol save-option">+</div>
+      <h3 class="save-option"> Add to recipes to cook</h4>
+    </section>
+    <section class="remove-panel panel save-option ${removeStatus}">
+      <div class="minus-symbol symbol save-option">-</div>
+      <h3 class="save-option"> Remove from recipes to cook</h4>
+    </section>
+    <article tabindex="0" class="individual-recipe" id="${singleRecipe.id}">
+      <p class="grid-feedback"> Saved! </p>
+      <div class="recipe-image-div">
+        <img class="recipe-image"src="${singleRecipe.image}" alt="${singleRecipe.name}">
+        <div class="hover-card">
+          <h3>${singleRecipe.pitch}</h3>
         </div>
-        <h2>${singleRecipe.name}</h2>
-      </article>
+      </div>
+      <h2>${singleRecipe.name}</h2>
     </article>
-  `;
+  </article>
+`;
   return htmlCode
 }
 
@@ -128,9 +128,9 @@ const renderGrid = (data) => {
 
 const createModalTagHTML = tag => {
   return `
-    <section class = "tag-card" id = "${tag.name}">
+    <section class="tag-card no-click" id="${tag.name}">
         <div class="tag-image-bg active-bg">
-            <img class = "tag-image" src = "${tag.path}" alt="${tag.name}">
+            <img class="tag-image" src="${tag.path}" alt="${tag.name}">
         </div>
         <p class="tag-text">${tag.name}</p>
     </section>
@@ -146,9 +146,9 @@ const createTagCardHTML = tag => {
   }
 
   htmlCode += `
-    <section class = "tag-card" id = "${tag.name}">
+    <section tabindex="0" class="tag-card" id="${tag.name}">
         <div class="${bgClass}">
-            <img class = "tag-image" src = "${tag.path}" alt="${tag.name}">
+            <img class="tag-image" src="${tag.path}" alt="${tag.name}">
         </div>
         <p class="tag-text">${tag.name}</p>
     </section>
@@ -210,7 +210,7 @@ const populateInstructions = (recipe) => {
   const instructionSection= document.querySelector('#recipeInstructions')
   instructionSection.innerHTML = `
     <p class="instructions-header">Directions</p>
-    <section class='instruction-steps'>
+    <section tabindex="0" class='instruction-steps'>
       ${instructions.join('')}
     </section>
   `;
@@ -290,7 +290,7 @@ const populateRecipeHeader = currentRecipe => {
     <div id="individualRecipeTags">${recipeTagsHTML.join('')}</div>
     <h1>${currentRecipe.name}</h1>
     <div class="individual-recipe-image">
-      <img src="${currentRecipe.image}"></img>
+      <img src="${currentRecipe.image}" alt="${currentRecipe.name}"></img>
     </div>
   `
 }
@@ -311,21 +311,26 @@ const openInfoPanel = (infoType) => {
     thisPanel = graphPanel;
     thisPanel.classList.toggle('hidden');
     makeRecipeClickChart();
+    document.querySelector('#closeGraphBtn').focus()
   } else {
     thisPanel = clickedRecipe;
     thisPanel.classList.toggle('hidden');
+    thisPanel.querySelectorAll('.modal-recipe-btn').forEach(btn => {
+      if(!btn.classList.contains('hidden')) {
+        btn.focus()
+      }
+    })
   }
-
   thisPanel.classList.toggle("flex");
   thisPanel.classList.toggle("fade-in");
-  allRecipes.classList.add('blur');
+  allRecipes.classList.add('blur', 'no-click');
   nav.classList.add('blur', 'no-click');
   body.classList.add('no-scroll');
 }
 
 const closePanel = (e) => {
   const thisInfoPanel = e.target.closest('.info-panel');
-  allRecipes.classList.remove('blur')
+  allRecipes.classList.remove('blur', 'no-click')
   nav.classList.remove('blur', 'no-click');
   body.classList.remove('no-scroll')
   thisInfoPanel.classList.toggle("hidden");
@@ -415,7 +420,7 @@ const searchForRecipes = () => {
   }
 }
 
-const returnHome = () => {
+const resetSearch = () => {
   searchBar.value = '';
   switchView(pageData.currentView);
 }
@@ -442,8 +447,8 @@ const updateRecipesFromGrid = (e) => {
 }
 
 const updateRecipesFromModal = (e) => {
-  if (e.target.classList.contains('bookmark-img')) {
-    const change = e.target.id
+  if (e.target.classList.contains('modal-btn')) {
+    const change = e.target.classList[0];
     const recipeID = pageData.currentRecipeCard.id;
     const recipe = findRecipe(pageData.allRecipes, recipeID);
     updateRecipesToCook(e, recipe, change);
@@ -493,7 +498,7 @@ export {
   closePanel,
   switchView,
   searchForRecipes,
-  returnHome,
+  resetSearch,
   updateRecipesFromGrid,
   findRecipe,
   updateSaveButtons,
