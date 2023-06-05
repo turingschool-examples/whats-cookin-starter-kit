@@ -58,6 +58,7 @@ const graphPanel = document.querySelector("#graphPanel");
 const graphBtn = document.querySelector("#graphButton");
 const leftArrow = document.querySelector('.left-arrow');
 const rightArrow = document.querySelector('.right-arrow');
+const form = document.querySelector('form')
 
 //FUNCTIONS 
 const getRecipeCard = (recipe) => {
@@ -186,6 +187,8 @@ chooseView.addEventListener("keyup", function(event) {
     switchView(event.target.id);
   }
 });
+
+form.addEventListener('submit', (e) => {e.preventDefault()})
 
 searchBar.addEventListener('search', (event) => {
   if (!event.target.value.length) {
