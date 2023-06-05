@@ -20,7 +20,7 @@ import {
   leftArrow,
   rightArrow
 } from './scripts'
-import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, filterTagsByTagName, sortByHits  } from './recipes';
+import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, filterTagsByTagName  } from './recipes';
 import { updateRecipesToCook } from './users';
 import { makeRecipeClickChart } from './clickChart';
 import { copyItem, toggleViewBtns } from './helper-functions';
