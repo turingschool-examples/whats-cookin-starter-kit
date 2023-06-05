@@ -118,6 +118,15 @@ tagArea.addEventListener("click", function(event) {
   };
 });
 
+
+tagArea.addEventListener("keyup", function(event) {
+  if (event.key === 'Enter' && event.target.classList && event.target.closest(".tag-card")) {
+    toggleTagData(event.target.closest("section").id);
+    renderActiveTag(event);
+    displayTaggedRecipes();
+  };
+});
+
 leftArrow.addEventListener('click', () => {
   tagArea.scrollBy({
     top: 0,
