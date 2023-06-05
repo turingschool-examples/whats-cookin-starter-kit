@@ -447,10 +447,12 @@ const updateRecipesFromGrid = (e) => {
 }
 
 const updateRecipesFromModal = (e) => {
-  const change = e.target.id
-  const recipeID = pageData.currentRecipeCard.id;
-  const recipe = findRecipe(pageData.allRecipes, recipeID);
-  updateRecipesToCook(e, recipe, change);
+  if (e.target.classList.contains('modal-btn')) {
+    const change = e.target.classList[0];
+    const recipeID = pageData.currentRecipeCard.id;
+    const recipe = findRecipe(pageData.allRecipes, recipeID);
+    updateRecipesToCook(e, recipe, change);
+  }
 }
 
 const checkIfModalOpen = () => allRecipes.classList.contains('blur')
