@@ -198,8 +198,15 @@ searchBar.addEventListener('search', (event) => {
 searchBtn.addEventListener('click', searchForRecipes);
 whatsCookin.addEventListener('click', returnHome);
 refreshBtn.addEventListener('click', returnHome);
+
 graphBtn.addEventListener('click', (e) => {
   openInfoPanel(e.target);
+});
+
+graphBtn.addEventListener('keyup', (e) => {
+  if (e.key === 'Enter') {
+    openInfoPanel(e.target);
+  }
 });
 
 // Exports
