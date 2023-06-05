@@ -1,6 +1,6 @@
 //IMPORTS
 import './styles.css'
-import { closePanel, showRecipe, switchView, searchForRecipes, returnHome, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, openInfoPanel, checkIfModalOpen, renderGrid } from './domUpdates';
+import { closePanel, showRecipe, switchView, searchForRecipes, resetSearch, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, openInfoPanel, checkIfModalOpen, renderGrid } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 import './images/graph.png'
 import './images/refresh.png'
@@ -196,8 +196,15 @@ searchBar.addEventListener('search', (event) => {
 })
 
 searchBtn.addEventListener('click', searchForRecipes);
-whatsCookin.addEventListener('click', returnHome);
-refreshBtn.addEventListener('click', returnHome);
+whatsCookin.addEventListener('click', resetSearch);
+
+refreshBtn.addEventListener('click', resetSearch);
+
+refreshBtn.addEventListener('keyup', (e) => {
+  if (e.key === 'Enter') {
+    resetSearch();
+  }
+})
 
 graphBtn.addEventListener('click', (e) => {
   openInfoPanel(e.target);

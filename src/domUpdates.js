@@ -407,7 +407,7 @@ const searchForRecipes = () => {
   }
 }
 
-const returnHome = () => {
+const resetSearch = () => {
   searchBar.value = '';
   switchView(pageData.currentView);
 }
@@ -485,7 +485,7 @@ export {
   closePanel,
   switchView,
   searchForRecipes,
-  returnHome,
+  resetSearch,
   updateRecipesFromGrid,
   findRecipe,
   updateSaveButtons,
