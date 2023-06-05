@@ -14,7 +14,7 @@ Javascript | HTML | CSS | REST API
 This is a recipe website that uses the fetch API to display information about a variety of recipes. This web app also allows searching recipes by name, ingredients, tags, and allows users to save their favorite recipes! This is a collaborative project, created to ensure cohesive usage of newly learned concepts such as Rest APIs, and array prototype methods to implement CRUD functionality. 
 ### User Stories: 
 - Users can click on a recipe to view more information.
-- Users are able to save recipes from the main landing page as well as from inside the recipe display.
+- Users are able to save and delete recipes from the main landing page as well as from inside the recipe display.
 - Users are able to view a graph representing which recipes are most popular across multiple users. 
 ### Technical pointers: 
 - The data for this website is fetched from an API endpoint. 
