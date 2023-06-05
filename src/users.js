@@ -1,5 +1,5 @@
 import { getRandomIndex } from "./helper-functions";
-import { currentUser, postRecipeToCook, deleteRecipeToCook } from "./apiCalls";
+import { currentUser, updateServerRecipe } from "./apiCalls";
 
 const getRandomUser = users => {
   return users[getRandomIndex(users)]
@@ -7,14 +7,14 @@ const getRandomUser = users => {
 
 const addUniqueRecipe = (userRecipes, newRecipe, e) => {
   if(!userRecipes.find(recipeID => recipeID.toString() === newRecipe.id.toString())) {
-    postRecipeToCook(currentUser.id, newRecipe.id, e);
+    updateServerRecipe(currentUser.id, newRecipe.id, e, "POST");
   }
 };
 
 const removeExistingRecipe = (userRecipes, recipeToRemove, e) => {
   let found = userRecipes.find(recipeID => recipeID.toString() === recipeToRemove.id.toString());
   if (found) {
-    deleteRecipeToCook(currentUser.id, recipeToRemove.id, e)
+    updateServerRecipe(currentUser.id, recipeToRemove.id, e, "DELETE")
   }
 }
 

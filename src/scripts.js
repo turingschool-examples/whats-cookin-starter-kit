@@ -1,8 +1,10 @@
 //IMPORTS
 import './styles.css'
-import { closeRecipe, showRecipe, switchView, searchForRecipes, returnHome, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, checkIfModalOpen, renderGrid } from './domUpdates';
+import { closePanel, showRecipe, switchView, searchForRecipes, returnHome, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, openInfoPanel, checkIfModalOpen, renderGrid, showFeedback } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
-import './images/antipasti.png';
+import './images/graph.png'
+import './images/refresh.png'
+import './images/antipasti.png'
 import './images/antipasto.png'
 import './images/appetizer.png'
 import './images/breakfast.png'
@@ -32,13 +34,14 @@ import './images/select-bookmark-icon.png'
 import { loadData, pageData, currentUser } from './apiCalls';
 
 // QUERY SELCTORS
+const nav = document.querySelector('nav');
 const body = document.querySelector('body');
 const spinner = document.querySelector('.spinner')
 const recipeGrid = document.querySelector('.recipe-grid');
 const allRecipes = document.querySelector('.all-recipes')
 const allUserRecipes = document.querySelector('.all-user-recipes');
 const clickedRecipe = document.querySelector('#clickedRecipe');
-const closeRecipeButtons = document.querySelectorAll('.close-btn');
+const closeButtons = document.querySelectorAll('.close-btn');
 const tagArea = document.querySelector('.tag-area');
 const ingredientsList = document.querySelector('.ingredients-list');
 const chooseView = document.querySelector('.choose-view')
@@ -47,10 +50,12 @@ const yourViewBtn = document.querySelector("#your-recipes");
 const searchBar = document.querySelector('#searchBar');
 const searchBtn = document.querySelector('#searchBtn');
 const whatsCookin = document.querySelector('nav > h1');
-const homeBtn = document.querySelector('#homeBtn');
+const refreshBtn = document.querySelector('#refreshButton');
 const modalAddBtn = document.querySelector('.add-recipe');
 const modalRemoveBtn = document.querySelector('.remove-recipe');
 const modalRecipeBtns = document.querySelectorAll('.modal-recipe-btn');
+const graphPanel = document.querySelector("#graphPanel");
+const graphBtn = document.querySelector("#graphButton");
 const leftArrow = document.querySelector('.left-arrow');
 const rightArrow = document.querySelector('.right-arrow');
 
@@ -90,7 +95,9 @@ window.addEventListener('resize', () => {
 })
 
 allRecipes.addEventListener('click', (event) => {
-  updateRecipesFromGrid(event);
+  if (event.target.classList.contains("save-option")) {
+    updateRecipesFromGrid(event);
+  }
 })
 
 modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
@@ -133,7 +140,11 @@ recipeGrid.addEventListener("mouseover", (event) => {
   }
 });
 
-closeRecipeButtons.forEach(btn => btn.addEventListener("click", closeRecipe));
+closeButtons.forEach(button => {
+  button.addEventListener("click", (e) => {
+    closePanel(e);
+  })
+});
 
 chooseView.addEventListener("click", function(event) {
   if (event.target.classList.contains("unselected-view")) {
@@ -151,7 +162,10 @@ searchBar.addEventListener('search', (event) => {
 
 searchBtn.addEventListener('click', searchForRecipes);
 whatsCookin.addEventListener('click', returnHome);
-homeBtn.addEventListener('click', returnHome);
+refreshBtn.addEventListener('click', returnHome);
+graphBtn.addEventListener('click', (e) => {
+  openInfoPanel(e.target);
+});
 
 // Exports
 export {
@@ -170,7 +184,9 @@ export {
   searchBar,
   modalAddBtn, 
   modalRemoveBtn,
+  nav,
   body,
+  graphPanel,
   leftArrow,
   rightArrow
 }

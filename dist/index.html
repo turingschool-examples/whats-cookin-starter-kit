@@ -11,12 +11,12 @@
     <nav> 
       <h1> What's cookin? </h1>
       <div class="nav-child" id="searchArea">
-        <img role="button" class="nav-icon" id="homeBtn" src="home.png" alt="Return home"> 
+        <img role="button" class="nav-icon" id="refreshButton" src="./images/refresh.png" alt="Refresh search"> 
         <input id="searchBar" type="search" placeholder="Search.." >
         <img role="button" class="nav-icon" id="searchBtn" src="./images/search-button.png" alt="Magnifying Glass Icon"> 
       </div>
       <div class="nav-child">
-        <img role="button" class="nav-icon" id="settings" src="settings.png" alt="User settings">
+        <img role="button" class="nav-icon" id="graphButton" src="./images/graph.png" alt="Recipes graph">
       </div>
     </nav>
     <section class="all-recipes">
@@ -36,7 +36,7 @@
       </article>
       <div class="spinner"></div>
     </section>
-    <section id="clickedRecipe" class="hidden">
+    <section id="clickedRecipe" class="info-panel hidden">
       <section class="recipe-details" id="recipeLeftSide">
         <div class="modal-btn-container">
           <button class= "add-recipe modal-recipe-btn">
@@ -45,8 +45,8 @@
           <button class="remove-recipe modal-recipe-btn hidden" id="remove">
             <img class="bookmark-img" src="./images/select-bookmark-icon.png" id="remove">
           </button>
-          <img class="close-btn" id="closeRecipeSmall" src="delete.png"></img>
           <p class="modal-feedback"></p>
+          <img class="close-btn" id="closeRecipeSmall" src="delete.png"></img>
         </div>
         <div id="recipeName"></div>
         <article id="recipeInstructions">
@@ -60,6 +60,10 @@
           <!-- recipe ingredients will appear here  -->
         </div>
       </section>
+    </section>
+    <section id="graphPanel" class="info-panel hidden">
+      <img id="closeGraph" class="close-btn" src="delete.png"></img>
+      <div id="chartContainer"></div>
     </section>
   </body>
   <script src="bundle.js"></script>

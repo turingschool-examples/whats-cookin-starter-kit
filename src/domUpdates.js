@@ -1,5 +1,5 @@
 // Imports
-import { pageData, currentUser, updateCurrentUser, patchHits } from './apiCalls';
+import { pageData, currentUser, patchHits } from './apiCalls';
 import {
   recipeGrid,
   spinner,
@@ -15,11 +15,14 @@ import {
   getPageRecipes, 
   getRecipeCard,
   body,
+  nav,
+  graphPanel,
   leftArrow,
   rightArrow
 } from './scripts'
 import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, filterTagsByTagName, sortByHits  } from './recipes';
 import { updateRecipesToCook } from './users';
+import { makeRecipeClickChart } from './clickChart';
 import { copyItem, toggleViewBtns } from './helper-functions';
 
 // functions
@@ -224,44 +227,57 @@ const updateCurrentRecipe = recipeCard => {
 
 const showGridFeedback = (recipeID, feedback) => {
   const recipe = document.getElementById(recipeID);
-  const gridFeedback = recipe?.querySelector('.grid-feedback');
-  gridFeedback.innerText = feedback;
-  gridFeedback.classList?.add('show-feedback');
-  setTimeout(() => {gridFeedback.classList?.remove('show-feedback')}, 751);
+  if (recipe) {
+    const gridFeedback = recipe.querySelector('.grid-feedback');
+    gridFeedback.innerText = feedback;
+    gridFeedback.classList.add('show-feedback');
+    setTimeout(() => {gridFeedback.classList.remove('show-feedback')}, 751);
+  }
 }
+
 
 const showModalFeedback = (feedback) => {
   let modalFeedback = document.querySelector('.modal-feedback');
-  modalFeedback.innerText = feedback
-  modalFeedback.classList.add('show-feedback');
-  setTimeout(() => {modalFeedback.classList.remove('show-feedback')}, 751)
+  if (modalFeedback) {
+    modalFeedback.innerText = feedback
+    modalFeedback.classList.add('show-feedback');
+    setTimeout(() => {modalFeedback.classList.remove('show-feedback')}, 751)
+  }
+}
+
+const showFeedback = (user, recipeID) => {
+    let view;
+    let feedback; 
+    
+    if (checkSavedStatus(user, recipeID)) {
+      feedback = "Saved"
+    } else {
+      feedback = "Removed"
+    }
+    
+    const feedbacks = {
+      modal: () => showModalFeedback(feedback),
+      grid: () => showGridFeedback(recipeID, feedback)
+    }
+  
+    if (checkIfModalOpen()) {
+      view = "modal";
+    } else {
+      view = "grid";
+    }
+
+    feedbacks[view]();
 }
 
 const updateSaveButtons = (recipeID, addButton, removeButton, user) => {
-  let view;
-  let feedback; 
-  if (checkIfModalOpen()) {
-    view = "modal";
-  } else {
-    view = "grid";
-  }
-
+ 
   if(checkSavedStatus(user, recipeID)){
-    feedback = "Saved"
     addButton.classList.add('hidden');
     removeButton.classList.remove('hidden');
   } else {
-    feedback = "Removed"
     addButton.classList.remove('hidden');
     removeButton.classList.add('hidden');
   }
-
-  const feedbacks = {
-    modal: () => showModalFeedback(feedback),
-    grid: () => showGridFeedback(recipeID, feedback)
-  }
-
-  feedbacks[view]();
 }
 
 const populateRecipeHeader = currentRecipe => {
@@ -279,30 +295,42 @@ const populateRecipeHeader = currentRecipe => {
   `
 }
 
-const openRecipeCard = () => {
-  allRecipes.classList.add('blur')
-  body.classList.add('no-scroll')
-  clickedRecipe.classList.toggle("hidden");
-  clickedRecipe.classList.toggle("flex");
-  clickedRecipe.classList.toggle("fade-in");
-}
-
 const showRecipe = (recipeCard) => {
   updateCurrentRecipe(recipeCard);
   populateRecipeHeader(pageData.currentRecipeCard);
   populateInstructions(pageData.currentRecipeCard);
   populateIngredients(pageData.currentRecipeCard);
   updateSaveButtons(pageData.currentRecipeCard.id, modalAddBtn, modalRemoveBtn, currentUser);
-  openRecipeCard();
+  openInfoPanel(recipeCard);
   patchHits(pageData.currentRecipeCard)
 };
 
-const closeRecipe = () => {
+const openInfoPanel = (infoType) => {
+  let thisPanel;
+  if (infoType.id === 'graphButton') {
+    thisPanel = graphPanel;
+    thisPanel.classList.toggle('hidden');
+    makeRecipeClickChart();
+  } else {
+    thisPanel = clickedRecipe;
+    thisPanel.classList.toggle('hidden');
+  }
+
+  thisPanel.classList.toggle("flex");
+  thisPanel.classList.toggle("fade-in");
+  allRecipes.classList.add('blur');
+  nav.classList.add('blur', 'no-click');
+  body.classList.add('no-scroll');
+}
+
+const closePanel = (e) => {
+  const thisInfoPanel = e.target.closest('.info-panel');
   allRecipes.classList.remove('blur')
+  nav.classList.remove('blur', 'no-click');
   body.classList.remove('no-scroll')
-  clickedRecipe.classList.add("hidden");
-  clickedRecipe.classList.remove("flex");
-  clickedRecipe.classList.remove("fade-in");
+  thisInfoPanel.classList.toggle("hidden");
+  thisInfoPanel.classList.toggle("flex");
+  thisInfoPanel.classList.toggle("fade-in");
 };
 
 const populateIngredients = currentRecipeCard => {
@@ -393,7 +421,7 @@ const returnHome = () => {
 }
 
 const renderTagsAfterFetch = () => {
-  const activeTags = pageData.allTags.filter(tag => tag.isActive)
+  const activeTags = pageData.allTags.filter(tag => tag.isActive);
   if(activeTags.length) {
     displayTaggedRecipes();
   } else if(pageData.currentView === 'your-recipes') {
@@ -423,6 +451,14 @@ const updateRecipesFromModal = (e) => {
 }
 
 const checkIfModalOpen = () => allRecipes.classList.contains('blur')
+
+const showError = (recipeID) => {
+  if (checkIfModalOpen()){
+    showModalFeedback("Something went wrong")
+  } else {
+    showGridFeedback(recipeID, "Something went wrong")
+  }
+}
 
 const toggleSavedButtons = (e, recipeID, user) => {
   if (checkIfModalOpen()) {
@@ -454,7 +490,7 @@ export {
   toggleTagData,
   pageLoadRenders,
   showRecipe,
-  closeRecipe,
+  closePanel,
   switchView,
   searchForRecipes,
   returnHome,
@@ -468,6 +504,9 @@ export {
   displayTaggedRecipes,
   renderRecipesOfInterest,
   enableScrollPitchText,
+  openInfoPanel,
   toggleSavedButtons,
-  checkIfModalOpen
+  checkIfModalOpen,
+  showError,
+  showFeedback
 }
