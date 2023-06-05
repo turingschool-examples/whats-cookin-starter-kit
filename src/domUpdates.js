@@ -302,7 +302,11 @@ const openInfoPanel = (infoType) => {
   } else {
     thisPanel = clickedRecipe;
     thisPanel.classList.toggle('hidden');
-    document.querySelector('.modal-recipe-btn').focus()
+    thisPanel.querySelectorAll('.modal-recipe-btn').forEach(btn => {
+      if(!btn.classList.contains('hidden')) {
+        btn.focus()
+      }
+    })
   }
   thisPanel.classList.toggle("flex");
   thisPanel.classList.toggle("fade-in");

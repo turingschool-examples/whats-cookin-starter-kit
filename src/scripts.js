@@ -98,9 +98,17 @@ allRecipes.addEventListener('click', (event) => {
   updateRecipesFromGrid(event);
 })
 
-modalRecipeBtns.forEach(btn => btn.addEventListener('click', (e) => {
-  updateRecipesFromModal(e);
-}));
+modalRecipeBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    updateRecipesFromModal(e);
+  })
+
+  btn.addEventListener('keyup', (e) => {
+    if(e.key === 'Enter') {
+      updateRecipesFromModal(e);
+    }
+  })
+});
 
 tagArea.addEventListener("click", function(event) {
   if (event.target.classList && event.target.closest(".tag-card")) {
@@ -150,6 +158,7 @@ closeButtons.forEach(button => {
   button.addEventListener("click", (e) => {
     closePanel(e);
   })
+  
   button.addEventListener("keyup", (e) => {
     if(e.key === 'Enter') {
       closePanel(e);
