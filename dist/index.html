@@ -10,26 +10,26 @@
   <body>
     <nav> 
       <h1> What's cookin? </h1>
-      <div class="nav-child" id="searchArea">
-        <img role="button" class="nav-icon" id="refreshButton" src="./images/refresh.png" alt="Refresh search"> 
+      <form class="nav-child" id="searchArea">
+        <img role="button" tabindex="0" class="nav-icon" id="refreshButton" src="./images/refresh.png" alt="Refresh search"> 
         <input id="searchBar" type="search" placeholder="Search.." >
-        <img role="button" class="nav-icon" id="searchBtn" src="./images/search-button.png" alt="Magnifying Glass Icon"> 
-      </div>
+        <img role="button" tabindex="0" class="nav-icon" id="searchBtn" src="./images/search-button.png" alt="Magnifying Glass Icon"> 
+      </form>
       <div class="nav-child">
-        <img role="button" class="nav-icon" id="graphButton" src="./images/graph.png" alt="Recipes graph">
+        <img role="button" tabindex="0"  class="nav-icon" id="graphButton" src="./images/graph.png" alt="Recipes graph">
       </div>
     </nav>
     <section class="all-recipes">
       <section class="choose-view">
-        <section class="view-button selected-view" id="our-recipes"> Our Recipes </section>
-        <section class="view-button unselected-view" id="your-recipes">Your recipes</section>
+        <section tabindex="0" role="button" class="view-button selected-view" id="our-recipes"> Our Recipes </section>
+        <section tabindex="0" role="button" class="view-button unselected-view" id="your-recipes">Your recipes</section>
       </section>
       <div class="tag-scroll-area">        
-        <img role="button" class="left-arrow arrows hidden" src="./images/left-arrow.png" alt="left arrow button">
+        <img tabindex="0" role="button" class="left-arrow arrows hidden" src="./images/left-arrow.png" alt="left arrow button">
         <section class = "tag-area tag-scrollbar"> 
           <!-- Tags appear here  -->
         </section>
-        <img role="button" class="right-arrow arrows hidden" src="./images/right-arrow.png" alt="right arrow button">
+        <img tabindex="0" role="button" class="right-arrow arrows hidden" src="./images/right-arrow.png" alt="right arrow button">
       </div>
       <article class="recipe-grid">
         <!-- grid appears here -->
@@ -39,14 +39,14 @@
     <section id="clickedRecipe" class="info-panel hidden">
       <section class="recipe-details" id="recipeLeftSide">
         <div class="modal-btn-container">
-          <button class= "add-recipe modal-recipe-btn">
+          <button tabindex="0" class= "add-recipe modal-recipe-btn">
             <img class="bookmark-img" src="./images/hollow-bookmark-icon.png" id="add">
           </button>
-          <button class="remove-recipe modal-recipe-btn hidden" id="remove">
+          <button tabindex="0" class="remove-recipe modal-recipe-btn hidden" id="remove">
             <img class="bookmark-img" src="./images/select-bookmark-icon.png" id="remove">
           </button>
           <p class="modal-feedback"></p>
-          <img class="close-btn" id="closeRecipeSmall" src="delete.png"></img>
+          <img tabindex="0" role="button" class="close-btn" id="closeRecipeSmall" src="delete.png"></img>
         </div>
         <div id="recipeName"></div>
         <article id="recipeInstructions">
@@ -54,7 +54,7 @@
         </article>
       </section>
       <section class="recipe-details" id="recipeRightSide">
-        <img  class="close-btn" id="closeRecipe" src="delete.png"></img>
+        <img  tabindex="0" role="button" class="close-btn" id="closeRecipe" src="delete.png"></img>
         <h3>Ingredients</h3>
         <div class="ingredients-list">
           <!-- recipe ingredients will appear here  -->
@@ -62,7 +62,7 @@
       </section>
     </section>
     <section id="graphPanel" class="info-panel hidden">
-      <img id="closeGraph" class="close-btn" src="delete.png"></img>
+      <img tabindex="0" role="button" id="closeGraph" class="close-btn" src="delete.png"></img>
       <div id="chartContainer"></div>
     </section>
   </body>

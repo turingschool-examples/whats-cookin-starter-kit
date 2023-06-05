@@ -75,15 +75,15 @@ const createSingleRecipeHTML = singleRecipe => {
       <h3 class="save-option"> Add to recipes to cook</h4>
     </section>
     <section class="remove-panel panel save-option ${removeStatus}">
-      <div class="minus-symbol synmbol save-option ">-</div>
+      <div class="minus-symbol symbol save-option">-</div>
       <h3 class="save-option"> Remove from recipes to cook</h4>
     </section>
-    <article class="individual-recipe" id="${singleRecipe.id}">
+    <article tabindex="0" class="individual-recipe" id="${singleRecipe.id}">
       <p class="grid-feedback"> Saved! </p>
       <div class="recipe-image-div">
         <img class="recipe-image"src="${singleRecipe.image}" alt="${singleRecipe.name}">
         <div class="hover-card">
-          <h4>${singleRecipe.pitch}</h4>
+          <h3>${singleRecipe.pitch}</h3>
         </div>
       </div>
       <h2>${singleRecipe.name}</h2>
@@ -128,9 +128,9 @@ const renderGrid = (data) => {
 
 const createModalTagHTML = tag => {
   return `
-    <section class = "tag-card" id = "${tag.name}">
+    <section class="tag-card" id="${tag.name}">
         <div class="tag-image-bg active-bg">
-            <img class = "tag-image" src = "${tag.path}" alt="${tag.name}">
+            <img class="tag-image" src="${tag.path}" alt="${tag.name}">
         </div>
         <p class="tag-text">${tag.name}</p>
     </section>
@@ -146,9 +146,9 @@ const createTagCardHTML = tag => {
   }
 
   htmlCode += `
-    <section class = "tag-card" id = "${tag.name}">
+    <section tabindex="0" class="tag-card" id="${tag.name}">
         <div class="${bgClass}">
-            <img class = "tag-image" src = "${tag.path}" alt="${tag.name}">
+            <img class="tag-image" src="${tag.path}" alt="${tag.name}">
         </div>
         <p class="tag-text">${tag.name}</p>
     </section>

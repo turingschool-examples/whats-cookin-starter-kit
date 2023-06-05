@@ -134,7 +134,7 @@ recipeGrid.addEventListener("click", (event) => {
 
 recipeGrid.addEventListener("mouseover", (event) => {
   if (event.target.classList?.contains('individual-recipe')) {
-    enableScrollPitchText(event.target.querySelector('h4'));
+    enableScrollPitchText(event.target.querySelector('h3'));
   }
 });
 
