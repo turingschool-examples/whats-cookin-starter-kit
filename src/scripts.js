@@ -92,7 +92,7 @@ window.addEventListener("load", () => {
 });
 
 window.addEventListener('resize', () => {
-  renderGrid(pageData.allRecipes)
+  renderGrid(pageData.recipesOfInterest)
 })
 
 allRecipes.addEventListener('click', (event) => {
