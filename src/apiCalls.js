@@ -84,7 +84,7 @@ const patchHits = (recipe) => {
       getRecipes()
         .then(res => res.json())
         .then(data => {
-          const updatedRecipeHits = data.recipes.find(item => item.id === recipe.id).hits;
+          const updatedRecipeHits = pageData.allRecipes.find(item => item.id === recipe.id).hits = data.recipes.find(item => item.id === recipe.id).hits
           recipe.hits = updatedRecipeHits;
           console.log(recipe)
         })
