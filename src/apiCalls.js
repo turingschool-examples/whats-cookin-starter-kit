@@ -5,7 +5,6 @@ import {
   hideSpinner,
   toggleSavedButtons,
   renderTagsAfterFetch,
-  checkIfModalOpen,
   showError,
   showFeedback
  } from "./domUpdates";
@@ -58,9 +57,9 @@ const handleUserData = users => currentUser = getRandomUser(users)
 
 const handleRecipeData = recipes => {
   pageData.allRecipes = recipes;
+  // getChatGPTRecipePitches(pageData.allRecipes);
   pageData.recipesOfInterest = copyItem(pageData.allRecipes);
   pageData.allTags = populateTags(pageData.allRecipes);
-  // getChatGPTRecipePitches(pageData.allRecipes);
   setTimeout(() => {
     hideSpinner();
     pageLoadRenders(pageData.allRecipes);
@@ -85,7 +84,7 @@ const patchHits = (recipe) => {
       getRecipes()
         .then(res => res.json())
         .then(data => {
-          pageData.allRecipes = data.recipes;
+          pageData.allRecipes.find(item => item.id === recipe.id).hits = data.recipes.find(item => item.id === recipe.id).hits;
         })
     })
 }

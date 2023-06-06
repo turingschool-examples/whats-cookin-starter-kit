@@ -3,6 +3,7 @@ import './styles.css'
 import { closePanel, showRecipe, switchView, searchForRecipes, resetSearch, updateRecipesFromGrid, toggleTagData, renderActiveTag, displayTaggedRecipes, updateRecipesFromModal, enableScrollPitchText, openInfoPanel, checkIfModalOpen, renderGrid } from './domUpdates';
 import { calculateRecipeCost, getIngredientAmounts, getInstructions } from './recipes';
 import './images/graph.png'
+import './images/delete.png'
 import './images/refresh.png'
 import './images/antipasti.png'
 import './images/antipasto.png'
