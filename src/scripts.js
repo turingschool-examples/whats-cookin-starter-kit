@@ -162,7 +162,7 @@ recipeGrid.addEventListener("keyup", (event) => {
 
 recipeGrid.addEventListener("mouseover", (event) => {
   if (event.target.classList?.contains('individual-recipe')) {
-    enableScrollPitchText(event.target.querySelector('h3'));
+    enableScrollPitchText(event.target.querySelector('h4'));
   }
 });
 

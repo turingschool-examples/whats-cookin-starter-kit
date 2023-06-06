@@ -216,7 +216,7 @@ nav > h1 {
   transition: 0.2s;
 }
 
-.panel > h3 {
+.panel > h4 {
   font-size: 13px;
   border: wheat;  
   height: 0px;
@@ -244,7 +244,7 @@ nav > h1 {
   display: none;
 }
 
-.panel:hover h3 {
+.panel:hover h4 {
   animation: fade-in 0.2s ease-in forwards;
   width: auto;
   height: auto;

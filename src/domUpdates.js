@@ -83,7 +83,7 @@ const createSingleRecipeHTML = singleRecipe => {
       <div class="recipe-image-div">
         <img class="recipe-image"src="${singleRecipe.image}" alt="${singleRecipe.name}">
         <div class="hover-card">
-          <h3>${singleRecipe.pitch}</h3>
+          <h4>${singleRecipe.pitch}</h4>
         </div>
       </div>
       <h2>${singleRecipe.name}</h2>
