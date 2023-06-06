@@ -57,9 +57,9 @@ const handleUserData = users => currentUser = getRandomUser(users)
 
 const handleRecipeData = recipes => {
   pageData.allRecipes = recipes;
+  // getChatGPTRecipePitches(pageData.allRecipes);
   pageData.recipesOfInterest = copyItem(pageData.allRecipes);
   pageData.allTags = populateTags(pageData.allRecipes);
-  // getChatGPTRecipePitches(pageData.allRecipes);
   setTimeout(() => {
     hideSpinner();
     pageLoadRenders(pageData.allRecipes);
@@ -86,6 +86,7 @@ const patchHits = (recipe) => {
         .then(data => {
           const updatedRecipeHits = data.recipes.find(item => item.id === recipe.id).hits;
           recipe.hits = updatedRecipeHits;
+          console.log(recipe)
         })
     })
 }
