@@ -5,13 +5,12 @@ import {
   hideSpinner,
   toggleSavedButtons,
   renderTagsAfterFetch,
-  checkIfModalOpen,
   showError,
   showFeedback
  } from "./domUpdates";
 import { copyItem } from "./helper-functions";
 import { populateTags } from './recipes';
-import { config } from "../config.js"
+// import { config } from "../config.js"
 
 // DATA MODEL 
 let currentUser;
@@ -60,7 +59,7 @@ const handleRecipeData = recipes => {
   pageData.allRecipes = recipes;
   pageData.recipesOfInterest = copyItem(pageData.allRecipes);
   pageData.allTags = populateTags(pageData.allRecipes);
-  getChatGPTRecipePitches(pageData.allRecipes);
+  // getChatGPTRecipePitches(pageData.allRecipes);
   setTimeout(() => {
     hideSpinner();
     pageLoadRenders(pageData.allRecipes);
@@ -78,7 +77,6 @@ const patchHits = (recipe) => {
     }
   })
     .then(res => {
-      console.log(recipe)
       return res.json()
     })
     .then((status) => {
