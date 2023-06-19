@@ -10,7 +10,8 @@ import {
  } from "./domUpdates";
 import { copyItem } from "./helper-functions";
 import { populateTags } from './recipes';
-// import { config } from "../config.js"
+import { config } from "../config.js";
+import flagsmith from "flagsmith";
 
 // DATA MODEL 
 let currentUser;
@@ -19,6 +20,7 @@ let pageData = {
   currentRecipeCard: {},
   allTags: []
 };
+let aiEnabled = false;
 
 // API CALLS
 const getUsers = () => fetch('http://localhost:3001/api/v1/users')
@@ -57,14 +59,31 @@ const handleUserData = users => currentUser = getRandomUser(users)
 
 const handleRecipeData = recipes => {
   pageData.allRecipes = recipes;
-  // getChatGPTRecipePitches(pageData.allRecipes);
+  isAIEnabled();
+  setTimeout(() => {
+    if (aiEnabled) {
+      getChatGPTRecipePitches(pageData.allRecipes);
+    }
+  }, 300)
+  
+  
   pageData.recipesOfInterest = copyItem(pageData.allRecipes);
   pageData.allTags = populateTags(pageData.allRecipes);
   setTimeout(() => {
     hideSpinner();
     pageLoadRenders(pageData.allRecipes);
-  }, 2000)
+  }, 2300)
 }
+
+const isAIEnabled = () => {
+  flagsmith.init({
+    environmentID:"KwbANkgyknoDMJgQ4YWxuR",
+    onChange: () => {
+        aiEnabled = flagsmith.getState("ai_recipe_pitches").flags.ai_recipe_pitches.enabled
+    }
+  });
+}
+
 
 const handleIngredientData = ingredients => pageData.allIngredients = ingredients
 
