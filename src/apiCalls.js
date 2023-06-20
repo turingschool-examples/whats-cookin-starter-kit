@@ -63,16 +63,10 @@ const handleRecipeData = recipes => {
     if (aiEnabled) {
       Promise.all(getChatGPTRecipePitches(pageData.allRecipes))
         .then(() => {
-          pageData.recipesOfInterest = copyItem(pageData.allRecipes);
-          pageData.allTags = populateTags(pageData.allRecipes);
-          hideSpinner();
-          pageLoadRenders(pageData.allRecipes);
+          updateDataAndRenderPage();
         });
     } else {
-        pageData.recipesOfInterest = copyItem(pageData.allRecipes);
-        pageData.allTags = populateTags(pageData.allRecipes);
-        hideSpinner();
-        pageLoadRenders(pageData.allRecipes);
+      updateDataAndRenderPage();
     }
   });
 }
@@ -86,6 +80,12 @@ const isAIEnabled = () => {
   });
 }
 
+const updateDataAndRenderPage = () => {
+  pageData.recipesOfInterest = copyItem(pageData.allRecipes);
+  pageData.allTags = populateTags(pageData.allRecipes);
+  hideSpinner();
+  pageLoadRenders(pageData.allRecipes);
+}
 
 const handleIngredientData = ingredients => pageData.allIngredients = ingredients;
 
