@@ -63,10 +63,10 @@ const handleRecipeData = recipes => {
     if (aiEnabled) {
       Promise.all(getChatGPTRecipePitches(pageData.allRecipes))
         .then(() => {
-          updateDataAndRenderPage();
+          preparePageRender();
         });
     } else {
-      updateDataAndRenderPage();
+      preparePageRender();
     }
   });
 }
@@ -80,7 +80,7 @@ const isAIEnabled = () => {
   });
 }
 
-const updateDataAndRenderPage = () => {
+const preparePageRender = () => {
   pageData.recipesOfInterest = copyItem(pageData.allRecipes);
   pageData.allTags = populateTags(pageData.allRecipes);
   hideSpinner();
