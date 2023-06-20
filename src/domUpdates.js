@@ -350,7 +350,7 @@ const animateIngredientsTotal = price => {
     const increment = target/refreshRate;
     if (count < target) {
       totalElement.innerText = (count + increment).toFixed(2);
-      timerID = setTimeout(animateCount, 1);
+      timerID = setTimeout(animateCount);
     } else {
       totalElement.innerText = target;
     }
