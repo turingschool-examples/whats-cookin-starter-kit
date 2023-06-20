@@ -343,7 +343,7 @@ const closePanel = (e) => {
 const animateIngredientsTotal = price => {
   const totalElement = document.querySelector('.recipe-cost');
   totalElement.innerText = 0;
-  const refreshRate = 200;
+  const refreshRate = 500;
   const target = Number(price.slice(1));
   const animateCount = () => {
     const count = Number(totalElement.innerText);
