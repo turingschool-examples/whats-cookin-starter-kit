@@ -23,9 +23,9 @@ let pageData = {
 let aiEnabled = false;
 
 // API CALLS
-const getUsers = () => fetch('http://localhost:3001/api/v1/users')
-const getRecipes = () => fetch('http://localhost:3001/api/v1/recipes')
-const getIngredients = () => fetch(`http://localhost:3001/api/v1/ingredients`)
+const getUsers = () => fetch('http://localhost:3001/api/v1/users');
+const getRecipes = () => fetch('http://localhost:3001/api/v1/recipes');
+const getIngredients = () => fetch(`http://localhost:3001/api/v1/ingredients`);
 const updateRecipe = (userID, recipeID, request) => {
   const body = {
     userID,
@@ -37,7 +37,7 @@ const updateRecipe = (userID, recipeID, request) => {
     body: JSON.stringify(body),
     headers: {
       'Content-Type': 'application/json'
-  }})
+  }});
 }
 
 const getUsersAfterUpdate = (userID, recipeID, e, errorMessage) => {
@@ -52,40 +52,42 @@ const getUsersAfterUpdate = (userID, recipeID, e, errorMessage) => {
             toggleSavedButtons(e, recipeID, currentUser, errorMessage);
             showFeedback(currentUser, recipeID)
           })
-          .catch(err => console.error(err))
+          .catch(err => console.error(err));
 }
 
-const handleUserData = users => currentUser = getRandomUser(users)
+const handleUserData = users => currentUser = getRandomUser(users);
 
 const handleRecipeData = recipes => {
   pageData.allRecipes = recipes;
-  isAIEnabled();
-  setTimeout(() => {
+  isAIEnabled().then(() => {
     if (aiEnabled) {
-      getChatGPTRecipePitches(pageData.allRecipes);
+      Promise.all(getChatGPTRecipePitches(pageData.allRecipes))
+        .then(() => {
+          pageData.recipesOfInterest = copyItem(pageData.allRecipes);
+          pageData.allTags = populateTags(pageData.allRecipes);
+          hideSpinner();
+          pageLoadRenders(pageData.allRecipes);
+        });
+    } else {
+        pageData.recipesOfInterest = copyItem(pageData.allRecipes);
+        pageData.allTags = populateTags(pageData.allRecipes);
+        hideSpinner();
+        pageLoadRenders(pageData.allRecipes);
     }
-  }, 300)
-  
-  
-  pageData.recipesOfInterest = copyItem(pageData.allRecipes);
-  pageData.allTags = populateTags(pageData.allRecipes);
-  setTimeout(() => {
-    hideSpinner();
-    pageLoadRenders(pageData.allRecipes);
-  }, 2300)
+  });
 }
 
 const isAIEnabled = () => {
-  flagsmith.init({
+  return flagsmith.init({
     environmentID:"KwbANkgyknoDMJgQ4YWxuR",
     onChange: () => {
-        aiEnabled = flagsmith.getState("ai_recipe_pitches").flags.ai_recipe_pitches.enabled
+        aiEnabled = flagsmith.getState("ai_recipe_pitches").flags.ai_recipe_pitches.enabled;
     }
   });
 }
 
 
-const handleIngredientData = ingredients => pageData.allIngredients = ingredients
+const handleIngredientData = ingredients => pageData.allIngredients = ingredients;
 
 const patchHits = (recipe) => {
   fetch('http://localhost:3001/api/v1/recipeHits', {
@@ -104,7 +106,7 @@ const patchHits = (recipe) => {
         .then(res => res.json())
         .then(data => {
           pageData.allRecipes.find(item => item.id === recipe.id).hits = data.recipes.find(item => item.id === recipe.id).hits;
-        })
+        });
     })
 }
 
@@ -176,11 +178,11 @@ const getChatGPTRecipePitches = (allRecipes) => {
     },
   };
 
-  allRecipes.forEach((recipe) => {
+  return allRecipes.map((recipe) => {
     DEFAULT_PARAMS["prompt"] = `In 10 words or less, give me an enticing pitch based on this recipe name: ${recipe.name}`;
     requestOptions.body = JSON.stringify(DEFAULT_PARAMS);
 
-    fetch('https://api.openai.com/v1/completions', requestOptions)
+    return fetch('https://api.openai.com/v1/completions', requestOptions)
         .then(response => response.json())
         .then(data => recipe.pitch = data.choices[0].text)
         .catch(error => console.error(error));
