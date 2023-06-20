@@ -347,9 +347,9 @@ const animateIngredientsTotal = price => {
   const target = Number(price.slice(1));
   const animateCount = () => {
     const count = Number(totalElement.innerText);
-    const increment = Number((target/refreshRate).toFixed(2));
+    const increment = target/refreshRate;
     if (count < target) {
-      totalElement.innerText = Number(count + increment).toFixed(2);
+      totalElement.innerText = (count + increment).toFixed(2);
       timerID = setTimeout(animateCount, 1);
     } else {
       totalElement.innerText = target;
