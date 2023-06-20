@@ -24,7 +24,7 @@ import { searchRecipes, findRecipe, checkSavedStatus, filterRecipesByTag, filter
 import { updateRecipesToCook } from './users';
 import { makeRecipeClickChart } from './clickChart';
 import { copyItem, toggleViewBtns } from './helper-functions';
-
+let timerID;
 // functions
 
 const makeRecipeColumnData = (data) => {
@@ -302,6 +302,7 @@ const showRecipe = (recipeCard) => {
   populateIngredients(pageData.currentRecipeCard);
   updateSaveButtons(pageData.currentRecipeCard.id, modalAddBtn, modalRemoveBtn, currentUser);
   openInfoPanel(recipeCard);
+  animateIngredientsTotal(pageData.currentRecipeCard.price);
   patchHits(pageData.currentRecipeCard)
 };
 
@@ -329,6 +330,7 @@ const openInfoPanel = (infoType) => {
 }
 
 const closePanel = (e) => {
+  clearTimeout(timerID);
   const thisInfoPanel = e.target.closest('.info-panel');
   allRecipes.classList.remove('blur', 'no-click')
   nav.classList.remove('blur', 'no-click');
@@ -338,10 +340,25 @@ const closePanel = (e) => {
   thisInfoPanel.classList.toggle("fade-in");
 };
 
+const animateIngredientsTotal = price => {
+  const totalElement = document.querySelector('.recipe-cost');
+  totalElement.innerText = 0;
+  const refreshRate = 500;
+  const target = Number(price.slice(1));
+  const animateCount = () => {
+    const count = Number(totalElement.innerText);
+    const increment = target/refreshRate;
+    if (count < target) {
+      totalElement.innerText = (count + increment).toFixed(2);
+      timerID = setTimeout(animateCount);
+    } else {
+      totalElement.innerText = target;
+    }
+  }
+  animateCount();
+}
+
 const populateIngredients = currentRecipeCard => {
-  ingredientsList.innerHTML = `
-    <h4>total ingredient cost: ${currentRecipeCard.price}</h4>
-  `;
   createIngredientsHTML(currentRecipeCard.ingredients);
 };
 
