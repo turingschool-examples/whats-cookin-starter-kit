@@ -23,16 +23,16 @@ let pageData = {
 let aiEnabled = false;
 
 // API CALLS
-const getUsers = () => fetch('http://localhost:3001/api/v1/users');
-const getRecipes = () => fetch('http://localhost:3001/api/v1/recipes');
-const getIngredients = () => fetch(`http://localhost:3001/api/v1/ingredients`);
+const getUsers = () => fetch('https://whats-cookin-2303be.herokuapp.com/api/v1/users');
+const getRecipes = () => fetch('https://whats-cookin-2303be.herokuapp.com/api/v1/recipes');
+const getIngredients = () => fetch('https://whats-cookin-2303be.herokuapp.com/api/v1/ingredients');
 const updateRecipe = (userID, recipeID, request) => {
   const body = {
     userID,
     recipeID
   };
 
-  return fetch('http://localhost:3001/api/v1/usersRecipes', {
+  return fetch('https://whats-cookin-2303be.herokuapp.com/api/v1/usersRecipes', {
     method: `${request}`,
     body: JSON.stringify(body),
     headers: {
@@ -90,7 +90,7 @@ const preparePageRender = () => {
 const handleIngredientData = ingredients => pageData.allIngredients = ingredients;
 
 const patchHits = (recipe) => {
-  fetch('http://localhost:3001/api/v1/recipeHits', {
+  fetch('https://whats-cookin-2303be.herokuapp.com/api/v1/recipeHits', {
     method: 'PATCH',
     body: JSON.stringify({recipeID: recipe.id}),
     headers: {
