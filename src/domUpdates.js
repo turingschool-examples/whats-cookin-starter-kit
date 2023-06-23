@@ -299,10 +299,10 @@ const showRecipe = (recipeCard) => {
   updateCurrentRecipe(recipeCard);
   populateRecipeHeader(pageData.currentRecipeCard);
   populateInstructions(pageData.currentRecipeCard);
+  animateIngredientsTotal(pageData.currentRecipeCard.price);
   populateIngredients(pageData.currentRecipeCard);
   updateSaveButtons(pageData.currentRecipeCard.id, modalAddBtn, modalRemoveBtn, currentUser);
   openInfoPanel(recipeCard);
-  animateIngredientsTotal(pageData.currentRecipeCard.price);
   patchHits(pageData.currentRecipeCard)
 };
 
@@ -341,6 +341,7 @@ const closePanel = (e) => {
 };
 
 const animateIngredientsTotal = price => {
+  ingredientsList.innerHTML = '<h4>total ingredient cost: $<span class="recipe-cost"></span></h4>';
   const totalElement = document.querySelector('.recipe-cost');
   totalElement.innerText = 0;
   const refreshRate = 500;
