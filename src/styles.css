@@ -651,12 +651,14 @@ input[type=checkbox] {
   margin: 0 10px 15px 35px;
 }
 
+.ingredients-info {
+  overflow-x: hidden;
+  padding-bottom: 2%;
+}
+
 .ingredients-list {
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  padding-bottom: 2%;
-  overflow-x: hidden;
 }
 
 .close-btn {
