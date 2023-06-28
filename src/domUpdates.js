@@ -300,9 +300,9 @@ const showRecipe = (recipeCard) => {
   populateRecipeHeader(pageData.currentRecipeCard);
   populateInstructions(pageData.currentRecipeCard);
   populateIngredients(pageData.currentRecipeCard);
+  animateIngredientsTotal(pageData.currentRecipeCard.price);
   updateSaveButtons(pageData.currentRecipeCard.id, modalAddBtn, modalRemoveBtn, currentUser);
   openInfoPanel(recipeCard);
-  animateIngredientsTotal(pageData.currentRecipeCard.price);
   patchHits(pageData.currentRecipeCard)
 };
 
@@ -363,6 +363,7 @@ const populateIngredients = currentRecipeCard => {
 };
 
 const createIngredientsHTML = ingredients => {
+  ingredientsList.innerHTML = '';
   ingredients.forEach((ingredient, i) => {
     let ingredientLabelName = `ingredient${i}`
     ingredientsList.innerHTML += `
