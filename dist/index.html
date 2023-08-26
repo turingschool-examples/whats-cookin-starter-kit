@@ -2,11 +2,29 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Whats Cookin</title>
+    <title>Discovery Cooking</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <main class="container">
+      <section id="main-nav">
+        <nav id="upper-nav" class="upper-nav">
+          <button id="discover-recipes" class="upper-nav-bar"></button>
+          <button id="my-recipes" class="upper-nav-button"></button>
+        </nav>
+      </section>
+      <section id="search">
+        <input type="text" placeholder="Search" class="search" id="search">
+        <button id="search-button" class="search-button"></button>
+      </section>
+      <h1 id="page-title">Discovery</h1>
+      <section id="tags" class="tags"></section>
+      <!-- // cards go here  -->
+    </main>
   </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+  
+    
+
+   
+    <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>
