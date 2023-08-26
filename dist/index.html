@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Discovery Cooking</title>
   </head>
   <body>
@@ -12,18 +12,26 @@
           <button id="myRecipes" class="upper-nav-button"></button>
         </nav>
         <section id="search" class="search">
-          <input type="text" placeholder="Search" class="search-input" id="searchInput">
+          <input
+            type="text"
+            placeholder="Search"
+            class="search-input"
+            id="searchInput"
+          />
           <button id="searchButton" class="search-button">SEARCH</button>
         </section>
       </section>
       <h1 id="pageTitle">Discovery</h1>
-      <!-- // cards go here  -->
-      <section id="tags" class="tags"></section>
+      <section id="tags" class="tags">
+        <!-- // cards go here  -->
+      </section>
+      <section class="recipe-area"></section>
+      <section class="saved-recipes"></section>
+      <section class="recipe-card"></section>
     </main>
   </body>
-  <section>
-  </section>
-  
-    <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+  <section></section>
+
+  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>
