@@ -6,25 +6,24 @@
   </head>
   <body>
     <main class="container">
-      <section id="main-nav">
-        <nav id="upper-nav" class="upper-nav">
-          <button id="discover-recipes" class="upper-nav-bar"></button>
-          <button id="my-recipes" class="upper-nav-button"></button>
+      <section id="mainNav" class="main-nav">
+        <nav id="upperNav" class="upper-nav">
+          <button id="discoverRecipes" class="upper-nav-button"></button>
+          <button id="myRecipes" class="upper-nav-button"></button>
         </nav>
+        <section id="search" class="search">
+          <input type="text" placeholder="Search" class="search-input" id="searchInput">
+          <button id="searchButton" class="search-button">SEARCH</button>
+        </section>
       </section>
-      <section id="search">
-        <input type="text" placeholder="Search" class="search" id="search">
-        <button id="search-button" class="search-button"></button>
-      </section>
-      <h1 id="page-title">Discovery</h1>
+      <h1 id="pageTitle">Discovery</h1>
       <section id="tags" class="tags"></section>
       <!-- // cards go here  -->
     </main>
   </body>
+  <section>
+  </section>
   
-    
-
-   
     <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>
