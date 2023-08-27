@@ -5,15 +5,25 @@ import apiCalls from "./apiCalls";
 import "./images/turing-logo.png";
 import ingredientsData from "./data/ingredients.js";
 // import { recipeTestData } from "./data/testData";
+console.log(ingredientsData);
+
+// ===== OLD ABOVE ===== 
 import recipeData from "./data/recipes.js";
 
 //Example of one way to import functions from the domUpdates file. You will delete these examples.
 import { createRecipeCards } from "./domUpdates.js";
+import { filterByTag } from "../src/recipes.js";
+// ===== QUERY SELECTORS ===== 
+const tagSection = document.querySelector(".tag-area")
 
-console.log(ingredientsData);
+
+
+
 
 window.addEventListener("load", function () {
   createRecipeCards(recipeData);
 });
 
-import { filterByTag } from "../src/recipes.js";
+
+
+
