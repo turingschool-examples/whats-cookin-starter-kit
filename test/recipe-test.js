@@ -32,7 +32,6 @@ describe("Testing", () => {
 describe("Filtered List Based on Tag", () => {
   it("should return a filtered list based on a tag", () => {
     const result = returnFilteredTag(recipeData, "starter");
-    console.log(result);
     expect(result.length).to.equal(9);
   });
 });
@@ -41,6 +40,23 @@ describe("Cost of Recipe", () => {
   it("should calculate the cost of a given recipe's ingredients", () => {
     const result = returnRecipeCost(recipeData, ingredientsData, 595736);
     expect(result).to.equal(177.76000000000002);
+  });
+});
+
+describe("Filtered List Based on Name", () => {
+  it("should return a filtered list based on a name", () => {
+    const result = returnFilteredListName(
+      recipeData,
+      "Loaded Chocolate Chip Pudding Cookie Cups"
+    );
+    expect(result.length).to.equal(1);
+  });
+});
+
+describe("Directions for Recipe", () => {
+  it("should return the directions for a given recipe", () => {
+    const result = returnRecipeDirections(recipeData, 595736);
+    expect(result.length).to.equal(6);
   });
 });
 
