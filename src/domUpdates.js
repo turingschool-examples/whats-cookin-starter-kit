@@ -13,7 +13,6 @@ const recipeArea = document.querySelector(".recipe-area");
 
 const createRecipeCards = (recipes) => {
   recipeArea.innerHTML = "";
-  console.log(recipes);
   recipes.forEach((recipe) => {
     let recipeCard = document.createElement("div");
     recipeCard.classList.add("recipe-card");

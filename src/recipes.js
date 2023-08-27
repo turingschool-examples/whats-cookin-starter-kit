@@ -1,9 +1,12 @@
-const filterByTag = (tag, recipes, status) => {
-  if (status === true) {
-    return recipes.filter((recipe) => {
+const filterByTag = (tags, recipes) => {
+  let filteredRecipes = [];
+  tags.forEach((tag) => {
+    let filterRecipe = recipes.filter((recipe) => {
       return recipe.tags.includes(tag);
     });
-  } else return recipes;
+    filteredRecipes.push(...filterRecipe);
+  });
+  return filteredRecipes;
 };
 
 const searchRecipes = (searchTerm, recipes) => {
