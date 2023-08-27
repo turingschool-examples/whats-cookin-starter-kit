@@ -10,6 +10,7 @@ const searchRecipes = (searchTerm, recipes) => {
   });
 };
 
+
 module.exports = {
   filterByTag,
   searchRecipes,
