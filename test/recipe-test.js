@@ -43,3 +43,13 @@ describe("Cost of Recipe", () => {
     expect(result).to.equal(177.76000000000002);
   });
 });
+
+describe("Filtered List Based on Name", () => {
+  it("should return a filtered list based on a name", () => {
+    const result = returnFilteredListName(
+      recipeData,
+      "Loaded Chocolate Chip Pudding Cookie Cups"
+    );
+    expect(result.length).to.equal(1);
+  });
+});
