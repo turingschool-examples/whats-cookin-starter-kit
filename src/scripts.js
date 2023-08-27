@@ -18,19 +18,24 @@ function createFunction(array) {
   return array;
 }
 
-function returnFilteredListName(array, name) {
-  return array.filter((recipeEl) => {
-    return recipeEl.name === name;
+function returnFilteredTag(array, tag) {
+  const filteredRecipe = array.filter((recipeEl) => {
+    return recipeEl.tags.includes(tag);
   });
+  if (filteredRecipe) {
+    return filteredRecipe.map((recipeEl) => {
+      return recipeEl.id;
+    });
+  } else {
+    return [];
+  }
 }
 
-function returnFilteredTag(array, tag) {}
-function returnIngredientNames(array) {}
 module.exports = {
   createFunction,
-  returnFilteredListName,
-  returnIngredientNames,
+  // returnFilteredListName,
+  // returnIngredientNames,
   returnFilteredTag,
-  returnRecipeCost,
-  returnRecipeDirections,
+  // returnRecipeCost,
+  // returnRecipeDirections,
 };
