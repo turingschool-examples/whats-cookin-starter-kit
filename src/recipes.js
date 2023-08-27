@@ -1,6 +1,5 @@
 const filterByTag = (tag, recipes, status) => {
   if (status === true) {
-    console.log("getting here");
     return recipes.filter((recipe) => {
       return recipe.tags.includes(tag);
     });
