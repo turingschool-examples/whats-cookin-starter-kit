@@ -54,10 +54,28 @@ function returnRecipeCost(arrayRecipe, arrayIngredients, recipeID) {
   }
 }
 
+function returnIngredientNames(arrayRecipe, arrayIngredients, recipeID) {
+  const filteredRecipe = arrayRecipe.find((recipeEl) => {
+    return recipeEl.id === recipeID;
+  });
+  if (filteredRecipe) {
+    const ingredientsArr = filteredRecipe.ingredients;
+    return ingredientsArr.map((ingredientEl) => {
+      const matchingIngredient = arrayIngredients.find((ingredientsObjEl) => {
+        return ingredientEl.id === ingredientsObjEl.id;
+      });
+      if (matchingIngredient) {
+        return matchingIngredient.name;
+      }
+    });
+  }
+  return [];
+}
+
 module.exports = {
   createFunction,
   // returnFilteredListName,
-  // returnIngredientNames,
+  returnIngredientNames,
   returnFilteredTag,
   returnRecipeCost,
   // returnRecipeDirections,
