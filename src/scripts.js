@@ -15,6 +15,7 @@ import { createRecipeCards } from "./domUpdates.js";
 import { filterByTag } from "../src/recipes.js";
 // ===== QUERY SELECTORS =====
 const tagSection = document.querySelector(".tag-area");
+const searchButton = document.querySelector()
 
 // ===== EVENT LISTENERS =====
 window.addEventListener("load", function () {
