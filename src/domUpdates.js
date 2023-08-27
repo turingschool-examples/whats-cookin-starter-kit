@@ -12,7 +12,7 @@ const recipeArea = document.querySelector(".recipe-area");
 // }
 
 const createRecipeCards = (recipes) => {
-  recipeArea.innerHTHML = "";
+  recipeArea.innerHTML = "";
   console.log(recipes);
   recipes.forEach((recipe) => {
     let recipeCard = document.createElement("div");
@@ -29,8 +29,5 @@ const createRecipeCards = (recipes) => {
     recipeArea.appendChild(recipeCard);
   });
 };
-
-
-
 
 export { createRecipeCards };

@@ -22,7 +22,13 @@ window.addEventListener("load", function () {
 });
 
 tagSection.addEventListener("click", function (event) {
-  let tagStatus = event.target.parentElement;
-  console.log(tagStatus.classList.contains("tag-card"));
-  // let filteredRecipes = filterByTag();
+  let tag = event.target.parentElement;
+  tag.classList.toggle("tag-active");
+  let tagStatus = event.target.parentElement.classList.contains("tag-active");
+  let tagId = event.target.parentElement.id;
+  // console.log(tagStatus);
+  // console.log(tagId);
+  let filteredRecipes = filterByTag(tagId, recipeData, tagStatus);
+  console.log(filteredRecipes);
+  createRecipeCards(filteredRecipes);
 });
