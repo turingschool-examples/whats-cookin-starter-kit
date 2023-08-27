@@ -13,3 +13,28 @@
 //   exampleFunction1,
 //   exampleFunction2,
 // }
+
+import recipeData from "../src/data/recipes.js";
+
+const recipeDisplay = document.querySelector(".recipes");
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  displayRecipes();
+});
+
+function displayRecipes() {
+  let recipeHTML = "";
+  recipeData.forEach((recipeEl) => {
+    recipeHTML += `<div class="recipe-card">
+    <img
+      src="${recipeEl.image}"
+      alt="recipe-img"
+      id=${recipeEl.id}
+    />
+    <button class="save-recipe-btn">Save Recipe</button>
+   </div>`;
+  });
+  recipeDisplay.innerHTML = recipeHTML;
+}
+
+export { displayRecipes };

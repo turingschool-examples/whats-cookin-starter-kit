@@ -13,6 +13,8 @@
 // exampleFunction2("heather");
 
 // console.log(ingredientsData);
+import "./styles.css";
+import "./domUpdates.js";
 
 function createFunction(array) {
   return array;
