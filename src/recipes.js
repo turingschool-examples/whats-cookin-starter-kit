@@ -8,6 +8,7 @@ const filterByTag = (tag, recipes, status) => {
 
 const searchRecipes = (searchTerm, recipes) => {
   return recipes.filter((recipe) => {
+    console.log("getting here");
     return recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
 };

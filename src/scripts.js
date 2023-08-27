@@ -12,10 +12,11 @@ import recipeData from "./data/recipes.js";
 
 //Example of one way to import functions from the domUpdates file. You will delete these examples.
 import { createRecipeCards } from "./domUpdates.js";
-import { filterByTag } from "../src/recipes.js";
+import { filterByTag, searchRecipes } from "../src/recipes.js";
 // ===== QUERY SELECTORS =====
 const tagSection = document.querySelector(".tag-area");
-const searchButton = document.querySelector()
+const searchInput = document.querySelector("#searchInput");
+const searchButton = document.querySelector("#searchButton");
 
 // ===== EVENT LISTENERS =====
 window.addEventListener("load", function () {
@@ -32,4 +33,10 @@ tagSection.addEventListener("click", function (event) {
   let filteredRecipes = filterByTag(tagId, recipeData, tagStatus);
   console.log(filteredRecipes);
   createRecipeCards(filteredRecipes);
+});
+
+searchButton.addEventListener("click", function (event) {
+  let searchTerm = searchInput.value;
+  let searchedRecipes = searchRecipes(searchTerm, recipeData);
+  createRecipeCards(searchedRecipes);
 });
