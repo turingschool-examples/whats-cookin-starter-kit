@@ -16,7 +16,20 @@ const searchRecipes = (searchTerm, recipes) => {
   });
 };
 
+const getRecipeInstructions = (recipeName, recipes) => {
+  let recipe = recipes.find((recipe) => {
+    return recipe.name === recipeName;
+  });
+  if (recipe) {
+    return recipe.instructions;
+  } else {
+    return [];
+  }
+};
+
+
 module.exports = {
   filterByTag,
   searchRecipes,
+  getRecipeInstructions
 };
