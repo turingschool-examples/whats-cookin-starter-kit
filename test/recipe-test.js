@@ -53,3 +53,11 @@ describe("Filtered List Based on Name", () => {
     expect(result.length).to.equal(1);
   });
 });
+
+describe("Directions for Recipe", () => {
+  it("should return the directions for a given recipe", () => {
+    const result = returnRecipeDirections(recipeData, 595736);
+    console.log(result);
+    expect(result.length).to.equal(6);
+  });
+});
