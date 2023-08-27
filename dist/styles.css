@@ -48,8 +48,17 @@ nav {
 
 .nav-link {
   margin-right: 55px;
-  font-size: 25px;
+  font-size: 20px;
   color: black;
   line-height: 35px;
+  text-decoration: none;
+  border-bottom: 4px solid orange;
+  text-transform: capitalize;
+  font-family: 'Eczar', serif;
+}
+
+.nav-link:hover {
+  color: white;
+  background-color: black;
 }
 
