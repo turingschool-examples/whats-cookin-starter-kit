@@ -1,23 +1,33 @@
+const recipeArea = document.querySelector(".recipe-area");
+
 //NOTE: Your DOM manipulation will occur in this file
 
 //Here are 2 example functions just to demonstrate one way you can export/import between the two js files. You'll want to delete these once you get your own code going.
-function exampleFunction1(person) {
-  console.log(`oh hi there ${person}`);
-}
+// function exampleFunction1(person) {
+//   console.log(`oh hi there ${person}`);
+// }
 
-function exampleFunction2(person) {
-  console.log(`bye now ${person}`);
-}
+// function exampleFunction2(person) {
+//   console.log(`bye now ${person}`);
+// }
 
 const createRecipeCards = (recipes) => {
-  // INSERT SECTION WHERE YOU'RE BUILDING THE CARDS HERE .innerHTHML = ""
+  recipeArea.innerHTHML = "";
+  console.log(recipes);
   recipes.forEach((recipe) => {
-    const recipeCard = document.createElement("div");
+    let recipeCard = document.createElement("div");
     recipeCard.classList.add("recipe-card");
-    recipeCard.id.add(recipe.id);
-    recipe
-
+    recipeCard.setAttribute("id", recipe.id);
+    let recipeTitle = document.createElement("h2");
+    recipeTitle.classList.add("recipe-title");
+    recipeCard.appendChild(recipeTitle);
+    recipeTitle.innerText = recipe.name;
+    let recipeImage = document.createElement("img");
+    recipeImage.classList.add("recipe-image");
+    recipeImage.setAttribute("src", recipe.image);
+    recipeCard.appendChild(recipeImage);
+    recipeArea.appendChild(recipeCard);
   });
 };
 
-export { exampleFunction1, exampleFunction2 };
+export { createRecipeCards };
