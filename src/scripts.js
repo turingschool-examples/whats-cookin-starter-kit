@@ -31,11 +31,34 @@ function returnFilteredTag(array, tag) {
   }
 }
 
+function returnRecipeCost(arrayRecipe, arrayIngredients, recipeID) {
+  const filteredRecipe = arrayRecipe.find((recipeEl) => {
+    return recipeEl.id === recipeID;
+  });
+  if (filteredRecipe) {
+    const ingredientsArr = filteredRecipe.ingredients;
+    let totalCost = 0;
+
+    ingredientsArr.forEach((ingredientEl) => {
+      const matchingIngredient = arrayIngredients.find((ingredientsObjEl) => {
+        return ingredientEl.id === ingredientsObjEl.id;
+      });
+      if (matchingIngredient) {
+        totalCost +=
+          (ingredientEl.quantity.amount *
+            matchingIngredient.estimatedCostInCents) /
+          100;
+      }
+    });
+    return totalCost;
+  }
+}
+
 module.exports = {
   createFunction,
   // returnFilteredListName,
   // returnIngredientNames,
   returnFilteredTag,
-  // returnRecipeCost,
+  returnRecipeCost,
   // returnRecipeDirections,
 };
