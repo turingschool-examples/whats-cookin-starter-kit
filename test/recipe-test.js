@@ -36,3 +36,10 @@ describe("Filtered List Based on Tag", () => {
     expect(result.length).to.equal(9);
   });
 });
+
+describe("Cost of Recipe", () => {
+  it("should calculate the cost of a given recipe's ingredients", () => {
+    const result = returnRecipeCost(recipeData, ingredientsData, 595736);
+    expect(result).to.equal(177.76000000000002);
+  });
+});
