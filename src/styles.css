@@ -15,7 +15,7 @@ body {
 
 .main-nav {
   display: flex;
-  background-color: #A5DB9C;
+  background-color: #a5db9c;
   width: 100%;
   height: 90px;
   margin-top: 5px;
@@ -34,29 +34,28 @@ body {
   display: flex;
   justify-content: row;
   align-items: center;
-  background-color: #FFFDFD;
+  background-color: #fffdfd;
   width: 222px;
   height: 28px;
-  
 }
 
 h1 {
-color: #21683D;
-font-family: Inter;
-font-size: 48px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  color: #21683d;
+  font-family: Inter;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .upper-nav-button {
   width: 222px;
   height: 28px;
-font-family: Inter;
-font-size: 24px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .recipe-area {
@@ -69,10 +68,10 @@ line-height: normal;
 .recipe-card {
   display: flex;
   flex-direction: column;
-  justify-content:space-around;
-  align-items:center;
+  justify-content: space-around;
+  align-items: center;
   height: 300px;
-  width: 300px; 
+  width: 300px;
   margin: 20px;
   cursor: pointer;
 }
@@ -90,7 +89,7 @@ line-height: normal;
 .tag-area {
   display: flex;
   flex-direction: row;
-  justify-content:space-around;
+  justify-content: space-around;
   width: 40%;
   height: 75px;
   flex-wrap: wrap;
@@ -102,7 +101,5 @@ line-height: normal;
 }
 
 .tag-active {
-  background-color: #A5DB9C;
+  background-color: #a5db9c;
 }
-
-
