@@ -33,9 +33,9 @@ function returnFilteredTag(array, tag) {
 
 module.exports = {
   createFunction,
-  returnFilteredListName,
-  returnIngredientNames,
+  // returnFilteredListName,
+  // returnIngredientNames,
   returnFilteredTag,
-  returnRecipeCost,
-  returnRecipeDirections,
+  // returnRecipeCost,
+  // returnRecipeDirections,
 };
