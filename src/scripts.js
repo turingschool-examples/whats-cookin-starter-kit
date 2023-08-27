@@ -7,23 +7,22 @@ import ingredientsData from "./data/ingredients.js";
 // import { recipeTestData } from "./data/testData";
 console.log(ingredientsData);
 
-// ===== OLD ABOVE ===== 
+// ===== OLD ABOVE =====
 import recipeData from "./data/recipes.js";
 
 //Example of one way to import functions from the domUpdates file. You will delete these examples.
 import { createRecipeCards } from "./domUpdates.js";
 import { filterByTag } from "../src/recipes.js";
-// ===== QUERY SELECTORS ===== 
-const tagSection = document.querySelector(".tag-area")
+// ===== QUERY SELECTORS =====
+const tagSection = document.querySelector(".tag-area");
 
-
-
-
-
+// ===== EVENT LISTENERS =====
 window.addEventListener("load", function () {
   createRecipeCards(recipeData);
 });
 
-
-
-
+tagSection.addEventListener("click", function (event) {
+  let tagStatus = event.target.parentElement;
+  console.log(tagStatus.classList.contains("tag-card"));
+  // let filteredRecipes = filterByTag();
+});

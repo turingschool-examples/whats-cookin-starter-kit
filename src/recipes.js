@@ -1,7 +1,9 @@
-const filterByTag = (tag, recipes) => {
-  return recipes.filter((recipe) => {
-    return recipe.tags.includes(tag);
-  });
+const filterByTag = (tag, status, recipes) => {
+  if (status === "tag-active") {
+    return recipes.filter((recipe) => {
+      return recipe.tags.includes(tag);
+    });
+  } else return recipes;
 };
 
 const searchRecipes = (searchTerm, recipes) => {
@@ -9,7 +11,6 @@ const searchRecipes = (searchTerm, recipes) => {
     return recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
 };
-
 
 module.exports = {
   filterByTag,
