@@ -69,3 +69,10 @@ describe("Filtered List Based on Name", () => {
     expect(result.length).to.equal(1);
   });
 });
+
+describe("Names of Ingredients", () => {
+  it("should determine the names of ingredients based on a recipe name", () => {
+    const result = returnIngredientNames(recipeData, ingredientsData, 595736);
+    expect(result.length).to.equal(11);
+  });
+});
