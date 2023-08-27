@@ -101,4 +101,8 @@ line-height: normal;
   cursor: pointer;
 }
 
+.tag-active {
+  background-color: #A5DB9C;
+}
+
 
