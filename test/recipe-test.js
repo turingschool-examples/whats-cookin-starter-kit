@@ -32,7 +32,6 @@ describe("Testing", () => {
 describe("Filtered List Based on Tag", () => {
   it("should return a filtered list based on a tag", () => {
     const result = returnFilteredTag(recipeData, "starter");
-    console.log(result);
     expect(result.length).to.equal(9);
   });
 });
@@ -57,7 +56,16 @@ describe("Filtered List Based on Name", () => {
 describe("Directions for Recipe", () => {
   it("should return the directions for a given recipe", () => {
     const result = returnRecipeDirections(recipeData, 595736);
-    console.log(result);
     expect(result.length).to.equal(6);
+  });
+});
+
+describe("Filtered List Based on Name", () => {
+  it("should return a filtered list based on a name", () => {
+    const result = returnFilteredListName(
+      recipeData,
+      "Loaded Chocolate Chip Pudding Cookie Cups"
+    );
+    expect(result.length).to.equal(1);
   });
 });

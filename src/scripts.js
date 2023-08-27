@@ -84,9 +84,19 @@ function returnRecipeDirections(array, recipeID) {
     return [];
   }
 }
+
+function returnFilteredListName(array, name) {
+  return array
+    .filter((recipeEl) => {
+      return recipeEl.name === name;
+    })
+    .map((filteredRecipeEl) => {
+      return filteredRecipeEl.id;
+    });
+}
 module.exports = {
   createFunction,
-  // returnFilteredListName,
+  returnFilteredListName,
   returnIngredientNames,
   returnFilteredTag,
   returnRecipeCost,
