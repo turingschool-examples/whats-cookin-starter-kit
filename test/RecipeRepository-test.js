@@ -1,6 +1,6 @@
-import { expect } from 'chai';
+import { expect } from "chai";
 
-const { recipeTestData, ingredientsTestData } = require('../src/data/testData');
+const { recipeTestData, ingredientsTestData } = require("../src/data/testData");
 
 
 const { recipeData } = require('../src/recipes');
@@ -12,19 +12,19 @@ const { filterByTag, searchRecipes, getRecipeInstructions, calculateCost, getIng
 //for each //=> if we are using the same data set for all tests, we can use before each to set up the data
 describe("getRecipeInstructions", () => {
   it("should return instructions for a given recipe", () => {
-    const recipeName = 'Loaded Chocolate Chip Pudding Cookie Cups';
+    const recipeName = "Loaded Chocolate Chip Pudding Cookie Cups";
     const instructions = getRecipeInstructions(recipeName, recipeTestData);
     expect(instructions).to.deep.equal(recipeTestData[0].instructions);
   });
 
   it("should return instructions for a different recipe", () => {
-    const recipeName = 'Maple Dijon Apple Cider Grilled Pork Chops';
+    const recipeName = "Maple Dijon Apple Cider Grilled Pork Chops";
     const instructions = getRecipeInstructions(recipeName, recipeTestData);
     expect(instructions).to.deep.equal(recipeTestData[1].instructions);
-});
+  });
 
   it("should return an empty array if no recipe is found", () => {
-    const recipeName = 'Not a recipe';
+    const recipeName = "Not a recipe";
     const instructions = getRecipeInstructions(recipeName, recipeTestData);
     expect(instructions).to.deep.equal([]);
   });
@@ -33,7 +33,7 @@ describe("getRecipeInstructions", () => {
     const instructions = getRecipeInstructions(null, recipeTestData);
     expect(instructions).to.deep.equal([]);
   });
-  
+
   it("should handle undefined input", () => {
     const instructions = getRecipeInstructions(undefined, recipeTestData);
     expect(instructions).to.deep.equal([]);
@@ -70,14 +70,14 @@ describe('calculateCost', () => {
 //   });
 // });
 
-describe('Filter', () => {
-  it('Should filter recipes by tag', () => {
-    const taggedRecipes = filterByTag(['side dish'], recipeTestData);
+describe("Filter", () => {
+  it("Should filter recipes by tag", () => {
+    const taggedRecipes = filterByTag("side dish", recipeTestData);
     expect(taggedRecipes).to.deep.equal([recipeTestData[2], recipeTestData[3]]);
   });
 
-  it('Should filter a list of recipes when given the name/partial name of a recipe', () => {
-    const searchedRecipe = searchRecipes('chocolate', recipeTestData);
+  it("Should filter a list of recipes when given the name/partial name of a recipe", () => {
+    const searchedRecipe = searchRecipes("chocolate", recipeTestData);
     expect(searchedRecipe).to.deep.equal([
       recipeTestData[0],
       recipeTestData[3],
@@ -85,24 +85,24 @@ describe('Filter', () => {
   });
 });
 
-describe('get ingredients', () => {
-  it('Should determine the list of ingredients for a recipe', () => {
+describe("get ingredients", () => {
+  it("Should determine the list of ingredients for a recipe", () => {
     const ingredientList = getIngredientNames(
       recipeTestData[0],
-      ingredientsTestData,
+      ingredientsTestData
     );
     expect(ingredientList).to.deep.equal([
-      'wheat flour',
-      'bicarbonate of soda',
-      'eggs',
-      'sucrose',
-      'instant vanilla pudding',
-      'brown sugar',
-      'salt',
-      'fine sea salt',
-      'semi sweet chips',
-      'unsalted butter',
-      'vanilla',
+      "wheat flour",
+      "bicarbonate of soda",
+      "eggs",
+      "sucrose",
+      "instant vanilla pudding",
+      "brown sugar",
+      "salt",
+      "fine sea salt",
+      "semi sweet chips",
+      "unsalted butter",
+      "vanilla",
     ]);
   });
 });
