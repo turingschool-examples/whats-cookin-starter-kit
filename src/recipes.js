@@ -40,9 +40,35 @@ const getRecipeInstructions = (recipeName, recipes) => {
   }
 };
 
+const calculateCost = (recipe, ingredients) => {
+  let ids = recipe.ingredients.map((ingredient) => {
+    return ingredient.id;
+  });
+  
+  let recipeIngredients = ingredients.filter((ingredient) => {
+    return ids.includes(ingredient.id);
+  });
+  
+  if (recipeIngredients.length !== recipe.ingredients.length) {
+    return "Ingredient not found";
+  }
+
+  let totalCost = recipeIngredients.reduce((total, ingredient) => {
+    recipe.ingredients.forEach((recipeIngredient) => {
+      if (recipeIngredient.id === ingredient.id) {
+        total += ingredient.estimatedCostInCents * recipeIngredient.quantity.amount;
+      }
+    });
+    return total;
+  }, 0);
+  
+  return totalCost;
+};
+
 module.exports = {
   filterByTag,
   searchRecipes,
   getIngredientNames,
   getRecipeInstructions,
+  calculateCost
 };

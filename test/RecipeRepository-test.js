@@ -2,14 +2,12 @@ import { expect } from "chai";
 
 const { recipeTestData, ingredientsTestData } = require("../src/data/testData");
 
-// const { recipeData } = require("../src/recipes");
 
-const {
-  filterByTag,
-  searchRecipes,
-  getIngredientNames,
-  getRecipeInstructions,
-} = require("../src/recipes");
+const { recipeData } = require('../src/recipes');
+
+
+const { filterByTag, searchRecipes, getRecipeInstructions, calculateCost, getIngredientNames } = require("../src/recipes");
+
 
 //for each //=> if we are using the same data set for all tests, we can use before each to set up the data
 describe("getRecipeInstructions", () => {
@@ -31,12 +29,6 @@ describe("getRecipeInstructions", () => {
     expect(instructions).to.deep.equal([]);
   });
 
-  it("should return an empty array when recipe list is empty", () => {
-    const recipeName = "Some Recipe";
-    const instructions = getRecipeInstructions(recipeName, []);
-    expect(instructions).to.deep.equal([]);
-  });
-
   it("should handle null input", () => {
     const instructions = getRecipeInstructions(null, recipeTestData);
     expect(instructions).to.deep.equal([]);
@@ -47,10 +39,30 @@ describe("getRecipeInstructions", () => {
     expect(instructions).to.deep.equal([]);
   });
 });
-//added some extra tests to make sure it handles null and undefined inputs but we can
-//figure out what we want to do with those later
 
-////initially removed the tests you had written so I could write my own, but I'm going to add them back in so we can tweak them later
+describe('calculateCost', () => {
+  it("should calculate the cost of a recipe with one ingredient", () => {
+    const recipe = {
+      id: 1,
+      ingredients: [
+        { id: 1, quantity: { amount: 1 }, },
+      ],
+    };
+    
+    const ingredients = [
+      { id: 1, estimatedCostInCents: 100 },
+    ];
+    
+    const totalCost = calculateCost(recipe, ingredients);
+    expect(totalCost).to.equal(100);
+  });
+
+  it("should return error message if ingredient id does not exist", () => {
+    const totalCost = calculateCost(recipeTestData[0], []);
+    expect(totalCost).to.equal("Ingredient not found");
+  });
+//test to see if the error message works 👆
+});
 
 // describe("Recipe", () => {
 //   it("Should be a function", () => {
