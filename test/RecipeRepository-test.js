@@ -22,7 +22,7 @@ describe('calculateCost', () => {
     ];
 
     const totalCost = calculateCost(recipe, ingredients);
-    expect(totalCost).to.equal(1); // Changed the expected value to 1
+    expect(totalCost).to.equal(1); 
   });
 
   it("should throw an error if ingredient id does not exist", () => {
@@ -40,12 +40,6 @@ describe('calculateCost', () => {
     expect(() => calculateCost(recipe, ingredients)).to.throw("Ingredient not found");
   });
 });
-
-// describe("Recipe", () => {
-//   it("Should be a function", () => {
-//     expect(filterByTag).to.be.a("function");
-//   });
-// });
 
 describe("Filter", () => {
   it("Should filter recipes by tag", () => {
