@@ -54,7 +54,7 @@ const inputIngredient = document.querySelector(".input-ingredient");
 //ON PAGE LOAD
 document.addEventListener("DOMContentLoaded", (event) => {
   displayRecipes(recipeData);
-  displayTags();
+  displayTags(recipeData);
 });
 
 function displayRecipes(array) {
@@ -67,14 +67,14 @@ function displayRecipes(array) {
       alt="recipe-img"
       id=${recipeEl.id}
     />
-    <button class="save-recipe-btn">Save Recipe</button>
+    <button class="save-recipe-btn" id${recipeEl.id}>Save Recipe</button>
    </div>`;
   });
   recipeDisplay.innerHTML = recipeHTML;
 }
 
-function displayTags() {
-  const tagsArray = returnListOfUniqueTags(recipeData);
+function displayTags(array) {
+  const tagsArray = returnListOfUniqueTags(array);
   let tagsHtml = "";
   tagsArray.forEach((tagEl) => {
     tagsHtml += `<button class="btn" id="${tagEl}">${tagEl}</button>
@@ -129,7 +129,7 @@ inputIngredient.addEventListener("keydown", (event) => {
 //       <button class="save-recipe-btn">Save Recipe</button>
 //     </div>`;
 //   });
-// 
+//
 //   recipeDisplay.innerHTML = recipeHTML;
 // }
 //CLICKING A TAG ELEMENT
