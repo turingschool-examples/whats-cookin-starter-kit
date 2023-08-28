@@ -95,7 +95,7 @@ button:hover {
 .modal-container {
   background-image: linear-gradient(
       rgba(15, 15, 15, 0.2),
-      rgba(15, 15, 15, 0.6)
+      rgba(15, 15, 15, 0.2)
     ),
     url(https://spoonacular.com/recipeImages/595736-556x370.jpg);
   background-size: cover;

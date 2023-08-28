@@ -25,6 +25,9 @@ import {
   returnRecipeImgUrl,
   returnListOfUniqueTags,
   returnFilteredRecipeArrayByTagID,
+  findRecipeByIngredient,
+  findRecipeByName,
+  getUserInput,
 } from "../src/scripts.js";
 
 import ingredientsData from "../src/data/ingredients.js";
@@ -44,12 +47,11 @@ const modalDirections = document.querySelector(".modal-directions-list");
 const modalCost = document.querySelector(".modal-cost");
 const modalIngredients = document.querySelector(".modal-ingredients-list");
 const closeBtn = document.querySelector(".close-btn");
-
 const tagButtons = document.querySelector(".tag-buttons");
+const input = document.querySelector(".input");
 
 //ON PAGE LOAD
 document.addEventListener("DOMContentLoaded", (event) => {
-  console.log("dom loaded");
   displayRecipes(recipeData);
   displayTags();
 });
@@ -80,12 +82,53 @@ function displayTags() {
   tagButtons.innerHTML = tagsHtml;
 }
 
+//SEARCHING FOR A RECIPE BY NAME
+// input.addEventListener("keydown", (event) => {
+//   if (event.key === "Enter") {
+//     const inputValue = input.value;
+//     const recipeSearch = returnFilteredListName(recipeData, inputValue);
+//     displayRecipes(recipeSearch);
+//   }
+// });
+
+input.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    const userInput = getUserInput();
+    const recipeIdsByName = findRecipeByName(userInput, recipeData);
+    const recipeIdsByIngredient = findRecipeByIngredient(
+      userInput,
+      ingredientsData,
+      recipeData
+    );
+    const combinedRecipeIds = [...recipeIdsByName, ...recipeIdsByIngredient];
+    displayRecipes(combinedRecipeIds);
+  }
+});
+
+// const displayRecipeByIds = (recipeIds) => {
+//   const recipesToDisplay = recipeData.filter((recipe) => {
+//     return recipeIds.includes(recipe.id);
+//   });
+//   let recipeHTML = "";
+
+//   recipesToDisplay.forEach((recipeEl) => {
+//     recipeHTML += `<div class="recipe-card">
+//       <img
+//         src="${recipeEl.image}"
+//         alt="recipe-img"
+//         id=${recipeEl.id}
+//       />
+//       <button class="save-recipe-btn">Save Recipe</button>
+//     </div>`;
+//   });
+// ​
+//   recipeDisplay.innerHTML = recipeHTML;
+// }
 //CLICKING A TAG ELEMENT
 tagButtons.addEventListener("click", (event) => {
   let tagClicked;
   tagClicked = event.target.id;
   const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
-  console.log(filteredRecipeIDByTag);
   const filteredArrayByTagID = returnFilteredRecipeArrayByTagID(
     filteredRecipeIDByTag,
     recipeData
@@ -134,6 +177,7 @@ recipeDisplay.addEventListener("click", (event) => {
     modalTags.innerHTML = tagsHtml;
 
     modalOverlay.classList.add("open-modal");
+
     modalContainer.style.backgroundImage = `linear-gradient(
       rgba(15, 15, 15, 0.7),
       rgba(15, 15, 15, 0.7)

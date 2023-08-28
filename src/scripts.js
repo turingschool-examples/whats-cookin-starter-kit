@@ -93,10 +93,13 @@ function returnRecipeDirections(array, recipeID) {
 function returnFilteredListName(array, name) {
   return array
     .filter((recipeEl) => {
-      return recipeEl.name === name;
+      return (
+        recipeEl.name.includes(name) ||
+        recipeEl.name.toLowerCase().includes(name.toLowerCase())
+      );
     })
     .map((filteredRecipeEl) => {
-      return filteredRecipeEl.id;
+      return filteredRecipeEl;
     });
 }
 
@@ -148,6 +151,39 @@ function returnFilteredRecipeArrayByTagID(arrayTagsID, arrayRecipe) {
     });
   });
 }
+
+function findRecipeByName(userInput, recipeData) {
+  const storedRecipeIds = recipeData
+    .filter((recipe) => {
+      const recipeName = recipe.name.toLowerCase();
+      return recipeName.includes(userInput);
+    })
+    .map((recipe) => recipe.id);
+  return storedRecipeIds;
+}
+
+function findRecipeByIngredient(userInput, ingredientsData, recipeData) {
+  const storedIngredientIds = ingredientsData
+    .filter(
+      (ingredient) => ingredient.name && ingredient.name.includes(userInput)
+    )
+    .map((ingredient) => ingredient.id);
+
+  const recipesWithMatch = recipeData.filter((recipe) => {
+    return recipe.ingredients.some((ingredient) =>
+      storedIngredientIds.includes(ingredient.id)
+    );
+  });
+  const recipeIdsWithMatch = recipesWithMatch.map((recipe) => recipe.id);
+  console.log(recipeIdsWithMatch);
+  return recipeIdsWithMatch;
+}
+
+function getUserInput() {
+  const userInput = document.querySelector(".input").value;
+  return userInput.toLowerCase();
+}
+
 export {
   createFunction,
   returnFilteredListName,
@@ -160,4 +196,7 @@ export {
   returnRecipeImgUrl,
   returnListOfUniqueTags,
   returnFilteredRecipeArrayByTagID,
+  findRecipeByIngredient,
+  findRecipeByName,
+  getUserInput,
 };
