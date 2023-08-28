@@ -24,6 +24,7 @@ const tagSection = document.querySelector(".tag-area");
 const searchInput = document.querySelector("#searchInput");
 const searchButton = document.querySelector("#searchButton");
 const recipeArea = document.querySelector(".recipe-area");
+const recipeCard = document.querySelector(".recipe-card");
 
 // ===== EVENT LISTENERS =====
 window.addEventListener("load", function () {
@@ -61,4 +62,7 @@ recipeArea.addEventListener("click", function (event) {
   let foundRecipe = locateRecipe(recipeClicked, recipeData);
   buildRecipeTitle(foundRecipe);
   buildRecipeTags(foundRecipe);
+  // function ingredients (function in here for making the string )
+  // function cost
+  // ....
 });
