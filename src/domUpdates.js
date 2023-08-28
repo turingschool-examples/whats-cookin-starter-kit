@@ -1,5 +1,6 @@
 const recipeArea = document.querySelector(".recipe-area");
 const recipeTitle = document.querySelector("#recipeCardTitle");
+const recipeTagArea = document.querySelector("#recipeCardTags");
 
 const createRecipeCards = (recipes) => {
   recipeArea.innerHTML = "";
@@ -31,4 +32,15 @@ const buildRecipeTitle = (foundRecipe) => {
   recipeTitle.innerText = foundRecipe.name;
 };
 
-export { createRecipeCards, locateRecipe, buildRecipeTitle };
+const buildRecipeTags = (foundRecipe) => {
+  foundRecipe.tags.forEach((tag) => {
+    let recipeTag = document.createElement("div");
+    recipeTag.classList.add("recipe-tag");
+    let recipeTagText = document.createElement("p");
+    recipeTagText.innerText = tag;
+    recipeTag.appendChild(recipeTagText);
+    recipeTagArea.appendChild(recipeTag);
+  });
+};
+
+export { createRecipeCards, locateRecipe, buildRecipeTitle, buildRecipeTags };

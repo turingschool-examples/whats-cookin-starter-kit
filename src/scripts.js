@@ -14,6 +14,7 @@ import {
   buildRecipeTitle,
   createRecipeCards,
   locateRecipe,
+  buildRecipeTags,
 } from "./domUpdates.js";
 import { filterByTag, searchRecipes } from "../src/recipes.js";
 const activeTags = [];
@@ -57,7 +58,7 @@ searchButton.addEventListener("click", function (event) {
 
 recipeArea.addEventListener("click", function (event) {
   let recipeClicked = event.target.parentElement.id;
-  console.log(recipeClicked);
   let foundRecipe = locateRecipe(recipeClicked, recipeData);
   buildRecipeTitle(foundRecipe);
+  buildRecipeTags(foundRecipe);
 });

@@ -103,3 +103,11 @@ h1 {
 .tag-active {
   background-color: #a5db9c;
 }
+
+.tag {
+/* this should be the design of our tags on the main and saved screen */
+}
+
+.recipe-tag {
+/* this should be the design of tags when a recipe is clicked*/
+}
