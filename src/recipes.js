@@ -21,7 +21,6 @@ const getIngredientNames = (recipe, ingredients) => {
   });
   let ingredientNames = ingredients.reduce((acc, cv) => {
     if (ingredientIds.includes(cv.id)) {
-      console.log("match");
       acc.push(cv.name);
     }
     return acc;
@@ -29,6 +28,7 @@ const getIngredientNames = (recipe, ingredients) => {
   return ingredientNames;
 };
 
+// we don't need this function
 const getRecipeInstructions = (recipeName, recipes) => {
   let recipe = recipes.find((recipe) => {
     return recipe.name === recipeName;
