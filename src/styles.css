@@ -1,12 +1,11 @@
 * {
   border: 2px solid green;
-  margin: 0; 
-  padding: 0; 
+  margin: 0;
+  padding: 0;
 }
 
 body {
   background-color: blueviolet;
-
 }
 
 main {
@@ -14,46 +13,147 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 15px; 
+  gap: 15px;
 }
 
 h1 {
   display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
 }
-
 
 .nav {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
-  align-items: center; 
-  gap: 20px; 
+  align-items: center;
+  gap: 20px;
 }
 
 .recipes {
   display: flex;
-  flex-wrap: wrap; 
-  gap: 15px; 
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
 }
 
-.recipe-card{
+.recipe-card {
   display: flex;
-  flex-direction: column; 
-  
+  flex-direction: column;
+}
+
+.title-recipe {
+  width: 250px;
+  height: 50px;
+  overflow: scroll;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-recipe:hover {
+  cursor: pointer;
 }
 
 img {
-  height: 150px;
-  width: 150px; 
+  height: 200px;
+  width: 250px;
 }
 
-.view-saved{
+img:hover {
+  cursor: pointer;
+}
+
+.view-saved {
   height: 50px;
-  width: 200px; 
+  width: 200px;
 }
 
-button:hover{
-cursor: pointer;
+button:hover {
+  cursor: pointer;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(73, 166, 233, 0.5);
+  display: grid;
+  place-items: center;
+  visibility: hidden;
+  z-index: -10;
+}
+
+.open-modal {
+  visibility: visible;
+  z-index: 10;
+}
+.modal-container {
+  background-image: linear-gradient(
+      rgba(15, 15, 15, 0.2),
+      rgba(15, 15, 15, 0.2)
+    ),
+    url(https://spoonacular.com/recipeImages/595736-556x370.jpg);
+  background-size: cover;
+  color: white;
+  width: 90vw;
+  opacity: 0.95;
+  height: 60vh;
+  text-align: center;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+}
+.close-btn:hover {
+  transform: scale(1.3);
+}
+
+.modal-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-title-directions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 50vw;
+  height: 60vh;
+  overflow: scroll;
+}
+
+.modal-tags {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.modal-ingredients-cost {
+  width: 20vw;
+  height: 60vh;
+  overflow: scroll;
+}
+
+.modal-directions {
+  overflow: scroll;
 }
