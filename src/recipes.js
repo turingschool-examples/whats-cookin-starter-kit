@@ -63,6 +63,8 @@ const calculateCost = (recipe, ingredients) => {
     return total;
   }, 0);
 
+  totalCost = Math.ceil(totalCost / 100);
+
   return totalCost;
 };
 
