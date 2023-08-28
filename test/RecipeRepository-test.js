@@ -62,10 +62,7 @@ describe('calculateCost', () => {
     expect(totalCost).to.equal("Ingredient not found");
   });
 //test to see if the error message works 👆
-
 });
-
-
 
 // describe("Recipe", () => {
 //   it("Should be a function", () => {
