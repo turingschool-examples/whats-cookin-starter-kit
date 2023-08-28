@@ -11,9 +11,22 @@ const filterByTag = (tags, recipes) => {
 
 const searchRecipes = (searchTerm, recipes) => {
   return recipes.filter((recipe) => {
-    console.log("getting here");
     return recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
+};
+
+const getIngredientNames = (recipe, ingredients) => {
+  let ingredientIds = recipe.ingredients.map((ingr) => {
+    return ingr.id;
+  });
+
+  let ingredientNames = ingredients.reduce((acc, cv) => {
+    if (ingredientIds.includes(cv.id)) {
+      acc.push(cv.name);
+    }
+    return acc;
+  }, []);
+  return ingredientNames;
 };
 
 const getRecipeInstructions = (recipeName, recipes) => {
@@ -26,7 +39,6 @@ const getRecipeInstructions = (recipeName, recipes) => {
     return [];
   }
 };
-
 // const calculateCost = (recipe, ingredients) => {
 //   let totalCost = 0;
 
@@ -69,6 +81,7 @@ const calculateCost = (recipe, ingredients) => {
 module.exports = {
   filterByTag,
   searchRecipes,
+  getIngredientNames,
   getRecipeInstructions,
-  calculateCost
+  calculateCost,
 };
