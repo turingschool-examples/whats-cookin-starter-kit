@@ -1,6 +1,7 @@
 const recipeArea = document.querySelector(".recipe-area");
 const recipeTitle = document.querySelector("#recipeCardTitle");
 const recipeTagArea = document.querySelector("#recipeCardTags");
+const recipeCard = document.querySelector(".recipe-card");
 
 const createRecipeCards = (recipes) => {
   recipeArea.innerHTML = "";
@@ -29,10 +30,12 @@ const locateRecipe = (recipeId, recipes) => {
 };
 
 const buildRecipeTitle = (foundRecipe) => {
+  recipeTitle.innerHTML = "";
   recipeTitle.innerText = foundRecipe.name;
 };
 
 const buildRecipeTags = (foundRecipe) => {
+  recipeTagArea.innerHTML = "";
   foundRecipe.tags.forEach((tag) => {
     let recipeTag = document.createElement("div");
     recipeTag.classList.add("recipe-tag");
@@ -43,4 +46,15 @@ const buildRecipeTags = (foundRecipe) => {
   });
 };
 
-export { createRecipeCards, locateRecipe, buildRecipeTitle, buildRecipeTags };
+const buildRecipeCard = (recipe) => {
+  buildRecipeTitle(recipe);
+  buildRecipeTags(recipe);
+};
+
+export {
+  createRecipeCards,
+  locateRecipe,
+  buildRecipeTitle,
+  buildRecipeTags,
+  buildRecipeCard,
+};

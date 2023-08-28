@@ -11,10 +11,9 @@ import recipeData from "./data/recipes.js";
 
 //Example of one way to import functions from the domUpdates file. You will delete these examples.
 import {
-  buildRecipeTitle,
   createRecipeCards,
   locateRecipe,
-  buildRecipeTags,
+  buildRecipeCard,
 } from "./domUpdates.js";
 import { filterByTag, searchRecipes } from "../src/recipes.js";
 const activeTags = [];
@@ -60,9 +59,5 @@ searchButton.addEventListener("click", function (event) {
 recipeArea.addEventListener("click", function (event) {
   let recipeClicked = event.target.parentElement.id;
   let foundRecipe = locateRecipe(recipeClicked, recipeData);
-  buildRecipeTitle(foundRecipe);
-  buildRecipeTags(foundRecipe);
-  // function ingredients (function in here for making the string )
-  // function cost
-  // ....
+  buildRecipeCard(foundRecipe);
 });
