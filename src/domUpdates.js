@@ -1,7 +1,12 @@
+import recipeData from "./data/recipes.js";
+import ingredientsData from "./data/ingredients.js";
+
 const recipeArea = document.querySelector(".recipe-area");
 const recipeTitle = document.querySelector("#recipeCardTitle");
 const recipeTagArea = document.querySelector("#recipeCardTags");
-const recipeCard = document.querySelector(".recipe-card");
+const recipeIngredientsArea = document.querySelector("#recipeCardIngredients");
+
+import { getIngredientNames } from "../src/recipes.js";
 
 const createRecipeCards = (recipes) => {
   recipeArea.innerHTML = "";
@@ -46,9 +51,20 @@ const buildRecipeTags = (foundRecipe) => {
   });
 };
 
+const buildIngredients = (foundRecipe) => {
+  recipeIngredientsArea.innerHTML = "";
+  let recipeIngredients = getIngredientNames(foundRecipe, ingredientsData);
+  recipeIngredients.forEach((ingredient) => {
+    let recipeIngredient = document.createElement("p");
+    recipeIngredient.innerText = ingredient;
+    recipeIngredientsArea.appendChild(recipeIngredient);
+  });
+};
+
 const buildRecipeCard = (recipe) => {
   buildRecipeTitle(recipe);
   buildRecipeTags(recipe);
+  buildIngredients(recipe);
 };
 
 export {
