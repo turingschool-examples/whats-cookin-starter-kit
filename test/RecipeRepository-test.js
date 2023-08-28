@@ -6,7 +6,7 @@ const { recipeTestData, ingredientsTestData } = require('../src/data/testData');
 const { recipeData } = require('../src/recipes');
 
 
-const { filterByTag, searchRecipes, getRecipeInstructions, calculateCost } = require("../src/recipes");
+const { filterByTag, searchRecipes, getRecipeInstructions, calculateCost, getIngredientNames } = require("../src/recipes");
 
 
 //for each //=> if we are using the same data set for all tests, we can use before each to set up the data
