@@ -3,14 +3,8 @@ import { expect } from 'chai';
 const { recipeTestData, ingredientsTestData } = require('../src/data/testData');
 
 
-
 const { recipeData } = require('../src/recipes');
 
-const {
-  filterByTag,
-  searchRecipes,
-  getIngredientNames,
-} = require('../src/recipes');
 
 const { filterByTag, searchRecipes, getRecipeInstructions, calculateCost } = require("../src/recipes");
 
@@ -81,7 +75,7 @@ describe('calculateCost', () => {
 
 describe('Filter', () => {
   it('Should filter recipes by tag', () => {
-    const taggedRecipes = filterByTag('side dish', recipeTestData);
+    const taggedRecipes = filterByTag(['side dish'], recipeTestData);
     expect(taggedRecipes).to.deep.equal([recipeTestData[2], recipeTestData[3]]);
   });
 

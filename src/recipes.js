@@ -83,5 +83,5 @@ module.exports = {
   searchRecipes,
   getIngredientNames,
   getRecipeInstructions,
-  calculateCost,
+  calculateCost
 };
