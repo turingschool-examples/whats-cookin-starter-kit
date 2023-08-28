@@ -1,6 +1,14 @@
+import recipeData from "./data/recipes.js";
+import ingredientsData from "./data/ingredients.js";
+
 const recipeArea = document.querySelector(".recipe-area");
 const recipeTitle = document.querySelector("#recipeCardTitle");
 const recipeTagArea = document.querySelector("#recipeCardTags");
+const recipeIngredientsArea = document.querySelector("#recipeCardIngredients");
+const recipeCost = document.querySelector("#recipeCardTotalCost");
+const recipeImageSection = document.querySelector("#recipeImageSection");
+
+import { getIngredientNames, calculateCost } from "../src/recipes.js";
 
 const createRecipeCards = (recipes) => {
   recipeArea.innerHTML = "";
@@ -32,7 +40,17 @@ const buildRecipeTitle = (foundRecipe) => {
   recipeTitle.innerText = foundRecipe.name;
 };
 
+const buildRecipeImage = (foundRecipe) => {
+  recipeImageSection.innerHTML = "";
+  let recipeImage = document.createElement("img");
+  recipeImage.classList.add("recipe-image-blowup");
+  recipeImage.setAttribute("src", foundRecipe.image);
+  recipeImageSection.appendChild(recipeImage);
+  // need to eventually set alt text attr.
+};
+
 const buildRecipeTags = (foundRecipe) => {
+  recipeTagArea.innerHTML = "";
   foundRecipe.tags.forEach((tag) => {
     let recipeTag = document.createElement("div");
     recipeTag.classList.add("recipe-tag");
@@ -43,4 +61,34 @@ const buildRecipeTags = (foundRecipe) => {
   });
 };
 
-export { createRecipeCards, locateRecipe, buildRecipeTitle, buildRecipeTags };
+const buildRecipeCost = (foundRecipe) => {
+  let cost = calculateCost(foundRecipe, ingredientsData);
+  recipeCost.innerText = `The total cost is $${cost}`;
+};
+
+const buildIngredients = (foundRecipe) => {
+  recipeIngredientsArea.innerHTML = "";
+  let recipeIngredients = getIngredientNames(foundRecipe, ingredientsData);
+  recipeIngredients.forEach((ingredient) => {
+    let recipeIngredient = document.createElement("p");
+    recipeIngredient.innerText = ingredient;
+    recipeIngredientsArea.appendChild(recipeIngredient);
+  });
+};
+
+const buildRecipeCard = (recipe) => {
+  buildRecipeTitle(recipe);
+  buildRecipeImage(recipe);
+  buildRecipeTags(recipe);
+  buildRecipeCost(recipe);
+  buildIngredients(recipe);
+};
+
+export {
+  createRecipeCards,
+  locateRecipe,
+  buildRecipeTitle,
+  buildRecipeTags,
+  buildRecipeCard,
+  buildRecipeCost,
+};

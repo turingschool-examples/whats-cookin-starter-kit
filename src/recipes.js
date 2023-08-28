@@ -19,9 +19,9 @@ const getIngredientNames = (recipe, ingredients) => {
   let ingredientIds = recipe.ingredients.map((ingr) => {
     return ingr.id;
   });
-
   let ingredientNames = ingredients.reduce((acc, cv) => {
     if (ingredientIds.includes(cv.id)) {
+      console.log("match");
       acc.push(cv.name);
     }
     return acc;
@@ -44,11 +44,11 @@ const calculateCost = (recipe, ingredients) => {
   let ids = recipe.ingredients.map((ingredient) => {
     return ingredient.id;
   });
-  
+
   let recipeIngredients = ingredients.filter((ingredient) => {
     return ids.includes(ingredient.id);
   });
-  
+
   if (recipeIngredients.length !== recipe.ingredients.length) {
     return "Ingredient not found";
   }
@@ -56,12 +56,13 @@ const calculateCost = (recipe, ingredients) => {
   let totalCost = recipeIngredients.reduce((total, ingredient) => {
     recipe.ingredients.forEach((recipeIngredient) => {
       if (recipeIngredient.id === ingredient.id) {
-        total += ingredient.estimatedCostInCents * recipeIngredient.quantity.amount;
+        total +=
+          ingredient.estimatedCostInCents * recipeIngredient.quantity.amount;
       }
     });
     return total;
   }, 0);
-  
+
   return totalCost;
 };
 
@@ -70,5 +71,5 @@ module.exports = {
   searchRecipes,
   getIngredientNames,
   getRecipeInstructions,
-  calculateCost
+  calculateCost,
 };
