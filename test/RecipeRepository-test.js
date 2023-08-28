@@ -43,7 +43,7 @@ describe('calculateCost', () => {
 
 describe("Filter", () => {
   it("Should filter recipes by tag", () => {
-    const taggedRecipes = filterByTag(["side dish"], recipeTestData); // Pass the tag as an array
+    const taggedRecipes = filterByTag(["side dish"], recipeTestData); 
     expect(taggedRecipes).to.deep.equal([recipeTestData[2], recipeTestData[3]]);
   });
 
