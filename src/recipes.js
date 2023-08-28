@@ -1,19 +1,22 @@
-const filterByTag = (tag, recipes, status) => {
-  if (status === true) {
-    return recipes.filter(recipe => {
+const filterByTag = (tags, recipes) => {
+  let filteredRecipes = [];
+  tags.forEach((tag) => {
+    let filterRecipe = recipes.filter((recipe) => {
       return recipe.tags.includes(tag);
     });
-  } else return recipes;
+    filteredRecipes.push(...filterRecipe);
+  });
+  return filteredRecipes;
 };
 
 const searchRecipes = (searchTerm, recipes) => {
-  return recipes.filter(recipe => {
+  return recipes.filter((recipe) => {
     return recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
 };
 
 const getIngredientNames = (recipe, ingredients) => {
-  let ingredientIds = recipe.ingredients.map(ingr => {
+  let ingredientIds = recipe.ingredients.map((ingr) => {
     return ingr.id;
   });
 
@@ -26,8 +29,20 @@ const getIngredientNames = (recipe, ingredients) => {
   return ingredientNames;
 };
 
+const getRecipeInstructions = (recipeName, recipes) => {
+  let recipe = recipes.find((recipe) => {
+    return recipe.name === recipeName;
+  });
+  if (recipe) {
+    return recipe.instructions;
+  } else {
+    return [];
+  }
+};
+
 module.exports = {
   filterByTag,
   searchRecipes,
   getIngredientNames,
+  getRecipeInstructions,
 };

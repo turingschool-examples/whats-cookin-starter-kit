@@ -10,8 +10,10 @@ import ingredientsData from './data/ingredients.js';
 import recipeData from './data/recipes.js';
 
 //Example of one way to import functions from the domUpdates file. You will delete these examples.
-import { createRecipeCards } from './domUpdates.js';
-import { filterByTag, searchRecipes } from '../src/recipes.js';
+import { createRecipeCards } from "./domUpdates.js";
+import { filterByTag, searchRecipes } from "../src/recipes.js";
+const activeTags = [];
+
 // ===== QUERY SELECTORS =====
 const tagSection = document.querySelector('.tag-area');
 const searchInput = document.querySelector('#searchInput');
@@ -27,8 +29,19 @@ tagSection.addEventListener('click', function (event) {
   tag.classList.toggle('tag-active');
   let tagStatus = event.target.parentElement.classList.contains('tag-active');
   let tagId = event.target.parentElement.id;
-  let filteredRecipes = filterByTag(tagId, recipeData, tagStatus);
-  createRecipeCards(filteredRecipes);
+  if (!activeTags.includes(tagId)) {
+    activeTags.push(tagId);
+  } else {
+    let index = activeTags.indexOf(tagId);
+    activeTags.splice(index, 1);
+  }
+
+  if (activeTags.length > 0) {
+    let filteredRecipes = filterByTag(activeTags, recipeData);
+    createRecipeCards(filteredRecipes);
+  } else {
+    createRecipeCards(recipeData);
+  }
 });
 
 searchButton.addEventListener('click', function (event) {
