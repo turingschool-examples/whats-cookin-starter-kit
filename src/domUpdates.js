@@ -5,8 +5,10 @@ const recipeArea = document.querySelector(".recipe-area");
 const recipeTitle = document.querySelector("#recipeCardTitle");
 const recipeTagArea = document.querySelector("#recipeCardTags");
 const recipeIngredientsArea = document.querySelector("#recipeCardIngredients");
+const recipeCost = document.querySelector("#recipeCardTotalCost");
+const recipeImageSection = document.querySelector("#recipeImageSection");
 
-import { getIngredientNames } from "../src/recipes.js";
+import { getIngredientNames, calculateCost } from "../src/recipes.js";
 
 const createRecipeCards = (recipes) => {
   recipeArea.innerHTML = "";
@@ -35,8 +37,16 @@ const locateRecipe = (recipeId, recipes) => {
 };
 
 const buildRecipeTitle = (foundRecipe) => {
-  recipeTitle.innerHTML = "";
   recipeTitle.innerText = foundRecipe.name;
+};
+
+const buildRecipeImage = (foundRecipe) => {
+  recipeImageSection.innerHTML = "";
+  let recipeImage = document.createElement("img");
+  recipeImage.classList.add("recipe-image-blowup");
+  recipeImage.setAttribute("src", foundRecipe.image);
+  recipeImageSection.appendChild(recipeImage);
+  // need to eventually set alt text attr.
 };
 
 const buildRecipeTags = (foundRecipe) => {
@@ -51,6 +61,11 @@ const buildRecipeTags = (foundRecipe) => {
   });
 };
 
+const buildRecipeCost = (foundRecipe) => {
+  let cost = calculateCost(foundRecipe, ingredientsData);
+  recipeCost.innerText = `The total cost is $${cost}`;
+};
+
 const buildIngredients = (foundRecipe) => {
   recipeIngredientsArea.innerHTML = "";
   let recipeIngredients = getIngredientNames(foundRecipe, ingredientsData);
@@ -63,7 +78,9 @@ const buildIngredients = (foundRecipe) => {
 
 const buildRecipeCard = (recipe) => {
   buildRecipeTitle(recipe);
+  buildRecipeImage(recipe);
   buildRecipeTags(recipe);
+  buildRecipeCost(recipe);
   buildIngredients(recipe);
 };
 
@@ -73,4 +90,5 @@ export {
   buildRecipeTitle,
   buildRecipeTags,
   buildRecipeCard,
+  buildRecipeCost,
 };

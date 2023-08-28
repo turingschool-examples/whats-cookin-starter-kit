@@ -111,3 +111,8 @@ h1 {
 .recipe-tag {
 /* this should be the design of tags when a recipe is clicked*/
 }
+
+.recipe-image-blowup {
+  height: 100px;
+  width: 100px;
+}
