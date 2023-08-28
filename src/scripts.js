@@ -35,7 +35,7 @@ function returnFilteredTag(array, tag) {
 
 function returnRecipeCost(arrayRecipe, arrayIngredients, recipeID) {
   const filteredRecipe = arrayRecipe.find((recipeEl) => {
-    return recipeEl.id === recipeID;
+    return recipeEl.id === parseInt(recipeID);
   });
   if (filteredRecipe) {
     const ingredientsArr = filteredRecipe.ingredients;
@@ -52,13 +52,13 @@ function returnRecipeCost(arrayRecipe, arrayIngredients, recipeID) {
           100;
       }
     });
-    return totalCost;
+    return Math.round(totalCost);
   }
 }
 
 function returnIngredientNames(arrayRecipe, arrayIngredients, recipeID) {
   const filteredRecipe = arrayRecipe.find((recipeEl) => {
-    return recipeEl.id === recipeID;
+    return recipeEl.id === parseInt(recipeID);
   });
   if (filteredRecipe) {
     const ingredientsArr = filteredRecipe.ingredients;
@@ -75,7 +75,10 @@ function returnIngredientNames(arrayRecipe, arrayIngredients, recipeID) {
 }
 function returnRecipeDirections(array, recipeID) {
   const filteredRecipe = array.find((recipeEl) => {
-    return recipeEl.id === recipeID;
+    return recipeEl.id === parseInt(recipeID);
+    //recipeEl.id was a number
+    //recipeId was a string
+    // write a test case for different data types.
   });
 
   if (filteredRecipe) {
@@ -96,11 +99,65 @@ function returnFilteredListName(array, name) {
       return filteredRecipeEl.id;
     });
 }
-module.exports = {
+
+function returnRecipeTitle(array, recipeID) {
+  return array
+    .filter((recipeEl) => {
+      return recipeEl.id === parseInt(recipeID);
+    })
+    .map((oneRecipeEl) => {
+      return oneRecipeEl.name;
+    });
+}
+
+function returnRecipeTags(array, recipeID) {
+  return array
+    .filter((recipeEl) => {
+      return recipeEl.id === parseInt(recipeID);
+    })
+    .flatMap((recipeEl) => {
+      return recipeEl.tags;
+    });
+}
+
+function returnRecipeImgUrl(array, recipeID) {
+  return array
+    .filter((recipeEl) => {
+      return recipeEl.id === parseInt(recipeID);
+    })
+    .map((filteredRecipeEl) => {
+      return filteredRecipeEl.image;
+    });
+}
+
+function returnListOfUniqueTags(array) {
+  return array.reduce((acc, curr) => {
+    curr.tags.forEach((tagEl) => {
+      if (!acc.includes(tagEl)) {
+        acc.push(tagEl);
+      }
+    });
+    return acc;
+  }, []);
+}
+
+function returnFilteredRecipeArrayByTagID(arrayTagsID, arrayRecipe) {
+  return arrayRecipe.filter((arrayRecipeEl) => {
+    return arrayTagsID.some((idEl) => {
+      return idEl === arrayRecipeEl.id;
+    });
+  });
+}
+export {
   createFunction,
   returnFilteredListName,
   returnIngredientNames,
   returnFilteredTag,
   returnRecipeCost,
   returnRecipeDirections,
+  returnRecipeTitle,
+  returnRecipeTags,
+  returnRecipeImgUrl,
+  returnListOfUniqueTags,
+  returnFilteredRecipeArrayByTagID,
 };

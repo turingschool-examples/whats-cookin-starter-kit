@@ -34,6 +34,8 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  align-items: center;
+  justify-content: center;
 }
 
 .recipe-card {
@@ -41,9 +43,27 @@ h1 {
   flex-direction: column;
 }
 
+.title-recipe {
+  width: 250px;
+  height: 50px;
+  overflow: scroll;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-recipe:hover {
+  cursor: pointer;
+}
+
 img {
-  height: 150px;
-  width: 150px;
+  height: 200px;
+  width: 250px;
+}
+
+img:hover {
+  cursor: pointer;
 }
 
 .view-saved {
@@ -113,9 +133,27 @@ button:hover {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 50vw;
+  height: 60vh;
+  overflow: scroll;
 }
 
 .modal-tags {
   display: flex;
   flex-direction: column;
+  width: 20vw;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.modal-ingredients-cost {
+  width: 20vw;
+  height: 60vh;
+  overflow: scroll;
+}
+
+.modal-directions {
+  overflow: scroll;
 }
