@@ -1,4 +1,5 @@
 const recipeArea = document.querySelector(".recipe-area");
+const recipeTitle = document.querySelector("#recipeCardTitle");
 
 const createRecipeCards = (recipes) => {
   recipeArea.innerHTML = "";
@@ -26,5 +27,8 @@ const locateRecipe = (recipeId, recipes) => {
   return foundRecipe;
 };
 
+const buildRecipeTitle = (foundRecipe) => {
+  recipeTitle.innerText = foundRecipe.name;
+};
 
-export { createRecipeCards, locateRecipe };
+export { createRecipeCards, locateRecipe, buildRecipeTitle };
