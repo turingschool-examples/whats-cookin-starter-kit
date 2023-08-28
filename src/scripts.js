@@ -60,4 +60,11 @@ recipeArea.addEventListener("click", function (event) {
   let recipeClicked = event.target.parentElement.id;
   let foundRecipe = locateRecipe(recipeClicked, recipeData);
   buildRecipeCard(foundRecipe);
+  // displayCard()
+  // hide all the tags (display: none)
+  // hide all the cards 
 });
+
+
+// event listener for the click of X 
+// unhide the all cards arrea 
