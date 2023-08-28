@@ -39,19 +39,6 @@ const getRecipeInstructions = (recipeName, recipes) => {
     return [];
   }
 };
-// const calculateCost = (recipe, ingredients) => {
-//   let totalCost = 0;
-
-//   recipe.ingredients.forEach((recipeIngredient) => {
-//     const matchingIngredient = ingredients.find((ingredient) => ingredient.id === recipeIngredient.id);
-
-//     if (matchingIngredient) {
-//       totalCost += matchingIngredient.estimatedCostInCents * recipeIngredient.quantity.amount;
-//     }
-//   });
-
-//   return totalCost;
-// };
 
 const calculateCost = (recipe, ingredients) => {
   let ids = recipe.ingredients.map((ingredient) => {
