@@ -56,7 +56,7 @@ describe('calculateCost', () => {
     const totalCost = calculateCost(recipe, ingredients);
     expect(totalCost).to.equal(100);
   });
-//👆generic test to see if the function works 👆
+
   it("should return error message if ingredient id does not exist", () => {
     const totalCost = calculateCost(recipeTestData[0], []);
     expect(totalCost).to.equal("Ingredient not found");
