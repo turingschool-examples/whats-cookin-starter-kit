@@ -8,9 +8,11 @@ const recipeIngredientsArea = document.querySelector("#recipeCardIngredients");
 const recipeCost = document.querySelector("#recipeCardTotalCost");
 const recipeImageSection = document.querySelector("#recipeImageSection");
 const recipeCard = document.querySelector("#recipeCardBlowup");
-const recipeInstructionsSection = document.querySelector("#recipeCardInstructions");
-const recipeCardClose = document.querySelector(".close-recipe-card");
-const recipeCardBookmark = document.querySelector(".bookmark-recipe-card");
+const recipeInstructionsSection = document.querySelector(
+  "#recipeCardInstructions"
+);
+const recipeCardClose = document.querySelector(".close");
+const recipeCardBookmark = document.querySelector(".bookmark");
 
 import { getIngredientNames, calculateCost } from "../src/recipes.js";
 
@@ -90,8 +92,8 @@ const buildInstructions = (foundRecipe) => {
 };
 
 const buildRecipeCard = (recipe) => {
-  recipeCardBookmark.setAttribute("id", recipe.id)
-  recipeCardClose.setAttribute("id", recipe.id);
+  // recipeCardBookmark.setAttribute("id", recipe.id);
+  recipeCardBookmark.setAttribute("id", recipe.id);
   buildRecipeTitle(recipe);
   buildRecipeImage(recipe);
   buildRecipeTags(recipe);
