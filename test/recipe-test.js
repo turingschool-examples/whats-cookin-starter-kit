@@ -9,7 +9,8 @@ import {
   returnFilteredTag,
   returnRecipeCost,
   returnRecipeDirections,
-} from "../src/scripts.js";
+} from "../src/functions.js";
+//from functions
 
 // const ingredientsData = require("../src/data/ingredients.js");
 import ingredientsData from "../src/data/ingredients.js";
