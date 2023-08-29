@@ -14,6 +14,8 @@ import {
   createRecipeCards,
   locateRecipe,
   buildRecipeCard,
+  displayRecipeCard,
+  displayRecipeArea,
 } from "./domUpdates.js";
 import { filterByTag, searchRecipes } from "../src/recipes.js";
 const activeTags = [];
@@ -60,11 +62,10 @@ recipeArea.addEventListener("click", function (event) {
   let recipeClicked = event.target.parentElement.id;
   let foundRecipe = locateRecipe(recipeClicked, recipeData);
   buildRecipeCard(foundRecipe);
-  // displayCard()
-  // hide all the tags (display: none)
-  // hide all the cards 
+  displayRecipeCard();
 });
 
-
-// event listener for the click of X 
-// unhide the all cards arrea 
+//add icons to the card for save and close <=
+//once added create query selector on the 'x'
+//then add event listener to the 'x'
+//when thats done run the function call display recipe area
