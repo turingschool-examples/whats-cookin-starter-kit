@@ -21,10 +21,11 @@ import {
   displayRecipeArea,
   saveRecipe,
 } from "./domUpdates.js";
+
 import { filterByTag, searchRecipes } from "../src/recipes.js";
 const activeTags = [];
 let currentUser;
-const filteredRecipes = [];
+let recipesToFilter;
 // ^ This will be used to help double check and see if a recipe has already been made or not
 
 // ===== QUERY SELECTORS =====
@@ -36,11 +37,13 @@ const recipeCard = document.querySelector(".recipe-card");
 const recipeCardClose = document.querySelector(".close");
 const recipeCardBookmark = document.querySelector(".bookmark");
 const userSavedRecipes = document.querySelector("#myRecipes");
+const discoverRecipes = document.querySelector("#discoverRecipes");
 
 // ===== EVENT LISTENERS =====
 window.addEventListener("load", function () {
   loadUser(usersData);
   createRecipeCards(recipeData);
+  recipesToFilter = recipeData;
 });
 
 tagSection.addEventListener("click", function (event) {
@@ -56,7 +59,7 @@ tagSection.addEventListener("click", function (event) {
   }
 
   if (activeTags.length > 0) {
-    let filteredRecipes = filterByTag(activeTags, recipeData);
+    let filteredRecipes = filterByTag(activeTags, recipesToFilter);
     createRecipeCards(filteredRecipes);
   } else {
     createRecipeCards(recipeData);
@@ -86,11 +89,18 @@ recipeCardBookmark.addEventListener("click", function (event) {
 });
 
 userSavedRecipes.addEventListener("click", function (event) {
+  recipesToFilter = currentUser.savedRecipes;
   createRecipeCards(currentUser.savedRecipes);
+});
+
+discoverRecipes.addEventListener("click", function (event) {
+  recipesToFilter = recipeData;
+  createRecipeCards(recipeData);
 });
 
 function loadUser(users) {
   let randomUserIndex = Math.floor(Math.random() * users.length);
   currentUser = users[randomUserIndex];
   currentUser.savedRecipes = [];
+  
 }
