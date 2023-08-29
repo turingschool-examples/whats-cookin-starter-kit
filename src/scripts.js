@@ -19,6 +19,7 @@ import {
   buildRecipeCard,
   displayRecipeCard,
   displayRecipeArea,
+  saveRecipe,
 } from "./domUpdates.js";
 import { filterByTag, searchRecipes } from "../src/recipes.js";
 const activeTags = [];
@@ -33,6 +34,7 @@ const searchButton = document.querySelector("#searchButton");
 const recipeArea = document.querySelector(".recipe-area");
 const recipeCard = document.querySelector(".recipe-card");
 const recipeCardClose = document.querySelector(".close");
+const recipeCardBookmark = document.querySelector(".bookmark");
 
 // ===== EVENT LISTENERS =====
 window.addEventListener("load", function () {
@@ -77,7 +79,13 @@ recipeCardClose.addEventListener("click", function (event) {
   displayRecipeArea();
 });
 
+recipeCardBookmark.addEventListener("click", function (event) {
+  let bookmarkClicked = event.target.id;
+  saveRecipe(bookmarkClicked, currentUser, recipeData);
+});
+
 function loadUser(users) {
   let randomUserIndex = Math.floor(Math.random() * users.length);
   currentUser = users[randomUserIndex];
+  currentUser.savedRecipes = [];
 }
