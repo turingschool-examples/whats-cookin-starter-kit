@@ -9,7 +9,8 @@ import {
   returnFilteredTag,
   returnRecipeCost,
   returnRecipeDirections,
-} from "../src/scripts.js";
+} from "../src/functions.js";
+//from functions
 
 // const ingredientsData = require("../src/data/ingredients.js");
 import ingredientsData from "../src/data/ingredients.js";
@@ -34,6 +35,11 @@ describe("Filtered List Based on Tag", () => {
     const result = returnFilteredTag(recipeData, "starter");
     expect(result.length).to.equal(9);
   });
+  
+  it("should work with a different tag", () => {
+    const result = returnFilteredTag(recipeData, "sauce");
+    expect(result.length).to.equal(1)
+  })
 });
 
 describe("Cost of Recipe", () => {
