@@ -11,7 +11,7 @@ const findRecipeByTag = (tag) => {
   })
   return recipeByTag
 }
-
+console.log(findRecipeByTag("dinner"))
 
 // Return a filtered list of recipes based on a recipe name. (Extension option: filtering by name or ingredients)
 
