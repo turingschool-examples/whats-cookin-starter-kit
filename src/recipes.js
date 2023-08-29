@@ -21,7 +21,6 @@ const getIngredientNames = (recipe, ingredients) => {
   });
   let ingredientNames = ingredients.reduce((acc, cv) => {
     if (ingredientIds.includes(cv.id)) {
-      console.log("match");
       acc.push(cv.name);
     }
     return acc;
