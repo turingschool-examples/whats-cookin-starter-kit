@@ -84,6 +84,7 @@ recipeDisplay.addEventListener("click", (event) => {
   } else if (event.target.innerText === "Remove Recipe") {
     deleteRecipe(userData.savedRecipes, clickedId);
     displayRecipes(userData.savedRecipes, "Remove Recipe");
+    displayTags(userData.savedRecipes);
   }
 });
 
