@@ -39,7 +39,7 @@ h1 {
   align-items: center;
   justify-content: center;
   height: 600px;
-  width: 1080px;
+  width: 80%;
   overflow: scroll;
   font-weight: bolder;
   /* background-color: white; */
@@ -176,10 +176,19 @@ ul {
   width: 100px;
 }
 
+.btn:hover {
+  transform: scale(1.1);
+}
+
 .tag-buttons {
   display: flex;
   overflow: scroll;
   width: 800px;
+  gap: 50px;
+  background-color: white;
+  border: 2px solid black;
+  padding: 30px;
+  border-radius: 35px;
 }
 
 p {
