@@ -43,6 +43,11 @@ const findRecipeIngredients = (id) => {
   } )
 }
 
+// Return a specific recipe based on the id number
+
+const specificRecipe = recipeData.find(recipe => recipe.id === clickedId)
+
+
 // Calculate the cost of a given recipes ingredients
 
 const calculateCost = (recipeData) => {
@@ -55,15 +60,11 @@ const calculateCost = (recipeData) => {
   return reducedIngredients / 100
 }
 
-const clickedId = null
-
-const specificRecipe = recipeData.find(recipe => recipe.id === clickedId)
-console.log(calculateCost(specificRecipe))
-
 
 module.exports = {
   findRecipeByTag,
   findRecipeByName,
   findRecipeIngredients,
+  specificRecipe,
   calculateCost
 }
