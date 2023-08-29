@@ -43,11 +43,27 @@ const findRecipeIngredients = (id) => {
   } )
 }
 
+// Calculate the cost of a given recipes ingredients
+
+const calculateCost = (recipeData) => {
+  let reducedIngredients = recipeData.ingredients.reduce((accumulator, currentValue) => {
+    let ingredientPrice = ingredientsData.find((ingredientDetail) => ingredientDetail.id === currentValue.id)
+     accumulator += ingredientPrice.estimatedCostInCents * currentValue.quantity.amount
+    
+    return accumulator
+    }, 0)
+  return reducedIngredients / 100
+}
+
+const clickedId = null
+
+const specificRecipe = recipeData.find(recipe => recipe.id === clickedId)
+console.log(calculateCost(specificRecipe))
 
 
 module.exports = {
   findRecipeByTag,
   findRecipeByName,
-  findRecipeIngredients
-
+  findRecipeIngredients,
+  calculateCost
 }
