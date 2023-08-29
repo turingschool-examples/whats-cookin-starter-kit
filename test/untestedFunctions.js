@@ -11,7 +11,7 @@ const findRecipeByTag = (tag) => {
   })
   return recipeByTag
 }
-console.log(findRecipeByTag("dinner"))
+
 
 // Return a filtered list of recipes based on a recipe name. (Extension option: filtering by name or ingredients)
 
@@ -26,7 +26,7 @@ const findRecipeByName = (name) => {
 
 const findRecipeIngredients = (id) => {
   let givenRecipe = recipeData.find(recipe => {
-    return recipe["id"] === id
+    return recipe["id"] == id
   })
 
   let ingredientIds = givenRecipe["ingredients"].map(ingredient => {
@@ -42,7 +42,7 @@ const findRecipeIngredients = (id) => {
     return ingredientNames
   } )
 }
-console.log("Answer", findRecipeIngredients(595736))
+
 
 
 module.exports = {

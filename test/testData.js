@@ -393,7 +393,8 @@ const recipeData = [  {
     ],
     "name": "Mock Udi’s Gluten Free Whole Grain Bread",
     "tags": []
-  },]
+  },
+]
 
 
 
