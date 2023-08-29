@@ -17,6 +17,7 @@ import {
   locateRecipe,
   buildRecipeCard,
   displayRecipeCard,
+  displayRecipeArea,
 } from "./domUpdates.js";
 import { filterByTag, searchRecipes } from "../src/recipes.js";
 const activeTags = [];
@@ -30,6 +31,7 @@ const searchInput = document.querySelector("#searchInput");
 const searchButton = document.querySelector("#searchButton");
 const recipeArea = document.querySelector(".recipe-area");
 const recipeCard = document.querySelector(".recipe-card");
+const recipeCardClose = document.querySelector(".close");
 
 // ===== EVENT LISTENERS =====
 window.addEventListener("load", function () {
@@ -67,6 +69,10 @@ recipeArea.addEventListener("click", function (event) {
   let foundRecipe = locateRecipe(recipeClicked, recipeData);
   buildRecipeCard(foundRecipe);
   displayRecipeCard();
+});
+
+recipeCardClose.addEventListener("click", function (event) {
+  displayRecipeArea();
 });
 
 // event listener for the click of X
