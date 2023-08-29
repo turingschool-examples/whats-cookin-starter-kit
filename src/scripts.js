@@ -35,6 +35,7 @@ const recipeArea = document.querySelector(".recipe-area");
 const recipeCard = document.querySelector(".recipe-card");
 const recipeCardClose = document.querySelector(".close");
 const recipeCardBookmark = document.querySelector(".bookmark");
+const userSavedRecipes = document.querySelector("#myRecipes");
 
 // ===== EVENT LISTENERS =====
 window.addEventListener("load", function () {
@@ -82,6 +83,10 @@ recipeCardClose.addEventListener("click", function (event) {
 recipeCardBookmark.addEventListener("click", function (event) {
   let bookmarkClicked = event.target.id;
   saveRecipe(bookmarkClicked, currentUser, recipeData);
+});
+
+userSavedRecipes.addEventListener("click", function (event) {
+  createRecipeCards(currentUser.savedRecipes);
 });
 
 function loadUser(users) {
