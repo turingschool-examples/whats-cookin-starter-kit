@@ -47,7 +47,7 @@ window.addEventListener("load", function () {
 });
 
 tagSection.addEventListener("click", function (event) {
-  let tag = event.target.parentElement;
+  let tag = event.target.closest(".tag-card");
   tag.classList.toggle("tag-active");
   let tagStatus = event.target.parentElement.classList.contains("tag-active");
   let tagId = event.target.parentElement.id;
@@ -102,5 +102,4 @@ function loadUser(users) {
   let randomUserIndex = Math.floor(Math.random() * users.length);
   currentUser = users[randomUserIndex];
   currentUser.savedRecipes = [];
-  
 }
