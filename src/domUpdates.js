@@ -97,6 +97,9 @@ const buildRecipeCard = (recipe) => {
   buildInstructions(recipe);
 };
 
+const displayRecipeCard = () => {
+  recipeArea.classList.toggle("hidden", true);
+};
 export {
   createRecipeCards,
   locateRecipe,
@@ -104,4 +107,5 @@ export {
   buildRecipeTags,
   buildRecipeCard,
   buildRecipeCost,
+  displayRecipeCard,
 };

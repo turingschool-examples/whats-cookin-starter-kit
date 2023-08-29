@@ -14,9 +14,13 @@ import {
   createRecipeCards,
   locateRecipe,
   buildRecipeCard,
+  displayRecipeCard,
 } from "./domUpdates.js";
 import { filterByTag, searchRecipes } from "../src/recipes.js";
 const activeTags = [];
+const savedRecipes = [];
+const filteredRecipes = [];
+// ^ This will be used to help double check and see if a recipe has already been made or not
 
 // ===== QUERY SELECTORS =====
 const tagSection = document.querySelector(".tag-area");
@@ -60,23 +64,8 @@ recipeArea.addEventListener("click", function (event) {
   let recipeClicked = event.target.parentElement.id;
   let foundRecipe = locateRecipe(recipeClicked, recipeData);
   buildRecipeCard(foundRecipe);
-  // displayCard()
-  // hide all the tags (display: none)
-  // hide all the cards
+  displayRecipeCard();
 });
 
 // event listener for the click of X
 // unhide the all cards arrea
-
-
-// THIS ISN'T GOING TO WORK 
-// function checkAlreadyCreated() {
-//   let exists = recipeArea.querySelector("#595736");
-//   if (exists) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-// console.log(checkAlreadyCreated());
-// A BETTER WAY TO SOLVE WILL BE TO PUSH THE FILTERED RECIPES TO AN ARRAY AND THEN CHECK THE ARRAY TO SEE IF IT'S ALREADY IN THERE BEFORE PUSHING MORE THINGS INTO IT 
