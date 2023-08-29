@@ -62,9 +62,21 @@ recipeArea.addEventListener("click", function (event) {
   buildRecipeCard(foundRecipe);
   // displayCard()
   // hide all the tags (display: none)
-  // hide all the cards 
+  // hide all the cards
 });
 
+// event listener for the click of X
+// unhide the all cards arrea
 
-// event listener for the click of X 
-// unhide the all cards arrea 
+
+// THIS ISN'T GOING TO WORK 
+// function checkAlreadyCreated() {
+//   let exists = recipeArea.querySelector("#595736");
+//   if (exists) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+// console.log(checkAlreadyCreated());
+// A BETTER WAY TO SOLVE WILL BE TO PUSH THE FILTERED RECIPES TO AN ARRAY AND THEN CHECK THE ARRAY TO SEE IF IT'S ALREADY IN THERE BEFORE PUSHING MORE THINGS INTO IT 

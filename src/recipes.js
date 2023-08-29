@@ -29,16 +29,16 @@ const getIngredientNames = (recipe, ingredients) => {
 };
 
 // we don't need this function
-const getRecipeInstructions = (recipeName, recipes) => {
-  let recipe = recipes.find((recipe) => {
-    return recipe.name === recipeName;
-  });
-  if (recipe) {
-    return recipe.instructions;
-  } else {
-    return [];
-  }
-};
+// const getRecipeInstructions = (recipeName, recipes) => {
+//   let recipe = recipes.find((recipe) => {
+//     return recipe.name === recipeName;
+//   });
+//   if (recipe) {
+//     return recipe.instructions;
+//   } else {
+//     return [];
+//   }
+// };
 
 const calculateCost = (recipe, ingredients) => {
   let ids = recipe.ingredients.map((ingredient) => {
@@ -70,6 +70,6 @@ module.exports = {
   filterByTag,
   searchRecipes,
   getIngredientNames,
-  getRecipeInstructions,
+  // getRecipeInstructions,
   calculateCost,
 };
