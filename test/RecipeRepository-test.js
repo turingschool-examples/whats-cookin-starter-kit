@@ -6,7 +6,7 @@ const { recipeTestData, ingredientsTestData } = require("../src/data/testData");
 const { recipeData } = require('../src/recipes');
 
 
-const { filterByTag, searchRecipes, getRecipeInstructions, calculateCost, getIngredientNames } = require("../src/recipes");
+const { filterByTag, searchRecipes, calculateCost, getIngredientNames } = require("../src/recipes");
 
 describe('calculateCost', () => {
   it("should calculate the cost of a recipe with one ingredient", () => {
@@ -41,6 +41,7 @@ describe('calculateCost', () => {
   });
 });
 
+//DONT LOOK AT THIS!
 describe("Filter", () => {
   it("Should filter recipes by tag", () => {
     const taggedRecipes = filterByTag(["side dish"], recipeTestData); 
