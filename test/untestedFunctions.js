@@ -45,20 +45,23 @@ const findRecipeIngredients = (id) => {
 
 // Return a specific recipe based on the id number
 
-const specificRecipe = recipeData.find(recipe => recipe.id === clickedId)
+const specificRecipe = () => {
+  return recipeData.find(recipe => recipe.id === clickedId)
+}
+
 
 
 // Calculate the cost of a given recipes ingredients
 
-const calculateCost = (recipeData) => {
-  let reducedIngredients = recipeData.ingredients.reduce((accumulator, currentValue) => {
-    let ingredientPrice = ingredientsData.find((ingredientDetail) => ingredientDetail.id === currentValue.id)
-     accumulator += ingredientPrice.estimatedCostInCents * currentValue.quantity.amount
+// const calculateCost = (recipeData) => {
+//   let reducedIngredients = recipeData.ingredients.reduce((accumulator, currentValue) => {
+//     let ingredientPrice = ingredientsData.find((ingredientDetail) => ingredientDetail.id === currentValue.id)
+//      accumulator += ingredientPrice.estimatedCostInCents * currentValue.quantity.amount
     
-    return accumulator
-    }, 0)
-  return reducedIngredients / 100
-}
+//     return accumulator
+//     }, 0)
+//   return reducedIngredients / 100
+// }
 
 
 module.exports = {
@@ -66,5 +69,5 @@ module.exports = {
   findRecipeByName,
   findRecipeIngredients,
   specificRecipe,
-  calculateCost
+  //calculateCost
 }
