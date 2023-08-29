@@ -7,6 +7,8 @@ const recipeTagArea = document.querySelector("#recipeCardTags");
 const recipeIngredientsArea = document.querySelector("#recipeCardIngredients");
 const recipeCost = document.querySelector("#recipeCardTotalCost");
 const recipeImageSection = document.querySelector("#recipeImageSection");
+const recipeCard = document.querySelector("#recipeCardBlowup")
+
 
 import { getIngredientNames, calculateCost } from "../src/recipes.js";
 
@@ -76,13 +78,25 @@ const buildIngredients = (foundRecipe) => {
   });
 };
 
-const buildRecipeCard = (recipe) => {
+
+const buildRecipeCard = (recipe, recipeCardElement) => {
   buildRecipeTitle(recipe);
   buildRecipeImage(recipe);
   buildRecipeTags(recipe);
   buildRecipeCost(recipe);
   buildIngredients(recipe);
 };
+
+const displayRecipeCard = () => {
+  recipeArea.classList.toggle("hidden", true)
+  recipeCard.classList.toggle("hidden", false)
+}
+
+const displayRecipeArea = () => {
+recipeArea.classList.toggle("hidden", false)
+recipeCard.classList.toggle("hidden", true)
+}
+
 
 export {
   createRecipeCards,
@@ -91,4 +105,6 @@ export {
   buildRecipeTags,
   buildRecipeCard,
   buildRecipeCost,
+  displayRecipeCard,
+  displayRecipeArea
 };
