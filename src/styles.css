@@ -120,3 +120,8 @@ h1 {
 .hidden {
   display: none
 }
+
+.icon {
+  height: 30px;
+  width: 30px;
+}

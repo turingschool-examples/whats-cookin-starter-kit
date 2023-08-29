@@ -10,6 +10,7 @@ const recipeImageSection = document.querySelector("#recipeImageSection");
 const recipeInstructionsSection = document.querySelector(
   "#recipeCardInstructions"
 );
+const recipeCard = document.querySelector("#recipeCardBlowup");
 
 import { getIngredientNames, calculateCost } from "../src/recipes.js";
 
@@ -99,6 +100,7 @@ const buildRecipeCard = (recipe) => {
 
 const displayRecipeCard = () => {
   recipeArea.classList.toggle("hidden", true);
+  recipeCard.classList.toggle("hidden", false);
 };
 export {
   createRecipeCards,

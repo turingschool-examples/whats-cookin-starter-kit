@@ -10,8 +10,8 @@
   <main class="container">
     <section id="mainNav" class="main-nav">
       <nav id="upperNav" class="upper-nav">
-        <button id="discoverRecipes" class="upper-nav-button"></button>
-        <button id="myRecipes" class="upper-nav-button"></button>
+        <button id="discoverRecipes" class="upper-nav-button">Discover Recipes</button>
+        <button id="myRecipes" class="upper-nav-button">Saved Recipes</button>
       </nav>
       <section id="search" class="search">
         <input type="text" placeholder="Search" class="search-input" id="searchInput" />
@@ -78,7 +78,9 @@
     <section class="recipe-area">
       <!-- cards go here  -->
     </section>
-    <section class="recipe-card">
+    <section id="recipeCardBlowup" class="recipe-card-blowup hidden">
+      <img class="icon" src="./images/bookmark-regular.svg" alt="bookmark icon">
+      <img class="icon" src="./images/x-solid.svg" alt="close icon">
       <h2 id="recipeCardTitle"></h2>
       <section id="recipeImageSection">
         <!-- recipe image goes here -->
