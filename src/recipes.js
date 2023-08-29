@@ -1,13 +1,42 @@
-const filterByTag = (tags, recipes) => {
-  let filteredRecipes = [];
-  tags.forEach((tag) => {
-    let filterRecipe = recipes.filter((recipe) => {
-      return recipe.tags.includes(tag);
+const filterByTag = (tags, currentActiveRecipes, allrecipes) => {
+  // console.log(currentActiveRecipes);
+
+  if (tags.length === 0) {
+    currentActiveRecipes = allrecipes;
+  } else if (tags.length === 1) {
+    currentActiveRecipes = [];
+    tags.forEach((tag) => {
+      allrecipes.forEach((recipe) => {
+        if (recipe.tags.includes(tag)) {
+          currentActiveRecipes.push(recipe);
+        }
+      });
     });
-    filteredRecipes.push(...filterRecipe);
-  });
-  return filteredRecipes;
+  } else {
+    tags.forEach((tag) => {
+      allrecipes.forEach((recipe) => {
+        if (recipe.tags.includes(tag)) {
+          let check = checkArrayForObject(recipe, currentActiveRecipes);
+          if (check === false) {
+            currentActiveRecipes.push(recipe);
+          }
+        }
+      });
+    });
+  }
+  return currentActiveRecipes;
 };
+
+function checkArrayForObject(object, array) {
+  let finding = array.find((element) => {
+    return object.id === element.id;
+  });
+  if (finding === undefined) {
+    return false;
+  } else {
+    return true;
+  }
+}
 
 const searchRecipes = (searchTerm, recipes) => {
   return recipes.filter((recipe) => {

@@ -25,7 +25,7 @@ import {
 import { filterByTag, searchRecipes } from "../src/recipes.js";
 const activeTags = [];
 let currentUser;
-let recipesToFilter;
+let activeRecipes;
 // ^ This will be used to help double check and see if a recipe has already been made or not
 
 // ===== QUERY SELECTORS =====
@@ -43,14 +43,14 @@ const discoverRecipes = document.querySelector("#discoverRecipes");
 window.addEventListener("load", function () {
   loadUser(usersData);
   createRecipeCards(recipeData);
-  recipesToFilter = recipeData;
+  activeRecipes = [...recipeData];
 });
 
 tagSection.addEventListener("click", function (event) {
   let tag = event.target.closest(".tag-card");
   tag.classList.toggle("tag-active");
-  let tagStatus = event.target.parentElement.classList.contains("tag-active");
-  let tagId = event.target.parentElement.id;
+  // let tagStatus = event.target.parentElement.classList.contains("tag-active");
+  let tagId = tag.id;
   if (!activeTags.includes(tagId)) {
     activeTags.push(tagId);
   } else {
@@ -59,10 +59,13 @@ tagSection.addEventListener("click", function (event) {
   }
 
   if (activeTags.length > 0) {
-    let filteredRecipes = filterByTag(activeTags, recipesToFilter);
-    createRecipeCards(filteredRecipes);
+    let newActiveRecipes = filterByTag(activeTags, activeRecipes, recipeData);
+    activeRecipes = newActiveRecipes;
+    console.log(activeRecipes);
+    createRecipeCards(activeRecipes);
   } else {
-    createRecipeCards(recipeData);
+    activeRecipes = [...recipeData];
+    createRecipeCards(activeRecipes);
   }
 });
 
@@ -89,12 +92,12 @@ recipeCardBookmark.addEventListener("click", function (event) {
 });
 
 userSavedRecipes.addEventListener("click", function (event) {
-  recipesToFilter = currentUser.savedRecipes;
-  createRecipeCards(currentUser.savedRecipes);
+  activeRecipes = currentUser.savedRecipes;
+  createRecipeCards(activeRecipes);
 });
 
 discoverRecipes.addEventListener("click", function (event) {
-  recipesToFilter = recipeData;
+  activeRecipes = recipeData;
   createRecipeCards(recipeData);
 });
 
@@ -102,4 +105,5 @@ function loadUser(users) {
   let randomUserIndex = Math.floor(Math.random() * users.length);
   currentUser = users[randomUserIndex];
   currentUser.savedRecipes = [];
+  console.log(currentUser);
 }
