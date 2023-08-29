@@ -1,7 +1,8 @@
 * {
-  border: 2px solid green;
+  /* border: 2px solid green; */
   margin: 0;
   padding: 0;
+  font-family: 'Manrope', sans-serif;
 }
 
 body {
@@ -20,6 +21,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 50px;
 }
 
 .nav {
@@ -28,7 +30,6 @@ h1 {
   justify-content: center;
   align-items: center;
   gap: 20px;
-  /* width: 80%; */
 }
 
 .recipes {
@@ -37,6 +38,10 @@ h1 {
   gap: 15px;
   align-items: center;
   justify-content: center;
+  height: 600px;
+  width: 1080px;
+  overflow-x: scroll;
+  font-weight: bolder;
 }
 
 .recipe-card {
@@ -167,9 +172,7 @@ ul {
 .tag-buttons {
   display: flex;
   overflow-x: scroll;
-  width: 400px;
+  width: 800px;
 }
 
-.btn:hover {
-  background-color: rgb(183, 104, 235);
-}
+
