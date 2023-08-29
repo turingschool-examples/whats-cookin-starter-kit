@@ -1,5 +1,7 @@
 //NOTE: Data model and non-dom manipulating logic will live in this file.
 import "./styles.css";
+import "./images/bookmark-regular.svg";
+import "./images/x-solid.svg";
 import apiCalls from "./apiCalls";
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import "./images/turing-logo.png";
@@ -26,6 +28,8 @@ const searchInput = document.querySelector("#searchInput");
 const searchButton = document.querySelector("#searchButton");
 const recipeArea = document.querySelector(".recipe-area");
 const recipeCard = document.querySelector(".recipe-card");
+const recipeCardClose = document.querySelector(".close");
+const recipeCardBookmark = document.querySelector(".bookmark");
 
 // ===== EVENT LISTENERS =====
 window.addEventListener("load", function () {
@@ -65,7 +69,7 @@ recipeArea.addEventListener("click", function (event) {
   displayRecipeCard();
 });
 
-//add icons to the card for save and close <=
-//once added create query selector on the 'x'
-//then add event listener to the 'x'
-//when thats done run the function call display recipe area
+recipeCardClose.addEventListener("click", function () {
+  displayRecipeArea();
+  // Hide the recipe card and show the recipe area
+});
