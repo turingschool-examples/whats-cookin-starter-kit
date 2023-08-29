@@ -110,6 +110,7 @@ const displayRecipeArea = () => {
   recipeCard.classList.toggle("hidden", true);
 };
 
+
 export {
   createRecipeCards,
   locateRecipe,
