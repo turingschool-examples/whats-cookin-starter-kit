@@ -28,6 +28,8 @@ import {
   findRecipeByIngredient,
   findRecipeByName,
   getUserInput,
+  saveRecipe,
+  deleteRecipe,
 } from "../src/scripts.js";
 
 import ingredientsData from "../src/data/ingredients.js";
@@ -50,24 +52,57 @@ const closeBtn = document.querySelector(".close-btn");
 const tagButtons = document.querySelector(".tag-buttons");
 const inputName = document.querySelector(".input-name");
 const inputIngredient = document.querySelector(".input-ingredient");
+const savedRecipesBtn = document.querySelector(".view-saved");
+
+const userData = {
+  savedRecipes: [],
+};
+//VIEWING SAVED RECIPES:
+
+savedRecipesBtn.addEventListener("click", () => {
+  if (savedRecipesBtn.innerText === "View Saved") {
+    displayRecipes(userData.savedRecipes, "Remove Recipe");
+    savedRecipesBtn.innerText = "View All";
+    displayTags(userData.savedRecipes);
+  } else {
+    displayRecipes(recipeData, "Save Recipe");
+    savedRecipesBtn.innerText = "View Saved";
+    displayTags(recipeData);
+  }
+});
+
+//SAVING A RECIPE
+
+recipeDisplay.addEventListener("click", (event) => {
+  let clickedId = event.target.parentNode.firstChild.id;
+  if (event.target.innerText === "Save Recipe") {
+    event.target.innerText = "Saved";
+    saveRecipe(recipeData, userData.savedRecipes, clickedId);
+  } else if (event.target.innerText === "Saved") {
+    event.target.innerText = "Save Recipe";
+    deleteRecipe(userData.savedRecipes, clickedId);
+  } else if (event.target.innerText === "Remove Recipe") {
+    deleteRecipe(userData.savedRecipes, clickedId);
+    displayRecipes(userData.savedRecipes, "Remove Recipe");
+  }
+});
 
 //ON PAGE LOAD
 document.addEventListener("DOMContentLoaded", (event) => {
-  displayRecipes(recipeData);
+  displayRecipes(recipeData, "Save Recipe");
   displayTags(recipeData);
 });
 
-function displayRecipes(array) {
+function displayRecipes(array, innerText) {
   let recipeHTML = "";
   array.forEach((recipeEl) => {
-    recipeHTML += `<div class="recipe-card">
-    <div class="title-recipe" id=${recipeEl.id}>${recipeEl.name}</div>
+    recipeHTML += `<div class="recipe-card"><div class="title-recipe" id=${recipeEl.id}>${recipeEl.name}</div>
     <img
       src="${recipeEl.image}"
       alt="recipe-img"
       id=${recipeEl.id}
     />
-    <button class="save-recipe-btn" id${recipeEl.id}>Save Recipe</button>
+    <button class="save-recipe-btn">${innerText}</button>
    </div>`;
   });
   recipeDisplay.innerHTML = recipeHTML;
@@ -83,65 +118,52 @@ function displayTags(array) {
   tagButtons.innerHTML = tagsHtml;
 }
 
-//SEARCHING FOR A RECIPE BY NAME
-// input.addEventListener("keydown", (event) => {
-//   if (event.key === "Enter") {
-//     const inputValue = input.value;
-//     const recipeSearch = returnFilteredListName(recipeData, inputValue);
-//     displayRecipes(recipeSearch);
-//   }
-// });
-
+// USING THE SEARCH BAR:
 inputName.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
+  if (savedRecipesBtn.innerText === "View Saved") {
     const userInput = getUserInput(".input-name");
     const recipeIdsByName = findRecipeByName(userInput, recipeData);
-    displayRecipes(recipeIdsByName);
+    displayRecipes(recipeIdsByName, "Save Recipe");
+  } else {
+    const userInput = getUserInput(".input-name");
+    const recipeIdsByName = findRecipeByName(userInput, userData.savedRecipes);
+    displayRecipes(recipeIdsByName, "Remove Recipe");
   }
 });
 
 inputIngredient.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
+  if (savedRecipesBtn.innerText === "View Saved") {
     const userInput = getUserInput(".input-ingredient");
-    console.log(userInput);
     const recipeIdsByIngredient = findRecipeByIngredient(
       userInput,
       ingredientsData,
       recipeData
     );
-    displayRecipes(recipeIdsByIngredient);
+    displayRecipes(recipeIdsByIngredient, "Save Recipe");
+  } else {
+    const userInput = getUserInput(".input-ingredient");
+    const recipeIdsByIngredient = findRecipeByIngredient(
+      userInput,
+      ingredientsData,
+      userData.savedRecipes
+    );
+    displayRecipes(recipeIdsByIngredient, "Remove Recipe");
   }
 });
-
-// const displayRecipeByIds = (recipeIds) => {
-//   const recipesToDisplay = recipeData.filter((recipe) => {
-//     return recipeIds.includes(recipe.id);
-//   });
-//   let recipeHTML = "";
-
-//   recipesToDisplay.forEach((recipeEl) => {
-//     recipeHTML += `<div class="recipe-card">
-//       <img
-//         src="${recipeEl.image}"
-//         alt="recipe-img"
-//         id=${recipeEl.id}
-//       />
-//       <button class="save-recipe-btn">Save Recipe</button>
-//     </div>`;
-//   });
-//
-//   recipeDisplay.innerHTML = recipeHTML;
-// }
 //CLICKING A TAG ELEMENT
 tagButtons.addEventListener("click", (event) => {
   let tagClicked;
   tagClicked = event.target.id;
-  const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
-  const filteredArrayByTagID = returnFilteredRecipeArrayByTagID(
-    filteredRecipeIDByTag,
-    recipeData
-  );
-  displayRecipes(filteredArrayByTagID);
+  if (savedRecipesBtn.innerText === "View Saved") {
+    const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
+    displayRecipes(filteredRecipeIDByTag, "Save Recipe");
+  } else {
+    const filteredRecipeIDByTag = returnFilteredTag(
+      userData.savedRecipes,
+      tagClicked
+    );
+    displayRecipes(filteredRecipeIDByTag, "Remove Recipe");
+  }
 });
 
 // CLICKING A RECIPE OR A RECIPE NAME

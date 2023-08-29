@@ -26,7 +26,7 @@ function returnFilteredTag(array, tag) {
   });
   if (filteredRecipe) {
     return filteredRecipe.map((recipeEl) => {
-      return recipeEl.id;
+      return recipeEl;
     });
   } else {
     return [];
@@ -183,6 +183,26 @@ function getUserInput(inputType) {
   return userInput.toLowerCase();
 }
 
+function saveRecipe(dataArray, savedArray, clickedId) {
+  const savedRecipe = dataArray.find((recipeEl) => {
+    return recipeEl.id === parseInt(clickedId);
+  });
+  if (!savedArray.includes(savedRecipe)) {
+    savedArray.push(savedRecipe);
+    return savedArray;
+  }
+}
+
+function deleteRecipe(savedArray, clickedId) {
+  const recipeIndex = savedArray.findIndex((savedRecipeEl) => {
+    return savedRecipeEl.id === parseInt(clickedId);
+  });
+  if (recipeIndex !== -1) {
+    savedArray.splice(recipeIndex, 1);
+  }
+  return savedArray;
+}
+
 export {
   createFunction,
   returnFilteredListName,
@@ -198,4 +218,6 @@ export {
   findRecipeByIngredient,
   findRecipeByName,
   getUserInput,
+  saveRecipe,
+  deleteRecipe,
 };
