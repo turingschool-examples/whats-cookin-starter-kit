@@ -77,7 +77,7 @@ function displayTags(array) {
   const tagsArray = returnListOfUniqueTags(array);
   let tagsHtml = "";
   tagsArray.forEach((tagEl) => {
-    tagsHtml += `<button class="btn" id="${tagEl}">${tagEl}</button>
+    tagsHtml += `<p><button class="btn" id="${tagEl}">image</button>${tagEl}</p>
     `;
   });
   tagButtons.innerHTML = tagsHtml;
