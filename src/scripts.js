@@ -1,189 +1,9 @@
-//NOTE: Data model and non-dom manipulating logic will live in this file.
-
-// import "./styles.css";
-// import apiCalls from "./apiCalls";
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import "./images/turing-logo.png";
-// import ingredientsData from "./data/ingredients.js";
-
-//Example of one way to import functions from the domUpdates file. You will delete these examples.
-// import { exampleFunction1, exampleFunction2 } from "./domUpdates.js";
-
-// exampleFunction1("heather");
-// exampleFunction2("heather");
-
-// console.log(ingredientsData);
+//
 import "./styles.css";
 import "./domUpdates.js";
+import "./functions.js";
 
-function createFunction(array) {
-  return array;
-}
-
-function returnFilteredTag(array, tag) {
-  const filteredRecipe = array.filter((recipeEl) => {
-    return recipeEl.tags.includes(tag);
-  });
-  if (filteredRecipe) {
-    return filteredRecipe.map((recipeEl) => {
-      return recipeEl.id;
-    });
-  } else {
-    return [];
-  }
-}
-
-function returnRecipeCost(arrayRecipe, arrayIngredients, recipeID) {
-  const filteredRecipe = arrayRecipe.find((recipeEl) => {
-    return recipeEl.id === parseInt(recipeID);
-  });
-  if (filteredRecipe) {
-    const ingredientsArr = filteredRecipe.ingredients;
-    let totalCost = 0;
-
-    ingredientsArr.forEach((ingredientEl) => {
-      const matchingIngredient = arrayIngredients.find((ingredientsObjEl) => {
-        return ingredientEl.id === ingredientsObjEl.id;
-      });
-      if (matchingIngredient) {
-        totalCost +=
-          (ingredientEl.quantity.amount *
-            matchingIngredient.estimatedCostInCents) /
-          100;
-      }
-    });
-    return Math.round(totalCost);
-  }
-}
-
-function returnIngredientNames(arrayRecipe, arrayIngredients, recipeID) {
-  const filteredRecipe = arrayRecipe.find((recipeEl) => {
-    return recipeEl.id === parseInt(recipeID);
-  });
-  if (filteredRecipe) {
-    const ingredientsArr = filteredRecipe.ingredients;
-    return ingredientsArr.map((ingredientEl) => {
-      const matchingIngredient = arrayIngredients.find((ingredientsObjEl) => {
-        return ingredientEl.id === ingredientsObjEl.id;
-      });
-      if (matchingIngredient) {
-        return matchingIngredient.name;
-      }
-    });
-  }
-  return [];
-}
-function returnRecipeDirections(array, recipeID) {
-  const filteredRecipe = array.find((recipeEl) => {
-    return recipeEl.id === parseInt(recipeID);
-    //recipeEl.id was a number
-    //recipeId was a string
-    // write a test case for different data types.
-  });
-
-  if (filteredRecipe) {
-    return filteredRecipe.instructions.map((instructionsObj) => {
-      return instructionsObj.instruction;
-    });
-  } else {
-    return [];
-  }
-}
-
-function returnFilteredListName(array, name) {
-  return array
-    .filter((recipeEl) => {
-      return (
-        recipeEl.name.includes(name) ||
-        recipeEl.name.toLowerCase().includes(name.toLowerCase())
-      );
-    })
-    .map((filteredRecipeEl) => {
-      return filteredRecipeEl;
-    });
-}
-
-function returnRecipeTitle(array, recipeID) {
-  return array
-    .filter((recipeEl) => {
-      return recipeEl.id === parseInt(recipeID);
-    })
-    .map((oneRecipeEl) => {
-      return oneRecipeEl.name;
-    });
-}
-
-function returnRecipeTags(array, recipeID) {
-  return array
-    .filter((recipeEl) => {
-      return recipeEl.id === parseInt(recipeID);
-    })
-    .flatMap((recipeEl) => {
-      return recipeEl.tags;
-    });
-}
-
-function returnRecipeImgUrl(array, recipeID) {
-  return array
-    .filter((recipeEl) => {
-      return recipeEl.id === parseInt(recipeID);
-    })
-    .map((filteredRecipeEl) => {
-      return filteredRecipeEl.image;
-    });
-}
-
-function returnListOfUniqueTags(array) {
-  return array.reduce((acc, curr) => {
-    curr.tags.forEach((tagEl) => {
-      if (!acc.includes(tagEl)) {
-        acc.push(tagEl);
-      }
-    });
-    return acc;
-  }, []);
-}
-
-function returnFilteredRecipeArrayByTagID(arrayTagsID, arrayRecipe) {
-  return arrayRecipe.filter((arrayRecipeEl) => {
-    return arrayTagsID.some((idEl) => {
-      return idEl === arrayRecipeEl.id;
-    });
-  });
-}
-
-function findRecipeByName(userInput, recipeData) {
-  const storedRecipeIds = recipeData
-    .filter((recipe) => {
-      const recipeName = recipe.name.toLowerCase();
-      return recipeName.includes(userInput);
-    })
-    .map((recipe) => recipe);
-  return storedRecipeIds;
-}
-
-function findRecipeByIngredient(userInput, ingredientsData, recipeData) {
-  const storedIngredientIds = ingredientsData
-    .filter(
-      (ingredient) => ingredient.name && ingredient.name.includes(userInput)
-    )
-    .map((ingredient) => ingredient.id);
-
-  const recipesWithMatch = recipeData.filter((recipe) => {
-    return recipe.ingredients.some((ingredient) =>
-      storedIngredientIds.includes(ingredient.id)
-    );
-  });
-  const recipeIdsWithMatch = recipesWithMatch.map((recipe) => recipe);
-  return recipeIdsWithMatch;
-}
-
-function getUserInput(inputType) {
-  const userInput = document.querySelector(inputType).value;
-  return userInput.toLowerCase();
-}
-
-export {
+import {
   createFunction,
   returnFilteredListName,
   returnIngredientNames,
@@ -198,4 +18,164 @@ export {
   findRecipeByIngredient,
   findRecipeByName,
   getUserInput,
+  saveRecipe,
+  deleteRecipe,
+} from "/src/functions.js";
+
+import { displayRecipes } from "./domUpdates.js";
+import { displayTags } from "./domUpdates.js";
+
+import ingredientsData from "../src/data/ingredients.js";
+
+import recipeData from "../src/data/recipes.js";
+
+import usersData from "../src/data/users.js";
+
+const recipeDisplay = document.querySelector(".recipes");
+
+const modal = document.querySelector(".modal");
+const modalContainer = document.querySelector(".modal-container");
+const modalOverlay = document.querySelector(".modal-overlay");
+const modalTitle = document.querySelector(".modal-title");
+const modalTags = document.querySelector(".modal-tags");
+const modalDirections = document.querySelector(".modal-directions-list");
+const modalCost = document.querySelector(".modal-cost");
+const modalIngredients = document.querySelector(".modal-ingredients-list");
+const closeBtn = document.querySelector(".close-btn");
+const tagButtons = document.querySelector(".tag-buttons");
+const inputName = document.querySelector(".input-name");
+const inputIngredient = document.querySelector(".input-ingredient");
+const savedRecipesBtn = document.querySelector(".view-saved");
+
+const userData = {
+  savedRecipes: [],
 };
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  displayRecipes(recipeData, "Save Recipe");
+  displayTags(recipeData);
+});
+
+savedRecipesBtn.addEventListener("click", () => {
+  if (savedRecipesBtn.innerText === "View Saved") {
+    displayRecipes(userData.savedRecipes, "Remove Recipe");
+    savedRecipesBtn.innerText = "View All";
+    displayTags(userData.savedRecipes);
+  } else {
+    displayRecipes(recipeData, "Save Recipe");
+    savedRecipesBtn.innerText = "View Saved";
+    displayTags(recipeData);
+  }
+});
+
+recipeDisplay.addEventListener("click", (event) => {
+  let clickedId = event.target.parentNode.firstChild.id;
+  if (event.target.innerText === "Save Recipe") {
+    event.target.innerText = "Saved";
+    saveRecipe(recipeData, userData.savedRecipes, clickedId);
+  } else if (event.target.innerText === "Saved") {
+    event.target.innerText = "Save Recipe";
+    deleteRecipe(userData.savedRecipes, clickedId);
+  } else if (event.target.innerText === "Remove Recipe") {
+    deleteRecipe(userData.savedRecipes, clickedId);
+    displayRecipes(userData.savedRecipes, "Remove Recipe");
+    displayTags(userData.savedRecipes);
+  }
+});
+
+inputName.addEventListener("keydown", (event) => {
+  if (savedRecipesBtn.innerText === "View Saved") {
+    const userInput = getUserInput(".input-name");
+    const recipeIdsByName = findRecipeByName(userInput, recipeData);
+    displayRecipes(recipeIdsByName, "Save Recipe");
+  } else {
+    const userInput = getUserInput(".input-name");
+    const recipeIdsByName = findRecipeByName(userInput, userData.savedRecipes);
+    displayRecipes(recipeIdsByName, "Remove Recipe");
+  }
+});
+
+inputIngredient.addEventListener("keydown", (event) => {
+  if (savedRecipesBtn.innerText === "View Saved") {
+    const userInput = getUserInput(".input-ingredient");
+    const recipeIdsByIngredient = findRecipeByIngredient(
+      userInput,
+      ingredientsData,
+      recipeData
+    );
+    displayRecipes(recipeIdsByIngredient, "Save Recipe");
+  } else {
+    const userInput = getUserInput(".input-ingredient");
+    const recipeIdsByIngredient = findRecipeByIngredient(
+      userInput,
+      ingredientsData,
+      userData.savedRecipes
+    );
+    displayRecipes(recipeIdsByIngredient, "Remove Recipe");
+  }
+});
+
+tagButtons.addEventListener("click", (event) => {
+  let tagClicked;
+  tagClicked = event.target.id;
+  if (savedRecipesBtn.innerText === "View Saved") {
+    const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
+    displayRecipes(filteredRecipeIDByTag, "Save Recipe");
+  } else {
+    const filteredRecipeIDByTag = returnFilteredTag(
+      userData.savedRecipes,
+      tagClicked
+    );
+    displayRecipes(filteredRecipeIDByTag, "Remove Recipe");
+  }
+});
+
+recipeDisplay.addEventListener("click", (event) => {
+  let idClicked;
+  idClicked = event.target.id;
+  if (idClicked.length === 6) {
+    const directions = returnRecipeDirections(recipeData, idClicked);
+    const cost = returnRecipeCost(recipeData, ingredientsData, idClicked);
+    modalCost.innerText = `Estimated Cost of Ingredients: $${cost}`;
+    const ingredients = returnIngredientNames(
+      recipeData,
+      ingredientsData,
+      idClicked
+    );
+    const title = returnRecipeTitle(recipeData, idClicked);
+    modalTitle.innerHTML = title;
+
+    const tags = returnRecipeTags(recipeData, idClicked);
+    const url = returnRecipeImgUrl(recipeData, idClicked);
+
+    let directionsHtml = "";
+    directions.forEach((directionsEl, index) => {
+      let stepNumber = index + 1;
+      directionsHtml += `<li>Step ${stepNumber}: ${directionsEl}</li>`;
+    });
+    modalDirections.innerHTML = directionsHtml;
+
+    let ingredientsHtml = "";
+    ingredients.forEach((ingredientEl) => {
+      ingredientsHtml += `<li>${ingredientEl}</li>`;
+    });
+    modalIngredients.innerHTML = ingredientsHtml;
+
+    let tagsHtml = "";
+    tags.forEach((tagsEl) => {
+      tagsHtml += `<li>${tagsEl}</li>`;
+    });
+    modalTags.innerHTML = tagsHtml;
+
+    modalOverlay.classList.add("open-modal");
+
+    modalContainer.style.backgroundImage = `linear-gradient(
+        rgba(15, 15, 15, 0.7),
+        rgba(15, 15, 15, 0.7)
+      ), url(${url})`;
+  }
+});
+
+closeBtn.addEventListener("click", function () {
+  modalOverlay.classList.remove("open-modal");
+});
