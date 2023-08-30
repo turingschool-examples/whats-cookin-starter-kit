@@ -80,15 +80,15 @@ Promise.all([fetchUsers, fetchIngredients, fetchRecipes]).then(
     createRandomUser(usersData);
 
     savedRecipesBtn.addEventListener("click", () => {
-      if (savedRecipesBtn.innerText === "View Saved") {
-        console.log(currentUser.recipesToCook);
-        console.log(currentUser);
+      if (savedRecipesBtn.innerText === "View Saved Recipes") {
+        // console.log(currentUser.recipesToCook);
+        // console.log(currentUser);
         displayRecipes(currentUser.recipesToCook, "Remove Recipe");
         savedRecipesBtn.innerText = "View All";
         displayTags(currentUser.recipesToCook);
       } else {
         displayRecipes(recipeData, "Save Recipe");
-        savedRecipesBtn.innerText = "View Saved";
+        savedRecipesBtn.innerText = "View Saved Recipes";
         displayTags(recipeData);
       }
     });
@@ -96,10 +96,12 @@ Promise.all([fetchUsers, fetchIngredients, fetchRecipes]).then(
     recipeDisplay.addEventListener("click", (event) => {
       let clickedId = event.target.parentNode.firstChild.id;
       if (event.target.innerText === "Save Recipe") {
-        event.target.innerText = "Saved";
+        event.target.innerText = "Saved!";
+        event.target.style.backgroundColor = '#718A98'
         saveRecipe(recipeData, currentUser.recipesToCook, clickedId);
-      } else if (event.target.innerText === "Saved") {
+      } else if (event.target.innerText === "Saved!") {
         event.target.innerText = "Save Recipe";
+        event.target.style.backgroundColor = '#B1C7D2'
         deleteRecipe(currentUser.recipesToCook, clickedId);
       } else if (event.target.innerText === "Remove Recipe") {
         deleteRecipe(currentUser.recipesToCook, clickedId);
@@ -109,7 +111,7 @@ Promise.all([fetchUsers, fetchIngredients, fetchRecipes]).then(
     });
 
     inputName.addEventListener("keydown", (event) => {
-      if (savedRecipesBtn.innerText === "View Saved") {
+      if (savedRecipesBtn.innerText === "View Saved Recipes") {
         const userInput = getUserInput(".input-name");
         const recipeIdsByName = findRecipeByName(userInput, recipeData);
         displayRecipes(recipeIdsByName, "Save Recipe");
@@ -124,7 +126,7 @@ Promise.all([fetchUsers, fetchIngredients, fetchRecipes]).then(
     });
 
     inputIngredient.addEventListener("keydown", (event) => {
-      if (savedRecipesBtn.innerText === "View Saved") {
+      if (savedRecipesBtn.innerText === "View Saved Recipes") {
         const userInput = getUserInput(".input-ingredient");
         const recipeIdsByIngredient = findRecipeByIngredient(
           userInput,
@@ -146,7 +148,7 @@ Promise.all([fetchUsers, fetchIngredients, fetchRecipes]).then(
     tagButtons.addEventListener("click", (event) => {
       let tagClicked;
       tagClicked = event.target.id;
-      if (savedRecipesBtn.innerText === "View Saved") {
+      if (savedRecipesBtn.innerText === "View Saved Recipes") {
         const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
         displayRecipes(filteredRecipeIDByTag, "Save Recipe");
       } else {
