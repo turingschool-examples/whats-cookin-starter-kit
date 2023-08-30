@@ -32,12 +32,31 @@ describe("calculateCost", () => {
 });
 
 describe("Filter", () => {
-  it("Should filter recipes by tag", () => {
-    const taggedRecipes = filterByTag("side dish", recipeTestData);
+  it("Should filter recipes when given one tag", () => {
+    const taggedRecipes = filterByTag(["side dish"], recipeTestData);
     expect(taggedRecipes).to.deep.equal([recipeTestData[2], recipeTestData[3]]);
   });
 
-  it("Should filter a list of recipes when given the name/partial name of a recipe", () => {
+  it("Should filter recipes when given multiple tags", () => {
+    const taggedRecipes = filterByTag(["snack", "lunch"], recipeTestData);
+    expect(taggedRecipes).to.deep.equal([
+      recipeTestData[0],
+      recipeTestData[1],
+      recipeTestData[4],
+    ]);
+  });
+
+  it("Should not add duplicates when a snack is in more than one category", () => {
+    const taggedRecipes = filterByTag(
+      ["hor d'oeuvre", "snack"],
+      recipeTestData
+    );
+    expect(taggedRecipes).to.deep.equal([recipeTestData[0], recipeTestData[4]]);
+  });
+});
+
+describe("Search", () => {
+  it("Should search recipes when given any part of a recipes name e.g. Chocolate is in 'Chocolate Chip Cookies' and 'Chocolate Cake'", () => {
     const searchedRecipe = searchRecipes("chocolate", recipeTestData);
     expect(searchedRecipe).to.deep.equal([
       recipeTestData[0],

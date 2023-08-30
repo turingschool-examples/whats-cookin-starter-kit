@@ -78,7 +78,7 @@ tagSection.addEventListener("click", function (event) {
 
 searchButton.addEventListener("click", function (event) {
   let searchTerm = searchInput.value;
-  let searchedRecipes = searchRecipes(searchTerm, recipeData);
+  let searchedRecipes = searchRecipes(searchTerm, activeRecipes);
   createRecipeCards(searchedRecipes);
 });
 
