@@ -52,15 +52,24 @@ describe("filter list based on name", () => {
   })
 });
 
+describe("return ingredients of a recipe", () => {
+  
+  it("should determine the names of ingredients based on a recipe name", () => {
+    const result = returnIngredientNames(recipeTestData, ingredientsTestData, 595736);
+    expect(result[0]).to.equal("wheat flour")
+    expect(result.length).to.equal(11);
+  });
 
+  it("should work with a different recipe", () => {
+    const result = returnIngredientNames(recipeTestData, ingredientsTestData, 678353);
+    expect(result.length).to.equal(12);
+  })
 
-
-// describe("Cost of Recipe", () => {
-//   it("should calculate the cost of a given recipe's ingredients", () => {
-//     const result = returnRecipeCost(recipeData, ingredientsData, 595736);
-//     expect(result).to.equal(177.76000000000002);
-//   });
-// });
+  it("should return an empty array if no recipe found", () => {
+    const result = returnIngredientNames(recipeTestData, ingredientsTestData, "noRecipe");
+    expect(result.length).to.equal(0);
+  })
+});
 
 
 
@@ -80,3 +89,5 @@ describe("filter list based on name", () => {
 //     expect(result.length).to.equal(1);
 //   });
 // });
+
+
