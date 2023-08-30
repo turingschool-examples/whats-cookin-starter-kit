@@ -3,7 +3,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 const assert = require('chai').assert;
-const {findRecipeByTag, findRecipeByName, findRecipeIngredients } = require('../test/untestedFunctions.js');
+const {findRecipeByTag, findRecipeByName, findRecipeIngredients, specificRecipe, calculateCost } = require('../test/untestedFunctions.js');
 
 describe('findRecipeByTag', () => {
   it('Should return an array of one object containing a certain tag', () => {
@@ -209,3 +209,16 @@ describe('findRecipeIngredients', () => {
     expect(ingredientList).to.deep.equal([ 'wheat flour', 'bicarbonate of soda' ])
 });
 })
+
+describe('calculateCost', () => {
+    it(' should calculate the cost of a given recipe\'s ingredients', () => {
+      
+      
+    const clickedId = 595736
+    const recipeCost = calculateCost(clickedId)
+  
+    expect(recipeCost).to.deep.equal('$5.04')
+    })
+
+})
+
