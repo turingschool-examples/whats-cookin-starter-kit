@@ -109,6 +109,7 @@ discoverRecipes.addEventListener("click", function (event) {
   activeRecipes = [...recipeData];
   createRecipeCards(activeRecipes);
 });
+
 function loadUser(users) {
   let randomUserIndex = Math.floor(Math.random() * users.length);
   currentUser = users[randomUserIndex];
