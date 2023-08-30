@@ -84,10 +84,22 @@ describe("calculate cost of ingredients", () => {
   });
 });
 
-// describe("Directions for Recipe", () => {
-//   it("should return the directions for a given recipe", () => {
-//     const result = returnRecipeDirections(recipeData, 595736);
-//     expect(result.length).to.equal(6);
-//   });
-// });
+describe("find directions of a recipe", () => {
+  
+  it("should return the directions for a given recipe", () => {
+    const result = returnRecipeDirections(recipeTestData, 595736);
+    expect (result[0]).to.equal("In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.");
+    expect(result.length).to.equal(6);
+  });
+  
+  it ("should return the directions for another recipe", () => {
+    const result = returnRecipeDirections(recipeTestData, 678353);
+    expect (result[0]).to.equal("Season the pork chops with salt and pepper and grill or pan fry over medium high heat until cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook until the sauce thickens, about 2-5 minutes.Grill or saute the apple slices until just tender but still crisp.Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!");
+    expect(result.length).to.equal(1);
+  });
 
+  it ("should return an empty array if no matches", () => {
+    const result = returnRecipeDirections(recipeTestData, "noMatch");
+    expect(result.length).to.equal(0);
+  });
+});
