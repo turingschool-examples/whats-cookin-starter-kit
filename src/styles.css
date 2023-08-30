@@ -176,7 +176,8 @@ button:hover {
 }
 
 .close-btn:hover {
-  transform: scale(1.3);
+  transform: scale(1.2);
+  color: red;
 }
 
 .modal-container {
