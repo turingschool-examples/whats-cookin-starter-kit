@@ -71,7 +71,18 @@ describe("return ingredients of a recipe", () => {
   })
 });
 
+describe("calculate cost of ingredients", () => {
+ 
+  it("should calculate the cost of a given recipe's ingredients", () => {
+    const result = returnRecipeCost(recipeTestData, ingredientsTestData, 595736);
+    expect(result).to.equal(34);
+  });
 
+  it("should calculate the cost of a different recipe's ingredients", () => {
+    const result = returnRecipeCost(recipeTestData, ingredientsTestData, 678353);
+    expect(result).to.equal(0);
+  });
+});
 
 // describe("Directions for Recipe", () => {
 //   it("should return the directions for a given recipe", () => {
@@ -79,15 +90,4 @@ describe("return ingredients of a recipe", () => {
 //     expect(result.length).to.equal(6);
 //   });
 // });
-
-// describe("Filtered List Based on Name", () => {
-//   it("should return a filtered list based on a name", () => {
-//     const result = returnFilteredListName(
-//       recipeData,
-//       "Loaded Chocolate Chip Pudding Cookie Cups"
-//     );
-//     expect(result.length).to.equal(1);
-//   });
-// });
-
 
