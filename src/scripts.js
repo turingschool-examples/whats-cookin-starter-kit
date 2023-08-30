@@ -61,9 +61,9 @@ Promise.all([fetchUsers, fetchIngredients, fetchRecipes])
     ingredientsData = ingredientsDataValue;
     recipeData = recipeDataValue;
     // now available
-    setCurrentUser(usersData);
     displayRecipes(recipeData, "Save Recipe");
     displayTags(recipeData);
+    setCurrentUser(usersData);
 
 savedRecipesBtn.addEventListener("click", () => {
   if (savedRecipesBtn.innerText === "View Saved") {
@@ -191,7 +191,4 @@ closeBtn.addEventListener("click", function () {
   modalOverlay.classList.remove("open-modal");
 });
 
-}
-// .catch(error => {
-//   console.error('An error occurred:', error);
-// });
+});
