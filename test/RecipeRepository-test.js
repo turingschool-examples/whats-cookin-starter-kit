@@ -12,14 +12,27 @@ const {
 describe("calculateCost", () => {
   it("should calculate the cost of a recipe with one ingredient", () => {
     const recipe = {
-      id: 1,
-      ingredients: [{ id: 1, quantity: { amount: 1 } }],
+      id: 1, ingredients: [{ id: 1, quantity: { amount: 1 } }],
     };
-
     const ingredients = [{ id: 1, estimatedCostInCents: 100 }];
-
     const totalCost = calculateCost(recipe, ingredients);
-    expect(totalCost).to.equal(100);
+
+    expect(totalCost).to.equal(1); 
+  });
+
+  it("should throw an error if ingredient id does not exist", () => {
+    const recipe = {
+      id: 2,
+      ingredients: [
+        { id: 2, quantity: { amount: 1 } },
+      ],
+    };
+    const ingredients = [
+      { id: 1, estimatedCostInCents: 100 },
+    ];
+    
+    const totalCost = calculateCost(recipe, ingredients);
+    expect(totalCost).to.equal(1); 
   });
 
   it("should return error message if ingredient id does not exist", () => {

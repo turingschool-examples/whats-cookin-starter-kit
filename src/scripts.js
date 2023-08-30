@@ -49,7 +49,7 @@ window.addEventListener("load", function () {
 tagSection.addEventListener("click", function (event) {
   let tag = event.target.closest(".tag-card");
   tag.classList.toggle("tag-active");
-  // let tagStatus = event.target.parentElement.classList.contains("tag-active");
+
   let tagId = tag.id;
   if (!activeTags.includes(tagId)) {
     activeTags.push(tagId);
@@ -60,20 +60,6 @@ tagSection.addEventListener("click", function (event) {
   let filteredArray = filterByTag(activeTags, activeRecipes);
   console.log(filteredArray);
   createRecipeCards(filteredArray);
-  // if (activeTags.length >= 0) {
-  //   let newActiveRecipes = filterByTag(
-  //     activeTags,
-  //     activeRecipes,
-  //     recipeData,
-  //     saved
-  //   );
-  //   activeRecipes = newActiveRecipes;
-  //   console.log(activeRecipes);
-  //   createRecipeCards(activeRecipes);
-  // } else {
-  //   activeRecipes = [...recipeData];
-  //   createRecipeCards(activeRecipes);
-  // }
 });
 
 searchButton.addEventListener("click", function (event) {

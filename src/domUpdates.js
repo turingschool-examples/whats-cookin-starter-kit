@@ -7,10 +7,11 @@ const recipeTagArea = document.querySelector("#recipeCardTags");
 const recipeIngredientsArea = document.querySelector("#recipeCardIngredients");
 const recipeCost = document.querySelector("#recipeCardTotalCost");
 const recipeImageSection = document.querySelector("#recipeImageSection");
+const recipeCard = document.querySelector("#recipeCardBlowup");
 const recipeInstructionsSection = document.querySelector(
   "#recipeCardInstructions"
 );
-const recipeCard = document.querySelector("#recipeCardBlowup");
+const recipeCardClose = document.querySelector(".close");
 const recipeCardBookmark = document.querySelector(".bookmark");
 
 import { getIngredientNames, calculateCost } from "../src/recipes.js";

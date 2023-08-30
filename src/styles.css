@@ -117,6 +117,13 @@ h1 {
   width: 100px;
 }
 
+.icon {
+  height: 30px;
+  width: 30px;
+}
+
+
+
 .hidden {
   display: none
 }
