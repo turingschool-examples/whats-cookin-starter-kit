@@ -92,7 +92,6 @@ const buildInstructions = (foundRecipe) => {
 };
 
 const buildRecipeCard = (recipe) => {
-  // recipeCardBookmark.setAttribute("id", recipe.id);
   recipeCardBookmark.setAttribute("id", recipe.id);
   buildRecipeTitle(recipe);
   buildRecipeImage(recipe);
@@ -112,6 +111,19 @@ const displayRecipeArea = () => {
   recipeCard.classList.toggle("hidden", true);
 };
 
+const saveRecipe = (id, user, recipes) => {
+  let foundRecipe = locateRecipe(id, recipes);
+  if (user.savedRecipes.includes(foundRecipe)) {
+    let foundRecipeIndex = user.savedRecipes.findIndex((recipe) => {
+      return recipe.id === foundRecipe.id;
+    });
+    user.savedRecipes.splice(foundRecipeIndex, 1);
+  } else {
+    user.savedRecipes.push(foundRecipe);
+  }
+  console.log(user);
+};
+
 export {
   createRecipeCards,
   locateRecipe,
@@ -121,4 +133,5 @@ export {
   buildRecipeCost,
   displayRecipeCard,
   displayRecipeArea,
+  saveRecipe,
 };

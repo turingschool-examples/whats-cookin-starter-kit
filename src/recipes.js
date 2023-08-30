@@ -1,12 +1,17 @@
-const filterByTag = (tags, recipes) => {
-  let filteredRecipes = [];
-  tags.forEach((tag) => {
-    let filterRecipe = recipes.filter((recipe) => {
-      return recipe.tags.includes(tag);
-    });
-    filteredRecipes.push(...filterRecipe);
-  });
-  return filteredRecipes;
+const filterByTag = (tags, arrayToFilter) => {
+  if (tags.length > 0) {
+    let filteredArray = arrayToFilter.reduce((acc, cv) => {
+      tags.forEach((tag) => {
+        if (!acc.includes(cv) && cv.tags.includes(tag)) {
+          acc.push(cv);
+        }
+      });
+      return acc;
+    }, []);
+    return filteredArray;
+  } else {
+    return arrayToFilter;
+  }
 };
 
 const searchRecipes = (searchTerm, recipes) => {
