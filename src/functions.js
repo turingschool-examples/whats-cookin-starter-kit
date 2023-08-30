@@ -1,5 +1,3 @@
-import { currentUser } from "./scripts.js";
-
 function createFunction(array) {
   return array;
 }
