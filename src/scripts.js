@@ -1,7 +1,6 @@
 //
 import "./styles.css";
 import "./domUpdates.js";
-import "./functions.js";
 
 import {
   createFunction,
@@ -28,11 +27,15 @@ import {
 import { displayRecipes } from "./domUpdates.js";
 import { displayTags } from "./domUpdates.js";
 
-import ingredientsData from "../src/data/ingredients.js";
+// import ingredientsData from "../src/data/ingredients.js";
 
-import recipeData from "../src/data/recipes.js";
+// import recipeData from "../src/data/recipes.js";
 
-import usersData from "../src/data/users.js";
+import { fetchUsers, fetchIngredients, fetchRecipes } from "./apiCalls"
+
+let usersData = null;
+let ingredientsData = null;
+let recipeData = null;
 
 const recipeDisplay = document.querySelector(".recipes");
 
@@ -56,11 +59,11 @@ export const currentUser = {
   recipesToCook: [],
 };
 
-document.addEventListener("DOMContentLoaded", (event) => {
-  console.log(setCurrentUser(usersData));
-  displayRecipes(recipeData, "Save Recipe");
-  displayTags(recipeData);
-});
+// document.addEventListener("DOMContentLoaded", (event) => {
+//   console.log(setCurrentUser(usersData));
+//   displayRecipes(recipeData, "Save Recipe");
+//   displayTags(recipeData);
+// });
 
 savedRecipesBtn.addEventListener("click", () => {
   if (savedRecipesBtn.innerText === "View Saved") {
