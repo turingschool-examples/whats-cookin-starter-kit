@@ -3,6 +3,26 @@ import "./styles.css";
 import "./domUpdates.js";
 import "./functions.js";
 
+import './images/antipasti.png'
+import './images/antipasto.png'
+import './images/appetizer.png'
+import './images/breakfast.png'
+import './images/brunch.png'
+import './images/condiment.png'
+import './images/dinner.png'
+import './images/dip.png'
+import "./images/hor d'oeuvre.png"
+import './images/lunch.png'
+import './images/main course.png'
+import './images/main dish.png'
+import './images/morning meal.png'
+import './images/salad.png'
+import './images/sauce.png'
+import './images/side dish.png'
+import './images/snack.png'
+import './images/spread.png'
+import './images/starter.png'
+
 import {
   createFunction,
   returnFilteredListName,
