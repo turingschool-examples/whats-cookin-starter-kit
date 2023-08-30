@@ -168,13 +168,11 @@ function getUserInput(inputType) {
 }
 
 function saveRecipe(dataArray, savedArray, clickedId) {
-  console.log(clickedId)
   const savedRecipe = dataArray.find((recipeEl) => {
     return recipeEl.id === parseInt(clickedId);
   });
   if (!savedArray.includes(savedRecipe)) {
     savedArray.push(savedRecipe);
-    console.log(savedArray)
     return savedArray;
   }
 }
@@ -189,19 +187,16 @@ function deleteRecipe(savedArray, clickedId) {
   return savedArray;
 }
 
-function getRandomUser(usersArray) {
-  return usersArray[getRandomIndex(usersArray)]
-}
+function createRandomUser(array) {
+  const randIndex = Math.floor(Math.random() * array.length);
 
-function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length);
-}
-
-function setCurrentUser(usersArray) {
-  const randomUser = getRandomUser(usersArray);
-  currentUser.name = randomUser.name,
-  currentUser.id = randomUser.id,
+  const randomUser = array.find((userEl) => {
+    return userEl.id == randIndex;
+  });
+  currentUser.name = randomUser.name;
+  currentUser.id = randomUser.id;
   currentUser.recipesToCook = [];
+  console.log(currentUser);
 
   return currentUser;
 }
@@ -223,7 +218,5 @@ export {
   getUserInput,
   saveRecipe,
   deleteRecipe,
-  getRandomUser,
-  getRandomIndex,
-  setCurrentUser,
+  createRandomUser,
 };
