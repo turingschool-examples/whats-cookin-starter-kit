@@ -20,6 +20,9 @@ import {
   getUserInput,
   saveRecipe,
   deleteRecipe,
+  getRandomUser,
+  getRandomIndex,
+  setCurrentUser,
 } from "/src/functions.js";
 
 import { displayRecipes } from "./domUpdates.js";
@@ -47,20 +50,24 @@ const inputName = document.querySelector(".input-name");
 const inputIngredient = document.querySelector(".input-ingredient");
 const savedRecipesBtn = document.querySelector(".view-saved");
 
-const userData = {
-  savedRecipes: [],
+export const currentUser = {
+  name: "",
+  id: "",
+  recipesToCook: [],
 };
 
 document.addEventListener("DOMContentLoaded", (event) => {
+  console.log(setCurrentUser(usersData));
   displayRecipes(recipeData, "Save Recipe");
   displayTags(recipeData);
 });
 
 savedRecipesBtn.addEventListener("click", () => {
   if (savedRecipesBtn.innerText === "View Saved") {
-    displayRecipes(userData.savedRecipes, "Remove Recipe");
+    displayRecipes(currentUser.recipesToCook, "Remove Recipe");
     savedRecipesBtn.innerText = "View All";
-    displayTags(userData.savedRecipes);
+    displayTags(currentUser.recipesToCook);
+    console.log(currentUser)
   } else {
     displayRecipes(recipeData, "Save Recipe");
     savedRecipesBtn.innerText = "View Saved";
@@ -72,14 +79,14 @@ recipeDisplay.addEventListener("click", (event) => {
   let clickedId = event.target.parentNode.firstChild.id;
   if (event.target.innerText === "Save Recipe") {
     event.target.innerText = "Saved";
-    saveRecipe(recipeData, userData.savedRecipes, clickedId);
+    saveRecipe(recipeData, currentUser.recipesToCook, clickedId);
   } else if (event.target.innerText === "Saved") {
     event.target.innerText = "Save Recipe";
-    deleteRecipe(userData.savedRecipes, clickedId);
+    deleteRecipe(currentUser.recipesToCook, clickedId);
   } else if (event.target.innerText === "Remove Recipe") {
-    deleteRecipe(userData.savedRecipes, clickedId);
-    displayRecipes(userData.savedRecipes, "Remove Recipe");
-    displayTags(userData.savedRecipes);
+    deleteRecipe(currentUser.recipesToCook, clickedId);
+    displayRecipes(currentUser.recipesToCook, "Remove Recipe");
+    displayTags(currentUser.recipesToCook);
   }
 });
 
@@ -90,7 +97,7 @@ inputName.addEventListener("keydown", (event) => {
     displayRecipes(recipeIdsByName, "Save Recipe");
   } else {
     const userInput = getUserInput(".input-name");
-    const recipeIdsByName = findRecipeByName(userInput, userData.savedRecipes);
+    const recipeIdsByName = findRecipeByName(userInput, currentUser.recipesToCook);
     displayRecipes(recipeIdsByName, "Remove Recipe");
   }
 });
@@ -109,7 +116,7 @@ inputIngredient.addEventListener("keydown", (event) => {
     const recipeIdsByIngredient = findRecipeByIngredient(
       userInput,
       ingredientsData,
-      userData.savedRecipes
+      currentUser.recipesToCook
     );
     displayRecipes(recipeIdsByIngredient, "Remove Recipe");
   }
@@ -123,7 +130,7 @@ tagButtons.addEventListener("click", (event) => {
     displayRecipes(filteredRecipeIDByTag, "Save Recipe");
   } else {
     const filteredRecipeIDByTag = returnFilteredTag(
-      userData.savedRecipes,
+      currentUser.recipesToCook,
       tagClicked
     );
     displayRecipes(filteredRecipeIDByTag, "Remove Recipe");

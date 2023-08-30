@@ -13,6 +13,8 @@
 // exampleFunction2("heather");
 
 // console.log(ingredientsData);
+import { currentUser } from "./scripts.js";
+
 
 function createFunction(array) {
   return array;
@@ -187,6 +189,7 @@ function saveRecipe(dataArray, savedArray, clickedId) {
   });
   if (!savedArray.includes(savedRecipe)) {
     savedArray.push(savedRecipe);
+    console.log(savedArray)
     return savedArray;
   }
 }
@@ -199,6 +202,23 @@ function deleteRecipe(savedArray, clickedId) {
     savedArray.splice(recipeIndex, 1);
   }
   return savedArray;
+}
+
+function getRandomUser(usersArray) {
+  return usersArray[getRandomIndex(usersArray)]
+}
+
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length);
+}
+
+function setCurrentUser(usersArray) {
+  const randomUser = getRandomUser(usersArray);
+  currentUser.name = randomUser.name,
+  currentUser.id = randomUser.id,
+  currentUser.recipesToCook = [];
+
+  return currentUser;
 }
 
 export {
@@ -218,4 +238,7 @@ export {
   getUserInput,
   saveRecipe,
   deleteRecipe,
+  getRandomUser,
+  getRandomIndex,
+  setCurrentUser,
 };
