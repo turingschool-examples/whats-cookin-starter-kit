@@ -185,20 +185,6 @@ function deleteRecipe(savedArray, clickedId) {
   return savedArray;
 }
 
-function createRandomUser(array) {
-  const randIndex = Math.floor(Math.random() * array.length);
-
-  const randomUser = array.find((userEl) => {
-    return userEl.id == randIndex;
-  });
-  currentUser.name = randomUser.name;
-  currentUser.id = randomUser.id;
-  currentUser.recipesToCook = [];
-  console.log(currentUser);
-
-  return currentUser;
-}
-
 export {
   createFunction,
   returnFilteredListName,
@@ -216,5 +202,4 @@ export {
   getUserInput,
   saveRecipe,
   deleteRecipe,
-  createRandomUser,
 };
