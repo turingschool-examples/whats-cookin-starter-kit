@@ -24,7 +24,7 @@ describe("Filtered List Based on Tag", () => {
     expect(result.length).to.equal(1);
   });
 
-  it("should return a filtered list based on a tag", () => {
+  it("should work with other tags", () => {
     const result = returnFilteredTag(recipeTestData, "lunch");
     expect(result[0].id).to.equal(678353);
     expect(result.length).to.equal(1);
@@ -36,12 +36,12 @@ describe("Filtered List Based on Tag", () => {
   });
 });
 
-// describe("Cost of Recipe", () => {
-//   it("should calculate the cost of a given recipe's ingredients", () => {
-//     const result = returnRecipeCost(recipeData, ingredientsData, 595736);
-//     expect(result).to.equal(177.76000000000002);
-//   });
-// });
+describe("Cost of Recipe", () => {
+  it("should calculate the cost of a given recipe's ingredients", () => {
+    const result = returnRecipeCost(recipeData, ingredientsData, 595736);
+    expect(result).to.equal(177.76000000000002);
+  });
+});
 
 // describe("Filtered List Based on Name", () => {
 //   it("should return a filtered list based on a name", () => {
