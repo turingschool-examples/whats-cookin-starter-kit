@@ -2,8 +2,6 @@ import { expect } from "chai";
 
 const { recipeTestData, ingredientsTestData } = require("../src/data/testData");
 
-const { recipeData } = require("../src/recipes");
-
 const {
   filterByTag,
   searchRecipes,

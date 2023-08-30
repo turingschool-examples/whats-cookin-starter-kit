@@ -91,10 +91,12 @@ recipeArea.addEventListener("click", function (event) {
 
 recipeCardClose.addEventListener("click", function (event) {
   displayRecipeArea();
+  createRecipeCards(activeRecipes);
 });
 
 recipeCardBookmark.addEventListener("click", function (event) {
   let bookmarkClicked = event.target.id;
+  console.log(currentUser);
   saveRecipe(bookmarkClicked, currentUser, recipeData);
 });
 
@@ -105,9 +107,8 @@ userSavedRecipes.addEventListener("click", function (event) {
 
 discoverRecipes.addEventListener("click", function (event) {
   activeRecipes = [...recipeData];
-  createRecipeCards(recipeData);
+  createRecipeCards(activeRecipes);
 });
-
 function loadUser(users) {
   let randomUserIndex = Math.floor(Math.random() * users.length);
   currentUser = users[randomUserIndex];

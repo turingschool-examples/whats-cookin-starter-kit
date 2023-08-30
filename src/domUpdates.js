@@ -111,11 +111,6 @@ const displayRecipeArea = () => {
 };
 
 const saveRecipe = (id, user, recipes) => {
-  // locate the recipe
-  // check to see if the user has a recipe with that id already
-  // if yes delete it
-  // change the image or background on the bookmark to be highlighted instead
-  // if no push the recipe into the object
   let foundRecipe = locateRecipe(id, recipes);
   if (user.savedRecipes.includes(foundRecipe)) {
     let foundRecipeIndex = user.savedRecipes.findIndex((recipe) => {
