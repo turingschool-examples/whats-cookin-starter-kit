@@ -3,6 +3,26 @@ import "./styles.css";
 import "./domUpdates.js";
 import "./functions.js";
 
+import './images/antipasti.png'
+import './images/antipasto.png'
+import './images/appetizer.png'
+import './images/breakfast.png'
+import './images/brunch.png'
+import './images/condiment.png'
+import './images/dinner.png'
+import './images/dip.png'
+import "./images/hor d'oeuvre.png"
+import './images/lunch.png'
+import './images/main course.png'
+import './images/main dish.png'
+import './images/morning meal.png'
+import './images/salad.png'
+import './images/sauce.png'
+import './images/side dish.png'
+import './images/snack.png'
+import './images/spread.png'
+import './images/starter.png'
+
 import {
   createFunction,
   returnFilteredListName,
@@ -60,15 +80,15 @@ Promise.all([fetchUsers, fetchIngredients, fetchRecipes]).then(
     createRandomUser(usersData);
 
     savedRecipesBtn.addEventListener("click", () => {
-      if (savedRecipesBtn.innerText === "View Saved") {
-        console.log(currentUser.recipesToCook);
-        console.log(currentUser);
+      if (savedRecipesBtn.innerText === "View Saved Recipes") {
+        // console.log(currentUser.recipesToCook);
+        // console.log(currentUser);
         displayRecipes(currentUser.recipesToCook, "Remove Recipe");
         savedRecipesBtn.innerText = "View All";
         displayTags(currentUser.recipesToCook);
       } else {
         displayRecipes(recipeData, "Save Recipe");
-        savedRecipesBtn.innerText = "View Saved";
+        savedRecipesBtn.innerText = "View Saved Recipes";
         displayTags(recipeData);
       }
     });
@@ -76,10 +96,12 @@ Promise.all([fetchUsers, fetchIngredients, fetchRecipes]).then(
     recipeDisplay.addEventListener("click", (event) => {
       let clickedId = event.target.parentNode.firstChild.id;
       if (event.target.innerText === "Save Recipe") {
-        event.target.innerText = "Saved";
+        event.target.innerText = "✓ Saved";
+        event.target.style.backgroundColor = '#89ce94'
         saveRecipe(recipeData, currentUser.recipesToCook, clickedId);
-      } else if (event.target.innerText === "Saved") {
+      } else if (event.target.innerText === "✓ Saved") {
         event.target.innerText = "Save Recipe";
+        event.target.style.backgroundColor = '#e5e7e9'
         deleteRecipe(currentUser.recipesToCook, clickedId);
       } else if (event.target.innerText === "Remove Recipe") {
         deleteRecipe(currentUser.recipesToCook, clickedId);
@@ -89,7 +111,7 @@ Promise.all([fetchUsers, fetchIngredients, fetchRecipes]).then(
     });
 
     inputName.addEventListener("keydown", (event) => {
-      if (savedRecipesBtn.innerText === "View Saved") {
+      if (savedRecipesBtn.innerText === "View Saved Recipes") {
         const userInput = getUserInput(".input-name");
         const recipeIdsByName = findRecipeByName(userInput, recipeData);
         displayRecipes(recipeIdsByName, "Save Recipe");
@@ -104,7 +126,7 @@ Promise.all([fetchUsers, fetchIngredients, fetchRecipes]).then(
     });
 
     inputIngredient.addEventListener("keydown", (event) => {
-      if (savedRecipesBtn.innerText === "View Saved") {
+      if (savedRecipesBtn.innerText === "View Saved Recipes") {
         const userInput = getUserInput(".input-ingredient");
         const recipeIdsByIngredient = findRecipeByIngredient(
           userInput,
@@ -126,7 +148,7 @@ Promise.all([fetchUsers, fetchIngredients, fetchRecipes]).then(
     tagButtons.addEventListener("click", (event) => {
       let tagClicked;
       tagClicked = event.target.id;
-      if (savedRecipesBtn.innerText === "View Saved") {
+      if (savedRecipesBtn.innerText === "View Saved Recipes") {
         const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
         displayRecipes(filteredRecipeIDByTag, "Save Recipe");
       } else {

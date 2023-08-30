@@ -7,12 +7,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@200;300;800;900&family=Manrope:wght@200;700;800&family=Merienda:wght@400;800&family=Poppins:wght@100&family=Sora:wght@200;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/src/styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Manrope:wght@400;700&family=Poppins&display=swap" rel="stylesheet">
     <title>What's Cookin'?</title>
   </head>
   <body>
@@ -22,15 +19,17 @@
       <h1>What's Cookin'</h1>
     </header>
     <section class="nav">
-      <input class="input-name" type="text" placeholder="Search by Name.." />
-      <input class="input-ingredient" type="text" placeholder="Search by Ingredient.." />
+      <input class="input-name" type="text" placeholder="Search Recipe by Name.." />
+      <input class="input-ingredient" type="text" placeholder="Search Recipe by Ingredient.." />
 
       <section class="tag-buttons">
-        <button class="btn" id="starter">Starter</button>
-        <button class="btn">Tag2</button>
-        <button class="btn">Tag3</button>
+        <!-- <button class="btn" id="starter">Starter</button> -->
+        <!-- <button class="btn">Tag2</button>
+        <button class="btn">Tag3</button> -->
+        <!-- tag buttons go here -->
+        <img class="tag-btn" id="antipasti" src="/images/antipasti.png">
       </section>
-      <button class="view-saved">View Saved</button>
+      <button class="view-saved">View Saved Recipes</button>
     </section>
     <section class="recipes">
       <div class="recipe-card">
@@ -80,16 +79,20 @@
           <ul class="modal-directions-list">
             <li></li>
           </ul>
-         </h3>
+         </h4>
         </div>
         <div class="modal-ingredients-cost">
-          <h3 class="modal-cost">Cost: $15.75<h3/>
-          <h3>Ingredients</h3>
+          <h3 class="modal-cost">Cost: $15.75</h3>
+          <h3 class="modal-ingredients">
+            Ingredients
+          </h3>
+          <h4 class="modal-ingredients-details">
           <ul class="modal-ingredients-list">
             <li>1.5 cups apple cider</li>
             <li>1 tablespoon corn starch</li>
             <li>1 tablespoon dijon style mustard</li>
           </ul>
+        </h4>
         </div>
         
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="close-btn">

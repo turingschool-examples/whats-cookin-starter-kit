@@ -4,7 +4,7 @@ const recipeDisplay = document.querySelector(".recipes");
 const tagButtons = document.querySelector(".tag-buttons");
 
 export function displayRecipes(array, innerText) {
-  let recipeHTML = "";
+  let recipeHTML = ``;
   array.forEach((recipeEl) => {
     recipeHTML += `<div class="recipe-card"><div class="title-recipe" id=${recipeEl.id}>${recipeEl.name}</div>
     <img
@@ -13,7 +13,7 @@ export function displayRecipes(array, innerText) {
       id=${recipeEl.id}
     />
     <button class="save-recipe-btn">${innerText}</button>
-   </div>`;
+    </div>`;
   });
   recipeDisplay.innerHTML = recipeHTML;
 }
@@ -22,7 +22,7 @@ export function displayTags(array) {
   const tagsArray = returnListOfUniqueTags(array);
   let tagsHtml = "";
   tagsArray.forEach((tagEl) => {
-    tagsHtml += `<div><button class="btn" id="${tagEl}"></button><p>${tagEl}</p></div>
+    tagsHtml += `<div><img class="tag-btn" id="${tagEl}" src="/images/${tagEl}.png"><p>${tagEl}</p></div>
     `;
   });
   tagButtons.innerHTML = tagsHtml;
