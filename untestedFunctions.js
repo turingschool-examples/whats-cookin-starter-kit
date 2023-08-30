@@ -1,7 +1,7 @@
 // import from testData.js
 // export to recipeRepositories
 
-const { recipeData, ingredientsData } = require("./testData")
+const { recipeData, ingredientsData } = require("./test/testData")
 
 // Return a filtered list of recipes based on a tag. (Extension option: filtering by multiple tags)
 
@@ -43,16 +43,43 @@ const findRecipeIngredients = (id) => {
 }
 
 const findDirections = (recipeName) => {
-  let chosenRecipe = recipeData.find(recipe => {
-    return recipeName === recipe.name 
+  let chosenRecipe = recipeData.filter(recipe => {
+    return recipeName === recipe["name"] 
+      // return recipeData["instructions"]
+      // return recipeDirections
+    console.log(chosenRecipe)
   })
-    return chosenRecipe.instructions
+  console.log(chosenRecipe)
+    // chosenRecipe.map(function(recipe) {
+    //   return recipeData["instructions"]
+    return chosenRecipe
 }
+// const findRecipeByName = (name) => {
+//   let recipeByName = recipeData.filter(recipe => {
+//     return recipe["name"] === name
+//   })
+//   return recipeByName
+// }
+// var newArray = array.map(function(element, index, array) {
+// 	// callback function body that returns a value
+// 	return newValue;
+// });
+
+// const findRecipeByName = (name) => {
+//   let recipeByName = recipeData.filter(recipe => {
+//     return recipe["name"] === name
+//   })
+//   return recipeByName
+// }
+// var newArray = array.filter(function(element, index, array) {
+// 	// callback function body that returns true or false
+// 	return condition;
+// });
+
 
 module.exports = {
   findRecipeByTag,
   findRecipeByName,
   findRecipeIngredients,
   findDirections
-
 }
