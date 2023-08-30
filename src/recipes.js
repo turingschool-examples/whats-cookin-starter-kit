@@ -1,31 +1,59 @@
-const filterByTag = (tags, currentActiveRecipes, allrecipes) => {
-  // console.log(currentActiveRecipes);
-
-  if (tags.length === 0) {
-    currentActiveRecipes = allrecipes;
-  } else if (tags.length === 1) {
-    currentActiveRecipes = [];
-    tags.forEach((tag) => {
-      allrecipes.forEach((recipe) => {
-        if (recipe.tags.includes(tag)) {
-          currentActiveRecipes.push(recipe);
+const filterByTag = (tags, arrayToFilter) => {
+  if (tags.length > 0) {
+    let filteredArray = arrayToFilter.reduce((acc, cv) => {
+      tags.forEach((tag) => {
+        if (!acc.includes(cv) && cv.tags.includes(tag)) {
+          acc.push(cv);
         }
       });
-    });
+      return acc;
+    }, []);
+    return filteredArray;
   } else {
-    tags.forEach((tag) => {
-      allrecipes.forEach((recipe) => {
-        if (recipe.tags.includes(tag)) {
-          let check = checkArrayForObject(recipe, currentActiveRecipes);
-          if (check === false) {
-            currentActiveRecipes.push(recipe);
-          }
-        }
-      });
-    });
+    return arrayToFilter;
   }
-  return currentActiveRecipes;
 };
+
+//const filterByTag = (tags, arrayToFilter) => {
+//   // console.log(currentActiveRecipes);
+
+//   if (tags.length === 0 && saved === false) {
+//     currentActiveRecipes = allrecipes;
+//   } else if (tags.length === 0 && saved === true) {
+//     currentActiveRecipes === currentActiveRecipes;
+//   } else {
+//     if (tags.length === 1 && saved === false) {
+//       currentActiveRecipes = [];
+//       tags.forEach((tag) => {
+//         allrecipes.forEach((recipe) => {
+//           if (recipe.tags.includes(tag)) {
+//             currentActiveRecipes.push(recipe);
+//           }
+//         });
+//       });
+//     } else if (tags.length === 1 && saved === true) {
+//       tags.forEach((tag) => {
+//         currentActiveRecipes.forEach((recipe) => {
+//           if (recipe.tags.includes(tag)) {
+//             currentActiveRecipes.push(recipe);
+//           }
+//         });
+//       });
+//     } else {
+//       tags.forEach((tag) => {
+//         allrecipes.forEach((recipe) => {
+//           if (recipe.tags.includes(tag)) {
+//             let check = checkArrayForObject(recipe, currentActiveRecipes);
+//             if (check === false) {
+//               currentActiveRecipes.push(recipe);
+//             }
+//           }
+//         });
+//       });
+//     }
+//   }
+//   return currentActiveRecipes;
+// };
 
 function checkArrayForObject(object, array) {
   let finding = array.find((element) => {

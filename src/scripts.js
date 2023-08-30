@@ -57,16 +57,23 @@ tagSection.addEventListener("click", function (event) {
     let index = activeTags.indexOf(tagId);
     activeTags.splice(index, 1);
   }
-
-  if (activeTags.length > 0) {
-    let newActiveRecipes = filterByTag(activeTags, activeRecipes, recipeData);
-    activeRecipes = newActiveRecipes;
-    console.log(activeRecipes);
-    createRecipeCards(activeRecipes);
-  } else {
-    activeRecipes = [...recipeData];
-    createRecipeCards(activeRecipes);
-  }
+  let filteredArray = filterByTag(activeTags, activeRecipes);
+  console.log(filteredArray);
+  createRecipeCards(filteredArray);
+  // if (activeTags.length >= 0) {
+  //   let newActiveRecipes = filterByTag(
+  //     activeTags,
+  //     activeRecipes,
+  //     recipeData,
+  //     saved
+  //   );
+  //   activeRecipes = newActiveRecipes;
+  //   console.log(activeRecipes);
+  //   createRecipeCards(activeRecipes);
+  // } else {
+  //   activeRecipes = [...recipeData];
+  //   createRecipeCards(activeRecipes);
+  // }
 });
 
 searchButton.addEventListener("click", function (event) {
@@ -97,7 +104,7 @@ userSavedRecipes.addEventListener("click", function (event) {
 });
 
 discoverRecipes.addEventListener("click", function (event) {
-  activeRecipes = recipeData;
+  activeRecipes = [...recipeData];
   createRecipeCards(recipeData);
 });
 
