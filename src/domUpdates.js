@@ -14,40 +14,8 @@
 //   exampleFunction2,
 // }
 import {
-  createFunction,
-  returnFilteredListName,
-  returnIngredientNames,
-  returnFilteredTag,
-  returnRecipeCost,
-  returnRecipeDirections,
-  returnRecipeTitle,
-  returnRecipeTags,
-  returnRecipeImgUrl,
   returnListOfUniqueTags,
-  returnFilteredRecipeArrayByTagID,
-  findRecipeByIngredient,
-  findRecipeByName,
-  getUserInput,
-  saveRecipe,
-  deleteRecipe,
 } from "../src/functions.js";
-
-//any function nthat needs data, it gets passed the data when it's invoked
-/// change to functions
-
-// import ingredientsData from "../src/data/ingredients.js";
-
-// import recipeData from "../src/data/recipes.js";
-
-// import usersData from "../src/data/users.js";
-
-// make this ^ live in scripts.
-
-//VIEWING SAVED RECIPES:
-
-//SAVING A RECIPE
-
-//ON PAGE LOAD
 
 const recipeDisplay = document.querySelector(".recipes");
 const tagButtons = document.querySelector(".tag-buttons");

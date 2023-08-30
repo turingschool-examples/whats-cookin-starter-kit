@@ -1,4 +1,4 @@
-//
+
 import "./styles.css";
 import "./domUpdates.js";
 
@@ -26,16 +26,7 @@ import {
 
 import { displayRecipes } from "./domUpdates.js";
 import { displayTags } from "./domUpdates.js";
-
-// import ingredientsData from "../src/data/ingredients.js";
-
-// import recipeData from "../src/data/recipes.js";
-
 import { fetchUsers, fetchIngredients, fetchRecipes } from "./apiCalls"
-
-let usersData = null;
-let ingredientsData = null;
-let recipeData = null;
 
 const recipeDisplay = document.querySelector(".recipes");
 
@@ -53,20 +44,30 @@ const inputName = document.querySelector(".input-name");
 const inputIngredient = document.querySelector(".input-ingredient");
 const savedRecipesBtn = document.querySelector(".view-saved");
 
-export const currentUser = {
+export let currentUser = {
   name: "",
   id: "",
   recipesToCook: [],
 };
 
-// document.addEventListener("DOMContentLoaded", (event) => {
-//   console.log(setCurrentUser(usersData));
-//   displayRecipes(recipeData, "Save Recipe");
-//   displayTags(recipeData);
-// });
+let usersData = null;
+let ingredientsData = null;
+let recipeData = null;
+
+// Promise.all to wait for all fetch requests to complete
+Promise.all([fetchUsers, fetchIngredients, fetchRecipes])
+  .then(([usersDataValue, ingredientsDataValue, recipeDataValue]) => {
+    usersData = usersDataValue;
+    ingredientsData = ingredientsDataValue;
+    recipeData = recipeDataValue;
+    // now available
+    setCurrentUser(usersData);
+    displayRecipes(recipeData, "Save Recipe");
+    displayTags(recipeData);
 
 savedRecipesBtn.addEventListener("click", () => {
   if (savedRecipesBtn.innerText === "View Saved") {
+    console.log(currentUser)
     displayRecipes(currentUser.recipesToCook, "Remove Recipe");
     savedRecipesBtn.innerText = "View All";
     displayTags(currentUser.recipesToCook);
@@ -189,3 +190,8 @@ recipeDisplay.addEventListener("click", (event) => {
 closeBtn.addEventListener("click", function () {
   modalOverlay.classList.remove("open-modal");
 });
+
+}
+// .catch(error => {
+//   console.error('An error occurred:', error);
+// });
