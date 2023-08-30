@@ -96,12 +96,12 @@ Promise.all([fetchUsers, fetchIngredients, fetchRecipes]).then(
     recipeDisplay.addEventListener("click", (event) => {
       let clickedId = event.target.parentNode.firstChild.id;
       if (event.target.innerText === "Save Recipe") {
-        event.target.innerText = "Saved!";
-        event.target.style.backgroundColor = '#718A98'
+        event.target.innerText = "✓ Saved";
+        event.target.style.backgroundColor = '#89ce94'
         saveRecipe(recipeData, currentUser.recipesToCook, clickedId);
-      } else if (event.target.innerText === "Saved!") {
+      } else if (event.target.innerText === "✓ Saved") {
         event.target.innerText = "Save Recipe";
-        event.target.style.backgroundColor = '#B1C7D2'
+        event.target.style.backgroundColor = '#e5e7e9'
         deleteRecipe(currentUser.recipesToCook, clickedId);
       } else if (event.target.innerText === "Remove Recipe") {
         deleteRecipe(currentUser.recipesToCook, clickedId);

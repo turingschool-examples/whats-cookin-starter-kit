@@ -6,7 +6,7 @@
 }
 
 body {
-background-color: hsl(204deg, 67%, 85%)
+background-color: #bfdef2;
 }
 
 main {
@@ -70,12 +70,12 @@ input:hover {
   display: flex;
   flex-direction: column;
   background-color:white;
-  height: 350px;
+  height: 330px;
   margin: 10px;
   /* border: 2px solid black; */
   filter: drop-shadow(0 0 0.1rem black);
   align-items: center;
-  border-radius: 35px;
+  border-radius: 25px;
 }
 
 .title-recipe {
@@ -108,17 +108,17 @@ img:hover {
   width: 240px;
   border: none;
   font-size: 16px;
-  background-color: #DFE5EF;
+  background-color: #ae99c8;
   border-radius: 25px;
   margin-bottom: 20px;
 }
 
 .view-saved:hover {
-  background-color: #B3BFD5;
+  background-color: #b39fcb;
 }
 
 .view-saved:active {
-  background-color: #A7B1C9;
+  background-color: #a68fc3;
 }
 
 button:hover {
@@ -179,7 +179,8 @@ button:hover {
   display: flex;
   justify-content: space-between;
   border-radius: 25px;
-  padding-top: 10px;
+  padding-top: 60px;
+  padding-bottom: 40px;
 }
 
 .modal-title-directions {
@@ -241,18 +242,22 @@ p {
 .save-recipe-btn {
   width: 130px;
   height: 40px;
-  margin: 16px;
-  background-color: #B1C7D2;
+  margin: 5px;
+  background-color: #e5e7e9;
   border: none;
   border-radius: 25px;
 }
 
 .save-recipe-btn:hover {
-  background-color: #BED0DA;
+  background-color: #e8eaec;
 }
 
 .save-recipe-btn:active {
-  background-color: #8FAEBE;
+  background-color: #e8eaec;
+}
+
+.modal-title {
+  font-size: 1.6rem;
 }
 
 .modal-tags,
@@ -263,4 +268,9 @@ p {
 .modal-ingredients,
 .modal-ingredients-list {
   text-align: start;
+  margin-top: 20px;
+}
+
+.modal-directions-list {
+  margin-right: 30px;
 }
