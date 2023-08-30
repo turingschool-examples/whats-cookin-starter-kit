@@ -70,7 +70,9 @@ input:hover {
   display: flex;
   flex-direction: column;
   background-color:white;
-  border: 2px solid black;
+  margin: 10px;
+  /* border: 2px solid black; */
+  filter: drop-shadow(0 0 0.1rem black);
   align-items: center;
   border-radius: 35px;
 }
@@ -102,7 +104,20 @@ img:hover {
 
 .view-saved {
   height: 50px;
-  width: 200px;
+  width: 240px;
+  border: none;
+  font-size: 16px;
+  background-color: #DFE5EF;
+  border-radius: 25px;
+  margin-bottom: 20px;
+}
+
+.view-saved:hover {
+  background-color: #B3BFD5;
+}
+
+.view-saved:active {
+  background-color: #A7B1C9;
 }
 
 button:hover {
@@ -211,6 +226,7 @@ ul {
   padding: 20px;
   border-radius: 35px;
   border: none;
+  margin-top: 15px;
 }
 
 p {
@@ -219,6 +235,18 @@ p {
 }
 
 .save-recipe-btn {
-  width: 120px;
-  height: 35px;
+  width: 100px;
+  height: 40px;
+  margin: 16px;
+  background-color: #B1C7D2;
+  border: none;
+  border-radius: 25px;
+}
+
+.save-recipe-btn:hover {
+  background-color: #BED0DA;
+}
+
+.save-recipe-btn:active {
+  background-color: #8FAEBE;
 }
