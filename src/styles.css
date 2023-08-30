@@ -172,12 +172,12 @@ ul {
   overflow: scroll;
 }
 
-.btn {
-  height: 20px;
-  width: 100px;
+.tag-btn {
+  width: 50px;
+  height: auto;
 }
 
-.btn:hover {
+.tag-btn:hover {
   transform: scale(1.1);
 }
 
@@ -200,4 +200,3 @@ p {
   width: 120px;
   height: 35px;
 }
-
