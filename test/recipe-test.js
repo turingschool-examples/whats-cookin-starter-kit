@@ -17,14 +17,15 @@ import recipeTestData from "../src/data/recipes-test-data.js";
 
 import usersTestData from "../src/data/users-test-data.js";
 
-describe("Filtered List Based on Tag", () => {
+describe("filter list based on tag", () => {
+  
   it("should return a filtered list based on a tag", () => {
     const result = returnFilteredTag(recipeTestData, "starter");
     expect(result[0].id).to.equal(595736);
     expect(result.length).to.equal(1);
   });
 
-  it("should work with other tags", () => {
+  it("should work with different tags", () => {
     const result = returnFilteredTag(recipeTestData, "lunch");
     expect(result[0].id).to.equal(678353);
     expect(result.length).to.equal(1);
@@ -36,22 +37,32 @@ describe("Filtered List Based on Tag", () => {
   });
 });
 
-describe("Cost of Recipe", () => {
-  it("should calculate the cost of a given recipe's ingredients", () => {
-    const result = returnRecipeCost(recipeData, ingredientsData, 595736);
-    expect(result).to.equal(177.76000000000002);
+describe("filter list based on name", () => {
+  
+  it("should return a filtered list based on a name", () => {
+    const result = returnFilteredListName(recipeTestData, "Loaded Chocolate Chip Pudding Cookie Cups");
+    expect(result[0].id).to.equal(595736);
+    expect(result.length).to.equal(1);
   });
+  
+  it("should work with a different name", () => {
+    const result = returnFilteredListName(recipeTestData, "Maple Dijon Apple Cider Grilled Pork Chops");
+    expect(result[0].id).to.equal(678353);
+    expect(result.length).to.equal(1);
+  })
 });
 
-// describe("Filtered List Based on Name", () => {
-//   it("should return a filtered list based on a name", () => {
-//     const result = returnFilteredListName(
-//       recipeData,
-//       "Loaded Chocolate Chip Pudding Cookie Cups"
-//     );
-//     expect(result.length).to.equal(1);
+
+
+
+// describe("Cost of Recipe", () => {
+//   it("should calculate the cost of a given recipe's ingredients", () => {
+//     const result = returnRecipeCost(recipeData, ingredientsData, 595736);
+//     expect(result).to.equal(177.76000000000002);
 //   });
 // });
+
+
 
 // describe("Directions for Recipe", () => {
 //   it("should return the directions for a given recipe", () => {
@@ -67,12 +78,5 @@ describe("Cost of Recipe", () => {
 //       "Loaded Chocolate Chip Pudding Cookie Cups"
 //     );
 //     expect(result.length).to.equal(1);
-//   });
-// });
-
-// describe("Names of Ingredients", () => {
-//   it("should determine the names of ingredients based on a recipe name", () => {
-//     const result = returnIngredientNames(recipeData, ingredientsData, 595736);
-//     expect(result.length).to.equal(11);
 //   });
 // });
