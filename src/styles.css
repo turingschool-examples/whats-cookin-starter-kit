@@ -36,7 +36,7 @@ h1 {
 
 input {
   font-size: 20px;
-  background-color: #DDDDDD;
+  background-color: #EEEEEE;
   border: none;
   border-radius: 25px;
   width: 400px;
@@ -46,6 +46,11 @@ input {
 input::placeholder {
   font-family: 'Cedarville Cursive', cursive;
   font-size: 22px;
+}
+
+input:hover {
+  background-color: #DDDDDD;
+  cursor: pointer;
 }
 
 .recipes {
@@ -202,9 +207,10 @@ ul {
   width: 775px;
   gap: 50px;
   background-color: white;
-  border: 2px solid black;
-  padding: 30px;
+  /* border: 2px solid black; */
+  padding: 20px;
   border-radius: 35px;
+  border: none;
 }
 
 p {
