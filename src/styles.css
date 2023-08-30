@@ -74,6 +74,7 @@ input:hover {
   margin: 10px;
   /* border: 2px solid black; */
   filter: drop-shadow(0 0 0.1rem black);
+  box-shadow:inset 0 -0.6em 0 -0.40em rgba(0,0,0,0.17);
   align-items: center;
   border-radius: 25px;
 }
@@ -97,6 +98,7 @@ img {
   height: 200px;
   width: 250px;
   border-radius: 15px;
+  margin: 2px;
 }
 
 img:hover {
