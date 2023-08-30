@@ -42,9 +42,27 @@ const findRecipeIngredients = (id) => {
   } )
 }
 
+// Return a specific recipe based on the id number
+
+const specificRecipe = () => {
+  return recipeData.find(recipe => recipe.id === clickedId)
+}
+
+const calculateCost = (clickedId) => {
+  const clickedRecipe = recipeData.find(recipe => recipe.id === clickedId);
+  let reducedIngredients = clickedRecipe.ingredients.reduce((accumulator, currentValue) => {
+    let ingredientPrice = ingredientsData.find(ingredientDetail => ingredientDetail.id === currentValue.id);
+    accumulator += ingredientPrice.estimatedCostInCents * currentValue.quantity.amount;
+    return accumulator;
+  }, 0);
+
+  const costInDollars = (reducedIngredients / 100).toFixed(2); // Convert to dollars with 2 decimal places
+  return `$${costInDollars}`;
+};
+
 const findDirections = (recipeName) => {
   let chosenRecipe = recipeData.find(recipe => {
-    return recipeName === recipe.name 
+    return recipeName === recipe.name
   })
     return chosenRecipe.instructions
 }
@@ -53,6 +71,7 @@ module.exports = {
   findRecipeByTag,
   findRecipeByName,
   findRecipeIngredients,
+  specificRecipe,
+  calculateCost,
   findDirections
-
 }

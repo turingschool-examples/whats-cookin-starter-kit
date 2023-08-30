@@ -43,39 +43,11 @@ const findRecipeIngredients = (id) => {
 }
 
 const findDirections = (recipeName) => {
-  let chosenRecipe = recipeData.filter(recipe => {
-    return recipeName === recipe["name"] 
-      // return recipeData["instructions"]
-      // return recipeDirections
-    console.log(chosenRecipe)
+  let chosenRecipe = recipeData.find(recipe => {
+    return recipeName === recipe.name
   })
-  console.log(chosenRecipe)
-    // chosenRecipe.map(function(recipe) {
-    //   return recipeData["instructions"]
-    return chosenRecipe
+    return chosenRecipe.instructions
 }
-// const findRecipeByName = (name) => {
-//   let recipeByName = recipeData.filter(recipe => {
-//     return recipe["name"] === name
-//   })
-//   return recipeByName
-// }
-// var newArray = array.map(function(element, index, array) {
-// 	// callback function body that returns a value
-// 	return newValue;
-// });
-
-// const findRecipeByName = (name) => {
-//   let recipeByName = recipeData.filter(recipe => {
-//     return recipe["name"] === name
-//   })
-//   return recipeByName
-// }
-// var newArray = array.filter(function(element, index, array) {
-// 	// callback function body that returns true or false
-// 	return condition;
-// });
-
 
 module.exports = {
   findRecipeByTag,
