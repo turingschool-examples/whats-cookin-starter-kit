@@ -31,7 +31,7 @@ describe("filter list based on tag", () => {
     expect(result.length).to.equal(1);
   });
 
-  it("should return an empty array if no matches", () => {
+  it("should return an empty array if no matches are found", () => {
     const result = returnFilteredTag(recipeTestData, "second breakfeast");
     expect(result.length).to.equal(0);
   });
@@ -98,7 +98,7 @@ describe("find directions of a recipe", () => {
     expect(result.length).to.equal(1);
   });
 
-  it ("should return an empty array if no matches", () => {
+  it ("should return an empty array if no matches are found", () => {
     const result = returnRecipeDirections(recipeTestData, "noMatch");
     expect(result.length).to.equal(0);
   });
