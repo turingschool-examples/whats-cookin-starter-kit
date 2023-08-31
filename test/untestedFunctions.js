@@ -1,12 +1,12 @@
 // import from testData.js
 // export to recipeRepositories
 
-const { recipeData, ingredientsData } = require("./testData")
-
+// const { recipeData, ingredientsData } = require("./testData")
+// import './testData'
 // Return a filtered list of recipes based on a tag. (Extension option: filtering by multiple tags)
 
-const findRecipeByTag = (tag) => {
-  let recipeByTag = recipeData.filter(recipe => {
+const findRecipeByTag = (recipeList, tag) => {
+  let recipeByTag = recipeList.filter(recipe => {
     return recipe["tags"].includes(tag)
   })
   return recipeByTag
@@ -14,7 +14,7 @@ const findRecipeByTag = (tag) => {
 
 // Return a filtered list of recipes based on a recipe name. (Extension option: filtering by name or ingredients)
 
-const findRecipeByName = (name) => {
+const findRecipeByName = (recipeData, name) => {
   let recipeByName = recipeData.filter(recipe => {
     return recipe["name"] === name
   })
@@ -23,7 +23,7 @@ const findRecipeByName = (name) => {
 
 // Determine the names of ingredients needed for a given recipe.
 
-const findRecipeIngredients = (id) => {
+const findRecipeIngredients = (recipeData, ingredientsData, id) => {
   let givenRecipe = recipeData.find(recipe => {
     return recipe["id"] == id
   })
@@ -48,7 +48,7 @@ const specificRecipe = () => {
   return recipeData.find(recipe => recipe.id === clickedId)
 }
 
-const calculateCost = (clickedId) => {
+const calculateCost = (recipeData, ingredientsData, clickedId) => {
   const clickedRecipe = recipeData.find(recipe => recipe.id === clickedId);
   let reducedIngredients = clickedRecipe.ingredients.reduce((accumulator, currentValue) => {
     let ingredientPrice = ingredientsData.find(ingredientDetail => ingredientDetail.id === currentValue.id);
@@ -60,14 +60,14 @@ const calculateCost = (clickedId) => {
   return `$${costInDollars}`;
 };
 
-const findDirections = (recipeName) => {
+const findDirections = (recipeData, recipeName) => {
   let chosenRecipe = recipeData.find(recipe => {
     return recipeName === recipe.name
   })
     return chosenRecipe.instructions
 }
 
-module.exports = {
+export {
   findRecipeByTag,
   findRecipeByName,
   findRecipeIngredients,
