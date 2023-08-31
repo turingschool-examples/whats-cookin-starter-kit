@@ -121,7 +121,6 @@ const saveRecipe = (id, user, recipes) => {
   } else {
     user.savedRecipes.push(foundRecipe);
   }
-  console.log(user);
 };
 
 export {
