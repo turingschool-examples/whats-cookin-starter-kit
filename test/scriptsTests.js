@@ -3,11 +3,17 @@
 const chai = require('chai');
 const expect = chai.expect;
 const assert = require('chai').assert;
-const {findRecipeByTag, findRecipeByName, findRecipeIngredients, calculateCost, findDirections } = require('../test/untestedFunctions.js');
+import {findRecipeByTag, findRecipeByName, findRecipeIngredients, calculateCost, findDirections } from '../test/untestedFunctions'
+import ingredientsData from './/testIngredientData.js';
+import recipeData from './/testData.js';
+// const { recipeData, ingredientsData } = require("./testData.js")
+
+
+
 
 describe('findRecipeByTag', () => {
   it('Should return an array of one object containing a certain tag', () => {
-    let dinnerRecipes = findRecipeByTag("dinner");
+    let dinnerRecipes = findRecipeByTag(recipeData, "dinner");
     expect(dinnerRecipes).to.deep.equal([{
       "id": 741603,
       "image": "https://spoonacular.com/recipeImages/741603-556x370.jpeg",
@@ -56,7 +62,7 @@ describe('findRecipeByTag', () => {
     }]);
   });
   it('Should return an array of more than one object containing a certain tag', () => {
-    let snackRecipes = findRecipeByTag("snack");
+    let snackRecipes = findRecipeByTag(recipeData, "snack");
     expect(snackRecipes).to.deep.equal([ {
       "id": 595736,
       "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -149,7 +155,7 @@ describe('findRecipeByTag', () => {
 
 describe('findRecipeByName', () => {
   it('Should return a specific recipe object in an array', () => {
-    let elvisPancakes = findRecipeByName("Elvis Pancakes");
+    let elvisPancakes = findRecipeByName(recipeData, "Elvis Pancakes");
     expect(elvisPancakes).to.deep.equal(  [{
       "id": 741603,
       "image": "https://spoonacular.com/recipeImages/741603-556x370.jpeg",
@@ -201,11 +207,11 @@ describe('findRecipeByName', () => {
 
 describe('findRecipeIngredients', () => {
   it('Should return an array of ingredient names for a specific recipe id passed as a number', () => {
-    let ingredientList = findRecipeIngredients(595736);
+    let ingredientList = findRecipeIngredients(recipeData, ingredientsData, 595736);
     expect(ingredientList).to.deep.equal([ 'wheat flour', 'bicarbonate of soda' ])
 });
   it('Should return an array of ingredient names for a specific recipe id passed as a string', () => {
-    let ingredientList = findRecipeIngredients("595736");
+    let ingredientList = findRecipeIngredients(recipeData, ingredientsData, "595736");
     expect(ingredientList).to.deep.equal([ 'wheat flour', 'bicarbonate of soda' ])
 });
 })
@@ -215,7 +221,7 @@ describe('calculateCost', () => {
       
       
     const clickedId = 595736
-    const recipeCost = calculateCost(clickedId)
+    const recipeCost = calculateCost(recipeData, ingredientsData, clickedId)
   
     expect(recipeCost).to.deep.equal('$5.04')
     })
@@ -226,7 +232,7 @@ describe('findDirections', () => {
         expect(findDirections).to.be.a('function');
    });
   it('should return recipe directions for a recipe', function() {
-    var cookieDirections = findDirections("Loaded Chocolate Chip Pudding Cookie Cups");
+    var cookieDirections = findDirections(recipeData, "Loaded Chocolate Chip Pudding Cookie Cups");
     var cookieInstructions = [
       {
         "instruction": "Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.",
@@ -248,7 +254,7 @@ describe('findDirections', () => {
     expect(cookieDirections).to.deep.equal(cookieInstructions);
   });
   it('should return recipe directions for another recipe', function() {
-    var porkDirections = findDirections("Maple Dijon Apple Cider Grilled Pork Chops");
+    var porkDirections = findDirections(recipeData, "Maple Dijon Apple Cider Grilled Pork Chops");
     var porkInstructions = [
       {
         "instruction": "Season the pork chops with salt and pepper and grill or pan fry over medium high heat until cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook until the sauce thickens, about 2-5 minutes.Grill or saute the apple slices until just tender but still crisp.Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!",
