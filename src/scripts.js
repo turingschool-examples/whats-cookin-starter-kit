@@ -9,10 +9,11 @@ import recipeData from './data/recipes.js'
 
 
 // Example of one way to import functions from the domUpdates file. You will delete these examples.
-import {renderRecipes} from './domUpdates.js';
+import {renderRecipes, displayRecipes} from './domUpdates.js';
 import {findRecipeByTag} from '../test/untestedFunctions.js'
 // query selectors
 
+const searchField = document.querySelector('.search-field')
 
 const filterByTag = (clickedId) => {
   let filteredRecipes = findRecipeByTag(recipeData, clickedId);
@@ -34,7 +35,11 @@ window.addEventListener('load', function() {
   renderRecipes(recipeData)
 });
 
+// searchField.addEventListener('keypress', function(event) {
+//   displayRecipes(event, searchField)
+// });
 
-
-//renderRecipes(recipeData)
-
+searchField.addEventListener('keypress', function(event) {
+  // Pass 'searchField' as an argument to 'displayRecipes'
+  displayRecipes(event, recipeData, searchField);
+});
