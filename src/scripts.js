@@ -11,27 +11,20 @@ import recipeData from './data/recipes.js'
 // Example of one way to import functions from the domUpdates file. You will delete these examples.
 import {renderRecipes, displayRecipes, displayPopUp} from './domUpdates.js';
 import {findRecipeByTag} from '../test/untestedFunctions.js'
+
 // query selectors
 
 const searchField = document.querySelector('.search-field')
 const allButton = document.querySelector('.all')
 const navLinks = document.querySelectorAll('.nav-link');
-// const recipeCards = document.querySelectorAll('.recipe-card')
 
-
-// const findRecipeById = (id) => {
-//   const matchingRecipe = recipeData.find(recipe => recipe.id == id);
-//   console.log('recipe', matchingRecipe);
-//   return matchingRecipe || 'fuck'
-
-// };
 const attachRecipeCardClickListener = event => {
   const recipeCard = event.target.closest('.recipe-card');
   if (recipeCard) {
     event.preventDefault();
     const recipeId = recipeCard.getAttribute('id');
     console.log(recipeId);
-    // let matchedRecipe = findRecipeById(recipeId);
+   
     displayPopUp(recipeData, ingredientsData, recipeId)
     
   }
@@ -60,8 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
-
 const filterByTag = (clickedId) => {
   let filteredRecipes = findRecipeByTag(recipeData, clickedId);
   console.log(clickedId, filteredRecipes);
@@ -80,27 +71,6 @@ navLinks.forEach(link => {
     filterByTag(linkId)
   });
 });
-
-// recipeCards.forEach(recipeCard => {
-//   recipeCard.addEventListener('click', function(event) {
-//     event.preventDefault();
-//     const recipeId = recipeCard.getAttribute('id');
-//     console.log(recipeId);
-//     console.log("howdy")
-//   })
-// })
-// document.addEventListener('DOMContentLoaded', function() {
-
-//   const recipeCards = document.querySelectorAll('.recipe-card');
-  
-//   recipeCards.forEach(recipeCard => {
-//     recipeCard.addEventListener('click', function(event) {
-//       event.preventDefault();
-//       const recipeId = recipeCard.getAttribute('id');
-//       console.log(recipeId);
-//     });
-//   });
-// // });
 
 
 searchField.addEventListener('keypress', function(event) {
