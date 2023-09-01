@@ -2,8 +2,9 @@
 
 //Here are 2 example functions just to demonstrate one way you can export/import between the two js files. You'll want to delete these once you get your own code going.
 
-const recipesContainer = document.querySelector('.recipe-container')
-const searchField = document.querySelector('.search-field')
+const recipesContainer = document.querySelector('.recipe-container');
+const searchField = document.querySelector('.search-field');
+const allButton = document.querySelector('.all')
 
 const renderRecipes = (recipeData) => {
 
