@@ -49,13 +49,12 @@ const specificRecipe = () => {
 }
 
 const calculateCost = (recipeData, ingredientsData, clickedId) => {
-  const clickedRecipe = recipeData.find(recipe => recipe.id === clickedId);
+  const clickedRecipe = recipeData.find(recipe => recipe.id == clickedId);
   let reducedIngredients = clickedRecipe.ingredients.reduce((accumulator, currentValue) => {
     let ingredientPrice = ingredientsData.find(ingredientDetail => ingredientDetail.id === currentValue.id);
     accumulator += ingredientPrice.estimatedCostInCents * currentValue.quantity.amount;
     return accumulator;
   }, 0);
-
   const costInDollars = (reducedIngredients / 100).toFixed(2); // Convert to dollars with 2 decimal places
   return `$${costInDollars}`;
 };

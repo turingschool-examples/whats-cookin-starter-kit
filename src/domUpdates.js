@@ -2,7 +2,7 @@
 
 //Here are 2 example functions just to demonstrate one way you can export/import between the two js files. You'll want to delete these once you get your own code going.
 
-import {findRecipeIngredients} from '../test/untestedFunctions.js'
+import {findRecipeIngredients, calculateCost} from '../test/untestedFunctions.js'
 
 const recipesContainer = document.querySelector('.recipe-container');
 
@@ -46,10 +46,11 @@ const findRecipeById = (recipeData, id) => {
 
 };
 
-const displayPopUp = (recipeData, ingredients, recipeId) => {
+const displayPopUp = (recipeData, ingredientInfo, recipeId) => {
 //  directions, ingredients needed, and total cost.
   let recipeMatch = findRecipeById(recipeData, recipeId)
-  let recipeIngredientNames = findRecipeIngredients(recipeData, ingredients, recipeId);
+  let recipeIngredientNames = findRecipeIngredients(recipeData, ingredientInfo, recipeId);
+  let recipeCost = calculateCost(recipeData, ingredientInfo, recipeId);
   let ingredientsDivs = recipeIngredientNames.map(ingredient => {
     return `<p>${ingredient}</p>`
   });
@@ -71,6 +72,8 @@ const displayPopUp = (recipeData, ingredients, recipeId) => {
         <div>${ingredientsString}</div>
         <h3>Instructions:</h3>
         <div>${instructionsList}</div>
+        <h3>Total Cost:</h3>
+        <p>${recipeCost}</p>
         <button class="close-popup">Close</button>
       </div>
     </div>
