@@ -9,12 +9,25 @@ import recipeData from './data/recipes.js'
 
 
 // Example of one way to import functions from the domUpdates file. You will delete these examples.
-import {renderRecipes} from './domUpdates.js'
-
+import {renderRecipes} from './domUpdates.js';
+import {findRecipeByTag} from '../test/untestedFunctions.js'
 // query selectors
 
 
+const filterByTag = (clickedId) => {
+  let filteredRecipes = findRecipeByTag(recipeData, clickedId);
+  console.log(clickedId, filteredRecipes);
+  renderRecipes(filteredRecipes)
+}
+        const navLinks = document.querySelectorAll('.nav-link');
 
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const linkId = link.getAttribute('id');
+                filterByTag(linkId)
+            });
+        });
 
 
 window.addEventListener('load', function() {
@@ -25,5 +38,3 @@ window.addEventListener('load', function() {
 
 //renderRecipes(recipeData)
 
-console.log(ingredientsData)
-console.log(recipeData)
