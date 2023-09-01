@@ -1,5 +1,6 @@
 * {
   background-color: #E7F1F1; 
+  margin: 10px
 }
 
 .container {
@@ -68,4 +69,12 @@ nav {
   width: 300px;
 }
 
+.recipe-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  text-align: center;
+  padding-top: 20px;
+}
 
