@@ -46,7 +46,7 @@ nav {
   margin-top: -20px;
 }
 
-.nav-link {
+.nav-link, .all {
   margin-right: 55px;
   font-size: 20px;
   color: black;
@@ -57,7 +57,7 @@ nav {
   font-family: 'Eczar', serif;
 }
 
-.nav-link:hover {
+.nav-link:hover, .all:hover {
   color: white;
   background-color: black;
 }

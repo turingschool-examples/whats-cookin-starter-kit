@@ -14,32 +14,34 @@ import {findRecipeByTag} from '../test/untestedFunctions.js'
 // query selectors
 
 const searchField = document.querySelector('.search-field')
+const allButton = document.querySelector('.all')
+const navLinks = document.querySelectorAll('.nav-link');
 
 const filterByTag = (clickedId) => {
   let filteredRecipes = findRecipeByTag(recipeData, clickedId);
   console.log(clickedId, filteredRecipes);
   renderRecipes(filteredRecipes)
 }
-        const navLinks = document.querySelectorAll('.nav-link');
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                const linkId = link.getAttribute('id');
-                filterByTag(linkId)
-            });
-        });
+
+navLinks.forEach(link => {
+  link.addEventListener('click', function(event) {
+    event.preventDefault();
+    const linkId = link.getAttribute('id');
+    filterByTag(linkId)
+  });
+});
 
 
 window.addEventListener('load', function() {
   renderRecipes(recipeData)
 });
 
-// searchField.addEventListener('keypress', function(event) {
-//   displayRecipes(event, searchField)
-// });
 
 searchField.addEventListener('keypress', function(event) {
-  // Pass 'searchField' as an argument to 'displayRecipes'
   displayRecipes(event, recipeData, searchField);
+});
+
+allButton.addEventListener('click', function() {
+  renderRecipes(recipeData)
 });
