@@ -1,7 +1,5 @@
 //NOTE: Your DOM manipulation will occur in this file
 
-//Here are 2 example functions just to demonstrate one way you can export/import between the two js files. You'll want to delete these once you get your own code going.
-
 import {findRecipeIngredients, calculateCost} from '../test/untestedFunctions.js'
 
 const recipesContainer = document.querySelector('.recipe-container');
@@ -47,7 +45,6 @@ const findRecipeById = (recipeData, id) => {
 };
 
 const displayPopUp = (recipeData, ingredientInfo, recipeId) => {
-//  directions, ingredients needed, and total cost.
   let recipeMatch = findRecipeById(recipeData, recipeId)
   let recipeIngredientNames = findRecipeIngredients(recipeData, ingredientInfo, recipeId);
   let recipeCost = calculateCost(recipeData, ingredientInfo, recipeId);
