@@ -1,6 +1,3 @@
-import recipeData from "./data/recipes.js";
-import ingredientsData from "./data/ingredients.js";
-
 const recipeArea = document.querySelector(".recipe-area");
 const recipeTitle = document.querySelector("#recipeCardTitle");
 const recipeTagArea = document.querySelector("#recipeCardTags");
@@ -67,14 +64,14 @@ const buildRecipeTags = (foundRecipe) => {
   });
 };
 
-const buildRecipeCost = (foundRecipe) => {
-  let cost = calculateCost(foundRecipe, ingredientsData);
+const buildRecipeCost = (foundRecipe, ingredients) => {
+  let cost = calculateCost(foundRecipe, ingredients);
   recipeCost.innerText = `The total cost is $${cost}`;
 };
 
-const buildIngredients = (foundRecipe) => {
+const buildIngredients = (foundRecipe, ingredients) => {
   recipeIngredientsArea.innerHTML = "";
-  let recipeIngredients = getIngredientNames(foundRecipe, ingredientsData);
+  let recipeIngredients = getIngredientNames(foundRecipe, ingredients);
   recipeIngredients.forEach((ingredient) => {
     let recipeIngredient = document.createElement("p");
     recipeIngredient.innerText = ingredient;
@@ -91,13 +88,13 @@ const buildInstructions = (foundRecipe) => {
   });
 };
 
-const buildRecipeCard = (recipe) => {
+const buildRecipeCard = (recipe, ingredients) => {
   recipeCardBookmark.setAttribute("id", recipe.id);
   buildRecipeTitle(recipe);
   buildRecipeImage(recipe);
   buildRecipeTags(recipe);
-  buildRecipeCost(recipe);
-  buildIngredients(recipe);
+  buildRecipeCost(recipe, ingredients);
+  buildIngredients(recipe, ingredients);
   buildInstructions(recipe);
 };
 

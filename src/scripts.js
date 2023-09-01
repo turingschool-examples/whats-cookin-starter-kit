@@ -1,20 +1,13 @@
 //NOTE: Data model and non-dom manipulating logic will live in this file.
 import "./styles.css";
 import "./images/bookmark-regular.svg";
+import "./images/bookmark-solid.svg";
 import "./images/x-solid.svg";
 // import { users, ingredients, recipes } from "./apiCalls";
 import promises from "./apiCalls";
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import "./images/turing-logo.png";
 // import { recipeTestData } from "./data/testData";
-
-// ===== OLD ABOVE =====
-// import ingredientsData from "./data/ingredients.js";
-// import data.recipes from "./data/recipes.js";
-// import usersData from "./data/users.js";
-
-
-  
 
 //Example of one way to import functions from the domUpdates file. You will delete these examples.
 import {
@@ -86,8 +79,7 @@ searchButton.addEventListener("click", function (event) {
 recipeArea.addEventListener("click", function (event) {
   let recipeClicked = event.target.parentElement.id;
   let foundRecipe = locateRecipe(recipeClicked, data.recipes);
-  console.log(currentUser)
-  buildRecipeCard(foundRecipe);
+  buildRecipeCard(foundRecipe, data.ingredients);
   displayRecipeCard();
 });
 
