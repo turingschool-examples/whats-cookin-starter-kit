@@ -2,15 +2,19 @@
 import "./styles.css";
 import "./images/bookmark-regular.svg";
 import "./images/x-solid.svg";
-import apiCalls from "./apiCalls";
+// import { users, ingredients, recipes } from "./apiCalls";
+import promises from "./apiCalls";
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import "./images/turing-logo.png";
+// import "./images/turing-logo.png";
 // import { recipeTestData } from "./data/testData";
 
 // ===== OLD ABOVE =====
-import ingredientsData from "./data/ingredients.js";
-import recipeData from "./data/recipes.js";
-import usersData from "./data/users.js";
+// import ingredientsData from "./data/ingredients.js";
+// import data.recipes from "./data/recipes.js";
+// import usersData from "./data/users.js";
+
+
+  
 
 //Example of one way to import functions from the domUpdates file. You will delete these examples.
 import {
@@ -26,6 +30,7 @@ import { filterByTag, searchRecipes } from "../src/recipes.js";
 const activeTags = [];
 let currentUser;
 let activeRecipes;
+let data;
 // ^ This will be used to help double check and see if a recipe has already been made or not
 
 // ===== QUERY SELECTORS =====
@@ -33,17 +38,28 @@ const tagSection = document.querySelector(".tag-area");
 const searchInput = document.querySelector("#searchInput");
 const searchButton = document.querySelector("#searchButton");
 const recipeArea = document.querySelector(".recipe-area");
-const recipeCard = document.querySelector(".recipe-card");
+// const recipeCard = document.querySelector(".recipe-card");
 const recipeCardClose = document.querySelector(".close");
 const recipeCardBookmark = document.querySelector(".bookmark");
 const userSavedRecipes = document.querySelector("#myRecipes");
 const discoverRecipes = document.querySelector("#discoverRecipes");
 
 // ===== EVENT LISTENERS =====
+
 window.addEventListener("load", function () {
-  loadUser(usersData);
-  createRecipeCards(recipeData);
-  activeRecipes = [...recipeData];
+
+  Promise.all(promises)
+    .then(res => {
+     data = {
+      users: res['0'].users,
+      ingredients: res['1'].ingredients,
+      recipes: res['2'].recipes
+     }
+
+     loadUser(res['0'].users)
+     createRecipeCards(res['2'].recipes);
+     activeRecipes = [...res['2'].recipes]; 
+  })
 });
 
 tagSection.addEventListener("click", function (event) {
@@ -58,7 +74,6 @@ tagSection.addEventListener("click", function (event) {
     activeTags.splice(index, 1);
   }
   let filteredArray = filterByTag(activeTags, activeRecipes);
-  console.log(filteredArray);
   createRecipeCards(filteredArray);
 });
 
@@ -70,7 +85,8 @@ searchButton.addEventListener("click", function (event) {
 
 recipeArea.addEventListener("click", function (event) {
   let recipeClicked = event.target.parentElement.id;
-  let foundRecipe = locateRecipe(recipeClicked, recipeData);
+  let foundRecipe = locateRecipe(recipeClicked, data.recipes);
+  console.log(currentUser)
   buildRecipeCard(foundRecipe);
   displayRecipeCard();
 });
@@ -82,8 +98,7 @@ recipeCardClose.addEventListener("click", function (event) {
 
 recipeCardBookmark.addEventListener("click", function (event) {
   let bookmarkClicked = event.target.id;
-  console.log(currentUser);
-  saveRecipe(bookmarkClicked, currentUser, recipeData);
+  saveRecipe(bookmarkClicked, currentUser, data.recipes);
 });
 
 userSavedRecipes.addEventListener("click", function (event) {
@@ -92,13 +107,13 @@ userSavedRecipes.addEventListener("click", function (event) {
 });
 
 discoverRecipes.addEventListener("click", function (event) {
-  activeRecipes = [...recipeData];
+  activeRecipes = [...data.recipes];
   createRecipeCards(activeRecipes);
 });
 
-function loadUser(users) {
+const loadUser = (users) => {
   let randomUserIndex = Math.floor(Math.random() * users.length);
   currentUser = users[randomUserIndex];
   currentUser.savedRecipes = [];
-  console.log(currentUser);
 }
+
