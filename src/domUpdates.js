@@ -13,7 +13,7 @@ const renderRecipes = (recipeData) => {
 
   for (let i = 0; i < recipeData.length; i++) {
     recipesContainer.innerHTML += `
-    <div class="${recipeData[i].id}">
+    <div class="recipe-card"id="${recipeData[i].id}">
       <p class ="recipe-name">${recipeData[i].name}</p>
       <img class="image-styling" src="${recipeData[i].image}">
       </div>
@@ -29,7 +29,7 @@ const displayRecipes = (event, recipeData, searchField) => {
   if (event.key === 'Enter') {
     filteredRecipes.map(recipe => {
       recipesContainer.innerHTML += `
-        <div class="${recipe.id}">
+        <div class="recipe-card"id="${recipe.id}">
           <p class="recipe-name">${recipe.name}</p>
           <img class="image-styling" src="${recipe.image}">
         </div>
@@ -38,6 +38,22 @@ const displayRecipes = (event, recipeData, searchField) => {
     return filteredRecipes;
   }
 };
+
+
+
+// `
+//     <div class="popup-overlay">
+//       <div class="popup-content">
+//         <h2>${recipe.name}</h2>
+//         <img src="${recipe.image}" alt="${recipe.name}">
+//         <h3>Ingredients:</h3>
+//         <p>${ingredientsList}</p>
+//         <h3>Instructions:</h3>
+//         <p>${instructionsList}</p>
+//         <button class="close-popup">Close</button>
+//       </div>
+//     </div>
+//   `
 
 
 
