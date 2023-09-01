@@ -22,3 +22,6 @@ const renderRecipes = (recipeData) => {
 
  
 
+export  {
+  renderRecipes
+}

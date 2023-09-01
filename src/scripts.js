@@ -13,7 +13,7 @@ import {renderRecipes} from './domUpdates.js'
 
 // query selectors
 
-const recipesContainer = document.querySelector('.recipe-container')
+
 
 
 
