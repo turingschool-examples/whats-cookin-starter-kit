@@ -22,7 +22,7 @@ const filterByTag = (clickedId) => {
   console.log(clickedId, filteredRecipes);
   renderRecipes(filteredRecipes)
 }
-        // const navLinks = document.querySelectorAll('.nav-link');
+
 
 navLinks.forEach(link => {
   link.addEventListener('click', function(event) {
@@ -37,12 +37,8 @@ window.addEventListener('load', function() {
   renderRecipes(recipeData)
 });
 
-// searchField.addEventListener('keypress', function(event) {
-//   displayRecipes(event, searchField)
-// });
 
 searchField.addEventListener('keypress', function(event) {
-  // Pass 'searchField' as an argument to 'displayRecipes'
   displayRecipes(event, recipeData, searchField);
 });
 
