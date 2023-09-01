@@ -9,7 +9,7 @@ import recipeData from './data/recipes.js'
 
 
 // Example of one way to import functions from the domUpdates file. You will delete these examples.
-import {renderRecipes, displayRecipes} from './domUpdates.js';
+import {renderRecipes, displayRecipes, displayPopUp} from './domUpdates.js';
 import {findRecipeByTag} from '../test/untestedFunctions.js'
 // query selectors
 
@@ -19,19 +19,21 @@ const navLinks = document.querySelectorAll('.nav-link');
 // const recipeCards = document.querySelectorAll('.recipe-card')
 
 
-const findRecipeById = (id) => {
-  const matchingRecipe = recipeData.find(recipe => recipe.id == id);
-  console.log('recipe', matchingRecipe);
-  return matchingRecipe || 'fuck'
+// const findRecipeById = (id) => {
+//   const matchingRecipe = recipeData.find(recipe => recipe.id == id);
+//   console.log('recipe', matchingRecipe);
+//   return matchingRecipe || 'fuck'
 
-};
+// };
 const attachRecipeCardClickListener = event => {
   const recipeCard = event.target.closest('.recipe-card');
   if (recipeCard) {
     event.preventDefault();
     const recipeId = recipeCard.getAttribute('id');
     console.log(recipeId);
-    findRecipeById(recipeId);
+    // let matchedRecipe = findRecipeById(recipeId);
+    displayPopUp(recipeData, ingredientsData, recipeId)
+    
   }
 };
 
