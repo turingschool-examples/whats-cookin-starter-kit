@@ -47,7 +47,7 @@ nav {
   margin-top: -20px;
 }
 
-.nav-link, .all, .saved-recipes {
+.nav-link, .all, .filter-save {
   margin-right: 55px;
   font-size: 20px;
   color: black;
@@ -58,7 +58,7 @@ nav {
   font-family: 'Eczar', serif;
 }
 
-.nav-link:hover, .all:hover, .saved-recipes:hover {
+.nav-link:hover, .all:hover, .filter-save:hover {
   color: white;
   background-color: black;
 }
@@ -95,4 +95,8 @@ button {
 
 .instList {
   justify-content: flex-start;
+}
+
+#savedRecipes {
+  border-bottom: 4px solid navy;
 }

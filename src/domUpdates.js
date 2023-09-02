@@ -21,12 +21,23 @@ const renderRecipes = (recipeData) => {
   }
 }
 
+
 const addRecipesToCook = (usersData) => { //REFACTOR: Move to untestedFunc or scripts
   usersData.forEach(user => {
   if (!user.hasOwnProperty("recipesToCook")) {
     user.recipesToCook = [];
   } 
 });
+}
+
+const saveRecipe = (recipe, user) => {
+  console.log(user.recipesToCook)
+  user.recipesToCook.push(recipe);
+  console.log(user.recipesToCook)
+}
+
+const createRandomIndex = (array) => { //REFACTOR: Move to untestedFunc or scripts
+  return Math.floor(Math.random() * array.length);
 }
 
 const displayRecipes = (event, recipeData, searchField) => {
@@ -54,7 +65,9 @@ const findRecipeById = (recipeData, id) => {
 
 };
 
-const displayPopUp = (recipeData, ingredientInfo, recipeId) => {
+
+
+const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
   let recipeMatch = findRecipeById(recipeData, recipeId)
   let recipeIngredientNames = findRecipeIngredients(recipeData, ingredientInfo, recipeId);
   let recipeCost = calculateCost(recipeData, ingredientInfo, recipeId);
@@ -81,8 +94,8 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId) => {
         <div class="instList">${instructionsList}</div>
         <h3>Total Cost:</h3>
         <p>${recipeCost}</p>
-        <button class="recipe-card" id="close-popup">Close</button>
-        <button class="recipe-card" id="save-recipe">Save</button>
+        <button class="card" id="close-popup">Close</button>
+        <button class="card" id="save-recipe">Save</button>
       </div>
     </div>
   `
@@ -90,15 +103,19 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId) => {
   closeButton.addEventListener('click', () => {
     renderRecipes(recipeData); //REFACTOR; CHECK: SCRIPTS (82.1)
   });
-//   const saveButton = document.querySelector('#save-recipe');
-//   saveButton.addEventListener('click', () => {
-//     saveRecipe(recipeMatch);
-// })
+  const saveButton = document.querySelector('#save-recipe');
+  saveButton.addEventListener('click', () => {
+    saveRecipe(recipeMatch, user);
+})
+console.log("peepo", user)
 }
+
+
 
 export  {
   renderRecipes,
   displayRecipes,
   displayPopUp, 
-  addRecipesToCook
+  addRecipesToCook,
+  createRandomIndex,
 }
