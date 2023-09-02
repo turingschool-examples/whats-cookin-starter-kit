@@ -40,7 +40,7 @@ const displayRecipes = (event, recipeData, searchField) => {
 const findRecipeById = (recipeData, id) => {
   const matchingRecipe = recipeData.find(recipe => recipe.id == id);
   console.log('recipe', matchingRecipe);
-  return matchingRecipe || 'fuck'
+  return matchingRecipe || 'oops'
 
 };
 
