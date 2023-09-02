@@ -11,10 +11,10 @@ const renderRecipes = (recipeData) => {
 
   for (let i = 0; i < recipeData.length; i++) {
     recipesContainer.innerHTML += `
-    <div class="recipe-card"id="${recipeData[i].id}">
+    <button class="recipe-card"id="${recipeData[i].id}">
       <p class ="recipe-name">${recipeData[i].name}</p>
       <img class="image-styling" src="${recipeData[i].image}">
-      </div>
+      </button>
     `
   }
 }
@@ -66,16 +66,16 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId) => {
         <h2>${recipeMatch.name}</h2>
         <img src="${recipeMatch.image}" alt="${recipeMatch.name}">
         <h3>Ingredients:</h3>
-        <div>${ingredientsString}</div>
+        <div class="ingList">${ingredientsString}</div>
         <h3>Instructions:</h3>
-        <div>${instructionsList}</div>
+        <div class="instList">${instructionsList}</div>
         <h3>Total Cost:</h3>
         <p>${recipeCost}</p>
-        <button class="close-popup">Close</button>
+        <button class="recipe-card" id="close-popup">Close</button>
       </div>
     </div>
   `
-  const closeButton = document.querySelector('.close-popup');
+  const closeButton = document.querySelector('#close-popup');
   closeButton.addEventListener('click', () => {
     window.location.reload();
   });
