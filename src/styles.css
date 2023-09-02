@@ -42,6 +42,7 @@ h1 {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin-bottom: 3%;
 }
 
 .upper-nav-button {
@@ -74,7 +75,8 @@ h1 {
   width: 300px;
   margin: 20px;
   cursor: pointer;
-  border: solid green 1px;
+  border: solid green 2px;
+  box-shadow: 10px 10px 5px 3px rgb(8, 50, 8);
 }
 
 .recipe-title {
@@ -95,7 +97,7 @@ h1 {
   flex-wrap: wrap;
   margin-left: 30%;
   align-content: space-between;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: stretch;
   text-align: center;
 }
@@ -104,16 +106,16 @@ h1 {
   cursor: pointer;
   border: solid green 1px;
   border-radius: 25%;
-  box-shadow: 1px 1px 1px green;
+  box-shadow: 1px 1px 1px rgb(1, 63, 1);
   cursor: hover;
 }
 
 .tag-card:hover {
-  background-color: #d8fcd1;
+  background-color: #56934a;
 }
 
 .tag-active {
-  background-color: #d8fcd1;
+  background-color: #d8fcd1
 }
 
 .tag {
