@@ -1,7 +1,8 @@
 * {
   margin: 0;
   padding: 0;
-  border: solid green 1px;
+  font-family: 'Nunito', sans-serif;
+  color: #21683d
 }
 
 body {
@@ -24,19 +25,14 @@ body {
   align-items: center;
 }
 
-.upper-nav {
-  display: flex;
-  justify-content: row;
-  align-items: center;
-}
-
 .search {
   display: flex;
   justify-content: row;
   align-items: center;
-  background-color: #fffdfd;
-  width: 222px;
+  background-color: #a5db9c;
+  width: 182px;
   height: 28px;
+  margin-left: 5%;
 }
 
 h1 {
@@ -46,16 +42,21 @@ h1 {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin-bottom: 3%;
 }
 
 .upper-nav-button {
-  width: 222px;
-  height: 28px;
-  font-family: Inter;
-  font-size: 24px;
+  width: 191px;
+  height: 30px;
+  font-size: 19px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  background-color: #e9f0e7;
+  border: 2px solid #3eb23e;
+  border-radius: 25%;
+  font-family: 'Kanit', sans-serif;
+  cursor: pointer;
 }
 
 .recipe-area {
@@ -74,6 +75,8 @@ h1 {
   width: 300px;
   margin: 20px;
   cursor: pointer;
+  border: solid green 2px;
+  box-shadow: 10px 10px 5px 3px rgb(8, 50, 8);
 }
 
 .recipe-title {
@@ -88,33 +91,60 @@ h1 {
 
 .tag-area {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
   width: 40%;
   height: 75px;
   flex-wrap: wrap;
-  margin-left: 40px;
+  margin-left: 30%;
+  align-content: space-between;
+  justify-content: space-between;
+  align-items: stretch;
+  text-align: center;
 }
 
 .tag-card {
   cursor: pointer;
+  border: solid green 1px;
+  border-radius: 25%;
+  box-shadow: 1px 1px 1px rgb(1, 63, 1);
+  cursor: hover;
+}
+
+.tag-card:hover {
+  background-color: #56934a;
 }
 
 .tag-active {
-  background-color: #a5db9c;
+  background-color: #d8fcd1
 }
 
 .tag {
-/* this should be the design of our tags on the main and saved screen */
+  border: solid green 1px;
 }
 
-.recipe-tag {
-/* this should be the design of tags when a recipe is clicked*/
-}
-
+/* Recipe cards when clicked */
 .recipe-image-blowup {
-  height: 100px;
-  width: 100px;
+  height: 200px;
+  width: 200px;
+}
+.recipe-image-section {
+  display: flex;
+  justify-content: center;
+}
+
+.recipe-card-blowup {
+  margin-left: 15%;
+  margin-top: 5%;
+  width: 80%;
+  border: solid green 2px;
+  box-shadow: 10px 10px 5px 3px rgb(8, 50, 8);
+}
+
+#recipeCardTags,
+#recipeCardIngredients,
+#recipeCardTotalCost,
+#recipeCardTitle {
+  text-align: center;
 }
 
 .icon {
@@ -122,13 +152,11 @@ h1 {
   width: 30px;
 }
 
+.close {
+  margin-left: 91%;
+}
 
-
+/* Hidden Property */
 .hidden {
-  display: none
-}
-
-.icon {
-  height: 30px;
-  width: 30px;
+  display: none;
 }
