@@ -65,6 +65,8 @@ tagSection.addEventListener("click", function (event) {
   } else {
     let index = activeTags.indexOf(tagId);
     activeTags.splice(index, 1);
+    let newTag = event.target.closest(".tag-card")
+    newTag.Classname.toggle("tag-active")
   }
   let filteredArray = filterByTag(activeTags, activeRecipes);
   createRecipeCards(filteredArray);
@@ -101,6 +103,7 @@ userSavedRecipes.addEventListener("click", function (event) {
 discoverRecipes.addEventListener("click", function (event) {
   activeRecipes = [...data.recipes];
   createRecipeCards(activeRecipes);
+  recipeArea.classList.toggle("hidden", false)
 });
 
 const loadUser = (users) => {
