@@ -107,6 +107,7 @@ const displayRecipeCard = () => {
   solidBookmarkIcon.classList.toggle("hidden", true);
   tagSection.classList.toggle("hidden", true);
   bookmarkIcon.classList.toggle("hidden", false);
+
 };
 
 const displayRecipeArea = () => {
@@ -119,6 +120,7 @@ const saveRecipeCard = () => {
   bookmarkIcon.classList.toggle("hidden", true);
   solidBookmarkIcon.classList.toggle("hidden", false);
 };
+
 
 // const deleteRecipeCard = () => {
 //   solidBookmarkIcon.classList.toggle("hidden", true);
@@ -140,6 +142,25 @@ const saveRecipe = (id, user, recipes) => {
   solidBookmarkIcon.classList.toggle("hidden", false);
 };
 
+const saveRecipe2 = (id, user) => {
+  // locate recipe 
+  // push recipe into
+}
+
+const deleteRecipe = (id, user) => {
+  // locate recipe 
+  // find the index of the recipe 
+  // splice it out 
+}
+
+
+const displayRecipeTag = (id, currentUser) => {
+  // locate the id that is currently on dislay
+  // if that recipe id is in saved recipes display filled in tag 
+  // if recipe not there show the empty one 
+
+}
+
 export {
   createRecipeCards,
   locateRecipe,
@@ -150,4 +171,5 @@ export {
   displayRecipeCard,
   displayRecipeArea,
   saveRecipe,
+  displayRecipeTag
 };
