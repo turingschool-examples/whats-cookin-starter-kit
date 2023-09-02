@@ -133,6 +133,7 @@ h1 {
 
 .recipe-card-blowup {
   margin-left: 25%;
+  margin-top: 5%;
   width: 50%;
   /* border: solid green 1px; */
   /* border-radius: 25%; */
@@ -144,7 +145,8 @@ h1 {
 
 #recipeCardTags,
 #recipeCardIngredients,
-#recipeCardTotalCost {
+#recipeCardTotalCost,
+#recipeCardTitle {
   text-align: center;
 }
 
