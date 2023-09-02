@@ -3,13 +3,8 @@ import "./styles.css";
 import "./images/bookmark-regular.svg";
 import "./images/bookmark-solid.svg";
 import "./images/x-solid.svg";
-// import { users, ingredients, recipes } from "./apiCalls";
 import promises from "./apiCalls";
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import "./images/turing-logo.png";
-// import { recipeTestData } from "./data/testData";
 
-//Example of one way to import functions from the domUpdates file. You will delete these examples.
 import {
   createRecipeCards,
   locateRecipe,
@@ -83,6 +78,7 @@ recipeArea.addEventListener("click", function (event) {
   let foundRecipe = locateRecipe(recipeClicked, data.recipes);
   buildRecipeCard(foundRecipe, data.ingredients);
   displayRecipeCard();
+  
 });
 
 recipeCardClose.addEventListener("click", function (event) {
