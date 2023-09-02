@@ -14,6 +14,7 @@ const tagSection = document.querySelector('.tag-area');
 const bookmarkIcon = document.querySelector('.icon-bookmark');
 const solidBookmarkIcon = document.querySelector('.solid-bookmark');
 
+
 import { getIngredientNames, calculateCost } from '../src/recipes.js';
 
 const createRecipeCards = recipes => {
@@ -104,15 +105,15 @@ const buildRecipeCard = (recipe, ingredients) => {
 const displayRecipeCard = () => {
   recipeArea.classList.toggle('hidden', true);
   recipeCard.classList.toggle('hidden', false);
-  tagSection.classList.toggle('hidden', true);
   solidBookmarkIcon.classList.toggle('hidden', true);
+  tagSection.classList.toggle('hidden', true);
   bookmarkIcon.classList.toggle('hidden', false);
 };
 
 const displayRecipeArea = () => {
   recipeArea.classList.toggle('hidden', false);
   recipeCard.classList.toggle('hidden', true);
-  tagSection.classList.toggle('hidden', false);
+  // tagsSection.classList.toggle('hidden', true);
 };
 
 const saveRecipeCard = () => {
