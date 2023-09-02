@@ -6,10 +6,11 @@ import apiCalls from './apiCalls'
 import './images/turing-logo.png'
 import ingredientsData from './data/ingredients.js'
 import recipeData from './data/recipes.js'
+import usersData from './data/users.js'
 
 
 // Example of one way to import functions from the domUpdates file. You will delete these examples.
-import {renderRecipes, displayRecipes, displayPopUp} from './domUpdates.js';
+import {renderRecipes, displayRecipes, displayPopUp, addRecipesToCook} from './domUpdates.js';
 import {findRecipeByTag} from '../test/untestedFunctions.js'
 
 // query selectors
@@ -61,6 +62,7 @@ const filterByTag = (clickedId) => {
 
 window.addEventListener('load', function() {
   renderRecipes(recipeData);
+  addRecipesToCook(usersData);
 });
 
 

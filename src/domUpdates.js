@@ -1,6 +1,8 @@
 //NOTE: Your DOM manipulation will occur in this file
 
 import {findRecipeIngredients, calculateCost} from '../test/untestedFunctions.js'
+import ingredientsData from './data/ingredients.js'
+import recipeData from './data/recipes.js'
 
 const recipesContainer = document.querySelector('.recipe-container');
 
@@ -17,6 +19,14 @@ const renderRecipes = (recipeData) => {
       </button>
     `
   }
+}
+
+const addRecipesToCook = (usersData) => { //REFACTOR: Move to untestedFunc or scripts
+  usersData.forEach(user => {
+  if (!user.hasOwnProperty("recipesToCook")) {
+    user.recipesToCook = [];
+  } 
+});
 }
 
 const displayRecipes = (event, recipeData, searchField) => {
@@ -72,18 +82,23 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId) => {
         <h3>Total Cost:</h3>
         <p>${recipeCost}</p>
         <button class="recipe-card" id="close-popup">Close</button>
+        <button class="recipe-card" id="save-recipe">Save</button>
       </div>
     </div>
   `
   const closeButton = document.querySelector('#close-popup');
   closeButton.addEventListener('click', () => {
-    window.location.reload();
+    renderRecipes(recipeData); //REFACTOR; CHECK: SCRIPTS (82.1)
   });
+//   const saveButton = document.querySelector('#save-recipe');
+//   saveButton.addEventListener('click', () => {
+//     saveRecipe(recipeMatch);
+// })
 }
-
 
 export  {
   renderRecipes,
   displayRecipes,
-  displayPopUp
+  displayPopUp, 
+  addRecipesToCook
 }
