@@ -1,7 +1,8 @@
 //NOTE: Data model and non-dom manipulating logic will live in this file.
 
 import './styles.css'
-import apiCalls from './apiCalls'
+import  './apiCalls'
+import {fetchUsers, usersFetch} from './apiCalls'
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import ingredientsData from './data/ingredients.js'
@@ -24,11 +25,13 @@ const allRecipes = document.querySelector('#allRecipes')
 
   // user variable
   let randomUser;
-
+  //let usersFetch;
+  
   const getRandomUser = (array) => {
     console.log('first', randomUser);
       let randomIndex = createRandomIndex(array);
       randomUser = array[randomIndex]
+      console.log("random user", randomUser)
     return randomUser;
   };
 
@@ -79,10 +82,12 @@ const filterByTag = (recipeData, clickedId) => {
 }
 
 window.addEventListener('load', function() {
+  fetchUsers();
   renderRecipes(recipeData);
-  addRecipesToCook(usersData);
-  getRandomUser(usersData);
-  console.log('update', randomUser);
+  //addRecipesToCook(usersFetch);
+  getRandomUser(usersFetch);
+  console.log('update', randomUser)
+  console.log("users Fetch", usersFetch[5])
 });
 
 
