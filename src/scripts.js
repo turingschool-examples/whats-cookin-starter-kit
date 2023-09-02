@@ -6,10 +6,11 @@ import apiCalls from './apiCalls'
 import './images/turing-logo.png'
 import ingredientsData from './data/ingredients.js'
 import recipeData from './data/recipes.js'
+import usersData from './data/users.js'
 
 
 // Example of one way to import functions from the domUpdates file. You will delete these examples.
-import {renderRecipes, displayRecipes, displayPopUp} from './domUpdates.js';
+import {renderRecipes, displayRecipes, displayPopUp, addRecipesToCook, createRandomIndex} from './domUpdates.js';
 import {findRecipeByTag} from '../test/untestedFunctions.js'
 
 // query selectors
@@ -17,6 +18,20 @@ import {findRecipeByTag} from '../test/untestedFunctions.js'
 const searchField = document.querySelector('.search-field')
 const allButton = document.querySelector('.all')
 const navLinks = document.querySelectorAll('.nav-link');
+const savedRecipes = document.querySelector('#savedRecipes');
+const allRecipes = document.querySelector('#allRecipes')
+// closure for user state and updates
+
+  // user variable
+  let randomUser;
+
+  const getRandomUser = (array) => {
+    console.log('first', randomUser);
+      let randomIndex = createRandomIndex(array);
+      randomUser = array[randomIndex]
+    return randomUser;
+  };
+
 
 const attachRecipeCardClickListener = event => {
   const recipeCard = event.target.closest('.recipe-card');
@@ -24,11 +39,15 @@ const attachRecipeCardClickListener = event => {
     event.preventDefault();
     const recipeId = recipeCard.getAttribute('id');
     console.log(recipeId);
-   
-    displayPopUp(recipeData, ingredientsData, recipeId)
+  
+    displayPopUp(recipeData, ingredientsData, recipeId, randomUser);
+    console.log(randomUser)
     
   }
-};
+}
+
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const recipesContainer = document.querySelector('.recipe-container');
@@ -53,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-const filterByTag = (clickedId) => {
+const filterByTag = (recipeData, clickedId) => {
   let filteredRecipes = findRecipeByTag(recipeData, clickedId);
   console.log(clickedId, filteredRecipes);
   renderRecipes(filteredRecipes)
@@ -61,6 +80,9 @@ const filterByTag = (clickedId) => {
 
 window.addEventListener('load', function() {
   renderRecipes(recipeData);
+  addRecipesToCook(usersData);
+  getRandomUser(usersData);
+  console.log('update', randomUser);
 });
 
 
@@ -68,7 +90,7 @@ navLinks.forEach(link => {
   link.addEventListener('click', function(event) {
     event.preventDefault();
     const linkId = link.getAttribute('id');
-    filterByTag(linkId)
+    filterByTag(recipeData, linkId)
   });
 });
 
@@ -81,3 +103,42 @@ searchField.addEventListener('keypress', function(event) {
 allButton.addEventListener('click', function() {
   renderRecipes(recipeData);
 });
+
+allRecipes.addEventListener('click', function() {
+  allButton.style.borderBottom = '4px solid orange';
+  allButton.addEventListener('click', function() {
+    renderRecipes(recipeData);
+  });
+  navLinks.forEach(link => {
+    link.style.borderBottom = '4px solid orange';
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      const linkId = link.getAttribute('id');
+      filterByTag(recipeData, linkId);
+    });
+  });
+  searchField.addEventListener('keypress', function(event) {
+    displayRecipes(event, recipeData, searchField);
+    
+  });
+})
+
+
+savedRecipes.addEventListener('click', function() {
+  let userRecipesToCook = randomUser.recipesToCook;
+  renderRecipes(userRecipesToCook);
+  allButton.style.borderBottom = '4px solid navy';
+
+  navLinks.forEach(link => {
+    link.style.borderBottom = '4px solid navy';
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      const linkId = link.getAttribute('id');
+      filterByTag(userRecipesToCook, linkId);
+    });
+  });
+  searchField.addEventListener('keypress', function(event) {
+    displayRecipes(event, userRecipesToCook, searchField);
+    
+  });
+})
