@@ -12,6 +12,7 @@ import {
   displayRecipeCard,
   displayRecipeArea,
   saveRecipe,
+  displaySavedRecipeCards
 } from "./domUpdates.js";
 
 import { filterByTag, searchRecipes } from "../src/recipes.js";
@@ -88,13 +89,13 @@ recipeCardBookmark.addEventListener("click", function (event) {
 
 userSavedRecipes.addEventListener("click", function (event) {
   activeRecipes = currentUser.savedRecipes;
+  displaySavedRecipeCards()
   createRecipeCards(activeRecipes);
 });
 
 discoverRecipes.addEventListener("click", function (event) {
   activeRecipes = [...data.recipes];
   createRecipeCards(activeRecipes);
-  recipeArea.classList.toggle("hidden", false);
 });
 
 const loadUser = (users) => {
