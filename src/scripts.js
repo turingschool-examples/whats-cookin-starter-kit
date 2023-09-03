@@ -2,7 +2,7 @@
 
 import './styles.css'
 import  './apiCalls'
-import {fetchUsers, usersFetch} from './apiCalls'
+import {fetchUsers} from './apiCalls'
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import ingredientsData from './data/ingredients.js'
@@ -82,12 +82,11 @@ const filterByTag = (recipeData, clickedId) => {
 }
 
 window.addEventListener('load', function() {
-  fetchUsers();
+  fetchUsers(getRandomUser);
   renderRecipes(recipeData);
   //addRecipesToCook(usersFetch);
-  getRandomUser(usersFetch);
+  // getRandomUser(usersFetch);
   console.log('update', randomUser)
-  console.log("users Fetch", usersFetch[5])
 });
 
 
