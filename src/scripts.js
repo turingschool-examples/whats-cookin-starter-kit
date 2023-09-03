@@ -35,19 +35,17 @@ const discoverRecipes = document.querySelector("#discoverRecipes");
 // ===== EVENT LISTENERS =====
 
 window.addEventListener("load", function () {
+  Promise.all(promises).then((res) => {
+    data = {
+      users: res["0"].users,
+      ingredients: res["1"].ingredients,
+      recipes: res["2"].recipes,
+    };
 
-  Promise.all(promises)
-    .then(res => {
-     data = {
-      users: res['0'].users,
-      ingredients: res['1'].ingredients,
-      recipes: res['2'].recipes
-     }
-
-     loadUser(res['0'].users)
-     createRecipeCards(res['2'].recipes);
-     activeRecipes = [...res['2'].recipes]; 
-  })
+    loadUser(res["0"].users);
+    createRecipeCards(res["2"].recipes);
+    activeRecipes = [...res["2"].recipes];
+  });
 });
 
 tagSection.addEventListener("click", function (event) {
@@ -60,8 +58,6 @@ tagSection.addEventListener("click", function (event) {
   } else {
     let index = activeTags.indexOf(tagId);
     activeTags.splice(index, 1);
-    let newTag = event.target.closest(".tag-card")
-    newTag.Classname.toggle("tag-active")
   }
   let filteredArray = filterByTag(activeTags, activeRecipes);
   createRecipeCards(filteredArray);
@@ -78,7 +74,6 @@ recipeArea.addEventListener("click", function (event) {
   let foundRecipe = locateRecipe(recipeClicked, data.recipes);
   buildRecipeCard(foundRecipe, data.ingredients);
   displayRecipeCard();
-  
 });
 
 recipeCardClose.addEventListener("click", function (event) {
@@ -99,12 +94,11 @@ userSavedRecipes.addEventListener("click", function (event) {
 discoverRecipes.addEventListener("click", function (event) {
   activeRecipes = [...data.recipes];
   createRecipeCards(activeRecipes);
-  recipeArea.classList.toggle("hidden", false)
+  recipeArea.classList.toggle("hidden", false);
 });
 
 const loadUser = (users) => {
   let randomUserIndex = Math.floor(Math.random() * users.length);
   currentUser = users[randomUserIndex];
   currentUser.savedRecipes = [];
-}
-
+};
