@@ -158,13 +158,31 @@ Promise.all([fetchUsers, fetchIngredients, fetchRecipes]).then(
       }
     });
 
+    // tagButtons.addEventListener("click", (event) => {
+    //   let tagClicked;
+    //   tagClicked = event.target.id;
+    //   if (savedRecipesBtn.innerText === "View Saved Recipes") {
+    //     const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
+    //     displayRecipes(filteredRecipeIDByTag, "Save Recipe");
+    //   } else {
+    //     const filteredRecipeIDByTag = returnFilteredTag(
+    //       currentUser.recipesToCook,
+    //       tagClicked
+    //     );
+    //     displayRecipes(filteredRecipeIDByTag, "Remove Recipe");
+    //   }
+    // });
+
     tagButtons.addEventListener("click", (event) => {
       let tagClicked;
       tagClicked = event.target.id;
-      if (savedRecipesBtn.innerText === "View Saved Recipes") {
+      if (event.target === savedRecipesBtn) {
+        const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
+        displayRecipes(filteredRecipeIDByTag, "Remove Recipe");
+      } else if (tagClicked !== '' && savedRecipesBtn.innerHTML !== 'View All') {
         const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
         displayRecipes(filteredRecipeIDByTag, "Save Recipe");
-      } else {
+      } else if (tagClicked !== '' && savedRecipesBtn.innerHTML === 'View All') {
         const filteredRecipeIDByTag = returnFilteredTag(
           currentUser.recipesToCook,
           tagClicked
