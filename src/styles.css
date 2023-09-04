@@ -63,6 +63,10 @@ nav {
   background-color: black;
 }
 
+.saved-recipes-button {
+  border-bottom: 4px solid navy;
+}
+
 .image-styling {
   margin-top: 20px;
   height: 150px;
@@ -92,11 +96,15 @@ button {
   border: 3px black solid;
 }
 
-
-.instList {
+.instructions-list {
   justify-content: flex-start;
 }
 
-.saved-recipes-button {
-  border-bottom: 4px solid navy;
+.save-and-close-button {
+  background-color: blue;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  border-radius: 20px;
 }
