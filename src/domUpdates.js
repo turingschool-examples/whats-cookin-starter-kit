@@ -9,10 +9,10 @@ const recipeInstructionsSection = document.querySelector(
   "#recipeCardInstructions"
 );
 const recipeCardClose = document.querySelector(".close");
-const recipeCardBookmark = document.querySelector(".bookmark");
 const tagSection = document.querySelector(".tag-area");
-const bookmarkIcon = document.querySelector(".icon-bookmark");
-const solidBookmarkIcon = document.querySelector(".solid-bookmark");
+const recipeCardBookmark = document.querySelector(".bookmark");
+const recipeCardBookmarkAdd = document.querySelector(".icon-bookmark");
+const recipeCardBookmarkDelete = document.querySelector(".solid-bookmark");
 
 import { getIngredientNames, calculateCost } from "../src/recipes.js";
 
@@ -92,7 +92,8 @@ const buildInstructions = (foundRecipe) => {
 };
 
 const buildRecipeCard = (recipe, ingredients) => {
-  recipeCardBookmark.setAttribute("id", recipe.id);
+  recipeCardBookmarkAdd.setAttribute("id", recipe.id);
+  recipeCardBookmarkDelete.setAttribute("id", recipe.id);
   buildRecipeTitle(recipe);
   buildRecipeImage(recipe);
   buildRecipeTags(recipe);
@@ -104,10 +105,9 @@ const buildRecipeCard = (recipe, ingredients) => {
 const displayRecipeCard = () => {
   recipeArea.classList.toggle("hidden", true);
   recipeCard.classList.toggle("hidden", false);
-  solidBookmarkIcon.classList.toggle("hidden", true);
+  // recipeCardBookmarkDelete.classList.toggle("hidden", true);
   tagSection.classList.toggle("hidden", true);
-  bookmarkIcon.classList.toggle("hidden", false);
-
+  // bookmarkIcon.classList.toggle("hidden", false);
 };
 
 const displayRecipeArea = () => {
@@ -116,50 +116,58 @@ const displayRecipeArea = () => {
   tagSection.classList.toggle("hidden", false);
 };
 
-const saveRecipeCard = () => {
-  bookmarkIcon.classList.toggle("hidden", true);
-  solidBookmarkIcon.classList.toggle("hidden", false);
-};
-
-
 // const deleteRecipeCard = () => {
 //   solidBookmarkIcon.classList.toggle("hidden", true);
 //   bookmarkIcon.classList.toggle("hidden", false)
 // }
 
+// const saveRecipe = (id, user, recipes) => {
+//   let foundRecipe = locateRecipe(id, recipes);
+//   if (user.savedRecipes.includes(foundRecipe)) {
+//     let foundRecipeIndex = user.savedRecipes.findIndex((recipe) => {
+//       return recipe.id === foundRecipe.id;
+//     });
+//     user.savedRecipes.splice(foundRecipeIndex, 1);
+//   } else {
+//     user.savedRecipes.push(foundRecipe);
+//   }
+//   // deleteRecipeCard()
+//   saveRecipeCard();
+//   solidBookmarkIcon.classList.toggle("hidden", false);
+// };
+
 const saveRecipe = (id, user, recipes) => {
   let foundRecipe = locateRecipe(id, recipes);
-  if (user.savedRecipes.includes(foundRecipe)) {
-    let foundRecipeIndex = user.savedRecipes.findIndex((recipe) => {
-      return recipe.id === foundRecipe.id;
-    });
-    user.savedRecipes.splice(foundRecipeIndex, 1);
-  } else {
-    user.savedRecipes.push(foundRecipe);
-  }
-  // deleteRecipeCard()
-  saveRecipeCard();
-  solidBookmarkIcon.classList.toggle("hidden", false);
+  user.savedRecipes.push(foundRecipe);
 };
 
-const saveRecipe2 = (id, user) => {
-  // locate recipe 
-  // push recipe into
-}
+const deleteRecipe = (id, user, recipes) => {
+  let foundRecipe = locateRecipe(id, recipes);
+  console.log(foundRecipe);
+  let foundRecipeIndex = user.savedRecipes.findIndex((recipe) => {
+    console.log(recipe.id);
+    console.log(foundRecipe.id);
+    return recipe.id === foundRecipe.id;
+  });
+  console.log(foundRecipeIndex);
+  user.savedRecipes.splice(foundRecipeIndex, 1);
+};
 
-const deleteRecipe = (id, user) => {
-  // locate recipe 
-  // find the index of the recipe 
-  // splice it out 
-}
-
-
-const displayRecipeTag = (id, currentUser) => {
+const displayRecipeTag = (id, currentUser, recipes) => {
   // locate the id that is currently on dislay
-  // if that recipe id is in saved recipes display filled in tag 
-  // if recipe not there show the empty one 
-
-}
+  // if that recipe id is in saved recipes display filled in tag
+  // if recipe not there show the empty one
+  let foundRecipe = locateRecipe(id, recipes);
+  let savedStatus = currentUser.savedRecipes.includes(foundRecipe);
+  console.log(savedStatus);
+  if (savedStatus === true) {
+    recipeCardBookmarkAdd.classList.toggle("hidden", true);
+    recipeCardBookmarkDelete.classList.toggle("hidden", false);
+  } else {
+    recipeCardBookmarkAdd.classList.toggle("hidden", false);
+    recipeCardBookmarkDelete.classList.toggle("hidden", true);
+  }
+};
 
 export {
   createRecipeCards,
@@ -171,5 +179,6 @@ export {
   displayRecipeCard,
   displayRecipeArea,
   saveRecipe,
-  displayRecipeTag
+  deleteRecipe,
+  displayRecipeTag,
 };

@@ -12,6 +12,8 @@ import {
   displayRecipeCard,
   displayRecipeArea,
   saveRecipe,
+  deleteRecipe,
+  displayRecipeTag,
 } from "./domUpdates.js";
 
 import { filterByTag, searchRecipes } from "../src/recipes.js";
@@ -28,7 +30,8 @@ const searchButton = document.querySelector("#searchButton");
 const recipeArea = document.querySelector(".recipe-area");
 // const recipeCard = document.querySelector(".recipe-card");
 const recipeCardClose = document.querySelector(".close");
-const recipeCardBookmark = document.querySelector(".bookmark");
+const recipeCardBookmarkAdd = document.querySelector(".icon-bookmark");
+const recipeCardBookmarkDelete = document.querySelector(".solid-bookmark");
 const userSavedRecipes = document.querySelector("#myRecipes");
 const discoverRecipes = document.querySelector("#discoverRecipes");
 
@@ -73,6 +76,8 @@ recipeArea.addEventListener("click", function (event) {
   let recipeClicked = event.target.parentElement.id;
   let foundRecipe = locateRecipe(recipeClicked, data.recipes);
   buildRecipeCard(foundRecipe, data.ingredients);
+  console.log(currentUser);
+  displayRecipeTag(recipeClicked, currentUser, data.recipes);
   displayRecipeCard();
 });
 
@@ -81,9 +86,16 @@ recipeCardClose.addEventListener("click", function (event) {
   createRecipeCards(activeRecipes);
 });
 
-recipeCardBookmark.addEventListener("click", function (event) {
+recipeCardBookmarkAdd.addEventListener("click", function (event) {
   let bookmarkClicked = event.target.id;
   saveRecipe(bookmarkClicked, currentUser, data.recipes);
+  displayRecipeTag(bookmarkClicked, currentUser, data.recipes);
+});
+
+recipeCardBookmarkDelete.addEventListener("click", function (event) {
+  let bookmarkClicked = event.target.id;
+  deleteRecipe(bookmarkClicked, currentUser, data.recipes);
+  displayRecipeTag(bookmarkClicked, currentUser, data.recipes);
 });
 
 userSavedRecipes.addEventListener("click", function (event) {
