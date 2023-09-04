@@ -20,7 +20,7 @@ const renderRecipes = (recipeData) => {
     `
   }
 }
-
+Testing
 
 const addRecipesToCook = (usersData) => { //REFACTOR: Move to untestedFunc or scripts
   usersData.forEach(user => {
@@ -89,28 +89,33 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
         <h2>${recipeMatch.name}</h2>
         <img src="${recipeMatch.image}" alt="${recipeMatch.name}">
         <h3>Ingredients:</h3>
-        <div class="ingList">${ingredientsString}</div>
+        <div class="ingredients-list">${ingredientsString}</div>
         <h3>Instructions:</h3>
-        <div class="instList">${instructionsList}</div>
+        <div class="instructions-list">${instructionsList}</div>
         <h3>Total Cost:</h3>
         <p>${recipeCost}</p>
-        <button class="card" id="close-popup">Close</button>
-        <button class="card" id="save-recipe">Save</button>
+        <div class="save-and-close-button-container">
+          <button class="save-and-close-button" id="closePopup">Close</button>
+          <button class="save-and-close-button save-recipe-button" id="saveRecipe">Save</button>
+        </div>
       </div>
     </div>
   `
-  const closeButton = document.querySelector('#close-popup');
+  const closeButton = document.querySelector('#closePopup');
   closeButton.addEventListener('click', () => {
     renderRecipes(recipeData); //REFACTOR; CHECK: SCRIPTS (82.1)
   });
-  const saveButton = document.querySelector('#save-recipe');
-  saveButton.addEventListener('click', () => {
+ 
+  const saveRecipeButton = document.querySelector('.save-recipe-button');
+  saveRecipeButton.addEventListener('click', () => {
+    if (saveRecipeButton.classList.contains('save-recipe-button')) {
+      saveRecipeButton.innerText = "Saved!"
+      saveRecipeButton.style.backgroundColor = 'green';
+    }
     saveRecipe(recipeMatch, user);
 })
 console.log("peepo", user)
 }
-
-
 
 export  {
   renderRecipes,
