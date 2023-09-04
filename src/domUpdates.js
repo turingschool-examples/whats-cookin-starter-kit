@@ -96,7 +96,7 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
         <p>${recipeCost}</p>
         <div class="save-and-close-button-container">
           <button class="save-and-close-button" id="closePopup">Close</button>
-          <button class="save-and-close-button" id="saveRecipe">Save</button>
+          <button class="save-and-close-button save-recipe-button" id="saveRecipe">Save</button>
         </div>
       </div>
     </div>
@@ -105,8 +105,9 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
   closeButton.addEventListener('click', () => {
     renderRecipes(recipeData); //REFACTOR; CHECK: SCRIPTS (82.1)
   });
-  const saveButton = document.querySelector('#saveRecipe');
-  saveButton.addEventListener('click', () => {
+ 
+  const saveRecipeButton = document.querySelector('.save-recipe-button');
+  saveRecipeButton.addEventListener('click', () => {
     saveRecipe(recipeMatch, user);
 })
 console.log("peepo", user)
