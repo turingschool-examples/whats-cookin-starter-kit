@@ -110,8 +110,6 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
 console.log("peepo", user)
 }
 
-
-
 export  {
   renderRecipes,
   displayRecipes,
