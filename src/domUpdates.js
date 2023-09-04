@@ -108,6 +108,10 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
  
   const saveRecipeButton = document.querySelector('.save-recipe-button');
   saveRecipeButton.addEventListener('click', () => {
+    if (saveRecipeButton.classList.contains('save-recipe-button')) {
+      saveRecipeButton.innerText = "Saved!"
+      saveRecipeButton.style.backgroundColor = 'green';
+    }
     saveRecipe(recipeMatch, user);
 })
 console.log("peepo", user)
