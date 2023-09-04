@@ -130,40 +130,43 @@ inputName.addEventListener("keydown", (event) => {
   }
 });
 
-inputIngredient.addEventListener("keydown", (event) => {
-  if (savedRecipesBtn.innerText === "View Saved Recipes") {
-    const userInput = getUserInput(".input-ingredient");
-    const recipeIdsByIngredient = findRecipeByIngredient(
-      userInput,
-      ingredientsData,
-      recipeData
-    );
-    displayRecipes(recipeIdsByIngredient, "Save Recipe");
-  } else {
-    const userInput = getUserInput(".input-ingredient");
-    const recipeIdsByIngredient = findRecipeByIngredient(
-      userInput,
-      ingredientsData,
-      currentUser.recipesToCook
-    );
-    displayRecipes(recipeIdsByIngredient, "Remove Recipe");
-  }
-});
+    inputIngredient.addEventListener("keydown", (event) => {
+      if (savedRecipesBtn.innerText === "View Saved Recipes") {
+        const userInput = getUserInput(".input-ingredient");
+        const recipeIdsByIngredient = findRecipeByIngredient(
+          userInput,
+          ingredientsData,
+          recipeData
+        );
+        displayRecipes(recipeIdsByIngredient, "Save Recipe");
+      } else {
+        const userInput = getUserInput(".input-ingredient");
+        const recipeIdsByIngredient = findRecipeByIngredient(
+          userInput,
+          ingredientsData,
+          currentUser.recipesToCook
+        );
+        displayRecipes(recipeIdsByIngredient, "Remove Recipe");
+      }
+    });
 
-tagButtons.addEventListener("click", (event) => {
-  let tagClicked;
-  tagClicked = event.target.id;
-  if (savedRecipesBtn.innerText === "View Saved Recipes") {
-    const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
-    displayRecipes(filteredRecipeIDByTag, "Save Recipe");
-  } else {
-    const filteredRecipeIDByTag = returnFilteredTag(
-      currentUser.recipesToCook,
-      tagClicked
-    );
-    displayRecipes(filteredRecipeIDByTag, "Remove Recipe");
-  }
-});
+    tagButtons.addEventListener("click", (event) => {
+      let tagClicked;
+      tagClicked = event.target.id;
+      if (event.target === savedRecipesBtn) {
+        const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
+        displayRecipes(filteredRecipeIDByTag, "Remove Recipe");
+      } else if (tagClicked !== '' && savedRecipesBtn.innerHTML !== 'View All') {
+        const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
+        displayRecipes(filteredRecipeIDByTag, "Save Recipe");
+      } else if (tagClicked !== '' && savedRecipesBtn.innerHTML === 'View All') {
+        const filteredRecipeIDByTag = returnFilteredTag(
+          currentUser.recipesToCook,
+          tagClicked
+        );
+        displayRecipes(filteredRecipeIDByTag, "Remove Recipe");
+      }
+    });
 
 recipeDisplay.addEventListener("click", (event) => {
   let idClicked;
