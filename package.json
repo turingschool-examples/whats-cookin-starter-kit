@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "Starter kit for Turing FE2 paired project",
   "main": "index.js",
+  "repository": {
+    "url": "git+https://github.com/joh-ann/whats-cookin.git"
+  },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "start": "webpack serve",
     "build": "webpack",
     "test": "mochapack 'test/**/*.js'"
