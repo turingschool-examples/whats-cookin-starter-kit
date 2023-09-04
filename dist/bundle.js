@@ -1,8 +1,8 @@
 
    
 /******/ (() => { // webpackBootstrap
-  var __webpack_exports__ = {};
-  alert('hello')
+  // var __webpack_exports__ = {};
+  // alert('hello')
   /******/
 })()
   ;
