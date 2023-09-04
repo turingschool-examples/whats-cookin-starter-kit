@@ -2,7 +2,7 @@
 
 import './styles.css'
 import  './apiCalls'
-import {fetchUsers} from './apiCalls'
+import {fetchUsers, fetchRecipes} from './apiCalls'
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import ingredientsData from './data/ingredients.js'
@@ -25,6 +25,7 @@ const allRecipes = document.querySelector('#allRecipes')
 
   // user variable
   let randomUser;
+  let recipesData;
   //let usersFetch;
   
   const getRandomUser = (array) => {
@@ -35,6 +36,10 @@ const allRecipes = document.querySelector('#allRecipes')
     return randomUser;
   };
 
+  const getRecipeData = (array) => {
+    recipesData = array;
+    return recipesData
+  }
 
 const attachRecipeCardClickListener = event => {
   const recipeCard = event.target.closest('.recipe-card');
@@ -43,8 +48,8 @@ const attachRecipeCardClickListener = event => {
     const recipeId = recipeCard.getAttribute('id');
     console.log(recipeId);
   
-    displayPopUp(recipeData, ingredientsData, recipeId, randomUser);
-    console.log(randomUser)
+    displayPopUp(recipesData, ingredientsData, recipeId, randomUser);
+    console.log("LOOK AT ME", recipesData)
     
   }
 }
@@ -83,7 +88,10 @@ const filterByTag = (recipeData, clickedId) => {
 
 window.addEventListener('load', function() {
   fetchUsers(getRandomUser);
-  renderRecipes(recipeData);
+  fetchRecipes(getRecipeData)
+    .then(() => {
+    renderRecipes(recipesData);})
+  // renderRecipes(recipesData);
   //addRecipesToCook(usersFetch);
   // getRandomUser(usersFetch);
   console.log('update', randomUser)
@@ -94,35 +102,36 @@ navLinks.forEach(link => {
   link.addEventListener('click', function(event) {
     event.preventDefault();
     const linkId = link.getAttribute('id');
-    filterByTag(recipeData, linkId)
+    filterByTag(recipesData, linkId)
   });
 });
 
 
 searchField.addEventListener('keypress', function(event) {
-  displayRecipes(event, recipeData, searchField);
+  displayRecipes(event, recipesData, searchField);
   
 });
 
 allButton.addEventListener('click', function() {
-  renderRecipes(recipeData);
+  renderRecipes(recipesData);
 });
 
 allRecipes.addEventListener('click', function() {
+  renderRecipes(recipesData);
   allButton.style.borderBottom = '4px solid orange';
   allButton.addEventListener('click', function() {
-    renderRecipes(recipeData);
+    renderRecipes(recipesData);
   });
   navLinks.forEach(link => {
     link.style.borderBottom = '4px solid orange';
     link.addEventListener('click', function(event) {
       event.preventDefault();
       const linkId = link.getAttribute('id');
-      filterByTag(recipeData, linkId);
+      filterByTag(recipesData, linkId);
     });
   });
   searchField.addEventListener('keypress', function(event) {
-    displayRecipes(event, recipeData, searchField);
+    displayRecipes(event, recipesData, searchField);
     
   });
 })
@@ -132,7 +141,9 @@ savedRecipes.addEventListener('click', function() {
   let userRecipesToCook = randomUser.recipesToCook;
   renderRecipes(userRecipesToCook);
   allButton.style.borderBottom = '4px solid navy';
-
+  allButton.addEventListener('click', function() {
+    renderRecipes(userRecipesToCook);
+  });
   navLinks.forEach(link => {
     link.style.borderBottom = '4px solid navy';
     link.addEventListener('click', function(event) {
