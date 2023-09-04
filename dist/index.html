@@ -2,11 +2,36 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Whats Cookin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link  rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@1,700&family=Poppins:wght@200;300;400;500;600;700;800&display=swap">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Eczar:wght@400;500;600;700;800&family=Kalam:wght@300;400;700&family=Radley:ital@0;1&display=swap" rel="stylesheet">
+    <title>What's Cookin'</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
-  </body>
+    <div class="container">
+      <h1>What's Cookin'</h1>
+      <input class="search-field" type="text" placeholder="search recipes...">
+      <a class="filter-save" id="allRecipes" href="#">ALL RECIPES</a>
+      <a class="filter-save" id="savedRecipes" href="#">SAVED RECIPES</a>
+      <h2>Categories</h2>
+      <nav>
+        <a class="all"href="#">ALL</a>
+        <a class="nav-link"id="snack" href="#">SNACK</a>
+        <a class="nav-link"id="dinner" href="#">DINNER</a>
+        <a class="nav-link"id="sauce" href="#">SAUCE</a>
+        <a class="nav-link"id="breakfast" href="#">BREAKFAST</a>
+        <a class="nav-link"id="salad" href="#">SALAD</a>
+    </nav>
+    <div class="recipe-container">
+    
+    </div>
+  </div>
+</body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>
