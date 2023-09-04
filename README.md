@@ -5,11 +5,11 @@ View delicious meals, sauces, desserts and more from over 40 different recipes! 
 
 ### Installation Instructions:
 1. Fork this repository.
-2. Clone it to your local machine using the command: git clone git@github.com:joh-ann/whats-cookin.git.
-3. Run the command: cd whats-cookin
-4. Run the command: npm install
-5. Run the command: npm start
-6. Once the modules have finished compiling, enter http://localhost:8080/ into your browser to see the live web page.
+2. Clone it to your local machine.
+3. Run the command: `cd whats-cookin`
+4. Run the command: `npm install`
+5. Run the command: `npm start`
+6. Once the modules have finished compiling, enter `http://localhost:8080/` into your browser to see the live web page.
 
 ## Preview of App:
 ![whatscookin](https://github.com/joh-ann/whats-cookin/assets/126308696/0edebd19-7a94-4517-8538-d8dac1580188)
