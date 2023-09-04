@@ -100,6 +100,12 @@ button {
   justify-content: flex-start;
 }
 
+.save-and-close-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
 .save-and-close-button {
   background-color: blue;
   color: white;
@@ -108,3 +114,4 @@ button {
   letter-spacing: 3px;
   border-radius: 20px;
 }
+

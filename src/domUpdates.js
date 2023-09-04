@@ -94,8 +94,10 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
         <div class="instructions-list">${instructionsList}</div>
         <h3>Total Cost:</h3>
         <p>${recipeCost}</p>
-        <button class="save-and-close-button" id="closePopup">Close</button>
-        <button class="save-and-close-button" id="saveRecipe">Save</button>
+        <div class="save-and-close-button-container">
+          <button class="save-and-close-button" id="closePopup">Close</button>
+          <button class="save-and-close-button" id="saveRecipe">Save</button>
+        </div>
       </div>
     </div>
   `
