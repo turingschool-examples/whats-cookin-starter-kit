@@ -3,15 +3,10 @@
 import './styles.css'
 import  './apiCalls'
 import {fetchUsers, fetchRecipes, fetchIngredients} from './apiCalls'
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
-// import ingredientsData from './data/ingredients.js'
-// import recipeData from './data/recipes.js'
-// import usersData from './data/users.js'
 
 
 // Example of one way to import functions from the domUpdates file. You will delete these examples.
-import {renderRecipes, displayRecipes, displayPopUp, addRecipesToCook, createRandomIndex} from './domUpdates.js';
+import {renderRecipes, displayRecipes, displayPopUp, createRandomIndex} from './domUpdates.js';
 import {findRecipeByTag} from '../test/untestedFunctions.js'
 
 // query selectors
@@ -21,13 +16,13 @@ const allButton = document.querySelector('.all')
 const navLinks = document.querySelectorAll('.nav-link');
 const savedRecipes = document.querySelector('#savedRecipes');
 const allRecipes = document.querySelector('#allRecipes')
-// closure for user state and updates
 
-  // user variable
+  //variables
   let randomUser;
   let recipesData;
   let ingredientsData
-  //let usersFetch;
+
+
   
   const getRandomUser = (array) => {
       let randomIndex = createRandomIndex(array);
