@@ -1,8 +1,6 @@
 //NOTE: Your DOM manipulation will occur in this file
 
 import {findRecipeIngredients, calculateCost} from '../test/untestedFunctions.js'
-import ingredientsData from './data/ingredients.js'
-import recipeData from './data/recipes.js'
 
 const recipesContainer = document.querySelector('.recipe-container');
 
@@ -10,36 +8,30 @@ const recipesContainer = document.querySelector('.recipe-container');
 const renderRecipes = (recipeData) => {
 
   recipesContainer.innerHTML = '';
-  for (let i = 0; i < recipeData.length; i++) {
+  recipeData.forEach((recipe) => 
     recipesContainer.innerHTML += `
-    <button class="recipe-card"id="${recipeData[i].id}">
-      <p class ="recipe-name">${recipeData[i].name}</p>
-      <img class="image-styling" src="${recipeData[i].image}">
+    <button class="recipe-card"id="${recipe.id}">
+      <p class ="recipe-name">${recipe.name}</p>
+      <img class="image-styling" src="${recipe.image}">
       </button>
     `
+  )
+  if(recipeData.length === 0) {
+    recipesContainer.innerHTML = `<p>No saved recipes yet!</p>`
   }
 }
 
-
-const addRecipesToCook = (usersData) => { //REFACTOR: Move to untestedFunc or scripts
-  usersData.forEach(user => {
-  if (!user.hasOwnProperty("recipesToCook")) {
-    user.recipesToCook = [];
-  } 
-});
-}
-
 const saveRecipe = (recipe, user) => {
-const saveRecipeButton = document.querySelector('.save-recipe-button')
-  if (!user.recipesToCook.includes(recipe)){
-    user.recipesToCook.push(recipe)
-    saveRecipeButton.innerText = "Saved!"
-    saveRecipeButton.style.backgroundColor = 'green';
-  } else {
-    let recipeIndex = user.recipesToCook.indexOf(recipe);
-    user.recipesToCook.splice(recipeIndex, 1);
-    saveRecipeButton.innerText = "Unsaved!"
-    saveRecipeButton.style.backgroundColor = 'red';};
+  const saveRecipeButton = document.querySelector('.save-recipe-button')
+    if (!user.recipesToCook.includes(recipe)){
+      user.recipesToCook.push(recipe)
+      saveRecipeButton.innerText = "Saved!"
+      saveRecipeButton.style.backgroundColor = 'green';
+    } else {
+      let recipeIndex = user.recipesToCook.indexOf(recipe);
+      user.recipesToCook.splice(recipeIndex, 1);
+      saveRecipeButton.innerText = "Unsaved!"
+      saveRecipeButton.style.backgroundColor = 'red';};
 }
 
 const createRandomIndex = (array) => { //REFACTOR: Move to untestedFunc or scripts
@@ -58,6 +50,9 @@ const displayRecipes = (event, recipeData, searchField) => {
         </div>
       `;
     });
+  if (filteredRecipes.length === 0) {
+    recipesContainer.innerHTML = `<p>No search results!</p>`
+  }
     return filteredRecipes;
   }
 };
@@ -121,6 +116,5 @@ export  {
   renderRecipes,
   displayRecipes,
   displayPopUp, 
-  addRecipesToCook,
   createRandomIndex,
 }

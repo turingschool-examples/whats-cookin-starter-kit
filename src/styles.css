@@ -1,12 +1,17 @@
 * {
   background-color: #E7F1F1; 
-  margin: 10px
+  margin: 10px;
 }
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.filter-save {
+  width: 200px;
+  text-align: center;
 }
 
 h1 {
@@ -19,13 +24,18 @@ h1 {
  
 }
 
+h2 {
+  margin-bottom: 40px;
+}
+
 input {
   height: 40px;
-  width: 250px;
+  width: 400px;
   border-radius: 10px;
   background-color: white;
   font-size: 20px;
   font-family: 'Radley', serif;
+  text-align: center;
 }
 
 input::placeholder { 
@@ -94,6 +104,10 @@ button {
   font-size: 20px;
   width: 500px;
   border: 3px black solid;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 .instructions-list {
