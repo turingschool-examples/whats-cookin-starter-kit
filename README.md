@@ -14,7 +14,8 @@ View delicious meals, sauces, desserts and more from over 40 different recipes! 
 [Deployed Link](https://joh-ann.github.io/whats-cookin/)
 
 ## Preview of App:
-![whatscookin](https://github.com/joh-ann/whats-cookin/assets/126308696/0edebd19-7a94-4517-8538-d8dac1580188)
+![whatscookin](https://github.com/joh-ann/whats-cookin/assets/126308696/d4d00e27-c87b-4b5e-8843-7e1c1fd5932c)
+
 
 
 
