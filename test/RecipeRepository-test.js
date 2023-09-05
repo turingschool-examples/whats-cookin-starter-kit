@@ -9,12 +9,17 @@ const {
   getIngredientNames,
 } = require("../src/recipes");
 
+// const {
+//   locateRecipe,
+// } = require("../src/domUpdates")
+
 // locate recipe
 // save recipe - the user is not able to save a duplicate
 // delete recipe - the user is not able to over a duplicate
-// search - nothing found
+
 
 describe("calculateCost", () => {
+  //happy path
   it("should calculate the cost of a recipe with one ingredient", () => {
     const recipe = {
       id: 1,
@@ -22,11 +27,9 @@ describe("calculateCost", () => {
     };
     const ingredients = [{ id: 1, estimatedCostInCents: 100 }];
     const totalCost = calculateCost(recipe, ingredients);
-
     expect(totalCost).to.equal(1);
   });
-  //happy path
-
+  //sad path
   it("should throw an error if ingredient id does not exist", () => {
     const recipe = {
       id: 2,
@@ -40,8 +43,7 @@ describe("calculateCost", () => {
       expect(error.message).to.equal("Ingredient not found");
     }
   });
-  //sad path
-
+  //happy path
   it("should calculate the cost of a different recipe's ingredients", () => {
     const recipe = {
       id: 4,
@@ -59,7 +61,6 @@ describe("calculateCost", () => {
     expect(totalCost).to.equal(expectedTotalCost);
   });
   //happy path
-  
   it("should calculate the cost of a simple recipe", () => {
     const recipe = {
       id: 6,
@@ -72,21 +73,61 @@ describe("calculateCost", () => {
       { id: 6, estimatedCostInCents: 150 },
       { id: 7, estimatedCostInCents: 200 },
     ];
-
     const totalCost = calculateCost(recipe, ingredients);
     const expectedTotalCost = (2 * 150 + 3 * 200) / 100;
-
     expect(totalCost).to.equal(expectedTotalCost);
   });
-  //happy path
 });
 
+// describe("locateRecipe", () => {
+//   const recipes = [
+//     { id: 1, name: "Pasta" },
+//     { id: 2, name: "Pizza" },
+//     { id: 3, name: "Burger" },
+//   ];
+
+//   it("should locate a recipe by its ID when it exists", () => {
+//     const recipeId = 2;
+//     const foundRecipe = locateRecipe(recipeId, recipes);
+
+//     expect(foundRecipe).to.deep.equal({ id: 2, name: "Pizza" });
+//   });
+
+//   it("should return undefined when the recipe ID does not exist", () => {
+//     const recipeId = 4; // Recipe ID that doesn't exist in the array
+//     const foundRecipe = locateRecipe(recipeId, recipes);
+
+//     expect(foundRecipe).to.be.undefined;
+//   });
+
+//   it("should handle string input for recipe ID", () => {
+//     const recipeId = "3"; // Recipe ID provided as a string
+//     const foundRecipe = locateRecipe(recipeId, recipes);
+
+//     expect(foundRecipe).to.deep.equal({ id: 3, name: "Burger" });
+//   });
+
+//   it("should locate the first recipe when multiple recipes have the same ID", () => {
+//     const recipesWithDuplicateId = [
+//       { id: 1, name: "Pasta" },
+//       { id: 2, name: "Spaghetti" },
+//       { id: 2, name: "Lasagna" },
+//     ];
+
+//     const recipeId = 2;
+//     const foundRecipe = locateRecipe(recipeId, recipesWithDuplicateId);
+
+//     expect(foundRecipe).to.deep.equal({ id: 2, name: "Spaghetti" });
+//   });
+// });
+
 describe("Filter", () => {
+  //happy path
   it("Should filter recipes when given one tag", () => {
     const taggedRecipes = filterByTag(["side dish"], recipeTestData);
     expect(taggedRecipes).to.deep.equal([recipeTestData[2], recipeTestData[3]]);
   });
-
+  //happy path
   it("Should filter recipes when given multiple tags", () => {
     const taggedRecipes = filterByTag(["snack", "lunch"], recipeTestData);
     expect(taggedRecipes).to.deep.equal([
@@ -95,7 +136,7 @@ describe("Filter", () => {
       recipeTestData[4],
     ]);
   });
-
+  //happy path
   it("Should not add duplicates when a snack is in more than one category", () => {
     const taggedRecipes = filterByTag(
       ["hor d'oeuvre", "snack"],
@@ -103,15 +144,31 @@ describe("Filter", () => {
     );
     expect(taggedRecipes).to.deep.equal([recipeTestData[0], recipeTestData[4]]);
   });
+  //sad path
+  it("Should return an empty array when no recipes match the tag", () => {
+    const taggedRecipes = filterByTag(["nonexistent"], recipeTestData);
+    expect(taggedRecipes).to.deep.equal([]);
+  });
+  //sad path
+  it("Should not return any recipes if no ingredient match is found", () => {
+    const taggedRecipes = filterByTag(["nonexistent"], recipeTestData);
+    expect(taggedRecipes).to.deep.equal([]);
+  });
 });
 
 describe("Search", () => {
+  //happy path
   it("Should search recipes when given any part of a recipes name e.g. Chocolate is in 'Chocolate Chip Cookies' and 'Chocolate Cake'", () => {
     const searchedRecipe = searchRecipes("chocolate", recipeTestData);
     expect(searchedRecipe).to.deep.equal([
       recipeTestData[0],
       recipeTestData[3],
     ]);
+  });
+  // sad path
+  it("Should return an empty array when no recipes match the search term", () => {
+    const searchedRecipe = searchRecipes("nonexistent", recipeTestData);
+    expect(searchedRecipe).to.deep.equal([]);
   });
 });
 
