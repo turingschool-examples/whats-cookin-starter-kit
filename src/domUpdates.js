@@ -144,6 +144,7 @@ const displayRecipeTag = (id, currentUser, recipes) => {
 
 const buildSearchFail = () => {
   let searchFail = document.createElement("p");
+  searchFail.classList.add('error')
   searchFail.innerText = `There were no results for your search, please try another term.`;
   recipeArea.appendChild(searchFail);
 };
