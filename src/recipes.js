@@ -1,7 +1,7 @@
 const filterByTag = (tags, arrayToFilter) => {
   if (tags.length > 0) {
     let filteredArray = arrayToFilter.reduce((acc, cv) => {
-      tags.forEach((tag) => {
+      tags.forEach(tag => {
         if (!acc.includes(cv) && cv.tags.includes(tag)) {
           acc.push(cv);
         }
@@ -15,14 +15,14 @@ const filterByTag = (tags, arrayToFilter) => {
 };
 
 const searchRecipes = (searchTerm, recipes) => {
-  let searchedRecipe = recipes.filter((recipe) => {
+  let searchedRecipe = recipes.filter(recipe => {
     return recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
   return searchedRecipe;
 };
 
 const getIngredientNames = (recipe, ingredients) => {
-  let ingredientIds = recipe.ingredients.map((ingr) => {
+  let ingredientIds = recipe.ingredients.map(ingr => {
     return ingr.id;
   });
   let ingredientNames = ingredients.reduce((acc, cv) => {
@@ -37,9 +37,9 @@ const getIngredientNames = (recipe, ingredients) => {
 const calculateCost = (recipe, ingredients) => {
   let totalCost = 0;
 
-  recipe.ingredients.forEach((recipeIngredient) => {
+  recipe.ingredients.forEach(recipeIngredient => {
     const matchingIngredient = ingredients.find(
-      (ingredient) => ingredient.id === recipeIngredient.id
+      ingredient => ingredient.id === recipeIngredient.id,
     );
 
     if (matchingIngredient) {
@@ -47,7 +47,7 @@ const calculateCost = (recipe, ingredients) => {
         matchingIngredient.estimatedCostInCents *
         recipeIngredient.quantity.amount;
     } else {
-      throw new Error("Ingredient not found");
+      throw new Error('Ingredient not found');
     }
   });
 

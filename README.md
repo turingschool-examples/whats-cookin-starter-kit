@@ -4,7 +4,7 @@
 What's Cooking (renamed Discory Cooking) is a application that allows users to view and filter recipes by tags and search for recipe's by ingredients or name. The recipe cards that show up have the required ingredients for each recipe, the instructions on how to make it and the cost. This enables users to know what they need to make a particular recipe. 
 
 ## Context
-We were a group of three who are currently in mod 2 at Turing School of Software and Design. We had 11 days to complete 3 iterations of this project with optional extensions. It took roughly 
+We were a group of three who are currently in mod 2 at Turing School of Software and Design. We had 11 days to complete 3 iterations of this project with optional extensions. It took roughly 20 hours. 
 
 ## Preview 
 
