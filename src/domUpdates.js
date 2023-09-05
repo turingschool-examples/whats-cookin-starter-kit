@@ -100,6 +100,7 @@ const buildRecipeCard = (recipe, ingredients) => {
   buildRecipeCost(recipe, ingredients);
   buildIngredients(recipe, ingredients);
   buildInstructions(recipe);
+  
 };
 
 const displayRecipeCard = () => {
@@ -113,13 +114,24 @@ const displayRecipeCard = () => {
 const displayRecipeArea = () => {
   recipeArea.classList.toggle("hidden", false);
   recipeCard.classList.toggle("hidden", true);
-  tagSection.classList.toggle("hidden", false);
 };
+
 
 // const deleteRecipeCard = () => {
 //   solidBookmarkIcon.classList.toggle("hidden", true);
 //   bookmarkIcon.classList.toggle("hidden", false)
 // }
+
+const saveRecipeCard = () => {
+  bookmarkIcon.classList.toggle("hidden", true);
+  solidBookmarkIcon.classList.toggle("hidden", false);
+  tagSection.classList.toggle("hidden", true);
+};
+
+const displaySavedRecipeCards = () => {
+  tagSection.classList.toggle("hidden", true);
+};
+
 
 // const saveRecipe = (id, user, recipes) => {
 //   let foundRecipe = locateRecipe(id, recipes);
@@ -179,6 +191,8 @@ export {
   displayRecipeCard,
   displayRecipeArea,
   saveRecipe,
+
   deleteRecipe,
   displayRecipeTag,
+  displaySavedRecipeCards
 };
