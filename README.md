@@ -8,6 +8,10 @@ We were a group of three who are currently in mod 2 at Turing School of Software
 
 ## Preview 
 
+![Whatscookin1](https://github.com/turingschool-examples/hang-in-there-boilerplate/assets/119434450/88661d25-16db-44e5-ada4-3bdab1194e39)
+
+![what'scookin2](https://github.com/turingschool-examples/hang-in-there-boilerplate/assets/119434450/215a0c1c-1706-4df1-ab1a-aaacce2a97e6)
+
 ## Setup
 - Clone down this repository to your local computer [What's Cookin Link](https://github.com/Jnguyen615/whats-cookin)
 - CD into the project directory
@@ -34,5 +38,18 @@ We were a group of three who are currently in mod 2 at Turing School of Software
 - Github 
 - Webpack
 
-## Wins and Challenges 
+## Wins
+
+- Working collaboratively to finish the project ahead of time and with minor additional functionality added. 
+- Having open communication that was reciproacted and taken into consideration 
+- Prompt communication, always responding to messages in a timely manner
+- Being able to work together in a way that was productive and managable 
+- Being able to work solo and handle all merge conflicts when encountered together
+
+
+## Challenges
+- Create multiple filters that add additional recipes to the list without creating any duplicates
+- Implementing the API call and understanding what areas of the application to be within the promise 
+- Getting the data model set up in a way where the promise all holds the global object with the data so it can be used throughout the files 
+
 
