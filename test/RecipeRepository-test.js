@@ -9,43 +9,76 @@ const {
   getIngredientNames,
 } = require("../src/recipes");
 
-// locate recipe 
-// save recipe - the user is not able to save a duplicate 
-// delete recipe - the user is not able to over a duplicate 
-// search - nothing found 
-// calculate cost fix
+// locate recipe
+// save recipe - the user is not able to save a duplicate
+// delete recipe - the user is not able to over a duplicate
+// search - nothing found
 
 describe("calculateCost", () => {
   it("should calculate the cost of a recipe with one ingredient", () => {
     const recipe = {
-      id: 1, ingredients: [{ id: 1, quantity: { amount: 1 } }],
+      id: 1,
+      ingredients: [{ id: 1, quantity: { amount: 1 } }],
     };
     const ingredients = [{ id: 1, estimatedCostInCents: 100 }];
     const totalCost = calculateCost(recipe, ingredients);
 
-    expect(totalCost).to.equal(1); 
+    expect(totalCost).to.equal(1);
   });
+  //happy path
 
   it("should throw an error if ingredient id does not exist", () => {
     const recipe = {
       id: 2,
+      ingredients: [{ id: 2, quantity: { amount: 1 } }],
+    };
+    const ingredients = [{ id: 1, estimatedCostInCents: 100 }];
+    try {
+      calculateCost(recipe, ingredients);
+      expect.fail("Expected an error to be thrown");
+    } catch (error) {
+      expect(error.message).to.equal("Ingredient not found");
+    }
+  });
+  //sad path
+
+  it("should calculate the cost of a different recipe's ingredients", () => {
+    const recipe = {
+      id: 4,
       ingredients: [
-        { id: 2, quantity: { amount: 1 } },
+        { id: 4, quantity: { amount: 2 } },
+        { id: 5, quantity: { amount: 3 } },
       ],
     };
     const ingredients = [
-      { id: 1, estimatedCostInCents: 100 },
+      { id: 4, estimatedCostInCents: 150 },
+      { id: 5, estimatedCostInCents: 200 },
     ];
-    
     const totalCost = calculateCost(recipe, ingredients);
-    expect(totalCost).to.equal(1); 
+    const expectedTotalCost = (2 * 150 + 3 * 200) / 100;
+    expect(totalCost).to.equal(expectedTotalCost);
   });
+  //happy path
+  
+  it("should calculate the cost of a simple recipe", () => {
+    const recipe = {
+      id: 6,
+      ingredients: [
+        { id: 6, quantity: { amount: 2 } },
+        { id: 7, quantity: { amount: 3 } },
+      ],
+    };
+    const ingredients = [
+      { id: 6, estimatedCostInCents: 150 },
+      { id: 7, estimatedCostInCents: 200 },
+    ];
 
-  it("should return error message if ingredient id does not exist", () => {
-    const totalCost = calculateCost(recipeTestData[0], []);
-    expect(totalCost).to.equal("Ingredient not found");
+    const totalCost = calculateCost(recipe, ingredients);
+    const expectedTotalCost = (2 * 150 + 3 * 200) / 100;
+
+    expect(totalCost).to.equal(expectedTotalCost);
   });
-  //test to see if the error message works 👆
+  //happy path
 });
 
 describe("Filter", () => {
@@ -82,7 +115,7 @@ describe("Search", () => {
   });
 });
 
-describe("get ingredients", () => {
+describe("Get Ingredients", () => {
   it("Should determine the list of ingredients for a recipe", () => {
     const ingredientList = getIngredientNames(
       recipeTestData[0],
