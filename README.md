@@ -1,18 +1,38 @@
-# What's Cookin'? Starter Kit
+# What's Cookin
 
-The details of this project are outlined in the <a href="https://frontend.turing.edu/projects/What%27sCookin-PartOne.html" target="\__blank">project spec</a>.
+## Abstract
+What's Cooking (renamed Discory Cooking) is a application that allows users to view and filter recipes by tags and search for recipe's by ingredients or name. The recipe cards that show up have the required ingredients for each recipe, the instructions on how to make it and the cost. This enables users to know what they need to make a particular recipe. 
 
-## Set Up
+## Context
+We were a group of three who are currently in mod 2 at Turing School of Software and Design. We had 11 days to complete 3 iterations of this project with optional extensions. It took roughly 
 
-1. Within your group, decide on **one** person to have the project repository on their Github account. This person will *fork* this repository - on the top right corner of the page, click the fork button.
-1. Add all group members and your PM as collaborators on the repo  
-1. All group members should then clone down the forked repository. Since you don't want your project to be named "whats-cookin-starter-kit", add an optional argument after the repo url when cloning. The command should look like this: `git clone [remote-address] [what your group wants to name the repo]`.
-1. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` or `npm i` to install project dependencies.
-1. Run `npm start` in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page).  
-    - `Control + C` is the command to stop running the local server. Closing the terminal without stopping the server first could allow the server to continue to run in the background and cause problems.  
-        - This command is not specific to Webpack; make note of it for future use.
-1. Do not run `npm audit fix --force`. This will update to the latest version of packages. We need to be using `webpack-dev-server@3.11.2` which is not the latest version. If you start to run into Webpack errors, first check that all group members are using the correct version.
+## Preview 
 
-## Testing
+## Setup
+- Clone down this repository to your local computer [What's Cookin Link](https://github.com/Jnguyen615/whats-cookin)
+- CD into the project directory
+- In your terminal, run npm install and then npm start
+- go to http://localhost:8080/ in your browser to view and run the application
 
-Mocha and chai are already set up, with a boilerplate test for you.
+## Collaborators
+- [Mary Bruff](https://github.com/MaryBruff)
+- [Logan Matheny](https://github.com/loganpaulmatheny)
+- [Jen Nguyen](https://github.com/Jnguyen615)
+
+
+## Learning Goals
+- Use object and array prototype methods to perform data manipulation
+- Create a user interface that is easy to use and clearly displays information 
+- Write dry, reusable code that follows SRP and trends toward function purity
+- Implement a robust testing suite using TDD
+- Make network requests to retrieve data 
+- Collaborate productively and professionally as a team. Ensure all team members are heard and are contributing to the project
+
+## Technology Used
+- Javascript ES6
+- Chai/Mocha for testing 
+- Github 
+- Webpack
+
+## Wins and Challenges 
+
