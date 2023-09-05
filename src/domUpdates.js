@@ -44,10 +44,10 @@ const displayRecipes = (event, recipeData, searchField) => {
   if (event.key === 'Enter') {
     filteredRecipes.map(recipe => {
       recipesContainer.innerHTML += `
-        <div class="recipe-card"id="${recipe.id}">
+        <button class="recipe-card"id="${recipe.id}">
           <p class="recipe-name">${recipe.name}</p>
           <img class="image-styling" src="${recipe.image}">
-        </div>
+        </button>
       `;
     });
   if (filteredRecipes.length === 0) {
