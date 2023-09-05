@@ -20,7 +20,7 @@ const renderRecipes = (recipeData) => {
     `
   }
 }
-Testing
+
 
 const addRecipesToCook = (usersData) => { //REFACTOR: Move to untestedFunc or scripts
   usersData.forEach(user => {

@@ -2,12 +2,12 @@
 
 import './styles.css'
 import  './apiCalls'
-import {fetchUsers, fetchRecipes} from './apiCalls'
+import {fetchUsers, fetchRecipes, fetchIngredients} from './apiCalls'
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
-import ingredientsData from './data/ingredients.js'
-import recipeData from './data/recipes.js'
-import usersData from './data/users.js'
+// import ingredientsData from './data/ingredients.js'
+// import recipeData from './data/recipes.js'
+// import usersData from './data/users.js'
 
 
 // Example of one way to import functions from the domUpdates file. You will delete these examples.
@@ -26,6 +26,7 @@ const allRecipes = document.querySelector('#allRecipes')
   // user variable
   let randomUser;
   let recipesData;
+  let ingredientsData
   //let usersFetch;
   
   const getRandomUser = (array) => {
@@ -39,6 +40,11 @@ const allRecipes = document.querySelector('#allRecipes')
   const getRecipeData = (array) => {
     recipesData = array;
     return recipesData
+  }
+
+  const getIngredientData = (array) => {
+    ingredientsData = array;
+    return ingredientsData
   }
 
 const attachRecipeCardClickListener = event => {
@@ -91,6 +97,7 @@ window.addEventListener('load', function() {
   fetchRecipes(getRecipeData)
     .then(() => {
     renderRecipes(recipesData);})
+  fetchIngredients(getIngredientData)
   // renderRecipes(recipesData);
   //addRecipesToCook(usersFetch);
   // getRandomUser(usersFetch);
@@ -117,6 +124,7 @@ allButton.addEventListener('click', function() {
 });
 
 allRecipes.addEventListener('click', function() {
+  
   renderRecipes(recipesData);
   allButton.style.borderBottom = '4px solid orange';
   allButton.addEventListener('click', function() {
