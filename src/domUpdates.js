@@ -10,7 +10,6 @@ const recipesContainer = document.querySelector('.recipe-container');
 const renderRecipes = (recipeData) => {
 
   recipesContainer.innerHTML = '';
-
   for (let i = 0; i < recipeData.length; i++) {
     recipesContainer.innerHTML += `
     <button class="recipe-card"id="${recipeData[i].id}">
@@ -37,8 +36,10 @@ const saveRecipeButton = document.querySelector('.save-recipe-button')
     saveRecipeButton.innerText = "Saved!"
     saveRecipeButton.style.backgroundColor = 'green';
   } else {
-    saveRecipeButton.innerText = "Saved!"
-    saveRecipeButton.style.backgroundColor = 'green';};
+    let recipeIndex = user.recipesToCook.indexOf(recipe);
+    user.recipesToCook.splice(recipeIndex, 1);
+    saveRecipeButton.innerText = "Unsaved!"
+    saveRecipeButton.style.backgroundColor = 'red';};
 }
 
 const createRandomIndex = (array) => { //REFACTOR: Move to untestedFunc or scripts
@@ -47,9 +48,7 @@ const createRandomIndex = (array) => { //REFACTOR: Move to untestedFunc or scrip
 
 const displayRecipes = (event, recipeData, searchField) => {
   recipesContainer.innerHTML = '';
-
   const filteredRecipes = recipeData.filter(recipe => recipe.name === searchField.value);
-  console.log({searchField})
   if (event.key === 'Enter') {
     filteredRecipes.map(recipe => {
       recipesContainer.innerHTML += `
@@ -65,7 +64,6 @@ const displayRecipes = (event, recipeData, searchField) => {
 
 const findRecipeById = (recipeData, id) => {
   const matchingRecipe = recipeData.find(recipe => recipe.id == id);
-  console.log('recipe', matchingRecipe);
   return matchingRecipe || 'oops'
 
 };
@@ -85,8 +83,6 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
     return `<p>${step.number}. ${step.instruction}</p>`
   });
   let instructionsList = instructionsDivs.join("");
-  console.log("list", instructionsDivs);
-  console.log("ing", ingredientsDivs)
   recipesContainer.innerHTML =
 `
     <div class="popup-overlay">
@@ -112,10 +108,13 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
   });
  
   const saveRecipeButton = document.querySelector('.save-recipe-button');
+  if (user.recipesToCook.includes(recipeMatch)){
+    saveRecipeButton.innerText = "Saved!"
+    saveRecipeButton.style.backgroundColor = 'green';
+  }
   saveRecipeButton.addEventListener('click', () => {
     saveRecipe(recipeMatch, user);
 })
-console.log("peepo", user)
 }
 
 export  {
