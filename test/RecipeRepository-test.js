@@ -154,6 +154,11 @@ describe("Filter", () => {
     const taggedRecipes = filterByTag(["nonexistent"], recipeTestData);
     expect(taggedRecipes).to.deep.equal([]);
   });
+  //happy path
+  it("Should return the recipe with searched ingredient", () => { 
+    const taggedRecipes = filterByTag(["snack"], recipeTestData);
+    expect(taggedRecipes).to.deep.equal([recipeTestData[0], recipeTestData[4]]);
+  });
 });
 
 describe("Search", () => {
