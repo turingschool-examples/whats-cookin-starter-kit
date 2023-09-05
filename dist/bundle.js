@@ -468,7 +468,7 @@ function displayTags(array) {
   const tagsArray = (0,_src_functions_js__WEBPACK_IMPORTED_MODULE_0__.returnListOfUniqueTags)(array);
   let tagsHtml = "";
   tagsArray.forEach((tagEl) => {
-    tagsHtml += `<div><img class="tag-btn" id="${tagEl}" src="/images/${tagEl}.png"><p>${tagEl}</p></div>
+    tagsHtml += `<div><img src="/images/${tagEl}.png" class="tag-btn" id="${tagEl}"><p>${tagEl}</p></div>
     `;
   });
   tagButtons.innerHTML = tagsHtml;
@@ -694,7 +694,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/antipasti.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/antipasti.png");
 
 /***/ }),
 /* 9 */
@@ -704,7 +704,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/antipasto.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/antipasto.png");
 
 /***/ }),
 /* 10 */
@@ -714,7 +714,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/appetizer.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/appetizer.png");
 
 /***/ }),
 /* 11 */
@@ -724,7 +724,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/breakfast.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/breakfast.png");
 
 /***/ }),
 /* 12 */
@@ -734,7 +734,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/brunch.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/brunch.png");
 
 /***/ }),
 /* 13 */
@@ -744,7 +744,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/condiment.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/condiment.png");
 
 /***/ }),
 /* 14 */
@@ -754,7 +754,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/dinner.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/dinner.png");
 
 /***/ }),
 /* 15 */
@@ -764,7 +764,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/dip.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/dip.png");
 
 /***/ }),
 /* 16 */
@@ -774,7 +774,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/hor d'oeuvre.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/hor d'oeuvre.png");
 
 /***/ }),
 /* 17 */
@@ -784,7 +784,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/lunch.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/lunch.png");
 
 /***/ }),
 /* 18 */
@@ -794,7 +794,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/main course.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/main course.png");
 
 /***/ }),
 /* 19 */
@@ -804,7 +804,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/main dish.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/main dish.png");
 
 /***/ }),
 /* 20 */
@@ -814,7 +814,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/morning meal.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/morning meal.png");
 
 /***/ }),
 /* 21 */
@@ -824,7 +824,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/salad.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/salad.png");
 
 /***/ }),
 /* 22 */
@@ -834,7 +834,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/sauce.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/sauce.png");
 
 /***/ }),
 /* 23 */
@@ -844,7 +844,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/side dish.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/side dish.png");
 
 /***/ }),
 /* 24 */
@@ -854,7 +854,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/snack.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/snack.png");
 
 /***/ }),
 /* 25 */
@@ -864,7 +864,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/spread.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/spread.png");
 
 /***/ }),
 /* 26 */
@@ -874,7 +874,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("https://joh-ann.github.io/whats-cookin/images/starter.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("images/starter.png");
 
 /***/ }),
 /* 27 */
