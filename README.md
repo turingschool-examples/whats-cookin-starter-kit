@@ -11,6 +11,8 @@ View delicious meals, sauces, desserts and more from over 40 different recipes! 
 5. Run the command: `npm start`
 6. Once the modules have finished compiling, enter `http://localhost:8080/` into your browser to see the live web page.
 
+[Deployed Link](https://joh-ann.github.io/whats-cookin/)
+
 ## Preview of App:
 ![whatscookin](https://github.com/joh-ann/whats-cookin/assets/126308696/0edebd19-7a94-4517-8538-d8dac1580188)
 
