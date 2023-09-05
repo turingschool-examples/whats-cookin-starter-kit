@@ -70,7 +70,7 @@ describe("calculateCost", () => {
   });
 });
 
-describe("Filter", () => {
+describe("Filter by Tag", () => {
   //happy path
   it("Should filter recipes when given one tag", () => {
     const taggedRecipes = filterByTag(["side dish"], recipeTestData);
@@ -104,13 +104,13 @@ describe("Filter", () => {
     expect(taggedRecipes).to.deep.equal([]);
   });
   //happy path
-  it("Should return the recipe with searched ingredient", () => { 
+  it("Should return the recipe with searched ingredient", () => {
     const taggedRecipes = filterByTag(["snack"], recipeTestData);
     expect(taggedRecipes).to.deep.equal([recipeTestData[0], recipeTestData[4]]);
   });
 });
 
-describe("Search", () => {
+describe("Search Recipes", () => {
   //happy path
   it("Should search recipes when given any part of a recipes name e.g. Chocolate is in 'Chocolate Chip Cookies' and 'Chocolate Cake'", () => {
     const searchedRecipe = searchRecipes("chocolate", recipeTestData);
@@ -137,6 +137,19 @@ describe("Search", () => {
     const searchedRecipe = searchRecipes("", recipeTestData);
     expect(searchedRecipe).to.deep.equal(recipeTestData);
   });
+  //happy path
+  it("Should handle multiple searches with both names, ingredients, and tags", () => {
+    const searchedRecipe = searchRecipes("chocolate", recipeTestData);
+    expect(searchedRecipe).to.deep.equal([
+      recipeTestData[0],
+      recipeTestData[3],
+    ]);
+  });
+  //sad path
+  it("Should return undefined if no recipe is found", () => {
+    const searchedRecipe = searchRecipes("nonexistent", recipeTestData);
+    expect(searchedRecipe).to.deep.equal([]);
+  });
 });
 
 describe("Get Ingredients", () => {
@@ -160,59 +173,47 @@ describe("Get Ingredients", () => {
       "vanilla",
     ]);
   });
-//sad path
-it("Should return an empty array when recipe has no ingredients", () => {
-  const recipe = {
-    ingredients: [],
-  };
-  const ingredients = [
-    { id: 1, name: "Flour" },
-    { id: 2, name: "Sugar" },
-  ];
-  const ingredientNames = getIngredientNames(recipe, ingredients);
-  expect(ingredientNames).to.deep.equal([]);
-});
-//sad path
-it("Should return an empty array when recipe has no ingredients", () => {
-  const recipe = {
-    ingredients: [],
-  };
-  const ingredients = [
-    { id: 1, name: "Flour" },
-    { id: 2, name: "Sugar" },
-  ];
-  const ingredientNames = getIngredientNames(recipe, ingredients);
-  expect(ingredientNames).to.deep.equal([]);
-});
-//sad path
-it("Should handle recipe ingredients not present in the provided ingredients list", () => {
-  const recipe = {
-    ingredients: [
-      { id: 10, name: "Unknown Ingredient" },
-      { id: 20, name: "Another Unknown Ingredient" },
-    ],
-  };
-  const ingredients = [
-    { id: 1, name: "Flour" },
-    { id: 2, name: "Sugar" },
-  ];
-  const ingredientNames = getIngredientNames(recipe, ingredients);
-  expect(ingredientNames).to.deep.equal([]);
-});
-//happy path
-it("Should handle recipe with multiple identical ingredients", () => {
-  const recipe = {
-    ingredients: [
-      { id: 1, name: "Flour" },
+  //sad path
+  it("Should return an empty array when recipe has no ingredients", () => {
+    const recipe = {
+      ingredients: [],
+    };
+    const ingredients = [
       { id: 1, name: "Flour" },
       { id: 2, name: "Sugar" },
-    ],
-  };
-  const ingredients = [
-    { id: 1, name: "Flour" },
-    { id: 2, name: "Sugar" },
-  ];
-  const ingredientNames = getIngredientNames(recipe, ingredients);
-  expect(ingredientNames).to.deep.equal(["Flour", "Sugar"]);
-});
+    ];
+    const ingredientNames = getIngredientNames(recipe, ingredients);
+    expect(ingredientNames).to.deep.equal([]);
+  });
+  //sad path
+  it("Should handle recipe ingredients not present in the provided ingredients list", () => {
+    const recipe = {
+      ingredients: [
+        { id: 10, name: "Unknown Ingredient" },
+        { id: 20, name: "Another Unknown Ingredient" },
+      ],
+    };
+    const ingredients = [
+      { id: 1, name: "Flour" },
+      { id: 2, name: "Sugar" },
+    ];
+    const ingredientNames = getIngredientNames(recipe, ingredients);
+    expect(ingredientNames).to.deep.equal([]);
+  });
+  //happy path
+  it("Should handle recipe with multiple identical ingredients", () => {
+    const recipe = {
+      ingredients: [
+        { id: 1, name: "Flour" },
+        { id: 1, name: "Flour" },
+        { id: 2, name: "Sugar" },
+      ],
+    };
+    const ingredients = [
+      { id: 1, name: "Flour" },
+      { id: 2, name: "Sugar" },
+    ];
+    const ingredientNames = getIngredientNames(recipe, ingredients);
+    expect(ingredientNames).to.deep.equal(["Flour", "Sugar"]);
+  });
 });
