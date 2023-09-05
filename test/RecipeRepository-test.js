@@ -175,6 +175,19 @@ describe("Search", () => {
     const searchedRecipe = searchRecipes("nonexistent", recipeTestData);
     expect(searchedRecipe).to.deep.equal([]);
   });
+  //happy path
+  it("Should handle case insensitivity", () => {
+    const searchedRecipe = searchRecipes("CHOCOLATE", recipeTestData);
+    expect(searchedRecipe).to.deep.equal([
+      recipeTestData[0],
+      recipeTestData[3],
+    ]);
+  });
+  //sad path
+  it("Should do nothing if the search term is an empty string", () => {
+    const searchedRecipe = searchRecipes("", recipeTestData);
+    expect(searchedRecipe).to.deep.equal(recipeTestData);
+  });
 });
 
 describe("Get Ingredients", () => {
