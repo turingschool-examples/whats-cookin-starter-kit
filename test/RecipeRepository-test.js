@@ -9,15 +9,6 @@ const {
   getIngredientNames,
 } = require("../src/recipes");
 
-// const {
-//   locateRecipe,
-// } = require("../src/domUpdates")
-
-// locate recipe
-// save recipe - the user is not able to save a duplicate
-// delete recipe - the user is not able to over a duplicate
-
-
 describe("calculateCost", () => {
   //happy path
   it("should calculate the cost of a recipe with one ingredient", () => {
@@ -78,48 +69,6 @@ describe("calculateCost", () => {
     expect(totalCost).to.equal(expectedTotalCost);
   });
 });
-
-// describe("locateRecipe", () => {
-//   const recipes = [
-//     { id: 1, name: "Pasta" },
-//     { id: 2, name: "Pizza" },
-//     { id: 3, name: "Burger" },
-//   ];
-
-//   it("should locate a recipe by its ID when it exists", () => {
-//     const recipeId = 2;
-//     const foundRecipe = locateRecipe(recipeId, recipes);
-
-//     expect(foundRecipe).to.deep.equal({ id: 2, name: "Pizza" });
-//   });
-
-//   it("should return undefined when the recipe ID does not exist", () => {
-//     const recipeId = 4; // Recipe ID that doesn't exist in the array
-//     const foundRecipe = locateRecipe(recipeId, recipes);
-
-//     expect(foundRecipe).to.be.undefined;
-//   });
-
-//   it("should handle string input for recipe ID", () => {
-//     const recipeId = "3"; // Recipe ID provided as a string
-//     const foundRecipe = locateRecipe(recipeId, recipes);
-
-//     expect(foundRecipe).to.deep.equal({ id: 3, name: "Burger" });
-//   });
-
-//   it("should locate the first recipe when multiple recipes have the same ID", () => {
-//     const recipesWithDuplicateId = [
-//       { id: 1, name: "Pasta" },
-//       { id: 2, name: "Spaghetti" },
-//       { id: 2, name: "Lasagna" },
-//     ];
-
-//     const recipeId = 2;
-//     const foundRecipe = locateRecipe(recipeId, recipesWithDuplicateId);
-
-//     expect(foundRecipe).to.deep.equal({ id: 2, name: "Spaghetti" });
-//   });
-// });
 
 describe("Filter", () => {
   //happy path
@@ -191,6 +140,7 @@ describe("Search", () => {
 });
 
 describe("Get Ingredients", () => {
+  //happy path
   it("Should determine the list of ingredients for a recipe", () => {
     const ingredientList = getIngredientNames(
       recipeTestData[0],
@@ -210,4 +160,59 @@ describe("Get Ingredients", () => {
       "vanilla",
     ]);
   });
+//sad path
+it("Should return an empty array when recipe has no ingredients", () => {
+  const recipe = {
+    ingredients: [],
+  };
+  const ingredients = [
+    { id: 1, name: "Flour" },
+    { id: 2, name: "Sugar" },
+  ];
+  const ingredientNames = getIngredientNames(recipe, ingredients);
+  expect(ingredientNames).to.deep.equal([]);
+});
+//sad path
+it("Should return an empty array when recipe has no ingredients", () => {
+  const recipe = {
+    ingredients: [],
+  };
+  const ingredients = [
+    { id: 1, name: "Flour" },
+    { id: 2, name: "Sugar" },
+  ];
+  const ingredientNames = getIngredientNames(recipe, ingredients);
+  expect(ingredientNames).to.deep.equal([]);
+});
+//sad path
+it("Should handle recipe ingredients not present in the provided ingredients list", () => {
+  const recipe = {
+    ingredients: [
+      { id: 10, name: "Unknown Ingredient" },
+      { id: 20, name: "Another Unknown Ingredient" },
+    ],
+  };
+  const ingredients = [
+    { id: 1, name: "Flour" },
+    { id: 2, name: "Sugar" },
+  ];
+  const ingredientNames = getIngredientNames(recipe, ingredients);
+  expect(ingredientNames).to.deep.equal([]);
+});
+//happy path
+it("Should handle recipe with multiple identical ingredients", () => {
+  const recipe = {
+    ingredients: [
+      { id: 1, name: "Flour" },
+      { id: 1, name: "Flour" },
+      { id: 2, name: "Sugar" },
+    ],
+  };
+  const ingredients = [
+    { id: 1, name: "Flour" },
+    { id: 2, name: "Sugar" },
+  ];
+  const ingredientNames = getIngredientNames(recipe, ingredients);
+  expect(ingredientNames).to.deep.equal(["Flour", "Sugar"]);
+});
 });
