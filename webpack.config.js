@@ -26,7 +26,7 @@ module.exports = {
             options: {
               name: '[name].[ext]',
               outputPath: 'images/',
-              publicPath: 'images/'
+              publicPath: 'https://joh-ann.github.io/whats-cookin/images/'
             }
           }
         ]
