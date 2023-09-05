@@ -142,6 +142,12 @@ const displayRecipeTag = (id, currentUser, recipes) => {
   }
 };
 
+const buildSearchFail = () => {
+  let searchFail = document.createElement("p");
+  searchFail.innerText = `There were no results for your search, please try another term.`;
+  recipeArea.appendChild(searchFail);
+};
+
 export {
   createRecipeCards,
   locateRecipe,
@@ -154,4 +160,5 @@ export {
   saveRecipe,
   deleteRecipe,
   displayRecipeTag,
+  buildSearchFail,
 };

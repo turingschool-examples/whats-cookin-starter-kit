@@ -14,6 +14,7 @@ import {
   saveRecipe,
   deleteRecipe,
   displayRecipeTag,
+  buildSearchFail,
 } from "./domUpdates.js";
 
 import { filterByTag, searchRecipes } from "../src/recipes.js";
@@ -68,7 +69,11 @@ tagSection.addEventListener("click", function (event) {
 searchButton.addEventListener("click", function (event) {
   let searchTerm = searchInput.value;
   let searchedRecipes = searchRecipes(searchTerm, activeRecipes);
+
   createRecipeCards(searchedRecipes);
+  if (searchedRecipes.length === 0) {
+    buildSearchFail();
+  }
 });
 
 recipeArea.addEventListener("click", function (event) {

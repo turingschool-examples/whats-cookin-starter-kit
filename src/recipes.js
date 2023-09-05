@@ -15,9 +15,10 @@ const filterByTag = (tags, arrayToFilter) => {
 };
 
 const searchRecipes = (searchTerm, recipes) => {
-  return recipes.filter((recipe) => {
+  let searchedRecipe = recipes.filter((recipe) => {
     return recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
+  return searchedRecipe;
 };
 
 const getIngredientNames = (recipe, ingredients) => {
@@ -43,7 +44,8 @@ const calculateCost = (recipe, ingredients) => {
 
     if (matchingIngredient) {
       totalCost +=
-        matchingIngredient.estimatedCostInCents * recipeIngredient.quantity.amount;
+        matchingIngredient.estimatedCostInCents *
+        recipeIngredient.quantity.amount;
     } else {
       throw new Error("Ingredient not found");
     }
@@ -51,7 +53,6 @@ const calculateCost = (recipe, ingredients) => {
 
   return Math.ceil(totalCost / 100);
 };
-
 
 module.exports = {
   filterByTag,
