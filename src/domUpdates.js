@@ -75,11 +75,20 @@ const buildRecipeCost = (foundRecipe, ingredients) => {
 const buildIngredients = (foundRecipe, ingredients) => {
   recipeIngredientsArea.innerHTML = "";
   let recipeIngredients = getIngredientNames(foundRecipe, ingredients);
-  recipeIngredients.forEach((ingredient) => {
-    let recipeIngredient = document.createElement("p");
-    recipeIngredient.innerText = ingredient;
-    recipeIngredientsArea.appendChild(recipeIngredient);
+  let ingredientAmounts = foundRecipe.ingredients.map((ingredient) => {
+    return `${ingredient.quantity.amount} ${ingredient.quantity.unit} `;
   });
+
+  for (let i = 0; i < recipeIngredients.length; i++) {
+    let recipeIngredient = document.createElement("p");
+    recipeIngredient.innerText = `${ingredientAmounts[i]} - ${recipeIngredients[i]}`;
+    recipeIngredientsArea.appendChild(recipeIngredient);
+  }
+  // recipeIngredients.forEach((ingredient) => {
+  //   let recipeIngredient = document.createElement("p");
+  //   recipeIngredient.innerText = `${ingredientAmounts} ${ingredient}`;
+  //   recipeIngredientsArea.appendChild(recipeIngredient);
+  // });
 };
 
 const buildInstructions = (foundRecipe) => {
