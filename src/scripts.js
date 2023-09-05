@@ -76,7 +76,6 @@ recipeArea.addEventListener("click", function (event) {
   let recipeClicked = event.target.parentElement.id;
   let foundRecipe = locateRecipe(recipeClicked, data.recipes);
   buildRecipeCard(foundRecipe, data.ingredients);
-  console.log(currentUser);
   displayRecipeTag(recipeClicked, currentUser, data.recipes);
   displayRecipeCard();
 });

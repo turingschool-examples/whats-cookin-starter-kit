@@ -52,7 +52,6 @@ const buildRecipeImage = (foundRecipe) => {
   recipeImage.classList.add("recipe-image-blowup");
   recipeImage.setAttribute("src", foundRecipe.image);
   recipeImageSection.appendChild(recipeImage);
-  // need to eventually set alt text attr.
 };
 
 const buildRecipeTags = (foundRecipe) => {
@@ -84,11 +83,6 @@ const buildIngredients = (foundRecipe, ingredients) => {
     recipeIngredient.innerText = `${ingredientAmounts[i]} - ${recipeIngredients[i]}`;
     recipeIngredientsArea.appendChild(recipeIngredient);
   }
-  // recipeIngredients.forEach((ingredient) => {
-  //   let recipeIngredient = document.createElement("p");
-  //   recipeIngredient.innerText = `${ingredientAmounts} ${ingredient}`;
-  //   recipeIngredientsArea.appendChild(recipeIngredient);
-  // });
 };
 
 const buildInstructions = (foundRecipe) => {
@@ -114,9 +108,7 @@ const buildRecipeCard = (recipe, ingredients) => {
 const displayRecipeCard = () => {
   recipeArea.classList.toggle("hidden", true);
   recipeCard.classList.toggle("hidden", false);
-  // recipeCardBookmarkDelete.classList.toggle("hidden", true);
   tagSection.classList.toggle("hidden", true);
-  // bookmarkIcon.classList.toggle("hidden", false);
 };
 
 const displayRecipeArea = () => {
@@ -125,26 +117,6 @@ const displayRecipeArea = () => {
   tagSection.classList.toggle("hidden", false);
 };
 
-// const deleteRecipeCard = () => {
-//   solidBookmarkIcon.classList.toggle("hidden", true);
-//   bookmarkIcon.classList.toggle("hidden", false)
-// }
-
-// const saveRecipe = (id, user, recipes) => {
-//   let foundRecipe = locateRecipe(id, recipes);
-//   if (user.savedRecipes.includes(foundRecipe)) {
-//     let foundRecipeIndex = user.savedRecipes.findIndex((recipe) => {
-//       return recipe.id === foundRecipe.id;
-//     });
-//     user.savedRecipes.splice(foundRecipeIndex, 1);
-//   } else {
-//     user.savedRecipes.push(foundRecipe);
-//   }
-//   // deleteRecipeCard()
-//   saveRecipeCard();
-//   solidBookmarkIcon.classList.toggle("hidden", false);
-// };
-
 const saveRecipe = (id, user, recipes) => {
   let foundRecipe = locateRecipe(id, recipes);
   user.savedRecipes.push(foundRecipe);
@@ -152,23 +124,15 @@ const saveRecipe = (id, user, recipes) => {
 
 const deleteRecipe = (id, user, recipes) => {
   let foundRecipe = locateRecipe(id, recipes);
-  console.log(foundRecipe);
   let foundRecipeIndex = user.savedRecipes.findIndex((recipe) => {
-    console.log(recipe.id);
-    console.log(foundRecipe.id);
     return recipe.id === foundRecipe.id;
   });
-  console.log(foundRecipeIndex);
   user.savedRecipes.splice(foundRecipeIndex, 1);
 };
 
 const displayRecipeTag = (id, currentUser, recipes) => {
-  // locate the id that is currently on dislay
-  // if that recipe id is in saved recipes display filled in tag
-  // if recipe not there show the empty one
   let foundRecipe = locateRecipe(id, recipes);
   let savedStatus = currentUser.savedRecipes.includes(foundRecipe);
-  console.log(savedStatus);
   if (savedStatus === true) {
     recipeCardBookmarkAdd.classList.toggle("hidden", true);
     recipeCardBookmarkDelete.classList.toggle("hidden", false);
