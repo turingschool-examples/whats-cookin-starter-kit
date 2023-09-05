@@ -14,7 +14,6 @@ import {
   saveRecipe,
   deleteRecipe,
   displayRecipeTag,
-  displaySavedRecipeCards
 } from "./domUpdates.js";
 
 import { filterByTag, searchRecipes } from "../src/recipes.js";
@@ -29,7 +28,6 @@ const tagSection = document.querySelector(".tag-area");
 const searchInput = document.querySelector("#searchInput");
 const searchButton = document.querySelector("#searchButton");
 const recipeArea = document.querySelector(".recipe-area");
-// const recipeCard = document.querySelector(".recipe-card");
 const recipeCardClose = document.querySelector(".close");
 const recipeCardBookmarkAdd = document.querySelector(".icon-bookmark");
 const recipeCardBookmarkDelete = document.querySelector(".solid-bookmark");
@@ -100,7 +98,6 @@ recipeCardBookmarkDelete.addEventListener("click", function (event) {
 
 userSavedRecipes.addEventListener("click", function (event) {
   activeRecipes = currentUser.savedRecipes;
-  displaySavedRecipeCards()
   createRecipeCards(activeRecipes);
 });
 

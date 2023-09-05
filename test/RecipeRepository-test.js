@@ -9,6 +9,12 @@ const {
   getIngredientNames,
 } = require("../src/recipes");
 
+// locate recipe 
+// save recipe - the user is not able to save a duplicate 
+// delete recipe - the user is not able to over a duplicate 
+// search - nothing found 
+// calculate cost fix
+
 describe("calculateCost", () => {
   it("should calculate the cost of a recipe with one ingredient", () => {
     const recipe = {
