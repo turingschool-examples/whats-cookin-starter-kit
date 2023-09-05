@@ -31,9 +31,14 @@ const addRecipesToCook = (usersData) => { //REFACTOR: Move to untestedFunc or sc
 }
 
 const saveRecipe = (recipe, user) => {
-  console.log(user.recipesToCook)
-  user.recipesToCook.push(recipe);
-  console.log(user.recipesToCook)
+const saveRecipeButton = document.querySelector('.save-recipe-button')
+  if (!user.recipesToCook.includes(recipe)){
+    user.recipesToCook.push(recipe)
+    saveRecipeButton.innerText = "Saved!"
+    saveRecipeButton.style.backgroundColor = 'green';
+  } else {
+    saveRecipeButton.innerText = "Saved!"
+    saveRecipeButton.style.backgroundColor = 'green';};
 }
 
 const createRandomIndex = (array) => { //REFACTOR: Move to untestedFunc or scripts
@@ -108,10 +113,6 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
  
   const saveRecipeButton = document.querySelector('.save-recipe-button');
   saveRecipeButton.addEventListener('click', () => {
-    if (saveRecipeButton.classList.contains('save-recipe-button')) {
-      saveRecipeButton.innerText = "Saved!"
-      saveRecipeButton.style.backgroundColor = 'green';
-    }
     saveRecipe(recipeMatch, user);
 })
 console.log("peepo", user)
