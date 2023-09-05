@@ -30,10 +30,8 @@ const allRecipes = document.querySelector('#allRecipes')
   //let usersFetch;
   
   const getRandomUser = (array) => {
-    console.log('first', randomUser);
       let randomIndex = createRandomIndex(array);
       randomUser = array[randomIndex]
-      console.log("random user", randomUser)
     return randomUser;
   };
 
@@ -52,11 +50,8 @@ const attachRecipeCardClickListener = event => {
   if (recipeCard) {
     event.preventDefault();
     const recipeId = recipeCard.getAttribute('id');
-    console.log(recipeId);
   
     displayPopUp(recipesData, ingredientsData, recipeId, randomUser);
-    console.log("LOOK AT ME", recipesData)
-    
   }
 }
 
@@ -88,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const filterByTag = (recipeData, clickedId) => {
   let filteredRecipes = findRecipeByTag(recipeData, clickedId);
-  console.log(clickedId, filteredRecipes);
   renderRecipes(filteredRecipes)
 }
 
@@ -98,10 +92,6 @@ window.addEventListener('load', function() {
     .then(() => {
     renderRecipes(recipesData);})
   fetchIngredients(getIngredientData)
-  // renderRecipes(recipesData);
-  //addRecipesToCook(usersFetch);
-  // getRandomUser(usersFetch);
-  console.log('update', randomUser)
 });
 
 
