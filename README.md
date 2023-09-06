@@ -10,7 +10,7 @@ We used Webpack to switch from using data in local files to using network reques
 
 <img width="1421" alt="Screenshot 2023-09-05 at 8 56 09 PM" src="https://github.com/alfonsojack/whats-cookin/assets/119368820/8ea42a87-2e37-40ae-9166-d4185bddfcfe">
 
-** Contributors
-Jack Alfonso
-Zen McMillan
+# Contributors
+Jack Alfonso, 
+Zen McMillan, 
 Dan Lavery
