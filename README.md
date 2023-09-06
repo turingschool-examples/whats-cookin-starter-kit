@@ -13,3 +13,4 @@ We used Webpack to switch from using data in local files to using network reques
 ** Contributors
 Jack Alfonso
 Zen McMillan
+Dan Lavery
