@@ -151,6 +151,10 @@ describe('findRecipeByTag', () => {
       ]
     }])
   });
+  it('Should return empty array if no match', () => {
+    let dinnerRecipes = findRecipeByTag(recipeData, "beep");
+    expect(dinnerRecipes).to.deep.equal([])
+  })
 })
 
 describe('findRecipeByName', () => {
@@ -203,6 +207,10 @@ describe('findRecipeByName', () => {
       ]
     }])
   });
+  it('Should return empty array if no match', () => {
+    let elvisPancakes = findRecipeByName(recipeData, "Elvr Pancake");
+    expect(elvisPancakes).to.deep.equal([])
+  })
 })
 
 describe('findRecipeIngredients', () => {
