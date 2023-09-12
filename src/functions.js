@@ -1,7 +1,3 @@
-function createFunction(array) {
-  return array;
-}
-
 function returnFilteredTag(array, tag) {
   const filteredRecipe = array.filter((recipeEl) => {
     return recipeEl.tags.includes(tag);
@@ -186,7 +182,6 @@ function deleteRecipe(savedArray, clickedId) {
 }
 
 export {
-  createFunction,
   returnFilteredListName,
   returnIngredientNames,
   returnFilteredTag,
