@@ -2,6 +2,11 @@
 
 const findRecipe = (type, recipeList, tag) => {
   let recipeFound = recipeList.filter(recipe => {
+    if(type === "name"){
+    let recipeInfo = recipe[type];
+    let recipeUndercase = recipeInfo.toLowerCase();
+    return recipeUndercase.includes(tag.toLowerCase())
+    }
     return recipe[type].includes(tag)
   })
   return recipeFound
