@@ -17,7 +17,7 @@ const renderRecipes = (recipeData) => {
     `
   )
   if(recipeData.length === 0) {
-    recipesContainer.innerHTML = `<p>No saved recipes yet!</p>`
+    recipesContainer.innerHTML = `<h2 class="categories">No saved recipes yet!</h2>`
   }
 }
 
@@ -52,7 +52,7 @@ const displayRecipes = (event, recipeData, searchField) => {
       `;
     });
   if (filteredRecipes.length === 0) {
-    recipesContainer.innerHTML = `<p>No search results!</p>`
+    recipesContainer.innerHTML = `<h2 class="categories">No search results!</h2>`
   }
     return filteredRecipes;
   }
