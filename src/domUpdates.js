@@ -40,7 +40,8 @@ const createRandomIndex = (array) => { //REFACTOR: Move to untestedFunc or scrip
 
 const displayRecipes = (event, recipeData, searchField) => {
   recipesContainer.innerHTML = '';
-  const filteredRecipes = recipeData.filter(recipe => recipe.name === searchField.value);
+  let searchValue = searchField.value.toLowerCase();
+  const filteredRecipes = recipeData.filter(recipe => recipe.name.includes(searchValue));
   if (event.key === 'Enter') {
     filteredRecipes.map(recipe => {
       recipesContainer.innerHTML += `
