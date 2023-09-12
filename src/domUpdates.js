@@ -11,8 +11,8 @@ const renderRecipes = (recipeData) => {
   recipeData.forEach((recipe) => 
     recipesContainer.innerHTML += `
     <button class="recipe-card"id="${recipe.id}">
-      <p class ="recipe-name">${recipe.name}</p>
-      <img class="image-styling" src="${recipe.image}">
+        <p class ="recipe-name">${recipe.name}</p>
+        <img class="image-styling" src="${recipe.image}">
       </button>
     `
   )
