@@ -29,10 +29,17 @@ const allRecipes = document.querySelector('#allRecipes')
   }
 
   const getFeaturedRecipes = (array) => {
-    for (let i = 0; i < 7; i++) {
-      featuredRecipes.push(array[createRandomIndex(array)]);
+    const uniqueIndexPositions = [];
+    for (let i = 0; i < 6; i++) {
+      let randomIndex = createRandomIndex(array);
+      if (uniqueIndexPositions.includes(randomIndex)) {
+        i--;
+      } else {
+        uniqueIndexPositions.push(randomIndex);
+        featuredRecipes.push(array[randomIndex]);
+      }
     }
-  }
+  };
   
   const getRandomUser = (array) => {
       let randomIndex = createRandomIndex(array);
