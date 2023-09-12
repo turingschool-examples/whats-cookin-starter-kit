@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 <html>
 <head>
   <meta charset="UTF-8" />
@@ -16,79 +17,79 @@
         </button>
         <button id="myRecipes" class="upper-nav-button">Saved Recipes</button>
       </nav>
-      <section id="search" class="search">
-        <input type="text" placeholder="Search for a recipe" class="search-input" id="searchInput" />
-        <button id="searchButton" class="search-button">🔎</button>
+      <section class="search">
+        <input type="text" placeholder="Search for a recipe" id="searchInput" aria-label="Search for a recipe">
+        <button id="searchButton" aria-label="Search">🔎</button>
       </section>
     </section>
-    <h1 id="pageTitle">Discovery Cooking</h1>
-    <section id="tags" class="tag-area">
-      <section class="tag-card" id="breakfast">
+    <h1 id="pageTitle" tabindex="0">Discovery Cooking</h1>
+    <section id="tags" class="tag-area" tabindex="0">
+      <section class="tag-card" id="breakfast" tabindex="0">
         <p class="tag-text">Breakfast</p>
       </section>
-      <section class="tag-card" id="lunch">
+      <section class="tag-card" id="lunch" tabindex="0">
         <p class="tag-text">Lunch</p>
       </section>
-      <section class="tag-card" id="dinner">
+      <section class="tag-card" id="dinner" tabindex="0">
         <p class="tag-text">Dinner</p>
       </section>
-      <section class="tag-card" id="snack">
+      <section class="tag-card" id="snack" tabindex="0">
         <p class="tag-text">Snack</p>
       </section>
-      <section class="tag-card" id="antipasti">
+      <section class="tag-card" id="antipasti" tabindex="0">
         <p class="tag-text">Antipasti</p>
       </section>
-      <section class="tag-card" id="starter">
+      <section class="tag-card" id="starter" tabindex="0">
         <p class="tag-text">Starter</p>
       </section>
-      <section class="tag-card" id="appetizer">
+      <section class="tag-card" id="appetizer" tabindex="0">
         <p class="tag-text">Appetizer</p>
       </section>
-      <section class="tag-card" id="antipasto">
+      <section class="tag-card" id="antipasto" tabindex="0">
         <p class="tag-text">Antipasto</p>
       </section>
-      <section class="tag-card" id="hor d'oeuvre">
+      <section class="tag-card" id="hor d'oeuvre" tabindex="0">
         <p class="tag-text">Hor d'oeuvre</p>
       </section>
-      <section class="tag-card" id="main course">
+      <section class="tag-card" id="main course" tabindex="0">
         <p class="tag-text">Main course</p>
       </section>
-      <section class="tag-card" id="sauce">
+      <section class="tag-card" id="sauce" tabindex="0">
         <p class="tag-text">Sauce</p>
       </section>
-      <section class="tag-card" id="side dish">
+      <section class="tag-card" id="side dish" tabindex="0">
         <p class="tag-text">Side dish</p>
       </section>
-      <section class="tag-card" id="brunch">
+      <section class="tag-card" id="brunch" tabindex="0">
         <p class="tag-text">Brunch</p>
       </section>
-      <section class="tag-card" id="morning meal">
+      <section class="tag-card" id="morning meal" tabindex="0">
         <p class="tag-text">Morning Meal</p>
       </section>
-      <section class="tag-card" id="salad">
+      <section class="tag-card" id="salad" tabindex="0">
         <p class="tag-text">Salad</p>
       </section>
-      <section class="tag-card" id="condiment">
+      <section class="tag-card" id="condiment" tabindex="0">
         <p class="tag-text">Condiment</p>
       </section>
-      <section class="tag-card" id="dip">
+      <section class="tag-card" id="dip" tabindex="0">
         <p class="tag-text">Dip</p>
       </section>
-      <section class="tag-card" id="spread">
+      <section class="tag-card" id="spread" tabindex="0">
         <p class="tag-text">Spread</p>
       </section>
     </section>
     <section class="recipe-area">
       <!-- cards go here  -->
     </section>
-    <section id="recipeCardBlowup" class="recipe-card-blowup hidden">
-      <img class="icon bookmark icon-bookmark hidden" src="./images/bookmark-regular.svg" alt="bookmark icon" />
-      <img class="icon bookmark solid-bookmark hidden" src="./images/bookmark-solid.svg" alt="solid bookmark icon" />
-      <img class="icon close" src="./images/x-solid.svg" alt="close icon" />
+    <section id="recipeCardBlowup" class="recipe-card-blowup hidden" tabindex="0" >
+      <img class="icon bookmark icon-bookmark hidden" src="./images/bookmark-regular.svg" alt="Regular Bookmark Icon" tabindex="0"  />
+      <img class="icon bookmark solid-bookmark hidden" src="./images/bookmark-solid.svg" alt="Solid Bookmark Icon" tabindex="0"  />
+      <img class="icon close" src="./images/x-solid.svg" alt="Close Icon" tabindex="0"  />
       <br />
-      <h2 id="recipeCardTitle"></h2>
+      <h2 id="recipeCardTitle">Recipe Card Title</h2>
       <br />
-      <section class="recipe-image-section" id="recipeImageSection">
+      <section class="recipe-image-section" id="recipeImageSection" tabindex="0">
         <!-- recipe image goes here -->
       </section>
       <br />
@@ -96,17 +97,16 @@
         <!-- put the individual tags for recipe here -->
       </section>
       <br />
-      <h3 id="recipeCardTotalCost"></h3>
+      <h3 id="recipeCardTotalCost">Recipe Card Total Cost tabindex="0"</h3>
       <br />
-      <section id="recipeCardIngredients">Ingredients:</section>
+      <section id="recipeCardIngredients">Ingredients: tabindex="0"</section>
       <br />
-      <p class="instructions">Instructions:</p>
+      <p class="instructions">Instructions: tabindex="0"</p>
       <br />
-      <section id="recipeCardInstructions"></section>
+      <section id="recipeCardInstructions"> </section>
     </section>
   </main>
 </body>
-<section></section>
 <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
 <script src="bundle.js"></script>
 
