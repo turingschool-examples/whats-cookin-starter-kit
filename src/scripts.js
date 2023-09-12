@@ -67,11 +67,12 @@ let currentUser = {};
 let usersData = null;
 let ingredientsData = null;
 let recipeData = null;
+let idClicked = null;
 
-function createRandomUser(array) {
-  const randIndex = Math.floor(Math.random() * array.length);
+function createRandomUser(users) {
+  const randIndex = Math.floor(Math.random() * users.length);
 
-  const randomUser = array.find((userEl) => {
+  const randomUser = users.find((userEl) => {
     return userEl.id == randIndex;
   });
   currentUser.name = randomUser.name;
@@ -187,48 +188,14 @@ tagButtons.addEventListener("click", (event) => {
 });
 
 recipeDisplay.addEventListener("click", (event) => {
-  let idClicked;
   idClicked = event.target.id;
   if (idClicked.length === 6) {
-    const directions = returnRecipeDirections(recipeData, idClicked);
-    const cost = returnRecipeCost(recipeData, ingredientsData, idClicked);
-    modalCost.innerText = `Estimated Cost of Ingredients: $${cost}`;
-    const ingredients = returnIngredientNames(
-      recipeData,
-      ingredientsData,
-      idClicked
-    );
-    const title = returnRecipeTitle(recipeData, idClicked);
-    modalTitle.innerHTML = title;
-
-    const tags = returnRecipeTags(recipeData, idClicked);
-    const url = returnRecipeImgUrl(recipeData, idClicked);
-
-    let directionsHtml = "";
-    directions.forEach((directionsEl, index) => {
-      let stepNumber = index + 1;
-      directionsHtml += `<li><strong>Step${stepNumber}:</strong> ${directionsEl}</li><br>`;
-    });
-    modalDirections.innerHTML = directionsHtml;
-
-    let ingredientsHtml = "";
-    ingredients.forEach((ingredientEl) => {
-      ingredientsHtml += `<li>- ${ingredientEl}</li>`;
-    });
-    modalIngredients.innerHTML = ingredientsHtml;
-
-    let tagsHtml = "";
-    tags.forEach((tagsEl) => {
-      tagsHtml += `<li>${tagsEl}</li>`;
-    });
-    modalTags.innerHTML = tagsHtml;
-
-    modalOverlay.classList.add("open-modal");
-
-    modalContainer.style.backgroundImage = `linear-gradient(
-      rgba(15, 15, 15, 0.7),
-      rgba(15, 15, 15, 0.7)
-    ), url(${url})`;
+    createModal();
+    updateCost();
+    updateTitle();
+    updateDirections();
+    updateIngredients();
+    updateTags();
   }
 });
 
@@ -247,3 +214,57 @@ Promise.all([fetchUsers, fetchIngredients, fetchRecipes]).then(
     createRandomUser(usersData);
   }
 );
+
+function createModal() {
+  const url = returnRecipeImgUrl(recipeData, idClicked);
+
+  modalOverlay.classList.add("open-modal");
+
+  modalContainer.style.backgroundImage = `linear-gradient(
+    rgba(15, 15, 15, 0.7),
+    rgba(15, 15, 15, 0.7)
+  ), url(${url})`;
+}
+
+function updateCost() {
+  const cost = returnRecipeCost(recipeData, ingredientsData, idClicked);
+  modalCost.innerText = `Estimated Cost of Ingredients: $${cost}`;
+}
+
+function updateTitle() {
+  const title = returnRecipeTitle(recipeData, idClicked);
+  modalTitle.innerHTML = title;
+}
+
+function updateDirections() {
+  const directions = returnRecipeDirections(recipeData, idClicked);
+  let directionsHtml = "";
+  directions.forEach((directionsEl, index) => {
+    let stepNumber = index + 1;
+    directionsHtml += `<li><strong>Step${stepNumber}:</strong> ${directionsEl}</li><br>`;
+  });
+  modalDirections.innerHTML = directionsHtml;
+}
+
+function updateIngredients() {
+  const ingredients = returnIngredientNames(
+    recipeData,
+    ingredientsData,
+    idClicked
+  );
+
+  let ingredientsHtml = "";
+  ingredients.forEach((ingredientEl) => {
+    ingredientsHtml += `<li>- ${ingredientEl}</li>`;
+  });
+  modalIngredients.innerHTML = ingredientsHtml;
+}
+
+function updateTags() {
+  const tags = returnRecipeTags(recipeData, idClicked);
+  let tagsHtml = "";
+  tags.forEach((tagsEl) => {
+    tagsHtml += `<li>${tagsEl}</li>`;
+  });
+  modalTags.innerHTML = tagsHtml;
+}

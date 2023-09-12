@@ -1,9 +1,5 @@
-function createFunction(array) {
-  return array;
-}
-
-function returnFilteredTag(array, tag) {
-  const filteredRecipe = array.filter((recipeEl) => {
+function returnFilteredTag(recipes, tag) {
+  const filteredRecipe = recipes.filter((recipeEl) => {
     return recipeEl.tags.includes(tag);
   });
   if (filteredRecipe) {
@@ -15,37 +11,36 @@ function returnFilteredTag(array, tag) {
   }
 }
 
-function returnRecipeCost(arrayRecipe, arrayIngredients, recipeID) {
-  const filteredRecipe = arrayRecipe.find((recipeEl) => {
-    return recipeEl.id === parseInt(recipeID);
+function returnRecipeCost(recipes, ingredients, id) {
+  const filteredRecipe = recipes.find((recipeEl) => {
+    return recipeEl.id === parseInt(id);
   });
   if (filteredRecipe) {
     const ingredientsArr = filteredRecipe.ingredients;
-    let totalCost = 0;
-
-    ingredientsArr.forEach((ingredientEl) => {
+    const totalCost = ingredientsArr.reduce((acc, ingredientEl) => {
       const matchingIngredient = arrayIngredients.find((ingredientsObjEl) => {
         return ingredientEl.id === ingredientsObjEl.id;
       });
       if (matchingIngredient) {
-        totalCost +=
+        acc +=
           (ingredientEl.quantity.amount *
             matchingIngredient.estimatedCostInCents) /
           100;
       }
-    });
+      return acc;
+    }, 0);
     return Math.round(totalCost);
   }
 }
 
-function returnIngredientNames(arrayRecipe, arrayIngredients, recipeID) {
-  const filteredRecipe = arrayRecipe.find((recipeEl) => {
-    return recipeEl.id === parseInt(recipeID);
+function returnIngredientNames(recipes, ingredients, id) {
+  const filteredRecipe = recipes.find((recipeEl) => {
+    return recipeEl.id === parseInt(id);
   });
   if (filteredRecipe) {
     const ingredientsArr = filteredRecipe.ingredients;
     return ingredientsArr.map((ingredientEl) => {
-      const matchingIngredient = arrayIngredients.find((ingredientsObjEl) => {
+      const matchingIngredient = ingredients.find((ingredientsObjEl) => {
         return ingredientEl.id === ingredientsObjEl.id;
       });
       if (matchingIngredient) {
@@ -55,9 +50,9 @@ function returnIngredientNames(arrayRecipe, arrayIngredients, recipeID) {
   }
   return [];
 }
-function returnRecipeDirections(array, recipeID) {
-  const filteredRecipe = array.find((recipeEl) => {
-    return recipeEl.id === parseInt(recipeID);
+function returnRecipeDirections(recipes, id) {
+  const filteredRecipe = recipes.find((recipeEl) => {
+    return recipeEl.id === parseInt(id);
     //recipeEl.id was a number
     //recipeId was a string
     // write a test case for different data types.
@@ -72,8 +67,8 @@ function returnRecipeDirections(array, recipeID) {
   }
 }
 
-function returnFilteredListName(array, name) {
-  return array
+function returnFilteredListName(recipes, name) {
+  return recipes
     .filter((recipeEl) => {
       return (
         recipeEl.name.includes(name) ||
@@ -85,39 +80,39 @@ function returnFilteredListName(array, name) {
     });
 }
 
-function returnRecipeTitle(array, recipeID) {
-  return array
+function returnRecipeTitle(recipes, id) {
+  return recipes
     .filter((recipeEl) => {
-      return recipeEl.id === parseInt(recipeID);
+      return recipeEl.id === parseInt(id);
     })
     .map((oneRecipeEl) => {
       return oneRecipeEl.name;
     });
 }
 
-function returnRecipeTags(array, recipeID) {
-  return array
+function returnRecipeTags(recipes, id) {
+  return recipes
     .filter((recipeEl) => {
-      return recipeEl.id === parseInt(recipeID);
+      return recipeEl.id === parseInt(id);
     })
     .flatMap((recipeEl) => {
       return recipeEl.tags;
     });
 }
 
-function returnRecipeImgUrl(array, recipeID) {
-  return array
+function returnRecipeImgUrl(recipes, id) {
+  return recipes
     .filter((recipeEl) => {
-      return recipeEl.id === parseInt(recipeID);
+      return recipeEl.id === parseInt(id);
     })
     .map((filteredRecipeEl) => {
       return filteredRecipeEl.image;
     });
 }
 
-function returnListOfUniqueTags(array) {
-  return array.reduce((acc, curr) => {
-    curr.tags.forEach((tagEl) => {
+function returnListOfUniqueTags(recipes) {
+  return recipes.reduce((acc, currentRecipe) => {
+    currentRecipe.tags.forEach((tagEl) => {
       if (!acc.includes(tagEl)) {
         acc.push(tagEl);
       }
@@ -126,10 +121,10 @@ function returnListOfUniqueTags(array) {
   }, []);
 }
 
-function returnFilteredRecipeArrayByTagID(arrayTagsID, arrayRecipe) {
-  return arrayRecipe.filter((arrayRecipeEl) => {
+function returnFilteredRecipeArrayByTagID(arrayTagsID, recipes) {
+  return recipes.filter((recipesEl) => {
     return arrayTagsID.some((idEl) => {
-      return idEl === arrayRecipeEl.id;
+      return idEl === recipesEl.id;
     });
   });
 }
@@ -186,7 +181,6 @@ function deleteRecipe(savedArray, clickedId) {
 }
 
 export {
-  createFunction,
   returnFilteredListName,
   returnIngredientNames,
   returnFilteredTag,
