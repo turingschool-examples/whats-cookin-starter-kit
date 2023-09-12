@@ -18,7 +18,7 @@ function returnRecipeCost(recipes, ingredients, id) {
   if (filteredRecipe) {
     const ingredientsArr = filteredRecipe.ingredients;
     const totalCost = ingredientsArr.reduce((acc, ingredientEl) => {
-      const matchingIngredient = arrayIngredients.find((ingredientsObjEl) => {
+      const matchingIngredient = ingredients.find((ingredientsObjEl) => {
         return ingredientEl.id === ingredientsObjEl.id;
       });
       if (matchingIngredient) {
