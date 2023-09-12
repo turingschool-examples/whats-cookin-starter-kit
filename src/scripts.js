@@ -68,10 +68,10 @@ let usersData = null;
 let ingredientsData = null;
 let recipeData = null;
 
-function createRandomUser(array) {
-  const randIndex = Math.floor(Math.random() * array.length);
+function createRandomUser(users) {
+  const randIndex = Math.floor(Math.random() * users.length);
 
-  const randomUser = array.find((userEl) => {
+  const randomUser = users.find((userEl) => {
     return userEl.id == randIndex;
   });
   currentUser.name = randomUser.name;
