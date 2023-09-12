@@ -91,10 +91,10 @@ function returnRecipeTitle(recipes, id) {
     });
 }
 
-function returnRecipeTags(array, recipeID) {
-  return array
+function returnRecipeTags(recipes, id) {
+  return recipes
     .filter((recipeEl) => {
-      return recipeEl.id === parseInt(recipeID);
+      return recipeEl.id === parseInt(id);
     })
     .flatMap((recipeEl) => {
       return recipeEl.tags;
