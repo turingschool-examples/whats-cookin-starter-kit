@@ -6,7 +6,7 @@ import {fetchData} from './apiCalls'
 
 
 // Example of one way to import functions from the domUpdates file. You will delete these examples.
-import {renderRecipes, displayRecipes, displayPopUp, createRandomIndex} from './domUpdates.js';
+import {renderRecipes, displayRecipes, displayPopUp} from './domUpdates.js';
 import {findRecipe} from '../test/untestedFunctions.js'
 
 // query selectors
@@ -20,9 +20,19 @@ const allRecipes = document.querySelector('#allRecipes')
   //variables
   let randomUser;
   let recipesData;
-  let ingredientsData
+  let ingredientsData;
+  let featuredRecipes = [];
 
 
+  const createRandomIndex = (array) => { //REFACTOR: Move to untestedFunc or scripts
+    return Math.floor(Math.random() * array.length);
+  }
+
+  const getFeaturedRecipes = (array) => {
+    for (let i = 0; i < 7; i++) {
+      featuredRecipes.push(array[createRandomIndex(array)]);
+    }
+  }
   
   const getRandomUser = (array) => {
       let randomIndex = createRandomIndex(array);
@@ -67,7 +77,9 @@ window.addEventListener('load', function() {
   fetchData('users', "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users", getRandomUser);
   fetchData('recipes', "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes", getRecipeData)
     .then(() => {
-    renderRecipes(recipesData);})
+      getFeaturedRecipes(recipesData)})  
+    .then(() => {
+      renderRecipes(featuredRecipes);})
   fetchData('ingredients', "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients", getIngredientData)
 });
 

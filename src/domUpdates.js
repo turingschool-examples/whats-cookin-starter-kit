@@ -6,7 +6,6 @@ const recipesContainer = document.querySelector('.recipe-container');
 
 
 const renderRecipes = (recipeData) => {
-
   recipesContainer.innerHTML = '';
   recipeData.forEach((recipe) => 
     recipesContainer.innerHTML += `
@@ -34,9 +33,6 @@ const saveRecipe = (recipe, user) => {
       saveRecipeButton.style.backgroundColor = 'red';};
 }
 
-const createRandomIndex = (array) => { //REFACTOR: Move to untestedFunc or scripts
-  return Math.floor(Math.random() * array.length);
-}
 
 const displayRecipes = (event, recipeData, searchField) => {
   recipesContainer.innerHTML = '';
@@ -120,5 +116,4 @@ export  {
   renderRecipes,
   displayRecipes,
   displayPopUp, 
-  createRandomIndex,
 }
