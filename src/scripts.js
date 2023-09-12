@@ -67,6 +67,7 @@ let currentUser = {};
 let usersData = null;
 let ingredientsData = null;
 let recipeData = null;
+let idClicked = null;
 
 function createRandomUser(users) {
   const randIndex = Math.floor(Math.random() * users.length);
@@ -130,87 +131,53 @@ inputName.addEventListener("keydown", (event) => {
   }
 });
 
-    inputIngredient.addEventListener("keydown", (event) => {
-      if (savedRecipesBtn.innerText === "View Saved Recipes") {
-        const userInput = getUserInput(".input-ingredient");
-        const recipeIdsByIngredient = findRecipeByIngredient(
-          userInput,
-          ingredientsData,
-          recipeData
-        );
-        displayRecipes(recipeIdsByIngredient, "Save Recipe");
-      } else {
-        const userInput = getUserInput(".input-ingredient");
-        const recipeIdsByIngredient = findRecipeByIngredient(
-          userInput,
-          ingredientsData,
-          currentUser.recipesToCook
-        );
-        displayRecipes(recipeIdsByIngredient, "Remove Recipe");
-      }
-    });
+inputIngredient.addEventListener("keydown", (event) => {
+  if (savedRecipesBtn.innerText === "View Saved Recipes") {
+    const userInput = getUserInput(".input-ingredient");
+    const recipeIdsByIngredient = findRecipeByIngredient(
+      userInput,
+      ingredientsData,
+      recipeData
+    );
+    displayRecipes(recipeIdsByIngredient, "Save Recipe");
+  } else {
+    const userInput = getUserInput(".input-ingredient");
+    const recipeIdsByIngredient = findRecipeByIngredient(
+      userInput,
+      ingredientsData,
+      currentUser.recipesToCook
+    );
+    displayRecipes(recipeIdsByIngredient, "Remove Recipe");
+  }
+});
 
-    tagButtons.addEventListener("click", (event) => {
-      let tagClicked;
-      tagClicked = event.target.id;
-      if (event.target === savedRecipesBtn) {
-        const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
-        displayRecipes(filteredRecipeIDByTag, "Remove Recipe");
-      } else if (tagClicked !== '' && savedRecipesBtn.innerHTML !== 'View All') {
-        const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
-        displayRecipes(filteredRecipeIDByTag, "Save Recipe");
-      } else if (tagClicked !== '' && savedRecipesBtn.innerHTML === 'View All') {
-        const filteredRecipeIDByTag = returnFilteredTag(
-          currentUser.recipesToCook,
-          tagClicked
-        );
-        displayRecipes(filteredRecipeIDByTag, "Remove Recipe");
-      }
-    });
+tagButtons.addEventListener("click", (event) => {
+  let tagClicked;
+  tagClicked = event.target.id;
+  if (event.target === savedRecipesBtn) {
+    const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
+    displayRecipes(filteredRecipeIDByTag, "Remove Recipe");
+  } else if (tagClicked !== "" && savedRecipesBtn.innerHTML !== "View All") {
+    const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
+    displayRecipes(filteredRecipeIDByTag, "Save Recipe");
+  } else if (tagClicked !== "" && savedRecipesBtn.innerHTML === "View All") {
+    const filteredRecipeIDByTag = returnFilteredTag(
+      currentUser.recipesToCook,
+      tagClicked
+    );
+    displayRecipes(filteredRecipeIDByTag, "Remove Recipe");
+  }
+});
 
 recipeDisplay.addEventListener("click", (event) => {
-  let idClicked;
   idClicked = event.target.id;
   if (idClicked.length === 6) {
-    const directions = returnRecipeDirections(recipeData, idClicked);
-    const cost = returnRecipeCost(recipeData, ingredientsData, idClicked);
-    modalCost.innerText = `Estimated Cost of Ingredients: $${cost}`;
-    const ingredients = returnIngredientNames(
-      recipeData,
-      ingredientsData,
-      idClicked
-    );
-    const title = returnRecipeTitle(recipeData, idClicked);
-    modalTitle.innerHTML = title;
-
-    const tags = returnRecipeTags(recipeData, idClicked);
-    const url = returnRecipeImgUrl(recipeData, idClicked);
-
-    let directionsHtml = "";
-    directions.forEach((directionsEl, index) => {
-      let stepNumber = index + 1;
-      directionsHtml += `<li><strong>Step${stepNumber}:</strong> ${directionsEl}</li><br>`;
-    });
-    modalDirections.innerHTML = directionsHtml;
-
-    let ingredientsHtml = "";
-    ingredients.forEach((ingredientEl) => {
-      ingredientsHtml += `<li>- ${ingredientEl}</li>`;
-    });
-    modalIngredients.innerHTML = ingredientsHtml;
-
-    let tagsHtml = "";
-    tags.forEach((tagsEl) => {
-      tagsHtml += `<li>${tagsEl}</li>`;
-    });
-    modalTags.innerHTML = tagsHtml;
-
-    modalOverlay.classList.add("open-modal");
-
-    modalContainer.style.backgroundImage = `linear-gradient(
-      rgba(15, 15, 15, 0.7),
-      rgba(15, 15, 15, 0.7)
-    ), url(${url})`;
+    createModal();
+    updateCost();
+    updateTitle();
+    updateDirections();
+    updateIngredients();
+    updateTags();
   }
 });
 
@@ -229,3 +196,57 @@ Promise.all([fetchUsers, fetchIngredients, fetchRecipes]).then(
     createRandomUser(usersData);
   }
 );
+
+function createModal() {
+  const url = returnRecipeImgUrl(recipeData, idClicked);
+
+  modalOverlay.classList.add("open-modal");
+
+  modalContainer.style.backgroundImage = `linear-gradient(
+    rgba(15, 15, 15, 0.7),
+    rgba(15, 15, 15, 0.7)
+  ), url(${url})`;
+}
+
+function updateCost() {
+  const cost = returnRecipeCost(recipeData, ingredientsData, idClicked);
+  modalCost.innerText = `Estimated Cost of Ingredients: $${cost}`;
+}
+
+function updateTitle() {
+  const title = returnRecipeTitle(recipeData, idClicked);
+  modalTitle.innerHTML = title;
+}
+
+function updateDirections() {
+  const directions = returnRecipeDirections(recipeData, idClicked);
+  let directionsHtml = "";
+  directions.forEach((directionsEl, index) => {
+    let stepNumber = index + 1;
+    directionsHtml += `<li><strong>Step${stepNumber}:</strong> ${directionsEl}</li><br>`;
+  });
+  modalDirections.innerHTML = directionsHtml;
+}
+
+function updateIngredients() {
+  const ingredients = returnIngredientNames(
+    recipeData,
+    ingredientsData,
+    idClicked
+  );
+
+  let ingredientsHtml = "";
+  ingredients.forEach((ingredientEl) => {
+    ingredientsHtml += `<li>- ${ingredientEl}</li>`;
+  });
+  modalIngredients.innerHTML = ingredientsHtml;
+}
+
+function updateTags() {
+  const tags = returnRecipeTags(recipeData, idClicked);
+  let tagsHtml = "";
+  tags.forEach((tagsEl) => {
+    tagsHtml += `<li>${tagsEl}</li>`;
+  });
+  modalTags.innerHTML = tagsHtml;
+}

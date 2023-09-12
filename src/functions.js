@@ -17,19 +17,18 @@ function returnRecipeCost(recipes, ingredients, id) {
   });
   if (filteredRecipe) {
     const ingredientsArr = filteredRecipe.ingredients;
-    let totalCost = 0;
-
-    ingredientsArr.forEach((ingredientEl) => {
-      const matchingIngredient = ingredients.find((ingredientsObjEl) => {
+    const totalCost = ingredientsArr.reduce((acc, ingredientEl) => {
+      const matchingIngredient = arrayIngredients.find((ingredientsObjEl) => {
         return ingredientEl.id === ingredientsObjEl.id;
       });
       if (matchingIngredient) {
-        totalCost +=
+        acc +=
           (ingredientEl.quantity.amount *
             matchingIngredient.estimatedCostInCents) /
           100;
       }
-    });
+      return acc;
+    }, 0);
     return Math.round(totalCost);
   }
 }
