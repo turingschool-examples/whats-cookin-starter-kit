@@ -56,24 +56,6 @@ const attachRecipeCardClickListener = event => {
 document.addEventListener('DOMContentLoaded', () => {
   const recipesContainer = document.querySelector('.recipe-container');
   recipesContainer.addEventListener('click', attachRecipeCardClickListener);
-  recipesContainer.addEventListener('mouseover', event => {
-    const hoveredRecipeCard = event.target.closest('.recipe-card');
-    if (hoveredRecipeCard) {
-      hoveredRecipeCard.style.boxShadow = '0px 4px 8px rgba(0, 0, 0, 0.6)';
-    }
-  });
-  recipesContainer.addEventListener('mouseout', event => {
-    const hoveredRecipeCard = event.target.closest('.recipe-card');
-    if (hoveredRecipeCard) {
-      hoveredRecipeCard.style.boxShadow = ''; 
-    }
-  });
-  recipesContainer.addEventListener('mousedown', event => {
-    const hoveredRecipeCard = event.target.closest('.recipe-card');
-    if (hoveredRecipeCard) {
-      hoveredRecipeCard.style.boxShadow = '0px 8px 16px rgba(0, 0, 0, 0.9)'; 
-    }
-  });
 });
 
 const filterByTag = (recipeData, clickedId) => {
