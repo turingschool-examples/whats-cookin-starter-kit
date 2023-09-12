@@ -44,7 +44,12 @@ import {
 
 import { displayRecipes } from "./domUpdates.js";
 import { displayTags } from "./domUpdates.js";
-import { fetchIngredients, fetchRecipes, fetchUsers } from "./apiCalls";
+import {
+  fetchIngredients,
+  fetchRecipes,
+  fetchUsers,
+  postRecipe,
+} from "./apiCalls";
 
 const recipeDisplay = document.querySelector(".recipes");
 
@@ -53,7 +58,9 @@ const modalContainer = document.querySelector(".modal-container");
 const modalOverlay = document.querySelector(".modal-overlay");
 const modalTitle = document.querySelector(".modal-title");
 const modalTags = document.querySelector(".modal-tags");
-const modalDirections = document.querySelector(".modal-directions-list");
+const modalDirectsaveRecipeions = document.querySelector(
+  ".modal-directions-list"
+);
 const modalCost = document.querySelector(".modal-cost");
 const modalIngredients = document.querySelector(".modal-ingredients-list");
 const closeBtn = document.querySelector(".close-btn");
@@ -62,7 +69,7 @@ const inputName = document.querySelector(".input-name");
 const inputIngredient = document.querySelector(".input-ingredient");
 const savedRecipesBtn = document.querySelector(".view-saved");
 
-let currentUser = {};
+export let currentUser = {};
 
 let usersData = null;
 let ingredientsData = null;
@@ -78,14 +85,15 @@ function createRandomUser(users) {
   currentUser.name = randomUser.name;
   currentUser.id = randomUser.id;
   currentUser.recipesToCook = [];
+  currentUser.postProp = {};
   console.log(currentUser);
 
   return currentUser;
 }
 const viewSavedRecipes = (recipeData) => {
+  console.log(currentUser.recipesToCook);
+  console.log(currentUser);
   if (savedRecipesBtn.innerText === "View Saved Recipes") {
-    // console.log(currentUser.recipesToCook);
-    // console.log(currentUser);
     displayRecipes(currentUser.recipesToCook, "Remove Recipe");
     savedRecipesBtn.innerText = "View All";
     displayTags(currentUser.recipesToCook);
@@ -105,7 +113,8 @@ recipeDisplay.addEventListener("click", (event) => {
   if (event.target.innerText === "Save Recipe") {
     event.target.innerText = "✓ Saved";
     event.target.style.backgroundColor = "#89ce94";
-    saveRecipe(recipeData, currentUser.recipesToCook, clickedId);
+    saveRecipe(recipeData, currentUser.recipesToCook, clickedId, currentUser);
+    postRecipe();
   } else if (event.target.innerText === "✓ Saved") {
     event.target.innerText = "Save Recipe";
     event.target.style.backgroundColor = "#e5e7e9";
@@ -118,7 +127,7 @@ recipeDisplay.addEventListener("click", (event) => {
 });
 
 inputName.addEventListener("keyup", (event) => {
-  if(savedRecipesBtn.innerText === "View Saved Recipes") {
+  if (savedRecipesBtn.innerText === "View Saved Recipes") {
     const userInput = getUserInput(".input-name");
     const recipeIdsByName = findRecipeByName(userInput, recipeData);
     displayRecipes(recipeIdsByName, "Save Recipe");
@@ -142,15 +151,15 @@ inputIngredient.addEventListener("keyup", (event) => {
     );
     displayRecipes(recipeIdsByIngredient, "Save Recipe");
   } else {
-      const userInput = getUserInput(".input-ingredient");
-      const recipeIdsByIngredient = findRecipeByIngredient(
-        userInput,
-        ingredientsData,
-        currentUser.recipesToCook
-      );
-      displayRecipes(recipeIdsByIngredient, "Remove Recipe");
-    }
-  });
+    const userInput = getUserInput(".input-ingredient");
+    const recipeIdsByIngredient = findRecipeByIngredient(
+      userInput,
+      ingredientsData,
+      currentUser.recipesToCook
+    );
+    displayRecipes(recipeIdsByIngredient, "Remove Recipe");
+  }
+});
 
 tagButtons.addEventListener("click", (event) => {
   let tagClicked;
@@ -161,7 +170,7 @@ tagButtons.addEventListener("click", (event) => {
 
   if (clickedTag.classList.contains("tag-btn")) {
     const allTagButtons = tagButtons.querySelectorAll(".tag-btn");
-    
+
     allTagButtons.forEach((tagButton) => {
       if (tagButton === clickedTag) {
         tagButton.parentNode.classList.toggle("bold");
@@ -169,16 +178,16 @@ tagButtons.addEventListener("click", (event) => {
         // reset the others
         tagButton.parentNode.classList.remove("bold");
       }
-    })
+    });
   }
 
   if (event.target === savedRecipesBtn) {
     const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
     displayRecipes(filteredRecipeIDByTag, "Remove Recipe");
-  } else if (tagClicked !== '' && savedRecipesBtn.innerHTML !== 'View All') {
+  } else if (tagClicked !== "" && savedRecipesBtn.innerHTML !== "View All") {
     const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
     displayRecipes(filteredRecipeIDByTag, "Save Recipe");
-  } else if (tagClicked !== '' && savedRecipesBtn.innerHTML === 'View All') {
+  } else if (tagClicked !== "" && savedRecipesBtn.innerHTML === "View All") {
     const filteredRecipeIDByTag = returnFilteredTag(
       currentUser.recipesToCook,
       tagClicked

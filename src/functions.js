@@ -18,7 +18,7 @@ function returnRecipeCost(recipes, ingredients, id) {
   if (filteredRecipe) {
     const ingredientsArr = filteredRecipe.ingredients;
     const totalCost = ingredientsArr.reduce((acc, ingredientEl) => {
-      const matchingIngredient = ingredients.find((ingredientsObjEl) => {
+      const matchingIngredient = arrayIngredients.find((ingredientsObjEl) => {
         return ingredientEl.id === ingredientsObjEl.id;
       });
       if (matchingIngredient) {
@@ -160,12 +160,13 @@ function getUserInput(inputType) {
   return userInput.toLowerCase();
 }
 
-function saveRecipe(dataArray, savedArray, clickedId) {
+function saveRecipe(dataArray, savedArray, clickedId, userObj) {
   const savedRecipe = dataArray.find((recipeEl) => {
     return recipeEl.id === parseInt(clickedId);
   });
   if (!savedArray.includes(savedRecipe)) {
     savedArray.push(savedRecipe);
+    userObj.postProp = { userID: userObj.id, recipeID: savedRecipe.id };
     return savedArray;
   }
 }
