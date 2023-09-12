@@ -24,9 +24,17 @@ const findRecipeByName = (recipeData, name) => {
 // Determine the names of ingredients needed for a given recipe.
 
 const findRecipeIngredients = (recipeData, ingredientsData, id) => {
+  if (!recipeData || !ingredientsData || !Array.isArray(recipeData) || !Array.isArray(ingredientsData)) {
+    return "Invalid recipe or ingredients data";
+  }
+
   let givenRecipe = recipeData.find(recipe => {
     return recipe["id"] == id
   })
+
+  if (!givenRecipe) {
+    return "Recipe not found";
+  }
 
   let ingredientIds = givenRecipe["ingredients"].map(ingredient => {
     return ingredient["id"]
@@ -36,10 +44,14 @@ const findRecipeIngredients = (recipeData, ingredientsData, id) => {
     return ingredientIds.includes(ingredient["id"])
   })
 
+  if (recipeIngredients.length === 0) {
+    return "No ingredients found for the recipe";
+  }
+
   return recipeIngredients.map(ingredient => {
     let ingredientNames = ingredient["name"]
     return ingredientNames
-  } )
+  });
 }
 
 // Return a specific recipe based on the id number
