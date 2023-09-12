@@ -62,7 +62,7 @@ describe('findRecipe', () => {
     }]);
   });
   it('Should return an array of more than one object containing a certain tag', () => {
-    let snackRecipes = findRecipeByTag(recipeData, "snack");
+    let snackRecipes = findRecipe("tags", recipeData, "snack");
     expect(snackRecipes).to.deep.equal([ {
       "id": 595736,
       "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
