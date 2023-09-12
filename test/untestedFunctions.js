@@ -1,9 +1,4 @@
-// import from testData.js
-// export to recipeRepositories
 
-// const { recipeData, ingredientsData } = require("./testData")
-// import './testData'
-// Return a filtered list of recipes based on a tag or name (Extension option: filtering by multiple tags)
 
 const findRecipe = (type, recipeList, tag) => {
   let recipeFound = recipeList.filter(recipe => {

@@ -229,7 +229,15 @@ describe('calculateCost', () => {
     const recipeCost = calculateCost(recipeData, ingredientsData, clickedId)
   
     expect(recipeCost).to.deep.equal('$5.04')
-    })
+    });
+    it(' should calculate the cost of a different given recipe\'s ingredients', () => {
+      
+      
+      const clickedId = 678353
+      const recipeCost = calculateCost(recipeData, ingredientsData, clickedId)
+    
+      expect(recipeCost).to.deep.equal('$31.58')
+      })
 })
 
 describe('findDirections', () => {
