@@ -2,7 +2,7 @@
 
 import './styles.css'
 import  './apiCalls'
-import {fetchUsers, fetchRecipes, fetchIngredients} from './apiCalls'
+import {fetchData} from './apiCalls'
 
 
 // Example of one way to import functions from the domUpdates file. You will delete these examples.
@@ -64,11 +64,11 @@ const filterByTag = (recipeData, clickedId) => {
 }
 
 window.addEventListener('load', function() {
-  fetchUsers(getRandomUser);
-  fetchRecipes(getRecipeData)
+  fetchData('users', "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users", getRandomUser);
+  fetchData('recipes', "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes", getRecipeData)
     .then(() => {
     renderRecipes(recipesData);})
-  fetchIngredients(getIngredientData)
+  fetchData('ingredients', "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients", getIngredientData)
 });
 
 
