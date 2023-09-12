@@ -2,12 +2,12 @@
 
 import './styles.css'
 import  './apiCalls'
-import {fetchUsers, fetchRecipes, fetchIngredients} from './apiCalls'
+import {fetchData} from './apiCalls'
 
 
 // Example of one way to import functions from the domUpdates file. You will delete these examples.
-import {renderRecipes, displayRecipes, displayPopUp, createRandomIndex} from './domUpdates.js';
-import {findRecipeByTag} from '../test/untestedFunctions.js'
+import {renderRecipes, displayRecipes, displayPopUp} from './domUpdates.js';
+import {findRecipe} from '../test/untestedFunctions.js'
 
 // query selectors
 
@@ -20,9 +20,26 @@ const allRecipes = document.querySelector('#allRecipes')
   //variables
   let randomUser;
   let recipesData;
-  let ingredientsData
+  let ingredientsData;
+  let featuredRecipes = [];
 
 
+  const createRandomIndex = (array) => { //REFACTOR: Move to untestedFunc or scripts
+    return Math.floor(Math.random() * array.length);
+  }
+
+  const getFeaturedRecipes = (array) => {
+    const uniqueIndexPositions = [];
+    for (let i = 0; i < 6; i++) {
+      let randomIndex = createRandomIndex(array);
+      if (uniqueIndexPositions.includes(randomIndex)) {
+        i--;
+      } else {
+        uniqueIndexPositions.push(randomIndex);
+        featuredRecipes.push(array[randomIndex]);
+      }
+    }
+  };
   
   const getRandomUser = (array) => {
       let randomIndex = createRandomIndex(array);
@@ -56,37 +73,21 @@ const attachRecipeCardClickListener = event => {
 document.addEventListener('DOMContentLoaded', () => {
   const recipesContainer = document.querySelector('.recipe-container');
   recipesContainer.addEventListener('click', attachRecipeCardClickListener);
-  recipesContainer.addEventListener('mouseover', event => {
-    const hoveredRecipeCard = event.target.closest('.recipe-card');
-    if (hoveredRecipeCard) {
-      hoveredRecipeCard.style.boxShadow = '0px 4px 8px rgba(0, 0, 0, 0.6)';
-    }
-  });
-  recipesContainer.addEventListener('mouseout', event => {
-    const hoveredRecipeCard = event.target.closest('.recipe-card');
-    if (hoveredRecipeCard) {
-      hoveredRecipeCard.style.boxShadow = ''; 
-    }
-  });
-  recipesContainer.addEventListener('mousedown', event => {
-    const hoveredRecipeCard = event.target.closest('.recipe-card');
-    if (hoveredRecipeCard) {
-      hoveredRecipeCard.style.boxShadow = '0px 8px 16px rgba(0, 0, 0, 0.9)'; 
-    }
-  });
 });
 
 const filterByTag = (recipeData, clickedId) => {
-  let filteredRecipes = findRecipeByTag(recipeData, clickedId);
+  let filteredRecipes = findRecipe('tags', recipeData, clickedId);
   renderRecipes(filteredRecipes)
 }
 
 window.addEventListener('load', function() {
-  fetchUsers(getRandomUser);
-  fetchRecipes(getRecipeData)
+  fetchData('users', "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users", getRandomUser);
+  fetchData('recipes', "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes", getRecipeData)
     .then(() => {
-    renderRecipes(recipesData);})
-  fetchIngredients(getIngredientData)
+      getFeaturedRecipes(recipesData)})  
+    .then(() => {
+      renderRecipes(featuredRecipes);})
+  fetchData('ingredients', "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients", getIngredientData)
 });
 
 
@@ -133,12 +134,12 @@ allRecipes.addEventListener('click', function() {
 savedRecipes.addEventListener('click', function() {
   let userRecipesToCook = randomUser.recipesToCook;
   renderRecipes(userRecipesToCook);
-  allButton.style.borderBottom = '4px solid navy';
+  allButton.style.borderBottom = '4px solid #4B1D3F';
   allButton.addEventListener('click', function() {
     renderRecipes(userRecipesToCook);
   });
   navLinks.forEach(link => {
-    link.style.borderBottom = '4px solid navy';
+    link.style.borderBottom = '4px solid #4B1D3F';
     link.addEventListener('click', function(event) {
       event.preventDefault();
       const linkId = link.getAttribute('id');

@@ -3,15 +3,17 @@
 const chai = require('chai');
 const expect = chai.expect;
 const assert = require('chai').assert;
-import {findRecipeByTag, findRecipeByName, findRecipeIngredients, calculateCost, findDirections } from '../test/untestedFunctions'
+import {findRecipe, findRecipeIngredients, calculateCost, findDirections } from '../test/untestedFunctions'
 import ingredientsData from '../src/data/ingredients-test-data.js';
 import recipeData from '../src/data/recipe-test-data.js';
 // const { recipeData, ingredientsData } = require("./testData.js")
 
 
-describe('findRecipeByTag', () => {
+
+
+describe('findRecipe', () => {
   it('Should return an array of one object containing a certain tag', () => {
-    let dinnerRecipes = findRecipeByTag(recipeData, "dinner");
+    let dinnerRecipes = findRecipe("tags", recipeData, "dinner");
     expect(dinnerRecipes).to.deep.equal([{
       "id": 741603,
       "image": "https://spoonacular.com/recipeImages/741603-556x370.jpeg",
@@ -60,7 +62,7 @@ describe('findRecipeByTag', () => {
     }]);
   });
   it('Should return an array of more than one object containing a certain tag', () => {
-    let snackRecipes = findRecipeByTag(recipeData, "snack");
+    let snackRecipes = findRecipe("tags", recipeData, "snack");
     expect(snackRecipes).to.deep.equal([ {
       "id": 595736,
       "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
@@ -149,15 +151,12 @@ describe('findRecipeByTag', () => {
       ]
     }])
   });
-  it('Should return empty array if no match', () => {
-    let dinnerRecipes = findRecipeByTag(recipeData, "beep");
+  it('Should return empty array if no tag match', () => {
+    let dinnerRecipes = findRecipe("tags", recipeData, "beep");
     expect(dinnerRecipes).to.deep.equal([])
   })
-})
-
-describe('findRecipeByName', () => {
-  it('Should return a specific recipe object in an array', () => {
-    let elvisPancakes = findRecipeByName(recipeData, "Elvis Pancakes");
+  it('Should return a specific recipe object in an array for exact search match', () => {
+    let elvisPancakes = findRecipe("name", recipeData, "Elvis Pancakes");
     expect(elvisPancakes).to.deep.equal(  [{
       "id": 741603,
       "image": "https://spoonacular.com/recipeImages/741603-556x370.jpeg",
@@ -205,8 +204,106 @@ describe('findRecipeByName', () => {
       ]
     }])
   });
-  it('Should return empty array if no match', () => {
-    let elvisPancakes = findRecipeByName(recipeData, "Elvr Pancake");
+  it('Should return a specific recipe object in an array for a partial search match', () => {
+    let elvisPancakes = findRecipe("name", recipeData, "Elvis P");
+    expect(elvisPancakes).to.deep.equal(  [{
+      "id": 741603,
+      "image": "https://spoonacular.com/recipeImages/741603-556x370.jpeg",
+      "ingredients": [
+        {
+          "id": 20081,
+          "quantity": {
+            "amount": 1,
+            "unit": "cup"
+          }
+        },
+        {
+          "id": 18371,
+          "quantity": {
+            "amount": 2,
+            "unit": "teaspoons"
+          }
+        },
+        {
+          "id": 9040,
+          "quantity": {
+            "amount": 12,
+            "unit": "servings"
+          }
+        }
+      ],
+      "instructions": [
+        {
+          "instruction": "Watch how to make this recipe.",
+          "number": 1
+        },
+        {
+          "instruction": "In a large bowl, whisk together buttermilk, eggs, baking powder, sugar, salt and butter.",
+          "number": 2
+        },
+        {
+          "instruction": "In another large bowl mix together all-purpose flour and buckwheat flour.",
+          "number": 3
+        }
+      ],
+      "name": "Elvis Pancakes",
+      "tags": [
+        "side dish",
+        "dinner"
+      ]
+    }])
+  });
+  it('Should return a specific recipe object in an array for a partial search match that is not case sensitive', () => {
+    let elvisPancakes = findRecipe("name", recipeData, "Elvis p");
+    expect(elvisPancakes).to.deep.equal(  [{
+      "id": 741603,
+      "image": "https://spoonacular.com/recipeImages/741603-556x370.jpeg",
+      "ingredients": [
+        {
+          "id": 20081,
+          "quantity": {
+            "amount": 1,
+            "unit": "cup"
+          }
+        },
+        {
+          "id": 18371,
+          "quantity": {
+            "amount": 2,
+            "unit": "teaspoons"
+          }
+        },
+        {
+          "id": 9040,
+          "quantity": {
+            "amount": 12,
+            "unit": "servings"
+          }
+        }
+      ],
+      "instructions": [
+        {
+          "instruction": "Watch how to make this recipe.",
+          "number": 1
+        },
+        {
+          "instruction": "In a large bowl, whisk together buttermilk, eggs, baking powder, sugar, salt and butter.",
+          "number": 2
+        },
+        {
+          "instruction": "In another large bowl mix together all-purpose flour and buckwheat flour.",
+          "number": 3
+        }
+      ],
+      "name": "Elvis Pancakes",
+      "tags": [
+        "side dish",
+        "dinner"
+      ]
+    }])
+  });
+  it('Should return empty array if no search match', () => {
+    let elvisPancakes = findRecipe("name", recipeData, "Elvr Pancake");
     expect(elvisPancakes).to.deep.equal([])
   })
 })
@@ -230,7 +327,15 @@ describe('calculateCost', () => {
     const recipeCost = calculateCost(recipeData, ingredientsData, clickedId)
   
     expect(recipeCost).to.deep.equal('$5.04')
-    })
+    });
+    it(' should calculate the cost of a different given recipe\'s ingredients', () => {
+      
+      
+      const clickedId = 678353
+      const recipeCost = calculateCost(recipeData, ingredientsData, clickedId)
+    
+      expect(recipeCost).to.deep.equal('$31.58')
+      })
 })
 
 describe('findDirections', () => {

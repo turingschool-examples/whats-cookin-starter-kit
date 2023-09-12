@@ -6,18 +6,17 @@ const recipesContainer = document.querySelector('.recipe-container');
 
 
 const renderRecipes = (recipeData) => {
-
   recipesContainer.innerHTML = '';
   recipeData.forEach((recipe) => 
     recipesContainer.innerHTML += `
     <button class="recipe-card"id="${recipe.id}">
-      <p class ="recipe-name">${recipe.name}</p>
-      <img class="image-styling" src="${recipe.image}">
+        <p class ="recipe-name">${recipe.name}</p>
+        <img class="image-styling" src="${recipe.image}">
       </button>
     `
   )
   if(recipeData.length === 0) {
-    recipesContainer.innerHTML = `<p>No saved recipes yet!</p>`
+    recipesContainer.innerHTML = `<h2 class="categories">No saved recipes yet!</h2>`
   }
 }
 
@@ -34,13 +33,11 @@ const saveRecipe = (recipe, user) => {
       saveRecipeButton.style.backgroundColor = 'red';};
 }
 
-const createRandomIndex = (array) => { //REFACTOR: Move to untestedFunc or scripts
-  return Math.floor(Math.random() * array.length);
-}
 
 const displayRecipes = (event, recipeData, searchField) => {
   recipesContainer.innerHTML = '';
-  const filteredRecipes = recipeData.filter(recipe => recipe.name === searchField.value);
+  let searchValue = searchField.value.toLowerCase();
+  const filteredRecipes = recipeData.filter(recipe => recipe.name.includes(searchValue));
   if (event.key === 'Enter') {
     filteredRecipes.map(recipe => {
       recipesContainer.innerHTML += `
@@ -51,7 +48,7 @@ const displayRecipes = (event, recipeData, searchField) => {
       `;
     });
   if (filteredRecipes.length === 0) {
-    recipesContainer.innerHTML = `<p>No search results!</p>`
+    recipesContainer.innerHTML = `<h2 class="categories">No search results!</h2>`
   }
     return filteredRecipes;
   }
@@ -90,13 +87,16 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
         <div class="instructions-list">${instructionsList}</div>
         <h3>Total Cost:</h3>
         <p>${recipeCost}</p>
-        <div class="save-and-close-button-container">
-          <button class="save-and-close-button" id="closePopup">Close</button>
-          <button class="save-and-close-button save-recipe-button" id="saveRecipe">Save</button>
-        </div>
       </div>
+      <section class="save-and-close-button-container">
+      <button class="save-and-close-button" id="closePopup">Close</button>
+      <button class="save-and-close-button save-recipe-button" id="saveRecipe">Save</button>
+    </section>
     </div>
   `
+  const popUpContentContainer = document.querySelector('.popup-content');
+  popUpContentContainer.style.backgroundColor = '#414535';
+  popUpContentContainer.style.border = '3px black solid';
   const closeButton = document.querySelector('#closePopup');
   closeButton.addEventListener('click', () => {
     renderRecipes(recipeData); //REFACTOR; CHECK: SCRIPTS (82.1)
@@ -116,5 +116,4 @@ export  {
   renderRecipes,
   displayRecipes,
   displayPopUp, 
-  createRandomIndex,
 }
