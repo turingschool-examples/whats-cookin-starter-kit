@@ -122,10 +122,10 @@ function returnListOfUniqueTags(recipes) {
   }, []);
 }
 
-function returnFilteredRecipeArrayByTagID(arrayTagsID, arrayRecipe) {
-  return arrayRecipe.filter((arrayRecipeEl) => {
+function returnFilteredRecipeArrayByTagID(arrayTagsID, recipes) {
+  return recipes.filter((recipesEl) => {
     return arrayTagsID.some((idEl) => {
-      return idEl === arrayRecipeEl.id;
+      return idEl === recipesEl.id;
     });
   });
 }
