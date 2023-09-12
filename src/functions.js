@@ -68,8 +68,8 @@ function returnRecipeDirections(recipes, id) {
   }
 }
 
-function returnFilteredListName(array, name) {
-  return array
+function returnFilteredListName(recipes, name) {
+  return recipes
     .filter((recipeEl) => {
       return (
         recipeEl.name.includes(name) ||
