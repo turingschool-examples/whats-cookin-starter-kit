@@ -3,22 +3,13 @@
 
 // const { recipeData, ingredientsData } = require("./testData")
 // import './testData'
-// Return a filtered list of recipes based on a tag. (Extension option: filtering by multiple tags)
+// Return a filtered list of recipes based on a tag or name (Extension option: filtering by multiple tags)
 
 const findRecipe = (type, recipeList, tag) => {
   let recipeFound = recipeList.filter(recipe => {
     return recipe[type].includes(tag)
   })
   return recipeFound
-}
-
-// Return a filtered list of recipes based on a recipe name. (Extension option: filtering by name or ingredients)
-
-const findRecipeByName = (recipeData, name) => {
-  let recipeByName = recipeData.filter(recipe => {
-    return recipe["name"] === name
-  })
-  return recipeByName
 }
 
 // Determine the names of ingredients needed for a given recipe.
@@ -80,7 +71,6 @@ const findDirections = (recipeData, recipeName) => {
 
 export {
   findRecipe,
-  findRecipeByName,
   findRecipeIngredients,
   specificRecipe,
   calculateCost,

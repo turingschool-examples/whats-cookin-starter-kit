@@ -3,7 +3,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 const assert = require('chai').assert;
-import {findRecipe, findRecipeByName, findRecipeIngredients, calculateCost, findDirections } from '../test/untestedFunctions'
+import {findRecipe, findRecipeIngredients, calculateCost, findDirections } from '../test/untestedFunctions'
 import ingredientsData from './/testIngredientData.js';
 import recipeData from './/testData.js';
 // const { recipeData, ingredientsData } = require("./testData.js")
@@ -151,15 +151,12 @@ describe('findRecipe', () => {
       ]
     }])
   });
-  it('Should return empty array if no match', () => {
+  it('Should return empty array if no tag match', () => {
     let dinnerRecipes = findRecipe("tags", recipeData, "beep");
     expect(dinnerRecipes).to.deep.equal([])
   })
-})
-
-describe('findRecipeByName', () => {
   it('Should return a specific recipe object in an array', () => {
-    let elvisPancakes = findRecipeByName(recipeData, "Elvis Pancakes");
+    let elvisPancakes = findRecipe("name", recipeData, "Elvis Pancakes");
     expect(elvisPancakes).to.deep.equal(  [{
       "id": 741603,
       "image": "https://spoonacular.com/recipeImages/741603-556x370.jpeg",
@@ -207,8 +204,8 @@ describe('findRecipeByName', () => {
       ]
     }])
   });
-  it('Should return empty array if no match', () => {
-    let elvisPancakes = findRecipeByName(recipeData, "Elvr Pancake");
+  it('Should return empty array if no search match', () => {
+    let elvisPancakes = findRecipe("name", recipeData, "Elvr Pancake");
     expect(elvisPancakes).to.deep.equal([])
   })
 })
