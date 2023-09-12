@@ -81,10 +81,10 @@ function returnFilteredListName(recipes, name) {
     });
 }
 
-function returnRecipeTitle(array, recipeID) {
-  return array
+function returnRecipeTitle(recipes, id) {
+  return recipes
     .filter((recipeEl) => {
-      return recipeEl.id === parseInt(recipeID);
+      return recipeEl.id === parseInt(id);
     })
     .map((oneRecipeEl) => {
       return oneRecipeEl.name;
