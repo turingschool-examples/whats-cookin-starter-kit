@@ -3,9 +3,9 @@ import { returnListOfUniqueTags } from "../src/functions.js";
 const recipeDisplay = document.querySelector(".recipes");
 const tagButtons = document.querySelector(".tag-buttons");
 
-export function displayRecipes(array, innerText) {
+export function displayRecipes(recipes, innerText) {
   let recipeHTML = ``;
-  array.forEach((recipeEl) => {
+  recipes.forEach((recipeEl) => {
     recipeHTML += `<div class="recipe-card"><div class="title-recipe" id=${recipeEl.id}>${recipeEl.name}</div>
     <img
       src="${recipeEl.image}"
@@ -18,10 +18,10 @@ export function displayRecipes(array, innerText) {
   recipeDisplay.innerHTML = recipeHTML;
 }
 
-export function displayTags(array) {
-  const tagsArray = returnListOfUniqueTags(array);
+export function displayTags(recipes) {
+  const tags = returnListOfUniqueTags(recipes);
   let tagsHtml = "";
-  tagsArray.forEach((tagEl) => {
+  tags.forEach((tagEl) => {
     tagsHtml += `<div><img class="tag-btn" id="${tagEl}" src="/images/${tagEl}.png"><p>${tagEl}</p></div>
     `;
   });
