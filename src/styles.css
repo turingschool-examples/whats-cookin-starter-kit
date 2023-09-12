@@ -9,9 +9,26 @@
   align-items: center;
 }
 
+
 .filter-save {
   width: 200px;
   text-align: center;
+}
+
+p, h2, h3, div {
+  background: none;
+  padding: 10px;
+  color: white;
+}
+
+p {
+  font-size: larger;
+  padding: 0px;
+}
+
+section {
+  width: 100%;
+  padding-top: 20px;
 }
 
 h1 {
@@ -21,12 +38,10 @@ h1 {
   letter-spacing: 2px;
   margin-top: -10px;
   margin-bottom: 0px;
- 
+  color: black;
 }
 
-h2 {
-  margin-bottom: 40px;
-}
+
 
 input {
   height: 40px;
@@ -48,6 +63,7 @@ h2 {
   margin-top: 20px;
   font-family: 'Eczar', serif;
   font-weight: 400;
+  margin-bottom: 40px;
 }
 
 nav {
@@ -74,8 +90,9 @@ nav {
 }
 
 .saved-recipes-button {
-  border-bottom: 4px solid navy;
+  border-bottom: 4px solid #4B1D3F;
 }
+
 
 .image-styling {
   margin-top: 20px;
@@ -97,6 +114,7 @@ nav {
 
 img {
   border: 3px black solid;
+  padding: 5px;
 }
 
 button {
@@ -104,7 +122,8 @@ button {
   font-size: 20px;
   width: 500px;
   border: 3px black solid;
-  height: 300px
+  height: 300px;
+  background-color: #414535;
 }
 
 button:hover {
@@ -122,7 +141,7 @@ button:hover {
 }
 
 .save-and-close-button {
-  background-color: navy;
+  background-color: #4B1D3F;
   color: white;
   font-size: 20px;
   font-weight: 500;
@@ -131,3 +150,7 @@ button:hover {
   height: 60px
 }
 
+.categories {
+  color: black;
+  font-weight: 500;
+}

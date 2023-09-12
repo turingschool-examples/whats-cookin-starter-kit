@@ -91,13 +91,16 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
         <div class="instructions-list">${instructionsList}</div>
         <h3>Total Cost:</h3>
         <p>${recipeCost}</p>
-        <div class="save-and-close-button-container">
-          <button class="save-and-close-button" id="closePopup">Close</button>
-          <button class="save-and-close-button save-recipe-button" id="saveRecipe">Save</button>
-        </div>
       </div>
+      <section class="save-and-close-button-container">
+      <button class="save-and-close-button" id="closePopup">Close</button>
+      <button class="save-and-close-button save-recipe-button" id="saveRecipe">Save</button>
+    </section>
     </div>
   `
+  const popUpContentContainer = document.querySelector('.popup-content');
+  popUpContentContainer.style.backgroundColor = '#414535';
+  popUpContentContainer.style.border = '3px black solid';
   const closeButton = document.querySelector('#closePopup');
   closeButton.addEventListener('click', () => {
     renderRecipes(recipeData); //REFACTOR; CHECK: SCRIPTS (82.1)

@@ -133,12 +133,12 @@ allRecipes.addEventListener('click', function() {
 savedRecipes.addEventListener('click', function() {
   let userRecipesToCook = randomUser.recipesToCook;
   renderRecipes(userRecipesToCook);
-  allButton.style.borderBottom = '4px solid navy';
+  allButton.style.borderBottom = '4px solid #4B1D3F';
   allButton.addEventListener('click', function() {
     renderRecipes(userRecipesToCook);
   });
   navLinks.forEach(link => {
-    link.style.borderBottom = '4px solid navy';
+    link.style.borderBottom = '4px solid #4B1D3F';
     link.addEventListener('click', function(event) {
       event.preventDefault();
       const linkId = link.getAttribute('id');
