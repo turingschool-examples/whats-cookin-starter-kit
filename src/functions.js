@@ -101,8 +101,8 @@ function returnRecipeTags(recipes, id) {
     });
 }
 
-function returnRecipeImgUrl(recipe, id) {
-  return recipe
+function returnRecipeImgUrl(recipes, id) {
+  return recipes
     .filter((recipeEl) => {
       return recipeEl.id === parseInt(id);
     })
@@ -111,9 +111,9 @@ function returnRecipeImgUrl(recipe, id) {
     });
 }
 
-function returnListOfUniqueTags(array) {
-  return array.reduce((acc, curr) => {
-    curr.tags.forEach((tagEl) => {
+function returnListOfUniqueTags(recipes) {
+  return recipes.reduce((acc, currentRecipe) => {
+    currentRecipe.tags.forEach((tagEl) => {
       if (!acc.includes(tagEl)) {
         acc.push(tagEl);
       }
