@@ -46,6 +46,7 @@ h1 {
 input {
   height: 40px;
   width: 400px;
+  border: 3px solid black;
   border-radius: 10px;
   background-color: white;
   font-size: 20px;
@@ -103,7 +104,6 @@ nav {
 .recipe-container {
   display: flex;
   flex-wrap: wrap;
-  /* flex-direction: column; */
   align-items: center; 
   justify-content: center; 
   text-align: center;
@@ -124,6 +124,8 @@ button {
   border: 3px black solid;
   height: 350px;
   background-color: #414535;
+  /* border-radius: 10px; */
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
 }
 
 button:hover {
