@@ -3,7 +3,7 @@ import "./styles.css";
 import "./images/bookmark-regular.svg";
 import "./images/bookmark-solid.svg";
 import "./images/x-solid.svg";
-import promises, { addRecipe } from "./apiCalls";
+import promises, { addRecipe, userPromise } from "./apiCalls";
 
 import {
   createRecipeCards,
@@ -46,9 +46,9 @@ window.addEventListener("load", function () {
     };
 
     loadUser(res["0"].users);
+    console.log(currentUser);
     createRecipeCards(res["2"].recipes);
     activeRecipes = [...res["2"].recipes];
-    addRecipe(1, 595736);
   });
 });
 
@@ -92,9 +92,36 @@ recipeCardClose.addEventListener("click", function (event) {
 
 recipeCardBookmarkAdd.addEventListener("click", function (event) {
   let bookmarkClicked = event.target.id;
-  // I think there's gona be a promis here
-  saveRecipe(bookmarkClicked, currentUser, data.recipes);
+  addRecipe(currentUser.id, bookmarkClicked);
+  // edit saveRecipe function
+  // invoke saveRecipe function to make the DM look the same as the POST Request 
+  // currentUser = {id...,etc.... recipesToCook: ['12345']}
   displayRecipeTag(bookmarkClicked, currentUser, data.recipes);
+  // Promise.all(userPromise).then((res) => {
+  //   // I think there's gona be a promise here
+  //   data.users = res["0"].users;
+  //   console.log(res["0"].users);
+  //   // let newCurrentUser = data.users.find((user) => {
+  //   //   if (user.id === currentUser.id) {
+  //   //     console.log(user);
+  //   //     return user;
+  //   //   }
+  //   // });
+
+  //   // console.log(newCurrentUser);
+  //   // console.log(typeof currentUser.id);
+  //   // console.log(typeof data.users[0].id);
+
+  //   // activeRecipes = currentUser.recipesToCook.map((recipeId) => {
+  //   //   console.log("getting here");
+  //   //   console.log(recipeId);
+  //   //   let wholeRecipe = locateRecipe(recipeId, data.recipes);
+  //   //   console.log(wholeRecipe);
+  //   //   return wholeRecipe;
+  //   // });
+  //   // lookup the actual recipes from ids in the currentUser
+  //   // set that equal to activeRecipes
+  // });
 });
 
 recipeCardBookmarkDelete.addEventListener("click", function (event) {
@@ -104,10 +131,22 @@ recipeCardBookmarkDelete.addEventListener("click", function (event) {
 });
 
 userSavedRecipes.addEventListener("click", function (event) {
-  activeRecipes = currentUser.recipesToCook;
-  // lookup the actual recipes from ids in the currentUser
-  // set that equal to activeRecipes
-  console.log(currentUser);
+  
+  // console.log(data.users);
+  // console.log("getting here");
+  // currentUser = data.users.find((user) => {
+  //   if (user.id === currentUser.id) {
+  //     console.log(user);
+  //     return user;
+  //   }
+  // });
+  // activeRecipes = currentUser.recipesToCook.map((recipeId) => {
+  //   console.log("getting here");
+  //   console.log(recipeId);
+  //   let wholeRecipe = locateRecipe(recipeId, data.recipes);
+  //   console.log(wholeRecipe);
+  //   return wholeRecipe;
+  // });
   createRecipeCards(activeRecipes);
 });
 
