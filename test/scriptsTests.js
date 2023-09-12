@@ -3,7 +3,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 const assert = require('chai').assert;
-import {findRecipeByTag, findRecipeByName, findRecipeIngredients, calculateCost, findDirections } from '../test/untestedFunctions'
+import {findRecipe, findRecipeByName, findRecipeIngredients, calculateCost, findDirections } from '../test/untestedFunctions'
 import ingredientsData from './/testIngredientData.js';
 import recipeData from './/testData.js';
 // const { recipeData, ingredientsData } = require("./testData.js")
@@ -11,9 +11,9 @@ import recipeData from './/testData.js';
 
 
 
-describe('findRecipeByTag', () => {
+describe('findRecipe', () => {
   it('Should return an array of one object containing a certain tag', () => {
-    let dinnerRecipes = findRecipeByTag(recipeData, "dinner");
+    let dinnerRecipes = findRecipe("tags", recipeData, "dinner");
     expect(dinnerRecipes).to.deep.equal([{
       "id": 741603,
       "image": "https://spoonacular.com/recipeImages/741603-556x370.jpeg",
@@ -152,7 +152,7 @@ describe('findRecipeByTag', () => {
     }])
   });
   it('Should return empty array if no match', () => {
-    let dinnerRecipes = findRecipeByTag(recipeData, "beep");
+    let dinnerRecipes = findRecipe("tags", recipeData, "beep");
     expect(dinnerRecipes).to.deep.equal([])
   })
 })

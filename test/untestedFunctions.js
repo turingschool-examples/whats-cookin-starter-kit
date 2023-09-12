@@ -5,11 +5,11 @@
 // import './testData'
 // Return a filtered list of recipes based on a tag. (Extension option: filtering by multiple tags)
 
-const findRecipeByTag = (recipeList, tag) => {
-  let recipeByTag = recipeList.filter(recipe => {
-    return recipe["tags"].includes(tag)
+const findRecipe = (type, recipeList, tag) => {
+  let recipeFound = recipeList.filter(recipe => {
+    return recipe[type].includes(tag)
   })
-  return recipeByTag
+  return recipeFound
 }
 
 // Return a filtered list of recipes based on a recipe name. (Extension option: filtering by name or ingredients)
@@ -79,7 +79,7 @@ const findDirections = (recipeData, recipeName) => {
 }
 
 export {
-  findRecipeByTag,
+  findRecipe,
   findRecipeByName,
   findRecipeIngredients,
   specificRecipe,

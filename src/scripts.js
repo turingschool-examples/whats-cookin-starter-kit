@@ -7,7 +7,7 @@ import {fetchData} from './apiCalls'
 
 // Example of one way to import functions from the domUpdates file. You will delete these examples.
 import {renderRecipes, displayRecipes, displayPopUp, createRandomIndex} from './domUpdates.js';
-import {findRecipeByTag} from '../test/untestedFunctions.js'
+import {findRecipe} from '../test/untestedFunctions.js'
 
 // query selectors
 
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const filterByTag = (recipeData, clickedId) => {
-  let filteredRecipes = findRecipeByTag(recipeData, clickedId);
+  let filteredRecipes = findRecipe('tags', recipeData, clickedId);
   renderRecipes(filteredRecipes)
 }
 
