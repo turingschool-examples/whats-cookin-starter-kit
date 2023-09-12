@@ -117,22 +117,22 @@ const displayRecipeArea = () => {
   tagSection.classList.toggle("hidden", false);
 };
 
-const saveRecipe = (id, user, recipes) => {
-  let foundRecipe = locateRecipe(id, recipes);
-  user.recipesToCook.push(foundRecipe);
+const saveRecipe = (id, user) => {
+  // let foundRecipe = locateRecipe(id, recipes);
+  user.recipesToCook.push(id);
 };
 
-const deleteRecipe = (id, user, recipes) => {
-  let foundRecipe = locateRecipe(id, recipes);
+const deleteRecipe = (idClicked, user) => {
   let foundRecipeIndex = user.recipesToCook.findIndex((recipe) => {
-    return recipe.id === foundRecipe.id;
+    return recipe === idClicked;
   });
   user.recipesToCook.splice(foundRecipeIndex, 1);
 };
 
 const displayRecipeTag = (id, currentUser, recipes) => {
-  let foundRecipe = locateRecipe(id, recipes);
-  let savedStatus = currentUser.recipesToCook.includes(foundRecipe);
+  // let foundRecipe = locateRecipe(id, recipes);
+
+  let savedStatus = currentUser.recipesToCook.includes(id);
   if (savedStatus === true) {
     recipeCardBookmarkAdd.classList.toggle("hidden", true);
     recipeCardBookmarkDelete.classList.toggle("hidden", false);

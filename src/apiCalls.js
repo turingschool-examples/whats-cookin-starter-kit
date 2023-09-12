@@ -32,21 +32,21 @@ const addRecipeToUser = (userId, recipeId) => {
     .catch((err) => console.log(err));
 };
 
-const updatedUsers = () => {
-  return fetch(`http://localhost:3001/api/v1/users`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Network response was not ok: ${response.status}`);
-      }
-      console.log("promise complete");
-      return response.json();
-    })
-    .catch((error) => {
-      console.error(`Error fetching ${dataType}: ${error}`);
-    });
-};
-const userProm = [updatedUsers()];
+// const updatedUsers = () => {
+//   return fetch(`http://localhost:3001/api/v1/users`)
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error(`Network response was not ok: ${response.status}`);
+//       }
+//       console.log("promise complete");
+//       return response.json();
+//     })
+//     .catch((error) => {
+//       console.error(`Error fetching ${dataType}: ${error}`);
+//     });
+// };
+// const userProm = [updatedUsers()];
 
 export default promises;
 export const addRecipe = addRecipeToUser;
-export const userPromise = userProm;
+// export const userPromise = userProm;

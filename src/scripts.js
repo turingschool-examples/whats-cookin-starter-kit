@@ -3,7 +3,7 @@ import "./styles.css";
 import "./images/bookmark-regular.svg";
 import "./images/bookmark-solid.svg";
 import "./images/x-solid.svg";
-import promises, { addRecipe, userPromise } from "./apiCalls";
+import promises, { addRecipe } from "./apiCalls";
 
 import {
   createRecipeCards,
@@ -93,60 +93,27 @@ recipeCardClose.addEventListener("click", function (event) {
 recipeCardBookmarkAdd.addEventListener("click", function (event) {
   let bookmarkClicked = event.target.id;
   addRecipe(currentUser.id, bookmarkClicked);
-  // edit saveRecipe function
-  // invoke saveRecipe function to make the DM look the same as the POST Request 
-  // currentUser = {id...,etc.... recipesToCook: ['12345']}
+  saveRecipe(bookmarkClicked, currentUser);
   displayRecipeTag(bookmarkClicked, currentUser, data.recipes);
-  // Promise.all(userPromise).then((res) => {
-  //   // I think there's gona be a promise here
-  //   data.users = res["0"].users;
-  //   console.log(res["0"].users);
-  //   // let newCurrentUser = data.users.find((user) => {
-  //   //   if (user.id === currentUser.id) {
-  //   //     console.log(user);
-  //   //     return user;
-  //   //   }
-  //   // });
-
-  //   // console.log(newCurrentUser);
-  //   // console.log(typeof currentUser.id);
-  //   // console.log(typeof data.users[0].id);
-
-  //   // activeRecipes = currentUser.recipesToCook.map((recipeId) => {
-  //   //   console.log("getting here");
-  //   //   console.log(recipeId);
-  //   //   let wholeRecipe = locateRecipe(recipeId, data.recipes);
-  //   //   console.log(wholeRecipe);
-  //   //   return wholeRecipe;
-  //   // });
-  //   // lookup the actual recipes from ids in the currentUser
-  //   // set that equal to activeRecipes
-  // });
 });
 
 recipeCardBookmarkDelete.addEventListener("click", function (event) {
   let bookmarkClicked = event.target.id;
-  deleteRecipe(bookmarkClicked, currentUser, data.recipes);
+  deleteRecipe(bookmarkClicked, currentUser);
   displayRecipeTag(bookmarkClicked, currentUser, data.recipes);
+  let recipesToCook = currentUser.recipesToCook.map((recipeId) => {
+    let wholeRecipe = locateRecipe(recipeId, data.recipes);
+    return wholeRecipe;
+  });
+  activeRecipes = recipesToCook;
 });
 
 userSavedRecipes.addEventListener("click", function (event) {
-  
-  // console.log(data.users);
-  // console.log("getting here");
-  // currentUser = data.users.find((user) => {
-  //   if (user.id === currentUser.id) {
-  //     console.log(user);
-  //     return user;
-  //   }
-  // });
-  // activeRecipes = currentUser.recipesToCook.map((recipeId) => {
-  //   console.log("getting here");
-  //   console.log(recipeId);
-  //   let wholeRecipe = locateRecipe(recipeId, data.recipes);
-  //   console.log(wholeRecipe);
-  //   return wholeRecipe;
-  // });
+  let recipesToCook = currentUser.recipesToCook.map((recipeId) => {
+    let wholeRecipe = locateRecipe(recipeId, data.recipes);
+    return wholeRecipe;
+  });
+  activeRecipes = recipesToCook;
   createRecipeCards(activeRecipes);
 });
 
