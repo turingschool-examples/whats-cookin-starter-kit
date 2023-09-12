@@ -122,7 +122,7 @@ button {
   font-size: 20px;
   width: 500px;
   border: 3px black solid;
-  height: 300px;
+  height: 350px;
   background-color: #414535;
 }
 
@@ -132,7 +132,9 @@ button:hover {
 }
 
 button:active {
+  transition: 1s;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.9);
+  background-color: #4B1D3F;
 }
 
 .instructions-list {
