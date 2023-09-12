@@ -1,9 +1,9 @@
 //NOTE: Data model and non-dom manipulating logic will live in this file.
-import './styles.css';
-import './images/bookmark-regular.svg';
-import './images/bookmark-solid.svg';
-import './images/x-solid.svg';
-import promises from './apiCalls';
+import "./styles.css";
+import "./images/bookmark-regular.svg";
+import "./images/bookmark-solid.svg";
+import "./images/x-solid.svg";
+import promises, { addRecipe } from "./apiCalls";
 
 import {
   createRecipeCards,
@@ -15,9 +15,9 @@ import {
   deleteRecipe,
   displayRecipeTag,
   buildSearchFail,
-} from './domUpdates.js';
+} from "./domUpdates.js";
 
-import { filterByTag, searchRecipes } from '../src/recipes.js';
+import { filterByTag, searchRecipes } from "../src/recipes.js";
 const activeTags = [];
 let currentUser;
 let activeRecipes;
@@ -25,35 +25,36 @@ let data;
 // ^ This will be used to help double check and see if a recipe has already been made or not
 
 // ===== QUERY SELECTORS =====
-const tagSection = document.querySelector('.tag-area');
-const searchInput = document.querySelector('#searchInput');
-const searchButton = document.querySelector('#searchButton');
-const recipeArea = document.querySelector('.recipe-area');
-const recipeCardClose = document.querySelector('.close');
-const recipeCardBookmarkAdd = document.querySelector('.icon-bookmark');
-const recipeCardBookmarkDelete = document.querySelector('.solid-bookmark');
-const userSavedRecipes = document.querySelector('#myRecipes');
-const discoverRecipes = document.querySelector('#discoverRecipes');
+const tagSection = document.querySelector(".tag-area");
+const searchInput = document.querySelector("#searchInput");
+const searchButton = document.querySelector("#searchButton");
+const recipeArea = document.querySelector(".recipe-area");
+const recipeCardClose = document.querySelector(".close");
+const recipeCardBookmarkAdd = document.querySelector(".icon-bookmark");
+const recipeCardBookmarkDelete = document.querySelector(".solid-bookmark");
+const userSavedRecipes = document.querySelector("#myRecipes");
+const discoverRecipes = document.querySelector("#discoverRecipes");
 
 // ===== EVENT LISTENERS =====
 
-window.addEventListener('load', function () {
-  Promise.all(promises).then(res => {
+window.addEventListener("load", function () {
+  Promise.all(promises).then((res) => {
     data = {
-      users: res['0'].users,
-      ingredients: res['1'].ingredients,
-      recipes: res['2'].recipes,
+      users: res["0"].users,
+      ingredients: res["1"].ingredients,
+      recipes: res["2"].recipes,
     };
 
-    loadUser(res['0'].users);
-    createRecipeCards(res['2'].recipes);
-    activeRecipes = [...res['2'].recipes];
+    loadUser(res["0"].users);
+    createRecipeCards(res["2"].recipes);
+    activeRecipes = [...res["2"].recipes];
+    addRecipe(1, 595736);
   });
 });
 
-tagSection.addEventListener('click', function (event) {
-  let tag = event.target.closest('.tag-card');
-  tag.classList.toggle('tag-active');
+tagSection.addEventListener("click", function (event) {
+  let tag = event.target.closest(".tag-card");
+  tag.classList.toggle("tag-active");
 
   let tagId = tag.id;
   if (!activeTags.includes(tagId)) {
@@ -66,7 +67,7 @@ tagSection.addEventListener('click', function (event) {
   createRecipeCards(filteredArray);
 });
 
-searchButton.addEventListener('click', function (event) {
+searchButton.addEventListener("click", function (event) {
   let searchTerm = searchInput.value;
   let searchedRecipes = searchRecipes(searchTerm, activeRecipes);
 
@@ -76,7 +77,7 @@ searchButton.addEventListener('click', function (event) {
   }
 });
 
-recipeArea.addEventListener('click', function (event) {
+recipeArea.addEventListener("click", function (event) {
   let recipeClicked = event.target.parentElement.id;
   let foundRecipe = locateRecipe(recipeClicked, data.recipes);
   buildRecipeCard(foundRecipe, data.ingredients);
@@ -84,35 +85,39 @@ recipeArea.addEventListener('click', function (event) {
   displayRecipeCard();
 });
 
-recipeCardClose.addEventListener('click', function (event) {
+recipeCardClose.addEventListener("click", function (event) {
   displayRecipeArea();
   createRecipeCards(activeRecipes);
 });
 
-recipeCardBookmarkAdd.addEventListener('click', function (event) {
+recipeCardBookmarkAdd.addEventListener("click", function (event) {
   let bookmarkClicked = event.target.id;
+  // I think there's gona be a promis here
   saveRecipe(bookmarkClicked, currentUser, data.recipes);
   displayRecipeTag(bookmarkClicked, currentUser, data.recipes);
 });
 
-recipeCardBookmarkDelete.addEventListener('click', function (event) {
+recipeCardBookmarkDelete.addEventListener("click", function (event) {
   let bookmarkClicked = event.target.id;
   deleteRecipe(bookmarkClicked, currentUser, data.recipes);
   displayRecipeTag(bookmarkClicked, currentUser, data.recipes);
 });
 
-userSavedRecipes.addEventListener('click', function (event) {
-  activeRecipes = currentUser.savedRecipes;
+userSavedRecipes.addEventListener("click", function (event) {
+  activeRecipes = currentUser.recipesToCook;
+  // lookup the actual recipes from ids in the currentUser
+  // set that equal to activeRecipes
+  console.log(currentUser);
   createRecipeCards(activeRecipes);
 });
 
-discoverRecipes.addEventListener('click', function (event) {
+discoverRecipes.addEventListener("click", function (event) {
   activeRecipes = [...data.recipes];
   createRecipeCards(activeRecipes);
 });
 
-const loadUser = users => {
+const loadUser = (users) => {
   let randomUserIndex = Math.floor(Math.random() * users.length);
   currentUser = users[randomUserIndex];
-  currentUser.savedRecipes = [];
+  currentUser.recipesToCook = [];
 };
