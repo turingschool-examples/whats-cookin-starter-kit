@@ -4,8 +4,8 @@ const chai = require('chai');
 const expect = chai.expect;
 const assert = require('chai').assert;
 import {findRecipeByTag, findRecipeByName, findRecipeIngredients, calculateCost, findDirections } from '../test/untestedFunctions'
-import ingredientsData from './/testIngredientData.js';
-import recipeData from './/testData.js';
+import ingredientsData from '../src/data/ingredients-test-data.js';
+import recipeData from '../src/data/recipe-test-data.js';
 // const { recipeData, ingredientsData } = require("./testData.js")
 
 
