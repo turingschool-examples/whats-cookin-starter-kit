@@ -101,10 +101,10 @@ function returnRecipeTags(recipes, id) {
     });
 }
 
-function returnRecipeImgUrl(array, recipeID) {
-  return array
+function returnRecipeImgUrl(recipe, id) {
+  return recipe
     .filter((recipeEl) => {
-      return recipeEl.id === parseInt(recipeID);
+      return recipeEl.id === parseInt(id);
     })
     .map((filteredRecipeEl) => {
       return filteredRecipeEl.image;
