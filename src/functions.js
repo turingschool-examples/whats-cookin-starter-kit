@@ -1,5 +1,5 @@
-function returnFilteredTag(array, tag) {
-  const filteredRecipe = array.filter((recipeEl) => {
+function returnFilteredTag(recipes, tag) {
+  const filteredRecipe = recipes.filter((recipeEl) => {
     return recipeEl.tags.includes(tag);
   });
   if (filteredRecipe) {
