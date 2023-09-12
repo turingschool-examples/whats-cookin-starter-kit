@@ -11,16 +11,16 @@ function returnFilteredTag(recipes, tag) {
   }
 }
 
-function returnRecipeCost(arrayRecipe, arrayIngredients, recipeID) {
-  const filteredRecipe = arrayRecipe.find((recipeEl) => {
-    return recipeEl.id === parseInt(recipeID);
+function returnRecipeCost(recipes, ingredients, id) {
+  const filteredRecipe = recipes.find((recipeEl) => {
+    return recipeEl.id === parseInt(id);
   });
   if (filteredRecipe) {
     const ingredientsArr = filteredRecipe.ingredients;
     let totalCost = 0;
 
     ingredientsArr.forEach((ingredientEl) => {
-      const matchingIngredient = arrayIngredients.find((ingredientsObjEl) => {
+      const matchingIngredient = ingredients.find((ingredientsObjEl) => {
         return ingredientEl.id === ingredientsObjEl.id;
       });
       if (matchingIngredient) {
