@@ -1,7 +1,7 @@
 // Your fetch requests will live here!
 
 export const fetchUsers = fetch(
-  "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users"
+  "http://localhost:3001/api/v1/users"
 )
   .then((response) => response.json())
   .then((data) => {
@@ -9,7 +9,7 @@ export const fetchUsers = fetch(
   });
 
 export const fetchIngredients = fetch(
-  "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients"
+  "http://localhost:3001/api/v1/ingredients"
 )
   .then((response) => response.json())
   .then((data) => {
@@ -17,7 +17,7 @@ export const fetchIngredients = fetch(
   });
 
 export const fetchRecipes = fetch(
-  " https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes"
+  "http://localhost:3001/api/v1/recipes"
 )
   .then((response) => response.json())
   .then((data) => {
