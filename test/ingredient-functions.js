@@ -1,25 +1,4 @@
-// import from testData.js
-// export to recipeRepositories
-
-// const { recipeData, ingredientsData } = require("./testData")
-// import './testData'
-// Return a filtered list of recipes based on a tag. (Extension option: filtering by multiple tags)
-
-const findRecipeByTag = (recipeList, tag) => {
-  let recipeByTag = recipeList.filter(recipe => {
-    return recipe["tags"].includes(tag)
-  })
-  return recipeByTag
-}
-
-// Return a filtered list of recipes based on a recipe name. (Extension option: filtering by name or ingredients)
-
-const findRecipeByName = (recipeData, name) => {
-  let recipeByName = recipeData.filter(recipe => {
-    return recipe["name"] === name
-  })
-  return recipeByName
-}
+const { ingredientsData } = require("./data/ingredients-test-data")
 
 // Determine the names of ingredients needed for a given recipe.
 
@@ -42,12 +21,6 @@ const findRecipeIngredients = (recipeData, ingredientsData, id) => {
   } )
 }
 
-// Return a specific recipe based on the id number
-
-const specificRecipe = () => {
-  return recipeData.find(recipe => recipe.id === clickedId)
-}
-
 const calculateCost = (recipeData, ingredientsData, clickedId) => {
   const clickedRecipe = recipeData.find(recipe => recipe.id == clickedId);
   let reducedIngredients = clickedRecipe.ingredients.reduce((accumulator, currentValue) => {
@@ -67,10 +40,7 @@ const findDirections = (recipeData, recipeName) => {
 }
 
 export {
-  findRecipeByTag,
-  findRecipeByName,
   findRecipeIngredients,
-  specificRecipe,
   calculateCost,
   findDirections
 }
