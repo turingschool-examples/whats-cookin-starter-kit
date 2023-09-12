@@ -34,14 +34,14 @@ function returnRecipeCost(recipes, ingredients, id) {
   }
 }
 
-function returnIngredientNames(arrayRecipe, arrayIngredients, recipeID) {
-  const filteredRecipe = arrayRecipe.find((recipeEl) => {
-    return recipeEl.id === parseInt(recipeID);
+function returnIngredientNames(recipes, ingredients, id) {
+  const filteredRecipe = recipes.find((recipeEl) => {
+    return recipeEl.id === parseInt(id);
   });
   if (filteredRecipe) {
     const ingredientsArr = filteredRecipe.ingredients;
     return ingredientsArr.map((ingredientEl) => {
-      const matchingIngredient = arrayIngredients.find((ingredientsObjEl) => {
+      const matchingIngredient = ingredients.find((ingredientsObjEl) => {
         return ingredientEl.id === ingredientsObjEl.id;
       });
       if (matchingIngredient) {
@@ -51,9 +51,9 @@ function returnIngredientNames(arrayRecipe, arrayIngredients, recipeID) {
   }
   return [];
 }
-function returnRecipeDirections(array, recipeID) {
-  const filteredRecipe = array.find((recipeEl) => {
-    return recipeEl.id === parseInt(recipeID);
+function returnRecipeDirections(recipes, id) {
+  const filteredRecipe = recipes.find((recipeEl) => {
+    return recipeEl.id === parseInt(id);
     //recipeEl.id was a number
     //recipeId was a string
     // write a test case for different data types.
