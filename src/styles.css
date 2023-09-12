@@ -334,11 +334,15 @@ tag-btn:hover {
   font-size: 24px;
 }
 
-p {
+/* p {
   font-weight: 300;
-}
+} */
 
 li {
   font-weight: 300;
   text-align: left;
+}
+
+.bold {
+  font-weight: bold;
 }
