@@ -155,8 +155,20 @@ tagButtons.addEventListener("click", (event) => {
   let tagClicked;
   tagClicked = event.target.id;
 
-  if (event.target.tagName === 'IMG') {
-    event.target.parentNode.classList.toggle('bold');
+  // clicked tag img
+  const clickedTag = event.target;
+
+  if (clickedTag.classList.contains("tag-btn")) {
+    const allTagButtons = tagButtons.querySelectorAll(".tag-btn");
+    
+    allTagButtons.forEach((tagButton) => {
+      if (tagButton === clickedTag) {
+        tagButton.parentNode.classList.toggle("bold");
+      } else {
+        // reset the others
+        tagButton.parentNode.classList.remove("bold");
+      }
+    })
   }
 
   if (event.target === savedRecipesBtn) {
