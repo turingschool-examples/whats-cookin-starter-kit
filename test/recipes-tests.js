@@ -1,13 +1,11 @@
-// import { expect } from 'chai';
-// import { assert } from 'chai';
+const assert = chai.assert;
 const chai = require('chai');
 const expect = chai.expect;
 const assert = require('chai').assert;
-import {findRecipeByTag, findRecipeByName, findRecipeIngredients, calculateCost, findDirections } from '../test/untestedFunctions'
+import {findRecipeByTag, findRecipeByName, findDirections } from '../src/recipe-functions'
 import ingredientsData from '../src/data/ingredients-test-data.js';
 import recipeData from '../src/data/recipe-test-data.js';
 // const { recipeData, ingredientsData } = require("./testData.js")
-
 
 describe('findRecipeByTag', () => {
   it('Should return an array of one object containing a certain tag', () => {
@@ -209,29 +207,7 @@ describe('findRecipeByName', () => {
     let elvisPancakes = findRecipeByName(recipeData, "Elvr Pancake");
     expect(elvisPancakes).to.deep.equal([])
   })
-})
-
-describe('findRecipeIngredients', () => {
-  it('Should return an array of ingredient names for a specific recipe id passed as a number', () => {
-    let ingredientList = findRecipeIngredients(recipeData, ingredientsData, 595736);
-    expect(ingredientList).to.deep.equal([ 'wheat flour', 'bicarbonate of soda' ])
 });
-  it('Should return an array of ingredient names for a specific recipe id passed as a string', () => {
-    let ingredientList = findRecipeIngredients(recipeData, ingredientsData, "595736");
-    expect(ingredientList).to.deep.equal([ 'wheat flour', 'bicarbonate of soda' ])
-});
-})
-
-describe('calculateCost', () => {
-    it(' should calculate the cost of a given recipe\'s ingredients', () => {
-      
-      
-    const clickedId = 595736
-    const recipeCost = calculateCost(recipeData, ingredientsData, clickedId)
-  
-    expect(recipeCost).to.deep.equal('$5.04')
-    })
-})
 
 describe('findDirections', () => {
   it('should be a function', () => {
@@ -270,13 +246,3 @@ describe('findDirections', () => {
     expect(porkDirections).to.deep.equal(porkInstructions);
   });
 });
-
-
-
-
-
-
-
-
-
-

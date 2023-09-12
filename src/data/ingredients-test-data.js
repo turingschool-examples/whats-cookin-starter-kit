@@ -168,6 +168,7 @@ const ingredientsData = [
     "id": 1042047,
     "name": "seasoned salt",
     "estimatedCostInCents": 334
-  },]
+  }
+]
 
   export default ingredientsData
