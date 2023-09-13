@@ -29,6 +29,7 @@ const createRecipeCards = recipes => {
     let recipeImage = document.createElement('img');
     recipeImage.classList.add('recipe-image');
     recipeImage.setAttribute('src', recipe.image);
+    recipeImage.setAttribute('alt', `${recipe.name}`)
     recipeCard.appendChild(recipeImage);
     recipeArea.appendChild(recipeCard);
   });
