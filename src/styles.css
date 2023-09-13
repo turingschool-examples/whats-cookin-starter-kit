@@ -10,6 +10,9 @@
   align-items: center;
 }
 
+.hidden {
+  display: none;
+}
 
 .filter-save {
   width: 200px;

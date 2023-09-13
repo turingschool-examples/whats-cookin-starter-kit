@@ -100,8 +100,8 @@ navLinks.forEach(link => {
 });
 
 
-searchField.addEventListener('keypress', function(event) {
-  displayRecipes(event, recipesData, searchField);
+searchField.addEventListener('keypress', function() {
+  displayRecipes(recipesData, searchField);
   
 });
 
@@ -124,8 +124,8 @@ allRecipes.addEventListener('click', function() {
       filterByTag(recipesData, linkId);
     });
   });
-  searchField.addEventListener('keypress', function(event) {
-    displayRecipes(event, recipesData, searchField);
+  searchField.addEventListener('keypress', function() {
+    displayRecipes(recipesData, searchField);
     
   });
 })
@@ -146,7 +146,7 @@ savedRecipes.addEventListener('click', function() {
       filterByTag(userRecipesToCook, linkId);
     });
   });
-  searchField.addEventListener('keypress', function(event) {
-    displayRecipes(event, userRecipesToCook, searchField);  
+  searchField.addEventListener('keypress', function() {
+    displayRecipes(userRecipesToCook, searchField);  
   });
 })

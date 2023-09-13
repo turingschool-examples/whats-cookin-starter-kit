@@ -3,7 +3,8 @@
 import {findRecipeIngredients, calculateCost} from './ingredient-functions'
 
 const recipesContainer = document.querySelector('.recipe-container');
-
+// const headCenter = document.querySelector('.container')
+const featuredTitle = document.querySelector('#featured')
 
 const styleElementBorder = (element, styling) => {
   element.style.borderBottom = styling;
@@ -11,6 +12,15 @@ const styleElementBorder = (element, styling) => {
 
 const renderRecipes = (recipeData) => {
   recipesContainer.innerHTML = '';
+  featuredTitle.classList.toggle('hidden', true)
+  if(recipeData.length === 6) {
+    featuredTitle.classList.toggle('hidden', false)
+    // let featuredTitle = document.createElement('h2');
+    // featuredTitle.innerText = 'Featured Recipes';
+    // featuredTitle.classList.add('class', 'categories')
+    // headCenter.insertBefore(featuredTitle, recipesContainer);
+
+  }
   recipeData.forEach((recipe) => 
     recipesContainer.innerHTML += `
     <button class="recipe-card"id="${recipe.id}">
@@ -38,11 +48,12 @@ const saveRecipe = (recipe, user) => {
 }
 
 
-const displayRecipes = (event, recipeData, searchField) => {
+const displayRecipes = (recipeData, searchField) => {
   recipesContainer.innerHTML = '';
+  featuredTitle.classList.toggle('hidden', true)
   let searchValue = searchField.value.toLowerCase();
-  const filteredRecipes = recipeData.filter(recipe => recipe.name.includes(searchValue));
-  if (event.key === 'Enter') {
+  const filteredRecipes = recipeData.filter(recipe => 
+    recipe['name'].toLowerCase().includes(searchValue));
     filteredRecipes.map(recipe => {
       recipesContainer.innerHTML += `
         <button class="recipe-card"id="${recipe.id}">
@@ -55,7 +66,6 @@ const displayRecipes = (event, recipeData, searchField) => {
     recipesContainer.innerHTML = `<h2 class="categories">No search results!</h2>`
   }
     return filteredRecipes;
-  }
 };
 
 const findRecipeById = (recipeData, id) => {
