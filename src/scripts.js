@@ -6,7 +6,7 @@ import {fetchData} from './apiCalls.js'
 
 
 // Example of one way to import functions from the domUpdates file. You will delete these examples.
-import {renderRecipes, displayRecipes, displayPopUp} from './domUpdates.js';
+import {renderRecipes, displayRecipes, displayPopUp, styleElementBorder} from './domUpdates.js';
 import {findRecipe} from './recipe-functions.js'
 
 // query selectors
@@ -112,12 +112,12 @@ allButton.addEventListener('click', function() {
 allRecipes.addEventListener('click', function() {
   
   renderRecipes(recipesData);
-  allButton.style.borderBottom = '4px solid orange';
+  styleElementBorder(allButton, '4px solid orange');
   allButton.addEventListener('click', function() {
     renderRecipes(recipesData);
   });
   navLinks.forEach(link => {
-    link.style.borderBottom = '4px solid orange';
+    styleElementBorder(link, '4px solid orange');
     link.addEventListener('click', function(event) {
       event.preventDefault();
       const linkId = link.getAttribute('id');
@@ -134,12 +134,12 @@ allRecipes.addEventListener('click', function() {
 savedRecipes.addEventListener('click', function() {
   let userRecipesToCook = randomUser.recipesToCook;
   renderRecipes(userRecipesToCook);
-  allButton.style.borderBottom = '4px solid #4B1D3F';
+  styleElementBorder(allButton, '4px solid #4B1D3F')
   allButton.addEventListener('click', function() {
     renderRecipes(userRecipesToCook);
   });
   navLinks.forEach(link => {
-    link.style.borderBottom = '4px solid #4B1D3F';
+    styleElementBorder(link, '4px solid #4B1D3F')
     link.addEventListener('click', function(event) {
       event.preventDefault();
       const linkId = link.getAttribute('id');

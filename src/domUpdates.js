@@ -5,6 +5,10 @@ import {findRecipeIngredients, calculateCost} from './ingredient-functions'
 const recipesContainer = document.querySelector('.recipe-container');
 
 
+const styleElementBorder = (element, styling) => {
+  element.style.borderBottom = styling;
+}
+
 const renderRecipes = (recipeData) => {
   recipesContainer.innerHTML = '';
   recipeData.forEach((recipe) => 
@@ -116,4 +120,5 @@ export  {
   renderRecipes,
   displayRecipes,
   displayPopUp, 
+  styleElementBorder
 }
