@@ -1,5 +1,4 @@
 // Your fetch requests will live here!
-import { currentUser, clickedRecipe } from './scripts.js'
 
 export const fetchUsers = fetch(
   "http://localhost:3001/api/v1/users"
@@ -29,8 +28,8 @@ export function sendPostRequest(currentUser, clickedRecipe) {
   return fetch("http://localhost:3001/api/v1/usersRecipes", {
     method: 'POST',
     body: JSON.stringify({
-      "userID": currentUser.id,
-      "recipeID": clickedRecipe
+      userID: currentUser.id,
+      recipeID: clickedRecipe
     }),
     headers: {
        'Content-Type': 'application/json'
@@ -45,8 +44,8 @@ export function sendDeleteRequest(currentUser, clickedRecipe) {
   return fetch("http://localhost:3001/api/v1/usersRecipes", {
     method: 'DELETE',
     body: JSON.stringify({
-      "userID": currentUser.id,
-      "recipeID": clickedRecipe
+      userID: currentUser.id,
+      recipeID: clickedRecipe
     }),
     headers: {
        'Content-Type': 'application/json'
