@@ -1,27 +1,17 @@
 const { recipeData } = require("./data/recipe-test-data")
 
-const findRecipeByTag = (recipeList, tag) => {
-  let recipeByTag = recipeList.filter(recipe => {
-    return recipe["tags"].includes(tag)
+const findRecipe = (type, recipeList, tag) => {
+  let recipeFound = recipeList.filter(recipe => {
+    if(type === "name"){
+    let recipeInfo = recipe[type];
+    let recipeUndercase = recipeInfo.toLowerCase();
+    return recipeUndercase.includes(tag.toLowerCase())
+    }
+    return recipe[type].includes(tag)
   })
-  return recipeByTag
+  return recipeFound
 }
 
-// Return a filtered list of recipes based on a recipe name. (Extension option: filtering by name or ingredients)
-
-const findRecipeByName = (recipeData, name) => {
-  let recipeByName = recipeData.filter(recipe => {
-    return recipe["name"] === name
-  })
-  return recipeByName
-}
-
-const findDirections = (recipeName) => {
-  let chosenRecipe = recipeData.find(recipe => {
-    return recipeName === recipe.name
-  })
-    return chosenRecipe.instructions
-}
 
 // Return a specific recipe based on the id number
 
@@ -30,8 +20,6 @@ const specificRecipe = () => {
 }
 
 export {
-  findRecipeByTag,
-  findRecipeByName,
-  findDirections,
+  findRecipe,
   specificRecipe
 }
