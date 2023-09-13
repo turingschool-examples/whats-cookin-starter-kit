@@ -95,8 +95,17 @@ recipeCardBookmarkAdd.addEventListener("click", function (event) {
   addRecipe(currentUser.id, bookmarkClicked).then((responseData) => {
     // console.log("Data from the POST request: ", responseData);
     data.users = responseData;
+    let users = data.users.users;
+    const updateUser = (users) => {
+      return users.find((user) => {
+        if (user.id === currentUser.id) {
+          return user;
+        }
+      });
+    };
+    currentUser = updateUser(users);
     // currentUser.id => the place where data.users (id matches)
-    saveRecipe(bookmarkClicked, currentUser);
+    // saveRecipe(bookmarkClicked, currentUser);
     displayRecipeTag(bookmarkClicked, currentUser, data.recipes);
   });
 });
