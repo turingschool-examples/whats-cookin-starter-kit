@@ -4,10 +4,16 @@ import {findRecipeIngredients, calculateCost} from './ingredient-functions'
 
 const recipesContainer = document.querySelector('.recipe-container');
 // const headCenter = document.querySelector('.container')
-const featuredTitle = document.querySelector('#featured')
+const featuredTitle = document.querySelector('#featured');
+const errorMessage = document.querySelector('#error')
+
 
 const styleElementBorder = (element, styling) => {
   element.style.borderBottom = styling;
+}
+
+const printError = (error, users) => {
+  errorMessage.innerText = `ERROR with ${users}: ${error}`
 }
 
 const renderRecipes = (recipeData) => {
@@ -130,5 +136,6 @@ export  {
   renderRecipes,
   displayRecipes,
   displayPopUp, 
-  styleElementBorder
+  styleElementBorder,
+  printError
 }
