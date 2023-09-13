@@ -22,6 +22,7 @@ const createRecipeCards = recipes => {
     let recipeCard = document.createElement('div');
     recipeCard.classList.add('recipe-card');
     recipeCard.setAttribute('id', recipe.id);
+    recipeCard.setAttribute('tabindex', '0');
     let recipeTitle = document.createElement('h2');
     recipeTitle.classList.add('recipe-title');
     recipeCard.appendChild(recipeTitle);
