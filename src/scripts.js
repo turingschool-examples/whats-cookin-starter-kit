@@ -44,7 +44,7 @@ import {
 
 import { displayRecipes } from "./domUpdates.js";
 import { displayTags } from "./domUpdates.js";
-import { fetchIngredients, fetchRecipes, fetchUsers } from "./apiCalls";
+import { fetchIngredients, fetchRecipes, fetchUsers, sendDeleteRequest, sendPostRequest } from "./apiCalls";
 
 const recipeDisplay = document.querySelector(".recipes");
 
@@ -63,6 +63,7 @@ const inputIngredient = document.querySelector(".input-ingredient");
 const savedRecipesBtn = document.querySelector(".view-saved");
 
 let currentUser = {};
+let clickedRecipe = null;
 
 let usersData = null;
 let ingredientsData = null;
@@ -105,13 +106,19 @@ recipeDisplay.addEventListener("click", (event) => {
   if (event.target.innerText === "Save Recipe") {
     event.target.innerText = "✓ Saved";
     event.target.style.backgroundColor = "#89ce94";
+    clickedRecipe = clickedId; //
+    console.log(clickedRecipe)
+    console.log(currentUser)
     saveRecipe(recipeData, currentUser.recipesToCook, clickedId);
+    sendPostRequest(currentUser, clickedRecipe)
   } else if (event.target.innerText === "✓ Saved") {
     event.target.innerText = "Save Recipe";
     event.target.style.backgroundColor = "#e5e7e9";
     deleteRecipe(currentUser.recipesToCook, clickedId);
+    sendDeleteRequest(currentUser, clickedRecipe)
   } else if (event.target.innerText === "Remove Recipe") {
     deleteRecipe(currentUser.recipesToCook, clickedId);
+    sendDeleteRequest(currentUser, clickedRecipe)
     displayRecipes(currentUser.recipesToCook, "Remove Recipe");
     displayTags(currentUser.recipesToCook);
   }
