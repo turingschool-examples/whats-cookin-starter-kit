@@ -1,5 +1,7 @@
 // Your fetch requests will live here!
 
+import { printError } from "./domUpdates";
+
 
 const fetchData = (type, link, fn) => {
   return fetch(link)
@@ -7,7 +9,10 @@ const fetchData = (type, link, fn) => {
     .then(data => {
       return fn(data[type]);
     })
-    .catch(error => console.log("An error occurred. Oh dear!:", error)) //Fix sad path... what should happen if error
+    .catch(error => {
+       console.error(`An error occurred: ${error}`);
+       printError(error, type)
+    })
 };
 
 export {

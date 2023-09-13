@@ -1,6 +1,7 @@
 * {
   background-color: #E7F1F1; 
   margin: 10px;
+  letter-spacing: 2px;
 }
 
 .container {
@@ -9,6 +10,9 @@
   align-items: center;
 }
 
+.hidden {
+  display: none;
+}
 
 .filter-save {
   width: 200px;
