@@ -20,33 +20,39 @@ const promises = [
 const addRecipeToUser = (userId, recipeId) => {
   const root = `http://localhost:3001/api/v1/usersRecipes`;
   const recipeBody = { userID: userId, recipeID: recipeId };
-  const promise = fetch(root, {
+
+  // Make the POST request
+  return fetch(root, {
     method: "POST",
     body: JSON.stringify(recipeBody),
     headers: {
       "Content-Type": "application/json",
     },
   })
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((err) => console.log(err));
+    .then((postResponse) => {
+      if (!postResponse.ok) {
+        throw new Error(`Network response was not ok: ${postResponse.status}`);
+      }
+
+      // Wait for the POST request to complete, then make the GET request
+      return fetch(`http://localhost:3001/api/v1/users`);
+    })
+    .then((getUsersResponse) => {
+      if (!getUsersResponse.ok) {
+        throw new Error(
+          `Network response was not ok: ${getUsersResponse.status}`
+        );
+      }
+
+      // Parse and return the updated users data
+      return getUsersResponse.json();
+    })
+    .catch((error) => {
+      console.error(`Error: ${error}`);
+      throw error;
+    });
 };
 
-// const updatedUsers = () => {
-//   return fetch(`http://localhost:3001/api/v1/users`)
-//     .then((response) => {
-//       if (!response.ok) {
-//         throw new Error(`Network response was not ok: ${response.status}`);
-//       }
-//       console.log("promise complete");
-//       return response.json();
-//     })
-//     .catch((error) => {
-//       console.error(`Error fetching ${dataType}: ${error}`);
-//     });
-// };
-// const userProm = [updatedUsers()];
 
 export default promises;
 export const addRecipe = addRecipeToUser;
-// export const userPromise = userProm;

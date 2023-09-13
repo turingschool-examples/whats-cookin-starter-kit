@@ -3,7 +3,7 @@ import "./styles.css";
 import "./images/bookmark-regular.svg";
 import "./images/bookmark-solid.svg";
 import "./images/x-solid.svg";
-import promises, { addRecipe } from "./apiCalls";
+import promises, { addRecipe, fetchUsers } from "./apiCalls";
 
 import {
   createRecipeCards,
@@ -92,9 +92,13 @@ recipeCardClose.addEventListener("click", function (event) {
 
 recipeCardBookmarkAdd.addEventListener("click", function (event) {
   let bookmarkClicked = event.target.id;
-  addRecipe(currentUser.id, bookmarkClicked);
-  saveRecipe(bookmarkClicked, currentUser);
-  displayRecipeTag(bookmarkClicked, currentUser, data.recipes);
+  addRecipe(currentUser.id, bookmarkClicked).then((responseData) => {
+    // console.log("Data from the POST request: ", responseData);
+    data.users = responseData;
+    // currentUser.id => the place where data.users (id matches)
+    saveRecipe(bookmarkClicked, currentUser);
+    displayRecipeTag(bookmarkClicked, currentUser, data.recipes);
+  });
 });
 
 recipeCardBookmarkDelete.addEventListener("click", function (event) {
