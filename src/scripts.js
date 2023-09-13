@@ -2,12 +2,12 @@
 
 import './styles.css'
 import  './apiCalls'
-import {fetchData} from './apiCalls'
+import {fetchData} from './apiCalls.js'
 
 
 // Example of one way to import functions from the domUpdates file. You will delete these examples.
 import {renderRecipes, displayRecipes, displayPopUp} from './domUpdates.js';
-import {findRecipe} from '../test/untestedFunctions.js'
+import {findRecipe} from './recipe-functions.js'
 
 // query selectors
 

@@ -1,6 +1,6 @@
 //NOTE: Your DOM manipulation will occur in this file
 
-import {findRecipeIngredients, calculateCost} from '../test/untestedFunctions.js'
+import {findRecipeIngredients, calculateCost} from './ingredient-functions'
 
 const recipesContainer = document.querySelector('.recipe-container');
 
