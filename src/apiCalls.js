@@ -1,4 +1,5 @@
 // Your fetch requests will live here!
+import { currentUser } from './scripts.js'
 
 export const fetchUsers = fetch(
   "http://localhost:3001/api/v1/users"
@@ -23,3 +24,16 @@ export const fetchRecipes = fetch(
   .then((data) => {
     return data.recipes;
   });
+
+export function sendPostRequest(currentUser) {
+  return fetch("http://localhost:3001/api/v1/usersRecipes", {
+    method: 'POST',
+    body: JSON.stringify(currentUser.postData),
+    headers: {
+       'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(json => console.log(json))
+  .catch(err => console.log("Error:", err))
+}

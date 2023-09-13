@@ -44,7 +44,7 @@ import {
 
 import { displayRecipes } from "./domUpdates.js";
 import { displayTags } from "./domUpdates.js";
-import { fetchIngredients, fetchRecipes, fetchUsers } from "./apiCalls";
+import { fetchIngredients, fetchRecipes, fetchUsers, sendPostRequest } from "./apiCalls";
 
 const recipeDisplay = document.querySelector(".recipes");
 
@@ -78,6 +78,7 @@ function createRandomUser(users) {
   currentUser.name = randomUser.name;
   currentUser.id = randomUser.id;
   currentUser.recipesToCook = [];
+  currentUser.postData = {userID: currentUser.id, recipeID: null}
   console.log(currentUser);
 
   return currentUser;
@@ -105,7 +106,9 @@ recipeDisplay.addEventListener("click", (event) => {
   if (event.target.innerText === "Save Recipe") {
     event.target.innerText = "✓ Saved";
     event.target.style.backgroundColor = "#89ce94";
+    currentUser.postData.recipeID = (clickedId)
     saveRecipe(recipeData, currentUser.recipesToCook, clickedId);
+    sendPostRequest(currentUser)
   } else if (event.target.innerText === "✓ Saved") {
     event.target.innerText = "Save Recipe";
     event.target.style.backgroundColor = "#e5e7e9";
