@@ -3,6 +3,7 @@
   padding: 0;
   font-family: 'Nunito', sans-serif;
   color: #21683d;
+
 }
 
 body {
@@ -142,14 +143,31 @@ h1 {
   text-align: center;
 }
 
+.icon-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 .icon {
   height: 50px;
   width: 50px;
+  padding: 40px;
+}
+
+.spacer {
+  height: 50px;
+  width: 200px
+}
+
+/* .bookmark {
+padding: 50px;
 }
 
 .close {
-  margin-left: 90%;
-}
+padding: 50px;
+margin-left: 70%;
+} */
 
 .error {
   font-size: 30px;
