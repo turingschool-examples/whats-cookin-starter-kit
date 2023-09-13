@@ -45,6 +45,8 @@ import {
 import { displayRecipes } from "./domUpdates.js";
 import { displayTags } from "./domUpdates.js";
 import {
+  fetchCurrenciesCode,
+  fetchCurrencies,
   fetchIngredients,
   fetchRecipes,
   fetchUsers,
@@ -75,6 +77,9 @@ let usersData = null;
 let ingredientsData = null;
 let recipeData = null;
 let idClicked = null;
+
+fetchCurrenciesCode();
+fetchCurrencies();
 
 function createRandomUser(users) {
   const randIndex = Math.floor(Math.random() * users.length);

@@ -1,6 +1,26 @@
 // Your fetch requests will live here!
 import { currentUser } from "./scripts";
 
+export function fetchCurrenciesCode() {
+  fetch(
+    "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    });
+}
+
+export function fetchCurrencies() {
+  fetch(
+    "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/cad.json"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    });
+}
+
 export const fetchUsers = fetch("http://localhost:3001/api/v1/users")
   .then((response) => response.json())
   .then((data) => {
