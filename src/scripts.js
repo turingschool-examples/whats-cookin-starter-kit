@@ -210,6 +210,20 @@ closeBtn.addEventListener("click", function () {
   modalOverlay.classList.remove("open-modal");
 });
 
+modalOverlay.addEventListener("click", (event) => {
+ if (event.target.id === "modal-overlay") {
+  modalOverlay.classList.remove("open-modal");
+ }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    modalOverlay.classList.remove("open-modal");
+  }
+});
+
+
+
 Promise.all([fetchUsers, fetchIngredients, fetchRecipes]).then(
   ([usersDataValue, ingredientsDataValue, recipeDataValue]) => {
     usersData = usersDataValue;
@@ -226,6 +240,9 @@ function createModal() {
   const url = returnRecipeImgUrl(recipeData, idClicked);
 
   modalOverlay.classList.add("open-modal");
+
+  modalOverlay.id = "modal-overlay"; // AHA!!!!
+
 
   modalContainer.style.backgroundImage = `linear-gradient(
     rgba(15, 15, 15, 0.7),
