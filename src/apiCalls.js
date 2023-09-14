@@ -49,10 +49,8 @@ const addRecipeToUser = (userId, recipeId) => {
     })
     .catch((error) => {
       console.error(`Error: ${error}`);
-      throw error;
     });
 };
-
 
 export default promises;
 export const addRecipe = addRecipeToUser;
