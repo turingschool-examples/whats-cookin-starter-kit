@@ -31,11 +31,11 @@ const renderRecipes = (recipeData) => {
     const recipeCard = document.createElement('button');
     recipeCard.classList.add('recipe-card');
     recipeCard.id = recipe.id;
-    recipeCard.tabIndex = index + 8; 
+    recipeCard.tabIndex = index; 
 
     recipeCard.innerHTML = `
       <p class="recipe-name">${recipe.name}</p>
-      <img class="image-styling" src="${recipe.image}">
+      <img class="image-styling" src="${recipe.image}" alt="${recipe.name}">
     `;
 
     recipesContainer.appendChild(recipeCard);
@@ -73,7 +73,7 @@ const displayRecipes = (recipeData, searchField) => {
   const filteredRecipes = recipeData.filter(recipe => 
     recipe['name'].toLowerCase().includes(searchValue));
 
-  let tabindex = 8;
+  let tabindex = -1;
 
   filteredRecipes.forEach(recipe => {
     const recipeCard = document.createElement('button');
@@ -82,13 +82,23 @@ const displayRecipes = (recipeData, searchField) => {
     recipeCard.tabIndex = tabindex; 
     tabindex++; 
 
-    recipeCard.innerHTML = `
-      <p class="recipe-name">${recipe.name}</p>
-      <img class="image-styling" src="${recipe.image}">
-    `;
+
+  const imgElement = document.createElement('img');
+  imgElement.classList.add('image-styling');
+  imgElement.src = recipe.image;
+  imgElement.alt = recipe.name; 
+
+  recipeCard.appendChild(imgElement);
 
 
-    recipesContainer.appendChild(recipeCard);
+  const recipeName = document.createElement('p');
+  recipeName.classList.add('recipe-name');
+  recipeName.textContent = recipe.name;
+
+  recipeCard.appendChild(recipeName);
+
+
+  recipesContainer.appendChild(recipeCard);
   });
 
   if (filteredRecipes.length === 0) {
@@ -115,18 +125,18 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
 `
 <div class="popup-overlay">
   <div class="popup-content">
-    <h2 tabindex="8">${recipeMatch.name}</h2>
-    <img tabindex="9" src="${recipeMatch.image}" alt="${recipeMatch.name}">
-    <h3 tabindex="10">Ingredients:</h3>
-    <div class="ingredients-list" tabindex="11">${ingredientsString}</div>
-    <h3 tabindex="12">Instructions:</h3>
-    <div class="instructions-list" tabindex="13">${instructionsList}</div>
-    <h3 tabindex="14">Total Cost:</h3>
-    <p tabindex="15">${recipeCost}</p>
+    <h2 tabindex="0">${recipeMatch.name}</h2>
+    <img tabindex="1" src="${recipeMatch.image}" alt="${recipeMatch.name} Image">
+    <h3 tabindex="2">Ingredients:</h3>
+    <div class="ingredients-list" tabindex="3">${ingredientsString}</div>
+    <h3 tabindex="4">Instructions:</h3>
+    <div class="instructions-list" tabindex="5">${instructionsList}</div>
+    <h3 tabindex="6">Total Cost:</h3>
+    <p tabindex="7">${recipeCost}</p>
   </div>
   <section class="save-and-close-button-container">
-    <button tabindex="16" class="save-and-close-button" id="closePopup">Close</button>
-    <button tabindex="17" class="save-and-close-button save-recipe-button" id="saveRecipe">Save</button>
+    <button tabindex="0" class="save-and-close-button" id="closePopup">Close</button>
+    <button tabindex="1" class="save-and-close-button save-recipe-button" id="saveRecipe">Save</button>
   </section>
 </div>
   `
