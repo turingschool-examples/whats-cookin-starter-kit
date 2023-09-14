@@ -95,7 +95,7 @@ const viewSavedRecipes = (recipeData) => {
     // displayRecipes(recipeData, "Save Recipe");
     console.log(recipeData)
     console.log(currentUser.recipesToCook)
-    displayFilteredRecipes(recipeData, currentUser.recipesToCook, "Saved")
+    displayFilteredRecipes(recipeData, currentUser.recipesToCook)
     savedRecipesBtn.innerText = "View Saved Recipes";
     displayTags(recipeData);
   }

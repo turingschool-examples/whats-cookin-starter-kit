@@ -345,3 +345,11 @@ li {
 .bold {
   font-weight: bold;
 }
+
+.is-saved {
+  background-color: #89ce94;
+}
+
+.is-not-saved {
+  background-color: #e5e7e9;
+}

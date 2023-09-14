@@ -28,35 +28,35 @@ export function displayTags(recipes) {
   tagButtons.innerHTML = tagsHtml;
 }
 
-export function displayFilteredRecipes(recipeData, currentUserRecipes, innerText) {
-  const filteredRecipes = recipeData.reduce((acc, recipe) => {
-    let recipeIsSaved = false
-    // look at user data, if recipe matches, mark as saved
-    currentUserRecipes.forEach((userRecipe) => {
-      if (userRecipe.id === recipe.id) {
-        recipeIsSaved = true
-      }
-    })
-
-    // if recipe is not saved, push to acc
-    if (!recipeIsSaved) {
-      acc.push(recipe)
-    }
-    return acc
-  }, [])
+export function displayFilteredRecipes(recipeData, currentUserRecipes) {
+    // store user recipes ids
+    const savedRecipeIDs = currentUserRecipes.map((userRecipe) => userRecipe.id)
 
   // display on html
   let filteredRecipeHTML = ``;
+  let innerText = ``;
+  let buttonClass = ``;
 
-  filteredRecipes.forEach((recipe) => {
+  recipeData.forEach((recipe) => {
+    // changing innerText
+    const isSaved = savedRecipeIDs.includes(recipe.id)
+    if (isSaved) {
+      innerText = `Saved`
+      buttonClass = 'is-saved'
+    } else {
+      innerText = `Save Recipe`
+      buttonClass = 'is-not-saved'
+    }
+
     filteredRecipeHTML += `<div class="recipe-card"><div class="title-recipe" id=${recipe.id}>${recipe.name}</div>
     <img
       src="${recipe.image}"
       alt="recipe-img"
       id=${recipe.id}
     />
-    <button class="save-recipe-btn">${innerText}</button>
+    <button class="save-recipe-btn ${buttonClass}">${innerText}</button>
     </div>`;
   });
+  
   recipeDisplay.innerHTML = filteredRecipeHTML;
 }
