@@ -167,3 +167,11 @@ button:active {
   color: black;
   font-weight: 500;
 }
+
+#error {
+  color: darkred;
+  /* background-color: white;
+  border: 5px black solid;
+  width: 100%;
+  text-align: center; */
+}
