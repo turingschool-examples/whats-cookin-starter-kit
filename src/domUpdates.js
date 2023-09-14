@@ -31,7 +31,7 @@ const renderRecipes = (recipeData) => {
     const recipeCard = document.createElement('button');
     recipeCard.classList.add('recipe-card');
     recipeCard.id = recipe.id;
-    recipeCard.tabIndex = index; 
+    recipeCard.tabIndex = 0; 
 
     recipeCard.innerHTML = `
       <p class="recipe-name">${recipe.name}</p>
@@ -73,14 +73,14 @@ const displayRecipes = (recipeData, searchField) => {
   const filteredRecipes = recipeData.filter(recipe => 
     recipe['name'].toLowerCase().includes(searchValue));
 
-  let tabindex = -1;
+  
 
   filteredRecipes.forEach(recipe => {
     const recipeCard = document.createElement('button');
     recipeCard.classList.add('recipe-card');
     recipeCard.id = recipe.id;
-    recipeCard.tabIndex = tabindex; 
-    tabindex++; 
+    recipeCard.tabIndex = 0; 
+ 
 
 
   const imgElement = document.createElement('img');
@@ -126,17 +126,17 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
 <div class="popup-overlay">
   <div class="popup-content">
     <h2 tabindex="0">${recipeMatch.name}</h2>
-    <img tabindex="1" src="${recipeMatch.image}" alt="${recipeMatch.name} Image">
-    <h3 tabindex="2">Ingredients:</h3>
-    <div class="ingredients-list" tabindex="3">${ingredientsString}</div>
-    <h3 tabindex="4">Instructions:</h3>
-    <div class="instructions-list" tabindex="5">${instructionsList}</div>
-    <h3 tabindex="6">Total Cost:</h3>
-    <p tabindex="7">${recipeCost}</p>
+    <img tabindex="0" src="${recipeMatch.image}" alt="${recipeMatch.name} Image">
+    <h3 tabindex="0">Ingredients:</h3>
+    <div class="ingredients-list" tabindex="0">${ingredientsString}</div>
+    <h3 tabindex="0">Instructions:</h3>
+    <div class="instructions-list" tabindex="0">${instructionsList}</div>
+    <h3 tabindex="0">Total Cost:</h3>
+    <p tabindex="0">${recipeCost}</p>
   </div>
   <section class="save-and-close-button-container">
     <button tabindex="0" class="save-and-close-button" id="closePopup">Close</button>
-    <button tabindex="1" class="save-and-close-button save-recipe-button" id="saveRecipe">Save</button>
+    <button tabindex="0" class="save-and-close-button save-recipe-button" id="saveRecipe">Save</button>
   </section>
 </div>
   `
