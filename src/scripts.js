@@ -241,7 +241,7 @@ function createModal() {
 
   modalOverlay.classList.add("open-modal");
 
-  modalOverlay.id = "modal-overlay"; // AHA!!!!
+  modalOverlay.id = "modal-overlay";
 
 
   modalContainer.style.backgroundImage = `linear-gradient(
