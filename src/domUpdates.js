@@ -14,12 +14,14 @@ const recipeCardBookmark = document.querySelector(".bookmark");
 const recipeCardBookmarkAdd = document.querySelector(".icon-bookmark");
 const recipeCardBookmarkDelete = document.querySelector(".solid-bookmark");
 
+// const elementsToMakeAccessible = document.querySelectorAll('[tabindex="0"]'); ///added this query selector for tab 'button' click
+
 import { getIngredientNames, calculateCost } from "../src/recipes.js";
 
 const createRecipeCards = (recipes) => {
   recipeArea.innerHTML = "";
   recipes.forEach((recipe) => {
-    let recipeCard = document.createElement("div");
+    let recipeCard = document.createElement("button");
     recipeCard.classList.add("recipe-card");
     recipeCard.setAttribute("id", recipe.id);
     let recipeTitle = document.createElement("h2");
@@ -29,8 +31,10 @@ const createRecipeCards = (recipes) => {
     let recipeImage = document.createElement("img");
     recipeImage.classList.add("recipe-image");
     recipeImage.setAttribute("src", recipe.image);
+    recipeImage.setAttribute('alt', `${recipe.name}`)
     recipeCard.appendChild(recipeImage);
     recipeArea.appendChild(recipeCard);
+    recipeImage.setAttribute('tabindex', '0');
   });
 };
 
@@ -148,6 +152,21 @@ const buildSearchFail = () => {
   searchFail.innerText = `There were no results for your search, please try another term.`;
   recipeArea.appendChild(searchFail);
 };
+
+// elementsToMakeAccessible.forEach(element => {
+//   element.addEventListener('keydown', function (event) {
+//     if (event.key === ' ' || event.key === 'Spacebar' || event.key === 'Enter') {
+//       event.preventDefault(); 
+//       element.click();
+//     }
+//   });
+//   //asking chat how to 
+//   //how can we identify if something has been click -- another event listener needs to run on this
+//   //click an element with my mouse its running the correct event listener 
+//   //but 
+// });
+
+
 
 export {
   createRecipeCards,
