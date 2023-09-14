@@ -1,6 +1,7 @@
 //NOTE: Your DOM manipulation will occur in this file
 
 import {findRecipeIngredients, calculateCost} from './ingredient-functions'
+import { updateUsers } from './apiCalls';
 
 const recipesContainer = document.querySelector('.recipe-container');
 // const headCenter = document.querySelector('.container')
@@ -45,7 +46,7 @@ const saveRecipe = (recipe, user) => {
     if (!user.recipesToCook.includes(recipe)){
       user.recipesToCook.push(recipe)
       saveRecipeButton.innerText = "Saved!"
-      saveRecipeButton.style.backgroundColor = 'green';
+      saveRecipeButton.style.backgroundColor = 'green'
     } else {
       let recipeIndex = user.recipesToCook.indexOf(recipe);
       user.recipesToCook.splice(recipeIndex, 1);
@@ -128,7 +129,9 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
     saveRecipeButton.style.backgroundColor = 'green';
   }
   saveRecipeButton.addEventListener('click', () => {
+    updateUsers(user, recipeMatch);  
     saveRecipe(recipeMatch, user);
+    // updateUsers(user, recipeMatch)
 })
 }
 
