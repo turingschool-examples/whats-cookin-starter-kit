@@ -2,22 +2,22 @@
 import { currentUser } from "./scripts";
 
 export function fetchCurrenciesCode() {
-  fetch(
+  return fetch(
     "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json"
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      return data;
     });
 }
 
 export function fetchCurrencies() {
-  fetch(
-    "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/cad.json"
+  return fetch(
+    "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.json"
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      return data;
     });
 }
 

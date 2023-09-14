@@ -73,7 +73,7 @@ h1 {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  padding: 1.25em
+  padding: 1.25em;
 }
 
 .title-recipe:hover {
@@ -302,7 +302,7 @@ tag-btn:hover {
 .modal-cost {
   font-size: 24px;
   margin-top: 100px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   font-weight: 300;
 }
 
@@ -315,12 +315,13 @@ tag-btn:hover {
 }
 
 .modal-ingredients-list {
-  font-size: 24px;
+  margin-top: 20px;
 }
 
 .modal-ingredients {
   font-size: 28px;
   margin-bottom: 10px;
+  margin-top: 20px;
 }
 
 .modal-directions {
@@ -345,4 +346,8 @@ li {
 
 .bold {
   font-weight: bold;
+}
+
+.choose-currency {
+  font-size: 14px;
 }
