@@ -1,12 +1,118 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-  </head>
-  <body>
-    <h1>Whats Cookin</h1>
-  </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet" />
+  <title>Discovery Cooking</title>
+</head>
+
+<body>
+  <main class="container">
+    <section id="mainNav" class="main-nav">
+      <nav id="upperNav" class="upper-nav">
+        <button id="discoverRecipes" class="upper-nav-button">
+          Discover Recipes
+        </button>
+        <button id="myRecipes" class="upper-nav-button">Saved Recipes</button>
+      </nav>
+      <section class="search">
+        <input type="text" placeholder="Search for a recipe" id="searchInput" aria-label="Search for a recipe">
+        <button id="searchButton" aria-label="Search">🔎</button>
+      </section>
+    </section>
+    <h1 id="pageTitle" tabindex="0">Discovery Cooking</h1>
+    <section id="tags" class="tag-area" tabindex="0">
+      <section class="tag-card" id="breakfast" tabindex="0">
+        <p class="tag-text">Breakfast</p>
+      </section>
+      <section class="tag-card" id="lunch" tabindex="0">
+        <p class="tag-text">Lunch</p>
+      </section>
+      <section class="tag-card" id="dinner" tabindex="0">
+        <p class="tag-text">Dinner</p>
+      </section>
+      <section class="tag-card" id="snack" tabindex="0">
+        <p class="tag-text">Snack</p>
+      </section>
+      <section class="tag-card" id="antipasti" tabindex="0">
+        <p class="tag-text">Antipasti</p>
+      </section>
+      <section class="tag-card" id="starter" tabindex="0">
+        <p class="tag-text">Starter</p>
+      </section>
+      <section class="tag-card" id="appetizer" tabindex="0">
+        <p class="tag-text">Appetizer</p>
+      </section>
+      <section class="tag-card" id="antipasto" tabindex="0">
+        <p class="tag-text">Antipasto</p>
+      </section>
+      <section class="tag-card" id="hor d'oeuvre" tabindex="0">
+        <p class="tag-text">Hor d'oeuvre</p>
+      </section>
+      <section class="tag-card" id="main course" tabindex="0">
+        <p class="tag-text">Main course</p>
+      </section>
+      <section class="tag-card" id="sauce" tabindex="0">
+        <p class="tag-text">Sauce</p>
+      </section>
+      <section class="tag-card" id="side dish" tabindex="0">
+        <p class="tag-text">Side dish</p>
+      </section>
+      <section class="tag-card" id="brunch" tabindex="0">
+        <p class="tag-text">Brunch</p>
+      </section>
+      <section class="tag-card" id="morning meal" tabindex="0">
+        <p class="tag-text">Morning Meal</p>
+      </section>
+      <section class="tag-card" id="salad" tabindex="0">
+        <p class="tag-text">Salad</p>
+      </section>
+      <section class="tag-card" id="condiment" tabindex="0">
+        <p class="tag-text">Condiment</p>
+      </section>
+      <section class="tag-card" id="dip" tabindex="0">
+        <p class="tag-text">Dip</p>
+      </section>
+      <section class="tag-card" id="spread" tabindex="0">
+        <p class="tag-text">Spread</p>
+      </section>
+    </section>
+    <section class="recipe-area" tabindex="0">
+      <!-- cards go here  -->
+    </section>
+    <section id="recipeCardBlowup" class="recipe-card-blowup hidden" tabindex="0">
+      <section class="icon-section">
+        <img class="icon bookmark icon-bookmark hidden" src="./images/bookmark-regular.svg" alt="Regular Bookmark Icon"
+          tabindex="0" />
+        <img class="icon bookmark solid-bookmark hidden" src="./images/bookmark-solid.svg" alt="Solid Bookmark Icon"
+          tabindex="0" />
+        <div class="spacer"></div>
+        <img class="icon close" src="./images/x-solid.svg" alt="Close Icon" tabindex="0" />
+      </section>
+      <br />
+      <h2 id="recipeCardTitle">Recipe Card Title</h2>
+      <br />
+      <section class="recipe-image-section" id="recipeImageSection" tabindex="0">
+        <!-- recipe image goes here -->
+      </section>
+      <br />
+      <section id="recipeCardTags" tabindex="0">
+        <!-- put the individual tags for recipe here -->
+      </section>
+      <br />
+      <h3 id="recipeCardTotalCost"> Recipe Card Total Cost</h3>
+      <br />
+      <section id="recipeCardIngredients" tabindex="0">Ingredients:</section>
+      <br />
+      <p class="instructions">Instructions:</p>
+      <br />
+      <section id="recipeCardInstructions" tabindex="0">
+      </section>
+  </main>
+</body>
+<!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+<script src="bundle.js"></script>
+
 </html>
