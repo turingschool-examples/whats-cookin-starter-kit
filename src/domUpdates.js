@@ -17,29 +17,34 @@ const printError = (error, users) => {
   errorMessage.innerText = `ERROR with ${users}: ${error}`
 }
 
+
+
 const renderRecipes = (recipeData) => {
   recipesContainer.innerHTML = '';
-  featuredTitle.classList.toggle('hidden', true)
-  if(recipeData.length === 6) {
-    featuredTitle.classList.toggle('hidden', false)
-    // let featuredTitle = document.createElement('h2');
-    // featuredTitle.innerText = 'Featured Recipes';
-    // featuredTitle.classList.add('class', 'categories')
-    // headCenter.insertBefore(featuredTitle, recipesContainer);
+  featuredTitle.classList.toggle('hidden', true);
 
+  if (recipeData.length === 6) {
+    featuredTitle.classList.toggle('hidden', false);
   }
-  recipeData.forEach((recipe) => 
-    recipesContainer.innerHTML += `
-    <button class="recipe-card"id="${recipe.id}">
-        <p class ="recipe-name">${recipe.name}</p>
-        <img class="image-styling" src="${recipe.image}">
-      </button>
-    `
-  )
-  if(recipeData.length === 0) {
-    recipesContainer.innerHTML = `<h2 class="categories">No saved recipes yet!</h2>`
+
+  recipeData.forEach((recipe, index) => {
+    const recipeCard = document.createElement('button');
+    recipeCard.classList.add('recipe-card');
+    recipeCard.id = recipe.id;
+    recipeCard.tabIndex = index + 8; 
+
+    recipeCard.innerHTML = `
+      <p class="recipe-name">${recipe.name}</p>
+      <img class="image-styling" src="${recipe.image}">
+    `;
+
+    recipesContainer.appendChild(recipeCard);
+  });
+
+  if (recipeData.length === 0) {
+    recipesContainer.innerHTML = `<h2 class="categories">No saved recipes yet!</h2>`;
   }
-}
+};
 
 const saveRecipe = (recipe, user) => {
   const saveRecipeButton = document.querySelector('.save-recipe-button')
@@ -55,33 +60,43 @@ const saveRecipe = (recipe, user) => {
 }
 
 
-const displayRecipes = (recipeData, searchField) => {
-  recipesContainer.innerHTML = '';
-  featuredTitle.classList.toggle('hidden', true)
-  let searchValue = searchField.value.toLowerCase();
-  const filteredRecipes = recipeData.filter(recipe => 
-    recipe['name'].toLowerCase().includes(searchValue));
-    filteredRecipes.map(recipe => {
-      recipesContainer.innerHTML += `
-        <button class="recipe-card"id="${recipe.id}">
-          <p class="recipe-name">${recipe.name}</p>
-          <img class="image-styling" src="${recipe.image}">
-        </button>
-      `;
-    });
-  if (filteredRecipes.length === 0) {
-    recipesContainer.innerHTML = `<h2 class="categories">No search results!</h2>`
-  }
-    return filteredRecipes;
-};
-
 const findRecipeById = (recipeData, id) => {
   const matchingRecipe = recipeData.find(recipe => recipe.id == id);
   return matchingRecipe || 'oops'
 
 };
 
+const displayRecipes = (recipeData, searchField) => {
+  recipesContainer.innerHTML = '';
+  featuredTitle.classList.toggle('hidden', true);
+  let searchValue = searchField.value.toLowerCase();
+  const filteredRecipes = recipeData.filter(recipe => 
+    recipe['name'].toLowerCase().includes(searchValue));
 
+  let tabindex = 8;
+
+  filteredRecipes.forEach(recipe => {
+    const recipeCard = document.createElement('button');
+    recipeCard.classList.add('recipe-card');
+    recipeCard.id = recipe.id;
+    recipeCard.tabIndex = tabindex; 
+    tabindex++; 
+
+    recipeCard.innerHTML = `
+      <p class="recipe-name">${recipe.name}</p>
+      <img class="image-styling" src="${recipe.image}">
+    `;
+
+
+    recipesContainer.appendChild(recipeCard);
+  });
+
+  if (filteredRecipes.length === 0) {
+    recipesContainer.innerHTML = `<h2 class="categories">No search results!</h2>`;
+  }
+
+  return filteredRecipes;
+};
 
 const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
   let recipeMatch = findRecipeById(recipeData, recipeId)
@@ -98,22 +113,22 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
   let instructionsList = instructionsDivs.join("");
   recipesContainer.innerHTML =
 `
-    <div class="popup-overlay">
-      <div class="popup-content">
-        <h2>${recipeMatch.name}</h2>
-        <img src="${recipeMatch.image}" alt="${recipeMatch.name}">
-        <h3>Ingredients:</h3>
-        <div class="ingredients-list">${ingredientsString}</div>
-        <h3>Instructions:</h3>
-        <div class="instructions-list">${instructionsList}</div>
-        <h3>Total Cost:</h3>
-        <p>${recipeCost}</p>
-      </div>
-      <section class="save-and-close-button-container">
-      <button class="save-and-close-button" id="closePopup">Close</button>
-      <button class="save-and-close-button save-recipe-button" id="saveRecipe">Save</button>
-    </section>
-    </div>
+<div class="popup-overlay">
+  <div class="popup-content">
+    <h2 tabindex="8">${recipeMatch.name}</h2>
+    <img tabindex="9" src="${recipeMatch.image}" alt="${recipeMatch.name}">
+    <h3 tabindex="10">Ingredients:</h3>
+    <div class="ingredients-list" tabindex="11">${ingredientsString}</div>
+    <h3 tabindex="12">Instructions:</h3>
+    <div class="instructions-list" tabindex="13">${instructionsList}</div>
+    <h3 tabindex="14">Total Cost:</h3>
+    <p tabindex="15">${recipeCost}</p>
+  </div>
+  <section class="save-and-close-button-container">
+    <button tabindex="16" class="save-and-close-button" id="closePopup">Close</button>
+    <button tabindex="17" class="save-and-close-button save-recipe-button" id="saveRecipe">Save</button>
+  </section>
+</div>
   `
   const popUpContentContainer = document.querySelector('.popup-content');
   popUpContentContainer.style.backgroundColor = '#414535';
