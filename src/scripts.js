@@ -93,7 +93,7 @@ recipeCardClose.addEventListener("click", function (event) {
 recipeCardBookmarkAdd.addEventListener("click", function (event) {
   let bookmarkClicked = event.target.id;
   addRecipe(currentUser.id, bookmarkClicked).then((responseData) => {
-    // console.log("Data from the POST request: ", responseData);
+    console.log("Data from the POST request: ", responseData);
     data.users = responseData;
     let users = data.users.users;
     const updateUser = (users) => {
@@ -104,7 +104,8 @@ recipeCardBookmarkAdd.addEventListener("click", function (event) {
       });
     };
     currentUser = updateUser(users);
-    // console.log(currentUser);
+    // updateUser updates the currentUser with the data from the database!!!
+    console.log(currentUser);
     // currentUser.id => the place where data.users (id matches)
     // saveRecipe(bookmarkClicked, currentUser);
     displayRecipeTag(bookmarkClicked, currentUser, data.recipes);

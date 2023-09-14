@@ -21,7 +21,7 @@ import { getIngredientNames, calculateCost } from "../src/recipes.js";
 const createRecipeCards = (recipes) => {
   recipeArea.innerHTML = "";
   recipes.forEach((recipe) => {
-    let recipeCard = document.createElement("button");
+    let recipeCard = document.createElement("div");
     recipeCard.classList.add("recipe-card");
     recipeCard.setAttribute("id", recipe.id);
     let recipeTitle = document.createElement("h2");
@@ -31,10 +31,10 @@ const createRecipeCards = (recipes) => {
     let recipeImage = document.createElement("img");
     recipeImage.classList.add("recipe-image");
     recipeImage.setAttribute("src", recipe.image);
-    recipeImage.setAttribute('alt', `${recipe.name}`)
+    recipeImage.setAttribute("alt", `${recipe.name}`);
     recipeCard.appendChild(recipeImage);
     recipeArea.appendChild(recipeCard);
-    recipeImage.setAttribute('tabindex', '0');
+    recipeImage.setAttribute("tabindex", "0");
   });
 };
 
@@ -156,17 +156,15 @@ const buildSearchFail = () => {
 // elementsToMakeAccessible.forEach(element => {
 //   element.addEventListener('keydown', function (event) {
 //     if (event.key === ' ' || event.key === 'Spacebar' || event.key === 'Enter') {
-//       event.preventDefault(); 
+//       event.preventDefault();
 //       element.click();
 //     }
 //   });
-//   //asking chat how to 
+//   //asking chat how to
 //   //how can we identify if something has been click -- another event listener needs to run on this
-//   //click an element with my mouse its running the correct event listener 
-//   //but 
+//   //click an element with my mouse its running the correct event listener
+//   //but
 // });
-
-
 
 export {
   createRecipeCards,

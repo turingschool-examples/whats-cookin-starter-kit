@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet" />
   <title>Discovery Cooking</title>
 </head>
+
 <body>
   <main class="container">
     <section id="mainNav" class="main-nav">
@@ -81,12 +82,15 @@
     <section class="recipe-area" tabindex="0">
       <!-- cards go here  -->
     </section>
-    <section id="recipeCardBlowup" class="recipe-card-blowup hidden" tabindex="0" >
+    <section id="recipeCardBlowup" class="recipe-card-blowup hidden" tabindex="0">
       <section class="icon-section">
-      <img class="icon bookmark icon-bookmark hidden" src="./images/bookmark-regular.svg" alt="Regular Bookmark Icon" tabindex="0"  />
-      <img class="icon bookmark solid-bookmark hidden" src="./images/bookmark-solid.svg" alt="Solid Bookmark Icon" tabindex="0"  />
-      <div class="spacer"></div>
-      <img class="icon close" src="./images/x-solid.svg" alt="Close Icon" tabindex="0"  />
+        <img class="icon bookmark icon-bookmark hidden" src="./images/bookmark-regular.svg" alt="Regular Bookmark Icon"
+          tabindex="0" />
+        <img class="icon bookmark solid-bookmark hidden" src="./images/bookmark-solid.svg" alt="Solid Bookmark Icon"
+          tabindex="0" />
+        <div class="spacer"></div>
+        <img class="icon close" src="./images/x-solid.svg" alt="Close Icon" tabindex="0" />
+      </section>
       <br />
       <h2 id="recipeCardTitle">Recipe Card Title</h2>
       <br />
@@ -100,14 +104,15 @@
       <br />
       <h3 id="recipeCardTotalCost"> Recipe Card Total Cost</h3>
       <br />
-      <section id="recipeCardIngredients" "tabindex="0">Ingredients:</section>
+      <section id="recipeCardIngredients" tabindex="0">Ingredients:</section>
       <br />
       <p class="instructions">Instructions:</p>
       <br />
       <section id="recipeCardInstructions" tabindex="0">
-    </section>
+      </section>
   </main>
 </body>
 <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
 <script src="bundle.js"></script>
+
 </html>
