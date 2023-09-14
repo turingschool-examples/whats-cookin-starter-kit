@@ -81,13 +81,13 @@ const filterByTag = (recipeData, clickedId) => {
 }
 
 window.addEventListener('load', function() {
-  fetchData('users', "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users", getRandomUser);
-  fetchData('recipes', "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes", getRecipeData)
+  fetchData('users', "http://localhost:3001/api/v1/users", getRandomUser);
+  fetchData('recipes', "http://localhost:3001/api/v1/recipes", getRecipeData)
     .then(() => {
       getFeaturedRecipes(recipesData)})  
     .then(() => {
       renderRecipes(featuredRecipes);})
-  fetchData('ingredients', "https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients", getIngredientData)
+  fetchData('ingredients', "http://localhost:3001/api/v1/ingredients", getIngredientData)
 });
 
 

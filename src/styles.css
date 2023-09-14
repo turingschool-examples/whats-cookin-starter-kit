@@ -111,7 +111,7 @@ nav {
   align-items: center; 
   justify-content: center; 
   text-align: center;
-  padding-top: 20px;
+  padding-top: 10px;
   font-family: 'Eczar', serif;
   font-size: 20px;
 }
@@ -166,4 +166,12 @@ button:active {
 .categories {
   color: black;
   font-weight: 500;
+}
+
+#error {
+  color: darkred;
+  /* background-color: white;
+  border: 5px black solid;
+  width: 100%;
+  text-align: center; */
 }
