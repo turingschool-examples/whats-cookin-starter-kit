@@ -1,13 +1,13 @@
 const { recipeData } = require("./data/recipe-test-data")
 
-const findRecipe = (type, recipeList, tag) => {
+const findRecipe = (typeOfTag, recipeList, tag) => {
   let recipeFound = recipeList.filter(recipe => {
-    if(type === "name"){
-    let recipeInfo = recipe[type];
+    if(typeOfTag === "name"){
+    let recipeInfo = recipe[typeOfTag];
     let recipeUndercase = recipeInfo.toLowerCase();
     return recipeUndercase.includes(tag.toLowerCase())
     }
-    return recipe[type].includes(tag)
+    return recipe[typeOfTag].includes(tag)
   })
   return recipeFound
 }

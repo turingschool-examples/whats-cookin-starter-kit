@@ -250,7 +250,7 @@ describe('findRecipe', () => {
     }])
   });
   it('Should return a specific recipe object in an array for a partial search match that is not case sensitive', () => {
-    let elvisPancakes = findRecipe("name", recipeData, "Elvis p");
+    let elvisPancakes = findRecipe("name", recipeData, "ELVIS P");
     expect(elvisPancakes).to.deep.equal(  [{
       "id": 741603,
       "image": "https://spoonacular.com/recipeImages/741603-556x370.jpeg",
