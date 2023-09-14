@@ -38,7 +38,7 @@ export function displayFilteredRecipes(recipeData, currentUserRecipes) {
   let buttonClass = ``;
 
   recipeData.forEach((recipe) => {
-    // changing innerText
+    // changing innerText and setting buttonClass for DOM
     const isSaved = savedRecipeIDs.includes(recipe.id)
     if (isSaved) {
       innerText = `Saved`
