@@ -27,3 +27,36 @@ export function displayTags(recipes) {
   });
   tagButtons.innerHTML = tagsHtml;
 }
+
+export function displayFilteredRecipes(recipeData, currentUserRecipes, innerText) {
+  const filteredRecipes = recipeData.reduce((acc, recipe) => {
+    let recipeIsSaved = false
+    // look at user data, if recipe matches, mark as saved
+    currentUserRecipes.forEach((userRecipe) => {
+      if (userRecipe.id === recipe.id) {
+        recipeIsSaved = true
+      }
+    })
+
+    // if recipe is not saved, push to acc
+    if (!recipeIsSaved) {
+      acc.push(recipe)
+    }
+    return acc
+  }, [])
+
+  // display on html
+  let filteredRecipeHTML = ``;
+
+  filteredRecipes.forEach((recipe) => {
+    filteredRecipeHTML += `<div class="recipe-card"><div class="title-recipe" id=${recipe.id}>${recipe.name}</div>
+    <img
+      src="${recipe.image}"
+      alt="recipe-img"
+      id=${recipe.id}
+    />
+    <button class="save-recipe-btn">${innerText}</button>
+    </div>`;
+  });
+  recipeDisplay.innerHTML = filteredRecipeHTML;
+}
