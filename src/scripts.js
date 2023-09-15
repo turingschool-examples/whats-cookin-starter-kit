@@ -100,9 +100,14 @@ navLinks.forEach(link => {
 });
 
 
-searchField.addEventListener('keypress', function() {
-  displayRecipes(recipesData, searchField);
-  
+searchField.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    if (searchField.value === "") {
+      alert("Search field is empty");
+    } else {
+      displayRecipes(recipesData, searchField);
+    }
+  }
 });
 
 allButton.addEventListener('click', function() {
