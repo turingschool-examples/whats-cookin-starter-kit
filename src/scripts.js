@@ -114,7 +114,6 @@ function createRandomUser(users) {
   currentUser.name = randomUser.name;
   currentUser.id = randomUser.id;
   currentUser.recipesToCook = [];
-  currentUser.postProp = {};
   console.log(currentUser);
 
   return currentUser;
@@ -127,7 +126,6 @@ const viewSavedRecipes = (recipeData) => {
     savedRecipesBtn.innerText = "View All";
     displayTags(currentUser.recipesToCook);
   } else {
-    // displayRecipes(recipeData, "Save Recipe");
     console.log(recipeData)
     console.log(currentUser.recipesToCook)
     displayFilteredRecipes(recipeData, currentUser.recipesToCook)

@@ -41,7 +41,7 @@ export function displayFilteredRecipes(recipeData, currentUserRecipes) {
     // changing innerText and setting buttonClass for DOM
     const isSaved = savedRecipeIDs.includes(recipe.id)
     if (isSaved) {
-      innerText = `Saved`
+      innerText = `✓ Saved`
       buttonClass = 'is-saved'
     } else {
       innerText = `Save Recipe`
