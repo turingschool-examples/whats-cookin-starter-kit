@@ -141,6 +141,11 @@ describe("return tags of a recipe", () => {
     expect(result[0]).to.equal("lunch");
     expect(result.length).to.equal(4);
   });
+
+  it("should return an empty array if recipe id given doesn't exist", () => {
+    const result = returnRecipeTags(recipeTestData, 23412312);
+    expect(result.length).to.equal(0);
+  });
 });
 
 describe("find a recipe given an ingredient name string", () => {
@@ -152,6 +157,12 @@ describe("find a recipe given an ingredient name string", () => {
 
   it("should work with other ingredient strings", () => {
     const result = findRecipeByIngredient('bicarbonate of soda', ingredientsTestData, recipeTestData);
+    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    expect(result.length).to.equal(1);
+  });
+
+  it("should work with even MORE ingredient strings!", () => {
+    const result = findRecipeByIngredient('eggs', ingredientsTestData, recipeTestData);
     expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
     expect(result.length).to.equal(1);
   });
