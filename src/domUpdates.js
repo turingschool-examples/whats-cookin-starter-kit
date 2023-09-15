@@ -17,6 +17,8 @@ const printError = (error, users) => {
   errorMessage.innerText = `ERROR with ${users}: ${error}`
 }
 
+
+
 const renderRecipes = (recipeData) => {
   recipesContainer.innerHTML = '';
   featuredTitle.classList.toggle('hidden', true);
@@ -25,10 +27,10 @@ const renderRecipes = (recipeData) => {
     featuredTitle.classList.toggle('hidden', false);
   }
 
-  recipeData.forEach((recipe, index) => {
+  recipeData.forEach((recipe) => {
     const recipeCard = document.createElement('button');
     recipeCard.classList.add('recipe-card');
-    recipeCard.id = recipe.id;
+    recipeCard['id'] = recipe['id'];
     recipeCard.tabIndex = 0; 
 
     recipeCard.innerHTML = `

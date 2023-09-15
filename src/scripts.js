@@ -40,10 +40,23 @@ const allRecipes = document.querySelector('#allRecipes')
       }
     }
   };
+
+  const getRecipesToCook = (user, recipeData) => {
+    console.log('jelp', recipeData)  
+    const updatedRecipesToCook = user.recipesToCook.map(recipeId => {
+        console.log(recipeId)
+      const matchingRecipe = recipeData.find(recipe => recipe['id'] === recipeId);
+      console.log('match', matchingRecipe)
+      return matchingRecipe
+    })
+    user.recipesToCook = updatedRecipesToCook;
+    console.log('user', user)
+    console.log('rtc', user.recipesToCook)
+  }
   
   const getRandomUser = (array) => {
       let randomIndex = createRandomIndex(array);
-      randomUser = array[randomIndex]
+      randomUser = array[randomIndex];
     return randomUser;
   };
 
@@ -81,13 +94,17 @@ const filterByTag = (recipeData, clickedId) => {
 }
 
 window.addEventListener('load', function() {
-  fetchData('users', "http://localhost:3001/api/v1/users", getRandomUser);
-  fetchData('recipes', "http://localhost:3001/api/v1/recipes", getRecipeData)
+  fetchData('users', "http://localhost:3001/api/v1/users", getRandomUser)
+    .then(() => fetchData('recipes', "http://localhost:3001/api/v1/recipes", getRecipeData))
+    .then(() => fetchData('ingredients', "http://localhost:3001/api/v1/ingredients", getIngredientData))
     .then(() => {
-      getFeaturedRecipes(recipesData)})  
-    .then(() => {
-      renderRecipes(featuredRecipes);})
-  fetchData('ingredients', "http://localhost:3001/api/v1/ingredients", getIngredientData)
+      getRecipesToCook(randomUser, recipesData);
+      getFeaturedRecipes(recipesData);
+      renderRecipes(featuredRecipes);
+    })
+    .catch(error => {
+      console.error("Error fetching data:", error);
+    });
 });
 
 
@@ -102,11 +119,7 @@ navLinks.forEach(link => {
 
 searchField.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
-    if (searchField.value === "") {
-      alert("Search field is empty");
-    } else {
       displayRecipes(recipesData, searchField);
-    }
   }
 });
 

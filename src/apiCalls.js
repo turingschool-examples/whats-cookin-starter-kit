@@ -37,7 +37,7 @@ const updateUsers = (currentUser, savedRecipe) => {
     },
     body: JSON.stringify({
       "userID": currentUser['id'],
-      "recipeID": savedRecipe,
+      "recipeID": savedRecipe['id'],
     }),
   })
     .then((response) => response.json())
