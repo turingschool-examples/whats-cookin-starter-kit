@@ -38,7 +38,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 50px;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   height: 750px;
   width: 80%;
