@@ -44,7 +44,14 @@ import {
 
 import { displayRecipes } from "./domUpdates.js";
 import { displayTags } from "./domUpdates.js";
-import { fetchIngredients, fetchRecipes, fetchUsers, sendDeleteRequest, sendPostRequest } from "./apiCalls";
+import {
+  fetchCurrenciesCode,
+  fetchCurrencies,
+  fetchIngredients,
+  fetchRecipes,
+  fetchUsers, sendDeleteRequest, sendPostRequest,
+  postRecipe,
+} from "./apiCalls";
 
 const recipeDisplay = document.querySelector(".recipes");
 
@@ -61,6 +68,7 @@ const tagButtons = document.querySelector(".tag-buttons");
 const inputName = document.querySelector(".input-name");
 const inputIngredient = document.querySelector(".input-ingredient");
 const savedRecipesBtn = document.querySelector(".view-saved");
+const modalIngredientsCost = document.querySelector(".modal-ingredients-cost");
 
 let currentUser = {};
 let clickedRecipe = null;
@@ -69,6 +77,32 @@ let usersData = null;
 let ingredientsData = null;
 let recipeData = null;
 let idClicked = null;
+
+let fetchedCodes = null;
+let fetchedRates = null;
+
+let fetchedCad = null;
+let fetchedUsd = null;
+let fetchedEuro = null;
+let fetchedYen = null;
+
+fetchCurrenciesCode().then((currencies) => {
+  fetchedCodes = currencies;
+  console.log(fetchedCodes);
+});
+
+fetchCurrencies().then((currenciesRates) => {
+  fetchedRates = currenciesRates;
+  console.log(fetchedRates);
+  fetchedCad = fetchedRates.usd["cad"];
+  fetchedUsd = fetchedRates.usd["usd"];
+  fetchedEuro = fetchedRates.usd["eur"];
+  fetchedYen = fetchedRates.usd["jpy"];
+  console.log(fetchedCad);
+  console.log(fetchedUsd);
+  console.log(fetchedEuro);
+  console.log(fetchedYen);
+});
 
 function createRandomUser(users) {
   const randIndex = Math.floor(Math.random() * users.length);
@@ -79,14 +113,15 @@ function createRandomUser(users) {
   currentUser.name = randomUser.name;
   currentUser.id = randomUser.id;
   currentUser.recipesToCook = [];
+  currentUser.postProp = {};
   console.log(currentUser);
 
   return currentUser;
 }
 const viewSavedRecipes = (recipeData) => {
+  console.log(currentUser.recipesToCook);
+  console.log(currentUser);
   if (savedRecipesBtn.innerText === "View Saved Recipes") {
-    // console.log(currentUser.recipesToCook);
-    // console.log(currentUser);
     displayRecipes(currentUser.recipesToCook, "Remove Recipe");
     savedRecipesBtn.innerText = "View All";
     displayTags(currentUser.recipesToCook);
@@ -125,7 +160,7 @@ recipeDisplay.addEventListener("click", (event) => {
 });
 
 inputName.addEventListener("keyup", (event) => {
-  if(savedRecipesBtn.innerText === "View Saved Recipes") {
+  if (savedRecipesBtn.innerText === "View Saved Recipes") {
     const userInput = getUserInput(".input-name");
     const recipeIdsByName = findRecipeByName(userInput, recipeData);
     displayRecipes(recipeIdsByName, "Save Recipe");
@@ -149,15 +184,15 @@ inputIngredient.addEventListener("keyup", (event) => {
     );
     displayRecipes(recipeIdsByIngredient, "Save Recipe");
   } else {
-      const userInput = getUserInput(".input-ingredient");
-      const recipeIdsByIngredient = findRecipeByIngredient(
-        userInput,
-        ingredientsData,
-        currentUser.recipesToCook
-      );
-      displayRecipes(recipeIdsByIngredient, "Remove Recipe");
-    }
-  });
+    const userInput = getUserInput(".input-ingredient");
+    const recipeIdsByIngredient = findRecipeByIngredient(
+      userInput,
+      ingredientsData,
+      currentUser.recipesToCook
+    );
+    displayRecipes(recipeIdsByIngredient, "Remove Recipe");
+  }
+});
 
 tagButtons.addEventListener("click", (event) => {
   let tagClicked;
@@ -168,7 +203,7 @@ tagButtons.addEventListener("click", (event) => {
 
   if (clickedTag.classList.contains("tag-btn")) {
     const allTagButtons = tagButtons.querySelectorAll(".tag-btn");
-    
+
     allTagButtons.forEach((tagButton) => {
       if (tagButton === clickedTag) {
         tagButton.parentNode.classList.toggle("bold");
@@ -176,16 +211,16 @@ tagButtons.addEventListener("click", (event) => {
         // reset the others
         tagButton.parentNode.classList.remove("bold");
       }
-    })
+    });
   }
 
   if (event.target === savedRecipesBtn) {
     const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
     displayRecipes(filteredRecipeIDByTag, "Remove Recipe");
-  } else if (tagClicked !== '' && savedRecipesBtn.innerHTML !== 'View All') {
+  } else if (tagClicked !== "" && savedRecipesBtn.innerHTML !== "View All") {
     const filteredRecipeIDByTag = returnFilteredTag(recipeData, tagClicked);
     displayRecipes(filteredRecipeIDByTag, "Save Recipe");
-  } else if (tagClicked !== '' && savedRecipesBtn.innerHTML === 'View All') {
+  } else if (tagClicked !== "" && savedRecipesBtn.innerHTML === "View All") {
     const filteredRecipeIDByTag = returnFilteredTag(
       currentUser.recipesToCook,
       tagClicked
@@ -199,6 +234,7 @@ recipeDisplay.addEventListener("click", (event) => {
   if (idClicked.length === 6) {
     createModal();
     updateCost();
+    createCurrencyDropdown();
     updateTitle();
     updateDirections();
     updateIngredients();
@@ -207,6 +243,13 @@ recipeDisplay.addEventListener("click", (event) => {
 });
 
 closeBtn.addEventListener("click", function () {
+  const currencyDropDown = document.querySelector("#currencies-dropdown");
+  const currencyLabel = document.querySelector(".choose-currency");
+  if (currencyDropDown && currencyLabel) {
+    currencyDropDown.remove();
+    currencyLabel.remove();
+  }
+
   modalOverlay.classList.remove("open-modal");
 });
 
@@ -235,7 +278,7 @@ function createModal() {
 
 function updateCost() {
   const cost = returnRecipeCost(recipeData, ingredientsData, idClicked);
-  modalCost.innerText = `Estimated Cost of Ingredients: $${cost}`;
+  modalCost.innerText = `Estimated Cost of Ingredients: ${cost} USD`;
 }
 
 function updateTitle() {
@@ -274,4 +317,49 @@ function updateTags() {
     tagsHtml += `<li>${tagsEl}</li>`;
   });
   modalTags.innerHTML = tagsHtml;
+}
+
+function createCurrencyDropdown() {
+  const currencyDropDown = document.createElement("div");
+  currencyDropDown.innerHTML = `<label for="currencies" class="choose-currency">Choose a currency</label>
+  <select name="currencies" class="currencies-dropdown" id="currencies-dropdown">
+    <option value="USD">Choose Currency</option>
+    <option value="usd" >USD</option>
+    <option value="cad" >CAD</option>
+    <option value="eur" >EUROS</option>
+    <option value="jpy">JAPANESE YEN</option>
+  </select>`;
+  modalCost.insertAdjacentElement("afterend", currencyDropDown);
+}
+
+document.addEventListener("change", (event) => {
+  if (event.target.classList.contains("currencies-dropdown")) {
+    const selectedCurrencyId = event.target.value;
+    const costSelected = returnRecipeCost(
+      recipeData,
+      ingredientsData,
+      idClicked
+    );
+    const convertedCost = returnUpdatedCost(selectedCurrencyId, costSelected);
+    modalCost.innerText = `Estimated Cost of Ingredients: ${convertedCost} ${selectedCurrencyId.toUpperCase()}`;
+  }
+});
+
+function returnUpdatedCost(currencySelected, costSelected) {
+  if (currencySelected === "usd") {
+    const usdCost = costSelected * fetchedUsd;
+    return Math.round(usdCost);
+  } else if (currencySelected === "cad") {
+    const cadCost = costSelected * fetchedCad;
+    return Math.round(cadCost);
+  } else if (currencySelected === "eur") {
+    const eurCost = costSelected * fetchedEuro;
+    return Math.round(eurCost);
+  } else if (currencySelected === "jpy") {
+    const yenCost = costSelected * fetchedYen;
+    return Math.round(yenCost);
+  } else {
+    const usdCost = costSelected * fetchedUsd;
+    return Math.round(usdCost);
+  }
 }
