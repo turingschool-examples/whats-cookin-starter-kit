@@ -6,7 +6,7 @@ import {fetchData} from './apiCalls.js'
 
 
 // Example of one way to import functions from the domUpdates file. You will delete these examples.
-import {renderRecipes, displayRecipes, displayPopUp, styleElementBorder} from './domUpdates.js';
+import {renderRecipes, displayRecipes, displayPopUp, styleElementBorder, greetUser} from './domUpdates.js';
 import {findRecipe} from './recipe-functions.js'
 
 // query selectors
@@ -57,6 +57,7 @@ const allRecipes = document.querySelector('#allRecipes')
   const getRandomUser = (array) => {
       let randomIndex = createRandomIndex(array);
       randomUser = array[randomIndex];
+      greetUser(randomUser);
     return randomUser;
   };
 
@@ -117,9 +118,9 @@ navLinks.forEach(link => {
 });
 
 
-searchField.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-      displayRecipes(recipesData, searchField);
+searchField.addEventListener("input", function () {
+  if (searchField.value.trim() !== "") {
+    displayRecipes(recipesData, searchField);
   }
 });
 

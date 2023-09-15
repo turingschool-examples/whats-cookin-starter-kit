@@ -7,7 +7,12 @@ const recipesContainer = document.querySelector('.recipe-container');
 // const headCenter = document.querySelector('.container')
 const featuredTitle = document.querySelector('#featured');
 const errorMessage = document.querySelector('#error')
+const header = document.querySelector('h1')
 
+const greetUser = (user) => {
+  const firstName = user['name'].split(' ')[0];
+  header.innerText = `What's Cookin', ${firstName}?`
+}
 
 const styleElementBorder = (element, styling) => {
   element.style.borderBottom = styling;
@@ -16,6 +21,7 @@ const styleElementBorder = (element, styling) => {
 const printError = (error, users) => {
   errorMessage.innerText = `ERROR with ${users}: ${error}`
 }
+
 
 
 
@@ -166,5 +172,6 @@ export  {
   displayRecipes,
   displayPopUp, 
   styleElementBorder,
-  printError
+  printError,
+  greetUser
 }
