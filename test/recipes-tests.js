@@ -304,6 +304,11 @@ describe('findRecipe', () => {
   })
 })
 
+it('Should return an empty array if the search term is an empty string', () => {
+  let elvisPancakes = findRecipe("name", recipeData, "");
+  expect(elvisPancakes).to.deep.equal([])
+})
+
 
 
 
