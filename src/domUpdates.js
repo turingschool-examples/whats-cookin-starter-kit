@@ -17,8 +17,6 @@ const printError = (error, users) => {
   errorMessage.innerText = `ERROR with ${users}: ${error}`
 }
 
-
-
 const renderRecipes = (recipeData) => {
   recipesContainer.innerHTML = '';
   featuredTitle.classList.toggle('hidden', true);
