@@ -50,7 +50,9 @@ import {
   fetchCurrencies,
   fetchIngredients,
   fetchRecipes,
-  fetchUsers, sendDeleteRequest, sendPostRequest,
+  fetchUsers,
+  sendDeleteRequest,
+  sendPostRequest,
   postRecipe,
 } from "./apiCalls";
 
@@ -126,9 +128,9 @@ const viewSavedRecipes = (recipeData) => {
     savedRecipesBtn.innerText = "View All";
     displayTags(currentUser.recipesToCook);
   } else {
-    console.log(recipeData)
-    console.log(currentUser.recipesToCook)
-    displayFilteredRecipes(recipeData, currentUser.recipesToCook)
+    console.log(recipeData);
+    console.log(currentUser.recipesToCook);
+    displayFilteredRecipes(recipeData, currentUser.recipesToCook);
     savedRecipesBtn.innerText = "View Saved Recipes";
     displayTags(recipeData);
   }
@@ -144,18 +146,18 @@ recipeDisplay.addEventListener("click", (event) => {
     event.target.innerText = "✓ Saved";
     event.target.style.backgroundColor = "#89ce94";
     clickedRecipe = clickedId; //
-    console.log(clickedRecipe)
-    console.log(currentUser)
+    console.log(clickedRecipe);
+    console.log(currentUser);
     saveRecipe(recipeData, currentUser.recipesToCook, clickedId);
-    sendPostRequest(currentUser, clickedRecipe)
+    sendPostRequest(currentUser, clickedRecipe);
   } else if (event.target.innerText === "✓ Saved") {
     event.target.innerText = "Save Recipe";
     event.target.style.backgroundColor = "#e5e7e9";
     deleteRecipe(currentUser.recipesToCook, clickedId);
-    sendDeleteRequest(currentUser, clickedRecipe)
+    sendDeleteRequest(currentUser, clickedRecipe);
   } else if (event.target.innerText === "Remove Recipe") {
     deleteRecipe(currentUser.recipesToCook, clickedId);
-    sendDeleteRequest(currentUser, clickedRecipe)
+    sendDeleteRequest(currentUser, clickedRecipe);
     displayRecipes(currentUser.recipesToCook, "Remove Recipe");
     displayTags(currentUser.recipesToCook);
   }
@@ -165,6 +167,7 @@ inputName.addEventListener("keyup", (event) => {
   if (savedRecipesBtn.innerText === "View Saved Recipes") {
     const userInput = getUserInput(".input-name");
     const recipeIdsByName = findRecipeByName(userInput, recipeData);
+    console.log(recipeIdsByName);
     displayRecipes(recipeIdsByName, "Save Recipe");
   } else {
     const userInput = getUserInput(".input-name");
@@ -256,9 +259,9 @@ closeBtn.addEventListener("click", function () {
 });
 
 modalOverlay.addEventListener("click", (event) => {
- if (event.target.id === "modal-overlay") {
-  modalOverlay.classList.remove("open-modal");
- }
+  if (event.target.id === "modal-overlay") {
+    modalOverlay.classList.remove("open-modal");
+  }
 });
 
 document.addEventListener("keydown", (event) => {
@@ -266,8 +269,6 @@ document.addEventListener("keydown", (event) => {
     modalOverlay.classList.remove("open-modal");
   }
 });
-
-
 
 Promise.all([fetchUsers, fetchIngredients, fetchRecipes]).then(
   ([usersDataValue, ingredientsDataValue, recipeDataValue]) => {
@@ -287,7 +288,6 @@ function createModal() {
   modalOverlay.classList.add("open-modal");
 
   modalOverlay.id = "modal-overlay";
-
 
   modalContainer.style.backgroundImage = `linear-gradient(
     rgba(15, 15, 15, 0.7),

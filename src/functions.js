@@ -159,7 +159,7 @@ function getUserInput(inputType) {
   return userInput.toLowerCase();
 }
 
-function saveRecipe(dataArray, savedArray, clickedId, userObj) {
+function saveRecipe(dataArray, savedArray, clickedId) {
   const savedRecipe = dataArray.find((recipeEl) => {
     return recipeEl.id === parseInt(clickedId);
   });
