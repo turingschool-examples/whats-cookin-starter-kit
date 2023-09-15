@@ -70,6 +70,7 @@ const inputName = document.querySelector(".input-name");
 const inputIngredient = document.querySelector(".input-ingredient");
 const savedRecipesBtn = document.querySelector(".view-saved");
 const modalIngredientsCost = document.querySelector(".modal-ingredients-cost");
+const title = document.querySelector(".title");
 
 let currentUser = {};
 let clickedRecipe = null;
@@ -115,6 +116,7 @@ function createRandomUser(users) {
   currentUser.id = randomUser.id;
   currentUser.recipesToCook = [];
   console.log(currentUser);
+  title.innerText = `What's Cookin', ${currentUser.name}?`
 
   return currentUser;
 }
