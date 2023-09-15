@@ -42,7 +42,7 @@ h1 {
   justify-content: center;
   height: 750px;
   width: 80%;
-  overflow: scroll;
+  overflow-y: scroll;
   font-weight: bolder;
   /* background-color: white; */
   padding-top: 2em;
@@ -67,7 +67,6 @@ h1 {
 .title-recipe {
   width: 250px;
   height: 50px;
-  overflow: scroll;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -159,7 +158,7 @@ button:hover {
   gap: 20px;
   width: 50vw;
   height: 60vh;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .modal-tags {
@@ -175,11 +174,11 @@ ul {
 .modal-ingredients-cost {
   width: 30vw;
   height: 60vh;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .modal-directions {
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .btn {
@@ -193,7 +192,7 @@ ul {
 
 .tag-buttons {
   display: flex;
-  overflow: scroll;
+  overflow-x: auto;
   width: 775px;
   gap: 50px;
   background-color: white;
