@@ -165,7 +165,6 @@ function saveRecipe(dataArray, savedArray, clickedId, userObj) {
   });
   if (!savedArray.includes(savedRecipe)) {
     savedArray.push(savedRecipe);
-    userObj.postProp = { userID: userObj.id, recipeID: savedRecipe.id };
     return savedArray;
   }
 }
