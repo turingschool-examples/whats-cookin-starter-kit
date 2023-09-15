@@ -19,7 +19,7 @@
   text-align: center;
 }
 
-p, h2, h3, div {
+p, h2, h3, div, article, section, li  {
   background: none;
   padding: 10px;
   color: white;
@@ -129,23 +129,23 @@ button {
   height: 350px;
   background-color: #414535;
   /* border-radius: 10px; */
+  transition: transform 0.2s, box-shadow 0.2s;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
 }
 
 button:hover {
   cursor: pointer;
+  transform: translateY(-2px); /* Move the button 2 pixels up */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
 }
 
 button:active {
-  transition: 1s;
+  transform: translateY(2px); /* Move the button 2 pixels down */
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.9);
   background-color: #4B1D3F;
 }
 
-.instructions-list {
-  justify-content: flex-start;
-}
+
 
 .save-and-close-button-container {
   display: flex;
@@ -174,4 +174,8 @@ button:active {
   border: 5px black solid;
   width: 100%;
   text-align: center; */
+}
+
+.instructions-list {
+  padding-bottom: 20px;
 }

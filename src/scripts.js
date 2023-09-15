@@ -6,7 +6,7 @@ import {fetchData} from './apiCalls.js'
 
 
 // Example of one way to import functions from the domUpdates file. You will delete these examples.
-import {renderRecipes, displayRecipes, displayPopUp, styleElementBorder} from './domUpdates.js';
+import {renderRecipes, displayRecipes, displayPopUp, styleElementBorder, greetUser} from './domUpdates.js';
 import {findRecipe} from './recipe-functions.js'
 
 // query selectors
@@ -24,7 +24,7 @@ const allRecipes = document.querySelector('#allRecipes')
   let featuredRecipes = [];
 
 
-  const createRandomIndex = (array) => { //REFACTOR: Move to untestedFunc or scripts
+  const createRandomIndex = (array) => { 
     return Math.floor(Math.random() * array.length);
   }
 
@@ -40,10 +40,19 @@ const allRecipes = document.querySelector('#allRecipes')
       }
     }
   };
+
+  const getRecipesToCook = (user, recipeData) => {
+    const updatedRecipesToCook = user.recipesToCook.map(recipeId => {
+      const matchingRecipe = recipeData.find(recipe => recipe['id'] === recipeId);
+      return matchingRecipe
+    })
+    user.recipesToCook = updatedRecipesToCook;
+  }
   
   const getRandomUser = (array) => {
       let randomIndex = createRandomIndex(array);
-      randomUser = array[randomIndex]
+      randomUser = array[randomIndex];
+      greetUser(randomUser);
     return randomUser;
   };
 
@@ -81,13 +90,17 @@ const filterByTag = (recipeData, clickedId) => {
 }
 
 window.addEventListener('load', function() {
-  fetchData('users', "http://localhost:3001/api/v1/users", getRandomUser);
-  fetchData('recipes', "http://localhost:3001/api/v1/recipes", getRecipeData)
+  fetchData('users', "http://localhost:3001/api/v1/users", getRandomUser)
+    .then(() => fetchData('recipes', "http://localhost:3001/api/v1/recipes", getRecipeData))
+    .then(() => fetchData('ingredients', "http://localhost:3001/api/v1/ingredients", getIngredientData))
     .then(() => {
-      getFeaturedRecipes(recipesData)})  
-    .then(() => {
-      renderRecipes(featuredRecipes);})
-  fetchData('ingredients', "http://localhost:3001/api/v1/ingredients", getIngredientData)
+      getRecipesToCook(randomUser, recipesData);
+      getFeaturedRecipes(recipesData);
+      renderRecipes(featuredRecipes);
+    })
+    .catch(error => {
+      console.error("Error fetching data:", error);
+    });
 });
 
 
@@ -100,13 +113,9 @@ navLinks.forEach(link => {
 });
 
 
-searchField.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    if (searchField.value === "") {
-      alert("Search field is empty");
-    } else {
-      displayRecipes(recipesData, searchField);
-    }
+searchField.addEventListener("input", function () {
+  if (searchField.value.trim() !== "") {
+    displayRecipes(recipesData, searchField);
   }
 });
 
@@ -154,4 +163,4 @@ savedRecipes.addEventListener('click', function() {
   searchField.addEventListener('keypress', function() {
     displayRecipes(userRecipesToCook, searchField);  
   });
-})
+});

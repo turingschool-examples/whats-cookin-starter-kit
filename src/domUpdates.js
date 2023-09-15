@@ -4,10 +4,14 @@ import {findRecipeIngredients, calculateCost} from './ingredient-functions'
 import { updateUsers } from './apiCalls';
 
 const recipesContainer = document.querySelector('.recipe-container');
-// const headCenter = document.querySelector('.container')
 const featuredTitle = document.querySelector('#featured');
 const errorMessage = document.querySelector('#error')
+const header = document.querySelector('h1')
 
+const greetUser = (user) => {
+  const firstName = user['name'].split(' ')[0];
+  header.innerText = `What's Cookin', ${firstName}?`
+}
 
 const styleElementBorder = (element, styling) => {
   element.style.borderBottom = styling;
@@ -17,6 +21,9 @@ const printError = (error, users) => {
   errorMessage.innerText = `ERROR with ${users}: ${error}`
 }
 
+
+
+
 const renderRecipes = (recipeData) => {
   recipesContainer.innerHTML = '';
   featuredTitle.classList.toggle('hidden', true);
@@ -25,10 +32,10 @@ const renderRecipes = (recipeData) => {
     featuredTitle.classList.toggle('hidden', false);
   }
 
-  recipeData.forEach((recipe, index) => {
+  recipeData.forEach((recipe) => {
     const recipeCard = document.createElement('button');
     recipeCard.classList.add('recipe-card');
-    recipeCard.id = recipe.id;
+    recipeCard['id'] = recipe['id'];
     recipeCard.tabIndex = 0; 
 
     recipeCard.innerHTML = `
@@ -107,6 +114,7 @@ const displayRecipes = (recipeData, searchField) => {
 };
 
 const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
+  featuredTitle.classList.toggle('hidden', true);
   let recipeMatch = findRecipeById(recipeData, recipeId)
   let recipeIngredientNames = findRecipeIngredients(recipeData, ingredientInfo, recipeId);
   let recipeCost = calculateCost(recipeData, ingredientInfo, recipeId);
@@ -122,16 +130,16 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
   recipesContainer.innerHTML =
 `
 <div class="popup-overlay">
-  <div class="popup-content">
+  <article class="popup-content">
     <h2 tabindex="0">${recipeMatch.name}</h2>
     <img tabindex="0" src="${recipeMatch.image}" alt="${recipeMatch.name} Image">
     <h3 tabindex="0">Ingredients:</h3>
-    <div class="ingredients-list" tabindex="0">${ingredientsString}</div>
+    <li class="ingredients-list" tabindex="0">${ingredientsString}</li>
     <h3 tabindex="0">Instructions:</h3>
-    <div class="instructions-list" tabindex="0">${instructionsList}</div>
+    <li class="instructions-list" tabindex="0">${instructionsList}</li>
     <h3 tabindex="0">Total Cost:</h3>
     <p tabindex="0">${recipeCost}</p>
-  </div>
+  </article>
   <section class="save-and-close-button-container">
     <button tabindex="0" class="save-and-close-button" id="closePopup">Close</button>
     <button tabindex="0" class="save-and-close-button save-recipe-button" id="saveRecipe">Save</button>
@@ -143,7 +151,7 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
   popUpContentContainer.style.border = '3px black solid';
   const closeButton = document.querySelector('#closePopup');
   closeButton.addEventListener('click', () => {
-    renderRecipes(recipeData); //REFACTOR; CHECK: SCRIPTS (82.1)
+    renderRecipes(recipeData); 
   });
  
   const saveRecipeButton = document.querySelector('.save-recipe-button');
@@ -154,7 +162,6 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
   saveRecipeButton.addEventListener('click', () => {
     updateUsers(user, recipeMatch);  
     saveRecipe(recipeMatch, user);
-    // updateUsers(user, recipeMatch)
 })
 }
 
@@ -163,5 +170,6 @@ export  {
   displayRecipes,
   displayPopUp, 
   styleElementBorder,
-  printError
+  printError,
+  greetUser
 }
