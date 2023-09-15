@@ -7,6 +7,8 @@ import {
   returnFilteredTag,
   returnRecipeCost,
   returnRecipeDirections,
+  returnRecipeTags,
+  findRecipeByIngredient
 } from "../src/functions.js";
 
 import ingredientsTestData from "../src/data/ingredients-test-data.js";
