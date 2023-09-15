@@ -65,7 +65,7 @@ describe('calculateCost', () => {
   });
 
   it('should return "$0.00" when the recipe has no ingredients', () => {
-    clickedId = 123456; // Recipe ID that does not exist in the data
+    clickedId = 123456; 
     expectedCost = '$0.00';
 
     const recipeCost = calculateCost(recipeData, ingredientsData, clickedId);
@@ -73,10 +73,9 @@ describe('calculateCost', () => {
   });
 
   it('should return "$0.00" when the recipeData or ingredientsData is empty', () => {
-    clickedId = 595736; // Valid recipe ID
+    clickedId = 595736; 
     expectedCost = '$0.00';
 
-    // Pass empty data for testing
     const recipeCost1 = calculateCost([], ingredientsData, clickedId);
     expect(recipeCost1).to.deep.equal(expectedCost);
 
@@ -85,7 +84,7 @@ describe('calculateCost', () => {
   });
 
   it('should return "$0.00" when the clickedId is not found in recipeData', () => {
-    clickedId = 123456; // Recipe ID that does not exist in the data
+    clickedId = 123456; 
     expectedCost = '$0.00';
 
     const recipeCost = calculateCost(recipeData, ingredientsData, clickedId);
