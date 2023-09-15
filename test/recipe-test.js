@@ -128,3 +128,17 @@ describe("find directions of a recipe", () => {
     expect(result.length).to.equal(0);
   });
 });
+
+describe("return tags of a recipe", () => {
+  it("should return the tags of a given recipe", () => {
+    const result = returnRecipeTags(recipeTestData, 595736);
+    expect(result[0]).to.equal("antipasti");
+    expect(result.length).to.equal(6);
+  });
+
+  it("should return the tags of another recipe", () => {
+    const result = returnRecipeTags(recipeTestData, 678353);
+    expect(result[0]).to.equal("lunch");
+    expect(result.length).to.equal(4);
+  });
+});
