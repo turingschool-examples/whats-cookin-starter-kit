@@ -142,3 +142,17 @@ describe("return tags of a recipe", () => {
     expect(result.length).to.equal(4);
   });
 });
+
+describe("find a recipe given an ingredient name string", () => {
+  it("should return a recipe object", () => {
+    const result = findRecipeByIngredient('wheat flour', ingredientsTestData, recipeTestData);
+    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    expect(result.length).to.equal(1);
+  });
+
+  it("should work with other ingredient strings", () => {
+    const result = findRecipeByIngredient('bicarbonate of soda', ingredientsTestData, recipeTestData);
+    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    expect(result.length).to.equal(1);
+  });
+});
