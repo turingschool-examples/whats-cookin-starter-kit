@@ -109,6 +109,7 @@ const displayRecipes = (recipeData, searchField) => {
 };
 
 const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
+  featuredTitle.classList.toggle('hidden', true);
   let recipeMatch = findRecipeById(recipeData, recipeId)
   let recipeIngredientNames = findRecipeIngredients(recipeData, ingredientInfo, recipeId);
   let recipeCost = calculateCost(recipeData, ingredientInfo, recipeId);
@@ -124,16 +125,16 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
   recipesContainer.innerHTML =
 `
 <div class="popup-overlay">
-  <div class="popup-content">
+  <article class="popup-content">
     <h2 tabindex="0">${recipeMatch.name}</h2>
     <img tabindex="0" src="${recipeMatch.image}" alt="${recipeMatch.name} Image">
     <h3 tabindex="0">Ingredients:</h3>
-    <div class="ingredients-list" tabindex="0">${ingredientsString}</div>
+    <li class="ingredients-list" tabindex="0">${ingredientsString}</li>
     <h3 tabindex="0">Instructions:</h3>
-    <div class="instructions-list" tabindex="0">${instructionsList}</div>
+    <li class="instructions-list" tabindex="0">${instructionsList}</li>
     <h3 tabindex="0">Total Cost:</h3>
     <p tabindex="0">${recipeCost}</p>
-  </div>
+  </article>
   <section class="save-and-close-button-container">
     <button tabindex="0" class="save-and-close-button" id="closePopup">Close</button>
     <button tabindex="0" class="save-and-close-button save-recipe-button" id="saveRecipe">Save</button>
