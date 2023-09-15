@@ -1,7 +1,3 @@
-const { ingredientsData } = require("./data/ingredients-test-data")
-
-// Determine the names of ingredients needed for a given recipe.
-
 const findRecipeIngredients = (recipeData, ingredientsData, id) => {
   let givenRecipe = recipeData.find(recipe => {
     return recipe["id"] == id
@@ -28,7 +24,7 @@ const calculateCost = (recipeData, ingredientsData, clickedId) => {
     accumulator += ingredientPrice.estimatedCostInCents * currentValue.quantity.amount;
     return accumulator;
   }, 0);
-  const costInDollars = (reducedIngredients / 100).toFixed(2); // Convert to dollars with 2 decimal places
+  const costInDollars = (reducedIngredients / 100).toFixed(2); 
   return `$${costInDollars}`;
 };
 

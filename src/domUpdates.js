@@ -4,7 +4,6 @@ import {findRecipeIngredients, calculateCost} from './ingredient-functions'
 import { updateUsers } from './apiCalls';
 
 const recipesContainer = document.querySelector('.recipe-container');
-// const headCenter = document.querySelector('.container')
 const featuredTitle = document.querySelector('#featured');
 const errorMessage = document.querySelector('#error')
 const header = document.querySelector('h1')
@@ -152,7 +151,7 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
   popUpContentContainer.style.border = '3px black solid';
   const closeButton = document.querySelector('#closePopup');
   closeButton.addEventListener('click', () => {
-    renderRecipes(recipeData); //REFACTOR; CHECK: SCRIPTS (82.1)
+    renderRecipes(recipeData); 
   });
  
   const saveRecipeButton = document.querySelector('.save-recipe-button');
@@ -163,7 +162,6 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
   saveRecipeButton.addEventListener('click', () => {
     updateUsers(user, recipeMatch);  
     saveRecipe(recipeMatch, user);
-    // updateUsers(user, recipeMatch)
 })
 }
 

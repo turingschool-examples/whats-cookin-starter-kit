@@ -15,8 +15,6 @@ const findRecipe = (typeOfTag, recipeList, tag) => {
   return recipeFound;
 }
 
-// Return a specific recipe based on the id number
-
 const specificRecipe = () => {
   return recipeData.find(recipe => recipe.id === clickedId)
 }

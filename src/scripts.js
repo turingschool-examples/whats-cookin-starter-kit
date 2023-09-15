@@ -24,7 +24,7 @@ const allRecipes = document.querySelector('#allRecipes')
   let featuredRecipes = [];
 
 
-  const createRandomIndex = (array) => { //REFACTOR: Move to untestedFunc or scripts
+  const createRandomIndex = (array) => { 
     return Math.floor(Math.random() * array.length);
   }
 
@@ -42,16 +42,11 @@ const allRecipes = document.querySelector('#allRecipes')
   };
 
   const getRecipesToCook = (user, recipeData) => {
-    console.log('jelp', recipeData)  
     const updatedRecipesToCook = user.recipesToCook.map(recipeId => {
-        console.log(recipeId)
       const matchingRecipe = recipeData.find(recipe => recipe['id'] === recipeId);
-      console.log('match', matchingRecipe)
       return matchingRecipe
     })
     user.recipesToCook = updatedRecipesToCook;
-    console.log('user', user)
-    console.log('rtc', user.recipesToCook)
   }
   
   const getRandomUser = (array) => {
