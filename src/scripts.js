@@ -44,6 +44,7 @@ import {
 
 import { displayRecipes } from "./domUpdates.js";
 import { displayTags } from "./domUpdates.js";
+import { displayFilteredRecipes } from "./domUpdates.js";
 import {
   fetchCurrenciesCode,
   fetchCurrencies,
@@ -126,7 +127,10 @@ const viewSavedRecipes = (recipeData) => {
     savedRecipesBtn.innerText = "View All";
     displayTags(currentUser.recipesToCook);
   } else {
-    displayRecipes(recipeData, "Save Recipe");
+    // displayRecipes(recipeData, "Save Recipe");
+    console.log(recipeData)
+    console.log(currentUser.recipesToCook)
+    displayFilteredRecipes(recipeData, currentUser.recipesToCook)
     savedRecipesBtn.innerText = "View Saved Recipes";
     displayTags(recipeData);
   }

@@ -1,6 +1,4 @@
 // Your fetch requests will live here!
-import { currentUser } from "./scripts";
-
 export function fetchCurrenciesCode() {
   return fetch(
     "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json"
@@ -28,7 +26,6 @@ export const fetchUsers = fetch("http://localhost:3001/api/v1/users")
   });
 
 export const fetchIngredients = fetch(
-  "http://localhost:3001/api/v1/ingredients"
   "http://localhost:3001/api/v1/ingredients"
 )
   .then((response) => response.json())

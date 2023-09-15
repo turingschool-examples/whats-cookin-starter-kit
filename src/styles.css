@@ -350,3 +350,11 @@ li {
 .choose-currency {
   font-size: 14px;
 }
+
+.is-saved {
+  background-color: #89ce94;
+}
+
+.is-not-saved {
+  background-color: #e5e7e9;
+}
