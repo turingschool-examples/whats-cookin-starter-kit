@@ -163,4 +163,4 @@ savedRecipes.addEventListener('click', function() {
   searchField.addEventListener('keypress', function() {
     displayRecipes(userRecipesToCook, searchField);  
   });
-})
+});

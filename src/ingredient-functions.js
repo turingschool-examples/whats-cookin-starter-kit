@@ -3,6 +3,10 @@ const findRecipeIngredients = (recipeData, ingredientsData, id) => {
     return recipe["id"] == id
   })
 
+  if (!givenRecipe) {
+    return [];
+  }
+
   let ingredientIds = givenRecipe["ingredients"].map(ingredient => {
     return ingredient["id"]
   })
@@ -19,21 +23,36 @@ const findRecipeIngredients = (recipeData, ingredientsData, id) => {
 
 const calculateCost = (recipeData, ingredientsData, clickedId) => {
   const clickedRecipe = recipeData.find(recipe => recipe.id == clickedId);
-  let reducedIngredients = clickedRecipe.ingredients.reduce((accumulator, currentValue) => {
-    let ingredientPrice = ingredientsData.find(ingredientDetail => ingredientDetail.id === currentValue.id);
-    accumulator += ingredientPrice.estimatedCostInCents * currentValue.quantity.amount;
+
+  if (!clickedRecipe || !clickedRecipe.ingredients || clickedRecipe.ingredients.length === 0) {
+    return '$0.00';
+  }
+
+  const reducedIngredients = clickedRecipe.ingredients.reduce((accumulator, currentValue) => {
+    const ingredientPrice = ingredientsData.find(ingredientDetail => ingredientDetail.id === currentValue.id);
+    if (ingredientPrice) {
+      accumulator += ingredientPrice.estimatedCostInCents * currentValue.quantity.amount;
+    }
     return accumulator;
   }, 0);
-  const costInDollars = (reducedIngredients / 100).toFixed(2); 
+
+  const costInDollars = (reducedIngredients / 100).toFixed(2);
   return `$${costInDollars}`;
 };
 
+
 const findDirections = (recipeData, recipeName) => {
-  let chosenRecipe = recipeData.find(recipe => {
-    return recipeName === recipe.name
-  })
-    return chosenRecipe.instructions
-}
+  const chosenRecipe = recipeData.find(recipe => {
+    return recipeName === recipe.name;
+  });
+
+  if (!chosenRecipe) {
+    return []; 
+  }
+
+  return chosenRecipe.instructions;
+};
+
 
 export {
   findRecipeIngredients,

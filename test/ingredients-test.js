@@ -6,6 +6,7 @@ import {
   findDirections
 } from '../src/ingredient-functions';
 
+
 import ingredientsData from '../src/data/ingredients-test-data.js';
 import recipeData from '../src/data/recipe-test-data.js';
 
@@ -28,6 +29,16 @@ describe('findRecipeIngredients', () => {
   it('Should return an array of ingredient names for a specific recipe id passed as a string', () => {
     const ingredientList = findRecipeIngredients(recipeData, ingredientsData, recipeId.toString());
     expect(ingredientList).to.deep.equal(expectedIngredients);
+  });
+
+  it('Should return an empty array if the recipe id is not a valid number or string', () => {
+    const ingredientList = findRecipeIngredients(recipeData, ingredientsData, {});
+    expect(ingredientList).to.deep.equal([]);
+  });
+
+  it('Should return an empty array if the recipe id is not found in recipeData', () => {
+    const ingredientList = findRecipeIngredients(recipeData, ingredientsData, 123456);
+    expect(ingredientList).to.deep.equal([]);
   });
 });
 
@@ -52,7 +63,36 @@ describe('calculateCost', () => {
     const recipeCost = calculateCost(recipeData, ingredientsData, clickedId);
     expect(recipeCost).to.deep.equal(expectedCost);
   });
+
+  it('should return "$0.00" when the recipe has no ingredients', () => {
+    clickedId = 123456; // Recipe ID that does not exist in the data
+    expectedCost = '$0.00';
+
+    const recipeCost = calculateCost(recipeData, ingredientsData, clickedId);
+    expect(recipeCost).to.deep.equal(expectedCost);
+  });
+
+  it('should return "$0.00" when the recipeData or ingredientsData is empty', () => {
+    clickedId = 595736; // Valid recipe ID
+    expectedCost = '$0.00';
+
+    // Pass empty data for testing
+    const recipeCost1 = calculateCost([], ingredientsData, clickedId);
+    expect(recipeCost1).to.deep.equal(expectedCost);
+
+    const recipeCost2 = calculateCost(recipeData, [], clickedId);
+    expect(recipeCost2).to.deep.equal(expectedCost);
+  });
+
+  it('should return "$0.00" when the clickedId is not found in recipeData', () => {
+    clickedId = 123456; // Recipe ID that does not exist in the data
+    expectedCost = '$0.00';
+
+    const recipeCost = calculateCost(recipeData, ingredientsData, clickedId);
+    expect(recipeCost).to.deep.equal(expectedCost);
+  });
 });
+
 
 describe('findDirections', () => {
   let recipeName;
@@ -100,5 +140,17 @@ describe('findDirections', () => {
 
     const porkDirections = findDirections(recipeData, recipeName);
     expect(porkDirections).to.deep.equal(expectedInstructions);
+  });
+
+  it('should return an empty array if the recipe name is not found', function() {
+    recipeName = 'Nonexistent Recipe';
+    const nonexistentDirections = findDirections(recipeData, recipeName);
+    expect(nonexistentDirections).to.deep.equal([]);
+  });
+
+  it('should return an empty array if the recipe name is not provided', function() {
+    recipeName = undefined;
+    const undefinedDirections = findDirections(recipeData, recipeName);
+    expect(undefinedDirections).to.deep.equal([]);
   });
 });
