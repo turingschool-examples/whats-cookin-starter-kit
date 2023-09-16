@@ -44,7 +44,6 @@ h1 {
   width: 80%;
   overflow-y: scroll;
   font-weight: bolder;
-  /* background-color: white; */
   padding-top: 2em;
 }
 
@@ -333,10 +332,6 @@ tag-btn:hover {
 .modal-tags {
   font-size: 24px;
 }
-
-/* p {
-  font-weight: 300;
-} */
 
 li {
   font-weight: 300;
