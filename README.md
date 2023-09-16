@@ -1,4 +1,28 @@
-# Project and Goals
+
+# Abstract
+This application allows the user to view recipes. They can search for recipes and filter through the categories. They can save and unsave the recipes they choose and also view the instructions and cost of ingredients for a recipe. This application gets information from and posts information to a connected server
+
+## Application link:
+
+[What's Cookin'](https://alfonsojack.github.io/whats-cookin/)
+
+
+## Installation Instructions
+
+Click this link:
+Click the green < code > button.
+Copy SSH key.
+Open up the terminal.
+Change into the directory you wish to clone the app into with the `cd` command.
+Use the `git clone` command followed by pasting the copied SSH key.
+Change into the cloned directory with the `cd` command.
+Run `npm install`
+Run `npm start`
+Copy the local host link into your browser address bar1. 
+Enjoy!
+
+
+# Learning Goals
 Use DRY, reusable code, network requests, and test-driven development to create a web app that allows users to view, sort, save, delete, and extract information from a collection of recipes complete with instructions, ingredients and their cost, and tags that can be used to sort them. Using links users can get more detailed information from each of the recipes and switch between pages allowing them to view all of the recipes at once, saved recipes or recipes in certain categories. This will allow users to plan meals and shopping trips.
 
 # Technologies used, Challenges, Wins
@@ -14,3 +38,4 @@ We used Webpack to switch from using data in local files to using network reques
 Jack Alfonso, 
 Zen McMillan, 
 Dan Lavery
+
