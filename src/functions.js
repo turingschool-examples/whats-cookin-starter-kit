@@ -52,9 +52,6 @@ function returnIngredientNames(recipes, ingredients, id) {
 function returnRecipeDirections(recipes, id) {
   const filteredRecipe = recipes.find((recipeEl) => {
     return recipeEl.id === parseInt(id);
-    //recipeEl.id was a number
-    //recipeId was a string
-    // write a test case for different data types.
   });
 
   if (filteredRecipe) {
