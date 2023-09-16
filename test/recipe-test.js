@@ -10,6 +10,8 @@ import {
   returnRecipeTitle,
   findRecipeByName,
   saveRecipe,
+  returnRecipeImgUrl,
+  deleteRecipe
 } from "../src/functions.js";
 
 import ingredientsTestData from "../src/data/ingredients-test-data.js";
@@ -326,5 +328,46 @@ describe("find a recipe given an ingredient name string", () => {
     const result = findRecipeByIngredient('eggs', ingredientsTestData, recipeTestData);
     expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
     expect(result.length).to.equal(1);
+  });
+});
+
+describe("get recipe image url", () => {
+  it("should return the recipe image url", () => {
+    const result = returnRecipeImgUrl(recipeTestData, 595736);
+    expect(result).to.deep.equal(["https://spoonacular.com/recipeImages/595736-556x370.jpg"])
+  });
+  it("should return another recipe image url", () => {
+    const result = returnRecipeImgUrl(recipeTestData, 678353);
+    expect(result).to.deep.equal(["https://spoonacular.com/recipeImages/678353-556x370.jpg"])
+  });
+  it("should return an empty array if there is no recipe", () => {
+    const result = returnRecipeImgUrl(recipeTestData, 999999);
+    expect(result).to.deep.equal([])
+  });
+});
+
+describe("be able to delete a recipe", () => {
+  it("should delete a recipe from the saved recipes", () => {
+    const savedArray = []
+    saveRecipe(recipeTestData, savedArray, 595736)
+    // console.log(savedArray)
+    const result = deleteRecipe(savedArray, 595736);
+    // console.log(savedArray)
+    expect(result).to.deep.equal([])
+  });
+  it("should delete a recipe from multiple saved recipes", () => {
+    const savedArray = []
+    saveRecipe(recipeTestData, savedArray, 595736)
+    saveRecipe(recipeTestData, savedArray, 678353)
+    // console.log(savedArray)
+    const result = deleteRecipe(savedArray, 678353);
+    // console.log(savedArray)
+    expect(result[0].id).to.equal(595736)
+  });
+  it("should be an empty array if there is nothing in the saved recipes", () => {
+    const savedArray = []
+    const result = deleteRecipe(savedArray, 678353);
+    // console.log(savedArray)
+    expect(result.length).to.equal(0)
   });
 });
