@@ -7,6 +7,8 @@ import {
   returnFilteredTag,
   returnRecipeCost,
   returnRecipeDirections,
+  returnRecipeTags,
+  findRecipeByIngredient
 } from "../src/functions.js";
 
 import ingredientsTestData from "../src/data/ingredients-test-data.js";
@@ -124,5 +126,44 @@ describe("find directions of a recipe", () => {
   it("should return an empty array if no matches", () => {
     const result = returnRecipeDirections(recipeTestData, "noMatch");
     expect(result.length).to.equal(0);
+  });
+});
+
+describe("return tags of a recipe", () => {
+  it("should return the tags of a given recipe", () => {
+    const result = returnRecipeTags(recipeTestData, 595736);
+    expect(result[0]).to.equal("antipasti");
+    expect(result.length).to.equal(6);
+  });
+
+  it("should return the tags of another recipe", () => {
+    const result = returnRecipeTags(recipeTestData, 678353);
+    expect(result[0]).to.equal("lunch");
+    expect(result.length).to.equal(4);
+  });
+
+  it("should return an empty array if recipe id given doesn't exist", () => {
+    const result = returnRecipeTags(recipeTestData, 23412312);
+    expect(result.length).to.equal(0);
+  });
+});
+
+describe("find a recipe given an ingredient name string", () => {
+  it("should return a recipe object", () => {
+    const result = findRecipeByIngredient('wheat flour', ingredientsTestData, recipeTestData);
+    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    expect(result.length).to.equal(1);
+  });
+
+  it("should work with other ingredient strings", () => {
+    const result = findRecipeByIngredient('bicarbonate of soda', ingredientsTestData, recipeTestData);
+    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    expect(result.length).to.equal(1);
+  });
+
+  it("should work with even MORE ingredient strings!", () => {
+    const result = findRecipeByIngredient('eggs', ingredientsTestData, recipeTestData);
+    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    expect(result.length).to.equal(1);
   });
 });
