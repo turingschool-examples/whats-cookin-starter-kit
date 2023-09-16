@@ -19,14 +19,14 @@ const findRecipeIngredients = (recipeData, ingredientsData, id) => {
     let ingredientNames = ingredient["name"]
     return ingredientNames
   } )
-}
+};
 
 const calculateCost = (recipeData, ingredientsData, clickedId) => {
   const clickedRecipe = recipeData.find(recipe => recipe.id == clickedId);
 
   if (!clickedRecipe || !clickedRecipe.ingredients || clickedRecipe.ingredients.length === 0) {
     return '$0.00';
-  }
+  };
 
   const reducedIngredients = clickedRecipe.ingredients.reduce((accumulator, currentValue) => {
     const ingredientPrice = ingredientsData.find(ingredientDetail => ingredientDetail.id === currentValue.id);
@@ -53,9 +53,8 @@ const findDirections = (recipeData, recipeName) => {
   return chosenRecipe.instructions;
 };
 
-
 export {
   findRecipeIngredients,
   calculateCost,
   findDirections
-}
+};

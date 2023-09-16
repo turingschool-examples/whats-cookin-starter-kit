@@ -97,9 +97,8 @@ const displayRecipes = (recipeData, searchField) => {
   });
 
   if (filteredRecipes.length === 0) {
-    recipesContainer.innerHTML = `<h2 class="categories">No search results!</h2>`;
+    recipesContainer.innerHTML = `<h2 class="categories">No search results!</h2>`; 
   }
-
   return filteredRecipes;
 };
 
