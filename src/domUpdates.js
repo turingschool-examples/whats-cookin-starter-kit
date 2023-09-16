@@ -1,28 +1,25 @@
 //NOTE: Your DOM manipulation will occur in this file
 
-import {findRecipeIngredients, calculateCost} from './ingredient-functions'
+import {findRecipeIngredients, calculateCost} from './ingredient-functions';
 import { updateUsers } from './apiCalls';
 
 const recipesContainer = document.querySelector('.recipe-container');
 const featuredTitle = document.querySelector('#featured');
-const errorMessage = document.querySelector('#error')
-const header = document.querySelector('h1')
+const errorMessage = document.querySelector('#error');
+const header = document.querySelector('h1');
 
 const greetUser = (user) => {
   const firstName = user['name'].split(' ')[0];
   header.innerText = `What's Cookin', ${firstName}?`
-}
+};
 
 const styleElementBorder = (element, styling) => {
   element.style.borderBottom = styling;
-}
+};
 
 const printError = (error, users) => {
   errorMessage.innerText = `ERROR with ${users}: ${error}`
-}
-
-
-
+};
 
 const renderRecipes = (recipeData) => {
   recipesContainer.innerHTML = '';
@@ -30,7 +27,7 @@ const renderRecipes = (recipeData) => {
 
   if (recipeData.length === 6) {
     featuredTitle.classList.toggle('hidden', false);
-  }
+  };
 
   recipeData.forEach((recipe) => {
     const recipeCard = document.createElement('button');
@@ -62,13 +59,12 @@ const saveRecipe = (recipe, user) => {
       user.recipesToCook.splice(recipeIndex, 1);
       saveRecipeButton.innerText = "Unsaved!"
       saveRecipeButton.style.backgroundColor = 'red';};
-}
+};
 
 
 const findRecipeById = (recipeData, id) => {
   const matchingRecipe = recipeData.find(recipe => recipe.id == id);
   return matchingRecipe || 'oops'
-
 };
 
 const displayRecipes = (recipeData, searchField) => {
@@ -78,16 +74,12 @@ const displayRecipes = (recipeData, searchField) => {
   const filteredRecipes = recipeData.filter(recipe => 
     recipe['name'].toLowerCase().includes(searchValue));
 
-  
-
   filteredRecipes.forEach(recipe => {
     const recipeCard = document.createElement('button');
     recipeCard.classList.add('recipe-card');
     recipeCard.id = recipe.id;
     recipeCard.tabIndex = 0; 
  
-
-
   const imgElement = document.createElement('img');
   imgElement.classList.add('image-styling');
   imgElement.src = recipe.image;
@@ -95,13 +87,11 @@ const displayRecipes = (recipeData, searchField) => {
 
   recipeCard.appendChild(imgElement);
 
-
   const recipeName = document.createElement('p');
   recipeName.classList.add('recipe-name');
   recipeName.textContent = recipe.name;
 
   recipeCard.appendChild(recipeName);
-
 
   recipesContainer.appendChild(recipeCard);
   });
@@ -158,12 +148,13 @@ const displayPopUp = (recipeData, ingredientInfo, recipeId, user) => {
   if (user.recipesToCook.includes(recipeMatch)){
     saveRecipeButton.innerText = "Saved!"
     saveRecipeButton.style.backgroundColor = 'green';
-  }
+  };
+
   saveRecipeButton.addEventListener('click', () => {
     updateUsers(user, recipeMatch);  
     saveRecipe(recipeMatch, user);
 })
-}
+};
 
 export  {
   renderRecipes,
@@ -172,4 +163,4 @@ export  {
   styleElementBorder,
   printError,
   greetUser
-}
+};

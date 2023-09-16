@@ -1,12 +1,12 @@
 
 # Abstract
+
 This application allows the user to view recipes. They can search for recipes and filter through the categories. They can save and unsave the recipes they choose and also view the instructions and cost of ingredients for a recipe. This application gets information from and posts information to a connected server
 
 ## Application link:
 
 [What's Cookin'](https://alfonsojack.github.io/whats-cookin/)
 [What's Cookin' API](https://github.com/turingschool-examples/whats-cookin-api)
-
 
 ## Installation Instructions
 
@@ -30,6 +30,7 @@ This application allows the user to view recipes. They can search for recipes an
 
 
 ## Context:
+
 This was a 2 part project. A team of 3 worked on this for about 80 hours in total
 
 ## Contributors:
