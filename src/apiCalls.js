@@ -3,9 +3,15 @@ export function fetchCurrenciesCode() {
   return fetch(
     "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json"
   )
-    .then((response) => response.json())
-    .then((data) => {
-      return data;
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Fetch failed with status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("Error fetching currencies code:", error);
+      throw error;
     });
 }
 
@@ -13,30 +19,63 @@ export function fetchCurrencies() {
   return fetch(
     "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.json"
   )
-    .then((response) => response.json())
-    .then((data) => {
-      return data;
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Fetch failed with status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("Error fetching currencies:", error);
+      throw error;
     });
 }
 
 export const fetchUsers = fetch("http://localhost:3001/api/v1/users")
-  .then((response) => response.json())
+  .then((response) => {
+    if(!response.ok) {
+      throw new Error(`Fetch failed with status: ${response.status}`);
+    }
+    return response.json();
+  })
   .then((data) => {
     return data.users;
+  })
+  .catch((error) => {
+    console.error("Error fetching users:", error);
+    throw error;
   });
 
 export const fetchIngredients = fetch(
   "http://localhost:3001/api/v1/ingredients"
 )
-  .then((response) => response.json())
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`Fetch failed with status: ${response.status}`);
+    }
+    return response.json();
+  })
   .then((data) => {
     return data.ingredients;
-  });
+  })
+  .catch((error) => {
+    console.error("Error fetching ingredients:", error);
+    throw error;
+  })
 
-export const fetchRecipes = fetch("http://localhost:3001/api/v1/recipes")
-  .then((response) => response.json())
+  export const fetchRecipes = fetch("http://localhost:3001/api/v1/recipes")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`Fetch failed with status: ${response.status}`);
+    }
+    return response.json();
+  })
   .then((data) => {
     return data.recipes;
+  })
+  .catch((error) => {
+    console.error("Error fetching recipes:", error);
+    throw error;
   });
 
 export function sendPostRequest(currentUser, clickedRecipe) {
@@ -50,9 +89,17 @@ export function sendPostRequest(currentUser, clickedRecipe) {
        'Content-Type': 'application/json'
     }
   })
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok) {
+      throw newError(`Response failed with status: ${response.status}`);
+    }
+    return response.json()
+  })
   .then(json => console.log(json))
-  .catch(err => console.log("Error:", err))
+  .catch((error) => {
+    console.error("Error sending POST request:", error);
+    throw error;
+  });
 }
 
 export function sendDeleteRequest(currentUser, clickedRecipe) {
@@ -66,7 +113,15 @@ export function sendDeleteRequest(currentUser, clickedRecipe) {
        'Content-Type': 'application/json'
     }
   })
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`Request failed with status: ${response.status}`);
+    }
+    return response.json();
+  })
   .then(json => console.log(json))
-  .catch(err => console.log("Error:", err))
+  .catch((error) => {
+    console.error("Error sending DELETE request:", error);
+    throw error;
+  });
 }
