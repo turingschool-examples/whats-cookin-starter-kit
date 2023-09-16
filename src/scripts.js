@@ -259,14 +259,22 @@ closeBtn.addEventListener("click", function () {
 });
 
 modalOverlay.addEventListener("click", (event) => {
+  const currencyDropDown = document.querySelector("#currencies-dropdown");
+  const currencyLabel = document.querySelector(".choose-currency");
   if (event.target.id === "modal-overlay") {
-    modalOverlay.classList.remove("open-modal");
-  }
+  modalOverlay.classList.remove("open-modal");
+  currencyDropDown.remove();
+  currencyLabel.remove();
+ }
 });
 
 document.addEventListener("keydown", (event) => {
+  const currencyDropDown = document.querySelector("#currencies-dropdown");
+  const currencyLabel = document.querySelector(".choose-currency");
   if (event.key === "Escape") {
     modalOverlay.classList.remove("open-modal");
+    currencyDropDown.remove();
+    currencyLabel.remove();
   }
 });
 

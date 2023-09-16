@@ -189,3 +189,142 @@ describe("Save a Recipe", () => {
     expect(result[0]).to.equal(undefined);
   });
 });
+
+
+describe("Recipe Title/Name", () => {
+  it("should return recipe title/name based on the id of a recipe clicked", () => {
+    const result = returnRecipeTitle(recipeTestData, 595736);
+    expect(result[0]).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    expect(result.length).to.equal(1);
+  });
+
+  it("should return the title for another recipe clicked", () => {
+    const result = returnRecipeTitle(recipeTestData, 678353);
+    expect(result[0]).to.equal("Maple Dijon Apple Cider Grilled Pork Chops");
+    expect(result.length).to.equal(1);
+  });
+  it("should return an empty array if no matches", () => {
+    const result = returnRecipeDirections(recipeTestData, "noMatch");
+    expect(result.length).to.equal(0);
+  });
+});
+
+describe("Finding a recipe by name in the search field for 'name", () => {
+  it("should return an object that contains the title for the recipes that include the words typed in by the user", () => {
+    const result = findRecipeByName("apple", recipeTestData);
+    expect(result[0].name).to.equal(
+      "Maple Dijon Apple Cider Grilled Pork Chops"
+    );
+    expect(result.length).to.equal(1);
+  });
+
+  it("should return an object that contains the id of the recipes that include th words typed in by the user", () => {
+    const result = findRecipeByName("chocolate", recipeTestData);
+    expect(result[0].id).to.equal(595736);
+    expect(result.length).to.equal(1);
+  });
+  it("should return an empty array if no matches", () => {
+    const result = findRecipeByName("egg", recipeTestData);
+    expect(result.length).to.equal(0);
+  });
+});
+
+describe("Save a Recipe", () => {
+  it("should add an element to a savedArray everytime a recipe is saved", () => {
+    let savedArray = [];
+    const result = saveRecipe(recipeTestData, savedArray, 595736);
+    expect(result.length).to.equal(1);
+  });
+
+  it("should return information about the recipe including the id and name", () => {
+    let savedArray = [];
+    const result = saveRecipe(recipeTestData, savedArray, 595736);
+    expect(result[0].id).to.equal(595736);
+    expect(result[0].name).to.equal(
+      "Loaded Chocolate Chip Pudding Cookie Cups"
+    );
+  });
+  it("should return undefined if no matches", () => {
+    let savedArray = [];
+    const result = saveRecipe(recipeTestData, savedArray, 123456);
+    expect(result[0]).to.equal(undefined);
+  });
+});
+
+describe("return tags of a recipe", () => {
+  it("should return the tags of a given recipe", () => {
+    const result = returnRecipeTags(recipeTestData, 595736);
+    expect(result[0]).to.equal("antipasti");
+    expect(result.length).to.equal(6);
+  });
+
+  it("should return the tags of another recipe", () => {
+    const result = returnRecipeTags(recipeTestData, 678353);
+    expect(result[0]).to.equal("lunch");
+    expect(result.length).to.equal(4);
+  });
+
+  it("should return an empty array if recipe id given doesn't exist", () => {
+    const result = returnRecipeTags(recipeTestData, 23412312);
+    expect(result.length).to.equal(0);
+  });
+});
+
+describe("find a recipe given an ingredient name string", () => {
+  it("should return a recipe object", () => {
+    const result = findRecipeByIngredient('wheat flour', ingredientsTestData, recipeTestData);
+    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    expect(result.length).to.equal(1);
+  });
+
+  it("should work with other ingredient strings", () => {
+    const result = findRecipeByIngredient('bicarbonate of soda', ingredientsTestData, recipeTestData);
+    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    expect(result.length).to.equal(1);
+  });
+
+  it("should work with even MORE ingredient strings!", () => {
+    const result = findRecipeByIngredient('eggs', ingredientsTestData, recipeTestData);
+    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    expect(result.length).to.equal(1);
+  });
+});
+
+describe("return tags of a recipe", () => {
+  it("should return the tags of a given recipe", () => {
+    const result = returnRecipeTags(recipeTestData, 595736);
+    expect(result[0]).to.equal("antipasti");
+    expect(result.length).to.equal(6);
+  });
+
+  it("should return the tags of another recipe", () => {
+    const result = returnRecipeTags(recipeTestData, 678353);
+    expect(result[0]).to.equal("lunch");
+    expect(result.length).to.equal(4);
+  });
+
+  it("should return an empty array if recipe id given doesn't exist", () => {
+    const result = returnRecipeTags(recipeTestData, 23412312);
+    expect(result.length).to.equal(0);
+  });
+});
+
+describe("find a recipe given an ingredient name string", () => {
+  it("should return a recipe object", () => {
+    const result = findRecipeByIngredient('wheat flour', ingredientsTestData, recipeTestData);
+    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    expect(result.length).to.equal(1);
+  });
+
+  it("should work with other ingredient strings", () => {
+    const result = findRecipeByIngredient('bicarbonate of soda', ingredientsTestData, recipeTestData);
+    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    expect(result.length).to.equal(1);
+  });
+
+  it("should work with even MORE ingredient strings!", () => {
+    const result = findRecipeByIngredient('eggs', ingredientsTestData, recipeTestData);
+    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    expect(result.length).to.equal(1);
+  });
+});
