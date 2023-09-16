@@ -22,12 +22,7 @@ This application allows the user to view recipes. They can search for recipes an
 
 ## Preview of App: 
 
-<img width="1428" alt="Screenshot 2023-09-05 at 8 14 37 PM" src="https://github.com/alfonsojack/whats-cookin/assets/119368820/f992e319-1f13-4df3-80ce-7f99b89a6c32">
-
-<img width="1423" alt="Screenshot 2023-09-05 at 8 53 23 PM" src="https://github.com/alfonsojack/whats-cookin/assets/119368820/f193e0dd-850a-4bfa-8970-aa0461136c0e">
-
-<img width="1421" alt="Screenshot 2023-09-05 at 8 56 09 PM" src="https://github.com/alfonsojack/whats-cookin/assets/119368820/8ea42a87-2e37-40ae-9166-d4185bddfcfe">
-
+![What's Cookin Video](https://github.com/alfonsojack/whats-cookin/assets/121205752/e98ca79f-3c32-4af7-8624-72ae2ee5e059)
 
 ## Context:
 
