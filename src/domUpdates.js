@@ -9,7 +9,7 @@ export function displayRecipes(recipes, innerText) {
     recipeHTML += `<div class="recipe-card"><div class="title-recipe" id=${recipeEl.id}>${recipeEl.name}</div>
     <img
       src="${recipeEl.image}"
-      alt="recipe-img"
+      alt="${recipeEl.image}"
       id=${recipeEl.id}
     />
     <button class="save-recipe-btn">${innerText}</button>
@@ -22,15 +22,15 @@ export function displayTags(recipes) {
   const tags = returnListOfUniqueTags(recipes);
   let tagsHtml = "";
   tags.forEach((tagEl) => {
-    tagsHtml += `<div><img class="tag-btn" id="${tagEl}" src="/images/${tagEl}.png"><p>${tagEl}</p></div>
+    tagsHtml += `<div><img class="tag-btn" alt="${tagEl} id="${tagEl}" src="/images/${tagEl}.png"><p>${tagEl}</p></div>
     `;
   });
   tagButtons.innerHTML = tagsHtml;
 }
 
 export function displayFilteredRecipes(recipeData, currentUserRecipes) {
-    // store user recipes ids
-    const savedRecipeIDs = currentUserRecipes.map((userRecipe) => userRecipe.id)
+  // store user recipes ids
+  const savedRecipeIDs = currentUserRecipes.map((userRecipe) => userRecipe.id);
 
   // display on html
   let filteredRecipeHTML = ``;
@@ -39,13 +39,13 @@ export function displayFilteredRecipes(recipeData, currentUserRecipes) {
 
   recipeData.forEach((recipe) => {
     // changing innerText and setting buttonClass for DOM
-    const isSaved = savedRecipeIDs.includes(recipe.id)
+    const isSaved = savedRecipeIDs.includes(recipe.id);
     if (isSaved) {
-      innerText = `✓ Saved`
-      buttonClass = 'is-saved'
+      innerText = `✓ Saved`;
+      buttonClass = "is-saved";
     } else {
-      innerText = `Save Recipe`
-      buttonClass = 'is-not-saved'
+      innerText = `Save Recipe`;
+      buttonClass = "is-not-saved";
     }
 
     filteredRecipeHTML += `<div class="recipe-card"><div class="title-recipe" id=${recipe.id}>${recipe.name}</div>
@@ -57,6 +57,6 @@ export function displayFilteredRecipes(recipeData, currentUserRecipes) {
     <button class="save-recipe-btn ${buttonClass}">${innerText}</button>
     </div>`;
   });
-  
+
   recipeDisplay.innerHTML = filteredRecipeHTML;
 }
