@@ -6,6 +6,7 @@ This application allows the user to view recipes. They can search for recipes an
 ## Application link:
 
 [What's Cookin'](https://alfonsojack.github.io/whats-cookin/)
+
 [What's Cookin' API](https://github.com/turingschool-examples/whats-cookin-api)
 
 ## Installation Instructions
