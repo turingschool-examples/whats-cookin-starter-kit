@@ -11,7 +11,9 @@ import {
   findRecipeByName,
   saveRecipe,
   returnRecipeImgUrl,
-  deleteRecipe
+  deleteRecipe,
+  returnRecipeTags,
+  findRecipeByIngredient,
 } from "../src/functions.js";
 
 import ingredientsTestData from "../src/data/ingredients-test-data.js";
@@ -192,7 +194,6 @@ describe("Save a Recipe", () => {
   });
 });
 
-
 describe("Recipe Title/Name", () => {
   it("should return recipe title/name based on the id of a recipe clicked", () => {
     const result = returnRecipeTitle(recipeTestData, 595736);
@@ -274,59 +275,38 @@ describe("return tags of a recipe", () => {
 
 describe("find a recipe given an ingredient name string", () => {
   it("should return a recipe object", () => {
-    const result = findRecipeByIngredient('wheat flour', ingredientsTestData, recipeTestData);
-    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    const result = findRecipeByIngredient(
+      "wheat flour",
+      ingredientsTestData,
+      recipeTestData
+    );
+    expect(result[0].name).to.equal(
+      "Loaded Chocolate Chip Pudding Cookie Cups"
+    );
     expect(result.length).to.equal(1);
   });
 
   it("should work with other ingredient strings", () => {
-    const result = findRecipeByIngredient('bicarbonate of soda', ingredientsTestData, recipeTestData);
-    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    const result = findRecipeByIngredient(
+      "bicarbonate of soda",
+      ingredientsTestData,
+      recipeTestData
+    );
+    expect(result[0].name).to.equal(
+      "Loaded Chocolate Chip Pudding Cookie Cups"
+    );
     expect(result.length).to.equal(1);
   });
 
   it("should work with even MORE ingredient strings!", () => {
-    const result = findRecipeByIngredient('eggs', ingredientsTestData, recipeTestData);
-    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
-    expect(result.length).to.equal(1);
-  });
-});
-
-describe("return tags of a recipe", () => {
-  it("should return the tags of a given recipe", () => {
-    const result = returnRecipeTags(recipeTestData, 595736);
-    expect(result[0]).to.equal("antipasti");
-    expect(result.length).to.equal(6);
-  });
-
-  it("should return the tags of another recipe", () => {
-    const result = returnRecipeTags(recipeTestData, 678353);
-    expect(result[0]).to.equal("lunch");
-    expect(result.length).to.equal(4);
-  });
-
-  it("should return an empty array if recipe id given doesn't exist", () => {
-    const result = returnRecipeTags(recipeTestData, 23412312);
-    expect(result.length).to.equal(0);
-  });
-});
-
-describe("find a recipe given an ingredient name string", () => {
-  it("should return a recipe object", () => {
-    const result = findRecipeByIngredient('wheat flour', ingredientsTestData, recipeTestData);
-    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
-    expect(result.length).to.equal(1);
-  });
-
-  it("should work with other ingredient strings", () => {
-    const result = findRecipeByIngredient('bicarbonate of soda', ingredientsTestData, recipeTestData);
-    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
-    expect(result.length).to.equal(1);
-  });
-
-  it("should work with even MORE ingredient strings!", () => {
-    const result = findRecipeByIngredient('eggs', ingredientsTestData, recipeTestData);
-    expect(result[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
+    const result = findRecipeByIngredient(
+      "eggs",
+      ingredientsTestData,
+      recipeTestData
+    );
+    expect(result[0].name).to.equal(
+      "Loaded Chocolate Chip Pudding Cookie Cups"
+    );
     expect(result.length).to.equal(1);
   });
 });
@@ -334,40 +314,44 @@ describe("find a recipe given an ingredient name string", () => {
 describe("get recipe image url", () => {
   it("should return the recipe image url", () => {
     const result = returnRecipeImgUrl(recipeTestData, 595736);
-    expect(result).to.deep.equal(["https://spoonacular.com/recipeImages/595736-556x370.jpg"])
+    expect(result).to.deep.equal([
+      "https://spoonacular.com/recipeImages/595736-556x370.jpg",
+    ]);
   });
   it("should return another recipe image url", () => {
     const result = returnRecipeImgUrl(recipeTestData, 678353);
-    expect(result).to.deep.equal(["https://spoonacular.com/recipeImages/678353-556x370.jpg"])
+    expect(result).to.deep.equal([
+      "https://spoonacular.com/recipeImages/678353-556x370.jpg",
+    ]);
   });
   it("should return an empty array if there is no recipe", () => {
     const result = returnRecipeImgUrl(recipeTestData, 999999);
-    expect(result).to.deep.equal([])
+    expect(result).to.deep.equal([]);
   });
 });
 
 describe("be able to delete a recipe", () => {
   it("should delete a recipe from the saved recipes", () => {
-    const savedArray = []
-    saveRecipe(recipeTestData, savedArray, 595736)
+    const savedArray = [];
+    saveRecipe(recipeTestData, savedArray, 595736);
     // console.log(savedArray)
     const result = deleteRecipe(savedArray, 595736);
     // console.log(savedArray)
-    expect(result).to.deep.equal([])
+    expect(result).to.deep.equal([]);
   });
   it("should delete a recipe from multiple saved recipes", () => {
-    const savedArray = []
-    saveRecipe(recipeTestData, savedArray, 595736)
-    saveRecipe(recipeTestData, savedArray, 678353)
+    const savedArray = [];
+    saveRecipe(recipeTestData, savedArray, 595736);
+    saveRecipe(recipeTestData, savedArray, 678353);
     // console.log(savedArray)
     const result = deleteRecipe(savedArray, 678353);
     // console.log(savedArray)
-    expect(result[0].id).to.equal(595736)
+    expect(result[0].id).to.equal(595736);
   });
   it("should be an empty array if there is nothing in the saved recipes", () => {
-    const savedArray = []
+    const savedArray = [];
     const result = deleteRecipe(savedArray, 678353);
     // console.log(savedArray)
-    expect(result.length).to.equal(0)
+    expect(result.length).to.equal(0);
   });
 });
