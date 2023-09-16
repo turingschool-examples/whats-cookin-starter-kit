@@ -1,4 +1,3 @@
-//
 import "./styles.css";
 import "./domUpdates.js";
 import "./functions.js";
@@ -24,8 +23,6 @@ import "./images/spread.png";
 import "./images/starter.png";
 
 import {
-  createFunction,
-  returnFilteredListName,
   returnIngredientNames,
   returnFilteredTag,
   returnRecipeCost,
@@ -33,8 +30,6 @@ import {
   returnRecipeTitle,
   returnRecipeTags,
   returnRecipeImgUrl,
-  returnListOfUniqueTags,
-  returnFilteredRecipeArrayByTagID,
   findRecipeByIngredient,
   findRecipeByName,
   getUserInput,
@@ -42,9 +37,12 @@ import {
   deleteRecipe,
 } from "/src/functions.js";
 
-import { displayRecipes } from "./domUpdates.js";
-import { displayTags } from "./domUpdates.js";
-import { displayFilteredRecipes } from "./domUpdates.js";
+import { 
+  displayRecipes, 
+  displayTags, 
+  displayFilteredRecipes,
+} from "./domUpdates.js";
+
 import {
   fetchCurrenciesCode,
   fetchCurrencies,
@@ -53,12 +51,9 @@ import {
   fetchUsers,
   sendDeleteRequest,
   sendPostRequest,
-  postRecipe,
 } from "./apiCalls";
 
 const recipeDisplay = document.querySelector(".recipes");
-
-const modal = document.querySelector(".modal");
 const modalContainer = document.querySelector(".modal-container");
 const modalOverlay = document.querySelector(".modal-overlay");
 const modalTitle = document.querySelector(".modal-title");
@@ -71,9 +66,9 @@ const tagButtons = document.querySelector(".tag-buttons");
 const inputName = document.querySelector(".input-name");
 const inputIngredient = document.querySelector(".input-ingredient");
 const savedRecipesBtn = document.querySelector(".view-saved");
-const modalIngredientsCost = document.querySelector(".modal-ingredients-cost");
 const headerMsg = document.querySelector(".header-msg");
 
+// User
 let currentUser = {};
 let clickedRecipe = null;
 
@@ -82,6 +77,7 @@ let ingredientsData = null;
 let recipeData = null;
 let idClicked = null;
 
+// Currency
 let fetchedCodes = null;
 let fetchedRates = null;
 
@@ -123,15 +119,11 @@ function createRandomUser(users) {
   return currentUser;
 }
 const viewSavedRecipes = (recipeData) => {
-  console.log(currentUser.recipesToCook);
-  console.log(currentUser);
   if (savedRecipesBtn.innerText === "View Saved Recipes") {
     displayRecipes(currentUser.recipesToCook, "Remove Recipe");
     savedRecipesBtn.innerText = "View All";
     displayTags(currentUser.recipesToCook);
   } else {
-    console.log(recipeData);
-    console.log(currentUser.recipesToCook);
     displayFilteredRecipes(recipeData, currentUser.recipesToCook);
     savedRecipesBtn.innerText = "View Saved Recipes";
     displayTags(recipeData);
@@ -144,12 +136,11 @@ savedRecipesBtn.addEventListener("click", () => {
 
 recipeDisplay.addEventListener("click", (event) => {
   let clickedId = event.target.parentNode.firstChild.id;
+
   if (event.target.innerText === "Save Recipe") {
     event.target.innerText = "✓ Saved";
     event.target.style.backgroundColor = "#89ce94";
-    clickedRecipe = clickedId; //
-    console.log(clickedRecipe);
-    console.log(currentUser);
+    clickedRecipe = clickedId;
     saveRecipe(recipeData, currentUser.recipesToCook, clickedId);
     sendPostRequest(currentUser, clickedRecipe);
   } else if (event.target.innerText === "✓ Saved") {
@@ -169,7 +160,6 @@ inputName.addEventListener("keyup", (event) => {
   if (savedRecipesBtn.innerText === "View Saved Recipes") {
     const userInput = getUserInput(".input-name");
     const recipeIdsByName = findRecipeByName(userInput, recipeData);
-    console.log(recipeIdsByName);
     displayRecipes(recipeIdsByName, "Save Recipe");
   } else {
     const userInput = getUserInput(".input-name");
@@ -205,7 +195,6 @@ tagButtons.addEventListener("click", (event) => {
   let tagClicked;
   tagClicked = event.target.id;
 
-  // clicked tag img
   const clickedTag = event.target;
 
   if (clickedTag.classList.contains("tag-btn")) {
@@ -213,9 +202,8 @@ tagButtons.addEventListener("click", (event) => {
 
     allTagButtons.forEach((tagButton) => {
       if (tagButton === clickedTag) {
-        tagButton.parentNode.classList.toggle("bold");
+        tagButton.parentNode.classList.add("bold");
       } else {
-        // reset the others
         tagButton.parentNode.classList.remove("bold");
       }
     });
@@ -353,9 +341,9 @@ function createCurrencyDropdown() {
   currencyDropDown.innerHTML = `<label for="currencies" class="choose-currency">Choose a currency</label>
   <select name="currencies" class="currencies-dropdown" id="currencies-dropdown">
     <option value="USD">Choose Currency</option>
-    <option value="usd" >USD</option>
-    <option value="cad" >CAD</option>
-    <option value="eur" >EUROS</option>
+    <option value="usd">USD</option>
+    <option value="cad">CAD</option>
+    <option value="eur">EUROS</option>
     <option value="jpy">JAPANESE YEN</option>
   </select>`;
   modalCost.insertAdjacentElement("afterend", currencyDropDown);
