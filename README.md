@@ -5,21 +5,21 @@ This application allows the user to view recipes. They can search for recipes an
 ## Application link:
 
 [What's Cookin'](https://alfonsojack.github.io/whats-cookin/)
+[What's Cookin' API](https://github.com/turingschool-examples/whats-cookin-api)
 
 
 ## Installation Instructions
 
-Click this link:
-Click the green < code > button.
-Copy SSH key.
-Open up the terminal.
-Change into the directory you wish to clone the app into with the `cd` command.
-Use the `git clone` command followed by pasting the copied SSH key.
-Change into the cloned directory with the `cd` command.
-Run `npm install`
-Run `npm start`
-Copy the local host link into your browser address bar1. 
-Enjoy!
+
+1. Click the green < code > button.
+2. Copy SSH key.
+3. Open up the terminal.
+4. Change into the directory you wish to clone the app into with the `cd` command.
+5. Use the `git clone` command followed by pasting the copied SSH key.
+6. Change into the cloned directory with the `cd` command followed by the name of the directory.
+7. Run `npm install` and wait a few seconds until its finish installing
+8. Run `npm start`
+9. Click `What's Cookin API` github and follow the instructions in that README.md file
 
 
 # Learning Goals
