@@ -192,6 +192,16 @@ inputIngredient.addEventListener("keyup", (event) => {
 });
 
 tagButtons.addEventListener("click", (event) => {
+  handleTagButtonClick(event);
+});
+
+tagButtons.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    handleTagButtonClick(event);
+  }
+});
+
+function handleTagButtonClick(event) {
   let tagClicked;
   tagClicked = event.target.id;
 
@@ -222,7 +232,8 @@ tagButtons.addEventListener("click", (event) => {
     );
     displayRecipes(filteredRecipeIDByTag, "Remove Recipe");
   }
-});
+}
+
 
 recipeDisplay.addEventListener("click", (event) => {
   idClicked = event.target.id;
@@ -347,7 +358,7 @@ function createCurrencyDropdown() {
     <option value="jpy">JAPANESE YEN</option>
   </select>`;
   modalCost.insertAdjacentElement("afterend", currencyDropDown);
-}
+}   
 
 document.addEventListener("change", (event) => {
   if (event.target.classList.contains("currencies-dropdown")) {
