@@ -1,9 +1,15 @@
 {
+  "homepage": "https://joh-ann.github.io/whats-cookin",
   "name": "whats-cookin",
   "version": "1.0.0",
   "description": "Starter kit for Turing FE2 paired project",
   "main": "index.js",
+  "repository": {
+    "url": "git+https://github.com/joh-ann/whats-cookin.git"
+  },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "start": "webpack serve",
     "build": "webpack",
     "test": "mochapack 'test/**/*.js'"
@@ -14,13 +20,14 @@
     "chai": "^4.3.4",
     "css-loader": "^5.2.6",
     "file-loader": "^6.2.0",
+    "gh-pages": "^6.0.0",
     "mocha": "^8.4.0",
     "mochapack": "^2.1.2",
     "sass": "^1.34.0",
     "sass-loader": "^12.0.0",
     "style-loader": "^2.0.0",
-    "webpack": "^5.38.1",
-    "webpack-cli": "^4.7.0",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^3.11.2"
   }
 }
