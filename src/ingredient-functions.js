@@ -40,7 +40,6 @@ const calculateCost = (recipeData, ingredientsData, clickedId) => {
   return `$${costInDollars}`;
 };
 
-
 const findDirections = (recipeData, recipeName) => {
   const chosenRecipe = recipeData.find(recipe => {
     return recipeName === recipe.name;
