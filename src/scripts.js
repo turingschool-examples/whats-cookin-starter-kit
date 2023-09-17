@@ -255,7 +255,18 @@ function handleRecipeDisplayEvent(event) {
     updateTags();
   }
 }
+
 closeBtn.addEventListener("click", function () {
+  closeDropdownAndModal();
+});
+
+closeBtn.addEventListener("keydown", function (event) {
+  if (event.key === "Enter" || event.keyCode === 13) {
+    closeDropdownAndModal();
+  }
+});
+
+function closeDropdownAndModal() {
   const currencyDropDown = document.querySelector("#currencies-dropdown");
   const currencyLabel = document.querySelector(".choose-currency");
   if (currencyDropDown && currencyLabel) {
@@ -264,7 +275,7 @@ closeBtn.addEventListener("click", function () {
   }
 
   modalOverlay.classList.remove("open-modal");
-});
+}
 
 modalOverlay.addEventListener("click", (event) => {
   const currencyDropDown = document.querySelector("#currencies-dropdown");
