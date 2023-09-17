@@ -20,34 +20,6 @@ const allRecipes = document.querySelector('#allRecipes');
   let recipesData;
   let ingredientsData;
   let featuredRecipes = [];
-  
-
-window.addEventListener("load", function () {
-  fetchData("users", "http://localhost:3001/api/v1/users", getRandomUser)
-    .then(() =>
-      fetchData(
-        "recipes",
-        "http://localhost:3001/api/v1/recipes",
-        getRecipeData
-      )
-    )
-    .then(() =>
-      fetchData(
-        "ingredients",
-        "http://localhost:3001/api/v1/ingredients",
-        getIngredientData
-      )
-    )
-    .then(() => {
-      getRecipesToCook(randomUser, recipesData);
-      getFeaturedRecipes(recipesData);
-      renderRecipes(featuredRecipes);
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
-});
-
 
 const createRandomIndex = (array) => { 
   return Math.floor(Math.random() * array.length);

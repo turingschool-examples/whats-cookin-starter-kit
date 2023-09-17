@@ -61,7 +61,6 @@ const saveRecipe = (recipe, user) => {
       saveRecipeButton.style.backgroundColor = 'red';};
 };
 
-
 const findRecipeById = (recipeData, id) => {
   const matchingRecipe = recipeData.find(recipe => recipe.id == id);
   return matchingRecipe || 'oops'
