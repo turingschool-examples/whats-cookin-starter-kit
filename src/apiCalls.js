@@ -1,7 +1,4 @@
-// Your fetch requests will live here!
-
 import { printError } from "./domUpdates";
-
 
 const fetchData = (type, link, fn) => {
   return fetch(link)
@@ -36,14 +33,6 @@ const updateUsers = (currentUser, savedRecipe) => {
     .catch((err) => console.error(`You got an ${err}`));
   return promise;
 };
-
-
-
-
-
-
-
-
 
 export {
   fetchData,
