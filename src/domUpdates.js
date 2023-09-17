@@ -22,7 +22,7 @@ export function displayTags(recipes) {
   const tags = returnListOfUniqueTags(recipes);
   let tagsHtml = "";
   tags.forEach((tagEl) => {
-    tagsHtml += `<div><img class="tag-btn" alt="${tagEl}" id="${tagEl}" src="/images/${tagEl}.png"><p>${tagEl}</p></div>
+    tagsHtml += `<div tabindex="0"><img class="tag-btn" alt="${tagEl}" id="${tagEl}" src="/images/${tagEl}.png"><p>${tagEl}</p></div>
     `;
   });
   tagButtons.innerHTML = tagsHtml;
