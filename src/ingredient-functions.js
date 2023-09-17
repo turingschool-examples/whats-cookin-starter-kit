@@ -1,22 +1,22 @@
 const findRecipeIngredients = (recipeData, ingredientsData, id) => {
   let givenRecipe = recipeData.find(recipe => {
-    return recipe["id"] == id
+    return recipe['id'] == id
   })
 
   if (!givenRecipe) {
     return [];
   }
 
-  let ingredientIds = givenRecipe["ingredients"].map(ingredient => {
-    return ingredient["id"]
+  let ingredientIds = givenRecipe['ingredients'].map(ingredient => {
+    return ingredient['id']
   })
 
   let recipeIngredients = ingredientsData.filter(ingredient => {
-    return ingredientIds.includes(ingredient["id"])
+    return ingredientIds.includes(ingredient['id'])
   })
 
   return recipeIngredients.map(ingredient => {
-    let ingredientNames = ingredient["name"]
+    let ingredientNames = ingredient['name']
     return ingredientNames
   } )
 };

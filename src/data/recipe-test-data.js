@@ -120,8 +120,7 @@ const recipeData = [ {
     "name": "Dirty Steve's Original Wing Sauce",
     "tags": [
       "sauce",
-      "main dish",
-      
+      "main dish"
     ]
   },
   {
