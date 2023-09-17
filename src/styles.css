@@ -230,10 +230,10 @@ p {
   width: 30rem;
 }
 .input-name::placeholder {
-  font-family: "Cedarville Cursive";
+  font-size: 15px;
 }
 .input-ingredient::placeholder {
-  font-family: "Cedarville Cursive";
+  font-size: 15px;
 }
 
 .input-ingredient {
