@@ -1,7 +1,4 @@
-// Your fetch requests will live here!
-
 import { printError } from "./domUpdates";
-
 
 const fetchData = (type, link, fn) => {
   return fetch(link)
@@ -16,7 +13,7 @@ const fetchData = (type, link, fn) => {
 };
 
 const updateUsers = (currentUser, savedRecipe) => {
-    const existingRecipe = currentUser['recipesToCook'].find(item => item === savedRecipe);
+  const existingRecipe = currentUser['recipesToCook'].find(item => item === savedRecipe);
     if (existingRecipe) {
       console.error('Duplicate recipeID found. Cannot add the same recipe twice.');
       return Promise.reject('Duplicate recipeID');
@@ -36,14 +33,6 @@ const updateUsers = (currentUser, savedRecipe) => {
     .catch((err) => console.error(`You got an ${err}`));
   return promise;
 };
-
-
-
-
-
-
-
-
 
 export {
   fetchData,

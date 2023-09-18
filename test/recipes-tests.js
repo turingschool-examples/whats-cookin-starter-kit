@@ -2,7 +2,6 @@ const chai = require('chai');
 const expect = chai.expect;
 import {findRecipe} from '../src/recipe-functions'
 
-
 describe('findRecipe', () => {
   let recipeData;
   beforeEach(() => {
@@ -29,6 +28,7 @@ describe('findRecipe', () => {
     const dinnerRecipes = findRecipe("tags", recipeData, "dinner");
     expect(dinnerRecipes).to.deep.equal([recipeData[0]]);
   });
+  
   it('Should return an array of one object containing a certain tag', () => {
     const dinnerRecipes = findRecipe("tags", recipeData, "dinner");
     expect(dinnerRecipes).to.deep.equal([recipeData[0]]);

@@ -1,6 +1,4 @@
-
-
-const recipeData = [  {
+const recipeData = [ {
     "id": 595736,
     "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
     "ingredients": [
@@ -122,8 +120,7 @@ const recipeData = [  {
     "name": "Dirty Steve's Original Wing Sauce",
     "tags": [
       "sauce",
-      "main dish",
-      
+      "main dish"
     ]
   },
   {

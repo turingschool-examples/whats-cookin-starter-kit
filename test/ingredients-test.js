@@ -6,11 +6,8 @@ import {
   findDirections
 } from '../src/ingredient-functions';
 
-
 import ingredientsData from '../src/data/ingredients-test-data.js';
 import recipeData from '../src/data/recipe-test-data.js';
-
-
 
 describe('findRecipeIngredients', () => {
   let recipeId;
@@ -91,7 +88,6 @@ describe('calculateCost', () => {
     expect(recipeCost).to.deep.equal(expectedCost);
   });
 });
-
 
 describe('findDirections', () => {
   let recipeName;
