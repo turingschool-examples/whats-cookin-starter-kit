@@ -1,3 +1,181 @@
-body {
-  background-color: blueviolet;
+* {
+  background-color: #E7F1F1; 
+  margin: 10px;
+  letter-spacing: 2px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.filter-save {
+  width: 200px;
+  text-align: center;
+}
+
+p, h2, h3, div, article, section, li  {
+  background: none;
+  padding: 10px;
+  color: white;
+}
+
+p {
+  font-size: larger;
+  padding: 0px;
+}
+
+section {
+  width: 100%;
+  padding-top: 20px;
+}
+
+h1 {
+  font-family: 'Eczar', serif;
+  font-weight: 700;
+  font-size: 60px;
+  letter-spacing: 2px;
+  margin-top: -10px;
+  margin-bottom: 0px;
+  color: black;
+}
+
+
+
+input {
+  height: 40px;
+  width: 400px;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: white;
+  font-size: 20px;
+  font-family: 'Radley', serif;
+  text-align: center;
+}
+
+input::placeholder { 
+  font-family: 'Kalam', cursive;
+}
+
+h2 {
+  font-size: 40px;
+  letter-spacing: 2px;
+  margin-top: 20px;
+  font-family: 'Eczar', serif;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: -20px;
+}
+
+.nav-link, .all, .filter-save {
+  margin-right: 55px;
+  font-size: 20px;
+  color: black;
+  line-height: 35px;
+  text-decoration: none;
+  border-bottom: 4px solid orange;
+  text-transform: capitalize;
+  font-family: 'Eczar', serif;
+}
+
+.nav-link:hover, .all:hover, .filter-save:hover {
+  color: white;
+  background-color: black;
+}
+
+.saved-recipes-button {
+  border-bottom: 4px solid #4B1D3F;
+}
+
+
+.image-styling {
+  margin-top: 20px;
+  height: 150px;
+  width: 300px;
+}
+
+.recipe-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center; 
+  justify-content: center; 
+  text-align: center;
+  padding-top: 10px;
+  font-family: 'Eczar', serif;
+  font-size: 20px;
+}
+
+img {
+  border: 3px black solid;
+  padding: 5px;
+}
+
+button {
+  font-family: 'Eczar', serif;
+  font-size: 20px;
+  width: 500px;
+  border: 3px black solid;
+  height: 350px;
+  background-color: #414535;
+  /* border-radius: 10px; */
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+}
+
+button:hover {
+  cursor: pointer;
+  transform: translateY(-2px); /* Move the button 2 pixels up */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+button:active {
+  transform: translateY(2px); /* Move the button 2 pixels down */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.9);
+  background-color: #4B1D3F;
+}
+
+
+
+.save-and-close-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.save-and-close-button {
+  background-color: #4B1D3F;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  border-radius: 20px;
+  height: 60px
+}
+
+.categories {
+  color: black;
+  font-weight: 500;
+}
+
+#error {
+  color: darkred;
+  /* background-color: white;
+  border: 5px black solid;
+  width: 100%;
+  text-align: center; */
+}
+
+.instructions-list {
+  padding-bottom: 20px;
 }

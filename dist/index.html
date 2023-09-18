@@ -1,12 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Whats Cookin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link  rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@1,700&family=Poppins:wght@200;300;400;500;600;700;800&display=swap">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Eczar:wght@400;500;600;700;800&family=Kalam:wght@300;400;700&family=Radley:ital@0;1&display=swap" rel="stylesheet">
+    <title>What's Cookin'</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <div class="container">
+      <h2 class="categories" id="error"></h2>
+      <h1>What's Cookin'</h1>
+      <input class="search-field" type="text" placeholder="search recipes...">
+      <a class="filter-save" id="allRecipes" href="#" tabindex="0">ALL RECIPES</a>
+      <a class="filter-save saved-recipes-button" id="savedRecipes" href="#" tabindex="0">SAVED RECIPES</a>
+      <h2 class="categories">Categories</h2>
+      <nav>
+        <a class="all" href="#" tabindex="0">ALL CATEGORIES</a>
+        <a class="nav-link" id="breakfast" href="#" tabindex="0">BREAKFAST</a>
+        <a class="nav-link" id="snack" href="#" tabindex="0">SNACK</a>
+        <a class="nav-link" id="dinner" href="#" tabindex="0">DINNER</a>
+        <a class="nav-link" id="salad" href="#" tabindex="0">SALAD</a>
+        <a class="nav-link" id="sauce" href="#" tabindex="0">SAUCE</a> 
+      </nav>
+      <h2 class="categories hidden" id="featured">Featured Recipes</h2>
+      <div class="recipe-container">
+      </div>
+    </div>
   </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>
