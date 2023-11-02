@@ -19,6 +19,8 @@ We are also implimenting TDD or test driven development for the first time on a 
 ![ezgif com-video-to-gif (3)](https://github.com/Jade-ZS/whats-cooking/assets/123792434/80cd82f0-c345-404a-b53c-d6b134635ad2)
 ![ezgif com-video-to-gif (4)](https://github.com/Jade-ZS/whats-cooking/assets/123792434/3419d798-f522-4f00-9d14-eddea4ed1dae)
 
+## Deployment
+To use the app, visit this [deployed website](https://sakisandrac.github.io/whats-cookin-sc/), or follow the set up instructions
 
 ## Set Up
 1. Clone the api respository for this project by doing the followings:
