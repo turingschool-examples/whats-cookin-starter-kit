@@ -10,14 +10,11 @@ This PR [adds/removes/fixes/replaces] the [feature/bug/etc].
 - [] 🐞🐛 Bug Fix
 - [] 🪸🎭 Refactor
 - [] 💅🎨 Style
-- [] 🧰⚒️ Build
-- [] 📄💾 Documentation Update
+- [] 📄💾 Documentation
 
 ## Reviewers
 
-<!---
-Include reviewers
----->
+Dana Zack & Laura Long & Eric Kendrick
 
 ## Screenshots/ Recordings
 
