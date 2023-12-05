@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { filterByTag, filterByName } from '../src/recipes';
+import { filterByTag, filterByName, listRecipeIngredients } from '../src/recipes';
 
 const sampleIngredients = [
   {
@@ -19,7 +19,7 @@ const sampleIngredients = [
   },
   {
     "id": 4,
-    "name": "pinapple",
+    "name": "pineapple",
     "estimatedCostInCents": 200
   },
   {
@@ -130,7 +130,7 @@ describe('filterByTag', () => {
         ],
         "instructions": [
           {
-            "instruction": "Cut up the pinapple and watermelon",
+            "instruction": "Cut up the pineapple and watermelon",
             "number": 1
           },
           {
@@ -148,7 +148,7 @@ describe('filterByTag', () => {
           "salad",
           "tropical",
           "healthy",
-          "pinapple",
+          "pineapple",
           "watermelon"
         ]
       },
@@ -374,7 +374,7 @@ describe('filterByName', () => {
         ],
         "instructions": [
           {
-            "instruction": "Cut up the pinapple and watermelon",
+            "instruction": "Cut up the pineapple and watermelon",
             "number": 1
           },
           {
@@ -392,7 +392,7 @@ describe('filterByName', () => {
           "salad",
           "tropical",
           "healthy",
-          "pinapple",
+          "pineapple",
           "watermelon"
         ]
       },
@@ -490,7 +490,120 @@ describe('filterByName', () => {
     )
   });
 });
-// });
 
+//===============================================================
+// Determine the names of ingredients needed for a given recipe
+describe('listRecipeIngredients', () => {
+  it('Should be a function', () => {
+    expect(listRecipeIngredients).to.be.a('function');
+  });
 
+  it('Should determine the names of ingredients needed for a given recipe', () => {
+      // SETUP
+      const sampleIngredients = [
+        {
+          "id": 1,
+          "name": "strawberries",
+          "estimatedCostInCents": 400
+        },
+        {
+          "id": 2,
+          "name": "blackberries",
+          "estimatedCostInCents": 300
+        },
+        {
+          "id": 3,
+          "name": "watermelon",
+          "estimatedCostInCents": 500
+        },
+        {
+          "id": 4,
+          "name": "pineapple",
+          "estimatedCostInCents": 200
+        },
+        {
+          "id": 5,
+          "name": "vanilla icecream",
+          "estimatedCostInCents": 250
+        }
+      ];
+      const sampleRecipe = {
+          "id": 600,
+          "image": "https://imgs.search.brave.com/Qt3vXLyaEP9ZcX_RC_Vn58VR0d0Y1slPiglu9cCRtT0/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMwMS5ueXQuY29t/L2ltYWdlcy8yMDE5/LzA4LzEwL2Rpbmlu/Zy9hdy1zcGljeS13/YXRlcm1lbG9uLXNh/bGFkL2F3LXNwaWN5/LXdhdGVybWVsb24t/c2FsYWQtYXJ0aWNs/ZUxhcmdlLmpwZz93/PTEyODAmcT03NQ",
+          "ingredients": [
+            {
+              "id": 3,
+              "quantity": {
+                "amount": 1,
+                "unit": "c"
+              }
+            },
+            {
+              "id": 4,
+              "quantity": {
+                "amount": 1,
+                "unit": "c"
+              }
+            }
+          ],
+          "instructions": [
+            {
+              "instruction": "Cut up the pineapple and watermelon",
+              "number": 1
+            },
+            {
+              "instruction": "Mix the fruit in a large bowl until evenly dispersed.",
+              "number": 2
+            },
+            {
+              "instruction": "Enjoy your tropical salad!",
+              "number": 3
+            }
+          ],
+          "name": "Tropical fruit Salad",
+          "tags": [
+            "fruit",
+            "salad",
+            "tropical",
+            "healthy",
+            "pineapple",
+            "watermelon"
+          ]
+        };
+  
+      
+      // EXECUTION
+      const ingredients = listRecipeIngredients(sampleRecipe, sampleIngredients);
+      
+      // ASSERTION
+      expect(ingredients).to.deep.equal(["watermelon", "pineapple"]);
+  });
+})
 
+//===============================================================
+// Calculate the cost of a given recipe’s ingredients
+// describe('', () => {
+//   it('', () => {
+//     expect().to.be.a('function');
+//   });
+
+//   it('', () => {
+//       // SETUP
+//       // EXECUTION
+//       // ASSERTION
+//   });
+// })
+
+//===============================================================
+// Return the directions / instructions for a given recipe
+// describe('', () => {
+//   it('', () => {
+//     expect().to.be.a('function');
+//   });
+
+//   it('', () => {
+//       // SETUP
+//       // EXECUTION
+//       // ASSERTION
+//   });
+// })

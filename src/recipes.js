@@ -14,7 +14,25 @@ function filterByName(recipes, name) {
   return recipesByName;
 };
 
+function listRecipeIngredients(sampleRecipe, sampleIngredients) {
+  const ingredientIds = sampleRecipe.ingredients.map(ingredient => {
+    return ingredient.id;
+  })
+  console.log(ingredientIds)
+  const requiredIngredients = sampleIngredients.filter(ingredient => {
+    return ingredientIds.includes(ingredient.id);
+  })
+  console.log(requiredIngredients)
+  const ingredientNames = requiredIngredients.map(ingredient => {
+    return ingredient.name;
+  })
+  console.log(ingredientNames)
+  return ingredientNames;
+}
+
+
 module.exports = {
   filterByTag,
-  filterByName
+  filterByName,
+  listRecipeIngredients
 };
