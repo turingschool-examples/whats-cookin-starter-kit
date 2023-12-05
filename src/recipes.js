@@ -4,9 +4,21 @@
 //   console.log(recipe)
 // }
 
-export function filterRecipesByTag(recipes, tag) {
+function filterRecipesByTag(recipes, tags) {
 const filteredRecipesByTag = recipes.filter(recipe => {
-  return recipe.tags.includes(tag);
+  return tags.every(tag => recipe.tags.includes(tag));
 });
 return filteredRecipesByTag;
 }
+
+function filterRecipesByName(recipes, name) {
+  const filteredRecipesByName = recipes.filter(recipe => {
+    const upperCaseRecipeName = recipe.name.toUpperCase();
+    return upperCaseRecipeName.includes(name.toUpperCase());
+  });
+  return filteredRecipesByName;
+  }
+
+
+  module.exports = { filterRecipesByTag, 
+  filterRecipesByName }

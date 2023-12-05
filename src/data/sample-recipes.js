@@ -487,6 +487,100 @@ export const sampleRecipes = [
   "tags": [
     "side dish"
   ]
-}
+},
+{
+      "id": 618332,
+      "image": "https://spoonacular.com/recipeImages/618332-556x370.jpg",
+      "ingredients": [
+        {
+          "id": 19912,
+          "quantity": {
+            "amount": 168,
+            "unit": "g"
+          }
+        },
+        {
+          "id": 18371,
+          "quantity": {
+            "amount": 2,
+            "unit": "g"
+          }
+        },
+        {
+          "id": 20027,
+          "quantity": {
+            "amount": 1,
+            "unit": "g"
+          }
+        },
+        {
+          "id": 10019071,
+          "quantity": {
+            "amount": 42,
+            "unit": "g"
+          }
+        },
+        {
+          "id": 1012010,
+          "quantity": {
+            "amount": 3,
+            "unit": "g"
+          }
+        },
+        {
+          "id": 11424,
+          "quantity": {
+            "amount": 183,
+            "unit": "g"
+          }
+        },
+        {
+          "id": 2047,
+          "quantity": {
+            "amount": 1,
+            "unit": "g"
+          }
+        },
+        {
+          "id": 1145,
+          "quantity": {
+            "amount": 28,
+            "unit": "g"
+          }
+        },
+        {
+          "id": 2050,
+          "quantity": {
+            "amount": 5,
+            "unit": "mL"
+          }
+        },
+        {
+          "id": 10020080,
+          "quantity": {
+            "amount": 120,
+            "unit": "g"
+          }
+        }
+      ],
+      "instructions": [
+        {
+          "instruction": "In a medium bowl, whisk together the flour, baking powder, cornstarch, cinnamon, and salt. In a separate bowl, whisk together the butter, pumpkin, and vanilla. Stir in the agave.",
+          "number": 1
+        },
+        {
+          "instruction": "Add the flour mixture, stirring just until incorporated. Fold in 2 tablespoons of chocolate chips. Chill the cookie dough for at least 30 minutes. (If chilling longer than 1 hour, cover the top of the bowl with foil.)Preheat the oven to 325F, and line a baking sheet with parchment paper or a silicone baking mat. Drop the cookie dough into 12 rounded scoops onto the prepared baking sheet. Flatten slightly, and press the remaining chocolate chips into the tops of the cookie dough.",
+          "number": 2
+        },
+        {
+          "instruction": "Bake at 325F for 15-17 minutes. Cool on the baking sheet for at least 10 minutes before turning out onto a wire rack.",
+          "number": 3
+        }
+      ],
+      "name": "The Ultimate Healthy Soft & Chewy Pumpkin Chocolate Chip Cookies",
+      "tags": [
+        "side dish"
+      ]
+    }
 ]
 
