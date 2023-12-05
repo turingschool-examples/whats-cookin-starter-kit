@@ -6,7 +6,8 @@
 
 function filterRecipesByTag(recipes, tags) {
 const filteredRecipesByTag = recipes.filter(recipe => {
-  return tags.every(tag => recipe.tags.includes(tag));
+  const allTagsMatch = tags.every(tag => recipe.tags.includes(tag));
+  return allTagsMatch;
 });
 return filteredRecipesByTag;
 }
@@ -19,6 +20,15 @@ function filterRecipesByName(recipes, name) {
   return filteredRecipesByName;
   }
 
+  function getIngredientNames(recipe, ingredientsData) {
+    const ingredientNames = recipe.ingredients.map(ingredient => {
+      const ingredientObject = ingredientsData.find(ingredientData => {
+        return ingredientData.id === ingredient.id;
+      });
+      return ingredientObject.name;
+    }); 
+    return ingredientNames;
+  }
 
   module.exports = { filterRecipesByTag, 
-  filterRecipesByName }
+  filterRecipesByName, getIngredientNames }
