@@ -21,14 +21,37 @@ function filterRecipesByName(recipes, name) {
   }
 
   function getIngredientNames(recipe, ingredientsData) {
-    const ingredientNames = recipe.ingredients.map(ingredient => {
-      const ingredientObject = ingredientsData.find(ingredientData => {
-        return ingredientData.id === ingredient.id;
-      });
-      return ingredientObject.name;
-    }); 
-    return ingredientNames;
+    if (!recipe || !ingredientsData) {
+      return 'Error';
+    } else {
+      const ingredientNames = recipe.ingredients.map(ingredient => {
+        const ingredientObject = ingredientsData.find(ingredientData => {
+          return ingredientData.id === ingredient.id;
+        });
+        return ingredientObject.name;
+      }); 
+      return ingredientNames;
+    }
   }
 
+  function calculateRecipeCost(recipe, ingredientsData) {
+    const recipe = sampleRecipes.find(sampleRecipe => sampleRecipe.id === recipeId);
+    if (!recipe) {
+        return 0;
+    }
+    const totalCost = recipe.ingredients.reduce((acc, ingredient) => {
+        const currentIngredientObject = ingredientsData.find(ingredientData => ingredientData.id === ingredient.id);
+        if (currentIngredientObject) {
+            return acc + (currentIngredientObject.estimatedCostInCents * ingredient.quantity.amount);
+        }
+        return acc;
+    }, 0);
+
+    return (totalCost / 100).toFixed(2);
+}
+
+function getRecipeDirections(recipe) {
+  return recipe.instructions;
+}
   module.exports = { filterRecipesByTag, 
-  filterRecipesByName, getIngredientNames }
+  filterRecipesByName, getIngredientNames, calculateRecipeCost, getRecipeDirections }

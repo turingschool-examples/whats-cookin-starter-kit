@@ -1,6 +1,7 @@
 import { expect } from 'chai';
-import { findRecipeIngredients, filterRecipesByTag, filterRecipesByName } from '../src/recipes';
+import { findRecipeIngredients, filterRecipesByTag, filterRecipesByName, getIngredientNames } from '../src/recipes';
 import { sampleRecipes } from '../src/data/sample-recipes';
+import { sampleIngredients } from '../src/data/sample-ingredients';
 
 // describe('Recipe', () => {
 //   it('Should be a function', () => {
@@ -31,5 +32,18 @@ describe('filterRecipesByName', () => {
     const filteredRecipes = filterRecipesByName(sampleRecipes, 'cookies');
     const filteredRecipesIds = filteredRecipes.map(sampleRecipe => sampleRecipe.id);
     expect(filteredRecipesIds).to.deep.equal([583738, 618332]);
+  });
+});
+
+describe('getIngredientNames', () => {
+  it('should determine the names of ingredients for a recipe', () => {
+    const sampleRecipe = sampleRecipes[0];
+    const ingredientNames = getIngredientNames(sampleRecipe, sampleIngredients);
+    expect(ingredientNames).to.deep.equal(['butter', 'hawaiian sweet rolls', 'runny honey', 'tabasco sauce', 'black pepper', 'boneless skinless chicken breasts'])
+  });
+  it('should give an error message if invalid recipe or ingredients data is passed', () => {
+    const sampleRecipe = sampleRecipes[10];
+    const ingredientNames = getIngredientNames(sampleRecipe, sampleIngredients);
+    expect(ingredientNames).to.equal('Error')
   });
 });
