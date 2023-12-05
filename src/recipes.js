@@ -1,5 +1,21 @@
-//Here is an example demonstrating logic separated that can be imported into the scripts and test files. Feel free to update this later! 
+import "./data/recipes";
+import recipeData from "./data/recipes";
 
-export const findRecipeIngredients = recipe => {
-  console.log(recipe)
+const recipes = recipeData;
+
+function filterRecipesByTag(recipes, tag) {
+  const filteredRecipesByTag = recipes.filter((recipe) =>
+    recipe.tags.includes(tag)
+  );
+  return filteredRecipesByTag;
 }
+
+function filterRecipesByName(recipes, name) {
+  const filteredRecipesByName = recipes.filter((recipe) => {
+    const upperCaseRecipeName = recipe.name.toUpperCase();
+    return upperCaseRecipeName.includes(name.toUpperCase());
+  });
+  return filteredRecipesByName;
+}
+
+export { filterRecipesByTag, filterRecipesByName };

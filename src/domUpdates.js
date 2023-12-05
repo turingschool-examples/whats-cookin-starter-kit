@@ -1,11 +1,31 @@
 //NOTE: Your DOM manipulation will occur in this file
+import recipeData from "./data/recipes";
+import { filterRecipesByTag, filterRecipesByName } from "./recipes";
 
-//Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
-const displayRecipes = () => {
-  console.log(`Displaying recipes now`)
-}
+const updateDom = () => {};
 
+const displayRecipesByTag = (recipes, tag) => {
+  const containerId = "recipes-by-tag-container";
+  const recipesContainer = document.getElementById(containerId);
+  const filteredRecipes = filterRecipesByTag(recipes, tag);
 
-export {
-  displayRecipes,
-}
+  recipesContainer.innerHTML = filteredRecipes.length
+    ? `<ul>${filteredRecipes
+        .map((recipe) => `<li>${recipe.name}</li>`)
+        .join("")}</ul>`
+    : "<p>No recipes found.</p>";
+};
+
+const displayRecipesByName = (recipes, name) => {
+  const containerId = "recipes-by-name-container";
+  const recipesContainer = document.getElementById(containerId);
+  const filteredRecipes = filterRecipesByName(recipes, name);
+
+  recipesContainer.innerHTML = filteredRecipes.length
+    ? `<ul>${filteredRecipes
+        .map((recipe) => `<li>${recipe.name}</li>`)
+        .join("")}</ul>`
+    : "<p>No recipes found.</p>";
+};
+
+export { updateDom, displayRecipesByTag, displayRecipesByName };
