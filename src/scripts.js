@@ -14,4 +14,7 @@ import { updateDom } from "./domUpdates";
 
 window.addEventListener("load", function () {
   filterRecipesByTag(recipeData, "antipasti");
+  updateFilteredResults(recipeData, ingredientsData);
+  console.log(filterRecipesByTag(recipeData, "antipasti"));
+  console.log(updateFilteredResults(recipeData, ingredientsData));
 });
