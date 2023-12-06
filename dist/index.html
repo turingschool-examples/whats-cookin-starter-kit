@@ -1,12 +1,33 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-  </head>
-  <body>
-    <h1>Whats Cookin</h1>
-  </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Cooking</title>
+</head>
+<body>
+    <header>
+        <h1 class="title">Cooking</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Saved</a></li>
+                <li><input type="text" placeholder="Search"></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="recipes">
+        <!-- Sample Recipe Card -->
+        <div class="recipe-card">
+            <img src="sample_image.jpg" alt="Recipe Image">
+            <p class="recipe-name">Delicious Recipe</p>
+        </div>
+
+        <!-- Add more recipe cards here as needed -->
+    </section>
+    <script src="bundle.js"></script>
+</body>
 </html>
+
