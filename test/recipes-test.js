@@ -11,19 +11,14 @@ import { sampleIngredients } from '../src/data/sample-ingredients';
 
 describe('filterRecipesByTag', () => {
   it('should filter recipes by tag', () => {
-    const filteredRecipes = filterRecipesByTag(sampleRecipes, ['side dish']);
+    const filteredRecipes = filterRecipesByTag(sampleRecipes, 'side dish');
     const filteredRecipesIds = filteredRecipes.map(sampleRecipe => sampleRecipe.id);
     expect(filteredRecipesIds).to.deep.equal([601216, 226562, 605132, 618332]);
   });
 
-  it('should filter recipes by multiple tags', () => {
-    const filteredRecipes = filterRecipesByTag(sampleRecipes, ['main course', 'dinner']);
-    const filteredRecipesIds = filteredRecipes.map(sampleRecipe => sampleRecipe.id);
-    expect(filteredRecipesIds).to.deep.equal([991136]);
-  });
 
   it('should return an empty array if no recipes match the tag', () => {
-    const filteredRecipes = filterRecipesByTag(sampleRecipes, ['tag does not exist']);
+    const filteredRecipes = filterRecipesByTag(sampleRecipes, 'tag does not exist');
     expect(filteredRecipes).to.deep.equal([]);
   });
 

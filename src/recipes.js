@@ -6,10 +6,17 @@ import recipeData from "./data/recipes";
 //   console.log(recipe)
 // }
 
-function filterRecipesByTag(recipes, tags) {
+// function filterRecipesByTag(recipes, tags) {
+//   const filteredRecipesByTag = recipes.filter(recipe => {
+//     const allTagsMatch = tags.every(tag => recipe.tags.includes(tag));
+//     return allTagsMatch;
+//   });
+//   return filteredRecipesByTag;
+// }
+
+function filterRecipesByTag(recipes, tag) {
   const filteredRecipesByTag = recipes.filter(recipe => {
-    const allTagsMatch = tags.every(tag => recipe.tags.includes(tag));
-    return allTagsMatch;
+    return recipe.tags.includes(tag);
   });
   return filteredRecipesByTag;
 }
