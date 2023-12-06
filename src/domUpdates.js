@@ -7,31 +7,49 @@ import {
   getRecipeDirections,
 } from "../src/recipes";
 
+import recipeData from "./data/recipes";
+import ingredientsData from "./data/ingredients";
+
 // DOM manipulation functions
-function updateFilteredResults(recipes, ingredientsData) {
-  const searchInput = document.querySelector(".search-bar input");
-  const tags = Array.from(document.querySelectorAll(".tags a")).map(
-    (tag) => tag.innerText
-  );
-
-  const filteredRecipes = filterRecipesByName(recipes, searchInput.value);
-  const filteredRecipesByTags = filterRecipesByTag(filteredRecipes, tags);
-
-  updateResultsContainer(filteredRecipesByTags, ingredientsData);
-}
-
-function updateResultsContainer(recipes, ingredientsData) {
+function showAllRecipes(recipes) {
   const resultsContainer = document.querySelector(".results-container");
+  const recipePage = document.getElementById("recipe-page");
 
-  resultsContainer.innerHTML = "";
-
-  recipes.forEach((recipe) => {
-    const recipeCard = createRecipeCard(recipe, ingredientsData);
+  recipes.forEach((recipe, index) => {
+    const recipeCard = createRecipeCard(recipe);
     resultsContainer.appendChild(recipeCard);
   });
 }
 
-function createRecipeCard(recipe, ingredientsData) {
+function showRecipePage(recipe) {
+  const recipePage = document.getElementById("recipe-page");
+  recipePage.innerHTML = `
+    <h1>${recipe.title}</h1>
+    <img src="${recipe.image}" alt="${recipe.title}">
+    <!-- Add other details about the recipe -->
+  `;
+}
+
+// function updateFilteredResults(recipes) {
+//   const searchInput = document.querySelector(".search-bar input");
+//   const tags = Array.from(document.querySelectorAll(".tags a"))
+//     .filter((tag) => tag.classList.contains("selected"))
+//     .map((tag) => tag.innerText);
+
+//   const filteredRecipes = filterRecipesByName(recipes, searchInput.value);
+// }
+
+// function updateResultsContainer(recipes) {
+//   const resultsContainer = document.querySelector(".results-container");
+//   resultsContainer.innerHTML = "";
+
+//   recipes.forEach((recipe) => {
+//     const recipeCard = createRecipeCard(recipe);
+//     resultsContainer.appendChild(recipeCard);
+//   });
+// }
+
+function createRecipeCard(recipe) {
   const recipeCard = document.createElement("div");
   recipeCard.classList.add("recipe-card");
 
@@ -48,33 +66,51 @@ function createRecipeCard(recipe, ingredientsData) {
   // blurb.textContent = 'A blurb of the recipe.'; // You can replace this with actual recipe information
   recipeCard.appendChild(blurb);
 
-  const viewRecipeLink = document.createElement("a");
-  // viewRecipeLink.href = '#'; // Replace with the actual link to the recipe page
-  viewRecipeLink.classList.add("view-recipe");
-  viewRecipeLink.textContent = "View Recipe";
-  recipeCard.appendChild(viewRecipeLink);
+  recipeCard.addEventListener("click", () => {
+    showRecipePage(recipe);
+  });
 
   return recipeCard;
 }
 
+// Event listeners
 document.querySelector(".search-bar input").addEventListener("input", () => {
-  updateFilteredResults(recipeData, ingredientsData);
+  updateFilteredResults(recipeData);
 });
 
 document.querySelectorAll(".tags a").forEach((tag) => {
   tag.addEventListener("click", () => {
     tag.classList.toggle("selected");
-    updateFilteredResults(recipeData, ingredientsData);
+    updateFilteredResults(recipeData);
   });
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  setupSubmitButtonListener();
+});
+
+function setupSubmitButtonListener() {
   const submitButton = document.getElementById("submitButton");
   submitButton.addEventListener("click", search);
-});
+}
 
 function search() {
   const searchInput = document.getElementById("searchInput").value;
   filterRecipesByName(searchInput);
   displayResults(searchInput);
 }
+
+// Helper Functions
+function toggleHiddenClass(className) {
+  const element = document.querySelector(`.${className}`);
+  if (element) {
+    element.classList.toggle("hidden");
+  }
+}
+
+function goBackToMain() {
+  toggleHiddenClass("main-container");
+  toggleHiddenClass("result-page");
+}
+
+export { showAllRecipes };

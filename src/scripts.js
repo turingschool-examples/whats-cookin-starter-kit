@@ -11,10 +11,12 @@ import { displayRecipeByTag, displayRecipeByName } from "./domUpdates";
 import recipeData from "./data/recipes";
 import usersData from "./data/users";
 import { updateDom } from "./domUpdates";
+import { showAllRecipes } from "./domUpdates";
 
 window.addEventListener("load", function () {
+  showAllRecipes(recipeData);
   filterRecipesByTag(recipeData, "antipasti");
-  updateFilteredResults(recipeData, ingredientsData);
+  // updateFilteredResults(recipeData, ingredientsData);
   console.log(filterRecipesByTag(recipeData, "antipasti"));
-  console.log(updateFilteredResults(recipeData, ingredientsData));
+  // console.log(updateFilteredResults(recipeData, ingredientsData));
 });
