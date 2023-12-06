@@ -1,3 +1,64 @@
 body {
-  background-color: blueviolet;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+}
+
+.title {
+  font-size: 36px;
+}
+
+nav {
+  background-color: #333;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+li {
+  display: inline;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  padding: 15px;
+  display: block;
+}
+
+input {
+  padding: 10px;
+  width: 200px;
+}
+
+.recipes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.recipe-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.recipe-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.recipe-name {
+  margin-top: 10px;
+  font-weight: bold;
 }
