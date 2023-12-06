@@ -1,3 +1,132 @@
+/* Reset some default styles */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background-color: blueviolet;
+  margin-top: -50px;
+  background-color: white;
+  font-family: "Playfair Display", serif;
+}
+
+h1 {
+  text-align: center;
+  font-family: "Playball", cursive;
+  font-size: 5em;
+  margin-bottom: 15px;
+}
+
+#app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 100px;
+}
+
+.search-container {
+  border-radius: 15px;
+  border: 3px solid #000;
+  text-align: center;
+  margin-bottom: 20px;
+  width: 800px;
+  height: 200px;
+}
+
+.search-bar {
+  display: flex;
+  text-align: center;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+}
+
+input[type="text"] {
+  width: 350px;
+  padding: 10px;
+  font-size: 1em;
+}
+
+.tags {
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.recipe-carousel {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.recipe-carousel img {
+  width: 30%;
+  height: auto;
+}
+
+.hidden-filtered-results {
+  display: none;
+}
+
+.results-container {
+  background: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.recipe-card {
+  background: white;
+  width: 30%;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.recipe-card img {
+  width: 100%;
+  height: auto;
+}
+
+.home-button {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  text-decoration: none;
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+}
+
+.hidden-recipe-page {
+  display: none;
+}
+
+.hidden-recipe-page img {
+  width: 100%;
+  height: auto;
+}
+
+.ingredients,
+.directions {
+  margin-top: 20px;
 }
