@@ -1,11 +1,37 @@
-//NOTE: Your DOM manipulation will occur in this file
+import recipeData from './data/recipes';
+import ingredientsData from './data/ingredients';
+import {
+  filterRecipesByTag,
+  findRecipeByName,
+  findRecipeIngredients,
+  calcRecipeCost,
+  returnRecipeInstructions
+} from '../src/recipes';
+const recipeContainer = document.querySelector('.recipes-container');
+const recipeCard = document.querySelector('.recipe-card');
+let homePageRecipes = [];
+let allRecipes = [];
 
-//Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
-const displayRecipes = () => {
-  console.log(`Displaying recipes now`)
+function displayRecipesHome() {
+  let recipes = shuffledRecipes(recipeData);
+  for (let i = 10; i > 0; i --){
+    recipeContainer.innerHTML += `
+      <div class="recipe-card">
+        <img src=${recipes[i].image} alt="Recipe Image">
+        <p class="recipe-name">${recipes[i].name}</p>
+      </div>`;
+  };
 }
 
+const shuffledRecipes = array => {
+  for (let i = array.length - 1; i >= 0; i--) {
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+    array.push(array[randomIndex]);
+    array.splice(randomIndex, 1);
+  }
+  return array;
+};
 
-export {
-  displayRecipes,
-}
+function displayRecipesAll() {}
+function displayRecipesFiltered() {}
+export { displayRecipesHome };
