@@ -1,12 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
+    <meta charset="UTF-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playball&family=Playfair+Display&display=swap"
+      rel="stylesheet"
+    />
+    <title>Hungry?</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <div class="main-container">
+      <div id="app">
+        <h1>Find a Recipe</h1>
+        <div class="search-container">
+          <div class="search-bar">
+            <h2>Search Bar</h2>
+            <form id="searchForm">
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Find something to make"
+              />
+              <button type="button" id="submitButton">Submit</button>
+            </form>
+          </div>
+          <div class="tags">
+            <h2>Tags</h2>
+            <ul>
+              <li><a href="#">Appetizers</a></li>
+              <li><a href="#">Breakfast</a></li>
+              <li><a href="#">Lunch</a></li>
+              <li><a href="#">Dinner</a></li>
+              <li><a href="#">Dessert</a></li>
+              <li><a href="#">Vegan</a></li>
+              <li><a href="#">Gluten-free</a></li>
+            </ul>
+          </div>
+        </div>
+        <section class="recipe-carousel">
+          <img
+            src="https://spoonacular.com/recipeImages/595736-556x370.jpg"
+            alt="Placeholder image 1"
+          />
+          <img
+            src="https://spoonacular.com/recipeImages/678353-556x370.jpg"
+            alt="Placeholder image 2"
+          />
+          <img
+            src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
+            alt="Placeholder image 3"
+          />
+        </section>
+      </div>
+    </div>
+
+    <div class="result-page hidden">
+      <a href="#" id="home-link"><h2>Home</h2></a>
+      <h1>All Recipes</h1>
+      <div class="results-container"></div>
+      <section class="filtered-results"></section>
+      <div class="recipe-page hidden">
+        <section class="recipe-page">
+          <img src="" alt="Recipe image" />
+          <h1>Recipe Title</h1>
+          <h4 class="ingredients">Ingredients:</h4>
+          <ul>
+            <li>Ingredient 1 (quantity)</li>
+            <li>Ingredient 2 (quantity)</li>
+          </ul>
+          <h3 class="directions">Directions:</h3>
+          <ol>
+            <li>Step 1 instructions...</li>
+            <li>Step 2 instructions...</li>
+          </ol>
+        </section>
+      </div>
+    </div>
+
+    <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+    <script src="bundle.js"></script>
+
+    <!-- <div class="show-all">
+      <button id="toggleButton"><h2>Show All Recipes</h2></button>
+    </div> -->
   </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
 </html>
