@@ -30,24 +30,24 @@ function showRecipePage(recipe) {
   `;
 }
 
-// function updateFilteredResults(recipes) {
-//   const searchInput = document.querySelector(".search-bar input");
-//   const tags = Array.from(document.querySelectorAll(".tags a"))
-//     .filter((tag) => tag.classList.contains("selected"))
-//     .map((tag) => tag.innerText);
+function updateFilteredResults(recipes) {
+  const searchInput = document.querySelector(".search-bar input");
+  const tags = Array.from(document.querySelectorAll(".tags a"))
+    .filter((tag) => tag.classList.contains("selected"))
+    .map((tag) => tag.innerText);
 
-//   const filteredRecipes = filterRecipesByName(recipes, searchInput.value);
-// }
+  const filteredRecipes = filterRecipesByName(recipes, searchInput.value);
+}
 
-// function updateResultsContainer(recipes) {
-//   const resultsContainer = document.querySelector(".results-container");
-//   resultsContainer.innerHTML = "";
+function updateResultsContainer(recipes) {
+  const resultsContainer = document.querySelector(".results-container");
+  resultsContainer.innerHTML = "";
 
-//   recipes.forEach((recipe) => {
-//     const recipeCard = createRecipeCard(recipe);
-//     resultsContainer.appendChild(recipeCard);
-//   });
-// }
+  recipes.forEach((recipe) => {
+    const recipeCard = createRecipeCard(recipe);
+    resultsContainer.appendChild(recipeCard);
+  });
+}
 
 function createRecipeCard(recipe) {
   const recipeCard = document.createElement("div");
@@ -113,4 +113,4 @@ function goBackToMain() {
   toggleHiddenClass("result-page");
 }
 
-export { showAllRecipes };
+export { showAllRecipes, updateFilteredResults };
