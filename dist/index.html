@@ -1,66 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Playball&family=Playfair+Display&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playball&family=Playfair+Display&display=swap"
+      rel="stylesheet"
+    />
     <title>Hungry?</title>
-    </head>
-    <body>
-    <div id="app">
-      <h1>Find a Recipe</h1>
-      <div class ="search-container">
-        <div class="search-bar">
-          <h2>Search Bar</h2>
-          <br>
-            <input type="text" placeholder="Find something to make">
-        <div class="tags">
+  </head>
+  <body>
+    <div class="main-container">
+      <div id="app">
+        <h1>Find a Recipe</h1>
+        <div class="search-container">
+          <div class="search-bar">
+            <h2>Search Bar</h2>
+            <form id="searchForm">
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Find something to make"
+              />
+              <button type="button" id="submitButton">Submit</button>
+            </form>
+          </div>
+          <div class="tags">
             <h2>Tags</h2>
             <ul>
-            <li><a href="#">Appetizers</a></li>
-            <li><a href="#">Breakfast</a></li>
-            <li><a href="#">Lunch</a></li>
-            <li><a href="#">Dinner</a></li>
-            <li><a href="#">Dessert</a></li>
-            <li><a href="#">Vegan</a></li>
-            <li><a href="#">Gluten-free</a></li>
+              <li><a href="#">Appetizers</a></li>
+              <li><a href="#">Breakfast</a></li>
+              <li><a href="#">Lunch</a></li>
+              <li><a href="#">Dinner</a></li>
+              <li><a href="#">Dessert</a></li>
+              <li><a href="#">Vegan</a></li>
+              <li><a href="#">Gluten-free</a></li>
             </ul>
+          </div>
         </div>
-      </div>
         <section class="recipe-carousel">
-        <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="carousel-img" alt="Placeholder image 1">
-        <img src="https://spoonacular.com/recipeImages/678353-556x370.jpg" id="carousel-img" alt="Placeholder image 2">
-        <img src="https://spoonacular.com/recipeImages/412309-556x370.jpeg" id="carousel-img" alt="Placeholder image 3">
+          <img
+            src="https://spoonacular.com/recipeImages/595736-556x370.jpg"
+            alt="Placeholder image 1"
+          />
+          <img
+            src="https://spoonacular.com/recipeImages/678353-556x370.jpg"
+            alt="Placeholder image 2"
+          />
+          <img
+            src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
+            alt="Placeholder image 3"
+          />
         </section>
-        <section class="hidden-filtered-results">
-            <h3>All Recipes/Filtered Results</h3>
-            <div class="results-container">
-                <div class="recipe-card">
-                    <img src="" alt="Placeholder recipe image">
-                    <h3>Recipe Title</h3>
-                    <p>A blurb of the recipe.</p>
-                </div>
-            <a href="" class="home-button">Home</a>    
-            </div>
-        </section>
-        <section class="hidden-recipe-page">
-            <img src="" alt="Recipe image"> <h1>Recipe Title</h1>
-            <h4 class="ingredients">Ingredients:</h4>
-            <ul>
-                <li>Ingredient 1 (quantity)</li>
-                <li>Ingredient 2 (quantity)</li>
-            </ul>
-            <h3 class="directions">Directions:</h2>
-            <ol>
-                <li>Step 1 instructions...</li>
-                <li>Step 2 instructions...</li>
-            </ol>
-
-        </section>
-        <div class="show-all">
-          <h2>Show All Recipes</h2>
-        </div>
+      </div>
     </div>
-</body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
+
+    <div class="result-page hidden">
+      <a href="#" id="home-link"><h2>Home</h2></a>
+      <h1>All Recipes</h1>
+      <div class="results-container"></div>
+      <section class="filtered-results"></section>
+      <div class="recipe-page hidden">
+        <section class="recipe-page">
+          <img src="" alt="Recipe image" />
+          <h1>Recipe Title</h1>
+          <h4 class="ingredients">Ingredients:</h4>
+          <ul>
+            <li>Ingredient 1 (quantity)</li>
+            <li>Ingredient 2 (quantity)</li>
+          </ul>
+          <h3 class="directions">Directions:</h3>
+          <ol>
+            <li>Step 1 instructions...</li>
+            <li>Step 2 instructions...</li>
+          </ol>
+        </section>
+      </div>
+    </div>
+
+    <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+    <script src="bundle.js"></script>
+
+    <!-- <div class="show-all">
+      <button id="toggleButton"><h2>Show All Recipes</h2></button>
+    </div> -->
+  </body>
 </html>
