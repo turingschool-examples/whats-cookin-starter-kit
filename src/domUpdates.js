@@ -26,7 +26,6 @@ function showRecipePage(recipe) {
   recipePage.innerHTML = `
     <h1>${recipe.title}</h1>
     <img src="${recipe.image}" alt="${recipe.title}">
-    <!-- Add other details about the recipe -->
   `;
 }
 
@@ -62,10 +61,6 @@ function createRecipeCard(recipe) {
   title.textContent = recipe.name;
   recipeCard.appendChild(title);
 
-  const blurb = document.createElement("p");
-  // blurb.textContent = 'A blurb of the recipe.'; // You can replace this with actual recipe information
-  recipeCard.appendChild(blurb);
-
   recipeCard.addEventListener("click", () => {
     showRecipePage(recipe);
   });
@@ -74,9 +69,15 @@ function createRecipeCard(recipe) {
 }
 
 // Event listeners
-document.querySelector(".search-bar input").addEventListener("input", () => {
-  updateFilteredResults(recipeData);
-});
+document
+  .querySelector(".search-bar form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    const searchInput = document.getElementById("searchInput").value;
+    const filteredRecipes = filterRecipesByName(recipeData, searchInput);
+    updateResultsContainer(filteredRecipes);
+  });
 
 document.querySelectorAll(".tags a").forEach((tag) => {
   tag.addEventListener("click", () => {
@@ -96,8 +97,9 @@ function setupSubmitButtonListener() {
 
 function search() {
   const searchInput = document.getElementById("searchInput").value;
-  filterRecipesByName(searchInput);
-  displayResults(searchInput);
+  const filteredRecipes = filterRecipesByName(recipeData, searchInput);
+  updateResultsContainer(filteredRecipes);
+  goBackToMain();
 }
 
 // Helper Functions

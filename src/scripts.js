@@ -13,7 +13,7 @@ import { showAllRecipes, updateFilteredResults } from "./domUpdates";
 
 // OnLoad Function Invokation
 window.addEventListener("load", function () {
-  // filterRecipesByTag(recipeData, tag);
+  filterRecipesByTag(recipeData, tag);
   // filterRecipesByName(recipeData, name);
   showAllRecipes(recipeData);
   updateFilteredResults(recipeData, ingredientsData);
