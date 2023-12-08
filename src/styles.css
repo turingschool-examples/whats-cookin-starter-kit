@@ -62,3 +62,47 @@ input {
   margin-top: 10px;
   font-weight: bold;
 }
+
+/* View Recipe Page */
+
+.to-recipe-container {
+  display: grid;
+  grid-template-areas: 
+      "title        title"
+      "ingredients  img"
+      "instructions instructions";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: .5fr 2fr 2fr;
+}
+
+.recipe-title {
+  grid-area: title;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ingredients {
+  grid-area: ingredients;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recipe-img {
+  grid-area: img;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.instructions {
+  grid-area: instructions;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
