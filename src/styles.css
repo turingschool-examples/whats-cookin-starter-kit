@@ -1,5 +1,10 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+body {
   font-family: Arial, sans-serif;
 }
 
@@ -73,6 +78,7 @@ input {
       "instructions instructions";
   grid-template-columns: 1fr 1fr;
   grid-template-rows: .5fr 2fr 2fr;
+  margin: 10px;
 }
 
 .recipe-title {
@@ -82,11 +88,17 @@ input {
   align-items: center;
 }
 
-.ingredients {
+.ingredients-container {
   grid-area: ingredients;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.ingredients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .recipe-img {
@@ -96,11 +108,17 @@ input {
   align-items: center;
 }
 
-.instructions {
+.instructions-container {
   grid-area: instructions;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 20px;
+  padding: 20px;
+}
+
+.instructions-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .hidden {

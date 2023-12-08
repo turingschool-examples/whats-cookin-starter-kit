@@ -10,10 +10,12 @@ import {
 
 const recipesContainer = document.querySelector('.recipes-container');
 const toRecipeContainer = document.querySelector('.to-recipe-container');
-const recipeInstructions = document.querySelector('.instructions');
+const recipeTitle = document.querySelector('.recipe-title');
+const recipeImage = document.querySelector('.recipe-img');
+const recipeIngredients = document.querySelector('.ingredients-list');
+const recipeInstructions = document.querySelector('.instructions-list');
 
-let homePageRecipes = [];
-let allRecipes = [];
+let currentRecipe;
 
 recipesContainer.addEventListener('click', e => {
   goToRecipe(e);
@@ -43,33 +45,52 @@ function goToRecipe(e) {
   const selectedRecipe = e.target.closest('div');
   recipeData.forEach(recipe => {
     if (Number(selectedRecipe.id) === recipe.id) {
+      currentRecipe = recipe;
       recipesContainer.classList.toggle('hidden');
       toRecipeContainer.classList.toggle('hidden');
-      toRecipeContainer.innerHTML += `
-        <h2 class="recipe-title">${recipe.name}</h2>
-        <article class="ingredients">
-            <p>${recipe.ingredients}</p>
-        </article>
-        <div class="recipe-img">
-            <img src=${recipe.image} alt="">
-        </div>
-        <article class="instructions">
-            <p>${recipe.instructions}</p>
-        </article>
-        `;
+      renderRecipeTitle(recipe);
+      renderRecipeImg(recipe);
+      renderRecipeInstructions(recipe);
+      renderRecipeIngredients(recipe);
     }
+  });
+  return currentRecipe;
+}
+
+function renderRecipeTitle(recipe) {
+  recipeTitle.innerText = recipe.name;
+}
+
+function renderRecipeImg(recipe) {
+  recipeImage.innerHTML += `<img src=${recipe.image} >`;
+}
+
+function renderRecipeInstructions(recipe) {
+  recipe.instructions.forEach(instruction => {
+    recipeInstructions.innerHTML += `<li>${instruction.number}. ${instruction.instruction}</li>`;
   });
 }
 
-function formatRecipeInstructions(recipe) {
-  recipeData.instructions.forEach(instruction => {
-    recipeInstructions.innerHTML += `
-      `;
-  })
+function formatRecipeIngredients(recipe) {
+  return recipe.ingredients.reduce((formatted, current) => {
+    const { id, quantity: { amount, unit } } = current;
+    const match = ingredientsData.find(item => item.id === id);
+    if (match) {
+      formatted.push({
+        name: match.name,
+        amount,
+        unit
+      });
+    }
+    return formatted;
+  }, []);
 }
 
-function formatRecipeIngredients() {
-
+function renderRecipeIngredients(recipe) {
+  const ingredientsToRender = formatRecipeIngredients(recipe)
+  ingredientsToRender.forEach(ingredient => {
+    recipeIngredients.innerHTML += `<li>${ingredient.name} | ${ingredient.amount} ${ingredient.unit}</li>`;
+  });
 }
 
 function displayRecipesAll() {}
