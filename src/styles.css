@@ -1,5 +1,10 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+body {
   font-family: Arial, sans-serif;
 }
 
@@ -61,4 +66,67 @@ input {
 .recipe-name {
   margin-top: 10px;
   font-weight: bold;
+}
+
+/* View Recipe Page */
+
+.to-recipe-container {
+  display: grid;
+  grid-template-areas: 
+      "title        title"
+      "ingredients  img"
+      "instructions instructions";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: .5fr 2fr 2fr;
+  margin: 10px;
+}
+
+.recipe-title-container {
+  grid-area: title;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 10px 40px 10px;
+  gap: 10px;
+}
+
+.ingredients-container {
+  grid-area: ingredients;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.ingredients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recipe-img {
+  grid-area: img;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.instructions-container {
+  grid-area: instructions;
+  display: flex;
+  margin: 10px;
+  padding: 20px;
+}
+
+.instructions-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.hidden {
+  display: none;
 }

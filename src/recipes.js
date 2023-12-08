@@ -6,6 +6,7 @@ export const filterRecipesByTag = (recipes, tag) => {
   }
   return filteredRecipes;
 };
+
 export const findRecipeByName = (recipes, name) => {
   if (!name || name === '') return;
   const foundRecipe = recipes.find(recipe => recipe.name === name);
@@ -14,6 +15,7 @@ export const findRecipeByName = (recipes, name) => {
   }
   return foundRecipe;
 };
+
 export const findRecipeIngredients = (recipes, ingredients, recipeId) => {
   const foundRecipe = recipes.find(recipe => {
     return recipe.id === recipeId;
@@ -26,11 +28,9 @@ export const findRecipeIngredients = (recipes, ingredients, recipeId) => {
     return acc;
   }, []);
 };
-export const calcRecipeCost = (recipes, ingredients, recipeId) => {
-  const recipeToCalc = recipes.find(recipe => {
-    return recipe.id === recipeId;
-  });
-  const totalCost = recipeToCalc.ingredients.reduce((acc, { id, quantity }) => {
+
+export const calcRecipeCost = (recipe, ingredients) => {
+  const totalCost = recipe.ingredients.reduce((acc, { id, quantity }) => {
     const ingredient = ingredients.find(ingredient => {
       return ingredient.id === id;
     });
@@ -38,6 +38,7 @@ export const calcRecipeCost = (recipes, ingredients, recipeId) => {
   }, 0);
   return (totalCost / 100).toFixed(2);
 };
+
 export const returnRecipeInstructions = (recipes, recipeId) => {
   const foundRecipe = recipes.find(recipe => recipe.id === recipeId);
   return foundRecipe.instructions;
