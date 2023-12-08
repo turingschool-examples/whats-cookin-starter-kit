@@ -11,6 +11,7 @@ import {
 const recipesContainer = document.querySelector('.recipes-container');
 const toRecipeContainer = document.querySelector('.to-recipe-container');
 const recipeTitle = document.querySelector('.recipe-title');
+const recipeCost = document.querySelector('.recipe-cost');
 const recipeImage = document.querySelector('.recipe-img');
 const recipeIngredients = document.querySelector('.ingredients-list');
 const recipeInstructions = document.querySelector('.instructions-list');
@@ -49,6 +50,7 @@ function goToRecipe(e) {
       recipesContainer.classList.toggle('hidden');
       toRecipeContainer.classList.toggle('hidden');
       renderRecipeTitle(recipe);
+      renderRecipeCost(recipe);
       renderRecipeImg(recipe);
       renderRecipeInstructions(recipe);
       renderRecipeIngredients(recipe);
@@ -59,6 +61,11 @@ function goToRecipe(e) {
 
 function renderRecipeTitle(recipe) {
   recipeTitle.innerText = recipe.name;
+}
+
+function renderRecipeCost(recipe) {
+  const estimatedCost = calcRecipeCost(recipe, ingredientsData);
+  recipeCost.innerText = `estimated cost | $${estimatedCost}`;
 }
 
 function renderRecipeImg(recipe) {
@@ -72,24 +79,18 @@ function renderRecipeInstructions(recipe) {
 }
 
 function formatRecipeIngredients(recipe) {
-  return recipe.ingredients.reduce((formatted, current) => {
-    const { id, quantity: { amount, unit } } = current;
-    const match = ingredientsData.find(item => item.id === id);
-    if (match) {
-      formatted.push({
-        name: match.name,
-        amount,
-        unit
-      });
-    }
-    return formatted;
-  }, []);
+  const formatted = recipe.ingredients.map(ingredients => {
+    const included = ingredientsData.find(item => item.id === ingredients.id);
+    ingredients.id = included.name;
+    return ingredients;
+  })
+  return formatted;
 }
 
 function renderRecipeIngredients(recipe) {
   const ingredientsToRender = formatRecipeIngredients(recipe)
-  ingredientsToRender.forEach(ingredient => {
-    recipeIngredients.innerHTML += `<li>${ingredient.name} | ${ingredient.amount} ${ingredient.unit}</li>`;
+  ingredientsToRender.forEach(({ id, quantity: { amount, unit } }) => {
+    recipeIngredients.innerHTML += `<li>${id} | ${amount} ${unit}</li>`;
   });
 }
 

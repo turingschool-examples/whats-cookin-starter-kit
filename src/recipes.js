@@ -29,11 +29,8 @@ export const findRecipeIngredients = (recipes, ingredients, recipeId) => {
   }, []);
 };
 
-export const calcRecipeCost = (recipes, ingredients, recipeId) => {
-  const recipeToCalc = recipes.find(recipe => {
-    return recipe.id === recipeId;
-  });
-  const totalCost = recipeToCalc.ingredients.reduce((acc, { id, quantity }) => {
+export const calcRecipeCost = (recipe, ingredients) => {
+  const totalCost = recipe.ingredients.reduce((acc, { id, quantity }) => {
     const ingredient = ingredients.find(ingredient => {
       return ingredient.id === id;
     });

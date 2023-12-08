@@ -81,9 +81,10 @@ input {
   margin: 10px;
 }
 
-.recipe-title {
+.recipe-title-container {
   grid-area: title;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -118,7 +119,8 @@ input {
 .instructions-list {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .hidden {
