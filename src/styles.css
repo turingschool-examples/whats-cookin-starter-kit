@@ -68,6 +68,10 @@ input {
   font-weight: bold;
 }
 
+.hidden{
+  display: none;
+}
+
 /* View Recipe Page */
 
 .to-recipe-container {

@@ -8,6 +8,20 @@ import {
   returnRecipeInstructions
 } from '../src/recipes';
 
+
+recipesContainer.addEventListener('click', e => {
+  goToRecipe(e);
+});
+searchInput.addEventListener("keyup", function(event) {
+  if(event.key === 'Enter' ) {
+    tagFilteredRecipes();
+  };
+});
+
+function displayRecipesHome() {
+
+const recipeCard = document.querySelector('.recipe-card');
+const searchInput = document.querySelector('.searchInput');
 const saveRecipeBtn = document.querySelector('#saveBtn');
 const recipesContainer = document.querySelector('.recipes-container');
 const toRecipeContainer = document.querySelector('.to-recipe-container');
@@ -19,9 +33,7 @@ const recipeInstructions = document.querySelector('.instructions-list');
 
 let currentRecipe;
 
-recipesContainer.addEventListener('click', e => {
-  goToRecipe(e);
-});
+
 
 export function displayRecipesHome() {
   let recipes = shuffledRecipes(recipeData);
@@ -31,6 +43,27 @@ export function displayRecipesHome() {
           <img src=${recipe.image} alt="Recipe Image">
           <p class="recipe-name">${recipe.name}</p>
         </div>`;
+  });
+}
+
+function tagFilteredRecipes() {
+  const searchTerm = searchInput.value.trim();
+  const filtered = filterRecipesByTag(recipeData, searchTerm);
+  if (typeof filtered === 'string') {
+    console.log('error');
+    recipesContainer.innerHTML = '';
+    recipesContainer.innerHTML = `<p>We can not find a match for this!</p>`;
+    return
+    }
+  // toRecipeContainer.classList.add('hidden');
+  // recipesContainer.classList.remove('hidden');
+  recipesContainer.innerHTML = ``;
+  filtered.forEach(recipe => {
+    recipesContainer.innerHTML += `
+      <div class="recipe-card" id=${recipe.id}>
+        <img src=${recipe.image} alt="Recipe Image">
+        <p class="recipe-name">${recipe.name}</p>
+      </div>`;
   });
 }
 
