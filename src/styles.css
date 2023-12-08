@@ -87,6 +87,8 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 10px 10px 40px 10px;
+  gap: 10px;
 }
 
 .ingredients-container {
@@ -94,6 +96,7 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 10px;
 }
 
 .ingredients-list {
@@ -107,12 +110,13 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 10px;
 }
 
 .instructions-container {
   grid-area: instructions;
   display: flex;
-  margin: 20px;
+  margin: 10px;
   padding: 20px;
 }
 

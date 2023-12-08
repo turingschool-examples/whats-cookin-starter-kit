@@ -8,6 +8,7 @@ import {
   returnRecipeInstructions
 } from '../src/recipes';
 
+const saveRecipeBtn = document.querySelector('#saveBtn');
 const recipesContainer = document.querySelector('.recipes-container');
 const toRecipeContainer = document.querySelector('.to-recipe-container');
 const recipeTitle = document.querySelector('.recipe-title');
@@ -47,6 +48,7 @@ function goToRecipe(e) {
   recipeData.forEach(recipe => {
     if (Number(selectedRecipe.id) === recipe.id) {
       currentRecipe = recipe;
+      saveRecipeBtn.classList.toggle('hidden');
       recipesContainer.classList.toggle('hidden');
       toRecipeContainer.classList.toggle('hidden');
       renderRecipeTitle(recipe);
