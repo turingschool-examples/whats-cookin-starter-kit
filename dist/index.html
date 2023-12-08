@@ -12,22 +12,42 @@
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Saved</a></li>
-                <li><input class="searchInput" type="text" placeholder="Search"></li>
+              <li><a href="#">Saved</a></li>
+                <li><a href="#" id="saveBtn" class="hidden">Add to Saved</a></li>
+                <li><input type="text" placeholder="Search"></li>
             </ul>
         </nav>
     </header>
-    
-    <section class="recipes-container">
-        <!-- Sample Recipe Card -->
-        <!-- <div class="recipe-card">
-            <img src="sample_image.jpg" alt="Recipe Image">
-            <p class="recipe-name">Delicious Recipe</p>
-        </div> -->
-
-        <!-- Add more recipe cards here as needed -->
-    </section>
-  
+    <main>
+        <section class="recipes-container">
+            <!-- Sample Recipe Card -->
+            <!-- <div class="recipe-card">
+                <img src="sample_image.jpg" alt="Recipe Image">
+                <p class="recipe-name">Delicious Recipe</p>
+            </div> -->
+        
+            <!-- Add more recipe cards here as needed -->
+        </section>
+        <section class="to-recipe-container hidden">
+            <div class="recipe-title-container">
+                <h2 class="recipe-title"></h2>
+                <span class="recipe-cost"></span>
+            </div>
+            <article class="ingredients-container">
+                <ul class="ingredients-list">
+                    <!-- <li></li> -->
+                </ul>
+            </article>
+            <div class="recipe-img">
+                <!-- <img> -->
+            </div>
+            <article class="instructions-container">
+                <ul class="instructions-list">
+                    <!-- <li></li> -->
+                </ul>
+            </article>
+        </section>
+    </main>
     <script src="bundle.js"></script>
 </body>
 </html>
