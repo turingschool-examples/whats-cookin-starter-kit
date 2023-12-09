@@ -6,4 +6,5 @@ import './images/turing-logo.png'
 import ingredientsData from './data/ingredients'
 // Below are examples of how you can import functions from either the recipes or domUpdates files.
 import { displayRecipesHome } from './domUpdates'
+
 displayRecipesHome();

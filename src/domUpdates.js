@@ -8,20 +8,8 @@ import {
   returnRecipeInstructions
 } from '../src/recipes';
 
-
-recipesContainer.addEventListener('click', e => {
-  goToRecipe(e);
-});
-searchInput.addEventListener("keyup", function(event) {
-  if(event.key === 'Enter' ) {
-    tagFilteredRecipes();
-  };
-});
-
-function displayRecipesHome() {
-
-const recipeCard = document.querySelector('.recipe-card');
-const searchInput = document.querySelector('.searchInput');
+const searchInput = document.querySelector('.search-input');
+const allRecipesBtn = document.querySelector('#allRecipesBtn');
 const saveRecipeBtn = document.querySelector('#saveBtn');
 const recipesContainer = document.querySelector('.recipes-container');
 const toRecipeContainer = document.querySelector('.to-recipe-container');
@@ -33,10 +21,23 @@ const recipeInstructions = document.querySelector('.instructions-list');
 
 let currentRecipe;
 
+recipesContainer.addEventListener('click', e => {
+  goToRecipe(e);
+});
 
+searchInput.addEventListener('keyup', function (event) {
+  if (event.key === 'Enter') {
+    tagFilteredRecipes();
+  }
+});
+
+allRecipesBtn.addEventListener('click', (e) => {
+  renderAllRecipes(e);
+})
 
 export function displayRecipesHome() {
   let recipes = shuffledRecipes(recipeData);
+  recipesContainer.innerHTML = '';
   recipes.forEach(recipe => {
     recipesContainer.innerHTML += `
         <div class="recipe-card" id=${recipe.id}>
@@ -46,6 +47,22 @@ export function displayRecipesHome() {
   });
 }
 
+function renderAllRecipes(e) {
+  const click = e.target.closest('a');
+  if (click.id === 'allRecipesBtn') {
+    toRecipeContainer.classList.add('hidden');
+    recipesContainer.classList.remove('hidden');
+    recipesContainer.innerHTML = '';
+    recipeData.forEach(recipe => {
+      recipesContainer.innerHTML += `
+        <div class="recipe-card" id=${recipe.id}>
+          <img src=${recipe.image} alt="Recipe Image">
+          <p class="recipe-name">${recipe.name}</p>
+        </div>`;
+    })
+  }
+}
+
 function tagFilteredRecipes() {
   const searchTerm = searchInput.value.trim();
   const filtered = filterRecipesByTag(recipeData, searchTerm);
@@ -53,10 +70,10 @@ function tagFilteredRecipes() {
     console.log('error');
     recipesContainer.innerHTML = '';
     recipesContainer.innerHTML = `<p>We can not find a match for this!</p>`;
-    return
-    }
-  // toRecipeContainer.classList.add('hidden');
-  // recipesContainer.classList.remove('hidden');
+    return;
+  }
+  toRecipeContainer.classList.add('hidden');
+  recipesContainer.classList.remove('hidden');
   recipesContainer.innerHTML = ``;
   filtered.forEach(recipe => {
     recipesContainer.innerHTML += `
@@ -118,16 +135,13 @@ function formatRecipeIngredients(recipe) {
     const included = ingredientsData.find(item => item.id === ingredients.id);
     ingredients.id = included.name;
     return ingredients;
-  })
+  });
   return formatted;
 }
 
 function renderRecipeIngredients(recipe) {
-  const ingredientsToRender = formatRecipeIngredients(recipe)
+  const ingredientsToRender = formatRecipeIngredients(recipe);
   ingredientsToRender.forEach(({ id, quantity: { amount, unit } }) => {
     recipeIngredients.innerHTML += `<li>${id} | ${amount} ${unit}</li>`;
   });
 }
-
-function displayRecipesAll() {}
-function displayRecipesFiltered() {}
