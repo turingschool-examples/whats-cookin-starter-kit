@@ -1,3 +1,136 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background-color: blueviolet;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+}
+
+.title {
+  font-size: 36px;
+}
+
+nav {
+  background-color: #333;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+li {
+  display: inline;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  padding: 15px;
+  display: block;
+}
+
+input {
+  padding: 10px;
+  width: 200px;
+}
+
+.recipes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.recipe-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.recipe-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.recipe-name {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.hidden{
+  display: none;
+}
+
+/* View Recipe Page */
+
+.to-recipe-container {
+  display: grid;
+  grid-template-areas: 
+      "title        title"
+      "ingredients  img"
+      "instructions instructions";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: .5fr 2fr 2fr;
+  margin: 10px;
+}
+
+.recipe-title-container {
+  grid-area: title;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 10px 40px 10px;
+  gap: 10px;
+}
+
+.ingredients-container {
+  grid-area: ingredients;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.ingredients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recipe-img {
+  grid-area: img;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.instructions-container {
+  grid-area: instructions;
+  display: flex;
+  margin: 10px;
+  padding: 20px;
+}
+
+.instructions-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.hidden {
+  display: none;
 }
