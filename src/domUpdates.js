@@ -2,10 +2,10 @@ import { render } from 'sass';
 import { shuffledRecipes, recipesToCook, getRandomIndex } from './scripts';
 import { saveRecipe, removeRecipe } from '../src/users';
 import { searchRecipes, calcRecipeCost, formatRecipeIngredients } from '../src/recipes';
-import { getIngredients, getRecipes, getUsers } from './apiCalls';
+import { getAllData } from './apiCalls';
 
 const allRecipesBtn = document.querySelector('#allRecipesBtn');
-const homeContainer = document.querySelector('.home-container')
+const homeContainer = document.querySelector('.home-container');
 const homeButton = document.querySelector('#homeButton');
 const homeTitle = document.querySelector('.recipeOtd');
 const recipeCost = document.querySelector('.recipe-cost');
@@ -21,7 +21,7 @@ const searchInputSaved = document.querySelector('#searchSaved');
 const searchSavedContainer = document.querySelector('.search-saved-container');
 const showSavedRecipes = document.querySelector('#showSavedRecipes');
 const toRecipeContainer = document.querySelector('.to-recipe-container');
-const selectedUser = document.querySelector('#userBtn')
+const selectedUser = document.querySelector('#userBtn');
 
 let recipeData;
 let ingredientsData;
@@ -29,36 +29,23 @@ let userData;
 let currentRecipe;
 
 window.addEventListener('load', () => {
-  pleaseGetUsers();
-  pleaseGetIngredients();
-  pleaseGetRecipes();
+  retrieveData();
 });
 
-function pleaseGetUsers() {
-  getUsers().then(data => {
-    userData = data;
+function retrieveData() {
+  getAllData().then(data => {
+    recipeData = data[0].recipes;
+    ingredientsData = data[1].ingredients;
+    userData = data[2].users;
+    displayRecipesHome(recipeData);
     renderRandomUser();
-  });
-  return userData;
-}
-
-function pleaseGetIngredients() {
-  getIngredients().then(data => {
-    ingredientsData = data;
-  });
-  return ingredientsData;
-}
-
-function pleaseGetRecipes() {
-  getRecipes().then(data => {;
-    recipeData = data
-    console.log(recipeData)
-    displayRecipesHome(recipeData)
+  }).catch(error => {
+    console.error('One or more fetch requests failed', error)
+    homeContainer.innerHTML += `<p>Appologies, something went wrong!</p>`
   })
-  return recipeData;
 }
 
-function renderRandomUser() {
+export const renderRandomUser = () => {
   const user = userData[getRandomIndex(userData)];
   selectedUser.innerText = `Hello ${user.name}!`;
 }
@@ -81,12 +68,12 @@ saveRecipeBtn.addEventListener('click', () => {
 });
 
 showSavedRecipes.addEventListener('click', e => {
-  renderSavedRecipes(e)
-}); 
+  renderSavedRecipes(e);
+});
 
 removeSavedRecipe.addEventListener('click', e => {
   removeRecipe(e);
-}); 
+});
 
 recipesContainer.addEventListener('click', e => {
   goToRecipe(e, recipeData);
@@ -94,7 +81,7 @@ recipesContainer.addEventListener('click', e => {
 allRecipesBtn.addEventListener('click', e => {
   renderAllRecipes(e);
 });
-searchInputAll.addEventListener('keyup', e =>{
+searchInputAll.addEventListener('keyup', e => {
   if (e.key === 'Enter') {
     searchedRecipes(recipeData, searchInputAll);
   }
@@ -108,7 +95,7 @@ searchInputSaved.addEventListener('keyup', e => {
 export function displayRecipesHome(recipeData) {
   let recipesFull = shuffledRecipes(recipeData);
   let recipes = recipesFull.slice(0, 3);
-  
+
   homeContainer.innerHTML = '';
   recipes.forEach(recipe => {
     homeContainer.innerHTML += `
@@ -122,11 +109,11 @@ export function displayRecipesHome(recipeData) {
 function renderAllRecipes(e) {
   const click = e.target.closest('a');
   const sorted = recipeData.sort((a, b) => {
-    if ( a.name < b.name ) {
-      return -1
+    if (a.name < b.name) {
+      return -1;
     }
     if (a.name > b.name) {
-      return 1
+      return 1;
     }
     return 0;
   });
