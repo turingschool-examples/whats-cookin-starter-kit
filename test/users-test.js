@@ -3,10 +3,6 @@ import recipeData from '../src/data/mockRecipes';
 import { removeRecipe, saveRecipe } from '../src/users';
 
 describe('Save recipe', () => {
-  it('Should be a function', () => {
-    expect(saveRecipe).to.be.a('function');
-  });
-
   it('Should save a recipe', () => {
     let recipesToCook = [];
     let currentRecipe = recipeData[1];
@@ -79,10 +75,6 @@ describe('Save recipe', () => {
 });
 
 describe('Remove Saved Recipe', () => {
-  it('Should be a function', () => {
-    expect(removeRecipe).to.be.a('function');
-  });
-
   it('Should remove a recipe', () => {
     let recipesToCook = [recipeData[0], recipeData[1]];
     let currentRecipe = recipeData[1];

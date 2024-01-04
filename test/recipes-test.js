@@ -8,10 +8,6 @@ import {
 } from '../src/recipes';
 
 describe('Search Recipes', () => {
-  it('Should be a function', () => {
-    expect(searchRecipes).to.be.a('function');
-  });
-
   it('Should find multiple recipes with the same tag', () => {
     const filteredRecipes = searchRecipes(recipeData, 'breakfast');
     const result = filteredRecipes;
@@ -139,10 +135,6 @@ describe('Search Recipes', () => {
 });
 
 describe('Calculate Cost', () => {
-  it('Should be a function', () => {
-    expect(calcRecipeCost).to.be.a('function');
-  });
-
   it("Should return the total cost of a meal's ingredients", () => {
     const recipeOne = recipeData[2];
 
@@ -157,10 +149,6 @@ describe('Calculate Cost', () => {
 });
 
 describe('Format ingredients', () => {
-  it('Should be a function', () => {
-    expect(formatRecipeIngredients).to.be.a('function');
-  });
-
   it('Should return a formatted list of ingredients', () => {
     const recipe = recipeData[2];
     const formatted = formatRecipeIngredients(recipe, ingredientsData);
