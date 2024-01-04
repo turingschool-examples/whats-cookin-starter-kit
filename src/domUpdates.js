@@ -39,6 +39,9 @@ function retrieveData() {
     userData = data[2].users;
     displayRecipesHome(recipeData);
     renderRandomUser();
+  }).catch(error => {
+    console.error('One or more fetch requests failed', error)
+    homeContainer.innerHTML += `<p>Appologies, something went wrong!</p>`
   })
 }
 
