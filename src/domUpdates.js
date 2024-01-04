@@ -52,6 +52,7 @@ function pleaseGetIngredients() {
 function pleaseGetRecipes() {
   getRecipes().then(data => {;
     recipeData = data
+    console.log(recipeData)
     displayRecipesHome(recipeData)
   })
   return recipeData;
@@ -95,12 +96,12 @@ allRecipesBtn.addEventListener('click', e => {
 });
 searchInputAll.addEventListener('keyup', e =>{
   if (e.key === 'Enter') {
-    searchedRecipes();
+    searchedRecipes(recipeData, searchInputAll);
   }
 });
 searchInputSaved.addEventListener('keyup', e => {
   if (e.key === 'Enter'){
-    searchSavedRecipes()
+    searchedRecipes(recipesToCook, searchInputSaved)
   }
 });
 
@@ -149,36 +150,15 @@ function renderAllRecipes(e) {
   }
 }
 
-function searchSavedRecipes() {
-  const searchTerm = searchInputSaved.value.trim();
-  const filtered = searchRecipes(recipesToCook, searchTerm);
-  if (!searchTerm) return
+function searchedRecipes(givenRecipes, input) {
+  const searchTerm = input.value.trim();
+  searchTerm.toLowerCase();
+  const filtered = searchRecipes(givenRecipes, searchTerm);
+  if(!searchTerm) return
   if (typeof filtered === 'string') {
     console.log('error');
-    recipesContainer.innerHTML = '';
-    recipesContainer.innerHTML = `<p>We can not find a match for this!</p>`;
-    return;
-  }
-  toRecipeContainer.classList.add('hidden');
-  homeContainer.classList.add('hidden');
-  recipesContainer.classList.remove('hidden');
-  recipesContainer.innerHTML = ``;
-  filtered.forEach(recipe => {
-    recipesContainer.innerHTML += `
-      <div class="recipe-card" id=${recipe.id}>
-        <img src=${recipe.image} alt="Recipe Image">
-        <p class="recipe-name">${recipe.name}</p>
-      </div>`;
-  });
-}
-
-function searchedRecipes() {
-  const searchTerm = searchInputAll.value.trim();
-  const filtered = searchRecipes(recipeData, searchTerm);
-  if (typeof filtered === 'string') {
-    console.log('error');
-    recipesContainer.innerHTML = '';
-    recipesContainer.innerHTML = `<p>We can not find a match for this!</p>`;
+    homeContainer.innerHTML = '';
+    homeContainer.innerHTML = `<p>${filtered}</p>`;
     return;
   }
   toRecipeContainer.classList.add('hidden');

@@ -1,6 +1,9 @@
 export const searchRecipes = (recipes, input) => {
   if (!input || input === '') return;
+  input.toLowerCase();
+  
   const filteredRecipes = recipes.filter(recipes => {
+      recipes.name.toLowerCase();
     return recipes.tags.includes(input) || recipes.name.includes(input);
   });
   if (filteredRecipes.length === 0) {
