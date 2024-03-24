@@ -1,3 +1,44 @@
 body {
-  background-color: blueviolet;
+  background-color: #fff3e0;
+  font-family: 'Gatile', sans-serif;
+  display: flex; 
+  flex-direction: column; 
+  color: #2d2b2b;                                            
+}
+
+.top-bar {
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+ align-items: center;
+}
+
+.top-buttons {
+  display: flex;
+}
+
+.main-body {
+  display: flex;
+  justify-content: space-around;
+}
+
+.search-area {
+  background-color: #9d968b;
+  width: 25%;
+}
+
+.recipes {
+  background-color: #9d968b;
+  width: 65%;
+}
+
+.recipe1, 
+.recipe2, 
+.recipe3 {
+  display: flex;
+  align-items: row;
+}
+
+.recipe-image {
+  height: 200px;
 }
