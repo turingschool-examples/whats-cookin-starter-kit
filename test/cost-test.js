@@ -1,7 +1,7 @@
-let chai = require('chai');
-let expect = chai.expect;
+import chai from 'chai';
+const { expect } = chai;
 
-let { calculateRecipeCost } = require('../src/cost.js')
+import { calculateRecipeCost } from '../src/cost.js';
 
 describe('calculateRecipeCost', function() {
     it('should calculate the total price of a recipe', function () {

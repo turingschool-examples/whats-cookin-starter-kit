@@ -1,4 +1,4 @@
-const calculateRecipeCost = (recipe) => {
+export const calculateRecipeCost = (recipe) => {
     let totalPrice = 0;
 
     recipe.forEach((ingredient) => {
@@ -7,7 +7,3 @@ const calculateRecipeCost = (recipe) => {
     })
     return totalPrice;
 };
-
-module.exports = {
-    calculateRecipeCost
-}
