@@ -1,10 +1,10 @@
 import ingredientsData from '../src/data/ingredients.js';
 
+
 export const unitPriceLookup = ingredientsData.reduce((acc, item) => {
     acc[item.id] = item.estimatedCostInCents / 100;
     return acc;
 }, {});
-
 
 
 export const calculateRecipeCost = (recipe, unitPriceLookup) => {
