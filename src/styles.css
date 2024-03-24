@@ -1,28 +1,28 @@
 body {
   background-color: #fff3e0;
-  font-family: 'Gatile', sans-serif;
-  display: flex; 
-  flex-direction: column; 
-  color: #2d2b2b;                                            
-}
-
-.top-bar {
- display: flex;
- flex-direction: row;
- justify-content: space-between;
- align-items: center;
-}
-
-.top-buttons {
+  font-family: "Gatile", sans-serif;
   display: flex;
+  flex-direction: column;
+  color: #2d2b2b;
 }
 
-.main-body {
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .header-nav {
+    display: flex;
+  }
+}
+
+main {
   display: flex;
   justify-content: space-around;
 }
 
-.search-area {
+.filter-container {
   background-color: #9d968b;
   width: 25%;
 }
@@ -32,9 +32,7 @@ body {
   width: 65%;
 }
 
-.recipe1, 
-.recipe2, 
-.recipe3 {
+.recipe {
   display: flex;
   align-items: row;
 }
