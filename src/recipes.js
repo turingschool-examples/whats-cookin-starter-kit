@@ -3,11 +3,13 @@ import ingredientsData from "./data/ingredients";
 
 export const findRecipeIngredients = (recipe) => {
   return recipe.ingredients.reduce((list, recipeIngredient) => {
-    const ingredientName = ingredientsData.find(
-      (ingredientData) => ingredientData.id == recipeIngredient.id
-    ).name;
-
-    list.push(ingredientName);
+    list.push(findIngredient(recipeIngredient.id).name);
     return list;
   }, []);
 };
+
+export function findIngredient(ingredientID) {
+  return ingredientsData.find(
+    (ingredientData) => ingredientData.id == ingredientID
+  );
+}
