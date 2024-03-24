@@ -1,18 +1,13 @@
-import ingredientsData from '../src/data/ingredients.js';
+import { findIngredient } from "./recipes.js";
 
+export const calculateRecipeCost = (recipe) => {
+  if (!recipe.hasOwnProperty("ingredients")) return 0;
 
-export const unitPriceLookup = ingredientsData.reduce((acc, item) => {
-    acc[item.id] = item.estimatedCostInCents / 100;
-    return acc;
-}, {});
-
-
-export const calculateRecipeCost = (recipe, unitPriceLookup) => {
-    const totalPrice = recipe.ingredients.reduce((acc, ingredient) => {
-        const unitPrice = unitPriceLookup[ingredient.id] || 0;
-        const ingredientCost = ingredient.quantity.amount * unitPrice;
-        return acc + ingredientCost;
-    }, 0);
-
-    return +totalPrice.toFixed(2);
+  const totalPrice = recipe.ingredients.reduce((totalPrice, ingredient) => {
+    const ingredientData = findIngredient(ingredient.id);
+    const ingredientPrice =
+      (ingredient.quantity.amount * ingredientData.estimatedCostInCents) / 100;
+    return totalPrice + ingredientPrice;
+  }, 0);
+  return +totalPrice.toFixed(2);
 };
