@@ -1,4 +1,5 @@
 import { expect } from "chai";
+import { findRecipeIngredients } from "../src/recipes";
 import { search } from "../src/search";
 
 describe("Search", () => {
@@ -16,7 +17,7 @@ describe("Search", () => {
     for (const result of searchResult) {
       if (
         result.name.toLowerCase().includes(sanitizedQuery) ||
-        result.ingredients.find((ingredient) =>
+        findRecipeIngredients(result).find((ingredient) =>
           ingredient.toLowerCase().includes(sanitizedQuery)
         )
       ) {
@@ -37,7 +38,7 @@ describe("Search", () => {
     for (const result of searchResult) {
       if (
         result.name.toLowerCase().includes(sanitizedQuery) ||
-        result.ingredients.find((ingredient) =>
+        findRecipeIngredients(result).find((ingredient) =>
           ingredient.toLowerCase().includes(sanitizedQuery)
         )
       ) {
