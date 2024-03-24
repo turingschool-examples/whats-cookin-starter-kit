@@ -2,10 +2,10 @@ import recipeData from "./data/recipes";
 import { findRecipeIngredients } from "./recipes";
 
 export function search(searchQuery) {
-  let searchResult = [];
+  const searchResult = [];
   const sanitizedQuery = sanitizeString(searchQuery);
 
-  searchResult = searchResult.concat(
+  return searchResult.concat(
     recipeData.filter((recipe) => {
       return (
         matchName(recipe, sanitizedQuery) ||
@@ -13,8 +13,6 @@ export function search(searchQuery) {
       );
     })
   );
-
-  return searchResult;
 }
 
 function matchName(recipe, searchQuery) {
