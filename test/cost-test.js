@@ -1,6 +1,4 @@
-import chai from 'chai';
-const { expect } = chai;
-
+import { expect } from 'chai';
 import { calculateRecipeCost } from '../src/cost.js';
 
 describe('calculateRecipeCost', function() {

@@ -5,5 +5,5 @@ export const calculateRecipeCost = (recipe) => {
         const ingredientCost = ingredient.quantity * ingredient.unitPrice;
         totalPrice += ingredientCost;
     })
-    return totalPrice;
+    return +totalPrice.toFixed(2);
 };
