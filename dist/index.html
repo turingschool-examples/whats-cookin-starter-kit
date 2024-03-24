@@ -1,47 +1,65 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <link href="https://fonts.cdnfonts.com/css/gatile" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <link href="https://fonts.cdnfonts.com/css/gatile" rel="stylesheet" />
     <title>Whats Cookin</title>
   </head>
   <body>
-    <section class="top-bar">
-      <h1>Whats Cookin</h1>
-      <section class="top-buttons">
+    <header>
+      <h1 class="logo">Whats Cookin</h1>
+      <nav class="header-nav">
         <button class="cookbook">COOKBOOK</button>
         <button class="saved-recipes">SAVED RECIPES</button>
-      </section>
-    </section>
-    <section class="main-body">
-      <section class ="search-area">
-        <input type="text" class="search-box"> search </input>
-        <div class="tags">
-          <button class="tag1">tag1</button>
-          <button class="tag2">tag2</button>
-          <button class="tag3">tag3</button>
-          <button class="tag4">tag4</button>
+      </nav>
+    </header>
+
+    <main>
+      <nav class="filter-container">
+        <input type="text" class="search-box" placeholder="Search ..." />
+        <div class="tags-container">
+          <button class="tag">tag1</button>
+          <button class="tag">tag2</button>
+          <button class="tag">tag3</button>
+          <button class="tag">tag4</button>
         </div>
         <button class="random-recipe">RANDOM RECIPE</button>
-      </section>
-      <section class="recipes">
-        <div class="recipe1">
-          <img class="recipe-image" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Loaded Chocolate Chip Pudding Cookie Cups">
-          <h2 class="recipe1-name">Loaded Chocolate Chip Pudding Cookie Cups</h2>
-          <h3 class="recipe1-tags">antipasti, starter, snack, appetizer, antipasto, hor d'oeuvre</h3>
-        </div>
-        <div class="recipe2">
-          <img class="recipe-image" src="https://spoonacular.com/recipeImages/678353-556x370.jpg" alt="Maple Dijon Apple Cider Grilled Pork Chops">
-          <h2 class="recipe2-name">Maple Dijon Apple Cider Grilled Pork Chops</h2>
-          <h3 class="recipe2-tags">lunch, main course, main dish, dinner</h3>
-        </div>
-        <div class="recipe3">
-          <img class="recipe-image" src="https://spoonacular.com/recipeImages/412309-556x370.jpeg" alt="Dirty Steve's Original Wing Sauce">
-          <h2 class="recipe3-name">Dirty Steve's Original Wing Sauce</h2>
-          <h3 class="recipe3-tags">sauce</h3>
-        </div>
-      </section>
-    </section>
+      </nav>
+
+      <div class="recipes">
+        <article class="recipe">
+          <img
+            class="recipe-image"
+            src="https://spoonacular.com/recipeImages/595736-556x370.jpg"
+            alt="Loaded Chocolate Chip Pudding Cookie Cups"
+          />
+          <h2 class="recipe-name">Loaded Chocolate Chip Pudding Cookie Cups</h2>
+          <h3 class="recipe-tags">
+            antipasti, starter, snack, appetizer, antipasto, hor d'oeuvre
+          </h3>
+        </article>
+        <article class="recipe">
+          <img
+            class="recipe-image"
+            src="https://spoonacular.com/recipeImages/678353-556x370.jpg"
+            alt="Maple Dijon Apple Cider Grilled Pork Chops"
+          />
+          <h2 class="recipe-name">
+            Maple Dijon Apple Cider Grilled Pork Chops
+          </h2>
+          <h3 class="recipe-tags">lunch, main course, main dish, dinner</h3>
+        </article>
+        <article class="recipe">
+          <img
+            class="recipe-image"
+            src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
+            alt="Dirty Steve's Original Wing Sauce"
+          />
+          <h2 class="recipe-name">Dirty Steve's Original Wing Sauce</h2>
+          <h3 class="recipe-tags">sauce</h3>
+        </article>
+      </div>
+    </main>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
