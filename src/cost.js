@@ -2,6 +2,7 @@ import { findIngredient } from "./recipes.js";
 
 export const calculateRecipeCost = (recipe) => {
   if (!recipe.hasOwnProperty("ingredients")) return 0;
+  if (!Array.isArray(recipe.ingredients)) return 0;
 
   const totalPrice = recipe.ingredients.reduce((totalPrice, ingredient) => {
     const ingredientData = findIngredient(ingredient.id);
