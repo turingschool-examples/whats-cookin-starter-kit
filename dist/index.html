@@ -14,8 +14,8 @@
       </nav>
     </header>
 
-    <main>
-      <nav class="filter-container">
+    <nav class="filter-container">
+      <div class="filter-settings">
         <input type="text" class="search-box" placeholder="Search ..." />
         <div class="tags-container">
           <button class="tag">tag1</button>
@@ -23,42 +23,96 @@
           <button class="tag">tag3</button>
           <button class="tag">tag4</button>
         </div>
-        <button class="random-recipe">RANDOM RECIPE</button>
-      </nav>
+      </div>
+      <button class="random-recipe">RANDOM RECIPE</button>
+    </nav>
 
-      <div class="recipes">
-        <article class="recipe">
+    <main class="recipes">
+      <article class="recipe-card">
+        <div class="recipe-image">
           <img
-            class="recipe-image"
             src="https://spoonacular.com/recipeImages/595736-556x370.jpg"
             alt="Loaded Chocolate Chip Pudding Cookie Cups"
           />
+        </div>
+        <div class="recipe-info">
           <h2 class="recipe-name">Loaded Chocolate Chip Pudding Cookie Cups</h2>
+          <h3 class="recipe-ingredients">
+            antipasti, starter, snack, appetizer, antipasto, hor d'oeuvre
+          </h3>
           <h3 class="recipe-tags">
             antipasti, starter, snack, appetizer, antipasto, hor d'oeuvre
           </h3>
-        </article>
-        <article class="recipe">
+        </div>
+      </article>
+      <article class="recipe-card">
+        <div class="recipe-image">
           <img
-            class="recipe-image"
             src="https://spoonacular.com/recipeImages/678353-556x370.jpg"
             alt="Maple Dijon Apple Cider Grilled Pork Chops"
           />
+        </div>
+        <div class="recipe-info">
           <h2 class="recipe-name">
             Maple Dijon Apple Cider Grilled Pork Chops
           </h2>
           <h3 class="recipe-tags">lunch, main course, main dish, dinner</h3>
-        </article>
-        <article class="recipe">
+        </div>
+      </article>
+      <article class="recipe-card">
+        <div class="recipe-image">
           <img
-            class="recipe-image"
-            src="https://spoonacular.com/recipeImages/412309-556x370.jpeg"
-            alt="Dirty Steve's Original Wing Sauce"
+            src="https://spoonacular.com/recipeImages/595736-556x370.jpg"
+            alt="Loaded Chocolate Chip Pudding Cookie Cups"
           />
+        </div>
+        <div class="recipe-info">
           <h2 class="recipe-name">Dirty Steve's Original Wing Sauce</h2>
           <h3 class="recipe-tags">sauce</h3>
-        </article>
-      </div>
+        </div>
+      </article>
+      <article class="recipe-card">
+        <div class="recipe-image">
+          <img
+            src="https://spoonacular.com/recipeImages/595736-556x370.jpg"
+            alt="Loaded Chocolate Chip Pudding Cookie Cups"
+          />
+        </div>
+        <div class="recipe-info">
+          <h2 class="recipe-name">Loaded Chocolate Chip Pudding Cookie Cups</h2>
+          <h3 class="recipe-tags">
+            antipasti, starter, snack, appetizer, antipasto, hor d'oeuvre
+          </h3>
+        </div>
+      </article>
+      <article class="recipe-card">
+        <div class="recipe-image">
+          <img
+            src="https://spoonacular.com/recipeImages/595736-556x370.jpg"
+            alt="Loaded Chocolate Chip Pudding Cookie Cups"
+          />
+        </div>
+        <div class="recipe-info">
+          <h2 class="recipe-name">Loaded Chocolate Chip Pudding Cookie Cups</h2>
+          <h3 class="recipe-tags">
+            antipasti, starter, snack, appetizer, antipasto, hor d'oeuvre
+          </h3>
+        </div>
+      </article>
+      <article class="recipe-card">
+        <div class="recipe-image">
+          <img
+            src="https://spoonacular.com/recipeImages/595736-556x370.jpg"
+            alt="Loaded Chocolate Chip Pudding Cookie Cups"
+          />
+        </div>
+        <div class="recipe-info">
+          <h2 class="recipe-name">Loaded Chocolate Chip Pudding Cookie Cups</h2>
+          <h3 class="recipe-tags">
+            antipasti, starter, snack, appetizer, antipasto, hor d'oeuvre
+          </h3>
+        </div>
+      </article>
     </main>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
