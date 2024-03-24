@@ -13,5 +13,7 @@ export const findRecipeIngredients = (recipe) => {
 };
 
 export const findRecipeInstructions = (recipe) => {
-  return recipe.instructions.map((step) => step.instruction);
+  return recipe.instructions
+    .sort((a, b) => a.number - b.number)
+    .map((step) => step.instruction);
 };
