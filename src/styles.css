@@ -2,11 +2,11 @@ html,
 body {
   padding: 0;
   margin: 0;
-  min-height: 100vh;
+  max-height: 100vh;
 }
 
 html {
-  background-color: #fff3e0;
+  background-color: #fdfdfd;
   font-family: sans-serif;
 }
 
@@ -33,6 +33,14 @@ header {
     display: flex;
     gap: 10px;
     justify-content: flex-end;
+    padding-right: 15px;
+  }
+  .cookbook, 
+  .saved-recipes {
+    background-color: #d39738;
+    color: #2d2b2b;
+    font-family: sans-serif;
+    border-radius: 4px;
   }
 }
 
@@ -44,27 +52,37 @@ nav.filter-container {
   top: 100px;
   position: sticky;
   height: 500px;
-  background-color: #9d968b;
+  background-color: #fff3e0;
+  border-radius: 4px;
+  padding: 10px;
 
   .filter-settings {
     display: flex;
+    gap: 10px;
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
   }
+  .search-box {
+    border: none;
+    border-radius: 4px;
+    height: 30px;
+  }
+  
 }
 
 main {
-  background-color: #9d968b;
+  background-color: #fff3e0;
 
   display: flex;
   flex-direction: column;
   gap: 20px;
+  overflow: scroll;
 }
 
 .recipe-card {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 3fr 4fr;
 
   height: 200px;
   padding: 10px;
@@ -84,6 +102,7 @@ main {
   .recipe-image {
     object-fit: cover;
     overflow: hidden;
+    border-radius: 15px;
     mask-image: linear-gradient(
       to right,
       rgba(0, 0, 0, 1),
@@ -92,3 +111,15 @@ main {
     );
   }
 }
+
+.tag, 
+.random-recipe {
+  font-family: sans-serif;
+  background-color: #d39738;
+  color: #2d2b2b;
+  border-radius: 4px;
+  border-color: #2d2b2b;
+}
+
+
+
