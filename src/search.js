@@ -1,12 +1,19 @@
-import { recipeData } from "./data/recipes";
+import recipeData from "./data/recipes";
+import { findRecipeIngredients } from "./recipes";
 
 export function search(searchQuery) {
-  const searchResult = [];
+  let searchResult = [];
   const sanitizedQuery = sanitizeString(searchQuery);
 
-  // const searchResult = recipeData.filter((recipe) =>
+  searchResult = searchResult.concat(
+    recipeData.filter((recipe) => {
+      return (
+        matchName(recipe, sanitizedQuery) ||
+        matchIngredient(recipe, sanitizedQuery)
+      );
+    })
+  );
 
-  // );
   return searchResult;
 }
 
@@ -17,7 +24,11 @@ function matchName(recipe, searchQuery) {
 
 function matchIngredient(recipe, searchQuery) {
   const sanitizedQuery = sanitizeString(searchQuery);
-  return sanitizeString().includes(sanitizedQuery);
+  const ingredients = findRecipeIngredients(recipe);
+
+  for (const ingredient of ingredients)
+    if (sanitizeString(ingredient).includes(sanitizedQuery)) return true;
+  return false;
 }
 
 function sanitizeString(string) {
