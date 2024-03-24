@@ -11,3 +11,7 @@ export const findRecipeIngredients = (recipe) => {
     return list;
   }, []);
 };
+
+export const findRecipeInstructions = (recipe) => {
+  return recipe.instructions.map((step) => step.instruction);
+};
