@@ -3,11 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./recipe.css" />
+    <link rel="stylesheet" href="../src/styles.css" />
     <title>Document</title>
   </head>
   <body>
-    <main>
+    <header>
+      <h1 class="logo">What's Cookin'</h1>
+      <nav class="header-nav">
+        <button class="cookbook">COOKBOOK</button>
+        <button class="saved-recipes">SAVED RECIPES</button>
+      </nav>
+    </header>
+
+    <nav class="filter-container hidden">
+      <div class="filter-settings">
+        <input type="text" class="search-box" placeholder="Search ..." />
+        <div class="tags-container">
+          <button class="tag">tag1</button>
+          <button class="tag">tag2</button>
+          <button class="tag">tag3</button>
+          <button class="tag">tag4</button>
+        </div>
+      </div>
+      <button class="random-recipe">RANDOM RECIPE</button>
+    </nav>
+
+    <main id="recipe-page">
       <div class="recipe-title">
         <div class="image-container">
           <img
