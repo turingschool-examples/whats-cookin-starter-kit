@@ -1,5 +1,10 @@
 body {
-  background-color: blueviolet;
+  background: linear-gradient(#134d71,#78a7c6,#f7e4bf);
+  min-height: 100vh;
+  font-family: 'Quicksand', sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column
 }
 /* Add a black background color to the top navigation bar */
 .topnav {
