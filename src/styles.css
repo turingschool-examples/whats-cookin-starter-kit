@@ -1,3 +1,7 @@
+.hidden {
+  visibility: hidden;
+}
+
 html,
 body {
   padding: 0;
@@ -36,7 +40,7 @@ header {
     gap: 10px;
     justify-content: flex-end;
   }
-  .cookbook, 
+  .cookbook,
   .saved-recipes {
     background-color: #d39738;
     color: white;
@@ -77,10 +81,10 @@ nav.filter-container {
     border-radius: 4px;
     height: 30px;
   }
-  
 }
 
-main {
+/* CODE FOR COOKBOOK OR SAVED RECIPES PAGE */
+main#directory-page {
   background-color: #fff3e0;
 
   display: flex;
@@ -109,7 +113,7 @@ main {
     font-family: "Gatile";
   }
 
-  .recipe-ingredients, 
+  .recipe-ingredients,
   .recipe-tags {
     color: #9d968b;
     font-weight: 100;
@@ -127,7 +131,6 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
   }
 
   .heart {
@@ -148,7 +151,7 @@ main {
   }
 }
 
-.tag, 
+.tag,
 .random-recipe {
   font-family: sans-serif;
   background-color: #d39738;
@@ -157,5 +160,64 @@ main {
   border: none;
 }
 
+/* CODE FOR INDIVIDUAL RECIPE PAGE */
+main#recipe-page {
+  background-color: #fff3e0;
 
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  grid-template-rows: 300px 1fr;
 
+  width: 1000px;
+
+  .recipe-title {
+    position: relative;
+    grid-column: 1/-1;
+
+    h1 {
+      position: absolute;
+      top: 50px;
+      background-color: red;
+    }
+  }
+
+  .image-container {
+    height: 100%;
+    overflow: hidden;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+
+  .instructions {
+    ol {
+      list-style: none;
+      counter-reset: item;
+    }
+    li {
+      counter-increment: item;
+      margin-bottom: 5px;
+    }
+    li:before {
+      margin-right: 10px;
+      content: counter(item);
+      background: lightblue;
+
+      /* shape-outside: circle(50% at 50% 50%);
+      clip-path: circle(50% at 50% 50%);
+      height: 30px;
+      width: 30px; */
+
+      color: white;
+      width: 1.2em;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  .ingredients {
+    background-color: red;
+  }
+}
