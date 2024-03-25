@@ -6,7 +6,8 @@ body {
 }
 
 html {
-  background-color: #fdfdfd;
+  /* background-image: url("./images/white-watercolor-papar-texture-background-cover-card-design-overlay-paint-art-background_1962-2474.avif"); */
+  background-color: white;
   font-family: sans-serif;
 }
 
@@ -26,6 +27,7 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 40px;
 
   font-family: "Gatile";
 
@@ -33,14 +35,21 @@ header {
     display: flex;
     gap: 10px;
     justify-content: flex-end;
-    padding-right: 15px;
   }
   .cookbook, 
   .saved-recipes {
     background-color: #d39738;
-    color: #2d2b2b;
+    color: white;
     font-family: sans-serif;
     border-radius: 4px;
+    border: none;
+    height: 50px;
+    width: 200px;
+    font-size: 20px;
+  }
+
+  .logo {
+    font-size: 60px;
   }
 }
 
@@ -97,6 +106,32 @@ main {
 
   .recipe-name {
     font-family: "Gatile";
+  }
+
+  .recipe-ingredients, 
+  .recipe-tags {
+    color: #9d968b;
+    font-weight: 100;
+  }
+
+  .recipe-tags {
+    font-size: 15px;
+  }
+
+  .label {
+    font-weight: bold;
+  }
+
+  .tags-and-heart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+  }
+
+  .heart {
+    height: 35px;
+    width: 35px;
   }
 
   .recipe-image {
