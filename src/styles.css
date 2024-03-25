@@ -6,13 +6,19 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 
 }
-
+.main-title {
+  display:flex
+  
+}
   .topnav {
     overflow: hidden;
     background-color: #e9e9e9;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
   }
   
   .topnav a {
@@ -78,7 +84,21 @@ body {
     }
   }
 
-
+.featured-recipes {
+  display: flex;
+  justify-content: center;
+  
+}
+.featured-recipe-box1, .featured-recipe-box2, .featured-recipe-box3 {
+  display: flex;
+  border-color: black;
+  border: solid 2px;
+  background-color: white;
+  height: 300px;
+  width: 300px;
+  margin-left: 150px;
+  margin-top: 150px;
+}
 
 
 
