@@ -1,5 +1,5 @@
 //Here is an example demonstrating logic separated that can be imported into the scripts and test files. Feel free to update this later! 
-import{recipes, ingredients} from './mock-data';
+import{recipes, ingredients} from '../test/mock-data';
 
 function getRecipeData(){
   return recipes;
