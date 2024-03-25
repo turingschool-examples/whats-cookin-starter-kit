@@ -6,8 +6,20 @@ main {
   width: 1000px;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+}
+
 .recipe-title {
+  position: relative;
   grid-column: 1/-1;
+
+  h1 {
+    position: absolute;
+    top: 50px;
+    background-color: red;
+  }
 }
 
 .image-container {
@@ -15,6 +27,37 @@ main {
   overflow: hidden;
 
   img {
+    object-fit: cover;
     width: 100%;
   }
+}
+
+.instructions {
+  ol {
+    list-style: none;
+    counter-reset: item;
+  }
+  li {
+    counter-increment: item;
+    margin-bottom: 5px;
+  }
+  li:before {
+    margin-right: 10px;
+    content: counter(item);
+    background: lightblue;
+
+    /* shape-outside: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    height: 30px;
+    width: 30px; */
+
+    color: white;
+    width: 1.2em;
+    text-align: center;
+    display: inline-block;
+  }
+}
+
+.ingredients {
+  background-color: red;
 }
