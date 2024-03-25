@@ -8,6 +8,12 @@ export const findRecipeIngredients = (recipe) => {
   }, []);
 };
 
+export const findRecipeInstructions = (recipe) => {
+  return recipe.instructions
+    .sort((a, b) => a.number - b.number)
+    .map((step) => step.instruction);
+};
+
 export function findIngredient(ingredientID) {
   return ingredientsData.find(
     (ingredientData) => ingredientData.id == ingredientID
