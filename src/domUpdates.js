@@ -1,8 +1,68 @@
 import { filterRecipeByTag, getAvailableTags } from '../src/tags';
+import recipeData from './data/recipes';
 
 //Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
 const displayRecipes = () => {
   console.log(`Displaying recipes now`)
+}
+
+const setRecipe = (recipe) => {
+  const titleElement = document.querySelector('.recipe-title h1');
+  const imageElement = document.querySelector('.recipe-title .image-container img');
+  const instructionsElement = document.querySelector('.instructions ol');
+  const ingredientsElement = document.querySelector('.ingredients ul');
+
+
+  titleElement.textContent = recipe.name; 
+  imageElement.src = recipe.image; 
+  imageElement.alt = recipe.name; 
+
+  instructionsElement.innerHTML = '';
+  ingredientsElement.innerHTML = '';
+
+  recipe.instructions.forEach((instruction) => {
+    const instructionItem = document.createElement('li');
+    instructionItem.textContent = `${instruction}`; 
+    instructionsElement.appendChild(instructionItem);
+  });
+
+
+  recipe.ingredients.forEach((ingredient) => {
+    const ingredientItem = document.createElement('li');
+
+    const ingredientName = document.createElement('div');
+    ingredientName.className = 'ingredient-name';
+    ingredientName.textContent = ingredient.name;
+
+    const ingredientAmount = document.createElement('div');
+    ingredientAmount.className = 'ingredient-amount';
+    ingredientAmount.textContent = `${ingredient.quantity.amount} ${ingredient.quantity.unit}`; // Assuming `ingredient.quantity` contains `amount` and `unit`
+
+    ingredientItem.appendChild(ingredientName);
+    ingredientItem.appendChild(ingredientAmount);
+
+    ingredientsElement.appendChild(ingredientItem);
+  });
+};
+
+document.getElementById('directory-page').addEventListener('click', (event) => {
+  const recipeCard = event.target.closest('.recipe-card');
+
+  if (recipeCard) {
+    const recipeId = recipeCard.getAttribute('data-id');
+    console.log('Recipe ID:', recipeId);
+        const recipe = getRecipeById(recipeId);
+    
+    if (recipe) {
+      setRecipe(recipe);
+    }
+  }
+});
+
+
+function getRecipeById(recipeId) {
+  const id = recipeId;
+  return recipeData.find((recipe) => recipe.id === id);
 }
 
 const filteredDomRecipes = (recipeData) => {
@@ -77,7 +137,7 @@ const updateTagsToDOM = () => {
   })
 }
 
-updateTagsToDOM();
+updateTagsToDOM()
 
 export {
   displayRecipes,
