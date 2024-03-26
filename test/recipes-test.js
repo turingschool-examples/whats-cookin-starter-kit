@@ -1,6 +1,17 @@
 import { expect } from 'chai';
-import { findRecipeIngredients , getRecipeData, getIngredientsData, getRecipeInstructions, filterRecipeTag, filterRecipeName, estimatedCostInCents } from '../src/recipes';
+import { 
+  //findRecipeIngredients , 
+  getRecipeData, 
+  getIngredientsData, 
+  //getRecipeInstructions, 
+  //filterRecipeTag, 
+  //filterRecipeName, 
+  //estimatedCostInCents 
+} 
+  from '../src/recipes';
 import {ingredients, recipes} from './mock-data'
+const {filterRecipeTag, filterRecipeName
+} = require('../src/recipes-lydia')
 
 describe('getRecipeData', () => {
   it('Should be a function', () => {
