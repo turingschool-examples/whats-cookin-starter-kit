@@ -11,7 +11,7 @@ export const filterRecipeByTag = (tags) => {
   return filteredRecipes;
 };
 
-export function getAvailableTags(tags) {
+export function getTagRecipeCount(tags) {
   return filterRecipeByTag(tags).reduce((list, recipe) => {
     recipe.tags.forEach((tag) => {
       if (!list.hasOwnProperty(tag)) list[tag] = 0;

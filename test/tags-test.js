@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { recipe1, recipe2 } from "../src/data/mockRecipe";
 import recipeData from "../src/data/recipes";
-import { filterRecipeByTag, getAvailableTags } from "../src/tags";
+import { filterRecipeByTag, getTagRecipeCount } from "../src/tags";
 
 describe("filterRecipeByTag", function () {
   it("should find recipes by id tag", function () {
@@ -28,7 +28,7 @@ describe("filterRecipeByTag", function () {
 
 describe("Get available tags", () => {
   it("Should return all tags in empty array", () => {
-    expect(getAvailableTags([])).to.deep.equal({
+    expect(getTagRecipeCount([])).to.deep.equal({
       antipasti: 9,
       starter: 9,
       snack: 9,
@@ -52,7 +52,7 @@ describe("Get available tags", () => {
   });
 
   it("Should return the tags plus numbers given a set of tags #1", () => {
-    expect(getAvailableTags(["brunch"])).to.deep.equal({
+    expect(getTagRecipeCount(["brunch"])).to.deep.equal({
       breakfast: 1,
       brunch: 1,
       "morning meal": 1,
@@ -60,7 +60,7 @@ describe("Get available tags", () => {
   });
 
   it("Should return the tags plus numbers given a set of tags #2", () => {
-    expect(getAvailableTags(["snack", "side dish"])).to.deep.equal({
+    expect(getTagRecipeCount(["snack", "side dish"])).to.deep.equal({
       antipasti: 1,
       antipasto: 1,
       appetizer: 1,
