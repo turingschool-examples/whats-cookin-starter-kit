@@ -8,6 +8,16 @@ export const findRecipeIngredients = (recipe) => {
   }, []);
 };
 
+export function findRecipeIngredientsQuantity(recipe) {
+  return recipe.ingredients.map((ingredient) => {
+    const amount = ingredient.quantity.amount;
+    const unit = ingredient.quantity.unit;
+    const space = unit.length ? " " : "";
+
+    return `${amount}${space}${unit}`;
+  });
+}
+
 export const findRecipeInstructions = (recipe) => {
   return recipe.instructions
     .sort((a, b) => a.number - b.number)
