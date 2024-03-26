@@ -1,6 +1,10 @@
 import { expect } from "chai";
 import { recipe1, recipe2 } from "../src/data/mockRecipe";
-import { findRecipeIngredients, findRecipeInstructions } from "../src/recipes";
+import {
+  findRecipeIngredients,
+  findRecipeIngredientsQuantity,
+  findRecipeInstructions,
+} from "../src/recipes";
 
 describe("Recipe", () => {
   describe("Find ingredients", () => {
@@ -35,6 +39,38 @@ describe("Recipe", () => {
         "sesame seeds",
         "sucrose",
         "unsalted butter",
+      ]);
+    });
+  });
+
+  describe("Find quantity of ingredients", () => {
+    it("Should return an array of ingredients quantities given a recipe", () => {
+      const ingredients = findRecipeIngredientsQuantity(recipe1);
+      expect(ingredients).to.deep.equal([
+        "1.5 c",
+        "0.5 tsp",
+        "1 large",
+        "0.5 c",
+        "3 Tbsp",
+        "0.5 c",
+        "0.5 tsp",
+        "24 servings",
+        "2 c",
+        "0.5 c",
+        "0.5 tsp",
+      ]);
+    });
+
+    it("Should return a different array of ingredients quantities given a different recipe", () => {
+      const ingredients = findRecipeIngredientsQuantity(recipe2);
+      expect(ingredients).to.deep.equal([
+        "160 g",
+        "40 g",
+        "1",
+        "1 pinch",
+        "40 g",
+        "80 g",
+        "1 stick",
       ]);
     });
   });
