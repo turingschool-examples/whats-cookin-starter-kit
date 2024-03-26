@@ -1,35 +1,36 @@
-import { filterRecipeByTag, getAvailableTags } from "../src/tags";
+import { filterRecipeByTag, getTagRecipeCount } from "../src/tags";
 import recipeData from "./data/recipes";
 import { findRecipeIngredients } from "./recipes";
 
 //Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
 
 let recipesToDisplay = [];
+
 const tagsContainer = document.querySelector(".tags-container");
+const mainElement = document.getElementById("directory-page");
 
 addEventListener("load", init);
 tagsContainer.addEventListener("click", function (e) {
   if (!e.target.classList.contains("tag")) return;
 
   e.target.classList.toggle("tag-active");
-  const activeTags = Array.from(this.querySelectorAll(".tag-active")).map(
-    (button) => button.dataset.tag
-  );
-  const filteredRecipes = filterRecipeByTag(activeTags);
-  filteredDomRecipes(filteredRecipes);
+  recipesToDisplay = filterRecipeByTag(getActiveTags());
+  displayRecipes(recipesToDisplay);
+  updateTagsToDOM();
 });
 
 // FUNCTIONS
 function init() {
   recipesToDisplay = recipesToDisplay.concat(recipeData);
+  displayRecipes(recipesToDisplay);
+  updateTagsToDOM();
 }
 
-const displayRecipes = (dataBase) => {
-  const mainElement = document.getElementById("directory-page");
+function displayRecipes(dataBase) {
   mainElement.innerHTML = "";
   dataBase.forEach((recipe) => mainElement.append(createRecipeHTML(recipe)));
   console.log(`Displaying recipes now`);
-};
+}
 
 function createRecipeHTML(recipe) {
   const article = document.createElement("article");
@@ -62,27 +63,25 @@ function createRecipeHTML(recipe) {
   return article;
 }
 
-function filteredDomRecipes(recipeData) {
-  const mainElement = document.getElementById("directory-page");
-  mainElement.innerHTML = "";
-
-  recipeData.forEach((recipe) => mainElement.append(createRecipeHTML(recipe)));
+function getActiveTags() {
+  const activeTags = document.querySelectorAll(".tag-active");
+  return Array.from(activeTags).map((button) => button.dataset.tag);
 }
 
-const updateTagsToDOM = () => {
-  const currentlyDisplayedRecipes = [];
-  const recipeTags = getAvailableTags(currentlyDisplayedRecipes);
-  const tagsContainer = document.querySelector(".tags-container");
+function updateTagsToDOM() {
+  const activeTags = getActiveTags();
+  const tagRecipeCount = getTagRecipeCount(activeTags);
+  const tagNames = Object.keys(tagRecipeCount);
 
-  Object.keys(recipeTags).forEach((tag) => {
+  tagsContainer.innerHTML = "";
+  tagNames.forEach((tagName) => {
     const button = document.createElement("button");
     button.className = "tag";
-    button.dataset.tag = tag;
-    button.textContent = `${tag} (${recipeTags[tag]})`;
+    if (activeTags.includes(tagName)) button.classList.add("tag-active");
+    button.dataset.tag = tagName;
+    button.textContent = `${tagName} (${tagRecipeCount[tagName]})`;
     tagsContainer.appendChild(button);
   });
-};
-
-updateTagsToDOM();
+}
 
 export { displayRecipes };
