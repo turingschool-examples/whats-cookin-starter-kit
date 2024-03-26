@@ -1,6 +1,17 @@
 import { expect } from 'chai';
-import { findRecipeIngredients , getRecipeData, getIngredientsData, getRecipeInstructions, filterRecipeTag, filterRecipeName, estimatedCostInCents } from '../src/recipes';
+import { 
+  //findRecipeIngredients , 
+  getRecipeData, 
+  getIngredientsData, 
+  //getRecipeInstructions, 
+  //filterRecipeTag, 
+  //filterRecipeName, 
+  //estimatedCostInCents 
+} 
+  from '../src/recipes';
 import {ingredients, recipes} from './mock-data'
+const {filterRecipeTag, filterRecipeName
+} = require('../src/recipes-lydia')
 
 describe('getRecipeData', () => {
   it.skip('Should be a function', () => {
@@ -21,10 +32,10 @@ describe('getIngredientsData', () => {
   });
 })
 describe('filterRecipeTag', () => {
-  it.skip('Should be a function', () => {
+  it('Should be a function', () => {
     expect(filterRecipeTag).to.be.a('function');
   });
-  it.skip('Should return an array of recipes that match a given tag',()=>{
+  it('Should return an array of recipes that match a given tag',()=>{
     const recipeData = getRecipeData();
     const tag = 'lunch'
     const filteredRecipes = filterRecipeTag(tag,recipeData);
@@ -33,13 +44,13 @@ describe('filterRecipeTag', () => {
   });
 })
 describe('filterRecipeName', () => {
-  it.skip('Should be a function', () => {
+  it('Should be a function', () => {
     expect(filterRecipeName).to.be.a('function');
   });
   it('Should return a recipe when given a name',()=>{
     const recipeData = getRecipeData();
     const name = 'Pancakes';
-    const searchResult = filterRecipeName(name);
+    const searchResult = filterRecipeName(name, recipeData);
     const pancakes = recipeData[0];
     expect(searchResult).to.deep.equal(pancakes);
   });
