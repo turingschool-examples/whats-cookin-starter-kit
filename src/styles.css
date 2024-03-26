@@ -1,5 +1,5 @@
 .hidden {
-  visibility: hidden;
+  visibility: hidden !important;
 }
 
 html,
@@ -11,7 +11,7 @@ body {
 
 html {
   /* background-image: url("./images/white-watercolor-papar-texture-background-cover-card-design-overlay-paint-art-background_1962-2474.avif"); */
-  background-color: white;
+  background-color: #fefaf7;
   font-family: sans-serif;
 }
 
@@ -162,22 +162,40 @@ main#directory-page {
 
 /* CODE FOR INDIVIDUAL RECIPE PAGE */
 main#recipe-page {
-  background-color: #fff3e0;
+  display: flex;
+  justify-content: center;
 
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  grid-template-rows: 300px 1fr;
+  .recipe-container {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    grid-template-rows: 300px 1fr;
+    gap: 50px;
 
-  width: 1000px;
+    width: 1000px;
+  }
 
-  .recipe-title {
+  .gatile {
+    font-family: "Gatile";
+  }
+
+  .recipe-main {
     position: relative;
     grid-column: 1/-1;
 
-    h1 {
+    .title-container {
       position: absolute;
       top: 50px;
-      background-color: red;
+
+      max-width: 750px;
+      overflow: hidden;
+
+      .title {
+        font-size: 5rem;
+
+        padding: 10px;
+        background-color: #fff3e0;
+        display: inline;
+      }
     }
   }
 
@@ -192,32 +210,36 @@ main#recipe-page {
   }
 
   .instructions {
-    ol {
-      list-style: none;
-      counter-reset: item;
-    }
     li {
-      counter-increment: item;
-      margin-bottom: 5px;
-    }
-    li:before {
-      margin-right: 10px;
-      content: counter(item);
-      background: lightblue;
-
-      /* shape-outside: circle(50% at 50% 50%);
-      clip-path: circle(50% at 50% 50%);
-      height: 30px;
-      width: 30px; */
-
-      color: white;
-      width: 1.2em;
-      text-align: center;
-      display: inline-block;
+      padding-left: 25px;
+      margin-top: 20px;
     }
   }
 
-  .ingredients {
-    background-color: red;
+  .ingredients-container {
+    background-color: #fff2e1;
+    padding: 20px;
+
+    ul {
+      padding: 0;
+      margin: 0;
+
+      li {
+        list-style: none;
+
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+    }
+
+    .ingredient-name {
+      max-width: 75%;
+    }
+
+    .ingredient-amount {
+      color: rgb(150, 150, 150);
+    }
   }
 }
