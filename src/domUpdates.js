@@ -1,12 +1,11 @@
-import recipeData from '../src/data/recipes.js'
-import { filterRecipeByTag } from '../src/tags';
+import { filterRecipeByTag, getAvailableTags } from '../src/tags';
 
 //Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
 const displayRecipes = () => {
   console.log(`Displaying recipes now`)
 }
 
-function filteredDomRecipes(recipeData) {
+const filteredDomRecipes = (recipeData) => {
   const mainElement = document.getElementById('directory-page');
   mainElement.innerHTML = '';
 
@@ -48,20 +47,6 @@ function filteredDomRecipes(recipeData) {
   });
 };
 
-// document.querySelector('.tags-container').addEventListener('click', function(event) {
-//   const target = event.target;
-
-//   if (target.classList.contains('tag')) {
-//     target.classList.toggle('tag-active');
-
-//     const activeTags = Array.from(this.querySelectorAll('.tag-active'))
-//     .map((button) => button.textContent);
-
-//     const filteredRecipes = filterRecipeByTag(activeTags);
-    
-//     filteredDomRecipes(filteredRecipes);
-//   }
-// });
 
 document.querySelector('.tags-container').addEventListener('click', function(event) {
   const target = event.target;
@@ -78,6 +63,21 @@ document.querySelector('.tags-container').addEventListener('click', function(eve
   }
 });
 
+const updateTagsToDOM = () => {
+  const currentlyDisplayedRecipes = [];
+  const recipeTags = getAvailableTags(currentlyDisplayedRecipes);
+  const tagsContainer = document.querySelector('.tags-container');
+
+  Object.keys(recipeTags).forEach((tag) => {
+    const button = document.createElement('button');
+    button.className = 'tag';
+    button.dataset.tag = tag;
+    button.textContent = `${tag} (${recipeTags[tag]})`;
+    tagsContainer.appendChild(button);
+  })
+}
+
+updateTagsToDOM();
 
 export {
   displayRecipes,
