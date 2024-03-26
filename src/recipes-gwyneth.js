@@ -1,6 +1,10 @@
-import { getIngredientsData, getRecipeData} from "./recipes";
-function findRecipeIngredients(){
-    const recipe = getRecipeData()
-    const ingredientsData = getIngredientsData()
+function findRecipeIngredients(recipe, ingredients){
+const results = recipe['ingredients'].map((element) =>{
+    let match = ingredients.find(({id}) => id === element['id'])
+    if (match !== undefined){
+        return match
+    };
+});
+return results
 };
 export {findRecipeIngredients};
