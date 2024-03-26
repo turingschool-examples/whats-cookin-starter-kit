@@ -156,6 +156,9 @@ main {
   border-radius: 4px;
   border: none;
 }
-
+.sentinel {
+  position: relative;
+  height: 1px;
+}
 
 
