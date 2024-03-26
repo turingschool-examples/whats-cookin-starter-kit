@@ -48,15 +48,36 @@ function filteredDomRecipes(recipeData) {
   });
 };
 
-document.querySelectorAll('.tag').forEach((button) => {
-  button.addEventListener('click', function() {
-    const tag = this.textContent;
+// document.querySelector('.tags-container').addEventListener('click', function(event) {
+//   const target = event.target;
 
-    const filteredRecipes = filterRecipeByTag([tag])
+//   if (target.classList.contains('tag')) {
+//     target.classList.toggle('tag-active');
 
+//     const activeTags = Array.from(this.querySelectorAll('.tag-active'))
+//     .map((button) => button.textContent);
+
+//     const filteredRecipes = filterRecipeByTag(activeTags);
+    
+//     filteredDomRecipes(filteredRecipes);
+//   }
+// });
+
+document.querySelector('.tags-container').addEventListener('click', function(event) {
+  const target = event.target;
+
+  if (target.classList.contains('tag')) {
+    target.classList.toggle('tag-active');
+
+    const activeTags = Array.from(this.querySelectorAll('.tag-active'))
+      .map((button) => button.dataset.tag);
+
+    const filteredRecipes = filterRecipeByTag(activeTags);
+    
     filteredDomRecipes(filteredRecipes);
-  })
-})
+  }
+});
+
 
 export {
   displayRecipes,

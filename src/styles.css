@@ -154,10 +154,19 @@ main#directory-page {
 .tag,
 .random-recipe {
   font-family: sans-serif;
-  background-color: #d39738;
+  background-color: grey;
   color: #2d2b2b;
   border-radius: 4px;
   border: none;
+  transition: background-color 0.3s;
+}
+
+.tag-active {
+  background-color: #d39738;
+}
+
+.tag-inactive {
+  opacity: 0.2;
 }
 
 /* CODE FOR INDIVIDUAL RECIPE PAGE */
