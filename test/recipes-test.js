@@ -8,7 +8,7 @@ import {
 } from "../src/recipes";
 import recipeData from "../src/data/recipes";
 import ingredientsData from "../src/data/ingredients";
-import recipeTemplate from "./test-prompts";
+import constants from "./test-prompts";
 
 
 describe("Recipe Tag", () => {
@@ -44,20 +44,7 @@ describe("Recipe Ingredient List", () => {
       recipeData,
       ingredientsData
     );
-    const expectedIngredients = [
-      "wheat flour",
-      "bicarbonate of soda",
-      "eggs",
-      "sucrose",
-      "instant vanilla pudding",
-      "brown sugar",
-      "salt",
-      "fine sea salt",
-      "semi sweet chips",
-      "unsalted butter",
-      "vanilla",
-    ];
-    expect(ingredients).to.deep.equal(expectedIngredients);
+    expect(ingredients).to.deep.equal(constants.expectedIngredients);
   });
 
   it("Should calculate the cost of a given recipe’s ingredients", () => {
@@ -67,7 +54,7 @@ describe("Recipe Ingredient List", () => {
 
   it("Should return the directions / instructions for a given recipe", () => {
     const instructions = getRecipeInstructions(595736, recipeData);
-    expect(instructions).to.deep.equal(recipeTemplate);
+    expect(instructions).to.deep.equal(constants.recipeTemplate);
   });
 });
 

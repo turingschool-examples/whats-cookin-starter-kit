@@ -1,4 +1,16 @@
-
+const expectedIngredients = [
+    "wheat flour",
+    "bicarbonate of soda",
+    "eggs",
+    "sucrose",
+    "instant vanilla pudding",
+    "brown sugar",
+    "salt",
+    "fine sea salt",
+    "semi sweet chips",
+    "unsalted butter",
+    "vanilla",
+  ]
 
 const recipeTemplate = [
     '1: In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.',
@@ -9,4 +21,5 @@ const recipeTemplate = [
 '6: Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice cream and a drizzle of chocolate sauce.'
   ]
 
-  export default recipeTemplate
+
+  export default { recipeTemplate, expectedIngredients }
