@@ -15,7 +15,7 @@ describe("filterRecipeByTag", function () {
     const recipesWithMultipleTags = filterRecipeByTag(
       ["snack", "starter"],
       recipeData
-    ); // Pass only the tag(s) as an array
+    );
 
     expect(recipesWithMultipleTags).to.be.an("array");
     expect(recipesWithMultipleTags).to.have.lengthOf(9);
@@ -31,7 +31,7 @@ describe("filterRecipeByTag", function () {
 
 describe("Get available tags", () => {
   it("Should return all tags in empty array", () => {
-    expect(getTagRecipeCount([])).to.deep.equal({
+    expect(getTagRecipeCount([], recipeData)).to.deep.equal({
       antipasti: 9,
       starter: 9,
       snack: 9,
@@ -55,7 +55,7 @@ describe("Get available tags", () => {
   });
 
   it("Should return the tags plus numbers given a set of tags #1", () => {
-    expect(getTagRecipeCount(["brunch"])).to.deep.equal({
+    expect(getTagRecipeCount(["brunch"], recipeData)).to.deep.equal({
       breakfast: 1,
       brunch: 1,
       "morning meal": 1,
@@ -63,14 +63,16 @@ describe("Get available tags", () => {
   });
 
   it("Should return the tags plus numbers given a set of tags #2", () => {
-    expect(getTagRecipeCount(["snack", "side dish"])).to.deep.equal({
-      antipasti: 1,
-      antipasto: 1,
-      appetizer: 1,
-      "hor d'oeuvre": 1,
-      "side dish": 1,
-      snack: 1,
-      starter: 1,
-    });
+    expect(getTagRecipeCount(["snack", "side dish"], recipeData)).to.deep.equal(
+      {
+        antipasti: 1,
+        antipasto: 1,
+        appetizer: 1,
+        "hor d'oeuvre": 1,
+        "side dish": 1,
+        snack: 1,
+        starter: 1,
+      }
+    );
   });
 });

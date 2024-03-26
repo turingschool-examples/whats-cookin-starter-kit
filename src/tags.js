@@ -1,9 +1,7 @@
-import recipeData from "../src/data/recipes.js";
-
-export const filterRecipeByTag = (tags) => {
+export const filterRecipeByTag = (tags, dataset) => {
   const filteredRecipes = [];
 
-  recipeData.forEach((recipe) => {
+  dataset.forEach((recipe) => {
     if (tags.every((tag) => recipe.tags.includes(tag))) {
       filteredRecipes.push(recipe);
     }
@@ -11,8 +9,8 @@ export const filterRecipeByTag = (tags) => {
   return filteredRecipes;
 };
 
-export function getTagRecipeCount(tags) {
-  return filterRecipeByTag(tags).reduce((list, recipe) => {
+export function getTagRecipeCount(tags, dataset) {
+  return filterRecipeByTag(tags, dataset).reduce((list, recipe) => {
     recipe.tags.forEach((tag) => {
       if (!list.hasOwnProperty(tag)) list[tag] = 0;
       list[tag]++;
