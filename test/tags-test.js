@@ -5,21 +5,24 @@ import { filterRecipeByTag, getTagRecipeCount } from "../src/tags";
 
 describe("filterRecipeByTag", function () {
   it("should find recipes by id tag", function () {
-    const recipesTag = filterRecipeByTag(["lunch"]);
+    const recipesTag = filterRecipeByTag(["lunch"], recipeData);
 
     expect(recipesTag).to.be.an("array");
     expect(recipesTag).to.have.lengthOf(12);
   });
 
   it("should be able to find recipes with more than one id tag", function () {
-    const recipesWithMultipleTags = filterRecipeByTag(["snack", "starter"]); // Pass only the tag(s) as an array
+    const recipesWithMultipleTags = filterRecipeByTag(
+      ["snack", "starter"],
+      recipeData
+    ); // Pass only the tag(s) as an array
 
     expect(recipesWithMultipleTags).to.be.an("array");
     expect(recipesWithMultipleTags).to.have.lengthOf(9);
   });
 
   it("should return all recipes if using no tags", function () {
-    const recipesTag = filterRecipeByTag([]);
+    const recipesTag = filterRecipeByTag([], recipeData);
 
     expect(recipesTag).to.be.an("array");
     expect(recipesTag).to.have.lengthOf(recipeData.length);
