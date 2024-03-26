@@ -1,4 +1,4 @@
-const ingredients = [
+export const ingredients = [
     {
         "id": 1,
         "name": "wheat flour",
@@ -56,7 +56,7 @@ const ingredients = [
       }
 ]
 
-const recipes = [
+export const recipes = [
     {
         "id": 20,
         "image": "https://example.com/1.jpg",
@@ -216,7 +216,7 @@ const recipes = [
       }
 ]
 
-const users = [
+export const users = [
     {
         "name": "Saige O'Kon",
         "id": 1,
