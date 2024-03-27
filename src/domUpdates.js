@@ -3,34 +3,65 @@ import ingredientsData from "./data/ingredients";
 import recipeData from "./data/recipes";
 import { findRecipeIngredients } from "./recipes";
 
-//Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
-
 let recipesToDisplay = [];
-
 const tagsContainer = document.querySelector(".tags-container");
 const mainElement = document.getElementById("directory-page");
+let viewChanged = false
 
 addEventListener("load", init);
 tagsContainer.addEventListener("click", function (e) {
   if (!e.target.classList.contains("tag")) return;
-
+  viewChanged = true
   e.target.classList.toggle("tag-active");
   recipesToDisplay = filterRecipeByTag(getActiveTags(), recipeData);
   displayRecipes(recipesToDisplay);
   updateTagsToDOM();
 });
+mainElement.addEventListener("scroll", () => {
+  if (isSentinelInView()) displayRecipes(recipesToDisplay);
+});
 
 // FUNCTIONS
 function init() {
-  recipesToDisplay = recipesToDisplay.concat(recipeData);
+  recipesToDisplay = recipesToDisplay.concat(dataBase);
   displayRecipes(recipesToDisplay);
   updateTagsToDOM();
 }
 
+const loadMoreRecipes = (function () {
+  let currentPage = 1;
+  const recipesPerPage = 5;
+
+  return function (recipes) {
+    if (viewChanged){
+      viewChanged = false
+      currentPage = 1
+    }
+    currentPage++;
+    const recipesToRender = recipes.slice(0, currentPage * recipesPerPage);
+    recipesToRender.forEach((recipe) =>
+      mainElement.append(createRecipeHTML(recipe))
+    );
+
+    const sentinel = document.querySelector(".sentinel");
+    if (sentinel) sentinel.remove();
+    mainElement.append(createSentinelHTML());
+  }
+
+})();
+
 function displayRecipes(dataBase) {
   mainElement.innerHTML = "";
-  dataBase.forEach((recipe) => mainElement.append(createRecipeHTML(recipe)));
-  console.log(`Displaying recipes now`);
+  // dataBase.forEach((recipe) => mainElement.append(createRecipeHTML(recipe)));
+  // if (isSentinelInView())
+
+  loadMoreRecipes(recipesToDisplay);
+}
+
+function createSentinelHTML() {
+  const sentinel = document.createElement("div");
+  sentinel.classList.add("sentinel");
+  return sentinel;
 }
 
 function createRecipeHTML(recipe) {
@@ -84,5 +115,14 @@ function updateTagsToDOM() {
     tagsContainer.appendChild(button);
   });
 }
+
+function isSentinelInView() {
+  const sentinel = document.querySelector(".sentinel");
+  if (!sentinel) return false;
+  const rect = sentinel.getBoundingClientRect();
+  return rect.top <= window.innerHeight;
+}
+
+//laurel's code
 
 export { displayRecipes };
