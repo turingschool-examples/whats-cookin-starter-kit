@@ -6,12 +6,12 @@ import { findRecipeIngredients } from "./recipes";
 let recipesToDisplay = [];
 const tagsContainer = document.querySelector(".tags-container");
 const mainElement = document.getElementById("directory-page");
-let viewChanged = false
+let viewChanged = false;
 
 addEventListener("load", init);
 tagsContainer.addEventListener("click", function (e) {
   if (!e.target.classList.contains("tag")) return;
-  viewChanged = true
+  viewChanged = true;
   e.target.classList.toggle("tag-active");
   recipesToDisplay = filterRecipeByTag(getActiveTags(), recipeData);
   displayRecipes(recipesToDisplay);
@@ -23,7 +23,7 @@ mainElement.addEventListener("scroll", () => {
 
 // FUNCTIONS
 function init() {
-  recipesToDisplay = recipesToDisplay.concat(dataBase);
+  recipesToDisplay = recipesToDisplay.concat(recipeData);
   displayRecipes(recipesToDisplay);
   updateTagsToDOM();
 }
@@ -33,9 +33,9 @@ const loadMoreRecipes = (function () {
   const recipesPerPage = 5;
 
   return function (recipes) {
-    if (viewChanged){
-      viewChanged = false
-      currentPage = 1
+    if (viewChanged) {
+      viewChanged = false;
+      currentPage = 1;
     }
     currentPage++;
     const recipesToRender = recipes.slice(0, currentPage * recipesPerPage);
@@ -46,15 +46,11 @@ const loadMoreRecipes = (function () {
     const sentinel = document.querySelector(".sentinel");
     if (sentinel) sentinel.remove();
     mainElement.append(createSentinelHTML());
-  }
-
+  };
 })();
 
-function displayRecipes(dataBase) {
+function displayRecipes(recipe_dataset) {
   mainElement.innerHTML = "";
-  // dataBase.forEach((recipe) => mainElement.append(createRecipeHTML(recipe)));
-  // if (isSentinelInView())
-
   loadMoreRecipes(recipesToDisplay);
 }
 
