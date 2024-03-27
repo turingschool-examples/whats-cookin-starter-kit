@@ -2,10 +2,12 @@ import { filterRecipeByTag, getTagRecipeCount } from "../src/tags";
 import ingredientsData from "./data/ingredients";
 import recipeData from "./data/recipes";
 import { findRecipeIngredients } from "./recipes";
+import { search } from "./search";
 
 let recipesToDisplay = [];
 const tagsContainer = document.querySelector(".tags-container");
 const mainElement = document.getElementById("directory-page");
+const searchBox = document.querySelector(".search-box")
 let viewChanged = false;
 
 addEventListener("load", init);
@@ -13,13 +15,18 @@ tagsContainer.addEventListener("click", function (e) {
   if (!e.target.classList.contains("tag")) return;
   viewChanged = true;
   e.target.classList.toggle("tag-active");
-  recipesToDisplay = filterRecipeByTag(getActiveTags(), recipeData);
+  recipesToDisplay = filterRecipesByTagsAndSearch(searchBox.value.trim(), recipeData, ingredientsData);
   displayRecipes(recipesToDisplay);
   updateTagsToDOM();
-});
+ });
 mainElement.addEventListener("scroll", () => {
   if (isSentinelInView()) displayRecipes(recipesToDisplay);
 });
+searchBox.addEventListener('input', function(event) {
+  const searchQuery = event.target.value.trim(); 
+  recipesToDisplay = filterRecipesByTagsAndSearch(searchQuery, recipeData, ingredientsData);
+  displayRecipes(recipesToDisplay);
+ });
 
 // FUNCTIONS
 function init() {
@@ -52,7 +59,10 @@ const loadMoreRecipes = (function () {
 
 function displayRecipes(recipe_dataset) {
   mainElement.innerHTML = "";
-  loadMoreRecipes(recipesToDisplay);
+  recipe_dataset.forEach((recipe) =>
+    mainElement.append(createRecipeHTML(recipe))
+  );
+  mainElement.append(createSentinelHTML());
 }
 
 function createSentinelHTML() {
@@ -119,6 +129,17 @@ function isSentinelInView() {
   const rect = sentinel.getBoundingClientRect();
   return rect.top <= window.innerHeight;
 }
+
+function filterRecipesByTagsAndSearch(searchQuery, recipeData, ingredientsData) {
+  // First, filter by tags
+  let filteredRecipes = filterRecipeByTag(getActiveTags(), recipeData);
+   
+  // Then, filter by search query
+  filteredRecipes = search(searchQuery, filteredRecipes, ingredientsData);
+   
+  return filteredRecipes;
+ }
+
 
 //laurel's code
 
