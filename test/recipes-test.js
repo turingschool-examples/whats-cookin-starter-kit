@@ -1,7 +1,9 @@
 import { expect } from "chai";
+import ingredientsData from "../src/data/ingredients";
 import { recipe1, recipe2 } from "../src/data/mockRecipe";
 import {
   addRecipeToArray,
+  findRecipeFromID,
   findRecipeIngredients,
   findRecipeIngredientsQuantity,
   findRecipeInstructions,
@@ -15,7 +17,7 @@ describe("Recipe", () => {
     });
 
     it("Should return an array of ingredients given a recipe", () => {
-      const ingredients = findRecipeIngredients(recipe1);
+      const ingredients = findRecipeIngredients(recipe1, ingredientsData);
       expect(ingredients).to.deep.equal([
         "wheat flour",
         "bicarbonate of soda",
@@ -32,7 +34,7 @@ describe("Recipe", () => {
     });
 
     it("Should return an array of ingredients given a recipe", () => {
-      const ingredients = findRecipeIngredients(recipe2);
+      const ingredients = findRecipeIngredients(recipe2, ingredientsData);
       expect(ingredients).to.deep.equal([
         "wheat flour",
         "blanched almond flour",
@@ -47,7 +49,10 @@ describe("Recipe", () => {
 
   describe("Find quantity of ingredients", () => {
     it("Should return an array of ingredients quantities given a recipe", () => {
-      const ingredients = findRecipeIngredientsQuantity(recipe1);
+      const ingredients = findRecipeIngredientsQuantity(
+        recipe1,
+        ingredientsData
+      );
       expect(ingredients).to.deep.equal([
         "1.5 c",
         "0.5 tsp",
@@ -64,7 +69,10 @@ describe("Recipe", () => {
     });
 
     it("Should return a different array of ingredients quantities given a different recipe", () => {
-      const ingredients = findRecipeIngredientsQuantity(recipe2);
+      const ingredients = findRecipeIngredientsQuantity(
+        recipe2,
+        ingredientsData
+      );
       expect(ingredients).to.deep.equal([
         "160 g",
         "40 g",
@@ -151,6 +159,29 @@ describe("Recipe", () => {
 
       expect(recipesToCook).to.not.include(recipe1);
       expect(recipesToCook).to.include(recipe2);
+    });
+
+  describe("Recipe from ID", () => {
+    const testRecipes = [recipe1, recipe2];
+
+    it("Will find recipe from ID #1", () => {
+      const foundRound = findRecipeFromID(595736, testRecipes);
+      expect(foundRound).to.deep.equal(recipe1);
+    });
+
+    it("Will find recipe from ID #2", () => {
+      const foundRound = findRecipeFromID(541288, testRecipes);
+      expect(foundRound).to.deep.equal(recipe2);
+    });
+
+    it("Will find recipe from string ID #1", () => {
+      const foundRound = findRecipeFromID("595736", testRecipes);
+      expect(foundRound).to.deep.equal(recipe1);
+    });
+
+    it("Will find recipe from string ID #2", () => {
+      const foundRound = findRecipeFromID("541288", testRecipes);
+      expect(foundRound).to.deep.equal(recipe2);
     });
   });
 });

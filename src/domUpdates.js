@@ -1,46 +1,93 @@
 import { filterRecipeByTag, getTagRecipeCount } from "../src/tags";
+import ingredientsData from "./data/ingredients";
 import recipeData from "./data/recipes";
 import {
+  findRecipeFromID,
   findRecipeIngredients,
   findRecipeIngredientsQuantity,
   findRecipeInstructions,
 } from "./recipes";
+import { search } from "./search";
 
-//Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
-
-let recipesToDisplay = [];
+let recipesToDisplay = recipeData;
+let viewChanged = false;
 
 const tagsContainer = document.querySelector(".tags-container");
-const mainElement = document.getElementById("directory-page");
+const main = document.querySelector("main");
+const mainDirectory = document.getElementById("directory-page");
+const mainRecipe = document.getElementById("recipe-page");
+const filterSection = document.querySelector("nav.filter-container");
+const searchBox = document.querySelector(".search-box");
 
+// EVENT LISTENERS
 addEventListener("load", init);
+searchBox.addEventListener("input", filterRecipes);
 tagsContainer.addEventListener("click", function (e) {
   if (!e.target.classList.contains("tag")) return;
 
   e.target.classList.toggle("tag-active");
-  recipesToDisplay = filterRecipeByTag(getActiveTags());
-  displayRecipes(recipesToDisplay);
-  updateTagsToDOM();
+  filterRecipes();
+});
+mainDirectory.addEventListener("scroll", () => {
+  if (isSentinelInView()) displayRecipes(recipesToDisplay);
+});
+mainDirectory.addEventListener("click", (e) => {
+  if (!e.target.closest(".recipe-card")) return;
+  const clickedRecipe = e.target.closest(".recipe-card");
+  const recipe = findRecipeFromID(clickedRecipe.dataset.id, recipeData);
+
+  main.innerHTML = "";
+  main.append(createRecipePageHTML(recipe));
+  main.setAttribute("id", "recipe-page");
+  filterSection.classList.add("hidden");
 });
 
 // FUNCTIONS
 function init() {
-  recipesToDisplay = recipesToDisplay.concat(recipeData);
   displayRecipes(recipesToDisplay);
   updateTagsToDOM();
 }
 
-function displayRecipes(dataBase) {
-  mainElement.innerHTML = "";
-  dataBase.forEach((recipe) => mainElement.append(createRecipeHTML(recipe)));
-  console.log(`Displaying recipes now`);
+const loadMoreRecipes = (function () {
+  let currentPage = 1;
+  const recipesPerPage = 5;
+
+  function resetView() {
+    viewChanged = false;
+    mainDirectory.scrollTop = 0;
+    currentPage = 1;
+  }
+
+  return function (recipes) {
+    if (viewChanged) resetView();
+
+    const recipesToRender = recipes.slice(0, currentPage * recipesPerPage);
+    recipesToRender.forEach((recipe) =>
+      mainDirectory.append(createRecipeHTML(recipe))
+    );
+    currentPage++;
+
+    const sentinel = document.querySelector(".sentinel");
+    if (sentinel) sentinel.remove();
+    mainDirectory.append(createSentinelHTML());
+  };
+})();
+
+function displayRecipes(recipe_dataset) {
+  mainDirectory.innerHTML = "";
+  loadMoreRecipes(recipe_dataset);
 }
 
+function createSentinelHTML() {
+  const sentinel = document.createElement("div");
+  sentinel.classList.add("sentinel");
+  return sentinel;
+}
 
 function createRecipeHTML(recipe) {
   const article = document.createElement("article");
   article.classList.add("recipe-card");
-  article.setAttribute("data-id", recipe.id);
+  article.dataset.id = recipe.id;
 
   article.innerHTML = `
     <div class="recipe-image">
@@ -60,31 +107,27 @@ function createRecipeHTML(recipe) {
       </div>
       <h2 class="recipe-name">${recipe.name}</h2>
       <h3 class="recipe-ingredients">
-        <span class="label">Ingredients:</span> ${findRecipeIngredients(
-          recipe,
-        ).join(", ")}
-      </h3>
-    </div>
-  `;
-
-  article.addEventListener("click", () => displayRecipeDetails(recipe));
+      <span class="label"> ingredients </span>
+      ${findRecipeIngredients(recipe, ingredientsData).join(", ")}
+    </h3>
+    </div>`;
 
   return article;
 }
 
-function displayRecipeDetails(recipe) {
-  const body = document.querySelector("body");
-  body.innerHTML = "";
+function createRecipePageHTML(recipe) {
+  const recipeContainer = document.createElement("div");
+  recipeContainer.classList.add("recipe-container");
 
   const instructionsList = findRecipeInstructions(recipe).reduce(
     (innerHTML, instruction) => {
       innerHTML += `<li>${instruction}</li>`;
       return innerHTML;
     },
-    "",
+    ""
   );
 
-  const ingredientList = findRecipeIngredients(recipe);
+  const ingredientList = findRecipeIngredients(recipe, ingredientsData);
   const quantityList = findRecipeIngredientsQuantity(recipe);
 
   let ingredientQuantityHTML = ingredientList
@@ -96,44 +139,26 @@ function displayRecipeDetails(recipe) {
     })
     .join("");
 
-  body.innerHTML = `
-    <header>
-      <h1 class="logo">What's Cookin'</h1>
-      <nav class="header-nav">
-        <button class="cookbook">COOKBOOK</button>
-        <button class="saved-recipes">SAVED RECIPES</button>
-      </nav>
-    </header>
+  recipeContainer.innerHTML = `
+  <div class="recipe-main">
+    <div class="image-container">
+      <img src="${recipe.image}" alt="${recipe.name}"/>
+    </div>
+    <div class="title-container">
+      <h1 class="title gatile">${recipe.name}</h1>
+    </div>
+  </div>
+  <div class="instructions">
+    <h1 class="gatile">Instructions</h1>
+    <ol>${instructionsList}</ol>
+  </div>
+  <div class="ingredients-container">
+    <h1 class="gatile">Ingredients</h1>
+    <hr />
+    <ul class="ingredients">${ingredientQuantityHTML}</ul>
+  </div>`;
 
-    <nav class="filter-container hidden">
-      <div class="filter-settings">
-        <input type="text" class="search-box" placeholder="Search ..."/>
-        <div class="tags-container">
-          <button class="tag">tag1</button>
-          <button class="tag">tag2</button>
-          <button class="tag">tag3</button>
-          <button class="tag">tag4</button>
-        </div>
-      </div>
-      <button class="random-recipe">RANDOM RECIPE</button>
-    </nav>
-
-    <main id="recipe-page">
-      <div class="recipe-title">
-        <div class="image-container">
-          <img src="${recipe.image}" alt="${recipe.name}"/>
-        </div>
-        <h1>${recipe.name}</h1>
-      </div>
-      <div class="instructions">
-        <h1>Instructions</h1>
-        <ol>${instructionsList}</ol>
-      </div>
-      <div class="ingredients">
-        <h1>Ingredients</h1>
-        <ul>${ingredientQuantityHTML}</ul>
-      </div>
-    </main>`;
+  return recipeContainer;
 }
 
 function getActiveTags() {
@@ -143,7 +168,7 @@ function getActiveTags() {
 
 function updateTagsToDOM() {
   const activeTags = getActiveTags();
-  const tagRecipeCount = getTagRecipeCount(activeTags);
+  const tagRecipeCount = getTagRecipeCount(activeTags, recipeData);
   const tagNames = Object.keys(tagRecipeCount);
 
   tagsContainer.innerHTML = "";
@@ -155,6 +180,26 @@ function updateTagsToDOM() {
     button.textContent = `${tagName} (${tagRecipeCount[tagName]})`;
     tagsContainer.appendChild(button);
   });
+}
+
+function isSentinelInView() {
+  const sentinel = document.querySelector(".sentinel");
+  if (!sentinel) return false;
+  const rect = sentinel.getBoundingClientRect();
+  return rect.top <= window.innerHeight;
+}
+
+function filterRecipes() {
+  recipesToDisplay = filterRecipeByTag(getActiveTags(), recipeData);
+  recipesToDisplay = search(
+    searchBox.value.trim(),
+    recipesToDisplay,
+    ingredientsData
+  );
+
+  viewChanged = true;
+  displayRecipes(recipesToDisplay);
+  updateTagsToDOM();
 }
 
 export { displayRecipes };

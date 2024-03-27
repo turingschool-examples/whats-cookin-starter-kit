@@ -5,21 +5,24 @@ import { filterRecipeByTag, getTagRecipeCount } from "../src/tags";
 
 describe("filterRecipeByTag", function () {
   it("should find recipes by id tag", function () {
-    const recipesTag = filterRecipeByTag(["lunch"]);
+    const recipesTag = filterRecipeByTag(["lunch"], recipeData);
 
     expect(recipesTag).to.be.an("array");
     expect(recipesTag).to.have.lengthOf(12);
   });
 
   it("should be able to find recipes with more than one id tag", function () {
-    const recipesWithMultipleTags = filterRecipeByTag(["snack", "starter"]); // Pass only the tag(s) as an array
+    const recipesWithMultipleTags = filterRecipeByTag(
+      ["snack", "starter"],
+      recipeData
+    );
 
     expect(recipesWithMultipleTags).to.be.an("array");
     expect(recipesWithMultipleTags).to.have.lengthOf(9);
   });
 
   it("should return all recipes if using no tags", function () {
-    const recipesTag = filterRecipeByTag([]);
+    const recipesTag = filterRecipeByTag([], recipeData);
 
     expect(recipesTag).to.be.an("array");
     expect(recipesTag).to.have.lengthOf(recipeData.length);
@@ -28,7 +31,7 @@ describe("filterRecipeByTag", function () {
 
 describe("Get available tags", () => {
   it("Should return all tags in empty array", () => {
-    expect(getTagRecipeCount([])).to.deep.equal({
+    expect(getTagRecipeCount([], recipeData)).to.deep.equal({
       antipasti: 9,
       starter: 9,
       snack: 9,
@@ -52,7 +55,7 @@ describe("Get available tags", () => {
   });
 
   it("Should return the tags plus numbers given a set of tags #1", () => {
-    expect(getTagRecipeCount(["brunch"])).to.deep.equal({
+    expect(getTagRecipeCount(["brunch"], recipeData)).to.deep.equal({
       breakfast: 1,
       brunch: 1,
       "morning meal": 1,
@@ -60,14 +63,16 @@ describe("Get available tags", () => {
   });
 
   it("Should return the tags plus numbers given a set of tags #2", () => {
-    expect(getTagRecipeCount(["snack", "side dish"])).to.deep.equal({
-      antipasti: 1,
-      antipasto: 1,
-      appetizer: 1,
-      "hor d'oeuvre": 1,
-      "side dish": 1,
-      snack: 1,
-      starter: 1,
-    });
+    expect(getTagRecipeCount(["snack", "side dish"], recipeData)).to.deep.equal(
+      {
+        antipasti: 1,
+        antipasto: 1,
+        appetizer: 1,
+        "hor d'oeuvre": 1,
+        "side dish": 1,
+        snack: 1,
+        starter: 1,
+      }
+    );
   });
 });
