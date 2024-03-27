@@ -1,7 +1,7 @@
 import ingredientsData from './src/data/ingredients.js';
 import recipeData from './src/data/recipes.js';
 import usersData from './src/data/users.js';
-import { getRecipeInstructions, findRecipeIngredients, findRecipeTags } from "./src/recipes.js";
+import { getRecipeInstructions, searchRecipeName, findRecipeTags } from "./src/recipes.js";
 
 const recipeListContainer = document.querySelector('.all-recipes');
 const featuredRecipesContainer = document.querySelector('.featured-recipes');
@@ -28,7 +28,7 @@ function createFeaturedRecipe() {
 function displayRecipeDetails(recipeId) {
   const recipe = recipeData.find(recipe => recipe.id === recipeId);
   const instructions = getRecipeInstructions(recipeId, recipeData);
-  const ingredients = findRecipeIngredients(recipeData, recipe.name);
+  const ingredients = searchRecipeName(recipeData, recipe.name);
   const tags = findRecipeTags(recipeData, recipeNamesTags);
   //CONSOLE LOGS
   console.log("Recipe Instructions:", instructions);

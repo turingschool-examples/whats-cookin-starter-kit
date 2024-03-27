@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import {
   findRecipeTags,
-  findRecipeIngredients,
+  searchRecipeName as searchRecipeName,
   createRecipesNeeded,
   calculateRecipeCost,
   getRecipeInstructions,
@@ -23,22 +23,22 @@ describe("Recipe Tag", () => {
 
   describe("Recipe Ingredient", () => {
     it("Should be a function", () => {
-      expect(findRecipeIngredients).to.be.a("function");
+      expect(searchRecipeName).to.be.a("function");
     });
   });
 
   it("Should return a filtered list of recipes based on a tag", () => {
-    const recipe = findRecipeIngredients(recipeData, "Vegan");
+    const recipe = searchRecipeName(recipeData, "Vegan");
     expect(recipe[0].name).to.deep.equal("Vegan Lentil Loaf");
   });
 
   it("Should account for case sensitivity and spacing", () => {
-    const recipe = findRecipeIngredients(recipeData, "vegan len ");
+    const recipe = searchRecipeName(recipeData, "vegan len ");
     expect(recipe[0].name).to.deep.equal("Vegan Lentil Loaf");
   });
 
   it("It should account for other info like ID and image location", () => {
-    const recipe = findRecipeIngredients(recipeData, "vegan len ");
+    const recipe = searchRecipeName(recipeData, "vegan len ");
     expect(recipe[0].id).to.equal(226562);
     expect(recipe[0].name).to.deep.equal("Vegan Lentil Loaf");
     expect(recipe[0].image).to.equal('https://spoonacular.com/recipeImages/226562-556x370.jpg');

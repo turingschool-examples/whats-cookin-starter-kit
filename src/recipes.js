@@ -8,7 +8,7 @@ export const findRecipeTags = (recipeData, tag) => {
   return recipeNamesTags;
 };
 
-export const findRecipeIngredients = (recipeData, ingredient) => {
+export const searchRecipeName = (recipeData, ingredient) => {
   let recipeInfo = recipeData
       .filter((recipe) => recipe.name.toLowerCase().includes(ingredient.trim().toLowerCase()));
     return recipeInfo;
