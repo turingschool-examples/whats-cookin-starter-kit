@@ -5,15 +5,13 @@ import ingredientsData from "./data/ingredients";
 export const findRecipeTags = (recipeData, tag) => {
   let recipeNamesTags = recipeData
     .filter((recipe) => recipe.tags.includes(tag))
-    .map((recipe) => recipe.name);
   return recipeNamesTags;
 };
 
 export const findRecipeIngredients = (recipeData, ingredient) => {
-  let recipeNames = recipeData
-    .filter((recipe) => recipe.name.toLowerCase().includes(ingredient.trim().toLowerCase()))
-    .map((recipe) => recipe.name);
-  return recipeNames;
+  let recipeInfo = recipeData
+      .filter((recipe) => recipe.name.toLowerCase().includes(ingredient.trim().toLowerCase()));
+    return recipeInfo;
 };
 
 export const createRecipesNeeded = (recipeID, recipeData, ingredientsData) => {

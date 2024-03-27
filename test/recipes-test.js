@@ -18,7 +18,7 @@ describe("Recipe Tag", () => {
 
   it("Should return a filtered list of recipes based on a tag", () => {
     const recipe = findRecipeTags(recipeData, "sauce");
-    expect(recipe).to.deep.equal(["Dirty Steve's Original Wing Sauce"]);
+    expect(recipe[0].name).to.deep.equal("Dirty Steve's Original Wing Sauce");
   });
 
   describe("Recipe Ingredient", () => {
@@ -29,15 +29,21 @@ describe("Recipe Tag", () => {
 
   it("Should return a filtered list of recipes based on a tag", () => {
     const recipe = findRecipeIngredients(recipeData, "Vegan");
-    expect(recipe).to.deep.equal(["Vegan Lentil Loaf"]);
+    expect(recipe[0].name).to.deep.equal("Vegan Lentil Loaf");
   });
 
   it("Should account for case sensitivity and spacing", () => {
     const recipe = findRecipeIngredients(recipeData, "vegan len ");
-    expect(recipe).to.deep.equal(["Vegan Lentil Loaf"]);
+    expect(recipe[0].name).to.deep.equal("Vegan Lentil Loaf");
+  });
+
+  it("It should account for other info like ID and image location", () => {
+    const recipe = findRecipeIngredients(recipeData, "vegan len ");
+    expect(recipe[0].id).to.equal(226562);
+    expect(recipe[0].name).to.deep.equal("Vegan Lentil Loaf");
+    expect(recipe[0].image).to.equal('https://spoonacular.com/recipeImages/226562-556x370.jpg');
   });
 });
-
 
 
 describe("Recipe Ingredient List", () => {
@@ -66,4 +72,3 @@ describe("Recipe Ingredient List", () => {
 });
 
 //<><><><><>TO DO: Create Filter for two tags<><><><><>
-//<><><><><>TO DO: Condense filter by case sensitivity and spaces<><><><><>
