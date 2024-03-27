@@ -11,7 +11,7 @@ export const findRecipeTags = (recipeData, tag) => {
 
 export const findRecipeIngredients = (recipeData, ingredient) => {
   let recipeNames = recipeData
-    .filter((recipe) => recipe.name.includes(ingredient))
+    .filter((recipe) => recipe.name.toLowerCase().includes(ingredient.trim().toLowerCase()))
     .map((recipe) => recipe.name);
   return recipeNames;
 };
