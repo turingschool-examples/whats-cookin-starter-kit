@@ -229,10 +229,6 @@ main#recipe-page {
       font-family: "Gatile";
       text-align: center;
     }
-    ol {
-      list-style: none;
-      counter-reset: item;
-    }
     li {
       padding-left: 25px;
       margin-top: 20px;

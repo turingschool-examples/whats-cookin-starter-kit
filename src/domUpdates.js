@@ -140,20 +140,23 @@ function createRecipePageHTML(recipe) {
     .join("");
 
   recipeContainer.innerHTML = `
-    <div class="recipe-title">
-      <div class="image-container">
-        <img src="${recipe.image}" alt="${recipe.name}"/>
-      </div>
-      <h1>${recipe.name}</h1>
+  <div class="recipe-main">
+    <div class="image-container">
+      <img src="${recipe.image}" alt="${recipe.name}"/>
     </div>
-    <div class="instructions">
-      <h1>Instructions</h1>
-      <ol>${instructionsList}</ol>
+    <div class="title-container">
+      <h1 class="title gatile">${recipe.name}</h1>
     </div>
-    <div class="ingredients">
-      <h1>Ingredients</h1>
-      <ul>${ingredientQuantityHTML}</ul>
-    </div>`;
+  </div>
+  <div class="instructions">
+    <h1 class="gatile">Instructions</h1>
+    <ol>${instructionsList}</ol>
+  </div>
+  <div class="ingredients-container">
+    <h1 class="gatile">Ingredients</h1>
+    <hr />
+    <ul class="ingredients">${ingredientQuantityHTML}</ul>
+  </div>`;
 
   return recipeContainer;
 }
