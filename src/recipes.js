@@ -44,6 +44,7 @@ export function removeRecipeFromArray(recipesArray, recipeIdToRemove) {
   if (recipeIndex > -1) {
     recipesArray.splice(recipeIndex, 1);
   }
+}
 
 export function findRecipeFromID(recipeID, recipe_dataset) {
   return recipe_dataset.find((recipe) => recipe.id === +recipeID);

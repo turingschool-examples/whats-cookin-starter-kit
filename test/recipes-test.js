@@ -161,27 +161,28 @@ describe("Recipe", () => {
       expect(recipesToCook).to.include(recipe2);
     });
 
-  describe("Recipe from ID", () => {
-    const testRecipes = [recipe1, recipe2];
+    describe("Recipe from ID", () => {
+      const testRecipes = [recipe1, recipe2];
 
-    it("Will find recipe from ID #1", () => {
-      const foundRound = findRecipeFromID(595736, testRecipes);
-      expect(foundRound).to.deep.equal(recipe1);
-    });
+      it("Will find recipe from ID #1", () => {
+        const foundRound = findRecipeFromID(595736, testRecipes);
+        expect(foundRound).to.deep.equal(recipe1);
+      });
 
-    it("Will find recipe from ID #2", () => {
-      const foundRound = findRecipeFromID(541288, testRecipes);
-      expect(foundRound).to.deep.equal(recipe2);
-    });
+      it("Will find recipe from ID #2", () => {
+        const foundRound = findRecipeFromID(541288, testRecipes);
+        expect(foundRound).to.deep.equal(recipe2);
+      });
 
-    it("Will find recipe from string ID #1", () => {
-      const foundRound = findRecipeFromID("595736", testRecipes);
-      expect(foundRound).to.deep.equal(recipe1);
-    });
+      it("Will find recipe from string ID #1", () => {
+        const foundRound = findRecipeFromID("595736", testRecipes);
+        expect(foundRound).to.deep.equal(recipe1);
+      });
 
-    it("Will find recipe from string ID #2", () => {
-      const foundRound = findRecipeFromID("541288", testRecipes);
-      expect(foundRound).to.deep.equal(recipe2);
+      it("Will find recipe from string ID #2", () => {
+        const foundRound = findRecipeFromID("541288", testRecipes);
+        expect(foundRound).to.deep.equal(recipe2);
+      });
     });
   });
 });
