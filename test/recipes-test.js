@@ -1,6 +1,12 @@
 import { expect } from "chai";
+import ingredientsData from "../src/data/ingredients";
 import { recipe1, recipe2 } from "../src/data/mockRecipe";
-import { findRecipeIngredients, findRecipeInstructions } from "../src/recipes";
+import {
+  findRecipeFromID,
+  findRecipeIngredients,
+  findRecipeIngredientsQuantity,
+  findRecipeInstructions,
+} from "../src/recipes";
 
 describe("Recipe", () => {
   describe("Find ingredients", () => {
@@ -9,7 +15,7 @@ describe("Recipe", () => {
     });
 
     it("Should return an array of ingredients given a recipe", () => {
-      const ingredients = findRecipeIngredients(recipe1);
+      const ingredients = findRecipeIngredients(recipe1, ingredientsData);
       expect(ingredients).to.deep.equal([
         "wheat flour",
         "bicarbonate of soda",
@@ -26,7 +32,7 @@ describe("Recipe", () => {
     });
 
     it("Should return an array of ingredients given a recipe", () => {
-      const ingredients = findRecipeIngredients(recipe2);
+      const ingredients = findRecipeIngredients(recipe2, ingredientsData);
       expect(ingredients).to.deep.equal([
         "wheat flour",
         "blanched almond flour",
@@ -35,6 +41,44 @@ describe("Recipe", () => {
         "sesame seeds",
         "sucrose",
         "unsalted butter",
+      ]);
+    });
+  });
+
+  describe("Find quantity of ingredients", () => {
+    it("Should return an array of ingredients quantities given a recipe", () => {
+      const ingredients = findRecipeIngredientsQuantity(
+        recipe1,
+        ingredientsData
+      );
+      expect(ingredients).to.deep.equal([
+        "1.5 c",
+        "0.5 tsp",
+        "1 large",
+        "0.5 c",
+        "3 Tbsp",
+        "0.5 c",
+        "0.5 tsp",
+        "24 servings",
+        "2 c",
+        "0.5 c",
+        "0.5 tsp",
+      ]);
+    });
+
+    it("Should return a different array of ingredients quantities given a different recipe", () => {
+      const ingredients = findRecipeIngredientsQuantity(
+        recipe2,
+        ingredientsData
+      );
+      expect(ingredients).to.deep.equal([
+        "160 g",
+        "40 g",
+        "1",
+        "1 pinch",
+        "40 g",
+        "80 g",
+        "1 stick",
       ]);
     });
   });
@@ -67,6 +111,30 @@ describe("Recipe", () => {
         "Bake for about 15 minutes, or until lightly browned around the edges.",
         "Remove from the oven and allow to cool on the baking sheet for about 10 minutes. Then transfer to a wire rack to cool completely. Store cookies in an airtight container. Cookies will last for a day or two.",
       ]);
+    });
+  });
+
+  describe("Recipe from ID", () => {
+    const testRecipes = [recipe1, recipe2];
+
+    it("Will find recipe from ID #1", () => {
+      const foundRound = findRecipeFromID(595736, testRecipes);
+      expect(foundRound).to.deep.equal(recipe1);
+    });
+
+    it("Will find recipe from ID #2", () => {
+      const foundRound = findRecipeFromID(541288, testRecipes);
+      expect(foundRound).to.deep.equal(recipe2);
+    });
+
+    it("Will find recipe from string ID #1", () => {
+      const foundRound = findRecipeFromID("595736", testRecipes);
+      expect(foundRound).to.deep.equal(recipe1);
+    });
+
+    it("Will find recipe from string ID #2", () => {
+      const foundRound = findRecipeFromID("541288", testRecipes);
+      expect(foundRound).to.deep.equal(recipe2);
     });
   });
 });

@@ -154,10 +154,24 @@ main#directory-page {
 .tag,
 .random-recipe {
   font-family: sans-serif;
-  background-color: #d39738;
+  background-color: grey;
   color: #2d2b2b;
   border-radius: 4px;
   border: none;
+  transition: background-color 0.3s;
+}
+
+.sentinel {
+  position: relative;
+  height: 1px;
+}
+
+.tag-active {
+  background-color: #d39738;
+}
+
+.tag-inactive {
+  opacity: 0.2;
 }
 
 /* CODE FOR INDIVIDUAL RECIPE PAGE */
@@ -202,6 +216,7 @@ main#recipe-page {
   .image-container {
     height: 100%;
     overflow: hidden;
+    border-radius: 15px;
 
     img {
       object-fit: cover;
@@ -210,6 +225,14 @@ main#recipe-page {
   }
 
   .instructions {
+    h1 {
+      font-family: "Gatile";
+      text-align: center;
+    }
+    ol {
+      list-style: none;
+      counter-reset: item;
+    }
     li {
       padding-left: 25px;
       margin-top: 20px;
