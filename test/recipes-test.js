@@ -1,6 +1,7 @@
 import { expect } from "chai";
 import { recipe1, recipe2 } from "../src/data/mockRecipe";
 import {
+  findRecipeFromID,
   findRecipeIngredients,
   findRecipeIngredientsQuantity,
   findRecipeInstructions,
@@ -103,6 +104,30 @@ describe("Recipe", () => {
         "Bake for about 15 minutes, or until lightly browned around the edges.",
         "Remove from the oven and allow to cool on the baking sheet for about 10 minutes. Then transfer to a wire rack to cool completely. Store cookies in an airtight container. Cookies will last for a day or two.",
       ]);
+    });
+  });
+
+  describe("Recipe from ID", () => {
+    const testRecipes = [recipe1, recipe2];
+
+    it("Will find recipe from ID #1", () => {
+      const foundRound = findRecipeFromID(595736, testRecipes);
+      expect(foundRound).to.deep.equal(recipe1);
+    });
+
+    it("Will find recipe from ID #2", () => {
+      const foundRound = findRecipeFromID(541288, testRecipes);
+      expect(foundRound).to.deep.equal(recipe2);
+    });
+
+    it("Will find recipe from string ID #1", () => {
+      const foundRound = findRecipeFromID("595736", testRecipes);
+      expect(foundRound).to.deep.equal(recipe1);
+    });
+
+    it("Will find recipe from string ID #2", () => {
+      const foundRound = findRecipeFromID("541288", testRecipes);
+      expect(foundRound).to.deep.equal(recipe2);
     });
   });
 });
