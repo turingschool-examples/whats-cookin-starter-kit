@@ -1,4 +1,5 @@
 import { filterRecipeByTag, getTagRecipeCount } from "../src/tags";
+import ingredientsData from "./data/ingredients";
 import recipeData from "./data/recipes";
 import { findRecipeIngredients } from "./recipes";
 
@@ -14,7 +15,7 @@ tagsContainer.addEventListener("click", function (e) {
   if (!e.target.classList.contains("tag")) return;
 
   e.target.classList.toggle("tag-active");
-  recipesToDisplay = filterRecipeByTag(getActiveTags());
+  recipesToDisplay = filterRecipeByTag(getActiveTags(), recipeData);
   displayRecipes(recipesToDisplay);
   updateTagsToDOM();
 });
@@ -56,7 +57,7 @@ function createRecipeHTML(recipe) {
       <h2 class="recipe-name">${recipe.name}</h2>
       <h3 class="recipe-ingredients">
       <span class="label"> ingredients </span>
-      ${findRecipeIngredients(recipe).join(", ")}
+      ${findRecipeIngredients(recipe, ingredientsData).join(", ")}
     </h3>
     </div>`;
 
@@ -70,7 +71,7 @@ function getActiveTags() {
 
 function updateTagsToDOM() {
   const activeTags = getActiveTags();
-  const tagRecipeCount = getTagRecipeCount(activeTags);
+  const tagRecipeCount = getTagRecipeCount(activeTags, recipeData);
   const tagNames = Object.keys(tagRecipeCount);
 
   tagsContainer.innerHTML = "";
