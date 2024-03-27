@@ -31,7 +31,14 @@ describe("Recipe Tag", () => {
     const recipe = findRecipeIngredients(recipeData, "Vegan");
     expect(recipe).to.deep.equal(["Vegan Lentil Loaf"]);
   });
+
+  it("Should account for case sensitivity and spacing", () => {
+    const recipe = findRecipeIngredients(recipeData, "vegan len ");
+    expect(recipe).to.deep.equal(["Vegan Lentil Loaf"]);
+  });
 });
+
+
 
 describe("Recipe Ingredient List", () => {
   it("Should be a function", () => {
