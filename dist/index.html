@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <link href="https://fonts.cdnfonts.com/css/gatile" rel="stylesheet" />
     <title>Whats Cookin</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <header>
+      <h1 class="logo">What's Cookin'</h1>
+      <nav class="header-nav">
+        <button class="cookbook">COOKBOOK</button>
+        <button class="saved-recipes">SAVED RECIPES</button>
+      </nav>
+    </header>
+
+    <nav class="filter-container">
+      <div class="filter-settings">
+        <input type="text" class="search-box" placeholder="Search ..." />
+        <div class="tags-container">
+          <!-- <button class="tag" data-tag="dinner">Dinner</button>
+          <button class="tag" data-tag="lunch">Lunch</button>
+          <button class="tag" data-tag="side dish">Side Dish</button>
+          <button class="tag" data-tag="antipasti">Antipasti</button> -->
+        </div>
+      </div>
+      <button class="random-recipe">RANDOM RECIPE</button>
+    </nav>
+
+    <main id="directory-page">
+      <div class="sentinel"></div>
+    </main>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
