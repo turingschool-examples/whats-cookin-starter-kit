@@ -35,6 +35,7 @@ const loadMoreRecipes = (function () {
   return function (recipes) {
     if (viewChanged) {
       viewChanged = false;
+      mainElement.scrollTop = 0;
       currentPage = 1;
     }
     currentPage++;
