@@ -37,9 +37,9 @@ export function addRecipeToArray(recipesArray, recipeToAdd) {
   }
 }
 
-export function removeRecipeFromArray(recipesArray, recipeIdToRemove) {
+export function removeRecipeFromArray(recipesArray, recipeToRemove) {
   const recipeIndex = recipesArray.findIndex(
-    (recipe) => recipe.id === recipeIdToRemove
+    (recipe) => recipe.id === recipeToRemove.id
   );
   if (recipeIndex > -1) {
     recipesArray.splice(recipeIndex, 1);

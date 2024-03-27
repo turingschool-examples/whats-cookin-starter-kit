@@ -155,7 +155,7 @@ describe("Recipe", () => {
     });
 
     it("should be able to remove a recipe from an array", function () {
-      removeRecipeFromArray(recipesToCook, recipe1.id);
+      removeRecipeFromArray(recipesToCook, recipe1);
 
       expect(recipesToCook).to.not.include(recipe1);
       expect(recipesToCook).to.include(recipe2);
