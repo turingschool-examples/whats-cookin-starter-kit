@@ -1,63 +1,88 @@
-import recipeData from '../src/data/recipes.js'
-import { filterRecipeByTag } from '../src/tags';
+import { filterRecipeByTag, getTagRecipeCount } from "../src/tags";
+import ingredientsData from "./data/ingredients";
+import recipeData from "./data/recipes";
+import { findRecipeIngredients } from "./recipes";
 
 //Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
-const displayRecipes = () => {
-  console.log(`Displaying recipes now`)
+
+let recipesToDisplay = [];
+
+const tagsContainer = document.querySelector(".tags-container");
+const mainElement = document.getElementById("directory-page");
+
+addEventListener("load", init);
+tagsContainer.addEventListener("click", function (e) {
+  if (!e.target.classList.contains("tag")) return;
+
+  e.target.classList.toggle("tag-active");
+  recipesToDisplay = filterRecipeByTag(getActiveTags(), recipeData);
+  displayRecipes(recipesToDisplay);
+  updateTagsToDOM();
+});
+
+// FUNCTIONS
+function init() {
+  recipesToDisplay = recipesToDisplay.concat(recipeData);
+  displayRecipes(recipesToDisplay);
+  updateTagsToDOM();
 }
 
-function filteredDomRecipes(recipeData) {
-  const mainElement = document.getElementById('directory-page');
-  mainElement.innerHTML = '';
+function displayRecipes(dataBase) {
+  mainElement.innerHTML = "";
+  dataBase.forEach((recipe) => mainElement.append(createRecipeHTML(recipe)));
+  console.log(`Displaying recipes now`);
+}
 
-  recipeData.forEach((recipe) => {
-    const article = document.createElement('article');
-    article.classList.add('recipe-card');
+function createRecipeHTML(recipe) {
+  const article = document.createElement("article");
+  article.classList.add("recipe-card");
 
-    const ingredientsList = recipe.ingredients.map((ingredients) => {
-      return ingredients.name || `${ingredients.id}`
-    }).join(', ');
-
-    article.innerHTML = `
-      <div class="recipe-image">
-        <img src="${recipe.image}" alt="${recipe.name}">
+  article.innerHTML = `
+    <div class="recipe-image">
+      <img src="${recipe.image}" alt="${recipe.name}">
+    </div>
+    <div class="recipe-info">
+      <div class="tags-and-heart">
+        <h3 class="recipe-tags">${recipe.tags.join(", ")}</h3>
+        <svg
+        class="heart"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        style="
+          fill: rgba(157, 150, 139, 1);
+          transform: scaleX(-1);
+          msfilter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
+        ">
       </div>
-      <div class="recipe-info">
-        <div class="tags-and-heart">
-          <h3 class="recipe-tags">${recipe.tags.join(', ')}</h3>
-          <svg
-          class="heart"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          style="
-            fill: rgba(157, 150, 139, 1);
-            transform: scaleX(-1);
-            msfilter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
-          "
-        >
-        </div>
-        <h2 class="recipe-name">${recipe.name}</h2>
-        <h3 class="recipe-ingredients">
-        <span class="label"> ingredients </span>
-        antipasti, starter, snack, appetizer, antipasto, hor d'oeuvre
-      </h3>
-      </div>
-    `;
+      <h2 class="recipe-name">${recipe.name}</h2>
+      <h3 class="recipe-ingredients">
+      <span class="label"> ingredients </span>
+      ${findRecipeIngredients(recipe, ingredientsData).join(", ")}
+    </h3>
+    </div>`;
 
-    mainElement.appendChild(article);
+  return article;
+}
+
+function getActiveTags() {
+  const activeTags = document.querySelectorAll(".tag-active");
+  return Array.from(activeTags).map((button) => button.dataset.tag);
+}
+
+function updateTagsToDOM() {
+  const activeTags = getActiveTags();
+  const tagRecipeCount = getTagRecipeCount(activeTags, recipeData);
+  const tagNames = Object.keys(tagRecipeCount);
+
+  tagsContainer.innerHTML = "";
+  tagNames.forEach((tagName) => {
+    const button = document.createElement("button");
+    button.className = "tag";
+    if (activeTags.includes(tagName)) button.classList.add("tag-active");
+    button.dataset.tag = tagName;
+    button.textContent = `${tagName} (${tagRecipeCount[tagName]})`;
+    tagsContainer.appendChild(button);
   });
-};
-
-document.querySelectorAll('.tag').forEach((button) => {
-  button.addEventListener('click', function() {
-    const tag = this.textContent;
-
-    const filteredRecipes = filterRecipeByTag([tag])
-
-    filteredDomRecipes(filteredRecipes);
-  })
-})
-
-export {
-  displayRecipes,
 }
+
+export { displayRecipes };
