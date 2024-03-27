@@ -1,6 +1,10 @@
 import { filterRecipeByTag, getTagRecipeCount } from "../src/tags";
 import recipeData from "./data/recipes";
-import { findRecipeIngredients } from "./recipes";
+import {
+  findRecipeIngredients,
+  findRecipeIngredientsQuantity,
+  findRecipeInstructions,
+} from "./recipes";
 
 //Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
 
@@ -18,7 +22,6 @@ tagsContainer.addEventListener("click", function (e) {
   displayRecipes(recipesToDisplay);
   updateTagsToDOM();
 });
-
 
 // FUNCTIONS
 function init() {
@@ -77,27 +80,37 @@ function createRecipeHTML(recipe) {
         </svg>
       </div>
       <h2 class="recipe-name">${recipe.name}</h2>
-      <h3 class="recipe-ingredients"><span class="label">Ingredients:</span> ${findRecipeIngredients(recipe).join(", ")}</h3>
+      <h3 class="recipe-ingredients"><span class="label">Ingredients:</span> ${findRecipeIngredients(
+        recipe
+      ).join(", ")}</h3>
     </div>`;
-    
-article.addEventListener("click", () => {
-  console.log('recipe', recipe.instructions[0])
-  const main = document.querySelector('main');
-  main.innerHTML = '';
 
-  const instructionsList = recipe.instructions.reduce((innerHTML, instruction) => {
-    innerHTML+= `<li>${instruction}</li>`
-  }
-    , '').join(''); 
-  const ingredientsList = recipe.ingredients.reduce((innerHTML, ingredient) => {
-    innerHTML+= `<li>
-    <div class="ingredient-name">${ingredient.name}</div>
-    <div class="ingredient-amount">${ingredient.amount}</div>
-  </li>`
-  }
-  , '').join('');
-  console.log(instructionsList)
-  main.innerHTML = `
+  article.addEventListener("click", () => {
+    console.log("recipe", recipe.instructions[0]);
+    const main = document.querySelector("main");
+    main.innerHTML = "";
+
+    const instructionsList = findRecipeInstructions(recipe).reduce(
+      (innerHTML, instruction) => {
+        innerHTML += `<li>${instruction}</li>`;
+        return innerHTML;
+      },
+      ""
+    );
+
+    const ingredientList = findRecipeIngredients(recipe);
+    const quantityList = findRecipeIngredientsQuantity(recipe);
+
+    let ingredientQuantityHTML = "";
+
+    ingredientList.forEach((ingredient, index) => {
+      ingredientQuantityHTML += `<li>
+      <div class="ingredient-name">${ingredient}</div>
+      <div class="ingredient-amount">${quantityList[index]}</div>
+       </li>`;
+    });
+
+    main.innerHTML = `
     <div class="recipe-title">
       <div class="image-container">
         <img src="${recipe.image}" alt="${recipe.name} Image" />
@@ -112,14 +125,12 @@ article.addEventListener("click", () => {
 
     <div class="ingredients">
       <h1>Ingredients</h1>
-      <ul>${ingredientsList}</ul>
+      <ul>${ingredientQuantityHTML}</ul>
     </div>`;
-});
-
+  });
 
   return article;
 }
-
 
 function getActiveTags() {
   const activeTags = document.querySelectorAll(".tag-active");
