@@ -54,12 +54,18 @@ function displayAllRecipes(recipes) {
 
 
 function filterRecipesByTag(tag) {
-
 };
 
-function searchRecipesByName(name) {
-
-};
+// function searchRecipesByName(name) {
+//   const matchingRecipes = recipeData.filter(recipe.name.includes(name))
+//   if (matchingRecipes.length > 0) {
+//     console.log("MATHCHING RECIPES")
+//     matchingRecipes.forEach(recipe => console.log(recipe.name))
+//   } else {
+//     console.log('NO RECIPES MATCH THIS ONE')
+//   }
+// };
+// searchRecipesByName("Maple something something")
 
 function searchRecipesByIngredients(ingredients) {
   
