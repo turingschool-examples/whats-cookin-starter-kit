@@ -27,3 +27,7 @@ export function findIngredient(ingredientID, ingredient_dataset) {
     (ingredientData) => ingredientData.id == ingredientID
   );
 }
+
+export function findRecipeFromID(recipeID, recipe_dataset) {
+  return recipe_dataset.find((recipe) => recipe.id === +recipeID);
+}

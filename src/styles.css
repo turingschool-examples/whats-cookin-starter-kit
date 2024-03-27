@@ -176,28 +176,36 @@ main#directory-page {
 
 /* CODE FOR INDIVIDUAL RECIPE PAGE */
 main#recipe-page {
-  background-color: #fff3e0;
+  .recipe-container {
+    background-color: #fff3e0;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    grid-template-rows: 300px 1fr;
 
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  grid-template-rows: 300px 1fr;
-
-  width: 1000px;
+    width: 1000px;
+  }
 
   .recipe-title {
     position: relative;
     grid-column: 1/-1;
 
     h1 {
+      font-family: "Gatile";
       position: absolute;
       top: 50px;
-      background-color: red;
+      background-color: #fff3e0;
+      font-size: 4.7vh;
+      display: inline-block;
+      padding: 0.1em 0.3em;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
     }
   }
 
   .image-container {
     height: 100%;
     overflow: hidden;
+    border-radius: 15px;
 
     img {
       object-fit: cover;
@@ -206,6 +214,10 @@ main#recipe-page {
   }
 
   .instructions {
+    h1 {
+      font-family: "Gatile";
+      text-align: center;
+    }
     ol {
       list-style: none;
       counter-reset: item;
@@ -232,6 +244,11 @@ main#recipe-page {
   }
 
   .ingredients {
-    background-color: red;
+    h1 {
+      text-align: center;
+      font-family: "Gatile";
+    }
+    background-color: #998971;
+    border-radius: 15px;
   }
 }
