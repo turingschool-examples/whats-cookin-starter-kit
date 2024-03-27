@@ -1,4 +1,5 @@
 import { use } from "chai";
+import { filterRecipeName, filterRecipeTag } from "./recipes";
 
 const addRecipeToCook = (recipe, user) =>{
     user.recipesToCook.push(recipe)
@@ -12,15 +13,20 @@ function removeRecipeToCook (recipe, user){
     return user;
 };
 
-const filterUserRecipesByTag = () => {
-
+const filterUserRecipesByTag = (tag, user) => {
+    const result = [filterRecipeTag(tag, user.recipesToCook)];
+    return result;
 };
 
-const filterUserRecipesByName = () => {
+const filterUserRecipesByName = (name, user) => {
+    const result = [filterRecipeName(name, user.recipesToCook)]
+    return result
 
 };
 
 export{
     addRecipeToCook,
-    removeRecipeToCook
-}
+    removeRecipeToCook,
+    filterUserRecipesByTag,
+    filterUserRecipesByName
+};
