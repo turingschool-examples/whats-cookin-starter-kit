@@ -5,11 +5,12 @@ import { findRecipeIngredients } from "./recipes";
 let recipesToDisplay = [];
 const tagsContainer = document.querySelector(".tags-container");
 const mainElement = document.getElementById("directory-page");
+let viewChanged = false
 
 addEventListener("load", init);
 tagsContainer.addEventListener("click", function (e) {
   if (!e.target.classList.contains("tag")) return;
-
+  viewChanged = true
   e.target.classList.toggle("tag-active");
   recipesToDisplay = filterRecipeByTag(getActiveTags());
   displayRecipes(recipesToDisplay);
@@ -31,6 +32,10 @@ const load = (function () {
   const recipesPerPage = 5;
 
   function moreRecipes(recipes) {
+    if (viewChanged){
+      viewChanged = false
+      currentPage = 1
+    }
     currentPage++;
     const recipesToRender = recipes.slice(0, currentPage * recipesPerPage);
     recipesToRender.forEach((recipe) =>
