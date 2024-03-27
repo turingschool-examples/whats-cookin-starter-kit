@@ -9,7 +9,6 @@ import {
 } from "./recipes";
 import { search } from "./search";
 
-
 let recipesToDisplay = recipeData;
 let viewChanged = false;
 
@@ -18,7 +17,6 @@ const main = document.querySelector("main");
 const mainDirectory = document.getElementById("directory-page");
 const mainRecipe = document.getElementById("recipe-page");
 const filterSection = document.querySelector("nav.filter-container");
-const mainElement = document.getElementById("directory-page");
 const searchBox = document.querySelector(".search-box");
 
 // EVENT LISTENERS
@@ -30,7 +28,7 @@ tagsContainer.addEventListener("click", function (e) {
   e.target.classList.toggle("tag-active");
   filterRecipes();
 });
-mainElement.addEventListener("scroll", () => {
+mainDirectory.addEventListener("scroll", () => {
   if (isSentinelInView()) displayRecipes(recipesToDisplay);
 });
 mainDirectory.addEventListener("click", (e) => {
@@ -56,7 +54,7 @@ const loadMoreRecipes = (function () {
 
   function resetView() {
     viewChanged = false;
-    mainElement.scrollTop = 0;
+    mainDirectory.scrollTop = 0;
     currentPage = 1;
   }
 
@@ -65,18 +63,18 @@ const loadMoreRecipes = (function () {
 
     const recipesToRender = recipes.slice(0, currentPage * recipesPerPage);
     recipesToRender.forEach((recipe) =>
-      mainElement.append(createRecipeHTML(recipe))
+      mainDirectory.append(createRecipeHTML(recipe))
     );
     currentPage++;
 
     const sentinel = document.querySelector(".sentinel");
     if (sentinel) sentinel.remove();
-    mainElement.append(createSentinelHTML());
+    mainDirectory.append(createSentinelHTML());
   };
 })();
 
 function displayRecipes(recipe_dataset) {
-  mainElement.innerHTML = "";
+  mainDirectory.innerHTML = "";
   loadMoreRecipes(recipe_dataset);
 }
 
@@ -129,7 +127,7 @@ function createRecipePageHTML(recipe) {
     ""
   );
 
-  const ingredientList = findRecipeIngredients(recipe);
+  const ingredientList = findRecipeIngredients(recipe, ingredientsData);
   const quantityList = findRecipeIngredientsQuantity(recipe);
 
   let ingredientQuantityHTML = ingredientList
