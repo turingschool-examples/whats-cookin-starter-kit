@@ -4,33 +4,28 @@ import recipeData from "./data/recipes";
 import { findRecipeIngredients } from "./recipes";
 import { search } from "./search";
 
-let recipesToDisplay = [];
-const tagsContainer = document.querySelector(".tags-container");
-const mainElement = document.getElementById("directory-page");
-const searchBox = document.querySelector(".search-box")
+let recipesToDisplay = recipeData;
 let viewChanged = false;
 
+const tagsContainer = document.querySelector(".tags-container");
+const mainElement = document.getElementById("directory-page");
+const searchBox = document.querySelector(".search-box");
+
+// EVENT LISTENERS
 addEventListener("load", init);
+searchBox.addEventListener("input", filterRecipes);
 tagsContainer.addEventListener("click", function (e) {
   if (!e.target.classList.contains("tag")) return;
-  viewChanged = true;
+
   e.target.classList.toggle("tag-active");
-  recipesToDisplay = filterRecipesByTagsAndSearch(searchBox.value.trim(), recipeData, ingredientsData);
-  displayRecipes(recipesToDisplay);
-  updateTagsToDOM();
- });
+  filterRecipes();
+});
 mainElement.addEventListener("scroll", () => {
   if (isSentinelInView()) displayRecipes(recipesToDisplay);
 });
-searchBox.addEventListener('input', function(event) {
-  const searchQuery = event.target.value.trim(); 
-  recipesToDisplay = filterRecipesByTagsAndSearch(searchQuery, recipeData, ingredientsData);
-  displayRecipes(recipesToDisplay);
- });
 
 // FUNCTIONS
 function init() {
-  recipesToDisplay = recipesToDisplay.concat(recipeData);
   displayRecipes(recipesToDisplay);
   updateTagsToDOM();
 }
@@ -39,17 +34,20 @@ const loadMoreRecipes = (function () {
   let currentPage = 1;
   const recipesPerPage = 5;
 
+  function resetView() {
+    viewChanged = false;
+    mainElement.scrollTop = 0;
+    currentPage = 1;
+  }
+
   return function (recipes) {
-    if (viewChanged) {
-      viewChanged = false;
-      mainElement.scrollTop = 0;
-      currentPage = 1;
-    }
-    currentPage++;
+    if (viewChanged) resetView();
+
     const recipesToRender = recipes.slice(0, currentPage * recipesPerPage);
     recipesToRender.forEach((recipe) =>
       mainElement.append(createRecipeHTML(recipe))
     );
+    currentPage++;
 
     const sentinel = document.querySelector(".sentinel");
     if (sentinel) sentinel.remove();
@@ -59,10 +57,7 @@ const loadMoreRecipes = (function () {
 
 function displayRecipes(recipe_dataset) {
   mainElement.innerHTML = "";
-  recipe_dataset.forEach((recipe) =>
-    mainElement.append(createRecipeHTML(recipe))
-  );
-  mainElement.append(createSentinelHTML());
+  loadMoreRecipes(recipe_dataset);
 }
 
 function createSentinelHTML() {
@@ -130,17 +125,17 @@ function isSentinelInView() {
   return rect.top <= window.innerHeight;
 }
 
-function filterRecipesByTagsAndSearch(searchQuery, recipeData, ingredientsData) {
-  // First, filter by tags
-  let filteredRecipes = filterRecipeByTag(getActiveTags(), recipeData);
-   
-  // Then, filter by search query
-  filteredRecipes = search(searchQuery, filteredRecipes, ingredientsData);
-   
-  return filteredRecipes;
- }
+function filterRecipes() {
+  recipesToDisplay = filterRecipeByTag(getActiveTags(), recipeData);
+  recipesToDisplay = search(
+    searchBox.value.trim(),
+    recipesToDisplay,
+    ingredientsData
+  );
 
-
-//laurel's code
+  viewChanged = true;
+  displayRecipes(recipesToDisplay);
+  updateTagsToDOM();
+}
 
 export { displayRecipes };
