@@ -171,13 +171,14 @@ main#directory-page {
 
 /* CODE FOR INDIVIDUAL RECIPE PAGE */
 main#recipe-page {
-  background-color: #fff3e0;
+  .recipe-container {
+    background-color: #fff3e0;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    grid-template-rows: 300px 1fr;
 
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  grid-template-rows: 300px 1fr;
-
-  width: 1000px;
+    width: 1000px;
+  }
 
   .recipe-title {
     position: relative;

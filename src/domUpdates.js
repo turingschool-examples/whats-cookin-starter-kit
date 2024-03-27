@@ -1,6 +1,7 @@
 import { filterRecipeByTag, getTagRecipeCount } from "../src/tags";
 import recipeData from "./data/recipes";
 import {
+  findRecipeFromID,
   findRecipeIngredients,
   findRecipeIngredientsQuantity,
   findRecipeInstructions,
@@ -11,7 +12,10 @@ import {
 let recipesToDisplay = [];
 
 const tagsContainer = document.querySelector(".tags-container");
-const mainElement = document.getElementById("directory-page");
+const main = document.querySelector("main");
+const mainDirectory = document.getElementById("directory-page");
+const mainRecipe = document.getElementById("recipe-page");
+const filterSection = document.querySelector("nav.filter-container");
 
 addEventListener("load", init);
 tagsContainer.addEventListener("click", function (e) {
@@ -22,6 +26,16 @@ tagsContainer.addEventListener("click", function (e) {
   displayRecipes(recipesToDisplay);
   updateTagsToDOM();
 });
+mainDirectory.addEventListener("click", (e) => {
+  if (!e.target.closest(".recipe-card")) return;
+  const clickedRecipe = e.target.closest(".recipe-card");
+  const recipe = findRecipeFromID(clickedRecipe.dataset.id, recipeData);
+
+  main.innerHTML = "";
+  main.append(createRecipePageHTML(recipe));
+  main.setAttribute("id", "recipe-page");
+  filterSection.classList.add("hidden");
+});
 
 // FUNCTIONS
 function init() {
@@ -31,16 +45,15 @@ function init() {
 }
 
 function displayRecipes(dataBase) {
-  mainElement.innerHTML = "";
-  dataBase.forEach((recipe) => mainElement.append(createRecipeHTML(recipe)));
+  mainDirectory.innerHTML = "";
+  dataBase.forEach((recipe) => mainDirectory.append(createRecipeHTML(recipe)));
   console.log(`Displaying recipes now`);
 }
-
 
 function createRecipeHTML(recipe) {
   const article = document.createElement("article");
   article.classList.add("recipe-card");
-  article.setAttribute("data-id", recipe.id);
+  article.dataset.id = recipe.id;
 
   article.innerHTML = `
     <div class="recipe-image">
@@ -61,27 +74,25 @@ function createRecipeHTML(recipe) {
       <h2 class="recipe-name">${recipe.name}</h2>
       <h3 class="recipe-ingredients">
         <span class="label">Ingredients:</span> ${findRecipeIngredients(
-          recipe,
+          recipe
         ).join(", ")}
       </h3>
     </div>
   `;
 
-  article.addEventListener("click", () => displayRecipeDetails(recipe));
-
   return article;
 }
 
-function displayRecipeDetails(recipe) {
-  const body = document.querySelector("body");
-  body.innerHTML = "";
+function createRecipePageHTML(recipe) {
+  const recipeContainer = document.createElement("div");
+  recipeContainer.classList.add("recipe-container");
 
   const instructionsList = findRecipeInstructions(recipe).reduce(
     (innerHTML, instruction) => {
       innerHTML += `<li>${instruction}</li>`;
       return innerHTML;
     },
-    "",
+    ""
   );
 
   const ingredientList = findRecipeIngredients(recipe);
@@ -96,44 +107,23 @@ function displayRecipeDetails(recipe) {
     })
     .join("");
 
-  body.innerHTML = `
-    <header>
-      <h1 class="logo">What's Cookin'</h1>
-      <nav class="header-nav">
-        <button class="cookbook">COOKBOOK</button>
-        <button class="saved-recipes">SAVED RECIPES</button>
-      </nav>
-    </header>
+  recipeContainer.innerHTML = `
+    <div class="recipe-title">
+      <div class="image-container">
+        <img src="${recipe.image}" alt="${recipe.name}"/>
+      </div>
+      <h1>${recipe.name}</h1>
+    </div>
+    <div class="instructions">
+      <h1>Instructions</h1>
+      <ol>${instructionsList}</ol>
+    </div>
+    <div class="ingredients">
+      <h1>Ingredients</h1>
+      <ul>${ingredientQuantityHTML}</ul>
+    </div>`;
 
-    <nav class="filter-container hidden">
-      <div class="filter-settings">
-        <input type="text" class="search-box" placeholder="Search ..."/>
-        <div class="tags-container">
-          <button class="tag">tag1</button>
-          <button class="tag">tag2</button>
-          <button class="tag">tag3</button>
-          <button class="tag">tag4</button>
-        </div>
-      </div>
-      <button class="random-recipe">RANDOM RECIPE</button>
-    </nav>
-
-    <main id="recipe-page">
-      <div class="recipe-title">
-        <div class="image-container">
-          <img src="${recipe.image}" alt="${recipe.name}"/>
-        </div>
-        <h1>${recipe.name}</h1>
-      </div>
-      <div class="instructions">
-        <h1>Instructions</h1>
-        <ol>${instructionsList}</ol>
-      </div>
-      <div class="ingredients">
-        <h1>Ingredients</h1>
-        <ul>${ingredientQuantityHTML}</ul>
-      </div>
-    </main>`;
+  return recipeContainer;
 }
 
 function getActiveTags() {
