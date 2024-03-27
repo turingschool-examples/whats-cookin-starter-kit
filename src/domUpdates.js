@@ -64,7 +64,6 @@ function createRecipeHTML(recipe) {
   const article = document.createElement("article");
   article.classList.add("recipe-card");
   article.setAttribute("data-id", recipe.id);
-  console.log('recipe', recipe.instructions[0])
 
   article.innerHTML = `
     <div class="recipe-image">
@@ -82,17 +81,22 @@ function createRecipeHTML(recipe) {
     </div>`;
     
 article.addEventListener("click", () => {
+  console.log('recipe', recipe.instructions[0])
   const main = document.querySelector('main');
   main.innerHTML = '';
 
-  const instructionsList = recipe.instructions.map((instruction) => `<li>${instruction}</li>`).join('');
-  const ingredientsList = recipe.ingredients.map((ingredient) =>
-    `<li>
-      <div class="ingredient-name">${ingredient.name}</div>
-      <div class="ingredient-amount">${ingredient.amount}</div>
-    </li>`
-  ).join('');
-
+  const instructionsList = recipe.instructions.reduce((innerHTML, instruction) => {
+    innerHTML+= `<li>${instruction}</li>`
+  }
+    , '').join(''); 
+  const ingredientsList = recipe.ingredients.reduce((innerHTML, ingredient) => {
+    innerHTML+= `<li>
+    <div class="ingredient-name">${ingredient.name}</div>
+    <div class="ingredient-amount">${ingredient.amount}</div>
+  </li>`
+  }
+  , '').join('');
+  console.log(instructionsList)
   main.innerHTML = `
     <div class="recipe-title">
       <div class="image-container">
