@@ -1,7 +1,6 @@
 import { filterRecipeByTag, getTagRecipeCount } from "../src/tags";
 import recipeData from "./data/recipes";
 import { findRecipeIngredients } from "./recipes";
-import recipeData from './data/recipes';
 
 //Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
 
@@ -20,6 +19,7 @@ tagsContainer.addEventListener("click", function (e) {
   updateTagsToDOM();
 });
 
+
 // FUNCTIONS
 function init() {
   recipesToDisplay = recipesToDisplay.concat(recipeData);
@@ -33,9 +33,38 @@ function displayRecipes(dataBase) {
   console.log(`Displaying recipes now`);
 }
 
+// function createRecipeHTML(recipe) {
+//   const article = document.createElement("article");
+//   article.classList.add("recipe-card");
+//   article.setAttribute("data-id", recipe.id);
+
+//   article.innerHTML = `
+//     <div class="recipe-image">
+//       <img src="${recipe.image}" alt="${recipe.name}">
+//     </div>
+//     <div class="recipe-info">
+//       <div class="tags-and-heart">
+//         <h3 class="recipe-tags">${recipe.tags.join(", ")}</h3>
+//         <svg class="heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+//           <!-- SVG content omitted for brevity -->
+//         </svg>
+//       </div>
+//       <h2 class="recipe-name">${recipe.name}</h2>
+//       <h3 class="recipe-ingredients"><span class="label">Ingredients:</span> ${findRecipeIngredients(recipe).join(", ")}</h3>
+//     </div>`;
+
+//   article.addEventListener("click", () => {
+//     displayRecipes([recipe]);
+//   });
+
+//   return article;
+// }
+
 function createRecipeHTML(recipe) {
   const article = document.createElement("article");
   article.classList.add("recipe-card");
+  article.setAttribute("data-id", recipe.id);
+  console.log('recipe', recipe.instructions[0])
 
   article.innerHTML = `
     <div class="recipe-image">
@@ -44,25 +73,49 @@ function createRecipeHTML(recipe) {
     <div class="recipe-info">
       <div class="tags-and-heart">
         <h3 class="recipe-tags">${recipe.tags.join(", ")}</h3>
-        <svg
-        class="heart"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        style="
-          fill: rgba(157, 150, 139, 1);
-          transform: scaleX(-1);
-          msfilter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
-        ">
+        <svg class="heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <!-- SVG content omitted for brevity -->
+        </svg>
       </div>
       <h2 class="recipe-name">${recipe.name}</h2>
-      <h3 class="recipe-ingredients">
-      <span class="label"> ingredients </span>
-      ${findRecipeIngredients(recipe).join(", ")}
-    </h3>
+      <h3 class="recipe-ingredients"><span class="label">Ingredients:</span> ${findRecipeIngredients(recipe).join(", ")}</h3>
     </div>`;
+    
+article.addEventListener("click", () => {
+  const main = document.querySelector('main');
+  main.innerHTML = '';
+
+  const instructionsList = recipe.instructions.map((instruction) => `<li>${instruction}</li>`).join('');
+  const ingredientsList = recipe.ingredients.map((ingredient) =>
+    `<li>
+      <div class="ingredient-name">${ingredient.name}</div>
+      <div class="ingredient-amount">${ingredient.amount}</div>
+    </li>`
+  ).join('');
+
+  main.innerHTML = `
+    <div class="recipe-title">
+      <div class="image-container">
+        <img src="${recipe.image}" alt="${recipe.name} Image" />
+      </div>
+      <h1>${recipe.name}</h1>
+    </div>
+
+    <div class="instructions">
+      <h1>Instructions</h1>
+      <ol>${instructionsList}</ol>
+    </div>
+
+    <div class="ingredients">
+      <h1>Ingredients</h1>
+      <ul>${ingredientsList}</ul>
+    </div>`;
+});
+
 
   return article;
 }
+
 
 function getActiveTags() {
   const activeTags = document.querySelectorAll(".tag-active");
