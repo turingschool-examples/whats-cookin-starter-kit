@@ -27,11 +27,11 @@ function init() {
   updateTagsToDOM();
 }
 
-const load = (function () {
+const loadMoreRecipes = (function () {
   let currentPage = 1;
   const recipesPerPage = 5;
 
-  function moreRecipes(recipes) {
+  return function (recipes) {
     if (viewChanged){
       viewChanged = false
       currentPage = 1
@@ -47,7 +47,6 @@ const load = (function () {
     mainElement.append(createSentinelHTML());
   }
 
-  return { moreRecipes };
 })();
 
 function displayRecipes(dataBase) {
@@ -55,7 +54,7 @@ function displayRecipes(dataBase) {
   // dataBase.forEach((recipe) => mainElement.append(createRecipeHTML(recipe)));
   // if (isSentinelInView())
 
-  load.moreRecipes(recipesToDisplay);
+  loadMoreRecipes(recipesToDisplay);
 }
 
 function createSentinelHTML() {
