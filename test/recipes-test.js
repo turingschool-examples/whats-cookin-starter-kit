@@ -1,4 +1,5 @@
 import { expect } from "chai";
+import ingredientsData from "../src/data/ingredients";
 import { recipe1, recipe2 } from "../src/data/mockRecipe";
 import {
   findRecipeFromID,
@@ -14,7 +15,7 @@ describe("Recipe", () => {
     });
 
     it("Should return an array of ingredients given a recipe", () => {
-      const ingredients = findRecipeIngredients(recipe1);
+      const ingredients = findRecipeIngredients(recipe1, ingredientsData);
       expect(ingredients).to.deep.equal([
         "wheat flour",
         "bicarbonate of soda",
@@ -31,7 +32,7 @@ describe("Recipe", () => {
     });
 
     it("Should return an array of ingredients given a recipe", () => {
-      const ingredients = findRecipeIngredients(recipe2);
+      const ingredients = findRecipeIngredients(recipe2, ingredientsData);
       expect(ingredients).to.deep.equal([
         "wheat flour",
         "blanched almond flour",
@@ -46,7 +47,10 @@ describe("Recipe", () => {
 
   describe("Find quantity of ingredients", () => {
     it("Should return an array of ingredients quantities given a recipe", () => {
-      const ingredients = findRecipeIngredientsQuantity(recipe1);
+      const ingredients = findRecipeIngredientsQuantity(
+        recipe1,
+        ingredientsData
+      );
       expect(ingredients).to.deep.equal([
         "1.5 c",
         "0.5 tsp",
@@ -63,7 +67,10 @@ describe("Recipe", () => {
     });
 
     it("Should return a different array of ingredients quantities given a different recipe", () => {
-      const ingredients = findRecipeIngredientsQuantity(recipe2);
+      const ingredients = findRecipeIngredientsQuantity(
+        recipe2,
+        ingredientsData
+      );
       expect(ingredients).to.deep.equal([
         "160 g",
         "40 g",

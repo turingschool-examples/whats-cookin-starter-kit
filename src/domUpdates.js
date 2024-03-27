@@ -1,4 +1,5 @@
 import { filterRecipeByTag, getTagRecipeCount } from "../src/tags";
+import ingredientsData from "./data/ingredients";
 import recipeData from "./data/recipes";
 import {
   findRecipeFromID,
@@ -6,25 +7,31 @@ import {
   findRecipeIngredientsQuantity,
   findRecipeInstructions,
 } from "./recipes";
+import { search } from "./search";
 
-//Here is an example function just to demonstrate one way you can export/import between the two js files. You'll want to delete this once you get your own code going.
 
-let recipesToDisplay = [];
+let recipesToDisplay = recipeData;
+let viewChanged = false;
 
 const tagsContainer = document.querySelector(".tags-container");
 const main = document.querySelector("main");
 const mainDirectory = document.getElementById("directory-page");
 const mainRecipe = document.getElementById("recipe-page");
 const filterSection = document.querySelector("nav.filter-container");
+const mainElement = document.getElementById("directory-page");
+const searchBox = document.querySelector(".search-box");
 
+// EVENT LISTENERS
 addEventListener("load", init);
+searchBox.addEventListener("input", filterRecipes);
 tagsContainer.addEventListener("click", function (e) {
   if (!e.target.classList.contains("tag")) return;
 
   e.target.classList.toggle("tag-active");
-  recipesToDisplay = filterRecipeByTag(getActiveTags());
-  displayRecipes(recipesToDisplay);
-  updateTagsToDOM();
+  filterRecipes();
+});
+mainElement.addEventListener("scroll", () => {
+  if (isSentinelInView()) displayRecipes(recipesToDisplay);
 });
 mainDirectory.addEventListener("click", (e) => {
   if (!e.target.closest(".recipe-card")) return;
@@ -39,15 +46,44 @@ mainDirectory.addEventListener("click", (e) => {
 
 // FUNCTIONS
 function init() {
-  recipesToDisplay = recipesToDisplay.concat(recipeData);
   displayRecipes(recipesToDisplay);
   updateTagsToDOM();
 }
 
-function displayRecipes(dataBase) {
-  mainDirectory.innerHTML = "";
-  dataBase.forEach((recipe) => mainDirectory.append(createRecipeHTML(recipe)));
-  console.log(`Displaying recipes now`);
+const loadMoreRecipes = (function () {
+  let currentPage = 1;
+  const recipesPerPage = 5;
+
+  function resetView() {
+    viewChanged = false;
+    mainElement.scrollTop = 0;
+    currentPage = 1;
+  }
+
+  return function (recipes) {
+    if (viewChanged) resetView();
+
+    const recipesToRender = recipes.slice(0, currentPage * recipesPerPage);
+    recipesToRender.forEach((recipe) =>
+      mainElement.append(createRecipeHTML(recipe))
+    );
+    currentPage++;
+
+    const sentinel = document.querySelector(".sentinel");
+    if (sentinel) sentinel.remove();
+    mainElement.append(createSentinelHTML());
+  };
+})();
+
+function displayRecipes(recipe_dataset) {
+  mainElement.innerHTML = "";
+  loadMoreRecipes(recipe_dataset);
+}
+
+function createSentinelHTML() {
+  const sentinel = document.createElement("div");
+  sentinel.classList.add("sentinel");
+  return sentinel;
 }
 
 function createRecipeHTML(recipe) {
@@ -73,12 +109,10 @@ function createRecipeHTML(recipe) {
       </div>
       <h2 class="recipe-name">${recipe.name}</h2>
       <h3 class="recipe-ingredients">
-        <span class="label">Ingredients:</span> ${findRecipeIngredients(
-          recipe
-        ).join(", ")}
-      </h3>
-    </div>
-  `;
+      <span class="label"> ingredients </span>
+      ${findRecipeIngredients(recipe, ingredientsData).join(", ")}
+    </h3>
+    </div>`;
 
   return article;
 }
@@ -133,7 +167,7 @@ function getActiveTags() {
 
 function updateTagsToDOM() {
   const activeTags = getActiveTags();
-  const tagRecipeCount = getTagRecipeCount(activeTags);
+  const tagRecipeCount = getTagRecipeCount(activeTags, recipeData);
   const tagNames = Object.keys(tagRecipeCount);
 
   tagsContainer.innerHTML = "";
@@ -145,6 +179,26 @@ function updateTagsToDOM() {
     button.textContent = `${tagName} (${tagRecipeCount[tagName]})`;
     tagsContainer.appendChild(button);
   });
+}
+
+function isSentinelInView() {
+  const sentinel = document.querySelector(".sentinel");
+  if (!sentinel) return false;
+  const rect = sentinel.getBoundingClientRect();
+  return rect.top <= window.innerHeight;
+}
+
+function filterRecipes() {
+  recipesToDisplay = filterRecipeByTag(getActiveTags(), recipeData);
+  recipesToDisplay = search(
+    searchBox.value.trim(),
+    recipesToDisplay,
+    ingredientsData
+  );
+
+  viewChanged = true;
+  displayRecipes(recipesToDisplay);
+  updateTagsToDOM();
 }
 
 export { displayRecipes };

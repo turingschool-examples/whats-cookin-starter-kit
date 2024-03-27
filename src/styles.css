@@ -161,6 +161,11 @@ main#directory-page {
   transition: background-color 0.3s;
 }
 
+.sentinel {
+  position: relative;
+  height: 1px;
+}
+
 .tag-active {
   background-color: #d39738;
 }
