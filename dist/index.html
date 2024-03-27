@@ -2,10 +2,48 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Whats Cookin</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <section class="main-page">
+      <header class="main-title">
+        <h1 class="whats-cookin-header">
+          Whats Cookin
+        </h1>
+        <div class="topnav">
+          <a class="active" href="#home">Home</a>
+          <a href="#recipes">Recipes</a>
+          <a href="#ingredients">Ingredients</a>
+          <input type="text" placeholder="Search">
+          <button type="submit">Search</button>
+        </div>
+        <h2 class="featured-recipes-header">
+          This weeks featured recipes:
+        </h2>
+    </header>
+    <section class="featured-recipes">
+    <div class="featured-recipe-box1">
+      Recipe 1
+    </div>
+    <div class="featured-recipe-box2">
+      Recipe 2
+    </div>
+    <div class="featured-recipe-box3">
+      Recipe 3
+    </div>
+    </section>
+    <section class="all-recipes hidden">
+      <div class="recipe-box1">
+        Recipe 1
+      </div>
+  </section>
+    
+
+    
+  
+  
+   </section>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
