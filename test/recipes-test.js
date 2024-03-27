@@ -2,10 +2,12 @@ import { expect } from "chai";
 import ingredientsData from "../src/data/ingredients";
 import { recipe1, recipe2 } from "../src/data/mockRecipe";
 import {
+  addRecipeToArray,
   findRecipeFromID,
   findRecipeIngredients,
   findRecipeIngredientsQuantity,
   findRecipeInstructions,
+  removeRecipeFromArray,
 } from "../src/recipes";
 
 describe("Recipe", () => {
@@ -113,6 +115,51 @@ describe("Recipe", () => {
       ]);
     });
   });
+
+  describe("Add recipes to array", function () {
+    let recipesToCook;
+
+    beforeEach(() => {
+      recipesToCook = [];
+    });
+
+    it("should add a recipe to an array", function () {
+      addRecipeToArray(recipesToCook, recipe1);
+
+      expect(recipesToCook).to.include(recipe1);
+    });
+
+    it("should add multiple unique recipes to an array", function () {
+      addRecipeToArray(recipesToCook, recipe1);
+      addRecipeToArray(recipesToCook, recipe2);
+
+      expect(recipesToCook).to.deep.equal([recipe1, recipe2]);
+    });
+
+    it("should only add unique recipes to an array", function () {
+      addRecipeToArray(recipesToCook, recipe1);
+      addRecipeToArray(recipesToCook, recipe1);
+      addRecipeToArray(recipesToCook, recipe2);
+      addRecipeToArray(recipesToCook, recipe2);
+
+      expect(recipesToCook.length).to.equal(2);
+      expect(recipesToCook).to.deep.equal([recipe1, recipe2]);
+    });
+  });
+
+  describe("removeRecipesFromArray", function () {
+    let recipesToCook;
+
+    beforeEach(() => {
+      recipesToCook = [recipe1, recipe2];
+    });
+
+    it("should be able to remove a recipe from an array", function () {
+      removeRecipeFromArray(recipesToCook, recipe1.id);
+
+      expect(recipesToCook).to.not.include(recipe1);
+      expect(recipesToCook).to.include(recipe2);
+    });
 
   describe("Recipe from ID", () => {
     const testRecipes = [recipe1, recipe2];
