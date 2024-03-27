@@ -18,10 +18,10 @@ describe("add recipe", () => {
     };
 })
 
-    it.skip("should be a function", () => {
+    it("should be a function", () => {
       expect(addRecipeToCook).to.be.a("function");
     });
-    it.skip("should add a recipe to the users recipes to cook", () => {
+    it("should add a recipe to the users recipes to cook", () => {
       const recipe = recipes[0];
       const addRecipe = addRecipeToCook(recipe, user);
       expect(addRecipe).to.deep.equal({
@@ -30,7 +30,7 @@ describe("add recipe", () => {
         recipesToCook: [recipe],
       });
     });
-    it.skip("should add another recipe", () => {
+    it("should add another recipe", () => {
       const recipe1 = recipes[0];
       const recipe2 = recipes[1];
       const addRecipe = addRecipeToCook(recipe1, user);
@@ -53,10 +53,10 @@ describe('remove recipe', () => {
       recipesToCook: [],
     };
 })
-    it.skip('should be a function', () => {
+    it('should be a function', () => {
         expect(removeRecipeToCook).to.be.a('function')
     })
-    it.skip('should remove a given recipe from the recipes to cook array', () => {
+    it('should remove a given recipe from the recipes to cook array', () => {
       const recipe = recipes[0];
       const addRecipe = addRecipeToCook(recipe, user);
       const removeRecipe = removeRecipeToCook(recipe, addRecipe);
@@ -66,7 +66,7 @@ describe('remove recipe', () => {
         recipesToCook: [],
       })
     })
-    it.skip('should be able to remove another recipe', () => {
+    it('should be able to remove another recipe', () => {
         const recipe1 = recipes[0];
       const recipe2 = recipes[1];
       const addRecipe = addRecipeToCook(recipe1, user);
@@ -90,10 +90,10 @@ describe('filter users saved recipes by tag', () => {
         recipesToCook: [recipes[0], recipes[1], recipes[2]],
       };
   })
-    it.skip('should be a function', () => {
+    it('should be a function', () => {
         expect(filterUserRecipesByTag).to.be.a('function')
     })
-    it.skip('should filter users recipes by a given tag', () => {
+    it('should filter users recipes by a given tag', () => {
         const filteredRecipes = filterUserRecipesByTag('lunch', user);
         expect(filteredRecipes).to.deep.equal([recipes[2]])
     })
@@ -110,10 +110,10 @@ describe('filter by name', () => {
       };
   })
 
-    it.skip('should be a function', () => {
+    it('should be a function', () => {
         expect(filterUserRecipesByName).to.be.a('function')
     })
-    it.skip('should filter recipes by a given name', () => {
+    it('should filter recipes by a given name', () => {
         const filteredRecipes = filterUserRecipesByName('Pancakes', user);
         expect(filteredRecipes).to.deep.equal([recipes[0]])
     })
