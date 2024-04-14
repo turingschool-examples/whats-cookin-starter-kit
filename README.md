@@ -1,18 +1,52 @@
-# What's Cookin'? Starter Kit
+# What's Cookin
 
-The details of this project are outlined in the <a href="https://frontend.turing.edu/projects/What%27sCookin-PartOne.html" target="\__blank">project spec</a>.
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![Mocha](https://img.shields.io/badge/-mocha-%238D6748?style=for-the-badge&logo=mocha&logoColor=white) ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black) ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
 
-## Set Up
+This project was created by [Charles Kwang](https://github.com/KojinKuro), [Ben Wehrend](https://github.com/BenWehrend), and [Laurel Bonal](https://github.com/laurelbonal)
 
-1. Within your group, decide on **one** person to have the project repository on their Github account. This person will *fork* this repository - on the top right corner of the page, click the fork button.
-1. Add all group members and your PM as collaborators on the repo  
-1. All group members should then clone down the forked repository. Since you don't want your project to be named "whats-cookin-starter-kit", add an optional argument after the repo url when cloning. The command should look like this: `git clone [remote-address] [what your group wants to name the repo]`.
-1. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` or `npm i` to install project dependencies.
-1. Run `npm start` in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page).  
-    - `Control + C` is the command to stop running the local server. Closing the terminal without stopping the server first could allow the server to continue to run in the background and cause problems.  
-        - This command is not specific to Webpack; make note of it for future use.
-1. Do not run `npm audit fix --force`. This will update to the latest version of packages. We need to be using `webpack-dev-server@3.11.2` which is not the latest version. If you start to run into Webpack errors, first check that all group members are using the correct version.
+## 🌟 Overview
 
-## Testing
+Welcome to What's Cookin'! With this website, you can search through our recipe database using featured tags, a search box, and manually using our infinite scroll feature. Tired of losing recipes? Use our "like" button to save your favorite recipes.  This project was created to practice API calls, following TDD, and working on creating a complex web application in a team environment. We used Javascript, HTML, CSS for the core technologies with Mocha & Chai for our test suite.
 
-Mocha and chai are already set up, with a boilerplate test for you.
+## 🖼️ Preview
+![Kapture 2024-03-31 at 15 27 42](https://github.com/KojinKuro/whats-cookin/assets/11234292/b0ab4c26-22ed-4dc6-9082-ff1029c1c494)
+
+## 🔗 Live Demo
+
+[Live Deployment](https://kojinkuro.github.io/whats-cookin/)
+
+## ⚙️ Installation & Setup
+
+```
+git clone git@github.com:KojinKuro/whats-cookin.git
+cd whats-cookin
+npm install
+npm run start
+```
+Server URL: `localhost:8080`
+
+Test Suite: `npm run test`
+
+## ✨ Features
+
+- This website calls a backend server using API calls that stores our recipes
+- Allows filtering recipes using a search bar and recipe tags.
+- Click a button to get a random recipe
+- Save recipes into a list that you can view
+- This website has lazy loading implemented to save resources
+
+## 📚 Context
+
+This website was created in our 7th and 8th week of Turing School of Software and Design. This was a group project of three team memebers. This project took around 75 hours total, averaging 25 hours split amongst each memeber. This was built according to the following [spec sheet](https://frontend.turing.edu/projects/module-2/whats-cookin-part-one.html). There was no design comp provided for this project so our team designed [our own](https://www.figma.com/file/sASmZkfzWbXObPqYVOh9vQ/Figma-basics?type=design&node-id=1669%3A162202&mode=design&t=KfxDWyuUGfOfMnEr-1).
+
+## 🏆 Wins  
+
+1. Learning to work asynchronously, while still creating cohesive code.
+2. Using APIs and incorporating them into the website
+3. Updating the Data Model before the DOM
+
+## 🚧 Challenges
+
+1. Continuing to learn how to work on a time with different work-time preferences
+2. Continuing to improve git workflow
+3. Incorporating writing tests into a website

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack serve",
     "build": "webpack",
-    "test": "mochapack 'test/**/*.js'"
+    "test": "mochapack 'test/**/*.js'",
+    "pages": "git subtree push --prefix dist origin gh-pages"
   },
   "author": "Turing School of Software and Design",
   "license": "MIT",
@@ -22,5 +23,9 @@
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "boxicons": "^2.1.4",
+    "convert-units": "^2.3.4"
   }
 }

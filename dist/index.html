@@ -1,11 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <link href="https://fonts.cdnfonts.com/css/gatile" rel="stylesheet" />
     <title>Whats Cookin</title>
+    <link rel="icon" href="https://fav.farm/🍳" />
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <header>
+      <h1 class="logo gatile">🍳 What's Cookin'</h1>
+      <nav class="nav-buttons">
+        <button class="cookbook selected">COOKBOOK</button>
+        <button class="saved-recipes">SAVED RECIPES</button>
+      </nav>
+    </header>
+
+    <nav class="filter-container">
+      <div class="filter-settings">
+          <input
+            type="text"
+            class="search-box"
+            aria-label="search"
+            placeholder="Search ..."
+          />
+        <button class="clear-search hidden"">X</button>
+        <div class="tags-header">
+          <h3>Tags</h3>
+          <button class="clear-tags hidden">Clear Tags</button>
+        </div>
+        <div class="tags-container"></div>
+      </div>
+      <button class="random-recipe">RANDOM RECIPE</button>
+    </nav>
+
+    <main id="directory-page">
+      <div class="sentinel"></div>
+    </main>
+
+    <div class="warning-container">
+    </div>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
