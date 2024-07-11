@@ -1,12 +1,175 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-  </head>
-  <body>
-    <h1>Whats Cookin</h1>
-  </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="html/css" href="src/styles.css">
+  <title>Flavor Haven.</title>
+</head>
+
+<body id="home-page">
+  <header>
+    <div class="logo-container">
+      <h1>Flavor Haven</h1>
+      <!-- <img src="../src/images/food.png" alt="food image" class="headerImg">
+      <img src="../src/images/food-two.png" alt="food image" class="headerImgTwo"> -->
+    </div>
+
+    <nav class="nav-list">
+      <ul>
+        <li><button class="home-btn">Home</button></li>
+        <li><button class="aboutUs-btn">aboutUs</button></li>
+      </ul>
+    </nav>
+
+  </header>
+  <!-- FOR EXAMPLE HOVER MENU:
+    <label for="pet-select">Choose a pet:</label>
+
+    <select name="pets" id="pet-select">
+      <option value="">--Please choose an option--</option>
+      <option value="dog">Dog</option>
+      <option value="cat">Cat</option>
+      <option value="hamster">Hamster</option>
+      <option value="parrot">Parrot</option>
+      <option value="spider">Spider</option>
+      <option value="goldfish">Goldfish</option>
+    </select>
+  -->
+  <!-- <div>
+    <button class="all-recipes-button">Dropdown</button>
+    <div class="dropdown-content">
+      <a href="#">All</a>
+      <a href="#">Breakfast</a>
+      <a href="#">Lunch</a>
+      <a href="">Dinner</a>
+      <a href="">Snacks</a>
+    </div>
+  </div> -->
+  <div class="dropdown">
+    <button class="all-recipes-button">Recipes</button>
+    <div class="dropdown-content">
+      <table>
+        <tr>
+          <th>Meals</th>
+          <th>Sides</th>
+          <th><a href="#" class="allRecipes">All</a></th>
+        </tr>
+        <tr>
+          <td><a href="#" class="breakfast">Breakfast</a></td>
+          <td><a href="#" class="side-dish">Side Dish</a></td>
+        </tr>
+        <tr>
+          <td><a href="#" class="lunch">Lunch</a></td>
+          <td><a href="#" class="appetizer">Appetizer</a></td>
+        </tr>
+        <tr>
+          <td><a href="#" class="dinner">Dinner</a></td>
+          <td><a href="#" class="salad">Salad</a></td>
+        </tr>
+        <tr>
+          <td><a href="#" class="brunch">Brunch</a></td>
+          <td><a href="#" class="snack">Snack</a></td>
+        </tr>
+        </thead>
+      </table>
+
+
+      <!-- <a href="#">Lunch</a>
+      <a href="#">Brunch</a>
+      <a href="#">Dinner</a>
+      <a href="#">Main Dish</a>
+      
+      <a href="#">Snack</a>
+      <a href="#">Starter</a>
+      <a href="#">Appetizer</a>
+      <a href="#">Salad</a>
+      <a href="#">Antipasto</a>
+      <a href="#">Antipasti</a>
+      <a href="#">Hor de'oeuvre</a> -->
+    </div>
+  </div>
+  <button class="user-recipes-button">
+    Saved Recipes
+  </button>
+  <section class="quick-search">
+    <div class="container">
+      <input class="input-bar" id="searchInput" type="text" placeholder="Search for recipes here!">
+      <button class="search-button">Search</button>
+    </div>
+  </section>
+  <!-- TEST BELOW -->
+
+
+  <!-- TEST ABOVE -->
+  <section class="recipe-list-display"></section>
+
+  <section class="best-selection">
+    <h2>Best Selection</h2>
+    <div class="best-selection-inner">
+      <div>
+        <img class="img-one" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="">
+        <h3>Loaded Chocolate Chip Pudding Cookie Cups</h3>
+        <p>Food Detail</p>
+      </div>
+      <div>
+        <img src="https://spoonacular.com/recipeImages/678353-556x370.jpg" alt="">
+        <h3>Maple Dijon Apple Cider Grilled Pork Chops</h3>
+        <p>Food Detail</p>
+      </div>
+      <div>
+        <img src="https://spoonacular.com/recipeImages/412309-556x370.jpeg" alt="">
+        <h3>Dirty Steve's Original Wing Sauce</h3>
+        <p>Food Detail</p>
+      </div>
+      <div>
+        <img src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" alt="">
+        <h3>Elvis Pancakes</h3>
+        <p>Food Detail</p>
+      </div>
+    </div>
+  </section>
+  <section class="food-blog">
+    <h3>Food Blog</h3>
+    <div class="food-blog-container">
+      <div class="food-blog-text">
+        <h1>Food img</h1>
+        <p>These chicken skewers are a family favorite! Very easy, deliciously smoky, nice and sweet,
+          with a good amount of spice and bite. Air fryer, grill, and oven-friendly!</p>
+      </div>
+      <img src="" alt="">
+    </div>
+    <div class="food-blog-container">
+      <div class="food-blog-text">
+        <img src="" alt="">
+      </div>
+      <h1>Food img</h1>
+      <p>This Chicken Salad is so good! Protein-packed with a delicious creamy dressing,
+        and perfect for an on-the-go lunch in a sandwich or wrap.
+      </p>
+    </div>
+    <div class="food-blog-container">
+      <div class="food-blog-text">
+        <h1>Food img</h1>
+        <p>This green rice is my FAVORITE! It’s packed with spinach and cilantro,
+          perfectly spicy, nutritious, and goes with just about everything.
+        </p>
+      </div>
+      <img src="" alt="">
+    </div>
+  </section>
+  <section class="footer">
+    <div class="social-icon">
+      <ul>
+        <li><img src="" class="icon" />Facebook</li>
+        <li><img src="" class="icon" />Twitter</li>
+        <li><img src="" class="icon" />Instagram</li>
+      </ul>
+    </div>
+  </section>
+
+</body>
+<!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+<script src="bundle.js"></script>
+
 </html>
