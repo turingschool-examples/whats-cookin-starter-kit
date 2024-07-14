@@ -1,12 +1,199 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-  </head>
-  <body>
-    <h1>Whats Cookin</h1>
-  </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="html/css" href="src/styles.css">
+  <title>Flavor Haven.</title>
+</head>
+
+<body id="home-page">
+  <header>
+    <div class="logo-container">
+      <h1>Flavor Haven</h1>
+      <img src="./images/food.png" alt="" class="title-img">
+    </div>
+
+    <nav class="nav-list">
+      <ul>
+        <li><button class="home-btn">Home</button></li>
+        <li><button class="aboutUs-btn">About Us</button></li>
+        <li>
+          <section class="logged-in-as">put username here</section>
+        </li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <div class="dropdown">
+    <button class="all-recipes-button">Recipes</button>
+    <div class="dropdown-content">
+      <table>
+        <tr>
+          <th>Meals</th>
+          <th>Sides</th>
+          <th><a href="#" class="allRecipes">All</a></th>
+        </tr>
+        <tr>
+          <td><a href="#" class="tag" data-tag="breakfast">Breakfast</a></td>
+          <td><a href="#" class="tag" data-tag="side dish">Side Dish</a></td>
+        </tr>
+        <tr>
+          <td><a href="#" class="tag" data-tag="lunch">Lunch</a></td>
+          <td><a href="#" class="tag" data-tag="appetizer">Appetizer</a></td>
+        </tr>
+        <tr>
+          <td><a href="#" class="tag" data-tag="dinner">Dinner</a></td>
+          <td><a href="#" class="tag" data-tag="salad">Salad</a></td>
+        </tr>
+        <tr>
+          <td><a href="#" class="tag" data-tag="brunch">Brunch</a></td>
+          <td><a href="#" class="tag" data-tag="snack">Snack</a></td>
+        </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="user-recipes-button">
+      Saved Recipes
+    </button>
+
+    <div class="dropdown-content">
+      <table>
+        <tr>
+          <th>Meals</th>
+          <th>Sides</th>
+          <th><a href="#" class="user-recipes-button2">All</a></th>
+        </tr>
+        <tr>
+          <td><a href="#" class="recipe-tag" data-tag="breakfast">Breakfast</a></td>
+          <td><a href="#" class="recipe-tag" data-tag="side dish">Side Dish</a></td>
+        </tr>
+        <tr>
+          <td><a href="#" class="recipe-tag" data-tag="lunch">Lunch</a></td>
+          <td><a href="#" class="recipe-tag" data-tag="appetizer">Appetizer</a></td>
+        </tr>
+        <tr>
+          <td><a href="#" class="recipe-tag" data-tag="dinner">Dinner</a></td>
+          <td><a href="#" class="recipe-tag" data-tag="salad">Salad</a></td>
+        </tr>
+        <tr>
+          <td><a href="#" class="recipe-tag" data-tag="brunch">Brunch</a></td>
+          <td><a href="#" class="recipe-tag" data-tag="snack">Snack</a></td>
+        </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+
+  <section class="user-recipe-search">
+    <div class="container">
+      <input class="input-bar" id="savedRecipeInput" type="text" placeholder="search your saved recipes here!">
+      <button class="search-button" id="user-recipe-search-button">Search</button>
+    </div>
+  </section>
+
+  <section class="quick-search">
+    <div class="container">
+      <input class="input-bar" id="searchInput" type="text" placeholder="search for recipes here!">
+      <button class="search-button" id="quick-search-button">Search</button>
+    </div>
+  </section>
+  <!-- TEST BELOW -->
+  <section class="saved-recipes">
+
+  </section>
+
+  <!-- TEST ABOVE -->
+  <section class="recipe-list-display"></section>
+
+  <section class="best-selection">
+    <h2>Best Selection</h2>
+    <div class="best-selection-inner">
+      <div class="container-best-select-imgs">
+        <img class="best-select-actual-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="">
+        <h3>Loaded Chocolate Chip Pudding Cookie Cups</h3>
+        <p>Loaded Chocolate Chip Pudding Cookie Cups are decadent treats featuring soft, chewy cookie dough baked into cups and filled with rich, 
+          creamy pudding, creating an indulgent dessert experience.</p>
+      </div>
+      <div class="container-best-select-imgs">
+        <img class="best-select-actual-img" src="https://spoonacular.com/recipeImages/678353-556x370.jpg" alt="">
+        <h3>Maple Dijon Apple Cider Grilled Pork Chops</h3>
+        <p>These succulent pork chops are marinated in a sweet and tangy blend of maple syrup, Dijon mustard, and apple cider, then grilled to 
+          perfection for a deliciously caramelized finish.</p>
+      </div>
+      <div class="container-best-select-imgs">
+        <img class="best-select-actual-img" src="https://spoonacular.com/recipeImages/412309-556x370.jpeg" alt="">
+        <h3>Dirty Steve's Original Wing Sauce</h3>
+        <p>This bold and zesty wing sauce combines a unique blend of spices and heat, delivering a rich, tangy flavor that elevates any chicken 
+          wing to a new level of deliciousness.</p>
+      </div>
+      <div class="container-best-select-imgs">
+        <img class="best-select-actual-img" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg" alt="">
+        <h3>Elvis Pancakes</h3>
+        <p>Elvis Pancakes are a decadent breakfast treat featuring fluffy pancakes topped with creamy peanut butter, sliced bananas, and a drizzle 
+          of honey, inspired by the King's favorite flavors.</p>
+      </div>
+    </div>
+  </section>
+  <section class="food-blog">
+    <h3>Food Blog</h3>
+    <div class="food-blog-container">
+      <div class="food-blog-text">
+        <h1>Mexican Vegetables on Cornbread</h1>
+        <p>Mexican Vegetables on Cornbread is a flavorful dish that combines vibrant, spiced vegetables like bell peppers, corn, and
+          black beans with the soft, slightly sweet base of cornbread. Often topped with cheese and fresh cilantro, this dish is a 
+          delightful blend of textures and tastes, perfect for a hearty and satisfying meal.</p>
+      </div>
+      <img src="https://spoonacular.com/recipeImages/504218-556x370.jpg" alt="">
+    </div>
+    <div class="food-blog-container">
+        <img src="https://spoonacular.com/recipeImages/226562-556x370.jpg" alt="">
+      <div class="food-blog-text">
+        <h1>Vegan Lentil Loaf</h1>
+        <p>Vegan Lentil Loaf is a wholesome, plant-based dish made from a blend of lentils, vegetables, and savory seasonings, baked to a perfect, firm texture.
+        This nutrient-rich loaf is often topped with a tangy tomato glaze, making it a hearty and delicious alternative to traditional meatloaf.
+        </p>
+      </div>
+    </div>
+    <div class="food-blog-container">
+      <div class="food-blog-text">
+        <h1>Baked Stuffed Artichokes</h1>
+        <p>Baked Stuffed Artichokes are a delectable dish where tender artichoke leaves and hearts are filled with a savory mixture of breadcrumbs,
+          garlic, herbs, and Parmesan cheese. Baked until golden and crispy, this dish offers a delightful combination of flavors and textures,
+          perfect as an appetizer or a side dish.
+        </p>
+      </div>
+      <img src="https://spoonacular.com/recipeImages/724018-556x370.jpg" alt="">
+    </div>
+  </section>
+  <section class="footer">
+    <div >
+      <ul class="social-icon">
+        <li>Facebook</li>
+        <li>Twitter</li>
+        <li>Instagram</li>
+      </ul>
+      <ul class="award-icon">
+        <!-- <li>Awards</li> -->
+        <li>Savory Sensation Honor 2024 🏆</li>
+        <li>Delectable Dish Award 2022 🏆</li>
+        <li>Flavor Fusion Medal 2020 🏆</li>
+      </ul>
+    </div>
+    <!-- <div class="social-icon">
+      <ul>
+        <li>Facebook</li>
+        <li>Twitter</li>
+        <li>Instagram</li>
+      </ul>
+    </div> -->
+  </section>
+
+</body>
+<!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+<script src="bundle.js"></script>
+
 </html>
