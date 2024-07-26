@@ -1,3 +1,678 @@
-body {
-  background-color: blueviolet;
+/* fonts */
+
+/* bitter-regular - latin_latin-ext */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Bitter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/bitter-v33-latin_latin-ext-regular.woff2') format('woff2');
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
+/* bitter-italic - latin_latin-ext */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Bitter';
+  font-style: italic;
+  font-weight: 400;
+  src: url('./fonts/bitter-v33-latin_latin-ext-italic.woff2') format('woff2');
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* bitter-700 - latin_latin-ext */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Bitter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./fonts/bitter-v33-latin_latin-ext-700.woff2') format('woff2');
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* bitter-700italic - latin_latin-ext */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Bitter';
+  font-style: italic;
+  font-weight: 700;
+  src: url('./fonts/bitter-v33-latin_latin-ext-700italic.woff2') format('woff2');
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* andy bell's reset */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin-block-end: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/* end andy bell's reset */
+
+/* variables */
+
+:root {
+  --fs-h1: 4.2rem;
+  --fs-h2: 3.15rem;
+  --fs-h3: 2rem;
+  --fs-h4: 1.35rem;
+  --fs-text: 1.15rem;
+  --fs-small: 0.875rem;
+  --clr-white: hsl(0, 0%, 100%);
+  --clr-light: hsl(36, 45%, 98%);
+  --clr-primary: hsl(35, 100%, 82%);
+  --clr-text: hsl(29, 73%, 16%);
+  --clr-accent: hsl(19, 100%, 52%);
+  --col-width: 16rem;
+  --col-width: clamp(15rem, 16.667vw + 11.667rem, 20rem);
+  --transition: ease all .3s;
+}
+
+/* utilities */
+
+* {
+  margin: 0;
+  padding: 0;
+  /* outline: 1px solid tomato; */
+}
+
+*:focus-visible,
+input[type="radio"]:focus-visible + label {
+  outline: 3px dotted var(--clr-accent);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+/* layout */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  color: var(--clr-text);
+  background-color: var(--clr-light);
+  
+}
+
+header {
+  background-color: var(--clr-primary);
+}
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  row-gap: 2em;
+}
+
+.hero > img {
+  width: min(100%, 20rem);
+  background-color: var(--clr-light);
+  border-radius: 16px;
+}
+
+footer {
+  margin-top: 2rem;
+  padding: 2.5rem 0 1rem;
+  text-align: center;
+  border-top: 1px solid var(--clr-primary);
+}
+
+.wrapper {
+  width: min(100%, 72rem);
+  margin: 0 auto;
+  padding: 3vh clamp(1rem, 5vw, 3rem);
+}
+
+/* typography */
+
+h1,
+h2,
+h3,
+h4,
+.h1,
+.h2,
+.h3,
+.h4 {
+  font-family: "Bitter", serif;
+  line-height: 1.15;
+}
+
+h2,
+h3,
+.h2,
+.h3 {
+  margin-bottom: 1em;
+  font-weight: 400;
+}
+
+h1, .h1 {
+  font-size: var(--fs-h1);
+  font-size: clamp(3rem, 2.217vw + 2.426rem, var(--fs-h1));
+}
+
+h2, .h2 {
+  font-size: var(--fs-h2);
+  font-size: clamp(2.5rem, 1.201vw + 2.189rem, var(--fs-h2));
+}
+
+h3, .h3 {
+  font-size: var(--fs-h3);
+}
+
+h4, .h4 {
+  font-size: var(--fs-h4);
+  margin: 1em 0;
+}
+
+p,
+li {
+  font-size: var(--fs-text);
+  line-height: 1.65;
+}
+
+ol > li {
+  margin-bottom: 25px;
+}
+
+li::marker {
+  color: var(--clr-primary);
+  font-weight: bold;
+}
+
+small {
+  font-size: var(--fs-small);
+}
+
+/* user */
+
+.user {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.user > p {
+  margin-bottom: 0;
+}
+
+.user span {
+  font-style: italic;
+  text-decoration: underline;
+  text-decoration-thickness: 6px;
+  text-decoration-color: var(--clr-accent);
+}
+
+.avatar {
+  display: inline;
+  margin: 0 1rem;
+}
+
+/* aside and form */
+
+aside {
+  position: relative;
+  border-bottom: 1px solid var(--clr-primary);
+}
+
+.wrapper-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding-bottom: 3vh;
+  gap: 1rem;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+}
+
+input[type="radio"]:focus {
+  outline: none;
+}
+
+input[type="radio"]:checked+label{ 
+  opacity: 0.7; 
+  border: none;
+  cursor: default;
+} 
+
+.wrapper-search {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.wrapper-search button {
+  align-self: flex-end;
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+ul.tag-list {
+  padding: 2rem;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  border: 2px solid var(--clr-primary);
+  background-color: var(--clr-white);
+  z-index: 2;
+}
+
+.form-control {
+  display: grid;
+  grid-template-columns: 1.5rem auto;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-bottom: 1px dotted var(--clr-primary);
+}
+
+input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 0.6em;
+  font-size: 1.125rem;
+  padding: 0.25em 1em;
+  background-color: var(--clr-white);
+  border: 2px solid var(--clr-accent);
+  border-radius: 8px;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--clr-accent);
+}
+
+/* cards */
+
+ul.recipe-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--col-width), 1fr));
+  padding: 1rem 0;
+  column-gap: 1.5rem;
+  row-gap: 2.5rem;
+  justify-items: center;
+  margin: 0 auto;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  max-width: var(--col-width);
+  background-color: var(--clr-white);
+  border-radius: 1rem;
+  overflow: hidden;
+  position: relative;
+
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 0 1px 2px hsla(29, 73%, 16%, 0.18);
+}
+
+.card img {
+  height: auto;
+}
+
+.card h3 {
+  padding: 1em 0.5em;
+}
+
+.card > .wrapper-tags {
+  padding: 0.5em;
+}
+
+
+
+
+
+/* tags */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25em 0.8em;
+  font-family: sans-serif;
+  font-size: var(--fs-small);
+  line-height: 2.5;
+  font-weight: 400;
+  background-color: var(--clr-primary);
+  border-radius: 8px;
+}
+
+.wrapper-tags {
+  display: flex;
+  margin-top: auto;
+  flex-wrap: wrap;
+  gap: 0.2em;
+  list-style: none;
+}
+
+.wrapper-tags.selected-tags {
+  margin-bottom: 2em;
+  gap: 1em;
+}
+
+.card>.wrapper-tags>* {
+  display: none;
+}
+
+.card>.wrapper-tags>*:nth-child(-n+3) {
+  display: inline-flex;
+}
+
+/* buttons and links*/
+
+button, .btn {
+  display: inline-flex;
+  align-items: center;
+  align-self: start;
+  justify-content: center;
+  gap: 0.5em;
+  min-width: 157px;
+  min-height: 44px;
+  padding: 0.25em 1em;
+  border-radius: 8px;
+  font-size: 1.025rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  line-height: 1.1;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--clr-text);
+  background-color: transparent;
+  border: 2px solid var(--clr-accent);
+  cursor: pointer;
+}
+
+button.btn-card {
+  padding: 0;
+  letter-spacing: unset;
+  text-transform: unset;
+  text-align: unset;
+  border: 0;
+}
+
+button.btn-card::before {
+  content: ''; 
+  position: absolute; 
+  inset: 0;
+  z-index: 1;
+}
+
+button.btn-card:focus::before {
+  outline: 4px dotted var(--clr-accent);
+  outline-offset: -4px;
+}
+
+button.btn-card:focus {
+  outline: none;
+}
+
+.btn:hover,
+input[type="radio"]:not(:checked)+label:hover {
+  background-color: var(--clr-primary);
+  transition: var(--transition);
+}
+
+.btn-unselect {
+  min-width: unset;
+  font-size: inherit;
+  min-height: 100%;
+  min-width: auto;
+  align-self: center;
+  border: 0;
+  background-image: url(/src/images/close_16dp_47280B_FILL0_wght400_GRAD0_opsz20.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.btn-unselect:hover {
+  background-color: transparent;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.7))
+}
+
+a:hover {
+  color: var(--clr-accent);
+}
+
+/* single recipe display - modal */
+
+/* .modal {
+  display: none;
+}
+
+.modal.is-open {
+  display: block;
+} */
+
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--clr-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.modal__container {
+  max-width: 100vw;
+  width: 100%;
+  max-height: 100%;
+  padding: 2rem 1rem;
+  color: inherit;
+
+  border: 0;
+  overflow-y: auto;
+}
+
+.modal-wrapper-inner {
+  max-width: 620px;
+  height: auto;
+  margin: 0 auto;
+  display: grid;
+  padding: 5vh clamp(1rem, 5vw, 3rem) 2.5rem;
+  gap: 2.5rem;
+  background-color: var(--clr-white);
+  border-radius: 16px;
+  overflow-y: auto;
+}
+
+.modal-header {
+  max-width: 556px;
+  display: grid;
+  gap: 2rem;
+  background-color: var(--clr-white);
+}
+
+.modal-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: space-between;
+}
+
+#modal-1-content>*+* {
+  margin-bottom: 1.5rem;
+}
+
+.modal-ingredients {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--clr-primary);
+}
+
+/**************************\
+  Micromodal Demo Animation Style
+\**************************/
+@keyframes mmfadeIn {
+  from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes mmfadeOut {
+  from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes mmslideIn {
+from { transform: translateY(15%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes mmslideOut {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10%); }
+}
+
+.micromodal-slide {
+display: none;
+}
+
+.micromodal-slide.is-open {
+display: block;
+}
+
+.micromodal-slide[aria-hidden="false"] .modal__overlay {
+animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.micromodal-slide[aria-hidden="false"] .modal__container {
+animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
+}
+
+.micromodal-slide[aria-hidden="true"] .modal__overlay {
+animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.micromodal-slide[aria-hidden="true"] .modal__container {
+animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
+}
+
+.micromodal-slide .modal__container,
+.micromodal-slide .modal__overlay {
+will-change: transform;
+}
+
+
+

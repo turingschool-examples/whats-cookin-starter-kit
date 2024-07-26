@@ -1,12 +1,103 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-  </head>
-  <body>
-    <h1>Whats Cookin</h1>
-  </body>
-  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="What's Cookin - Choose what to cook today">
+  <meta name="theme-color" content="hsl(35, 100%, 82%)">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>What's Cookin</title>
+</head>
+
+<body>
+  <header>
+    <div class="user wrapper h3">
+      <p class="h3">Welcome</p>
+      <img src="./images/account_circle_48dp_47280B_FILL1_wght400_GRAD0_opsz48.svg" alt="" class="avatar" width="48"
+        height="48">
+      <span id="user">...</span>
+    </div>
+    <div class="hero wrapper">
+      <div class="hero-title">
+        <h1>What's Cookin'?</h1>
+        <p>Choose what to cook today.</p>
+      </div>
+      <img src="./images/3.Nutritionist.svg" alt="illustration of a woman choosing recipes" width="320" height="320">
+    </div>
+  </header>
+
+  <aside class="wrapper">
+    <div class="wrapper-controls change-view">
+      <input type="radio" id="view-all" name="view" value="all" checked>
+      <label for="view-all" class="btn"><img src="./images/all_inclusive_16dp_47280B_FILL0_wght400_GRAD0_opsz20.svg"
+          alt="">View All</label>
+      <input type="radio" id="view-fav" name="view" value="fav">
+      <label for="view-fav" class="btn"><img src="./images/favorite_16dp_47280B_FILL0_wght400_GRAD0_opsz20.svg"
+          alt="">View Favorites</label>
+    </div>
+    <div class="wrapper-controls">
+      <form method="get" class="wrapper-search">
+        <label for="search">Search recipes:
+          <input id="search" type="text" placeholder="Name or ingredient" maxlength="20">
+        </label>
+        <button id="btn-search" class="btn"><img src="./images/search_16dp_47280B_FILL1_wght400_GRAD0_opsz20.svg"
+            alt="">Search</button>
+      </form>
+      <form method="get" class="wrapper-filter">
+        <fieldset>
+          <legend class="sr-only">Filter recipes by tag:</legend>
+          <button id="btn-tags" class="btn"><img src="./images/bookmark_16dp_47280B_FILL0_wght400_GRAD0_opsz20.svg"
+              alt="">Show tags</button>
+          <ul class="tag-list hidden" id="tag-list" role="list">
+          </ul>
+        </fieldset>
+      </form>
+    </div>
+  </aside>
+
+  <main class="wrapper">
+    <h2 id="view-info" class="h3">Viewing ...</h2>
+    <ul id="selected-tags" class="wrapper-tags selected-tags"></ul>
+    <ul class="recipe-list h3" id="recipe-list" role="list"></ul>
+  </main>
+
+  <footer>
+    <p><small><a href="https://turing.edu/" target="_blank">Turing School</a> Project. Coded by <a
+          href="https://github.com/je-jo" target="_blank">Jelena Jovičić</a>, 2024.</small></p>
+  </footer>
+
+  <div id="modal-1" aria-hidden="true" class="modal micromodal-slide">
+    <div tabindex="-1" class="modal__overlay">
+      <div role="dialog" aria-modal="true" aria-labelledby="modal-1-title" class="modal__container">
+        <div class="modal-wrapper-inner">
+          <header class="modal-header">
+            <img id="recipe-img" src="./images/turing-logo.png" alt="placeholder image">
+            <div class="modal-btns">
+              <button aria-label="Close modal" id="btn-close" class="btn" data-micromodal-close><img
+                  src="./images/arrow_back_16dp_47280B_FILL0_wght400_GRAD0_opsz20.svg" alt="">Back to recipes</button>
+              <button aria-label="Add to favorites" id="btn-favorite" class="btn"><img
+                  src="./images/favorite_16dp_47280B_FILL0_wght400_GRAD0_opsz20.svg" alt=""><span
+                  id="btn-favorite-txt">Favorite</span></button>
+            </div>
+            <h3 id="modal-1-title">
+              Modal Title
+            </h3>
+            <ul id="wrapper-tags" class="wrapper-tags"></ul>
+          </header>
+          <div id="modal-1-content">
+            <h4>Ingredients:</h4>
+            <ul id="recipe-ingredients" class="modal-ingredients"></ul>
+            <p>Estimated total cost of ingredients: $<span id="recipe-cost"></span>
+            <h4>Instructions:</h4>
+            <ol id="recipe-instructions"></ol>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
   <script src="bundle.js"></script>
+</body>
+
 </html>
